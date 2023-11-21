@@ -1,0 +1,12 @@
+.customBreadcrumb {
+  padding: 10px 20px;
+}
+
+.breadcrumb-item {
+  line-height: 16px;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "->" !important;
+  padding: 0 2px !important;
+  margin: 0;
+}/*# sourceMappingURL=style.css.map */

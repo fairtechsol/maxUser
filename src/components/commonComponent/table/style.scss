@@ -1,0 +1,29 @@
+
+@import "/src/assets/variable.scss";
+.sortIcon{
+    float: right;
+    cursor: pointer;
+}
+.sortIconGray svg{
+    color: $gray;
+}
+.sortIconDark svg{
+    color: $blue3;
+}
+.paginationBtn{
+    margin: 0px 10px ;
+    height: 37px !important;
+}
+.pagination{
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-between;
+    .paginationContainer{
+        display: flex;
+    }
+}
+.rowPerPageSelect{
+    padding: 0px !important;
+}
+
+

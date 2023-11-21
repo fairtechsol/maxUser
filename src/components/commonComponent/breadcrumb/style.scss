@@ -1,0 +1,15 @@
+.customBreadcrumb{
+    padding: 10px 20px;
+}
+.breadcrumb-item {
+    // Styles for breadcrumb items
+    line-height: 16px;
+    & + &::before {
+      // Styles for the separator (::before) between breadcrumb items
+      content: '->' !important;
+        padding: 0 2px !important;
+        margin: 0;
+    }
+  }
+    
+  
