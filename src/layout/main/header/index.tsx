@@ -1,14 +1,16 @@
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import LogoSection from "../../../components/commonComponent/logoSection";
 import "./style.scss";
 const TopBar = () => {
   return (
     <Navbar expand="lg" className="bg-primary h-auto" data-bs-theme="light">
       <Container fluid>
-        <Navbar.Brand href="#home">
-          <LogoSection width="auto" height="65px" />
-        </Navbar.Brand>
-
+        <Link to={"/home"}>
+          <Navbar.Brand>
+            <LogoSection width="auto" height="65px" />
+          </Navbar.Brand>
+        </Link>
         <div className="d-flex align-items-center white-text gap-3">
           <b>Rules</b>
           <div className="balance-cont">
