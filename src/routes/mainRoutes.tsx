@@ -2,7 +2,7 @@ import { lazy } from "react";
 import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
 // ==============================|| Main ROUTING ||============================== //
-const Home = Loadable(lazy(() => import("../pages/dashboard")));
+const Home = Loadable(lazy(() => import("../pages/home")));
 
 const MainRoutes = {
   path: "/",
