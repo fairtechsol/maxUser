@@ -1,44 +1,109 @@
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import {
+  Col,
+  Collapse,
+  Container,
+  Dropdown,
+  Navbar,
+  Row,
+} from "react-bootstrap";
+import { FaSearchPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import LogoSection from "../../../components/commonComponent/logoSection";
+import dropdownList from "./dropdown.json";
+import CustomDropDown from "./dropdown/customDropdown";
+
+import { useState } from "react";
+import CustomInput from "../../../components/commonComponent/input";
 import "./style.scss";
+
 const TopBar = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(!open);
+  };
+
   return (
     <Navbar expand="lg" className="bg-primary h-auto" data-bs-theme="light">
       <Container fluid>
-        <Link to={"/home"}>
-          <Navbar.Brand>
-            <LogoSection width="auto" height="65px" />
-          </Navbar.Brand>
-        </Link>
-        <div className="d-flex align-items-center white-text gap-3">
-          <b>Rules</b>
-          <div className="balance-cont">
-            <div>
-              Balance:<b>0.00</b>
+        <Row className=" w-100">
+          <Col xs={12}>
+            <div className="float-start">
+              <Link to={"/home"}>
+                <Navbar.Brand>
+                  <LogoSection width="auto" height="65px" />
+                </Navbar.Brand>
+              </Link>
             </div>
-            <div>
-              Exposure:<b>0</b>
+            <ul className="d-flex align-items-center white-text gap-3 list-unstyled mb-0 float-end h-100">
+              <li className="d-flex gap-3 align-items-center">
+                <Collapse in={open} dimension="width">
+                  <div id="example-collapse-text">
+                    <CustomInput placeholder="All Events" />
+                  </div>
+                </Collapse>
+                <span>
+                  <FaSearchPlus
+                    aria-expanded={open}
+                    aria-controls="example-collapse-text"
+                    onClick={handleClickOpen}
+                    className="title-24"
+                  />
+                </span>
+              </li>
+              <li>
+                <b>Rules</b>
+              </li>
+              <li>
+                <div className="balance-cont">
+                  <div>
+                    Balance:<b>0.00</b>
+                  </div>
+                  <div>
+                    <Link to={""} className="white-text ">
+                      Exposure:<b>0</b>
+                    </Link>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <Dropdown>
+                  <Dropdown.Toggle
+                    as={CustomDropDown}
+                    id="dropdown-custom-components"
+                  >
+                    Custom toggle
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="rounded-2 shadow-sm dropdown-menu-nav">
+                    {dropdownList?.map((item) => {
+                      return (
+                        <div key={item?.id}>
+                          {item?.inFooter && <Dropdown.Divider />}
+                          <Dropdown.Item
+                            className="title-14"
+                            href={item?.link}
+                            key={item?.id}
+                            eventKey={item?.id}
+                          >
+                            {item?.name}
+                          </Dropdown.Item>
+                        </div>
+                      );
+                    })}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </li>
+            </ul>
+
+            <div className="marquee-container nav-marquee text-white">
+              <div className="marquee-content">
+                {/* Your scrolling content goes here */}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </div>
             </div>
-          </div>
-          <Navbar.Collapse id="navbar-dark-example">
-            <Nav>
-              <NavDropdown id="nav-dropdown-dark-example" title="Dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-        </div>
+          </Col>
+        </Row>
       </Container>
     </Navbar>
   );

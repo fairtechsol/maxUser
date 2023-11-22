@@ -2,11 +2,19 @@ import { Form } from "react-bootstrap";
 import "./style.scss";
 
 const CustomInput = (props: any) => {
-  const { title, formInline, labelCol, inputCol, inputIcon, ...prop } = props;
+  const {
+    title,
+    formInline,
+    labelCol,
+    inputCol,
+    inputIcon,
+    customStyle,
+    ...prop
+  } = props;
   return (
     <>
       <Form.Group
-        className={`${props.customStyle} ${
+        className={`${customStyle ?? ""} ${
           formInline ? "row" : ""
         } position-relative`}
         controlId="cityName w-100"

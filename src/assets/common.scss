@@ -6,6 +6,30 @@ body table.table{
   margin-bottom: 0;
 }
 
+/* Marquee.css */
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marqueeAnimation 10s linear infinite;
+}
+
+@keyframes marqueeAnimation {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
 /* ====== excel csv btn ======= */
 .excel{
   background-color: $excel !important;

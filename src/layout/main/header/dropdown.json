@@ -1,0 +1,48 @@
+[
+  {
+    "id": "accountStatement",
+    "name": "Account Statement",
+    "link": "/"
+  },
+  {
+    "id": "profitLossReport",
+    "name": "Profit Loss Report",
+    "link": "/"
+  },
+  {
+    "id": "betHistory",
+    "name": "Bet History",
+    "link": "/"
+  },
+  {
+    "id": "unsettledBet",
+    "name": "Unsettled Bet",
+    "link": "/"
+  },
+  {
+    "id": "casinoReportHistory",
+    "name": "Casino Report History",
+    "link": "/"
+  },
+  {
+    "id": "setButtonValues",
+    "name": "Set Button Values",
+    "link": "/"
+  },
+  {
+    "id": "securityAuthVerification",
+    "name": "Security Auth Verification",
+    "link": "/"
+  },
+  {
+    "id": "changePassword",
+    "name": "Change Password",
+    "link": "/"
+  },
+  {
+    "id": "signout",
+    "name": "Signout",
+    "link": "/",
+    "inFooter": true
+  }
+]
