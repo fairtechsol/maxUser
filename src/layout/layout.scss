@@ -1,61 +1,37 @@
 @import "/src/assets/variable.scss";
 
-.navbar {
-    height: 52px;
-}
-.navbar {
-    a.nav-link{
-        text-transform: capitalize;
-        // padding: 10px 10px;
-        font-size: 14px;
-        line-height: 15px;
-        font-weight: 600;
-        color: $white;
-       
-    }
-    .dropdown-menu {
-        background-color: $primary;
-        border: 0;
-        border-radius: 0;
-        a{
-            color: $white;
-        }
-        :hover{
-            background-color: $secondary;
-        }
-    }
-    
-}
-.navbar  a.nav-link:focus{
-    color: $white;
-}
-.navbar  a.nav-link:hover{
-    text-decoration: underline;
-    background-color: $secondary;
-    color: $black;
-}
+
+
 
 .sidebar{
-    position: absolute;
-    left: -100%;
-    top: 52px;
-    width: 400px;
-    transition: 1s;
-    height: calc(100vh - 52px);
-}
-.sidebar.sidebarActive{
-    left: 0;
-}
-.sidebar .sidebarBox{
+    width: 25%;
     height: 100%;
-    padding: 20px 10px;
 }
-.sidebar .sidebarBox .accordion-item {
-    border: 0;
+.accordion-header-group .accordion-button{
+    padding: 5px;
+    border-radius: 0px !important;
+    background-color: $primary !important;
+    color: $white !important;
+    font-weight: 600;
+    box-shadow: none !important;
+    }
+    .accordion-header-group .accordion-button.collapsed::after{
+        background-image: none;
+        content: ">";
+    }
+    .accordion-header-group .accordion-button::after{
+        content: "";
+    }
+.accordion-button.collapsed{
+    background-color: transparent;
+}
+.accordion-item-collapse {
+    border: 0 !important;
     background: none;
     position: relative;
+
 }
-.sidebar .sidebarBox .accordion-item:after{
+.accordion-item-collapse:after{
     border-left: 1px solid $primary;
     bottom: 0;
     content: "";
@@ -63,36 +39,38 @@
     position: absolute;
     top: 0px;
 }
-.sidebar .sidebarBox .accordion-item .accordion-header .accordion-button,
-.sidebar .sidebarBox .accordion-item a{
-    background: none;
-    box-shadow: none;
-    padding: 0;
-    position: relative;
-    font-size: 12px;
-    text-decoration: none;
+.accordion-header-collapse .accordion-button,
+.accordion-item-collapse a{
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    position: relative !important;
+    font-size: 12px !important;
+    text-decoration: none !important;
     padding: 0 0 0 12px !important;
 }   
-.sidebar .sidebarBox .accordion-item .accordion-header .accordion-button:after{
+.accordion-header-collapse .accordion-button:after{
     flex-shrink: 0;
-   background: none;
+    background: none;
     transition: transform .2s ease-in-out;
     float: left;
     margin-left: 6px !important;
     font-size: 15px;
     transform: rotate(0);
-    color: var(--black);
+    color: $black;
 }
-.sidebar .sidebarBox .accordion-item .accordion-header .accordion-button.collapsed:after{
+.accordion-header-collapse .accordion-button.collapsed:after{
     content: "+";
 }
-.sidebar .sidebarBox .accordion-item .accordion-header .accordion-button:after{
+.accordion-header-collapse .accordion-button:after{
     content: "-";
+    background-image: none !important;
 }
-.sidebar .sidebarBox .accordion-item .accordion-header .accordion-button:before{
+.accordion-header-collapse .accordion-button:before{
     background: $primary;
     bottom: auto;
     content: "";
+    background-image: none !important;
     height: 8px;
     left: 0px;
     margin-top: 0;

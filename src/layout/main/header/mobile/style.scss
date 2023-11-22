@@ -1,0 +1,14 @@
+@import "/src/assets/variable.scss";
+
+.dropdown-custom-components{
+    padding: 0px !important;
+}
+.dropdown-menu-nav{
+    background-color: $light !important;
+    right: 0px !important;
+    left: auto !important;
+    .dropdown-item{
+        color: $black !important;
+    }
+    
+}

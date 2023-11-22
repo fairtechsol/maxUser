@@ -47,6 +47,22 @@ body table.table{
   width: 90vw;
   max-width: none;
 }
+
+// ===== blink text ====
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.blinking-text {
+  animation: blink 1s infinite;
+}
+
+
 /* ====== bg Colors start ====  */
 .bg-secondaryLight{
   background-color: rgba( $secondary, 0.7) !important;
