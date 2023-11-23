@@ -1,0 +1,25 @@
+@import "/src/assets/variable.scss";
+.m-match-list-tabs {
+    border-radius: 0px !important;
+    background-color: $secondary;
+    padding: 2px;
+    color: $black;
+    width: 100%;
+    &:hover {
+        border: none !important;
+    }
+    &.active {
+        background-color: $primary !important;
+        color: $white !important;
+        border-color: transparent !important ;
+    }
+}
+
+.no-wrap {
+    flex-wrap: nowrap;
+    text-wrap: nowrap;
+}
+
+.tab-icon svg {
+    font-size: 26px;
+}

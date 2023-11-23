@@ -8,19 +8,45 @@ interface Props {
 export const MenuItem: React.FC<Props> = ({ item }) => {
   const MenuItemChild = (props: any) => {
     const { data } = props;
-    return <Link to={`${data.path}`}>{data?.name}</Link>;
+    return (
+      <div>
+        {data?.type === "liveItem" ? (
+          <div className="sidebar-menu-items px-3">
+            <Link
+              className={`title-14 text-decoration-none text-black ${
+                data?.blink ? "blinking-text" : ""
+              }`}
+              to={`${data.path}`}
+            >
+              {data?.name}
+            </Link>
+          </div>
+        ) : (
+          <div className="nested-menu-item">
+            <Link
+              className="title-14 text-decoration-none text-black"
+              to={`${data.path}`}
+            >
+              {data?.name}
+            </Link>
+          </div>
+        )}
+      </div>
+    );
   };
 
   const MenuCollapse = (props: any) => {
     const { data } = props;
     return (
       <>
-        {data?.type === "item" ? (
+        {data?.type === "item" || data?.type === "liveItem" ? (
           <MenuItemChild data={data} />
         ) : (
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>{data?.name}</Accordion.Header>
-            <Accordion.Body>
+          <Accordion.Item className="accordion-item-collapse" eventKey="0">
+            <Accordion.Header className="accordion-header-collapse">
+              {data?.name}
+            </Accordion.Header>
+            <Accordion.Body className="py-0">
               {data?.children?.map((sideBarChild: any, index: number) => {
                 return (
                   <Accordion key={index} defaultActiveKey={[]}>
@@ -38,31 +64,18 @@ export const MenuItem: React.FC<Props> = ({ item }) => {
     const { data } = props;
     return (
       <>
-        {data?.type === "item" ? (
+        {data?.type === "item" || data?.type === "liveItem" ? (
           <MenuItemChild data={data} />
         ) : (
-          <Accordion.Item
-            className={
-              data?.type === "group"
-                ? "accordion-item-group"
-                : "accordion-item-collapse"
-            }
-            eventKey="0"
-          >
-            <Accordion.Header
-              className={
-                data?.type === "group"
-                  ? "accordion-header-group"
-                  : "accordion-header-collapse"
-              }
-            >
+          <Accordion.Item className={"accordion-item-group"} eventKey="0">
+            <Accordion.Header className={"accordion-header-group"}>
               {data?.name}
             </Accordion.Header>
-            <Accordion.Body>
+            <Accordion.Body className="p-0">
               {data?.children?.map((sideBarChild: any, index: number) => {
                 return (
                   <Accordion key={index} defaultActiveKey={[]}>
-                    {item?.type === "group" ? (
+                    {sideBarChild?.type === "group" ? (
                       <MenuGroup data={sideBarChild} />
                     ) : (
                       <MenuCollapse data={sideBarChild} />

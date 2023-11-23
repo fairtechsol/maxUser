@@ -1,0 +1,15 @@
+@import "/src/assets/variable.scss";
+.match-list-tabs {
+    border-right: 1px solid $secondary !important;
+    border-radius: 0px !important;
+    background-color: $gray;
+    padding: 2px 10px;
+    &:hover {
+        border: none !important;
+        border-right: 1px solid $secondary !important;
+    }
+    &.active {
+        background-color: $secondary !important;
+        border-color: transparent !important ;
+    }
+}

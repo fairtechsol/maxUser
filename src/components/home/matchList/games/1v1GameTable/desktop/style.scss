@@ -1,0 +1,9 @@
+@import "/src/assets/variable.scss";
+.one-v-one-row td {
+    padding: 0px;
+    width: 100px;
+}
+.one-v-one-title:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

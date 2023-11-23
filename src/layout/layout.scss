@@ -1,92 +1,10 @@
 @import "/src/assets/variable.scss";
 
 
-
-
-.sidebar{
-    width: 25%;
-    height: 100%;
-}
-.accordion-header-group .accordion-button{
-    padding: 5px;
-    border-radius: 0px !important;
-    background-color: $primary !important;
-    color: $white !important;
-    font-weight: 600;
-    box-shadow: none !important;
-    }
-    .accordion-header-group .accordion-button.collapsed::after{
-        background-image: none;
-        content: ">";
-    }
-    .accordion-header-group .accordion-button::after{
-        content: "";
-    }
-.accordion-button.collapsed{
-    background-color: transparent;
-}
-.accordion-item-collapse {
-    border: 0 !important;
-    background: none;
-    position: relative;
-
-}
-.accordion-item-collapse:after{
-    border-left: 1px solid $primary;
-    bottom: 0;
-    content: "";
-    left: 4px;
-    position: absolute;
-    top: 0px;
-}
-.accordion-header-collapse .accordion-button,
-.accordion-item-collapse a{
-    background: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    position: relative !important;
-    font-size: 12px !important;
-    text-decoration: none !important;
-    padding: 0 0 0 12px !important;
-}   
-.accordion-header-collapse .accordion-button:after{
-    flex-shrink: 0;
-    background: none;
-    transition: transform .2s ease-in-out;
-    float: left;
-    margin-left: 6px !important;
-    font-size: 15px;
-    transform: rotate(0);
-    color: $black;
-}
-.accordion-header-collapse .accordion-button.collapsed:after{
-    content: "+";
-}
-.accordion-header-collapse .accordion-button:after{
-    content: "-";
-    background-image: none !important;
-}
-.accordion-header-collapse .accordion-button:before{
-    background: $primary;
-    bottom: auto;
-    content: "";
-    background-image: none !important;
-    height: 8px;
-    left: 0px;
-    margin-top: 0;
-    position: absolute;
-    right: auto;
-    width: 8px;
-    z-index: 1;
-    border-radius: 50%; 
-}
-.sidebar .list-group .list-group-item {
-    font-size: 12px;
-}
-.page-content{
+.page-content {
     background-color: $light;
     height: calc(100vh - 52px);
     margin: 12px;
     padding: 10px 0;
 }
-/* ===== main content ===== */
+

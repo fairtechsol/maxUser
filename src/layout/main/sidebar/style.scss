@@ -1,0 +1,89 @@
+@import "/src/assets/variable.scss";
+
+.sidebar {
+    width: 20%;
+    height: auto;
+    background-color: $gray;
+}
+
+.sidebar-menu-items{
+    background-color: $darkGray;
+    border-bottom:1px solid $gray500 ;
+}
+
+.accordion-header-group .accordion-button {
+    padding: 5px;
+    border-radius: 0 !important;
+    background-color: $primary !important;
+    color: $white !important;
+    font-weight: 600;
+    box-shadow: none !important;
+
+    &.collapsed::after {
+        content: "\1F896";
+    }
+
+    &::after {
+        transform: none !important;
+        content: "\1F897";
+        background-image: none !important;
+    }
+}
+
+.accordion-button.collapsed {
+    background-color: transparent;
+}
+
+.accordion-item-collapse {
+    border: 0 !important;
+    background: none;
+    position: relative;
+
+    
+}
+
+.accordion-header-collapse .accordion-button,
+.accordion-item-collapse button {
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    position: relative !important;
+    font-size: 12px !important;
+    text-decoration: none !important;
+    padding-left: 12px !important;
+
+    
+
+
+    &:after {
+        background-image: none !important;
+    }
+    &.collapsed::before {
+        content: "+";
+        font-weight: 500;
+        border: 1px solid $gray500;
+        background-image: none !important;
+        margin-right: 5px;
+        z-index: 1;
+        padding: 0px 3px;
+    }
+    &::before {
+        content: "-";
+        font-weight: 500;
+        border: 1px solid $gray500;
+        background-image: none !important;
+        margin-right: 5px;
+        z-index: 1;
+        padding: 0px 5px;
+    }
+}
+.nested-menu-item{
+    
+    &::before{
+        content: "\2BC8";
+    }
+}
+.accordion-item{
+    background-color: $gray !important;
+}
+

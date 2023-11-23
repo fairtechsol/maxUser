@@ -1,12 +1,17 @@
 import { Accordion } from "react-bootstrap";
 import { MenuItem } from "./menuItem";
 import menuItemJson from "./menuItem.json";
-const Sidebar = (props: any) => {
+import "./style.scss";
+const Sidebar = () => {
   return (
     <>
       <div className="sidebarBox bg-light">
         {menuItemJson?.map((item, index) => (
-          <Accordion key={index} defaultActiveKey={[]}>
+          <Accordion
+            className={item?.backgroundColor ? "bg-light-sidebar" : ""}
+            key={index}
+            defaultActiveKey={[]}
+          >
             <MenuItem item={item} />
           </Accordion>
         ))}

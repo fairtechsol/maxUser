@@ -23,7 +23,6 @@ const MobileHeader = () => {
       [itemId]: e.target.checked,
     });
   };
-  console.log(show);
   return (
     <>
       <div className="float-start d-flex align-items-center gap-2">
@@ -44,7 +43,7 @@ const MobileHeader = () => {
         <div className="d-flex gap-1">
           {show?.exposure && <u>Exp:0</u>}
           <div>
-            <Dropdown>
+            <Dropdown autoClose="outside">
               <Dropdown.Toggle
                 id="dropdown-custom-components"
                 className="p-0 text-decoration-underline"
@@ -75,6 +74,12 @@ const MobileHeader = () => {
                     </Dropdown.Item>
                   );
                 })}
+                <Dropdown.Item
+                  className="title-14 d-flex justify-content-between m-logout"
+                  eventKey={"Logout"}
+                >
+                  Logout
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
