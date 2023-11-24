@@ -1,14 +1,25 @@
 // import { GiHamburgerMenu } from 'react-icons/gi';
 import { Outlet } from "react-router-dom";
+import isMobile from "../../utils/screenDimension";
 import "../layout.scss";
-import TopBar from "./header";
+import Header from "./header";
+import Sidebar from "./sidebar";
+import TopBar from "./topbar";
 function MainLayout() {
   return (
     <>
+      <Header />
       <TopBar />
-      <main>
-        <Outlet />
-      </main>
+      <div className="d-flex">
+        {!isMobile && (
+          <div className={`sidebar sidebarActive`}>
+            <Sidebar />
+          </div>
+        )}
+        <main className="w-100 overflow-hidden">
+          <Outlet />
+        </main>
+      </div>
     </>
   );
 }

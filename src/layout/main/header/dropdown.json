@@ -1,48 +1,69 @@
 [
+  { "id": "home", "name": "Home", "link": "/", "type": "mobile" },
   {
     "id": "accountStatement",
     "name": "Account Statement",
-    "link": "/"
+    "link": "/",
+    "type": "any"
   },
   {
     "id": "profitLossReport",
     "name": "Profit Loss Report",
-    "link": "/"
+    "link": "/",
+    "type": "any"
   },
   {
     "id": "betHistory",
     "name": "Bet History",
-    "link": "/"
+    "link": "/",
+    "type": "any"
   },
   {
     "id": "unsettledBet",
     "name": "Unsettled Bet",
-    "link": "/"
+    "link": "/",
+    "type": "any"
   },
   {
     "id": "casinoReportHistory",
     "name": "Casino Report History",
-    "link": "/"
+    "link": "/",
+    "type": "any"
   },
   {
     "id": "setButtonValues",
     "name": "Set Button Values",
-    "link": "/"
+    "link": "/",
+    "type": "any"
   },
   {
     "id": "securityAuthVerification",
     "name": "Security Auth Verification",
-    "link": "/"
+    "link": "/",
+    "type": "any"
   },
   {
     "id": "changePassword",
     "name": "Change Password",
-    "link": "/"
+    "link": "/",
+    "type": "any"
   },
   {
-    "id": "signout",
-    "name": "Signout",
-    "link": "/",
-    "inFooter": true
+    "id": "balance",
+    "name": "Balance",
+    "isChecked": true,
+    "type": "mobile"
+  },
+  {
+    "id": "exposure",
+    "name": "Exposure",
+    "isChecked": true,
+    "type": "mobile"
+  },
+  {
+    "id": "rules",
+    "name": "Rules",
+    "type": "mobile",
+    "onClick": true
   }
 ]

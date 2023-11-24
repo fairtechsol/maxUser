@@ -2,7 +2,7 @@
 body {
   font-family: "Roboto Condensed", sans-serif !important;
 }
-body table.table{
+body table.table {
   margin-bottom: 0;
 }
 
@@ -29,55 +29,89 @@ body table.table{
   }
 }
 
-
 /* ====== excel csv btn ======= */
-.excel{
+.excel {
   background-color: $excel !important;
 }
-.pdf{
- background-color: $pdf !important;
+.pdf {
+  background-color: $pdf !important;
 }
 
 // action buttons
-.actionBtn{
+.actionBtn {
   padding: 0px 10px !important;
   height: auto !important;
 }
-.modalFull-90.customModal .modal-dialog{
+.modalFull-90.customModal .modal-dialog {
   width: 90vw;
   max-width: none;
 }
-/* ====== bg Colors start ====  */
-.bg-secondaryLight{
-  background-color: rgba( $secondary, 0.7) !important;
+
+// ===== blink text ====
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
-.bg-blue1{
+
+.blinking-text {
+  animation: blink 1s infinite;
+}
+
+// mobile tabs
+.m-tab {
+  border-radius: 0px !important;
+  background-color: $primary !important;
+  padding: 10px 0px !important;
+  color: $white !important;
+  border-right: none !important;
+  div {
+    border-right: 1px solid $white !important;
+    width: 100% !important;
+  }
+}
+.m-tab.active {
+  border-color: transparent;
+  border-top: 2px solid $white !important;
+  border-left: none !important;
+}
+
+/* ====== bg Colors start ====  */
+.bg-secondaryLight {
+  background-color: rgba($secondary, 0.7) !important;
+}
+.bg-blue1 {
   background-color: $blue1 !important;
 }
-.bg-blue2{
+.bg-blue2 {
   background-color: $blue2 !important;
 }
-.bg-blue3{
+.bg-blue3 {
   background-color: $blue3 !important;
 }
-.bg-red1{
+.bg-red1 {
   background-color: $red1 !important;
 }
-.bg-red2{
+.bg-red2 {
   background-color: $red2 !important;
 }
-.bg-red3{
+.bg-red3 {
   background-color: $red3 !important;
 }
-.bg-lightGray{
+.bg-lightGray {
   background-color: $lightGray !important;
 }
 /* ====== bg Colors end ====  */
 
-body input, body select {
+body input,
+body select {
   border-radius: 3px !important;
 }
-.white-text{
+.white-text {
   color: $white;
 }
 
@@ -136,33 +170,32 @@ body input, body select {
   font-size: 13px;
 }
 .title-12 {
-  font-size: 10px;
+  font-size: 12px;
 }
 .title-10 {
   font-size: 10px;
 }
-.f300{
+.f300 {
   font-weight: 300;
 }
-.f400{
+.f400 {
   font-weight: 400;
 }
-.f500{
+.f500 {
   font-weight: 500;
 }
-.f600{
+.f600 {
   font-weight: 600;
 }
-.f700{
+.f700 {
   font-weight: 700;
 }
-.f800{
+.f800 {
   font-weight: 800;
 }
-.f900{
+.f900 {
   font-weight: 900;
 }
-
 
 // === border css start ====
 

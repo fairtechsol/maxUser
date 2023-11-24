@@ -1,0 +1,14 @@
+@import "/src/assets/variable.scss";
+
+.backLayBox{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+align-items: center;
+height: 100%;
+  justify-content: center;
+  padding: 5px 0px;
+}
+.backLay{
+  width: 100%;
+}
