@@ -3,6 +3,7 @@ import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(lazy(() => import("../pages/home")));
+const GameDetail = Loadable(lazy(() => import("../pages/gameDetails")));
 
 const MainRoutes = {
   path: "/",
@@ -11,6 +12,10 @@ const MainRoutes = {
     {
       path: "home",
       element: <Home />,
+    },
+    {
+      path: "game-detail/:id",
+      element: <GameDetail/>,
     },
   ],
 };

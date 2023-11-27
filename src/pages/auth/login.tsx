@@ -10,9 +10,9 @@ import "./style.scss";
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    navigate("/admin");
+    navigate("/home");
   };
 
   return (

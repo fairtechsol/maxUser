@@ -79,10 +79,17 @@ body table.table {
   border-top: 2px solid $white !important;
   border-left: none !important;
 }
+.no-wrap {
+  flex-wrap: nowrap;
+  text-wrap: nowrap;
+}
 
 /* ====== bg Colors start ====  */
 .bg-secondaryLight {
   background-color: rgba($secondary, 0.7) !important;
+}
+.bg-darkGrey{
+  background-color: $darkGray !important;
 }
 .bg-blue1 {
   background-color: $blue1 !important;
@@ -118,6 +125,28 @@ body select {
 .btn {
   border-radius: 3px !important;
   font-size: 14px !important;
+}
+
+// mobile and desktop tab bar
+.m-match-list-tabs {
+  border-radius: 0px !important;
+  background-color: $secondary !important;
+  padding: 2px;
+  color: $black;
+  width: 100%;
+  &:hover {
+      border: none !important;
+  }
+  &.active {
+      background-color: $primary !important;
+      color: $white !important;
+      border-color: transparent !important ;
+  }
+}
+
+.no-wrap {
+  flex-wrap: nowrap;
+  text-wrap: nowrap;
 }
 
 /* ===== for title ====  */

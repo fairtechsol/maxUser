@@ -1,0 +1,13 @@
+@import "/src/assets/variable.scss";
+
+.session-country{
+    text-decoration: none !important;
+
+    &:hover{
+    text-decoration: underline !important;
+
+    }
+}
+.bet-place-box{
+    width: 50px;
+}

@@ -17,8 +17,8 @@ function CustomModal({
         onHide={() => setShow(false)}
         className={`customModal ${customClass}`}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>{title}</Modal.Title>
+        <Modal.Header closeButton className="bg-primary">
+          <Modal.Title className="title-12 f-600 text-white">{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{children}</Modal.Body>
         {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""}
