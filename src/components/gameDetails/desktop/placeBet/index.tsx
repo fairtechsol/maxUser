@@ -78,8 +78,8 @@ const PlacedBet = () => {
               <td colSpan={5}>
                 <Container fluid>
                   <Row>
-                    {btnValue?.map((item) => (
-                      <Col className="p-1" md={2}>
+                    {btnValue?.map((item,index) => (
+                      <Col className="p-1" key={index} md={2}>
                         <CustomButton
                           className="w-100 bg-darkGrey border-0 text-black"
                           size="sm"

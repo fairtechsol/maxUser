@@ -1125,13 +1125,29 @@ export function MatchOdds() {
               {
                 price: 6.8,
                 size: 9975.49,
-              }
+              },
+              {
+                price: 6.6,
+                size: 1092.47,
+              },
+              {
+                price: 6.4,
+                size: 19106.09,
+              },
             ],
             availableToLay: [
               {
                 price: 7,
                 size: 31.2,
-              }
+              },
+              {
+                price: 7.2,
+                size: 631.32,
+              },
+              {
+                price: 7.4,
+                size: 28487.91,
+              },
             ],
             tradedVolume: [],
           },
@@ -1148,13 +1164,29 @@ export function MatchOdds() {
               {
                 price: 1.16,
                 size: 184191.78,
-              }
+              },
+              {
+                price: 1.15,
+                size: 89559.16,
+              },
+              {
+                price: 1.14,
+                size: 53258.96,
+              },
             ],
             availableToLay: [
               {
                 price: 1.17,
                 size: 50362.01,
-              }
+              },
+              {
+                price: 1.18,
+                size: 114022.24,
+              },
+              {
+                price: 1.19,
+                size: 86297.61,
+              },
             ],
             tradedVolume: [],
           },

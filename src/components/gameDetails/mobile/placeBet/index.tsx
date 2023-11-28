@@ -26,22 +26,42 @@ interface PlaceBetProps {
 const PlacedBet = ({ show, setShow }: PlaceBetProps) => {
   return (
     <CustomModal title={"Place Bet"} show={show} setShow={setShow}>
-      <Container fluid>
-
-      <Row>
-        
-          <Col xs={6} className="f800 title-12">India</Col>
-          <Col xs={6} className="d-flex">
+      <Container className="p-1" fluid>
+        <Row className="row-cols-md-3 g-2 align-items-center">
+          <Col xs={6} className="f800 title-12">
+            India
+          </Col>
+          <Col xs={6} className="d-flex justify-content-end">
             <CustomButton className="bg-secondary py-0">
-            <span className="f900 text-black">-</span>
+              <span className="f900 text-black">-</span>
             </CustomButton>
             <input type="text" className="w-50" />
             <CustomButton className="bg-secondary f900 text-black">
               <span className="f900 text-black">+</span>
             </CustomButton>
           </Col>
-        
-      </Row>
+          <Col xs={4}>
+            {" "}
+            <input type="text" className="w-100" />
+          </Col>
+
+          <Col xs={4} className="f800 title-12">
+            <CustomButton className="f900 w-100">Submit</CustomButton>
+          </Col>
+          <Col xs={4} className="title-12 text-center">
+            0
+          </Col>
+          {btnValue?.map((item, index) => (
+            <Col key={index} xs={4}>
+              <CustomButton
+                className="w-100 border-0 bg-secondary f900 text-black"
+                size="sm"
+              >
+                {item?.name}
+              </CustomButton>
+            </Col>
+          ))}
+        </Row>
       </Container>
     </CustomModal>
   );

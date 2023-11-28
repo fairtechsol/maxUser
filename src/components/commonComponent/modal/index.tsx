@@ -20,7 +20,7 @@ function CustomModal({
         <Modal.Header closeButton className="bg-primary">
           <Modal.Title className="title-12 f-600 text-white">{title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{children}</Modal.Body>
+        <Modal.Body className="p-0">{children}</Modal.Body>
         {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""}
       </Modal>
     </>
