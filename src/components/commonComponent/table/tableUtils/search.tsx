@@ -1,5 +1,6 @@
 import React from "react";
-import { Form, FormControl, InputGroup } from "react-bootstrap";
+import isMobile from "../../../../utils/screenDimension";
+import CustomInput from "../../input";
 
 interface SearchBoxProps {
   onSearch: (query: string) => void;
@@ -13,20 +14,19 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch, value }) => {
   };
 
   return (
-    <Form.Group
-      controlId="searchBox"
-      className="mb-3 d-flex align-items-center"
-    >
-      <Form.Label className="mb-0">Search:</Form.Label>
-      <InputGroup>
-        <FormControl
-          value={value}
-          type="text"
-          placeholder=""
-          onChange={handleSearchChange}
-        />
-      </InputGroup>
-    </Form.Group>
+    <CustomInput
+      title="Search:"
+      value={value}
+      type="text"
+      onChange={handleSearchChange}
+      placeholder="Type your search"
+      inputClass={`${
+        isMobile &&
+        "p-0 title-10"
+      }`}
+      customStyle={`${isMobile?"flex-column":"flex-row align-items-center"} `}
+      isUnderlinedInput={isMobile}
+    />
   );
 };
 

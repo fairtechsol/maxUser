@@ -4,6 +4,22 @@ import Loadable from "../utils/loadable";
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(lazy(() => import("../pages/home")));
 const GameDetail = Loadable(lazy(() => import("../pages/gameDetails")));
+const AccountStatement = Loadable(
+  lazy(() => import("../pages/accountStatement"))
+);
+const ProfitLoss = Loadable(lazy(() => import("../pages/profitLoss")));
+const BetHistory = Loadable(lazy(() => import("../pages/betHistory")));
+const UnsettledBet = Loadable(lazy(() => import("../pages/unsettledBet")));
+const ChangeBtnValue = Loadable(
+  lazy(() => import("../pages/changeButtonValues"))
+);
+
+const SecureAuthVerification = Loadable(
+  lazy(() => import("../pages/auth/secureAuthVerification"))
+);
+const ChangePassword = Loadable(
+  lazy(() => import("../pages/auth/changePassword"))
+);
 
 const MainRoutes = {
   path: "/",
@@ -15,8 +31,19 @@ const MainRoutes = {
     },
     {
       path: "game-detail/:id",
-      element: <GameDetail/>,
+      element: <GameDetail />,
     },
+    {
+      path: "account-statement",
+      element: <AccountStatement />,
+    },
+    { path: "profit-loss", element: <ProfitLoss /> },
+    { path: "bet-history", element: <BetHistory /> },
+    { path: "unsettled-bet", element: <UnsettledBet /> },
+    { path: "change-btn-value", element: <ChangeBtnValue /> },
+
+    { path: "secure-auth", element: <SecureAuthVerification /> },
+    { path: "change-password", element: <ChangePassword /> },
   ],
 };
 export default MainRoutes;

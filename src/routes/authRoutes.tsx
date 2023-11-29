@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import AuthLayout from "../layout/auth";
 import Loadable from "../utils/loadable";
 // ==============================|| Auth ROUTING ||============================== //
-const Login = Loadable(lazy(() => import("../pages/auth/login")));
+const Login = Loadable(lazy(() => import("../pages/auth/login/login")));
 
 const AuthRoutes = {
   path: "/",
@@ -14,6 +14,7 @@ const AuthRoutes = {
       path: "login",
       element: <Login />,
     },
+
   ],
 };
 export default AuthRoutes;

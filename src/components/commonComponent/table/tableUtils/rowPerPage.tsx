@@ -1,5 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
+import isMobile from "../../../../utils/screenDimension";
+import CustomInput from "../../input";
 
 interface RowPerPageProps {
   value: number;
@@ -8,24 +10,38 @@ interface RowPerPageProps {
 
 const RowPerPage: React.FC<RowPerPageProps> = ({ value, onChange }) => {
   // Define an array of options
-  const options = [2, 10, 15, 20];
+  const options = [,
+    {
+      name:"10",
+      value:10
+    },
+    {
+      name:"20",
+      value:20
+    },
+    {
+      name:"30",
+      value:30
+    },{
+      name:"40",
+      value:40
+    }];
 
   return (
-    <Form.Group controlId="itemsPerPage" className="mb-3">
+    <Form.Group
+      controlId="itemsPerPage"
+      className={`mb-3 d-flex align-items-center ${isMobile ?"title-12 flex-column":"gap-2 "}`}
+    >
       <label>Show</label>
       {/* Dropdown for selecting items per page */}
-      <select
-        className="rowPerPageSelect mx-2"
+      <CustomInput
+        type="select"
         value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-      >
-        {/* Map over the options array to create option elements */}
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+        onChange={(e: any) => onChange(Number(e.target.value))}
+        customStyle={`d-flex`}
+        options={options}
+        isUnderlinedInput={isMobile}
+      />
       <label>entries</label>
     </Form.Group>
   );

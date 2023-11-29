@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Column } from "../../../models/tableInterface";
+import isMobile from "../../../utils/screenDimension";
 import "./style.scss";
 import TableHeader from "./tableHeader";
 import PaginationComponent from "./tableUtils/pagination"; // Import the PaginationComponent
@@ -24,6 +25,8 @@ interface CustomTableProps {
   enablePdfExcel?: boolean;
   tHeadTheme?: string;
   tBodyTheme?: string;
+  bordered?:boolean;
+  striped?:boolean;
 }
 
 const CustomTable: React.FC<CustomTableProps> = ({
@@ -81,12 +84,12 @@ const CustomTable: React.FC<CustomTableProps> = ({
         setRowPerPage={setRowPerPage}
       />
       {/* Table for displaying data */}
-      <Table {...props}>
+      <Table {...props} responsive>
         <thead>
           <tr>
             {/* Table header with sorting icons */}
             {columns.map((column) => (
-              <th className={`${tHeadTheme}`} key={column.id}>
+              <th className={`${tHeadTheme} text-center ${isMobile&&"bg-secondary title-12 f800 p-1"}`} key={column.id}>
                 {column.label}
                 {/* Display sorting icons based on the sorting configuration */}
                 {isSort && (
@@ -101,12 +104,12 @@ const CustomTable: React.FC<CustomTableProps> = ({
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-center">
           {/* Table body with sorted data */}
           {itemCount === 0 ? (
             <tr className="text-center">
-              <td className={`${tBodyTheme}`} colSpan={columns?.length}>
-                <p className="title-14">No data available in table</p>
+              <td className={`${tBodyTheme??""} ${isMobile&& "bg-white"}`} colSpan={columns?.length}>
+                <p className={`${isMobile?"title-12 f500":"title-14"}`}>No data available in table</p>
               </td>
             </tr>
           ) : (
@@ -120,8 +123,6 @@ const CustomTable: React.FC<CustomTableProps> = ({
           currentPage={currentPage}
           totalPages={Math.ceil(itemCount / rowPerPage)}
           onPageChange={onPageChange}
-          itemCount={itemCount}
-          rowPerPage={rowPerPage}
         />
       )}
     </div>

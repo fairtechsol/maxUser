@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaRegFileExcel, FaRegFilePdf } from "react-icons/fa";
+import isMobile from "../../../utils/screenDimension";
 import CustomButton from "../button";
 import RowPerPage from "./tableUtils/rowPerPage";
 import SearchBox from "./tableUtils/search";
@@ -29,7 +30,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({
   }, []);
 
   return (
-    <div className="d-flex justify-content-between align-items-center">
+    <div className={`d-flex justify-content-between ${!isMobile&&"align-items-center"}`}>
       {enablePdfExcel && (
         <div className="d-flex gap-2 mb-2">
           <CustomButton className="d-flex gap-1 align-items-center pdf border-0">

@@ -3,8 +3,9 @@ import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { MdOutlineLogin } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import CustomButton from "../../components/commonComponent/button";
-import CustomInput from "../../components/commonComponent/input";
+import CustomButton from "../../../components/commonComponent/button";
+import CustomInput from "../../../components/commonComponent/input";
+import isMobile from "../../../utils/screenDimension";
 import "./style.scss";
 
 const Login = () => {
@@ -33,6 +34,7 @@ const Login = () => {
             placeholder="Username"
             inputIcon={<IoPerson />}
             customStyle="mb-3"
+            isUnderlinedInput={isMobile}
           />
 
           <CustomInput
@@ -40,6 +42,7 @@ const Login = () => {
             placeholder="Password"
             customStyle="mb-3"
             inputIcon={<FaKey />}
+            isUnderlinedInput={isMobile}
           />
           <CustomButton className="w-100" variant="primary" type="submit">
             Login <MdOutlineLogin />
