@@ -107,7 +107,7 @@ const DesktopHeader = () => {
                   ?.map((item) => {
                     return (
                       <Dropdown.Item
-                        className="title-14"
+                        className="title-14 px-2 py-1"
                         onClick={()=>{
                           navigate(item.link||"")
                         }}
@@ -128,7 +128,7 @@ const DesktopHeader = () => {
         </ul>
 
         <div className="marquee-container nav-marquee text-white">
-          <div className="marquee-content">
+          <div className="marquee-content title-12">
             {/* Your scrolling content goes here */}
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </div>

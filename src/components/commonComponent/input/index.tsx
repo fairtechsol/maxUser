@@ -21,14 +21,15 @@ const CustomInput = (props: any) => {
     type,
     options,
     customStyle,
+    inputIcon,
     isUnderlinedInput,
     ...prop
   } = props;
   return (
     <>
-      <Form.Group className={`${customStyle??""} d-flex gap-1`}>
+      <Form.Group className={`${customStyle ?? ""} d-flex gap-1 position-relative`}>
         {title ? (
-          <Form.Label className={`${isMobile&&"title-12"} mb-0`}>
+          <Form.Label className={`${isMobile && "title-12"} mb-0`}>
             {title}
           </Form.Label>
         ) : (
@@ -36,26 +37,29 @@ const CustomInput = (props: any) => {
         )}
         {type === "select" ? (
           <Form.Select
-            className={`${
-              inputClass ?? ""
-            } bg-${bgColor} ${isUnderlinedInput&&"underline-textbox"}`}
+            className={`${inputClass ?? ""} bg-${bgColor} ${
+              isUnderlinedInput && "underline-textbox"
+            }`}
             name={id}
             {...prop}
           >
             {options?.map((item: SelectItem) => (
-              <option key={item?.value} value={item?.value}>{item?.name}</option>
+              <option key={item?.value} value={item?.value}>
+                {item?.name}
+              </option>
             ))}
           </Form.Select>
         ) : (
           <Form.Control
-            className={` ${
-              inputClass ?? ""
-            } bg-${bgColor} ${isUnderlinedInput&&"underline-textbox"}`}
+            className={` ${inputClass ?? ""} bg-${bgColor} ${
+              isUnderlinedInput && "underline-textbox"
+            }`}
             name={id}
             type={type}
             {...prop}
           />
         )}
+        {inputIcon && <div className="input-icon">{inputIcon}</div>}
         <CustomErrorMessage touched={touched} errors={errors} />
       </Form.Group>
     </>

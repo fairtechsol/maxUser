@@ -31,7 +31,7 @@ const Login = () => {
 
           <CustomInput
             type="email"
-            placeholder="Username"
+            placeholder="User Name"
             inputIcon={<IoPerson />}
             customStyle="mb-3"
             isUnderlinedInput={isMobile}
