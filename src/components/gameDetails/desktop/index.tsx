@@ -15,7 +15,7 @@ const DesktopGameDetail = ({ data }: DesktopGameDetailProps) => {
   return (
     <Container fluid>
       <Row>
-        <Col md={8}>
+        <Col md={9}>
           <Container fluid className="p-0">
             <Row>
               <Col md={12}>
@@ -110,7 +110,7 @@ const DesktopGameDetail = ({ data }: DesktopGameDetailProps) => {
             </Row>
           </Container>
         </Col>
-        <Col md={4} className="p-0">
+        <Col md={3} className="p-0 position-sticky">
           <Container className="p-0" fluid>
             <Row>
               <Col md={12}>

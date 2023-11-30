@@ -45,8 +45,8 @@ const PlacedBet = () => {
         <Table className="w-full">
           <thead>
             <tr className="bg-darkGrey">
-              {placeBetHeader?.map((item) => (
-                <th key={item?.id} className="title-12 text-start bg-darkGrey">
+              {placeBetHeader?.map((item,index) => (
+                <th key={index} className="title-12 text-start bg-darkGrey">
                   {item?.name}
                 </th>
               ))}
@@ -79,7 +79,7 @@ const PlacedBet = () => {
                 <Container fluid>
                   <Row>
                     {btnValue?.map((item,index) => (
-                      <Col className="p-1" key={index} md={2}>
+                      <Col className="p-1" key={index} md={3}>
                         <CustomButton
                           className="w-100 bg-darkGrey border-0 text-black"
                           size="sm"

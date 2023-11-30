@@ -1,5 +1,5 @@
 [
-  { "id": "home", "name": "Home", "link": "/", "type": "mobile" },
+  { "id": "home", "name": "Home", "link": "/home", "type": "mobile" },
   {
     "id": "accountStatement",
     "name": "Account Statement",

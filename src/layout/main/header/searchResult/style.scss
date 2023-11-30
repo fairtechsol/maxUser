@@ -1,0 +1,8 @@
+@import "/src/assets/variable.scss";
+
+.search-result{
+    width: 500px;
+    max-height: 450px;
+    overflow: auto;
+    box-shadow: 1px 0px 10px $black;
+}

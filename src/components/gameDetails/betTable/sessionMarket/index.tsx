@@ -37,7 +37,7 @@ function SessionMarketTable({ data,title }: SessionMarketTableProps) {
             <th className="text-center bg-red1 bet-place-box">No</th>
             <th className="text-center bg-blue3 bet-place-box">Yes</th>
             {!isMobile && (
-              <th className="border-0" style={{ width: "100px" }}></th>
+              <th className="border-0"></th>
             )}
           </tr>
         </thead>

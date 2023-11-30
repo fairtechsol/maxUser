@@ -1,5 +1,4 @@
 import React from "react";
-import { Form } from "react-bootstrap";
 import isMobile from "../../../../utils/screenDimension";
 import CustomInput from "../../input";
 
@@ -28,9 +27,8 @@ const RowPerPage: React.FC<RowPerPageProps> = ({ value, onChange }) => {
     }];
 
   return (
-    <Form.Group
-      controlId="itemsPerPage"
-      className={`mb-3 d-flex align-items-center ${isMobile ?"title-12 flex-column":"gap-2 "}`}
+    <div
+      className={`d-flex align-items-center ${isMobile ?"title-12 flex-column":"gap-2 "}`}
     >
       <label>Show</label>
       {/* Dropdown for selecting items per page */}
@@ -43,7 +41,7 @@ const RowPerPage: React.FC<RowPerPageProps> = ({ value, onChange }) => {
         isUnderlinedInput={isMobile}
       />
       <label>entries</label>
-    </Form.Group>
+    </div>
   );
 };
 

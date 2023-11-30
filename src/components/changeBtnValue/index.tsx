@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import isMobile from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
@@ -59,7 +59,7 @@ const ChangeButtonValueComponent = () => {
         </Col>
         {btnValue?.map((item: any, index: number) => {
           return (
-            <>
+            <React.Fragment key={index}>
               <Col md={6} xs={6}>
                 <CustomInput
                   value={item[index]?.label}
@@ -83,7 +83,7 @@ const ChangeButtonValueComponent = () => {
                   type="number"
                 />
               </Col>
-            </>
+            </React.Fragment>
           );
         })}
       </Row>

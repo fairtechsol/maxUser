@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 const MobileOneVOneGame = ({ data }: any) => {
@@ -8,7 +9,13 @@ const MobileOneVOneGame = ({ data }: any) => {
           <div key={index} className="px-3 py-1 m-game-one-v-one">
             <div className="d-flex justify-content-between">
               <div className="d-flex flex-column">
-                <b className="title-14">{item?.name}</b>
+                <Link
+                  className="text-decoration-none text-black"
+                  to={`/game-detail/${item?.id}`}
+                >
+                  {" "}
+                  <b className="title-14">{item?.name}</b>
+                </Link>
                 <div className="title-12">nov,12 2023</div>
               </div>
               <div></div>

@@ -1,14 +1,14 @@
 import { useState } from "react";
 import {
-    Button,
     Col,
     Form,
     Row,
     ToggleButton,
-    ToggleButtonGroup
+    ToggleButtonGroup,
 } from "react-bootstrap";
 import { TfiAndroid } from "react-icons/tfi";
 import isMobile from "../../utils/screenDimension";
+import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
 import "./style.scss";
@@ -120,9 +120,13 @@ const SecureAuthVerificationComponent = () => {
                         type="email"
                         placeholder="Enter Transaction"
                       />
-                      <Button className="ms-2 bg-defaultBlue border-0">
+                      <CustomButton
+                        className={`ms-2 ${
+                          !isMobile && "bg-primaryBlue"
+                        } border-0`}
+                      >
                         Get Connection Id
-                      </Button>{" "}
+                      </CustomButton>{" "}
                     </div>
                   </Form>
                 </>

@@ -30,10 +30,6 @@ const MainRoutes = {
       element: <Home />,
     },
     {
-      path: "game-detail/:id",
-      element: <GameDetail />,
-    },
-    {
       path: "account-statement",
       element: <AccountStatement />,
     },
@@ -44,6 +40,10 @@ const MainRoutes = {
 
     { path: "secure-auth", element: <SecureAuthVerification /> },
     { path: "change-password", element: <ChangePassword /> },
+    {
+      path: "game-detail/:id",
+      element: <GameDetail />,
+    },
   ],
 };
 export default MainRoutes;

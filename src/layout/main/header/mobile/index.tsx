@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Dropdown, Form, Navbar } from "react-bootstrap";
 import { FaHome, FaLandmark } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoSection from "../../../../components/commonComponent/logoSection";
 import dropdownList from "../dropdown.json";
+import ExposureModal from "../modalExposure";
+import SearchBox from "./searchBox";
 import "./style.scss";
 
 const MobileHeader = () => {
@@ -11,10 +13,10 @@ const MobileHeader = () => {
     balance: true,
     exposure: true,
   });
-  const [open, setOpen] = useState(false);
+  const [openExposure, setOpenExposure] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(!open);
+  const handleClickExposureModalOpen = () => {
+    setOpenExposure(!openExposure);
   };
 
   const handleCheckboxChange = (e: any, itemId: any) => {
@@ -23,6 +25,9 @@ const MobileHeader = () => {
       [itemId]: e.target.checked,
     });
   };
+
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="float-start d-flex align-items-center gap-2">
@@ -32,6 +37,7 @@ const MobileHeader = () => {
             <LogoSection width="auto" height="20px" />
           </Navbar.Brand>
         </Link>
+        <SearchBox />
       </div>
       <div className="d-flex flex-column align-items-center white-text list-unstyled float-end h-100">
         {show?.balance && (
@@ -41,7 +47,13 @@ const MobileHeader = () => {
           </div>
         )}
         <div className="d-flex gap-1">
-          {show?.exposure && <u>Exp:0</u>}
+          {show?.exposure && (
+            <u onClick={handleClickExposureModalOpen}>Exp:0</u>
+          )}
+          <ExposureModal
+            show={openExposure}
+            setShow={handleClickExposureModalOpen}
+          />
           <div>
             <Dropdown autoClose="outside">
               <Dropdown.Toggle
@@ -59,7 +71,9 @@ const MobileHeader = () => {
                   return (
                     <Dropdown.Item
                       className="title-14 d-flex justify-content-between"
-                      href={item?.link}
+                      onClick={() => {
+                        navigate(item.link || "");
+                      }}
                       key={item?.id}
                       eventKey={item?.id}
                     >

@@ -7,7 +7,7 @@ import ReportContainer from "../containers/reportContainer";
 const ChangePasswordComponent = () => {
   return (
     <ReportContainer title="Change Password">
-      <Stack gap={4} className={`${isMobile?"mt-4":"w-25"}`}>
+      <Stack gap={4} className={`${isMobile?"mt-4":"w-35"}`}>
         <CustomInput
           isUnderlinedInput={isMobile}
           title="Current Password"
