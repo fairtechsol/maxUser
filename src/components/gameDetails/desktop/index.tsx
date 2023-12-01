@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Tab } from "react-bootstrap";
 import { MatchType } from "../../../utils/enum";
 import BetTableHeader from "../../commonComponent/betTableHeader";
@@ -12,6 +13,24 @@ interface DesktopGameDetailProps {
 }
 
 const DesktopGameDetail = ({ data }: DesktopGameDetailProps) => {
+  const placeBetRef = useRef<HTMLDivElement>(null);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
+        const sticky = placeBetRef?.current.offsetTop;
+        setIsSticky(window.scrollY > sticky);
+    }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Container fluid>
       <Row>
@@ -110,14 +129,17 @@ const DesktopGameDetail = ({ data }: DesktopGameDetailProps) => {
             </Row>
           </Container>
         </Col>
-        <Col md={3} className="p-0 position-sticky">
-          <Container className="p-0" fluid>
-            <Row>
+        <Col md={3} className="ps-0">
+          <Container className="p-0" fluid ref={placeBetRef}>
+            <Row
+              
+              className={`${isSticky ? "position-fixed top-0 pe-3 " : ""}`}
+            >
               <Col md={12}>
-              <PlacedBet/>
+                <PlacedBet />
               </Col>
               <Col md={12}>
-              <MyBet/>
+                <MyBet />
               </Col>
             </Row>
           </Container>

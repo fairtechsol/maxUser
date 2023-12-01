@@ -128,9 +128,9 @@ const DesktopHeader = () => {
         </ul>
 
         <div className="marquee-container nav-marquee text-white">
-          <div className="marquee-content title-12">
+          <div className="marquee-content title-14">
             {/* Your scrolling content goes here */}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+           <i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i>
           </div>
         </div>
       </Col>

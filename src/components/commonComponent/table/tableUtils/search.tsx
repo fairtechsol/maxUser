@@ -21,9 +21,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch, value }) => {
       onChange={handleSearchChange}
       placeholder="Type your search"
       inputClass={`${
-        isMobile &&
+        isMobile ?
         "p-0 title-10"
-      }`}
+:"p-1"      }`}
       customStyle={`${isMobile?"flex-column":"flex-row align-items-center"} `}
       isUnderlinedInput={isMobile}
     />

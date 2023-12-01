@@ -33,6 +33,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
             key={index + 1}
             active={index + 1 === currentPage}
             onClick={() => onPageChange(index + 1)}
+            className="cursor-pointer"
           >
             {index + 1}
           </Pagination.Item>

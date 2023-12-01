@@ -39,6 +39,7 @@ const RowPerPage: React.FC<RowPerPageProps> = ({ value, onChange }) => {
         customStyle={`d-flex`}
         options={options}
         isUnderlinedInput={isMobile}
+        inputClass={"py-1"}
       />
       <label>entries</label>
     </div>

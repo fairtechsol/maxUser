@@ -5,9 +5,9 @@
         & + label {
             border: 1px solid $green;
             background-color: transparent;
-            color: $black;
+            color:$green;
+
             padding: 20px 30px;
-            font-weight: 600;
         }
         &.active ,&:hover{
             & + label {
@@ -39,7 +39,6 @@
             & + label {
                 padding: 5px;
                 font-weight: 500;
-                color:$green;
             }
             &.active ,&:hover{
                 & + label {
