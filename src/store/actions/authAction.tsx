@@ -10,8 +10,10 @@ interface LoginData {
 
 export const login=createAsyncThunk<any, LoginData>("auth/login",async (requestData, thunkApi)=>{
     try{
-        const response=await service.post("/auth/login",requestData);
-        return response.data;
+        const {data}=await service.post("/auth/login",requestData);
+        const {token}=data;
+        localStorage.setItem("userToken",token);
+        return data;
     }
     catch(error){
         const err=error as AxiosError;

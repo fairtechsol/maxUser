@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../../components/commonComponent/button";
 import CustomInput from "../../../components/commonComponent/input";
+import Loader from "../../../components/commonComponent/loader";
 import { authReset, login } from "../../../store/actions/authAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import isMobile from "../../../utils/screenDimension";
@@ -19,7 +20,7 @@ const Login = () => {
     loginType: "user",
   });
 
-  const { success, forceChangePassword } = useSelector(
+  const { success, forceChangePassword, loading } = useSelector(
     (state: RootState) => state.auth
   );
 
@@ -48,6 +49,7 @@ const Login = () => {
       className="auth-main text-center d-flex justify-content-center"
       onSubmit={handleSubmit}
     >
+      {loading && <Loader />}
       <div className="auth-box ">
         <img src="/logo.webp" alt="fairGame" />
         <div className="auth-box-form rounded-2 bg-light mt-3">
