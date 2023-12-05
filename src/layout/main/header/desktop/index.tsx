@@ -130,7 +130,7 @@ const DesktopHeader = () => {
         <div className="marquee-container nav-marquee text-white">
           <div className="marquee-content title-14">
             {/* Your scrolling content goes here */}
-           <i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i>
+           <i> Use https://sept23.olddata.info/login for view old account between March23 to September23</i>
           </div>
         </div>
       </Col>

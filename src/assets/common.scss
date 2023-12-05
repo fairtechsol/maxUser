@@ -21,12 +21,13 @@ body table.table {
 
 .marquee-content {
   display: inline-block;
-  animation: marqueeAnimation 10s linear infinite;
+  animation: marqueeAnimation 25s linear infinite;
 }
+
 
 @keyframes marqueeAnimation {
   0% {
-    transform: translateX(300%);
+    transform: translateX(250%);
   }
 
   100% {

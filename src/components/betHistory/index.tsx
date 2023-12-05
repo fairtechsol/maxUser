@@ -16,40 +16,36 @@ const BetHistoryComponent = () => {
               <SelectSearch
                 options={[
                   {
-                    value: "all",
-                    label: "All",
+                    value: "football",
+                    label: "Football",
                   },
                   {
-                    value: "deposit/withdrawReport",
-                    label: "Deposit/Withdraw Report",
+                    value: "tennis",
+                    label: "Tennis",
                   },
                   {
-                    value: "gameReport",
-                    label: "Game Report",
+                    value: "cricket",
+                    label: "Cricket",
                   },
                 ]}
                 placeholder=""
-                defaultValue="all"
+                defaultValue="football"
               />
             </Col>
             <Col md={2} xs={12}>
               <SelectSearch
                 options={[
                   {
-                    value: "all",
-                    label: "All",
+                    value: "matched",
+                    label: "Matched",
                   },
                   {
-                    value: "deposit/withdrawReport",
-                    label: "Deposit/Withdraw Report",
-                  },
-                  {
-                    value: "gameReport",
-                    label: "Game Report",
-                  },
+                    value: "deleted",
+                    label: "Deleted",
+                  }
                 ]}
                 placeholder=""
-                defaultValue="all"
+                defaultValue="matched"
               />
             </Col>
             <Col md={2} xs={6}>

@@ -21,7 +21,7 @@ const SecureAuthVerificationComponent = () => {
   };
   return (
     <ReportContainer title="Secure Auth Verification">
-      <div className="secureAuth px-2 mt-5">
+      <div className="secureAuth px-2 mt-5 mb-5">
         <Row className="justify-content-center text-center">
           <Col lg={6}>
             <div

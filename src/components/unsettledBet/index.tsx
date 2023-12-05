@@ -9,7 +9,7 @@ const UnsettledBetComponent = () => {
       <div>
         <Stack gap={2}>
           <Row className="g-2 mt-1">
-            <Col md={1} xs={4}>
+            <Col md={2} xs={4}>
               <Form.Check
                 label="Matched"
                 name="matched"
@@ -17,7 +17,7 @@ const UnsettledBetComponent = () => {
                 id={"matched"}
               />
             </Col>
-            <Col md={1} xs={4}>
+            <Col md={2} xs={4}>
               <Form.Check
                 label="Un-Matched"
                 name="matched"
@@ -25,7 +25,7 @@ const UnsettledBetComponent = () => {
                 id={"unMatched"}
               />
             </Col>
-            <Col md={1} xs={4}>
+            <Col md={2} xs={4}>
               <Form.Check
                 label="Deleted"
                 name="matched"
