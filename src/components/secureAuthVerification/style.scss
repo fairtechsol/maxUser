@@ -5,16 +5,17 @@
         & + label {
             border: 1px solid $green;
             background-color: transparent;
-            color:$green;
-
-            padding: 20px 30px;
+            color: $green;
+            font-size: 1.25rem !important ;
+            padding: 8px 16px;
         }
-        &.active ,&:hover{
+        &.active,
+        &:hover {
             & + label {
                 background-color: $green !important;
                 color: $white;
-            border: 1px solid $green;
-        }
+                border: 1px solid $green;
+            }
         }
     }
 
@@ -40,19 +41,20 @@
                 padding: 5px;
                 font-weight: 500;
             }
-            &.active ,&:hover{
+            &.active,
+            &:hover {
                 & + label {
                     background-color: $green !important;
                     color: $white;
-                border: 1px solid $green;
-            }
+                    border: 1px solid $green;
+                }
             }
         }
-    
+
         .telegram {
             .getConection {
                 max-width: 500px;
             }
         }
     }
-    }
+}

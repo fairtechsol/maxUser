@@ -46,7 +46,7 @@ const SecureAuthVerificationComponent = () => {
                 Disabled
               </span>
             </div>
-            <p className={`${isMobile ? "title-12 mt-2" : "title-14"}`}>
+            <p className={`${isMobile ? "title-12" : "title-16"} mt-2`}>
               Please select below option to enable secure auth verification
             </p>
             <div id="left-tabs-example">
