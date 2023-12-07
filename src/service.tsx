@@ -38,6 +38,7 @@ service.interceptors.response.use(
     } else if (error.response.status === 401) {
       toast.error(error.response.data.message);
       window.location.replace("/login");
+      localStorage.clear();
     }
 
     return Promise.reject(error);

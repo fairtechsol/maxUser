@@ -78,14 +78,14 @@ const SecureAuthVerificationComponent = () => {
 
               {selectedValue === 1 && (
                 <>
-                  <p className=" title-14">
+                  <p className=" title-16 mt-3">
                     Please enter below auth code in your 'Secure Auth
                     Verification App'.
                   </p>
-                  <div className="bg-gray p-1">
+                  <div className="p-1">
                     <h4>Counter</h4>
                   </div>
-                  <p className="title-20">
+                  <p className="title-24">
                     If you haven't downloaded,
                     <span className="d-lg-block">
                       {" "}
@@ -93,12 +93,12 @@ const SecureAuthVerificationComponent = () => {
                       link.{" "}
                     </span>
                   </p>
-                  <p className="title-14 mt-3">
+                  <p className="title-16 mt-3">
                     Using this app you will receive auth code during login
                     authentication
                   </p>
                   <div className="androidDwnloadCard d-flex align-items-center mx-auto justify-content-center bg-green">
-                    <span className="text-white">
+                    <span className="text-white me-3">
                       <TfiAndroid className="title-46 text-white" />
                     </span>
                     <div className="text-left">

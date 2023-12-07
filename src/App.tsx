@@ -7,6 +7,7 @@ import routes from "./routes";
 import "./theme/theme.css";
 
 function App() {
+
   return (
     <>
       <RouterProvider router={routes()} />

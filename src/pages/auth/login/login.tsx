@@ -36,6 +36,7 @@ const Login = () => {
   useEffect(() => {
     if (success) {
       if (forceChangePassword) {
+        localStorage.setItem("forceChangePassword", "true");
         navigate("/change-password");
       } else {
         navigate("/home");
@@ -43,6 +44,8 @@ const Login = () => {
       dispatch(authReset());
     }
   }, [success]);
+
+
 
   return (
     <Form

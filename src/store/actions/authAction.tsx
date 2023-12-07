@@ -21,4 +21,17 @@ export const login=createAsyncThunk<any, LoginData>("auth/login",async (requestD
     }
 });
 
+export const logout=createAsyncThunk<any,any>("auth/login",async (thunkApi)=>{
+    try{
+        const response=await service.post("/auth/logout");
+        localStorage.clear();
+        window.location.replace("/login");
+       return response;
+    }
+    catch(error){
+        const err=error as AxiosError;
+        return thunkApi.rejectWithValue(err.response?.status);
+    }
+});
+
 export const authReset = createAction('auth/reset');

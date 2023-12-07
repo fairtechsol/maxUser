@@ -20,7 +20,8 @@ export const authReducer = createReducer(initialState, (builder) => {
     .addCase(login.rejected, (state, action) => {
       console.log(action);
       state.loading = false;
-    }) .addCase(authReset, (state) => {
+    })
+    .addCase(authReset, (state) => {
         // Reset the state to initial state
         return {...state,success:false,forceChangePassword:false};
       });
