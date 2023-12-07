@@ -1,10 +1,22 @@
+import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 import "./style.scss";
 
 const SearchBox = () => {
+  const [searchIco, setSearchIco] = useState(false);
+
+  const searchIcoHandle = () => {
+    // alert("dekd");
+    setSearchIco(!searchIco);
+  };
   return (
-    <div className="search-box">
+    <div className={`search-box  ${searchIco ? "searchIcoActive" : ""} `}>
       <input type="text" />
-      <div className="search-icon"></div>
+      <div className="search-icon" onClick={searchIcoHandle}>
+        {searchIco ? <IoClose /> : <FaSearch />}
+      </div>
+      {/* <div className="search-icon" onClick={searchIcoHandle}></div> */}
     </div>
   );
 };

@@ -4,6 +4,10 @@
     width: 18%;
     height: auto;
     background-color: $gray;
+    .sidebarBox{
+        background-color: $gray !important;        
+        height: calc(100vh - 120px);
+    }
 }
 
 .sidebar-menu-items{

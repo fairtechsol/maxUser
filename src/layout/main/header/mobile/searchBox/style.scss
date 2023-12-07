@@ -19,38 +19,38 @@
       height: 30px;
       border-radius: 50%;
       transition: all 1s;
-      z-index: 4;
+      z-index: 44;
       &:hover {
         cursor: pointer;
       }
-      &::before {
-        content: "";
-        position: absolute;
-        top: 17px;
-        color: #000000;
-        right: 0;
-        bottom: 0;
-        left: 13px;
-        width: 8px;
-        height: 2px;
-        background: #000000;
-        transform: rotate(45deg);
-        transition: all 0.5s;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        top: 6px;
-        right: 0;
-        bottom: 0;
-        color: #000000;
-        left: 6px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        border: 2px solid #000000;
-        transition: all 0.5s;
-      }
+      // &::before {
+      //   content: "";
+      //   position: absolute;
+      //   top: 17px;
+      //   color: #000000;
+      //   right: 0;
+      //   bottom: 0;
+      //   left: 13px;
+      //   width: 8px;
+      //   height: 2px;
+      //   background: #000000;
+      //   transform: rotate(45deg);
+      //   transition: all 0.5s;
+      // }
+      // &::after {
+      //   content: "";
+      //   position: absolute;
+      //   top: 6px;
+      //   right: 0;
+      //   bottom: 0;
+      //   color: #000000;
+      //   left: 6px;
+      //   width: 12px;
+      //   height: 12px;
+      //   border-radius: 50%;
+      //   border: 2px solid #000000;
+      //   transition: all 0.5s;
+      // }
     }
     input {
       position: absolute;
@@ -64,7 +64,7 @@
       height: 30px;
       outline: none;
       border: none;
-      padding: 0 80px 0 20px;
+      padding: 0 20px 0 20px;
       transition: all 1s;
       opacity: 0;
       z-index: 5;
@@ -74,9 +74,9 @@
         cursor: pointer;
       }
       &:focus {
-        width: 300px;
-        opacity: 1;
-        cursor: text;
+        // width: 220px;
+        // opacity: 1;
+        // cursor: text;
       }
       &:focus ~ .search {
         right: -250px;
@@ -103,6 +103,16 @@
         opacity: 0.5;
         font-weight: bolder;
       }
+    }
+  }
+  .searchIcoActive{
+    .search-icon{
+      right: 0;
+    }
+    input{
+    width: 220px;
+    opacity: 1;
+    cursor: text;
     }
   }
   
