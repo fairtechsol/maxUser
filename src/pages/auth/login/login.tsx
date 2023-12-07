@@ -45,8 +45,6 @@ const Login = () => {
     }
   }, [success]);
 
-
-
   return (
     <Form
       className="auth-main text-center d-flex justify-content-center"
@@ -56,7 +54,7 @@ const Login = () => {
       <div className="auth-box ">
         <img src="/logo.webp" alt="fairGame" />
         <div className="auth-box-form rounded-2 bg-light mt-3">
-          <h4 className="auth-title text-center">
+          <h4 className="auth-title title-24 fw-normal text-center">
             Login
             <FaHandPointDown />
           </h4>
@@ -89,6 +87,23 @@ const Login = () => {
           <CustomButton className="w-100" variant="primary" type="submit">
             Login <MdOutlineLogin />
           </CustomButton>
+          {/* <p className="auth-box-descrip mt-1">
+            This site is protected by reCAPTCHA and the Google
+            <NavLink
+              to="/messages"
+              className="text-primaryBlue text-decoration-none ps-1 pe-1"
+            >
+              Privacy Policy
+            </NavLink>
+            and
+            <NavLink
+              to="/messages"
+              className="text-primaryBlue text-decoration-none ps-1 pe-1"
+            >
+              Terms of Service
+            </NavLink>
+            apply.
+          </p> */}
         </div>
       </div>
     </Form>
