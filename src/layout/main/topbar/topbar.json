@@ -1,5 +1,5 @@
 [
-  { "id": "home", "name": "Home", "link": "/", "type": "desktop" },
+  { "id": "home", "name": "Home", "link": "/home", "type": "desktop" },
   { "id": "cricket", "name": "Cricket", "link": "/cricket", "type": "desktop" },
   {
     "id": "iccWC2023",

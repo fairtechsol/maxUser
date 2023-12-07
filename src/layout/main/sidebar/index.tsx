@@ -10,7 +10,7 @@ const Sidebar = () => {
           <Accordion
             className={item?.backgroundColor ? "bg-light-sidebar" : ""}
             key={index}
-            defaultActiveKey={[]}
+            defaultActiveKey={["0"]}
           >
             <MenuItem item={item} />
           </Accordion>

@@ -1,4 +1,5 @@
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 
@@ -51,7 +52,7 @@ const DesktopOneVOneGameTable = ({ data }: any) => {
             <tr className="one-v-one-row overflow-hidden" key={index}>
               <td className="px-2 w-50">
                 <div className="d-flex justify-content-between">
-                  <div className="one-v-one-title title-14">{item?.name}</div>
+                  <Link className="text-decoration-none" to={`/game-detail/${item?.id}`}><div className="one-v-one-title title-14">{item?.name}</div></Link>
                   <div className="d-flex gap-2"></div>
                 </div>
               </td>

@@ -1,29 +1,57 @@
-
 @import "/src/assets/variable.scss";
-.sortIcon{
+.sortIcon {
     float: right;
     cursor: pointer;
 }
-.sortIconGray svg{
+.sortIconGray svg {
     color: $gray;
 }
-.sortIconDark svg{
+.sortIconDark svg {
     color: $blue3;
 }
-.paginationBtn{
-    margin: 0px 10px ;
+.paginationBtn {
+    margin: 0px 10px;
     height: 37px !important;
 }
-.pagination{
+.pagination {
     margin-top: 10px;
     align-items: center;
-    justify-content: space-between;
-    .paginationContainer{
+    justify-content: center;
+    background-color: $white;
+    width: 100%;
+    .paginationContainer {
         display: flex;
+        .page-item {
+            .page-link {
+                background-color: $white;
+                &.active {
+                    background-color: $primaryBlue;
+                }
+            }
+            &.active {
+                .page-link {
+                    background-color: $primaryBlue;
+                }
+            }
+        }
     }
 }
-.rowPerPageSelect{
+
+.rowPerPageSelect {
     padding: 0px !important;
 }
 
-
+@media screen and (max-width: 768px) {
+    .paginationContainer {
+        .page-item {
+            .page-link {
+                font-size: 12px !important;
+            }
+            &.active {
+                .page-link {
+                    background-color: $secondary !important;
+                }
+            }
+        }
+    }
+}

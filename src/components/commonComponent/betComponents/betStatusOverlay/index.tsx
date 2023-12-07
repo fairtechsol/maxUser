@@ -5,18 +5,20 @@ import "./style.scss";
 interface Props {
   children?: ReactNode;
   title?: string;
-  lock?: boolean;
+  active?: boolean;
 }
-const BetStatusOverlay = ({ title, children }: Props) => {
+const BetStatusOverlay = ({ title, children, active }: Props) => {
   return (
     <>
-      <div className={`d-flex position-relative`}>
-        <div className="betStatusOverlay">
-          {title && title !== "Lock" && <h5>{title}</h5>}
-          {title === "Lock" && <FaLock />}
+      {
+        <div className={`d-flex position-relative`}>
+         {active &&( <div className="betStatusOverlay">
+            {title && title !== "Lock" && <h5>{title}</h5>}
+            {title === "Lock" && <FaLock />}
+          </div>)}
+          {children}
         </div>
-        {children}
-      </div>
+      }
     </>
   );
 };

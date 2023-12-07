@@ -1,27 +1,27 @@
 [
-  { "id": "home", "name": "Home", "link": "/", "type": "mobile" },
+  { "id": "home", "name": "Home", "link": "/home", "type": "mobile" },
   {
     "id": "accountStatement",
     "name": "Account Statement",
-    "link": "/",
+    "link": "/account-statement",
     "type": "any"
   },
   {
     "id": "profitLossReport",
     "name": "Profit Loss Report",
-    "link": "/",
+    "link": "/profit-loss",
     "type": "any"
   },
   {
     "id": "betHistory",
     "name": "Bet History",
-    "link": "/",
+    "link": "/bet-history",
     "type": "any"
   },
   {
     "id": "unsettledBet",
     "name": "Unsettled Bet",
-    "link": "/",
+    "link": "/unsettled-bet",
     "type": "any"
   },
   {
@@ -33,19 +33,19 @@
   {
     "id": "setButtonValues",
     "name": "Set Button Values",
-    "link": "/",
+    "link": "/change-btn-value",
     "type": "any"
   },
   {
     "id": "securityAuthVerification",
     "name": "Security Auth Verification",
-    "link": "/",
+    "link": "/secure-auth",
     "type": "any"
   },
   {
     "id": "changePassword",
     "name": "Change Password",
-    "link": "/",
+    "link": "/change-password",
     "type": "any"
   },
   {

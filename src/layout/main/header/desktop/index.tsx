@@ -1,20 +1,29 @@
 import { Col, Collapse, Dropdown, Navbar, Row } from "react-bootstrap";
 import { FaSearchPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoSection from "../../../../components/commonComponent/logoSection";
 import dropdownList from "../dropdown.json";
 import CustomDropDown from "./dropdown/customDropdown";
 
 import { useState } from "react";
 import CustomInput from "../../../../components/commonComponent/input";
+import ExposureModal from "../modalExposure";
+import SearchResult from "../searchResult";
 import "./style.scss";
 
 const DesktopHeader = () => {
   const [open, setOpen] = useState(false);
+  const [openExposure, setOpenExposure] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(!open);
   };
+
+  const handleClickExposureModalOpen = () => {
+    setOpenExposure(!openExposure);
+  };
+
+  const navigate=useNavigate();
 
   return (
     <Row className=" w-100">
@@ -29,14 +38,33 @@ const DesktopHeader = () => {
         <ul className="d-flex align-items-center white-text gap-3 list-unstyled mb-0 float-end h-100">
           <li className="d-flex gap-3 align-items-center">
             <Collapse in={open} dimension="width">
-              <div id="example-collapse-text">
+              <div id="searchCollapse" className="position-relative">
                 <CustomInput placeholder="All Events" />
+                <SearchResult
+                  data={[
+                    {
+                      name: "Cricket | MAtch odd",
+                      date: "11/27/2023 04:15:00 PM",
+                      label: "Test",
+                    },
+                    {
+                      name: "Cricket | MAtch odd",
+                      date: "11/27/2023 04:15:00 PM",
+                      label: "Test",
+                    },
+                    {
+                      name: "Cricket | MAtch odd",
+                      date: "11/27/2023 04:15:00 PM",
+                      label: "Test",
+                    },
+                  ]}
+                />
               </div>
             </Collapse>
             <span>
               <FaSearchPlus
                 aria-expanded={open}
-                aria-controls="example-collapse-text"
+                aria-controls="searchCollapse"
                 onClick={handleClickOpen}
                 className="title-24"
               />
@@ -51,9 +79,16 @@ const DesktopHeader = () => {
                 Balance:<b>0.00</b>
               </div>
               <div>
-                <Link to={""} className="white-text ">
+                <span
+                  onClick={handleClickExposureModalOpen}
+                  className="white-text text-decoration-underline cursor-pointer"
+                >
                   Exposure:<b>0</b>
-                </Link>
+                </span>
+                <ExposureModal
+                  show={openExposure}
+                  setShow={handleClickExposureModalOpen}
+                />
               </div>
             </div>
           </li>
@@ -72,8 +107,10 @@ const DesktopHeader = () => {
                   ?.map((item) => {
                     return (
                       <Dropdown.Item
-                        className="title-14"
-                        href={item?.link}
+                        className="title-14 px-2 py-1"
+                        onClick={()=>{
+                          navigate(item.link||"")
+                        }}
                         key={item?.id}
                         eventKey={item?.id}
                       >
@@ -91,9 +128,9 @@ const DesktopHeader = () => {
         </ul>
 
         <div className="marquee-container nav-marquee text-white">
-          <div className="marquee-content">
+          <div className="marquee-content title-14">
             {/* Your scrolling content goes here */}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+           <i> Use https://sept23.olddata.info/login for view old account between March23 to September23</i>
           </div>
         </div>
       </Col>

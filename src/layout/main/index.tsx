@@ -1,11 +1,20 @@
 // import { GiHamburgerMenu } from 'react-icons/gi';
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import isMobile from "../../utils/screenDimension";
 import "../layout.scss";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import TopBar from "./topbar";
 function MainLayout() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("userToken")) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <>
       <Header />

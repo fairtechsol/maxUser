@@ -1,7 +1,7 @@
 import { Container, Navbar } from "react-bootstrap";
 
 import isMobile from "../../../utils/screenDimension";
-import DesktopHeader from "./desktop";
+import DesktopHeader from "./desktop"; 
 import MobileHeader from "./mobile";
 import "./style.scss";
 
