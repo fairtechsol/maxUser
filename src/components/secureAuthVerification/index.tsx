@@ -42,7 +42,7 @@ const SecureAuthVerificationComponent = () => {
               <span
                 className={`pdf ${
                   isMobile ? "title-14" : "title-16"
-                } fw-bold text-white text-uppercase px-2`}
+                } fw-bold text-white  px-2`}
               >
                 Disabled
               </span>

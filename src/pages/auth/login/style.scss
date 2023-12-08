@@ -4,6 +4,7 @@
   height: 100vh;
   width: 100%;
   background-image: linear-gradient($primary, $secondary);
+ 
 }
 
 .auth-box {
@@ -54,3 +55,15 @@
 .auth-main .auth-title:after {
   right: 0;
 }/*# sourceMappingURL=style.css.map */
+
+@media only screen and (max-width: 600px) {
+  .auth-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .auth-box {
+      margin: 0;
+    }
+  }
+  
+}

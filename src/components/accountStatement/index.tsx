@@ -13,7 +13,7 @@ const AccountStatementComponent = () => {
         <Stack gap={2}>
           <Row className="g-2 mt-1">
             <Col md={2} xs={6}>
-              <CustomInput type="date" />
+              <CustomInput type="date" placeholder="4455" />
             </Col>
             <Col md={2} xs={6}>
               <CustomInput type="date" />

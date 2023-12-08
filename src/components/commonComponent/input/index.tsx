@@ -2,6 +2,7 @@ import { Form } from "react-bootstrap";
 import isMobile from "../../../utils/screenDimension";
 import CustomErrorMessage from "../customErrorMessage";
 import "./style.scss";
+
 interface SelectItem {
   value: string;
   name: string;
@@ -23,6 +24,7 @@ const CustomInput = (props: any) => {
     customStyle,
     inputIcon,
     isUnderlinedInput,
+    placeholder,
     ...prop
   } = props;
   return (
@@ -58,9 +60,10 @@ const CustomInput = (props: any) => {
             className={` ${inputClass ?? ""} bg-${bgColor} ${
               isUnderlinedInput && "underline-textbox"
             }`}
+            // placeholder="wwww"
             name={id}
             type={type}
-            {...prop}
+            // {...prop}
           />
         )}
         {inputIcon && <div className="input-icon">{inputIcon}</div>}

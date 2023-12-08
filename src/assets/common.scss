@@ -99,9 +99,6 @@ body table.table {
 .bg-secondaryLight {
   background-color: rgba($secondary, 0.7) !important;
 }
-.bg-darkGrey{
-  background-color: $darkGray !important;
-}
 .bg-blue1 {
   background-color: $blue1 !important;
 }
@@ -119,6 +116,12 @@ body table.table {
 }
 .bg-red3 {
   background-color: $red3 !important;
+}
+.bg-gray{
+  background-color: $gray !important;
+}
+.bg-darkGrey{
+  background-color: $darkGray !important;
 }
 .bg-lightGray {
   background-color: $lightGray !important;

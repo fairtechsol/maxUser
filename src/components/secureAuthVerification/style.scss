@@ -1,6 +1,11 @@
 @import "/src/assets/variable.scss";
 
 .secureAuth {
+    .pdf{
+        
+        font-size: 16px;
+        text-transform: uppercase;
+    }
     .auth-verification-btn {
         & + label {
             border: 1px solid $green;
@@ -46,8 +51,14 @@
 
 @media screen and (max-width: 768px) {
     .secureAuth {
+            .pdf{
+                border-radius: 4px;
+                font-size: 16px;
+                text-transform: capitalize;
+            }
         label.auth-verification-btn-box{
             font-size: 14px !important;
+            font-weight: 400 !important;
         }
         .auth-verification-btn {
             & + label {

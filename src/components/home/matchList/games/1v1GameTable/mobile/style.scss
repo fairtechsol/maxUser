@@ -3,6 +3,6 @@
     border-bottom: 1px solid $darkGray !important;
 }
 .match-list-container {
-    height: 40vh;
+    height: calc(100vh - 200px);
     overflow-y: auto;
 }

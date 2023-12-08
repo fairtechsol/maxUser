@@ -5,7 +5,7 @@ import SportsFilterJson from "./sportsFilters.json";
 
 const SportsFilters = ({ data }: any) => {
   return (
-    <div className="m-0 p-0 w-100">
+    <div className="m-0 p-0 w-100 ">
       {" "}
       <CommonTabs
         customClass="overflow-x-auto overflow-y-hidden no-wrap"

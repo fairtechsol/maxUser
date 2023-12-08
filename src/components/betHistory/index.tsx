@@ -28,7 +28,7 @@ const BetHistoryComponent = () => {
                     label: "Cricket",
                   },
                 ]}
-                placeholder="Support Type"
+                placeholder="Sport Type"
                 defaultValue="football"
               />
             </Col>
