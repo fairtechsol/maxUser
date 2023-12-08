@@ -1,4 +1,9 @@
 import { Col, Row, Stack } from "react-bootstrap";
+
+import { useState } from "react";
+import "react-calendar/dist/Calendar.css";
+import DatePicker from "react-date-picker";
+import "react-date-picker/dist/DatePicker.css";
 import isMobile from "../../utils/screenDimension";
 import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
@@ -7,13 +12,21 @@ import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 
 const AccountStatementComponent = () => {
+  const [value, onChange] = useState<any>(new Date());
+  type ValuePiece = Date | null;
   return (
     <ReportContainer title="Account Statement">
       <div>
         <Stack gap={2}>
           <Row className="g-2 mt-1">
             <Col md={2} xs={6}>
-              <CustomInput type="date" placeholder="4455" />
+              <DatePicker
+                onChange={onChange}
+                value={value}
+                closeCalendar={false}
+                clearIcon={false}
+              />
+              {/* <CustomInput type="date" style={{ appearance: "textfield" }} /> */}
             </Col>
             <Col md={2} xs={6}>
               <CustomInput type="date" />
