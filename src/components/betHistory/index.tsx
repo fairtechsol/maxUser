@@ -12,7 +12,7 @@ const BetHistoryComponent = () => {
       <div>
         <Stack gap={2}>
           <Row className="g-2 mt-1">
-            <Col md={2} xs={12}>
+            <Col md={2} xs={6}>
               <SelectSearch
                 options={[
                   {
@@ -28,11 +28,11 @@ const BetHistoryComponent = () => {
                     label: "Cricket",
                   },
                 ]}
-                placeholder=""
+                placeholder="Support Type"
                 defaultValue="football"
               />
             </Col>
-            <Col md={2} xs={12}>
+            <Col md={2} xs={6}>
               <SelectSearch
                 options={[
                   {
@@ -42,9 +42,9 @@ const BetHistoryComponent = () => {
                   {
                     value: "deleted",
                     label: "Deleted",
-                  }
+                  },
                 ]}
-                placeholder=""
+                placeholder="Bet Status"
                 defaultValue="matched"
               />
             </Col>
@@ -72,40 +72,39 @@ const BetHistoryComponent = () => {
             isPagination={true}
             isSearch={true}
             columns={[
-                {
-                  "id": "event_name",
-                  "label": "Event Name"
-                },
-                {
-                  "id": "nation",
-                  "label": "Nation"
-                },
-                {
-                  "id": "bet_type",
-                  "label": "Bet Type"
-                },
-                {
-                  "id": "user_rate",
-                  "label": "User Rate"
-                },
-                {
-                  "id": "amount",
-                  "label": "Amount"
-                },
-                {
-                  "id": "profit_loss",
-                  "label": "Profit/Loss"
-                },
-                {
-                  "id": "place_date",
-                  "label": "Place Date"
-                },
-                {
-                  "id": "match_date",
-                  "label": "Match Date"
-                }
-              ]
-              }
+              {
+                id: "event_name",
+                label: "Event Name",
+              },
+              {
+                id: "nation",
+                label: "Nation",
+              },
+              {
+                id: "bet_type",
+                label: "Bet Type",
+              },
+              {
+                id: "user_rate",
+                label: "User Rate",
+              },
+              {
+                id: "amount",
+                label: "Amount",
+              },
+              {
+                id: "profit_loss",
+                label: "Profit/Loss",
+              },
+              {
+                id: "place_date",
+                label: "Place Date",
+              },
+              {
+                id: "match_date",
+                label: "Match Date",
+              },
+            ]}
             itemCount={10}
             setTableConfig={() => {}}
           >

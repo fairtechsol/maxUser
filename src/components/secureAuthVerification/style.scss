@@ -18,6 +18,16 @@
             }
         }
     }
+    .auth-verification-btn#mobileapp {
+        & + label {
+            border-radius: 3px 0 0 3px !important;
+        }
+    }
+    .auth-verification-btn#telegram {
+        & + label {
+            border-radius: 0 3px 3px 0 !important;
+        }
+    }
 
     .telegram {
         .getConection {
@@ -36,6 +46,9 @@
 
 @media screen and (max-width: 768px) {
     .secureAuth {
+        label.auth-verification-btn-box{
+            font-size: 14px !important;
+        }
         .auth-verification-btn {
             & + label {
                 padding: 5px;

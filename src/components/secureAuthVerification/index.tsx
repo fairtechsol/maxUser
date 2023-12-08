@@ -1,16 +1,17 @@
 import { useState } from "react";
 import {
-    Col,
-    Form,
-    Row,
-    ToggleButton,
-    ToggleButtonGroup,
+  Col,
+  Form,
+  Row,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "react-bootstrap";
 import { TfiAndroid } from "react-icons/tfi";
 import isMobile from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
+
 import "./style.scss";
 
 const SecureAuthVerificationComponent = () => {
@@ -21,7 +22,7 @@ const SecureAuthVerificationComponent = () => {
   };
   return (
     <ReportContainer title="Secure Auth Verification">
-      <div className="secureAuth px-2 mt-5 mb-5">
+      <div className="secureAuth px-2 mt-md-5 mb-5">
         <Row className="justify-content-center text-center">
           <Col lg={6}>
             <div
@@ -57,6 +58,7 @@ const SecureAuthVerificationComponent = () => {
                 onChange={handleChange}
               >
                 <ToggleButton
+                  className="auth-verification-btn-box"
                   bsPrefix={`auth-verification-btn btn-check ${
                     selectedValue === 1 ? "active" : ""
                   }`}
@@ -66,6 +68,7 @@ const SecureAuthVerificationComponent = () => {
                   Enable Using Mobile App
                 </ToggleButton>
                 <ToggleButton
+                  className="auth-verification-btn-box"
                   bsPrefix={`auth-verification-btn btn-check ${
                     selectedValue === 2 ? "active" : ""
                   }`}
