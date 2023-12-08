@@ -63,7 +63,7 @@ const CustomInput = (props: any) => {
             // placeholder="wwww"
             name={id}
             type={type}
-            // {...prop}
+            {...prop}
           />
         )}
         {inputIcon && <div className="input-icon">{inputIcon}</div>}
