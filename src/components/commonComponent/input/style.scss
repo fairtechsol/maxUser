@@ -1,4 +1,9 @@
 @import "/src/assets/variable.scss";
+input{
+    ::placeholder{
+        color: #000;
+    }
+}
 .input-icon{
     position:absolute;
     right:10px;

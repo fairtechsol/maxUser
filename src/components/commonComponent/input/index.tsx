@@ -24,7 +24,7 @@ const CustomInput = (props: any) => {
     customStyle,
     inputIcon,
     isUnderlinedInput,
-    placeholder,
+
     ...prop
   } = props;
   return (
@@ -60,7 +60,6 @@ const CustomInput = (props: any) => {
             className={` ${inputClass ?? ""} bg-${bgColor} ${
               isUnderlinedInput && "underline-textbox"
             }`}
-            // placeholder="wwww"
             name={id}
             type={type}
             {...prop}
