@@ -1,21 +1,39 @@
+import { useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
+import "react-calendar/dist/Calendar.css";
+import DatePicker from "react-date-picker";
+import "react-date-picker/dist/DatePicker.css";
 import isMobile from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
-import CustomInput from "../commonComponent/input";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 
 const ProfitLossComponent = () => {
+  const [value, onChange] = useState<any>(new Date());
   return (
     <ReportContainer title="Profit Loss">
       <div>
         <Stack gap={2}>
           <Row className="g-2 mt-1">
             <Col md={2} xs={6}>
-              <CustomInput type="date" />
+              <DatePicker
+                onChange={onChange}
+                value={value}
+                closeCalendar={false}
+                clearIcon={false}
+                className="w-100"
+              />
+              {/* <CustomInput type="date" /> */}
             </Col>
             <Col md={2} xs={6}>
-              <CustomInput type="date" />
+              <DatePicker
+                onChange={onChange}
+                value={value}
+                closeCalendar={false}
+                clearIcon={false}
+                className="w-100"
+              />
+              {/* <CustomInput type="date" /> */}
             </Col>
 
             <Col md={2} xs={12}>
@@ -32,8 +50,8 @@ const ProfitLossComponent = () => {
           <CustomTable
             bordered={true}
             striped={!isMobile}
-            isPagination={true}
-            isSearch={true}
+            // isPagination={true}
+            // isSearch={true}
             columns={[
               {
                 id: "eventType",

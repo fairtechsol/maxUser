@@ -7,13 +7,12 @@ import "react-date-picker/dist/DatePicker.css";
 import isMobile from "../../utils/screenDimension";
 import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
-import CustomInput from "../commonComponent/input";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 
 const AccountStatementComponent = () => {
   const [value, onChange] = useState<any>(new Date());
-  type ValuePiece = Date | null;
+  // type ValuePiece = Date | null;
   return (
     <ReportContainer title="Account Statement">
       <div>
@@ -25,11 +24,19 @@ const AccountStatementComponent = () => {
                 value={value}
                 closeCalendar={false}
                 clearIcon={false}
+                className="w-100"
               />
               {/* <CustomInput type="date" style={{ appearance: "textfield" }} /> */}
             </Col>
             <Col md={2} xs={6}>
-              <CustomInput type="date" />
+              <DatePicker
+                onChange={onChange}
+                value={value}
+                closeCalendar={false}
+                clearIcon={false}
+                className="w-100"
+              />
+              {/* <CustomInput type="date" /> */}
             </Col>
             <Col md={2} xs={12}>
               <SelectSearch
@@ -65,8 +72,8 @@ const AccountStatementComponent = () => {
           <CustomTable
             bordered={true}
             striped={!isMobile}
-            isPagination={true}
-            isSearch={true}
+            // isPagination={true}
+            // isSearch={true}
             columns={[
               {
                 id: "date",

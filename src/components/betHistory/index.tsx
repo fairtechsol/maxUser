@@ -1,16 +1,20 @@
+import { useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
+import "react-calendar/dist/Calendar.css";
+import DatePicker from "react-date-picker";
+import "react-date-picker/dist/DatePicker.css";
 import isMobile from "../../utils/screenDimension";
 import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
-import CustomInput from "../commonComponent/input";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 
 const BetHistoryComponent = () => {
+  const [value, onChange] = useState<any>(new Date());
   return (
     <ReportContainer title="Bet History">
       <div>
-        <Stack gap={2}>
+        <Stack gap={2} className="vh-100">
           <Row className="g-2 mt-1">
             <Col md={2} xs={6}>
               <SelectSearch
@@ -49,10 +53,24 @@ const BetHistoryComponent = () => {
               />
             </Col>
             <Col md={2} xs={6}>
-              <CustomInput type="date" />
+              <DatePicker
+                onChange={onChange}
+                value={value}
+                closeCalendar={false}
+                clearIcon={false}
+                className="w-100"
+              />
+              {/* <CustomInput type="date" /> */}
             </Col>
             <Col md={2} xs={6}>
-              <CustomInput type="date" />
+              <DatePicker
+                onChange={onChange}
+                value={value}
+                closeCalendar={false}
+                clearIcon={false}
+                className="w-100"
+              />
+              {/* <CustomInput type="date" /> */}
             </Col>
 
             <Col md={2} xs={12}>
@@ -69,8 +87,8 @@ const BetHistoryComponent = () => {
           <CustomTable
             bordered={true}
             striped={!isMobile}
-            isPagination={true}
-            isSearch={true}
+            // isPagination={true}
+            // isSearch={true}
             columns={[
               {
                 id: "event_name",
