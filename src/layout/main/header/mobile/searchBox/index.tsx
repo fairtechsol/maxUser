@@ -12,10 +12,13 @@ const SearchBox = () => {
   };
   return (
     <div className={`search-box  ${searchIco ? "searchIcoActive" : ""} `}>
+      {/* <div className={`position-relative`}> */}
       <input type="text" />
       <div className="search-icon" onClick={searchIcoHandle}>
         {searchIco ? <IoClose /> : <FaSearch />}
       </div>
+      {/* </div> */}
+
       {/* <div className="search-icon" onClick={searchIcoHandle}></div> */}
     </div>
   );

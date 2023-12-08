@@ -27,7 +27,11 @@ const CustomInput = (props: any) => {
   } = props;
   return (
     <>
-      <Form.Group className={`${customStyle ?? ""} d-flex gap-1 position-relative`}>
+      <Form.Group
+        className={`${
+          customStyle ?? ""
+        } d-flex gap-1 position-relative inputMain`}
+      >
         {title ? (
           <Form.Label className={`${isMobile && "title-12"} mb-0`}>
             {title}

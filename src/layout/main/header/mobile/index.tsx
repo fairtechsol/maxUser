@@ -37,7 +37,6 @@ const MobileHeader = () => {
             <LogoSection width="auto" height="20px" />
           </Navbar.Brand>
         </Link>
-        <SearchBox />
       </div>
       <div className="d-flex flex-column align-items-center white-text list-unstyled float-end h-100">
         {show?.balance && (
@@ -99,7 +98,7 @@ const MobileHeader = () => {
           </div>
         </div>
       </div>
-
+      <SearchBox />
       <div className="marquee-container text-white">
         <b className="marquee-content title-10">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.

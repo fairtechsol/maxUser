@@ -55,7 +55,6 @@ const ProfitLossComponent = () => {
               <td>123456</td>
               <td>123456</td>
               <td>123456</td>
-              
             </tr>
           </CustomTable>
         </Stack>

@@ -4,14 +4,13 @@
     position: absolute;
     top: 50%;
     left: 0;
-    
     width: 50px;
-    height: 50px;
+    height: 30px;
     .search-icon {
       position: absolute;
       background-color: $white;
       margin: auto;
-      top: 0;
+      top: 12px;
       right: 0;
       bottom: 0;
       left: 0;
@@ -20,37 +19,13 @@
       border-radius: 50%;
       transition: all 1s;
       z-index: 44;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &:hover {
         cursor: pointer;
       }
-      // &::before {
-      //   content: "";
-      //   position: absolute;
-      //   top: 17px;
-      //   color: #000000;
-      //   right: 0;
-      //   bottom: 0;
-      //   left: 13px;
-      //   width: 8px;
-      //   height: 2px;
-      //   background: #000000;
-      //   transform: rotate(45deg);
-      //   transition: all 0.5s;
-      // }
-      // &::after {
-      //   content: "";
-      //   position: absolute;
-      //   top: 6px;
-      //   right: 0;
-      //   bottom: 0;
-      //   color: #000000;
-      //   left: 6px;
-      //   width: 12px;
-      //   height: 12px;
-      //   border-radius: 50%;
-      //   border: 2px solid #000000;
-      //   transition: all 0.5s;
-      // }
+      
     }
     input {
       position: absolute;
@@ -106,6 +81,7 @@
     }
   }
   .searchIcoActive{
+    color: #000;
     .search-icon{
       right: 0;
     }
