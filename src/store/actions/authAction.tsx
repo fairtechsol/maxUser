@@ -3,35 +3,58 @@ import { AxiosError } from "axios";
 import service from "../../service";
 
 interface LoginData {
-    userName: string;
-    password: string;
-    loginType:string;
+  userName: string;
+  password: string;
+  loginType: string;
+}
+
+interface ChangePassword {
+  userId?: string;
+  newPassword: string;
+  confirmPassword: string;
+  transactionPassword: string;
+}
+
+export const login = createAsyncThunk<any, LoginData>(
+  "auth/login",
+  async (requestData, thunkApi) => {
+    try {
+      const { data } = await service.post("/auth/login", requestData);
+      const { token } = data;
+      localStorage.setItem("userToken", token);
+      return data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
   }
+);
 
-export const login=createAsyncThunk<any, LoginData>("auth/login",async (requestData, thunkApi)=>{
-    try{
-        const {data}=await service.post("/auth/login",requestData);
-        const {token}=data;
-        localStorage.setItem("userToken",token);
-        return data;
+export const changePassword = createAsyncThunk<any, ChangePassword>(
+  "user/changePassword",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.post("/user/changePassword", requestData);
+      if (resp) {
+        console.log(resp.data, "data");
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
     }
-    catch(error){
-        const err=error as AxiosError;
-        return thunkApi.rejectWithValue(err.response?.status);
-    }
+  }
+);
+
+export const logout = createAsyncThunk<any>("auth/logout", async () => {
+  try {
+    const response = await service.post("/auth/logout");
+    localStorage.clear();
+    window.location.replace("/login");
+    return response;
+  } catch (error) {
+    const err = error as AxiosError;
+    return err;
+  }
 });
 
-export const logout=createAsyncThunk<any,any>("auth/login",async (thunkApi)=>{
-    try{
-        const response=await service.post("/auth/logout");
-        localStorage.clear();
-        window.location.replace("/login");
-       return response;
-    }
-    catch(error){
-        const err=error as AxiosError;
-        return thunkApi.rejectWithValue(err.response?.status);
-    }
-});
-
-export const authReset = createAction('auth/reset');
+export const authReset = createAction("auth/reset");

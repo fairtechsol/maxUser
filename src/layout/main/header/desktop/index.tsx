@@ -1,14 +1,16 @@
+import { useState } from "react";
 import { Col, Collapse, Dropdown, Navbar, Row } from "react-bootstrap";
 import { FaSearchPlus } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import LogoSection from "../../../../components/commonComponent/logoSection";
-import dropdownList from "../dropdown.json";
-import CustomDropDown from "./dropdown/customDropdown";
-
-import { useState } from "react";
 import CustomInput from "../../../../components/commonComponent/input";
+import LogoSection from "../../../../components/commonComponent/logoSection";
+import { logout } from "../../../../store/actions/authAction";
+import { AppDispatch } from "../../../../store/store";
+import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
 import SearchResult from "../searchResult";
+import CustomDropDown from "./dropdown/customDropdown";
 import "./style.scss";
 
 const DesktopHeader = () => {
@@ -23,7 +25,8 @@ const DesktopHeader = () => {
     setOpenExposure(!openExposure);
   };
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const dispatch: AppDispatch = useDispatch();
 
   return (
     <Row className=" w-100">
@@ -108,8 +111,8 @@ const DesktopHeader = () => {
                     return (
                       <Dropdown.Item
                         className="title-14 px-2 py-1"
-                        onClick={()=>{
-                          navigate(item.link||"")
+                        onClick={() => {
+                          navigate(item.link || "");
                         }}
                         key={item?.id}
                         eventKey={item?.id}
@@ -119,7 +122,13 @@ const DesktopHeader = () => {
                     );
                   })}
                 <Dropdown.Divider />
-                <Dropdown.Item className="title-14" eventKey={"sign-out"}>
+                <Dropdown.Item
+                  className="title-14"
+                  eventKey={"sign-out"}
+                  onClick={() => {
+                    dispatch(logout());
+                  }}
+                >
                   Signout
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -130,7 +139,11 @@ const DesktopHeader = () => {
         <div className="marquee-container nav-marquee text-white">
           <div className="marquee-content title-14">
             {/* Your scrolling content goes here */}
-           <i> Use https://sept23.olddata.info/login for view old account between March23 to September23</i>
+            <i>
+              {" "}
+              Use https://sept23.olddata.info/login for view old account between
+              March23 to September23
+            </i>
           </div>
         </div>
       </Col>

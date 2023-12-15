@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useFormik } from "formik";
+import { useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
@@ -8,17 +9,24 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../../../components/commonComponent/button";
 import CustomInput from "../../../components/commonComponent/input";
 import Loader from "../../../components/commonComponent/loader";
-import { authReset, login } from "../../../store/actions/authAction";
+import ValidationError from "../../../components/commonComponent/validationError";
+import { authReset, changePassword } from "../../../store/actions/authAction";
 import { AppDispatch, RootState } from "../../../store/store";
+import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
 import isMobile from "../../../utils/screenDimension";
 import "./style.scss";
 
 const Login = () => {
-  const [loginState, setLoginState] = useState({
+  // const [loginState, setLoginState] = useState({
+  //   userName: "",
+  //   password: "",
+  //   loginType: "wallet",
+  // });
+  const initialValues: any = {
     userName: "",
     password: "",
-    loginType: "user",
-  });
+    loginType: "wallet",
+  };
 
   const { success, forceChangePassword, loading } = useSelector(
     (state: RootState) => state.auth
@@ -28,10 +36,20 @@ const Login = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    dispatch(login(loginState));
-  };
+  // const handleSubmit = (e: { preventDefault: () => void }) => {
+  //   e.preventDefault();
+  //   dispatch(login(loginState));
+  // };
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: loginValidationSchema,
+    onSubmit: (values: any) => {
+      dispatch(changePassword(values));
+    },
+  });
+
+  const { handleSubmit, touched, errors } = formik;
 
   useEffect(() => {
     if (success) {
@@ -62,27 +80,36 @@ const Login = () => {
           <CustomInput
             type="text"
             placeholder="User Name"
+            name="userName"
+            id="userName"
+            value={formik.values.userName}
+            onChange={formik.handleChange}
             inputIcon={<IoPerson />}
-            required
             customStyle="mb-3"
             isUnderlinedInput={isMobile}
-            value={loginState.userName}
-            onChange={(e: any) => {
-              setLoginState({ ...loginState, userName: e.target.value });
-            }}
+          />
+          <ValidationError
+            touched={touched.userName}
+            errors={errors.userName}
           />
 
           <CustomInput
             type="password"
             placeholder="Password"
             customStyle="mb-3"
-            required
+            name="password"
+            id="password"
             inputIcon={<FaKey />}
             isUnderlinedInput={isMobile}
-            value={loginState.password}
-            onChange={(e: any) => {
-              setLoginState({ ...loginState, password: e.target.value });
-            }}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            // onChange={(e: any) => {
+            //   setLoginState({ ...loginState, password: e.target.value });
+            // }}
+          />
+          <ValidationError
+            touched={touched.password}
+            errors={errors.password}
           />
           <CustomButton className="w-100" variant="primary" type="submit">
             Login <MdOutlineLogin />
