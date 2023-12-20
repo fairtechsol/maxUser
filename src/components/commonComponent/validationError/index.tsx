@@ -3,7 +3,7 @@ const ValidationError = ({ touched, errors }: any) => {
   return (
     <>
       {touched && errors && (
-        <p className="validationError p-0">{errors as string}</p>
+        <p className="validationError p-0 m-0">{errors as string}</p>
       )}
     </>
   );

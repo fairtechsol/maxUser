@@ -8,9 +8,9 @@ export const loginValidationSchema = Yup.object({
 /*** Change Passworsd */
 export const changePassValidationSchema = Yup.object({
   newPassword: Yup.string().required("Password is required"),
-  currentPassword: Yup.string().required("Password is required"),
+  oldPassword: Yup.string().required("Password is required"),
   // confirmNewPassword: Yup.string().required("Password is required"),
-  confirmNewPassword: Yup.string()
+  confirmPassword: Yup.string()
     .oneOf([Yup.ref("newPassword"), ""], "Passwords must match")
     .required("Password is required"),
   // transactionPassword: Yup.string().required(

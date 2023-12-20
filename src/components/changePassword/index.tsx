@@ -19,9 +19,9 @@ const ChangePasswordComponent = () => {
   //   confirmNewPassword: "",
   // });
   const initialValues: any = {
-    currentPassword: "",
+    oldPassword: "",
     newPassword: "",
-    confirmNewPassword: "",
+    confirmPassword: "",
   };
 
   const dispatch: AppDispatch = useDispatch();
@@ -59,9 +59,9 @@ const ChangePasswordComponent = () => {
             title="Current Password"
             customStyle={"flex-column"}
             type="password"
-            value={formik.values.currentPassword}
-            id={"currentPassword"}
-            name={"currentPassword"}
+            // value={formik.values.currentPassword}
+            id={"oldPassword"}
+            name={"oldPassword"}
             onChange={formik.handleChange}
           />
           <ValidationError
@@ -73,7 +73,7 @@ const ChangePasswordComponent = () => {
             isUnderlinedInput={isMobile}
             customStyle={"flex-column"}
             type="password"
-            value={formik.values.newPassword}
+            // value={formik.values.newPassword}
             id="newPassword"
             name="newPassword"
             onChange={formik.handleChange}
@@ -87,14 +87,14 @@ const ChangePasswordComponent = () => {
             isUnderlinedInput={isMobile}
             customStyle={"flex-column"}
             type="password"
-            value={formik.values.confirmNewPassword}
-            id="confirmNewPassword"
-            name="confirmNewPassword"
+            // value={formik.values.confirmPassword}
+            id="confirmPassword"
+            name="confirmPassword"
             onChange={formik.handleChange}
           />
           <ValidationError
-            touched={touched.confirmNewPassword}
-            errors={errors.confirmNewPassword}
+            touched={touched.confirmPassword}
+            errors={errors.confirmPassword}
           />
           <CustomButton
             type="submit"

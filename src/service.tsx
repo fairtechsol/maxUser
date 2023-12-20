@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// PRODUCTION: 
+// PRODUCTION:
 // DEVELOPMENT: http://localhost:5000
 const service = axios.create({
   baseURL: "http://localhost:5000/",
@@ -14,7 +14,7 @@ service.interceptors.request.use(
     config.headers["Content-Type"] = "application/json";
 
     const authToken = localStorage.getItem("userToken");
-    config.headers.token = authToken;
+    config.headers.Authorization = `Bearer ${authToken}`;
     return config;
   },
   (error) => {
@@ -37,7 +37,7 @@ service.interceptors.response.use(
       toast.error(error.response.data.message);
     } else if (error.response.status === 401) {
       toast.error(error.response.data.message);
-      window.location.replace("/login");
+      // window.location.replace("/login");
       localStorage.clear();
     }
 
