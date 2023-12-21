@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import CustomInput from "../../../../components/commonComponent/input";
 import LogoSection from "../../../../components/commonComponent/logoSection";
+import MarqueeHeader from "../../../../components/commonComponent/marquee";
 import { logout } from "../../../../store/actions/authAction";
 import { AppDispatch } from "../../../../store/store";
 import dropdownList from "../dropdown.json";
@@ -135,17 +136,16 @@ const DesktopHeader = () => {
             </Dropdown>
           </li>
         </ul>
-
-        <div className="marquee-container nav-marquee text-white">
+        <MarqueeHeader />
+        {/* <div className="marquee-container nav-marquee text-white">
           <div className="marquee-content title-14">
-            {/* Your scrolling content goes here */}
             <i>
               {" "}
               Use https://sept23.olddata.info/login for view old account between
               March23 to September23
             </i>
           </div>
-        </div>
+        </div> */}
       </Col>
     </Row>
   );
