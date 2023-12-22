@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { marqueeNotification } from "../../actions/user/userAction";
+import {
+  marqueeNotification,
+  setButtonValue,
+} from "../../actions/user/userAction";
 
 interface InitialState {
   transactionPassword: string;
@@ -37,6 +40,17 @@ const profileSlice = createSlice({
         state.marqueeNotification = action.payload;
       })
       .addCase(marqueeNotification.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(setButtonValue.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(setButtonValue.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(setButtonValue.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       });

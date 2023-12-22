@@ -5,6 +5,7 @@ import { profileReducer } from "./profileSlice";
 
 export const userReducer = combineReducers({
   profile: profileReducer,
+
   //   userUpdate: userUpdateReducer,
   //   userList: userListReducers,
 });
