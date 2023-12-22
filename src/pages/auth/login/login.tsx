@@ -10,7 +10,7 @@ import CustomButton from "../../../components/commonComponent/button";
 import CustomInput from "../../../components/commonComponent/input";
 import Loader from "../../../components/commonComponent/loader";
 import ValidationError from "../../../components/commonComponent/validationError";
-import { authReset, changePassword } from "../../../store/actions/authAction";
+import { authReset, login } from "../../../store/actions/authAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
 import isMobile from "../../../utils/screenDimension";
@@ -45,7 +45,7 @@ const Login = () => {
     initialValues: initialValues,
     validationSchema: loginValidationSchema,
     onSubmit: (values: any) => {
-      dispatch(changePassword(values));
+      dispatch(login(values));
     },
   });
 
