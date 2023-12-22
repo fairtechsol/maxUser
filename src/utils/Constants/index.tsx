@@ -4,6 +4,7 @@ export const ApiConstants = {
   CHANGEPASSWORD: "user/changePassword",
   USER: {
     MARQUEE: "/expert/notification",
+    SET_BTN_VALUE: "/button/insert",
   },
 };
 
