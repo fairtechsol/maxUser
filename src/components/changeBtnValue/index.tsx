@@ -1,9 +1,9 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setButtonValue } from "../../store/actions/user/userAction";
-import { AppDispatch } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
@@ -54,10 +54,13 @@ const ChangeButtonValueComponent = () => {
   ]);
 
   const dispatch: AppDispatch = useDispatch();
+  const { getProfile } = useSelector((state: RootState) => state.user.profile);
+
   const formik = useFormik({
     initialValues: {
       label: "",
       value: "",
+      // type: "",
     },
     onSubmit: (values: any) => {
       const convertedData = btnValue.reduce((result: any, item: any) => {
@@ -68,7 +71,7 @@ const ChangeButtonValueComponent = () => {
       }, {});
       console.log(JSON.stringify(convertedData));
       const payload = {
-        id: "",
+        id: getProfile?.id,
         type: "",
         value: convertedData,
       };

@@ -1,4 +1,8 @@
+import { useEffect } from "react";
 import { Tab } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { getMatchList } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import { GAME_TYPE } from "../../../../utils/enum";
 import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
@@ -6,6 +10,10 @@ import MatchListJson from "../matchList.json";
 import "./style.scss";
 
 const DesktopMatchList = ({ data }: any) => {
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMatchList());
+  }, []);
   return (
     <div className="m-1 p-0 w-100">
       {" "}
