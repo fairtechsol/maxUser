@@ -25,7 +25,7 @@ const Login = () => {
   const initialValues: any = {
     userName: "",
     password: "",
-    loginType: "wallet",
+    loginType: "user",
   };
 
   const { success, forceChangePassword, loading } = useSelector(

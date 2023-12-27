@@ -8,6 +8,7 @@ export const ApiConstants = {
   USER: {
     MARQUEE: "/expert/notification",
     SET_BTN_VALUE: "/button/insert",
+    GET_BTN_VALUE: "/button",
     GET_PROFILE: "/user/profile",
   },
 };
