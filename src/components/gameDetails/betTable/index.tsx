@@ -1,11 +1,14 @@
 import { IoInformationCircle } from "react-icons/io5";
 import { MatchType } from "../../../utils/enum";
+import { formattedMinMax } from "../../../utils/formatMinMax";
 import isMobile from "../../../utils/screenDimension";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import BookmakerTable from "./bookMaker";
 import MatchOdds from "./matchOdds";
 import SessionMarketTable from "./sessionMarket";
 
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 interface BetTableProps {
   title: string;
   type: string;
@@ -13,6 +16,10 @@ interface BetTableProps {
   backLayCount?: number;
 }
 const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
+  const { matchDetails } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+
   return (
     <>
       {isMobile && type === MatchType.SESSION_MARKET ? (
@@ -24,7 +31,9 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           rightComponent={
             <div>
               {type === MatchType.MATCH_ODDS && !isMobile && (
-                <span className="f600 title-14">Maximum Bet 1</span>
+                <span className="f600 title-14">
+                  Maximum Bet {data?.maxBet}
+                </span>
               )}
               <span
                 className={`${
@@ -38,11 +47,16 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
         />
       )}
       {type === MatchType.BOOKMAKER ? (
-        <BookmakerTable minMax={100} data={data} backLayCount={backLayCount} />
+        <BookmakerTable
+          minMax={formattedMinMax(data?.minBet, data?.maxBet)}
+          data={data}
+          backLayCount={backLayCount}
+          matchDetails={matchDetails}
+        />
       ) : type === MatchType.MATCH_ODDS ? (
-        <MatchOdds data={data} />
+        <MatchOdds data={data} matchDetails={matchDetails} />
       ) : (
-        <SessionMarketTable data={data} title={title} />
+        <SessionMarketTable data={data} matchDetails={matchDetails} />
       )}
     </>
   );

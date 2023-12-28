@@ -8,9 +8,11 @@ import "./style.scss";
 interface MatchOddsProps {
   minMax?: any;
   data: any;
+  matchDetails?: any;
 }
-function MatchOdds({ minMax, data }: MatchOddsProps) {
+function MatchOdds({ minMax, data, matchDetails }: MatchOddsProps) {
   const handleClick = () => {};
+
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -40,52 +42,50 @@ function MatchOdds({ minMax, data }: MatchOddsProps) {
           </tr>
         </thead>
         <tbody>
-          {data?.map((item: any, i: number) => (
-            <tr key={i}>
-              <td>
-                <div className="backLayRunner d-flex flex-column px-1">
-                  <span
-                    className={`backLayRunner-country title-12  ${
-                      isMobile ? "f900" : "f600"
-                    } `}
-                  >
-                    {item?.RunnerName}
-                  </span>
-                  <span className="title-14">{item?.lastPriceTraded}</span>
-                </div>
-              </td>
-              <td colSpan={6}>
-                <BetStatusOverlay title="Lock">
-                  {item?.ex?.availableToBack?.map(
-                    (back: any, index: number) => (
-                      <BackLayBox
-                        key={index}
-                        customClass="match-odd-bet-place"
-                        // overlay={true}
-                        bgColor={`blue${index + 1}`}
-                        rate={back?.price}
-                        percent={back?.size}
-                        onClick={handleClick}
-                      />
-                    )
-                  )}
-                  {item?.ex?.availableToLay?.map((red: any, index: number) => (
-                    <BackLayBox
-                      customClass="match-odd-bet-place"
-                      // overlay={true}
-                      bgColor={`red${index + 1}`}
-                      rate={red?.price}
-                      percent={red?.size}
-                      onClick={handleClick}
-                      key={index}
-                    />
-                  ))}
-                </BetStatusOverlay>
-              </td>
+          {["A", "B", "C"]
+            ?.filter((item) => matchDetails?.[`team${item}`] != null)
+            ?.map((matchs, indexes) => {
+              return (
+                <tr key={indexes}>
+                  <td>
+                    <div className="backLayRunner d-flex flex-column px-1">
+                      <span
+                        className={`backLayRunner-country title-12  ${
+                          isMobile ? "f900" : "f600"
+                        } `}
+                      >
+                        {matchDetails?.[`team${matchs}`]}
+                      </span>
+                      {/* <span className="title-14">{item?.lastPriceTraded}</span> */}
+                    </div>
+                  </td>
+                  <td colSpan={6}>
+                    <BetStatusOverlay title="Lock">
+                      {new Array(3).fill(0)?.map((_: any, index: number) => (
+                        <BackLayBox
+                          key={index}
+                          customClass="match-odd-bet-place"
+                          bgColor={`blue${index + 1}`}
+                          rate={data[`backTeam${matchs}`] - 2 + index}
+                          onClick={handleClick}
+                        />
+                      ))}
+                      {new Array(3).fill(0)?.map((_: any, index: number) => (
+                        <BackLayBox
+                          key={index}
+                          customClass="match-odd-bet-place"
+                          bgColor={`red${index + 1}`}
+                          rate={data[`layTeam${matchs}`] + index}
+                          onClick={handleClick}
+                        />
+                      ))}
+                    </BetStatusOverlay>
+                  </td>
 
-              {!isMobile && <td></td>}
-            </tr>
-          ))}
+                  {!isMobile && <td></td>}
+                </tr>
+              );
+            })}
         </tbody>
       </Table>
     </div>

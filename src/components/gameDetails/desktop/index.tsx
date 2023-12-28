@@ -1,27 +1,32 @@
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row, Tab } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import { sessionBettingType } from "../../../utils/constants";
+import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
 import BetTableHeader from "../../commonComponent/betTableHeader";
-import CommonTabs from "../../commonComponent/tabs";
 import BetTable from "../betTable";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 
-interface DesktopGameDetailProps {
-  data: any;
-}
-
-const DesktopGameDetail = ({ data }: DesktopGameDetailProps) => {
+const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+
+  const { matchDetails } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+
+  console.log(matchDetails);
 
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
         const sticky = placeBetRef?.current.offsetTop;
         setIsSticky(window.scrollY > sticky);
-    }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,43 +45,112 @@ const DesktopGameDetail = ({ data }: DesktopGameDetailProps) => {
               <Col md={12}>
                 <BetTableHeader
                   customClass="mt-2 py-2"
-                  title={"Bangladesh v New Zealand"}
+                  title={matchDetails?.title}
                   rightComponent={
-                    <span className="title-16 f500">11/28/2023 9:00:00 AM</span>
+                    <span className="title-16 f500">
+                      {formatDate(matchDetails?.startAt)}
+                    </span>
                   }
                 />
               </Col>
-              {data?.matchOdds?.map((item: any, index: number) => {
-                return (
-                  <Col md={12} key={index}>
+
+              {matchDetails?.matchOdd && matchDetails?.matchOdd?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={matchDetails?.matchOdd?.name}
+                    type={MatchType.MATCH_ODDS}
+                    data={matchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
+
+              {matchDetails?.bookmaker && matchDetails?.bookmaker?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={matchDetails?.bookmaker?.name}
+                    type={MatchType.BOOKMAKER}
+                    data={matchDetails?.bookmaker}
+                  />
+                </Col>
+              )}
+
+              {matchDetails?.quickBookmaker?.map((item: any, index: number) => (
+                <div key={index}>
+                  {item?.isActive && (
+                    <Col md={12}>
+                      <BetTable
+                        title={item?.name}
+                        type={MatchType.BOOKMAKER}
+                        data={item}
+                      />
+                    </Col>
+                  )}
+                </div>
+              ))}
+              {matchDetails?.apiTideMatch &&
+                matchDetails?.apiTideMatch?.isActive && (
+                  <Col md={12}>
                     <BetTable
-                      title={item?.title}
-                      type={MatchType.MATCH_ODDS}
-                      data={item?.runners}
+                      title={matchDetails?.apiTideMatch?.name}
+                      type={MatchType.BOOKMAKER}
+                      data={matchDetails?.apiTideMatch}
                     />
                   </Col>
-                );
-              })}
-              {data?.bookmaker?.map((item: any, index: number) => (
-                <Col md={6} key={index}>
+                )}
+              {matchDetails?.manualTiedMatch &&
+                matchDetails?.manualTiedMatch?.isActive && (
+                  <Col md={12}>
+                    <BetTable
+                      title={matchDetails?.manualTiedMatch?.name}
+                      type={MatchType.BOOKMAKER}
+                      data={matchDetails?.manualTiedMatch}
+                    />
+                  </Col>
+                )}
+
+              {(matchDetails?.apiSessionActive ||
+                matchDetails?.manualSessionActive) && (
+                <Col md={6}>
                   <BetTable
-                    title={item?.title}
-                    type={MatchType.BOOKMAKER}
-                    data={item?.data}
-                    backLayCount={item.countRow}
-                  />
-                </Col>
-              ))}
-              {data?.session?.map((item: any, index: number) => (
-                <Col md={6} key={index}>
-                  <BetTable
-                    title={item?.title}
+                    title={"Session Market"}
                     type={MatchType.SESSION_MARKET}
-                    data={item?.data}
+                    data={matchDetails?.sessionBettings?.filter(
+                      (item: any) =>
+                        JSON.parse(item)?.type ==
+                          sessionBettingType?.manualSession ||
+                        JSON.parse(item)?.type ==
+                          sessionBettingType?.marketSession
+                    )}
                   />
                 </Col>
-              ))}
-              <Col md={12}>
+              )}
+              {(matchDetails?.apiSessionActive ||
+                matchDetails?.manualSessionActive) && (
+                <Col md={6}>
+                  <BetTable
+                    title={"Over by Over Session Market"}
+                    type={MatchType.SESSION_MARKET}
+                    data={matchDetails?.sessionBettings?.filter(
+                      (item: any) =>
+                        JSON.parse(item)?.type == sessionBettingType?.overByOver
+                    )}
+                  />
+                </Col>
+              )}
+              {(matchDetails?.apiSessionActive ||
+                matchDetails?.manualSessionActive) && (
+                <Col md={6}>
+                  <BetTable
+                    title={"Ball by Ball Session Market"}
+                    type={MatchType.SESSION_MARKET}
+                    data={matchDetails?.sessionBettings?.filter(
+                      (item: any) =>
+                        JSON.parse(item)?.type == sessionBettingType?.ballByBall
+                    )}
+                  />
+                </Col>
+              )}
+              {/* <Col md={12}>
                 <CommonTabs
                   customClass="overflow-x-auto overflow-y-hidden no-wrap"
                   defaultActive="fancy"
@@ -125,16 +199,13 @@ const DesktopGameDetail = ({ data }: DesktopGameDetailProps) => {
                     );
                   })}
                 </CommonTabs>
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </Col>
         <Col md={3} className="ps-0">
           <Container className="p-0" fluid ref={placeBetRef}>
-            <Row
-              
-              className={`${isSticky ? "position-fixed top-0 pe-3 " : ""}`}
-            >
+            <Row className={`${isSticky ? "position-fixed top-0 pe-3 " : ""}`}>
               <Col md={12}>
                 <PlacedBet />
               </Col>
