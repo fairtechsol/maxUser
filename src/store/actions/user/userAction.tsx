@@ -1,13 +1,7 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import service from "../../../service";
-import { ApiConstants } from "../../../utils/Constants";
-
-// interface RequestData {
-//   userName?: string;
-//   currentPage?: number;
-//   url?: any;
-// }
+import { ApiConstants } from "../../../utils/constants";
 
 export const marqueeNotification = createAsyncThunk<any>(
   "user/notification",
@@ -23,7 +17,6 @@ export const marqueeNotification = createAsyncThunk<any>(
     }
   }
 );
-
 
 export const getProfile = createAsyncThunk<any>("/user/profile", async () => {
   try {
@@ -120,52 +113,6 @@ export const setButtonValue = createAsyncThunk<any, any>(
     }
   }
 );
-
-// export const handleExport = createAsyncThunk<any, string>(
-//   "user/export",
-//   async (type) => {
-//     try {
-//       const response = await service.get(
-//         `${ApiConstants.USER.LIST}?type=${type}`
-//       );
-
-//       const fileData = response?.data;
-
-//       let blob = new Blob();
-//       if (type == "pdf") {
-//         // window.open(`data:application/pdf;base64,${fileData}`, '_blank');
-//         const binaryData = new Uint8Array(
-//           atob(fileData)
-//             .split("")
-//             .map((char) => char.charCodeAt(0))
-//         );
-//         blob = new Blob([binaryData], { type: "application/pdf" });
-//       } else if (type == "excel") {
-//         const binaryData = new Uint8Array(
-//           atob(fileData)
-//             .split("")
-//             .map((char) => char.charCodeAt(0))
-//         );
-//         // Create a Blob from the Uint8Array
-//         blob = new Blob([binaryData], {
-//           type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-//         });
-//       }
-//       // Create a temporary URL for the Blob
-//       const url = window.URL.createObjectURL(blob);
-//       // Create an <a> element and trigger the download
-//       const link = document.createElement("a");
-//       link.href = url;
-//       link.download = "temp";
-//       link.click();
-//       // Clean up by revoking the URL
-//       window.URL.revokeObjectURL(url);
-//     } catch (error: any) {
-//       const err = error as AxiosError;
-//       throw err;
-//     }
-//   }
-// );
 
 export const changePasswordReset = createAction("changePassword/reset");
 export const profileReset = createAction("profile/reset");
