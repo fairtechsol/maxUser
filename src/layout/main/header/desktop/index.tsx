@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Collapse, Dropdown, Navbar, Row } from "react-bootstrap";
+import { Col, Collapse, Dropdown, Form, Navbar, Row } from "react-bootstrap";
 import { FaSearchPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,27 +7,57 @@ import CustomInput from "../../../../components/commonComponent/input";
 import LogoSection from "../../../../components/commonComponent/logoSection";
 import MarqueeHeader from "../../../../components/commonComponent/marquee";
 import { logout } from "../../../../store/actions/authAction";
-import { AppDispatch } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
 import SearchResult from "../searchResult";
 import CustomDropDown from "./dropdown/customDropdown";
 import "./style.scss";
+import SearchInput from "../../../../components/commonComponent/mainSearch";
+import { useSelector } from "react-redux";
+import { SearchListReset } from "../../../../store/actions/match/matchListAction";
 
 const DesktopHeader = () => {
+  const dispatch: AppDispatch = useDispatch()
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const [openExposure, setOpenExposure] = useState(false);
 
+  const { getMatchListBySearch } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+
+  // const handleInputChange = debounce(async (event: any) => {
+  //   const value = event.target.value;
+  //   if (onChange === "function") {
+  //     onChange(value);
+  //   }
+  //   try {
+  //     dispatch(
+  //       getUserList({
+  //         userName: value,
+  //         currentPage: 1,
+  //         url: { endpoint: endpoint },
+  //       })
+  //     );
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }, 500);
+
   const handleClickOpen = () => {
+    if(open === false){
+      dispatch(SearchListReset())
+    }
     setOpen(!open);
+
   };
 
   const handleClickExposureModalOpen = () => {
     setOpenExposure(!openExposure);
   };
 
-  const navigate = useNavigate();
-  const dispatch: AppDispatch = useDispatch();
+  
 
   return (
     <Row className=" w-100">
@@ -43,26 +73,9 @@ const DesktopHeader = () => {
           <li className="d-flex gap-3 align-items-center">
             <Collapse in={open} dimension="width">
               <div id="searchCollapse" className="position-relative">
-                <CustomInput placeholder="All Events" />
-                <SearchResult
-                  data={[
-                    {
-                      name: "Cricket | MAtch odd",
-                      date: "11/27/2023 04:15:00 PM",
-                      label: "Test",
-                    },
-                    {
-                      name: "Cricket | MAtch odd",
-                      date: "11/27/2023 04:15:00 PM",
-                      label: "Test",
-                    },
-                    {
-                      name: "Cricket | MAtch odd",
-                      date: "11/27/2023 04:15:00 PM",
-                      label: "Test",
-                    },
-                  ]}
-                />
+                {/* <CustomInput placeholder="All Events" /> */}
+                <SearchInput />
+                {getMatchListBySearch.length > 0 && <SearchResult getMatchListBySearch={getMatchListBySearch} />}
               </div>
             </Collapse>
             <span>

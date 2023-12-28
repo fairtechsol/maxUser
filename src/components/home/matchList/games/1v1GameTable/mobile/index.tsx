@@ -33,14 +33,21 @@ const MobileOneVOneGame = ({ data }: any) => {
                 }
                 <FiMonitor />
                 {item?.manualSessionActive || item?.apiSessionActive  ? <span className="fancy"><img src="/ic_fancy.png"/></span> : ""} 
-                {item?.isBookmaker > 0  ?  <span className="bookmaker"><img src="/ic_bm.png"/></span> : ""} 
+                {item?.isBookmaker.length > 0  ?  <span className="bookmaker"><img src="/ic_bm.png"/></span> : ""} 
                   
               </div>
             </div>
             <div className="d-flex w-100">
-              <BackLayComponent heading="1" backRate={1.26} layRate={2.38} />
-              <BackLayComponent heading="X" backRate={"-"} layRate={"-"} />
-              <BackLayComponent heading="2" backRate={1} layRate={2.38} />
+                {item?.matchOdds?.map((item: any) => {
+                  console.log(item, "itrete")
+                  return (
+                    <>
+                    <BackLayComponent heading="1" backRate={item.backTeamA ?? item.backTeamA} layRate={item?.layTeamA ?? item?.layTeamA} />
+                    <BackLayComponent heading="X" backRate={item.backTeamA ?? item.backTeamA} layRate={item?.layTeamA ?? item?.layTeamA} />
+                    <BackLayComponent heading="2" backRate={item.backTeamA ?? item.backTeamA} layRate={item?.layTeamA ?? item?.layTeamA} />
+                    </>
+                     )
+                  })}
             </div>
           </div>
         );

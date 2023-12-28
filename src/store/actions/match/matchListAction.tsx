@@ -21,6 +21,19 @@ export const getMatchList = createAsyncThunk<any>("/match/list", async () => {
   }
 });
 
+export const SearchList = createAsyncThunk<any, any>("/match/searchlist", async (requestData) => {
+  try {
+    const resp = await service.get(`${ApiConstants.MATCH.MATCHLIST}?searchBy=title&keyword=${requestData?.title ? requestData?.title : ""
+      }`);
+    if (resp) {
+      return resp?.data?.matches;
+    }
+  } catch (error: any) {
+    const err = error as AxiosError;
+    throw err;
+  }
+});
+
 // export const userChangePassword = createAsyncThunk<any, any>(
 //   "user/changePassword",
 //   async (requestData) => {
@@ -93,3 +106,4 @@ export const setButtonValue = createAsyncThunk<any, any>(
 export const changePasswordReset = createAction("changePassword/reset");
 export const profileReset = createAction("profile/reset");
 export const updateReset = createAction("update/reset");
+export const SearchListReset = createAction("searchList/reset");
