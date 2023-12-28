@@ -23,7 +23,12 @@ body table.table {
   display: inline-block;
   animation: marqueeAnimation 25s linear infinite;
 }
-
+.liveDot{
+  width: 10px;
+  height: 10px;
+  background-color: $green;
+  border-radius: 50%;
+}
 
 @keyframes marqueeAnimation {
   0% {
