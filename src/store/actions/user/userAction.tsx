@@ -10,7 +10,7 @@ import { ApiConstants } from "../../../utils/Constants";
 // }
 
 export const marqueeNotification = createAsyncThunk<any>(
-  "expert/notification",
+  "user/notification",
   async () => {
     try {
       const resp = await service.get(`${ApiConstants.USER.MARQUEE}`);
@@ -23,6 +23,19 @@ export const marqueeNotification = createAsyncThunk<any>(
     }
   }
 );
+
+
+export const getProfile = createAsyncThunk<any>("/user/profile", async () => {
+  try {
+    const resp = await service.get(`${ApiConstants.USER.GET_PROFILE}`);
+    if (resp) {
+      return resp?.data;
+    }
+  } catch (error: any) {
+    const err = error as AxiosError;
+    throw err;
+  }
+});
 
 // export const userChangePassword = createAsyncThunk<any, any>(
 //   "user/changePassword",
@@ -65,6 +78,21 @@ export const setExposureLimit = createAsyncThunk<any, any>(
         `${requestData.url}`,
         requestData.payload
       );
+      if (resp) {
+        return resp?.data;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      throw err;
+    }
+  }
+);
+
+export const getButtonValue = createAsyncThunk<any>(
+  "user/getButtonValue",
+  async () => {
+    try {
+      const resp = await service.get(`${ApiConstants.USER.GET_BTN_VALUE}`);
       if (resp) {
         return resp?.data;
       }

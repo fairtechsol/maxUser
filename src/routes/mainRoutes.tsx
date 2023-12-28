@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
+import { Navigate } from "react-router-dom";
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(lazy(() => import("../pages/home")));
 const GameDetail = Loadable(lazy(() => import("../pages/gameDetails")));
@@ -25,6 +26,7 @@ const MainRoutes = {
   path: "/",
   element: <MainLayout />,
   children: [
+
     {
       path: "home",
       element: <Home />,
@@ -43,6 +45,10 @@ const MainRoutes = {
     {
       path: "game-detail/:id",
       element: <GameDetail />,
+    },
+    {
+      path: "*",
+      element: <Navigate to={"/home"} replace />,
     },
   ],
 };

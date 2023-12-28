@@ -2,7 +2,10 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
-import { marqueeNotification } from "../../store/actions/user/userAction";
+import {
+  getProfile,
+  marqueeNotification,
+} from "../../store/actions/user/userAction";
 import { AppDispatch } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
 import "../layout.scss";
@@ -17,6 +20,7 @@ function MainLayout() {
     if (!localStorage.getItem("userToken")) {
       navigate("/login");
     }
+    dispatch(getProfile());
     dispatch(marqueeNotification());
   }, []);
 

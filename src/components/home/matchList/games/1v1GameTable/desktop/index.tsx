@@ -1,5 +1,7 @@
 import { Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 
@@ -29,6 +31,12 @@ const tableHeading = [
 ];
 
 const DesktopOneVOneGameTable = ({ data }: any) => {
+  const { getMatchList } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+
+  console.log(getMatchList);
+
   return (
     <Table>
       <thead>
@@ -42,27 +50,36 @@ const DesktopOneVOneGameTable = ({ data }: any) => {
               key={item?.id}
             >
               {item?.name}
+              {/* {getMatchList } */}
             </th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {data?.map((item: any, index: number) => {
-          return (
-            <tr className="one-v-one-row overflow-hidden" key={index}>
-              <td className="px-2 w-50">
-                <div className="d-flex justify-content-between">
-                  <Link className="text-decoration-none" to={`/game-detail/${item?.id}`}><div className="one-v-one-title title-14">{item?.name}</div></Link>
-                  <div className="d-flex gap-2"></div>
-                </div>
-              </td>
+        {getMatchList &&
+          getMatchList?.map((item: any, index: number) => {
+            return (
+              <tr className="one-v-one-row overflow-hidden" key={index}>
+                <td className="px-2 w-50">
+                  <div className="d-flex justify-content-between">
+                    <Link
+                      className="text-decoration-none"
+                      to={`/game-detail/${item?.id}`}
+                    >
+                      <div className="one-v-one-title title-14">
+                        {item?.competitionName}
+                      </div>
+                    </Link>
+                    <div className="d-flex gap-2"></div>
+                  </div>
+                </td>
 
-              <BackLayComponent backRate={1.26} layRate={2.38} />
-              <BackLayComponent backRate={"-"} layRate={"-"} />
-              <BackLayComponent backRate={1} layRate={2.38} />
-            </tr>
-          );
-        })}
+                <BackLayComponent backRate={1.26} layRate={2.38} />
+                <BackLayComponent backRate={"-"} layRate={"-"} />
+                <BackLayComponent backRate={1} layRate={2.38} />
+              </tr>
+            );
+          })}
       </tbody>
     </Table>
   );
