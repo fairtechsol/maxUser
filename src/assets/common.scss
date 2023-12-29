@@ -1,11 +1,11 @@
 @import "/src/assets/variable.scss";
-html{
-  -webkit-text-size-adjust:100% !important;
+html {
+  -webkit-text-size-adjust: 100% !important;
 }
 
 body {
   font-family: "Roboto Condensed", sans-serif !important;
-  line-height:15px;
+  line-height: 15px;
 }
 body table.table {
   margin-bottom: 0;
@@ -23,7 +23,7 @@ body table.table {
   display: inline-block;
   animation: marqueeAnimation 25s linear infinite;
 }
-.liveDot{
+.liveDot {
   width: 10px;
   height: 10px;
   background-color: $green;
@@ -59,7 +59,7 @@ body table.table {
 }
 
 // cursor pointer
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
 
@@ -122,20 +122,26 @@ body table.table {
 .bg-red3 {
   background-color: $red3 !important;
 }
-.bg-gray{
+.bg-gray {
   background-color: $gray !important;
 }
-.bg-darkGrey{
+.bg-darkGrey {
   background-color: $darkGray !important;
 }
 .bg-lightGray {
   background-color: $lightGray !important;
 }
-.bg-primaryBlue{
+.bg-primaryBlue {
   background-color: $primaryBlue !important;
 }
-.bg-green{
+.bg-green {
   background-color: $green !important;
+}
+.color-green {
+  color: $green !important;
+}
+.color-red {
+  color: $pdf !important;
 }
 /* ====== bg Colors end ====  */
 
@@ -146,7 +152,7 @@ body select {
 .white-text {
   color: $white;
 }
-.text-primaryBlue{
+.text-primaryBlue {
   color: $primaryBlue;
 }
 
@@ -163,16 +169,14 @@ body select {
   color: $black;
   width: 100%;
   &:hover {
-      border: none !important;
+    border: none !important;
   }
   &.active {
-      background-color: $primary !important;
-      color: $white !important;
-      border-color: transparent !important ;
+    background-color: $primary !important;
+    color: $white !important;
+    border-color: transparent !important ;
   }
 }
-
-
 
 /* ===== for title ====  */
 .title-46 {
@@ -252,7 +256,7 @@ body select {
 }
 
 // width
-.w-35{
+.w-35 {
   width: 35% !important;
 }
 

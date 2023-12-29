@@ -1,16 +1,24 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setButtonValue } from "../../store/actions/user/userAction";
+import {
+  getButtonValue,
+  setButtonValue,
+} from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
 
+interface ButtonProps {
+  label: string;
+  value: string;
+}
+
 const ChangeButtonValueComponent = () => {
-  const [btnValue, setBtnValue] = useState<any>([
+  const initialValues = [
     {
       label: "",
       value: "",
@@ -51,35 +59,47 @@ const ChangeButtonValueComponent = () => {
       label: "",
       value: "",
     },
-  ]);
+  ];
 
   const dispatch: AppDispatch = useDispatch();
-  const { getProfile } = useSelector((state: RootState) => state.user.profile);
+  const { buttonValues } = useSelector(
+    (state: RootState) => state.user.profile
+  );
 
   const formik = useFormik({
-    initialValues: {
-      label: "",
-      value: "",
-      // type: "",
-    },
-    onSubmit: (values: any) => {
-      const convertedData = btnValue.reduce((result: any, item: any) => {
-        if (item.value) {
-          result[item.label] = item.value;
-        }
-        return result;
-      }, {});
-      console.log(JSON.stringify(convertedData));
+    initialValues: initialValues,
+    onSubmit: (value: any) => {
+      let result = {};
+      value.forEach((item: ButtonProps) => {
+        result = { ...result, [item?.label]: item?.value };
+      });
       const payload = {
-        id: getProfile?.id,
-        type: "",
-        value: convertedData,
+        id: buttonValues?.id,
+        type: "Match",
+        value: result,
       };
       dispatch(setButtonValue(payload));
     },
   });
 
-  const { handleSubmit } = formik;
+  useEffect(() => {
+    dispatch(getButtonValue());
+  }, []);
+
+  const { handleSubmit, values, setValues, setFieldValue } = formik;
+
+  useEffect(() => {
+    if (buttonValues?.value) {
+      setValues(
+        Object.keys(JSON.parse(buttonValues?.value))?.map((item) => {
+          return {
+            label: item,
+            value: JSON.parse(buttonValues?.value)[item],
+          };
+        })
+      );
+    }
+  }, [buttonValues]);
 
   return (
     <ReportContainer title="Change Button Values">
@@ -95,29 +115,23 @@ const ChangeButtonValueComponent = () => {
               Price Value
             </span>
           </Col>
-          {btnValue?.map((item: any, index: number) => {
+          {values?.map((_: any, index: number) => {
             return (
               <React.Fragment key={index}>
                 <Col md={6} xs={6}>
                   <CustomInput
                     type="text"
-                    value={item[index]?.label}
+                    value={values[index]?.label}
                     onChange={(e: any) => {
-                      setBtnValue((prev: any) => {
-                        prev[index].label = e.target.value;
-                        return prev;
-                      });
+                      setFieldValue(`[${index}].label`, e.target.value);
                     }}
                   />
                 </Col>
                 <Col md={6} xs={6}>
                   <CustomInput
-                    value={item[index]?.value}
+                    value={values[index]?.value}
                     onChange={(e: any) => {
-                      setBtnValue((prev: any) => {
-                        prev[index].value = e.target.value;
-                        return prev;
-                      });
+                      setFieldValue(`[${index}].value`, e.target.value);
                     }}
                     type="number"
                   />

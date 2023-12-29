@@ -24,3 +24,23 @@ export const sessionBettingType = {
   overByOver: "overByover",
   ballByBall: "ballByBall",
 };
+
+export const teamStatus = {
+  suspended: "suspended",
+  active: "active",
+  closed: "closed",
+  ballStart: "ball start",
+  ballStop: "ball stop",
+  ballRunning: "ball running",
+};
+
+export const matchBettingType = {
+  matchOdd: "matchOdd",
+  bookmaker: "bookmaker",
+  quickbookmaker1: "quickbookmaker1",
+  quickbookmaker2: "quickbookmaker2",
+  quickbookmaker3: "quickbookmaker3",
+  tiedMatch1: "tiedMatch1",
+  tiedMatch2: "tiedMatch2",
+  completeMatch: "completeMatch",
+};

@@ -31,3 +31,10 @@ export const matchDetailAction = createAsyncThunk<any, any>(
     }
   }
 );
+
+export const selectedBetAction = createAsyncThunk<any, any>(
+  "/match/selectedBet",
+  async (data) => {
+    return data;
+  }
+);
