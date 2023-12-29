@@ -5,8 +5,7 @@ import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
 import "./style.scss";
 
-const DesktopMatchList = ({ data }: any) => {
-
+const DesktopMatchList = () => {
   return (
     <div className="m-1 p-0 w-100">
       {" "}
@@ -19,11 +18,7 @@ const DesktopMatchList = ({ data }: any) => {
               tabClassName="match-list-tabs title-14"
               title={item?.name}
             >
-              {item?.type === GAME_TYPE.ONE_V_ONE ? (
-                <OneVOneGameTable data={data} />
-              ) : (
-                ""
-              )}
+              {item?.type === GAME_TYPE.ONE_V_ONE ? <OneVOneGameTable /> : ""}
             </Tab>
           );
         })}

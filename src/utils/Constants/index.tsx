@@ -5,6 +5,7 @@ export const ApiConstants = {
   MATCH: {
     MATCHLIST: "/match/list",
     SEARCHLIST: "/user/searchlist",
+    MATCHDETAILS: "/match/",
   },
   USER: {
     MARQUEE: "/expert/notification",
@@ -16,4 +17,11 @@ export const ApiConstants = {
 
 export const Constants = {
   pageLimit: 15,
+};
+
+export const sessionBettingType = {
+  marketSession: "marketSession",
+  manualSession: "manualSession",
+  overByOver: "overByover",
+  ballByBall: "ballByBall",
 };

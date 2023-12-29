@@ -1,9 +1,10 @@
 import React from "react";
+import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
 
 interface props {
   bgColor?: string;
-  rate: number | string;
+  rate: any;
   percent?: number | string;
   customClass?: string;
   overlay?: boolean;
@@ -30,13 +31,19 @@ function BackLayBox({
       } bg-${bgColor}`}
       style={{ ...inlineStyle }}
     >
-      <div
-        onClick={() => onClick()}
-        className={`backLayBox  text-center d-flex `}
-      >
-        <h5 className="backLay-rate f600 title-16 m-0">{rate}</h5>
-        <span className="backLay-percent title-10">{percent}</span>
-      </div>
+      <BetStatusOverlay active={parseInt(rate || 0) <= 0}>
+        <div
+          onClick={() => onClick()}
+          className={`backLayBox text-center d-flex `}
+        >
+          <h5 className="backLay-rate f600 title-16 m-0">
+            {parseInt(rate || 0) <= 0 ? "-" : rate}{" "}
+          </h5>
+          {percent && (
+            <span className="backLay-percent title-10">{percent}</span>
+          )}
+        </div>
+      </BetStatusOverlay>
     </div>
   );
 }

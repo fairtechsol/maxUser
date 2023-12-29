@@ -1,11 +1,11 @@
+import { FiMonitor } from "react-icons/fi";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../../../store/store";
-import { FiMonitor } from "react-icons/fi";
 
-const MobileOneVOneGame = ({ data }: any) => {
+const MobileOneVOneGame = () => {
   const { getMatchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -27,27 +27,71 @@ const MobileOneVOneGame = ({ data }: any) => {
                 <div className="title-12">nov,12 2023</div>
               </div>
               <div className="d-flex align-items-center gap-2">
-                {item?.startAt || item?.stopAt ? 
+                {item?.startAt || item?.stopAt ? (
                   <span className="liveDot"></span>
-                  : ""
-                }
+                ) : (
+                  ""
+                )}
                 <FiMonitor />
-                {item?.manualSessionActive || item?.apiSessionActive  ? <span className="fancy"><img src="/ic_fancy.png"/></span> : ""} 
-                {item?.isBookmaker.length > 0  ?  <span className="bookmaker"><img src="/ic_bm.png"/></span> : ""} 
-                  
+                {item?.manualSessionActive || item?.apiSessionActive ? (
+                  <span className="fancy">
+                    <img src="/ic_fancy.png" />
+                  </span>
+                ) : (
+                  ""
+                )}
+                {item?.isBookmaker > 0 ? (
+                  <span className="bookmaker">
+                    <img src="/ic_bm.png" />
+                  </span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className="d-flex w-100">
-                {item?.matchOdds?.map((item: any) => {
-                  console.log(item, "itrete")
-                  return (
-                    <>
-                    <BackLayComponent heading="1" backRate={item.backTeamA ?? item.backTeamA} layRate={item?.layTeamA ?? item?.layTeamA} />
-                    <BackLayComponent heading="X" backRate={item.backTeamA ?? item.backTeamA} layRate={item?.layTeamA ?? item?.layTeamA} />
-                    <BackLayComponent heading="2" backRate={item.backTeamA ?? item.backTeamA} layRate={item?.layTeamA ?? item?.layTeamA} />
-                    </>
-                     )
-                  })}
+              {item?.matchOdds?.map((item: any) => {
+                console.log(item, "itrete");
+                return (
+                  <>
+                    <BackLayComponent
+                      heading="1"
+                      backRate={
+                        item.backTeamA ??"-"
+                      }
+                      layRate={
+                        item.layTeamA??"-"
+                      }
+                    />
+                    <BackLayComponent
+                      heading="X"
+                      backRate={
+                        item.backTeamC === null || item.backTeamC === undefined
+                          ? "-"
+                          : item.backTeamC
+                      }
+                      layRate={
+                        item.layTeamC === null || item.layTeamC === undefined
+                          ? "-"
+                          : item?.layTeamC
+                      }
+                    />
+                    <BackLayComponent
+                      heading="2"
+                      backRate={
+                        item.backTeamB === null || item.backTeamB === undefined
+                          ? "-"
+                          : item.backTeamB
+                      }
+                      layRate={
+                        item.layTeamB === null || item.layTeamB === undefined
+                          ? "-"
+                          : item?.layTeamB
+                      }
+                    />
+                  </>
+                );
+              })}
             </div>
           </div>
         );

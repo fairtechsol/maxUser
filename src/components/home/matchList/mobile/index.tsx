@@ -5,7 +5,7 @@ import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
 import "./style.scss";
 
-const MobileMatchList = ({ data }: any) => {
+const MobileMatchList = () => {
   return (
     <div className="m-0 p-0 w-100">
       {" "}
@@ -29,7 +29,7 @@ const MobileMatchList = ({ data }: any) => {
               }
             >
               {item?.type === GAME_TYPE.ONE_V_ONE ? (
-                <OneVOneGameTable data={data} />
+                <OneVOneGameTable/>
               ) : (
                 ""
               )}

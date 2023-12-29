@@ -3,7 +3,7 @@ import CommonTabs from "../../commonComponent/tabs";
 import MobileMatchList from "../matchList/mobile";
 import SportsFilterJson from "./sportsFilters.json";
 
-const SportsFilters = ({ data }: any) => {
+const SportsFilters = () => {
   return (
     <div className="m-0 p-0 w-100 ">
       {" "}
@@ -20,7 +20,7 @@ const SportsFilters = ({ data }: any) => {
               tabClassName="m-tab"
               title={<div>{item?.name}</div>}
             >
-              {item?.id === "inPlay" ? <MobileMatchList data={data} /> : ""}
+              {item?.id === "inPlay" ? <MobileMatchList/> : ""}
             </Tab>
           );
         })}

@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import service from "../../service";
-import { ApiConstants } from "../../utils/Constants";
+import { ApiConstants } from "../../utils/constants";
 
 interface LoginData {
   userName: string;
