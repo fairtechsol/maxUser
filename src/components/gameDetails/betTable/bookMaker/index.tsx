@@ -1,4 +1,9 @@
 import { Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { teamStatus } from "../../../../utils/constants";
+import { calculateProfitLoss } from "../../../../utils/matchDetailsBetCalculation";
 import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
@@ -17,7 +22,20 @@ function BookmakerTable({
   backLayCount = 6,
   matchDetails,
 }: BookmakerTableProps) {
-  const handleClick = () => {};
+  const dispatch: AppDispatch = useDispatch();
+
+  const handleClick = (team: any, data: any) => {
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+  };
+
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -48,9 +66,34 @@ function BookmakerTable({
                 <th className="border-0 bookmaker-bet-place"></th>
               </>
             )}
-            <th className="text-center bg-blue3 bookmaker-bet-place">Back</th>
-            <th className="text-center bg-red1 bookmaker-bet-place">Lay</th>
-            {backLayCount === 6 && (
+
+            {isMobile && backLayCount != 2 ? (
+              <>
+                <th colSpan={6} className={`text-center d-flex w-100`}>
+                  <div className="bookmaker-width-26"></div>
+                  <div className="bookmaker-width-26"></div>
+                  <div className={`text-center bg-blue3 bookmaker-width-26`}>
+                    Back
+                  </div>
+                  <div className={`text-center bg-red1 bookmaker-width-26`}>
+                    Lay
+                  </div>
+                  <div className="bookmaker-width-26"></div>
+                  <div className="bookmaker-width-26"></div>
+                </th>
+              </>
+            ) : (
+              <>
+                <th className={`text-center bg-blue3 bookmaker-bet-place`}>
+                  Back
+                </th>
+                <th className={`text-center bg-red1 bookmaker-bet-place`}>
+                  Lay
+                </th>
+              </>
+            )}
+
+            {backLayCount === 6 && !isMobile && (
               <th
                 colSpan={isMobile ? 3 : 1}
                 className="border-0 bookmaker-bet-place"
@@ -63,9 +106,9 @@ function BookmakerTable({
           {["A", "B", "C"]
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((item: any, i: number) => (
-              <tr key={i} className="">
+              <tr key={i}>
                 <td>
-                  <div className="backLayRunner d-flex flex-column px-1">
+                  <div className="backLayRunner d-flex flex-column px-1 w-100">
                     <span
                       className={`backLayRunner-country title-12  ${
                         isMobile ? "f900" : "f600"
@@ -73,33 +116,117 @@ function BookmakerTable({
                     >
                       {matchDetails?.[`team${item}`]}
                     </span>
-                    {/* <span className="title-14">{item?.lastPriceTraded}</span> */}
+                    <div className="d-flex align-items-center justify-content-between w-100">
+                      <span className="title-14">{0}</span>
+                      <span
+                        className={`title-14 ${
+                          Number(
+                            calculateProfitLoss(data, selectedBet, item) || 0
+                          ) < 0
+                            ? "color-red"
+                            : Number(
+                                calculateProfitLoss(data, selectedBet, item) ||
+                                  0
+                              ) > 0
+                            ? "color-green"
+                            : ""
+                        }`}
+                      >
+                        {calculateProfitLoss(data, selectedBet, item)}
+                      </span>
+                    </div>
                   </div>
                 </td>
-                <td colSpan={backLayCount === 6 ? 6 : 2}>
-                  <BetStatusOverlay title="Lock">
-                    {new Array(3).fill(0)?.map((_: any, index: number) => (
-                      <BackLayBox
-                        key={index}
-                        customClass="bookmaker-bet-place"
-                        bgColor={`blue${index + 1}`}
-                        rate={data[`backTeam${item}`] - 2 + index}
-                        onClick={handleClick}
-                      />
-                    ))}
-                    {new Array(3).fill(0)?.map((_: any, index: number) => (
-                      <BackLayBox
-                        key={index}
-                        customClass="bookmaker-bet-place"
-                        bgColor={`red${index + 1}`}
-                        rate={data[`layTeam${item}`] + index}
-                        onClick={handleClick}
-                      />
-                    ))}
+                <td
+                  colSpan={backLayCount === 2 ? 2 : 6}
+                  className={
+                    isMobile && backLayCount != 2 ? "bookmaker-block-width" : ""
+                  }
+                >
+                  <BetStatusOverlay
+                    title={data?.[`statusTeam${item}`]}
+                    active={data?.[`statusTeam${item}`] != teamStatus.active}
+                  >
+                    {new Array(backLayCount == 2 ? 1 : 3)
+                      .fill(0)
+                      ?.map((_: any, index: number) => (
+                        <BackLayBox
+                          key={index}
+                          customClass={`bookmaker-bet-place ${
+                            isMobile && backLayCount != 2
+                              ? "bookmaker-width-26"
+                              : ""
+                          }`}
+                          bgColor={`blue${index + 1}`}
+                          rate={data[`backTeam${item}`] - 2 + index}
+                          onClick={() => {
+                            const rate =
+                              parseInt(data[`backTeam${item}`] || 0) -
+                              2 +
+                              index;
+                            if (
+                              rate > 0 &&
+                              data?.[`statusTeam${item}`] == teamStatus.active
+                            ) {
+                              handleClick(
+                                {
+                                  name: matchDetails?.[`team${item}`],
+                                  rate: rate,
+                                  type: "back",
+                                  stake: 0,
+                                  teamType: item,
+                                },
+                                data
+                              );
+                            }
+                          }}
+                          active={
+                            data?.[`statusTeam${item}`] != teamStatus.active
+                          }
+                        />
+                      ))}
+                    {new Array(backLayCount == 2 ? 1 : 3)
+                      .fill(0)
+                      ?.map((_: any, index: number) => (
+                        <BackLayBox
+                          key={index}
+                          customClass={`bookmaker-bet-place ${
+                            isMobile && backLayCount != 2
+                              ? "bookmaker-width-26"
+                              : ""
+                          }`}
+                          bgColor={`red${index + 1}`}
+                          rate={data[`layTeam${item}`] + index}
+                          onClick={() => {
+                            const rate =
+                              parseInt(data[`layTeam${item}`] || 0) + index;
+                            if (
+                              rate > 0 &&
+                              data?.[`statusTeam${item}`] == teamStatus.active
+                            ) {
+                              handleClick(
+                                {
+                                  name: matchDetails?.[`team${item}`],
+                                  rate: rate,
+                                  type: "lay",
+                                  stake: 0,
+                                  teamType: item,
+                                },
+                                data
+                              );
+                            }
+                          }}
+                          active={
+                            data?.[`statusTeam${item}`] != teamStatus.active
+                          }
+                        />
+                      ))}
                   </BetStatusOverlay>
                 </td>
 
-                <td colSpan={2} style={{ borderLeft: 0 }}></td>
+                {(!isMobile || backLayCount === 2) && (
+                  <td colSpan={2} style={{ borderLeft: 0 }}></td>
+                )}
               </tr>
             ))}
         </tbody>

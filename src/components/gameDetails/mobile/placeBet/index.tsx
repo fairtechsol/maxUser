@@ -1,63 +1,155 @@
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { matchBettingType } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
 import CustomModal from "../../../commonComponent/modal";
 import "./style.scss";
-
-const btnValue = [
-  { name: "100", value: 100 },
-  { name: "200", value: 200 },
-  { name: "300", value: 300 },
-  { name: "400", value: 400 },
-  { name: "500", value: 500 },
-  { name: "600", value: 600 },
-  { name: "700", value: 700 },
-  { name: "800", value: 800 },
-  { name: "900", value: 900 },
-  { name: "1000", value: 1000 },
-  { name: "1100", value: 1100 },
-  { name: "1200", value: 1200 },
-];
 
 interface PlaceBetProps {
   show: boolean;
   setShow: any;
 }
 
-const PlacedBet = ({ show, setShow }: PlaceBetProps) => {
+const PlacedBet = ({ show }: PlaceBetProps) => {
+  const [stake, setStake] = useState<any>(0);
+  const [valueLabel, setValueLabel] = useState<any>([]);
+  const { buttonValues } = useSelector(
+    (state: RootState) => state.user.profile
+  );
+
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    let updatedBtnValue = buttonValues?.value;
+
+    // Check if updatedBtnValue is not undefined before parsing
+    if (updatedBtnValue) {
+      try {
+        const jsonObj = JSON.parse(updatedBtnValue);
+        let data = Object.keys(jsonObj)?.map((item: string) => {
+          return {
+            label: item,
+            value: jsonObj[item],
+          };
+        });
+
+        setValueLabel(data);
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+      }
+    }
+  }, [buttonValues]);
+
+  useEffect(() => {
+    setStake(selectedBet?.team?.stake);
+  }, [selectedBet]);
   return (
-    <CustomModal title={"Place Bet"} show={show} setShow={setShow}>
+    <CustomModal
+      title={"Place Bet"}
+      show={show && selectedBet}
+      setShow={() => {
+        dispatch(selectedBetAction(null));
+      }}
+    >
       <Container className="p-1" fluid>
         <Row className="row-cols-md-3 g-2 align-items-center">
           <Col xs={6} className="f800 title-12">
-            India
+            {selectedBet?.team?.name}
           </Col>
           <Col xs={6} className="d-flex justify-content-end">
-            <CustomButton className="bg-secondary py-0">
+            <CustomButton
+              onClick={() => {
+                dispatch(
+                  selectedBetAction({
+                    ...selectedBet,
+                    team: {
+                      ...selectedBet?.team,
+                      stake: parseInt(stake) == 0 ? 0 : parseInt(stake) - 1,
+                    },
+                  })
+                );
+              }}
+              className="bg-secondary py-0"
+            >
               <span className="f900 text-black">-</span>
             </CustomButton>
-            <input type="text" className="w-50" />
-            <CustomButton className="bg-secondary f900 text-black">
+            <input
+              value={stake}
+              onChange={(e) => {
+                dispatch(
+                  selectedBetAction({
+                    ...selectedBet,
+                    team: { ...selectedBet?.team, stake: e.target.value },
+                  })
+                );
+              }}
+              type="number"
+              className="w-50"
+            />
+            <CustomButton
+              onClick={() => {
+                dispatch(
+                  selectedBetAction({
+                    ...selectedBet,
+                    team: {
+                      ...selectedBet?.team,
+                      stake: parseInt(stake) + 1,
+                    },
+                  })
+                );
+              }}
+              className="bg-secondary f900 text-black"
+            >
               <span className="f900 text-black">+</span>
             </CustomButton>
           </Col>
           <Col xs={4}>
             {" "}
-            <input type="text" className="w-100" />
+            <input
+              value={selectedBet?.team?.rate}
+              disabled
+              type="text"
+              className="w-100"
+            />
           </Col>
 
           <Col xs={4} className="f800 title-12">
             <CustomButton className="f900 w-100">Submit</CustomButton>
           </Col>
           <Col xs={4} className="title-12 text-center">
-            0
+            {selectedBet?.data?.type == matchBettingType.matchOdd ||
+            selectedBet?.data?.type == matchBettingType.tiedMatch1 ||
+            selectedBet?.data?.type == matchBettingType.completeMatch
+              ? parseInt(stake) * (parseInt(selectedBet?.team?.rate) - 1)
+              : selectedBet?.data?.yesRate
+              ? 0
+              : stake * (parseInt(selectedBet?.team?.rate) / 100)}
           </Col>
-          {btnValue?.map((item, index) => (
+          {valueLabel?.map((item: any, index: number) => (
             <Col key={index} xs={4}>
               <CustomButton
                 className="w-100 border-0 bg-secondary f900 text-black"
                 size="sm"
+                onClick={() => {
+                  dispatch(
+                    selectedBetAction({
+                      ...selectedBet,
+                      team: {
+                        ...selectedBet?.team,
+                        stake: item?.value,
+                      },
+                    })
+                  );
+                }}
               >
-                {item?.name}
+                {item?.label}
               </CustomButton>
             </Col>
           ))}

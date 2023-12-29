@@ -9,6 +9,7 @@ import SessionMarketTable from "./sessionMarket";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import Loader from "../../commonComponent/loader";
 interface BetTableProps {
   title: string;
   type: string;
@@ -16,12 +17,14 @@ interface BetTableProps {
   backLayCount?: number;
 }
 const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
-  const { matchDetails } = useSelector(
+  const { matchDetails, loading } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
   return (
     <>
+      {loading && <Loader />}
+
       {isMobile && type === MatchType.SESSION_MARKET ? (
         ""
       ) : (
@@ -54,9 +57,17 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           matchDetails={matchDetails}
         />
       ) : type === MatchType.MATCH_ODDS ? (
-        <MatchOdds data={data} matchDetails={matchDetails} />
+        <MatchOdds
+          data={data}
+          backLayCount={backLayCount}
+          matchDetails={matchDetails}
+        />
       ) : (
-        <SessionMarketTable data={data} matchDetails={matchDetails} />
+        <SessionMarketTable
+          data={data}
+          title={title}
+          matchDetails={matchDetails}
+        />
       )}
     </>
   );
