@@ -12,6 +12,11 @@ export const ApiConstants = {
     GET_BTN_VALUE: "/button",
     GET_PROFILE: "/user/profile",
   },
+  EXPERT: {
+    COMPETITIONLIST: "/expert/match/competitionList/",
+    COMPETITIONDATES: "/expert/match/competition/dates/",
+    COMPETITIONMATCHES: "/expert/match/competition/getMatch/",
+  },
 };
 
 export const Constants = {
