@@ -40,7 +40,9 @@ export const changePassword = createAsyncThunk<any, ChangePassword>(
         requestData
       );
       if (resp) {
-        console.log(resp.data, "data");
+      localStorage.clear();
+      window.location.replace("/login");
+        
       }
     } catch (error: any) {
       const err = error as AxiosError;
@@ -55,7 +57,7 @@ export const logout = createAsyncThunk<any>(
     try {
       const response = await service.post("/auth/logout");
       localStorage.clear();
-      // window.location.replace("/login");
+      window.location.replace("/login");
       return response;
     } catch (error) {
       const err = error as AxiosError;

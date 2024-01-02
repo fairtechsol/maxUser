@@ -1,103 +1,262 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Accordion } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  getCompetitionDates,
+  getCompetitionList,
+  getCompetitionMatches,
+} from "../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
 
 interface Props {
   item: any;
+  setMenuItemList: any;
+  menuItemList: any;
 }
-export const MenuItem: React.FC<Props> = ({ item }) => {
-  const MenuItemChild = (props: any) => {
-    const { data } = props;
-    return (
-      <div>
-        {data?.type === "liveItem" ? (
-          <div className="sidebar-menu-items px-3">
-            <Link
-              className={`title-14 text-decoration-none text-black ${
-                data?.blink ? "blinking-text" : ""
-              }`}
-              to={`${data.path}`}
-            >
-              {data?.name}
-            </Link>
-          </div>
-        ) : (
-          <div className="nested-menu-item">
-            <Link
-              className="title-14 text-decoration-none text-black"
-              to={`${data.path}`}
-            >
-              {data?.name}
-            </Link>
-          </div>
-        )}
-      </div>
-    );
-  };
 
-  const MenuCollapse = (props: any) => {
-    const { data } = props;
-    return (
-      <>
-        {data?.type === "item" || data?.type === "liveItem" ? (
-          <MenuItemChild data={data} />
-        ) : (
-          <Accordion.Item className="accordion-item-collapse" eventKey="0">
-            <Accordion.Header className="accordion-header-collapse">
-              {data?.name}
-            </Accordion.Header>
-            <Accordion.Body className="py-0">
-              {data?.children?.map((sideBarChild: any, index: number) => {
-                return (
-                  <Accordion key={index} defaultActiveKey={[]}>
-                    <MenuCollapse data={sideBarChild} />
-                  </Accordion>
-                );
-              })}
-            </Accordion.Body>
-          </Accordion.Item>
-        )}
-      </>
-    );
-  };
-  const MenuGroup = (props: any) => {
-    const { data } = props;
-    return (
-      <>
-        {data?.type === "item" || data?.type === "liveItem" ? (
-          <MenuItemChild data={data} />
-        ) : (
-          <Accordion.Item className={"accordion-item-group"} eventKey="0">
-            <Accordion.Header className={"accordion-header-group"}>
-              {data?.name}
-            </Accordion.Header>
-            <Accordion.Body className="p-0">
-              {data?.children?.map((sideBarChild: any, index: number) => {
-                return (
-                  <Accordion key={index} defaultActiveKey={[]}>
-                    {sideBarChild?.type === "group" ? (
-                      <MenuGroup data={sideBarChild} />
-                    ) : (
-                      <MenuCollapse data={sideBarChild} />
-                    )}
-                  </Accordion>
-                );
-              })}
-            </Accordion.Body>
-          </Accordion.Item>
-        )}
-      </>
-    );
-  };
+const MenuItemChild: React.FC<{ data: any }> = ({ data }) => (
+  <div
+    className={
+      data.type === "liveItem" ? "sidebar-menu-items px-3" : "nested-menu-item"
+    }
+  >
+    <Link
+      className={`title-14 text-decoration-none text-black ${
+        data.blink ? "blinking-text" : ""
+      }`}
+      to={`${data.path}`}
+    >
+      {data.name}
+    </Link>
+  </div>
+);
+
+const MenuCollapse: React.FC<{
+  data: any;
+  menuItemList?: any;
+  setMenuItemList?: any;
+  selectedMatchIndex: number;
+}> = ({ data, menuItemList, setMenuItemList, selectedMatchIndex }) => {
+  const [selectedCompetition, setSelectedCompetition] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+
+  const dispatch: AppDispatch = useDispatch();
+
+  const { competitionDates, competitionMatches } = useSelector(
+    (state: RootState) => state.match.sidebarList
+  );
+
+  useEffect(() => {
+    if (selectedCompetition !== "") {
+      const tempList = [...menuItemList];
+      const selectedMatchChildren =
+        tempList[1].children[selectedMatchIndex].children;
+      const competitionIndex = selectedMatchChildren.findIndex(
+        (item: any) => item?.id === selectedCompetition
+      );
+      selectedMatchChildren[competitionIndex].children = competitionDates?.map(
+        (item: any) => ({
+          name: item?.startdate,
+          id: item?.startdate,
+          type: "collapse",
+          children: [],
+        })
+      );
+      setMenuItemList(tempList);
+    }
+  }, [competitionDates, selectedCompetition, selectedMatchIndex]);
+
+  useEffect(() => {
+    if (selectedDate !== "") {
+      const tempList = [...menuItemList];
+      const selectedMatchChildren =
+        tempList[1].children[selectedMatchIndex].children;
+      const competitionIndex = selectedMatchChildren.findIndex(
+        (item: any) => item?.id === selectedCompetition
+      );
+      const dateIndex = selectedMatchChildren[
+        competitionIndex
+      ].children.findIndex((item: any) => item?.id === selectedDate);
+      selectedMatchChildren[competitionIndex].children[dateIndex].children =
+        competitionMatches?.map((item: any) => ({
+          name: item?.title,
+          id: item?.id,
+          type: "item",
+          path: `/game-detail/${item?.id}`,
+        }));
+      setMenuItemList(tempList);
+    }
+  }, [
+    competitionMatches,
+    selectedDate,
+    selectedCompetition,
+    selectedMatchIndex,
+  ]);
+
+  return (
+    <Accordion.Item className="accordion-item-collapse" eventKey="0">
+      <Accordion.Header className="accordion-header-collapse">
+        {data?.name}
+      </Accordion.Header>
+      <Accordion.Body className="py-0">
+        {data?.children?.map((sideBarChild: any, index: number) => (
+          <Accordion
+            onSelect={(e: any) => {
+              if (e == 0) {
+                setSelectedCompetition(sideBarChild?.id);
+                dispatch(getCompetitionDates(sideBarChild?.id));
+              }
+            }}
+            key={index}
+            defaultActiveKey={[]}
+          >
+            <Accordion.Item className="accordion-item-collapse" eventKey="0">
+              <Accordion.Header className="accordion-header-collapse">
+                {sideBarChild?.name}
+              </Accordion.Header>
+              <Accordion.Body className="py-0">
+                {sideBarChild?.children?.map(
+                  (menuItemChild: any, indexes: number) => (
+                    <Accordion
+                      onSelect={(e: any) => {
+                        if (e == 0) {
+                          setSelectedDate(menuItemChild?.id);
+                          setSelectedCompetition(sideBarChild?.id);
+                          dispatch(
+                            getCompetitionMatches({
+                              date: menuItemChild?.id,
+                              id: sideBarChild?.id,
+                            })
+                          );
+                        }
+                      }}
+                      key={indexes}
+                      defaultActiveKey={[]}
+                    >
+                      <Accordion.Item
+                        className="accordion-item-collapse"
+                        eventKey="0"
+                      >
+                        <Accordion.Header className="accordion-header-collapse">
+                          {menuItemChild?.name}
+                        </Accordion.Header>
+                        <Accordion.Body className="py-0">
+                          {menuItemChild?.children?.map(
+                            (matches: any, matchIndex: number) => (
+                              <MenuItemChild key={matchIndex} data={matches} />
+                            )
+                          )}
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                  )
+                )}
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        ))}
+      </Accordion.Body>
+    </Accordion.Item>
+  );
+};
+
+const MenuGroup: React.FC<{
+  data: any;
+  menuItemList: any;
+  setMenuItemList: any;
+}> = ({ data, menuItemList, setMenuItemList }) => {
+  const [selectedMatch, setSelectedMatch] = useState("");
+
+  const dispatch: AppDispatch = useDispatch();
+
+  const { competitionList } = useSelector(
+    (state: RootState) => state.match.sidebarList
+  );
+
+  useEffect(() => {
+    if (selectedMatch !== "") {
+      const tempList = [...menuItemList];
+      const matchIndex = tempList[1].children.findIndex(
+        (item: any) => item?.id === selectedMatch
+      );
+      tempList[1].children[matchIndex].children = competitionList?.map(
+        (item: any) => ({
+          name: item?.competitionName,
+          id: item?.competitionId,
+          type: "collapse",
+          children: [],
+        })
+      );
+      setMenuItemList(tempList);
+    }
+  }, [competitionList, selectedMatch]);
 
   return (
     <>
-      {item?.type === "item" ? (
+      {data?.type === "item" || data?.type === "liveItem" ? (
+        <MenuItemChild data={data} />
+      ) : (
+        <Accordion.Item className="accordion-item-group" eventKey="0">
+          <Accordion.Header className="accordion-header-group">
+            {data?.name}
+          </Accordion.Header>
+          <Accordion.Body className="p-0">
+            {data?.children?.map((sideBarChild: any, index: number) => (
+              <Accordion
+                onSelect={(e: any) => {
+                  if (e == 0) {
+                    setSelectedMatch(sideBarChild?.id);
+                    dispatch(getCompetitionList(sideBarChild?.id));
+                  }
+                }}
+                key={index}
+                defaultActiveKey={[]}
+              >
+                {sideBarChild?.type === "group" ? (
+                  <MenuGroup
+                    data={sideBarChild}
+                    menuItemList={menuItemList}
+                    setMenuItemList={setMenuItemList}
+                  />
+                ) : sideBarChild?.type === "item" ||
+                  sideBarChild?.type === "liveItem" ? (
+                  <MenuItemChild data={sideBarChild} />
+                ) : (
+                  <MenuCollapse
+                    data={sideBarChild}
+                    selectedMatchIndex={index}
+                    menuItemList={menuItemList}
+                    setMenuItemList={setMenuItemList}
+                  />
+                )}
+              </Accordion>
+            ))}
+          </Accordion.Body>
+        </Accordion.Item>
+      )}
+    </>
+  );
+};
+
+export const MenuItem: React.FC<Props> = ({
+  item,
+  setMenuItemList,
+  menuItemList,
+}) => {
+  console.log(item);
+  return (
+    <>
+      {item?.type === "item" || item?.type === "liveItem" ? (
         <MenuItemChild data={item} />
       ) : item?.type === "group" ? (
-        <MenuGroup data={item} />
+        <MenuGroup
+          data={item}
+          menuItemList={menuItemList}
+          setMenuItemList={setMenuItemList}
+        />
       ) : (
-        <MenuCollapse data={item} />
+        ""
       )}
     </>
   );

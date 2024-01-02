@@ -1,18 +1,30 @@
+import { useEffect, useState } from "react";
 import { Accordion } from "react-bootstrap";
 import { MenuItem } from "./menuItem";
 import menuItemJson from "./menuItem.json";
 import "./style.scss";
 const Sidebar = () => {
+  const [menuItemList, setMenuItemList] = useState<any>([]);
+  useEffect(() => {
+    setMenuItemList(menuItemJson);
+  }, [menuItemJson]);
+
+  console.log(menuItemList);
+
   return (
     <>
       <div className="sidebarBox bg-light">
-        {menuItemJson?.map((item, index) => (
+        {menuItemList?.map((item: any, index: number) => (
           <Accordion
             className={item?.backgroundColor ? "bg-light-sidebar" : ""}
             key={index}
             defaultActiveKey={["0"]}
           >
-            <MenuItem item={item} />
+            <MenuItem
+              item={item}
+              menuItemList={menuItemList}
+              setMenuItemList={setMenuItemList}
+            />
           </Accordion>
         ))}
       </div>
