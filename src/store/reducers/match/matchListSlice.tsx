@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SearchList, SearchListReset, getMatchList,matchDetailAction } from "../../actions/match/matchListAction";
+import { SearchList, SearchListReset, getMatchList,matchDetailAction, selectedBetAction } from "../../actions/match/matchListAction";
 
 
 interface InitialState {
@@ -9,6 +9,7 @@ interface InitialState {
   getMatchList: any;
   getMatchListBySearch: any;
   matchDetails: any;
+  selectedBet: any;
 }
 
 const initialState: InitialState = {
@@ -18,6 +19,7 @@ const initialState: InitialState = {
   success: false,
   error: null,
   matchDetails: null,
+  selectedBet: null,
 };
 
 const matchListSlice = createSlice({
@@ -71,6 +73,9 @@ const matchListSlice = createSlice({
       .addCase(matchDetailAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
+      })
+      .addCase(selectedBetAction.fulfilled, (state, action) => {
+        state.selectedBet = action.payload;
       });
 }});
 

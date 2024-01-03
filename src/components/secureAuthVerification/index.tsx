@@ -12,6 +12,7 @@ import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
 
+import { teamStatus } from "../../utils/constants";
 import "./style.scss";
 
 const SecureAuthVerificationComponent = () => {
@@ -60,7 +61,7 @@ const SecureAuthVerificationComponent = () => {
                 <ToggleButton
                   className="auth-verification-btn-box"
                   bsPrefix={`auth-verification-btn btn-check ${
-                    selectedValue === 1 ? "active" : ""
+                    selectedValue === 1 ? teamStatus.active : ""
                   }`}
                   id="mobileapp"
                   value={1}
@@ -70,7 +71,7 @@ const SecureAuthVerificationComponent = () => {
                 <ToggleButton
                   className="auth-verification-btn-box"
                   bsPrefix={`auth-verification-btn btn-check ${
-                    selectedValue === 2 ? "active" : ""
+                    selectedValue === 2 ? teamStatus.active : ""
                   }`}
                   id="telegram"
                   value={2}

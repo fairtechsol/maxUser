@@ -19,8 +19,6 @@ const DesktopGameDetail = () => {
     (state: RootState) => state.match.matchList
   );
 
-  console.log(matchDetails);
-
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
@@ -39,7 +37,7 @@ const DesktopGameDetail = () => {
   return (
     <Container fluid>
       <Row>
-        <Col md={9}>
+        <Col md={8}>
           <Container fluid className="p-0">
             <Row>
               <Col md={12}>
@@ -109,47 +107,63 @@ const DesktopGameDetail = () => {
                 )}
 
               {(matchDetails?.apiSessionActive ||
-                matchDetails?.manualSessionActive) && (
-                <Col md={6}>
-                  <BetTable
-                    title={"Session Market"}
-                    type={MatchType.SESSION_MARKET}
-                    data={matchDetails?.sessionBettings?.filter(
-                      (item: any) =>
-                        JSON.parse(item)?.type ==
-                          sessionBettingType?.manualSession ||
-                        JSON.parse(item)?.type ==
-                          sessionBettingType?.marketSession
-                    )}
-                  />
-                </Col>
-              )}
+                matchDetails?.manualSessionActive) &&
+                matchDetails?.sessionBettings?.filter(
+                  (item: any) =>
+                    JSON.parse(item)?.type ==
+                      sessionBettingType?.manualSession ||
+                    JSON.parse(item)?.type == sessionBettingType?.marketSession
+                )?.length > 0 && (
+                  <Col md={6}>
+                    <BetTable
+                      title={"Session Market"}
+                      type={MatchType.SESSION_MARKET}
+                      data={matchDetails?.sessionBettings?.filter(
+                        (item: any) =>
+                          JSON.parse(item)?.type ==
+                            sessionBettingType?.manualSession ||
+                          JSON.parse(item)?.type ==
+                            sessionBettingType?.marketSession
+                      )}
+                    />
+                  </Col>
+                )}
               {(matchDetails?.apiSessionActive ||
-                matchDetails?.manualSessionActive) && (
-                <Col md={6}>
-                  <BetTable
-                    title={"Over by Over Session Market"}
-                    type={MatchType.SESSION_MARKET}
-                    data={matchDetails?.sessionBettings?.filter(
-                      (item: any) =>
-                        JSON.parse(item)?.type == sessionBettingType?.overByOver
-                    )}
-                  />
-                </Col>
-              )}
+                matchDetails?.manualSessionActive) &&
+                matchDetails?.sessionBettings?.filter(
+                  (item: any) =>
+                    JSON.parse(item)?.type == sessionBettingType?.overByOver
+                )?.length > 0 && (
+                  <Col md={6}>
+                    <BetTable
+                      title={"Over by Over Session Market"}
+                      type={MatchType.SESSION_MARKET}
+                      data={matchDetails?.sessionBettings?.filter(
+                        (item: any) =>
+                          JSON.parse(item)?.type ==
+                          sessionBettingType?.overByOver
+                      )}
+                    />
+                  </Col>
+                )}
               {(matchDetails?.apiSessionActive ||
-                matchDetails?.manualSessionActive) && (
-                <Col md={6}>
-                  <BetTable
-                    title={"Ball by Ball Session Market"}
-                    type={MatchType.SESSION_MARKET}
-                    data={matchDetails?.sessionBettings?.filter(
-                      (item: any) =>
-                        JSON.parse(item)?.type == sessionBettingType?.ballByBall
-                    )}
-                  />
-                </Col>
-              )}
+                matchDetails?.manualSessionActive) &&
+                matchDetails?.sessionBettings?.filter(
+                  (item: any) =>
+                    JSON.parse(item)?.type == sessionBettingType?.ballByBall
+                )?.length > 0 && (
+                  <Col md={6}>
+                    <BetTable
+                      title={"Ball by Ball Session Market"}
+                      type={MatchType.SESSION_MARKET}
+                      data={matchDetails?.sessionBettings?.filter(
+                        (item: any) =>
+                          JSON.parse(item)?.type ==
+                          sessionBettingType?.ballByBall
+                      )}
+                    />
+                  </Col>
+                )}
               {/* <Col md={12}>
                 <CommonTabs
                   customClass="overflow-x-auto overflow-y-hidden no-wrap"
@@ -203,7 +217,7 @@ const DesktopGameDetail = () => {
             </Row>
           </Container>
         </Col>
-        <Col md={3} className="ps-0">
+        <Col md={4} className="ps-0">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row className={`${isSticky ? "position-fixed top-0 pe-3 " : ""}`}>
               <Col md={12}>

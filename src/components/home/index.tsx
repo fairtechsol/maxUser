@@ -1,9 +1,19 @@
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
+import Loader from "../commonComponent/loader";
 import DesktopMatchList from "./matchList/desktop";
 import SportsFilters from "./sportsFilters";
 
 const MatchList = () => {
-  return <>{isMobile ? <SportsFilters /> : <DesktopMatchList />}</>;
+  const { loading } = useSelector((state: RootState) => state.match.matchList);
+
+  return (
+    <>
+      {loading && <Loader />}
+      {isMobile ? <SportsFilters /> : <DesktopMatchList />}
+    </>
+  );
 };
 
 export default MatchList;

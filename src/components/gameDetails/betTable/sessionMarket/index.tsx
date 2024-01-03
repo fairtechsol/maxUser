@@ -2,8 +2,13 @@ import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { IoInformationCircle } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import { teamStatus } from "../../../../utils/constants";
 import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
+import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
 import "../style.scss";
 import "./style.scss";
@@ -18,9 +23,17 @@ function SessionMarketTable({
   title,
   matchDetails,
 }: SessionMarketTableProps) {
-  const handleClick = () => {};
+  const dispatch: AppDispatch = useDispatch();
+  const handleClick = (team: any, data: any) => {
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+  };
   return (
-    <div className={`gameTable sessionFancyTable borderTable border `}>
+    <div className={`gameTable sessionFancyTable borderTable border`}>
       <Table className="mb-0">
         <thead>
           <tr>
@@ -51,6 +64,11 @@ function SessionMarketTable({
                 (!JSON.parse(item)?.isManual && matchDetails?.apiSessionActive)
             )
             ?.map((item: any, index: number) => (
+              // <BetStatusOverlay
+              //   key={index}
+              //   title={JSON.parse(item)?.active}
+              //   active={JSON.parse(item)?.active != teamStatus.active}
+              // >
               <tr key={index}>
                 <td>
                   <div className="backLayRunner d-flex flex-column px-1">
@@ -65,35 +83,75 @@ function SessionMarketTable({
                     <span className="title-14">{0}</span>
                   </div>
                 </td>
-                <td>
-                  <BackLayBox
-                    customClass="bet-place-box"
-                    // overlay={true}
-                    bgColor="red1"
-                    rate={JSON.parse(item)?.yesRate}
-                    percent={JSON.parse(item)?.yesPercent}
-                    onClick={handleClick}
-                  />
-                </td>
-                <td>
-                  <BackLayBox
-                    customClass="bet-place-box"
-                    bgColor="blue3"
-                    rate={JSON.parse(item)?.noRate}
-                    percent={JSON.parse(item)?.noPercent}
-                    onClick={handleClick}
-                  />
-                </td>
 
-                {!isMobile && (
-                  <td className="minMax align-middle">
-                    <div className="minMaxBox d-flex flex-column justify-content-center text-end px-2 title-12">
-                      <span className="">Min:{JSON.parse(item)?.minBet}</span>
-                      <span>Max:{JSON.parse(item)?.maxBet}</span>
-                    </div>
-                  </td>
-                )}
+                <td colSpan={isMobile ? 2 : 3}>
+                  <BetStatusOverlay
+                    title={JSON.parse(item)?.status}
+                    active={JSON.parse(item)?.status != teamStatus.active}
+                  >
+                    <BackLayBox
+                      customClass="bet-place-box"
+                      // overlay={true}
+                      bgColor="red1"
+                      rate={JSON.parse(item)?.noRate}
+                      percent={JSON.parse(item)?.noPercent}
+                      onClick={() => {
+                        const rate = parseInt(JSON.parse(item)?.noRate);
+                        if (
+                          rate > 0 &&
+                          JSON.parse(item)?.status == teamStatus.active
+                        ) {
+                          handleClick(
+                            {
+                              name: JSON.parse(item)?.name,
+                              rate: rate,
+                              type: "no",
+                              stake: 0,
+                            },
+                            JSON.parse(item)
+                          );
+                        }
+                      }}
+                      active={JSON.parse(item)?.status != teamStatus.active}
+                    />
+                    <BackLayBox
+                      customClass="bet-place-box"
+                      bgColor="blue3"
+                      rate={JSON.parse(item)?.yesRate}
+                      percent={JSON.parse(item)?.yesPercent}
+                      onClick={() => {
+                        const rate = parseInt(JSON.parse(item)?.yesRate);
+                        if (
+                          rate > 0 &&
+                          JSON.parse(item)?.status == teamStatus.active
+                        ) {
+                          handleClick(
+                            {
+                              name: JSON.parse(item)?.name,
+                              rate: rate,
+                              type: "yes",
+                              stake: 0,
+                            },
+                            JSON.parse(item)
+                          );
+                        }
+                      }}
+                      active={JSON.parse(item)?.status != teamStatus.active}
+                    />
+                    {!isMobile && (
+                      <div className="minMax">
+                        <div className="minMaxBox d-flex flex-column justify-content-end text-end px-2 title-12">
+                          <span className="">
+                            Min:{JSON.parse(item)?.minBet}
+                          </span>
+                          <span>Max:{JSON.parse(item)?.maxBet}</span>
+                        </div>
+                      </div>
+                    )}
+                  </BetStatusOverlay>
+                </td>
               </tr>
+              // </BetStatusOverlay>
             ))}
         </tbody>
       </Table>

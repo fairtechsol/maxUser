@@ -8,11 +8,7 @@ import isMobile from "../../utils/screenDimension";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 
-interface GameDetailProps {
-  data: any;
-}
-
-const GameDetails = ({ data }: GameDetailProps) => {
+const GameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const { id } = useParams();
@@ -25,7 +21,7 @@ const GameDetails = ({ data }: GameDetailProps) => {
     dispatch(matchDetailAction(id));
   }, [id]);
 
-  return isMobile ? <MobileGameDetail data={data} /> : <DesktopGameDetail />;
+  return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };
 
 export default GameDetails;
