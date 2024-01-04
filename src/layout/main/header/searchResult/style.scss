@@ -1,8 +1,22 @@
 @import "/src/assets/variable.scss";
 
-.search-result{
+.search-result {
     width: 500px;
     max-height: 450px;
     overflow: auto;
     box-shadow: 1px 0px 10px $black;
+    z-index: 99999999999999999;
+    top: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .search-result {
+        width: 96vw;
+        left: 2vw;
+        top: 170% !important;
+        max-height: 300px;
+        overflow: auto;
+        box-shadow: 1px 0px 10px $black;
+        z-index: 99999999999999999;
+    }
 }

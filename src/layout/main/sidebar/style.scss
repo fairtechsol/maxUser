@@ -4,6 +4,7 @@
     width: 18%;
     height: auto;
     background-color: $gray;
+
     .sidebarBox {
         background-color: $gray !important;
         height: calc(100vh - 120px);
@@ -12,7 +13,7 @@
 
 .sidebar-menu-items {
     background-color: $darkGray;
-    border-bottom: 1px solid $gray500;
+    border-bottom: 1px solid $gray500 ;
 }
 
 .accordion-header-group .accordion-button {
@@ -25,13 +26,13 @@
 
     &.collapsed::after {
         content: "\f105";
-        font-family: Font Awesome\5 Free;
+        font-family: Font Awesome\ 5 Free;
     }
 
     &::after {
         transform: none !important;
         content: "\f107";
-        font-family: Font Awesome\5 Free;
+        font-family: Font Awesome\ 5 Free;
         background-image: none !important;
     }
 }
@@ -44,6 +45,8 @@
     border: 0 !important;
     background: none;
     position: relative;
+
+
 }
 
 .accordion-header-collapse .accordion-button,
@@ -57,9 +60,13 @@
     padding-left: 12px !important;
     padding-bottom: 2px !important;
 
+
+
+
     &:after {
         background-image: none !important;
     }
+
     &.collapsed::before {
         content: "\f0fe";
         font-weight: 500;
@@ -68,8 +75,9 @@
         margin-right: 5px;
         z-index: 1;
         padding: 0px 3px;
-        font-family: Font Awesome\5 Free;
+        font-family: Font Awesome\ 5 Free;
     }
+
     &::before {
         content: "\f146";
         font-weight: 500;
@@ -78,14 +86,17 @@
         margin-right: 5px;
         z-index: 1;
         padding: 0px 5px;
-        font-family: Font Awesome\5 Free;
+        font-family: Font Awesome\ 5 Free;
     }
 }
+
 .nested-menu-item {
+
     &::before {
         content: "\2BC8";
     }
 }
+
 .accordion-item {
     background-color: $gray !important;
 }

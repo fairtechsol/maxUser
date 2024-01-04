@@ -9,8 +9,6 @@ const Sidebar = () => {
     setMenuItemList(menuItemJson);
   }, [menuItemJson]);
 
-  console.log(menuItemList);
-
   return (
     <>
       <div className="sidebarBox bg-light">

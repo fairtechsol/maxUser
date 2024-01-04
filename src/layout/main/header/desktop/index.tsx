@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { debounce } from "lodash";
+import { useMemo, useState } from "react";
 import { Col, Collapse, Dropdown, Navbar, Row } from "react-bootstrap";
 import { FaSearchPlus } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import CustomInput from "../../../../components/commonComponent/input";
 import LogoSection from "../../../../components/commonComponent/logoSection";
 import MarqueeHeader from "../../../../components/commonComponent/marquee";
 import { logout } from "../../../../store/actions/authAction";
-import { AppDispatch } from "../../../../store/store";
+import { getMatchList } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
 import SearchResult from "../searchResult";
@@ -17,6 +19,11 @@ import "./style.scss";
 const DesktopHeader = () => {
   const [open, setOpen] = useState(false);
   const [openExposure, setOpenExposure] = useState(false);
+
+  const { getProfile } = useSelector((state: RootState) => state.user.profile);
+  const { searchedMatchList } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
   const handleClickOpen = () => {
     setOpen(!open);
@@ -28,6 +35,17 @@ const DesktopHeader = () => {
 
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
+
+  const debouncedInputValue = useMemo(() => {
+    return debounce((value) => {
+      dispatch(
+        getMatchList({
+          type: "search",
+          searchKeyword: value,
+        })
+      );
+    }, 500);
+  }, []);
 
   return (
     <Row className=" w-100">
@@ -43,26 +61,17 @@ const DesktopHeader = () => {
           <li className="d-flex gap-3 align-items-center">
             <Collapse in={open} dimension="width">
               <div id="searchCollapse" className="position-relative">
-                <CustomInput placeholder="All Events" />
-                <SearchResult
-                  data={[
-                    {
-                      name: "Cricket | MAtch odd",
-                      date: "11/27/2023 04:15:00 PM",
-                      label: "Test",
-                    },
-                    {
-                      name: "Cricket | MAtch odd",
-                      date: "11/27/2023 04:15:00 PM",
-                      label: "Test",
-                    },
-                    {
-                      name: "Cricket | MAtch odd",
-                      date: "11/27/2023 04:15:00 PM",
-                      label: "Test",
-                    },
-                  ]}
+                <CustomInput
+                  placeholder="All Events"
+                  onChange={(e: any) => {
+                    if (e.target.value?.length > 2) {
+                      debouncedInputValue(e.target.value);
+                    }
+                  }}
                 />
+                {searchedMatchList && (
+                  <SearchResult setOpen={setOpen} data={searchedMatchList} />
+                )}
               </div>
             </Collapse>
             <span>
@@ -80,14 +89,14 @@ const DesktopHeader = () => {
           <li>
             <div className="balance-cont">
               <div>
-                Balance:<b>0.00</b>
+                Balance:<b>{getProfile?.userBal?.currentBalance}</b>
               </div>
               <div>
                 <span
                   onClick={handleClickExposureModalOpen}
                   className="white-text text-decoration-underline cursor-pointer"
                 >
-                  Exposure:<b>0</b>
+                  Exposure:<b>{getProfile?.userBal?.exposure}</b>
                 </span>
                 <ExposureModal
                   show={openExposure}
@@ -102,7 +111,7 @@ const DesktopHeader = () => {
                 as={CustomDropDown}
                 id="dropdown-custom-components"
               >
-                Custom toggle
+                {getProfile?.userName}
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="rounded-2 shadow-sm dropdown-menu-nav">

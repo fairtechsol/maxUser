@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 // PRODUCTION:http://3.89.232.255:5000/
 // DEVELOPMENT: http://localhost:5000
 const service = axios.create({
-  baseURL: " http://localhost:5000/",
+  baseURL: "http://3.89.232.255:5000/",
 });
 
 service.defaults.timeout = 100000;
@@ -13,7 +13,7 @@ service.interceptors.request.use(
   (config) => {
     config.headers["Content-Type"] = "application/json";
 
-    const authToken = localStorage.getItem("userToken");
+    const authToken = sessionStorage.getItem("userToken");
     config.headers.Authorization = `Bearer ${authToken}`;
     return config;
   },
@@ -37,8 +37,8 @@ service.interceptors.response.use(
       toast.error(error.response.data.message);
     } else if (error.response.status === 401) {
       toast.error(error.response.data.message);
-      // window.location.replace("/login");
-      localStorage.clear();
+      window.location.replace("/login");
+      sessionStorage.clear();
     }
 
     return Promise.reject(error);

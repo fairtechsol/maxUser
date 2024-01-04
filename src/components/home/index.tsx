@@ -5,13 +5,17 @@ import Loader from "../commonComponent/loader";
 import DesktopMatchList from "./matchList/desktop";
 import SportsFilters from "./sportsFilters";
 
-const MatchList = () => {
+const MatchList = ({ setMatchType }: any) => {
   const { loading } = useSelector((state: RootState) => state.match.matchList);
 
   return (
     <>
       {loading && <Loader />}
-      {isMobile ? <SportsFilters /> : <DesktopMatchList />}
+      {isMobile ? (
+        <SportsFilters setMatchType={setMatchType} />
+      ) : (
+        <DesktopMatchList setMatchType={setMatchType} />
+      )}
     </>
   );
 };
