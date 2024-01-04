@@ -5,6 +5,7 @@ import {
   getProfile,
   marqueeNotification,
   setButtonValue,
+  updateBalance,
 } from "../../actions/user/userAction";
 
 interface InitialState {
@@ -106,6 +107,15 @@ const profileSlice = createSlice({
       .addCase(getButtonValue.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
+      })
+      .addCase(updateBalance.fulfilled, (state, action) => {
+        state.getProfile = {
+          ...state.getProfile,
+          userBal: {
+            ...state?.getProfile?.userBal,
+            ...action.payload,
+          },
+        };
       });
   },
 });

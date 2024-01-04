@@ -14,22 +14,31 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
   const { getMatchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  const { getProfile } = useSelector((state: RootState) => state.user.profile);
 
   useEffect(() => {
-    if (getMatchList) {
+    if (getMatchList && getProfile?.roleName) {
       getMatchList?.forEach((element: any) => {
-        expertSocketService.match.joinMatchRoom(element?.id);
+        expertSocketService.match.joinMatchRoom(
+          element?.id,
+          getProfile?.roleName
+        );
       });
       document.addEventListener("visibilitychange", () => {
-        onTabSwitch(getMatchList);
+        onTabSwitch(getMatchList, getProfile?.roleName);
       });
     }
 
     return () => {
       expertSocketService.match.leaveAllRooms();
-      document.removeEventListener("visibilitychange", onTabSwitch);
+      getMatchList?.forEach((element: any) => {
+        expertSocketService.match.leaveMatchRoom(element?.id);
+      });
+      document.removeEventListener("visibilitychange", () => {
+        onTabSwitch(getMatchList, getProfile?.roleName);
+      });
     };
-  }, [getMatchList]);
+  }, [getMatchList, getProfile?.roleName]);
 
   return (
     <div className="m-1 p-0 w-100">

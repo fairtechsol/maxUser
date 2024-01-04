@@ -4,6 +4,7 @@ import {
   matchDetailAction,
   searchListReset,
   selectedBetAction,
+  updateMatchRates,
 } from "../../actions/match/matchListAction";
 
 interface InitialState {
@@ -60,6 +61,20 @@ const matchListSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.matchDetails = action.payload;
+      })
+      .addCase(updateMatchRates.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.matchDetails = {
+          ...state.matchDetails,
+          apiSession: action.payload?.apiSession,
+          apiTiedMatch: action.payload?.apiTiedMatch,
+          bookmaker: action.payload?.bookmaker,
+          manualTideMatch: action.payload?.manualTideMatch,
+          marketCompleteMatch: action.payload?.marketCompleteMatch,
+          matchOdd: action.payload?.matchOdd,
+          quickbookmaker: action.payload?.quickbookmaker,
+          sessionBettings: action.payload?.sessionBettings,
+        };
       })
       .addCase(matchDetailAction.rejected, (state, action) => {
         state.loading = false;

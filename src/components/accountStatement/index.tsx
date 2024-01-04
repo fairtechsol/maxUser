@@ -186,7 +186,12 @@ const AccountStatementComponent = () => {
                       "YYYY-MM-DD hh:mm"
                     )}
                   </td>
-                  <td>{index + 1}</td>
+                  <td>
+                    {index +
+                      (tableConfig?.rowPerPage || 15) *
+                        (tableConfig?.page - 1 || 0) +
+                      1}
+                  </td>
                   <td className="color-green">
                     <NotSet
                       item={
