@@ -97,4 +97,11 @@ export const getCompetitionMatches = createAsyncThunk<any, any>(
   }
 );
 
+export const updateMatchRates = createAsyncThunk<any, any>(
+  "/match/rates",
+  async (matchDetails) => {
+    return matchDetails;
+  }
+);
+
 export const searchListReset = createAction("search/list");

@@ -61,4 +61,5 @@ export const transType = {
 export const baseUrls = {
   socket: "http://localhost:5000",
   expertSocket: "http://localhost:8000",
+  matchSocket: "http://localhost:3200",
 };

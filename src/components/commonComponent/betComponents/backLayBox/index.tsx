@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
 
@@ -26,11 +26,25 @@ function BackLayBox({
   const inlineStyle: React.CSSProperties = {
     ...style,
   };
+
+  const [tempRate, setTempRate] = useState("0");
+  const [isYellow, setIsYellow] = useState(false);
+
+  useEffect(() => {
+    if (parseFloat(rate) != parseFloat(tempRate)) {
+      setTimeout(() => {
+        setIsYellow(false);
+      }, 2000);
+      setIsYellow(true);
+      setTempRate(rate);
+    }
+  }, [rate]);
+
   return (
     <div
       className={`backLay ${overlay ? "overlay" : ""}  ${
         customClass ? customClass : ""
-      } bg-${bgColor}`}
+      } bg-${isYellow ? "secondary" : bgColor}`}
       style={{ ...inlineStyle }}
     >
       <BetStatusOverlay active={parseInt(rate || 0) <= 0 && !active}>

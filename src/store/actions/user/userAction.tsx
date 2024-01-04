@@ -30,6 +30,13 @@ export const getProfile = createAsyncThunk<any>("/user/profile", async () => {
   }
 });
 
+export const updateBalance = createAsyncThunk<any, any>(
+  "/user/balance",
+  async (balance) => {
+    return balance;
+  }
+);
+
 export const getAccountStatement = createAsyncThunk<any, any>(
   "user/account/statement",
   async ({ userId, page, limit, searchBy, keyword, filter }) => {
