@@ -27,10 +27,14 @@ const TableHeader: React.FC<TableHeaderProps> = ({
     setTableConfig((prev: any) => {
       return { ...prev, keyword: keyword };
     });
-  }, []);
+  }, [keyword]);
 
   return (
-    <div className={`d-flex justify-content-between ${!isMobile&&"align-items-center"} mb-3`}>
+    <div
+      className={`d-flex justify-content-between ${
+        !isMobile && "align-items-center"
+      } mb-3`}
+    >
       {enablePdfExcel && (
         <div className="d-flex gap-2 mb-2">
           <CustomButton className="d-flex gap-1 align-items-center pdf border-0">

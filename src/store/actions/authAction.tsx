@@ -22,7 +22,7 @@ export const login = createAsyncThunk<any, LoginData>(
     try {
       const { data } = await service.post(`${ApiConstants.LOGIN}`, requestData);
       const { token } = data;
-      localStorage.setItem("userToken", token);
+      sessionStorage.setItem("userToken", token);
       return data;
     } catch (error) {
       const err = error as AxiosError;
@@ -40,9 +40,8 @@ export const changePassword = createAsyncThunk<any, ChangePassword>(
         requestData
       );
       if (resp) {
-      localStorage.clear();
-      window.location.replace("/login");
-        
+        sessionStorage.clear();
+        window.location.replace("/login");
       }
     } catch (error: any) {
       const err = error as AxiosError;
@@ -56,7 +55,7 @@ export const logout = createAsyncThunk<any>(
   async () => {
     try {
       const response = await service.post("/auth/logout");
-      localStorage.clear();
+      sessionStorage.clear();
       window.location.replace("/login");
       return response;
     } catch (error) {

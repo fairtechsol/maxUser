@@ -54,7 +54,7 @@ const Login = () => {
   useEffect(() => {
     if (success) {
       if (forceChangePassword) {
-        localStorage.setItem("forceChangePassword", "true");
+        sessionStorage.setItem("forceChangePassword", "true");
         navigate("/change-password");
       } else {
         navigate("/home");

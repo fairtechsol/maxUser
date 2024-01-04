@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
+import { socketService } from "../../socketManaget";
 import {
   getProfile,
   marqueeNotification,
@@ -17,8 +18,13 @@ function MainLayout() {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    if (!localStorage.getItem("userToken")) {
+    if (!sessionStorage.getItem("userToken")) {
       navigate("/login");
+      sessionStorage.clear();
+      socketService.disconnect();
+    } else {
+      socketService.connect();
+      socketService.auth.logout();
     }
     dispatch(getProfile());
     dispatch(marqueeNotification());

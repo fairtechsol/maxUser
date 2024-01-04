@@ -1,3 +1,4 @@
+import React from "react";
 import { FiMonitor } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -35,14 +36,14 @@ const MobileOneVOneGame = () => {
                 <FiMonitor />
                 {item?.manualSessionActive || item?.apiSessionActive ? (
                   <span className="fancy">
-                    <img src="/ic_fancy.png" />
+                    <img src="/ic_fancy.png" alt={"fancy"} />
                   </span>
                 ) : (
                   ""
                 )}
                 {item?.isBookmaker > 0 ? (
                   <span className="bookmaker">
-                    <img src="/ic_bm.png" />
+                    <img src="/ic_bm.png" alt={"fancy"} />
                   </span>
                 ) : (
                   ""
@@ -50,10 +51,9 @@ const MobileOneVOneGame = () => {
               </div>
             </div>
             <div className="d-flex w-100">
-              {item?.matchOdds?.map((item: any) => {
-                console.log(item, "itrete");
+              {item?.matchOdds?.map((item: any, index: number) => {
                 return (
-                  <>
+                  <React.Fragment key={index}>
                     <BackLayComponent
                       heading="1"
                       backRate={
@@ -93,7 +93,7 @@ const MobileOneVOneGame = () => {
                           : item?.layTeamB
                       }
                     />
-                  </>
+                  </React.Fragment>
                 );
               })}
             </div>

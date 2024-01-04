@@ -11,6 +11,7 @@ export const ApiConstants = {
     SET_BTN_VALUE: "/button/insert",
     GET_BTN_VALUE: "/button",
     GET_PROFILE: "/user/profile",
+    ACCOUNT_STATEMENT: "/transaction/get/",
   },
   EXPERT: {
     COMPETITIONLIST: "/expert/match/competitionList/",
@@ -48,4 +49,16 @@ export const matchBettingType = {
   tiedMatch1: "tiedMatch1",
   tiedMatch2: "tiedMatch2",
   completeMatch: "completeMatch",
+};
+export const transType = {
+  add: "add",
+  withDraw: "withDraw",
+  win: "win",
+  loss: "loss",
+  creditRefer: "creditReference",
+};
+
+export const baseUrls = {
+  socket: "http://localhost:5000",
+  expertSocket: "http://localhost:8000",
 };

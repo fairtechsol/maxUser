@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getMatchList,
   matchDetailAction,
+  searchListReset,
   selectedBetAction,
 } from "../../actions/match/matchListAction";
 
@@ -12,6 +13,7 @@ interface InitialState {
   getMatchList: any;
   matchDetails: any;
   selectedBet: any;
+  searchedMatchList: any;
 }
 
 const initialState: InitialState = {
@@ -21,6 +23,7 @@ const initialState: InitialState = {
   error: null,
   matchDetails: null,
   selectedBet: null,
+  searchedMatchList: null,
 };
 
 const matchListSlice = createSlice({
@@ -38,7 +41,11 @@ const matchListSlice = createSlice({
       .addCase(getMatchList.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.getMatchList = action.payload;
+        if (action.payload?.type == "search") {
+          state.searchedMatchList = action.payload.data;
+        } else {
+          state.getMatchList = action.payload.data;
+        }
       })
       .addCase(getMatchList.rejected, (state, action) => {
         state.loading = false;
@@ -60,6 +67,9 @@ const matchListSlice = createSlice({
       })
       .addCase(selectedBetAction.fulfilled, (state, action) => {
         state.selectedBet = action.payload;
+      })
+      .addCase(searchListReset, (state) => {
+        state.searchedMatchList = null;
       });
   },
 });

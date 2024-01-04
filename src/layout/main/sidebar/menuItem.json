@@ -18,7 +18,8 @@
       {
         "id": "cricket",
         "name": "Cricket",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/game-list/cricket"
       },
       {
         "id": "ice_hockey",
