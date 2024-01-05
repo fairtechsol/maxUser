@@ -11,6 +11,7 @@ const AccountStatement = Loadable(
 const ProfitLoss = Loadable(lazy(() => import("../pages/profitLoss")));
 const BetHistory = Loadable(lazy(() => import("../pages/betHistory")));
 const UnsettledBet = Loadable(lazy(() => import("../pages/unsettledBet")));
+const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
 const ChangeBtnValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -46,6 +47,10 @@ const MainRoutes = {
     {
       path: "game-detail/:id",
       element: <GameDetail />,
+    },
+    {
+      path: "rules",
+      element: <Mobile />,
     },
     {
       path: "game-list/:id",

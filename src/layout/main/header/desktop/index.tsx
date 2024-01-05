@@ -15,11 +15,15 @@ import ExposureModal from "../modalExposure";
 import SearchResult from "../searchResult";
 import CustomDropDown from "./dropdown/customDropdown";
 import "./style.scss";
+import CustomModal from "../../../../components/commonComponent/modal";
+import Drules from "../../../../components/rules/desktop";
+import Mobile from "../../../../components/rules/mobile";
+import isMobile from "../../../../utils/screenDimension";
 
 const DesktopHeader = () => {
   const [open, setOpen] = useState(false);
   const [openExposure, setOpenExposure] = useState(false);
-
+const [show, setShow] = useState(false);
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
@@ -48,6 +52,7 @@ const DesktopHeader = () => {
   }, []);
 
   return (
+    <>
     <Row className=" w-100">
       <Col xs={12}>
         <div className="float-start">
@@ -83,8 +88,8 @@ const DesktopHeader = () => {
               />
             </span>
           </li>
-          <li>
-            <b>Rules</b>
+          <li onClick={()=>{setShow(true)}}>
+            <b> Rules</b>
           </li>
           <li>
             <div className="balance-cont">
@@ -157,6 +162,11 @@ const DesktopHeader = () => {
         </div> */}
       </Col>
     </Row>
+    <CustomModal customClass="modalFull-90 rule-popup"  show={show} setShow={setShow} title={"Rules"}>
+    {!isMobile ? <Drules />:
+     <Mobile />}
+    </CustomModal>
+    </>
   );
 };
 
