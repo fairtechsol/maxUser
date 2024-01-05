@@ -6,6 +6,7 @@ import { socketService } from "../../socketManaget";
 import {
   getProfile,
   marqueeNotification,
+  updateBalance,
 } from "../../store/actions/user/userAction";
 import { AppDispatch } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
@@ -21,14 +22,23 @@ function MainLayout() {
     if (!sessionStorage.getItem("userToken")) {
       navigate("/login");
       sessionStorage.clear();
-      socketService.disconnect();
-    } else {
-      socketService.connect();
-      socketService.auth.logout();
     }
     dispatch(getProfile());
     dispatch(marqueeNotification());
   }, []);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("userToken")) {
+      socketService.connect();
+      socketService.auth.logout();
+      socketService.userBalance.updateUserBalance((event: any) => {
+        dispatch(updateBalance(event));
+      });
+    }
+    return () => {
+      socketService.disconnect();
+    };
+  }, [sessionStorage.getItem("userToken")]);
 
   return (
     <>

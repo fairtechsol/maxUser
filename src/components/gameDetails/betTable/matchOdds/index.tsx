@@ -106,9 +106,11 @@ function MatchOdds({
                   </td>
                   <td colSpan={backLayCount === 2 ? 2 : 6}>
                     <BetStatusOverlay
-                      title={data?.[`statusTeam${matchs}`]}
+                      title={data?.runners?.[indexes]?.status.toLowerCase()}
                       active={
-                        data?.[`statusTeam${matchs}`] != teamStatus.active
+                        data?.runners?.[indexes]?.status
+                          .toLowerCase()
+                          ?.toLowerCase() != teamStatus.active?.toLowerCase()
                       }
                     >
                       {new Array(backLayCount == 2 ? 1 : 3)
@@ -118,16 +120,29 @@ function MatchOdds({
                             key={index}
                             customClass="match-odd-bet-place"
                             bgColor={`blue${index + 1}`}
-                            rate={data[`backTeam${matchs}`] - 2 + index}
+                            rate={
+                              data?.runners?.[indexes]?.ex?.availableToBack?.[
+                                2 - index
+                              ]?.price
+                            }
+                            percent={
+                              data?.runners?.[indexes]?.ex?.availableToBack?.[
+                                2 - index
+                              ]?.size
+                            }
                             onClick={() => {
-                              const rate =
-                                parseInt(data[`backTeam${matchs}`] || 0) -
-                                2 +
-                                index;
+                              const rate = parseFloat(
+                                data?.runners?.[indexes]?.ex?.availableToBack?.[
+                                  2 - index
+                                ]?.price || 0
+                              );
+
                               if (
                                 rate > 0 &&
-                                data?.[`statusTeam${matchs}`] ==
-                                  teamStatus.active
+                                data?.runners?.[
+                                  indexes
+                                ]?.status?.toLowerCase() ==
+                                  teamStatus.active?.toLowerCase()
                               ) {
                                 handleClick(
                                   {
@@ -142,7 +157,10 @@ function MatchOdds({
                               }
                             }}
                             active={
-                              data?.[`statusTeam${matchs}`] != teamStatus.active
+                              data?.runners?.[indexes]?.status
+                                .toLowerCase()
+                                ?.toLowerCase() !=
+                              teamStatus.active?.toLowerCase()
                             }
                           />
                         ))}
@@ -153,14 +171,27 @@ function MatchOdds({
                             key={index}
                             customClass="match-odd-bet-place"
                             bgColor={`red${index + 1}`}
-                            rate={data[`layTeam${matchs}`] + index}
+                            rate={
+                              data?.runners?.[indexes]?.ex?.availableToLay?.[
+                                index
+                              ]?.price
+                            }
+                            percent={
+                              data?.runners?.[indexes]?.ex?.availableToLay?.[
+                                index
+                              ]?.size
+                            }
                             onClick={() => {
-                              const rate =
-                                parseInt(data[`layTeam${matchs}`] || 0) + index;
+                              const rate = parseFloat(
+                                data?.runners?.[indexes]?.ex?.availableToLay?.[
+                                  index
+                                ]?.price || 0
+                              );
                               if (
                                 rate > 0 &&
-                                data?.[`statusTeam${matchs}`] ==
-                                  teamStatus.active
+                                data?.runners?.[
+                                  indexes
+                                ]?.status.toLowerCase() == teamStatus.active
                               ) {
                                 handleClick(
                                   {
@@ -175,7 +206,10 @@ function MatchOdds({
                               }
                             }}
                             active={
-                              data?.[`statusTeam${matchs}`] != teamStatus.active
+                              data?.runners?.[indexes]?.status
+                                .toLowerCase()
+                                ?.toLowerCase() !=
+                              teamStatus.active?.toLowerCase()
                             }
                           />
                         ))}

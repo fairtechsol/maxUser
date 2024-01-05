@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/commonComponent/loader";
 import DesktopMatchList from "../../components/home/matchList/desktop";
 import SportsFilters from "../../components/home/sportsFilters";
+import { expertSocketService } from "../../socketManaget";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
@@ -13,9 +14,15 @@ const GameList = () => {
 
   const { id } = useParams();
 
-  const dispatch: AppDispatch = useDispatch();
-  useEffect(() => {
+  const getMatchListService = () => {
     dispatch(getMatchList({ matchType: id }));
+  };
+
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(getMatchListService, [id]);
+
+  useEffect(() => {
+    expertSocketService.match.matchAdded(getMatchListService);
   }, []);
 
   return (
