@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
@@ -8,9 +8,64 @@ import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
+import { useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
+import { TableConfig } from "../../models/tableInterface";
+import { useSelector } from "react-redux";
+import { betReportList } from "../../store/actions/match/matchListAction";
+import moment from "moment";
 
 const BetHistoryComponent = () => {
-  const [value, onChange] = useState<any>(new Date());
+  const [fromDate, setFromDate] = useState<any>();
+  const [toDate, setToDate] = useState<any>();
+
+  const optionsMatch = [
+    { value: "MATCHED", label: "Cricket" },
+    { value: "UNMATCHED", label: "Football" },
+    { value: "DELETED", label: "Deleted" },
+  ];
+  const optionsType = [
+    { value: "MATCHED", label: "Matched" },
+    { value: "UNMATCHED", label: "UnMatched" },
+    { value: "DELETED", label: "Deleted" },
+  ];
+  const dispatch: AppDispatch = useDispatch();
+  const [tableConfig, setTableConfig] = useState<TableConfig | null>(null);
+  const [selectType, setSelectType] = useState({ value: "MATCHED", label: "Matched" });
+  const [selectMatch, setSelectMatch] = useState({ value: "MATCHED", label: "Matched" });
+
+  useEffect(() => {
+    dispatch(betReportList({ status: selectType?.value,  
+      // matchType: selectType?.value 
+    }));
+  }, [tableConfig]);
+
+  const handleMatch = (type: any) => {
+    setSelectMatch(type);
+  };
+  const handleType = (type: any) => {
+    setSelectType(type);
+  };
+
+  const handleLoad = (e: any) => {
+    e.preventDefault();
+    let filter = "";
+    if (fromDate && toDate) {
+      filter += `&createdAt=between${moment(
+        new Date(fromDate)
+      )?.format("DD/MM/YYYY")}|${moment(
+        new Date(toDate).setDate(toDate.getDate() + 1)
+      )?.format("DD/MM/YYYY")}`;
+    }
+    dispatch(betReportList({ status: selectType?.value, 
+      // matchType: selectMatch?.value, 
+      filter: filter 
+    }));
+  };
+
+
+
+  const { ReportBetList } = useSelector((state: RootState) => state.currentBetList.ReportBetList);
   return (
     <ReportContainer title="Bet History">
       <div>
@@ -18,44 +73,25 @@ const BetHistoryComponent = () => {
           <Row className="g-2 mt-1">
             <Col md={2} xs={6}>
               <SelectSearch
-                options={[
-                  {
-                    value: "football",
-                    label: "Football",
-                  },
-                  {
-                    value: "tennis",
-                    label: "Tennis",
-                  },
-                  {
-                    value: "cricket",
-                    label: "Cricket",
-                  },
-                ]}
-                placeholder="Sport Type"
-                defaultValue="football"
+              
+              options={optionsMatch}
+              placeholder="Sport Type"
+              defaultValue={[selectMatch]}
+              onChange={handleMatch}
               />
             </Col>
             <Col md={2} xs={6}>
               <SelectSearch
-                options={[
-                  {
-                    value: "matched",
-                    label: "Matched",
-                  },
-                  {
-                    value: "deleted",
-                    label: "Deleted",
-                  },
-                ]}
+                options={optionsType}
                 placeholder="Bet Status"
-                defaultValue="matched"
+                defaultValue={[selectType]}
+                onChange={handleType}
               />
             </Col>
             <Col md={2} xs={6}>
               <DatePicker
-                onChange={onChange}
-                value={value}
+                onChange={setFromDate}
+                value={fromDate}
                 closeCalendar={false}
                 clearIcon={false}
                 className="w-100"
@@ -64,8 +100,8 @@ const BetHistoryComponent = () => {
             </Col>
             <Col md={2} xs={6}>
               <DatePicker
-                onChange={onChange}
-                value={value}
+                onChange={setToDate}
+                value={toDate}
                 closeCalendar={false}
                 clearIcon={false}
                 className="w-100"
@@ -75,10 +111,10 @@ const BetHistoryComponent = () => {
 
             <Col md={2} xs={12}>
               <CustomButton
+                onClick={(e: any) => handleLoad(e)}
                 size={isMobile ? "sm" : "lg"}
-                className={`${
-                  isMobile ? "w-100" : " bg-primaryBlue"
-                } border-0 `}
+                className={`${isMobile ? "w-100" : " bg-primaryBlue"
+                  } border-0 `}
               >
                 Submit
               </CustomButton>
@@ -87,8 +123,11 @@ const BetHistoryComponent = () => {
           <CustomTable
             bordered={true}
             striped={!isMobile}
-            // isPagination={true}
-            // isSearch={true}
+            isPagination={true}
+            isSearch={true}
+            setTableConfig={setTableConfig}
+            itemCount={ReportBetList && ReportBetList?.count > 0 ? ReportBetList?.count : 0}
+
             columns={[
               {
                 id: "event_name",
@@ -123,8 +162,8 @@ const BetHistoryComponent = () => {
                 label: "Match Date",
               },
             ]}
-            itemCount={10}
-            setTableConfig={() => {}}
+          // itemCount={10}
+          // setTableConfig={() => {}}
           >
             <tr className={`${isMobile && "title-12"}`}>
               <td>123456</td>

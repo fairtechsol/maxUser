@@ -106,6 +106,23 @@ export const getCompetitionList = createAsyncThunk<any, any>(
     }
   }
 );
+export const betReportList = createAsyncThunk<any, any>(
+  "/bet/",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.MATCH.CURRENTBET}?status=${requestData.status}&keyword=${requestData?.keyword || ""}${requestData?.filter || ""}`
+
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 export const getCompetitionDates = createAsyncThunk<any, any>(
   "competition/dates",
   async (requestData, thunkApi) => {
