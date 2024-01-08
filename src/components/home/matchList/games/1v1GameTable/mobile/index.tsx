@@ -57,14 +57,10 @@ const MobileOneVOneGame = () => {
                     <BackLayComponent
                       heading="1"
                       backRate={
-                        item.backTeamA === null || item.backTeamA === undefined
-                          ? "-"
-                          : item.backTeamA
+                        item.backTeamA ??"-"
                       }
                       layRate={
-                        item.layTeamA === null || item.layTeamA === undefined
-                          ? "-"
-                          : item?.layTeamA
+                        item.layTeamA??"-"
                       }
                     />
                     <BackLayComponent

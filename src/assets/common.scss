@@ -29,6 +29,15 @@ body table.table {
   background-color: $green;
   border-radius: 50%;
 }
+.react-date-picker{
+  border: 0;
+}
+.react-date-picker__wrapper{
+  height: 38px;
+  border-radius: 5px !important;
+  border: 1px solid $gray !important;
+  outline: 0;
+}
 
 @keyframes marqueeAnimation {
   0% {

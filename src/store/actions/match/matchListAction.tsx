@@ -24,6 +24,35 @@ export const getMatchList = createAsyncThunk<any, any>(
   }
 );
 
+export const SearchList = createAsyncThunk<any, any>("/match/searchlist", async (requestData) => {
+  try {
+    const resp = await service.get(`${ApiConstants.MATCH.MATCHLIST}?searchBy=title&keyword=${requestData?.title ? requestData?.title : ""
+      }`);
+    if (resp) {
+      return resp?.data?.matches;
+    }
+  } catch (error: any) {
+    const err = error as AxiosError;
+    throw err;
+  }
+});
+
+// export const userChangePassword = createAsyncThunk<any, any>(
+//   "user/changePassword",
+//   async (requestData) => {
+//     try {
+//       const resp = await service.post("/user/changePassword", requestData);
+//       if (resp) {
+//         return resp?.data;
+//       }
+//     } catch (error: any) {
+//       const err = error as AxiosError;
+//       throw err;
+//     }
+//   }
+// );
+
+
 export const matchDetailAction = createAsyncThunk<any, any>(
   "/match/details",
   async (matchId) => {
@@ -41,6 +70,28 @@ export const matchDetailAction = createAsyncThunk<any, any>(
   }
 );
 
+
+
+export const setButtonValue = createAsyncThunk<any, any>(
+  "/setButtonValues",
+  async (requestData) => {
+    try {
+      const resp = await service.post(
+        `${ApiConstants.USER.SET_BTN_VALUE}`,
+        requestData
+      );
+      if (resp) {
+        return resp?.data;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      throw err;
+    }
+  }
+);
+
+
+export const SearchListReset = createAction("searchList/reset");
 export const selectedBetAction = createAsyncThunk<any, any>(
   "/match/selectedBet",
   async (data) => {
@@ -54,6 +105,23 @@ export const getCompetitionList = createAsyncThunk<any, any>(
     try {
       const resp = await service.get(
         `${ApiConstants.EXPERT.COMPETITIONLIST}${requestData}`
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const betReportList = createAsyncThunk<any, any>(
+  "/bet/",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.MATCH.CURRENTBET}?status=${requestData.status}&keyword=${requestData?.keyword || ""}${requestData?.filter || ""}`
+
       );
       if (resp?.data) {
         return resp?.data;

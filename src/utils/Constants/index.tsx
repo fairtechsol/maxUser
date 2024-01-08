@@ -4,7 +4,9 @@ export const ApiConstants = {
   CHANGEPASSWORD: "user/changePassword",
   MATCH: {
     MATCHLIST: "/match/list",
+    SEARCHLIST: "/user/searchlist",
     MATCHDETAILS: "/match/",
+    CURRENTBET: "/bet"
   },
   USER: {
     MARQUEE: "/expert/notification",

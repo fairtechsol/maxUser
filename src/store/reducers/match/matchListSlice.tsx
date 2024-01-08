@@ -1,17 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  getMatchList,
-  matchDetailAction,
-  searchListReset,
-  selectedBetAction,
-  updateMatchRates,
-} from "../../actions/match/matchListAction";
+import { SearchList, SearchListReset, getMatchList,matchDetailAction, searchListReset, selectedBetAction, updateMatchRates } from "../../actions/match/matchListAction";
 
 interface InitialState {
   success: boolean;
   loading: boolean;
   error: any;
   getMatchList: any;
+  getMatchListBySearch: any;
   matchDetails: any;
   selectedBet: any;
   searchedMatchList: any;
@@ -19,6 +14,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   getMatchList: null,
+  getMatchListBySearch: [],
   loading: false,
   success: false,
   error: null,
@@ -33,7 +29,6 @@ const matchListSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-
       .addCase(getMatchList.pending, (state) => {
         state.loading = true;
         state.success = false;
@@ -51,6 +46,24 @@ const matchListSlice = createSlice({
       .addCase(getMatchList.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
+      })    
+      .addCase(SearchList.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.getMatchListBySearch = action.payload;
+      })
+      .addCase(SearchList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(SearchList.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(SearchListReset, (state) => {
+        // Reset the state to initial state
+        return { ...state, success: false, getMatchListBySearch: [] };
       })
       .addCase(matchDetailAction.pending, (state) => {
         state.loading = true;
@@ -86,7 +99,6 @@ const matchListSlice = createSlice({
       .addCase(searchListReset, (state) => {
         state.searchedMatchList = null;
       });
-  },
-});
+}});
 
 export const matchListReducer = matchListSlice.reducer;
