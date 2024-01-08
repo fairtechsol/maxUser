@@ -5,7 +5,11 @@ export const calculateProfitLoss = (
   selectedData: any,
   team: string
 ) => {
-  if (betData?.id != selectedData?.data?.id) {
+  if (
+    betData?.id != selectedData?.data?.id ||
+    !betData?.id ||
+    !selectedData?.data?.id
+  ) {
     return "";
   }
   if (selectedData?.team?.type == "lay") {

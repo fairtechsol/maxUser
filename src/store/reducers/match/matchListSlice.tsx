@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SearchList, SearchListReset, getMatchList,matchDetailAction, selectedBetAction } from "../../actions/match/matchListAction";
-
+import { SearchList, SearchListReset, getMatchList,matchDetailAction, searchListReset, selectedBetAction, updateMatchRates } from "../../actions/match/matchListAction";
 
 interface InitialState {
   success: boolean;
@@ -10,6 +9,7 @@ interface InitialState {
   getMatchListBySearch: any;
   matchDetails: any;
   selectedBet: any;
+  searchedMatchList: any;
 }
 
 const initialState: InitialState = {
@@ -20,6 +20,7 @@ const initialState: InitialState = {
   error: null,
   matchDetails: null,
   selectedBet: null,
+  searchedMatchList: null,
 };
 
 const matchListSlice = createSlice({
@@ -36,7 +37,11 @@ const matchListSlice = createSlice({
       .addCase(getMatchList.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.getMatchList = action.payload;
+        if (action.payload?.type == "search") {
+          state.searchedMatchList = action.payload.data;
+        } else {
+          state.getMatchList = action.payload.data;
+        }
       })
       .addCase(getMatchList.rejected, (state, action) => {
         state.loading = false;
@@ -70,12 +75,29 @@ const matchListSlice = createSlice({
         state.success = true;
         state.matchDetails = action.payload;
       })
+      .addCase(updateMatchRates.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.matchDetails = {
+          ...state.matchDetails,
+          apiSession: action.payload?.apiSession,
+          apiTiedMatch: action.payload?.apiTiedMatch,
+          bookmaker: action.payload?.bookmaker,
+          manualTideMatch: action.payload?.manualTideMatch,
+          marketCompleteMatch: action.payload?.marketCompleteMatch,
+          matchOdd: action.payload?.matchOdd,
+          quickbookmaker: action.payload?.quickbookmaker,
+          sessionBettings: action.payload?.sessionBettings,
+        };
+      })
       .addCase(matchDetailAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })
       .addCase(selectedBetAction.fulfilled, (state, action) => {
         state.selectedBet = action.payload;
+      })
+      .addCase(searchListReset, (state) => {
+        state.searchedMatchList = null;
       });
 }});
 

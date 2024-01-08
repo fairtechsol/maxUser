@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { Col, Collapse, Dropdown, Form, Navbar, Row } from "react-bootstrap";
+import { debounce } from "lodash";
+import { useMemo, useState } from "react";
+import { Col, Collapse, Dropdown, Navbar, Row } from "react-bootstrap";
 import { FaSearchPlus } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import CustomInput from "../../../../components/commonComponent/input";
 import LogoSection from "../../../../components/commonComponent/logoSection";
 import MarqueeHeader from "../../../../components/commonComponent/marquee";
 import { logout } from "../../../../store/actions/authAction";
+import { getMatchList } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
@@ -14,14 +16,22 @@ import SearchResult from "../searchResult";
 import CustomDropDown from "./dropdown/customDropdown";
 import "./style.scss";
 import SearchInput from "../../../../components/commonComponent/mainSearch";
-import { useSelector } from "react-redux";
 import { SearchListReset } from "../../../../store/actions/match/matchListAction";
+import CustomModal from "../../../../components/commonComponent/modal";
+import Drules from "../../../../components/rules/desktop";
+import Mobile from "../../../../components/rules/mobile";
+import isMobile from "../../../../utils/screenDimension";
 
 const DesktopHeader = () => {
   const dispatch: AppDispatch = useDispatch()
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const [openExposure, setOpenExposure] = useState(false);
+const [show, setShow] = useState(false);
+  const { getProfile } = useSelector((state: RootState) => state.user.profile);
+  const { searchedMatchList } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
   const { getMatchListBySearch } = useSelector(
     (state: RootState) => state.match.matchList
@@ -59,7 +69,19 @@ const DesktopHeader = () => {
 
   
 
+  const debouncedInputValue = useMemo(() => {
+    return debounce((value) => {
+      dispatch(
+        getMatchList({
+          type: "search",
+          searchKeyword: value,
+        })
+      );
+    }, 500);
+  }, []);
+
   return (
+    <>
     <Row className=" w-100">
       <Col xs={12}>
         <div className="float-start">
@@ -73,9 +95,17 @@ const DesktopHeader = () => {
           <li className="d-flex gap-3 align-items-center">
             <Collapse in={open} dimension="width">
               <div id="searchCollapse" className="position-relative">
-                {/* <CustomInput placeholder="All Events" /> */}
-                <SearchInput />
-                {getMatchListBySearch.length > 0 && <SearchResult getMatchListBySearch={getMatchListBySearch} />}
+                <CustomInput
+                  placeholder="All Events"
+                  onChange={(e: any) => {
+                    if (e.target.value?.length > 2) {
+                      debouncedInputValue(e.target.value);
+                    }
+                  }}
+                />
+                {searchedMatchList && (
+                  <SearchResult setOpen={setOpen} data={searchedMatchList} />
+                )}
               </div>
             </Collapse>
             <span>
@@ -87,20 +117,20 @@ const DesktopHeader = () => {
               />
             </span>
           </li>
-          <li>
-            <b>Rules</b>
+          <li onClick={()=>{setShow(true)}}>
+            <b> Rules</b>
           </li>
           <li>
             <div className="balance-cont">
               <div>
-                Balance:<b>0.00</b>
+                Balance:<b>{getProfile?.userBal?.currentBalance}</b>
               </div>
               <div>
                 <span
                   onClick={handleClickExposureModalOpen}
                   className="white-text text-decoration-underline cursor-pointer"
                 >
-                  Exposure:<b>0</b>
+                  Exposure:<b>{getProfile?.userBal?.exposure}</b>
                 </span>
                 <ExposureModal
                   show={openExposure}
@@ -115,7 +145,7 @@ const DesktopHeader = () => {
                 as={CustomDropDown}
                 id="dropdown-custom-components"
               >
-                Custom toggle
+                {getProfile?.userName}
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="rounded-2 shadow-sm dropdown-menu-nav">
@@ -161,6 +191,11 @@ const DesktopHeader = () => {
         </div> */}
       </Col>
     </Row>
+    <CustomModal customClass="modalFull-90 rule-popup"  show={show} setShow={setShow} title={"Rules"}>
+    {!isMobile ? <Drules />:
+     <Mobile />}
+    </CustomModal>
+    </>
   );
 };
 

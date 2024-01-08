@@ -2,9 +2,11 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
+import { socketService } from "../../socketManaget";
 import {
   getProfile,
   marqueeNotification,
+  updateBalance,
 } from "../../store/actions/user/userAction";
 import { AppDispatch } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
@@ -17,12 +19,26 @@ function MainLayout() {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    if (!localStorage.getItem("userToken")) {
+    if (!sessionStorage.getItem("userToken")) {
       navigate("/login");
+      sessionStorage.clear();
     }
     dispatch(getProfile());
     dispatch(marqueeNotification());
   }, []);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("userToken")) {
+      socketService.connect();
+      socketService.auth.logout();
+      socketService.userBalance.updateUserBalance((event: any) => {
+        dispatch(updateBalance(event));
+      });
+    }
+    return () => {
+      socketService.disconnect();
+    };
+  }, [sessionStorage.getItem("userToken")]);
 
   return (
     <>

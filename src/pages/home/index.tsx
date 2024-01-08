@@ -1,18 +1,31 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import MatchList from "../../components/home";
+import { expertSocketService } from "../../socketManaget";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../store/store";
 
 const Home = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const [matchType, setMatchType] = useState("cricket");
+
+  const getMatchListService = () => {
+    dispatch(
+      getMatchList({
+        matchType: matchType,
+      })
+    );
+  };
+
   useEffect(() => {
-    dispatch(getMatchList());
+    expertSocketService.match.matchAdded(getMatchListService);
   }, []);
+
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(getMatchListService, [matchType]);
 
   return (
     <div>
-      <MatchList />
+      <MatchList setMatchType={setMatchType} />
     </div>
   );
 };

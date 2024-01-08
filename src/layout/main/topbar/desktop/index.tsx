@@ -10,7 +10,9 @@ const DesktopTopBar = () => {
         ?.map((item) => (
           <Link
             key={item?.id}
-            to={item?.link}
+            to={
+              item?.id == "home" ? `${item?.link}` : `/game-list${item?.link}`
+            }
             className={`text-decoration-none text-black topbar-link ${
               item?.blink ? "blinking-text" : ""
             }`}

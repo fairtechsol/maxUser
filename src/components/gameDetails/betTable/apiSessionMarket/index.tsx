@@ -5,7 +5,6 @@ import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import { teamStatus } from "../../../../utils/constants";
 import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
@@ -13,14 +12,11 @@ import BetTableHeader from "../../../commonComponent/betTableHeader";
 import "../style.scss";
 import "./style.scss";
 
-interface SessionMarketTableProps {
+interface ApiSessionMarketTableProps {
   data: any;
   title?: any;
 }
-function SessionMarketTable({
-  data,
-  title
-}: SessionMarketTableProps) {
+function ApiSessionMarketTable({ data, title }: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
   const handleClick = (team: any, data: any) => {
     dispatch(
@@ -68,7 +64,7 @@ function SessionMarketTable({
                       to=""
                       className="backLayRunner-country session-country title-12"
                     >
-                      {JSON.parse(item)?.name}
+                      {item?.RunnerName}
                     </Link>
                   </div>
                   <span className="title-14">{0}</span>
@@ -77,63 +73,57 @@ function SessionMarketTable({
 
               <td colSpan={isMobile ? 2 : 3}>
                 <BetStatusOverlay
-                  title={JSON.parse(item)?.status}
-                  active={JSON.parse(item)?.status != teamStatus.active}
+                  title={item?.GameStatus}
+                  active={item?.GameStatus != ""}
                 >
                   <BackLayBox
                     customClass="bet-place-box"
                     // overlay={true}
                     bgColor="red1"
-                    rate={JSON.parse(item)?.noRate}
-                    percent={JSON.parse(item)?.noPercent}
+                    rate={item?.BackPrice1}
+                    percent={item?.BackSize1}
                     onClick={() => {
-                      const rate = parseInt(JSON.parse(item)?.noRate);
-                      if (
-                        rate > 0 &&
-                        JSON.parse(item)?.status == teamStatus.active
-                      ) {
+                      const rate = parseFloat(item?.BackPrice1);
+                      if (rate > 0 && item?.GameStatus == "") {
                         handleClick(
                           {
-                            name: JSON.parse(item)?.name,
+                            name: item?.RunnerName,
                             rate: rate,
                             type: "no",
                             stake: 0,
                           },
-                          JSON.parse(item)
+                          item
                         );
                       }
                     }}
-                    active={JSON.parse(item)?.status != teamStatus.active}
+                    active={item?.GameStatus != ""}
                   />
                   <BackLayBox
                     customClass="bet-place-box"
                     bgColor="blue3"
-                    rate={JSON.parse(item)?.yesRate}
-                    percent={JSON.parse(item)?.yesPercent}
+                    rate={item?.LayPrice1}
+                    percent={item?.LaySize1}
                     onClick={() => {
-                      const rate = parseInt(JSON.parse(item)?.yesRate);
-                      if (
-                        rate > 0 &&
-                        JSON.parse(item)?.status == teamStatus.active
-                      ) {
+                      const rate = parseFloat(item?.LayPrice1);
+                      if (rate > 0 && item?.GameStatus == "") {
                         handleClick(
                           {
-                            name: JSON.parse(item)?.name,
+                            name: item?.RunnerName,
                             rate: rate,
                             type: "yes",
                             stake: 0,
                           },
-                          JSON.parse(item)
+                          item
                         );
                       }
                     }}
-                    active={JSON.parse(item)?.status != teamStatus.active}
+                    active={item?.GameStatus != ""}
                   />
                   {!isMobile && (
                     <div className="minMax">
                       <div className="minMaxBox d-flex flex-column justify-content-end text-end px-2 title-12">
-                        <span className="">Min:{JSON.parse(item)?.minBet}</span>
-                        <span>Max:{JSON.parse(item)?.maxBet}</span>
+                        <span className="">Min:{item?.minBet}</span>
+                        <span>Max:{item?.maxBet}</span>
                       </div>
                     </div>
                   )}
@@ -148,4 +138,4 @@ function SessionMarketTable({
   );
 }
 
-export default SessionMarketTable;
+export default ApiSessionMarketTable;

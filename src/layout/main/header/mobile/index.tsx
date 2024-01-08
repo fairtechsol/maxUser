@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Dropdown, Form, Navbar } from "react-bootstrap";
 import { FaHome, FaLandmark } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import LogoSection from "../../../../components/commonComponent/logoSection";
+import { RootState } from "../../../../store/store";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
 import SearchBox from "./searchBox";
@@ -28,6 +30,10 @@ const MobileHeader = () => {
 
   const navigate = useNavigate();
 
+  const { getProfile,marqueeNotification } = useSelector(
+    (state: RootState) => state.user.profile
+  );
+
   return (
     <>
       <div className="float-start d-flex align-items-center gap-2">
@@ -42,12 +48,12 @@ const MobileHeader = () => {
         {show?.balance && (
           <div className="d-flex gap-1 align-items-center justify-content-end w-100">
             <FaLandmark className="text-white title-18" />
-            <b>0.00</b>
+            <b>{getProfile?.userBal?.currentBalance}</b>
           </div>
         )}
         <div className="d-flex gap-1">
           {show?.exposure && (
-            <u onClick={handleClickExposureModalOpen}>Exp:0</u>
+            <u onClick={handleClickExposureModalOpen}>Exp:{getProfile?.userBal?.exposure}</u>
           )}
           <ExposureModal
             show={openExposure}
@@ -59,7 +65,7 @@ const MobileHeader = () => {
                 id="dropdown-custom-components"
                 className="p-0 text-decoration-underline"
               >
-                Custom toggle
+                {getProfile?.userName}
               </Dropdown.Toggle>
 
               <Dropdown.Menu
@@ -101,7 +107,7 @@ const MobileHeader = () => {
       <SearchBox />
       <div className="marquee-container text-white">
         <b className="marquee-content title-10">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        {marqueeNotification?.value}
         </b>
       </div>
     </>

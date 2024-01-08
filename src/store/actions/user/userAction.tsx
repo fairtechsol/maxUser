@@ -30,46 +30,23 @@ export const getProfile = createAsyncThunk<any>("/user/profile", async () => {
   }
 });
 
-// export const userChangePassword = createAsyncThunk<any, any>(
-//   "user/changePassword",
-//   async (requestData) => {
-//     try {
-//       const resp = await service.post("/user/changePassword", requestData);
-//       if (resp) {
-//         return resp?.data;
-//       }
-//     } catch (error: any) {
-//       const err = error as AxiosError;
-//       throw err;
-//     }
-//   }
-// );
-
-export const setCreditRefference = createAsyncThunk<any, any>(
-  "user/update/creditreferrence",
-  async (requestData) => {
-    try {
-      const resp = await service.post(
-        `${requestData.url}`,
-        requestData.payload
-      );
-      if (resp) {
-        return resp?.data;
-      }
-    } catch (error: any) {
-      const err = error as AxiosError;
-      throw err;
-    }
+export const updateBalance = createAsyncThunk<any, any>(
+  "/user/balance",
+  async (balance) => {
+    return balance;
   }
 );
 
-export const setExposureLimit = createAsyncThunk<any, any>(
-  "user/update/exposurelimit",
-  async (requestData) => {
+export const getAccountStatement = createAsyncThunk<any, any>(
+  "user/account/statement",
+  async ({ userId, page, limit, searchBy, keyword, filter }) => {
     try {
-      const resp = await service.post(
-        `${requestData.url}`,
-        requestData.payload
+      const resp = await service.get(
+        `${ApiConstants.USER.ACCOUNT_STATEMENT}${userId}?page=${
+          page || 1
+        }&limit=${limit || 15}&searchBy=${searchBy}&keyword=${
+          keyword || ""
+        }${filter}`
       );
       if (resp) {
         return resp?.data;

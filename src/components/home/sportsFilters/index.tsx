@@ -3,7 +3,7 @@ import CommonTabs from "../../commonComponent/tabs";
 import MobileMatchList from "../matchList/mobile";
 import SportsFilterJson from "./sportsFilters.json";
 
-const SportsFilters = () => {
+const SportsFilters = ({ setMatchType }: any) => {
   return (
     <div className="m-0 p-0 w-100 ">
       {" "}
@@ -11,6 +11,7 @@ const SportsFilters = () => {
         customClass="overflow-x-auto overflow-y-hidden no-wrap"
         defaultActive="inPlay"
         fill={true}
+        callback={setMatchType}
       >
         {SportsFilterJson()?.map((item) => {
           return (
@@ -20,7 +21,7 @@ const SportsFilters = () => {
               tabClassName="m-tab"
               title={<div>{item?.name}</div>}
             >
-              {item?.id === "inPlay" ? <MobileMatchList/> : ""}
+              {item?.id === "inPlay" ? <MobileMatchList /> : ""}
             </Tab>
           );
         })}

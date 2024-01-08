@@ -25,8 +25,8 @@ interface CustomTableProps {
   enablePdfExcel?: boolean;
   tHeadTheme?: string;
   tBodyTheme?: string;
-  bordered?:boolean;
-  striped?:boolean;
+  bordered?: boolean;
+  striped?: boolean;
 }
 
 const CustomTable: React.FC<CustomTableProps> = ({
@@ -70,9 +70,10 @@ const CustomTable: React.FC<CustomTableProps> = ({
     setTableConfig({
       page: currentPage,
       sort: sortConfig,
+      rowPerPage: rowPerPage,
     });
     // alert(tHeadTheme);
-  }, [currentPage, sortConfig]);
+  }, [currentPage, sortConfig, rowPerPage]);
   return (
     <div className={`${customClass ?? ""} customTable`}>
       <TableHeader
@@ -88,8 +89,13 @@ const CustomTable: React.FC<CustomTableProps> = ({
         <thead>
           <tr>
             {/* Table header with sorting icons */}
-            {columns.map((column) => (
-              <th className={`${tHeadTheme} text-center ${isMobile&&"bg-secondary title-12 f800 p-1"}`} key={column.id}>
+            {columns.map((column, index) => (
+              <th
+                className={`${tHeadTheme} text-center ${
+                  isMobile && "bg-secondary title-12 f800 p-1"
+                }`}
+                key={index}
+              >
                 {column.label}
                 {/* Display sorting icons based on the sorting configuration */}
                 {isSort && (
@@ -108,8 +114,13 @@ const CustomTable: React.FC<CustomTableProps> = ({
           {/* Table body with sorted data */}
           {itemCount === 0 ? (
             <tr className="text-center">
-              <td className={`${tBodyTheme??""} ${isMobile&& "bg-white"}`} colSpan={columns?.length}>
-                <p className={`${isMobile?"title-12 f500":"title-14"}`}>No data available in table</p>
+              <td
+                className={`${tBodyTheme ?? ""} ${isMobile && "bg-white"}`}
+                colSpan={columns?.length}
+              >
+                <p className={`${isMobile ? "title-12 f500" : "title-14"}`}>
+                  No data available in table
+                </p>
               </td>
             </tr>
           ) : (

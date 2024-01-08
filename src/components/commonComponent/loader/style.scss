@@ -16,7 +16,11 @@
     height: 100vh;
     width: 100%;
     background-image: linear-gradient($primary, $secondary);
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
+}
+
+.loader-main {
+    z-index: 99999999999;
 }

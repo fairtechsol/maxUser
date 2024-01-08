@@ -10,6 +10,7 @@ import SessionMarketTable from "./sessionMarket";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import Loader from "../../commonComponent/loader";
+import ApiSessionMarketTable from "./apiSessionMarket";
 interface BetTableProps {
   title: string;
   type: string;
@@ -62,12 +63,10 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           backLayCount={backLayCount}
           matchDetails={matchDetails}
         />
+      ) : type === MatchType.API_SESSION_MARKET ? (
+        <ApiSessionMarketTable data={data} title={title} />
       ) : (
-        <SessionMarketTable
-          data={data}
-          title={title}
-          matchDetails={matchDetails}
-        />
+        <SessionMarketTable data={data} title={title} />
       )}
     </>
   );
