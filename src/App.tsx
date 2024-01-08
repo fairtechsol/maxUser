@@ -7,6 +7,7 @@ import routes from "./routes";
 import "./theme/theme.css";
 
 function App() {
+  if (process.env.NODE_ENV === "production") console.log = () => {};
   return (
     <>
       <RouterProvider router={routes()} />

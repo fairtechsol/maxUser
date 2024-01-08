@@ -15,8 +15,13 @@ import "./style.scss";
 interface ApiSessionMarketTableProps {
   data: any;
   title?: any;
+  matchDetails: any;
 }
-function ApiSessionMarketTable({ data, title }: ApiSessionMarketTableProps) {
+function ApiSessionMarketTable({
+  data,
+  title,
+  matchDetails,
+}: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
   const handleClick = (team: any, data: any) => {
     dispatch(
@@ -84,6 +89,7 @@ function ApiSessionMarketTable({ data, title }: ApiSessionMarketTableProps) {
                     percent={item?.BackSize1}
                     onClick={() => {
                       const rate = parseFloat(item?.BackPrice1);
+                      const percent = parseInt(item?.BackSize1);
                       if (rate > 0 && item?.GameStatus == "") {
                         handleClick(
                           {
@@ -91,6 +97,10 @@ function ApiSessionMarketTable({ data, title }: ApiSessionMarketTableProps) {
                             rate: rate,
                             type: "no",
                             stake: 0,
+                            betId: item?.id,
+                            percent: percent,
+                            eventType: matchDetails?.matchType,
+                            matchId: matchDetails?.id,
                           },
                           item
                         );
@@ -105,6 +115,7 @@ function ApiSessionMarketTable({ data, title }: ApiSessionMarketTableProps) {
                     percent={item?.LaySize1}
                     onClick={() => {
                       const rate = parseFloat(item?.LayPrice1);
+                      const percent = parseFloat(item?.LaySize1);
                       if (rate > 0 && item?.GameStatus == "") {
                         handleClick(
                           {
@@ -112,6 +123,10 @@ function ApiSessionMarketTable({ data, title }: ApiSessionMarketTableProps) {
                             rate: rate,
                             type: "yes",
                             stake: 0,
+                            betId: item?.id,
+                            percent: percent,
+                            eventType: matchDetails?.matchType,
+                            matchId: matchDetails?.id,
                           },
                           item
                         );

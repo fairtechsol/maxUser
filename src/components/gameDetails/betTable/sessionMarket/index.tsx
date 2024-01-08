@@ -16,10 +16,12 @@ import "./style.scss";
 interface SessionMarketTableProps {
   data: any;
   title?: any;
+  matchDetails: any;
 }
 function SessionMarketTable({
   data,
-  title
+  title,
+  matchDetails,
 }: SessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
   const handleClick = (team: any, data: any) => {
@@ -30,6 +32,7 @@ function SessionMarketTable({
       })
     );
   };
+
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
       <Table className="mb-0">
@@ -88,16 +91,22 @@ function SessionMarketTable({
                     percent={JSON.parse(item)?.noPercent}
                     onClick={() => {
                       const rate = parseInt(JSON.parse(item)?.noRate);
+                      const percent = parseInt(JSON.parse(item)?.noPercent);
+
                       if (
                         rate > 0 &&
                         JSON.parse(item)?.status == teamStatus.active
                       ) {
                         handleClick(
                           {
+                            betId: JSON.parse(item)?.id,
                             name: JSON.parse(item)?.name,
                             rate: rate,
                             type: "no",
                             stake: 0,
+                            percent: percent,
+                            eventType: matchDetails?.matchType,
+                            matchId: matchDetails?.id,
                           },
                           JSON.parse(item)
                         );
@@ -112,16 +121,21 @@ function SessionMarketTable({
                     percent={JSON.parse(item)?.yesPercent}
                     onClick={() => {
                       const rate = parseInt(JSON.parse(item)?.yesRate);
+                      const percent = parseInt(JSON.parse(item)?.yesPercent);
                       if (
                         rate > 0 &&
                         JSON.parse(item)?.status == teamStatus.active
                       ) {
                         handleClick(
                           {
+                            betId: JSON.parse(item)?.id,
                             name: JSON.parse(item)?.name,
                             rate: rate,
                             type: "yes",
                             stake: 0,
+                            percent: percent,
+                            eventType: matchDetails.matchType,
+                            matchId: matchDetails?.id,
                           },
                           JSON.parse(item)
                         );
