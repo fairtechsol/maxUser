@@ -1,4 +1,4 @@
-import { expertSocketService } from "../socketManaget";
+import { expertSocketService } from "../socketManager";
 
 export const onTabSwitch = (getMatchList: any, roleName: any) => {
   if (document.visibilityState === "hidden") {

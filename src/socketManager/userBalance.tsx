@@ -4,4 +4,7 @@ export const userBalanceSocketService = {
   updateUserBalance: (callback: any) => {
     socket.on("updateUserBalance", callback);
   },
+  userSessionBetPlaced: (callback: any) => {
+    socket.on("userSessionBetPlaced", callback);
+  },
 };

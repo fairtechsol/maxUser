@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { expertSocketService } from "../../../../socketManaget";
+import { expertSocketService } from "../../../../socketManager";
 import { RootState } from "../../../../store/store";
 import { GAME_TYPE } from "../../../../utils/enum";
 import { onTabSwitch } from "../../../../utils/tabSwitch";

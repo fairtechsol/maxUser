@@ -15,7 +15,7 @@ import ExposureModal from "../modalExposure";
 import SearchResult from "../searchResult";
 import CustomDropDown from "./dropdown/customDropdown";
 import "./style.scss";
-import SearchInput from "../../../../components/commonComponent/mainSearch";
+// import SearchInput from "../../../../components/commonComponent/mainSearch";
 import { SearchListReset } from "../../../../store/actions/match/matchListAction";
 import CustomModal from "../../../../components/commonComponent/modal";
 import Drules from "../../../../components/rules/desktop";
@@ -33,27 +33,9 @@ const [show, setShow] = useState(false);
     (state: RootState) => state.match.matchList
   );
 
-  const { getMatchListBySearch } = useSelector(
-    (state: RootState) => state.match.matchList
-  );
-
-  // const handleInputChange = debounce(async (event: any) => {
-  //   const value = event.target.value;
-  //   if (onChange === "function") {
-  //     onChange(value);
-  //   }
-  //   try {
-  //     dispatch(
-  //       getUserList({
-  //         userName: value,
-  //         currentPage: 1,
-  //         url: { endpoint: endpoint },
-  //       })
-  //     );
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }, 500);
+  // const { getMatchListBySearch } = useSelector(
+  //   (state: RootState) => state.match.matchList
+  // );
 
   const handleClickOpen = () => {
     if(open === false){
