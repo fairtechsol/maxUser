@@ -2,6 +2,7 @@ import { Table } from "react-bootstrap";
 
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
+import { useState } from "react";
 const placeBetHeader = [
   {
     id: "matchedBet",
@@ -18,8 +19,10 @@ const placeBetHeader = [
 ];
 
 const MyBet = () => {
+  const [show, setShow] = useState(false);
   return (
-   <RightPanelContainer title={"My Bet"}>
+    <>
+      <RightPanelContainer title={"My Bet"}>
         <Table className="w-full">
           <thead>
             <tr className="bg-darkGrey">
@@ -30,9 +33,15 @@ const MyBet = () => {
               ))}
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tbody>
         </Table>
       </RightPanelContainer>
+      
+    </>
   );
 };
 
