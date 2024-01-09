@@ -1,6 +1,7 @@
 import { Table } from "react-bootstrap";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 

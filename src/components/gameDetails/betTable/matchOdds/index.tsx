@@ -9,6 +9,8 @@ import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import "../style.scss";
 import "./style.scss";
+import CustomModal from "../../../commonComponent/modal";
+import { useState } from "react";
 
 interface MatchOddsProps {
   minMax?: any;
@@ -35,7 +37,8 @@ function MatchOdds({
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  
+  const [show, setShow] = useState(false);
+
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -76,6 +79,7 @@ function MatchOdds({
                         className={`backLayRunner-country title-12  ${
                           isMobile ? "f900" : "f600"
                         } `}
+                        onClick={()=> setShow(true)}
                       >
                         {matchDetails?.[`team${matchs}`]}
                       </span>
@@ -240,6 +244,33 @@ function MatchOdds({
             })}
         </tbody>
       </Table>
+
+      <CustomModal
+        customClass="runAmountBetModal" 
+        title={"Run Position"}
+        show={show}
+        setShow={setShow}
+
+      >
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Run </th>
+              <th className="text-center">Amount</th>
+            </tr>
+          </thead>
+          <tbody className="text-center">
+            <tr>
+              <td className="bg-blue1">47</td>
+              <td className="bg-red1">100.00</td>
+            </tr>
+            <tr>
+              <td className="bg-blue1">48</td>
+              <td className="bg-red1">-100.00</td>
+            </tr>
+          </tbody>
+        </Table>
+      </CustomModal>
     </div>
   );
 }
