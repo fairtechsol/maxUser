@@ -81,22 +81,23 @@ const MobileGameDetail = () => {
                       </Col>
                     )}
 
-                    {matchDetails?.quickBookmaker?.map(
-                      (item: any, index: number) => (
-                        <div key={index} className="p-0">
-                          {item?.isActive && (
-                            <Col className="g-0" md={12} key={index}>
-                              <BetTable
-                                title={item?.name}
-                                type={MatchType.BOOKMAKER}
-                                data={item}
-                                backLayCount={2}
-                              />
-                            </Col>
-                          )}
-                        </div>
-                      )
-                    )}
+                    {matchDetails?.quickBookmaker.length > 0 &&
+                      matchDetails?.quickBookmaker?.map(
+                        (item: any, index: number) => (
+                          <div key={index} className="p-0">
+                            {item?.isActive && (
+                              <Col className="g-0" md={12} key={index}>
+                                <BetTable
+                                  title={item?.name}
+                                  type={MatchType.BOOKMAKER}
+                                  data={item}
+                                  backLayCount={2}
+                                />
+                              </Col>
+                            )}
+                          </div>
+                        )
+                      )}
                     {matchDetails?.apiTideMatch && (
                       <Col className="g-0" md={12} key={index}>
                         <BetTable
@@ -118,6 +119,15 @@ const MobileGameDetail = () => {
                           />
                         </Col>
                       )}
+                    {matchDetails?.marketCompleteMatch && (
+                      <Col className="g-0" md={12} key={index} >
+                        <BetTable
+                          title={matchDetails?.marketCompleteMatch?.name}
+                          type={MatchType.MATCH_ODDS}
+                          data={matchDetails?.marketCompleteMatch}
+                        />
+                      </Col>
+                    )}
 
                     <Col className="g-0" md={12}>
                       <CommonTabs

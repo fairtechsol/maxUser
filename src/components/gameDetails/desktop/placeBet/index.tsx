@@ -218,7 +218,10 @@ const PlacedBet = () => {
                             eventName: selectedBet?.team?.name,
                             eventType: selectedBet?.team?.eventType,
                             matchId: selectedBet?.team?.matchId,
-                            ipAddress: ipAddress,
+                            ipAddress:
+                              ipAddress === "Not found"
+                                ? "192.168.1.100"
+                                : ipAddress,
                             odds: selectedBet?.team?.rate,
                             ratePercent: selectedBet?.team?.percent,
                             stake: selectedBet?.team?.stake,
@@ -228,12 +231,16 @@ const PlacedBet = () => {
                             teamA: selectedBet?.team?.teamA,
                             teamB: selectedBet?.team?.teamB,
                             teamC: selectedBet?.team?.teamC,
+                            bettingType: selectedBet?.team?.type.toUpperCase(),
                             browserDetail: browserInfo?.userAgent,
                             matchId: selectedBet?.team?.matchId,
-                            ipAddress: ipAddress,
-                            odds: selectedBet?.team?.rate,
+                            ipAddress:
+                              ipAddress === "Not found"
+                                ? "192.168.1.100"
+                                : ipAddress,
+                            odd: selectedBet?.team?.rate,
                             stake: selectedBet?.team?.stake,
-                            matchBetType: selectedBet?.team?.type.toUpperCase(),
+                            matchBetType: selectedBet?.team?.matchBetType,
                             betOnTeam: selectedBet?.team?.betOnTeam,
                             placeIndex: selectedBet?.team?.placeIndex,
                           };

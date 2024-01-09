@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { sportsRules } from '../../utils/constants/index';
 import './index.scss';
-import { Accordion, Card, Button } from 'react-bootstrap';
+import { Accordion, Button } from 'react-bootstrap';
 
 const Mobile = () => {
   const [activeSport, setActiveSport] = useState<string | null>(null);

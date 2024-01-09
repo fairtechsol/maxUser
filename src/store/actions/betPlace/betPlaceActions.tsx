@@ -1,6 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import service from "../../../service";
 import { AxiosError } from "axios";
+import { ApiConstants } from "../../../utils/constants";
 
 export const placeBet = createAsyncThunk<any, any>(
   "/placeBet",
@@ -16,3 +17,26 @@ export const placeBet = createAsyncThunk<any, any>(
     }
   }
 );
+
+export const getPlacedBets = createAsyncThunk<any, any>("/bet", async (id) => {
+  try {
+    const resp = await service.get(
+      `${ApiConstants.BET.GETPLACEDBETS}?status=PENDING&betPlaced.matchId=${id}`
+    );
+    if (resp) {
+      return resp?.data?.rows;
+    }
+  } catch (error: any) {
+    const err = error as AxiosError;
+    throw err;
+  }
+});
+
+export const updateBetsPlaced = createAsyncThunk<any, any>(
+  "/placed/bets",
+  async (placedBets) => {
+    return placedBets;
+  }
+);
+
+export const betsSuccessReset = createAction("success/reset");

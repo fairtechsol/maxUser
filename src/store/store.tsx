@@ -3,6 +3,7 @@ import { authReducer } from "./reducers/authReducer";
 import { matchReducer } from "./reducers/match";
 import { userReducer } from "./reducers/user";
 import { currentBetListReducer } from "./reducers/match/currentBetSlice";
+import { placedBetReducer } from "./reducers/betPlace";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     user: userReducer,
     match: matchReducer,
     currentBetList: currentBetListReducer,
+    bets: placedBetReducer,
   },
 });
 
