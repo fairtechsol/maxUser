@@ -158,8 +158,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                   eventName: selectedBet?.team?.name,
                   eventType: selectedBet?.team?.eventType,
                   matchId: selectedBet?.team?.matchId,
-                  ipAddress: ipAddress,
-                  odds: selectedBet?.team?.rate,
+                  ipAddress: ipAddress ? ipAddress : "164.192.1.2",
+                  odd: selectedBet?.team?.rate,
                   ratePercent: selectedBet?.team?.percent,
                   stake: selectedBet?.team?.stake,
                 };

@@ -1,4 +1,4 @@
-import { TextField, useMediaQuery, useTheme } from "@mui/material";
+// import { TextField, useMediaQuery, useTheme } from "@mui/material";
 
 
 // import { SEARCH, Search } from "../../assets";
@@ -11,16 +11,16 @@ import { useState } from "react";
 
 const SearchInput = (props: any) => {
   const {
-    placeholder,
-    inputContainerStyle,
-    showTextInput,
-    header,
-    setShowSearch,
-    show,
-    width,
-    searchContainerStyle,
+    // placeholder,
+    // inputContainerStyle,
+    // showTextInput,
+    // header,
+    // setShowSearch,
+    // show,
+    // width,
+    // searchContainerStyle,
     onChange,
-    endpoint,
+    // endpoint,
   } = props;
 
   const dispatch: AppDispatch = useDispatch();

@@ -183,7 +183,8 @@ function BookmakerTable({
                                   betId: data?.id,
                                   eventType: matchDetails?.matchType,
                                   matchId: matchDetails?.id,
-                                  placeIndex: index,
+                                  placeIndex: 2,
+                                  matchBetType: data?.type,
                                 },
                                 data
                               );
@@ -228,6 +229,7 @@ function BookmakerTable({
                                   eventType: matchDetails?.matchType,
                                   matchId: matchDetails?.id,
                                   placeIndex: 2 - index,
+                                  matchBetType: data?.type,
                                 },
                                 data
                               );

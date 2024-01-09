@@ -6,20 +6,20 @@ import { Row, Col, Nav, Tab } from 'react-bootstrap';
 
 const Desktop = () => {
     const [activeSport, setActiveSport] = useState<string>("Motor Sport");
-    const [defaultSportRules, setDefaultSportRules] = useState<any>(null);
+    // const [defaultSportRules, setDefaultSportRules] = useState<any>(null);
   
     useEffect(() => {
       if (sportsRules.length > 0) {
         const firstSport = sportsRules[0];
         setActiveSport(firstSport.sportName);
-        setDefaultSportRules(firstSport);
+        // setDefaultSportRules(firstSport);
       }
     }, []);
   
     const handleSelect = (sportName: string  | null) => {
-      const selectedSport = sportsRules.find((sport) => sport.sportName === sportName);
+      // const selectedSport = sportsRules.find((sport) => sport.sportName === sportName);
       setActiveSport(sportName as string);
-      setDefaultSportRules(selectedSport);
+      // setDefaultSportRules(selectedSport);
     };
   
     return (

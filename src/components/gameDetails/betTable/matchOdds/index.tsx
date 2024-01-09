@@ -35,7 +35,7 @@ function MatchOdds({
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-
+  
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -146,11 +146,20 @@ function MatchOdds({
                               ) {
                                 handleClick(
                                   {
-                                    name: matchDetails?.[`team${matchs}`],
+                                    betOnTeam: matchDetails?.[`team${matchs}`],
                                     rate: rate,
                                     type: "back",
                                     stake: 0,
-                                    teamType: matchs,
+                                    teamA: matchDetails?.teamA,
+                                    teamB: matchDetails?.teamB,
+                                    teamC: matchDetails?.teamC
+                                      ? matchDetails?.teamC
+                                      : "",
+                                    betId: data?.id,
+                                    eventType: matchDetails?.matchType,
+                                    matchId: matchDetails?.id,
+                                    placeIndex: index,
+                                    matchBetType: data?.type,
                                   },
                                   data
                                 );
@@ -195,11 +204,20 @@ function MatchOdds({
                               ) {
                                 handleClick(
                                   {
-                                    name: matchDetails?.[`team${matchs}`],
+                                    betOnTeam: matchDetails?.[`team${matchs}`],
                                     rate: rate,
                                     type: "lay",
                                     stake: 0,
-                                    teamType: matchs,
+                                    teamA: matchDetails?.teamA,
+                                    teamB: matchDetails?.teamB,
+                                    teamC: matchDetails?.teamC
+                                      ? matchDetails?.teamC
+                                      : "",
+                                    betId: data?.id,
+                                    eventType: matchDetails?.matchType,
+                                    matchId: matchDetails?.id,
+                                    placeIndex: index,
+                                    matchBetType: data?.type,
                                   },
                                   data
                                 );

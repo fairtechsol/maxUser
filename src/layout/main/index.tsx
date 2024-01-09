@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
-import { socketService } from "../../socketManaget";
+import { socketService } from "../../socketManager";
 import {
   getProfile,
   marqueeNotification,
@@ -34,6 +34,8 @@ function MainLayout() {
       socketService.userBalance.updateUserBalance((event: any) => {
         dispatch(updateBalance(event));
       });
+    } else {
+      socketService.disconnect();
     }
     return () => {
       socketService.disconnect();

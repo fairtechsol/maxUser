@@ -80,12 +80,12 @@ const matchListSlice = createSlice({
         state.matchDetails = {
           ...state.matchDetails,
           apiSession: action.payload?.apiSession,
-          apiTiedMatch: action.payload?.apiTiedMatch,
+          apiTideMatch: action.payload?.apiTiedMatch,
           bookmaker: action.payload?.bookmaker,
           manualTideMatch: action.payload?.manualTideMatch,
           marketCompleteMatch: action.payload?.marketCompleteMatch,
           matchOdd: action.payload?.matchOdd,
-          quickbookmaker: action.payload?.quickbookmaker,
+          quickBookmaker: action.payload?.quickbookmaker,
           sessionBettings: action.payload?.sessionBettings,
         };
       })

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import MatchList from "../../components/home";
-import { expertSocketService } from "../../socketManaget";
+import { expertSocketService } from "../../socketManager";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../store/store";
 

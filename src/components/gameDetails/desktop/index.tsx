@@ -71,19 +71,22 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
 
-              {matchDetails?.quickBookmaker?.map((item: any, index: number) => (
-                <div key={index}>
-                  {item?.isActive && (
-                    <Col md={12}>
-                      <BetTable
-                        title={item?.name}
-                        type={MatchType.BOOKMAKER}
-                        data={item}
-                      />
-                    </Col>
-                  )}
-                </div>
-              ))}
+              {matchDetails?.quickBookmaker.length > 0 &&
+                matchDetails?.quickBookmaker?.map(
+                  (item: any, index: number) => (
+                    <div key={index}>
+                      {item?.isActive && (
+                        <Col md={12}>
+                          <BetTable
+                            title={item?.name}
+                            type={MatchType.BOOKMAKER}
+                            data={item}
+                          />
+                        </Col>
+                      )}
+                    </div>
+                  )
+                )}
               {matchDetails?.apiTideMatch && (
                 <Col md={12}>
                   <BetTable
@@ -103,6 +106,15 @@ const DesktopGameDetail = () => {
                     />
                   </Col>
                 )}
+              {matchDetails?.marketCompleteMatch && (
+                <Col md={12}>
+                  <BetTable
+                    title={matchDetails?.marketCompleteMatch?.name}
+                    type={MatchType.MATCH_ODDS}
+                    data={matchDetails?.marketCompleteMatch}
+                  />
+                </Col>
+              )}
 
               {matchDetails?.manualSessionActive && (
                 <Col md={6}>

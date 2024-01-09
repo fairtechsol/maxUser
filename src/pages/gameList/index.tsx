@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/commonComponent/loader";
 import DesktopMatchList from "../../components/home/matchList/desktop";
 import SportsFilters from "../../components/home/sportsFilters";
-import { expertSocketService } from "../../socketManaget";
+import { expertSocketService } from "../../socketManager";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
