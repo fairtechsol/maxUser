@@ -247,11 +247,13 @@ const PlacedBet = () => {
                           dispatch(
                             placeBet({
                               url:
-                                selectedBet?.data?.type === "session"
+                                selectedBet?.data?.type === "session" ||
+                                selectedBet?.data?.SelectionId
                                   ? ApiConstants.BET.PLACEBETSESSION
                                   : ApiConstants.BET.PLACEBETMATCHBETTING,
                               data:
-                                selectedBet?.data?.type === "session"
+                                selectedBet?.data?.type === "session" ||
+                                selectedBet?.data?.SelectionId
                                   ? JSON.stringify(payloadForSession)
                                   : JSON.stringify(payloadForBettings),
                             })
