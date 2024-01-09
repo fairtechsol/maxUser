@@ -36,6 +36,7 @@ function BookmakerTable({
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
+
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -170,11 +171,19 @@ function BookmakerTable({
                             ) {
                               handleClick(
                                 {
-                                  name: matchDetails?.[`team${item}`],
+                                  betOnTeam: matchDetails?.[`team${item}`],
                                   rate: rate,
                                   type: "back",
                                   stake: 0,
-                                  teamType: item,
+                                  teamA: matchDetails?.teamA,
+                                  teamB: matchDetails?.teamB,
+                                  teamC: matchDetails?.teamC
+                                    ? matchDetails?.teamC
+                                    : "",
+                                  betId: data?.id,
+                                  eventType: matchDetails?.matchType,
+                                  matchId: matchDetails?.id,
+                                  placeIndex: index,
                                 },
                                 data
                               );
@@ -206,11 +215,19 @@ function BookmakerTable({
                             ) {
                               handleClick(
                                 {
-                                  name: matchDetails?.[`team${item}`],
+                                  betOnTeam: matchDetails?.[`team${item}`],
                                   rate: rate,
                                   type: "lay",
                                   stake: 0,
-                                  teamType: item,
+                                  teamA: matchDetails?.teamA,
+                                  teamB: matchDetails?.teamB,
+                                  teamC: matchDetails?.teamC
+                                    ? matchDetails?.teamC
+                                    : "",
+                                  betId: data?.id,
+                                  eventType: matchDetails?.matchType,
+                                  matchId: matchDetails?.id,
+                                  placeIndex: 2 - index,
                                 },
                                 data
                               );

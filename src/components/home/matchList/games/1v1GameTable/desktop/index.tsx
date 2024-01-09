@@ -75,7 +75,7 @@ const MatchListRow = ({ item }: any) => {
             to={`/game-detail/${item?.id}`}
           >
             <div className="one-v-one-title title-14">
-              {item?.competitionName}
+              {item?.title}
             </div>
           </Link>
           <div className="d-flex align-items-center gap-2">

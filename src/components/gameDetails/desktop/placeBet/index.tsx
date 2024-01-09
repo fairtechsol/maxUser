@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { matchBettingType } from "../../../../utils/constants";
+import { ApiConstants, matchBettingType } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
+import axios from "axios";
+import { placeBet } from "../../../../store/actions/betPlace/betPlaceActions";
 
 const placeBetHeader = [
   {},
@@ -33,6 +35,8 @@ const placeBetHeader = [
 const PlacedBet = () => {
   const [stake, setStake] = useState<any>(0);
   const [valueLabel, setValueLabel] = useState<any>([]);
+  const [browserInfo, setBrowserInfo] = useState<any>(null);
+  const [ipAddress, setIpAddress] = useState(null);
   const { buttonValues } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -67,6 +71,24 @@ const PlacedBet = () => {
   useEffect(() => {
     setStake(selectedBet?.team?.stake);
   }, [selectedBet]);
+
+  useEffect(() => {
+    // Get browser information
+    const { userAgent, appName, appVersion, platform } = navigator;
+    const info: any = { userAgent, appName, appVersion, platform };
+    setBrowserInfo(info);
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get("https://geolocation-db.com/json/");
+        if (data) {
+          setIpAddress(data?.IPv4);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <RightPanelContainer title="Place Bet">
@@ -118,7 +140,7 @@ const PlacedBet = () => {
                     dispatch(
                       selectedBetAction({
                         ...selectedBet,
-                        team: { ...selectedBet?.team, stake: e.target.value },
+                        team: { ...selectedBet?.team, stake: +e.target.value },
                       })
                     );
                   }}
@@ -188,6 +210,46 @@ const PlacedBet = () => {
                       <CustomButton
                         className=" bg-success border-0 py-2"
                         size="sm"
+                        onClick={() => {
+                          let payloadForSession: any = {
+                            betId: selectedBet?.team?.betId,
+                            betType: selectedBet?.team?.type.toUpperCase(),
+                            browserDetail: browserInfo?.userAgent,
+                            eventName: selectedBet?.team?.name,
+                            eventType: selectedBet?.team?.eventType,
+                            matchId: selectedBet?.team?.matchId,
+                            ipAddress: ipAddress,
+                            odds: selectedBet?.team?.rate,
+                            ratePercent: selectedBet?.team?.percent,
+                            stake: selectedBet?.team?.stake,
+                          };
+                          let payloadForBettings: any = {
+                            betId: selectedBet?.team?.betId,
+                            teamA: selectedBet?.team?.teamA,
+                            teamB: selectedBet?.team?.teamB,
+                            teamC: selectedBet?.team?.teamC,
+                            browserDetail: browserInfo?.userAgent,
+                            matchId: selectedBet?.team?.matchId,
+                            ipAddress: ipAddress,
+                            odds: selectedBet?.team?.rate,
+                            stake: selectedBet?.team?.stake,
+                            matchBetType: selectedBet?.team?.type.toUpperCase(),
+                            betOnTeam: selectedBet?.team?.betOnTeam,
+                            placeIndex: selectedBet?.team?.placeIndex,
+                          };
+                          dispatch(
+                            placeBet({
+                              url:
+                                selectedBet?.data?.type === "session"
+                                  ? ApiConstants.BET.PLACEBETSESSION
+                                  : ApiConstants.BET.PLACEBETMATCHBETTING,
+                              data:
+                                selectedBet?.data?.type === "session"
+                                  ? JSON.stringify(payloadForSession)
+                                  : JSON.stringify(payloadForBettings),
+                            })
+                          );
+                        }}
                       >
                         Submit
                       </CustomButton>

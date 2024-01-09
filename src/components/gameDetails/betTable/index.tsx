@@ -64,9 +64,17 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           matchDetails={matchDetails}
         />
       ) : type === MatchType.API_SESSION_MARKET ? (
-        <ApiSessionMarketTable data={data} title={title} />
+        <ApiSessionMarketTable
+          data={data}
+          title={title}
+          matchDetails={matchDetails}
+        />
       ) : (
-        <SessionMarketTable data={data} title={title} />
+        <SessionMarketTable
+          data={data}
+          title={title}
+          matchDetails={matchDetails}
+        />
       )}
     </>
   );

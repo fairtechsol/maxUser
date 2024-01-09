@@ -24,18 +24,24 @@ export const getMatchList = createAsyncThunk<any, any>(
   }
 );
 
-export const SearchList = createAsyncThunk<any, any>("/match/searchlist", async (requestData) => {
-  try {
-    const resp = await service.get(`${ApiConstants.MATCH.MATCHLIST}?searchBy=title&keyword=${requestData?.title ? requestData?.title : ""
-      }`);
-    if (resp) {
-      return resp?.data?.matches;
+export const SearchList = createAsyncThunk<any, any>(
+  "/match/searchlist",
+  async (requestData) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.MATCH.MATCHLIST}?searchBy=title&keyword=${
+          requestData?.title ? requestData?.title : ""
+        }`
+      );
+      if (resp) {
+        return resp?.data?.matches;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      throw err;
     }
-  } catch (error: any) {
-    const err = error as AxiosError;
-    throw err;
   }
-});
+);
 
 // export const userChangePassword = createAsyncThunk<any, any>(
 //   "user/changePassword",
@@ -51,7 +57,6 @@ export const SearchList = createAsyncThunk<any, any>("/match/searchlist", async 
 //     }
 //   }
 // );
-
 
 export const matchDetailAction = createAsyncThunk<any, any>(
   "/match/details",
@@ -70,8 +75,6 @@ export const matchDetailAction = createAsyncThunk<any, any>(
   }
 );
 
-
-
 export const setButtonValue = createAsyncThunk<any, any>(
   "/setButtonValues",
   async (requestData) => {
@@ -89,7 +92,6 @@ export const setButtonValue = createAsyncThunk<any, any>(
     }
   }
 );
-
 
 export const SearchListReset = createAction("searchList/reset");
 export const selectedBetAction = createAsyncThunk<any, any>(
@@ -120,8 +122,9 @@ export const betReportList = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.CURRENTBET}?status=${requestData.status}&keyword=${requestData?.keyword || ""}${requestData?.filter || ""}`
-
+        `${ApiConstants.MATCH.CURRENTBET}?status=${
+          requestData.status
+        }&keyword=${requestData?.keyword || ""}${requestData?.filter || ""}`
       );
       if (resp?.data) {
         return resp?.data;
