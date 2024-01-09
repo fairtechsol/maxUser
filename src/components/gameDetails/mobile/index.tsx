@@ -18,6 +18,8 @@ const MobileGameDetail = () => {
     (state: RootState) => state.match.matchList
   );
 
+  const { placedBets } = useSelector((state: RootState) => state.bets);
+
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -34,7 +36,7 @@ const MobileGameDetail = () => {
           },
           {
             id: "matchedBet",
-            name: "Matched Bet(0)",
+            name: `Matched Bet(${placedBets?.length})`,
           },
         ]?.map((item, index) => {
           return (
@@ -120,7 +122,7 @@ const MobileGameDetail = () => {
                         </Col>
                       )}
                     {matchDetails?.marketCompleteMatch && (
-                      <Col className="g-0" md={12} key={index} >
+                      <Col className="g-0" md={12} key={index}>
                         <BetTable
                           title={matchDetails?.marketCompleteMatch?.name}
                           type={MatchType.MATCH_ODDS}
