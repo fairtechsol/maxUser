@@ -57,105 +57,113 @@ function SessionMarketTable({
           </tr>
         </thead>
         <tbody>
-          {data?.map((item: any, index: number) => (
-            // <BetStatusOverlay
-            //   key={index}
-            //   title={JSON.parse(item)?.active}
-            //   active={JSON.parse(item)?.active != teamStatus.active}
-            // >
-            <tr key={index}>
-              <td>
-                <div className="backLayRunner d-flex flex-column px-1">
-                  <div>
-                    <Link
-                      to=""
-                      className="backLayRunner-country session-country title-12"
-                    >
-                      {JSON.parse(item)?.name}
-                    </Link>
-                  </div>
-                  <span className="title-14">{0}</span>
-                </div>
-              </td>
-
-              <td colSpan={isMobile ? 2 : 3}>
-                <BetStatusOverlay
-                  title={JSON.parse(item)?.status}
-                  active={JSON.parse(item)?.status != teamStatus.active}
-                >
-                  <BackLayBox
-                    customClass="bet-place-box"
-                    // overlay={true}
-                    bgColor="red1"
-                    rate={JSON.parse(item)?.noRate}
-                    percent={JSON.parse(item)?.noPercent}
-                    onClick={() => {
-                      const rate = parseInt(JSON.parse(item)?.noRate);
-                      const percent = parseInt(JSON.parse(item)?.noPercent);
-
-                      if (
-                        rate > 0 &&
-                        JSON.parse(item)?.status == teamStatus.active
-                      ) {
-                        handleClick(
-                          {
-                            betId: JSON.parse(item)?.id,
-                            name: JSON.parse(item)?.name,
-                            rate: rate,
-                            type: "no",
-                            stake: 0,
-                            percent: percent,
-                            eventType: matchDetails?.matchType,
-                            matchId: matchDetails?.id,
-                          },
-                          JSON.parse(item)
-                        );
-                      }
-                    }}
-                    active={JSON.parse(item)?.status != teamStatus.active}
-                  />
-                  <BackLayBox
-                    customClass="bet-place-box"
-                    bgColor="blue3"
-                    rate={JSON.parse(item)?.yesRate}
-                    percent={JSON.parse(item)?.yesPercent}
-                    onClick={() => {
-                      const rate = parseInt(JSON.parse(item)?.yesRate);
-                      const percent = parseInt(JSON.parse(item)?.yesPercent);
-                      if (
-                        rate > 0 &&
-                        JSON.parse(item)?.status == teamStatus.active
-                      ) {
-                        handleClick(
-                          {
-                            betId: JSON.parse(item)?.id,
-                            name: JSON.parse(item)?.name,
-                            rate: rate,
-                            type: "yes",
-                            stake: 0,
-                            percent: percent,
-                            eventType: matchDetails.matchType,
-                            matchId: matchDetails?.id,
-                          },
-                          JSON.parse(item)
-                        );
-                      }
-                    }}
-                    active={JSON.parse(item)?.status != teamStatus.active}
-                  />
-                  {!isMobile && (
-                    <div className="minMax">
-                      <div className="minMaxBox d-flex flex-column justify-content-end text-end px-2 title-12">
-                        <span className="">Min:{JSON.parse(item)?.minBet}</span>
-                        <span>Max:{JSON.parse(item)?.maxBet}</span>
+          {data?.map((item: any, index: number) => {
+            if (!JSON.parse(item).selectionId) {
+              return (
+                // <BetStatusOverlay
+                //   key={index}
+                //   title={JSON.parse(item)?.active}
+                //   active={JSON.parse(item)?.active != teamStatus.active}
+                // >
+                <tr key={index}>
+                  <td>
+                    <div className="backLayRunner d-flex flex-column px-1">
+                      <div>
+                        <Link
+                          to=""
+                          className="backLayRunner-country session-country title-12"
+                        >
+                          {JSON.parse(item)?.name}
+                        </Link>
                       </div>
+                      <span className="title-14">{0}</span>
                     </div>
-                  )}
-                </BetStatusOverlay>
-              </td>
-            </tr>
-            // </BetStatusOverlay>
-          ))}
+                  </td>
+
+                  <td colSpan={isMobile ? 2 : 3}>
+                    <BetStatusOverlay
+                      title={JSON.parse(item)?.status}
+                      active={JSON.parse(item)?.status != teamStatus.active}
+                    >
+                      <BackLayBox
+                        customClass="bet-place-box"
+                        // overlay={true}
+                        bgColor="red1"
+                        rate={JSON.parse(item)?.noRate}
+                        percent={JSON.parse(item)?.noPercent}
+                        onClick={() => {
+                          const rate = parseInt(JSON.parse(item)?.noRate);
+                          const percent = parseInt(JSON.parse(item)?.noPercent);
+
+                          if (
+                            rate > 0 &&
+                            JSON.parse(item)?.status == teamStatus.active
+                          ) {
+                            handleClick(
+                              {
+                                betId: JSON.parse(item)?.id,
+                                name: JSON.parse(item)?.name,
+                                rate: rate,
+                                type: "no",
+                                stake: 0,
+                                percent: percent,
+                                eventType: matchDetails?.matchType,
+                                matchId: matchDetails?.id,
+                              },
+                              JSON.parse(item)
+                            );
+                          }
+                        }}
+                        active={JSON.parse(item)?.status != teamStatus.active}
+                      />
+                      <BackLayBox
+                        customClass="bet-place-box"
+                        bgColor="blue3"
+                        rate={JSON.parse(item)?.yesRate}
+                        percent={JSON.parse(item)?.yesPercent}
+                        onClick={() => {
+                          const rate = parseInt(JSON.parse(item)?.yesRate);
+                          const percent = parseInt(
+                            JSON.parse(item)?.yesPercent
+                          );
+                          if (
+                            rate > 0 &&
+                            JSON.parse(item)?.status == teamStatus.active
+                          ) {
+                            handleClick(
+                              {
+                                betId: JSON.parse(item)?.id,
+                                name: JSON.parse(item)?.name,
+                                rate: rate,
+                                type: "yes",
+                                stake: 0,
+                                percent: percent,
+                                eventType: matchDetails.matchType,
+                                matchId: matchDetails?.id,
+                              },
+                              JSON.parse(item)
+                            );
+                          }
+                        }}
+                        active={JSON.parse(item)?.status != teamStatus.active}
+                      />
+                      {!isMobile && (
+                        <div className="minMax">
+                          <div className="minMaxBox d-flex flex-column justify-content-end text-end px-2 title-12">
+                            <span className="">
+                              Min:{JSON.parse(item)?.minBet}
+                            </span>
+                            <span>Max:{JSON.parse(item)?.maxBet}</span>
+                          </div>
+                        </div>
+                      )}
+                    </BetStatusOverlay>
+                  </td>
+                </tr>
+                // </BetStatusOverlay>
+              );
+            } else return null;
+          })}
         </tbody>
       </Table>
     </div>
