@@ -37,6 +37,13 @@ export const updateBalance = createAsyncThunk<any, any>(
   }
 );
 
+export const betDataFromSocket = createAsyncThunk<any, any>(
+  "/user/balance",
+  async (data) => {
+    return data;
+  }
+);
+
 export const getAccountStatement = createAsyncThunk<any, any>(
   "user/account/statement",
   async ({ userId, page, limit, searchBy, keyword, filter }) => {

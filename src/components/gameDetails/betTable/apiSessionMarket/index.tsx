@@ -1,5 +1,4 @@
 import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
@@ -11,18 +10,26 @@ import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOv
 import BetTableHeader from "../../../commonComponent/betTableHeader";
 import "../style.scss";
 import "./style.scss";
+import { useState } from "react";
+import CustomModal from "../../../commonComponent/modal";
+import RunBoxTable from "../runBoxTable";
 
 interface ApiSessionMarketTableProps {
   data: any;
   title?: any;
   matchDetails: any;
+  betPlaceData: any;
 }
 function ApiSessionMarketTable({
   data,
   title,
   matchDetails,
+  betPlaceData,
 }: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
+
+  const [runAmountData, setRunAmountData] = useState([]);
+  const [show, setShow] = useState(false);
   const handleClick = (team: any, data: any) => {
     dispatch(
       selectedBetAction({
@@ -64,15 +71,30 @@ function ApiSessionMarketTable({
             <tr key={index}>
               <td>
                 <div className="backLayRunner d-flex flex-column px-1">
-                  <div>
-                    <Link
-                      to=""
-                      className="backLayRunner-country session-country title-12"
-                    >
-                      {item?.RunnerName}
-                    </Link>
-                  </div>
-                  <span className="title-14">{0}</span>
+                  .
+                  <span
+                    onClick={() => {
+                      setShow(true);
+                      setRunAmountData(() => {
+                        const data = betPlaceData?.filter((bet: any) => {
+                          if (
+                            bet?.betPlaced?.placedBet?.betId ===
+                              JSON.parse(item)?.id &&
+                            !bet?.betPlaced?.placedBet?.selectionId
+                          ) {
+                            return bet;
+                          } else {
+                            return false;
+                          }
+                        });
+                        return JSON.parse(data[0]?.profitLossData);
+                      });
+                    }}
+                    className="backLayRunner-country session-country title-12"
+                  >
+                    {item?.RunnerName}
+                  </span>
+                  <span className="title-14">{2}</span>
                 </div>
               </td>
 
@@ -149,6 +171,14 @@ function ApiSessionMarketTable({
           ))}
         </tbody>
       </Table>
+      <CustomModal
+        customClass="runAmountBetModal"
+        title={"Run Position"}
+        show={show}
+        setShow={setShow}
+      >
+        <RunBoxTable runAmount={runAmountData} />
+      </CustomModal>
     </div>
   );
 }

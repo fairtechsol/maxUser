@@ -7,6 +7,7 @@ import {
   updateMatchRates,
 } from "../../store/actions/match/matchListAction";
 import {
+  betDataFromSocket,
   getButtonValue,
   updateBalance,
 } from "../../store/actions/user/userAction";
@@ -30,13 +31,16 @@ const GameDetails = () => {
   }, [dispatch]);
 
   const setMatchRatesInRedux = (event: any) => {
-    dispatch(updateMatchRates(event));
+    if (id === event?.id) {
+      dispatch(updateMatchRates(event));
+    }
   };
 
   const setBetsPlaced = (event: any) => {
     if (event?.betPlaced?.placedBet?.matchId === id) {
       dispatch(updateBetsPlaced(event?.betPlaced?.placedBet));
       dispatch(updateBalance(event));
+      dispatch(betDataFromSocket(event));
     }
   };
 
@@ -54,8 +58,10 @@ const GameDetails = () => {
   }, [id, getProfile?.roleName]);
 
   useEffect(() => {
-    dispatch(getPlacedBets(id));
-  }, []);
+    if (id) {
+      dispatch(getPlacedBets(id));
+    }
+  }, [id]);
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };

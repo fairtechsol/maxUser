@@ -136,6 +136,7 @@ const PlacedBet = () => {
               <td>
                 <input
                   value={stake}
+                  min={0}
                   onChange={(e) => {
                     dispatch(
                       selectedBetAction({
