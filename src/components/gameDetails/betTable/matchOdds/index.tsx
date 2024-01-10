@@ -9,8 +9,6 @@ import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import "../style.scss";
 import "./style.scss";
-import CustomModal from "../../../commonComponent/modal";
-import { useState } from "react";
 
 interface MatchOddsProps {
   minMax?: any;
@@ -25,6 +23,7 @@ function MatchOdds({
   backLayCount,
 }: MatchOddsProps) {
   const dispatch: AppDispatch = useDispatch();
+
   const handleClick = (team: any, data: any) => {
     dispatch(
       selectedBetAction({
@@ -37,7 +36,6 @@ function MatchOdds({
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  const [show, setShow] = useState(false);
 
   return (
     <div
@@ -79,7 +77,6 @@ function MatchOdds({
                         className={`backLayRunner-country title-12  ${
                           isMobile ? "f900" : "f600"
                         } `}
-                        onClick={()=> setShow(true)}
                       >
                         {matchDetails?.[`team${matchs}`]}
                       </span>
@@ -88,7 +85,7 @@ function MatchOdds({
                         <span
                           className={`title-14 ${
                             Number(
-                              calculateProfitLoss(data, selectedBet, matchs) ||
+                              calculateProfitLoss(data, selectedBet, matchDetails?.[`team${matchs}`]) ||
                                 0
                             ) < 0
                               ? "color-red"
@@ -96,14 +93,14 @@ function MatchOdds({
                                   calculateProfitLoss(
                                     data,
                                     selectedBet,
-                                    matchs
+                                    matchDetails?.[`team${matchs}`]
                                   ) || 0
                                 ) > 0
                               ? "color-green"
                               : ""
                           }`}
                         >
-                          {calculateProfitLoss(data, selectedBet, matchs)}
+                          {calculateProfitLoss(data, selectedBet, matchDetails?.[`team${matchs}`])}
                         </span>
                       </div>
                     </div>
@@ -162,7 +159,7 @@ function MatchOdds({
                                     betId: data?.id,
                                     eventType: matchDetails?.matchType,
                                     matchId: matchDetails?.id,
-                                    placeIndex: index,
+                                    placeIndex: 2 - index,
                                     matchBetType: data?.type,
                                   },
                                   data
@@ -244,33 +241,6 @@ function MatchOdds({
             })}
         </tbody>
       </Table>
-
-      <CustomModal
-        customClass="runAmountBetModal" 
-        title={"Run Position"}
-        show={show}
-        setShow={setShow}
-
-      >
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Run </th>
-              <th className="text-center">Amount</th>
-            </tr>
-          </thead>
-          <tbody className="text-center">
-            <tr>
-              <td className="bg-blue1">47</td>
-              <td className="bg-red1">100.00</td>
-            </tr>
-            <tr>
-              <td className="bg-blue1">48</td>
-              <td className="bg-red1">-100.00</td>
-            </tr>
-          </tbody>
-        </Table>
-      </CustomModal>
     </div>
   );
 }

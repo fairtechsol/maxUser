@@ -9,6 +9,7 @@ import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import "../style.scss";
 import "./style.scss";
+import { useState } from "react";
 
 interface BookmakerTableProps {
   minMax?: any;
@@ -122,18 +123,18 @@ function BookmakerTable({
                       <span
                         className={`title-14 ${
                           Number(
-                            calculateProfitLoss(data, selectedBet, item) || 0
+                            calculateProfitLoss(data, selectedBet, matchDetails?.[`team${item}`]) || 0
                           ) < 0
                             ? "color-red"
                             : Number(
-                                calculateProfitLoss(data, selectedBet, item) ||
+                                calculateProfitLoss(data, selectedBet, matchDetails?.[`team${item}`]) ||
                                   0
                               ) > 0
                             ? "color-green"
                             : ""
                         }`}
                       >
-                        {calculateProfitLoss(data, selectedBet, item)}
+                        {calculateProfitLoss(data, selectedBet, matchDetails?.[`team${item}`])}
                       </span>
                     </div>
                   </div>
@@ -183,7 +184,7 @@ function BookmakerTable({
                                   betId: data?.id,
                                   eventType: matchDetails?.matchType,
                                   matchId: matchDetails?.id,
-                                  placeIndex: index,
+                                  placeIndex: 2 - index,
                                   matchBetType: data?.type,
                                 },
                                 data
@@ -228,7 +229,7 @@ function BookmakerTable({
                                   betId: data?.id,
                                   eventType: matchDetails?.matchType,
                                   matchId: matchDetails?.id,
-                                  placeIndex: 2 - index,
+                                  placeIndex: index,
                                   matchBetType: data?.type,
                                 },
                                 data

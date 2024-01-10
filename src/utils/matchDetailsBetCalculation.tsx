@@ -5,6 +5,7 @@ export const calculateProfitLoss = (
   selectedData: any,
   team: string
 ) => {
+  console.log(selectedData)
   if (
     betData?.id != selectedData?.data?.id ||
     !betData?.id ||
@@ -13,7 +14,7 @@ export const calculateProfitLoss = (
     return "";
   }
   if (selectedData?.team?.type == "lay") {
-    if (selectedData?.team?.teamType == team) {
+    if (selectedData?.team?.betOnTeam == team) {
       return -parseFloat(selectedData?.team?.stake).toFixed(2);
     } else {
       return selectedData?.data?.type == matchBettingType.matchOdd ||
@@ -26,7 +27,7 @@ export const calculateProfitLoss = (
           ).toFixed(2);
     }
   } else {
-    if (selectedData?.team?.teamType != team) {
+    if (selectedData?.team?.betOnTeam != team) {
       return -(selectedData?.team?.stake).toFixed(2);
     } else {
       return selectedData?.data?.type == matchBettingType.matchOdd ||

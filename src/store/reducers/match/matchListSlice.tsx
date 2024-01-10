@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SearchList, SearchListReset, getMatchList,matchDetailAction, searchListReset, selectedBetAction, updateMatchRates } from "../../actions/match/matchListAction";
+import {
+  SearchList,
+  SearchListReset,
+  getMatchList,
+  matchDetailAction,
+  searchListReset,
+  selectedBetAction,
+  updateMatchRates,
+} from "../../actions/match/matchListAction";
 
 interface InitialState {
   success: boolean;
@@ -46,7 +54,7 @@ const matchListSlice = createSlice({
       .addCase(getMatchList.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
-      })    
+      })
       .addCase(SearchList.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
@@ -76,15 +84,24 @@ const matchListSlice = createSlice({
         state.matchDetails = action.payload;
       })
       .addCase(updateMatchRates.fulfilled, (state, action) => {
-        console.log(action.payload);
+        const {
+          apiSession,
+          apiTiedMatch,
+          bookmaker,
+          marketCompleteMatch,
+          matchOdd,
+        } = action.payload;
         state.matchDetails = {
           ...state.matchDetails,
-          apiSession: action.payload?.apiSession,
-          apiTideMatch: action.payload?.apiTiedMatch,
-          bookmaker: action.payload?.bookmaker,
+          apiSession: apiSession,
+          apiTideMatch: { ...state.matchDetails.apiTideMatch, ...apiTiedMatch },
+          bookmaker: { ...state.matchDetails.bookmaker, ...bookmaker },
           manualTideMatch: action.payload?.manualTideMatch,
-          marketCompleteMatch: action.payload?.marketCompleteMatch,
-          matchOdd: action.payload?.matchOdd,
+          marketCompleteMatch: {
+            ...state.matchDetails.marketCompleteMatch,
+            ...marketCompleteMatch,
+          },
+          matchOdd: { ...state.matchDetails.matchOdd, ...matchOdd },
           quickBookmaker: action.payload?.quickbookmaker,
           sessionBettings: action.payload?.sessionBettings,
         };
@@ -99,6 +116,7 @@ const matchListSlice = createSlice({
       .addCase(searchListReset, (state) => {
         state.searchedMatchList = null;
       });
-}});
+  },
+});
 
 export const matchListReducer = matchListSlice.reducer;

@@ -72,15 +72,15 @@ export const baseUrls = {
   socket:
     process.env.NODE_ENV === "production"
       ? `${Constants.apiBasePath}`
-      : "http://localhost:5000",
+      : `${Constants.apiBasePath}`,
   expertSocket:
     process.env.NODE_ENV === "production"
       ? `${Constants.expertSocketBasePath}`
-      : "http://localhost:6060",
+      : `${Constants.expertSocketBasePath}`,
   matchSocket:
     process.env.NODE_ENV === "production"
       ? `${Constants.thirdParty}`
-      : "http://localhost:3200",
+      : `${Constants.thirdParty}`,
 };
 
 export const sportsRules = [

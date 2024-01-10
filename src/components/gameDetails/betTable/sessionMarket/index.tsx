@@ -1,5 +1,4 @@
 import { Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
@@ -12,18 +11,25 @@ import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOv
 import BetTableHeader from "../../../commonComponent/betTableHeader";
 import "../style.scss";
 import "./style.scss";
+import CustomModal from "../../../commonComponent/modal";
+import RunBoxTable from "../runBoxTable";
+import { useState } from "react";
 
 interface SessionMarketTableProps {
   data: any;
   title?: any;
   matchDetails: any;
+  betPlaceData: any;
 }
 function SessionMarketTable({
   data,
   title,
   matchDetails,
+  betPlaceData,
 }: SessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
+  const [runAmountData, setRunAmountData] = useState<any>([]);
+  const [show, setShow] = useState(false);
   const handleClick = (team: any, data: any) => {
     dispatch(
       selectedBetAction({
@@ -32,6 +38,8 @@ function SessionMarketTable({
       })
     );
   };
+
+  console.log(runAmountData, "runAmountData");
 
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
@@ -69,12 +77,30 @@ function SessionMarketTable({
                   <td>
                     <div className="backLayRunner d-flex flex-column px-1">
                       <div>
-                        <Link
-                          to=""
+                        <span
+                          onClick={() => {
+                            setShow(true);
+                            setRunAmountData(() => {
+                              const data =
+                                betPlaceData &&
+                                betPlaceData?.filter((bet: any) => {
+                                  if (
+                                    bet?.betPlaced?.placedBet?.betId ===
+                                      JSON.parse(item)?.id &&
+                                    !bet?.betPlaced?.placedBet?.selectionId
+                                  ) {
+                                    return bet;
+                                  } else return false;
+                                });
+                              return data.length > 0
+                                ? JSON.parse(data[0]?.profitLossData)
+                                : data;
+                            });
+                          }}
                           className="backLayRunner-country session-country title-12"
                         >
                           {JSON.parse(item)?.name}
-                        </Link>
+                        </span>
                       </div>
                       <span className="title-14">{0}</span>
                     </div>
@@ -166,6 +192,14 @@ function SessionMarketTable({
           })}
         </tbody>
       </Table>
+      <CustomModal
+        customClass="runAmountBetModal"
+        title={"Run Position"}
+        show={show}
+        setShow={setShow}
+      >
+        <RunBoxTable runAmount={runAmountData} />
+      </CustomModal>
     </div>
   );
 }

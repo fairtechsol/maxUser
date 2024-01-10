@@ -105,8 +105,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             </CustomButton>
             <input
               value={stake}
+              min={0}
               onChange={(e) => {
-                console.log(e.target.value, "eTarget");
                 dispatch(
                   selectedBetAction({
                     ...selectedBet,
