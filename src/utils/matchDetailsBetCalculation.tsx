@@ -5,7 +5,6 @@ export const calculateProfitLoss = (
   selectedData: any,
   team: string
 ) => {
-  console.log(selectedData)
   if (
     betData?.id != selectedData?.data?.id ||
     !betData?.id ||
