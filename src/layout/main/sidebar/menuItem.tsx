@@ -244,7 +244,6 @@ export const MenuItem: React.FC<Props> = ({
   setMenuItemList,
   menuItemList,
 }) => {
-  console.log(item);
   return (
     <>
       {item?.type === "item" || item?.type === "liveItem" ? (

@@ -9,7 +9,6 @@ import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import "../style.scss";
 import "./style.scss";
-import { useState } from "react";
 
 interface BookmakerTableProps {
   minMax?: any;
@@ -116,25 +115,40 @@ function BookmakerTable({
                         isMobile ? "f900" : "f600"
                       } `}
                     >
-                      {matchDetails?.[`team${item}`]}
+                      {data?.type === "tiedMatch2"
+                        ? i === 0
+                          ? "Yes"
+                          : "No"
+                        : matchDetails?.[`team${item}`]}
                     </span>
                     <div className="d-flex align-items-center justify-content-between w-100">
                       <span className="title-14">{0}</span>
                       <span
                         className={`title-14 ${
                           Number(
-                            calculateProfitLoss(data, selectedBet, matchDetails?.[`team${item}`]) || 0
+                            calculateProfitLoss(
+                              data,
+                              selectedBet,
+                              matchDetails?.[`team${item}`]
+                            ) || 0
                           ) < 0
                             ? "color-red"
                             : Number(
-                                calculateProfitLoss(data, selectedBet, matchDetails?.[`team${item}`]) ||
-                                  0
+                                calculateProfitLoss(
+                                  data,
+                                  selectedBet,
+                                  matchDetails?.[`team${item}`]
+                                ) || 0
                               ) > 0
                             ? "color-green"
                             : ""
                         }`}
                       >
-                        {calculateProfitLoss(data, selectedBet, matchDetails?.[`team${item}`])}
+                        {calculateProfitLoss(
+                          data,
+                          selectedBet,
+                          matchDetails?.[`team${item}`]
+                        )}
                       </span>
                     </div>
                   </div>

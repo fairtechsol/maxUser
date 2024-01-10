@@ -39,8 +39,6 @@ function SessionMarketTable({
     );
   };
 
-  console.log(runAmountData, "runAmountData");
-
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
       <Table className="mb-0">
