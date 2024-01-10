@@ -9,8 +9,6 @@ const toastOptions = {
   pauseOnHover: true,
 };
 
-// PRODUCTION:http://3.89.232.255:5000/
-// DEVELOPMENT: http://localhost:5000
 const service = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
