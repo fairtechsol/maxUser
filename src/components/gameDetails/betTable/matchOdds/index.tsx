@@ -140,7 +140,7 @@ function MatchOdds({
                             customClass="match-odd-bet-place"
                             bgColor={`blue${index + 1}`}
                             rate={
-                              data?.runners?.[indexes]?.ex?.availableToBack?.[
+                              +data?.runners?.[indexes]?.ex?.availableToBack?.[
                                 2 - index
                               ]?.price
                             }
@@ -200,7 +200,7 @@ function MatchOdds({
                             customClass="match-odd-bet-place"
                             bgColor={`red${index + 1}`}
                             rate={
-                              data?.runners?.[indexes]?.ex?.availableToLay?.[
+                              +data?.runners?.[indexes]?.ex?.availableToLay?.[
                                 index
                               ]?.price
                             }
