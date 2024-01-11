@@ -20,7 +20,6 @@ interface ApiSessionMarketTableProps {
   data: any;
   title?: any;
   matchDetails: any;
-  betPlaceData: any;
 }
 function ApiSessionMarketTable({
   data,

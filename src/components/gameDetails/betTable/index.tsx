@@ -71,14 +71,12 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
         <ApiSessionMarketTable
           data={data}
           title={title}
-          betPlaceData={betPlaceData}
           matchDetails={matchDetails}
         />
       ) : (
         <SessionMarketTable
           data={data}
           title={title}
-          betPlaceData={betPlaceData}
           matchDetails={matchDetails}
         />
       )}

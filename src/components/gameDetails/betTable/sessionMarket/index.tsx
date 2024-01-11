@@ -1,5 +1,4 @@
 import { Table } from "react-bootstrap";
-
 import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
@@ -21,17 +20,14 @@ interface SessionMarketTableProps {
   data: any;
   title?: any;
   matchDetails: any;
-  betPlaceData: any;
 }
 function SessionMarketTable({
   data,
   title,
   matchDetails,
-  betPlaceData,
 }: SessionMarketTableProps) {
   const { runAmount } = useSelector((state: RootState) => state.bets);
   const dispatch: AppDispatch = useDispatch();
-  const [runAmountData, setRunAmountData] = useState<any>([]);
   const [show, setShow] = useState(false);
   const handleClick = (team: any, data: any) => {
     dispatch(
@@ -82,22 +78,6 @@ function SessionMarketTable({
                           onClick={() => {
                             setShow(true);
                             dispatch(getRunAmount(JSON.parse(item)?.id));
-                            setRunAmountData(() => {
-                              const data =
-                                betPlaceData &&
-                                betPlaceData?.filter((bet: any) => {
-                                  if (
-                                    bet?.betPlaced?.placedBet?.betId ===
-                                      JSON.parse(item)?.id &&
-                                    !bet?.betPlaced?.placedBet?.selectionId
-                                  ) {
-                                    return bet;
-                                  } else return false;
-                                });
-                              return data.length > 0
-                                ? JSON.parse(data[0]?.profitLossData)
-                                : data;
-                            });
                           }}
                           className="backLayRunner-country session-country title-12"
                         >
