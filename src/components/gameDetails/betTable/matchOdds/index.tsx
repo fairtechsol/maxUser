@@ -36,6 +36,12 @@ function MatchOdds({
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  let arr = [];
+  if (data?.type === "completeMatch" || data?.type === "tiedMatch1") {
+    arr = ["A", "B"];
+  } else {
+    arr = ["A", "B", "C"];
+  }
 
   return (
     <div
@@ -66,7 +72,7 @@ function MatchOdds({
           </tr>
         </thead>
         <tbody>
-          {["A", "B", "C"]
+          {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((matchs, indexes) => {
               return (

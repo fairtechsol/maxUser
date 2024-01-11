@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
@@ -13,6 +13,8 @@ import "./style.scss";
 import { useState } from "react";
 import CustomModal from "../../../commonComponent/modal";
 import RunBoxTable from "../runBoxTable";
+import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
+import { useSelector } from "react-redux";
 
 interface ApiSessionMarketTableProps {
   data: any;
@@ -24,11 +26,10 @@ function ApiSessionMarketTable({
   data,
   title,
   matchDetails,
-  betPlaceData,
 }: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
 
-  const [runAmountData, setRunAmountData] = useState([]);
+  const { runAmount } = useSelector((state: RootState) => state.bets);
   const [show, setShow] = useState(false);
   const handleClick = (team: any, data: any) => {
     dispatch(
@@ -75,20 +76,7 @@ function ApiSessionMarketTable({
                   <span
                     onClick={() => {
                       setShow(true);
-                      setRunAmountData(() => {
-                        const data = betPlaceData?.filter((bet: any) => {
-                          if (
-                            bet?.betPlaced?.placedBet?.betId ===
-                              JSON.parse(item)?.id &&
-                            !bet?.betPlaced?.placedBet?.selectionId
-                          ) {
-                            return bet;
-                          } else {
-                            return false;
-                          }
-                        });
-                        return JSON.parse(data[0]?.profitLossData);
-                      });
+                      dispatch(getRunAmount(JSON.parse(item)?.id));
                     }}
                     className="backLayRunner-country session-country title-12"
                   >
@@ -177,7 +165,7 @@ function ApiSessionMarketTable({
         show={show}
         setShow={setShow}
       >
-        <RunBoxTable runAmount={runAmountData} />
+        <RunBoxTable runAmount={{ betPlaced: runAmount }} />
       </CustomModal>
     </div>
   );

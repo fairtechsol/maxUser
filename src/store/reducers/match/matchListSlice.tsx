@@ -94,14 +94,11 @@ const matchListSlice = createSlice({
         state.matchDetails = {
           ...state.matchDetails,
           apiSession: apiSession,
-          apiTideMatch: { ...state.matchDetails.apiTideMatch, ...apiTiedMatch },
-          bookmaker: { ...state.matchDetails.bookmaker, ...bookmaker },
-          manualTideMatch: action.payload?.manualTideMatch,
-          marketCompleteMatch: {
-            ...state.matchDetails.marketCompleteMatch,
-            ...marketCompleteMatch,
-          },
-          matchOdd: { ...state.matchDetails.matchOdd, ...matchOdd },
+          apiTideMatch: apiTiedMatch,
+          bookmaker: bookmaker,
+          manualTiedMatch: action.payload?.manualTideMatch,
+          marketCompleteMatch: marketCompleteMatch,
+          matchOdd: matchOdd,
           quickBookmaker: action.payload?.quickbookmaker,
           sessionBettings: action.payload?.sessionBettings,
         };

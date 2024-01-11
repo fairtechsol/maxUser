@@ -37,6 +37,13 @@ function BookmakerTable({
     (state: RootState) => state.match.matchList
   );
 
+  let arr = [];
+  if (data?.type === "tiedMatch2") {
+    arr = ["A", "B"];
+  } else {
+    arr = ["A", "B", "C"];
+  }
+
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -104,7 +111,7 @@ function BookmakerTable({
           </tr>
         </thead>
         <tbody>
-          {["A", "B", "C"]
+          {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((item: any, i: number) => (
               <tr key={i}>

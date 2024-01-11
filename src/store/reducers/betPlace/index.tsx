@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   betsSuccessReset,
   getPlacedBets,
+  getRunAmount,
   updateBetsPlaced,
 } from "../../actions/betPlace/betPlaceActions";
 
 interface InitialState {
   placedBets: any;
+  runAmount: any;
   success: boolean;
   loading: boolean;
   error: any;
@@ -14,6 +16,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   placedBets: [],
+  runAmount: [],
   loading: false,
   success: false,
   error: null,
@@ -25,7 +28,6 @@ const placedBet = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-
       .addCase(getPlacedBets.pending, (state) => {
         state.loading = true;
         state.success = false;
@@ -37,6 +39,20 @@ const placedBet = createSlice({
         state.placedBets = action.payload;
       })
       .addCase(getPlacedBets.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(getRunAmount.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(getRunAmount.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.runAmount = action.payload;
+      })
+      .addCase(getRunAmount.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })

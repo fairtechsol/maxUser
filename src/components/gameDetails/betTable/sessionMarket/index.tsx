@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import { teamStatus } from "../../../../utils/constants";
 import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
@@ -14,6 +14,8 @@ import "./style.scss";
 import CustomModal from "../../../commonComponent/modal";
 import RunBoxTable from "../runBoxTable";
 import { useState } from "react";
+import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
+import { useSelector } from "react-redux";
 
 interface SessionMarketTableProps {
   data: any;
@@ -27,6 +29,7 @@ function SessionMarketTable({
   matchDetails,
   betPlaceData,
 }: SessionMarketTableProps) {
+  const { runAmount } = useSelector((state: RootState) => state.bets);
   const dispatch: AppDispatch = useDispatch();
   const [runAmountData, setRunAmountData] = useState<any>([]);
   const [show, setShow] = useState(false);
@@ -78,6 +81,7 @@ function SessionMarketTable({
                         <span
                           onClick={() => {
                             setShow(true);
+                            dispatch(getRunAmount(JSON.parse(item)?.id));
                             setRunAmountData(() => {
                               const data =
                                 betPlaceData &&
@@ -196,7 +200,7 @@ function SessionMarketTable({
         show={show}
         setShow={setShow}
       >
-        <RunBoxTable runAmount={runAmountData} />
+        <RunBoxTable runAmount={{ betPlaced: runAmount }} />
       </CustomModal>
     </div>
   );
