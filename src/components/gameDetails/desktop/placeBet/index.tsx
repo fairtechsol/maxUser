@@ -155,10 +155,14 @@ const PlacedBet = () => {
                   {selectedBet?.data?.type == matchBettingType.matchOdd ||
                   selectedBet?.data?.type == matchBettingType.tiedMatch1 ||
                   selectedBet?.data?.type == matchBettingType.completeMatch
-                    ? stake * (parseInt(selectedBet?.team?.rate) - 1)
-                    : selectedBet?.data?.yesRate
+                    ? Math.floor(
+                        stake * (parseInt(selectedBet?.team?.rate) - 1)
+                      )
+                    : Math.floor(selectedBet?.data?.yesRate)
                     ? 0
-                    : stake * (parseInt(selectedBet?.team?.rate) / 100)}
+                    : Math.floor(
+                        stake * (parseInt(selectedBet?.team?.rate) / 100)
+                      )}
                 </span>
               </td>
             </tr>

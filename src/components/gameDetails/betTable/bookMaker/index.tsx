@@ -37,6 +37,13 @@ function BookmakerTable({
     (state: RootState) => state.match.matchList
   );
 
+  let arr = [];
+  if (data?.type === "tiedMatch2") {
+    arr = ["A", "B"];
+  } else {
+    arr = ["A", "B", "C"];
+  }
+
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -104,7 +111,7 @@ function BookmakerTable({
           </tr>
         </thead>
         <tbody>
-          {["A", "B", "C"]
+          {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((item: any, i: number) => (
               <tr key={i}>
@@ -174,7 +181,9 @@ function BookmakerTable({
                               : ""
                           }`}
                           bgColor={`blue${index + 1}`}
-                          rate={data[`backTeam${item}`] - 2 + index}
+                          rate={
+                            Math.floor(+data[`backTeam${item}`]) - 2 + index
+                          }
                           onClick={() => {
                             const rate =
                               parseInt(data[`backTeam${item}`] || 0) -
@@ -221,7 +230,7 @@ function BookmakerTable({
                               : ""
                           }`}
                           bgColor={`red${index + 1}`}
-                          rate={data[`layTeam${item}`] + index}
+                          rate={Math.floor(+data[`layTeam${item}`]) + index}
                           onClick={() => {
                             const rate =
                               parseInt(data[`layTeam${item}`] || 0) + index;

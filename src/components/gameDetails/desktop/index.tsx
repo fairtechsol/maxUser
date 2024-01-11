@@ -96,16 +96,15 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.manualTiedMatch &&
-                matchDetails?.manualTiedMatch?.isActive && (
-                  <Col md={12}>
-                    <BetTable
-                      title={matchDetails?.manualTiedMatch?.name}
-                      type={MatchType.BOOKMAKER}
-                      data={matchDetails?.manualTiedMatch}
-                    />
-                  </Col>
-                )}
+              {matchDetails?.manualTiedMatch && (
+                <Col md={12}>
+                  <BetTable
+                    title={matchDetails?.manualTiedMatch?.name}
+                    type={MatchType.BOOKMAKER}
+                    data={matchDetails?.manualTiedMatch}
+                  />
+                </Col>
+              )}
               {matchDetails?.marketCompleteMatch && (
                 <Col md={12}>
                   <BetTable
@@ -116,7 +115,7 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
 
-              {matchDetails?.manualSessionActive && (
+              {matchDetails?.apiSession && (
                 <Col md={6}>
                   <BetTable
                     title={"Session Market"}
@@ -125,7 +124,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.apiSessionActive && (
+              {matchDetails?.sessionBettings && (
                 <Col md={6}>
                   <BetTable
                     title={"Quick Session Market"}

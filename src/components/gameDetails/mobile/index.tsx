@@ -110,17 +110,16 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                    {matchDetails?.manualTiedMatch &&
-                      matchDetails?.manualTiedMatch?.isActive && (
-                        <Col className="g-0" md={12} key={index}>
-                          <BetTable
-                            title={matchDetails?.manualTiedMatch?.name}
-                            type={MatchType.BOOKMAKER}
-                            data={matchDetails?.manualTiedMatch}
-                            backLayCount={2}
-                          />
-                        </Col>
-                      )}
+                    {matchDetails?.manualTiedMatch && (
+                      <Col className="g-0" md={12} key={index}>
+                        <BetTable
+                          title={matchDetails?.manualTiedMatch?.name}
+                          type={MatchType.BOOKMAKER}
+                          data={matchDetails?.manualTiedMatch}
+                          backLayCount={2}
+                        />
+                      </Col>
+                    )}
                     {matchDetails?.marketCompleteMatch && (
                       <Col className="g-0" md={12} key={index}>
                         <BetTable
@@ -170,22 +169,21 @@ const MobileGameDetail = () => {
                               }
                             >
                               <Row>
-                                {matchDetails?.apiSessionActive &&
-                                  matchDetails?.sessionBettings?.length > 0 && (
-                                    <Col md={12}>
-                                      <BetTable
-                                        title={"Session Market"}
-                                        type={MatchType.SESSION_MARKET}
-                                        data={matchDetails?.sessionBettings}
-                                      />
-                                    </Col>
-                                  )}
                                 {matchDetails?.apiSession && (
+                                  <Col md={12}>
+                                    <BetTable
+                                      title={"Session Market"}
+                                      type={MatchType.SESSION_MARKET}
+                                      data={matchDetails?.apiSession}
+                                    />
+                                  </Col>
+                                )}
+                                {matchDetails?.sessionBettings && (
                                   <Col md={12}>
                                     <BetTable
                                       title={"Api Session Market"}
                                       type={MatchType.API_SESSION_MARKET}
-                                      data={matchDetails?.apiSession}
+                                      data={matchDetails?.sessionBettings}
                                     />
                                   </Col>
                                 )}

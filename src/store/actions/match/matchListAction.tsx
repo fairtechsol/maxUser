@@ -146,8 +146,9 @@ export const settleUnsettleMatch = createAsyncThunk<any, any>(
   async ({ status, page, limit }, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.CURRENTBET}/?page=${page || 1
-        }&limit=${limit || 15}&status=${status}`
+        `${ApiConstants.MATCH.CURRENTBET}/?page=${page || 1}&limit=${
+          limit || 15
+        }&status=${status}`
       );
       if (resp?.data) {
         return resp?.data;

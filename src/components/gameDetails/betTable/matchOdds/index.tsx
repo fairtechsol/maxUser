@@ -36,6 +36,12 @@ function MatchOdds({
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  let arr = [];
+  if (data?.type === "completeMatch" || data?.type === "tiedMatch1") {
+    arr = ["A", "B"];
+  } else {
+    arr = ["A", "B", "C"];
+  }
 
   return (
     <div
@@ -66,7 +72,7 @@ function MatchOdds({
           </tr>
         </thead>
         <tbody>
-          {["A", "B", "C"]
+          {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((matchs, indexes) => {
               return (
@@ -134,7 +140,7 @@ function MatchOdds({
                             customClass="match-odd-bet-place"
                             bgColor={`blue${index + 1}`}
                             rate={
-                              data?.runners?.[indexes]?.ex?.availableToBack?.[
+                              +data?.runners?.[indexes]?.ex?.availableToBack?.[
                                 2 - index
                               ]?.price
                             }
@@ -194,7 +200,7 @@ function MatchOdds({
                             customClass="match-odd-bet-place"
                             bgColor={`red${index + 1}`}
                             rate={
-                              data?.runners?.[indexes]?.ex?.availableToLay?.[
+                              +data?.runners?.[indexes]?.ex?.availableToLay?.[
                                 index
                               ]?.price
                             }

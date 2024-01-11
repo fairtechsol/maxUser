@@ -28,7 +28,9 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
     <>
       {loading && <Loader />}
 
-      {isMobile && type === MatchType.SESSION_MARKET ? (
+      {isMobile &&
+      (type === MatchType.SESSION_MARKET ||
+        type === MatchType.API_SESSION_MARKET) ? (
         ""
       ) : (
         <BetTableHeader

@@ -32,6 +32,21 @@ export const getPlacedBets = createAsyncThunk<any, any>("/bet", async (id) => {
   }
 });
 
+export const getRunAmount = createAsyncThunk<any, any>(
+  "/runAmount",
+  async (id) => {
+    try {
+      const resp = await service.get(`${ApiConstants.BET.RUN_AMOUNT}/${id}`);
+      if (resp) {
+        return JSON.parse(resp?.data?.profitLoss).betPlaced;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      throw err;
+    }
+  }
+);
+
 export const updateBetsPlaced = createAsyncThunk<any, any>(
   "/placed/bets",
   async (placedBets) => {
