@@ -19,7 +19,6 @@ interface BetTableProps {
 }
 
 const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
-  const { betPlaceData } = useSelector((state: RootState) => state.match.bet);
   const { matchDetails, loading } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -71,14 +70,12 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
         <ApiSessionMarketTable
           data={data}
           title={title}
-          betPlaceData={betPlaceData}
           matchDetails={matchDetails}
         />
       ) : (
         <SessionMarketTable
           data={data}
           title={title}
-          betPlaceData={betPlaceData}
           matchDetails={matchDetails}
         />
       )}

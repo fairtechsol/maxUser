@@ -10,7 +10,10 @@ import CustomButton from "../../../commonComponent/button";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
 import axios from "axios";
-import { placeBet } from "../../../../store/actions/betPlace/betPlaceActions";
+import {
+  betPlaceSuccessReset,
+  placeBet,
+} from "../../../../store/actions/betPlace/betPlaceActions";
 
 const placeBetHeader = [
   {},
@@ -40,6 +43,8 @@ const PlacedBet = () => {
   const { buttonValues } = useSelector(
     (state: RootState) => state.user.profile
   );
+
+  const { success } = useSelector((state: RootState) => state.match.bet);
 
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
@@ -89,6 +94,13 @@ const PlacedBet = () => {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (success) {
+      dispatch(selectedBetAction(null));
+      dispatch(betPlaceSuccessReset());
+    }
+  }, [success]);
 
   return (
     <RightPanelContainer title="Place Bet">
@@ -188,7 +200,7 @@ const PlacedBet = () => {
                                 ...selectedBet,
                                 team: {
                                   ...selectedBet?.team,
-                                  stake: item?.value,
+                                  stake: +item?.value,
                                 },
                               })
                             );

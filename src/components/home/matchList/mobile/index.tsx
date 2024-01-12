@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { expertSocketService } from "../../../../socketManager";
 import { RootState } from "../../../../store/store";
 import { GAME_TYPE } from "../../../../utils/enum";
-import { onTabSwitch } from "../../../../utils/tabSwitch";
+// import { onTabSwitch } from "../../../../utils/tabSwitch";
 import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
@@ -24,16 +24,10 @@ const MobileMatchList = () => {
           getProfile?.roleName
         );
       });
-      document.addEventListener("visibilitychange", () => {
-        onTabSwitch(getMatchList, getProfile?.roleName);
-      });
     }
 
     return () => {
       expertSocketService.match.leaveAllRooms();
-      document.removeEventListener("visibilitychange", () => {
-        onTabSwitch(getMatchList, getProfile?.roleName);
-      });
     };
   }, [getMatchList, getProfile?.roleName]);
 
