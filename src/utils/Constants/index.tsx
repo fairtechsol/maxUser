@@ -24,7 +24,7 @@ export const ApiConstants = {
     PLACEBETSESSION: "bet/session",
     PLACEBETMATCHBETTING: "bet/matchBetting",
     GETPLACEDBETS: "bet",
-    RUN_AMOUNT: "bet/session/profitLoss"
+    RUN_AMOUNT: "bet/session/profitLoss",
   },
 };
 
@@ -33,6 +33,7 @@ export const Constants = {
   apiBasePath: "http://3.89.232.255:5000",
   expertSocketBasePath: "http://3.89.232.255:6060",
   thirdParty: "http://3.89.232.255:3200",
+  localThird: "http://localhost:3200",
 };
 
 export const sessionBettingType = {
@@ -81,7 +82,7 @@ export const baseUrls = {
   matchSocket:
     process.env.NODE_ENV === "production"
       ? `${Constants.thirdParty}`
-      : `http://localhost:3200`,
+      : `${Constants.localThird}`,
 };
 
 export const sportsRules = [

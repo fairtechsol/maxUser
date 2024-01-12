@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { placeBet } from "../../actions/betPlace/betPlaceActions";
+import {
+  betPlaceSuccessReset,
+  placeBet,
+} from "../../actions/betPlace/betPlaceActions";
 import { betDataFromSocket } from "../../actions/user/userAction";
 
 interface InitialState {
@@ -53,6 +56,9 @@ const betPlace = createSlice({
             state.betPlaceData = [...updatedSlice, action.payload];
           }
         }
+      })
+      .addCase(betPlaceSuccessReset, (state) => {
+        return { ...state, success: false };
       });
   },
 });

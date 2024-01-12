@@ -8,7 +8,10 @@ import CustomButton from "../../../commonComponent/button";
 import CustomModal from "../../../commonComponent/modal";
 import "./style.scss";
 import axios from "axios";
-import { placeBet } from "../../../../store/actions/betPlace/betPlaceActions";
+import {
+  betPlaceSuccessReset,
+  placeBet,
+} from "../../../../store/actions/betPlace/betPlaceActions";
 
 interface PlaceBetProps {
   show: boolean;
@@ -27,6 +30,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  const { success } = useSelector((state: RootState) => state.match.bet);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -52,7 +56,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   }, [buttonValues]);
 
   useEffect(() => {
-    setStake((prev: number) => +prev + +selectedBet?.team?.stake);
+    setStake(selectedBet?.team?.stake);
   }, [selectedBet]);
 
   useEffect(() => {
@@ -72,6 +76,13 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (success) {
+      dispatch(selectedBetAction(null));
+      dispatch(betPlaceSuccessReset());
+    }
+  }, [success]);
 
   return (
     <CustomModal
@@ -112,7 +123,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                     ...selectedBet,
                     team: {
                       ...selectedBet?.team,
-                      stake: +stake + parseInt(e.target.value),
+                      stake: parseInt(e.target.value),
                     },
                   })
                 );
@@ -151,25 +162,47 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             <CustomButton
               className="f900 w-100"
               onClick={() => {
-                let payload: any = {
+                let payloadForSession: any = {
                   betId: selectedBet?.team?.betId,
                   betType: selectedBet?.team?.type.toUpperCase(),
                   browserDetail: browserInfo?.userAgent,
                   eventName: selectedBet?.team?.name,
                   eventType: selectedBet?.team?.eventType,
                   matchId: selectedBet?.team?.matchId,
-                  ipAddress: ipAddress ? ipAddress : "164.192.1.2",
-                  odd: selectedBet?.team?.rate,
+                  ipAddress:
+                    ipAddress === "Not found" ? "192.168.1.100" : ipAddress,
+                  odds: selectedBet?.team?.rate,
                   ratePercent: selectedBet?.team?.percent,
                   stake: selectedBet?.team?.stake,
+                };
+                let payloadForBettings: any = {
+                  betId: selectedBet?.team?.betId,
+                  teamA: selectedBet?.team?.teamA,
+                  teamB: selectedBet?.team?.teamB,
+                  teamC: selectedBet?.team?.teamC,
+                  bettingType: selectedBet?.team?.type.toUpperCase(),
+                  browserDetail: browserInfo?.userAgent,
+                  matchId: selectedBet?.team?.matchId,
+                  ipAddress:
+                    ipAddress === "Not found" ? "192.168.1.100" : ipAddress,
+                  odd: selectedBet?.team?.rate,
+                  stake: selectedBet?.team?.stake,
+                  matchBetType: selectedBet?.team?.matchBetType,
+                  betOnTeam: selectedBet?.team?.betOnTeam,
+                  placeIndex: selectedBet?.team?.placeIndex,
                 };
                 dispatch(
                   placeBet({
                     url:
-                      selectedBet?.data?.type === "session"
+                      selectedBet?.data?.type === "session" ||
+                      selectedBet?.data?.SelectionId
                         ? ApiConstants.BET.PLACEBETSESSION
                         : ApiConstants.BET.PLACEBETMATCHBETTING,
-                    data: JSON.stringify(payload),
+                    data:
+                      selectedBet?.data?.type === "session" ||
+                      selectedBet?.data?.SelectionId
+                        ? JSON.stringify(payloadForSession)
+                        : JSON.stringify(payloadForBettings),
                   })
                 );
               }}

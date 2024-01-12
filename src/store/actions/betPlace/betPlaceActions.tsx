@@ -55,3 +55,4 @@ export const updateBetsPlaced = createAsyncThunk<any, any>(
 );
 
 export const betsSuccessReset = createAction("success/reset");
+export const betPlaceSuccessReset = createAction("betPlaceSuccess/reset");
