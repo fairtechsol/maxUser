@@ -236,7 +236,7 @@ const PlacedBet = () => {
                             eventType: selectedBet?.team?.eventType,
                             matchId: selectedBet?.team?.matchId,
                             ipAddress:
-                              ipAddress === "Not found"
+                              ipAddress === "Not found" || !ipAddress
                                 ? "192.168.1.100"
                                 : ipAddress,
                             odds: selectedBet?.team?.rate,
@@ -252,7 +252,7 @@ const PlacedBet = () => {
                             browserDetail: browserInfo?.userAgent,
                             matchId: selectedBet?.team?.matchId,
                             ipAddress:
-                              ipAddress === "Not found"
+                              ipAddress === "Not found" || !ipAddress
                                 ? "192.168.1.100"
                                 : ipAddress,
                             odd: selectedBet?.team?.rate,

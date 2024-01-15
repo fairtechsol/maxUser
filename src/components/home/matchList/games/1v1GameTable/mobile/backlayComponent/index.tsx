@@ -4,19 +4,21 @@ interface BackLayComponentProps {
   heading: string;
   backRate: string | number;
   layRate: string | number;
+  active: boolean;
 }
 
 const BackLayComponent = ({
   heading,
   backRate,
   layRate,
+  active,
 }: BackLayComponentProps) => {
   return (
     <div className="d-flex flex-column w-100">
       <div className="text-center f600 title-12">{heading}22</div>
       <div className="d-flex w-100">
-        <BackLayBox bgColor={"blue3"} rate={backRate} />
-        <BackLayBox bgColor={"red1"} rate={layRate} />
+        <BackLayBox bgColor={"blue3"} rate={backRate} active={active}/>
+        <BackLayBox bgColor={"red1"} rate={layRate} active={active}/>
       </div>
     </div>
   );

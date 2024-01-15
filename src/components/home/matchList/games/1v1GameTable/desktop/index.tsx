@@ -74,9 +74,7 @@ const MatchListRow = ({ item }: any) => {
             className="text-decoration-none"
             to={`/game-detail/${item?.id}`}
           >
-            <div className="one-v-one-title title-14">
-              {item?.title}
-            </div>
+            <div className="one-v-one-title title-14">{item?.title}</div>
           </Link>
           <div className="d-flex align-items-center gap-2">
             {item?.startAt || item?.stopAt ? (
@@ -108,14 +106,17 @@ const MatchListRow = ({ item }: any) => {
             <BackLayComponent
               backRate={item.backTeamA ?? item.backTeamA}
               layRate={item?.layTeamA ?? item?.layTeamA}
+              active={item?.isActive}
             />
             <BackLayComponent
               backRate={item?.backTeamB ?? item?.backTeamB}
               layRate={item?.layTeamB ?? item?.layTeamB}
+              active={item?.isActive}
             />
             <BackLayComponent
               backRate={item?.backTeamC ?? item?.backTeamC}
               layRate={item?.layTeamC ?? item?.layTeamC}
+              active={item?.isActive}
             />
           </React.Fragment>
         );

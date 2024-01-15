@@ -7,4 +7,7 @@ export const userBalanceSocketService = {
   userSessionBetPlaced: (callback: any) => {
     socket.on("userSessionBetPlaced", callback);
   },
+  userMatchBetPlaced: (callback: any) => {
+    socket.on("userMatchBetPlaced", callback);
+  },
 };

@@ -56,12 +56,9 @@ const MobileOneVOneGame = () => {
                   <React.Fragment key={index}>
                     <BackLayComponent
                       heading="1"
-                      backRate={
-                        item.backTeamA ??"-"
-                      }
-                      layRate={
-                        item.layTeamA??"-"
-                      }
+                      backRate={item.backTeamA ?? "-"}
+                      layRate={item.layTeamA ?? "-"}
+                      active={item?.isActive}
                     />
                     <BackLayComponent
                       heading="X"
@@ -75,6 +72,7 @@ const MobileOneVOneGame = () => {
                           ? "-"
                           : item?.layTeamC
                       }
+                      active={item?.isActive}
                     />
                     <BackLayComponent
                       heading="2"
@@ -88,6 +86,7 @@ const MobileOneVOneGame = () => {
                           ? "-"
                           : item?.layTeamB
                       }
+                      active={item?.isActive}
                     />
                   </React.Fragment>
                 );

@@ -90,17 +90,22 @@ const matchListSlice = createSlice({
           bookmaker,
           marketCompleteMatch,
           matchOdd,
+          sessionBettings,
+          manualTideMatch,
+          quickbookmaker,
         } = action.payload;
         state.matchDetails = {
           ...state.matchDetails,
+          manualSessionActive: sessionBettings?.length >= 0 ? true : false,
+          apiSessionActive: apiSession?.length >= 0 ? true : false,
           apiSession: apiSession,
           apiTideMatch: apiTiedMatch,
           bookmaker: bookmaker,
-          manualTiedMatch: action.payload?.manualTideMatch,
+          manualTiedMatch: manualTideMatch,
           marketCompleteMatch: marketCompleteMatch,
           matchOdd: matchOdd,
-          quickBookmaker: action.payload?.quickbookmaker,
-          sessionBettings: action.payload?.sessionBettings,
+          quickBookmaker: quickbookmaker,
+          sessionBettings: sessionBettings,
         };
       })
       .addCase(matchDetailAction.rejected, (state, action) => {

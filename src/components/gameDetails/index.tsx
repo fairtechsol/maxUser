@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { expertSocketService, socketService } from "../../socketManager";
 import {
   matchDetailAction,
+  selectedBetAction,
   updateMatchRates,
 } from "../../store/actions/match/matchListAction";
 import {
@@ -36,7 +37,7 @@ const GameDetails = () => {
     }
   };
 
-  const setBetsPlaced = (event: any) => {
+  const setSessionBetsPlaced = (event: any) => {
     if (event?.betPlaced?.placedBet?.matchId === id) {
       dispatch(updateBetsPlaced(event?.betPlaced?.placedBet));
       dispatch(updateBalance(event));
@@ -44,12 +45,21 @@ const GameDetails = () => {
     }
   };
 
+  const setMatchBetsPlaced = (event: any) => {
+    if (event?.jobData?.matchId === id) {
+      dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalance(event?.userRedisData));
+    }
+  };
+
   useEffect(() => {
     if (id && getProfile?.roleName) {
+      dispatch(selectedBetAction(null));
       dispatch(matchDetailAction(id));
       expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
       expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
-      socketService.userBalance.userSessionBetPlaced(setBetsPlaced);
+      socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
+      socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
     }
     return () => {
       expertSocketService.match.leaveAllRooms();
