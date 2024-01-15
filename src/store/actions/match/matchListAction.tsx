@@ -5,7 +5,7 @@ import { ApiConstants } from "../../../utils/constants";
 
 export const getMatchList = createAsyncThunk<any, any>(
   "/match/list",
-  async ({ type, searchKeyword, matchType }) => {
+  async ({ type, searchKeyword, matchType }, thunkApi) => {
     try {
       const resp = await service.get(
         `${ApiConstants.MATCH.MATCHLIST}${
@@ -19,14 +19,14 @@ export const getMatchList = createAsyncThunk<any, any>(
       }
     } catch (error: any) {
       const err = error as AxiosError;
-      throw err;
+      return thunkApi.rejectWithValue(err.response?.status);
     }
   }
 );
 
 export const SearchList = createAsyncThunk<any, any>(
   "/match/searchlist",
-  async (requestData) => {
+  async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
         `${ApiConstants.MATCH.MATCHLIST}?searchBy=title&keyword=${
@@ -38,7 +38,7 @@ export const SearchList = createAsyncThunk<any, any>(
       }
     } catch (error: any) {
       const err = error as AxiosError;
-      throw err;
+      return thunkApi.rejectWithValue(err.response?.status);
     }
   }
 );
@@ -60,7 +60,7 @@ export const SearchList = createAsyncThunk<any, any>(
 
 export const matchDetailAction = createAsyncThunk<any, any>(
   "/match/details",
-  async (matchId) => {
+  async (matchId, thunkApi) => {
     try {
       const resp = await service.get(
         `${ApiConstants.MATCH.MATCHDETAILS}${matchId}`
@@ -70,14 +70,14 @@ export const matchDetailAction = createAsyncThunk<any, any>(
       }
     } catch (error: any) {
       const err = error as AxiosError;
-      throw err;
+      return thunkApi.rejectWithValue(err.response?.status);
     }
   }
 );
 
 export const setButtonValue = createAsyncThunk<any, any>(
   "/setButtonValues",
-  async (requestData) => {
+  async (requestData, thunkApi) => {
     try {
       const resp = await service.post(
         `${ApiConstants.USER.SET_BTN_VALUE}`,
@@ -88,7 +88,7 @@ export const setButtonValue = createAsyncThunk<any, any>(
       }
     } catch (error: any) {
       const err = error as AxiosError;
-      throw err;
+      return thunkApi.rejectWithValue(err.response?.status);
     }
   }
 );

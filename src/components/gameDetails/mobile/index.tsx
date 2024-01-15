@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Col, Container, Row, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
@@ -61,8 +61,8 @@ const MobileGameDetail = () => {
                         }
                       />
                     </Col>
-                    {matchDetails?.matchOdd && (
-                      <Col className="g-0" md={12} key={index}>
+                    {matchDetails?.matchOdd?.isActive && (
+                      <Col className="g-0" md={12}>
                         <BetTable
                           title={matchDetails?.matchOdd?.name}
                           type={MatchType.MATCH_ODDS}
@@ -72,8 +72,8 @@ const MobileGameDetail = () => {
                       </Col>
                     )}
 
-                    {matchDetails?.bookmaker && (
-                      <Col className="g-0" md={12} key={index}>
+                    {matchDetails?.bookmaker?.isActive && (
+                      <Col className="g-0" md={12}>
                         <BetTable
                           title={matchDetails?.bookmaker?.name}
                           type={MatchType.MATCH_ODDS}
@@ -88,7 +88,7 @@ const MobileGameDetail = () => {
                         (item: any, index: number) => (
                           <div key={index} className="p-0">
                             {item?.isActive && (
-                              <Col className="g-0" md={12} key={index}>
+                              <Col className="g-0" md={12}>
                                 <BetTable
                                   title={item?.name}
                                   type={MatchType.BOOKMAKER}
@@ -100,8 +100,8 @@ const MobileGameDetail = () => {
                           </div>
                         )
                       )}
-                    {matchDetails?.apiTideMatch && (
-                      <Col className="g-0" md={12} key={index}>
+                    {matchDetails?.apiTideMatch?.isActive && (
+                      <Col className="g-0" md={12}>
                         <BetTable
                           title={matchDetails?.apiTideMatch?.name}
                           type={MatchType.MATCH_ODDS}
@@ -110,8 +110,8 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                    {matchDetails?.manualTiedMatch && (
-                      <Col className="g-0" md={12} key={index}>
+                    {matchDetails?.manualTiedMatch?.isActive && (
+                      <Col className="g-0" md={12}>
                         <BetTable
                           title={matchDetails?.manualTiedMatch?.name}
                           type={MatchType.BOOKMAKER}
@@ -120,8 +120,8 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                    {matchDetails?.marketCompleteMatch && (
-                      <Col className="g-0" md={12} key={index}>
+                    {matchDetails?.marketCompleteMatch?.isActive && (
+                      <Col className="g-0" md={12}>
                         <BetTable
                           title={matchDetails?.marketCompleteMatch?.name}
                           type={MatchType.MATCH_ODDS}
@@ -169,7 +169,7 @@ const MobileGameDetail = () => {
                               }
                             >
                               <Row>
-                                {matchDetails?.apiSession && (
+                                {matchDetails?.apiSessionActive && (
                                   <Col md={12}>
                                     <BetTable
                                       title={"Session Market"}
@@ -178,10 +178,10 @@ const MobileGameDetail = () => {
                                     />
                                   </Col>
                                 )}
-                                {matchDetails?.sessionBettings && (
+                                {matchDetails?.manualSessionActive && (
                                   <Col md={12}>
                                     <BetTable
-                                      title={"Api Session Market"}
+                                      title={"Quick Session Market"}
                                       type={MatchType.API_SESSION_MARKET}
                                       data={matchDetails?.sessionBettings}
                                     />
@@ -206,4 +206,4 @@ const MobileGameDetail = () => {
   );
 };
 
-export default MobileGameDetail;
+export default memo(MobileGameDetail);

@@ -38,14 +38,41 @@ const MyBet = () => {
           {placedBets &&
             placedBets?.map((bet: any) => {
               return (
-                <tr key={bet?.id} className="bg-darkGrey">
-                  <th className="title-12 text-start bg-darkGrey">
-                    {bet?.eventName}
+                <tr
+                  key={bet?.id}
+                  className={` ${
+                    bet?.betType === "NO" || bet?.betType === "LAY"
+                      ? "bg-red1"
+                      : "bg-blue3"
+                  }`}
+                >
+                  <th
+                    className={`title-12 text-start ${
+                      bet?.betType === "NO" || bet?.betType === "LAY"
+                        ? "bg-red1"
+                        : "bg-blue3"
+                    }`}
+                  >
+                    {bet?.marketBetType === "SESSION"
+                      ? bet?.eventName
+                      : bet?.teamName}
                   </th>
-                  <th className="title-12 text-start bg-darkGrey">
+                  <th
+                    className={`title-12 text-start ${
+                      bet?.betType === "NO" || bet?.betType === "LAY"
+                        ? "bg-red1"
+                        : "bg-blue3"
+                    }`}
+                  >
                     {bet?.odds}
                   </th>
-                  <th className="title-12 text-start bg-darkGrey">
+                  <th
+                    className={`title-12 text-start ${
+                      bet?.betType === "NO" || bet?.betType === "LAY"
+                        ? "bg-red1"
+                        : "bg-blue3"
+                    }`}
+                  >
                     {bet?.amount}
                   </th>
                 </tr>

@@ -51,7 +51,7 @@ const DesktopGameDetail = () => {
                 />
               </Col>
 
-              {matchDetails?.matchOdd && (
+              {matchDetails?.matchOdd?.isActive && (
                 <Col md={12}>
                   <BetTable
                     title={matchDetails?.matchOdd?.name}
@@ -61,7 +61,7 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
 
-              {matchDetails?.bookmaker && (
+              {matchDetails?.bookmaker?.isActive && (
                 <Col md={12}>
                   <BetTable
                     title={matchDetails?.bookmaker?.name}
@@ -87,7 +87,7 @@ const DesktopGameDetail = () => {
                     </div>
                   )
                 )}
-              {matchDetails?.apiTideMatch && (
+              {matchDetails?.apiTideMatch?.isActive && (
                 <Col md={12}>
                   <BetTable
                     title={matchDetails?.apiTideMatch?.name}
@@ -96,7 +96,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.manualTiedMatch && (
+              {matchDetails?.manualTiedMatch?.isActive && (
                 <Col md={12}>
                   <BetTable
                     title={matchDetails?.manualTiedMatch?.name}
@@ -105,7 +105,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.marketCompleteMatch && (
+              {matchDetails?.marketCompleteMatch?.isActive && (
                 <Col md={12}>
                   <BetTable
                     title={matchDetails?.marketCompleteMatch?.name}
@@ -115,7 +115,7 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
 
-              {matchDetails?.apiSession && (
+              {matchDetails?.apiSessionActive && (
                 <Col md={6}>
                   <BetTable
                     title={"Session Market"}
@@ -124,7 +124,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.sessionBettings && (
+              {matchDetails?.manualSessionActive && (
                 <Col md={6}>
                   <BetTable
                     title={"Quick Session Market"}
