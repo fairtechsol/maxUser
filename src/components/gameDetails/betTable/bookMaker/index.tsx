@@ -195,15 +195,26 @@ function BookmakerTable({
                             ) {
                               handleClick(
                                 {
-                                  betOnTeam: matchDetails?.[`team${item}`],
+                                  betOnTeam:
+                                    data?.type === "tiedMatch2"
+                                      ? i === 0
+                                        ? "YES"
+                                        : "NO"
+                                      : matchDetails?.[`team${item}`],
                                   rate: rate,
                                   type: "back",
                                   stake: 0,
-                                  teamA: matchDetails?.teamA,
-                                  teamB: matchDetails?.teamB,
+                                  teamA:
+                                    data?.type === "tiedMatch2"
+                                      ? "YES"
+                                      : matchDetails?.teamA,
+                                  teamB:
+                                    data?.type === "tiedMatch2"
+                                      ? "NO"
+                                      : matchDetails?.teamB,
                                   teamC: matchDetails?.teamC
                                     ? matchDetails?.teamC
-                                    : "",
+                                    : null,
                                   betId: data?.id,
                                   eventType: matchDetails?.matchType,
                                   matchId: matchDetails?.id,
@@ -240,15 +251,26 @@ function BookmakerTable({
                             ) {
                               handleClick(
                                 {
-                                  betOnTeam: matchDetails?.[`team${item}`],
+                                  betOnTeam:
+                                    data?.type === "tiedMatch2"
+                                      ? i === 0
+                                        ? "YES"
+                                        : "NO"
+                                      : matchDetails?.[`team${item}`],
                                   rate: rate,
                                   type: "lay",
                                   stake: 0,
-                                  teamA: matchDetails?.teamA,
-                                  teamB: matchDetails?.teamB,
+                                  teamA:
+                                    data?.type === "tiedMatch2"
+                                      ? "YES"
+                                      : matchDetails?.teamA,
+                                  teamB:
+                                    data?.type === "tiedMatch2"
+                                      ? "NO"
+                                      : matchDetails?.teamB,
                                   teamC: matchDetails?.teamC
                                     ? matchDetails?.teamC
-                                    : "",
+                                    : null,
                                   betId: data?.id,
                                   eventType: matchDetails?.matchType,
                                   matchId: matchDetails?.id,

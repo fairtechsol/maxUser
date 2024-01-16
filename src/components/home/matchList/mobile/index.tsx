@@ -11,14 +11,14 @@ import MatchListJson from "../matchList.json";
 import "./style.scss";
 
 const MobileMatchList = () => {
-  const { getMatchList } = useSelector(
+  const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
 
   useEffect(() => {
-    if (getMatchList && getProfile?.roleName) {
-      getMatchList?.forEach((element: any) => {
+    if (matchList && getProfile?.roleName) {
+      matchList?.forEach((element: any) => {
         expertSocketService.match.joinMatchRoom(
           element?.id,
           getProfile?.roleName
@@ -29,7 +29,7 @@ const MobileMatchList = () => {
     return () => {
       expertSocketService.match.leaveAllRooms();
     };
-  }, [getMatchList, getProfile?.roleName]);
+  }, [matchList, getProfile?.roleName]);
 
   return (
     <div className="m-0 p-0 w-100">

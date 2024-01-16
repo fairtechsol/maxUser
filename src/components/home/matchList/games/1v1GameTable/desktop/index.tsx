@@ -33,7 +33,7 @@ const tableHeading = [
 ];
 
 const DesktopOneVOneGameTable = () => {
-  const { getMatchList } = useSelector(
+  const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -50,14 +50,14 @@ const DesktopOneVOneGameTable = () => {
               key={item?.id}
             >
               {item?.name}
-              {/* {getMatchList } */}
+              {/* {matchList } */}
             </th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {getMatchList &&
-          getMatchList?.map((item: any, index: number) => {
+        {matchList &&
+          matchList?.map((item: any, index: number) => {
             return <MatchListRow item={item} key={index} />;
           })}
       </tbody>

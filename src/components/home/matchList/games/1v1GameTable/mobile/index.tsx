@@ -7,13 +7,13 @@ import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 
 const MobileOneVOneGame = () => {
-  const { getMatchList } = useSelector(
+  const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
   return (
     <div className="bg-lightGray match-list-container">
-      {getMatchList?.map((item: any, index: number) => {
+      {matchList?.map((item: any, index: number) => {
         return (
           <div key={index} className="px-3 py-1 m-game-one-v-one">
             <div className="d-flex justify-content-between">

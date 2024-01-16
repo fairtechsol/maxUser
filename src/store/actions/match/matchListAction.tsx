@@ -200,3 +200,4 @@ export const updateMatchRates = createAsyncThunk<any, any>(
 );
 
 export const searchListReset = createAction("search/list");
+export const matchListReset = createAction("matchList/reset");
