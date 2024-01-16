@@ -3,7 +3,7 @@ interface Props {
   width?: string;
 }
 function LogoSection(props: Props) {
-  return <img src="/logo.webp" {...props} alt="fairGame" />;
+  return <img src="/maxbetLogo.png" {...props} alt="fairGame" />;
 }
 
 export default LogoSection;

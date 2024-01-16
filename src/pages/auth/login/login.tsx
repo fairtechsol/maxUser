@@ -70,7 +70,7 @@ const Login = () => {
     >
       {loading && <Loader />}
       <div className="auth-box ">
-        <img src="/logo.webp" alt="fairGame" />
+        <img src="/maxbetLogo.png" alt="fairGame" />
         <div className="auth-box-form rounded-2 bg-light mt-3">
           <h4 className="auth-title title-24 fw-normal text-center">
             Login
