@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
+import moment from "moment-timezone";
 
 const tableHeading = [
   {
@@ -66,6 +67,7 @@ const DesktopOneVOneGameTable = () => {
 };
 
 const MatchListRow = ({ item }: any) => {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return (
     <tr className="one-v-one-row overflow-hidden">
       <td className="px-2 w-50 align-middle">
@@ -74,7 +76,12 @@ const MatchListRow = ({ item }: any) => {
             className="text-decoration-none"
             to={`/game-detail/${item?.id}`}
           >
-            <div className="one-v-one-title title-14">{item?.title}</div>
+            <div className="one-v-one-title title-14">
+              {item?.title} /{" "}
+              {moment(item?.startAt)
+                .tz(timezone)
+                .format("MMM DD YYYY h:mmA [IST]")}
+            </div>
           </Link>
           <div className="d-flex align-items-center gap-2">
             {item?.startAt || item?.stopAt ? (
@@ -90,7 +97,7 @@ const MatchListRow = ({ item }: any) => {
             ) : (
               ""
             )}
-            {item?.isBookmaker > 0 ? (
+            {item?.isBookmaker.length > 0 ? (
               <span className="bookmaker">
                 <img src="/ic_bm.png" alt={"fancy"} />
               </span>
