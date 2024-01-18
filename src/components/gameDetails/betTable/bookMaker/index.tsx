@@ -214,7 +214,7 @@ function BookmakerTable({
                                       : matchDetails?.teamB,
                                   teamC: matchDetails?.teamC
                                     ? matchDetails?.teamC
-                                    : null,
+                                    : "",
                                   betId: data?.id,
                                   eventType: matchDetails?.matchType,
                                   matchId: matchDetails?.id,
@@ -270,7 +270,7 @@ function BookmakerTable({
                                       : matchDetails?.teamB,
                                   teamC: matchDetails?.teamC
                                     ? matchDetails?.teamC
-                                    : null,
+                                    : "",
                                   betId: data?.id,
                                   eventType: matchDetails?.matchType,
                                   matchId: matchDetails?.id,
