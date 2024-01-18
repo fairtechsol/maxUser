@@ -17,8 +17,8 @@ import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 
 const AccountStatementComponent = () => {
-  const [from, setFrom] = useState<any>();
-  const [to, setTo] = useState<any>();
+  const [from, setFrom] = useState<any>(new Date());
+  const [to, setTo] = useState<any>(new Date());
   const [type, setType] = useState<any>("");
   const [firstTime, setFirstTime] = useState<any>(false);
 
@@ -68,6 +68,7 @@ const AccountStatementComponent = () => {
             <Col md={2} xs={6}>
               <DatePicker
                 onChange={setFrom}
+                format="y-MM-dd"
                 value={from}
                 closeCalendar={false}
                 clearIcon={false}
@@ -79,6 +80,7 @@ const AccountStatementComponent = () => {
               <DatePicker
                 onChange={setTo}
                 value={to}
+                format="y-MM-dd"
                 closeCalendar={false}
                 clearIcon={false}
                 className="w-100"
