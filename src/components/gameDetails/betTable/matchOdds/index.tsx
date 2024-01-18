@@ -165,12 +165,26 @@ function MatchOdds({
                               ) {
                                 handleClick(
                                   {
-                                    betOnTeam: matchDetails?.[`team${matchs}`],
+                                    betOnTeam:
+                                      data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                        ? indexes === 0
+                                          ? "YES"
+                                          : "NO"
+                                        : matchDetails?.[`team${matchs}`],
                                     rate: rate,
                                     type: "back",
                                     stake: 0,
-                                    teamA: matchDetails?.teamA,
-                                    teamB: matchDetails?.teamB,
+                                    teamA:
+                                      data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                        ? "YES"
+                                        : matchDetails?.teamA,
+                                    teamB:
+                                      data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                        ? "NO"
+                                        : matchDetails?.teamB,
                                     teamC: matchDetails?.teamC
                                       ? matchDetails?.teamC
                                       : "",
@@ -223,12 +237,26 @@ function MatchOdds({
                               ) {
                                 handleClick(
                                   {
-                                    betOnTeam: matchDetails?.[`team${matchs}`],
+                                    betOnTeam:
+                                      data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                        ? indexes === 0
+                                          ? "YES"
+                                          : "NO"
+                                        : matchDetails?.[`team${matchs}`],
                                     rate: rate,
                                     type: "lay",
                                     stake: 0,
-                                    teamA: matchDetails?.teamA,
-                                    teamB: matchDetails?.teamB,
+                                    teamA:
+                                      data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                        ? "YES"
+                                        : matchDetails?.teamA,
+                                    teamB:
+                                      data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                        ? "NO"
+                                        : matchDetails?.teamB,
                                     teamC: matchDetails?.teamC
                                       ? matchDetails?.teamC
                                       : "",

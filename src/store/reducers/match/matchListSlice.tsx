@@ -4,6 +4,7 @@ import {
   SearchListReset,
   getMatchList,
   matchDetailAction,
+  matchListReset,
   searchListReset,
   selectedBetAction,
   updateMatchRates,
@@ -13,7 +14,7 @@ interface InitialState {
   success: boolean;
   loading: boolean;
   error: any;
-  getMatchList: any;
+  matchList: any;
   getMatchListBySearch: any;
   matchDetails: any;
   selectedBet: any;
@@ -21,7 +22,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  getMatchList: null,
+  matchList: null,
   getMatchListBySearch: [],
   loading: false,
   success: false,
@@ -48,7 +49,7 @@ const matchListSlice = createSlice({
         if (action.payload?.type == "search") {
           state.searchedMatchList = action.payload.data;
         } else {
-          state.getMatchList = action.payload.data;
+          state.matchList = action.payload.data;
         }
       })
       .addCase(getMatchList.rejected, (state, action) => {
@@ -107,6 +108,9 @@ const matchListSlice = createSlice({
           quickBookmaker: quickbookmaker,
           sessionBettings: sessionBettings,
         };
+      })
+      .addCase(matchListReset, (state) => {
+        return { ...state, matchList: null };
       })
       .addCase(matchDetailAction.rejected, (state, action) => {
         state.loading = false;

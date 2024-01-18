@@ -6,6 +6,7 @@ import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../store/store";
 
 const Home = () => {
+  const dispatch: AppDispatch = useDispatch();
   const [matchType, setMatchType] = useState("cricket");
 
   const getMatchListService = () => {
@@ -20,7 +21,6 @@ const Home = () => {
     expertSocketService.match.matchAdded(getMatchListService);
   }, []);
 
-  const dispatch: AppDispatch = useDispatch();
   useEffect(getMatchListService, [matchType]);
 
   return (
