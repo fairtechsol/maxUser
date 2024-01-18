@@ -38,6 +38,10 @@ const AccountStatementComponent = () => {
         )}|${moment(new Date(to).setDate(to.getDate() + 1))?.format(
           "DD/MM/YYYY"
         )}`;
+      } else if (from) {
+        filter += `&createdAt=gte${moment(from)?.format("MM/DD/YYYY")}`;
+      } else if (to) {
+        filter += `&createdAt=lte${moment(to)?.format("MM/DD/YYYY")}`;
       }
       if (type) {
         filter += `&statementType=${type?.value}`;
@@ -119,6 +123,14 @@ const AccountStatementComponent = () => {
                       )?.format("DD/MM/YYYY")}|${moment(
                         new Date(to).setDate(to.getDate() + 1)
                       )?.format("DD/MM/YYYY")}`;
+                    } else if (from) {
+                      filter += `&createdAt=gte${moment(from)?.format(
+                        "MM/DD/YYYY"
+                      )}`;
+                    } else if (to) {
+                      filter += `&createdAt=lte${moment(to)?.format(
+                        "MM/DD/YYYY"
+                      )}`;
                     }
                     if (type) {
                       filter += `&statementType=${type?.value}`;
