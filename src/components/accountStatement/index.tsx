@@ -17,8 +17,8 @@ import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 
 const AccountStatementComponent = () => {
-  const [from, setFrom] = useState<any>(new Date());
-  const [to, setTo] = useState<any>(new Date());
+  const [from, setFrom] = useState<any>();
+  const [to, setTo] = useState<any>();
   const [type, setType] = useState<any>("");
   const [firstTime, setFirstTime] = useState<any>(false);
 
