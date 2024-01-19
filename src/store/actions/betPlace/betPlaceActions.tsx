@@ -5,7 +5,7 @@ import { ApiConstants } from "../../../utils/constants";
 
 export const placeBet = createAsyncThunk<any, any>(
   "/placeBet",
-  async (requestData) => {
+  async (requestData, thunkApi) => {
     try {
       const resp = await service.post(`${requestData.url}`, requestData.data);
       if (resp) {
@@ -13,28 +13,31 @@ export const placeBet = createAsyncThunk<any, any>(
       }
     } catch (error: any) {
       const err = error as AxiosError;
-      throw err;
+      return thunkApi.rejectWithValue(err.response?.status);
     }
   }
 );
 
-export const getPlacedBets = createAsyncThunk<any, any>("/bet", async (id) => {
-  try {
-    const resp = await service.get(
-      `${ApiConstants.BET.GETPLACEDBETS}?status=PENDING&betPlaced.matchId=${id}`
-    );
-    if (resp) {
-      return resp?.data?.rows;
+export const getPlacedBets = createAsyncThunk<any, any>(
+  "/bet",
+  async (id, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.BET.GETPLACEDBETS}?status=PENDING&betPlaced.matchId=${id}`
+      );
+      if (resp) {
+        return resp?.data?.rows;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
     }
-  } catch (error: any) {
-    const err = error as AxiosError;
-    throw err;
   }
-});
+);
 
 export const getRunAmount = createAsyncThunk<any, any>(
   "/runAmount",
-  async (id) => {
+  async (id, thunkApi) => {
     try {
       const resp = await service.get(`${ApiConstants.BET.RUN_AMOUNT}/${id}`);
       if (resp) {
@@ -42,7 +45,7 @@ export const getRunAmount = createAsyncThunk<any, any>(
       }
     } catch (error: any) {
       const err = error as AxiosError;
-      throw err;
+      return thunkApi.rejectWithValue(err.response?.status);
     }
   }
 );

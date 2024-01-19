@@ -67,16 +67,7 @@ const GameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
-        navigate("/home");
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const resultUnDeclared = (event: any) => {
-    try {
-      if (event?.matchId === id) {
-        dispatch(matchDetailAction(id));
+        navigate("/game-list/cricket");
       }
     } catch (e) {
       console.log(e);
@@ -93,7 +84,6 @@ const GameDetails = () => {
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
-        socketService.userBalance.matchResultUnDeclared(resultUnDeclared);
       }
     } catch (e) {
       console.log(e);
