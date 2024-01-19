@@ -32,34 +32,50 @@ const GameDetails = () => {
   }, [dispatch]);
 
   const setMatchRatesInRedux = (event: any) => {
-    if (id === event?.id) {
-      dispatch(updateMatchRates(event));
+    try {
+      if (id === event?.id) {
+        dispatch(updateMatchRates(event));
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
   const setSessionBetsPlaced = (event: any) => {
-    if (event?.betPlaced?.placedBet?.matchId === id) {
-      dispatch(updateBetsPlaced(event?.betPlaced?.placedBet));
-      dispatch(updateBalance(event));
-      dispatch(betDataFromSocket(event));
+    try {
+      if (event?.betPlaced?.placedBet?.matchId === id) {
+        dispatch(updateBetsPlaced(event?.betPlaced?.placedBet));
+        dispatch(updateBalance(event));
+        dispatch(betDataFromSocket(event));
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
   const setMatchBetsPlaced = (event: any) => {
-    if (event?.jobData?.matchId === id) {
-      dispatch(updateBetsPlaced(event?.jobData?.newBet));
-      dispatch(updateBalance(event?.userRedisData));
+    try {
+      if (event?.jobData?.matchId === id) {
+        dispatch(updateBetsPlaced(event?.jobData?.newBet));
+        dispatch(updateBalance(event?.jobData));
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
   useEffect(() => {
-    if (id && getProfile?.roleName) {
-      dispatch(selectedBetAction(null));
-      dispatch(matchDetailAction(id));
-      expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
-      expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
-      socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
-      socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
+    try {
+      if (id && getProfile?.roleName) {
+        dispatch(selectedBetAction(null));
+        dispatch(matchDetailAction(id));
+        expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
+        expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
+        socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
+        socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
+      }
+    } catch (e) {
+      console.log(e);
     }
     return () => {
       expertSocketService.match.leaveAllRooms();
@@ -68,6 +84,10 @@ const GameDetails = () => {
   }, [id, getProfile?.roleName]);
 
   useEffect(() => {
+    try {
+    } catch (e) {
+      console.log(e);
+    }
     if (id) {
       dispatch(getPlacedBets(id));
     }

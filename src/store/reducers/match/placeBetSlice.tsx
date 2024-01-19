@@ -39,7 +39,7 @@ const betPlace = createSlice({
         state.error = action?.error?.message;
       })
       .addCase(betDataFromSocket.fulfilled, (state, action) => {
-        const betId = action.payload.betPlaced.placedBet.betId;
+        const betId = action.payload?.betPlaced?.placedBet?.betId;
 
         if (
           !state.betPlaceData.some(

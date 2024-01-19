@@ -24,7 +24,7 @@ const MyBet = () => {
 
   return (
     <RightPanelContainer title={"My Bet"}>
-      <div style={{ height: "75vh", overflow: "auto" }}>
+      <div style={{ maxHeight: "75vh", overflow: "auto" }}>
         <Table className="w-full">
           <thead>
             <tr className="bg-darkGrey">
@@ -54,9 +54,7 @@ const MyBet = () => {
                           : "bg-blue3"
                       }`}
                     >
-                      {bet?.marketBetType === "SESSION"
-                        ? bet?.eventName
-                        : bet?.teamName}
+                      {bet?.teamName}
                     </th>
                     <th
                       className={`title-12 text-start ${

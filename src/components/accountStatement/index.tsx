@@ -38,6 +38,10 @@ const AccountStatementComponent = () => {
         )}|${moment(new Date(to).setDate(to.getDate() + 1))?.format(
           "DD/MM/YYYY"
         )}`;
+      } else if (from) {
+        filter += `&createdAt=gte${moment(from)?.format("MM/DD/YYYY")}`;
+      } else if (to) {
+        filter += `&createdAt=lte${moment(to)?.format("MM/DD/YYYY")}`;
       }
       if (type) {
         filter += `&statementType=${type?.value}`;
@@ -64,6 +68,7 @@ const AccountStatementComponent = () => {
             <Col md={2} xs={6}>
               <DatePicker
                 onChange={setFrom}
+                format="y-MM-dd"
                 value={from}
                 closeCalendar={false}
                 clearIcon={false}
@@ -75,6 +80,7 @@ const AccountStatementComponent = () => {
               <DatePicker
                 onChange={setTo}
                 value={to}
+                format="y-MM-dd"
                 closeCalendar={false}
                 clearIcon={false}
                 className="w-100"
@@ -119,6 +125,14 @@ const AccountStatementComponent = () => {
                       )?.format("DD/MM/YYYY")}|${moment(
                         new Date(to).setDate(to.getDate() + 1)
                       )?.format("DD/MM/YYYY")}`;
+                    } else if (from) {
+                      filter += `&createdAt=gte${moment(from)?.format(
+                        "MM/DD/YYYY"
+                      )}`;
+                    } else if (to) {
+                      filter += `&createdAt=lte${moment(to)?.format(
+                        "MM/DD/YYYY"
+                      )}`;
                     }
                     if (type) {
                       filter += `&statementType=${type?.value}`;

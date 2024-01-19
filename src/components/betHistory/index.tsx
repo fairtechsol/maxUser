@@ -31,13 +31,22 @@ const BetHistoryComponent = () => {
   ];
   const dispatch: AppDispatch = useDispatch();
   const [tableConfig, setTableConfig] = useState<TableConfig | null>(null);
-  const [selectType, setSelectType] = useState({ value: "MATCHED", label: "Matched" });
-  const [selectMatch, setSelectMatch] = useState({ value: "MATCHED", label: "Matched" });
+  const [selectType, setSelectType] = useState({
+    value: "MATCHED",
+    label: "Matched",
+  });
+  const [selectMatch, setSelectMatch] = useState({
+    value: "MATCHED",
+    label: "Matched",
+  });
 
   useEffect(() => {
-    dispatch(betReportList({ status: selectType?.value,  
-      // matchType: selectType?.value 
-    }));
+    dispatch(
+      betReportList({
+        status: selectType?.value,
+        // matchType: selectType?.value
+      })
+    );
   }, [tableConfig]);
 
   const handleMatch = (type: any) => {
@@ -51,21 +60,28 @@ const BetHistoryComponent = () => {
     e.preventDefault();
     let filter = "";
     if (fromDate && toDate) {
-      filter += `&createdAt=between${moment(
-        new Date(fromDate)
-      )?.format("DD/MM/YYYY")}|${moment(
-        new Date(toDate).setDate(toDate.getDate() + 1)
-      )?.format("DD/MM/YYYY")}`;
+      filter += `&createdAt=between${moment(new Date(fromDate))?.format(
+        "DD/MM/YYYY"
+      )}|${moment(new Date(toDate).setDate(toDate.getDate() + 1))?.format(
+        "DD/MM/YYYY"
+      )}`;
+    } else if (fromDate) {
+      filter += `&createdAt=gte${moment(fromDate)?.format("MM/DD/YYYY")}`;
+    } else if (toDate) {
+      filter += `&createdAt=lte${moment(toDate)?.format("MM/DD/YYYY")}`;
     }
-    dispatch(betReportList({ status: selectType?.value, 
-      // matchType: selectMatch?.value, 
-      filter: filter 
-    }));
+    dispatch(
+      betReportList({
+        status: selectType?.value,
+        // matchType: selectMatch?.value,
+        filter: filter,
+      })
+    );
   };
 
-
-
-  const { ReportBetList } = useSelector((state: RootState) => state.currentBetList.ReportBetList);
+  const { ReportBetList } = useSelector(
+    (state: RootState) => state.currentBetList.ReportBetList
+  );
   return (
     <ReportContainer title="Bet History">
       <div>
@@ -73,11 +89,10 @@ const BetHistoryComponent = () => {
           <Row className="g-2 mt-1">
             <Col md={2} xs={6}>
               <SelectSearch
-              
-              options={optionsMatch}
-              placeholder="Sport Type"
-              defaultValue={[selectMatch]}
-              onChange={handleMatch}
+                options={optionsMatch}
+                placeholder="Sport Type"
+                defaultValue={[selectMatch]}
+                onChange={handleMatch}
               />
             </Col>
             <Col md={2} xs={6}>
@@ -113,8 +128,9 @@ const BetHistoryComponent = () => {
               <CustomButton
                 onClick={(e: any) => handleLoad(e)}
                 size={isMobile ? "sm" : "lg"}
-                className={`${isMobile ? "w-100" : " bg-primaryBlue"
-                  } border-0 `}
+                className={`${
+                  isMobile ? "w-100" : " bg-primaryBlue"
+                } border-0 `}
               >
                 Submit
               </CustomButton>
@@ -126,8 +142,11 @@ const BetHistoryComponent = () => {
             isPagination={true}
             isSearch={true}
             setTableConfig={setTableConfig}
-            itemCount={ReportBetList && ReportBetList?.count > 0 ? ReportBetList?.count : 0}
-
+            itemCount={
+              ReportBetList && ReportBetList?.count > 0
+                ? ReportBetList?.count
+                : 0
+            }
             columns={[
               {
                 id: "event_name",
@@ -162,8 +181,8 @@ const BetHistoryComponent = () => {
                 label: "Match Date",
               },
             ]}
-          // itemCount={10}
-          // setTableConfig={() => {}}
+            // itemCount={10}
+            // setTableConfig={() => {}}
           >
             <tr className={`${isMobile && "title-12"}`}>
               <td>123456</td>

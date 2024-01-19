@@ -14,15 +14,16 @@ export const calculateProfitLoss = (
   }
   if (selectedData?.team?.type == "lay") {
     if (selectedData?.team?.betOnTeam == team) {
-      return -parseFloat(selectedData?.team?.stake).toFixed(2);
+      return -parseFloat((selectedData?.team?.stake).toFixed(2));
     } else {
       return selectedData?.data?.type == matchBettingType.matchOdd ||
         selectedData?.data?.type == matchBettingType.tiedMatch1 ||
         selectedData?.data?.type == matchBettingType.completeMatch
-        ? +selectedData?.team?.stake * (parseInt(selectedData?.team?.rate) - 1)
+        ? +selectedData?.team?.stake *
+            (parseFloat(selectedData?.team?.rate) - 1)
         : (
             +selectedData?.team?.stake *
-            (parseInt(selectedData?.team?.rate) / 100)
+            (parseFloat(selectedData?.team?.rate) / 100)
           ).toFixed(2);
     }
   } else {
@@ -32,10 +33,11 @@ export const calculateProfitLoss = (
       return selectedData?.data?.type == matchBettingType.matchOdd ||
         selectedData?.data?.type == matchBettingType.tiedMatch1 ||
         selectedData?.data?.type == matchBettingType.completeMatch
-        ? +selectedData?.team?.stake * (parseInt(selectedData?.team?.rate) - 1)
+        ? +selectedData?.team?.stake *
+            (parseFloat(selectedData?.team?.rate) - 1)
         : (
             +selectedData?.team?.stake *
-            (parseInt(selectedData?.team?.rate) / 100)
+            (parseFloat(selectedData?.team?.rate) / 100)
           ).toFixed(2);
     }
   }
