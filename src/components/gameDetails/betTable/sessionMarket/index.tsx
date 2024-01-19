@@ -84,7 +84,15 @@ function SessionMarketTable({
                           {JSON.parse(item)?.name}
                         </span>
                       </div>
-                      <span className="title-14">{0}</span>
+                      <span className="title-14">
+                        {matchDetails?.profitLossDataSession?.map(
+                          (bet: any) => {
+                            if (bet?.betId === JSON.parse(item)?.id) {
+                              return +bet?.maxLoss;
+                            }
+                          }
+                        )}
+                      </span>
                     </div>
                   </td>
 
