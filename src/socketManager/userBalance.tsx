@@ -10,4 +10,10 @@ export const userBalanceSocketService = {
   userMatchBetPlaced: (callback: any) => {
     socket.on("userMatchBetPlaced", callback);
   },
+  matchResultDeclared: (callback: any) => {
+    socket.on("matchResult", callback);
+  },
+  matchResultUnDeclared: (callback: any) => {
+    socket.on("matchResultUnDeclare", callback);
+  },
 };

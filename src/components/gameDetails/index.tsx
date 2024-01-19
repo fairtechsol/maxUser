@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { expertSocketService, socketService } from "../../socketManager";
 import {
   matchDetailAction,
@@ -24,7 +24,7 @@ import {
 const GameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
-
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
@@ -64,6 +64,25 @@ const GameDetails = () => {
     }
   };
 
+  const resultDeclared = (event: any) => {
+    try {
+      if (event?.matchId === id) {
+        navigate("/home");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const resultUnDeclared = (event: any) => {
+    try {
+      if (event?.matchId === id) {
+        dispatch(matchDetailAction(id));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     try {
       if (id && getProfile?.roleName) {
@@ -73,6 +92,8 @@ const GameDetails = () => {
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
+        socketService.userBalance.matchResultDeclared(resultDeclared);
+        socketService.userBalance.matchResultUnDeclared(resultUnDeclared);
       }
     } catch (e) {
       console.log(e);
