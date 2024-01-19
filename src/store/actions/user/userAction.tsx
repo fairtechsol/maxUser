@@ -38,7 +38,7 @@ export const updateBalance = createAsyncThunk<any, any>(
 );
 
 export const betDataFromSocket = createAsyncThunk<any, any>(
-  "/user/balance",
+  "/betData/update",
   async (data) => {
     return data;
   }
