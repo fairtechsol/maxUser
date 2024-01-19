@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import MatchList from "../../components/home";
-import { expertSocketService } from "../../socketManager";
+import { expertSocketService, socketService } from "../../socketManager";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../store/store";
 
@@ -10,15 +10,25 @@ const Home = () => {
   const [matchType, setMatchType] = useState("cricket");
 
   const getMatchListService = () => {
-    dispatch(
-      getMatchList({
-        matchType: matchType,
-      })
-    );
+    try {
+      dispatch(
+        getMatchList({
+          matchType: matchType,
+        })
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
-    expertSocketService.match.matchAdded(getMatchListService);
+    try {
+      expertSocketService.match.matchAdded(getMatchListService);
+      socketService.userBalance.matchResultDeclared(getMatchListService);
+      socketService.userBalance.matchResultUnDeclared(getMatchListService);
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   useEffect(getMatchListService, [matchType]);
