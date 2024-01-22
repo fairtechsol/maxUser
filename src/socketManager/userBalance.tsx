@@ -16,4 +16,7 @@ export const userBalanceSocketService = {
   matchResultUnDeclared: (callback: any) => {
     socket.on("matchResultUnDeclare", callback);
   },
+  matchDeleteBet: (callback: any) => {
+    socket.on("matchDeleteBet", callback);
+  },
 };
