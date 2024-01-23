@@ -108,22 +108,81 @@ const MatchListRow = ({ item }: any) => {
         </div>
       </td>
       {item?.matchOdds?.map((item: any, index: number) => {
+        console.log(
+          item?.runners && item?.runners[0]?.ex?.availableToBack[0].price
+        );
         return (
           <React.Fragment key={index}>
             <BackLayComponent
-              backRate={item.backTeamA ?? item.backTeamA}
-              layRate={item?.layTeamA ?? item?.layTeamA}
-              active={item?.isActive}
+              backRate={
+                (item?.runners &&
+                  item?.runners[0]?.ex?.availableToBack[0].price) ??
+                item?.backTeamA ??
+                0
+              }
+              layRate={
+                (item?.runners &&
+                  item?.runners[0]?.ex?.availableToLay[0].price) ??
+                item?.layTeamA ??
+                0
+              }
+              active={false}
+              backPercent={
+                (item?.runners &&
+                  item?.runners[0]?.ex?.availableToBack[0].size) ??
+                ""
+              }
+              layPercent={
+                (item?.runners &&
+                  item?.runners[0]?.ex?.availableToLay[0].size) ??
+                ""
+              }
             />
             <BackLayComponent
-              backRate={item?.backTeamB ?? item?.backTeamB}
-              layRate={item?.layTeamB ?? item?.layTeamB}
-              active={item?.isActive}
+              backRate={
+                (item?.runners &&
+                  item?.runners[2]?.ex?.availableToBack[0].price) ??
+                0
+              }
+              layRate={
+                (item?.runners &&
+                  item?.runners[2]?.ex?.availableToLay[0].price) ??
+                0
+              }
+              active={false}
+              backPercent={
+                (item?.runners &&
+                  item?.runners[2]?.ex?.availableToBack[0].size) ??
+                ""
+              }
+              layPercent={
+                (item?.runners &&
+                  item?.runners[2]?.ex?.availableToLay[0].size) ??
+                ""
+              }
             />
             <BackLayComponent
-              backRate={item?.backTeamC ?? item?.backTeamC}
-              layRate={item?.layTeamC ?? item?.layTeamC}
-              active={item?.isActive}
+              backRate={
+                (item?.runners &&
+                  item?.runners[1]?.ex?.availableToBack[0].price) ??
+                0
+              }
+              layRate={
+                (item?.runners &&
+                  item?.runners[1]?.ex?.availableToLay[0].price) ??
+                0
+              }
+              active={false}
+              backPercent={
+                (item?.runners &&
+                  item?.runners[1]?.ex?.availableToBack[0].size) ??
+                ""
+              }
+              layPercent={
+                (item?.runners &&
+                  item?.runners[1]?.ex?.availableToLay[0].size) ??
+                ""
+              }
             />
           </React.Fragment>
         );

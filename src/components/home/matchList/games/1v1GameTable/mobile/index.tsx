@@ -56,19 +56,19 @@ const MobileOneVOneGame = () => {
                   <React.Fragment key={index}>
                     <BackLayComponent
                       heading="1"
-                      backRate={item.backTeamA ?? "-"}
-                      layRate={item.layTeamA ?? "-"}
+                      backRate={item?.backTeamA ?? "-"}
+                      layRate={item?.layTeamA ?? "-"}
                       active={item?.isActive}
                     />
                     <BackLayComponent
                       heading="X"
                       backRate={
-                        item.backTeamC === null || item.backTeamC === undefined
+                        item?.backTeamC === null || item?.backTeamC === undefined
                           ? "-"
                           : item.backTeamC
                       }
                       layRate={
-                        item.layTeamC === null || item.layTeamC === undefined
+                        item?.layTeamC === null || item?.layTeamC === undefined
                           ? "-"
                           : item?.layTeamC
                       }
@@ -77,12 +77,12 @@ const MobileOneVOneGame = () => {
                     <BackLayComponent
                       heading="2"
                       backRate={
-                        item.backTeamB === null || item.backTeamB === undefined
+                        item?.backTeamB === null || item?.backTeamB === undefined
                           ? "-"
-                          : item.backTeamB
+                          : item?.backTeamB
                       }
                       layRate={
-                        item.layTeamB === null || item.layTeamB === undefined
+                        item?.layTeamB === null || item?.layTeamB === undefined
                           ? "-"
                           : item?.layTeamB
                       }
