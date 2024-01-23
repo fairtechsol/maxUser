@@ -85,13 +85,18 @@ function SessionMarketTable({
                         </span>
                       </div>
                       <span className="title-14">
-                        {matchDetails?.profitLossDataSession?.map(
-                          (bet: any) => {
-                            if (bet?.betId === JSON.parse(item)?.id) {
-                              return +bet?.maxLoss;
-                            }
-                          }
-                        )}
+                        {matchDetails?.profitLossDataSession.length > 0
+                          ? matchDetails?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === JSON.parse(item)?.id
+                                    ? +bet?.maxLoss
+                                    : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            )
+                          : 0}
                       </span>
                     </div>
                   </td>

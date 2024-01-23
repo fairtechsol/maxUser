@@ -96,6 +96,7 @@ const GameDetails = () => {
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.matchDeleteBet(betDeleted);
+        socketService.userBalance.sessionDeleteBet(betDeleted);
       }
     } catch (e) {
       console.log(e);
