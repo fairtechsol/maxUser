@@ -81,7 +81,20 @@ function ApiSessionMarketTable({
                   >
                     {item?.RunnerName}
                   </span>
-                  <span className="title-14">{2}</span>
+                  <span className="title-14">
+                    {matchDetails?.profitLossDataSession.length > 0
+                      ? matchDetails?.profitLossDataSession?.reduce(
+                          (accumulator: any, bet: any) => {
+                            const maxLossToAdd =
+                              bet?.betId === JSON.parse(item)?.id
+                                ? +bet?.maxLoss
+                                : 0;
+                            return accumulator + maxLossToAdd;
+                          },
+                          0
+                        )
+                      : 0}
+                  </span>
                 </div>
               </td>
 

@@ -34,14 +34,14 @@ const AccountStatementComponent = () => {
 
       if (from && to) {
         filter += `&createdAt=between${moment(new Date(from))?.format(
-          "DD/MM/YYYY"
+          "YYYY-DD-MM"
         )}|${moment(new Date(to).setDate(to.getDate() + 1))?.format(
-          "DD/MM/YYYY"
+          "YYYY-DD-MM"
         )}`;
       } else if (from) {
-        filter += `&createdAt=gte${moment(from)?.format("MM/DD/YYYY")}`;
+        filter += `&createdAt=gte${moment(from)?.format("YYYY-DD-MM")}`;
       } else if (to) {
-        filter += `&createdAt=lte${moment(to)?.format("MM/DD/YYYY")}`;
+        filter += `&createdAt=lte${moment(to)?.format("YYYY-DD-MM")}`;
       }
       if (type) {
         filter += `&statementType=${type?.value}`;
@@ -122,16 +122,16 @@ const AccountStatementComponent = () => {
                     if (from && to) {
                       filter += `&createdAt=between${moment(
                         new Date(from)
-                      )?.format("DD/MM/YYYY")}|${moment(
+                      )?.format("YYYY-DD-MM")}|${moment(
                         new Date(to).setDate(to.getDate() + 1)
-                      )?.format("DD/MM/YYYY")}`;
+                      )?.format("YYYY-DD-MM")}`;
                     } else if (from) {
                       filter += `&createdAt=gte${moment(from)?.format(
-                        "MM/DD/YYYY"
+                        "YYYY-DD-MM"
                       )}`;
                     } else if (to) {
                       filter += `&createdAt=lte${moment(to)?.format(
-                        "MM/DD/YYYY"
+                        "YYYY-DD-MM"
                       )}`;
                     }
                     if (type) {

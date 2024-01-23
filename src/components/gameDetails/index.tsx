@@ -63,6 +63,17 @@ const GameDetails = () => {
       console.log(e);
     }
   };
+  const betDeleted = (event: any) => {
+    try {
+      if (event?.matchId === id) {
+        dispatch(matchDetailAction(id));
+        dispatch(getPlacedBets(id));
+        dispatch(updateBalance(event));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const resultDeclared = (event: any) => {
     try {
@@ -84,6 +95,8 @@ const GameDetails = () => {
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
+        socketService.userBalance.matchDeleteBet(betDeleted);
+        socketService.userBalance.sessionDeleteBet(betDeleted);
       }
     } catch (e) {
       console.log(e);

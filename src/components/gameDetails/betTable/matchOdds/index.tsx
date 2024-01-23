@@ -92,7 +92,27 @@ function MatchOdds({
                           : matchDetails?.[`team${matchs}`]}
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100">
-                        <span className="title-14">{0}</span>
+                        <span className="title-14">
+                          {data?.type === "tiedMatch1"
+                            ? indexes === 0
+                              ? matchDetails?.profitLossDataMatch?.yesRateTie ??
+                                0
+                              : matchDetails?.profitLossDataMatch?.noRateTie ??
+                                0
+                            : data?.type === "completeMatch"
+                            ? indexes === 0
+                              ? matchDetails?.profitLossDataMatch
+                                  ?.yesRateComplete ?? 0
+                              : matchDetails?.profitLossDataMatch
+                                  ?.noRateComplete ?? 0
+                            : matchDetails?.profitLossDataMatch?.[
+                                `team${matchs}Rate`
+                              ]
+                            ? matchDetails?.profitLossDataMatch?.[
+                                `team${matchs}Rate`
+                              ]
+                            : 0}
+                        </span>
                         <span
                           className={`title-14 ${
                             Number(
