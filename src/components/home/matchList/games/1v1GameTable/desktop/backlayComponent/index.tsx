@@ -4,20 +4,34 @@ interface BackLayComponentProps {
   backRate: string | number;
   layRate: string | number;
   active: boolean;
+  backPercent: string | number;
+  layPercent: string | number;
 }
 
 const BackLayComponent = ({
   backRate,
   layRate,
   active,
+  backPercent,
+  layPercent,
 }: BackLayComponentProps) => {
   return (
     <>
       <td>
-        <BackLayBox bgColor={"blue3"} rate={backRate} active={active} />
+        <BackLayBox
+          bgColor={"blue3"}
+          rate={backRate}
+          active={active}
+          percent={backPercent}
+        />
       </td>
       <td>
-        <BackLayBox bgColor={"red1"} rate={layRate} active={active} />
+        <BackLayBox
+          bgColor={"red1"}
+          rate={layRate}
+          active={active}
+          percent={layPercent}
+        />
       </td>
     </>
   );
