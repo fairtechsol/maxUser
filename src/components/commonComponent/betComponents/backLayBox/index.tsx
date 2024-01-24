@@ -57,9 +57,9 @@ function BackLayBox({
           </h5>
           {percent && (
             <span className="backLay-percent title-10">
-              {percent >= 10000
-                ? (percent / 1000).toFixed(0) + "k"
-                : percent.toString()}
+              {percent >= 1000
+                ? (percent / 1000).toFixed(1) + "k"
+                : percent.toFixed(2)}
             </span>
           )}
         </div>
