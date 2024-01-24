@@ -144,7 +144,11 @@ function BookmakerTable({
                             calculateProfitLoss(
                               data,
                               selectedBet,
-                              matchDetails?.[`team${item}`]
+                              data?.type === "tiedMatch2"
+                                ? i === 0
+                                  ? "YES"
+                                  : "NO"
+                                : matchDetails?.[`team${item}`]
                             ) || 0
                           ) < 0
                             ? "color-red"
@@ -152,7 +156,11 @@ function BookmakerTable({
                                 calculateProfitLoss(
                                   data,
                                   selectedBet,
-                                  matchDetails?.[`team${item}`]
+                                  data?.type === "tiedMatch2"
+                                    ? i === 0
+                                      ? "YES"
+                                      : "NO"
+                                    : matchDetails?.[`team${item}`]
                                 ) || 0
                               ) > 0
                             ? "color-green"
@@ -162,7 +170,11 @@ function BookmakerTable({
                         {calculateProfitLoss(
                           data,
                           selectedBet,
-                          matchDetails?.[`team${item}`]
+                          data?.type === "tiedMatch2"
+                            ? i === 0
+                              ? "YES"
+                              : "NO"
+                            : matchDetails?.[`team${item}`]
                         )}
                       </span>
                     </div>
@@ -189,7 +201,7 @@ function BookmakerTable({
                               : ""
                           }`}
                           bgColor={`blue${index + 1}`}
-                          rate={+data[`backTeam${item}`].toFixed(1) - 2 + index}
+                          rate={+data[`backTeam${item}`] - 2 + index}
                           onClick={() => {
                             const rate =
                               parseInt(data[`backTeam${item}`] || 0) -
@@ -247,7 +259,7 @@ function BookmakerTable({
                               : ""
                           }`}
                           bgColor={`red${index + 1}`}
-                          rate={+data[`layTeam${item}`].toFixed(1) + index}
+                          rate={+data[`layTeam${item}`] + index}
                           onClick={() => {
                             const rate =
                               parseInt(data[`layTeam${item}`] || 0) + index;

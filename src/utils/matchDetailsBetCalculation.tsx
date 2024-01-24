@@ -5,6 +5,11 @@ export const calculateProfitLoss = (
   selectedData: any,
   team: string
 ) => {
+  console.log(
+    selectedData?.team?.betOnTeam === team,
+    selectedData?.team?.type,
+    "abc"
+  );
   if (
     betData?.id != selectedData?.data?.id ||
     !betData?.id ||
@@ -16,29 +21,37 @@ export const calculateProfitLoss = (
     if (selectedData?.team?.betOnTeam == team) {
       return -parseFloat((selectedData?.team?.stake).toFixed(2));
     } else {
-      return selectedData?.data?.type == matchBettingType.matchOdd ||
-        selectedData?.data?.type == matchBettingType.tiedMatch1 ||
-        selectedData?.data?.type == matchBettingType.completeMatch
-        ? +selectedData?.team?.stake *
-            (parseFloat(selectedData?.team?.rate) - 1)
-        : (
-            +selectedData?.team?.stake *
-            (parseFloat(selectedData?.team?.rate) / 100)
-          ).toFixed(2);
+      return selectedData?.data?.type == matchBettingType.matchOdd
+        ? parseFloat(
+            (
+              +selectedData?.team?.stake *
+              (parseFloat(selectedData?.team?.rate) - 1)
+            ).toFixed(2)
+          )
+        : parseFloat(
+            (
+              +selectedData?.team?.stake *
+              (parseFloat(selectedData?.team?.rate) / 100)
+            ).toFixed(2)
+          );
     }
   } else {
     if (selectedData?.team?.betOnTeam != team) {
-      return -(+selectedData?.team?.stake).toFixed(2);
+      return -parseFloat((+selectedData?.team?.stake).toFixed(2));
     } else {
-      return selectedData?.data?.type == matchBettingType.matchOdd ||
-        selectedData?.data?.type == matchBettingType.tiedMatch1 ||
-        selectedData?.data?.type == matchBettingType.completeMatch
-        ? +selectedData?.team?.stake *
-            (parseFloat(selectedData?.team?.rate) - 1)
-        : (
-            +selectedData?.team?.stake *
-            (parseFloat(selectedData?.team?.rate) / 100)
-          ).toFixed(2);
+      return selectedData?.data?.type == matchBettingType.matchOdd
+        ? parseFloat(
+            (
+              +selectedData?.team?.stake *
+              (parseFloat(selectedData?.team?.rate) - 1)
+            ).toFixed(2)
+          )
+        : parseFloat(
+            (
+              +selectedData?.team?.stake *
+              (parseFloat(selectedData?.team?.rate) / 100)
+            ).toFixed(2)
+          );
     }
   }
 };

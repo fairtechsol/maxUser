@@ -61,14 +61,14 @@ const BetHistoryComponent = () => {
     let filter = "";
     if (fromDate && toDate) {
       filter += `&createdAt=between${moment(new Date(fromDate))?.format(
-        "YYYY-DD-MM"
+        "YYYY-MM-DD"
       )}|${moment(new Date(toDate).setDate(toDate.getDate() + 1))?.format(
-        "YYYY-DD-MM"
+        "YYYY-MM-DD"
       )}`;
     } else if (fromDate) {
-      filter += `&createdAt=gte${moment(fromDate)?.format("YYYY-DD-MM")}`;
+      filter += `&createdAt=gte${moment(fromDate)?.format("YYYY-MM-DD")}`;
     } else if (toDate) {
-      filter += `&createdAt=lte${moment(toDate)?.format("YYYY-DD-MM")}`;
+      filter += `&createdAt=lte${moment(toDate)?.format("YYYY-MM-DD")}`;
     }
     dispatch(
       betReportList({
