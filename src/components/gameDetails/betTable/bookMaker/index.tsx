@@ -189,9 +189,7 @@ function BookmakerTable({
                               : ""
                           }`}
                           bgColor={`blue${index + 1}`}
-                          rate={
-                            Math.floor(+data[`backTeam${item}`]) - 2 + index
-                          }
+                          rate={+data[`backTeam${item}`].toFixed(1) - 2 + index}
                           onClick={() => {
                             const rate =
                               parseInt(data[`backTeam${item}`] || 0) -
@@ -249,7 +247,7 @@ function BookmakerTable({
                               : ""
                           }`}
                           bgColor={`red${index + 1}`}
-                          rate={Math.floor(+data[`layTeam${item}`]) + index}
+                          rate={+data[`layTeam${item}`].toFixed(1) + index}
                           onClick={() => {
                             const rate =
                               parseInt(data[`layTeam${item}`] || 0) + index;
