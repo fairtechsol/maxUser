@@ -136,7 +136,7 @@ export const betReportList = createAsyncThunk<any, any>(
   }
 );
 export const settleUnsettleMatch = createAsyncThunk<any, any>(
-  "/bet/",
+  "/unsettled/bet/",
   // async (requestData, thunkApi) => {
   //   try {
   //     const resp = await service.get(
@@ -207,3 +207,4 @@ export const updateMatchOddRates = createAsyncThunk<any, any>(
 
 export const searchListReset = createAction("search/list");
 export const matchListReset = createAction("matchList/reset");
+export const resetDataUnsettledMatch = createAction("dataUnsettledMatch/reset");
