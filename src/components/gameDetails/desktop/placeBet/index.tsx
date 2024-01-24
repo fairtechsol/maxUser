@@ -135,7 +135,7 @@ const PlacedBet = () => {
                 </span>
               </td>
               <td>
-                <span className="f600 title-12">{selectedBet?.team?.name}</span>
+                <span className="f600 title-12">{selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}</span>
               </td>
               <td>
                 <input
