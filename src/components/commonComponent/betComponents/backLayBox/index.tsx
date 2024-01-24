@@ -58,10 +58,11 @@ function BackLayBox({
           {percent && (
             <span className="backLay-percent title-10">
               {percent >= 1000
-                ? (percent / 1000).toFixed(1) + "k"
-                : percent.toFixed(2)}
+                ? (percent / 1000)?.toFixed(1) + "k"
+                : percent?.toString()}
             </span>
           )}
+          
         </div>
       </BetStatusOverlay>
     </div>

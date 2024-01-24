@@ -45,7 +45,7 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
         expertSocketService.match.leaveMatchRoom(element?.id);
       });
     };
-  }, [matchList, getProfile?.roleName]);
+  }, [matchList?.length, getProfile?.roleName]);
 
   return (
     <div className="m-1 p-0 w-100">
