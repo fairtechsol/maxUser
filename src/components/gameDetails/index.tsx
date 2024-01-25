@@ -11,6 +11,7 @@ import {
   betDataFromSocket,
   getButtonValue,
   updateBalance,
+  updateMaxLossForBet,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
@@ -47,6 +48,7 @@ const GameDetails = () => {
         dispatch(updateBetsPlaced(event?.betPlaced?.placedBet));
         dispatch(updateBalance(event));
         dispatch(betDataFromSocket(event));
+        dispatch(updateMaxLossForBet(event));
       }
     } catch (e) {
       console.log(e);
