@@ -20,9 +20,8 @@ const BetHistoryComponent = () => {
   const [toDate, setToDate] = useState<any>();
 
   const optionsMatch = [
-    { value: "MATCHED", label: "Cricket" },
-    { value: "UNMATCHED", label: "Football" },
-    { value: "DELETED", label: "Deleted" },
+    { value: "cricket", label: "Cricket" },
+    { value: "football", label: "Football" },
   ];
   const optionsType = [
     { value: "MATCHED", label: "Matched" },
@@ -36,15 +35,15 @@ const BetHistoryComponent = () => {
     label: "Matched",
   });
   const [selectMatch, setSelectMatch] = useState({
-    value: "MATCHED",
-    label: "Matched",
+    value: "cricket",
+    label: "Cricket",
   });
 
   useEffect(() => {
     dispatch(
       betReportList({
         status: selectType?.value,
-        // matchType: selectType?.value
+        matchType: selectMatch?.value,
       })
     );
   }, [tableConfig]);
@@ -73,7 +72,7 @@ const BetHistoryComponent = () => {
     dispatch(
       betReportList({
         status: selectType?.value,
-        // matchType: selectMatch?.value,
+        matchType: selectMatch?.value,
         filter: filter,
       })
     );

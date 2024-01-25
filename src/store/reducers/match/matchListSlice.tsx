@@ -10,6 +10,7 @@ import {
   updateMatchOddRates,
   updateMatchRates,
 } from "../../actions/match/matchListAction";
+import { updateMaxLossForBet } from "../../actions/user/userAction";
 
 interface InitialState {
   success: boolean;
@@ -133,6 +134,28 @@ const matchListSlice = createSlice({
       })
       .addCase(searchListReset, (state) => {
         state.searchedMatchList = null;
+      })
+      .addCase(updateMaxLossForBet.fulfilled, (state, action) => {
+        const { betPlaced, profitLossData } = action.payload;
+        if (state?.matchDetails?.id === betPlaced?.placedBet?.matchId) {
+          const updatedProfitLossDataSession =
+            state.matchDetails?.profitLossDataSession.map((item: any) => {
+              if (item?.betId === betPlaced?.placedBet?.betId) {
+                return {
+                  ...item,
+                  maxLoss: JSON.parse(profitLossData)?.maxLoss,
+                };
+              }
+              return item;
+            });
+
+          state.matchDetails = {
+            ...state.matchDetails,
+            profitLossDataSession: updatedProfitLossDataSession,
+          };
+        } else {
+          return state.matchDetails;
+        }
       });
   },
 });
