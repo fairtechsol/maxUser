@@ -124,7 +124,9 @@ export const betReportList = createAsyncThunk<any, any>(
       const resp = await service.get(
         `${ApiConstants.MATCH.CURRENTBET}?status=${
           requestData.status
-        }&keyword=${requestData?.keyword || ""}${requestData?.filter || ""}`
+        }&betPlaced.eventType=${requestData?.matchType}&keyword=${
+          requestData?.keyword || ""
+        }${requestData?.filter || ""}`
       );
       if (resp?.data) {
         return resp?.data;
