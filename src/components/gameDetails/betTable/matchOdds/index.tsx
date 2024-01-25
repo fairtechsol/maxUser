@@ -119,7 +119,12 @@ function MatchOdds({
                               calculateProfitLoss(
                                 data,
                                 selectedBet,
-                                matchDetails?.[`team${matchs}`]
+                                data?.type === "completeMatch" ||
+                                  data?.type === "tiedMatch1"
+                                  ? indexes === 0
+                                    ? "YES"
+                                    : "NO"
+                                  : matchDetails?.[`team${matchs}`]
                               ) || 0
                             ) < 0
                               ? "color-red"
@@ -127,7 +132,12 @@ function MatchOdds({
                                   calculateProfitLoss(
                                     data,
                                     selectedBet,
-                                    matchDetails?.[`team${matchs}`]
+                                    data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                      ? indexes === 0
+                                        ? "YES"
+                                        : "NO"
+                                      : matchDetails?.[`team${matchs}`]
                                   ) || 0
                                 ) > 0
                               ? "color-green"
@@ -137,7 +147,12 @@ function MatchOdds({
                           {calculateProfitLoss(
                             data,
                             selectedBet,
-                            matchDetails?.[`team${matchs}`]
+                            data?.type === "completeMatch" ||
+                              data?.type === "tiedMatch1"
+                              ? indexes === 0
+                                ? "YES"
+                                : "NO"
+                              : matchDetails?.[`team${matchs}`]
                           )}
                         </span>
                       </div>

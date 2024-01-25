@@ -5,7 +5,7 @@ import "./style.scss";
 interface props {
   bgColor?: string;
   rate: any;
-  percent?: number | string;
+  percent?: any;
   customClass?: string;
   overlay?: boolean;
   onClick?: any;
@@ -56,8 +56,13 @@ function BackLayBox({
             {parseFloat(rate || 0) <= 0 || active ? "-" : rate}{" "}
           </h5>
           {percent && (
-            <span className="backLay-percent title-10">{percent}</span>
+            <span className="backLay-percent title-10">
+              {percent >= 1000
+                ? (percent / 1000)?.toFixed(1) + "k"
+                : percent?.toString()}
+            </span>
           )}
+          
         </div>
       </BetStatusOverlay>
     </div>

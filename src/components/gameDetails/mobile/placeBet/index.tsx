@@ -95,7 +95,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       <Container className="p-1" fluid>
         <Row className="row-cols-md-3 g-2 align-items-center">
           <Col xs={6} className="f800 title-12">
-            {selectedBet?.team?.name}
+            {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
           </Col>
           <Col xs={6} className="d-flex justify-content-end">
             <CustomButton

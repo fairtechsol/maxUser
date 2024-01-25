@@ -1,9 +1,7 @@
 import UnsettledBetComponent from "../../components/unsettledBet";
 
 const UnsettledBet = () => {
-  return (
-    <UnsettledBetComponent/>
-  );
-}
+  return <UnsettledBetComponent />;
+};
 
 export default UnsettledBet;
