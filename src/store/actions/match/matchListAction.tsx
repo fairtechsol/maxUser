@@ -137,6 +137,23 @@ export const betReportList = createAsyncThunk<any, any>(
     }
   }
 );
+export const getProfitLossReport = createAsyncThunk<any, any>(
+  "/profitLoss/report",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.post(
+        `${ApiConstants.MATCH.PROFIT_LOSS_REPORT}`,
+        requestData
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 export const settleUnsettleMatch = createAsyncThunk<any, any>(
   "/unsettled/bet/",
   // async (requestData, thunkApi) => {

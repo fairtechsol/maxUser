@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   betReportList,
+  getProfitLossReport,
   resetDataUnsettledMatch,
   settleUnsettleMatch,
 } from "../../actions/match/matchListAction";
 
 interface InitialState {
   ReportBetList: any;
+  profitLossReport: any;
   loading: boolean;
   success: boolean;
   error: any;
@@ -14,6 +16,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   ReportBetList: [],
+  profitLossReport: [],
   loading: false,
   success: false,
   error: null,
@@ -50,6 +53,20 @@ const currentBetListSlice = createSlice({
         state.loading = false;
       })
       .addCase(settleUnsettleMatch.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(getProfitLossReport.pending, (state) => {
+        state.loading = false;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(getProfitLossReport.fulfilled, (state, action) => {
+        state.success = true;
+        state.profitLossReport = action.payload;
+        state.loading = false;
+      })
+      .addCase(getProfitLossReport.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })
