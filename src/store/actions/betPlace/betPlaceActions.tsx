@@ -19,7 +19,7 @@ export const placeBet = createAsyncThunk<any, any>(
 );
 
 export const getPlacedBets = createAsyncThunk<any, any>(
-  "/bet",
+  "placed/bet",
   async (id, thunkApi) => {
     try {
       const resp = await service.get(

@@ -18,6 +18,9 @@ import moment from "moment";
 const BetHistoryComponent = () => {
   const [fromDate, setFromDate] = useState<any>();
   const [toDate, setToDate] = useState<any>();
+  const { ReportBetList } = useSelector(
+    (state: RootState) => state.currentBetList
+  );
 
   const optionsMatch = [
     { value: "cricket", label: "Cricket" },
@@ -78,9 +81,7 @@ const BetHistoryComponent = () => {
     );
   };
 
-  const { ReportBetList } = useSelector(
-    (state: RootState) => state.currentBetList.ReportBetList
-  );
+  console.log(ReportBetList, "repo");
   return (
     <ReportContainer title="Bet History">
       <div>
@@ -183,16 +184,86 @@ const BetHistoryComponent = () => {
             // itemCount={10}
             // setTableConfig={() => {}}
           >
-            <tr className={`${isMobile && "title-12"}`}>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123459999999996</td>
-            </tr>
+            {ReportBetList &&
+              ReportBetList?.count > 0 &&
+              ReportBetList?.rows?.map((item: any) => {
+                return (
+                  <tr key={item?.id} className={`${isMobile && "title-12"}`}>
+                    <td
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                    >
+                      {item?.eventType}
+                    </td>
+                    <td
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                    >
+                      {item?.teamName}
+                    </td>
+                    <td
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                    >
+                      {item?.betType}
+                    </td>
+                    <td
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                    >
+                      {item?.odds}
+                    </td>
+                    <td
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                    >
+                      {item?.amount}
+                    </td>
+                    <td
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                    >
+                      {item?.winAmount}
+                    </td>
+                    <td
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                    >
+                      {item?.createdAt}
+                    </td>
+                    <td
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                    >
+                      {item?.match?.startAt}
+                    </td>
+                  </tr>
+                );
+              })}
           </CustomTable>
         </Stack>
       </div>
