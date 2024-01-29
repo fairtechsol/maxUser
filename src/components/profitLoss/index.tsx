@@ -60,7 +60,7 @@ const ProfitLossComponent = () => {
               <DatePicker
                 onChange={setFromDate}
                 value={fromDate}
-                closeCalendar={false}
+                closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
               />
@@ -70,7 +70,7 @@ const ProfitLossComponent = () => {
               <DatePicker
                 onChange={setToDate}
                 value={toDate}
-                closeCalendar={false}
+                closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
               />

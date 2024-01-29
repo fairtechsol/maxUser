@@ -106,7 +106,7 @@ const BetHistoryComponent = () => {
               <DatePicker
                 onChange={setFromDate}
                 value={fromDate}
-                closeCalendar={false}
+                closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
               />
@@ -116,7 +116,7 @@ const BetHistoryComponent = () => {
               <DatePicker
                 onChange={setToDate}
                 value={toDate}
-                closeCalendar={false}
+                closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
               />
