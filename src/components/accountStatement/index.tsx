@@ -70,7 +70,7 @@ const AccountStatementComponent = () => {
                 onChange={setFrom}
                 format="y-MM-dd"
                 value={from}
-                closeCalendar={false}
+                closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
               />
@@ -81,7 +81,7 @@ const AccountStatementComponent = () => {
                 onChange={setTo}
                 value={to}
                 format="y-MM-dd"
-                closeCalendar={false}
+                closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
               />

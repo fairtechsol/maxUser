@@ -118,7 +118,7 @@ export const getCompetitionList = createAsyncThunk<any, any>(
   }
 );
 export const betReportList = createAsyncThunk<any, any>(
-  "/bet/",
+  "/betReport/",
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(

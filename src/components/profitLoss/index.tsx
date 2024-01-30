@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
@@ -60,7 +60,7 @@ const ProfitLossComponent = () => {
               <DatePicker
                 onChange={setFromDate}
                 value={fromDate}
-                closeCalendar={false}
+                closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
               />
@@ -70,7 +70,7 @@ const ProfitLossComponent = () => {
               <DatePicker
                 onChange={setToDate}
                 value={toDate}
-                closeCalendar={false}
+                closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
               />
