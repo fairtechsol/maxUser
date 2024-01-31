@@ -47,7 +47,7 @@ function BackLayBox({
       } bg-${isYellow ? "secondary" : bgColor}`}
       style={{ ...inlineStyle }}
     >
-      <BetStatusOverlay active={parseFloat(rate || 0) <= 0 && active}>
+      <BetStatusOverlay>
         <div
           onClick={() => onClick()}
           className={`backLayBox text-center d-flex  cursor-pointer`}
@@ -62,7 +62,6 @@ function BackLayBox({
                 : percent?.toString()}
             </span>
           )}
-          
         </div>
       </BetStatusOverlay>
     </div>

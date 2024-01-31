@@ -173,8 +173,8 @@ const MobileGameDetail = () => {
                                   <Col md={12}>
                                     <BetTable
                                       title={"Session Market"}
-                                      type={MatchType.SESSION_MARKET}
-                                      data={matchDetails?.apiSession}
+                                      type={MatchType.API_SESSION_MARKET}
+                                      data={matchDetails?.sessionBettings}
                                     />
                                   </Col>
                                 )}
@@ -182,8 +182,8 @@ const MobileGameDetail = () => {
                                   <Col md={12}>
                                     <BetTable
                                       title={"Quick Session Market"}
-                                      type={MatchType.API_SESSION_MARKET}
-                                      data={matchDetails?.sessionBettings}
+                                      type={MatchType.SESSION_MARKET}
+                                      data={[]}
                                     />
                                   </Col>
                                 )}

@@ -47,7 +47,6 @@ const ChangePasswordComponent = () => {
   // Handler function to handle the "Change Password" button click
   // const handleChangePassword = () => {
   //   // Add logic here to handle the password change
-  //   console.log("Form Data:", formData);
   // };
 
   return (

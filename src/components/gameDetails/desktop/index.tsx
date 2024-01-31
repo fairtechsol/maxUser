@@ -120,7 +120,7 @@ const DesktopGameDetail = () => {
                   <BetTable
                     title={"Session Market"}
                     type={MatchType.API_SESSION_MARKET}
-                    data={matchDetails?.apiSession}
+                    data={matchDetails?.sessionBettings}
                   />
                 </Col>
               )}
@@ -129,7 +129,7 @@ const DesktopGameDetail = () => {
                   <BetTable
                     title={"Quick Session Market"}
                     type={MatchType.SESSION_MARKET}
-                    data={matchDetails?.sessionBettings}
+                    data={[]}
                   />
                 </Col>
               )}

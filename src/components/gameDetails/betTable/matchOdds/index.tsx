@@ -161,11 +161,7 @@ function MatchOdds({
                   <td colSpan={backLayCount === 2 ? 2 : 6}>
                     <BetStatusOverlay
                       title={data?.runners?.[indexes]?.status.toLowerCase()}
-                      active={
-                        data?.runners?.[indexes]?.status
-                          .toLowerCase()
-                          ?.toLowerCase() != teamStatus.active?.toLowerCase()
-                      }
+                      active={data?.activeStatus === "live" ? false : true}
                     >
                       {new Array(backLayCount == 2 ? 1 : 3)
                         .fill(0)

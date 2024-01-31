@@ -74,7 +74,7 @@ const ChangeButtonValueComponent = () => {
         result = { ...result, [item?.label]: item?.value };
       });
       const payload = {
-        id: buttonValues?.id,
+        id: buttonValues[0]?.id,
         type: "Match",
         value: result,
       };
@@ -89,12 +89,12 @@ const ChangeButtonValueComponent = () => {
   const { handleSubmit, values, setValues, setFieldValue } = formik;
 
   useEffect(() => {
-    if (buttonValues?.value) {
+    if (buttonValues && buttonValues[0]?.value) {
       setValues(
-        Object.keys(JSON.parse(buttonValues?.value))?.map((item) => {
+        Object.keys(JSON.parse(buttonValues[0]?.value))?.map((item) => {
           return {
             label: item,
-            value: JSON.parse(buttonValues?.value)[item],
+            value: JSON.parse(buttonValues[0]?.value)[item],
           };
         })
       );
