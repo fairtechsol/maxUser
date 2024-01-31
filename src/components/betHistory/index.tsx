@@ -81,7 +81,6 @@ const BetHistoryComponent = () => {
     );
   };
 
-  console.log(ReportBetList, "repo");
   return (
     <ReportContainer title="Bet History">
       <div>

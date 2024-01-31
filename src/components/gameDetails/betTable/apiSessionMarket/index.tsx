@@ -71,7 +71,6 @@ function ApiSessionMarketTable({
             <tr key={index}>
               <td>
                 <div className="backLayRunner d-flex flex-column px-1">
-                  .
                   <span
                     onClick={() => {
                       setShow(true);
@@ -79,7 +78,7 @@ function ApiSessionMarketTable({
                     }}
                     className="backLayRunner-country session-country title-12"
                   >
-                    {item?.RunnerName}
+                    {JSON.parse(item)?.name}
                   </span>
                   <span className="title-14">
                     {matchDetails?.profitLossDataSession.length > 0
@@ -100,15 +99,17 @@ function ApiSessionMarketTable({
 
               <td colSpan={isMobile ? 2 : 3}>
                 <BetStatusOverlay
-                  title={item?.GameStatus}
-                  active={item?.GameStatus != ""}
+                  title={JSON.parse(item)?.status}
+                  active={
+                    JSON.parse(item)?.status === "suspended" ? true : false
+                  }
                 >
                   <BackLayBox
                     customClass="bet-place-box"
                     // overlay={true}
                     bgColor="red1"
-                    rate={item?.BackPrice1}
-                    percent={item?.BackSize1}
+                    rate={JSON.parse(item)?.noRate}
+                    percent={JSON.parse(item)?.noPercent}
                     onClick={() => {
                       const rate = parseFloat(item?.BackPrice1);
                       const percent = parseInt(item?.BackSize1);
@@ -128,13 +129,15 @@ function ApiSessionMarketTable({
                         );
                       }
                     }}
-                    active={item?.GameStatus != ""}
+                    active={
+                      JSON.parse(item)?.status === "suspended" ? true : false
+                    }
                   />
                   <BackLayBox
                     customClass="bet-place-box"
                     bgColor="blue3"
-                    rate={item?.LayPrice1}
-                    percent={item?.LaySize1}
+                    rate={JSON.parse(item)?.yesRate}
+                    percent={JSON.parse(item)?.yesPercent}
                     onClick={() => {
                       const rate = parseFloat(item?.LayPrice1);
                       const percent = parseFloat(item?.LaySize1);
@@ -154,13 +157,15 @@ function ApiSessionMarketTable({
                         );
                       }
                     }}
-                    active={item?.GameStatus != ""}
+                    active={
+                      JSON.parse(item)?.status === "suspended" ? true : false
+                    }
                   />
                   {!isMobile && (
                     <div className="minMax">
                       <div className="minMaxBox d-flex flex-column justify-content-end text-end px-2 title-12">
-                        <span className="">Min:{item?.min}</span>
-                        <span>Max:{item?.max}</span>
+                        <span className="">Min:{JSON.parse(item)?.minBet}</span>
+                        <span>Max:{JSON.parse(item)?.maxBet}</span>
                       </div>
                     </div>
                   )}
