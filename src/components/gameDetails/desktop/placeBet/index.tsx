@@ -53,7 +53,7 @@ const PlacedBet = () => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    let updatedBtnValue = buttonValues?.value;
+    let updatedBtnValue = buttonValues[0]?.value;
 
     // Check if updatedBtnValue is not undefined before parsing
     if (updatedBtnValue) {
@@ -135,7 +135,9 @@ const PlacedBet = () => {
                 </span>
               </td>
               <td>
-                <span className="f600 title-12">{selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}</span>
+                <span className="f600 title-12">
+                  {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
+                </span>
               </td>
               <td>
                 <input
