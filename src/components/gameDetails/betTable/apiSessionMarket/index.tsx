@@ -100,9 +100,7 @@ function ApiSessionMarketTable({
               <td colSpan={isMobile ? 2 : 3}>
                 <BetStatusOverlay
                   title={JSON.parse(item)?.status}
-                  active={
-                    JSON.parse(item)?.status === "suspended" ? true : false
-                  }
+                  active={JSON.parse(item)?.status !== "active" ? true : false}
                 >
                   <BackLayBox
                     customClass="bet-place-box"
@@ -130,7 +128,7 @@ function ApiSessionMarketTable({
                       }
                     }}
                     active={
-                      JSON.parse(item)?.status === "suspended" ? true : false
+                      JSON.parse(item)?.status !== "active" ? true : false
                     }
                   />
                   <BackLayBox
@@ -158,7 +156,7 @@ function ApiSessionMarketTable({
                       }
                     }}
                     active={
-                      JSON.parse(item)?.status === "suspended" ? true : false
+                      JSON.parse(item)?.status !== "active" ? true : false
                     }
                   />
                   {!isMobile && (
