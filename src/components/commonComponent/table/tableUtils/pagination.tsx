@@ -5,6 +5,7 @@ interface PaginationComponentProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (pageNumber: number) => void;
+
 }
 
 const PaginationComponent: React.FC<PaginationComponentProps> = ({

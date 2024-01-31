@@ -182,9 +182,9 @@ function BookmakerTable({
                 </td>
                 <td
                   colSpan={backLayCount === 2 ? 2 : 6}
-                  className={
-                    isMobile && backLayCount != 2 ? "bookmaker-block-width" : ""
-                  }
+                  // className={
+                  //   isMobile && backLayCount != 2 ? "bookmaker-block-width" : ""
+                  // }
                 >
                   <BetStatusOverlay
                     title={data?.[`statusTeam${item}`]}
@@ -195,7 +195,7 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
-                          customClass={`bookmaker-bet-place ${
+                          customClass={`match-odd-bet-place ${
                             isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
@@ -253,7 +253,7 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
-                          customClass={`bookmaker-bet-place ${
+                          customClass={`match-odd-bet-place ${
                             isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
