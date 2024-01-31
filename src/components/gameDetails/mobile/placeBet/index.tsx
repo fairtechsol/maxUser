@@ -115,19 +115,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               <span className="f900 text-black">-</span>
             </CustomButton>
             <input
-              value={stake}
+     
               min={0}
-              onChange={(e) => {
-                dispatch(
-                  selectedBetAction({
-                    ...selectedBet,
-                    team: {
-                      ...selectedBet?.team,
-                      stake: parseInt(e.target.value),
-                    },
-                  })
-                );
-              }}
+              value={selectedBet?.team?.rate}
+           
               type="number"
               className="w-50"
             />
@@ -151,7 +142,18 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           <Col xs={4}>
             {" "}
             <input
-              value={selectedBet?.team?.rate}
+                      value={stake}
+                 onChange={(e) => {
+                dispatch(
+                  selectedBetAction({
+                    ...selectedBet,
+                    team: {
+                      ...selectedBet?.team,
+                      stake: parseInt(e.target.value),
+                    },
+                  })
+                );
+              }}
               disabled
               type="text"
               className="w-100"
