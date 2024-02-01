@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { useEffect } from "react";
-import { Form, NavLink } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { MdOutlineLogin } from "react-icons/md";
@@ -70,7 +70,12 @@ const Login = () => {
     >
       {loading && <Loader />}
       <div className="auth-box ">
-        <img src="/maxbetLogo.png" alt="fairGame" className="img-fluid" style={{ width: '90%', height: '55px' }} />
+        <img
+          src="/maxbetLogo.png"
+          alt="fairGame"
+          className="img-fluid"
+          style={{ width: "90%", height: "55px" }}
+        />
         <div className="auth-box-form rounded-2 bg-light mt-3">
           <h4 className="auth-title title-24 fw-normal text-center">
             Login
@@ -103,9 +108,9 @@ const Login = () => {
             isUnderlinedInput={isMobile}
             value={formik.values.password}
             onChange={formik.handleChange}
-          // onChange={(e: any) => {
-          //   setLoginState({ ...loginState, password: e.target.value });
-          // }}
+            // onChange={(e: any) => {
+            //   setLoginState({ ...loginState, password: e.target.value });
+            // }}
           />
           <ValidationError
             touched={touched.password}
@@ -120,7 +125,7 @@ const Login = () => {
               href="https://policies.google.com/privacy"
               className="text-primaryBlue text-decoration-none ps-1 pe-1"
               target="_blank" // Opens link in a new tab
-              rel="noopener noreferrer" 
+              rel="noopener noreferrer"
             >
               Privacy Policy
             </a>

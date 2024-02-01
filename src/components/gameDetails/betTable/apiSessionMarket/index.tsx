@@ -15,6 +15,7 @@ import CustomModal from "../../../commonComponent/modal";
 import RunBoxTable from "../runBoxTable";
 import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
 import { useSelector } from "react-redux";
+import { teamStatus } from "../../../../utils/constants";
 
 interface ApiSessionMarketTableProps {
   data: any;
@@ -109,21 +110,24 @@ function ApiSessionMarketTable({
                     rate={JSON.parse(item)?.noRate}
                     percent={JSON.parse(item)?.noPercent}
                     onClick={() => {
-                      const rate = parseFloat(item?.BackPrice1);
-                      const percent = parseInt(item?.BackSize1);
-                      if (rate > 0 && item?.GameStatus == "") {
+                      const rate = parseFloat(JSON.parse(item)?.noRate);
+                      const percent = parseInt(JSON.parse(item)?.noPercent);
+                      if (
+                        rate > 0 &&
+                        JSON.parse(item)?.status == teamStatus.active
+                      ) {
                         handleClick(
                           {
-                            name: item?.RunnerName,
+                            betId: JSON.parse(item)?.id,
+                            name: JSON.parse(item)?.name,
                             rate: rate,
                             type: "no",
                             stake: 0,
-                            betId: item?.id,
                             percent: percent,
                             eventType: matchDetails?.matchType,
                             matchId: matchDetails?.id,
                           },
-                          item
+                          JSON.parse(item)
                         );
                       }
                     }}
@@ -137,21 +141,24 @@ function ApiSessionMarketTable({
                     rate={JSON.parse(item)?.yesRate}
                     percent={JSON.parse(item)?.yesPercent}
                     onClick={() => {
-                      const rate = parseFloat(item?.LayPrice1);
-                      const percent = parseFloat(item?.LaySize1);
-                      if (rate > 0 && item?.GameStatus == "") {
+                      const rate = parseFloat(JSON.parse(item)?.yesRate);
+                      const percent = parseFloat(JSON.parse(item)?.yesPercent);
+                      if (
+                        rate > 0 &&
+                        JSON.parse(item)?.status == teamStatus.active
+                      ) {
                         handleClick(
                           {
-                            name: item?.RunnerName,
+                            name: JSON.parse(item)?.name,
                             rate: rate,
                             type: "yes",
                             stake: 0,
-                            betId: item?.id,
+                            betId: JSON.parse(item)?.id,
                             percent: percent,
                             eventType: matchDetails?.matchType,
                             matchId: matchDetails?.id,
                           },
-                          item
+                          JSON.parse(item)
                         );
                       }
                     }}
