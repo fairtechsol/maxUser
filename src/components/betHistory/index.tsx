@@ -85,7 +85,7 @@ const BetHistoryComponent = () => {
     <ReportContainer title="Bet History">
       <div>
         <Stack gap={2} className="vh-100">
-          <Row className="g-2 mt-1">
+          <Row className="g-2 mt-1 align-items-center">
             <Col md={2} xs={6}>
               <SelectSearch
                 options={optionsMatch}
@@ -130,6 +130,7 @@ const BetHistoryComponent = () => {
                 className={`${
                   isMobile ? "w-100" : " bg-primaryBlue"
                 } border-0 `}
+                style={{ height: "35px" }}
               >
                 Submit
               </CustomButton>
