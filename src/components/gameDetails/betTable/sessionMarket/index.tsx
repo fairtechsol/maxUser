@@ -15,6 +15,8 @@ import RunBoxTable from "../runBoxTable";
 import { useState } from "react";
 import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
 import { useSelector } from "react-redux";
+import Desktop from "../../../rules/categoryRules/desktop";
+import Mobile from "../../../rules/mobile";
 
 interface SessionMarketTableProps {
   data: any;
@@ -27,8 +29,14 @@ function SessionMarketTable({
   matchDetails,
 }: SessionMarketTableProps) {
   const { runAmount } = useSelector((state: RootState) => state.bets);
+    // State for the "Run Position" modal
+    const [showRunModal, setShowRunModal] = useState(false);
+
+
+    // State for the "Rules" modal
+    const [showRulesModal, setShowRulesModal] = useState(false);
   const dispatch: AppDispatch = useDispatch();
-  const [show, setShow] = useState(false);
+
   const handleClick = (team: any, data: any) => {
     dispatch(
       selectedBetAction({
@@ -49,7 +57,19 @@ function SessionMarketTable({
                   title={title}
                   rightComponent={
                     <div>
-                      <IoInformationCircle />
+                      <span
+                        className={`${isMobile ? "text-black title-16" : "text-white title-20"
+                          }`}
+                      >
+                        <IoInformationCircle onClick={() => setShowRulesModal(true)} />
+
+                        <CustomModal customClass="modalFull-90 rule-popup" show={showRulesModal}
+                          setShow={setShowRulesModal}
+                          title={"Rules"}>
+                          {!isMobile ? <Desktop /> :
+                            <Mobile />}
+                        </CustomModal>
+                      </span>
                     </div>
                   }
                 />
@@ -76,7 +96,7 @@ function SessionMarketTable({
                       <div>
                         <span
                           onClick={() => {
-                            setShow(true);
+                            setShowRunModal(true)
                             dispatch(getRunAmount(JSON.parse(item)?.id));
                           }}
                           className="backLayRunner-country session-country title-12"
@@ -87,15 +107,15 @@ function SessionMarketTable({
                       <span className="title-14">
                         {matchDetails?.profitLossDataSession.length > 0
                           ? matchDetails?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === JSON.parse(item)?.id
-                                    ? +bet?.maxLoss
-                                    : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            )
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === JSON.parse(item)?.id
+                                  ? +bet?.maxLoss
+                                  : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
                           : 0}
                       </span>
                     </div>
@@ -190,8 +210,8 @@ function SessionMarketTable({
       <CustomModal
         customClass="runAmountBetModal"
         title={"Run Position"}
-        show={show}
-        setShow={setShow}
+        show={showRunModal}
+        setShow={setShowRunModal}
       >
         <RunBoxTable runAmount={{ betPlaced: runAmount }} />
       </CustomModal>

@@ -7,3 +7,42 @@
     text-decoration: underline;
     cursor: pointer;
 }
+.casinoicons {
+    position: relative;
+}
+.casinoicons{
+
+    box-shadow: 0 12px 8px -8px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+a {
+    color:$primaryBlue;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+.casinoicons img{
+    width: 130px;
+    height: auto;
+}
+
+.casino-name {
+    background-image: linear-gradient($primary, $secondary);
+    color: $white;
+    padding: 5px;
+    width: 100%;
+
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 0px 0px 4px 4px;
+    font-size: 11px;
+}
+.d-inline-block {
+    display: inline-block!important;
+}
