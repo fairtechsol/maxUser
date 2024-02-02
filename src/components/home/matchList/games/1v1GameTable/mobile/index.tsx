@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
-
+import moment from "moment-timezone";
 const MobileOneVOneGame = () => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
-
+// console.log(matchList)
+const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return (
     <div className="bg-lightGray match-list-container">
       {matchList?.map((item: any, index: number) => {
@@ -23,9 +24,12 @@ const MobileOneVOneGame = () => {
                   to={`/game-detail/${item?.id}`}
                 >
                   {" "}
-                  <b className="title-14">{item?.competitionName}</b>
+                  <b className="title-14">{item?.title}
+                 </b>
+                 <div className="title-12"> {moment(item?.startAt)
+                .tz(timezone)
+                .format("MMM DD YYYY h:mmA [IST]")}</div>
                 </Link>
-                <div className="title-12">nov,12 2023</div>
               </div>
               <div className="d-flex align-items-center gap-2">
                 {item?.startAt || item?.stopAt ? (
