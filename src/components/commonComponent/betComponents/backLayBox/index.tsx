@@ -55,7 +55,7 @@ function BackLayBox({
           <h5 className="backLay-rate f600 title-16 m-0 pt-2">
             {parseFloat(rate || 0) <= 0 || active ? "-" : rate}{" "}
           </h5>
-          {percent && (
+          {+percent > 0 && (
             <span className="backLay-percent title-10">
               {percent >= 1000
                 ? (percent / 1000)?.toFixed(1) + "k"
