@@ -16,6 +16,8 @@ import RunBoxTable from "../runBoxTable";
 import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
 import { useSelector } from "react-redux";
 import { teamStatus } from "../../../../utils/constants";
+import Desktop from "../../../rules/categoryRules/desktop";
+import Mobile from "../../../rules/mobile";
 
 interface ApiSessionMarketTableProps {
   data: any;
@@ -30,7 +32,14 @@ function ApiSessionMarketTable({
   const dispatch: AppDispatch = useDispatch();
 
   const { runAmount } = useSelector((state: RootState) => state.bets);
-  const [show, setShow] = useState(false);
+
+
+  // State for the "Run Position" modal
+  const [showRunModal, setShowRunModal] = useState(false);
+
+
+  // State for the "Rules" modal
+  const [showRulesModal, setShowRulesModal] = useState(false);
   const handleClick = (team: any, data: any) => {
     dispatch(
       selectedBetAction({
@@ -50,7 +59,19 @@ function ApiSessionMarketTable({
                   title={title}
                   rightComponent={
                     <div>
-                      <IoInformationCircle />
+                      <span
+                        className={`${isMobile ? "text-black title-16" : "text-white title-20"
+                          }`}
+                      >
+                        <IoInformationCircle onClick={() => setShowRulesModal(true)} />
+
+                        <CustomModal customClass="modalFull-90 rule-popup" show={showRulesModal}
+                          setShow={setShowRulesModal}
+                          title={"Rules"}>
+                          {!isMobile ? <Desktop /> :
+                            <Mobile />}
+                        </CustomModal>
+                      </span>
                     </div>
                   }
                 />
@@ -74,7 +95,7 @@ function ApiSessionMarketTable({
                 <div className="backLayRunner d-flex flex-column px-1">
                   <span
                     onClick={() => {
-                      setShow(true);
+                      setShowRunModal(true)
                       dispatch(getRunAmount(JSON.parse(item)?.id));
                     }}
                     className="backLayRunner-country session-country title-12"
@@ -84,15 +105,15 @@ function ApiSessionMarketTable({
                   <span className="title-14">
                     {matchDetails?.profitLossDataSession.length > 0
                       ? matchDetails?.profitLossDataSession?.reduce(
-                          (accumulator: any, bet: any) => {
-                            const maxLossToAdd =
-                              bet?.betId === JSON.parse(item)?.id
-                                ? +bet?.maxLoss
-                                : 0;
-                            return accumulator + maxLossToAdd;
-                          },
-                          0
-                        )
+                        (accumulator: any, bet: any) => {
+                          const maxLossToAdd =
+                            bet?.betId === JSON.parse(item)?.id
+                              ? +bet?.maxLoss
+                              : 0;
+                          return accumulator + maxLossToAdd;
+                        },
+                        0
+                      )
                       : 0}
                   </span>
                 </div>
@@ -184,8 +205,8 @@ function ApiSessionMarketTable({
       <CustomModal
         customClass="runAmountBetModal"
         title={"Run Position"}
-        show={show}
-        setShow={setShow}
+        show={showRunModal}
+        setShow={setShowRunModal}
       >
         <RunBoxTable runAmount={{ betPlaced: runAmount }} />
       </CustomModal>
