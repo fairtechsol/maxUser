@@ -49,6 +49,20 @@ export const getRunAmount = createAsyncThunk<any, any>(
     }
   }
 );
+export const getMyMarket = createAsyncThunk<any>(
+  "/myMarket",
+  async (_, thunkApi) => {
+    try {
+      const resp = await service.get(`${ApiConstants.BET.MY_MARKET}`);
+      if (resp) {
+        return resp?.data;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 
 export const updateBetsPlaced = createAsyncThunk<any, any>(
   "/placed/bets",

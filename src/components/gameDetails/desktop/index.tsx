@@ -33,9 +33,6 @@ const DesktopGameDetail = () => {
     };
   }, []);
 
-
-  
-
   return (
     <Container fluid>
       <Row>
@@ -127,7 +124,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.manualSessionActive && (
+              {matchDetails?.manualSessionActive?.isActive && (
                 <Col md={6}>
                   <BetTable
                     title={"Quick Session Market"}
@@ -192,9 +189,14 @@ const DesktopGameDetail = () => {
         </Col>
         <Col md={4} className="ps-0">
           <Container className="p-0" fluid ref={placeBetRef}>
-
-            <Row className={` ${isSticky ? 'position-fixed top-0 pe-3' : ''}`}
-             style={{ width: isSticky ? placeBetRef.current?.offsetWidth + 'px' : '100%' }}>
+            <Row
+              className={` ${isSticky ? "position-fixed top-0 pe-3" : ""}`}
+              style={{
+                width: isSticky
+                  ? placeBetRef.current?.offsetWidth + "px"
+                  : "100%",
+              }}
+            >
               <Col md={12}>
                 <PlacedBet />
               </Col>
@@ -202,7 +204,6 @@ const DesktopGameDetail = () => {
                 <MyBet />
               </Col>
             </Row>
-
           </Container>
         </Col>
       </Row>

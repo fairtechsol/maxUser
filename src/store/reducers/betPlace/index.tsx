@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   betsSuccessReset,
+  getMyMarket,
   getPlacedBets,
   getRunAmount,
   updateBetsPlaced,
@@ -9,6 +10,7 @@ import {
 interface InitialState {
   placedBets: any;
   runAmount: any;
+  myMarketList: any;
   success: boolean;
   loading: boolean;
   error: any;
@@ -17,6 +19,7 @@ interface InitialState {
 const initialState: InitialState = {
   placedBets: [],
   runAmount: [],
+  myMarketList: [],
   loading: false,
   success: false,
   error: null,
@@ -53,6 +56,21 @@ const placedBet = createSlice({
         state.runAmount = action.payload;
       })
       .addCase(getRunAmount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(getMyMarket.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+        state.myMarketList = [];
+      })
+      .addCase(getMyMarket.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.myMarketList = action.payload;
+      })
+      .addCase(getMyMarket.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })

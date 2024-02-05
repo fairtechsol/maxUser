@@ -27,22 +27,22 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
     (state: RootState) => state.match.matchList
   );
   const [show, setShow] = useState(false);
-  const [showModal, setShowModal] = useState(false); // State to manage modal visibility
+  // const [showModal, setShowModal] = useState(false); // State to manage modal visibility
 
-  const handleInfoClick = () => {
-    // Your condition to check whether to show the modal or not
-    const shouldShowModal = true; // Example condition
-    if (shouldShowModal) {
-      setShowModal(true);
-    }
-  };
+  // const handleInfoClick = () => {
+  //   // Your condition to check whether to show the modal or not
+  //   const shouldShowModal = true; // Example condition
+  //   if (shouldShowModal) {
+  //     setShowModal(true);
+  //   }
+  // };
   return (
     <>
       {loading && <Loader />}
 
       {isMobile &&
-        (type === MatchType.SESSION_MARKET ||
-          type === MatchType.API_SESSION_MARKET) ? (
+      (type === MatchType.SESSION_MARKET ||
+        type === MatchType.API_SESSION_MARKET) ? (
         ""
       ) : (
         <BetTableHeader
@@ -56,14 +56,23 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
                 </span>
               )}
               <span
-                className={`${isMobile ? "text-black title-16" : "text-white title-20"
-                  }`}
+                className={`${
+                  isMobile ? "text-black title-16" : "text-white title-20"
+                }`}
               >
-                <IoInformationCircle onClick={() => { setShow(true) }} />
+                <IoInformationCircle
+                  onClick={() => {
+                    setShow(true);
+                  }}
+                />
 
-                <CustomModal customClass="modalFull-90 rule-popup" show={show} setShow={setShow} title={"Rules"}>
-                  {!isMobile ? <Desktop /> :
-                    <Mobile />}
+                <CustomModal
+                  customClass="modalFull-90 rule-popup"
+                  show={show}
+                  setShow={setShow}
+                  title={"Rules"}
+                >
+                  {!isMobile ? <Desktop /> : <Mobile />}
                 </CustomModal>
               </span>
             </div>

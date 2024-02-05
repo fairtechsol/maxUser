@@ -21,13 +21,14 @@ import CustomModal from "../../../../components/commonComponent/modal";
 import Drules from "../../../../components/rules/desktop";
 import Mobile from "../../../../components/rules/mobile";
 import isMobile from "../../../../utils/screenDimension";
+import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
 
 const DesktopHeader = () => {
-  const dispatch: AppDispatch = useDispatch()
+  const dispatch: AppDispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const [openExposure, setOpenExposure] = useState(false);
-const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
@@ -38,18 +39,18 @@ const [show, setShow] = useState(false);
   // );
 
   const handleClickOpen = () => {
-    if(open === false){
-      dispatch(SearchListReset())
+    if (open === false) {
+      dispatch(SearchListReset());
     }
     setOpen(!open);
-
   };
 
   const handleClickExposureModalOpen = () => {
+    if (!openExposure) {
+      dispatch(getMyMarket());
+    }
     setOpenExposure(!openExposure);
   };
-
-  
 
   const debouncedInputValue = useMemo(() => {
     return debounce((value) => {
@@ -64,105 +65,109 @@ const [show, setShow] = useState(false);
 
   return (
     <>
-    <Row className=" w-100">
-      <Col xs={12}>
-        <div className="float-start">
-          <Link to={"/home"}>
-            <Navbar.Brand>
-              <LogoSection width="auto" height="65px" />
-            </Navbar.Brand>
-          </Link>
-        </div>
-        <ul className="d-flex align-items-center white-text gap-3 list-unstyled mb-0 float-end h-100">
-          <li className="d-flex gap-3 align-items-center">
-            <Collapse in={open} dimension="width">
-              <div id="searchCollapse" className="position-relative">
-                <CustomInput
-                  placeholder="All Events"
-                  onChange={(e: any) => {
-                    if (e.target.value?.length > 2) {
-                      debouncedInputValue(e.target.value);
-                    }
-                  }}
+      <Row className=" w-100">
+        <Col xs={12}>
+          <div className="float-start">
+            <Link to={"/home"}>
+              <Navbar.Brand>
+                <LogoSection width="auto" height="65px" />
+              </Navbar.Brand>
+            </Link>
+          </div>
+          <ul className="d-flex align-items-center white-text gap-3 list-unstyled mb-0 float-end h-100">
+            <li className="d-flex gap-3 align-items-center">
+              <Collapse in={open} dimension="width">
+                <div id="searchCollapse" className="position-relative">
+                  <CustomInput
+                    placeholder="All Events"
+                    onChange={(e: any) => {
+                      if (e.target.value?.length > 2) {
+                        debouncedInputValue(e.target.value);
+                      }
+                    }}
+                  />
+                  {searchedMatchList && (
+                    <SearchResult setOpen={setOpen} data={searchedMatchList} />
+                  )}
+                </div>
+              </Collapse>
+              <span>
+                <FaSearchPlus
+                  aria-expanded={open}
+                  aria-controls="searchCollapse"
+                  onClick={handleClickOpen}
+                  className="title-24"
                 />
-                {searchedMatchList && (
-                  <SearchResult setOpen={setOpen} data={searchedMatchList} />
-                )}
+              </span>
+            </li>
+            <li
+              onClick={() => {
+                setShow(true);
+              }}
+            >
+              <b> Rules</b>
+            </li>
+            <li>
+              <div className="balance-cont">
+                <div>
+                  Balance:<b>{getProfile?.userBal?.currentBalance}</b>
+                </div>
+                <div>
+                  <span
+                    onClick={handleClickExposureModalOpen}
+                    className="white-text text-decoration-underline cursor-pointer"
+                  >
+                    Exposure:<b>{getProfile?.userBal?.exposure}</b>
+                  </span>
+                  <ExposureModal
+                    show={openExposure}
+                    setShow={handleClickExposureModalOpen}
+                  />
+                </div>
               </div>
-            </Collapse>
-            <span>
-              <FaSearchPlus
-                aria-expanded={open}
-                aria-controls="searchCollapse"
-                onClick={handleClickOpen}
-                className="title-24"
-              />
-            </span>
-          </li>
-          <li onClick={()=>{setShow(true)}}>
-            <b> Rules</b>
-          </li>
-          <li>
-            <div className="balance-cont">
-              <div>
-                Balance:<b>{getProfile?.userBal?.currentBalance}</b>
-              </div>
-              <div>
-                <span
-                  onClick={handleClickExposureModalOpen}
-                  className="white-text text-decoration-underline cursor-pointer"
+            </li>
+            <li>
+              <Dropdown>
+                <Dropdown.Toggle
+                  as={CustomDropDown}
+                  id="dropdown-custom-components"
                 >
-                  Exposure:<b>{getProfile?.userBal?.exposure}</b>
-                </span>
-                <ExposureModal
-                  show={openExposure}
-                  setShow={handleClickExposureModalOpen}
-                />
-              </div>
-            </div>
-          </li>
-          <li>
-            <Dropdown>
-              <Dropdown.Toggle
-                as={CustomDropDown}
-                id="dropdown-custom-components"
-              >
-                {getProfile?.userName}
-              </Dropdown.Toggle>
+                  {getProfile?.userName}
+                </Dropdown.Toggle>
 
-              <Dropdown.Menu className="rounded-2 shadow-sm dropdown-menu-nav">
-                {dropdownList
-                  ?.filter((item) => item?.type !== "mobile")
-                  ?.map((item) => {
-                    return (
-                      <Dropdown.Item
-                        className="title-14 px-2 py-1"
-                        onClick={() => {
-                          navigate(item.link || "");
-                        }}
-                        key={item?.id}
-                        eventKey={item?.id}
-                      >
-                        {item?.name}
-                      </Dropdown.Item>
-                    );
-                  })}
-                <Dropdown.Divider />
-                <Dropdown.Item
-                  className="title-14"
-                  eventKey={"sign-out"}
-                  onClick={() => {
-                    dispatch(logout());
-                  }}
-                >
-                  Signout
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </li>
-        </ul>
-        <MarqueeHeader />
-        {/* <div className="marquee-container nav-marquee text-white">
+                <Dropdown.Menu className="rounded-2 shadow-sm dropdown-menu-nav">
+                  {dropdownList
+                    ?.filter((item) => item?.type !== "mobile")
+                    ?.map((item) => {
+                      return (
+                        <Dropdown.Item
+                          className="title-14 px-2 py-1"
+                          onClick={() => {
+                            navigate(item.link || "");
+                          }}
+                          key={item?.id}
+                          eventKey={item?.id}
+                        >
+                          {item?.name}
+                        </Dropdown.Item>
+                      );
+                    })}
+                  <Dropdown.Divider />
+                  <Dropdown.Item
+                    className="title-14"
+                    eventKey={"sign-out"}
+                    onClick={() => {
+                      dispatch(logout());
+                    }}
+                  >
+                    Signout
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </li>
+          </ul>
+          <MarqueeHeader />
+          {/* <div className="marquee-container nav-marquee text-white">
           <div className="marquee-content title-14">
             <i>
               {" "}
@@ -171,12 +176,16 @@ const [show, setShow] = useState(false);
             </i>
           </div>
         </div> */}
-      </Col>
-    </Row>
-    <CustomModal customClass="modalFull-90 rule-popup"  show={show} setShow={setShow} title={"Rules"}>
-    {!isMobile ? <Drules />:
-     <Mobile />}
-    </CustomModal>
+        </Col>
+      </Row>
+      <CustomModal
+        customClass="modalFull-90 rule-popup"
+        show={show}
+        setShow={setShow}
+        title={"Rules"}
+      >
+        {!isMobile ? <Drules /> : <Mobile />}
+      </CustomModal>
     </>
   );
 };
