@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
+
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(lazy(() => import("../pages/home")));
 const GameDetail = Loadable(lazy(() => import("../pages/gameDetails")));
@@ -22,6 +23,7 @@ const SecureAuthVerification = Loadable(
 const ChangePassword = Loadable(
   lazy(() => import("../pages/auth/changePassword"))
 );
+const ContactAdmin = Loadable(lazy(() => import("../components/commonComponent/contactAdmin")));
 
 const GameList = Loadable(lazy(() => import("../pages/gameList/index")));
 
@@ -55,6 +57,10 @@ const MainRoutes = {
     {
       path: "game-list/:id",
       element: <GameList />,
+    },
+    {
+      path: "contact-admin",
+      element: <ContactAdmin/>,
     },
     {
       path: "*",

@@ -13,7 +13,7 @@ const service = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
       ? `${Constants.apiBasePath}`
-      : "http://localhost:5000",
+      : "http://localhost:5001",
 });
 
 service.defaults.timeout = 100000;

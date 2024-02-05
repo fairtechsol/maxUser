@@ -4,61 +4,61 @@
   {
     "id": "iccWC2023",
     "name": "ICC WC 2023",
-    "link": "/icc-wc-2023",
+    "link": "/contact-admin",
     "type": "both",
     "blink": true
   },
   {
     "id": "election2023",
     "name": "Election 2023",
-    "link": "/election-2023",
+    "link": "/contact-admin",
     "type": "both",
     "blink": true
   },
-  { "id": "tennis", "name": "Tennis", "link": "/tennis", "type": "desktop" },
+  { "id": "tennis", "name": "Tennis", "link": "/contact-admin", "type": "desktop" },
   {
     "id": "football",
     "name": "Football",
-    "link": "/football",
+    "link": "/contact-admin",
     "type": "desktop"
   },
   {
     "id": "tableTennis",
     "name": "Table Tennis",
-    "link": "/table-tennis",
+    "link": "/contact-admin",
     "type": "desktop"
   },
-  { "id": "kabaddi", "name": "Kabaddi", "link": "/kabaddi", "type": "desktop" },
+  { "id": "kabaddi", "name": "Kabaddi",   "link": "/contact-admin", "type": "desktop" },
   {
     "id": "badminton",
     "name": "Badminton",
-    "link": "/badminton",
+    "link": "/contact-admin",
     "type": "desktop"
   },
   {
     "id": "americanFootball",
     "name": "American Football",
-    "link": "/american-football",
+    "link": "/contact-admin",
     "type": "desktop"
   },
   {
     "id": "baccarat",
     "name": "Baccarat",
-    "link": "/baccarat",
+    "link": "/contact-admin",
     "type": "desktop"
   },
   {
     "id": "32cards",
     "name": "32 Cards",
-    "link": "/32-cards",
+    "link": "/contact-admin",
     "type": "desktop"
   },
   {
     "id": "teenPatti",
     "name": "Teen Patti",
-    "link": "/teen-patti",
+    "link": "/contact-admin",
     "type": "desktop"
   },
-  { "id": "poker", "name": "Poker", "link": "/poker", "type": "desktop" },
-  { "id": "lucky7", "name": "Lucky 7", "link": "/lucky-7", "type": "desktop" }
+  { "id": "poker", "name": "Poker",   "link": "/contact-admin", "type": "desktop" },
+  { "id": "lucky7", "name": "Lucky 7",   "link": "/contact-admin", "type": "desktop" }
 ]

@@ -49,6 +49,12 @@
     "type": "any"
   },
   {
+    "id": "contactAdmin",
+    "name": "Contact Admin",
+    "link": "/contact-admin",
+    "type": "any"
+  },
+  {
     "id": "balance",
     "name": "Balance",
     "isChecked": true,
