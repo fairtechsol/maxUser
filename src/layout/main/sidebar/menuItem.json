@@ -8,12 +8,14 @@
         "id": "football",
         "name": "Football",
         "type": "liveItem",
-        "blink": true
+        "blink": true,
+        "path": "/contact-admin"
       },
       {
         "id": "tennis",
         "name": "Tennis",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "cricket",
@@ -24,62 +26,74 @@
       {
         "id": "ice_hockey",
         "name": "Ice Hockey",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "volleyball",
         "name": "Volleyball",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "politics",
         "name": "Politics",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "basketball",
         "name": "Basketball",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "table_tennis",
         "name": "Table Tennis",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "darts",
         "name": "Darts",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "badminton",
         "name": "Badminton",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "kabaddi",
         "name": "Kabaddi",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "boxing",
         "name": "Boxing",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "american_football",
         "name": "American Football",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "mixed_martial_arts",
         "name": "Mixed Martial Arts",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       },
       {
         "id": "motor_sport",
         "name": "Motor Sport",
-        "type": "liveItem"
+        "type": "liveItem",
+        "path": "/contact-admin"
       }
     ]
   },

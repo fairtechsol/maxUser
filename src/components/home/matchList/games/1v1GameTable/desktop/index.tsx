@@ -7,6 +7,7 @@ import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import moment from "moment-timezone";
+import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 
 const tableHeading = [
   {
@@ -58,6 +59,10 @@ const DesktopOneVOneGameTable = () => {
           </tr>
         </thead>
         <tbody>
+        {matchList &&
+            matchList.length === 0 && <div>
+              <ContactAdmin/>
+              </div>}
           {matchList &&
             matchList?.map((item: any, index: number) => {
               return <MatchListRow item={item} key={index} />;
@@ -65,203 +70,203 @@ const DesktopOneVOneGameTable = () => {
         </tbody>
       </Table>
       <div className="col-md-12 mt-4">
-        <a href="/casino/ball_by_ball" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg" className="img-fluid" />
             <div className="casino-name">Ball By Ball</div>
           </div>
         </a>
-        <a href="/casino/superover" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg" className="img-fluid" />
             <div className="casino-name">Super Over</div>
           </div>
         </a>
-        <a href="/casino/race/t20" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png" className="img-fluid" />
             <div className="casino-name">Race 20-20</div>
           </div>
         </a>
-        <a href="/casino/queen" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg" className="img-fluid" />
             <div className="casino-name">Casino Queen</div>
           </div>
         </a>
-        <a href="/casino/cricketv3" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg" className="img-fluid" />
             <div className="casino-name">5Five Cricket</div>
           </div>
         </a>
-        <a href="/casino/ab2" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg" className="img-fluid" />
             <div className="casino-name">Andar Bahar 2</div>
           </div>
         </a>
-        <a href="/casino/dt202" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg" className="img-fluid" />
             <div className="casino-name">20-20 Dragon Tiger 2</div>
           </div>
         </a>
-        <a href="/casino/baccarat2" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg" className="img-fluid" />
             <div className="casino-name">Baccarat 2</div>
           </div>
         </a>
-        <a href="/casino/baccarat" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png" className="img-fluid" />
             <div className="casino-name">Baccarat</div>
           </div>
         </a>
-        <a href="/casino/lucky7eu" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg" className="img-fluid" />
             <div className="casino-name">Lucky 7 - B</div>
           </div>
         </a>
-        <a href="/casino/teenpatti-list/teen6" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teencasino.jpg" className="img-fluid" />
             <div className="casino-name">Teenpatti 2.0</div>
           </div>
         </a>
-        <a href="/casino/cc20" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg" className="img-fluid" />
             <div className="casino-name">20-20 Cricket Match</div>
           </div>
         </a>
-        <a href="/casino/cmeter" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg" className="img-fluid" />
             <div className="casino-name">Casino Meter</div>
           </div>
         </a>
-        <a href="/casino/war" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg" className="img-fluid" />
             <div className="casino-name">Casino War</div>
           </div>
         </a>
-        <a href="/casino/dtl20" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg" className="img-fluid" />
             <div className="casino-name">20-20 DTL</div>
           </div>
         </a>
-        <a href="/casino/teenpatti/test" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg" className="img-fluid" />
             <div className="casino-name">Test Teenpatti</div>
           </div>
         </a>
-        <a href="/casino/teenpatti/open" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg" className="img-fluid" />
             <div className="casino-name">Open Teenpatti</div>
           </div>
         </a>
-        <a href="/casino/teenpatti/oneday" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg" className="img-fluid" />
             <div className="casino-name">1 Day Teenpatti</div>
           </div>
         </a>
-        <a href="/casino/teenpatti/t20" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg" className="img-fluid" />
             <div className="casino-name">20-20 Teenpatti</div>
           </div></a>
-        <a href="/casino/poker/6player" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg" className="img-fluid" />
             <div className="casino-name">6 Player Poker</div>
           </div>
         </a>
-        <a href="/casino/poker/oneday" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg" className="img-fluid" />
             <div className="casino-name">1 Day Poker</div>
           </div>
         </a>
-        <a href="/casino/poker/t20" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg" className="img-fluid" />
             <div className="casino-name">20-20 Poker</div>
           </div>
         </a>
-        <a href="/casino/ab20" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg" className="img-fluid" />
             <div className="casino-name">Andar Bahar</div>
           </div>
         </a>
-        <a href="/casino/worli" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg" className="img-fluid" />
             <div className="casino-name">Worli Matka</div>
           </div>
         </a>
-        <a href="/casino/worli2" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg" className="img-fluid" />
             <div className="casino-name">Instant Worli</div>
           </div>
         </a>
-        <a href="/casino/3cardj" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg" className="img-fluid" />
             <div className="casino-name">3 Cards Judgement</div>
           </div>
         </a>
-        <a href="/casino/card32a" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg" className="img-fluid" />
             <div className="casino-name">32 Cards A</div>
           </div>
         </a>
-        <a href="/casino/card32b" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg" className="img-fluid" />
             <div className="casino-name">32 Cards B</div>
           </div>
         </a>
-        <a href="/casino/aaa" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg" className="img-fluid" />
             <div className="casino-name">Amar Akbar Anthony</div>
           </div>
         </a>
-        <a href="/casino/ddb" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons"><img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg" className="img-fluid" />
             <div className="casino-name">Bollywood Casino</div>
           </div>
         </a>
-        <a href="/casino/dt20" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg" className="img-fluid" />
             <div className="casino-name">20-20 Dragon Tiger</div>
           </div>
         </a>
-        <a href="/casino/dt6" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg" className="img-fluid" />
             <div className="casino-name">1 Day Dragon Tiger</div>
           </div>
         </a>
-        <a href="/casino/lottery" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lottery.jpg" className="img-fluid" />
             <div className="casino-name">Lottery</div>
           </div>
         </a>
-        <a href="/casino/lucky7" className="">
+        <a href="/contact-admin" className="">
           <div className="d-inline-block casinoicons">
             <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg" className="img-fluid" />
             <div className="casino-name">Lucky 7 - A</div></div></a>
