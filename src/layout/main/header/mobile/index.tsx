@@ -4,13 +4,16 @@ import { FaHome, FaLandmark } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import LogoSection from "../../../../components/commonComponent/logoSection";
-import { RootState } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
 import SearchBox from "./searchBox";
 import "./style.scss";
+import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
+import { useDispatch } from "react-redux";
 
 const MobileHeader = () => {
+  const dispatch: AppDispatch = useDispatch();
   const [show, setShow] = useState<any>({
     balance: true,
     exposure: true,
@@ -18,6 +21,9 @@ const MobileHeader = () => {
   const [openExposure, setOpenExposure] = useState(false);
 
   const handleClickExposureModalOpen = () => {
+    if (!openExposure) {
+      dispatch(getMyMarket());
+    }
     setOpenExposure(!openExposure);
   };
 
@@ -30,7 +36,7 @@ const MobileHeader = () => {
 
   const navigate = useNavigate();
 
-  const { getProfile,marqueeNotification } = useSelector(
+  const { getProfile, marqueeNotification } = useSelector(
     (state: RootState) => state.user.profile
   );
 
@@ -53,7 +59,9 @@ const MobileHeader = () => {
         )}
         <div className="d-flex gap-1">
           {show?.exposure && (
-            <u onClick={handleClickExposureModalOpen}>Exp:{getProfile?.userBal?.exposure}</u>
+            <u onClick={handleClickExposureModalOpen}>
+              Exp:{getProfile?.userBal?.exposure}
+            </u>
           )}
           <ExposureModal
             show={openExposure}
@@ -106,9 +114,7 @@ const MobileHeader = () => {
       </div>
       <SearchBox />
       <div className="marquee-container text-white">
-        <b className="marquee-content title-10">
-        {marqueeNotification?.value}
-        </b>
+        <b className="marquee-content title-10">{marqueeNotification?.value}</b>
       </div>
     </>
   );

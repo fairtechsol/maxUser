@@ -2,6 +2,8 @@ import React from "react";
 import CustomModal from "../../../../components/commonComponent/modal";
 import CustomTable from "../../../../components/commonComponent/table";
 import isMobile from "../../../../utils/screenDimension";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 
 interface ExposureModalInterface {
   show: boolean;
@@ -9,6 +11,8 @@ interface ExposureModalInterface {
 }
 
 const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
+  const { myMarketList } = useSelector((state: RootState) => state.bets);
+
   return (
     <CustomModal show={show} setShow={setShow} title={"My Market"}>
       <CustomTable
@@ -35,12 +39,16 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
         itemCount={10}
         setTableConfig={() => {}}
       >
-        <tr>
-          <td>12345</td>
-          <td>12345</td>
-          <td>12345</td>
-          <td>12345</td>
-        </tr>
+        {myMarketList?.map((item: any, index: number) => {
+          return (
+            <tr key={index}>
+              <td>{item?.eventType}</td>
+              <td>{item?.eventName}</td>
+              <td>{item?.groupedmarkettype}</td>
+              <td>{item?.trade}</td>
+            </tr>
+          );
+        })}
       </CustomTable>
     </CustomModal>
   );

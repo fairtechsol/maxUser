@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { formatDate } from "../../../utils/dateUtils";
@@ -9,10 +9,14 @@ import BetTable from "../betTable";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import { IoInformationCircle } from "react-icons/io5";
+import CustomModal from "../../commonComponent/modal";
+import { Link } from "react-router-dom";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+  const [showContactAdmin, setShowContactAdmin] = useState(false);
 
   const { matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
@@ -32,9 +36,6 @@ const DesktopGameDetail = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-
-  
 
   return (
     <Container fluid>
@@ -127,7 +128,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.manualSessionActive && (
+              {matchDetails?.manualSessionActive?.isActive && (
                 <Col md={6}>
                   <BetTable
                     title={"Quick Session Market"}
@@ -192,9 +193,34 @@ const DesktopGameDetail = () => {
         </Col>
         <Col md={4} className="ps-0">
           <Container className="p-0" fluid ref={placeBetRef}>
-
-            <Row className={` ${isSticky ? 'position-fixed top-0 pe-3' : ''}`}
-             style={{ width: isSticky ? placeBetRef.current?.offsetWidth + 'px' : '100%' }}>
+            <Row
+              className={` ${isSticky ? "position-fixed top-0 pe-3" : ""}`}
+              style={{
+                width: isSticky
+                  ? placeBetRef.current?.offsetWidth + "px"
+                  : "100%",
+              }}
+            >
+              <Col md={12}>
+                <div
+                  onClick={() => setShowContactAdmin(true)}
+                  style={{
+                    display: "flex",
+                    margin: "10px 0",
+                    marginBottom: "0",
+                    alignItems: "center",
+                  }}
+                  className="fs-4"
+                >
+                  <IoInformationCircle />
+                  <h6
+                    style={{ margin: "0 0 0 5px", color: "#ff0000" }}
+                    className="fs-5 text-decoration-underline cursor-pointer"
+                  >
+                    Ball by Ball
+                  </h6>
+                </div>
+              </Col>
               <Col md={12}>
                 <PlacedBet />
               </Col>
@@ -202,10 +228,32 @@ const DesktopGameDetail = () => {
                 <MyBet />
               </Col>
             </Row>
-
           </Container>
         </Col>
       </Row>
+      <CustomModal
+        customClass="modalFull-90 rule-popup"
+        title={""}
+        show={showContactAdmin}
+        setShow={setShowContactAdmin}
+      >
+        <Container className="under-development-container">
+          <Row className="mt-5">
+            <Col md={{ span: 6, offset: 3 }} className="text-center">
+              <h5>
+                Oops, Under development <br /> Contact Admin
+              </h5>
+              <Button
+                variant="primary"
+                className="mt-3"
+                onClick={() => setShowContactAdmin(false)}
+              >
+                Cancel
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+      </CustomModal>
     </Container>
   );
 };
