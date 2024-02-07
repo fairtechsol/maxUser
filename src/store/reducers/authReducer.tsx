@@ -1,10 +1,16 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { authReset, login } from "../actions/authAction";
+import {
+  authReset,
+  login,
+  rulesModalShowFalse,
+  rulesModalShowTrue,
+} from "../actions/authAction";
 
 const initialState = {
   success: false,
   loading: false,
   forceChangePassword: false,
+  rulesPopShow: false,
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
@@ -23,5 +29,13 @@ export const authReducer = createReducer(initialState, (builder) => {
     .addCase(authReset, (state) => {
       // Reset the state to initial state
       return { ...state, success: false, forceChangePassword: false };
+    })
+    .addCase(rulesModalShowTrue, (state) => {
+      // Reset the state to initial state
+      return { ...state, rulesPopShow: true };
+    })
+    .addCase(rulesModalShowFalse, (state) => {
+      // Reset the state to initial state
+      return { ...state, rulesPopShow: false };
     });
 });
