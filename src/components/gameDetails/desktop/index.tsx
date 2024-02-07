@@ -239,9 +239,7 @@ const DesktopGameDetail = () => {
         <Container className="under-development-container">
           <Row className="mt-5">
             <Col md={{ span: 6, offset: 3 }} className="text-center">
-              <h5>
-                Oops, Under development <br /> Contact Admin
-              </h5>
+              <h5>Contact Admin</h5>
               <Button
                 variant="primary"
                 className="mt-3"
