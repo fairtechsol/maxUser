@@ -11,7 +11,6 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import { IoInformationCircle } from "react-icons/io5";
 import CustomModal from "../../commonComponent/modal";
-import { Link } from "react-router-dom";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
