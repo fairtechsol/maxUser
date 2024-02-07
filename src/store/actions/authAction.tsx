@@ -66,3 +66,5 @@ export const logout = createAsyncThunk<any>(
 );
 
 export const authReset = createAction("auth/reset");
+export const rulesModalShowFalse = createAction("auth/rulesModalShowFalse");
+export const rulesModalShowTrue = createAction("auth/rulesModalShowTrue");
