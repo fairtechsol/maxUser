@@ -10,7 +10,10 @@ import {
   updateMatchOddRates,
   updateMatchRates,
 } from "../../actions/match/matchListAction";
-import { updateMaxLossForBet } from "../../actions/user/userAction";
+import {
+  updateBalance,
+  updateMaxLossForBet,
+} from "../../actions/user/userAction";
 
 interface InitialState {
   success: boolean;
@@ -179,6 +182,38 @@ const matchListSlice = createSlice({
       })
       .addCase(searchListReset, (state) => {
         state.searchedMatchList = null;
+      })
+      .addCase(updateBalance.fulfilled, (state, action) => {
+        const { matchBetType, newTeamRateData } = action.payload;
+        if (["tiedMatch1", "tiedMatch2"].includes(matchBetType)) {
+          state.matchDetails = {
+            ...state.matchDetails,
+            profitLossDataMatch: {
+              ...state.matchDetails.profitLossDataMatch,
+              yesRateTie: newTeamRateData.teamA,
+              noRateTie: newTeamRateData.teamB,
+            },
+          };
+        } else if (["completeMatch"].includes(matchBetType)) {
+          state.matchDetails = {
+            ...state.matchDetails,
+            profitLossDataMatch: {
+              ...state.matchDetails.profitLossDataMatch,
+              yesRateComplete: newTeamRateData.teamA,
+              noRateComplete: newTeamRateData.teamB,
+            },
+          };
+        } else {
+          state.matchDetails = {
+            ...state.matchDetails,
+            profitLossDataMatch: {
+              ...state.matchDetails.profitLossDataMatch,
+              teamARate: newTeamRateData.teamA,
+              teamBRate: newTeamRateData.teamB,
+              teamCRate: newTeamRateData.teamC,
+            },
+          };
+        }
       })
       .addCase(updateMaxLossForBet.fulfilled, (state, action) => {
         const { betPlaced, profitLossData } = action.payload;
