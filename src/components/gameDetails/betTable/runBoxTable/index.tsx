@@ -13,8 +13,12 @@ const RunBoxTable = ({ runAmount }: any) => {
         {runAmount?.betPlaced?.map((item: any, index: number) => {
           return (
             <tr key={index}>
-              <td className="bg-blue1">{item?.odds}</td>
-              <td className="bg-red1">{item?.profitLoss}</td>
+              <td className={+item?.profitLoss >= 0 ? "bg-blue1" : "bg-red1"}>
+                {item?.odds}
+              </td>
+              <td className={+item?.profitLoss >= 0 ? "bg-blue1" : "bg-red1"}>
+                {item?.profitLoss}
+              </td>
             </tr>
           );
         })}
