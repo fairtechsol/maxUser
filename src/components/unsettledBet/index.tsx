@@ -93,6 +93,7 @@ const UnsettledBetComponent = () => {
         status: selectedOption,
         page: 1,
         limit: tableConfig?.rowPerPage,
+        keyword: tableConfig?.keyword,
       })
     );
   }, [tableConfig]);
