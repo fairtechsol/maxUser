@@ -12,7 +12,10 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { TableConfig } from "../../models/tableInterface";
 import { useSelector } from "react-redux";
-import { betReportList } from "../../store/actions/match/matchListAction";
+import {
+  betReportList,
+  resetDataUnsettledMatch,
+} from "../../store/actions/match/matchListAction";
 import moment from "moment";
 
 const BetHistoryComponent = () => {
@@ -72,13 +75,17 @@ const BetHistoryComponent = () => {
     } else if (toDate) {
       filter += `&createdAt=lte${moment(toDate)?.format("YYYY-MM-DD")}`;
     }
-    dispatch(
-      betReportList({
-        status: selectType?.value,
-        matchType: selectMatch?.value,
-        filter: filter,
-      })
-    );
+    if (selectType?.value === "UNMATCHED") {
+      dispatch(resetDataUnsettledMatch());
+    } else {
+      dispatch(
+        betReportList({
+          status: selectType?.value,
+          matchType: selectMatch?.value,
+          filter: filter,
+        })
+      );
+    }
   };
 
   return (

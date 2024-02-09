@@ -259,7 +259,11 @@ function BookmakerTable({
                               : ""
                           }`}
                           bgColor={`red${index + 1}`}
-                          rate={+data[`layTeam${item}`] + index}
+                          rate={
+                            +data[`layTeam${item}`] > 0
+                              ? +data[`layTeam${item}`] + index
+                              : 0
+                          }
                           onClick={() => {
                             const rate =
                               parseInt(data[`layTeam${item}`] || 0) + index;
