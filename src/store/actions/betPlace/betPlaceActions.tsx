@@ -64,7 +64,7 @@ export const getMyMarket = createAsyncThunk<any>(
   }
 );
 
-export const updateBetsPlaced = createAsyncThunk<any, any>(
+export const updateBetsPlaced: any = createAsyncThunk<any, any>(
   "/placed/bets",
   async (placedBets) => {
     return placedBets;

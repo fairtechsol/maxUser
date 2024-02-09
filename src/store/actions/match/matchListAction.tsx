@@ -162,12 +162,12 @@ export const settleUnsettleMatch = createAsyncThunk<any, any>(
   //       `${ApiConstants.MATCH.CURRENTBET}?status=${requestData.status}&keyword=${requestData?.keyword || ""}${requestData?.filter || ""}`
   //       ?status MATCHED(bet history) pending(current bet) DELETED(UNSETTLED) gameType(FOR ALL BETS) UNmATCHED(PENDING)
   //     );
-  async ({ status, page, limit }, thunkApi) => {
+  async ({ status, page, limit, keyword }, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.CURRENTBET}/?page=${page || 1}&limit=${
+        `${ApiConstants.MATCH.CURRENTBET}?page=${page || 1}&limit=${
           limit || 15
-        }&status=${status}`
+        }&status=${status}&searchBy=user.userName&keyword=${keyword || ""}`
       );
       if (resp?.data) {
         return resp?.data;
