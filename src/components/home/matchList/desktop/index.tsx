@@ -61,7 +61,7 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
                 tabClassName="match-list-tabs title-14"
                 title={item?.name}
               >
-                {item?.type === GAME_TYPE.ONE_V_ONE ? <OneVOneGameTable /> : ""}
+                {item?.type === GAME_TYPE.ONE_V_ONE ? <OneVOneGameTable id={item?.id} /> : ""}
               </Tab>
             );
           })}
