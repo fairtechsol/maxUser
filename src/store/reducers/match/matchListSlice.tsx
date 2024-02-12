@@ -100,6 +100,8 @@ const matchListSlice = createSlice({
           manualTideMatch,
           quickbookmaker,
         } = action.payload;
+
+        let newSessionBettings = sessionBettings;
         state.matchDetails = {
           ...state.matchDetails,
           manualSessionActive: sessionBettings?.length >= 0 ? true : false,
@@ -111,8 +113,9 @@ const matchListSlice = createSlice({
           marketCompleteMatch: marketCompleteMatch,
           matchOdd: matchOdd,
           quickBookmaker: quickbookmaker,
-          sessionBettings: state.matchDetails.sessionBettings.map(
-            (item: any) => {
+          sessionBettings:
+            newSessionBettings &&
+            newSessionBettings.map((item: any) => {
               if (!JSON.parse(item)?.selectionId) {
                 const parsedItem = JSON.parse(item);
                 let id = parsedItem?.id;
@@ -155,8 +158,7 @@ const matchListSlice = createSlice({
                   });
                 }
               }
-            }
-          ),
+            }),
         };
       })
       .addCase(updateMatchOddRates.fulfilled, (state, action) => {

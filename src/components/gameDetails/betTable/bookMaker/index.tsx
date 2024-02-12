@@ -124,8 +124,8 @@ function BookmakerTable({
                     >
                       {data?.type === "tiedMatch2"
                         ? i === 0
-                          ? "Yes"
-                          : "No"
+                          ? "YES"
+                          : "NO"
                         : matchDetails?.[`team${item}`]}
                     </span>
                     <div className="d-flex align-items-center justify-content-between w-100">
