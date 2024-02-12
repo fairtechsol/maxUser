@@ -231,6 +231,17 @@ const matchListSlice = createSlice({
               return item;
             });
 
+          const betIndex = updatedProfitLossDataSession.findIndex(
+            (item: any) => item?.betId === betPlaced?.placedBet?.betId
+          );
+          if (betIndex === -1) {
+            updatedProfitLossDataSession.push({
+              betId: betPlaced?.placedBet?.betId,
+              maxLoss: JSON.parse(profitLossData)?.maxLoss,
+              // Add other properties as necessary
+            });
+          }
+
           state.matchDetails = {
             ...state.matchDetails,
             profitLossDataSession: updatedProfitLossDataSession,

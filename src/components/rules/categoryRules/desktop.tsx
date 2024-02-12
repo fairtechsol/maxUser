@@ -7,7 +7,7 @@ const Desktop = () => {
   const [activeSport, setActiveSport] = useState<string>("Motor Sport");
 
   useEffect(() => {
-    if (sportsRules.length > 0) {
+    if (sportsRules?.length > 0) {
       const firstSport = sportsRules[0];
       setActiveSport(firstSport.sportName);
     }

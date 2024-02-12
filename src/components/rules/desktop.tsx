@@ -9,7 +9,7 @@ const Desktop = () => {
     // const [defaultSportRules, setDefaultSportRules] = useState<any>(null);
   
     useEffect(() => {
-      if (sportsRules.length > 0) {
+      if (sportsRules?.length > 0) {
         const firstSport = sportsRules[0];
         setActiveSport(firstSport.sportName);
         // setDefaultSportRules(firstSport);

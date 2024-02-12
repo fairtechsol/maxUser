@@ -7,7 +7,7 @@ const Mobile = () => {
   const [activeSport, setActiveSport] = useState<string | null>(null);
 
   useEffect(() => {
-    if (sportsRules.length > 0) {
+    if (sportsRules?.length > 0) {
       const firstSport = sportsRules[0];
       setActiveSport(firstSport.sportName);
     }
