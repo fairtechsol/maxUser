@@ -8,7 +8,7 @@ import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import moment from "moment-timezone";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
-
+import { useParams } from 'react-router-dom';
 const tableHeading = [
   {
     id: "game",
@@ -34,10 +34,16 @@ const tableHeading = [
   },
 ];
 
-const DesktopOneVOneGameTable = () => {
+const DesktopOneVOneGameTable = ({mTypeid}: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
+
+
+
+  const { id } = useParams();
+
+  // console.log(mTypeid)
 
   return (
     <>
@@ -46,9 +52,8 @@ const DesktopOneVOneGameTable = () => {
           <tr>
             {tableHeading?.map((item) => (
               <th
-                className={`title-14 ${
-                  item?.textAlign === "center" ? "text-center" : ""
-                }`}
+                className={`title-14 ${item?.textAlign === "center" ? "text-center" : ""
+                  }`}
                 colSpan={item?.colspan}
                 key={item?.id}
               >
@@ -59,10 +64,21 @@ const DesktopOneVOneGameTable = () => {
           </tr>
         </thead>
         <tbody>
-          {matchList && matchList.length === 0 && (
-            <div>
-              <ContactAdmin />
-            </div>
+          {(!matchList || matchList.length === 0) && (
+
+            (id === "cricket" || mTypeid === "cricket") ? (
+              <tr>
+                <td >
+                  No matches available
+                </td>
+              </tr>
+            ) : (
+              <tr>
+                <td>
+                  <ContactAdmin />
+                </td>
+              </tr>
+            )
           )}
           {matchList &&
             matchList?.map((item: any, index: number) => {
