@@ -112,7 +112,7 @@ function SessionMarketTable({
                       </div>
                       <span
                         className={`title-14 ${
-                          matchDetails?.profitLossDataSession.length > 0
+                          matchDetails?.profitLossDataSession?.length > 0
                             ? matchDetails?.profitLossDataSession?.reduce(
                                 (accumulator: any, bet: any) => {
                                   const maxLossToAdd =
@@ -128,7 +128,7 @@ function SessionMarketTable({
                             : ""
                         }`}
                       >
-                        {matchDetails?.profitLossDataSession.length > 0
+                        {matchDetails?.profitLossDataSession?.length > 0
                           ? matchDetails?.profitLossDataSession?.reduce(
                               (accumulator: any, bet: any) => {
                                 const maxLossToAdd =

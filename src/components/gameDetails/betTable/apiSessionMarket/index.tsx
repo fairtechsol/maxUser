@@ -110,7 +110,7 @@ function ApiSessionMarketTable({
                   </span>
                   <span
                     className={`title-14 ${
-                      matchDetails?.profitLossDataSession.length > 0
+                      matchDetails?.profitLossDataSession
                         ? matchDetails?.profitLossDataSession?.reduce(
                             (accumulator: any, bet: any) => {
                               const maxLossToAdd =
@@ -126,7 +126,7 @@ function ApiSessionMarketTable({
                         : ""
                     }`}
                   >
-                    {matchDetails?.profitLossDataSession.length > 0
+                    {matchDetails?.profitLossDataSession
                       ? matchDetails?.profitLossDataSession?.reduce(
                           (accumulator: any, bet: any) => {
                             const maxLossToAdd =

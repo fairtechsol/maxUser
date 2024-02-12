@@ -74,7 +74,7 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
 
-              {matchDetails?.quickBookmaker.length > 0 &&
+              {matchDetails?.quickBookmaker?.length > 0 &&
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
                     <div key={index}>

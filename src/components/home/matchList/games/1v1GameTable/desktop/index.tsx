@@ -61,7 +61,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
           </tr>
         </thead>
         <tbody>
-          {(!matchList || matchList.length === 0) &&
+          {(!matchList || matchList?.length === 0) &&
             (id === "cricket" || mTypeid === "cricket" ? (
               <tr>
                 <td>No matches available</td>
@@ -425,7 +425,7 @@ const MatchListRow = ({ item }: any) => {
             ) : (
               ""
             )}
-            {item?.isBookmaker.length > 0 ? (
+            {item?.isBookmaker?.length > 0 ? (
               <span className="bookmaker">
                 <img src="/ic_bm.png" alt={"fancy"} />
               </span>
