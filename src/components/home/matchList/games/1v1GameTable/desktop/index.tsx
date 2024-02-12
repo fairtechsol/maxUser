@@ -444,78 +444,78 @@ const MatchListRow = ({ item }: any) => {
       </td>
       {item?.matchOdds?.map((item: any, index: number) => {
         console.log(
-          item?.runners && item?.runners[0]?.ex?.availableToBack[0].price
+          item?.runners && item?.runners[0]?.ex?.availableToBack[0]?.price
         );
         return (
           <React.Fragment key={index}>
             <BackLayComponent
               backRate={
                 (item?.runners &&
-                  item?.runners[0]?.ex?.availableToBack[0].price) ??
+                  item?.runners[0]?.ex?.availableToBack[0]?.price) ??
                 item?.backTeamA ??
                 0
               }
               layRate={
                 (item?.runners &&
-                  item?.runners[0]?.ex?.availableToLay[0].price) ??
+                  item?.runners[0]?.ex?.availableToLay[0]?.price) ??
                 item?.layTeamA ??
                 0
               }
               active={false}
               backPercent={
                 (item?.runners &&
-                  item?.runners[0]?.ex?.availableToBack[0].size) ??
+                  item?.runners[0]?.ex?.availableToBack[0]?.size) ??
                 ""
               }
               layPercent={
                 (item?.runners &&
-                  item?.runners[0]?.ex?.availableToLay[0].size) ??
+                  item?.runners[0]?.ex?.availableToLay[0]?.size) ??
                 ""
               }
             />
             <BackLayComponent
               backRate={
                 (item?.runners &&
-                  item?.runners[2]?.ex?.availableToBack[0].price) ??
+                  item?.runners[2]?.ex?.availableToBack[0]?.price) ??
                 0
               }
               layRate={
                 (item?.runners &&
-                  item?.runners[2]?.ex?.availableToLay[0].price) ??
+                  item?.runners[2]?.ex?.availableToLay[0]?.price) ??
                 0
               }
               active={false}
               backPercent={
                 (item?.runners &&
-                  item?.runners[2]?.ex?.availableToBack[0].size) ??
+                  item?.runners[2]?.ex?.availableToBack[0]?.size) ??
                 ""
               }
               layPercent={
                 (item?.runners &&
-                  item?.runners[2]?.ex?.availableToLay[0].size) ??
+                  item?.runners[2]?.ex?.availableToLay[0]?.size) ??
                 ""
               }
             />
             <BackLayComponent
               backRate={
                 (item?.runners &&
-                  item?.runners[1]?.ex?.availableToBack[0].price) ??
+                  item?.runners[1]?.ex?.availableToBack[0]?.price) ??
                 0
               }
               layRate={
                 (item?.runners &&
-                  item?.runners[1]?.ex?.availableToLay[0].price) ??
+                  item?.runners[1]?.ex?.availableToLay[0]?.price) ??
                 0
               }
               active={false}
               backPercent={
                 (item?.runners &&
-                  item?.runners[1]?.ex?.availableToBack[0].size) ??
+                  item?.runners[1]?.ex?.availableToBack[0]?.size) ??
                 ""
               }
               layPercent={
                 (item?.runners &&
-                  item?.runners[1]?.ex?.availableToLay[0].size) ??
+                  item?.runners[1]?.ex?.availableToLay[0]?.size) ??
                 ""
               }
             />

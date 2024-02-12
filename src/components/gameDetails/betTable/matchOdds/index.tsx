@@ -87,8 +87,8 @@ function MatchOdds({
                         {data?.type === "completeMatch" ||
                         data?.type === "tiedMatch1"
                           ? indexes === 0
-                            ? "Yes"
-                            : "No"
+                            ? "YES"
+                            : "NO"
                           : matchDetails?.[`team${matchs}`]}
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100">
@@ -173,7 +173,7 @@ function MatchOdds({
                             rate={
                               +data?.runners?.[indexes]?.ex?.availableToBack?.[
                                 2 - index
-                              ]?.price
+                              ]?.price || 0
                             }
                             percent={
                               data?.runners?.[indexes]?.ex?.availableToBack?.[
@@ -247,7 +247,7 @@ function MatchOdds({
                             rate={
                               +data?.runners?.[indexes]?.ex?.availableToLay?.[
                                 index
-                              ]?.price
+                              ]?.price || 0
                             }
                             percent={
                               data?.runners?.[indexes]?.ex?.availableToLay?.[
