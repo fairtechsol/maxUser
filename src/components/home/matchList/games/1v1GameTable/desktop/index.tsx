@@ -8,7 +8,7 @@ import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import moment from "moment-timezone";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 const tableHeading = [
   {
     id: "game",
@@ -34,16 +34,12 @@ const tableHeading = [
   },
 ];
 
-const DesktopOneVOneGameTable = ({mTypeid}: any) => {
+const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
-
-
   const { id } = useParams();
-
-  // console.log(mTypeid)
 
   return (
     <>
@@ -52,8 +48,9 @@ const DesktopOneVOneGameTable = ({mTypeid}: any) => {
           <tr>
             {tableHeading?.map((item) => (
               <th
-                className={`title-14 ${item?.textAlign === "center" ? "text-center" : ""
-                  }`}
+                className={`title-14 ${
+                  item?.textAlign === "center" ? "text-center" : ""
+                }`}
                 colSpan={item?.colspan}
                 key={item?.id}
               >
@@ -64,13 +61,10 @@ const DesktopOneVOneGameTable = ({mTypeid}: any) => {
           </tr>
         </thead>
         <tbody>
-          {(!matchList || matchList.length === 0) && (
-
-            (id === "cricket" || mTypeid === "cricket") ? (
+          {(!matchList || matchList.length === 0) &&
+            (id === "cricket" || mTypeid === "cricket" ? (
               <tr>
-                <td >
-                  No matches available
-                </td>
+                <td>No matches available</td>
               </tr>
             ) : (
               <tr>
@@ -78,8 +72,7 @@ const DesktopOneVOneGameTable = ({mTypeid}: any) => {
                   <ContactAdmin />
                 </td>
               </tr>
-            )
-          )}
+            ))}
           {matchList &&
             matchList?.map((item: any, index: number) => {
               return <MatchListRow item={item} key={index} />;
@@ -443,9 +436,6 @@ const MatchListRow = ({ item }: any) => {
         </div>
       </td>
       {item?.matchOdds?.map((item: any, index: number) => {
-        console.log(
-          item?.runners && item?.runners[0]?.ex?.availableToBack[0]?.price
-        );
         return (
           <React.Fragment key={index}>
             <BackLayComponent

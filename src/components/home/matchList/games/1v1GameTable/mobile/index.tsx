@@ -6,12 +6,13 @@ import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import moment from "moment-timezone";
+
 const MobileOneVOneGame = () => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
-// console.log(matchList)
-const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return (
     <div className="bg-lightGray match-list-container">
       {matchList?.map((item: any, index: number) => {
@@ -24,11 +25,13 @@ const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
                   to={`/game-detail/${item?.id}`}
                 >
                   {" "}
-                  <b className="title-14">{item?.title}
-                 </b>
-                 <div className="title-12"> {moment(item?.startAt)
-                .tz(timezone)
-                .format("MMM DD YYYY h:mmA [IST]")}</div>
+                  <b className="title-14">{item?.title}</b>
+                  <div className="title-12">
+                    {" "}
+                    {moment(item?.startAt)
+                      .tz(timezone)
+                      .format("MMM DD YYYY h:mmA [IST]")}
+                  </div>
                 </Link>
               </div>
               <div className="d-flex align-items-center gap-2">
@@ -68,7 +71,8 @@ const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
                     <BackLayComponent
                       heading="X"
                       backRate={
-                        item?.backTeamC === null || item?.backTeamC === undefined
+                        item?.backTeamC === null ||
+                        item?.backTeamC === undefined
                           ? "-"
                           : item.backTeamC
                       }
@@ -82,7 +86,8 @@ const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
                     <BackLayComponent
                       heading="2"
                       backRate={
-                        item?.backTeamB === null || item?.backTeamB === undefined
+                        item?.backTeamB === null ||
+                        item?.backTeamB === undefined
                           ? "-"
                           : item?.backTeamB
                       }
@@ -101,222 +106,323 @@ const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         );
       })}
       <div className="tab-pane active casino-tables d-flex">
-
         <div className="container-fluid ">
           <div className="row row5">
             <div className="col-12">
-      <h4 className="text-uppercase mt-3">Our Casino</h4>
+              <h4 className="text-uppercase mt-3">Our Casino</h4>
             </div>
-
           </div>
 
           <div className="mt-2">
             <a href="/casino/ball_by_ball" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Ball By Ball</div>
               </div>
             </a>
             <a href="/casino/superover" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Super Over</div>
               </div>
             </a>
             <a href="/casino/race/t20" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Race 20-20</div>
               </div>
             </a>
             <a href="/casino/queen" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Casino Queen</div>
               </div>
             </a>
             <a href="/casino/cricketv3" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">5Five Cricket</div>
               </div>
             </a>
             <a href="/casino/ab2" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Andar Bahar 2</div>
               </div>
             </a>
             <a href="/casino/dt202" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">20-20 Dragon Tiger 2</div>
               </div>
             </a>
             <a href="/casino/baccarat2" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Baccarat 2</div>
               </div>
             </a>
             <a href="/casino/baccarat" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Baccarat</div>
               </div>
             </a>
             <a href="/casino/lucky7eu" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Lucky 7 - B</div>
               </div>
             </a>
             <a href="/casino/teenpatti-list/teen6" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teencasino.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teencasino.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Teenpatti 2.0</div>
               </div>
             </a>
             <a href="/casino/cc20" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">20-20 Cricket Match</div>
               </div>
             </a>
             <a href="/casino/cmeter" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Casino Meter</div>
               </div>
             </a>
             <a href="/casino/war" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Casino War</div>
               </div>
             </a>
             <a href="/casino/dtl20" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">20-20 DTL</div>
               </div>
             </a>
             <a href="/casino/teenpatti/test" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Test Teenpatti</div>
               </div>
             </a>
             <a href="/casino/teenpatti/open" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Open Teenpatti</div>
               </div>
             </a>
             <a href="/casino/teenpatti/oneday" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">1 Day Teenpatti</div>
               </div>
             </a>
             <a href="/casino/teenpatti/t20" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">20-20 Teenpatti</div>
-              </div></a>
+              </div>
+            </a>
             <a href="/casino/poker/6player" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">6 Player Poker</div>
               </div>
             </a>
             <a href="/casino/poker/oneday" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">1 Day Poker</div>
               </div>
             </a>
             <a href="/casino/poker/t20" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">20-20 Poker</div>
               </div>
             </a>
             <a href="/casino/ab20" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Andar Bahar</div>
               </div>
             </a>
             <a href="/casino/worli" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Worli Matka</div>
               </div>
             </a>
             <a href="/casino/worli2" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Instant Worli</div>
               </div>
             </a>
             <a href="/casino/3cardj" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">3 Cards Judgement</div>
               </div>
             </a>
             <a href="/casino/card32a" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">32 Cards A</div>
               </div>
             </a>
             <a href="/casino/card32b" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">32 Cards B</div>
               </div>
             </a>
             <a href="/casino/aaa" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Amar Akbar Anthony</div>
               </div>
             </a>
             <a href="/casino/ddb" className="">
-              <div className="d-inline-block casinoicons"><img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg" className="img-fluid" />
+              <div className="d-inline-block casinoicons">
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Bollywood Casino</div>
               </div>
             </a>
             <a href="/casino/dt20" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">20-20 Dragon Tiger</div>
               </div>
             </a>
             <a href="/casino/dt6" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">1 Day Dragon Tiger</div>
               </div>
             </a>
             <a href="/casino/lottery" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lottery.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lottery.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Lottery</div>
               </div>
             </a>
             <a href="/casino/lucky7" className="">
               <div className="d-inline-block casinoicons">
-                <img src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg" className="img-fluid" />
+                <img
+                  src="https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg"
+                  className="img-fluid"
+                />
                 <div className="casino-name">Lucky 7 - A</div>
-                </div>
-                </a>
+              </div>
+            </a>
           </div>
         </div>
       </div>
-
     </div>
   );
 };
