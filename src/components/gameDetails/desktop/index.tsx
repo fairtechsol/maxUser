@@ -193,7 +193,7 @@ const DesktopGameDetail = () => {
         <Col md={4} className="ps-0">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
-              className={` ${isSticky ? "position-fixed top-0 pe-3" : ""}`}
+              className={` ${isSticky ? "position-fixed top-0" : ""}`}
               style={{
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
@@ -214,7 +214,7 @@ const DesktopGameDetail = () => {
                   <IoInformationCircle />
                   <h6
                     style={{ margin: "0 0 0 5px", color: "#ff0000" }}
-                    className="fs-5 text-decoration-underline cursor-pointer"
+                    className="fs-5 text-decoration-underline cursor-pointer blinking-text"
                   >
                     Ball by Ball
                   </h6>
