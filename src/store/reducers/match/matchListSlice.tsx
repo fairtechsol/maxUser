@@ -226,6 +226,7 @@ const matchListSlice = createSlice({
                 return {
                   ...item,
                   maxLoss: JSON.parse(profitLossData)?.maxLoss,
+                  totalBet: +item?.totalBet + 1,
                 };
               }
               return item;
@@ -238,6 +239,7 @@ const matchListSlice = createSlice({
             updatedProfitLossDataSession.push({
               betId: betPlaced?.placedBet?.betId,
               maxLoss: JSON.parse(profitLossData)?.maxLoss,
+              totalBet: 1,
               // Add other properties as necessary
             });
           }
