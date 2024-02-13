@@ -124,12 +124,29 @@ function BookmakerTable({
                     >
                       {data?.type === "tiedMatch2"
                         ? i === 0
-                          ? "Yes"
-                          : "No"
+                          ? "YES"
+                          : "NO"
                         : matchDetails?.[`team${item}`]}
                     </span>
                     <div className="d-flex align-items-center justify-content-between w-100">
-                      <span className="title-14">
+                      <span
+                        className={`title-14 ${
+                          data?.type === "tiedMatch2"
+                            ? i === 0
+                              ? matchDetails?.profitLossDataMatch?.yesRateTie <
+                                0
+                                ? "color-red"
+                                : "color-green"
+                              : matchDetails?.profitLossDataMatch?.noRateTie < 0
+                              ? "color-red"
+                              : "color-green"
+                            : matchDetails?.profitLossDataMatch?.[
+                                `team${item}Rate`
+                              ] < 0
+                            ? "color-red"
+                            : "color-green"
+                        }`}
+                      >
                         {data?.type === "tiedMatch2"
                           ? i === 0
                             ? matchDetails?.profitLossDataMatch?.yesRateTie ?? 0
