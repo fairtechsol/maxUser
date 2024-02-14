@@ -8,7 +8,6 @@ import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
-import "../style.scss";
 import "./style.scss";
 import { useState } from "react";
 import CustomModal from "../../../commonComponent/modal";
@@ -212,7 +211,7 @@ function ApiSessionMarketTable({
                   />
                   {!isMobile && (
                     <div className="minMax">
-                      <div className="minMaxBox d-flex flex-column justify-content-end text-end px-2 title-12">
+                      <div className="minMaxBox d-flex flex-column justify-content-end text-right px-2 title-12">
                         <span className="">Min:{JSON.parse(item)?.minBet}</span>
                         <span>Max:{JSON.parse(item)?.maxBet}</span>
                       </div>
