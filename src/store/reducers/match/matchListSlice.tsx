@@ -113,52 +113,50 @@ const matchListSlice = createSlice({
           marketCompleteMatch: marketCompleteMatch,
           matchOdd: matchOdd,
           quickBookmaker: quickbookmaker,
-          sessionBettings:
-            newSessionBettings &&
-            newSessionBettings.map((item: any) => {
-              if (!JSON.parse(item)?.selectionId) {
-                const parsedItem = JSON.parse(item);
-                let id = parsedItem?.id;
-                const matchingSession = sessionBettings.find(
-                  (sessionItem: any) => JSON.parse(sessionItem).id === id
-                );
-                let parsedSession = JSON.parse(matchingSession);
-                if (parsedSession) {
-                  return JSON.stringify({
-                    ...parsedItem,
-                    ...parsedSession,
-                  });
-                } else return JSON.stringify(parsedItem);
+          sessionBettings: newSessionBettings?.map((item: any) => {
+            if (!JSON.parse(item)?.selectionId) {
+              const parsedItem = JSON.parse(item);
+              let id = parsedItem?.id;
+              const matchingSession = sessionBettings.find(
+                (sessionItem: any) => JSON.parse(sessionItem).id === id
+              );
+              let parsedSession = JSON.parse(matchingSession);
+              if (parsedSession) {
+                return JSON.stringify({
+                  ...parsedItem,
+                  ...parsedSession,
+                });
+              } else return JSON.stringify(parsedItem);
+            } else {
+              const parsedItem = JSON.parse(item);
+              let id = parsedItem?.id;
+              const matchingApiSession = apiSession.find(
+                (sessionItem: any) => sessionItem.id === id
+              );
+              if (matchingApiSession) {
+                return JSON.stringify({
+                  ...parsedItem,
+                  noRate: matchingApiSession.BackPrice1,
+                  noPercent: matchingApiSession.BackSize1,
+                  yesRate: matchingApiSession.LayPrice1,
+                  yesPercent: matchingApiSession.LaySize1,
+                  activeStatus: "live",
+                });
               } else {
-                const parsedItem = JSON.parse(item);
-                let id = parsedItem?.id;
-                const matchingApiSession = apiSession.find(
-                  (sessionItem: any) => sessionItem.id === id
-                );
-                if (matchingApiSession) {
-                  return JSON.stringify({
-                    ...parsedItem,
-                    noRate: matchingApiSession.BackPrice1,
-                    noPercent: matchingApiSession.BackSize1,
-                    yesRate: matchingApiSession.LayPrice1,
-                    yesPercent: matchingApiSession.LaySize1,
-                    activeStatus: "live",
-                  });
-                } else {
-                  return JSON.stringify({
-                    ...parsedItem,
-                    noRate: 0,
-                    yesRate: 0,
-                    yesPercent: 0,
-                    noPercent: 0,
-                    activeStatus:
-                      parsedItem.activeStatus === "live"
-                        ? "save"
-                        : parsedItem.activeStatus,
-                  });
-                }
+                return JSON.stringify({
+                  ...parsedItem,
+                  noRate: 0,
+                  yesRate: 0,
+                  yesPercent: 0,
+                  noPercent: 0,
+                  activeStatus:
+                    parsedItem.activeStatus === "live"
+                      ? "save"
+                      : parsedItem.activeStatus,
+                });
               }
-            }),
+            }
+          }),
         };
       })
       .addCase(updateMatchOddRates.fulfilled, (state, action) => {
@@ -226,6 +224,7 @@ const matchListSlice = createSlice({
                 return {
                   ...item,
                   maxLoss: JSON.parse(profitLossData)?.maxLoss,
+                  totalBet: +item?.totalBet + 1,
                 };
               }
               return item;
@@ -238,6 +237,7 @@ const matchListSlice = createSlice({
             updatedProfitLossDataSession.push({
               betId: betPlaced?.placedBet?.betId,
               maxLoss: JSON.parse(profitLossData)?.maxLoss,
+              totalBet: 1,
               // Add other properties as necessary
             });
           }
