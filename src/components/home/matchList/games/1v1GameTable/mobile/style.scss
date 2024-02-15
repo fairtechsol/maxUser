@@ -2,6 +2,11 @@
 .m-game-one-v-one {
     border-bottom: 1px solid $darkGray !important;
 }
+.scrollable-container {
+    overflow-y: auto;
+    max-height: 500px; /* Set a maximum height if needed */
+  }
+  
 .match-list-container {
     height: calc(100vh - 200px);
     overflow-y: auto;
@@ -24,6 +29,33 @@
     margin-left: auto;
 }
 
+.casinoiconsm {
+    position: relative;
+}
+.casinoiconsm{
+
+    box-shadow: 0 12px 8px -8px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.casinoiconsm img{
+    width: 85px;
+    height: auto;
+}
+
+.mcasino-name {
+    background-image: linear-gradient($primary, $secondary);
+    color: $white;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 0px 0px 4px 4px;
+    font-size: 8px;
+}
 // .row.row5 {
 //     margin-left: -5px;
 //     margin-right: -5px;

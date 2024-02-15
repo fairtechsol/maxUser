@@ -63,9 +63,9 @@ const MobileMatchList = () => {
               eventKey={item?.id}
               tabClassName="m-match-list-tabs"
               title={
-                <div className="title-12 text-uppercase f600">
-                  <div className="text-white tab-icon">{item?.icon}</div>
-                  <span>{item?.name}</span>
+                <div className="title-12 text-uppercase f600 nav-tab">
+                <div className="text-white tab-icon">{item?.icon}</div>
+                <span className="navtab-name">{item?.name}</span>
                 </div>
               }
             >

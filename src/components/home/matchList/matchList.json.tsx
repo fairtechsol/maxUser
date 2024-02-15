@@ -2,7 +2,15 @@ import { BiCricketBall } from "react-icons/bi";
 import { IoTennisball } from "react-icons/io5";
 import { RiFootballLine } from "react-icons/ri";
 import { GAME_TYPE } from "../../../utils/enum";
+import { GiBasketballBall } from "react-icons/gi";
+import { MdSportsKabaddi } from "react-icons/md";
 
+import { IoGameController } from "react-icons/io5";
+import { GiHorseHead } from "react-icons/gi";
+import { FaTableTennis } from "react-icons/fa";
+import { GiPoolTriangle } from "react-icons/gi";
+import { TbPlayVolleyball } from "react-icons/tb";
+import { GiHound } from "react-icons/gi";
 const MatchListJson = () => {
   return [
     {
@@ -27,52 +35,52 @@ const MatchListJson = () => {
       id: "horseracing",
       name: "Horse Racing",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <BiCricketBall />,
+      icon: <GiHorseHead />,
     },
     {
       id: "tabletennis",
       name: "Table Tennis",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <BiCricketBall />,
+      icon: <FaTableTennis />,
     },
     {
       id: "greyhoundracing",
       name: "Greyhound Racing",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <BiCricketBall />,
+      icon: <GiHound />,
     },
     {
       id: "basketball",
       name: "Basketball",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <BiCricketBall />,
+      icon: <GiBasketballBall />,
     },
     {
       id: "volleyball",
       name: "Volleyball",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <BiCricketBall />,
+      icon: <TbPlayVolleyball />,
     },
     {
       id: "kabaddi",
       name: "Kabaddi",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <BiCricketBall />,
+      icon: <MdSportsKabaddi />,
     },
     {
       id: "futsal",
       name: "Futsal",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <BiCricketBall />,
+      icon: <IoGameController />,
     },
     {
-      icon: <BiCricketBall />,
+      icon: <IoGameController />,
       id: "egames",
       name: "E Games",
       type: GAME_TYPE.ONE_V_ONE,
     },
     {
-      icon: <BiCricketBall />,
+      icon: <GiPoolTriangle />,
       id: "snooker",
       name: "Snooker",
       type: GAME_TYPE.ONE_V_ONE,

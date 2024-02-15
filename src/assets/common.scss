@@ -173,11 +173,20 @@ body select {
   font-size: 14px !important;
 }
 
+.top-tab{
+  font-size: 14px;
+ }
+
 // mobile and desktop tab bar
 .m-match-list-tabs {
   border-radius: 0px !important;
   background-color: $secondary !important;
-  padding: 2px;
+  // padding: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
   color: $black;
   width: 100%;
   &:hover {
@@ -188,6 +197,15 @@ body select {
     color: $white !important;
     border-color: transparent !important ;
   }
+}
+.nav-tab{
+  padding-left: 0px;
+  padding-right: 0px;
+margin-left: 0%;
+margin-right: 0%;
+}
+.navtab-name{
+  font-weight: 410;
 }
 
 /* ===== for title ====  */
