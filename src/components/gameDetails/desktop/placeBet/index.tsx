@@ -103,7 +103,6 @@ const PlacedBet = () => {
   }, [success]);
 
   const handleProfit = (value: any) => {
-    // console.log(selectedBet)
     let profit;
     if (selectedBet?.data?.type === "session") {
       profit =
@@ -111,15 +110,14 @@ const PlacedBet = () => {
           ? value
           : (value * selectedBet?.team?.percent) / 100;
     } else if (
-      selectedBet?.data?.type === "matchOdd" ||
-      selectedBet?.data?.type === "tiedMatch1" ||
-      selectedBet?.data?.type === "completeMatch"
+      selectedBet?.data?.type === matchBettingType.matchOdd ||
+      selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
+      selectedBet?.data?.type === matchBettingType.completeMatch
     ) {
       profit =
         selectedBet?.team?.type === "back"
           ? (value * ((selectedBet?.team?.rate - 1) * 100)) / 100
           : value;
-          console.log(profit)
     } else {
       profit =
         selectedBet?.team?.type === "back"

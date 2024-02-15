@@ -2,19 +2,26 @@ import { useEffect } from "react";
 import { Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { expertSocketService } from "../../../../socketManager";
-import { RootState } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import { GAME_TYPE } from "../../../../utils/enum";
 // import { onTabSwitch } from "../../../../utils/tabSwitch";
 import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
 import "./style.scss";
+import { updateMatchOddRates } from "../../../../store/actions/match/matchListAction";
+import { useDispatch } from "react-redux";
 
 const MobileMatchList = () => {
+  const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
+
+  const setMatchOddRatesInRedux = (event: any) => {
+    dispatch(updateMatchOddRates(event));
+  };
 
   useEffect(() => {
     if (matchList && getProfile?.roleName) {
@@ -24,10 +31,19 @@ const MobileMatchList = () => {
           getProfile?.roleName
         );
       });
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.getMatchRates(
+          element?.id,
+          setMatchOddRatesInRedux
+        );
+      });
     }
 
     return () => {
       expertSocketService.match.leaveAllRooms();
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.leaveMatchRoom(element?.id);
+      });
     };
   }, [matchList, getProfile?.roleName]);
 
