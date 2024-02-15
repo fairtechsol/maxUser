@@ -102,17 +102,32 @@ const PlacedBet = () => {
     }
   }, [success]);
 
-  const handleProfit=(value:any)=>{
-    let profit ;
-    if(selectedBet?.data?.type==="session"){
-      profit = selectedBet?.team?.type === "no" ? value : (value * selectedBet?.team?.percent) / 100;
-    }else if(selectedBet?.data?.type==="matchOdd"){
-      profit = selectedBet?.team?.type === "back" ? (value * (selectedBet?.team?.rate - 1)) / 100 : value;
-    }else{
-      profit = selectedBet?.team?.type === "back" ? (value * selectedBet?.team?.rate) / 100 : value;
+  const handleProfit = (value: any) => {
+    // console.log(selectedBet)
+    let profit;
+    if (selectedBet?.data?.type === "session") {
+      profit =
+        selectedBet?.team?.type === "no"
+          ? value
+          : (value * selectedBet?.team?.percent) / 100;
+    } else if (
+      selectedBet?.data?.type === "matchOdd" ||
+      selectedBet?.data?.type === "tiedMatch1" ||
+      selectedBet?.data?.type === "completeMatch"
+    ) {
+      profit =
+        selectedBet?.team?.type === "back"
+          ? (value * ((selectedBet?.team?.rate - 1) * 100)) / 100
+          : value;
+          console.log(profit)
+    } else {
+      profit =
+        selectedBet?.team?.type === "back"
+          ? (value * selectedBet?.team?.rate) / 100
+          : value;
     }
-    return Number(profit)
-  }
+    return Number(profit.toFixed(2));
+  };
   return (
     <RightPanelContainer title="Place Bet">
       {selectedBet ? (
@@ -188,7 +203,7 @@ const PlacedBet = () => {
                     : Math.floor(
                         stake * (parseInt(selectedBet?.team?.rate) / 100)
                       )} */}
-                      {handleProfit(stake)}
+                  {handleProfit(stake)}
                 </span>
               </td>
             </tr>

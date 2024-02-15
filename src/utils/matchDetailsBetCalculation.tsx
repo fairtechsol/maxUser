@@ -17,16 +17,16 @@ export const calculateProfitLoss = (
       return -parseFloat((selectedData?.team?.stake).toFixed(2));
     } else {
       return selectedData?.data?.type == matchBettingType.matchOdd
-        ? parseFloat(
-            (
-              +selectedData?.team?.stake *
-              (parseFloat(selectedData?.team?.rate) - 1)
-            ).toFixed(2)
-          )
-        : parseFloat(
+        ? 
+    parseFloat(
             (
               +selectedData?.team?.stake *
               (parseFloat(selectedData?.team?.rate) / 100)
+            ).toFixed(2)
+          ):parseFloat(
+            (
+              +selectedData?.team?.stake *
+              (parseFloat(selectedData?.team?.rate) - 1)
             ).toFixed(2)
           );
     }
