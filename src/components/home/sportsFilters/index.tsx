@@ -19,7 +19,7 @@ const SportsFilters = ({ setMatchType }: any) => {
               key={item?.id}
               eventKey={item?.id}
               tabClassName="m-tab"
-              title={<div>{item?.name}</div>}
+              title={<div className="top-tab">{item?.name}</div>}
             >
               {item?.id === "inPlay" ? <MobileMatchList /> : ""}
             </Tab>
