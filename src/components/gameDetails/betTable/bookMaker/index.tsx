@@ -218,11 +218,15 @@ function BookmakerTable({
                               : ""
                           }`}
                           bgColor={`blue${index + 1}`}
-                          rate={+data[`backTeam${item}`] - 2 + index}
+                          rate={
+                            +data[`backTeam${item}`] -
+                            (isMobile ? 0 : 2) +
+                            index
+                          }
                           onClick={() => {
                             const rate =
-                              parseInt(data[`backTeam${item}`] || 0) -
-                              2 +
+                              (+data[`backTeam${item}`] || 0) -
+                              (isMobile ? 0 : 2) +
                               index;
                             if (
                               rate > 0 &&
@@ -253,7 +257,7 @@ function BookmakerTable({
                                   betId: data?.id,
                                   eventType: matchDetails?.matchType,
                                   matchId: matchDetails?.id,
-                                  placeIndex: 2 - index,
+                                  placeIndex: (isMobile ? 0 : 2) - index,
                                   matchBetType: data?.type,
                                 },
                                 data
@@ -282,8 +286,7 @@ function BookmakerTable({
                               : 0
                           }
                           onClick={() => {
-                            const rate =
-                              parseInt(data[`layTeam${item}`] || 0) + index;
+                            const rate = +(data[`layTeam${item}`] || 0) + index;
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active

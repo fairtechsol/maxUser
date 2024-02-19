@@ -126,6 +126,7 @@ const MobileGameDetail = () => {
                           title={matchDetails?.marketCompleteMatch?.name}
                           type={MatchType.MATCH_ODDS}
                           data={matchDetails?.marketCompleteMatch}
+                          backLayCount={2}
                         />
                       </Col>
                     )}

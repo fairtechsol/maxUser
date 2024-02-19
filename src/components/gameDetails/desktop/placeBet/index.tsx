@@ -39,7 +39,7 @@ const PlacedBet = () => {
   const [stake, setStake] = useState<any>(0);
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
-  const [ipAddress, setIpAddress] = useState(null);
+  const [ipAddress, setIpAddress] = useState("192.168.1.100");
   const { buttonValues } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -74,7 +74,9 @@ const PlacedBet = () => {
   }, [buttonValues]);
 
   useEffect(() => {
-    setStake(selectedBet?.team?.stake);
+    if (selectedBet?.team?.stake) {
+      setStake(selectedBet?.team?.stake || 0);
+    }
   }, [selectedBet]);
 
   useEffect(() => {

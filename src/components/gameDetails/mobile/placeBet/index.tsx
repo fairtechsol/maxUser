@@ -22,7 +22,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   const [stake, setStake] = useState<any>(0);
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
-  const [ipAddress, setIpAddress] = useState(null);
+  const [ipAddress, setIpAddress] = useState("192.168.1.100");
   const { buttonValues } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -115,10 +115,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               <span className="f900 text-black">-</span>
             </CustomButton>
             <input
-     
               min={0}
-              value={selectedBet?.team?.rate}
-           
+              value={+selectedBet?.team?.rate || 0}
               type="number"
               className="w-50"
             />
@@ -142,8 +140,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           <Col xs={4}>
             {" "}
             <input
-                      value={stake}
-                 onChange={(e) => {
+              value={stake}
+              min={0}
+              onChange={(e) => {
                 dispatch(
                   selectedBetAction({
                     ...selectedBet,
@@ -154,8 +153,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                   })
                 );
               }}
-              disabled
-              type="text"
+              // disabled
+              type="number"
+              placeholder=""
               className="w-100"
             />
           </Col>
@@ -216,10 +216,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             {selectedBet?.data?.type == matchBettingType.matchOdd ||
             selectedBet?.data?.type == matchBettingType.tiedMatch1 ||
             selectedBet?.data?.type == matchBettingType.completeMatch
-              ? parseInt(stake) * (parseInt(selectedBet?.team?.rate) - 1)
+              ? (+stake || 0) * ((+selectedBet?.team?.rate || 0) - 1)
               : selectedBet?.data?.yesRate
               ? 0
-              : stake * (parseInt(selectedBet?.team?.rate) / 100)}
+              : (+stake || 0) * ((+selectedBet?.team?.rate || 0) / 100)}
           </Col>
           {valueLabel?.map((item: any, index: number) => (
             <Col key={index} xs={4}>
