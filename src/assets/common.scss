@@ -189,6 +189,7 @@ body select {
   overflow-y: hidden;
   color: $black;
   width: 100%;
+  white-space: nowrap;  
   &:hover {
     border: none !important;
   }
