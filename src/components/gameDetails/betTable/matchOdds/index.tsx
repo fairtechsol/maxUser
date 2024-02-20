@@ -200,18 +200,18 @@ function MatchOdds({
                             bgColor={`blue${index + 1}`}
                             rate={
                               +data?.runners?.[indexes]?.ex?.availableToBack?.[
-                                2 - index
+                                (isMobile ? 0 : 2) - index
                               ]?.price || 0
                             }
                             percent={
                               data?.runners?.[indexes]?.ex?.availableToBack?.[
-                                2 - index
+                                (isMobile ? 0 : 2) - index
                               ]?.size
                             }
                             onClick={() => {
                               const rate = parseFloat(
                                 data?.runners?.[indexes]?.ex?.availableToBack?.[
-                                  2 - index
+                                  (isMobile ? 0 : 2) - index
                                 ]?.price || 0
                               );
 
@@ -250,7 +250,7 @@ function MatchOdds({
                                     betId: data?.id,
                                     eventType: matchDetails?.matchType,
                                     matchId: matchDetails?.id,
-                                    placeIndex: 2 - index,
+                                    placeIndex: (isMobile ? 0 : 2) - index,
                                     matchBetType: data?.type,
                                   },
                                   data
