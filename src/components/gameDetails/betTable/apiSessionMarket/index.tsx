@@ -101,11 +101,11 @@ function ApiSessionMarketTable({
                   <span
                     onClick={() => {
                       setShowRunModal(true);
-                      dispatch(getRunAmount(JSON.parse(item)?.id));
+                      dispatch(getRunAmount(item?.id));
                     }}
                     className="backLayRunner-country session-country title-12"
                   >
-                    {JSON.parse(item)?.name}
+                    {item?.name}
                   </span>
                   <span
                     className={`title-14 ${
@@ -113,7 +113,7 @@ function ApiSessionMarketTable({
                         ? matchDetails?.profitLossDataSession?.reduce(
                             (accumulator: any, bet: any) => {
                               const maxLossToAdd =
-                                bet?.betId === JSON.parse(item)?.id
+                                bet?.betId === item?.id
                                   ? +bet?.maxLoss
                                   : 0;
                               return accumulator + maxLossToAdd;
@@ -129,7 +129,7 @@ function ApiSessionMarketTable({
                       ? matchDetails?.profitLossDataSession?.reduce(
                           (accumulator: any, bet: any) => {
                             const maxLossToAdd =
-                              bet?.betId === JSON.parse(item)?.id
+                              bet?.betId === item?.id
                                 ? +bet?.maxLoss
                                 : 0;
                             return accumulator + maxLossToAdd;
@@ -143,26 +143,26 @@ function ApiSessionMarketTable({
 
               <td colSpan={isMobile ? 2 : 3}>
                 <BetStatusOverlay
-                  title={JSON.parse(item)?.status}
-                  active={JSON.parse(item)?.status !== "active" ? true : false}
+                  title={item?.status}
+                  active={item?.status !== "active" ? true : false}
                 >
                   <BackLayBox
                     customClass="bet-place-box"
                     // overlay={true}
                     bgColor="red1"
-                    rate={JSON.parse(item)?.noRate}
-                    percent={JSON.parse(item)?.noPercent}
+                    rate={item?.noRate}
+                    percent={item?.noPercent}
                     onClick={() => {
-                      const rate = parseFloat(JSON.parse(item)?.noRate);
-                      const percent = parseInt(JSON.parse(item)?.noPercent);
+                      const rate = parseFloat(item?.noRate);
+                      const percent = parseInt(item?.noPercent);
                       if (
                         rate > 0 &&
-                        JSON.parse(item)?.status == teamStatus.active
+                        item?.status == teamStatus.active
                       ) {
                         handleClick(
                           {
-                            betId: JSON.parse(item)?.id,
-                            name: JSON.parse(item)?.name,
+                            betId: item?.id,
+                            name: item?.name,
                             rate: rate,
                             type: "no",
                             stake: 0,
@@ -170,50 +170,50 @@ function ApiSessionMarketTable({
                             eventType: matchDetails?.matchType,
                             matchId: matchDetails?.id,
                           },
-                          JSON.parse(item)
+                          item
                         );
                       }
                     }}
                     active={
-                      JSON.parse(item)?.status !== "active" ? true : false
+                      item?.status !== "active" ? true : false
                     }
                   />
                   <BackLayBox
                     customClass="bet-place-box"
                     bgColor="blue3"
-                    rate={JSON.parse(item)?.yesRate}
-                    percent={JSON.parse(item)?.yesPercent}
+                    rate={item?.yesRate}
+                    percent={item?.yesPercent}
                     onClick={() => {
-                      const rate = parseFloat(JSON.parse(item)?.yesRate);
-                      const percent = parseFloat(JSON.parse(item)?.yesPercent);
+                      const rate = parseFloat(item?.yesRate);
+                      const percent = parseFloat(item?.yesPercent);
                       if (
                         rate > 0 &&
-                        JSON.parse(item)?.status == teamStatus.active
+                        item?.status == teamStatus.active
                       ) {
                         handleClick(
                           {
-                            name: JSON.parse(item)?.name,
+                            name: item?.name,
                             rate: rate,
                             type: "yes",
                             stake: 0,
-                            betId: JSON.parse(item)?.id,
+                            betId: item?.id,
                             percent: percent,
                             eventType: matchDetails?.matchType,
                             matchId: matchDetails?.id,
                           },
-                          JSON.parse(item)
+                          item
                         );
                       }
                     }}
                     active={
-                      JSON.parse(item)?.status !== "active" ? true : false
+                      item?.status !== "active" ? true : false
                     }
                   />
                   {!isMobile && (
                     <div className="minMax">
                       <div className="minMaxBox d-flex flex-column justify-content-end text-right px-2 title-12">
-                        <span className="">Min:{JSON.parse(item)?.minBet}</span>
-                        <span>Max:{JSON.parse(item)?.maxBet}</span>
+                        <span className="">Min:{item?.minBet}</span>
+                        <span>Max:{item?.maxBet}</span>
                       </div>
                     </div>
                   )}
