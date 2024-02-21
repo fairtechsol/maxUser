@@ -8,11 +8,11 @@ export const getMatchList = createAsyncThunk<any, any>(
   async ({ type, searchKeyword, matchType }, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.MATCHLIST}${
+        `${ApiConstants.MATCH.MATCHLIST}?sort=match.startAt:ASC${
           type == "search"
             ? `?searchBy=title&keyword=${searchKeyword || ""}`
             : ""
-        }${matchType ? `?match.matchType=${matchType}` : ""}`
+        }${matchType ? `&match.matchType=${matchType}` : ""}`
       );
       if (resp) {
         return { data: resp?.data?.matches, type: type };
