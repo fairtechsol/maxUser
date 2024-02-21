@@ -1,9 +1,8 @@
-import { Button, Spinner } from 'react-bootstrap';
-import { MdOutlineLogin } from "react-icons/md";
+import { Button, Spinner } from "react-bootstrap";
 function CustomButton({ children, loading, ...rest }: any) {
   return (
     <Button disabled={loading} {...rest}>
-      {loading ? <Spinner animation="border" size="sm" role="status" /> : <MdOutlineLogin />}
+      {loading ? <Spinner animation="border" size="sm" role="status" /> : null}
       {children}
     </Button>
   );

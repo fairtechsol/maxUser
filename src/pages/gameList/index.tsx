@@ -33,6 +33,9 @@ const GameList = () => {
     } catch (e) {
       console.log(e);
     }
+    return () => {
+      expertSocketService.match.matchAddedOff(getMatchListService);
+    };
   }, []);
 
   return (

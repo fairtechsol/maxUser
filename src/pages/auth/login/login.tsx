@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
@@ -66,7 +66,6 @@ const Login = () => {
     }
   }, [success]);
 
-
   return (
     <Form
       className="auth-main text-center d-flex justify-content-center"
@@ -120,8 +119,13 @@ const Login = () => {
             touched={touched.password}
             errors={errors.password}
           />
-          <CustomButton className="w-100" variant="primary" type="submit" loading={loading}>
-          {loading ? 'Loading...' : 'Login'}
+          <CustomButton
+            className="w-100"
+            variant="primary"
+            type="submit"
+            loading={loading}
+          >
+            {loading ? "Loading..." : "Login"} <MdOutlineLogin />
           </CustomButton>
           <p className="auth-box-descrip mt-1">
             This site is protected by reCAPTCHA and the Google

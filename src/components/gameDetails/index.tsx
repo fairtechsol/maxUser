@@ -25,6 +25,7 @@ import {
 const GameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
+  const { success } = useSelector((state: RootState) => state.match.matchList);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -92,22 +93,28 @@ const GameDetails = () => {
       if (id && getProfile?.roleName) {
         dispatch(selectedBetAction(null));
         dispatch(matchDetailAction(id));
-        expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
-        expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
-        socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
-        socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-        socketService.userBalance.matchResultDeclared(resultDeclared);
-        socketService.userBalance.matchDeleteBet(betDeleted);
-        socketService.userBalance.sessionDeleteBet(betDeleted);
       }
     } catch (e) {
       console.log(e);
     }
+  }, [id, getProfile?.roleName]);
+
+  useEffect(() => {
+    if (success) {
+      expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
+      expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
+      socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
+      socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
+      socketService.userBalance.matchResultDeclared(resultDeclared);
+      socketService.userBalance.matchDeleteBet(betDeleted);
+      socketService.userBalance.sessionDeleteBet(betDeleted);
+    }
     return () => {
       expertSocketService.match.leaveAllRooms();
       expertSocketService.match.leaveMatchRoom(id);
+      expertSocketService.match.getMatchRatesOff(id, setMatchRatesInRedux);
     };
-  }, [id, getProfile?.roleName]);
+  }, [success]);
 
   useEffect(() => {
     try {

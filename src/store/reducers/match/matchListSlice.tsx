@@ -61,6 +61,11 @@ const matchListSlice = createSlice({
         state.loading = false;
         state.error = action?.error?.message;
       })
+      .addCase(SearchList.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
       .addCase(SearchList.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
@@ -69,11 +74,6 @@ const matchListSlice = createSlice({
       .addCase(SearchList.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
-      })
-      .addCase(SearchList.pending, (state) => {
-        state.loading = true;
-        state.success = false;
-        state.error = null;
       })
       .addCase(SearchListReset, (state) => {
         // Reset the state to initial state
