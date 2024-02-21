@@ -109,22 +109,36 @@ const GameDetails = () => {
       socketService.userBalance.matchDeleteBet(betDeleted);
       socketService.userBalance.sessionDeleteBet(betDeleted);
     }
-    return () => {
-      expertSocketService.match.leaveAllRooms();
-      expertSocketService.match.leaveMatchRoom(id);
-      expertSocketService.match.getMatchRatesOff(id, setMatchRatesInRedux);
-    };
   }, [success]);
 
   useEffect(() => {
     try {
+      if (id) {
+        dispatch(getPlacedBets(id));
+      }
     } catch (e) {
       console.log(e);
     }
-    if (id) {
-      dispatch(getPlacedBets(id));
-    }
   }, [id]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        if (id) {
+          dispatch(selectedBetAction(null));
+          dispatch(matchDetailAction(id));
+        }
+      } else if (document.visibilityState === "hidden") {
+        expertSocketService.match.leaveMatchRoom(id);
+        expertSocketService.match.getMatchRatesOff(id, setMatchRatesInRedux);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };
