@@ -36,7 +36,7 @@ const MobileGameDetail = () => {
           },
           {
             id: "matchedBet",
-            name: `Matched Bet(${placedBets?.length})`,
+            name: `Matched Bet(${Array.from(new Set(placedBets))?.length})`,
           },
         ]?.map((item, index) => {
           return (

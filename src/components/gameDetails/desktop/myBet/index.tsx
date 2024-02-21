@@ -37,7 +37,7 @@ const MyBet = () => {
           </thead>
           <tbody>
             {placedBets &&
-              placedBets?.map((bet: any) => {
+              Array.from(new Set(placedBets))?.map((bet: any) => {
                 return (
                   <tr
                     key={bet?.id}
