@@ -117,22 +117,21 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-
               {matchDetails?.apiSessionActive && (
                 <Col md={6}>
                   <BetTable
                     title={"Session Market"}
                     type={MatchType.API_SESSION_MARKET}
-                    data={matchDetails?.sessionBettings}
+                    data={matchDetails?.apiSession}
                   />
                 </Col>
               )}
-              {matchDetails?.manualSessionActive?.isActive && (
+              {matchDetails?.manualSessionActive && (
                 <Col md={6}>
                   <BetTable
                     title={"Quick Session Market"}
                     type={MatchType.SESSION_MARKET}
-                    data={[]}
+                    data={matchDetails?.sessionBettings}
                   />
                 </Col>
               )}
