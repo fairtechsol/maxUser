@@ -84,6 +84,31 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     }
   }, [success]);
 
+  const handleProfit = (value: any) => {
+    let profit;
+    if (selectedBet?.data?.type === "session") {
+      profit =
+        selectedBet?.team?.type === "no"
+          ? value
+          : (value * selectedBet?.team?.percent) / 100;
+    } else if (
+      selectedBet?.data?.type === matchBettingType.matchOdd ||
+      selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
+      selectedBet?.data?.type === matchBettingType.completeMatch
+    ) {
+      profit =
+        selectedBet?.team?.type === "back"
+          ? (value * ((selectedBet?.team?.rate - 1) * 100)) / 100
+          : value;
+    } else {
+      profit =
+        selectedBet?.team?.type === "back"
+          ? (value * selectedBet?.team?.rate) / 100
+          : value;
+    }
+    return Number(profit);
+  };
+
   return (
     <CustomModal
       title={"Place Bet"}
@@ -213,13 +238,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             </CustomButton>
           </Col>
           <Col xs={4} className="title-12 text-center">
-            {selectedBet?.data?.type == matchBettingType.matchOdd ||
-            selectedBet?.data?.type == matchBettingType.tiedMatch1 ||
-            selectedBet?.data?.type == matchBettingType.completeMatch
-              ? (+stake || 0) * ((+selectedBet?.team?.rate || 0) - 1)
-              : selectedBet?.data?.yesRate
-              ? 0
-              : (+stake || 0) * ((+selectedBet?.team?.rate || 0) / 100)}
+          {handleProfit(stake)}
           </Col>
           {valueLabel?.map((item: any, index: number) => (
             <Col key={index} xs={4}>

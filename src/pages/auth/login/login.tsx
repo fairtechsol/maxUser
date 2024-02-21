@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../../components/commonComponent/button";
 import CustomInput from "../../../components/commonComponent/input";
-import Loader from "../../../components/commonComponent/loader";
 import ValidationError from "../../../components/commonComponent/validationError";
 import {
   authReset,
@@ -31,7 +30,6 @@ const Login = () => {
     password: "",
     loginType: "user",
   };
-
   const { success, forceChangePassword, loading } = useSelector(
     (state: RootState) => state.auth
   );
@@ -68,12 +66,13 @@ const Login = () => {
     }
   }, [success]);
 
+
   return (
     <Form
       className="auth-main text-center d-flex justify-content-center"
       onSubmit={handleSubmit}
     >
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
       <div className="auth-box ">
         <img
           src="/maxbetLogo.png"
@@ -121,8 +120,8 @@ const Login = () => {
             touched={touched.password}
             errors={errors.password}
           />
-          <CustomButton className="w-100" variant="primary" type="submit">
-            Login <MdOutlineLogin />
+          <CustomButton className="w-100" variant="primary" type="submit" loading={loading}>
+          {loading ? 'Loading...' : 'Login'}
           </CustomButton>
           <p className="auth-box-descrip mt-1">
             This site is protected by reCAPTCHA and the Google
