@@ -204,8 +204,8 @@ function ApiSessionMarketTable({
                   {!isMobile && (
                     <div className="minMax">
                       <div className="minMaxBox d-flex flex-column justify-content-end text-right px-2 title-12">
-                        <span className="">Min:{item?.minBet}</span>
-                        <span>Max:{item?.maxBet}</span>
+                        <span className="">Min:{item?.min}</span>
+                        <span>Max:{item?.max}</span>
                       </div>
                     </div>
                   )}
