@@ -22,7 +22,13 @@ export const matchSocketService = {
   matchAdded: (callback: any) => {
     expertSocket.on("addMatch", callback);
   },
-  getMatchRates: (matchId: string, callback: any) => {
+  getMatchRates: (matchId: any, callback: any) => {
     matchSocket.on(`liveData${matchId}`, callback);
+  },
+  matchAddedOff: (callback: any) => {
+    expertSocket.off("addMatch", callback);
+  },
+  getMatchRatesOff: (matchId: any, callback: any) => {
+    matchSocket.off(`liveData${matchId}`, callback);
   },
 };

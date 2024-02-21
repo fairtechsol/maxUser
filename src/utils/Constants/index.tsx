@@ -48,6 +48,7 @@ export const sessionBettingType = {
 export const teamStatus = {
   suspended: "suspended",
   active: "active",
+  apiActive: "",
   closed: "closed",
   ballStart: "ball start",
   ballStop: "ball stop",
