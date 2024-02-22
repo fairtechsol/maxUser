@@ -129,6 +129,7 @@ const PlacedBet = () => {
     }
     return Number(profit.toFixed(2));
   };
+
   return (
     <RightPanelContainer title="Place Bet">
       {selectedBet ? (
@@ -298,6 +299,7 @@ const PlacedBet = () => {
                                   : JSON.stringify(payloadForBettings),
                             })
                           );
+                          setStake(0);
                         }}  }
                       >
                         Submit
