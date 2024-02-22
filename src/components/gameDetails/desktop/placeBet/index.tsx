@@ -14,6 +14,7 @@ import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
+import Loader from "../../../commonComponent/loader";
 
 const placeBetHeader = [
   {},
@@ -46,7 +47,7 @@ const PlacedBet = () => {
 
   const { success } = useSelector((state: RootState) => state.match.bet);
 
-  const { selectedBet } = useSelector(
+  const { selectedBet, loading } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -169,7 +170,7 @@ const PlacedBet = () => {
                 <input
                   disabled
                   placeholder=""
-                  className="p-0 h-25 w-25"
+                  className="p-0 h-25 w-50"
                   value={selectedBet?.team?.rate}
                 />
               </td>
@@ -192,17 +193,6 @@ const PlacedBet = () => {
               </td>
               <td>
                 <span className="f600">
-                  {/* {selectedBet?.data?.type == matchBettingType.matchOdd ||
-                  selectedBet?.data?.type == matchBettingType.tiedMatch1 ||
-                  selectedBet?.data?.type == matchBettingType.completeMatch
-                    ? Math.floor(
-                        stake * (parseInt(selectedBet?.team?.rate) - 1)
-                      )
-                    : Math.floor(selectedBet?.data?.yesRate)
-                    ? 0
-                    : Math.floor(
-                        stake * (parseInt(selectedBet?.team?.rate) / 100)
-                      )} */}
                   {handleProfit(stake)}
                 </span>
               </td>
@@ -253,10 +243,14 @@ const PlacedBet = () => {
                       </CustomButton>
                     </Col>
                     <Col md={6} className="text-end">
+                    {loading && <Loader />}
                       <CustomButton
                         className=" bg-success border-0 py-2"
                         size="sm"
                         onClick={() => {
+                          if(loading){
+                            return
+                          } else {
                           let payloadForSession: any = {
                             betId: selectedBet?.team?.betId,
                             betType: selectedBet?.team?.type.toUpperCase(),
@@ -304,7 +298,7 @@ const PlacedBet = () => {
                                   : JSON.stringify(payloadForBettings),
                             })
                           );
-                        }}
+                        }}  }
                       >
                         Submit
                       </CustomButton>

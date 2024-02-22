@@ -18,7 +18,7 @@ const ChangePasswordComponent = () => {
   //   newPassword: "",
   //   confirmNewPassword: "",
   // });
-  const initialValues: any = {
+    const initialValues: any = {
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",
@@ -58,6 +58,7 @@ const ChangePasswordComponent = () => {
             title="Current Password"
             customStyle={"flex-column"}
             type="password"
+            onBlur={formik.handleBlur}
             // value={formik.values.currentPassword}
             id={"oldPassword"}
             name={"oldPassword"}
@@ -72,6 +73,7 @@ const ChangePasswordComponent = () => {
             isUnderlinedInput={isMobile}
             customStyle={"flex-column"}
             type="password"
+            onBlur={formik.handleBlur}
             // value={formik.values.newPassword}
             id="newPassword"
             name="newPassword"
@@ -86,6 +88,7 @@ const ChangePasswordComponent = () => {
             isUnderlinedInput={isMobile}
             customStyle={"flex-column"}
             type="password"
+            onBlur={formik.handleBlur}
             // value={formik.values.confirmPassword}
             id="confirmPassword"
             name="confirmPassword"

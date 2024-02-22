@@ -11,6 +11,7 @@ import SearchBox from "./searchBox";
 import "./style.scss";
 import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
 import { useDispatch } from "react-redux";
+import { logout } from "../../../../store/actions/authAction";
 
 const MobileHeader = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -104,6 +105,9 @@ const MobileHeader = () => {
                 <Dropdown.Item
                   className="title-14 d-flex justify-content-between m-logout"
                   eventKey={"Logout"}
+                  onClick={() => {
+                    dispatch(logout());
+                  }}
                 >
                   Logout
                 </Dropdown.Item>
