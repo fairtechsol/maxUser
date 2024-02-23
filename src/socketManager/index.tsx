@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import { baseUrls } from "../utils/constants";
+import { Constants, baseUrls } from "../utils/constants";
 import { authSocketService } from "./authSocket";
 import { matchSocketService } from "./matchSocket";
 import { userBalanceSocketService } from "./userBalance";
@@ -10,19 +10,31 @@ export let matchSocket: any = null;
 
 export const initialiseSocket = () => {
   socket = io(baseUrls.socket, {
-    transports: ["websocket"],
+    transports: [
+      process.env.NODE_ENV === "production"
+        ? `${Constants.POLLING}`
+        : `${Constants.WEBSOCKET}`,
+    ],
     auth: {
       token: `${sessionStorage.getItem("userToken")}`,
     },
   });
   expertSocket = io(baseUrls.expertSocket, {
-    transports: ["websocket"],
+    transports: [
+      process.env.NODE_ENV === "production"
+        ? `${Constants.POLLING}`
+        : `${Constants.WEBSOCKET}`,
+    ],
     auth: {
       token: `${sessionStorage.getItem("userToken")}`,
     },
   });
   matchSocket = io(baseUrls.matchSocket, {
-    transports: ["websocket"],
+    transports: [
+      process.env.NODE_ENV === "production"
+        ? `${Constants.POLLING}`
+        : `${Constants.WEBSOCKET}`,
+    ],
   });
 };
 

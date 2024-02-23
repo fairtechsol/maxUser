@@ -109,6 +109,10 @@ const GameDetails = () => {
       socketService.userBalance.matchDeleteBet(betDeleted);
       socketService.userBalance.sessionDeleteBet(betDeleted);
     }
+    return () => {
+      expertSocketService.match.leaveMatchRoom(id);
+      expertSocketService.match.getMatchRatesOff(id, setMatchRatesInRedux);
+    };
   }, [success]);
 
   useEffect(() => {

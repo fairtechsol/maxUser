@@ -16,97 +16,104 @@ const MobileOneVOneGame = () => {
   return (
     <div className="bg-lightGray match-list-container">
       <div className="scrollable-container">
-      {matchList?.map((item: any, index: number) => {
-        return (
-          <div key={index} className="px-3 py-1 m-game-one-v-one">
-            <div className="d-flex justify-content-between">
-              <div className="d-flex flex-column">
-                <Link
-                  className="text-decoration-none text-black"
-                  to={`/game-detail/${item?.id}`}
-                >
-                  {" "}
-                  <b className="title-14">{item?.title}</b>
-                  <div className="title-12">
+        {matchList?.map((item: any, index: number) => {
+          return (
+            <div key={index} className="px-3 py-1 m-game-one-v-one">
+              <div className="d-flex justify-content-between">
+                <div className="d-flex flex-column">
+                  <Link
+                    className="text-decoration-none text-black"
+                    to={`/game-detail/${item?.id}`}
+                  >
                     {" "}
-                    {moment(item?.startAt)
-                      .tz(timezone)
-                      .format("MMM DD YYYY h:mmA [IST]")}
-                  </div>
-                </Link>
+                    <b className="title-14">{item?.title}</b>
+                    <div className="title-12">
+                      {" "}
+                      {moment(item?.startAt)
+                        .tz(timezone)
+                        .format("MMM DD YYYY h:mmA [IST]")}
+                    </div>
+                  </Link>
+                </div>
+                <div className="d-flex align-items-center gap-2">
+                  {item?.startAt || item?.stopAt ? (
+                    <span className="liveDot"></span>
+                  ) : (
+                    ""
+                  )}
+                  <FiMonitor />
+                  {item?.manualSessionActive || item?.apiSessionActive ? (
+                    <span className="fancy">
+                      <img src="/ic_fancy.png" alt={"fancy"} />
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                  {item?.isBookmaker > 0 ? (
+                    <span className="bookmaker">
+                      <img src="/ic_bm.png" alt={"fancy"} />
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
-              <div className="d-flex align-items-center gap-2">
-                {item?.startAt || item?.stopAt ? (
-                  <span className="liveDot"></span>
-                ) : (
-                  ""
-                )}
-                <FiMonitor />
-                {item?.manualSessionActive || item?.apiSessionActive ? (
-                  <span className="fancy">
-                    <img src="/ic_fancy.png" alt={"fancy"} />
-                  </span>
-                ) : (
-                  ""
-                )}
-                {item?.isBookmaker > 0 ? (
-                  <span className="bookmaker">
-                    <img src="/ic_bm.png" alt={"fancy"} />
-                  </span>
-                ) : (
-                  ""
-                )}
-              </div>
-            </div>
 
-            <div className="d-flex w-100">
-              {item?.matchOdds?.map((item: any, index: number) => {
-                return (
-                  <React.Fragment key={index}>
-                    <BackLayComponent
-                      heading="1"
-                      backRate={item?.backTeamA ?? "-"}
-                      layRate={item?.layTeamA ?? "-"}
-                      active={item?.isActive}
-                    />
-                    <BackLayComponent
-                      heading="X"
-                      backRate={
-                        item?.backTeamC === null ||
-                        item?.backTeamC === undefined
-                          ? "-"
-                          : item.backTeamC
-                      }
-                      layRate={
-                        item?.layTeamC === null || item?.layTeamC === undefined
-                          ? "-"
-                          : item?.layTeamC
-                      }
-                      active={item?.isActive}
-                    />
-                    <BackLayComponent
-                      heading="2"
-                      backRate={
-                        item?.backTeamB === null ||
-                        item?.backTeamB === undefined
-                          ? "-"
-                          : item?.backTeamB
-                      }
-                      layRate={
-                        item?.layTeamB === null || item?.layTeamB === undefined
-                          ? "-"
-                          : item?.layTeamB
-                      }
-                      active={item?.isActive}
-                    />
-                  </React.Fragment>
-                );
-              })}
+              <div className="d-flex w-100">
+                {item?.matchOdds?.map((item: any, index: number) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <BackLayComponent
+                        heading="1"
+                        backRate={
+                          (item?.runners &&
+                            item?.runners[0]?.ex?.availableToBack[0]?.price) ??
+                          item?.backTeamA ??
+                          0
+                        }
+                        layRate={
+                          (item?.runners &&
+                            item?.runners[0]?.ex?.availableToLay[0]?.price) ??
+                          item?.layTeamA ??
+                          0
+                        }
+                        active={false}
+                      />
+                      <BackLayComponent
+                        heading="X"
+                        backRate={
+                          (item?.runners &&
+                            item?.runners[2]?.ex?.availableToBack[0]?.price) ??
+                          0
+                        }
+                        layRate={
+                          (item?.runners &&
+                            item?.runners[2]?.ex?.availableToLay[0]?.price) ??
+                          0
+                        }
+                        active={false}
+                      />
+                      <BackLayComponent
+                        heading="2"
+                        backRate={
+                          (item?.runners &&
+                            item?.runners[1]?.ex?.availableToBack[0]?.price) ??
+                          0
+                        }
+                        layRate={
+                          (item?.runners &&
+                            item?.runners[1]?.ex?.availableToLay[0]?.price) ??
+                          0
+                        }
+                        active={false}
+                      />
+                    </React.Fragment>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-          
-        );
-      })}
+          );
+        })}
       </div>
       <div className="tab-pane active casino-tables d-flex">
         <div className="container-fluid ">
