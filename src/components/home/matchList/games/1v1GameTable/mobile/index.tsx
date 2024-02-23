@@ -94,46 +94,53 @@ const MobileOneVOneGame = () => {
                     <React.Fragment key={index}>
                       <BackLayComponent
                         heading="1"
-                        backRate={item?.backTeamA ?? "-"}
-                        layRate={item?.layTeamA ?? "-"}
-                        active={item?.isActive}
+                        backRate={
+                          (item?.runners &&
+                            item?.runners[0]?.ex?.availableToBack[0]?.price) ??
+                          item?.backTeamA ??
+                          0
+                        }
+                        layRate={
+                          (item?.runners &&
+                            item?.runners[0]?.ex?.availableToLay[0]?.price) ??
+                          item?.layTeamA ??
+                          0
+                        }
+                        active={false}
                       />
                       <BackLayComponent
                         heading="X"
                         backRate={
-                          item?.backTeamC === null ||
-                            item?.backTeamC === undefined
-                            ? "-"
-                            : item.backTeamC
+                          (item?.runners &&
+                            item?.runners[2]?.ex?.availableToBack[0]?.price) ??
+                          0
                         }
                         layRate={
-                          item?.layTeamC === null || item?.layTeamC === undefined
-                            ? "-"
-                            : item?.layTeamC
+                          (item?.runners &&
+                            item?.runners[2]?.ex?.availableToLay[0]?.price) ??
+                          0
                         }
-                        active={item?.isActive}
+                        active={false}
                       />
                       <BackLayComponent
                         heading="2"
                         backRate={
-                          item?.backTeamB === null ||
-                            item?.backTeamB === undefined
-                            ? "-"
-                            : item?.backTeamB
+                          (item?.runners &&
+                            item?.runners[1]?.ex?.availableToBack[0]?.price) ??
+                          0
                         }
                         layRate={
-                          item?.layTeamB === null || item?.layTeamB === undefined
-                            ? "-"
-                            : item?.layTeamB
+                          (item?.runners &&
+                            item?.runners[1]?.ex?.availableToLay[0]?.price) ??
+                          0
                         }
-                        active={item?.isActive}
+                        active={false}
                       />
                     </React.Fragment>
                   );
                 })}
               </div>
             </div>
-
           );
         })}
       </div>

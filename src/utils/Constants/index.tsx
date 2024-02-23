@@ -35,7 +35,9 @@ export const Constants = {
   apiBasePath: "http://107.23.165.155:5000",
   expertSocketBasePath: "http://107.23.165.155:6060",
   thirdParty: "http://107.23.165.155:3200",
-  localThird: "http://192.168.1.15:3200",
+  localThird: "http://localhost:3200",
+  WEBSOCKET: "websocket",
+  POLLING: "polling",
 };
 
 export const sessionBettingType = {
