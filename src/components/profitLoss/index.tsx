@@ -17,7 +17,7 @@ const ProfitLossComponent = () => {
   const dispatch: AppDispatch = useDispatch();
   const [fromDate, setFromDate] = useState<any>(new Date());
   const [toDate, setToDate] = useState<any>(new Date());
-
+  const [tableConfig, setTableConfig] = useState<any>(null);
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const { profitLossReport } = useSelector(
     (state: RootState) => state.currentBetList
@@ -52,8 +52,9 @@ const ProfitLossComponent = () => {
   // }, [getProfile]);
 
   return (
+    <>
+    <div className="whitespace">
     <ReportContainer title="Profit Loss">
-      <div>
         <Stack gap={2}>
           <Row className="g-2 mt-1">
             <Col md={2} xs={6}>
@@ -92,8 +93,6 @@ const ProfitLossComponent = () => {
           <CustomTable
             bordered={true}
             striped={!isMobile}
-            // isPagination={true}
-            // isSearch={true}
             columns={[
               {
                 id: "eventType",
@@ -111,7 +110,7 @@ const ProfitLossComponent = () => {
             itemCount={10}
             setTableConfig={() => {}}
           >
-            {profitLossReport &&
+                  {profitLossReport &&
               profitLossReport?.result?.map((item: any, index: number) => {
                 return (
                   <tr className={`${isMobile && "title-12"}`} key={index}>
@@ -121,10 +120,11 @@ const ProfitLossComponent = () => {
                   </tr>
                 );
               })}
-          </CustomTable>
+                  </CustomTable>
         </Stack>
-      </div>
     </ReportContainer>
+    </div>
+    </>
   );
 };
 

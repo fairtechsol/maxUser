@@ -3,8 +3,11 @@
     border-bottom: 1px solid $darkGray !important;
 }
 .scrollable-container {
+    flex: 1;
     overflow-y: auto;
-    max-height: 500px; /* Set a maximum height if needed */
+    overscroll-behavior-y: contain;
+    scroll-behavior: smooth; 
+    max-height: 340px; /* Set a maximum height if needed */
   }
   
 .match-list-container {
@@ -14,7 +17,9 @@
 // .tab-content>.active {
 //     display: block;
 // }
-
+.end-of-scroll {
+    overscroll-behavior-y: auto; 
+  }
 .casino-tables {
     background-color: $light;
     display: flex !important;
