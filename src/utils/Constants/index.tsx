@@ -1092,3 +1092,178 @@ export const sportsRules = [
     ],
   },
 ];
+
+
+
+export const casinoIcons = [
+  {
+    url: "/casino/ball_by_ball",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+    name: "Ball By Ball",
+  },
+  {
+    url: "/casino/superover",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
+    name: "Super Over",
+  },
+  {
+    url: "/casino/race/t20",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
+    name: "Race 20-20",
+  },
+  {
+    url: "/casino/queen",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
+    name: "Casino Queen",
+  },
+  {
+    url: "/casino/cricketv3",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
+    name: "5Five Cricket",
+  },
+  {
+    url: "/casino/ab2",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
+    name: "Andar Bahar 2",
+  },
+  {
+    url: "/casino/dt202",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
+    name: "20-20 Dragon Tiger 2",
+  },
+  {
+    url: "/casino/baccarat2",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
+    name: "Baccarat 2",
+  },
+  {
+    url: "/casino/baccarat",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
+    name: "Baccarat",
+  },
+  {
+    url: "/casino/lucky7eu",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
+    name: "Lucky 7 - B",
+  },
+  {
+    url: "/casino/teenpatti-list/teen6",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teencasino.jpg",
+    name: "Teenpatti 2.0",
+  },
+  {
+    url: "/casino/cc20",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
+    name: "20-20 Cricket Match",
+  },
+  {
+    url: "/casino/cmeter",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
+    name: "Casino Meter",
+  },
+  {
+    url: "/casino/war",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
+    name: "Casino War",
+  },
+  {
+    url: "/casino/dtl20",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
+    name: "20-20 DTL",
+  },
+  {
+    url: "/casino/teenpatti/test",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    name: "Test Teenpatti",
+  },
+  {
+    url: "/casino/teenpatti/open",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    name: "Open Teenpatti",
+  },
+  {
+    url: "/casino/teenpatti/oneday",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    name: "1 Day Teenpatti",
+  },
+  {
+    url: "/casino/teenpatti/t20",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    name: "20-20 Teenpatti",
+  },
+  {
+    url: "/casino/poker/6player",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    name: "6 Player Poker",
+  },
+  {
+    url: "/casino/poker/oneday",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    name: "1 Day Poker",
+  },
+  {
+    url: "/casino/poker/t20",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    name: "20-20 Poker",
+  },
+  {
+    url: "/casino/ab20",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
+    name: "Andar Bahar",
+  },
+  {
+    url: "/casino/worli",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
+    name: "Worli Matka",
+  },
+  {
+    url: "/casino/worli2",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
+    name: "Instant Worli",
+  },
+  {
+    url: "/casino/3cardj",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
+    name: "3 Cards Judgement",
+  },
+  {
+    url: "/casino/card32a",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
+    name: "32 Cards A",
+  },
+  {
+    url: "/casino/card32b",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
+    name: "32 Cards B",
+  },
+  {
+    url: "/casino/aaa",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
+    name: "Amar Akbar Anthony",
+  },
+  {
+    url: "/casino/ddb",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
+    name: "Bollywood Casino",
+  },
+  {
+    url: "/casino/dt20",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
+    name: "20-20 Dragon Tiger",
+  },
+  {
+    url: "/casino/dt6",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
+    name: "1 Day Dragon Tiger",
+  },
+  {
+    url: "/casino/lottery",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lottery.jpg",
+    name: "Lottery",
+  },
+  {
+    url: "/casino/lucky7",
+    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
+    name: "Lucky 7 - A",
+  },
+];

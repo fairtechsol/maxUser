@@ -10,7 +10,13 @@ body {
 body table.table {
   margin-bottom: 0;
 }
-
+.whitespace{
+  // background-color: black;
+  position: absolute;
+  width: 86vw;
+  height: 100%;
+  margin-top: 1%;
+}
 /* Marquee.css */
 
 .marquee-container {
@@ -179,6 +185,8 @@ body select {
 
 // mobile and desktop tab bar
 .m-match-list-tabs {
+  flex-direction: column;
+  height: 100%;
   border-radius: 0px !important;
   background-color: $secondary !important;
   // padding: 1px;
