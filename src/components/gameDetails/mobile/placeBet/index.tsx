@@ -105,8 +105,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
         selectedBet?.team?.type === "back"
           ? (value * selectedBet?.team?.rate) / 100
           : value;
-    }
-    return Number(profit);
+        }
+    return isNaN(profit) ? 0 : Number(profit?.toFixed(2));
   };
 
   return (
