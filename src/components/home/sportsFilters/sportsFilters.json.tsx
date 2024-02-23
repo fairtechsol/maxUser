@@ -2,19 +2,19 @@ const SportsFilterJson = () => {
   return [
     {
       id: "inPlay",
-      name: "In-play",
+      name: "IN-PLAY",
     },
     {
       id: "sports",
-      name: "Sports",
+      name: "SPORTS",
     },
     {
       id: "casino",
-      name: "Casino+Slot",
+      name: "CASINO+SLOT",
     },
     {
       id: "others",
-      name: "Others",
+      name: "OTHERS",
     },
   ];
 };
