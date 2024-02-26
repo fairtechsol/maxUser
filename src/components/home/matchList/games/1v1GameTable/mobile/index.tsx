@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { FiMonitor } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -6,14 +6,12 @@ import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import moment from "moment-timezone";
-import { Img } from 'react-image';
+import { Img } from "react-image";
 import { casinoIcons } from "../../../../../../utils/constants";
 const MobileOneVOneGame = () => {
   // const mainContainerRef = useRef<any>(null);
 
   // const scrollableContainerRef = useRef<any>(null);
-
-  
 
   // useEffect(() => {
   //   const mainContainer = mainContainerRef.current;
@@ -43,7 +41,7 @@ const MobileOneVOneGame = () => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   return (
-    <div className="bg-lightGray match-list-container" >
+    <div className="bg-lightGray match-list-container">
       <div className="scrollable-container">
         {matchList?.map((item: any, index: number) => {
           return (
@@ -145,7 +143,7 @@ const MobileOneVOneGame = () => {
         })}
       </div>
       <div className="tab-pane active casino-tables d-flex">
-        <div  className="container-fluid ">
+        <div className="container-fluid ">
           <div className="row row5">
             <div className="col-12">
               <h4 className="text-uppercase mt-3">Our Casino</h4>
@@ -155,7 +153,11 @@ const MobileOneVOneGame = () => {
             {casinoIcons.map((item, index) => (
               <a href={item.url} key={index} className="">
                 <div className="d-inline-block casinoiconsm">
-                  <Img src={item.imgSrc} className="img-fluid" alt={item.name} />
+                  <Img
+                    src={item.imgSrc}
+                    className="img-fluid"
+                    alt={item.name}
+                  />
                   <div className="mcasino-name">{item.name}</div>
                 </div>
               </a>
