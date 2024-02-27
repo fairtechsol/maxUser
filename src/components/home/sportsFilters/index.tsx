@@ -5,8 +5,9 @@ import SportsFilterJson from "./sportsFilters.json";
 import { useState } from "react";
 import MatchListJson from "../matchList/matchList.json";
 
-const SportsFilters = ({ type,setMatchType }: any) => {
-  const [selectedTab, setSelectedTab] = useState("sports"); 
+const SportsFilters = ({ type, setMatchType }: any) => {
+  const [selectedTab, setSelectedTab] = useState("sports");
+
   return (
     <div className="m-0 p-0 w-100 ">
       {" "}
@@ -18,27 +19,30 @@ const SportsFilters = ({ type,setMatchType }: any) => {
         justify={true}
       >
         {SportsFilterJson()
-        ?.filter((item) => item?.id == "inPlay" || !type)
-    
-        ?.map((item) => {
-          const isCricketTab = item.id === "cricket" && selectedTab === "inPlay" && MatchListJson().some((match) => match.id === "cricket");
+          ?.filter((item) => item?.id == "inPlay" || !type)
 
-          return (
-            <Tab
-              key={item?.id}
-              eventKey={item?.id}
-              tabClassName="m-tab"
-              title={item?.name}
-            >
-              {(item.id === "inPlay" || isCricketTab) &&<MobileMatchList setMatchType={setMatchType} type={type} />}
-            </Tab>
-          );
-        })}
-        
+          ?.map((item) => {
+            const isCricketTab =
+              item.id === "cricket" &&
+              (selectedTab === "inPlay" || selectedTab === "sports") &&
+              MatchListJson().some((match) => match.id === "cricket");
+            return (
+              <Tab
+                key={item?.id}
+                eventKey={item?.id}
+                tabClassName="m-tab"
+                title={item?.name}
+              >
+                {(item.id === "inPlay" ||
+                  item.id === "sports" ||
+                  isCricketTab) && (
+                  <MobileMatchList setMatchType={setMatchType} type={type} />
+                )}
+              </Tab>
+            );
+          })}
       </CommonTabs>
-  
     </div>
-        
   );
 };
 

@@ -44,6 +44,12 @@ const MobileMatchList = ({ type, setMatchType }: any) => {
       matchList?.forEach((element: any) => {
         expertSocketService.match.leaveMatchRoom(element?.id);
       });
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.getMatchRatesOff(
+          element?.id,
+          setMatchOddRatesInRedux
+        );
+      });
     };
   }, [matchList, getProfile?.roleName]);
 
@@ -72,7 +78,11 @@ const MobileMatchList = ({ type, setMatchType }: any) => {
                   </div>
                 }
               >
-                {item?.type === GAME_TYPE.ONE_V_ONE ? <OneVOneGameTable id={item?.id} /> : ""}
+                {item?.type === GAME_TYPE.ONE_V_ONE ? (
+                  <OneVOneGameTable id={item?.id} />
+                ) : (
+                  ""
+                )}
               </Tab>
             );
           })}
