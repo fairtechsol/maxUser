@@ -10,7 +10,7 @@ export const getMatchList = createAsyncThunk<any, any>(
       const resp = await service.get(
         `${ApiConstants.MATCH.MATCHLIST}?sort=match.startAt:ASC${
           type == "search"
-            ? `?searchBy=title&keyword=${searchKeyword || ""}`
+            ? `&searchBy=title&keyword=${searchKeyword || ""}`
             : ""
         }${matchType ? `&match.matchType=${matchType}` : ""}`
       );
