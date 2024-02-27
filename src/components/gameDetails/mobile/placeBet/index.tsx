@@ -12,6 +12,7 @@ import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
+import Loader from "../../../commonComponent/loader";
 
 interface PlaceBetProps {
   show: boolean;
@@ -30,7 +31,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  const { success } = useSelector((state: RootState) => state.match.bet);
+  const { success, loading } = useSelector(
+    (state: RootState) => state.match.bet
+  );
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -105,86 +108,86 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
         selectedBet?.team?.type === "back"
           ? (value * selectedBet?.team?.rate) / 100
           : value;
-        }
-    return isNaN(profit) ? 0 : Number(profit?.toFixed(2));
+    }
+    return isNaN(profit) ? 0 : Number(parseFloat(profit).toFixed(2) ?? 0);
   };
 
   return (
-    <CustomModal
-      title={"Place Bet"}
-      show={show && selectedBet}
-      setShow={() => {
-        dispatch(selectedBetAction(null));
-      }}
-      
-    >
-      <Container className={`${selectedBet?.team?.type === 'lay' || selectedBet?.team?.type === 'no' ? 'place-bet-table-redm' : 'place-bet-table-bluem'}`} fluid>
-        <Row className="row-cols-md-3 g-2 align-items-center">
-          <Col xs={6} className="f800 title-12">
-            {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
-          </Col>
-          <Col xs={6} className="d-flex justify-content-end">
-            <CustomButton
-              onClick={() => {
-                dispatch(
-                  selectedBetAction({
-                    ...selectedBet,
-                    team: {
-                      ...selectedBet?.team,
-                      stake: parseInt(stake) == 0 ? 0 : parseInt(stake) - 1,
-                    },
-                  })
-                );
-              }}
-              className="bg-secondary py-0"
-            >
-              <span className="f900 text-black">-</span>
-            </CustomButton>
-            <input
-              min={0}
-              value={+selectedBet?.team?.rate || 0}
-              type="number"
-              className="w-50"
-            />
-            <CustomButton
-              onClick={() => {
-                dispatch(
-                  selectedBetAction({
-                    ...selectedBet,
-                    team: {
-                      ...selectedBet?.team,
-                      stake: parseInt(stake) + 1,
-                    },
-                  })
-                );
-              }}
-              className="bg-secondary f900 text-black"
-            >
-              <span className="f900 text-black">+</span>
-            </CustomButton>
-          </Col>
-          <Col xs={4}>
-            {" "}
-            <input
-              value={stake}
-              min={0}
-              onChange={(e) => {
-                dispatch(
-                  selectedBetAction({
-                    ...selectedBet,
-                    team: {
-                      ...selectedBet?.team,
-                      stake: parseInt(e.target.value),
-                    },
-                  })
-                );
-              }}
-              // disabled
-              type="number"
-              placeholder=""
-              className="w-100"
-            />
-          </Col>
+    <>
+      <CustomModal
+        title={"Place Bet"}
+        show={show && selectedBet}
+        setShow={() => {
+          dispatch(selectedBetAction(null));
+        }}
+      >
+        <Container className="p-1" fluid>
+          <Row className="row-cols-md-3 g-2 align-items-center">
+            <Col xs={6} className="f800 title-12">
+              {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
+            </Col>
+            <Col xs={6} className="d-flex justify-content-end">
+              <CustomButton
+                onClick={() => {
+                  dispatch(
+                    selectedBetAction({
+                      ...selectedBet,
+                      team: {
+                        ...selectedBet?.team,
+                        stake: parseInt(stake) == 0 ? 0 : parseInt(stake) - 1,
+                      },
+                    })
+                  );
+                }}
+                className="bg-secondary py-0"
+              >
+                <span className="f900 text-black">-</span>
+              </CustomButton>
+              <input
+                min={0}
+                value={+selectedBet?.team?.rate || 0}
+                type="number"
+                className="w-50"
+              />
+              <CustomButton
+                onClick={() => {
+                  dispatch(
+                    selectedBetAction({
+                      ...selectedBet,
+                      team: {
+                        ...selectedBet?.team,
+                        stake: parseInt(stake) + 1,
+                      },
+                    })
+                  );
+                }}
+                className="bg-secondary f900 text-black"
+              >
+                <span className="f900 text-black">+</span>
+              </CustomButton>
+            </Col>
+            <Col xs={4}>
+              {" "}
+              <input
+                value={stake}
+                min={0}
+                onChange={(e) => {
+                  dispatch(
+                    selectedBetAction({
+                      ...selectedBet,
+                      team: {
+                        ...selectedBet?.team,
+                        stake: parseInt(e.target.value),
+                      },
+                    })
+                  );
+                }}
+                // disabled
+                type="number"
+                placeholder=""
+                className="w-100"
+              />
+            </Col>
 
           <Col xs={4} className="f800 title-12">
             <CustomButton
