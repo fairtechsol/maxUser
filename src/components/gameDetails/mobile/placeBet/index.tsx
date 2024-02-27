@@ -189,85 +189,94 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               />
             </Col>
 
-          <Col xs={4} className="f800 title-12">
-            <CustomButton
-              className="f900 w-100"
-              onClick={() => {
-                let payloadForSession: any = {
-                  betId: selectedBet?.team?.betId,
-                  betType: selectedBet?.team?.type.toUpperCase(),
-                  browserDetail: browserInfo?.userAgent,
-                  eventName: selectedBet?.team?.name,
-                  eventType: selectedBet?.team?.eventType,
-                  matchId: selectedBet?.team?.matchId,
-                  ipAddress:
-                    ipAddress === "Not found" ? "192.168.1.100" : ipAddress,
-                  odds: selectedBet?.team?.rate,
-                  ratePercent: selectedBet?.team?.percent,
-                  stake: selectedBet?.team?.stake,
-                };
-                let payloadForBettings: any = {
-                  betId: selectedBet?.team?.betId,
-                  teamA: selectedBet?.team?.teamA,
-                  teamB: selectedBet?.team?.teamB,
-                  teamC: selectedBet?.team?.teamC,
-                  bettingType: selectedBet?.team?.type.toUpperCase(),
-                  browserDetail: browserInfo?.userAgent,
-                  matchId: selectedBet?.team?.matchId,
-                  ipAddress:
-                    ipAddress === "Not found" ? "192.168.1.100" : ipAddress,
-                  odd: selectedBet?.team?.rate,
-                  stake: selectedBet?.team?.stake,
-                  matchBetType: selectedBet?.team?.matchBetType,
-                  betOnTeam: selectedBet?.team?.betOnTeam,
-                  placeIndex: selectedBet?.team?.placeIndex,
-                };
-                dispatch(
-                  placeBet({
-                    url:
-                      selectedBet?.data?.type === "session" ||
-                      selectedBet?.data?.SelectionId
-                        ? ApiConstants.BET.PLACEBETSESSION
-                        : ApiConstants.BET.PLACEBETMATCHBETTING,
-                    data:
-                      selectedBet?.data?.type === "session" ||
-                      selectedBet?.data?.SelectionId
-                        ? JSON.stringify(payloadForSession)
-                        : JSON.stringify(payloadForBettings),
-                  })
-                );
-              }}
-            >
-              Submit
-            </CustomButton>
-          </Col>
-          <Col xs={4} className="title-12 text-center">
-          {handleProfit(stake)}
-          </Col>
-          {valueLabel?.map((item: any, index: number) => (
-            <Col key={index} xs={4}>
+            <Col xs={4} className="f800 title-12">
               <CustomButton
-                className="w-100 border-0 bg-secondary f900 text-black"
-                size="sm"
+                className="f900 w-100"
                 onClick={() => {
-                  dispatch(
-                    selectedBetAction({
-                      ...selectedBet,
-                      team: {
-                        ...selectedBet?.team,
-                        stake: item?.value,
-                      },
-                    })
-                  );
+                  try {
+                    if (loading) {
+                      return;
+                    }
+                    let payloadForSession: any = {
+                      betId: selectedBet?.team?.betId,
+                      betType: selectedBet?.team?.type.toUpperCase(),
+                      browserDetail: browserInfo?.userAgent,
+                      eventName: selectedBet?.team?.name,
+                      eventType: selectedBet?.team?.eventType,
+                      matchId: selectedBet?.team?.matchId,
+                      ipAddress:
+                        ipAddress === "Not found" ? "192.168.1.100" : ipAddress,
+                      odds: selectedBet?.team?.rate,
+                      ratePercent: selectedBet?.team?.percent,
+                      stake: selectedBet?.team?.stake,
+                    };
+                    let payloadForBettings: any = {
+                      betId: selectedBet?.team?.betId,
+                      teamA: selectedBet?.team?.teamA,
+                      teamB: selectedBet?.team?.teamB,
+                      teamC: selectedBet?.team?.teamC,
+                      bettingType: selectedBet?.team?.type.toUpperCase(),
+                      browserDetail: browserInfo?.userAgent,
+                      matchId: selectedBet?.team?.matchId,
+                      ipAddress:
+                        ipAddress === "Not found" ? "192.168.1.100" : ipAddress,
+                      odd: selectedBet?.team?.rate,
+                      stake: selectedBet?.team?.stake,
+                      matchBetType: selectedBet?.team?.matchBetType,
+                      betOnTeam: selectedBet?.team?.betOnTeam,
+                      placeIndex: selectedBet?.team?.placeIndex,
+                    };
+                    dispatch(
+                      placeBet({
+                        url:
+                          selectedBet?.data?.type === "session" ||
+                          selectedBet?.data?.SelectionId
+                            ? ApiConstants.BET.PLACEBETSESSION
+                            : ApiConstants.BET.PLACEBETMATCHBETTING,
+                        data:
+                          selectedBet?.data?.type === "session" ||
+                          selectedBet?.data?.SelectionId
+                            ? JSON.stringify(payloadForSession)
+                            : JSON.stringify(payloadForBettings),
+                      })
+                    );
+                  } catch (e) {
+                    console.log(e);
+                  }
                 }}
               >
-                {item?.label}
+                Submit
               </CustomButton>
             </Col>
-          ))}
-        </Row>
-      </Container>
-    </CustomModal>
+            <Col xs={4} className="title-12 text-center">
+              {handleProfit(stake)}
+            </Col>
+            {valueLabel?.map((item: any, index: number) => (
+              <Col key={index} xs={4}>
+                <CustomButton
+                  className="w-100 border-0 bg-secondary f900 text-black"
+                  size="sm"
+                  onClick={() => {
+                    dispatch(
+                      selectedBetAction({
+                        ...selectedBet,
+                        team: {
+                          ...selectedBet?.team,
+                          stake: item?.value,
+                        },
+                      })
+                    );
+                  }}
+                >
+                  {item?.label}
+                </CustomButton>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </CustomModal>
+      {loading && <Loader />}
+    </>
   );
 };
 
