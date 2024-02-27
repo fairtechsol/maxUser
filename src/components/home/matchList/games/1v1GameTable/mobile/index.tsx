@@ -1,17 +1,20 @@
 import React from "react";
 import { FiMonitor } from "react-icons/fi";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import moment from "moment-timezone";
-import { Img } from "react-image";
+import { Img } from 'react-image';
 import { casinoIcons } from "../../../../../../utils/constants";
-const MobileOneVOneGame = () => {
+import ContactAdmin from "../../../../../commonComponent/contactAdmin";
+const MobileOneVOneGame = ({ mTypeid }: any) => {
   // const mainContainerRef = useRef<any>(null);
 
   // const scrollableContainerRef = useRef<any>(null);
+
+  
 
   // useEffect(() => {
   //   const mainContainer = mainContainerRef.current;
@@ -37,113 +40,117 @@ const MobileOneVOneGame = () => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
-
+  const { id } = useParams();
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   return (
     <div className="bg-lightGray match-list-container">
       <div className="scrollable-container">
-        {matchList?.map((item: any, index: number) => {
-          return (
-            <div key={index} className="px-3 py-1 m-game-one-v-one">
-              <div className="d-flex justify-content-between">
-                <div className="d-flex flex-column">
-                  <Link
-                    className="text-decoration-none text-black"
-                    to={`/game-detail/${item?.id}`}
-                  >
-                    {" "}
-                    <b className="title-14">{item?.title}</b>
-                    <div className="title-12">
-                      {" "}
-                      {moment(item?.startAt)
-                        .tz(timezone)
-                        .format("MMM DD YYYY h:mmA [IST]")}
-                    </div>
-                  </Link>
-                </div>
-                <div className="d-flex align-items-center gap-2">
-                  {item?.startAt || item?.stopAt ? (
-                    <span className="liveDot"></span>
-                  ) : (
-                    ""
-                  )}
-                  <FiMonitor />
-                  {item?.manualSessionActive || item?.apiSessionActive ? (
-                    <span className="fancy">
-                      <img src="/ic_fancy.png" alt={"fancy"} />
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                  {item?.isBookmaker > 0 ? (
-                    <span className="bookmaker">
-                      <img src="/ic_bm.png" alt={"fancy"} />
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </div>
+        {(!matchList || matchList?.length === 0) &&
+            ((id === "cricket" || mTypeid === "cricket" )? (
+          <div className="text-center">
+            <p>No matches available</p>
+          </div>
+        ) : (
+          <div className="text-center">
+            <ContactAdmin />
+          </div>
+        ))}
+        
+        {matchList?.map((item: any, index: number) => (
+          <div key={index} className="px-3 py-1 m-game-one-v-one">
+            <div className="d-flex justify-content-between">
+              <div className="d-flex flex-column">
+                <Link
+                  className="text-decoration-none text-black"
+                  to={`/game-detail/${item?.id}`}
+                >
+                  <b className="title-14">{item?.title}</b>
+                  <div className="title-12">
+                    {moment(item?.startAt)
+                      .tz(timezone)
+                      .format("MMM DD YYYY h:mmA [IST]")}
+                  </div>
+                </Link>
               </div>
-
-              <div className="d-flex w-100">
-                {item?.matchOdds?.map((item: any, index: number) => {
-                  return (
-                    <React.Fragment key={index}>
-                      <BackLayComponent
-                        heading="1"
-                        backRate={
-                          (item?.runners &&
-                            item?.runners[0]?.ex?.availableToBack[0]?.price) ??
-                          item?.backTeamA ??
-                          0
-                        }
-                        layRate={
-                          (item?.runners &&
-                            item?.runners[0]?.ex?.availableToLay[0]?.price) ??
-                          item?.layTeamA ??
-                          0
-                        }
-                        active={false}
-                      />
-                      <BackLayComponent
-                        heading="X"
-                        backRate={
-                          (item?.runners &&
-                            item?.runners[2]?.ex?.availableToBack[0]?.price) ??
-                          0
-                        }
-                        layRate={
-                          (item?.runners &&
-                            item?.runners[2]?.ex?.availableToLay[0]?.price) ??
-                          0
-                        }
-                        active={false}
-                      />
-                      <BackLayComponent
-                        heading="2"
-                        backRate={
-                          (item?.runners &&
-                            item?.runners[1]?.ex?.availableToBack[0]?.price) ??
-                          0
-                        }
-                        layRate={
-                          (item?.runners &&
-                            item?.runners[1]?.ex?.availableToLay[0]?.price) ??
-                          0
-                        }
-                        active={false}
-                      />
-                    </React.Fragment>
-                  );
-                })}
+              <div className="d-flex align-items-center gap-2">
+                {item?.startAt || item?.stopAt ? (
+                  <span className="liveDot"></span>
+                ) : (
+                  ""
+                )}
+                <FiMonitor />
+                {item?.manualSessionActive || item?.apiSessionActive ? (
+                  <span className="fancy">
+                    <img src="/ic_fancy.png" alt={"fancy"} />
+                  </span>
+                ) : (
+                  ""
+                )}
+                {item?.isBookmaker > 0 ? (
+                  <span className="bookmaker">
+                    <img src="/ic_bm.png" alt={"fancy"} />
+                  </span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
-          );
-        })}
+            <div className="d-flex w-100">
+              {item?.matchOdds?.map((item: any, index: number) => (
+                <React.Fragment key={index}>
+                  <BackLayComponent
+                    heading="1"
+                    backRate={
+                      (item?.runners &&
+                        item?.runners[0]?.ex?.availableToBack[0]?.price) ??
+                      item?.backTeamA ??
+                      0
+                    }
+                    layRate={
+                      (item?.runners &&
+                        item?.runners[0]?.ex?.availableToLay[0]?.price) ??
+                      item?.layTeamA ??
+                      0
+                    }
+                    active={false}
+                  />
+                  <BackLayComponent
+                    heading="X"
+                    backRate={
+                      (item?.runners &&
+                        item?.runners[2]?.ex?.availableToBack[0]?.price) ??
+                      0
+                    }
+                    layRate={
+                      (item?.runners &&
+                        item?.runners[2]?.ex?.availableToLay[0]?.price) ??
+                      0
+                    }
+                    active={false}
+                  />
+                  <BackLayComponent
+                    heading="2"
+                    backRate={
+                      (item?.runners &&
+                        item?.runners[1]?.ex?.availableToBack[0]?.price) ??
+                      0
+                    }
+                    layRate={
+                      (item?.runners &&
+                        item?.runners[1]?.ex?.availableToLay[0]?.price) ??
+                      0
+                    }
+                    active={false}
+                  />
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
       <div className="tab-pane active casino-tables d-flex">
-        <div className="container-fluid ">
+        <div  className="container-fluid ">
           <div className="row row5">
             <div className="col-12">
               <h4 className="text-uppercase mt-3">Our Casino</h4>
@@ -166,6 +173,7 @@ const MobileOneVOneGame = () => {
         </div>
       </div>
     </div>
+
   );
 };
 

@@ -14,7 +14,7 @@ const Home = () => {
   const [matchType, setMatchType] = useState("cricket");
   const [show, setShow] = useState(true);
 
-  const getMatchListService = () => {
+  const getMatchListService = (matchType: any) => {
     try {
       dispatch(
         getMatchList({
@@ -39,7 +39,12 @@ const Home = () => {
     };
   }, []);
 
-  useEffect(getMatchListService, [matchType]);
+  useEffect(() => {
+    if (matchType) {
+      getMatchListService(matchType)
+    }
+
+  }, [matchType]);
   useEffect(() => {
     rulesPopShow ? setShow(true) : setShow(false);
   }, []);

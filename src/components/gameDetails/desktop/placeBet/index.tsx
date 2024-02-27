@@ -77,6 +77,8 @@ const PlacedBet = () => {
   useEffect(() => {
     if (selectedBet?.team?.stake) {
       setStake(selectedBet?.team?.stake || 0);
+    }else {
+      setStake(0); 
     }
   }, [selectedBet]);
 

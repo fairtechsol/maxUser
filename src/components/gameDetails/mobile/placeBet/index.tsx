@@ -116,8 +116,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       setShow={() => {
         dispatch(selectedBetAction(null));
       }}
+      
     >
-      <Container className="p-1" fluid>
+      <Container className={`${selectedBet?.team?.type === 'lay' || selectedBet?.team?.type === 'no' ? 'place-bet-table-redm' : 'place-bet-table-bluem'}`} fluid>
         <Row className="row-cols-md-3 g-2 align-items-center">
           <Col xs={6} className="f800 title-12">
             {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
