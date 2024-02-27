@@ -40,12 +40,13 @@ const PlacedBet = () => {
   const [stake, setStake] = useState<any>(0);
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
+  const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
-  const { buttonValues } = useSelector(
+  const { buttonValues, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
 
-  const { success, loading } = useSelector(
+  const { success, loading, error } = useSelector(
     (state: RootState) => state.match.bet
   );
 
@@ -79,8 +80,8 @@ const PlacedBet = () => {
   useEffect(() => {
     if (selectedBet?.team?.stake) {
       setStake(selectedBet?.team?.stake || 0);
-    }else {
-      setStake(0); 
+    } else {
+      setStake(0);
     }
   }, [selectedBet]);
 
@@ -106,8 +107,12 @@ const PlacedBet = () => {
     if (success) {
       dispatch(selectedBetAction(null));
       dispatch(betPlaceSuccessReset());
+      setMatchOddLoading(false);
     }
-  }, [success]);
+    if (error) {
+      setMatchOddLoading(false);
+    }
+  }, [success, error]);
 
   const handleProfit = (value: any) => {
     let profit;
@@ -246,7 +251,7 @@ const PlacedBet = () => {
                       </CustomButton>
                     </Col>
                     <Col md={6} className="text-end">
-                      {loading && <Loader />}
+                      {(loading || matchOddLoading) && <Loader />}
                       <CustomButton
                         className=" bg-success border-0 py-2"
                         size="sm"
@@ -288,20 +293,43 @@ const PlacedBet = () => {
                               betOnTeam: selectedBet?.team?.betOnTeam,
                               placeIndex: selectedBet?.team?.placeIndex,
                             };
-                            dispatch(
-                              placeBet({
-                                url:
-                                  selectedBet?.data?.type === "session" ||
-                                  selectedBet?.data?.SelectionId
-                                    ? ApiConstants.BET.PLACEBETSESSION
-                                    : ApiConstants.BET.PLACEBETMATCHBETTING,
-                                data:
-                                  selectedBet?.data?.type === "session" ||
-                                  selectedBet?.data?.SelectionId
-                                    ? JSON.stringify(payloadForSession)
-                                    : JSON.stringify(payloadForBettings),
-                              })
-                            );
+                            if (
+                              selectedBet?.data?.type === "matchOdd" ||
+                              selectedBet?.team?.matchBetType === "matchOdd"
+                            ) {
+                              setMatchOddLoading(true);
+                              setTimeout(() => {
+                                dispatch(
+                                  placeBet({
+                                    url:
+                                      selectedBet?.data?.type === "session" ||
+                                      selectedBet?.data?.SelectionId
+                                        ? ApiConstants.BET.PLACEBETSESSION
+                                        : ApiConstants.BET.PLACEBETMATCHBETTING,
+                                    data:
+                                      selectedBet?.data?.type === "session" ||
+                                      selectedBet?.data?.SelectionId
+                                        ? JSON.stringify(payloadForSession)
+                                        : JSON.stringify(payloadForBettings),
+                                  })
+                                );
+                              }, getProfile?.delayTime * 1000);
+                            } else {
+                              dispatch(
+                                placeBet({
+                                  url:
+                                    selectedBet?.data?.type === "session" ||
+                                    selectedBet?.data?.SelectionId
+                                      ? ApiConstants.BET.PLACEBETSESSION
+                                      : ApiConstants.BET.PLACEBETMATCHBETTING,
+                                  data:
+                                    selectedBet?.data?.type === "session" ||
+                                    selectedBet?.data?.SelectionId
+                                      ? JSON.stringify(payloadForSession)
+                                      : JSON.stringify(payloadForBettings),
+                                })
+                              );
+                            }
                             setStake(0);
                           }
                         }}
