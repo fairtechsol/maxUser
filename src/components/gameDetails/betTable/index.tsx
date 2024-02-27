@@ -88,6 +88,7 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
         />
       ) : type === MatchType.MATCH_ODDS ? (
         <MatchOdds
+          minMax={formattedMinMax(data?.minBet, data?.maxBet)}
           data={data}
           backLayCount={backLayCount}
           matchDetails={matchDetails}
