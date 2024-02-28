@@ -14,7 +14,7 @@ import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
-import Loader from "../../../commonComponent/loader";
+import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
 
 const placeBetHeader = [
   {},
@@ -140,7 +140,11 @@ const PlacedBet = () => {
   };
 
   return (
+    <>
+    
+        {/* {loading && <CustomLoader />} */}
     <RightPanelContainer title="Place Bet">
+    {(loading || matchOddLoading) && <CustomLoader />}
       {selectedBet ? (
         <Table className="w-full">
           <thead>
@@ -251,9 +255,10 @@ const PlacedBet = () => {
                       </CustomButton>
                     </Col>
                     <Col md={6} className="text-end">
-                      {(loading || matchOddLoading) && <Loader />}
+                  
+                     
                       <CustomButton
-                        className=" bg-success border-0 py-2"
+                        className="bg-success border-0 py-2"
                         size="sm"
                         onClick={() => {
                           if (loading) {
@@ -347,6 +352,7 @@ const PlacedBet = () => {
         ""
       )}
     </RightPanelContainer>
+    </>
   );
 };
 

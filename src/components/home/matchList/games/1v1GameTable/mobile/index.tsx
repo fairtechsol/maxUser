@@ -150,7 +150,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
         ))}
       </div>
       <div className="tab-pane active casino-tables d-flex">
-        <div  className="container-fluid ">
+        <div  className="container-fluid">
           <div className="row row5">
             <div className="col-12">
               <h4 className="text-uppercase mt-3">Our Casino</h4>
@@ -158,7 +158,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
           </div>
           <div className="mt-2">
             {casinoIcons.map((item, index) => (
-              <a href={item.url} key={index} className="">
+              <Link to={item.url} key={index}>
                 <div className="d-inline-block casinoiconsm">
                   <Img
                     src={item.imgSrc}
@@ -167,7 +167,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   />
                   <div className="mcasino-name">{item.name}</div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

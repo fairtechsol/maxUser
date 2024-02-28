@@ -43,12 +43,14 @@ const MobileHeader = () => {
   return (
     <>
       <div className="float-start d-flex align-items-center gap-2">
+        <div className="logodiv">
         <FaHome className="text-white title-20" />
         <Link to={"home"}>
           <Navbar.Brand>
-            <LogoSection width="auto" height="20px" />
+              <LogoSection width="auto" height="17px" />
           </Navbar.Brand>
         </Link>
+        </div>
       </div>
       <div className="d-flex flex-column align-items-center white-text list-unstyled float-end h-100">
         {show?.balance && (

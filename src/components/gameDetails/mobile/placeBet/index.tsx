@@ -29,7 +29,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     (state: RootState) => state.user.profile
   );
 
-  const { selectedBet } = useSelector(
+  const { selectedBet, matchDetails} = useSelector(
     (state: RootState) => state.match.matchList
   );
   const { success, loading, error } = useSelector(
@@ -126,7 +126,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           dispatch(selectedBetAction(null));
         }}
       >
-        <Container className="p-1" fluid>
+        <Container className={`${selectedBet?.team?.type === 'lay' || selectedBet?.team?.type === 'no' ? 'place-bet-table-redm' : 'place-bet-table-bluem'}`} fluid>
           <Row className="row-cols-md-3 g-2 align-items-center">
             <Col xs={6} className="f800 title-12">
               {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
@@ -241,12 +241,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           placeBet({
                             url:
                               selectedBet?.data?.type === "session" ||
-                              selectedBet?.data?.SelectionId
+                                selectedBet?.data?.SelectionId
                                 ? ApiConstants.BET.PLACEBETSESSION
                                 : ApiConstants.BET.PLACEBETMATCHBETTING,
                             data:
                               selectedBet?.data?.type === "session" ||
-                              selectedBet?.data?.SelectionId
+                                selectedBet?.data?.SelectionId
                                 ? JSON.stringify(payloadForSession)
                                 : JSON.stringify(payloadForBettings),
                           })
@@ -257,12 +257,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                         placeBet({
                           url:
                             selectedBet?.data?.type === "session" ||
-                            selectedBet?.data?.SelectionId
+                              selectedBet?.data?.SelectionId
                               ? ApiConstants.BET.PLACEBETSESSION
                               : ApiConstants.BET.PLACEBETMATCHBETTING,
                           data:
                             selectedBet?.data?.type === "session" ||
-                            selectedBet?.data?.SelectionId
+                              selectedBet?.data?.SelectionId
                               ? JSON.stringify(payloadForSession)
                               : JSON.stringify(payloadForBettings),
                         })
@@ -300,9 +300,63 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 </CustomButton>
               </Col>
             ))}
+            <div className="container d-flex justify-content-between mt-2">
+            {selectedBet?.data?.type && (selectedBet.data.type === 'quickbookmaker1' || selectedBet.data.type === 'matchOdd' || selectedBet.data.type === 'bookmaker') && (
+
+              <>
+              <div className="row">
+                  <div className="col-md-4 flex-start">
+                    <div className="row">
+                      <div className="col-md-12">
+                        <span>{selectedBet?.team?.teamA}</span>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-12">
+                        <span>{selectedBet?.team?.teamB}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div><div className="row row5">
+                    <div className="col-md-4">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span>0</span>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span>0</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div><div className="row">
+                    <div className="col-md-4">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span className={matchDetails?.profitLossDataMatch?.yesRateTie < 0 ? "color-red" : "color-green"}>        
+                          {selectedBet?.team?.stake}</span>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span className={matchDetails?.profitLossDataMatch?.noRateTie < 0 ? "color-red" : "color-green"}>
+                            {selectedBet?.team?.stake}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </>
+)}
+            </div>
+
+
           </Row>
+
         </Container>
+
       </CustomModal>
+      {/* {loading && <Loader/>} */}
       {(loading || matchOddLoading) && <Loader />}
     </>
   );
