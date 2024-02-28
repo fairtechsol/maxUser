@@ -1,18 +1,18 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants, matchBettingType } from "../../../../utils/constants";
-import CustomButton from "../../../commonComponent/button";
-import CustomModal from "../../../commonComponent/modal";
-import "./style.scss";
-import axios from "axios";
 import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { ApiConstants, matchBettingType } from "../../../../utils/constants";
+import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
+import CustomModal from "../../../commonComponent/modal";
+import "./style.scss";
 
 interface PlaceBetProps {
   show: boolean;
@@ -23,15 +23,16 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   const [stake, setStake] = useState<any>(0);
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
+  const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
-  const { buttonValues } = useSelector(
+  const { buttonValues, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
 
-  const { selectedBet } = useSelector(
+  const { selectedBet, matchDetails} = useSelector(
     (state: RootState) => state.match.matchList
   );
-  const { success, loading } = useSelector(
+  const { success, loading, error } = useSelector(
     (state: RootState) => state.match.bet
   );
 
@@ -84,8 +85,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     if (success) {
       dispatch(selectedBetAction(null));
       dispatch(betPlaceSuccessReset());
+      setMatchOddLoading(false);
     }
-  }, [success]);
+    if (error) {
+      setMatchOddLoading(false);
+    }
+  }, [success, error]);
 
   const handleProfit = (value: any) => {
     let profit;
@@ -121,7 +126,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           dispatch(selectedBetAction(null));
         }}
       >
-        <Container className="p-1" fluid>
+        <Container className={`${selectedBet?.team?.type === 'lay' || selectedBet?.team?.type === 'no' ? 'place-bet-table-redm' : 'place-bet-table-bluem'}`} fluid>
           <Row className="row-cols-md-3 g-2 align-items-center">
             <Col xs={6} className="f800 title-12">
               {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
@@ -226,20 +231,43 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       betOnTeam: selectedBet?.team?.betOnTeam,
                       placeIndex: selectedBet?.team?.placeIndex,
                     };
-                    dispatch(
-                      placeBet({
-                        url:
-                          selectedBet?.data?.type === "session" ||
-                          selectedBet?.data?.SelectionId
-                            ? ApiConstants.BET.PLACEBETSESSION
-                            : ApiConstants.BET.PLACEBETMATCHBETTING,
-                        data:
-                          selectedBet?.data?.type === "session" ||
-                          selectedBet?.data?.SelectionId
-                            ? JSON.stringify(payloadForSession)
-                            : JSON.stringify(payloadForBettings),
-                      })
-                    );
+                    if (
+                      selectedBet?.data?.type === "matchOdd" ||
+                      selectedBet?.team?.matchBetType === "matchOdd"
+                    ) {
+                      setMatchOddLoading(true);
+                      setTimeout(() => {
+                        dispatch(
+                          placeBet({
+                            url:
+                              selectedBet?.data?.type === "session" ||
+                                selectedBet?.data?.SelectionId
+                                ? ApiConstants.BET.PLACEBETSESSION
+                                : ApiConstants.BET.PLACEBETMATCHBETTING,
+                            data:
+                              selectedBet?.data?.type === "session" ||
+                                selectedBet?.data?.SelectionId
+                                ? JSON.stringify(payloadForSession)
+                                : JSON.stringify(payloadForBettings),
+                          })
+                        );
+                      }, getProfile?.delayTime * 1000);
+                    } else {
+                      dispatch(
+                        placeBet({
+                          url:
+                            selectedBet?.data?.type === "session" ||
+                              selectedBet?.data?.SelectionId
+                              ? ApiConstants.BET.PLACEBETSESSION
+                              : ApiConstants.BET.PLACEBETMATCHBETTING,
+                          data:
+                            selectedBet?.data?.type === "session" ||
+                              selectedBet?.data?.SelectionId
+                              ? JSON.stringify(payloadForSession)
+                              : JSON.stringify(payloadForBettings),
+                        })
+                      );
+                    }
                   } catch (e) {
                     console.log(e);
                   }
@@ -272,10 +300,64 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 </CustomButton>
               </Col>
             ))}
+            <div className="container d-flex justify-content-between mt-2">
+            {selectedBet?.data?.type && (selectedBet.data.type === 'quickbookmaker1' || selectedBet.data.type === 'matchOdd' || selectedBet.data.type === 'bookmaker') && (
+
+              <>
+              <div className="row">
+                  <div className="col-md-4 flex-start">
+                    <div className="row">
+                      <div className="col-md-12">
+                        <span>{selectedBet?.team?.teamA}</span>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-12">
+                        <span>{selectedBet?.team?.teamB}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div><div className="row row5">
+                    <div className="col-md-4">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span>0</span>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span>0</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div><div className="row">
+                    <div className="col-md-4">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span className={matchDetails?.profitLossDataMatch?.yesRateTie < 0 ? "color-red" : "color-green"}>        
+                          {selectedBet?.team?.stake}</span>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span className={matchDetails?.profitLossDataMatch?.noRateTie < 0 ? "color-red" : "color-green"}>
+                            {selectedBet?.team?.stake}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </>
+)}
+            </div>
+
+
           </Row>
+
         </Container>
+
       </CustomModal>
-      {loading && <Loader />}
+      {/* {loading && <Loader/>} */}
+      {(loading || matchOddLoading) && <Loader />}
     </>
   );
 };

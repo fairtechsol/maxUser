@@ -20,7 +20,6 @@ const MobileHeader = () => {
     exposure: true,
   });
   const [openExposure, setOpenExposure] = useState(false);
-
   const handleClickExposureModalOpen = () => {
     if (!openExposure) {
       dispatch(getMyMarket());
@@ -44,12 +43,14 @@ const MobileHeader = () => {
   return (
     <>
       <div className="float-start d-flex align-items-center gap-2">
+        <div className="logodiv">
         <FaHome className="text-white title-20" />
-        <Link to={"/home"}>
+        <Link to={"home"}>
           <Navbar.Brand>
-            <LogoSection width="auto" height="20px" />
+              <LogoSection width="auto" height="17px" />
           </Navbar.Brand>
         </Link>
+        </div>
       </div>
       <div className="d-flex flex-column align-items-center white-text list-unstyled float-end h-100">
         {show?.balance && (
@@ -69,7 +70,7 @@ const MobileHeader = () => {
             setShow={handleClickExposureModalOpen}
           />
           <div>
-            <Dropdown autoClose="outside">
+            <Dropdown>
               <Dropdown.Toggle
                 id="dropdown-custom-components"
                 className="p-0 text-decoration-underline"

@@ -9,6 +9,7 @@ function CustomModal({
   footer,
   ...props
 }: any) {
+  
   return (
     <>
       <Modal
@@ -21,7 +22,7 @@ function CustomModal({
           <Modal.Title className="title-12 f-600 text-white">{title}</Modal.Title>
           
         </Modal.Header>
-        <Modal.Body className="p-2">{children}</Modal.Body>
+        <Modal.Body className="p-0">{children}</Modal.Body>
         {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""}
       </Modal>
     </>
