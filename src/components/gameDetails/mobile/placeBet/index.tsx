@@ -356,7 +356,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
         </Container>
 
       </CustomModal>
-      {/* {loading && <Loader/>} */}
       {(loading || matchOddLoading) && <Loader />}
     </>
   );
