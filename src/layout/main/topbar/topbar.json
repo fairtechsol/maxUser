@@ -19,7 +19,7 @@
   {
     "id": "football",
     "name": "Football",
-    "link": "/football",
+    "link": "/contact-admin",
     "type": "desktop"
   },
   {
@@ -62,4 +62,3 @@
   { "id": "poker", "name": "Poker",   "link": "/contact-admin", "type": "desktop" },
   { "id": "lucky7", "name": "Lucky 7",   "link": "/contact-admin", "type": "desktop" }
 ]
-
