@@ -34,6 +34,10 @@
     }
 }
 
+.htfttable{
+    background-color: $lightGray;
+}
+
 @media screen and (max-width: 768px) {
     .gameTable table th,
     .gameTable table td {
