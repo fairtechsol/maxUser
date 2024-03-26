@@ -51,7 +51,7 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           rightComponent={
             <div>
               {type === MatchType.MATCH_ODDS && !isMobile && (
-                <span className="f600 title-14">
+                <span className="f500 title-14">
                   Maximum Bet {data?.maxBet}
                 </span>
               )}

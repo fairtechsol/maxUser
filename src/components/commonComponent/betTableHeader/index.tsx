@@ -23,7 +23,7 @@ function BetTableHeader({
   };
   return (
     <div
-      className={`tableHeader d-flex justify-content-between f600 ${padding ? padding : "px-2"} ${customClass ?? ""}
+      className={`tableHeader d-flex justify-content-between f500 ${padding ? padding : "px-2"} ${customClass ?? ""}
       `}
       style={{ ...inlineStyle }}
     >

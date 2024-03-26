@@ -4,6 +4,7 @@ import { Form } from "react-bootstrap";
 import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { MdOutlineLogin } from "react-icons/md";
+import { AiOutlineLoading } from 'react-icons/ai'; // Import the AiOutlineLoading spinner
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../../components/commonComponent/button";
@@ -80,7 +81,7 @@ const Login = () => {
           style={{ width: "90%", height: "55px" }}
         />
         <div className="auth-box-form rounded-2 bg-light mt-3">
-          <h4 className="auth-title title-24 fw-normal text-center">
+          <h4 className="auth-title title-24 fw-normal text-center mb-2">
             Login
             <FaHandPointDown />
           </h4>
@@ -120,13 +121,14 @@ const Login = () => {
             errors={errors.password}
           />
           <CustomButton
-            className="w-100"
+            className="w-100 ml-6"
             variant="primary"
             type="submit"
-            loading={loading}
+            // loading={loading}
           >
-            {loading ? "Loading..." : "Login"} <MdOutlineLogin />
-          </CustomButton>
+          <div className="button-container">
+          <span className="login-text">Login</span>{loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}
+          </div></CustomButton>
           <p className="auth-box-descrip mt-1">
             This site is protected by reCAPTCHA and the Google
             <a

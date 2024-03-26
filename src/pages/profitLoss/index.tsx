@@ -1,7 +1,12 @@
 import ProfitLossComponent from "../../components/profitLoss";
 
 const ProfitLoss = () => {
-  return <ProfitLossComponent />;
+  return (
+  <div>
+   <ProfitLossComponent />
+   </div>
+  )
+  ;
 };
 
 export default ProfitLoss;

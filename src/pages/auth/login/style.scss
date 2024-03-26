@@ -56,6 +56,70 @@
   right: 0;
 }/*# sourceMappingURL=style.css.map */
 
+.login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-text {
+  flex: 1; 
+}
+.spinner-icon {
+  width: 16px; 
+  height: 16px; 
+  border: 3px dotted rgba(255, 255, 255, 255);
+  border-radius: 50%; 
+  animation: rotate 1s linear infinite; 
+}
+.button-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-icon::before {
+  content: '';
+  display: block;
+  width: 6px; 
+  height: 6px; 
+  background-color: white; 
+  border-radius: 50%; 
+  position: relative;
+  top: 7px; 
+  left: 7px; 
+  animation: blink 1s infinite alternate; 
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 2;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 @media only screen and (max-width: 600px) {
   .auth-main{
     display: flex;

@@ -164,7 +164,7 @@ const MobileGameDetail = () => {
                               eventKey={item?.id}
                               tabClassName="m-match-list-tabs"
                               title={
-                                <div className="title-12 text-uppercase f600">
+                                <div className="title-12 text-uppercase f500">
                                   <span>{item?.name}</span>
                                 </div>
                               }

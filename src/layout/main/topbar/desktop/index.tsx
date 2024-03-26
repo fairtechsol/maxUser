@@ -4,7 +4,7 @@ import "./style.scss";
 
 const DesktopTopBar = () => {
   return (
-    <div className="p-2 bg-secondary d-flex gap-4 f600 title-14 overflow-auto no-wrap">
+    <div className="p-2 bg-secondary d-flex gap-4 f400 title-14 overflow-auto no-wrap">
       {topBarJson
         ?.filter((item) => item?.type === "desktop" || item?.type === "both")
         ?.map((item) => (
