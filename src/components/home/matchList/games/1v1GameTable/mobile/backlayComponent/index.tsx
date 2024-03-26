@@ -15,7 +15,7 @@ const BackLayComponent = ({
 }: BackLayComponentProps) => {
   return (
     <div className="d-flex flex-column w-100">
-      <div className="text-center f600 title-12">{heading}</div>
+      <div className="text-center f500 title-12">{heading}</div>
       <div className="d-flex w-100">
         <BackLayBox bgColor={"blue3"} rate={backRate} active={active} />
         <BackLayBox bgColor={"red1"} rate={layRate} active={active} />

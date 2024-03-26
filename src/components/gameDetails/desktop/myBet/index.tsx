@@ -29,7 +29,7 @@ const MyBet = () => {
           <thead>
             <tr className="bg-darkGrey">
               {placeBetHeader?.map((item) => (
-                <th key={item?.id} className="title-12 text-start bg-darkGrey">
+                <th key={item?.id} className="title-12 text-start f500 bg-darkGrey">
                   {item?.name}
                 </th>
               ))}
@@ -48,7 +48,7 @@ const MyBet = () => {
                     }`}
                   >
                     <th
-                      className={`title-12 text-start ${
+                      className={`title-12 text-start f500 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -57,7 +57,7 @@ const MyBet = () => {
                       {bet?.teamName}
                     </th>
                     <th
-                      className={`title-12 text-start ${
+                      className={`title-12 text-start f500 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -66,7 +66,7 @@ const MyBet = () => {
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-12 text-start ${
+                      className={`title-12 text-start f500 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
