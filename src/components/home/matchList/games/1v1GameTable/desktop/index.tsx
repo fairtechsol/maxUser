@@ -11,6 +11,7 @@ import moment from "moment-timezone";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import { useParams } from "react-router-dom";
 import { casinoIcons } from "../../../../../../utils/constants";
+import footballlist from "../../../../../../utils/Constants/footballlist.json"
 const tableHeading = [
   {
     id: "game",
@@ -63,8 +64,24 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
           </tr>
         </thead>
         <tbody>
-          {(!matchList || matchList?.length === 0) &&
-            (id === "cricket" || mTypeid === "cricket" ? (
+          {/* {( !footballlist || footballlist?.length === 0) &&
+            (id === "cricket" || mTypeid === "cricket" || id === "football" || mTypeid === "football" ? (
+              <tr>
+                <td>No matches available</td>
+              </tr>
+            ) : (
+              <tr>
+                <td>
+                  <ContactAdmin />
+                </td>
+              </tr>
+            ))}
+          {footballlist &&
+            footballlist?.map((item: any, index: number) => {
+              return <MatchListRow item={item} key={index} />;
+            })} */}
+            {( !matchList || matchList?.length === 0) &&
+            (id === "cricket" || mTypeid === "cricket"  ? (
               <tr>
                 <td>No matches available</td>
               </tr>

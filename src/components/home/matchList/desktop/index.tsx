@@ -23,7 +23,7 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
     dispatch(updateMatchOddRates(event));
   };
 
-  useEffect(() => {
+    useEffect(() => {
     if (matchList && getProfile?.roleName) {
       matchList?.forEach((element: any) => {
         expertSocketService.match.joinMatchRoom(
@@ -50,18 +50,19 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
   return (
     <div className="m-1 p-0 w-100">
       {" "}
-      <CommonTabs callback={setMatchType} defaultActive="cricket">
+      
+      <CommonTabs callback={setMatchType} defaultActive={type}>
         {MatchListJson()
           ?.filter((item) => item?.id == type || !type)
           ?.map((item) => {
-            return (
+                        return (
               <Tab
                 key={item?.id}
                 eventKey={item?.id}
                 tabClassName="match-list-tabs title-14"
                 title={item?.name}
               >
-                {item?.type === GAME_TYPE.ONE_V_ONE ? (
+                                {item?.type === GAME_TYPE.ONE_V_ONE ? (
                   <OneVOneGameTable id={item?.id} />
                 ) : (
                   ""
