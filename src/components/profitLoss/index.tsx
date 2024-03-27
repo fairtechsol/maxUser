@@ -52,7 +52,7 @@ const ProfitLossComponent = () => {
 
   return (
     <>
-    {isMobile && <div>
+    {isMobile && <div className="whitespace">
         <ReportContainer title="Profit Loss">
           <Stack gap={2}>
             <Row className="g-2 mt-1">
@@ -123,7 +123,7 @@ const ProfitLossComponent = () => {
           </Stack>
         </ReportContainer>
       </div>}
-     {!isMobile && <div className="whitespace">
+     {!isMobile && <div>
         <ReportContainer title="Profit Loss">
           <Stack gap={2}>
             <Row className="g-2 mt-1">

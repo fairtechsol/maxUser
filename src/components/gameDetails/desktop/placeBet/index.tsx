@@ -181,7 +181,7 @@ const PlacedBet = () => {
                     {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
                   </span>
                 </td>
-                <td>
+                <td> 
                   <input
                     disabled
                     placeholder=""
