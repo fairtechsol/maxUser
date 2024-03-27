@@ -90,8 +90,6 @@ export const baseUrls = {
       : `${Constants.localThird}`,
 };
 
-
-
 export const sportsRules = [
   {
     sportName: "Motor Sport",

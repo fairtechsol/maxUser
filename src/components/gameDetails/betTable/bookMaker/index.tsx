@@ -119,7 +119,7 @@ function BookmakerTable({
                   <div className="backLayRunner d-flex flex-column px-1 w-100">
                     <span
                       className={`backLayRunner-country title-12  ${
-                        isMobile ? "f900" : "f600"
+                        isMobile ? "f900" : "f500"
                       } `}
                     >
                       {data?.type === "tiedMatch2"

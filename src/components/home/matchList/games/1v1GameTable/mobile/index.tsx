@@ -65,7 +65,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   className="text-decoration-none text-black"
                   to={`/game-detail/${item?.id}`}
                 >
-                  <b className="title-14">{item?.title}</b>
+                  <b className="title-14 f400">{item?.title}</b>
                   <div className="title-12">
                     {moment(item?.startAt)
                       .tz(timezone)
