@@ -92,11 +92,11 @@ function BookmakerTable({
               </>
             ) : (
               <>
-                <th className={`text-center bg-blue3 bookmaker-bet-place`}>
-                  Back
+                <th className={`text-center bg-blue3 bookmaker-bet-place f400`}>
+                  BACK
                 </th>
-                <th className={`text-center bg-red1 bookmaker-bet-place`}>
-                  Lay
+                <th className={`text-center bg-red1 bookmaker-bet-place f400`}>
+                LAY
                 </th>
               </>
             )}
@@ -119,7 +119,7 @@ function BookmakerTable({
                   <div className="backLayRunner d-flex flex-column px-1 w-100">
                     <span
                       className={`backLayRunner-country title-12  ${
-                        isMobile ? "f900" : "f600"
+                        isMobile ? "f900" : "f500"
                       } `}
                     >
                       {data?.type === "tiedMatch2"

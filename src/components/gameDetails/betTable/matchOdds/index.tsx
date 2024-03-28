@@ -61,8 +61,8 @@ function MatchOdds({
                 <th className="border-0 match-odd-bet-place"></th>
               </>
             )}
-            <th className="text-center bg-blue3 match-odd-bet-place">Back</th>
-            <th className="text-center bg-red1 match-odd-bet-place">Lay</th>
+            <th className="text-center bg-blue3 match-odd-bet-place f400"> BACK</th>
+            <th className="text-center bg-red1 match-odd-bet-place f400">LAY</th>
             {!isMobile && (
               <>
                 <th className="border-0 match-odd-bet-place"></th>
@@ -81,7 +81,7 @@ function MatchOdds({
                     <div className="backLayRunner d-flex flex-column px-1 w-100">
                       <span
                         className={`backLayRunner-country title-12  ${
-                          isMobile ? "f900" : "f600"
+                          isMobile ? "f900" : "f500"
                         } `}
                       >
                         {data?.type === "completeMatch" ||

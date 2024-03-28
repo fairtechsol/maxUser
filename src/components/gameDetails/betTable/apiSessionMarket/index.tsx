@@ -58,11 +58,10 @@ function ApiSessionMarketTable({
                   rightComponent={
                     <div>
                       <span
-                        className={`${
-                          isMobile
+                        className={`${isMobile
                             ? "text-black title-16"
                             : "text-white title-20"
-                        }`}
+                          }`}
                       >
                         <IoInformationCircle
                           onClick={() => setShowRulesModal(true)}
@@ -83,8 +82,8 @@ function ApiSessionMarketTable({
               )}
             </th>
 
-            <th className="text-center bg-red1 bet-place-box">No</th>
-            <th className="text-center bg-blue3 bet-place-box">Yes</th>
+            <th className="text-center bg-red1 bet-place-box f400">No</th>
+            <th className="text-center bg-blue3 bet-place-box f400">Yes</th>
             {!isMobile && <th className="border-0"></th>}
           </tr>
         </thead>
@@ -108,30 +107,29 @@ function ApiSessionMarketTable({
                     {item?.RunnerName}
                   </span>
                   <span
-                    className={`title-14 ${
-                      matchDetails?.profitLossDataSession
+                    className={`title-14 ${matchDetails?.profitLossDataSession
                         ? matchDetails?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                              return accumulator + maxLossToAdd;
-                            },
-                            0
-                          ) < 0
-                          ? "color-red"
-                          : "color-green"
-                        : ""
-                    }`}
-                  >
-                    {matchDetails?.profitLossDataSession
-                      ? matchDetails?.profitLossDataSession?.reduce(
                           (accumulator: any, bet: any) => {
                             const maxLossToAdd =
                               bet?.betId === item?.id ? +bet?.maxLoss : 0;
                             return accumulator + maxLossToAdd;
                           },
                           0
-                        )
+                        ) < 0
+                          ? "color-red"
+                          : "color-green"
+                        : ""
+                      }`}
+                  >
+                    {matchDetails?.profitLossDataSession
+                      ? matchDetails?.profitLossDataSession?.reduce(
+                        (accumulator: any, bet: any) => {
+                          const maxLossToAdd =
+                            bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                          return accumulator + maxLossToAdd;
+                        },
+                        0
+                      )
                       : 0}
                   </span>
                 </div>

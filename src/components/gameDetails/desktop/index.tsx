@@ -47,7 +47,7 @@ const DesktopGameDetail = () => {
                   customClass="mt-2 py-2"
                   title={matchDetails?.title}
                   rightComponent={
-                    <span className="title-16 f500">
+                    <span className="title-16 f400">
                       {formatDate(matchDetails?.startAt)}
                     </span>
                   }
@@ -90,6 +90,45 @@ const DesktopGameDetail = () => {
                     </div>
                   )
                 )}
+              {matchDetails?.firstHalfGoal?.length > 0 &&
+                matchDetails?.firstHalfGoal?.map((item: any, index: number) => (
+                  <div key={index}>
+                    {item?.isActive && (
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.MATCH_ODDS}
+                          data={item}
+                        />
+                      </Col>
+                    )}
+                  </div>
+                ))}
+
+              {matchDetails?.halfTime?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={matchDetails?.halfTime?.name}
+                    type={MatchType.MATCH_ODDS}
+                    data={matchDetails?.halfTime}
+                  />
+                </Col>
+              )}
+
+              {matchDetails?.overUnder?.length > 0 &&
+                matchDetails?.overUnder?.map((item: any, index: number) => (
+                  <div key={index}>
+                    {item?.isActive && (
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.MATCH_ODDS}
+                          data={item}
+                        />
+                      </Col>
+                    )}
+                  </div>
+                ))}
               {matchDetails?.apiTideMatch?.isActive && (
                 <Col md={12}>
                   <BetTable
