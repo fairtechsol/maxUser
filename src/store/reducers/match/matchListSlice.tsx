@@ -27,7 +27,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  matchList: null,
+  matchList: [],
   getMatchListBySearch: [],
   loading: false,
   success: false,
@@ -171,7 +171,7 @@ const matchListSlice = createSlice({
         }
       })
       .addCase(matchListReset, (state) => {
-        return { ...state, matchList: null };
+        return { ...state, matchList: [] };
       })
       .addCase(matchDetailAction.rejected, (state, action) => {
         state.loading = false;

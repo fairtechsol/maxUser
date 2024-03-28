@@ -93,6 +93,7 @@ const GameDetails = () => {
       if (id && getProfile?.roleName) {
         dispatch(selectedBetAction(null));
         dispatch(matchDetailAction(id));
+        dispatch(getPlacedBets(id));
       }
     } catch (e) {
       console.log(e);
@@ -100,30 +101,36 @@ const GameDetails = () => {
   }, [id, getProfile?.roleName]);
 
   useEffect(() => {
-    if (success) {
-      expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
-      expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
-      socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
-      socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-      socketService.userBalance.matchResultDeclared(resultDeclared);
-      socketService.userBalance.matchDeleteBet(betDeleted);
-      socketService.userBalance.sessionDeleteBet(betDeleted);
+    try {
+      if (success) {
+        expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
+        expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
+        socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
+        socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
+        socketService.userBalance.matchResultDeclared(resultDeclared);
+        socketService.userBalance.matchDeleteBet(betDeleted);
+        socketService.userBalance.sessionDeleteBet(betDeleted);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    return () => {
-      expertSocketService.match.leaveMatchRoom(id);
-      expertSocketService.match.getMatchRatesOff(id, setMatchRatesInRedux);
-    };
   }, [success]);
 
   useEffect(() => {
     try {
-      if (id) {
-        dispatch(getPlacedBets(id));
-      }
+      return () => {
+        expertSocketService.match.leaveMatchRoom(id);
+        expertSocketService.match.getMatchRatesOff(id);
+        socketService.userBalance.userSessionBetPlacedOff();
+        socketService.userBalance.userMatchBetPlacedOff();
+        socketService.userBalance.matchResultDeclaredOff();
+        socketService.userBalance.matchDeleteBetOff();
+        socketService.userBalance.sessionDeleteBetOff();
+      };
     } catch (e) {
       console.log(e);
     }
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -134,7 +141,7 @@ const GameDetails = () => {
         }
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);
-        expertSocketService.match.getMatchRatesOff(id, setMatchRatesInRedux);
+        expertSocketService.match.getMatchRatesOff(id);
       }
     };
 
