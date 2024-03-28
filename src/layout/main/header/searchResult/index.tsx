@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { searchListReset } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const SearchResult = ({ data, setOpen }: any) => {
   const dispatch: AppDispatch = useDispatch();

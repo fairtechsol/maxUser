@@ -99,6 +99,9 @@ const matchListSlice = createSlice({
           sessionBettings,
           manualTideMatch,
           quickbookmaker,
+          firstHalfGoal,
+          halfTime,
+          overUnder,
         } = action.payload;
 
         let newSessionBettings = sessionBettings;
@@ -113,6 +116,9 @@ const matchListSlice = createSlice({
           marketCompleteMatch: marketCompleteMatch,
           matchOdd: matchOdd,
           quickBookmaker: quickbookmaker,
+          firstHalfGoal,
+          halfTime,
+          overUnder,
           sessionBettings: newSessionBettings?.map((item: any) => {
             if (!JSON.parse(item)?.selectionId) {
               const parsedItem = JSON.parse(item);
