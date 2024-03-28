@@ -26,18 +26,26 @@ const SportsFilters = ({ type, setMatchType }: any) => {
               item.id === "cricket" &&
               (selectedTab === "inPlay" || selectedTab === "sports") &&
               MatchListJson().some((match) => match.id === "cricket");
+
+            const tabTitleStyle = {
+              fontWeight: "normal",
+              fontSize: "12px",
+              // borderRight: "1px solid #ffffff"
+            };
             return (
               <Tab
                 key={item?.id}
                 eventKey={item?.id}
                 tabClassName="m-tab"
-                title={item?.name}
+                title={<span>
+                  <span style={tabTitleStyle}>{item?.name}</span>
+                </span>}
               >
                 {(item.id === "inPlay" ||
                   item.id === "sports" ||
                   isCricketTab) && (
-                  <MobileMatchList setMatchType={setMatchType} type={type} />
-                )}
+                    <MobileMatchList setMatchType={setMatchType} type={type} />
+                  )}
               </Tab>
             );
           })}

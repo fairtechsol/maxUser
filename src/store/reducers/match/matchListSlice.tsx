@@ -27,7 +27,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  matchList: null,
+  matchList: [],
   getMatchListBySearch: [],
   loading: false,
   success: false,
@@ -99,6 +99,9 @@ const matchListSlice = createSlice({
           sessionBettings,
           manualTideMatch,
           quickbookmaker,
+          firstHalfGoal,
+          halfTime,
+          overUnder,
         } = action.payload;
 
         let newSessionBettings = sessionBettings;
@@ -113,6 +116,9 @@ const matchListSlice = createSlice({
           marketCompleteMatch: marketCompleteMatch,
           matchOdd: matchOdd,
           quickBookmaker: quickbookmaker,
+          firstHalfGoal,
+          halfTime,
+          overUnder,
           sessionBettings: newSessionBettings?.map((item: any) => {
             if (!JSON.parse(item)?.selectionId) {
               const parsedItem = JSON.parse(item);
@@ -171,7 +177,7 @@ const matchListSlice = createSlice({
         }
       })
       .addCase(matchListReset, (state) => {
-        return { ...state, matchList: null };
+        return { ...state, matchList: [] };
       })
       .addCase(matchDetailAction.rejected, (state, action) => {
         state.loading = false;

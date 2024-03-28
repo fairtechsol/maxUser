@@ -14,7 +14,7 @@ const MobileTopBar = () => {
             to="/home"
             className={`text-decoration-none topbar-link ${
               index === 0 ? "icc-wc" : "election"
-            } p-2 w-100 text-white f700 text-center`}
+            } p-2 w-100 text-white f400 text-center`}
           >
             {item?.name}
           </Link>

@@ -177,11 +177,11 @@ const PlacedBet = () => {
                   </span>
                 </td>
                 <td>
-                  <span className="f600 title-12">
+                  <span className="f500 title-12">
                     {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
                   </span>
                 </td>
-                <td>
+                <td> 
                   <input
                     disabled
                     placeholder=""
@@ -207,7 +207,7 @@ const PlacedBet = () => {
                   />
                 </td>
                 <td>
-                  <span className="f600">{handleProfit(stake)}</span>
+                  <span className="f500">{handleProfit(stake)}</span>
                 </td>
               </tr>
               <tr

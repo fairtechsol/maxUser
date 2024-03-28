@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Tabs } from "react-bootstrap";
 import "./style.scss";
 
@@ -10,11 +10,6 @@ const CommonTabs = ({
   ...props
 }: any) => {
   const [key, setKey] = useState(defaultActive);
-
-
-  useEffect(()=>{
-    setKey(defaultActive)
-  },[defaultActive])
   return (
     <Tabs
       activeKey={key}

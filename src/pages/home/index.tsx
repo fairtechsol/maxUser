@@ -35,7 +35,7 @@ const Home = () => {
       console.log(e);
     }
     return () => {
-      expertSocketService.match.matchAddedOff(getMatchListService);
+      expertSocketService.match.matchAddedOff();
     };
   }, []);
 

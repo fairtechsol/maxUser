@@ -34,6 +34,7 @@ function SessionMarketTable({
 
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
+  // const [showMinsModal, setMinModal] = useState(false);
   const dispatch: AppDispatch = useDispatch();
 
   const handleClick = (team: any, data: any) => {
@@ -57,11 +58,10 @@ function SessionMarketTable({
                   rightComponent={
                     <div>
                       <span
-                        className={`${
-                          isMobile
+                        className={`${isMobile
                             ? "text-black title-16"
                             : "text-white title-20"
-                        }`}
+                          }`}
                       >
                         <IoInformationCircle
                           onClick={() => setShowRulesModal(true)}
@@ -82,8 +82,8 @@ function SessionMarketTable({
               )}
             </th>
 
-            <th className="text-center bg-red1 bet-place-box">No</th>
-            <th className="text-center bg-blue3 bet-place-box">Yes</th>
+            <th className="text-center bg-red1 bet-place-box f400">No</th>
+            <th className="text-center bg-blue3 bet-place-box f400">Yes</th>
             {!isMobile && <th className="border-0"></th>}
           </tr>
         </thead>
@@ -99,7 +99,7 @@ function SessionMarketTable({
                 <tr key={index}>
                   <td>
                     <div className="backLayRunner d-flex flex-column px-1">
-                      <div>
+                      <div className="minmaxsession">
                         <span
                           onClick={() => {
                             setShowRunModal(true);
@@ -109,27 +109,16 @@ function SessionMarketTable({
                         >
                           {JSON.parse(item)?.name}
                         </span>
+                        {/* <span className="minmaxsessionicon"><IoInformationCircle
+                          onClick={() => setMinModal(true)}
+                        /><SmoothDropdownModal
+                            show={showMinsModal}
+                            setShow={setMinModal}
+                          /></span> */}
                       </div>
                       <span
-                        className={`title-14 ${
-                          matchDetails?.profitLossDataSession?.length > 0
+                        className={`title-14 ${matchDetails?.profitLossDataSession?.length > 0
                             ? matchDetails?.profitLossDataSession?.reduce(
-                                (accumulator: any, bet: any) => {
-                                  const maxLossToAdd =
-                                    bet?.betId === JSON.parse(item)?.id
-                                      ? +bet?.maxLoss
-                                      : 0;
-                                  return accumulator + maxLossToAdd;
-                                },
-                                0
-                              ) < 0
-                              ? "color-red"
-                              : "color-green"
-                            : ""
-                        }`}
-                      >
-                        {matchDetails?.profitLossDataSession?.length > 0
-                          ? matchDetails?.profitLossDataSession?.reduce(
                               (accumulator: any, bet: any) => {
                                 const maxLossToAdd =
                                   bet?.betId === JSON.parse(item)?.id
@@ -138,7 +127,23 @@ function SessionMarketTable({
                                 return accumulator + maxLossToAdd;
                               },
                               0
-                            )
+                            ) < 0
+                              ? "color-red"
+                              : "color-green"
+                            : ""
+                          }`}
+                      >
+                        {matchDetails?.profitLossDataSession?.length > 0
+                          ? matchDetails?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === JSON.parse(item)?.id
+                                  ? +bet?.maxLoss
+                                  : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
                           : 0}
                       </span>
                     </div>
@@ -238,6 +243,7 @@ function SessionMarketTable({
       >
         <RunBoxTable runAmount={{ betPlaced: runAmount }} />
       </CustomModal>
+      <div style={{ height: '80px' }}></div>
     </div>
   );
 }

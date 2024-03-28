@@ -23,7 +23,9 @@ const SecureAuthVerification = Loadable(
 const ChangePassword = Loadable(
   lazy(() => import("../pages/auth/changePassword"))
 );
-const ContactAdmin = Loadable(lazy(() => import("../components/commonComponent/contactAdmin")));
+const ContactAdmin = Loadable(
+  lazy(() => import("../components/commonComponent/contactAdmin"))
+);
 
 const GameList = Loadable(lazy(() => import("../pages/gameList/index")));
 
@@ -60,7 +62,7 @@ const MainRoutes = {
     },
     {
       path: "contact-admin",
-      element: <ContactAdmin/>,
+      element: <ContactAdmin />,
     },
     {
       path: "*",

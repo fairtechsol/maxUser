@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
-import { Img } from 'react-image'
+import { Img } from "react-image";
 import "./style.scss";
 import moment from "moment-timezone";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
-import { useParams } from "react-router-dom";
-import { casinoIcons } from "../../../../../../utils/constants";
-import footballlist from "../../../../../../utils/Constants/footballlist.json"
+import {
+  availableGameType,
+  casinoIcons,
+} from "../../../../../../utils/constants";
 const tableHeading = [
   {
     id: "game",
@@ -42,8 +43,6 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
     (state: RootState) => state.match.matchList
   );
 
-  const { id } = useParams();
-
   return (
     <>
       <Table className="matchListTable-desktop mb-4">
@@ -58,55 +57,43 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                 key={item?.id}
               >
                 {item?.name}
-                {/* {matchList } */}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {/* {( !footballlist || footballlist?.length === 0) &&
-            (id === "cricket" || mTypeid === "cricket" || id === "football" || mTypeid === "football" ? (
-              <tr>
-                <td>No matches available</td>
-              </tr>
-            ) : (
-              <tr>
-                <td>
-                  <ContactAdmin />
-                </td>
-              </tr>
-            ))}
-          {footballlist &&
-            footballlist?.map((item: any, index: number) => {
-              return <MatchListRow item={item} key={index} />;
-            })} */}
-            {( !matchList || matchList?.length === 0) &&
-            (id === "cricket" || mTypeid === "cricket"  ? (
-              <tr>
-                <td>No matches available</td>
-              </tr>
-            ) : (
-              <tr>
-                <td>
-                  <ContactAdmin />
-                </td>
-              </tr>
-            ))}
-          {matchList &&
-            matchList?.map((item: any, index: number) => {
-              return <MatchListRow item={item} key={index} />;
-            })}
+          {availableGameType[mTypeid] ? (
+            <>
+              {!matchList || matchList?.length === 0 ? (
+                <tr>
+                  <td>No matches available</td>
+                </tr>
+              ) : (
+                <>
+                  {matchList?.map((item: any, index: number) => {
+                    return <MatchListRow item={item} key={index} />;
+                  })}
+                </>
+              )}
+            </>
+          ) : (
+            <tr>
+              <td>
+                <ContactAdmin />
+              </td>
+            </tr>
+          )}
         </tbody>
       </Table>
       <div className="col-md-12 mt-4">
-      {casinoIcons.map((item, index) => (
-              <a href={item.url} key={index} className="">
-                <div className="d-inline-block casinoicons">
-                  <Img src={item.imgSrc} className="img-fluid" alt={item.name} />
-                  <div className="casino-name">{item.name}</div>
-                </div>
-              </a>
-            ))}
+        {casinoIcons.map((item, index) => (
+          <a href={item.url} key={index} className="">
+            <div className="d-inline-block casinoicons">
+              <Img src={item.imgSrc} className="img-fluid" alt={item.name} />
+              <div className="casino-name">{item.name}</div>
+            </div>
+          </a>
+        ))}
       </div>
     </>
   );

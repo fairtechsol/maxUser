@@ -157,8 +157,8 @@ const UnsettledBetComponent = () => {
                       key={column.id}
                       className={
                         item.betType === "NO" || item.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
+                          ? "bg-red1 lh-1 f200"
+                          : "bg-blue3 lh-1 f200"
                       }
                     >
                       {column.type === "date"

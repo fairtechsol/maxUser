@@ -34,7 +34,7 @@ const GameList = () => {
       console.log(e);
     }
     return () => {
-      expertSocketService.match.matchAddedOff(getMatchListService);
+      expertSocketService.match.matchAddedOff();
     };
   }, []);
 
