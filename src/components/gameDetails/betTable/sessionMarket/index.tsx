@@ -110,12 +110,12 @@ function SessionMarketTable({
                         >
                           {JSON.parse(item)?.name}
                         </span>
-                        <span className="minmaxsessionicon"><IoInformationCircle
+                        {/* <span className="minmaxsessionicon"><IoInformationCircle
                           onClick={() => setMinModal(true)}
                         /><SmoothDropdownModal
                             show={showMinsModal}
                             setShow={setMinModal}
-                          /></span>
+                          /></span> */}
                       </div>
                       <span
                         className={`title-14 ${matchDetails?.profitLossDataSession?.length > 0
