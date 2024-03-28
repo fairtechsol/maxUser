@@ -38,6 +38,11 @@ export const Constants = {
   localThird: "http://localhost:3200",
   WEBSOCKET: "websocket",
   POLLING: "polling",
+  apiBasePathLive: "https://betfairapi.fairgame7.com",
+  thirdPartyLive: "https://serviceapi.fairgame7.com",
+  expertPathLive: "https://expertapi.fairgame7.com",
+  localPath: "http://localhost:5000",
+  localPathExpert: "http://localhost:6060",
 };
 
 export const sessionBettingType = {
@@ -83,17 +88,34 @@ export const availableGameType: any = {
 export const baseUrls = {
   socket:
     process.env.NODE_ENV === "production"
-      ? `${Constants.apiBasePath}`
-      : `http://localhost:5000`,
+      ? Constants.apiBasePath
+      : Constants.localPath,
   expertSocket:
     process.env.NODE_ENV === "production"
-      ? `${Constants.expertSocketBasePath}`
-      : `http://localhost:6060`,
+      ? Constants.expertSocketBasePath
+      : Constants.localPathExpert,
   matchSocket:
     process.env.NODE_ENV === "production"
-      ? `${Constants.thirdParty}`
-      : `${Constants.localThird}`,
+      ? Constants.thirdParty
+      : Constants.localThird,
 };
+
+// use below baseUrl for live build
+
+// export const baseUrls = {
+//   socket:
+//     process.env.NODE_ENV === "production"
+//       ? Constants.apiBasePathLive
+//       : Constants.localPath,
+//   matchSocket:
+//     process.env.NODE_ENV === "production"
+//       ? Constants.thirdPartyLive
+//       : Constants.localPathThird,
+//   expertSocket:
+//     process.env.NODE_ENV === "production"
+//       ? Constants.expertPathLive
+//       : Constants.localPathExpert,
+// };
 
 export const sportsRules = [
   {

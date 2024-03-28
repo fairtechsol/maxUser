@@ -1,8 +1,8 @@
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { Form } from "react-bootstrap";
-import { FaHandPointDown, FaKey } from "react-icons/fa";
-import { IoPerson } from "react-icons/io5";
+// import { FaHandPointDown, FaKey } from "react-icons/fa";
+// import { IoPerson } from "react-icons/io5";
 import { MdOutlineLogin } from "react-icons/md";
 import { AiOutlineLoading } from 'react-icons/ai'; // Import the AiOutlineLoading spinner
 import { useDispatch, useSelector } from "react-redux";

@@ -17,7 +17,6 @@ import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions
 import { useSelector } from "react-redux";
 import Desktop from "../../../rules/categoryRules/desktop";
 import Mobile from "../../../rules/mobile";
-import SmoothDropdownModal from "../../../commonComponent/minMaxModal";
 
 interface SessionMarketTableProps {
   data: any;
@@ -35,7 +34,7 @@ function SessionMarketTable({
 
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
-  const [showMinsModal, setMinModal] = useState(false);
+  // const [showMinsModal, setMinModal] = useState(false);
   const dispatch: AppDispatch = useDispatch();
 
   const handleClick = (team: any, data: any) => {

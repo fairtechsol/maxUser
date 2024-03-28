@@ -45,10 +45,7 @@ const MobileMatchList = ({ type, setMatchType }: any) => {
         expertSocketService.match.leaveMatchRoom(element?.id);
       });
       matchList?.forEach((element: any) => {
-        expertSocketService.match.getMatchRatesOff(
-          element?.id,
-          setMatchOddRatesInRedux
-        );
+        expertSocketService.match.getMatchRatesOff(element?.id);
       });
     };
   }, [matchList, getProfile?.roleName]);
