@@ -15,11 +15,16 @@
     "type": "both",
     "blink": true
   },
-  { "id": "tennis", "name": "Tennis", "link": "/contact-admin", "type": "desktop" },
+  {
+    "id": "tennis",
+    "name": "Tennis",
+    "link": "/contact-admin",
+    "type": "desktop"
+  },
   {
     "id": "football",
     "name": "Football",
-    "link": "/contact-admin",
+    "link": "/football",
     "type": "desktop"
   },
   {
@@ -28,7 +33,12 @@
     "link": "/contact-admin",
     "type": "desktop"
   },
-  { "id": "kabaddi", "name": "Kabaddi",   "link": "/contact-admin", "type": "desktop" },
+  {
+    "id": "kabaddi",
+    "name": "Kabaddi",
+    "link": "/contact-admin",
+    "type": "desktop"
+  },
   {
     "id": "badminton",
     "name": "Badminton",
@@ -59,6 +69,16 @@
     "link": "/contact-admin",
     "type": "desktop"
   },
-  { "id": "poker", "name": "Poker",   "link": "/contact-admin", "type": "desktop" },
-  { "id": "lucky7", "name": "Lucky 7",   "link": "/contact-admin", "type": "desktop" }
+  {
+    "id": "poker",
+    "name": "Poker",
+    "link": "/contact-admin",
+    "type": "desktop"
+  },
+  {
+    "id": "lucky7",
+    "name": "Lucky 7",
+    "link": "/contact-admin",
+    "type": "desktop"
+  }
 ]

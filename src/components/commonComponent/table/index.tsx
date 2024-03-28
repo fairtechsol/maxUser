@@ -91,9 +91,11 @@ const CustomTable: React.FC<CustomTableProps> = ({
             {/* Table header with sorting icons */}
             {columns.map((column, index) => (
               <th
-                className={`${tHeadTheme} text-center ${
-                  isMobile && "bg-secondary title-12 f800 p-1"
-                }`}
+              className={`${tHeadTheme} text-center ${
+                isMobile
+                  ? "bg-secondary title-12 f800 p-1"
+                  : "f400"
+              }`}
                 key={index}
               >
                 {column.label}

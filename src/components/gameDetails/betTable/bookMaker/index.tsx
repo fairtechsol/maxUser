@@ -92,11 +92,11 @@ function BookmakerTable({
               </>
             ) : (
               <>
-                <th className={`text-center bg-blue3 bookmaker-bet-place`}>
-                  Back
+                <th className={`text-center bg-blue3 bookmaker-bet-place f400`}>
+                  BACK
                 </th>
-                <th className={`text-center bg-red1 bookmaker-bet-place`}>
-                  Lay
+                <th className={`text-center bg-red1 bookmaker-bet-place f400`}>
+                LAY
                 </th>
               </>
             )}

@@ -9,7 +9,7 @@
         "name": "Football",
         "type": "liveItem",
         "blink": true,
-        "path": "/contact-admin"
+        "path": "/game-list/football"
       },
       {
         "id": "tennis",
