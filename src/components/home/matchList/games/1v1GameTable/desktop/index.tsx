@@ -98,16 +98,18 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   );
 };
 
-const MatchListRow = ({ item }: any) => {
+const MatchListRow = ({ item,matchType }: any) => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return (
     <tr className="one-v-one-row overflow-hidden">
       <td className="px-2 w-50 align-middle">
         <div className="d-flex justify-content-between align-items-center ">
-          <Link
+          {/* <Link
             className="text-decoration-none"
             to={`/game-detail/${item?.id}`}
-          >
+          > */}
+           <Link className="text-decoration-none"
+           to={`/${matchType === "football" ? "other-game-detail" : "game-detail"}/${item?.id}`}>
             <div
               className="one-v-one-title title-14"
               style={{ color: "#343a40" }}
