@@ -9,7 +9,7 @@ const CommonTabs = ({
   callback,
   ...props
 }: any) => {
-  const [key, setKey] = useState(defaultActive);
+  const [key, setKey] = useState(defaultActive ?? "cricket");
   return (
     <Tabs
       activeKey={key}
