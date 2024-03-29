@@ -38,11 +38,11 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
         );
       });
     }
-
     return () => {
       expertSocketService.match.leaveAllRooms();
       matchList?.forEach((element: any) => {
         expertSocketService.match.leaveMatchRoom(element?.id);
+        expertSocketService.match.getMatchRatesOff(element?.id);
       });
     };
   }, [matchList?.length, getProfile?.roleName]);
