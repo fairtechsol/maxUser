@@ -2,17 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import { formatDate } from "../../../utils/dateUtils";
-import { MatchType } from "../../../utils/enum";
 import BetTableHeader from "../../commonComponent/betTableHeader";
-import BetTable from "../betTable";
-import MyBet from "./myBet";
-import PlacedBet from "./placeBet";
-import "./style.scss";
+// import "./style.scss";
 import { IoInformationCircle } from "react-icons/io5";
 import CustomModal from "../../commonComponent/modal";
+import BetTable from "../../otherGameDetaills/betTable/index";
+import PlacedBet from "../../gameDetails/desktop/placeBet";
+import MyBetFootball from "./myBet";
+import { MatchType } from "../../../utils/enum";
+import { formatDate } from "../../../utils/dateUtils";
 
-const DesktopGameDetail = () => {
+const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
@@ -47,22 +47,12 @@ const DesktopGameDetail = () => {
                   customClass="mt-2 py-2"
                   title={matchDetails?.title}
                   rightComponent={
-                    <span className="title-16 f400">
+                    <span className="title-16 f500">
                       {formatDate(matchDetails?.startAt)}
                     </span>
                   }
                 />
               </Col>
-
-              {matchDetails?.matchOdd?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.matchOdd?.name}
-                    type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
 
               {matchDetails?.bookmaker?.isActive && (
                 <Col md={12}>
@@ -73,107 +63,40 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
+              <Col md={12}>
+                <BetTable />
+              </Col>
+              <Col md={12}>
+                <BetTable />
+              </Col>
+              <Col md={6}>
+                <BetTable />
+              </Col>
+              <Col md={6}>
+                <BetTable />
+              </Col>
+              <Col md={4}>
+                <BetTable />
+              </Col>
 
-              {matchDetails?.quickBookmaker?.length > 0 &&
-                matchDetails?.quickBookmaker?.map(
-                  (item: any, index: number) => (
-                    <div key={index}>
-                      {item?.isActive && (
-                        <Col md={12}>
-                          <BetTable
-                            title={item?.name}
-                            type={MatchType.BOOKMAKER}
-                            data={item}
-                          />
-                        </Col>
-                      )}
-                    </div>
-                  )
-                )}
-              {matchDetails?.firstHalfGoal?.length > 0 &&
-                matchDetails?.firstHalfGoal?.map((item: any, index: number) => (
-                  <div key={index}>
-                    {item?.isActive && (
-                      <Col md={12}>
-                        <BetTable
-                          title={item?.name}
-                          type={MatchType.MATCH_ODDS}
-                          data={item}
-                        />
-                      </Col>
-                    )}
-                  </div>
-                ))}
+              {/* {matchDetails?.apiSessionActive && ( */}
+              <Col md={4}>
+                <BetTable />
+              </Col>
+              <Col md={4}>
+                <BetTable />
+              </Col>
+              <Col md={12}>
+                <BetTable />
+              </Col>
+              {/* )} */}
+              {/* {matchDetails?.manualSessionActive && ( */}
+              {/* <Col md={4}>
+                  <BetTable
+                  />
+                </Col> */}
 
-              {matchDetails?.halfTime?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.halfTime?.name}
-                    type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.halfTime}
-                  />
-                </Col>
-              )}
-
-              {matchDetails?.overUnder?.length > 0 &&
-                matchDetails?.overUnder?.map((item: any, index: number) => (
-                  <div key={index}>
-                    {item?.isActive && (
-                      <Col md={12}>
-                        <BetTable
-                          title={item?.name}
-                          type={MatchType.MATCH_ODDS}
-                          data={item}
-                        />
-                      </Col>
-                    )}
-                  </div>
-                ))}
-              {matchDetails?.apiTideMatch?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.apiTideMatch?.name}
-                    type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.apiTideMatch}
-                  />
-                </Col>
-              )}
-              {matchDetails?.manualTiedMatch?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.manualTiedMatch?.name}
-                    type={MatchType.BOOKMAKER}
-                    data={matchDetails?.manualTiedMatch}
-                  />
-                </Col>
-              )}
-              {matchDetails?.marketCompleteMatch?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.marketCompleteMatch?.name}
-                    type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.marketCompleteMatch}
-                  />
-                </Col>
-              )}
-              {matchDetails?.apiSessionActive && (
-                <Col md={6}>
-                  <BetTable
-                    title={"Session Market"}
-                    type={MatchType.API_SESSION_MARKET}
-                    data={matchDetails?.apiSession}
-                  />
-                </Col>
-              )}
-              {matchDetails?.manualSessionActive && (
-                <Col md={6}>
-                  <BetTable
-                    title={"Quick Session Market"}
-                    type={MatchType.SESSION_MARKET}
-                    data={matchDetails?.sessionBettings}
-                  />
-                </Col>
-              )}
+              {/* )} */}
 
               {/* <Col md={12}>
                 <CommonTabs
@@ -262,7 +185,7 @@ const DesktopGameDetail = () => {
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBet />
+                <MyBetFootball />
               </Col>
             </Row>
           </Container>
@@ -293,4 +216,4 @@ const DesktopGameDetail = () => {
   );
 };
 
-export default DesktopGameDetail;
+export default FootballDesktopGameDetail;

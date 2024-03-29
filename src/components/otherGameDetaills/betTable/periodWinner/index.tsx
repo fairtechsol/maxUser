@@ -8,8 +8,7 @@ import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
-import "../style.scss";
-import "./style.scss";
+import "../../../gameDetails/betTable/apiSessionMarket/style.scss";
 import CustomModal from "../../../commonComponent/modal";
 import RunBoxTable from "../runBoxTable";
 import { useState } from "react";
@@ -17,13 +16,13 @@ import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions
 import { useSelector } from "react-redux";
 import Desktop from "../../../rules/categoryRules/desktop";
 import Mobile from "../../../rules/mobile";
-
+import "../style.scss";
 interface SessionMarketTableProps {
   data: any;
   title?: any;
   matchDetails: any;
 }
-function SessionMarketTable({
+function PeriodMarketTable({
   data,
   title,
   matchDetails,
@@ -34,7 +33,6 @@ function SessionMarketTable({
 
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
-  // const [showMinsModal, setMinModal] = useState(false);
   const dispatch: AppDispatch = useDispatch();
 
   const handleClick = (team: any, data: any) => {
@@ -83,13 +81,13 @@ function SessionMarketTable({
               )}
             </th>
 
-            <th className="text-center bg-red1 bet-place-box f400">No</th>
-            <th className="text-center bg-blue3 bet-place-box f400">Yes</th>
+            <th className="text-center bg-red1 bet-place-box">No</th>
+            <th className="text-center bg-blue3 bet-place-box">Yes</th>
             {!isMobile && <th className="border-0"></th>}
           </tr>
         </thead>
         <tbody>
-          {data?.map((item: any, index: number) => {
+          {/* {data?.map((item: any, index: number) => {
             if (!JSON.parse(item).selectionId) {
               return (
                 // <BetStatusOverlay
@@ -100,7 +98,7 @@ function SessionMarketTable({
                 <tr key={index}>
                   <td>
                     <div className="backLayRunner d-flex flex-column px-1">
-                      <div className="minmaxsession">
+                      <div>
                         <span
                           onClick={() => {
                             setShowRunModal(true);
@@ -110,12 +108,6 @@ function SessionMarketTable({
                         >
                           {JSON.parse(item)?.name}
                         </span>
-                        {/* <span className="minmaxsessionicon"><IoInformationCircle
-                          onClick={() => setMinModal(true)}
-                        /><SmoothDropdownModal
-                            show={showMinsModal}
-                            setShow={setMinModal}
-                          /></span> */}
                       </div>
                       <span
                         className={`title-14 ${
@@ -234,7 +226,7 @@ function SessionMarketTable({
                 // </BetStatusOverlay>
               );
             } else return null;
-          })}
+          })} */}
         </tbody>
       </Table>
       <CustomModal
@@ -245,9 +237,8 @@ function SessionMarketTable({
       >
         <RunBoxTable runAmount={{ betPlaced: runAmount }} />
       </CustomModal>
-      <div style={{ height: "80px" }}></div>
     </div>
   );
 }
 
-export default SessionMarketTable;
+export default PeriodMarketTable;

@@ -1,9 +1,9 @@
 import { Table } from "react-bootstrap";
+
+// import "./style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import DeleteBetOverlay from "../../../commonComponent/betComponents/deleteBetRow";
-import RightPanelContainer from "../rightPanelContainer";
-import "./style.scss";
+import RightPanelContainer from "../../../gameDetails/desktop/rightPanelContainer";
 
 const placeBetHeader = [
   {
@@ -20,7 +20,7 @@ const placeBetHeader = [
   },
 ];
 
-const MyBet = () => {
+const MyBetFootball = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   return (
@@ -30,10 +30,7 @@ const MyBet = () => {
           <thead>
             <tr className="bg-darkGrey">
               {placeBetHeader?.map((item) => (
-                <th
-                  key={item?.id}
-                  className="title-12 text-start f500 bg-darkGrey"
-                >
+                <th key={item?.id} className="title-12 text-start bg-darkGrey">
                   {item?.name}
                 </th>
               ))}
@@ -45,14 +42,14 @@ const MyBet = () => {
                 return (
                   <tr
                     key={bet?.id}
-                    className={`position-relative ${
+                    className={` ${
                       bet?.betType === "NO" || bet?.betType === "LAY"
                         ? "bg-red1"
                         : "bg-blue3"
                     }`}
                   >
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-12 text-start ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -61,7 +58,7 @@ const MyBet = () => {
                       {bet?.teamName}
                     </th>
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-12 text-start ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -70,7 +67,7 @@ const MyBet = () => {
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-12 text-start ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -78,7 +75,6 @@ const MyBet = () => {
                     >
                       {bet?.amount}
                     </th>
-                    <DeleteBetOverlay title={bet?.deleteReason} />
                   </tr>
                 );
               })}
@@ -89,4 +85,4 @@ const MyBet = () => {
   );
 };
 
-export default MyBet;
+export default MyBetFootball;
