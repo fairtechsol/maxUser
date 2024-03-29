@@ -42,7 +42,6 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
-
   return (
     <>
       <Table className="matchListTable-desktop mb-4">
@@ -71,7 +70,13 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
               ) : (
                 <>
                   {matchList?.map((item: any, index: number) => {
-                    return <MatchListRow item={item} key={index} />;
+                    return (
+                      <MatchListRow
+                        key={index}
+                        item={item}
+                        matchType={mTypeid}
+                      />
+                    );
                   })}
                 </>
               )}
@@ -99,7 +104,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   );
 };
 
-const MatchListRow = ({ item,matchType }: any) => {
+const MatchListRow = ({ item, matchType }: any) => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return (
     <tr className="one-v-one-row overflow-hidden">
@@ -109,8 +114,12 @@ const MatchListRow = ({ item,matchType }: any) => {
             className="text-decoration-none"
             to={`/game-detail/${item?.id}`}
           > */}
-           <Link className="text-decoration-none"
-           to={`/${matchType === "football" ? "other-game-detail" : "game-detail"}/${item?.id}`}>
+          <Link
+            className="text-decoration-none"
+            to={`/${
+              matchType === "football" ? "other-game-detail" : "game-detail"
+            }/${item?.id}`}
+          >
             <div
               className="one-v-one-title title-14"
               style={{ color: "#343a40" }}

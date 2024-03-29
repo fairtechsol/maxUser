@@ -6,6 +6,7 @@ export const ApiConstants = {
     MATCHLIST: "/match/list",
     SEARCHLIST: "/user/searchlist",
     MATCHDETAILS: "/match/",
+    OTHERMATCHDETAILS: "/match/other/",
     CURRENTBET: "/bet",
     PROFIT_LOSS_REPORT: "/bet/profitLoss",
   },

@@ -10,6 +10,7 @@ import BetTable from "../../otherGameDetaills/betTable/index";
 import PlacedBet from "../../gameDetails/desktop/placeBet";
 import MyBetFootball from "./myBet";
 import { MatchType } from "../../../utils/enum";
+import { formatDate } from "../../../utils/dateUtils";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -44,10 +45,10 @@ const FootballDesktopGameDetail = () => {
               <Col md={12}>
                 <BetTableHeader
                   customClass="mt-2 py-2"
-                  title={"matchDetails?.title"}
+                  title={matchDetails?.title}
                   rightComponent={
                     <span className="title-16 f500">
-                      {"formatDate(matchDetails?.startAt)"}
+                      {formatDate(matchDetails?.startAt)}
                     </span>
                   }
                 />
@@ -62,47 +63,39 @@ const FootballDesktopGameDetail = () => {
                   />
                 </Col>
               )}
-                <Col md={12}>
-                  <BetTable
-                  />
-                </Col>
-                <Col md={12}>
-                  <BetTable
-                  />
-                </Col>
-                <Col md={6}>
-                  <BetTable
-                  />
-                </Col>
-                <Col md={6}>
-                  <BetTable
-                  />
-                </Col>
-                <Col md={4}>
-                  <BetTable
-                  />
-                </Col>
-               
+              <Col md={12}>
+                <BetTable />
+              </Col>
+              <Col md={12}>
+                <BetTable />
+              </Col>
+              <Col md={6}>
+                <BetTable />
+              </Col>
+              <Col md={6}>
+                <BetTable />
+              </Col>
+              <Col md={4}>
+                <BetTable />
+              </Col>
+
               {/* {matchDetails?.apiSessionActive && ( */}
-                <Col md={4}>
-                  <BetTable
-                  />
-                </Col>
-                <Col md={4}>
-                  <BetTable
-                  />
-                </Col>
-                <Col md={12}>
-                  <BetTable
-                  />
-                </Col>
+              <Col md={4}>
+                <BetTable />
+              </Col>
+              <Col md={4}>
+                <BetTable />
+              </Col>
+              <Col md={12}>
+                <BetTable />
+              </Col>
               {/* )} */}
               {/* {matchDetails?.manualSessionActive && ( */}
-                {/* <Col md={4}>
+              {/* <Col md={4}>
                   <BetTable
                   />
                 </Col> */}
-              
+
               {/* )} */}
 
               {/* <Col md={12}>

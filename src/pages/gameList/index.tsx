@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/commonComponent/loader";
@@ -13,6 +13,7 @@ const GameList = () => {
   const { loading } = useSelector((state: RootState) => state.match.matchList);
 
   const { id } = useParams();
+  const [_, setMatchType] = useState("");
 
   const getMatchListService = () => {
     try {
@@ -41,7 +42,7 @@ const GameList = () => {
   return (
     <>
       {loading && <Loader />}
-      {isMobile ? <SportsFilters type={id} /> : <DesktopMatchList type={id} />}
+      {isMobile ? <SportsFilters type={id} /> : <DesktopMatchList type={id} setMatchType={setMatchType} />}
     </>
   );
 };

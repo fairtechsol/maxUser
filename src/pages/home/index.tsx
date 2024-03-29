@@ -45,6 +45,7 @@ const Home = () => {
     }
 
   }, [matchType]);
+  
   useEffect(() => {
     rulesPopShow ? setShow(true) : setShow(false);
   }, []);

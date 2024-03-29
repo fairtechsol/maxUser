@@ -23,7 +23,10 @@ export const getPlacedBets = createAsyncThunk<any, any>(
   async (id, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.BET.GETPLACEDBETS}?status=PENDING&betPlaced.matchId=${id}`
+        `${ApiConstants.BET.GETPLACEDBETS}?result=inArr${JSON.stringify([
+          "PENDING",
+          "UNDECLARE",
+        ])}&betPlaced.matchId=${id}`
       );
       if (resp) {
         return resp?.data?.rows;
@@ -73,3 +76,4 @@ export const updateBetsPlaced: any = createAsyncThunk<any, any>(
 
 export const betsSuccessReset = createAction("success/reset");
 export const betPlaceSuccessReset = createAction("betPlaceSuccess/reset");
+export const resetRunAmount = createAction("resetRunAmount/reset");
