@@ -58,10 +58,11 @@ function SessionMarketTable({
                   rightComponent={
                     <div>
                       <span
-                        className={`${isMobile
+                        className={`${
+                          isMobile
                             ? "text-black title-16"
                             : "text-white title-20"
-                          }`}
+                        }`}
                       >
                         <IoInformationCircle
                           onClick={() => setShowRulesModal(true)}
@@ -117,8 +118,25 @@ function SessionMarketTable({
                           /></span> */}
                       </div>
                       <span
-                        className={`title-14 ${matchDetails?.profitLossDataSession?.length > 0
+                        className={`title-14 ${
+                          matchDetails?.profitLossDataSession?.length > 0
                             ? matchDetails?.profitLossDataSession?.reduce(
+                                (accumulator: any, bet: any) => {
+                                  const maxLossToAdd =
+                                    bet?.betId === JSON.parse(item)?.id
+                                      ? +bet?.maxLoss
+                                      : 0;
+                                  return accumulator + maxLossToAdd;
+                                },
+                                0
+                              ) < 0
+                              ? "color-red"
+                              : "color-green"
+                            : ""
+                        }`}
+                      >
+                        {matchDetails?.profitLossDataSession?.length > 0
+                          ? matchDetails?.profitLossDataSession?.reduce(
                               (accumulator: any, bet: any) => {
                                 const maxLossToAdd =
                                   bet?.betId === JSON.parse(item)?.id
@@ -127,23 +145,7 @@ function SessionMarketTable({
                                 return accumulator + maxLossToAdd;
                               },
                               0
-                            ) < 0
-                              ? "color-red"
-                              : "color-green"
-                            : ""
-                          }`}
-                      >
-                        {matchDetails?.profitLossDataSession?.length > 0
-                          ? matchDetails?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === JSON.parse(item)?.id
-                                  ? +bet?.maxLoss
-                                  : 0;
-                              return accumulator + maxLossToAdd;
-                            },
-                            0
-                          )
+                            )
                           : 0}
                       </span>
                     </div>
@@ -243,7 +245,7 @@ function SessionMarketTable({
       >
         <RunBoxTable runAmount={{ betPlaced: runAmount }} />
       </CustomModal>
-      <div style={{ height: '80px' }}></div>
+      <div style={{ height: "80px" }}></div>
     </div>
   );
 }

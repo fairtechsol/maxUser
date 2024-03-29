@@ -1,8 +1,9 @@
 import { Table } from "react-bootstrap";
-import RightPanelContainer from "../rightPanelContainer";
-import "./style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
+import DeleteBetOverlay from "../../../commonComponent/betComponents/deleteBetRow";
+import RightPanelContainer from "../rightPanelContainer";
+import "./style.scss";
 
 const placeBetHeader = [
   {
@@ -29,7 +30,10 @@ const MyBet = () => {
           <thead>
             <tr className="bg-darkGrey">
               {placeBetHeader?.map((item) => (
-                <th key={item?.id} className="title-12 text-start f500 bg-darkGrey">
+                <th
+                  key={item?.id}
+                  className="title-12 text-start f500 bg-darkGrey"
+                >
                   {item?.name}
                 </th>
               ))}
@@ -41,7 +45,7 @@ const MyBet = () => {
                 return (
                   <tr
                     key={bet?.id}
-                    className={` ${
+                    className={`position-relative ${
                       bet?.betType === "NO" || bet?.betType === "LAY"
                         ? "bg-red1"
                         : "bg-blue3"
@@ -74,6 +78,7 @@ const MyBet = () => {
                     >
                       {bet?.amount}
                     </th>
+                    <DeleteBetOverlay title={bet?.deleteReason} />
                   </tr>
                 );
               })}

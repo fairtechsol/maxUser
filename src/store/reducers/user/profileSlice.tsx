@@ -3,9 +3,14 @@ import {
   getAccountStatement,
   getButtonValue,
   getProfile,
+  getProfileInMatchDetail,
   marqueeNotification,
   setButtonValue,
   updateBalance,
+  updateBalanceFromSocket,
+  updateBalanceOnBetDelete,
+  updateBalanceOnSessionBet,
+  updateBalanceOnSessionResult,
 } from "../../actions/user/userAction";
 
 interface InitialState {
@@ -108,12 +113,65 @@ const profileSlice = createSlice({
         state.loading = false;
         state.error = action?.error?.message;
       })
+      .addCase(getProfileInMatchDetail.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(getProfileInMatchDetail.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.getProfile = action.payload?.[0]?.[0];
+      })
+      .addCase(getProfileInMatchDetail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
       .addCase(updateBalance.fulfilled, (state, action) => {
         state.getProfile = {
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
             exposure: action.payload.newUserExposure ?? action.payload.exposure,
+          },
+        };
+      })
+      .addCase(updateBalanceOnSessionBet.fulfilled, (state, action) => {
+        state.getProfile = {
+          ...state.getProfile,
+          userBal: {
+            ...state?.getProfile?.userBal,
+            exposure: action.payload.newUserExposure ?? action.payload.exposure,
+          },
+        };
+      })
+      .addCase(updateBalanceOnSessionResult.fulfilled, (state, action) => {
+        state.getProfile = {
+          ...state.getProfile,
+          userBal: {
+            ...state?.getProfile?.userBal,
+            exposure: action.payload.exposure,
+            currentBalance: action.payload.currentBalance,
+          },
+        };
+      })
+      .addCase(updateBalanceOnBetDelete.fulfilled, (state, action) => {
+        state.getProfile = {
+          ...state.getProfile,
+          userBal: {
+            ...state?.getProfile?.userBal,
+            exposure: action.payload.exposure,
+            currentBalance: action.payload.currentBalance,
+          },
+        };
+      })
+      .addCase(updateBalanceFromSocket.fulfilled, (state, action) => {
+        state.getProfile = {
+          ...state.getProfile,
+          userBal: {
+            ...state?.getProfile?.userBal,
+            currentBalance: action.payload.currentBalance,
+            profitLoss: action.payload.profitLoss,
           },
         };
       });

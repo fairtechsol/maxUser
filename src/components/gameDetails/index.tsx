@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { expertSocketService, socketService } from "../../socketManager";
 import {
+  getMatchList,
   matchDetailAction,
   selectedBetAction,
   updateMatchRates,
@@ -10,8 +11,18 @@ import {
 import {
   betDataFromSocket,
   getButtonValue,
+  getProfileInMatchDetail,
   updateBalance,
+  updateBalanceOnBetDelete,
+  updateBalanceOnSessionBet,
+  updateBalanceOnSessionResult,
+  updateBetDataOnDeclare,
+  updateBetDataOnUndeclare,
+  updateDeleteReasonBet,
   updateMaxLossForBet,
+  updateProfitLossOnDeleteSession,
+  updateRunAmountOnDeleteBet,
+  updateTeamRatesOnDeleteMatch,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
@@ -19,6 +30,7 @@ import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 import {
   getPlacedBets,
+  resetRunAmount,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 
@@ -47,7 +59,7 @@ const GameDetails = () => {
     try {
       if (event?.betPlaced?.placedBet?.matchId === id) {
         dispatch(updateBetsPlaced(event?.betPlaced?.placedBet));
-        // dispatch(updateBalance(event));
+        dispatch(updateBalanceOnSessionBet(event));
         dispatch(betDataFromSocket(event));
         dispatch(updateMaxLossForBet(event));
       }
@@ -66,17 +78,6 @@ const GameDetails = () => {
       console.log(e);
     }
   };
-  const betDeleted = (event: any) => {
-    try {
-      if (event?.matchId === id) {
-        dispatch(matchDetailAction(id));
-        dispatch(getPlacedBets(id));
-        dispatch(updateBalance(event));
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   const resultDeclared = (event: any) => {
     try {
@@ -86,6 +87,106 @@ const GameDetails = () => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleSessionResultDeclare = (event: any) => {
+    try {
+      dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
+      if (event?.matchId === id) {
+        dispatch(
+          updateBetDataOnDeclare({
+            betId: event?.betId,
+            matchId: event?.matchId,
+          })
+        );
+        dispatch(resetRunAmount());
+        dispatch(getPlacedBets(id));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleSessionResultUnDeclare = (event: any) => {
+    try {
+      dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
+      if (event?.matchId === id) {
+        dispatch(
+          updateBetDataOnUndeclare({
+            betId: event?.betId,
+            profitLoss: event?.profitLossData,
+            matchId: event?.matchId,
+          })
+        );
+        setTimeout(() => {
+          dispatch(getPlacedBets(id));
+        }, 300);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleMatchbetDeleted = (event: any) => {
+    try {
+      dispatch(
+        updateBalanceOnBetDelete({
+          exposure: event?.exposure,
+          currentBalance: event?.currentBalance,
+        })
+      );
+      if (event?.matchId === id) {
+        dispatch(updateTeamRatesOnDeleteMatch(event));
+        dispatch(updateDeleteReasonBet(event));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleSessionBetDeleted = (event: any) => {
+    try {
+      dispatch(
+        updateBalanceOnBetDelete({
+          exposure: event?.exposure,
+          currentBalance: event?.currentBalance,
+        })
+      );
+      if (event?.matchId === id) {
+        dispatch(
+          updateProfitLossOnDeleteSession({
+            betId: event?.betId,
+            profitLoss: event?.profitLoss,
+            matchId: event?.matchId,
+          })
+        );
+        dispatch(
+          updateRunAmountOnDeleteBet({
+            betId: event?.bets[0].betId,
+            profitLoss: event?.profitLoss,
+          })
+        );
+        dispatch(updateDeleteReasonBet(event));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const sessionResultDeclared = (event: any) => {
+    try {
+      dispatch(updateBalanceOnSessionResult(event?.userBalanceData));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleMatchResult = () => {
+    dispatch(getMatchList({}));
+    dispatch(getProfileInMatchDetail());
+  };
+  const getUserProfile = () => {
+    dispatch(getProfileInMatchDetail());
   };
 
   useEffect(() => {
@@ -103,13 +204,27 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       if (success) {
+        expertSocketService.match.getMatchRatesOff(id);
+        socketService.userBalance.userSessionBetPlacedOff();
+        socketService.userBalance.userMatchBetPlacedOff();
+        socketService.userBalance.matchResultDeclaredOff();
+        socketService.userBalance.matchDeleteBetOff();
+        socketService.userBalance.sessionDeleteBetOff();
+        socketService.userBalance.sessionResultOff();
+        socketService.userBalance.sessionNoResultOff();
+        socketService.userBalance.sessionResultUnDeclareOff();
         expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
-        socketService.userBalance.matchDeleteBet(betDeleted);
-        socketService.userBalance.sessionDeleteBet(betDeleted);
+        socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
+        socketService.userBalance.sessionDeleteBet(handleSessionBetDeleted);
+        socketService.userBalance.sessionResult(handleSessionResultDeclare);
+        socketService.userBalance.sessionNoResult(handleSessionResultDeclare);
+        socketService.userBalance.sessionResultUnDeclare(
+          handleSessionResultUnDeclare
+        );
       }
     } catch (error) {
       console.log(error);
@@ -126,6 +241,16 @@ const GameDetails = () => {
         socketService.userBalance.matchResultDeclaredOff();
         socketService.userBalance.matchDeleteBetOff();
         socketService.userBalance.sessionDeleteBetOff();
+        socketService.userBalance.sessionResultOff();
+        socketService.userBalance.sessionNoResultOff();
+        socketService.userBalance.sessionResultUnDeclareOff();
+        socketService.userBalance.sessionResult(sessionResultDeclared);
+        socketService.userBalance.sessionResultUnDeclare(sessionResultDeclared);
+        socketService.userBalance.matchResultDeclared(handleMatchResult);
+        socketService.userBalance.sessionNoResult(getUserProfile);
+        socketService.userBalance.matchResultUnDeclared(handleMatchResult);
+        socketService.userBalance.matchDeleteBet(getUserProfile);
+        socketService.userBalance.sessionDeleteBet(getUserProfile);
       };
     } catch (e) {
       console.log(e);

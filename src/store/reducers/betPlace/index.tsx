@@ -4,8 +4,13 @@ import {
   getMyMarket,
   getPlacedBets,
   getRunAmount,
+  resetRunAmount,
   updateBetsPlaced,
 } from "../../actions/betPlace/betPlaceActions";
+import {
+  updateDeleteReasonBet,
+  updateRunAmountOnDeleteBet,
+} from "../../actions/user/userAction";
 
 interface InitialState {
   placedBets: any;
@@ -86,6 +91,32 @@ const placedBet = createSlice({
       })
       .addCase(betsSuccessReset, (state) => {
         return { ...state, success: false };
+      })
+      .addCase(updateDeleteReasonBet.fulfilled, (state, action) => {
+        const { betPlacedId, deleteReason } = action.payload;
+        const updateDeleteReason = (bet: any) => {
+          if (betPlacedId.includes(bet.id)) {
+            bet.deleteReason = deleteReason;
+          }
+
+          return bet;
+        };
+
+        const updatedBetPlaced = state.placedBets.map(updateDeleteReason);
+
+        state.placedBets = Array.from(new Set(updatedBetPlaced));
+      })
+      .addCase(updateRunAmountOnDeleteBet.fulfilled, (state, action) => {
+        const { betId, profitLoss } = action.payload;
+        if (betId === state.runAmount.betId) {
+          state.runAmount = {
+            ...state.runAmount,
+            runAmount: profitLoss.betPlaced,
+          };
+        }
+      })
+      .addCase(resetRunAmount, (state) => {
+        return { ...state, runAmount: {} };
       });
   },
 });
