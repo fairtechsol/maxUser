@@ -19,3 +19,10 @@ export const otherMatchDetailAction = createAsyncThunk<any, any>(
     }
   }
 );
+
+export const updateMatchRates = createAsyncThunk<any, any>(
+  "/match/rates",
+  async (matchDetails) => {
+    return matchDetails;
+  }
+);

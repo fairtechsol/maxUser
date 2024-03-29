@@ -11,8 +11,10 @@ import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
 import "./style.scss";
+import { useParams } from "react-router-dom";
 
 const DesktopMatchList = ({ type, setMatchType }: any) => {
+  const { id } = useParams();
   const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
@@ -50,7 +52,7 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
   return (
     <div className="m-1 p-0 w-100">
       {" "}
-      <CommonTabs callback={setMatchType} defaultActive={type}>
+      <CommonTabs callback={setMatchType} defaultActive={type ?? id}>
         {MatchListJson()
           ?.filter((item) => item?.id == type || !type)
           ?.map((item) => {

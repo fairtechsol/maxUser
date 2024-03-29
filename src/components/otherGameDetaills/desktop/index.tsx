@@ -17,8 +17,8 @@ const FootballDesktopGameDetail = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
 
-  const { matchDetails } = useSelector(
-    (state: RootState) => state.match.matchList
+  const { otherMatchDetails } = useSelector(
+    (state: RootState) => state.otherGames.matchDetail
   );
 
   useEffect(() => {
@@ -45,42 +45,113 @@ const FootballDesktopGameDetail = () => {
               <Col md={12}>
                 <BetTableHeader
                   customClass="mt-2 py-2"
-                  title={matchDetails?.title}
+                  title={otherMatchDetails?.title}
                   rightComponent={
                     <span className="title-16 f500">
-                      {formatDate(matchDetails?.startAt)}
+                      {formatDate(otherMatchDetails?.startAt)}
                     </span>
                   }
                 />
               </Col>
 
-              {matchDetails?.bookmaker?.isActive && (
+              {otherMatchDetails?.matchOdd?.isActive && (
                 <Col md={12}>
                   <BetTable
-                    title={matchDetails?.bookmaker?.name}
+                    title={otherMatchDetails?.matchOdd?.name}
                     type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.bookmaker}
+                    data={otherMatchDetails?.matchOdd}
                   />
                 </Col>
               )}
-              <Col md={12}>
-                <BetTable />
-              </Col>
-              <Col md={12}>
-                <BetTable />
-              </Col>
-              <Col md={6}>
-                <BetTable />
-              </Col>
-              <Col md={6}>
-                <BetTable />
-              </Col>
-              <Col md={4}>
-                <BetTable />
-              </Col>
 
-              {/* {matchDetails?.apiSessionActive && ( */}
+              {otherMatchDetails?.bookmaker?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={otherMatchDetails?.bookmaker?.name}
+                    type={MatchType.MATCH_ODDS}
+                    data={otherMatchDetails?.bookmaker}
+                  />
+                </Col>
+              )}
+
+              {otherMatchDetails?.quickBookmaker?.length > 0 &&
+                otherMatchDetails?.quickBookmaker?.map(
+                  (item: any, index: number) => (
+                    <div key={index}>
+                      {item?.isActive && (
+                        <Col md={12}>
+                          <BetTable
+                            title={item?.name}
+                            type={MatchType.BOOKMAKER}
+                            data={item}
+                          />
+                        </Col>
+                      )}
+                    </div>
+                  )
+                )}
+              {otherMatchDetails?.firstHalfGoal?.length > 0 &&
+                otherMatchDetails?.firstHalfGoal?.map(
+                  (item: any, index: number) => (
+                    <div key={index}>
+                      {item?.isActive && (
+                        <Col md={12}>
+                          <BetTable
+                            title={item?.name}
+                            type={MatchType.UNDER_OVER}
+                            data={item}
+                          />
+                        </Col>
+                      )}
+                    </div>
+                  )
+                )}
+
+              {otherMatchDetails?.halfTime?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={otherMatchDetails?.halfTime?.name}
+                    type={MatchType.MATCH_ODDS}
+                    data={otherMatchDetails?.halfTime}
+                  />
+                </Col>
+              )}
+
+              {otherMatchDetails?.overUnder?.length > 0 &&
+                otherMatchDetails?.overUnder?.map(
+                  (item: any, index: number) => (
+                    <div key={index}>
+                      {item?.isActive && (
+                        <Col md={12}>
+                          <BetTable
+                            title={item?.name}
+                            type={MatchType.UNDER_OVER}
+                            data={item}
+                          />
+                        </Col>
+                      )}
+                    </div>
+                  )
+                )}
+
+              {/* <Col md={12}>
+                <BetTable />
+              </Col>
+              <Col md={12}>
+                <BetTable />
+              </Col>
+              <Col md={6}>
+                <BetTable />
+              </Col>
+              <Col md={6}>
+                <BetTable />
+              </Col>
               <Col md={4}>
+                <BetTable />
+              </Col> */}
+
+              {/* {otherMatchDetails?.apiSessionActive && ( */}
+              {/* <Col md={4}>
                 <BetTable />
               </Col>
               <Col md={4}>
@@ -88,9 +159,9 @@ const FootballDesktopGameDetail = () => {
               </Col>
               <Col md={12}>
                 <BetTable />
-              </Col>
+              </Col> */}
               {/* )} */}
-              {/* {matchDetails?.manualSessionActive && ( */}
+              {/* {otherMatchDetails?.manualSessionActive && ( */}
               {/* <Col md={4}>
                   <BetTable
                   />

@@ -1,15 +1,13 @@
 import { Table } from "react-bootstrap";
-import isMobile from "../../../../utils/screenDimension";
-import "../../../gameDetails/betTable/bookMaker/style.scss";
-import "../style.scss";
-import { AppDispatch, RootState } from "../../../../store/store";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useSelector } from "react-redux";
-import { calculateProfitLoss } from "../../../../utils/matchDetailsBetCalculation";
-import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
-import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
+import { AppDispatch, RootState } from "../../../../store/store";
 import { teamStatus } from "../../../../utils/constants";
+import { calculateProfitLoss } from "../../../../utils/matchDetailsBetCalculation";
+import isMobile from "../../../../utils/screenDimension";
+import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
+import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
+import "../style.scss";
 
 interface BookmakerTableProps {
   minMax?: any;
@@ -23,7 +21,6 @@ function FootballBookmakerTable({
   backLayCount = 6,
   matchDetails,
 }: BookmakerTableProps) {
-
   const dispatch: AppDispatch = useDispatch();
 
   const handleClick = (team: any, data: any) => {
@@ -45,6 +42,7 @@ function FootballBookmakerTable({
   } else {
     arr = ["A", "B", "C"];
   }
+
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -54,29 +52,29 @@ function FootballBookmakerTable({
           <tr>
             <th
               className="border-0 px-2"
-              colSpan={isMobile && isMobile === 6 ? 3 : 0}
+              colSpan={isMobile && backLayCount === 6 ? 3 : 0}
             >
               <div className="px-2 text-info">
-                {100 &&
+                {minMax &&
                   (isMobile ? (
                     <span className="f900 title-12 px-2 text-black">
-                      {100}
+                      {minMax}
                     </span>
                   ) : (
                     <span className="f700 title-16 px-2 text-info ">
-                      {1000}
+                      {minMax}
                     </span>
                   ))}
               </div>
             </th>
-            {isMobile === 6 && !isMobile && (
+            {backLayCount === 6 && !isMobile && (
               <>
                 <th className="border-0 bookmaker-bet-place"></th>
                 <th className="border-0 bookmaker-bet-place"></th>
               </>
             )}
 
-            {isMobile && isMobile != 2 ? (
+            {isMobile && backLayCount != 2 ? (
               <>
                 <th colSpan={6} className={`text-center d-flex w-100`}>
                   <div className="bookmaker-width-26"></div>
@@ -93,16 +91,16 @@ function FootballBookmakerTable({
               </>
             ) : (
               <>
-                <th className={`text-center bg-blue3 bookmaker-bet-place`}>
-                  Back
+                <th className={`text-center bg-blue3 bookmaker-bet-place f400`}>
+                  BACK
                 </th>
-                <th className={`text-center bg-red1 bookmaker-bet-place`}>
-                  Lay
+                <th className={`text-center bg-red1 bookmaker-bet-place f400`}>
+                  LAY
                 </th>
               </>
             )}
 
-            {isMobile === 6 && !isMobile && (
+            {backLayCount === 6 && !isMobile && (
               <th
                 colSpan={isMobile ? 3 : 1}
                 className="border-0 bookmaker-bet-place"
@@ -112,7 +110,7 @@ function FootballBookmakerTable({
           </tr>
         </thead>
         <tbody>
-        {arr
+          {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((item: any, i: number) => (
               <tr key={i}>
@@ -120,7 +118,7 @@ function FootballBookmakerTable({
                   <div className="backLayRunner d-flex flex-column px-1 w-100">
                     <span
                       className={`backLayRunner-country title-12  ${
-                        isMobile ? "f900" : "f600"
+                        isMobile ? "f900" : "f500"
                       } `}
                     >
                       {data?.type === "tiedMatch2"

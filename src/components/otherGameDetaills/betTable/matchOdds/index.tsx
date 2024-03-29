@@ -1,17 +1,46 @@
 import { Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { teamStatus } from "../../../../utils/constants";
+import { calculateProfitLoss } from "../../../../utils/matchDetailsBetCalculation";
 import isMobile from "../../../../utils/screenDimension";
-import "../../../gameDetails/betTable/apiSessionMarket/style.scss";
+import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
+import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import "../style.scss";
-// interface MatchOddsProps {
-//   minMax?: any;
-//   data: any;
-//   matchDetails?: any;
-//   backLayCount?: number;
-// }
-function FootballMatchOdds() {
 
+interface MatchOddsProps {
+  minMax?: any;
+  data: any;
+  matchDetails?: any;
+  backLayCount?: number;
+}
+function FootballMatchOdds({
+  minMax,
+  data,
+  matchDetails,
+  backLayCount,
+}: MatchOddsProps) {
+  const dispatch: AppDispatch = useDispatch();
 
-  
+  const handleClick = (team: any, data: any) => {
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+  };
+
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+  let arr = [];
+  if (data?.type === "completeMatch" || data?.type === "tiedMatch1") {
+    arr = ["A", "B"];
+  } else {
+    arr = ["A", "B", "C"];
+  }
 
   return (
     <div
@@ -21,8 +50,8 @@ function FootballMatchOdds() {
         <thead>
           <tr>
             <th className="border-0">
-              {100 && isMobile && (
-                <span className="f700 title-14">{1000}</span>
+              {minMax && isMobile && (
+                <span className="f700 title-14">{minMax}</span>
               )}
             </th>
             {!isMobile && (
@@ -31,8 +60,13 @@ function FootballMatchOdds() {
                 <th className="border-0 match-odd-bet-place"></th>
               </>
             )}
-            <th className="text-center bg-blue3 match-odd-bet-place">Back</th>
-            <th className="text-center bg-red1 match-odd-bet-place">Lay</th>
+            <th className="text-center bg-blue3 match-odd-bet-place f400">
+              {" "}
+              BACK
+            </th>
+            <th className="text-center bg-red1 match-odd-bet-place f400">
+              LAY
+            </th>
             {!isMobile && (
               <>
                 <th className="border-0 match-odd-bet-place"></th>
@@ -42,7 +76,7 @@ function FootballMatchOdds() {
           </tr>
         </thead>
         <tbody>
-          {/* {arr
+          {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((matchs, indexes) => {
               return (
@@ -51,7 +85,7 @@ function FootballMatchOdds() {
                     <div className="backLayRunner d-flex flex-column px-1 w-100">
                       <span
                         className={`backLayRunner-country title-12  ${
-                          isMobile ? "f900" : "f600"
+                          isMobile ? "f900" : "f500"
                         } `}
                       >
                         {data?.type === "completeMatch" ||
@@ -319,7 +353,7 @@ function FootballMatchOdds() {
                   {!isMobile && <td></td>}
                 </tr>
               );
-            })} */}
+            })}
         </tbody>
       </Table>
     </div>

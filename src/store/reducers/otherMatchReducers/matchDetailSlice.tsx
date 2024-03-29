@@ -9,7 +9,10 @@ import {
   updateBalance,
   updateMaxLossForBet,
 } from "../../actions/user/userAction";
-import { otherMatchDetailAction } from "../../actions/otherMatchActions";
+import {
+  otherMatchDetailAction,
+  updateMatchRates,
+} from "../../actions/otherMatchActions";
 
 interface InitialState {
   success: boolean;
@@ -52,6 +55,82 @@ const otherMatchDetail = createSlice({
       .addCase(otherMatchDetailAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
+      })
+      .addCase(updateMatchRates.fulfilled, (state, action) => {
+        const {
+          apiSession,
+          apiTiedMatch,
+          bookmaker,
+          marketCompleteMatch,
+          matchOdd,
+          sessionBettings,
+          manualTideMatch,
+          quickbookmaker,
+          firstHalfGoal,
+          halfTime,
+          overUnder,
+        } = action.payload;
+
+        let newSessionBettings = sessionBettings;
+        state.otherMatchDetails = {
+          ...state.otherMatchDetails,
+          manualSessionActive: sessionBettings?.length >= 0 ? true : false,
+          apiSessionActive: apiSession?.length >= 0 ? true : false,
+          apiSession: apiSession,
+          apiTideMatch: apiTiedMatch,
+          bookmaker: bookmaker,
+          manualTiedMatch: manualTideMatch,
+          marketCompleteMatch: marketCompleteMatch,
+          matchOdd: matchOdd,
+          quickBookmaker: quickbookmaker,
+          firstHalfGoal,
+          halfTime,
+          overUnder,
+          sessionBettings: newSessionBettings?.map((item: any) => {
+            if (!JSON.parse(item)?.selectionId) {
+              const parsedItem = JSON.parse(item);
+              let id = parsedItem?.id;
+              const matchingSession = sessionBettings.find(
+                (sessionItem: any) => JSON.parse(sessionItem).id === id
+              );
+              let parsedSession = JSON.parse(matchingSession);
+              if (parsedSession) {
+                return JSON.stringify({
+                  ...parsedItem,
+                  ...parsedSession,
+                });
+              } else return JSON.stringify(parsedItem);
+            } else {
+              const parsedItem = JSON.parse(item);
+              let id = parsedItem?.id;
+              const matchingApiSession = apiSession.find(
+                (sessionItem: any) => sessionItem.id === id
+              );
+              if (matchingApiSession) {
+                return JSON.stringify({
+                  ...parsedItem,
+                  yesRate: matchingApiSession.BackPrice1,
+                  yesPercent: matchingApiSession.BackSize1,
+                  noRate: matchingApiSession.LayPrice1,
+                  noPercent: matchingApiSession.LaySize1,
+                  activeStatus: "live",
+                });
+              } else {
+                return JSON.stringify({
+                  ...parsedItem,
+                  noRate: 0,
+                  yesRate: 0,
+                  yesPercent: 0,
+                  noPercent: 0,
+                  activeStatus:
+                    parsedItem.activeStatus === "live"
+                      ? "save"
+                      : parsedItem.activeStatus,
+                });
+              }
+            }
+          }),
+        };
       })
       .addCase(selectedBetAction.fulfilled, (state, action) => {
         state.selectedBet = action.payload;
@@ -129,4 +208,4 @@ const otherMatchDetail = createSlice({
   },
 });
 
-export const OtherMatchDetailReducers = otherMatchDetail.reducer;
+export const matchDetailReducers = otherMatchDetail.reducer;

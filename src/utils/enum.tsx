@@ -6,6 +6,7 @@ export const GAME_TYPE = {
 export const MatchType = {
   BOOKMAKER: "bookmaker",
   MATCH_ODDS: "matchOdds",
+  UNDER_OVER: "underOver",
   SESSION_MARKET: "sessionMarket",
   API_SESSION_MARKET: "apiSessionMarket",
 };

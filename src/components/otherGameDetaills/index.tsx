@@ -12,16 +12,16 @@ import {
   updateBalance,
   updateMaxLossForBet,
 } from "../../store/actions/user/userAction";
-import {
-  selectedBetAction,
-  updateMatchRates,
-} from "../../store/actions/match/matchListAction";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import { expertSocketService, socketService } from "../../socketManager";
-import { otherMatchDetailAction } from "../../store/actions/otherMatchActions";
+import {
+  otherMatchDetailAction,
+  updateMatchRates,
+} from "../../store/actions/otherMatchActions";
 
 const FootballGameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
