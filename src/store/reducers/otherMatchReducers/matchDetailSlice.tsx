@@ -1,18 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  SearchList,
-  SearchListReset,
   searchListReset,
   selectedBetAction,
 } from "../../actions/match/matchListAction";
 import {
-  updateBalance,
-  updateMaxLossForBet,
-} from "../../actions/user/userAction";
-import {
   otherMatchDetailAction,
   updateMatchRates,
+  updateTeamRatesOnPlaceBet,
 } from "../../actions/otherMatchActions";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 interface InitialState {
   success: boolean;
@@ -138,24 +134,19 @@ const otherMatchDetail = createSlice({
       .addCase(searchListReset, (state) => {
         state.searchedMatchList = null;
       })
-      .addCase(updateBalance.fulfilled, (state, action) => {
+      .addCase(updateTeamRatesOnPlaceBet.fulfilled, (state, action) => {
         const { matchBetType, newTeamRateData } = action.payload;
-        if (["tiedMatch1", "tiedMatch2"].includes(matchBetType)) {
+        if (newTeamRateData.teamC) {
           state.otherMatchDetails = {
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              yesRateTie: newTeamRateData.teamA,
-              noRateTie: newTeamRateData.teamB,
-            },
-          };
-        } else if (["completeMatch"].includes(matchBetType)) {
-          state.otherMatchDetails = {
-            ...state.otherMatchDetails,
-            profitLossDataMatch: {
-              ...state.otherMatchDetails.profitLossDataMatch,
-              yesRateComplete: newTeamRateData.teamA,
-              noRateComplete: newTeamRateData.teamB,
+              [profitLossDataForMatchConstants[matchBetType].A]:
+                newTeamRateData.teamA,
+              [profitLossDataForMatchConstants[matchBetType].B]:
+                newTeamRateData.teamB,
+              [profitLossDataForMatchConstants[matchBetType].C]:
+                newTeamRateData.teamC,
             },
           };
         } else {
@@ -163,46 +154,12 @@ const otherMatchDetail = createSlice({
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              teamARate: newTeamRateData.teamA,
-              teamBRate: newTeamRateData.teamB,
-              teamCRate: newTeamRateData.teamC,
+              [profitLossDataForMatchConstants[matchBetType].A]:
+                newTeamRateData.teamA,
+              [profitLossDataForMatchConstants[matchBetType].B]:
+                newTeamRateData.teamB,
             },
           };
-        }
-      })
-      .addCase(updateMaxLossForBet.fulfilled, (state, action) => {
-        const { betPlaced, profitLossData } = action.payload;
-        if (state?.otherMatchDetails?.id === betPlaced?.placedBet?.matchId) {
-          const updatedProfitLossDataSession =
-            state.otherMatchDetails?.profitLossDataSession.map((item: any) => {
-              if (item?.betId === betPlaced?.placedBet?.betId) {
-                return {
-                  ...item,
-                  maxLoss: JSON.parse(profitLossData)?.maxLoss,
-                  totalBet: +item?.totalBet + 1,
-                };
-              }
-              return item;
-            });
-
-          const betIndex = updatedProfitLossDataSession.findIndex(
-            (item: any) => item?.betId === betPlaced?.placedBet?.betId
-          );
-          if (betIndex === -1) {
-            updatedProfitLossDataSession.push({
-              betId: betPlaced?.placedBet?.betId,
-              maxLoss: JSON.parse(profitLossData)?.maxLoss,
-              totalBet: 1,
-              // Add other properties as necessary
-            });
-          }
-
-          state.otherMatchDetails = {
-            ...state.otherMatchDetails,
-            profitLossDataSession: updatedProfitLossDataSession,
-          };
-        } else {
-          return state.otherMatchDetails;
         }
       });
   },

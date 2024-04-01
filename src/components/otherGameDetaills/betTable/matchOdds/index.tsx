@@ -2,12 +2,15 @@ import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { teamStatus } from "../../../../utils/constants";
+import {
+  profitLossDataForMatchConstants,
+  teamStatus,
+} from "../../../../utils/constants";
 import { calculateProfitLoss } from "../../../../utils/matchDetailsBetCalculation";
 import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
-import "../style.scss";
+import "./style.scss";
 
 interface MatchOddsProps {
   minMax?: any;
@@ -35,12 +38,7 @@ function FootballMatchOdds({
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  let arr = [];
-  if (data?.type === "completeMatch" || data?.type === "tiedMatch1") {
-    arr = ["A", "B"];
-  } else {
-    arr = ["A", "B", "C"];
-  }
+  let arr = ["A", "B", "C"];
 
   return (
     <div
@@ -88,60 +86,27 @@ function FootballMatchOdds({
                           isMobile ? "f900" : "f500"
                         } `}
                       >
-                        {data?.type === "completeMatch" ||
-                        data?.type === "tiedMatch1"
-                          ? indexes === 0
-                            ? "YES"
-                            : "NO"
-                          : matchDetails?.[`team${matchs}`]}
+                        {matchDetails?.[`team${matchs}`]}
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100">
                         <span
                           className={`title-14  ${
-                            data?.type === "tiedMatch1"
-                              ? indexes === 0
-                                ? matchDetails?.profitLossDataMatch
-                                    ?.yesRateTie < 0
-                                  ? "color-red"
-                                  : "color-green"
-                                : matchDetails?.profitLossDataMatch?.noRateTie <
-                                  0
-                                ? "color-red"
-                                : "color-green"
-                              : data?.type === "completeMatch"
-                              ? indexes === 0
-                                ? matchDetails?.profitLossDataMatch
-                                    ?.yesRateComplete < 0
-                                  ? "color-red"
-                                  : "color-green"
-                                : matchDetails?.profitLossDataMatch
-                                    ?.noRateComplete < 0
-                                ? "color-red"
-                                : "color-green"
-                              : matchDetails?.profitLossDataMatch?.[
-                                  `team${matchs}Rate`
-                                ] < 0
+                            matchDetails?.profitLossDataMatch?.[
+                              profitLossDataForMatchConstants[data?.type][
+                                matchs
+                              ]
+                            ] < 0
                               ? "color-red"
                               : "color-green"
                           }`}
                         >
-                          {data?.type === "tiedMatch1"
-                            ? indexes === 0
-                              ? matchDetails?.profitLossDataMatch?.yesRateTie ??
-                                0
-                              : matchDetails?.profitLossDataMatch?.noRateTie ??
-                                0
-                            : data?.type === "completeMatch"
-                            ? indexes === 0
-                              ? matchDetails?.profitLossDataMatch
-                                  ?.yesRateComplete ?? 0
-                              : matchDetails?.profitLossDataMatch
-                                  ?.noRateComplete ?? 0
-                            : matchDetails?.profitLossDataMatch?.[
-                                `team${matchs}Rate`
-                              ]
+                          {matchDetails?.profitLossDataMatch?.[
+                            profitLossDataForMatchConstants[data?.type][matchs]
+                          ]
                             ? matchDetails?.profitLossDataMatch?.[
-                                `team${matchs}Rate`
+                                profitLossDataForMatchConstants[data?.type][
+                                  matchs
+                                ]
                               ]
                             : 0}
                         </span>
@@ -151,12 +116,7 @@ function FootballMatchOdds({
                               calculateProfitLoss(
                                 data,
                                 selectedBet,
-                                data?.type === "completeMatch" ||
-                                  data?.type === "tiedMatch1"
-                                  ? indexes === 0
-                                    ? "YES"
-                                    : "NO"
-                                  : matchDetails?.[`team${matchs}`]
+                                matchDetails?.[`team${matchs}`]
                               ) || 0
                             ) < 0
                               ? "color-red"
@@ -164,12 +124,7 @@ function FootballMatchOdds({
                                   calculateProfitLoss(
                                     data,
                                     selectedBet,
-                                    data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                      ? indexes === 0
-                                        ? "YES"
-                                        : "NO"
-                                      : matchDetails?.[`team${matchs}`]
+                                    matchDetails?.[`team${matchs}`]
                                   ) || 0
                                 ) > 0
                               ? "color-green"
@@ -179,12 +134,7 @@ function FootballMatchOdds({
                           {calculateProfitLoss(
                             data,
                             selectedBet,
-                            data?.type === "completeMatch" ||
-                              data?.type === "tiedMatch1"
-                              ? indexes === 0
-                                ? "YES"
-                                : "NO"
-                              : matchDetails?.[`team${matchs}`]
+                            matchDetails?.[`team${matchs}`]
                           )}
                         </span>
                       </div>
@@ -244,16 +194,8 @@ function FootballMatchOdds({
                                     rate: rate,
                                     type: "back",
                                     stake: 0,
-                                    teamA:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? "YES"
-                                        : matchDetails?.teamA,
-                                    teamB:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? "NO"
-                                        : matchDetails?.teamB,
+                                    teamA: matchDetails?.teamA,
+                                    teamB: matchDetails?.teamB,
                                     teamC: matchDetails?.teamC
                                       ? matchDetails?.teamC
                                       : "",
@@ -262,6 +204,7 @@ function FootballMatchOdds({
                                     matchId: matchDetails?.id,
                                     placeIndex: (isMobile ? 0 : 2) - index,
                                     matchBetType: data?.type,
+                                    gameType: "other",
                                   },
                                   data
                                 );
@@ -306,26 +249,12 @@ function FootballMatchOdds({
                               ) {
                                 handleClick(
                                   {
-                                    betOnTeam:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? indexes === 0
-                                          ? "YES"
-                                          : "NO"
-                                        : matchDetails?.[`team${matchs}`],
+                                    betOnTeam: matchDetails?.[`team${matchs}`],
                                     rate: rate,
                                     type: "lay",
                                     stake: 0,
-                                    teamA:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? "YES"
-                                        : matchDetails?.teamA,
-                                    teamB:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? "NO"
-                                        : matchDetails?.teamB,
+                                    teamA: matchDetails?.teamA,
+                                    teamB: matchDetails?.teamB,
                                     teamC: matchDetails?.teamC
                                       ? matchDetails?.teamC
                                       : "",
@@ -334,6 +263,7 @@ function FootballMatchOdds({
                                     matchId: matchDetails?.id,
                                     placeIndex: index,
                                     matchBetType: data?.type,
+                                    gameType: "other",
                                   },
                                   data
                                 );

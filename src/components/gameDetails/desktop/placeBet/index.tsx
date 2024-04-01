@@ -312,6 +312,10 @@ const PlacedBet = () => {
                                             "session" ||
                                           selectedBet?.data?.SelectionId
                                             ? ApiConstants.BET.PLACEBETSESSION
+                                            : selectedBet?.team?.gameType ===
+                                              "other"
+                                            ? ApiConstants.BET
+                                                .PLACEBETMATCHBETTINGOTHER
                                             : ApiConstants.BET
                                                 .PLACEBETMATCHBETTING,
                                         data:
@@ -332,8 +336,12 @@ const PlacedBet = () => {
                                         selectedBet?.data?.type === "session" ||
                                         selectedBet?.data?.SelectionId
                                           ? ApiConstants.BET.PLACEBETSESSION
+                                          : selectedBet?.team?.gameType ===
+                                            "other"
+                                          ? ApiConstants.BET
+                                              .PLACEBETMATCHBETTINGOTHER
                                           : ApiConstants.BET
-                                              .PLACEBETMATCHBETTINGOTHER,
+                                              .PLACEBETMATCHBETTING,
                                       data:
                                         selectedBet?.data?.type === "session" ||
                                         selectedBet?.data?.SelectionId

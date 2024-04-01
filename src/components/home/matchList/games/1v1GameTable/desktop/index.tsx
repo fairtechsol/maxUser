@@ -117,7 +117,7 @@ const MatchListRow = ({ item, matchType }: any) => {
           <Link
             className="text-decoration-none"
             to={`/${
-              matchType === "football" ? "other-game-detail" : "game-detail"
+              matchType === "cricket" ? "game-detail" : "other-game-detail"
             }/${item?.id}`}
           >
             <div

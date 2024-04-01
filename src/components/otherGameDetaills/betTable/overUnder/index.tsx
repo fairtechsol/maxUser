@@ -2,7 +2,10 @@ import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { teamStatus } from "../../../../utils/constants";
+import {
+  profitLossDataForMatchConstants,
+  teamStatus,
+} from "../../../../utils/constants";
 import { calculateProfitLoss } from "../../../../utils/matchDetailsBetCalculation";
 import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
@@ -77,7 +80,7 @@ function OverUnderMarket({
         <tbody>
           {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
-            ?.map((matchs, indexes) => {
+            ?.map((_, indexes) => {
               return (
                 <tr key={indexes}>
                   <td>
@@ -102,52 +105,26 @@ function OverUnderMarket({
                       <div className="d-flex align-items-center justify-content-between w-100">
                         <span
                           className={`title-14  ${
-                            data?.type === "tiedMatch1"
-                              ? indexes === 0
-                                ? matchDetails?.profitLossDataMatch
-                                    ?.yesRateTie < 0
-                                  ? "color-red"
-                                  : "color-green"
-                                : matchDetails?.profitLossDataMatch?.noRateTie <
-                                  0
+                            indexes === 0
+                              ? matchDetails?.profitLossDataMatch[
+                                  profitLossDataForMatchConstants[data?.type]?.A
+                                ] < 0
                                 ? "color-red"
                                 : "color-green"
-                              : data?.type === "completeMatch"
-                              ? indexes === 0
-                                ? matchDetails?.profitLossDataMatch
-                                    ?.yesRateComplete < 0
-                                  ? "color-red"
-                                  : "color-green"
-                                : matchDetails?.profitLossDataMatch
-                                    ?.noRateComplete < 0
-                                ? "color-red"
-                                : "color-green"
-                              : matchDetails?.profitLossDataMatch?.[
-                                  `team${matchs}Rate`
+                              : matchDetails?.profitLossDataMatch[
+                                  profitLossDataForMatchConstants[data?.type]?.B
                                 ] < 0
                               ? "color-red"
                               : "color-green"
                           }`}
                         >
-                          {data?.type === "tiedMatch1"
-                            ? indexes === 0
-                              ? matchDetails?.profitLossDataMatch?.yesRateTie ??
-                                0
-                              : matchDetails?.profitLossDataMatch?.noRateTie ??
-                                0
-                            : data?.type === "completeMatch"
-                            ? indexes === 0
-                              ? matchDetails?.profitLossDataMatch
-                                  ?.yesRateComplete ?? 0
-                              : matchDetails?.profitLossDataMatch
-                                  ?.noRateComplete ?? 0
-                            : matchDetails?.profitLossDataMatch?.[
-                                `team${matchs}Rate`
-                              ]
-                            ? matchDetails?.profitLossDataMatch?.[
-                                `team${matchs}Rate`
-                              ]
-                            : 0}
+                          {indexes === 0
+                            ? matchDetails?.profitLossDataMatch[
+                                profitLossDataForMatchConstants[data?.type]?.A
+                              ] ?? 0
+                            : matchDetails?.profitLossDataMatch[
+                                profitLossDataForMatchConstants[data?.type]?.B
+                              ] ?? 0}
                         </span>
                         <span
                           className={`title-14 ${
@@ -234,6 +211,7 @@ function OverUnderMarket({
                                     matchId: matchDetails?.id,
                                     placeIndex: (isMobile ? 0 : 2) - index,
                                     matchBetType: data?.type,
+                                    gameType: "other",
                                   },
                                   data
                                 );
@@ -289,6 +267,7 @@ function OverUnderMarket({
                                     matchId: matchDetails?.id,
                                     placeIndex: index,
                                     matchBetType: data?.type,
+                                    gameType: "other",
                                   },
                                   data
                                 );

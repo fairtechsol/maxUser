@@ -2,12 +2,15 @@ import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { teamStatus } from "../../../../utils/constants";
+import {
+  profitLossDataForMatchConstants,
+  teamStatus,
+} from "../../../../utils/constants";
 import { calculateProfitLoss } from "../../../../utils/matchDetailsBetCalculation";
 import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
-import "../style.scss";
+import "./style.scss";
 
 interface BookmakerTableProps {
   minMax?: any;
@@ -130,29 +133,16 @@ function FootballBookmakerTable({
                     <div className="d-flex align-items-center justify-content-between w-100">
                       <span
                         className={`title-14 ${
-                          data?.type === "tiedMatch2"
-                            ? i === 0
-                              ? matchDetails?.profitLossDataMatch?.yesRateTie <
-                                0
-                                ? "color-red"
-                                : "color-green"
-                              : matchDetails?.profitLossDataMatch?.noRateTie < 0
-                              ? "color-red"
-                              : "color-green"
-                            : matchDetails?.profitLossDataMatch?.[
-                                `team${item}Rate`
-                              ] < 0
+                          matchDetails?.profitLossDataMatch[
+                            profitLossDataForMatchConstants[data?.type][item]
+                          ] < 0
                             ? "color-red"
                             : "color-green"
                         }`}
                       >
-                        {data?.type === "tiedMatch2"
-                          ? i === 0
-                            ? matchDetails?.profitLossDataMatch?.yesRateTie ?? 0
-                            : matchDetails?.profitLossDataMatch?.noRateTie ?? 0
-                          : matchDetails?.profitLossDataMatch?.[
-                              `team${item}Rate`
-                            ] ?? 0}
+                        {matchDetails?.profitLossDataMatch?.[
+                          profitLossDataForMatchConstants[data?.type][item]
+                        ] ?? 0}
                       </span>
                       <span
                         className={`title-14 ${
@@ -160,11 +150,7 @@ function FootballBookmakerTable({
                             calculateProfitLoss(
                               data,
                               selectedBet,
-                              data?.type === "tiedMatch2"
-                                ? i === 0
-                                  ? "YES"
-                                  : "NO"
-                                : matchDetails?.[`team${item}`]
+                              matchDetails?.[`team${item}`]
                             ) || 0
                           ) < 0
                             ? "color-red"
@@ -172,11 +158,7 @@ function FootballBookmakerTable({
                                 calculateProfitLoss(
                                   data,
                                   selectedBet,
-                                  data?.type === "tiedMatch2"
-                                    ? i === 0
-                                      ? "YES"
-                                      : "NO"
-                                    : matchDetails?.[`team${item}`]
+                                  matchDetails?.[`team${item}`]
                                 ) || 0
                               ) > 0
                             ? "color-green"
@@ -186,11 +168,7 @@ function FootballBookmakerTable({
                         {calculateProfitLoss(
                           data,
                           selectedBet,
-                          data?.type === "tiedMatch2"
-                            ? i === 0
-                              ? "YES"
-                              : "NO"
-                            : matchDetails?.[`team${item}`]
+                          matchDetails?.[`team${item}`]
                         )}
                       </span>
                     </div>
@@ -233,23 +211,12 @@ function FootballBookmakerTable({
                             ) {
                               handleClick(
                                 {
-                                  betOnTeam:
-                                    data?.type === "tiedMatch2"
-                                      ? i === 0
-                                        ? "YES"
-                                        : "NO"
-                                      : matchDetails?.[`team${item}`],
+                                  betOnTeam: matchDetails?.[`team${item}`],
                                   rate: rate,
                                   type: "back",
                                   stake: 0,
-                                  teamA:
-                                    data?.type === "tiedMatch2"
-                                      ? "YES"
-                                      : matchDetails?.teamA,
-                                  teamB:
-                                    data?.type === "tiedMatch2"
-                                      ? "NO"
-                                      : matchDetails?.teamB,
+                                  teamA: matchDetails?.teamA,
+                                  teamB: matchDetails?.teamB,
                                   teamC: matchDetails?.teamC
                                     ? matchDetails?.teamC
                                     : "",
@@ -258,6 +225,7 @@ function FootballBookmakerTable({
                                   matchId: matchDetails?.id,
                                   placeIndex: (isMobile ? 0 : 2) - index,
                                   matchBetType: data?.type,
+                                  gameType: "other",
                                 },
                                 data
                               );
@@ -292,23 +260,12 @@ function FootballBookmakerTable({
                             ) {
                               handleClick(
                                 {
-                                  betOnTeam:
-                                    data?.type === "tiedMatch2"
-                                      ? i === 0
-                                        ? "YES"
-                                        : "NO"
-                                      : matchDetails?.[`team${item}`],
+                                  betOnTeam: matchDetails?.[`team${item}`],
                                   rate: rate,
                                   type: "lay",
                                   stake: 0,
-                                  teamA:
-                                    data?.type === "tiedMatch2"
-                                      ? "YES"
-                                      : matchDetails?.teamA,
-                                  teamB:
-                                    data?.type === "tiedMatch2"
-                                      ? "NO"
-                                      : matchDetails?.teamB,
+                                  teamA: matchDetails?.teamA,
+                                  teamB: matchDetails?.teamB,
                                   teamC: matchDetails?.teamC
                                     ? matchDetails?.teamC
                                     : "",
@@ -317,6 +274,7 @@ function FootballBookmakerTable({
                                   matchId: matchDetails?.id,
                                   placeIndex: index,
                                   matchBetType: data?.type,
+                                  gameType: "other",
                                 },
                                 data
                               );
