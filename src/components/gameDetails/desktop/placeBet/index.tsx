@@ -15,6 +15,7 @@ import {
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
+import { toast } from "react-toastify";
 
 const placeBetHeader = [
   {},
@@ -261,6 +262,25 @@ const PlacedBet = () => {
                             className="bg-success border-0 py-2"
                             size="sm"
                             onClick={() => {
+                              if (
+                                selectedBet?.team?.stake <
+                                (selectedBet?.data?.minBet ||
+                                  selectedBet?.data?.min)
+                              ) {
+                                toast.error(
+                                  "Stake value must be greater or equal to min bet"
+                                );
+                                return;
+                              } else if (
+                                selectedBet?.team?.stake >
+                                (selectedBet?.data?.maxBet ||
+                                  selectedBet?.data?.max)
+                              ) {
+                                toast.error(
+                                  "Stake value must be smaller or equal to max bet"
+                                );
+                                return;
+                              }
                               if (loading) {
                                 return;
                               } else {
