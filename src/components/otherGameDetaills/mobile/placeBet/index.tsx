@@ -13,6 +13,7 @@ import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";
 import "./styles.scss";
+import { toast } from "react-toastify";
 
 interface PlaceBetProps {
   show: boolean;
@@ -207,6 +208,23 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                 className="f900 w-100"
                 onClick={() => {
                   try {
+                    if (
+                      selectedBet?.team?.stake <
+                      (selectedBet?.data?.minBet || selectedBet?.data?.min)
+                    ) {
+                      toast.error(
+                        "Stake value must be greater or equal to min bet"
+                      );
+                      return;
+                    } else if (
+                      selectedBet?.team?.stake >
+                      (selectedBet?.data?.maxBet || selectedBet?.data?.max)
+                    ) {
+                      toast.error(
+                        "Stake value must be smaller or equal to max bet"
+                      );
+                      return;
+                    }
                     if (loading) {
                       return;
                     }
