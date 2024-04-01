@@ -120,15 +120,15 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   return (
     <>
       <CustomModal
-        title={"Place Bet"}
+        title={"PlaceBet"}
         show={show && selectedBet}
         setShow={() => {
           dispatch(selectedBetAction(null));
         }}
       >
-        <Container className={`${selectedBet?.team?.type === 'lay' || selectedBet?.team?.type === 'no' ? 'place-bet-table-redm' : 'place-bet-table-bluem'}`} fluid>
+        <Container className={`${selectedBet?.team?.type === 'lay' || selectedBet?.team?.type === 'no' ? 'bg-red1' : 'bg-blue1'}`} fluid>
           <Row className="row-cols-md-3 g-2 align-items-center">
-            <Col xs={6} className="f800 title-12">
+            <Col xs={6} className="f500 title-12">
               {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
             </Col>
             <Col xs={6} className="d-flex justify-content-end">
@@ -196,7 +196,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
 
             <Col xs={4} className="f800 title-12">
               <CustomButton
-                className="f900 w-100"
+                className="f400 w-100"
                 onClick={() => {
                   try {
                     if (loading) {
@@ -282,7 +282,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             {valueLabel?.map((item: any, index: number) => (
               <Col key={index} xs={4}>
                 <CustomButton
-                  className="w-100 border-0 bg-secondary f900 text-black"
+                  className="w-100 border-0 bg-secondary f400 text-black"
                   size="sm"
                   onClick={() => {
                     dispatch(

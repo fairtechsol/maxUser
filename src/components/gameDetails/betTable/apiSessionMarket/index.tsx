@@ -17,16 +17,20 @@ import { useSelector } from "react-redux";
 import { teamStatus } from "../../../../utils/constants";
 import Desktop from "../../../rules/categoryRules/desktop";
 import Mobile from "../../../rules/mobile";
+import SmoothDropdownModal from "../../../commonComponent/minMaxModal";
+import { formattedMinMax } from "../../../../utils/formatMinMax";
 
 interface ApiSessionMarketTableProps {
   data: any;
   title?: any;
   matchDetails: any;
+  minMax?: any;
 }
 function ApiSessionMarketTable({
   data,
   title,
   matchDetails,
+  minMax
 }: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
 
@@ -37,6 +41,17 @@ function ApiSessionMarketTable({
 
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
+  // const [showMinsModal, setShowMinsModal] = useState(false);
+  // State to manage the modal visibility for each item
+  const [modalStates, setModalStates] = useState<any>({});
+
+  // Function to toggle modal visibility for a specific item
+  const handleMinModalToggle = (itemId: any) => {
+    setModalStates((prevState: { [x: string]: any; }) => ({
+      ...prevState,
+      [itemId]: !prevState[itemId] // Toggle the modal state for the specific item
+    }));
+  };
   const handleClick = (team: any, data: any) => {
     dispatch(
       selectedBetAction({
@@ -45,7 +60,9 @@ function ApiSessionMarketTable({
       })
     );
   };
-
+  // const handleMinModalToggle = () => {
+  //   setShowMinsModal(!showMinsModal);
+  // };
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
       <Table className="mb-0">
@@ -59,8 +76,8 @@ function ApiSessionMarketTable({
                     <div>
                       <span
                         className={`${isMobile
-                            ? "text-black title-16"
-                            : "text-white title-20"
+                          ? "text-black title-16"
+                          : "text-white title-20"
                           }`}
                       >
                         <IoInformationCircle
@@ -82,13 +99,14 @@ function ApiSessionMarketTable({
               )}
             </th>
 
-            <th className="text-center bg-red1 bet-place-box f400">No</th>
-            <th className="text-center bg-blue3 bet-place-box f400">Yes</th>
+            <th className="text-center bg-red1 bet-place-box50 f400">No</th>
+            <th className="text-center bg-blue3 bet-place-box50 f400">Yes</th>
             {!isMobile && <th className="border-0"></th>}
           </tr>
         </thead>
         <tbody>
           {data?.map((item: any, index: number) => (
+
             // <BetStatusOverlay
             //   key={index}
             //   title={JSON.parse(item)?.active}
@@ -96,31 +114,45 @@ function ApiSessionMarketTable({
             // >
             <tr key={index}>
               <td>
-                <div className="backLayRunner d-flex flex-column px-1">
-                  <span
-                    onClick={() => {
-                      setShowRunModal(true);
-                      dispatch(getRunAmount(item?.id));
-                    }}
-                    className="backLayRunner-country session-country title-12"
-                  >
-                    {item?.RunnerName}
-                  </span>
+                {/* <div className="backLayRunner d-flex flex-column px-1"> */}
+                  <div className="minmaxsession">
+                    <span
+                      onClick={() => {
+                        setShowRunModal(true);
+                        dispatch(getRunAmount(item?.id));
+                      }}
+                      className="backLayRunner-country session-country title-12"
+                    >
+                      {item?.RunnerName}
+
+                    </span>
+
+                  {isMobile &&  <span className="minmaxi"><IoInformationCircle
+                      onClick={() => handleMinModalToggle(item.id)} 
+                    />
+                      <SmoothDropdownModal
+                        minMax={formattedMinMax(item?.min, item?.max)}
+                        show={modalStates[item.id]}
+                        setShow={(value: any) => setModalStates((prevState: any) => ({ ...prevState, [item.id]: value }))} 
+                      /></span>}
+                  </div>
+                  <div className="backLayRunner d-flex flex-column px-1">
                   <span
                     className={`title-14 ${matchDetails?.profitLossDataSession
-                        ? matchDetails?.profitLossDataSession?.reduce(
-                          (accumulator: any, bet: any) => {
-                            const maxLossToAdd =
-                              bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                            return accumulator + maxLossToAdd;
-                          },
-                          0
-                        ) < 0
-                          ? "color-red"
-                          : "color-green"
-                        : ""
+                      ? matchDetails?.profitLossDataSession?.reduce(
+                        (accumulator: any, bet: any) => {
+                          const maxLossToAdd =
+                            bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                          return accumulator + maxLossToAdd;
+                        },
+                        0
+                      ) < 0
+                        ? "color-red"
+                        : "color-green"
+                      : ""
                       }`}
                   >
+
                     {matchDetails?.profitLossDataSession
                       ? matchDetails?.profitLossDataSession?.reduce(
                         (accumulator: any, bet: any) => {
@@ -132,7 +164,8 @@ function ApiSessionMarketTable({
                       )
                       : 0}
                   </span>
-                </div>
+                  </div>
+                {/* </div> */}
               </td>
 
               <td colSpan={isMobile ? 2 : 3}>
@@ -141,7 +174,7 @@ function ApiSessionMarketTable({
                   active={item?.GameStatus !== "" ? true : false}
                 >
                   <BackLayBox
-                    customClass="bet-place-box"
+                    customClass={isMobile ? "bet-place-box" : "bet-place-box50"}
                     // overlay={true}
                     bgColor="red1"
                     rate={item?.LayPrice1 ?? 0}
@@ -171,7 +204,7 @@ function ApiSessionMarketTable({
                     active={item?.GameStatus !== "" ? true : false}
                   />
                   <BackLayBox
-                    customClass="bet-place-box"
+                    customClass={isMobile ? "bet-place-box" : "bet-place-box50"}
                     bgColor="blue3"
                     rate={item?.BackPrice1}
                     percent={item?.BackSize1}

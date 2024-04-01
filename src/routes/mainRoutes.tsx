@@ -40,6 +40,10 @@ const MainRoutes = {
       element: <Home />,
     },
     {
+      path: "sports",
+      element: <Home />,
+    },
+    {
       path: "account-statement",
       element: <AccountStatement />,
     },

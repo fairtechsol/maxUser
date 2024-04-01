@@ -19,8 +19,8 @@ import {
 import moment from "moment";
 
 const BetHistoryComponent = () => {
-  const [fromDate, setFromDate] = useState<any>();
-  const [toDate, setToDate] = useState<any>();
+  const [fromDate, setFromDate] = useState<any>(new Date());
+  const [toDate, setToDate] = useState<any>(new Date());
   const { ReportBetList } = useSelector(
     (state: RootState) => state.currentBetList
   );
@@ -119,6 +119,7 @@ const BetHistoryComponent = () => {
                 closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
+                format="y-MM-dd"
               />
               {/* <CustomInput type="date" /> */}
             </Col>
@@ -129,6 +130,7 @@ const BetHistoryComponent = () => {
                 closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
+                format="y-MM-dd"
               />
               {/* <CustomInput type="date" /> */}
             </Col>

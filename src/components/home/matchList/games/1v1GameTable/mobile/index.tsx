@@ -1,7 +1,7 @@
 import React from "react";
 import { FiMonitor } from "react-icons/fi";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
@@ -9,12 +9,15 @@ import moment from "moment-timezone";
 import { Img } from 'react-image';
 import { casinoIcons } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
+import fancy from "../../../../../../assets/images/ic_fancy.png"
+import bm from "../../../../../../assets/images/ic_bm.png"
+import SportsFilterJson from "../../../../sportsFilters/sportsFilters.json";
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   // const mainContainerRef = useRef<any>(null);
 
   // const scrollableContainerRef = useRef<any>(null);
 
-  
+
 
   // useEffect(() => {
   //   const mainContainer = mainContainerRef.current;
@@ -42,23 +45,56 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   );
   const { id } = useParams();
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
+  const location = useLocation();
+  const isSportsRoute = location.pathname === "/sports";
   return (
-    <div className="bg-lightGray match-list-container">
-      <div className="scrollable-container">
+    // <div className="bg-lightGray match-list-container">
+    <div className={`bg-lightGray match-list-container ${isSportsRoute ? "match-list-containerm" : ""}`}> 
+    <div className={`scrollable-container ${isSportsRoute ? "match-list-containerm" : ""}`}>
+    {/* <div className="scrollable-container"> */}
         {(!matchList || matchList?.length === 0) &&
-            ((id === "cricket" || mTypeid === "cricket" )? (
-          <div className="text-center">
-            <p>No matches available</p>
+          ((id === "cricket" || mTypeid === "cricket") ? (
+            <div className="text-center">
+              <p>No matches available</p>
+            </div>
+          ) : (
+            <div className="text-center">
+              <ContactAdmin />
+            </div>
+          ))}
+        {mTypeid === "cricket" && <div className="px-3 py-1 m-game-one-v-one">
+          <Link
+            className="text-decoration-none text-black"
+            to={"/contact-admin"}
+          >  Ball By ball
+          </Link>
+          <div className="d-flex w-100 pt-2">
+            <React.Fragment>
+              <BackLayComponent
+                heading="1"
+                backRate={"-"}
+                layRate={"-"}
+                active={false}
+              />
+              <BackLayComponent
+                heading="X"
+                backRate={"-"}
+                layRate={"-"}
+                active={false}
+              />
+              <BackLayComponent
+                heading="2"
+                backRate={"-"}
+                layRate={"-"}
+                active={false}
+              />
+            </React.Fragment>
           </div>
-        ) : (
-          <div className="text-center">
-            <ContactAdmin />
-          </div>
-        ))}
-        
+        </div>}
         {matchList?.map((item: any, index: number) => (
-          <div key={index} className="px-3 py-1 m-game-one-v-one">
+
+          <div key={index} className="px-3  m-game-one-v-one">
+
             <div className="d-flex justify-content-between">
               <div className="d-flex flex-column">
                 <Link
@@ -82,14 +118,14 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 <FiMonitor />
                 {item?.manualSessionActive || item?.apiSessionActive ? (
                   <span className="fancy">
-                    <img src="/ic_fancy.png" alt={"fancy"} />
+                    <img src={fancy} alt={"fancy"} />
                   </span>
                 ) : (
                   ""
                 )}
-                {item?.isBookmaker > 0 ? (
+                {item?.isBookmaker?.length > 0 ? (
                   <span className="bookmaker">
-                    <img src="/ic_bm.png" alt={"fancy"} />
+                    <img src={bm} alt={"fancy"} />
                   </span>
                 ) : (
                   ""
@@ -149,8 +185,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
           </div>
         ))}
       </div>
-      <div className="tab-pane active casino-tables d-flex">
-        <div  className="container-fluid">
+      {location.pathname === "/home" ?  <div className="tab-pane active casino-tables d-flex">
+        <div className="container-fluid">
           <div className="row row5">
             <div className="col-12">
               <h4 className="text-uppercase mt-3">Our Casino</h4>
@@ -171,7 +207,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
             ))}
           </div>
         </div>
-      </div>
+      </div> : " "}
     </div>
 
   );

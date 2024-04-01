@@ -19,6 +19,8 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
 import isMobile from "../../../utils/screenDimension";
 import "./style.scss";
+import { FaHandPointDown, FaKey } from "react-icons/fa";
+import { IoPerson } from "react-icons/io5";
 
 const Login = () => {
   // const [loginState, setLoginState] = useState({
@@ -83,7 +85,7 @@ const Login = () => {
         <div className="auth-box-form rounded-2 bg-light mt-3">
           <h4 className="auth-title title-24 fw-normal text-center mb-2">
             {!isMobile ? "Login" : ""}
-            {/* <FaHandPointDown /> */}
+            {!isMobile && <FaHandPointDown />}
           </h4>
 
           <CustomInput
@@ -93,7 +95,7 @@ const Login = () => {
             id="userName"
             value={formik.values.userName}
             onChange={formik.handleChange}
-            // inputIcon={<IoPerson />}
+            inputIcon={<IoPerson />}
             customStyle="mb-3"
             isUnderlinedInput={isMobile}
           />
@@ -108,7 +110,7 @@ const Login = () => {
             customStyle="mb-3"
             name="password"
             id="password"
-            // inputIcon={<FaKey />}
+            inputIcon={<FaKey />}
             isUnderlinedInput={isMobile}
             value={formik.values.password}
             onChange={formik.handleChange}
@@ -127,8 +129,8 @@ const Login = () => {
           // loading={loading}
           >
             <div className="button-container">
-              {/* <span className="login-text">Login</span>{loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />} */}
-              {!isMobile ? <span className="login-text">Login </span> : <span><span className="mlogintext">Login {loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}</span></span>}
+              <span className="login-text">Login</span>{loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}
+              {/* {!isMobile ? <span className="login-text">Login </span> : <span><span className="mlogintext">Login {loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}</span></span>} */}
             </div></CustomButton>
           <p className="auth-box-descrip mt-1">
             This site is protected by reCAPTCHA and the Google
