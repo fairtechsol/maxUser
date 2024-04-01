@@ -95,12 +95,14 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
         />
       ) : type === MatchType.API_SESSION_MARKET ? (
         <ApiSessionMarketTable
+          minMax={formattedMinMax(data?.min, data?.max)}
           data={data}
           title={title}
           matchDetails={matchDetails}
         />
       ) : (
         <SessionMarketTable
+          minMax={formattedMinMax(data?.min, data?.max)}
           data={data}
           title={title}
           matchDetails={matchDetails}

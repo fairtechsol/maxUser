@@ -7,19 +7,38 @@
         text-decoration: underline !important;
     }
 }
-.bet-place-box {
+
+.bet-place-box50 {
     width: 50px;
 }
+
 .minMax {
     text-align: right;
 }
-.minmaxsession{
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
+
+.minmaxsession {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 5px;
 }
-.minmaxsessionicon{
+
+.minmaxi {
+    color: $secondary;
+}
+
+.min-max-info {
+    height: 5vh;
+    width: 11vh !important;
+    position: absolute;
+    right: 0;
+    background-color: whitesmoke;
+    // padding: 0px 14px 16px 14px;
+    z-index: 1000;
+    font-size: 12px;
+    box-shadow: 0 0 5px #999;
+}
+
+
  
-   margin-left: 220px;
-}

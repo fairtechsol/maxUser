@@ -25,18 +25,18 @@ const MobileGameDetail = () => {
       <PlacedBet show={show} setShow={setShow} />
 
       <CommonTabs
-        customClass="overflow-x-auto overflow-y-hidden no-wrap"
+        customClass="overflow-x-auto overflow-y-hidden no-wrap d-flex mr-6  justify-content-start;"
         defaultActive="odds"
         fill={true}
       >
         {[
           {
             id: "odds",
-            name: "Odds",
+            name: "ODDS",
           },
           {
             id: "matchedBet",
-            name: `Matched Bet(${Array.from(new Set(placedBets))?.length})`,
+            name: `Matched BET(${Array.from(new Set(placedBets))?.length})`,
           },
         ]?.map((item, index) => {
           return (
@@ -55,7 +55,7 @@ const MobileGameDetail = () => {
                         customTextClass="title-12"
                         title={matchDetails?.title}
                         rightComponent={
-                          <span className="title-16 f500">
+                          <span className="title-16 f400">
                             {formatDate(matchDetails?.startAt)}
                           </span>
                         }
@@ -78,7 +78,7 @@ const MobileGameDetail = () => {
                           title={matchDetails?.bookmaker?.name}
                           type={MatchType.MATCH_ODDS}
                           data={matchDetails?.bookmaker}
-                          backLayCount={2}
+                          backLayCount={6}
                         />
                       </Col>
                     )}
@@ -100,7 +100,7 @@ const MobileGameDetail = () => {
                           </div>
                         )
                       )}
-                    {matchDetails?.apiTideMatch?.isActive && (
+                    {/* {matchDetails?.apiTideMatch?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
                           title={matchDetails?.apiTideMatch?.name}
@@ -109,7 +109,7 @@ const MobileGameDetail = () => {
                           backLayCount={2}
                         />
                       </Col>
-                    )}
+                    )} */}
                     {matchDetails?.manualTiedMatch?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
@@ -189,6 +189,17 @@ const MobileGameDetail = () => {
                                   </Col>
                                 )}
                               </Row>
+                              {matchDetails?.apiTideMatch?.isActive && (
+                                <Col className="g-0" md={12}>
+                                  <BetTable
+                                    title={matchDetails?.apiTideMatch?.name}
+                                    type={MatchType.MATCH_ODDS}
+                                    data={matchDetails?.apiTideMatch}
+                                    backLayCount={2}
+                                  />
+                                </Col>
+                              )}
+                              <div style={{ height: "80px" }}></div>
                             </Tab>
                           );
                         })}
