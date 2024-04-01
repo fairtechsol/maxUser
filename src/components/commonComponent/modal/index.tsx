@@ -1,5 +1,6 @@
 import { Modal } from "react-bootstrap";
 import "./style.scss";
+import isMobile from "../../../utils/screenDimension";
 function CustomModal({
   show,
   setShow,
@@ -19,7 +20,7 @@ function CustomModal({
         className={`customModal ${customClass}`}
       >
         <Modal.Header closeButton className="bg-primary">
-          <Modal.Title className="title-12 f-600 text-white">{title}</Modal.Title>
+          <Modal.Title className={isMobile ? "f400 text-white" : "title-12 f-600 text-white"}>{title}</Modal.Title>
           
         </Modal.Header>
         <Modal.Body className="p-0">{children}</Modal.Body>

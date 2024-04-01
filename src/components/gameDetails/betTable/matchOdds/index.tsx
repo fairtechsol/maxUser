@@ -50,19 +50,48 @@ function MatchOdds({
       <Table className="mb-0">
         <thead>
           <tr>
-            <th className="border-0">
+            <th className="border-0 px-2">
               {minMax && isMobile && (
                 <span className="f700 title-14">{minMax}</span>
               )}
             </th>
+            {/* {isMobile && (
+              <>
+                <th className="text-center bg-blue1 bet-place-box50 f400">BACK</th>
+                <th className="text-center bg-red1 bet-place-box50 f400">LAY</th>
+              </>
+            )} */}
             {!isMobile && (
               <>
                 <th className="border-0 match-odd-bet-place"></th>
                 <th className="border-0 match-odd-bet-place"></th>
               </>
             )}
-            <th className="text-center bg-blue3 match-odd-bet-place f400"> BACK</th>
-            <th className="text-center bg-red1 match-odd-bet-place f400">LAY</th>
+            {!isMobile && (
+              <>
+                <th className="text-center bg-blue1 match-odd-bet-place f400">BACK</th>
+                <th className="text-center bg-red1 match-odd-bet-place f400">LAY</th>
+              </>
+            )}
+            {isMobile && (
+              <>
+            
+                {data?.type === "bookmaker" ? (
+                  <>
+                    <th className="border-0 match-odd-bet-place"></th>
+                    <th className="bg-blue1 text-center match-odd-bet-placem f400 w-20 title-14">BACK</th>
+                    <th className="bg-red1 text-center match-odd-bet-placem f400 w-20 title-14">LAY</th>
+                    <th className="border-0 match-odd-bet-place"></th>
+                  </>
+                  
+                ) : (
+                  <>
+                    <th className="bg-blue1 text-center match-odd-bet-place f400 title-14">BACK</th>
+                    <th className="bg-red1 text-center match-odd-bet-place f400 title-14">LAY</th>
+                  </>
+                )}
+              </>
+            )}
             {!isMobile && (
               <>
                 <th className="border-0 match-odd-bet-place"></th>
@@ -80,70 +109,91 @@ function MatchOdds({
                   <td>
                     <div className="backLayRunner d-flex flex-column px-1 w-100">
                       <span
-                        className={`backLayRunner-country title-12  ${
-                          isMobile ? "f900" : "f500"
-                        } `}
+                        className={`backLayRunner-country title-12  ${isMobile ? "f500" : "f500"
+                          } `}
                       >
-                        {data?.type === "completeMatch" ||
-                        data?.type === "tiedMatch1"
+                        {/* {data?.type === "completeMatch" ||
+                          data?.type === "tiedMatch1"
                           ? indexes === 0
                             ? "YES"
                             : "NO"
-                          : matchDetails?.[`team${matchs}`]}
+                          : matchDetails?.[`team${matchs}`]} */}
+                        {!isMobile && (
+                          data?.type === "completeMatch" ||
+                            data?.type === "tiedMatch1" ?
+                            (indexes === 0 ? "YES" : "NO") :
+                            matchDetails?.[`team${matchs}`]
+                        )}
+                        {isMobile && data?.type !== "bookmaker" && (
+                          matchDetails?.[`team${matchs}`]
+                        )}
+                        {(data?.type === "bookmaker" && isMobile) && (
+                          matchDetails?.[`team${matchs}`]?.split(' ').slice(0, 2).join(' ') + (matchDetails?.[`team${matchs}`]?.split(' ').length > 2 ? ' ...' : ''))}
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100">
                         <span
-                          className={`title-14  ${
-                            data?.type === "tiedMatch1"
-                              ? indexes === 0
-                                ? matchDetails?.profitLossDataMatch
-                                    ?.yesRateTie < 0
-                                  ? "color-red"
-                                  : "color-green"
-                                : matchDetails?.profitLossDataMatch?.noRateTie <
-                                  0
+                          className={`title-14  ${data?.type === "tiedMatch1"
+                            ? indexes === 0
+                              ? matchDetails?.profitLossDataMatch
+                                ?.yesRateTie < 0
                                 ? "color-red"
                                 : "color-green"
-                              : data?.type === "completeMatch"
+                              : matchDetails?.profitLossDataMatch?.noRateTie <
+                                0
+                                ? "color-red"
+                                : "color-green"
+                            : data?.type === "completeMatch"
                               ? indexes === 0
                                 ? matchDetails?.profitLossDataMatch
-                                    ?.yesRateComplete < 0
+                                  ?.yesRateComplete < 0
                                   ? "color-red"
                                   : "color-green"
                                 : matchDetails?.profitLossDataMatch
-                                    ?.noRateComplete < 0
+                                  ?.noRateComplete < 0
+                                  ? "color-red"
+                                  : "color-green"
+                              : matchDetails?.profitLossDataMatch?.[
+                                `team${matchs}Rate`
+                              ] < 0
                                 ? "color-red"
                                 : "color-green"
-                              : matchDetails?.profitLossDataMatch?.[
-                                  `team${matchs}Rate`
-                                ] < 0
-                              ? "color-red"
-                              : "color-green"
-                          }`}
+                            }`}
                         >
                           {data?.type === "tiedMatch1"
                             ? indexes === 0
                               ? matchDetails?.profitLossDataMatch?.yesRateTie ??
-                                0
+                              0
                               : matchDetails?.profitLossDataMatch?.noRateTie ??
-                                0
+                              0
                             : data?.type === "completeMatch"
-                            ? indexes === 0
-                              ? matchDetails?.profitLossDataMatch
+                              ? indexes === 0
+                                ? matchDetails?.profitLossDataMatch
                                   ?.yesRateComplete ?? 0
-                              : matchDetails?.profitLossDataMatch
+                                : matchDetails?.profitLossDataMatch
                                   ?.noRateComplete ?? 0
-                            : matchDetails?.profitLossDataMatch?.[
+                              : matchDetails?.profitLossDataMatch?.[
                                 `team${matchs}Rate`
                               ]
-                            ? matchDetails?.profitLossDataMatch?.[
+                                ? matchDetails?.profitLossDataMatch?.[
                                 `team${matchs}Rate`
-                              ]
-                            : 0}
+                                ]
+                                : 0}
                         </span>
                         <span
-                          className={`title-14 ${
-                            Number(
+                          className={`title-14 ${Number(
+                            calculateProfitLoss(
+                              data,
+                              selectedBet,
+                              data?.type === "completeMatch" ||
+                                data?.type === "tiedMatch1"
+                                ? indexes === 0
+                                  ? "YES"
+                                  : "NO"
+                                : matchDetails?.[`team${matchs}`]
+                            ) || 0
+                          ) < 0
+                            ? "color-red"
+                            : Number(
                               calculateProfitLoss(
                                 data,
                                 selectedBet,
@@ -154,23 +204,10 @@ function MatchOdds({
                                     : "NO"
                                   : matchDetails?.[`team${matchs}`]
                               ) || 0
-                            ) < 0
-                              ? "color-red"
-                              : Number(
-                                  calculateProfitLoss(
-                                    data,
-                                    selectedBet,
-                                    data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                      ? indexes === 0
-                                        ? "YES"
-                                        : "NO"
-                                      : matchDetails?.[`team${matchs}`]
-                                  ) || 0
-                                ) > 0
+                            ) > 0
                               ? "color-green"
                               : ""
-                          }`}
+                            }`}
                         >
                           {calculateProfitLoss(
                             data,
@@ -191,7 +228,7 @@ function MatchOdds({
                       title={data?.runners?.[indexes]?.status.toLowerCase()}
                       active={
                         data?.activeStatus == "live" &&
-                        data?.runners?.[indexes]?.status.toLowerCase() ===
+                          data?.runners?.[indexes]?.status.toLowerCase() ===
                           "active"
                           ? false
                           : true
@@ -202,7 +239,9 @@ function MatchOdds({
                         ?.map((_: any, index: number) => (
                           <BackLayBox
                             key={index}
-                            customClass="match-odd-bet-place"
+                            // customClass={isMobile ? (data?.type === "bookmaker" ? "bet-place-box50") : (data?.type === "bookmaker" ? "bookmaker-bet-place" : "bookmaker-bet-place")}
+                            customClass={isMobile ? (data?.type === "bookmaker" ? "bet-place-box50" : "bookmaker-bet-place") : (data?.type === "bookmaker" ? "match-odd-bet-place" : "match-odd-bet-place")}
+
                             bgColor={`blue${index + 1}`}
                             rate={
                               +data?.runners?.[indexes]?.ex?.availableToBack?.[
@@ -226,13 +265,13 @@ function MatchOdds({
                                 data?.runners?.[
                                   indexes
                                 ]?.status?.toLowerCase() ==
-                                  teamStatus.active?.toLowerCase()
+                                teamStatus.active?.toLowerCase()
                               ) {
                                 handleClick(
                                   {
                                     betOnTeam:
                                       data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
+                                        data?.type === "tiedMatch1"
                                         ? indexes === 0
                                           ? "YES"
                                           : "NO"
@@ -242,12 +281,12 @@ function MatchOdds({
                                     stake: 0,
                                     teamA:
                                       data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
+                                        data?.type === "tiedMatch1"
                                         ? "YES"
                                         : matchDetails?.teamA,
                                     teamB:
                                       data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
+                                        data?.type === "tiedMatch1"
                                         ? "NO"
                                         : matchDetails?.teamB,
                                     teamC: matchDetails?.teamC
@@ -276,7 +315,9 @@ function MatchOdds({
                         ?.map((_: any, index: number) => (
                           <BackLayBox
                             key={index}
-                            customClass="match-odd-bet-place"
+                            // customClass={isMobile ? "bookmaker-bet-place" : "bookmaker-bet-place"}
+                            customClass={isMobile ? (data?.type === "bookmaker" ? "bet-place-box50" : "bookmaker-bet-place") : "match-odd-bet-place"}
+                            // customClass={isMobile ? (data?.type === "bookmaker" ? "bet-place-box50" : "bookmaker-bet-place") : (data?.type === "bookmaker" ? "match-odd-bet-place" : "match-odd-bet-place")}
                             bgColor={`red${index + 1}`}
                             rate={
                               +data?.runners?.[indexes]?.ex?.availableToLay?.[
@@ -304,7 +345,7 @@ function MatchOdds({
                                   {
                                     betOnTeam:
                                       data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
+                                        data?.type === "tiedMatch1"
                                         ? indexes === 0
                                           ? "YES"
                                           : "NO"
@@ -314,12 +355,12 @@ function MatchOdds({
                                     stake: 0,
                                     teamA:
                                       data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
+                                        data?.type === "tiedMatch1"
                                         ? "YES"
                                         : matchDetails?.teamA,
                                     teamB:
                                       data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
+                                        data?.type === "tiedMatch1"
                                         ? "NO"
                                         : matchDetails?.teamB,
                                     teamC: matchDetails?.teamC

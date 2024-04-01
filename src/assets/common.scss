@@ -96,6 +96,9 @@ body table.table {
 // mobile tabs
 .m-tab {
   border-radius: 0px !important;
+  display: flex;
+  justify-content: flex-start;
+  align-self: start;
   background-color: $primary !important;
   padding: 10px 0px !important;
   color: $white !important;
