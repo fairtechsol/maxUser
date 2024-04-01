@@ -1,18 +1,20 @@
 import { Table } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
-import { useDispatch } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../../store/store";
-import { teamStatus } from "../../../../utils/constants";
+// import { useDispatch } from "react-redux";
+// import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import {
+  //  AppDispatch,
+   RootState } from "../../../../store/store";
+// import { teamStatus } from "../../../../utils/constants";
 import isMobile from "../../../../utils/screenDimension";
-import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
-import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
+// import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
+// import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
 import "../../../gameDetails/betTable/apiSessionMarket/style.scss";
 import CustomModal from "../../../commonComponent/modal";
 import RunBoxTable from "../runBoxTable";
 import { useState } from "react";
-import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
+// import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
 import { useSelector } from "react-redux";
 import Desktop from "../../../rules/categoryRules/desktop";
 import Mobile from "../../../rules/mobile";
@@ -23,9 +25,9 @@ interface SessionMarketTableProps {
   matchDetails: any;
 }
 function NextGoalMarketTable({
-  data,
+  // data,
   title,
-  matchDetails,
+  // matchDetails,
 }: SessionMarketTableProps) {
   const { runAmount } = useSelector((state: RootState) => state.bets);
   // State for the "Run Position" modal
@@ -33,16 +35,16 @@ function NextGoalMarketTable({
 
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
+  // const dispatch: AppDispatch = useDispatch();
 
-  const handleClick = (team: any, data: any) => {
-    dispatch(
-      selectedBetAction({
-        team,
-        data,
-      })
-    );
-  };
+  // const handleClick = (team: any, data: any) => {
+  //   dispatch(
+  //     selectedBetAction({
+  //       team,
+  //       data,
+  //     })
+  //   );
+  // };
 
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
