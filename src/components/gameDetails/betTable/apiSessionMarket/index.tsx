@@ -104,20 +104,23 @@ function ApiSessionMarketTable({
             {!isMobile && <th className="border-0"></th>}
           </tr>
         </thead>
-        <tbody>
-          {data?.map((item: any, index: number) => (
 
-            // <BetStatusOverlay
-            //   key={index}
-            //   title={JSON.parse(item)?.active}
-            //   active={JSON.parse(item)?.active != teamStatus.active}
-            // >
-            <tr key={index}>
-              <td>
-                {/* <div className="backLayRunner d-flex flex-column px-1"> */}
+        <tbody style={{ position: "relative" }}  >
+          {data?.map((item: any, index: number) => {
+            return (
+
+
+              <tr className="overlay-trigger " key={index}>
+
+
+                <td >
+                  {/* <div className="backLayRunner d-flex flex-column px-1"> */}
                   <div className="minmaxsession">
                     <span
                       onClick={() => {
+                        if(item.activeStatus === 'save'){
+                          return true;
+                        }
                         setShowRunModal(true);
                         dispatch(getRunAmount(item?.id));
                       }}
@@ -127,124 +130,144 @@ function ApiSessionMarketTable({
 
                     </span>
 
-                  {isMobile &&  <span className="minmaxi"><IoInformationCircle
-                      onClick={() => handleMinModalToggle(item.id)} 
+                    {isMobile &&  <span className="minmaxi"><IoInformationCircle
+                      onClick={() => handleMinModalToggle(item.id)}
                     />
                       <SmoothDropdownModal
                         minMax={formattedMinMax(item?.min, item?.max)}
                         show={modalStates[item.id]}
-                        setShow={(value: any) => setModalStates((prevState: any) => ({ ...prevState, [item.id]: value }))} 
+                        setShow={(value: any) => setModalStates((prevState: any) => ({ ...prevState, [item.id]: value }))}
                       /></span>}
                   </div>
                   <div className="backLayRunner d-flex flex-column px-1">
-                  <span
-                    className={`title-14 ${matchDetails?.profitLossDataSession
-                      ? matchDetails?.profitLossDataSession?.reduce(
-                        (accumulator: any, bet: any) => {
-                          const maxLossToAdd =
-                            bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                          return accumulator + maxLossToAdd;
-                        },
-                        0
-                      ) < 0
-                        ? "color-red"
-                        : "color-green"
-                      : ""
-                      }`}
-                  >
+                    <span
+                      className={`title-14 ${matchDetails?.profitLossDataSession
+                        ? matchDetails?.profitLossDataSession?.reduce(
+                          (accumulator: any, bet: any) => {
+                            const maxLossToAdd =
+                              bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                            return accumulator + maxLossToAdd;
+                          },
+                          0
+                        ) < 0
+                          ? "color-red"
+                          : "color-green"
+                        : ""
+                        }`}
+                    >
 
-                    {matchDetails?.profitLossDataSession
-                      ? matchDetails?.profitLossDataSession?.reduce(
-                        (accumulator: any, bet: any) => {
-                          const maxLossToAdd =
-                            bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                          return accumulator + maxLossToAdd;
-                        },
-                        0
-                      )
-                      : 0}
-                  </span>
+                      {matchDetails?.profitLossDataSession
+                        ? matchDetails?.profitLossDataSession?.reduce(
+                          (accumulator: any, bet: any) => {
+                            const maxLossToAdd =
+                              bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                            return accumulator + maxLossToAdd;
+                          },
+                          0
+                        )
+                        : 0}
+                    </span>
                   </div>
-                {/* </div> */}
-              </td>
+                  {/* </div> */}
+                </td>
 
-              <td colSpan={isMobile ? 2 : 3}>
-                <BetStatusOverlay
-                  title={item?.GameStatus}
-                  active={item?.GameStatus !== "" ? true : false}
-                >
-                  <BackLayBox
-                    customClass={isMobile ? "bet-place-box" : "bet-place-box50"}
-                    // overlay={true}
-                    bgColor="red1"
-                    rate={item?.LayPrice1 ?? 0}
-                    percent={item?.LaySize1 ?? 0}
-                    onClick={() => {
-                      const rate = parseFloat(item?.LayPrice1 ?? 0);
-                      const percent = parseInt(item?.LaySize1 ?? 0);
-                      if (
-                        rate > 0 &&
-                        item?.GameStatus == teamStatus.apiActive
-                      ) {
-                        handleClick(
-                          {
-                            betId: item?.id,
-                            name: item?.RunnerName,
-                            rate: rate,
-                            type: "no",
-                            stake: 0,
-                            percent: percent,
-                            eventType: matchDetails?.matchType,
-                            matchId: matchDetails?.id,
-                          },
-                          item
-                        );
-                      }
-                    }}
+                <td colSpan={isMobile ? 2 : 3}>
+                  <BetStatusOverlay
+                    title={item?.GameStatus}
                     active={item?.GameStatus !== "" ? true : false}
-                  />
-                  <BackLayBox
-                    customClass={isMobile ? "bet-place-box" : "bet-place-box50"}
-                    bgColor="blue3"
-                    rate={item?.BackPrice1}
-                    percent={item?.BackSize1}
-                    onClick={() => {
-                      const rate = parseFloat(item?.BackPrice1);
-                      const percent = parseFloat(item?.BackSize1);
-                      if (
-                        rate > 0 &&
-                        item?.GameStatus == teamStatus.apiActive
-                      ) {
-                        handleClick(
-                          {
-                            name: item?.RunnerName,
-                            rate: rate,
-                            type: "yes",
-                            stake: 0,
-                            betId: item?.id,
-                            percent: percent,
-                            eventType: matchDetails?.matchType,
-                            matchId: matchDetails?.id,
-                          },
-                          item
-                        );
-                      }
-                    }}
-                    active={item?.GameStatus !== "" ? true : false}
-                  />
-                  {!isMobile && (
-                    <div className="minMax">
-                      <div className="minMaxBox d-flex flex-column justify-content-end text-right px-2 title-12">
-                        <span className="">Min:{item?.min}</span>
-                        <span>Max:{item?.max}</span>
+                  >
+                    <BackLayBox
+                      customClass={isMobile ? "bet-place-box" : "bet-place-box50"}
+                      // overlay={true}
+                      bgColor="red1"
+                      rate={item?.LayPrice1 ?? 0}
+                      percent={item?.LaySize1 ?? 0}
+                      onClick={() => {
+                        if(item.activeStatus === 'save'){
+                          return true;
+                        }
+                        const rate = parseFloat(item?.LayPrice1 ?? 0);
+                        const percent = parseInt(item?.LaySize1 ?? 0);
+                        if (
+                          rate > 0 &&
+                          item?.GameStatus == teamStatus.apiActive
+                        ) {
+                          handleClick(
+                            {
+                              betId: item?.id,
+                              name: item?.RunnerName,
+                              rate: rate,
+                              type: "no",
+                              stake: 0,
+                              percent: percent,
+                              eventType: matchDetails?.matchType,
+                              matchId: matchDetails?.id,
+                            },
+                            item
+                          );
+                        }
+                      }}
+                      active={item?.GameStatus !== "" ? true : false}
+                    />
+                    <BackLayBox
+                      customClass={isMobile ? "bet-place-box" : "bet-place-box50"}
+                      bgColor="blue3"
+                      rate={item?.BackPrice1}
+                      percent={item?.BackSize1}
+                      onClick={() => { 
+                        if(item.activeStatus === 'save'){
+                          return true;
+                        }
+                        const rate = parseFloat(item?.BackPrice1);
+                        const percent = parseFloat(item?.BackSize1);
+                        if (
+                          rate > 0 &&
+                          item?.GameStatus == teamStatus.apiActive
+                        ) {
+                          handleClick(
+                            {
+                              name: item?.RunnerName,
+                              rate: rate,
+                              type: "yes",
+                              stake: 0,
+                              betId: item?.id,
+                              percent: percent,
+                              eventType: matchDetails?.matchType,
+                              matchId: matchDetails?.id,
+                            },
+                            item
+                          );
+                        }
+                      }}
+                      active={item?.GameStatus !== "" ? true : false}
+                    />
+                    {!isMobile && (
+                      <div className="minMax">
+                        <div className="minMaxBox d-flex flex-column justify-content-end text-right px-2 title-12">
+                          <span className="">Min:{item?.min}</span>
+                          <span>Max:{item?.max}</span>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </BetStatusOverlay>
-              </td>
-            </tr>
-            // </BetStatusOverlay>
-          ))}
+                    )}
+                  </BetStatusOverlay>
+                </td>
+
+{
+  item.activeStatus !== 'live' ? <div className="overlay">
+
+  </div>: null
+}
+                
+
+
+              </tr>
+
+
+            )
+          }
+
+
+          )}
         </tbody>
       </Table>
       <CustomModal
