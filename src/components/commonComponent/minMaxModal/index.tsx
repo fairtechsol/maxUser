@@ -1,18 +1,21 @@
 
 import { Dropdown } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-const SmoothDropdownModal = ( {show,setShow}:any) => {
+const SmoothDropdownModal = ( {show,minMax}:any) => {
+ 
     return (
-        <Dropdown align="end"  show={show} onClick={() => setShow(false)} >
-            <Dropdown.Menu className="min-max-info">
+        <Dropdown align="end"  show={show} >
+            <div style={{width: "10%"}}>
+            <Dropdown.Menu className="min-max-info w-20">
                 <Dropdown.ItemText>
-
-                    Min: 100 Max: 100000
+                  {minMax}<br></br>
+                    {/* Max:<br></br> {max} */}
                 </Dropdown.ItemText>
             </Dropdown.Menu>
+            </div>
         </Dropdown>
     );
+  
 };
 
 export default SmoothDropdownModal;

@@ -17,11 +17,14 @@ import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions
 import { useSelector } from "react-redux";
 import Desktop from "../../../rules/categoryRules/desktop";
 import Mobile from "../../../rules/mobile";
+import SmoothDropdownModal from "../../../commonComponent/minMaxModal";
+import { formattedMinMax } from "../../../../utils/formatMinMax";
 
 interface SessionMarketTableProps {
   data: any;
   title?: any;
   matchDetails: any;
+  minMax?: any;
 }
 function SessionMarketTable({
   data,
@@ -31,7 +34,7 @@ function SessionMarketTable({
   const { runAmount } = useSelector((state: RootState) => state.bets);
   // State for the "Run Position" modal
   const [showRunModal, setShowRunModal] = useState(false);
-
+  const [modalStates, setModalStates] = useState<any>({});
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
   // const [showMinsModal, setMinModal] = useState(false);
@@ -46,6 +49,12 @@ function SessionMarketTable({
     );
   };
 
+  const handleMinModalToggle = (itemId: any) => {
+    setModalStates((prevState: { [x: string]: any; }) => ({
+      ...prevState,
+      [itemId]: !prevState[itemId] // Toggle the modal state for the specific item
+    }));
+  };
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
       <Table className="mb-0">
@@ -58,11 +67,10 @@ function SessionMarketTable({
                   rightComponent={
                     <div>
                       <span
-                        className={`${
-                          isMobile
+                        className={`${isMobile
                             ? "text-black title-16"
                             : "text-white title-20"
-                        }`}
+                          }`}
                       >
                         <IoInformationCircle
                           onClick={() => setShowRulesModal(true)}
@@ -91,6 +99,11 @@ function SessionMarketTable({
         <tbody>
           {data?.map((item: any, index: number) => {
             if (!JSON.parse(item).selectionId) {
+            //   const [showMinsModal, setShowMinsModal] = useState(false); // State for the dropdown modal
+
+            //   const handleMinModalToggle = () => {
+            //     setShowMinsModal(!showMinsModal);
+            //   };
               return (
                 // <BetStatusOverlay
                 //   key={index}
@@ -99,44 +112,30 @@ function SessionMarketTable({
                 // >
                 <tr key={index}>
                   <td>
-                    <div className="backLayRunner d-flex flex-column px-1">
-                      <div className="minmaxsession">
-                        <span
-                          onClick={() => {
-                            setShowRunModal(true);
-                            dispatch(getRunAmount(JSON.parse(item)?.id));
-                          }}
-                          className="backLayRunner-country session-country title-12"
-                        >
-                          {JSON.parse(item)?.name}
-                        </span>
-                        {/* <span className="minmaxsessionicon"><IoInformationCircle
-                          onClick={() => setMinModal(true)}
-                        /><SmoothDropdownModal
-                            show={showMinsModal}
-                            setShow={setMinModal}
-                          /></span> */}
-                      </div>
+                    <div className="minmaxsession">
                       <span
-                        className={`title-14 ${
-                          matchDetails?.profitLossDataSession?.length > 0
-                            ? matchDetails?.profitLossDataSession?.reduce(
-                                (accumulator: any, bet: any) => {
-                                  const maxLossToAdd =
-                                    bet?.betId === JSON.parse(item)?.id
-                                      ? +bet?.maxLoss
-                                      : 0;
-                                  return accumulator + maxLossToAdd;
-                                },
-                                0
-                              ) < 0
-                              ? "color-red"
-                              : "color-green"
-                            : ""
-                        }`}
+                        onClick={() => {
+                          setShowRunModal(true);
+                          dispatch(getRunAmount(JSON.parse(item)?.id));
+                        }}
+                        className="backLayRunner-country session-country title-12"
                       >
-                        {matchDetails?.profitLossDataSession?.length > 0
-                          ? matchDetails?.profitLossDataSession?.reduce(
+                        {JSON.parse(item)?.name}
+                      </span>
+                      {isMobile &&  <span className="minmaxi"><IoInformationCircle
+                      onClick={(item:any) => handleMinModalToggle(item.id)} 
+                      />
+                        <SmoothDropdownModal
+                          minMax={formattedMinMax(item?.min, item?.max)}
+                          show={modalStates[item.id]}
+                        setShow={(value: any) => setModalStates((prevState: any) => ({ ...prevState, [item.id]: value }))} 
+                        /></span>}
+                    </div>
+                    <div className="backLayRunner d-flex flex-column px-1">
+
+                      <span
+                        className={`title-14 ${matchDetails?.profitLossDataSession?.length > 0
+                            ? matchDetails?.profitLossDataSession?.reduce(
                               (accumulator: any, bet: any) => {
                                 const maxLossToAdd =
                                   bet?.betId === JSON.parse(item)?.id
@@ -145,7 +144,23 @@ function SessionMarketTable({
                                 return accumulator + maxLossToAdd;
                               },
                               0
-                            )
+                            ) < 0
+                              ? "color-red"
+                              : "color-green"
+                            : ""
+                          }`}
+                      >
+                        {matchDetails?.profitLossDataSession?.length > 0
+                          ? matchDetails?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === JSON.parse(item)?.id
+                                  ? +bet?.maxLoss
+                                  : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
                           : 0}
                       </span>
                     </div>
@@ -234,7 +249,7 @@ function SessionMarketTable({
                 // </BetStatusOverlay>
               );
             } else return null;
-          })}
+           } )}
         </tbody>
       </Table>
       <CustomModal
@@ -245,7 +260,7 @@ function SessionMarketTable({
       >
         <RunBoxTable runAmount={{ betPlaced: runAmount }} />
       </CustomModal>
-      <div style={{ height: "80px" }}></div>
+      {/* <div style={{ height: "80px" }}></div> */}
     </div>
   );
 }

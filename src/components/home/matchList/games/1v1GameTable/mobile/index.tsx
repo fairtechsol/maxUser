@@ -1,7 +1,7 @@
 import React from "react";
 import { FiMonitor } from "react-icons/fi";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
@@ -12,6 +12,8 @@ import {
   casinoIcons,
 } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
+import fancy from "../../../../../../assets/images/ic_fancy.png";
+import bm from "../../../../../../assets/images/ic_bm.png";
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   // const mainContainerRef = useRef<any>(null);
 
@@ -43,10 +45,19 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   );
   const { id } = useParams();
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
+  const location = useLocation();
+  const isSportsRoute = location.pathname === "/sports";
   return (
-    <div className="bg-lightGray match-list-container">
-      <div className="scrollable-container">
+    <div
+      className={`bg-lightGray match-list-container ${
+        isSportsRoute ? "match-list-containerm" : ""
+      }`}
+    >
+      <div
+        className={`scrollable-container ${
+          isSportsRoute ? "match-list-containerm" : ""
+        }`}
+      >
         {availableGameType[mTypeid || id] ? (
           <>
             {!matchList || matchList?.length === 0 ? (
@@ -84,14 +95,14 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                         <FiMonitor />
                         {item?.manualSessionActive || item?.apiSessionActive ? (
                           <span className="fancy">
-                            <img src="/ic_fancy.png" alt={"fancy"} />
+                            <img src={fancy} alt={"fancy"} />
                           </span>
                         ) : (
                           ""
                         )}
                         {item?.isBookmaker > 0 ? (
                           <span className="bookmaker">
-                            <img src="/ic_bm.png" alt={"fancy"} />
+                            <img src={bm} alt={"fancy"} />
                           </span>
                         ) : (
                           ""
@@ -165,29 +176,33 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
           </div>
         )}
       </div>
-      <div className="tab-pane active casino-tables d-flex">
-        <div className="container-fluid">
-          <div className="row row5">
-            <div className="col-12">
-              <h4 className="text-uppercase mt-3">Our Casino</h4>
+      {location.pathname === "/home" ? (
+        <div className="tab-pane active casino-tables d-flex">
+          <div className="container-fluid">
+            <div className="row row5">
+              <div className="col-12">
+                <h4 className="text-uppercase mt-3">Our Casino</h4>
+              </div>
+            </div>
+            <div className="mt-2">
+              {casinoIcons.map((item, index) => (
+                <Link to={item.url} key={index}>
+                  <div className="d-inline-block casinoiconsm">
+                    <Img
+                      src={item.imgSrc}
+                      className="img-fluid"
+                      alt={item.name}
+                    />
+                    <div className="mcasino-name">{item.name}</div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
-          <div className="mt-2">
-            {casinoIcons.map((item, index) => (
-              <Link to={item.url} key={index}>
-                <div className="d-inline-block casinoiconsm">
-                  <Img
-                    src={item.imgSrc}
-                    className="img-fluid"
-                    alt={item.name}
-                  />
-                  <div className="mcasino-name">{item.name}</div>
-                </div>
-              </Link>
-            ))}
-          </div>
         </div>
-      </div>
+      ) : (
+        " "
+      )}
     </div>
   );
 };

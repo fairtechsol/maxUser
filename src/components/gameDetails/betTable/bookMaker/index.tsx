@@ -52,7 +52,7 @@ function BookmakerTable({
         <thead>
           <tr>
             <th
-              className="border-0 px-2"
+              className="border-0"
               colSpan={isMobile && backLayCount === 6 ? 3 : 0}
             >
               <div className="px-2 text-info">
@@ -80,7 +80,7 @@ function BookmakerTable({
                 <th colSpan={6} className={`text-center d-flex w-100`}>
                   <div className="bookmaker-width-26"></div>
                   <div className="bookmaker-width-26"></div>
-                  <div className={`text-center bg-blue3 bookmaker-width-26`}>
+                  <div className={`text-center bg-blue1 bookmaker-width-26`}>
                     Back
                   </div>
                   <div className={`text-center bg-red1 bookmaker-width-26`}>
@@ -92,11 +92,15 @@ function BookmakerTable({
               </>
             ) : (
               <>
-                <th className={`text-center bg-blue3 bookmaker-bet-place f400`}>
+                <th
+                  className={`text-center bg-blue1 bookmaker-bet-place f400 title-14`}
+                >
                   BACK
                 </th>
-                <th className={`text-center bg-red1 bookmaker-bet-place f400`}>
-                LAY
+                <th
+                  className={`text-center bg-red1 bookmaker-bet-place f400 title-1`}
+                >
+                  LAY
                 </th>
               </>
             )}
@@ -119,7 +123,7 @@ function BookmakerTable({
                   <div className="backLayRunner d-flex flex-column px-1 w-100">
                     <span
                       className={`backLayRunner-country title-12  ${
-                        isMobile ? "f900" : "f500"
+                        isMobile ? "f500" : "f500"
                       } `}
                     >
                       {data?.type === "tiedMatch2"
