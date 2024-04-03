@@ -116,7 +116,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     }
     return isNaN(profit) ? 0 : Number(parseFloat(profit).toFixed(2) ?? 0);
   };
-
+  
   return (
     <>
       <CustomModal
@@ -134,12 +134,15 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             <Col xs={6} className="d-flex justify-content-end">
               <CustomButton
                 onClick={() => {
+                  if (selectedBet?.team?.matchBetType !== 'matchOdd') {
+                    return true;
+                  }
                   dispatch(
                     selectedBetAction({
                       ...selectedBet,
                       team: {
                         ...selectedBet?.team,
-                        stake: parseInt(stake) == 0 ? 0 : parseInt(stake) - 1,
+                        rate: parseInt(selectedBet?.team?.rate) == 0 ? 0 : parseInt(selectedBet?.team?.rate) - 1,
                       },
                     })
                   );
@@ -156,12 +159,15 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               />
               <CustomButton
                 onClick={() => {
+                  if (selectedBet?.team?.matchBetType !== 'matchOdd') {
+                    return true;
+                  }
                   dispatch(
                     selectedBetAction({
                       ...selectedBet,
                       team: {
                         ...selectedBet?.team,
-                        stake: parseInt(stake) + 1,
+                        rate: parseInt(selectedBet?.team?.rate) + 1,
                       },
                     })
                   );
@@ -301,53 +307,77 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               </Col>
             ))}
             <div className="container d-flex justify-content-between mt-2">
-            {selectedBet?.data?.type && (selectedBet.data.type === 'quickbookmaker1' || selectedBet.data.type === 'matchOdd' || selectedBet.data.type === 'bookmaker') && (
+              {selectedBet?.data?.type && (selectedBet.data.type === 'quickbookmaker1' || selectedBet.data.type === 'matchOdd' || selectedBet.data.type === 'bookmaker') && (
 
-              <>
-              <div className="row">
-                  <div className="col-md-4 flex-start">
-                    <div className="row">
-                      <div className="col-md-12">
-                        <span>{selectedBet?.team?.teamA}</span>
+                <>
+                  <div className="row">
+                    <div className="col-md-4 flex-start">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span>{selectedBet?.team?.teamA}</span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-12">
-                        <span>{selectedBet?.team?.teamB}</span>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span>{selectedBet?.team?.teamB}</span>
+                        </div>
                       </div>
+                      {selectedBet?.team?.teamC && (
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span>{selectedBet?.team?.teamC}</span>
+                          </div>
+                        </div>
+                      )}
+
                     </div>
-                  </div>
-                </div><div className="row row5">
+                  </div><div className="row row5">
                     <div className="col-md-4">
                       <div className="row">
                         <div className="col-md-12">
-                          <span>0</span>
+                          <span>{matchDetails?.profitLossDataMatch?.teamARate}</span>
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-md-12">
-                          <span>0</span>
+                          <span>{matchDetails?.profitLossDataMatch?.teamBRate}</span>
                         </div>
                       </div>
+                      {selectedBet?.team?.teamC && (
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span>{matchDetails?.profitLossDataMatch?.teamCRate}</span>
+                        </div>
+                      </div>
+                       )}
                     </div>
-                  </div><div className="row">
+                  </div>
+                  <div className="row">
                     <div className="col-md-4">
                       <div className="row">
                         <div className="col-md-12">
-                          <span className={matchDetails?.profitLossDataMatch?.yesRateTie < 0 ? "color-red" : "color-green"}>        
-                          {selectedBet?.team?.stake}</span>
+                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? "color-green" : "color-red"}>
+                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-md-12">
-                          <span className={matchDetails?.profitLossDataMatch?.noRateTie < 0 ? "color-red" : "color-green"}>
-                            {selectedBet?.team?.stake}</span>
+                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? "color-green" : "color-red"}>
+                            {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
                         </div>
                       </div>
+                      {selectedBet?.team?.teamC && (
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? "color-green" : "color-red"}>
+                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
+                        </div>
+                      </div>
+                      )}
                     </div>
                   </div>
-                  </>
-)}
+                </>
+              )}
             </div>
 
 
