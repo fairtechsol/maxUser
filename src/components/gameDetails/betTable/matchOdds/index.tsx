@@ -75,7 +75,7 @@ function MatchOdds({
             )}
             {isMobile && (
               <>
-            
+
                 {data?.type === "bookmaker" ? (
                   <>
                     <th className="border-0 match-odd-bet-place"></th>
@@ -83,7 +83,7 @@ function MatchOdds({
                     <th className="bg-red1 text-center match-odd-bet-placem f400 w-20 title-14">LAY</th>
                     <th className="border-0 match-odd-bet-place"></th>
                   </>
-                  
+
                 ) : (
                   <>
                     <th className="bg-blue1 text-center match-odd-bet-place f400 title-14">BACK</th>
@@ -105,7 +105,8 @@ function MatchOdds({
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((matchs, indexes) => {
               return (
-                <tr key={indexes}>
+                <tr className="overlay-trigger" key={indexes}>
+
                   <td>
                     <div className="backLayRunner d-flex flex-column px-1 w-100">
                       <span
@@ -386,7 +387,10 @@ function MatchOdds({
                         ))}
                     </BetStatusOverlay>
                   </td>
+                  {data?.activeStatus !== 'live' ? <div className="overlay">
 
+                  </div> : null
+                  }
                   {!isMobile && <td></td>}
                 </tr>
               );

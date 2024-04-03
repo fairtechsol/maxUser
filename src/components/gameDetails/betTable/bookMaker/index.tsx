@@ -96,7 +96,7 @@ function BookmakerTable({
                   BACK
                 </th>
                 <th className={`text-center bg-red1 bookmaker-bet-place f400 title-1`}>
-                LAY
+                  LAY
                 </th>
               </>
             )}
@@ -114,13 +114,12 @@ function BookmakerTable({
           {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((item: any, i: number) => (
-              <tr key={i}>
+              <tr key={i}  className="overlay-trigger">
                 <td>
                   <div className="backLayRunner d-flex flex-column px-1 w-100">
                     <span
-                      className={`backLayRunner-country title-12  ${
-                        isMobile ? "f500" : "f500"
-                      } `}
+                      className={`backLayRunner-country title-12  ${isMobile ? "f500" : "f500"
+                        } `}
                     >
                       {data?.type === "tiedMatch2"
                         ? i === 0
@@ -130,59 +129,57 @@ function BookmakerTable({
                     </span>
                     <div className="d-flex align-items-center justify-content-between w-100">
                       <span
-                        className={`title-14 ${
-                          data?.type === "tiedMatch2"
+                        className={`title-14 ${data?.type === "tiedMatch2"
                             ? i === 0
                               ? matchDetails?.profitLossDataMatch?.yesRateTie <
                                 0
                                 ? "color-red"
                                 : "color-green"
                               : matchDetails?.profitLossDataMatch?.noRateTie < 0
+                                ? "color-red"
+                                : "color-green"
+                            : matchDetails?.profitLossDataMatch?.[
+                              `team${item}Rate`
+                            ] < 0
                               ? "color-red"
                               : "color-green"
-                            : matchDetails?.profitLossDataMatch?.[
-                                `team${item}Rate`
-                              ] < 0
-                            ? "color-red"
-                            : "color-green"
-                        }`}
+                          }`}
                       >
                         {data?.type === "tiedMatch2"
                           ? i === 0
                             ? matchDetails?.profitLossDataMatch?.yesRateTie ?? 0
                             : matchDetails?.profitLossDataMatch?.noRateTie ?? 0
                           : matchDetails?.profitLossDataMatch?.[
-                              `team${item}Rate`
-                            ] ?? 0}
+                          `team${item}Rate`
+                          ] ?? 0}
                       </span>
                       <span
-                        className={`title-14 ${
-                          Number(
-                            calculateProfitLoss(
-                              data,
-                              selectedBet,
-                              data?.type === "tiedMatch2"
-                                ? i === 0
-                                  ? "YES"
-                                  : "NO"
-                                : matchDetails?.[`team${item}`]
-                            ) || 0
-                          ) < 0
+                        className={`title-14 ${Number(
+                          calculateProfitLoss(
+                            data,
+                            selectedBet,
+                            data?.type === "tiedMatch2"
+                              ? i === 0
+                                ? "YES"
+                                : "NO"
+                              : matchDetails?.[`team${item}`]
+                          ) || 0
+                        ) < 0
                             ? "color-red"
                             : Number(
-                                calculateProfitLoss(
-                                  data,
-                                  selectedBet,
-                                  data?.type === "tiedMatch2"
-                                    ? i === 0
-                                      ? "YES"
-                                      : "NO"
-                                    : matchDetails?.[`team${item}`]
-                                ) || 0
-                              ) > 0
-                            ? "color-green"
-                            : ""
-                        }`}
+                              calculateProfitLoss(
+                                data,
+                                selectedBet,
+                                data?.type === "tiedMatch2"
+                                  ? i === 0
+                                    ? "YES"
+                                    : "NO"
+                                  : matchDetails?.[`team${item}`]
+                              ) || 0
+                            ) > 0
+                              ? "color-green"
+                              : ""
+                          }`}
                       >
                         {calculateProfitLoss(
                           data,
@@ -199,9 +196,9 @@ function BookmakerTable({
                 </td>
                 <td
                   colSpan={backLayCount === 2 ? 2 : 6}
-                  // className={
-                  //   isMobile && backLayCount != 2 ? "bookmaker-block-width" : ""
-                  // }
+                // className={
+                //   isMobile && backLayCount != 2 ? "bookmaker-block-width" : ""
+                // }
                 >
                   <BetStatusOverlay
                     title={data?.[`statusTeam${item}`]}
@@ -212,11 +209,10 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
-                          customClass={`match-odd-bet-place ${
-                            isMobile && backLayCount != 2
+                          customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
-                          }`}
+                            }`}
                           bgColor={`blue${index + 1}`}
                           rate={
                             +data[`backTeam${item}`] -
@@ -274,11 +270,10 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
-                          customClass={`match-odd-bet-place ${
-                            isMobile && backLayCount != 2
+                          customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
-                          }`}
+                            }`}
                           bgColor={`red${index + 1}`}
                           rate={
                             +data[`layTeam${item}`] > 0
@@ -334,6 +329,10 @@ function BookmakerTable({
                 {(!isMobile || backLayCount === 2) && (
                   <td colSpan={2} style={{ borderLeft: 0 }}></td>
                 )}
+                {data?.activeStatus !== 'live' ? <div className="overlay">
+
+                </div> : null
+                }
               </tr>
             ))}
         </tbody>
