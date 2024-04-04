@@ -5,11 +5,13 @@ import "react-toastify/dist/ReactToastify.css";
 import "./assets/common.scss";
 import routes from "./routes";
 import "./theme/theme.css";
+import LogoutTimer from "./utils/LogoutTimer";
 
 function App() {
   if (process.env.NODE_ENV === "production") console.log = () => {};
   return (
     <>
+      <LogoutTimer/>
       <RouterProvider router={routes()} />
       <ToastContainer />
     </>
