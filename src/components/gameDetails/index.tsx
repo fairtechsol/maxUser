@@ -208,6 +208,7 @@ const GameDetails = () => {
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
+        socketService.userBalance.declaredMatchResultAllUserOff();
         socketService.userBalance.matchDeleteBetOff();
         socketService.userBalance.sessionDeleteBetOff();
         socketService.userBalance.sessionResultOff();
@@ -218,6 +219,7 @@ const GameDetails = () => {
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
+        socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
         socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
         socketService.userBalance.sessionDeleteBet(handleSessionBetDeleted);
         socketService.userBalance.sessionResult(handleSessionResultDeclare);
@@ -239,6 +241,7 @@ const GameDetails = () => {
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
+        socketService.userBalance.declaredMatchResultAllUserOff();
         socketService.userBalance.matchDeleteBetOff();
         socketService.userBalance.sessionDeleteBetOff();
         socketService.userBalance.sessionResultOff();
@@ -247,8 +250,10 @@ const GameDetails = () => {
         socketService.userBalance.sessionResult(sessionResultDeclared);
         socketService.userBalance.sessionResultUnDeclare(sessionResultDeclared);
         socketService.userBalance.matchResultDeclared(handleMatchResult);
+        socketService.userBalance.declaredMatchResultAllUser(handleMatchResult);
         socketService.userBalance.sessionNoResult(getUserProfile);
         socketService.userBalance.matchResultUnDeclared(handleMatchResult);
+        socketService.userBalance.unDeclaredMatchResultAllUser(handleMatchResult);
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
       };

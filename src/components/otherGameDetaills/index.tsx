@@ -113,6 +113,7 @@ const FootballGameDetails = () => {
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
+        socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
         socketService.userBalance.matchDeleteBet(betDeleted);
         socketService.userBalance.sessionDeleteBet(betDeleted);
       }
@@ -129,6 +130,7 @@ const FootballGameDetails = () => {
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
+        socketService.userBalance.declaredMatchResultAllUserOff();
         socketService.userBalance.matchDeleteBetOff();
         socketService.userBalance.sessionDeleteBetOff();
       };
