@@ -31,6 +31,8 @@ const GameList = () => {
       expertSocketService.match.matchAdded(getMatchListService);
       socketService.userBalance.matchResultDeclared(getMatchListService);
       socketService.userBalance.matchResultUnDeclared(getMatchListService);
+      socketService.userBalance.declaredMatchResultAllUser(getMatchListService);
+      socketService.userBalance.unDeclaredMatchResultAllUser(getMatchListService);
     } catch (e) {
       console.log(e);
     }
