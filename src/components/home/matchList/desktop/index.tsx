@@ -26,45 +26,62 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
   };
 
   useEffect(() => {
-    if (matchList && getProfile?.roleName) {
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.joinMatchRoom(
-          element?.id,
-          getProfile?.roleName
-        );
-      });
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.getMatchRates(
-          element?.id,
-          setMatchOddRatesInRedux
-        );
-      });
+    try {
+      if (matchList && getProfile?.roleName) {
+        matchList?.forEach((element: any) => {
+          expertSocketService.match.joinMatchRoom(
+            element?.id,
+            getProfile?.roleName
+          );
+        });
+        matchList?.forEach((element: any) => {
+          expertSocketService.match.getMatchRates(
+            element?.id,
+            setMatchOddRatesInRedux
+          );
+        });
+      }
+    } catch (e) {
+      console.log(e);
     }
-    return () => {
-      expertSocketService.match.leaveAllRooms();
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.leaveMatchRoom(element?.id);
-        expertSocketService.match.getMatchRatesOff(element?.id);
-      });
-    };
   }, [matchList?.length, getProfile?.roleName]);
+
+  useEffect(() => {
+    try {
+      return () => {
+        expertSocketService.match.leaveAllRooms();
+        matchList?.forEach((element: any) => {
+          expertSocketService.match.leaveMatchRoom(element?.id);
+          expertSocketService.match.getMatchRatesOff(element?.id);
+        });
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (id) {
+      setMatchType(id);
+    }
+  }, [id]);
 
   return (
     <div className="m-1 p-0 w-100">
       {" "}
-      <CommonTabs callback={setMatchType} defaultActive={type ?? id}>
+      <CommonTabs callback={setMatchType} defaultActive={id ?? type} id={id}>
         {MatchListJson()
           ?.filter((item) => item?.id == type || !type)
           ?.map((item) => {
             return (
               <Tab
-                key={item?.id}
-                eventKey={item?.id}
+                key={id ?? item?.id}
+                eventKey={id ?? item?.id}
                 tabClassName="match-list-tabs title-14"
                 title={item?.name}
               >
                 {item?.type === GAME_TYPE.ONE_V_ONE ? (
-                  <OneVOneGameTable id={item?.id} />
+                  <OneVOneGameTable id={id ?? item?.id} />
                 ) : (
                   ""
                 )}

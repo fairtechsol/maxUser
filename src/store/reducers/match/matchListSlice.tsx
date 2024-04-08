@@ -38,7 +38,7 @@ const initialState: InitialState = {
   error: null,
   matchDetails: null,
   selectedBet: null,
-  searchedMatchList: null,
+  searchedMatchList: [],
 };
 
 const matchListSlice = createSlice({
@@ -81,7 +81,8 @@ const matchListSlice = createSlice({
       })
       .addCase(SearchListReset, (state) => {
         // Reset the state to initial state
-        return { ...state, success: false, getMatchListBySearch: [] };
+        state.success = false;
+        state.getMatchListBySearch = [];
       })
       .addCase(matchDetailAction.pending, (state) => {
         state.loading = true;
@@ -178,12 +179,10 @@ const matchListSlice = createSlice({
           if (state.matchList) {
             state.matchList[indexOfItemToUpdate].matchOdds[0] = matchOdd;
           }
-        } else {
-          return state.matchList;
         }
       })
       .addCase(matchListReset, (state) => {
-        return { ...state, matchList: [] };
+        state.matchList = [];
       })
       .addCase(matchDetailAction.rejected, (state, action) => {
         state.loading = false;
@@ -258,8 +257,6 @@ const matchListSlice = createSlice({
             ...state.matchDetails,
             profitLossDataSession: updatedProfitLossDataSession,
           };
-        } else {
-          return state.matchDetails;
         }
       })
       .addCase(updateBetDataOnDeclare.fulfilled, (state, action) => {
@@ -274,8 +271,6 @@ const matchListSlice = createSlice({
             ...state.matchDetails,
             profitLossDataSession: updatedProfitLossDataSession,
           };
-        } else {
-          return state.matchDetails;
         }
       })
       .addCase(updateBetDataOnUndeclare.fulfilled, (state, action) => {
@@ -308,8 +303,6 @@ const matchListSlice = createSlice({
             ...state.matchDetails,
             profitLossDataSession: updatedProfitLossDataSession,
           };
-        } else {
-          return state.matchDetails;
         }
       })
       .addCase(updateTeamRatesOnDeleteMatch.fulfilled, (state, action) => {
@@ -363,8 +356,6 @@ const matchListSlice = createSlice({
             ...state.matchDetails,
             profitLossDataSession: updatedProfitLossDataSession,
           };
-        } else {
-          return state.matchDetails;
         }
       });
   },
