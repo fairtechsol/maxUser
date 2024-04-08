@@ -44,7 +44,11 @@ const GameList = () => {
   return (
     <>
       {loading && <Loader />}
-      {isMobile ? <SportsFilters type={id} /> : <DesktopMatchList type={id} setMatchType={setMatchType} />}
+      {isMobile ? (
+        <SportsFilters type={id} />
+      ) : (
+        <DesktopMatchList type={id} setMatchType={setMatchType} />
+      )}
     </>
   );
 };
