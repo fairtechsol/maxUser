@@ -6,7 +6,9 @@ import Loadable from "../utils/loadable";
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(lazy(() => import("../pages/home")));
 const GameDetail = Loadable(lazy(() => import("../pages/gameDetails")));
-const FootballGameDetail = Loadable(lazy(() => import("../pages/otherGameDetails")));
+const FootballGameDetail = Loadable(
+  lazy(() => import("../pages/otherGameDetails"))
+);
 
 const AccountStatement = Loadable(
   lazy(() => import("../pages/accountStatement"))

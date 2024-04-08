@@ -6,18 +6,18 @@ import { RootState } from "../../../../../../store/store";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import moment from "moment-timezone";
-import { Img } from 'react-image';
-import { casinoIcons } from "../../../../../../utils/constants";
+import { Img } from "react-image";
+import {
+  availableGameType,
+  casinoIcons,
+} from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
-import fancy from "../../../../../../assets/images/ic_fancy.png"
-import bm from "../../../../../../assets/images/ic_bm.png"
-import SportsFilterJson from "../../../../sportsFilters/sportsFilters.json";
+import fancy from "../../../../../../assets/images/ic_fancy.png";
+import bm from "../../../../../../assets/images/ic_bm.png";
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   // const mainContainerRef = useRef<any>(null);
 
   // const scrollableContainerRef = useRef<any>(null);
-
-
 
   // useEffect(() => {
   //   const mainContainer = mainContainerRef.current;
@@ -48,168 +48,162 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   const location = useLocation();
   const isSportsRoute = location.pathname === "/sports";
   return (
-    // <div className="bg-lightGray match-list-container">
-    <div className={`bg-lightGray match-list-container ${isSportsRoute ? "match-list-containerm" : ""}`}> 
-    <div className={`scrollable-container ${isSportsRoute ? "match-list-containerm" : ""}`}>
-    {/* <div className="scrollable-container"> */}
-        {(!matchList || matchList?.length === 0) &&
-          ((id === "cricket" || mTypeid === "cricket") ? (
-            <div className="text-center">
-              <p>No matches available</p>
-            </div>
-          ) : (
-            <div className="text-center">
-              <ContactAdmin />
-            </div>
-          ))}
-        {mTypeid === "cricket" && <div className="px-3 py-1 m-game-one-v-one">
-          <Link
-            className="text-decoration-none text-black"
-            to={"/contact-admin"}
-          >  Ball By ball
-          </Link>
-          <div className="d-flex w-100 pt-2">
-            <React.Fragment>
-              <BackLayComponent
-                heading="1"
-                backRate={"-"}
-                layRate={"-"}
-                active={false}
-              />
-              <BackLayComponent
-                heading="X"
-                backRate={"-"}
-                layRate={"-"}
-                active={false}
-              />
-              <BackLayComponent
-                heading="2"
-                backRate={"-"}
-                layRate={"-"}
-                active={false}
-              />
-            </React.Fragment>
+    <div
+      className={`bg-lightGray match-list-container ${
+        isSportsRoute ? "match-list-containerm" : ""
+      }`}
+    >
+      <div
+        className={`scrollable-container ${
+          isSportsRoute ? "match-list-containerm" : ""
+        }`}
+      >
+        {availableGameType[mTypeid || id] ? (
+          <>
+            {!matchList || matchList?.length === 0 ? (
+              <div className="text-center">
+                <p>No matches available</p>
+              </div>
+            ) : (
+              <>
+                {matchList?.map((item: any, index: number) => (
+                  <div key={index} className="px-3 py-1 m-game-one-v-one">
+                    <div className="d-flex justify-content-between">
+                      <div className="d-flex flex-column">
+                        <Link
+                          className="text-decoration-none text-black"
+                          to={`/${
+                            mTypeid === "cricket"
+                              ? "game-detail"
+                              : "other-game-detail"
+                          }/${item?.id}`}
+                        >
+                          <b className="title-14 f400">{item?.title}</b>
+                          <div className="title-12">
+                            {moment(item?.startAt)
+                              .tz(timezone)
+                              .format("MMM DD YYYY h:mmA [IST]")}
+                          </div>
+                        </Link>
+                      </div>
+                      <div className="d-flex align-items-center gap-2">
+                        {item?.startAt || item?.stopAt ? (
+                          <span className="liveDot"></span>
+                        ) : (
+                          ""
+                        )}
+                        <FiMonitor />
+                        {item?.manualSessionActive || item?.apiSessionActive ? (
+                          <span className="fancy">
+                            <img src={fancy} alt={"fancy"} />
+                          </span>
+                        ) : (
+                          ""
+                        )}
+                        {item?.isBookmaker > 0 ? (
+                          <span className="bookmaker">
+                            <img src={bm} alt={"fancy"} />
+                          </span>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
+                    <div className="d-flex w-100">
+                      {item?.matchOdds?.map((item: any, index: number) => (
+                        <React.Fragment key={index}>
+                          <BackLayComponent
+                            heading="1"
+                            backRate={
+                              (item?.runners &&
+                                item?.runners[0]?.ex?.availableToBack[0]
+                                  ?.price) ??
+                              item?.backTeamA ??
+                              0
+                            }
+                            layRate={
+                              (item?.runners &&
+                                item?.runners[0]?.ex?.availableToLay[0]
+                                  ?.price) ??
+                              item?.layTeamA ??
+                              0
+                            }
+                            active={false}
+                          />
+                          <BackLayComponent
+                            heading="X"
+                            backRate={
+                              (item?.runners &&
+                                item?.runners[2]?.ex?.availableToBack[0]
+                                  ?.price) ??
+                              0
+                            }
+                            layRate={
+                              (item?.runners &&
+                                item?.runners[2]?.ex?.availableToLay[0]
+                                  ?.price) ??
+                              0
+                            }
+                            active={false}
+                          />
+                          <BackLayComponent
+                            heading="2"
+                            backRate={
+                              (item?.runners &&
+                                item?.runners[1]?.ex?.availableToBack[0]
+                                  ?.price) ??
+                              0
+                            }
+                            layRate={
+                              (item?.runners &&
+                                item?.runners[1]?.ex?.availableToLay[0]
+                                  ?.price) ??
+                              0
+                            }
+                            active={false}
+                          />
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+          </>
+        ) : (
+          <div className="text-center">
+            <ContactAdmin />
           </div>
-        </div>}
-        {matchList?.map((item: any, index: number) => (
-
-          <div key={index} className="px-3  m-game-one-v-one">
-
-            <div className="d-flex justify-content-between">
-              <div className="d-flex flex-column">
-                <Link
-                  className="text-decoration-none text-black"
-                  to={`/game-detail/${item?.id}`}
-                >
-                  <b className="title-14 f400">{item?.title}</b>
-                  <div className="title-12">
-                    {moment(item?.startAt)
-                      .tz(timezone)
-                      .format("MMM DD YYYY h:mmA [IST]")}
+        )}
+      </div>
+      {location.pathname === "/home" ? (
+        <div className="tab-pane active casino-tables d-flex">
+          <div className="container-fluid">
+            <div className="row row5">
+              <div className="col-12">
+                <h4 className="text-uppercase mt-3">Our Casino</h4>
+              </div>
+            </div>
+            <div className="mt-2">
+              {casinoIcons.map((item, index) => (
+                <Link to={item.url} key={index}>
+                  <div className="d-inline-block casinoiconsm">
+                    <Img
+                      src={item.imgSrc}
+                      className="img-fluid"
+                      alt={item.name}
+                    />
+                    <div className="mcasino-name">{item.name}</div>
                   </div>
                 </Link>
-              </div>
-              <div className="d-flex align-items-center gap-2">
-                {item?.startAt || item?.stopAt ? (
-                  <span className="liveDot"></span>
-                ) : (
-                  ""
-                )}
-                <FiMonitor />
-                {item?.manualSessionActive || item?.apiSessionActive ? (
-                  <span className="fancy">
-                    <img src={fancy} alt={"fancy"} />
-                  </span>
-                ) : (
-                  ""
-                )}
-                {item?.isBookmaker?.length > 0 ? (
-                  <span className="bookmaker">
-                    <img src={bm} alt={"fancy"} />
-                  </span>
-                ) : (
-                  ""
-                )}
-              </div>
-            </div>
-            <div className="d-flex w-100">
-              {item?.matchOdds?.map((item: any, index: number) => (
-                <React.Fragment key={index}>
-                  <BackLayComponent
-                    heading="1"
-                    backRate={
-                      (item?.runners &&
-                        item?.runners[0]?.ex?.availableToBack[0]?.price) ??
-                      item?.backTeamA ??
-                      0
-                    }
-                    layRate={
-                      (item?.runners &&
-                        item?.runners[0]?.ex?.availableToLay[0]?.price) ??
-                      item?.layTeamA ??
-                      0
-                    }
-                    active={false}
-                  />
-                  <BackLayComponent
-                    heading="X"
-                    backRate={
-                      (item?.runners &&
-                        item?.runners[2]?.ex?.availableToBack[0]?.price) ??
-                      0
-                    }
-                    layRate={
-                      (item?.runners &&
-                        item?.runners[2]?.ex?.availableToLay[0]?.price) ??
-                      0
-                    }
-                    active={false}
-                  />
-                  <BackLayComponent
-                    heading="2"
-                    backRate={
-                      (item?.runners &&
-                        item?.runners[1]?.ex?.availableToBack[0]?.price) ??
-                      0
-                    }
-                    layRate={
-                      (item?.runners &&
-                        item?.runners[1]?.ex?.availableToLay[0]?.price) ??
-                      0
-                    }
-                    active={false}
-                  />
-                </React.Fragment>
               ))}
             </div>
           </div>
-        ))}
-      </div>
-      {location.pathname === "/home" ?  <div className="tab-pane active casino-tables d-flex">
-        <div className="container-fluid">
-          <div className="row row5">
-            <div className="col-12">
-              <h4 className="text-uppercase mt-3">Our Casino</h4>
-            </div>
-          </div>
-          <div className="mt-2">
-            {casinoIcons.map((item, index) => (
-              <Link to={item.url} key={index}>
-                <div className="d-inline-block casinoiconsm">
-                  <Img
-                    src={item.imgSrc}
-                    className="img-fluid"
-                    alt={item.name}
-                  />
-                  <div className="mcasino-name">{item.name}</div>
-                </div>
-              </Link>
-            ))}
-          </div>
         </div>
-      </div> : " "}
+      ) : (
+        " "
+      )}
     </div>
-
   );
 };
 

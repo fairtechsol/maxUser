@@ -199,7 +199,7 @@ const MobileGameDetail = () => {
                                   />
                                 </Col>
                               )}
-                              <div style={{ height: '80px' }}></div>
+                              <div style={{ height: "80px" }}></div>
                             </Tab>
                           );
                         })}

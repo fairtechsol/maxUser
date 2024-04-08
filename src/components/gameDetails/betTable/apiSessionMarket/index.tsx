@@ -30,7 +30,7 @@ function ApiSessionMarketTable({
   data,
   title,
   matchDetails,
-  minMax
+  minMax,
 }: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
 
@@ -47,9 +47,9 @@ function ApiSessionMarketTable({
 
   // Function to toggle modal visibility for a specific item
   const handleMinModalToggle = (itemId: any) => {
-    setModalStates((prevState: { [x: string]: any; }) => ({
+    setModalStates((prevState: { [x: string]: any }) => ({
       ...prevState,
-      [itemId]: !prevState[itemId] // Toggle the modal state for the specific item
+      [itemId]: !prevState[itemId], // Toggle the modal state for the specific item
     }));
   };
   const handleClick = (team: any, data: any) => {
@@ -75,10 +75,11 @@ function ApiSessionMarketTable({
                   rightComponent={
                     <div>
                       <span
-                        className={`${isMobile
-                          ? "text-black title-16"
-                          : "text-white title-20"
-                          }`}
+                        className={`${
+                          isMobile
+                            ? "text-black title-16"
+                            : "text-white title-20"
+                        }`}
                       >
                         <IoInformationCircle
                           onClick={() => setShowRulesModal(true)}
@@ -105,20 +106,16 @@ function ApiSessionMarketTable({
           </tr>
         </thead>
 
-        <tbody style={{ position: "relative" }}  >
+        <tbody style={{ position: "relative" }}>
           {data?.map((item: any, index: number) => {
             return (
-
-
               <tr className="overlay-trigger " key={index}>
-
-
-                <td >
+                <td>
                   {/* <div className="backLayRunner d-flex flex-column px-1"> */}
                   <div className="minmaxsession">
                     <span
                       onClick={() => {
-                        if(item.activeStatus === 'save'){
+                        if (item.activeStatus === "save") {
                           return true;
                         }
                         setShowRunModal(true);
@@ -127,44 +124,52 @@ function ApiSessionMarketTable({
                       className="backLayRunner-country session-country title-12"
                     >
                       {item?.RunnerName}
-
                     </span>
 
-                    {isMobile &&  <span className="minmaxi"><IoInformationCircle
-                      onClick={() => handleMinModalToggle(item.id)}
-                    />
-                      <SmoothDropdownModal
-                        minMax={formattedMinMax(item?.min, item?.max)}
-                        show={modalStates[item.id]}
-                        setShow={(value: any) => setModalStates((prevState: any) => ({ ...prevState, [item.id]: value }))}
-                      /></span>}
+                    {isMobile && (
+                      <span className="minmaxi">
+                        <IoInformationCircle
+                          onClick={() => handleMinModalToggle(item.id)}
+                        />
+                        <SmoothDropdownModal
+                          minMax={formattedMinMax(item?.min, item?.max)}
+                          show={modalStates[item.id]}
+                          setShow={(value: any) =>
+                            setModalStates((prevState: any) => ({
+                              ...prevState,
+                              [item.id]: value,
+                            }))
+                          }
+                        />
+                      </span>
+                    )}
                   </div>
                   <div className="backLayRunner d-flex flex-column px-1">
                     <span
-                      className={`title-14 ${matchDetails?.profitLossDataSession
-                        ? matchDetails?.profitLossDataSession?.reduce(
-                          (accumulator: any, bet: any) => {
-                            const maxLossToAdd =
-                              bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                            return accumulator + maxLossToAdd;
-                          },
-                          0
-                        ) < 0
-                          ? "color-red"
-                          : "color-green"
-                        : ""
-                        }`}
+                      className={`title-14 ${
+                        matchDetails?.profitLossDataSession
+                          ? matchDetails?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            ) < 0
+                            ? "color-red"
+                            : "color-green"
+                          : ""
+                      }`}
                     >
-
                       {matchDetails?.profitLossDataSession
                         ? matchDetails?.profitLossDataSession?.reduce(
-                          (accumulator: any, bet: any) => {
-                            const maxLossToAdd =
-                              bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                            return accumulator + maxLossToAdd;
-                          },
-                          0
-                        )
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
                         : 0}
                     </span>
                   </div>
@@ -177,13 +182,15 @@ function ApiSessionMarketTable({
                     active={item?.GameStatus !== "" ? true : false}
                   >
                     <BackLayBox
-                      customClass={isMobile ? "bet-place-box" : "bet-place-box50"}
+                      customClass={
+                        isMobile ? "bet-place-box" : "bet-place-box50"
+                      }
                       // overlay={true}
                       bgColor="red1"
                       rate={item?.LayPrice1 ?? 0}
                       percent={item?.LaySize1 ?? 0}
                       onClick={() => {
-                        if(item.activeStatus === 'save'){
+                        if (item.activeStatus === "save") {
                           return true;
                         }
                         const rate = parseFloat(item?.LayPrice1 ?? 0);
@@ -210,12 +217,14 @@ function ApiSessionMarketTable({
                       active={item?.GameStatus !== "" ? true : false}
                     />
                     <BackLayBox
-                      customClass={isMobile ? "bet-place-box" : "bet-place-box50"}
+                      customClass={
+                        isMobile ? "bet-place-box" : "bet-place-box50"
+                      }
                       bgColor="blue3"
                       rate={item?.BackPrice1}
                       percent={item?.BackSize1}
-                      onClick={() => { 
-                        if(item.activeStatus === 'save'){
+                      onClick={() => {
+                        if (item.activeStatus === "save") {
                           return true;
                         }
                         const rate = parseFloat(item?.BackPrice1);
@@ -252,22 +261,12 @@ function ApiSessionMarketTable({
                   </BetStatusOverlay>
                 </td>
 
-{
-  item.activeStatus !== 'live' ? <div className="overlay">
-
-  </div>: null
-}
-                
-
-
+                {item.activeStatus !== "live" ? (
+                  <div className="overlay"></div>
+                ) : null}
               </tr>
-
-
-            )
-          }
-
-
-          )}
+            );
+          })}
         </tbody>
       </Table>
       <CustomModal

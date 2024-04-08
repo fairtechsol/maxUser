@@ -35,7 +35,6 @@ const DesktopGameDetail = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <Container fluid>
       <Row>

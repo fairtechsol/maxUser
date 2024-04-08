@@ -13,6 +13,7 @@ import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";
 import "./style.scss";
+import { toast } from "react-toastify";
 
 interface PlaceBetProps {
   show: boolean;
@@ -29,7 +30,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     (state: RootState) => state.user.profile
   );
 
-  const { selectedBet, matchDetails} = useSelector(
+  const { selectedBet, matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
   );
   const { success, loading, error } = useSelector(
@@ -120,13 +121,21 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   return (
     <>
       <CustomModal
-        title={"PlaceBet"}
+        title={"Place Bet"}
         show={show && selectedBet}
         setShow={() => {
           dispatch(selectedBetAction(null));
         }}
       >
-        <Container className={`${selectedBet?.team?.type === 'lay' || selectedBet?.team?.type === 'no' ? 'bg-red1' : 'bg-blue1'}`} fluid>
+        <Container
+          className={`${
+            selectedBet?.team?.type === "lay" ||
+            selectedBet?.team?.type === "no"
+              ? "bg-red1"
+              : "bg-blue1"
+          }`}
+          fluid
+        >
           <Row className="row-cols-md-3 g-2 align-items-center">
             <Col xs={6} className="f500 title-12">
               {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
@@ -205,6 +214,23 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 className="f400 w-100"
                 onClick={() => {
                   try {
+                    if (
+                      selectedBet?.team?.stake <
+                      (selectedBet?.data?.minBet || selectedBet?.data?.min)
+                    ) {
+                      toast.error(
+                        "Stake value must be greater or equal to min bet"
+                      );
+                      return;
+                    } else if (
+                      selectedBet?.team?.stake >
+                      (selectedBet?.data?.maxBet || selectedBet?.data?.max)
+                    ) {
+                      toast.error(
+                        "Stake value must be smaller or equal to max bet"
+                      );
+                      return;
+                    }
                     if (loading) {
                       return;
                     }
@@ -247,12 +273,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           placeBet({
                             url:
                               selectedBet?.data?.type === "session" ||
-                                selectedBet?.data?.SelectionId
+                              selectedBet?.data?.SelectionId
                                 ? ApiConstants.BET.PLACEBETSESSION
                                 : ApiConstants.BET.PLACEBETMATCHBETTING,
                             data:
                               selectedBet?.data?.type === "session" ||
-                                selectedBet?.data?.SelectionId
+                              selectedBet?.data?.SelectionId
                                 ? JSON.stringify(payloadForSession)
                                 : JSON.stringify(payloadForBettings),
                           })
@@ -263,12 +289,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                         placeBet({
                           url:
                             selectedBet?.data?.type === "session" ||
-                              selectedBet?.data?.SelectionId
+                            selectedBet?.data?.SelectionId
                               ? ApiConstants.BET.PLACEBETSESSION
                               : ApiConstants.BET.PLACEBETMATCHBETTING,
                           data:
                             selectedBet?.data?.type === "session" ||
-                              selectedBet?.data?.SelectionId
+                            selectedBet?.data?.SelectionId
                               ? JSON.stringify(payloadForSession)
                               : JSON.stringify(payloadForBettings),
                         })
@@ -307,40 +333,67 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               </Col>
             ))}
             <div className="container d-flex justify-content-between mt-2">
-              {selectedBet?.data?.type && (selectedBet.data.type === 'quickbookmaker1' || selectedBet.data.type === 'matchOdd' || selectedBet.data.type === 'bookmaker') && (
-
-                <>
-                  <div className="row">
-                    <div className="col-md-4 flex-start">
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span>{selectedBet?.team?.teamA}</span>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span>{selectedBet?.team?.teamB}</span>
-                        </div>
-                      </div>
-                      {selectedBet?.team?.teamC && (
+              {selectedBet?.data?.type &&
+                (selectedBet.data.type === "quickbookmaker1" ||
+                  selectedBet.data.type === "matchOdd" ||
+                  selectedBet.data.type === "bookmaker") && (
+                  <>
+                    <div className="row">
+                      <div className="col-md-4 flex-start">
                         <div className="row">
                           <div className="col-md-12">
-                            <span>{selectedBet?.team?.teamC}</span>
+                            <span>{selectedBet?.team?.teamA}</span>
                           </div>
                         </div>
-                      )}
-
-                    </div>
-                  </div><div className="row row5">
-                    <div className="col-md-4">
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span>{matchDetails?.profitLossDataMatch?.teamARate}</span>
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span>{selectedBet?.team?.teamB}</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span>{matchDetails?.profitLossDataMatch?.teamBRate}</span>
+                    </div>
+                    <div className="row row5">
+                      <div className="col-md-4">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span>0</span>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span>0</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-4">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span
+                              className={
+                                matchDetails?.profitLossDataMatch?.yesRateTie <
+                                0
+                                  ? "color-red"
+                                  : "color-green"
+                              }
+                            >
+                              {selectedBet?.team?.stake}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span
+                              className={
+                                matchDetails?.profitLossDataMatch?.noRateTie < 0
+                                  ? "color-red"
+                                  : "color-green"
+                              }
+                            >
+                              {selectedBet?.team?.stake}
+                            </span>
+                          </div>
                         </div>
                       </div>
                       {selectedBet?.team?.teamC && (
@@ -351,40 +404,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       </div>
                        )}
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-4">
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? "color-green" : "color-red"}>
-                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? "color-green" : "color-red"}>
-                            {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
-                        </div>
-                      </div>
-                      {selectedBet?.team?.teamC && (
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? "color-green" : "color-red"}>
-                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
-                        </div>
-                      </div>
-                      )}
-                    </div>
-                  </div>
-                </>
-              )}
+                  </>
+                )}
             </div>
-
-
           </Row>
-
         </Container>
-
       </CustomModal>
       {(loading || matchOddLoading) && <Loader />}
     </>

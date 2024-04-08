@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 // import { FaHandPointDown, FaKey } from "react-icons/fa";
 // import { IoPerson } from "react-icons/io5";
 import { MdOutlineLogin } from "react-icons/md";
-import { AiOutlineLoading } from 'react-icons/ai'; // Import the AiOutlineLoading spinner
+import { AiOutlineLoading } from "react-icons/ai"; // Import the AiOutlineLoading spinner
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../../components/commonComponent/button";
@@ -114,9 +114,9 @@ const Login = () => {
             isUnderlinedInput={isMobile}
             value={formik.values.password}
             onChange={formik.handleChange}
-          // onChange={(e: any) => {
-          //   setLoginState({ ...loginState, password: e.target.value });
-          // }}
+            // onChange={(e: any) => {
+            //   setLoginState({ ...loginState, password: e.target.value });
+            // }}
           />
           <ValidationError
             touched={touched.password}
@@ -126,12 +126,18 @@ const Login = () => {
             className="w-100 ml-6"
             variant="primary"
             type="submit"
-          // loading={loading}
+            // loading={loading}
           >
             <div className="button-container">
-              <span className="login-text">Login</span>{loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}
+              <span className="login-text">Login</span>
+              {loading ? (
+                <AiOutlineLoading className="spinner-icon" />
+              ) : (
+                <MdOutlineLogin className="login-icon" />
+              )}
               {/* {!isMobile ? <span className="login-text">Login </span> : <span><span className="mlogintext">Login {loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}</span></span>} */}
-            </div></CustomButton>
+            </div>
+          </CustomButton>
           <p className="auth-box-descrip mt-1">
             This site is protected by reCAPTCHA and the Google
             <a

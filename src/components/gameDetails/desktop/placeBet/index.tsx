@@ -15,6 +15,7 @@ import {
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
+import { toast } from "react-toastify";
 
 const placeBetHeader = [
   {},
@@ -141,220 +142,251 @@ const PlacedBet = () => {
 
   return (
     <>
-    <div className="loader-container">
-      {(loading || matchOddLoading) && <CustomLoader />}
-      <RightPanelContainer title="Place Bet">
-
-        {selectedBet ? (
-
-          <Table className="w-full">
-            <thead>
-              <tr className="bg-darkGrey">
-                {placeBetHeader?.map((item, index) => (
-                  <th key={index} className="title-12 text-start bg-darkGrey">
-                    {item?.name}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                className={
-                  selectedBet?.team?.type == "lay" ||
+      <div className="loader-container">
+        {(loading || matchOddLoading) && <CustomLoader />}
+        <RightPanelContainer title="Place Bet">
+          {selectedBet ? (
+            <Table className="w-full">
+              <thead>
+                <tr className="bg-darkGrey">
+                  {placeBetHeader?.map((item, index) => (
+                    <th key={index} className="title-12 text-start bg-darkGrey">
+                      {item?.name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  className={
+                    selectedBet?.team?.type == "lay" ||
                     selectedBet?.team?.type == "no"
-                    ? "place-bet-table-red"
-                    : "place-bet-table-blue"
-                }
-              >
-                <td>
-                  <span
-                    className=" text-danger title-12 cursor-pointer"
-                    onClick={() => {
-                      dispatch(selectedBetAction(null));
-                    }}
-                  >
-                    <ImCross />
-                  </span>
-                </td>
-                <td>
-                  <span className="f500 title-12">
-                    {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
-                  </span>
-                </td>
-                <td> 
-                  <input
-                    disabled
-                    placeholder=""
-                    className="p-0 h-25 w-50"
-                    value={selectedBet?.team?.rate}
-                  />
-                </td>
-                <td>
-                  <input
-                    value={stake}
-                    min={0}
-                    onChange={(e) => {
-                      dispatch(
-                        selectedBetAction({
-                          ...selectedBet,
-                          team: { ...selectedBet?.team, stake: +e.target.value },
-                        })
-                      );
-                    }}
-                    type="number"
-                    placeholder=""
-                    className="p-0 h-25 w-50"
-                  />
-                </td>
-                <td>
-                  <span className="f500">{handleProfit(stake)}</span>
-                </td>
-              </tr>
-              <tr
-                className={
-                  selectedBet?.team?.type == "lay" ||
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
+                  }
+                >
+                  <td>
+                    <span
+                      className=" text-danger title-12 cursor-pointer"
+                      onClick={() => {
+                        dispatch(selectedBetAction(null));
+                      }}
+                    >
+                      <ImCross />
+                    </span>
+                  </td>
+                  <td>
+                    <span className="f500 title-12">
+                      {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
+                    </span>
+                  </td>
+                  <td>
+                    <input
+                      disabled
+                      placeholder=""
+                      className="p-0 h-25 w-50"
+                      value={selectedBet?.team?.rate}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      value={stake}
+                      min={0}
+                      onChange={(e) => {
+                        dispatch(
+                          selectedBetAction({
+                            ...selectedBet,
+                            team: {
+                              ...selectedBet?.team,
+                              stake: +e.target.value,
+                            },
+                          })
+                        );
+                      }}
+                      type="number"
+                      placeholder=""
+                      className="p-0 h-25 w-50"
+                    />
+                  </td>
+                  <td>
+                    <span className="f500">{handleProfit(stake)}</span>
+                  </td>
+                </tr>
+                <tr
+                  className={
+                    selectedBet?.team?.type == "lay" ||
                     selectedBet?.team?.type == "no"
-                    ? "place-bet-table-red"
-                    : "place-bet-table-blue"
-                }
-              >
-
-                <td colSpan={5}>
-                  <Container fluid>
-                    <Row>
-                      {valueLabel?.map((item: any, index: any) => (
-                        <Col className="p-1" key={index} md={3}>
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
+                  }
+                >
+                  <td colSpan={5}>
+                    <Container fluid>
+                      <Row>
+                        {valueLabel?.map((item: any, index: any) => (
+                          <Col className="p-1" key={index} md={3}>
+                            <CustomButton
+                              className="w-100 bg-darkGrey border-0 text-black"
+                              size="sm"
+                              onClick={() => {
+                                dispatch(
+                                  selectedBetAction({
+                                    ...selectedBet,
+                                    team: {
+                                      ...selectedBet?.team,
+                                      stake: +item?.value,
+                                    },
+                                  })
+                                );
+                              }}
+                            >
+                              {item?.label}
+                            </CustomButton>
+                          </Col>
+                        ))}
+                      </Row>
+                      <Row>
+                        <Col md={6}>
                           <CustomButton
-                            className="w-100 bg-darkGrey border-0 text-black"
+                            className="bg-danger border-0 py-2"
                             size="sm"
                             onClick={() => {
-                              dispatch(
-                                selectedBetAction({
-                                  ...selectedBet,
-                                  team: {
-                                    ...selectedBet?.team,
-                                    stake: +item?.value,
-                                  },
-                                })
-                              );
+                              dispatch(selectedBetAction(null));
                             }}
                           >
-                            {item?.label}
+                            Reset
                           </CustomButton>
                         </Col>
-                      ))}
-                    </Row>
-                    <Row>
-                      <Col md={6}>
-                        <CustomButton
-                          className="bg-danger border-0 py-2"
-                          size="sm"
-                          onClick={() => {
-                            dispatch(selectedBetAction(null));
-                          }}
-                        >
-                          Reset
-                        </CustomButton>
-                      </Col>
-                      <Col md={6} className="text-end">
-
-
-                        <CustomButton
-                          className="bg-success border-0 py-2"
-                          size="sm"
-                          onClick={() => {
-                            if (loading) {
-                              return;
-                            } else {
-                              let payloadForSession: any = {
-                                betId: selectedBet?.team?.betId,
-                                betType: selectedBet?.team?.type.toUpperCase(),
-                                browserDetail: browserInfo?.userAgent,
-                                eventName: selectedBet?.team?.name,
-                                eventType: selectedBet?.team?.eventType,
-                                matchId: selectedBet?.team?.matchId,
-                                ipAddress:
-                                  ipAddress === "Not found" || !ipAddress
-                                    ? "192.168.1.100"
-                                    : ipAddress,
-                                odds: selectedBet?.team?.rate,
-                                ratePercent: selectedBet?.team?.percent,
-                                stake: selectedBet?.team?.stake,
-                              };
-                              let payloadForBettings: any = {
-                                betId: selectedBet?.team?.betId,
-                                teamA: selectedBet?.team?.teamA,
-                                teamB: selectedBet?.team?.teamB,
-                                teamC: selectedBet?.team?.teamC,
-                                bettingType:
-                                  selectedBet?.team?.type.toUpperCase(),
-                                browserDetail: browserInfo?.userAgent,
-                                matchId: selectedBet?.team?.matchId,
-                                ipAddress:
-                                  ipAddress === "Not found" || !ipAddress
-                                    ? "192.168.1.100"
-                                    : ipAddress,
-                                odd: selectedBet?.team?.rate,
-                                stake: selectedBet?.team?.stake,
-                                matchBetType: selectedBet?.team?.matchBetType,
-                                betOnTeam: selectedBet?.team?.betOnTeam,
-                                placeIndex: selectedBet?.team?.placeIndex,
-                              };
+                        <Col md={6} className="text-end">
+                          <CustomButton
+                            className="bg-success border-0 py-2"
+                            size="sm"
+                            onClick={() => {
                               if (
-                                selectedBet?.data?.type === "matchOdd" ||
-                                selectedBet?.team?.matchBetType === "matchOdd"
+                                selectedBet?.team?.stake <
+                                (selectedBet?.data?.minBet ||
+                                  selectedBet?.data?.min)
                               ) {
-                                setMatchOddLoading(true);
-                                setTimeout(() => {
+                                toast.error(
+                                  "Stake value must be greater or equal to min bet"
+                                );
+                                return;
+                              } else if (
+                                selectedBet?.team?.stake >
+                                (selectedBet?.data?.maxBet ||
+                                  selectedBet?.data?.max)
+                              ) {
+                                toast.error(
+                                  "Stake value must be smaller or equal to max bet"
+                                );
+                                return;
+                              }
+                              if (loading) {
+                                return;
+                              } else {
+                                let payloadForSession: any = {
+                                  betId: selectedBet?.team?.betId,
+                                  betType:
+                                    selectedBet?.team?.type.toUpperCase(),
+                                  browserDetail: browserInfo?.userAgent,
+                                  eventName: selectedBet?.team?.name,
+                                  eventType: selectedBet?.team?.eventType,
+                                  matchId: selectedBet?.team?.matchId,
+                                  ipAddress:
+                                    ipAddress === "Not found" || !ipAddress
+                                      ? "192.168.1.100"
+                                      : ipAddress,
+                                  odds: selectedBet?.team?.rate,
+                                  ratePercent: selectedBet?.team?.percent,
+                                  stake: selectedBet?.team?.stake,
+                                };
+                                let payloadForBettings: any = {
+                                  betId: selectedBet?.team?.betId,
+                                  teamA: selectedBet?.team?.teamA,
+                                  teamB: selectedBet?.team?.teamB,
+                                  teamC: selectedBet?.team?.teamC,
+                                  bettingType:
+                                    selectedBet?.team?.type.toUpperCase(),
+                                  browserDetail: browserInfo?.userAgent,
+                                  matchId: selectedBet?.team?.matchId,
+                                  ipAddress:
+                                    ipAddress === "Not found" || !ipAddress
+                                      ? "192.168.1.100"
+                                      : ipAddress,
+                                  odd: selectedBet?.team?.rate,
+                                  stake: selectedBet?.team?.stake,
+                                  matchBetType: selectedBet?.team?.matchBetType,
+                                  betOnTeam: selectedBet?.team?.betOnTeam,
+                                  placeIndex: selectedBet?.team?.placeIndex,
+                                };
+                                if (
+                                  selectedBet?.data?.type === "matchOdd" ||
+                                  selectedBet?.team?.matchBetType === "matchOdd"
+                                ) {
+                                  setMatchOddLoading(true);
+                                  setTimeout(() => {
+                                    dispatch(
+                                      placeBet({
+                                        url:
+                                          selectedBet?.data?.type ===
+                                            "session" ||
+                                          selectedBet?.data?.SelectionId
+                                            ? ApiConstants.BET.PLACEBETSESSION
+                                            : selectedBet?.team?.gameType ===
+                                              "other"
+                                            ? ApiConstants.BET
+                                                .PLACEBETMATCHBETTINGOTHER
+                                            : ApiConstants.BET
+                                                .PLACEBETMATCHBETTING,
+                                        data:
+                                          selectedBet?.data?.type ===
+                                            "session" ||
+                                          selectedBet?.data?.SelectionId
+                                            ? JSON.stringify(payloadForSession)
+                                            : JSON.stringify(
+                                                payloadForBettings
+                                              ),
+                                      })
+                                    );
+                                  }, getProfile?.delayTime * 1000);
+                                } else {
                                   dispatch(
                                     placeBet({
                                       url:
                                         selectedBet?.data?.type === "session" ||
-                                          selectedBet?.data?.SelectionId
+                                        selectedBet?.data?.SelectionId
                                           ? ApiConstants.BET.PLACEBETSESSION
-                                          : ApiConstants.BET.PLACEBETMATCHBETTING,
+                                          : selectedBet?.team?.gameType ===
+                                            "other"
+                                          ? ApiConstants.BET
+                                              .PLACEBETMATCHBETTINGOTHER
+                                          : ApiConstants.BET
+                                              .PLACEBETMATCHBETTING,
                                       data:
                                         selectedBet?.data?.type === "session" ||
-                                          selectedBet?.data?.SelectionId
+                                        selectedBet?.data?.SelectionId
                                           ? JSON.stringify(payloadForSession)
                                           : JSON.stringify(payloadForBettings),
                                     })
                                   );
-                                }, getProfile?.delayTime * 1000);
-                              } else {
-                                dispatch(
-                                  placeBet({
-                                    url:
-                                      selectedBet?.data?.type === "session" ||
-                                        selectedBet?.data?.SelectionId
-                                        ? ApiConstants.BET.PLACEBETSESSION
-                                        : ApiConstants.BET.PLACEBETMATCHBETTING,
-                                    data:
-                                      selectedBet?.data?.type === "session" ||
-                                        selectedBet?.data?.SelectionId
-                                        ? JSON.stringify(payloadForSession)
-                                        : JSON.stringify(payloadForBettings),
-                                  })
-                                );
+                                }
+                                setStake(0);
                               }
-                              setStake(0);
-                            }
-                          }}
-                        >
-                          Submit
-                        </CustomButton>
-                      </Col>
-                    </Row>
-                  </Container>
-                </td>
-              </tr>
-            </tbody>
-          </Table>
-        ) : (
-          ""
-        )}
-      </RightPanelContainer>
-
+                            }}
+                          >
+                            Submit
+                          </CustomButton>
+                        </Col>
+                      </Row>
+                    </Container>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          ) : (
+            ""
+          )}
+        </RightPanelContainer>
       </div>
     </>
   );

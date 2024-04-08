@@ -19,3 +19,23 @@ export const otherMatchDetailAction = createAsyncThunk<any, any>(
     }
   }
 );
+
+export const updateMatchRates = createAsyncThunk<any, any>(
+  "/match/ratesOtherGames",
+  async (matchDetails) => {
+    return matchDetails;
+  }
+);
+
+export const updateTeamRatesOnPlaceBet = createAsyncThunk<any, any>(
+  "/team/ratesOnPlaceBetOtherGames",
+  async (matchDetails) => {
+    return matchDetails;
+  }
+);
+export const updateUserBalanceOnPlaceBet = createAsyncThunk<any, any>(
+  "/userBalance/onPlaceBetOtherGames",
+  async (matchDetails) => {
+    return matchDetails;
+  }
+);
