@@ -1,7 +1,7 @@
 import { Table } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../../store/store";
+// import { useDispatch, useSelector } from "react-redux";
+// import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+// import { AppDispatch, RootState } from "../../../../store/store";
 import isMobile from "../../../../utils/screenDimension";
 import "../../../gameDetails/betTable/apiSessionMarket/style.scss";
 import "../style.scss";

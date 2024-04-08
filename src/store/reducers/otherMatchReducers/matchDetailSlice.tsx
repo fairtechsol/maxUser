@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  SearchList,
-  SearchListReset,
+  // SearchList,
+  // SearchListReset,
   searchListReset,
   selectedBetAction,
 } from "../../actions/match/matchListAction";

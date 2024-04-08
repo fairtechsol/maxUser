@@ -9,7 +9,7 @@ import CommonTabs from "../../commonComponent/tabs";
 
 // import "./style.scss";
 import BetTable from "../../gameDetails/betTable";
-import MyBet from "../../gameDetails/mobile/myBet";
+// import MyBet from "../../gameDetails/mobile/myBet";
 import PlacedBet from "../../gameDetails/mobile/placeBet";
 
 const FootballMobileGameDetail = () => {
@@ -19,7 +19,7 @@ const FootballMobileGameDetail = () => {
     (state: RootState) => state.match.matchList
   );
 
-  const { placedBets } = useSelector((state: RootState) => state.bets);
+  // const { placedBets } = useSelector((state: RootState) => state.bets);
 
   return (
     

@@ -64,30 +64,30 @@ const FootballDesktopGameDetail = () => {
                 </Col>
               )}
               <Col md={12}>
-                <BetTable />
+                {/* <BetTable /> */}
               </Col>
               <Col md={12}>
-                <BetTable />
+                {/* <BetTable /> */}
               </Col>
               <Col md={6}>
-                <BetTable />
+                {/* <BetTable /> */}
               </Col>
               <Col md={6}>
-                <BetTable />
+                {/* <BetTable /> */}
               </Col>
               <Col md={4}>
-                <BetTable />
+                {/* <BetTable /> */}
               </Col>
 
               {/* {matchDetails?.apiSessionActive && ( */}
               <Col md={4}>
-                <BetTable />
+                {/* <BetTable /> */}
               </Col>
               <Col md={4}>
-                <BetTable />
+                {/* <BetTable /> */}
               </Col>
               <Col md={12}>
-                <BetTable />
+                {/* <BetTable /> */}
               </Col>
               {/* )} */}
               {/* {matchDetails?.manualSessionActive && ( */}

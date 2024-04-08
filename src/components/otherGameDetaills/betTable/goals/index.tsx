@@ -1,8 +1,10 @@
 import { Table } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
-import { useDispatch } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../../store/store";
+// import { useDispatch } from "react-redux";
+// import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import {
+  //  AppDispatch,
+    RootState } from "../../../../store/store";
 import isMobile from "../../../../utils/screenDimension";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
 import "../../../gameDetails/betTable/apiSessionMarket/style.scss";
@@ -19,9 +21,9 @@ interface SessionMarketTableProps {
   matchDetails: any;
 }
 function GoalsMarketTable({
-  data,
+  // data,
   title,
-  matchDetails,
+  // matchDetails,
 }: SessionMarketTableProps) {
   const { runAmount } = useSelector((state: RootState) => state.bets);
   // State for the "Run Position" modal
@@ -29,16 +31,16 @@ function GoalsMarketTable({
 
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
+  // const dispatch: AppDispatch = useDispatch();
 
-  const handleClick = (team: any, data: any) => {
-    dispatch(
-      selectedBetAction({
-        team,
-        data,
-      })
-    );
-  };
+  // const handleClick = (team: any, data: any) => {
+  //   dispatch(
+  //     selectedBetAction({
+  //       team,
+  //       data,
+  //     })
+  //   );
+  // };
 
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
