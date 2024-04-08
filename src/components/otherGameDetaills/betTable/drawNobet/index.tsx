@@ -28,8 +28,8 @@ interface SessionMarketTableProps {
 function DrawMarketTable({
   // data,
   title,
-}: // matchDetails,
-SessionMarketTableProps) {
+  // matchDetails,
+}: SessionMarketTableProps) {
   const { runAmount } = useSelector((state: RootState) => state.bets);
   // State for the "Run Position" modal
   const [showRunModal, setShowRunModal] = useState(false);

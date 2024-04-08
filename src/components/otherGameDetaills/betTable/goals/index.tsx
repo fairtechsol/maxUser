@@ -2,9 +2,9 @@ import { Table } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
 // import { useDispatch } from "react-redux";
 // import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { 
-  // AppDispatch,
-   RootState } from "../../../../store/store";
+import {
+  //  AppDispatch,
+    RootState } from "../../../../store/store";
 import isMobile from "../../../../utils/screenDimension";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
 import "../../../gameDetails/betTable/apiSessionMarket/style.scss";

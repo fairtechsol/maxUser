@@ -11,6 +11,11 @@ import MyBet from "./myBet";
 import "../../gameDetails/mobile/style.scss";
 import FootballPlaceBet from "./placeBet";
 
+// import "./style.scss";
+// import BetTable from "../../gameDetails/betTable";
+// import MyBet from "../../gameDetails/mobile/myBet";
+// import PlacedBet from "../../gameDetails/mobile/placeBet";
+
 const FootballMobileGameDetail = () => {
   const [show, setShow] = useState(true);
 

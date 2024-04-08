@@ -19,7 +19,7 @@ interface BookmakerTableProps {
   matchDetails?: any;
 }
 function FootballBookmakerTable({
-  minMax,
+  // minMax,
   data,
   backLayCount = 6,
   matchDetails,

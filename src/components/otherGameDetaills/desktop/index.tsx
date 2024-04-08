@@ -64,6 +64,21 @@ const FootballDesktopGameDetail = () => {
                   />
                 </Col>
               )}
+              <Col md={12}>
+                {/* <BetTable /> */}
+              </Col>
+              <Col md={12}>
+                {/* <BetTable /> */}
+              </Col>
+              <Col md={6}>
+                {/* <BetTable /> */}
+              </Col>
+              <Col md={6}>
+                {/* <BetTable /> */}
+              </Col>
+              <Col md={4}>
+                {/* <BetTable /> */}
+              </Col>
 
               {otherMatchDetails?.bookmaker?.isActive && (
                 <Col md={12}>
@@ -148,19 +163,14 @@ const FootballDesktopGameDetail = () => {
                 <BetTable />
               </Col>
               <Col md={4}>
-                <BetTable />
-              </Col> */}
-
-              {/* {otherMatchDetails?.apiSessionActive && ( */}
-              {/* <Col md={4}>
-                <BetTable />
-              </Col>
-              <Col md={4}>
-                <BetTable />
-              </Col>
-              <Col md={12}>
-                <BetTable />
-              </Col> */}
+                {/* <BetTable /> */}
+              {/* </Col> */}
+              {/* <Col md={4}> */}
+                {/* <BetTable /> */}
+              {/* </Col> */}
+              {/* <Col md={12}> */}
+                {/* <BetTable /> */}
+              {/* </Col> */}
               {/* )} */}
               {/* {otherMatchDetails?.manualSessionActive && ( */}
               {/* <Col md={4}>
