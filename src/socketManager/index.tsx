@@ -12,13 +12,13 @@ export const initialiseSocket = () => {
   socket = io(baseUrls.socket, {
     transports: [`${Constants.WEBSOCKET}`],
     auth: {
-      token: `${sessionStorage.getItem("userToken")}`,
+      token: `${sessionStorage.getItem("jwtMaxUser")}`,
     },
   });
   expertSocket = io(baseUrls.expertSocket, {
     transports: [`${Constants.WEBSOCKET}`],
     auth: {
-      token: `${sessionStorage.getItem("userToken")}`,
+      token: `${sessionStorage.getItem("jwtMaxUser")}`,
     },
   });
   matchSocket = io(baseUrls.matchSocket, {

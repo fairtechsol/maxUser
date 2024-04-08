@@ -31,7 +31,7 @@ service.interceptors.request.use(
   (config) => {
     config.headers["Content-Type"] = "application/json";
 
-    const authToken = sessionStorage.getItem("userToken");
+    const authToken = sessionStorage.getItem("jwtMaxUser");
     config.headers.Authorization = `Bearer ${authToken}`;
     return config;
   },
