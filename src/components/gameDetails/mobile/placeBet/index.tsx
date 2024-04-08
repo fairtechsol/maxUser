@@ -350,59 +350,59 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                             <span>{selectedBet?.team?.teamB}</span>
                           </div>
                         </div>
+                        {selectedBet?.team?.teamC && (
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span>{selectedBet?.team?.teamC}</span>
+                          </div>
+                        </div>
+                      )}
                       </div>
                     </div>
                     <div className="row row5">
                       <div className="col-md-4">
                         <div className="row">
                           <div className="col-md-12">
-                            <span>0</span>
+                            <span>{matchDetails?.profitLossDataMatch?.teamARate}</span>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-12">
-                            <span>0</span>
+                            <span>{matchDetails?.profitLossDataMatch?.teamBRate}</span>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-4">
-                        <div className="row">
-                          <div className="col-md-12">
-                            <span
-                              className={
-                                matchDetails?.profitLossDataMatch?.yesRateTie <
-                                0
-                                  ? "color-red"
-                                  : "color-green"
-                              }
-                            >
-                              {selectedBet?.team?.stake}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className="col-md-12">
-                            <span
-                              className={
-                                matchDetails?.profitLossDataMatch?.noRateTie < 0
-                                  ? "color-red"
-                                  : "color-green"
-                              }
-                            >
-                              {selectedBet?.team?.stake}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      {selectedBet?.team?.teamC && (
+                        {selectedBet?.team?.teamC && (
                       <div className="row">
                         <div className="col-md-12">
                           <span>{matchDetails?.profitLossDataMatch?.teamCRate}</span>
                         </div>
                       </div>
                        )}
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-4">
+                        <div className="row">
+                          <div className="col-md-12">
+                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? "color-green" : "color-red"}>
+                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-12">
+                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? "color-green" : "color-red"}>
+                            {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
+                          </div>
+                        </div>
+                      </div>
+                      {selectedBet?.team?.teamC && (
+                      <div className="row">
+                        <div className="col-md-12">
+                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? "color-green" : "color-red"}>
+                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
+                        </div>
+                      </div>
+                      )}
                     </div>
                   </>
                 )}
