@@ -12,9 +12,9 @@ const Home = () => {
   const dispatch: AppDispatch = useDispatch();
   const { rulesPopShow } = useSelector((state: RootState) => state.auth);
   const [matchType, setMatchType] = useState("cricket");
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
-  const getMatchListService = (matchType: any) => {
+  const getMatchListService = () => {
     try {
       dispatch(
         getMatchList({
@@ -31,21 +31,20 @@ const Home = () => {
       expertSocketService.match.matchAdded(getMatchListService);
       socketService.userBalance.matchResultDeclared(getMatchListService);
       socketService.userBalance.matchResultUnDeclared(getMatchListService);
+      return () => {
+        expertSocketService.match.matchAddedOff();
+      };
     } catch (e) {
       console.log(e);
     }
-    return () => {
-      expertSocketService.match.matchAddedOff();
-    };
   }, []);
 
   useEffect(() => {
     if (matchType) {
-      getMatchListService(matchType)
+      getMatchListService();
     }
-
   }, [matchType]);
-  
+
   useEffect(() => {
     rulesPopShow ? setShow(true) : setShow(false);
   }, []);
@@ -54,6 +53,7 @@ const Home = () => {
     setShow(false);
     dispatch(rulesModalShowFalse());
   };
+
   return (
     <div>
       <MatchList setMatchType={setMatchType} />

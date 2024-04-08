@@ -1,4 +1,4 @@
-import { expertSocket, matchSocket } from ".";
+import { expertSocket, matchSocket, socket } from ".";
 
 export const matchSocketService = {
   joinMatchRoom: (matchId: any, roleName: any) => {
@@ -20,13 +20,13 @@ export const matchSocketService = {
     });
   },
   matchAdded: (callback: any) => {
-    expertSocket.on("addMatch", callback);
+    socket.on("addMatch", callback);
   },
   getMatchRates: (matchId: any, callback: any) => {
     matchSocket.on(`liveData${matchId}`, callback);
   },
   matchAddedOff: () => {
-    expertSocket.off("addMatch");
+    socket.off("addMatch");
   },
   getMatchRatesOff: (matchId: any) => {
     matchSocket.off(`liveData${matchId}`);
