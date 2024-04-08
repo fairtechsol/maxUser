@@ -30,7 +30,9 @@ const SportsFilters = ({ type, setMatchType }: any) => {
             const tabTitleStyle = {
               fontWeight: "normal",
               fontSize: "12px",
-              // borderRight: "1px solid #ffffff"
+              justifyContent: "center",
+              display: "flex",
+              borderRight: "1px solid #ffffff"
             };
             return (
               <Tab

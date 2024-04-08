@@ -49,14 +49,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   const isSportsRoute = location.pathname === "/sports";
   return (
     <div
-      className={`bg-lightGray match-list-container ${
-        isSportsRoute ? "match-list-containerm" : ""
-      }`}
+      className={`bg-lightGray match-list-container ${isSportsRoute ? "match-list-containerm" : ""
+        }`}
     >
       <div
-        className={`scrollable-container ${
-          isSportsRoute ? "match-list-containerm" : ""
-        }`}
+        className={`scrollable-container ${isSportsRoute ? "match-list-containerm" : ""
+          }`}
       >
         {availableGameType[mTypeid || id] ? (
           <>
@@ -65,18 +63,49 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 <p>No matches available</p>
               </div>
             ) : (
+
               <>
+                {mTypeid === "cricket" && <div className="px-3 m-game-one-v-one">
+                  <Link
+                    className="text-decoration-none text-black"
+                    to={"/contact-admin"}
+                  >  Ball By ball
+                  </Link>  <div className="d-flex w-100 pt-2">
+                    <React.Fragment>
+                      <BackLayComponent
+                        heading="1"
+                        backRate={"-"}
+                        layRate={"-"}
+                        active={false}
+                      />
+                      <BackLayComponent
+                        heading="X"
+                        backRate={"-"}
+                        layRate={"-"}
+                        active={false}
+                      />
+                      <BackLayComponent
+                        heading="2"
+                        backRate={"-"}
+                        layRate={"-"}
+                        active={false}
+                      />
+                    </React.Fragment>
+                  </div>
+
+
+                </div>}
+
                 {matchList?.map((item: any, index: number) => (
                   <div key={index} className="px-3 py-1 m-game-one-v-one">
                     <div className="d-flex justify-content-between">
                       <div className="d-flex flex-column">
                         <Link
                           className="text-decoration-none text-black"
-                          to={`/${
-                            mTypeid === "cricket"
-                              ? "game-detail"
-                              : "other-game-detail"
-                          }/${item?.id}`}
+                          to={`/${mTypeid === "cricket"
+                            ? "game-detail"
+                            : "other-game-detail"
+                            }/${item?.id}`}
                         >
                           <b className="title-14 f400">{item?.title}</b>
                           <div className="title-12">
@@ -100,7 +129,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                         ) : (
                           ""
                         )}
-                        {item?.isBookmaker > 0 ? (
+                        {item?.isBookmaker.length > 0 ? (
                           <span className="bookmaker">
                             <img src={bm} alt={"fancy"} />
                           </span>
