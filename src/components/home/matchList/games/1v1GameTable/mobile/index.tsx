@@ -11,7 +11,7 @@ import { casinoIcons } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import fancy from "../../../../../../assets/images/ic_fancy.png"
 import bm from "../../../../../../assets/images/ic_bm.png"
-import SportsFilterJson from "../../../../sportsFilters/sportsFilters.json";
+// import SportsFilterJson from "../../../../sportsFilters/sportsFilters.json";
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   // const mainContainerRef = useRef<any>(null);
 

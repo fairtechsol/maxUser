@@ -30,7 +30,7 @@ function ApiSessionMarketTable({
   data,
   title,
   matchDetails,
-  minMax
+  // minMax
 }: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
 
