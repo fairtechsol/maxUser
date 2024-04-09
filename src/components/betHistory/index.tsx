@@ -19,11 +19,14 @@ import {
 import moment from "moment";
 
 const BetHistoryComponent = () => {
+  const minDate = new Date();
+  minDate.setMonth(minDate.getMonth() - 1);
   const [fromDate, setFromDate] = useState<any>(new Date());
   const [toDate, setToDate] = useState<any>(new Date());
   const { ReportBetList } = useSelector(
     (state: RootState) => state.currentBetList
   );
+  const [minDate2, setminDate2] = useState<any>(minDate)
 
   
   const optionsMatch = [
@@ -88,7 +91,13 @@ const BetHistoryComponent = () => {
       );
     }
   };
-
+  useEffect(() => {
+    const date =  Math.floor(new Date().getTime() / 1000);
+    const timestamp = Math.floor(new Date(fromDate).getTime() / 1000);
+    if(timestamp !== date){
+      setminDate2(fromDate)
+    }
+  }, [fromDate])
   return (
 
     <ReportContainer title="Bet History">
@@ -119,7 +128,9 @@ const BetHistoryComponent = () => {
                 closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
-                format="y-MM-dd"
+                format="dd-MM-yyyy"
+                minDate={minDate}
+                maxDate={new Date()}
               />
               {/* <CustomInput type="date" /> */}
             </Col>
@@ -130,7 +141,9 @@ const BetHistoryComponent = () => {
                 closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
-                format="y-MM-dd"
+                format="dd-MM-yyyy"
+                minDate={minDate2}
+                maxDate={new Date()}
               />
               {/* <CustomInput type="date" /> */}
             </Col>
