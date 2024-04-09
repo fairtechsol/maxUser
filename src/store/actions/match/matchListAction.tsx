@@ -167,7 +167,9 @@ export const settleUnsettleMatch = createAsyncThunk<any, any>(
       const resp = await service.get(
         `${ApiConstants.MATCH.CURRENTBET}?page=${page || 1}&limit=${
           limit || 15
-        }&status=${status}&searchBy=user.userName&keyword=${keyword || ""}`
+        }&status=${status}&searchBy=betPlaced.eventName&keyword=${
+          keyword || ""
+        }`
       );
       if (resp?.data) {
         return resp?.data;

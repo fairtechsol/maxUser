@@ -26,7 +26,6 @@ const Home = () => {
     }
   };
   const getMatchListServiceSocket = () => {
-    
     try {
       dispatch(
         getMatchList({
@@ -41,9 +40,15 @@ const Home = () => {
     try {
       expertSocketService.match.matchAdded(getMatchListServiceSocket);
       socketService.userBalance.matchResultDeclared(getMatchListServiceSocket);
-      socketService.userBalance.matchResultUnDeclared(getMatchListServiceSocket);
-      socketService.userBalance.declaredMatchResultAllUser(getMatchListServiceSocket);
-      socketService.userBalance.unDeclaredMatchResultAllUser(getMatchListServiceSocket);
+      socketService.userBalance.matchResultUnDeclared(
+        getMatchListServiceSocket
+      );
+      socketService.userBalance.declaredMatchResultAllUser(
+        getMatchListServiceSocket
+      );
+      socketService.userBalance.unDeclaredMatchResultAllUser(
+        getMatchListServiceSocket
+      );
     } catch (e) {
       console.log(e);
     }
@@ -55,7 +60,7 @@ const Home = () => {
       socketService.userBalance.unDeclaredMatchResultAllUserOff();
     };
   }, []);
-  
+
   useEffect(() => {
     if (matchType) {
       getMatchListService();

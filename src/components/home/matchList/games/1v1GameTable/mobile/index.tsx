@@ -49,12 +49,14 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   const isSportsRoute = location.pathname === "/sports";
   return (
     <div
-      className={`bg-lightGray match-list-container ${isSportsRoute ? "match-list-containerm" : ""
-        }`}
+      className={`bg-lightGray match-list-container ${
+        isSportsRoute ? "match-list-containerm" : ""
+      }`}
     >
       <div
-        className={`scrollable-container ${isSportsRoute ? "match-list-containerm" : ""
-          }`}
+        className={`scrollable-container ${
+          isSportsRoute ? "match-list-containerm" : ""
+        }`}
       >
         {availableGameType[mTypeid || id] ? (
           <>
@@ -63,38 +65,40 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 <p>No matches available</p>
               </div>
             ) : (
-
               <>
-                {mTypeid === "cricket" && <div className="px-3 m-game-one-v-one">
-                  <Link
-                    className="text-decoration-none text-black f600"
-                    to={"/contact-admin"}
-                  >  Ball By ball
-                  </Link>  <div className="d-flex w-100 pt-2">
-                    <React.Fragment>
-                      <BackLayComponent
-                        heading="1"
-                        backRate={"-"}
-                        layRate={"-"}
-                        active={false}
-                      />
-                      <BackLayComponent
-                        heading="X"
-                        backRate={"-"}
-                        layRate={"-"}
-                        active={false}
-                      />
-                      <BackLayComponent
-                        heading="2"
-                        backRate={"-"}
-                        layRate={"-"}
-                        active={false}
-                      />
-                    </React.Fragment>
+                {mTypeid === "cricket" && (
+                  <div className="px-3 m-game-one-v-one">
+                    <Link
+                      className="text-decoration-none text-black f600"
+                      to={"/contact-admin"}
+                    >
+                      {" "}
+                      Ball By ball
+                    </Link>{" "}
+                    <div className="d-flex w-100 pt-2">
+                      <React.Fragment>
+                        <BackLayComponent
+                          heading="1"
+                          backRate={"-"}
+                          layRate={"-"}
+                          active={false}
+                        />
+                        <BackLayComponent
+                          heading="X"
+                          backRate={"-"}
+                          layRate={"-"}
+                          active={false}
+                        />
+                        <BackLayComponent
+                          heading="2"
+                          backRate={"-"}
+                          layRate={"-"}
+                          active={false}
+                        />
+                      </React.Fragment>
+                    </div>
                   </div>
-
-
-                </div>}
+                )}
 
                 {matchList?.map((item: any, index: number) => (
                   <div key={index} className="px-3 py-1 m-game-one-v-one">
@@ -102,10 +106,11 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                       <div className="d-flex flex-column">
                         <Link
                           className="text-decoration-none text-black"
-                          to={`/${mTypeid === "cricket"
-                            ? "game-detail"
-                            : "other-game-detail"
-                            }/${item?.id}`}
+                          to={`/${
+                            mTypeid === "cricket"
+                              ? "game-detail"
+                              : "other-game-detail"
+                          }/${item?.id}`}
                         >
                           <b className="title-14 f600">{item?.title}</b>
                           <div className="title-12">
