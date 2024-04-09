@@ -25,22 +25,37 @@ const Home = () => {
       console.log(e);
     }
   };
-
+  const getMatchListServiceSocket = () => {
+    
+    try {
+      dispatch(
+        getMatchList({
+          matchType: matchType,
+        })
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
     try {
-      expertSocketService.match.matchAdded(getMatchListService);
-      socketService.userBalance.matchResultDeclared(getMatchListService);
-      socketService.userBalance.matchResultUnDeclared(getMatchListService);
-      socketService.userBalance.declaredMatchResultAllUser(getMatchListService);
-      socketService.userBalance.unDeclaredMatchResultAllUser(getMatchListService);
+      expertSocketService.match.matchAdded(getMatchListServiceSocket);
+      socketService.userBalance.matchResultDeclared(getMatchListServiceSocket);
+      socketService.userBalance.matchResultUnDeclared(getMatchListServiceSocket);
+      socketService.userBalance.declaredMatchResultAllUser(getMatchListServiceSocket);
+      socketService.userBalance.unDeclaredMatchResultAllUser(getMatchListServiceSocket);
     } catch (e) {
       console.log(e);
     }
     return () => {
       expertSocketService.match.matchAddedOff();
+      socketService.userBalance.matchResultDeclaredOff();
+      socketService.userBalance.matchResultUnDeclaredOff();
+      socketService.userBalance.declaredMatchResultAllUserOff();
+      socketService.userBalance.unDeclaredMatchResultAllUserOff();
     };
   }, []);
-
+  
   useEffect(() => {
     if (matchType) {
       getMatchListService(matchType)

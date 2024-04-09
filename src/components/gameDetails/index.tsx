@@ -82,7 +82,7 @@ const GameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
-        navigate("/game-list/cricket");
+        navigate("/home");
       }
     } catch (e) {
       console.log(e);

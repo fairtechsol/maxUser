@@ -64,7 +64,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
           ))}
         {mTypeid === "cricket" && <div className="px-3 py-1 m-game-one-v-one">
           <Link
-            className="text-decoration-none text-black"
+            className="text-decoration-none text-black f600"
             to={"/contact-admin"}
           >  Ball By ball
           </Link>
@@ -101,7 +101,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   className="text-decoration-none text-black"
                   to={`/game-detail/${item?.id}`}
                 >
-                  <b className="title-14 f400">{item?.title}</b>
+                  <b className="title-14 f600">{item?.title}</b>
                   <div className="title-12">
                     {moment(item?.startAt)
                       .tz(timezone)
