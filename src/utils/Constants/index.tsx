@@ -34,9 +34,9 @@ export const ApiConstants = {
 
 export const Constants = {
   pageLimit: 15,
-  apiBasePath: "http://107.23.165.155:5000",
-  expertSocketBasePath: "http://107.23.165.155:6060",
-  thirdParty: "http://107.23.165.155:3200",
+  apiBasePath: "https://devmaxbet9api.fairgame.club",
+  expertSocketBasePath: "https://devexpertapi.fairgame.club",
+  thirdParty: "https://devserviceapi.fairgame.club",
   localThird: "http://localhost:3200",
   WEBSOCKET: "websocket",
   POLLING: "polling",
