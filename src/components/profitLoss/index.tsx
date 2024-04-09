@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
@@ -14,9 +14,12 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 
 const ProfitLossComponent = () => {
+  const minDate = new Date();
+  minDate.setMonth(minDate.getMonth() - 1);
   const dispatch: AppDispatch = useDispatch();
   const [fromDate, setFromDate] = useState<any>(new Date());
   const [toDate, setToDate] = useState<any>(new Date());
+  const [minDate2, setminDate2] = useState<any>(minDate)
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const { profitLossReport } = useSelector(
     (state: RootState) => state.currentBetList
@@ -49,7 +52,13 @@ const ProfitLossComponent = () => {
   //     );
   //   }
   // }, [getProfile]);
-
+  useEffect(() => {
+    const date =  Math.floor(new Date().getTime() / 1000);
+    const timestamp = Math.floor(new Date(fromDate).getTime() / 1000);
+    if(timestamp !== date){
+      setminDate2(fromDate)
+    }
+  }, [fromDate])
   return (
     <>
     {isMobile && <div className="whitespace">
@@ -63,6 +72,8 @@ const ProfitLossComponent = () => {
                   closeCalendar={true}
                   clearIcon={false}
                   className="w-100"
+                  minDate={minDate}
+                  maxDate={new Date()}
                 />
                 {/* <CustomInput type="date" /> */}
               </Col>
@@ -73,6 +84,8 @@ const ProfitLossComponent = () => {
                   closeCalendar={true}
                   clearIcon={false}
                   className="w-100"
+                  minDate={minDate2}
+                  maxDate={new Date()}
                 />
                 {/* <CustomInput type="date" /> */}
               </Col>
@@ -134,6 +147,8 @@ const ProfitLossComponent = () => {
                   closeCalendar={true}
                   clearIcon={false}
                   className="w-100"
+                  minDate={minDate}
+                  maxDate={new Date()}
                 />
                 {/* <CustomInput type="date" /> */}
               </Col>
@@ -144,6 +159,8 @@ const ProfitLossComponent = () => {
                   closeCalendar={true}
                   clearIcon={false}
                   className="w-100"
+                  minDate={minDate2}
+                  maxDate={new Date()}
                 />
                 {/* <CustomInput type="date" /> */}
               </Col>

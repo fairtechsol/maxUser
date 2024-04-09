@@ -17,10 +17,13 @@ import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 
 const AccountStatementComponent = () => {
+  const minDate = new Date();
+  minDate.setMonth(minDate.getMonth() - 1);
   const [from, setFrom] = useState<any>(new Date());
   const [to, setTo] = useState<any>(new Date());
   const [type, setType] = useState<any>("");
   const [firstTime, setFirstTime] = useState<any>(false);
+  const [minDate2, setminDate2] = useState<any>(minDate)
 
   const [tableConfig, setTableConfig] = useState<any>(null);
   const dispatch: AppDispatch = useDispatch();
@@ -59,7 +62,14 @@ const AccountStatementComponent = () => {
       );
     }
   }, [getProfile?.id, tableConfig]);
-
+  
+  useEffect(() => {
+    const date =  Math.floor(new Date().getTime() / 1000);
+    const timestamp = Math.floor(new Date(from).getTime() / 1000);
+    if(timestamp !== date){
+      setminDate2(from)
+    }
+  }, [from])
   return (
     <ReportContainer title="Account Statement">
       <div>
@@ -68,11 +78,13 @@ const AccountStatementComponent = () => {
             <Col md={2} xs={6}>
               <DatePicker
                 onChange={setFrom}
-                format="y-MM-dd"
+                format="dd-MM-yyyy"
                 value={from}
                 closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
+                minDate={minDate}
+                maxDate={new Date()}
               />
               {/* <CustomInput type="date" style={{ appearance: "textfield" }} /> */}
             </Col>
@@ -80,10 +92,12 @@ const AccountStatementComponent = () => {
               <DatePicker
                 onChange={setTo}
                 value={to}
-                format="y-MM-dd"
+                format="dd-MM-yyyy"
                 closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
+                minDate={minDate2}
+                maxDate={new Date()}
               />
               {/* <CustomInput type="date" /> */}
             </Col>
