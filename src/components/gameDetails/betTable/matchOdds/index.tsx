@@ -116,7 +116,6 @@ function MatchOdds({
             ?.map((matchs, indexes) => {
               return (
                 <tr className="overlay-trigger" key={indexes}>
-
                   <td>
                     <div className="backLayRunner d-flex flex-column px-1 w-100">
                       <span
@@ -275,18 +274,24 @@ function MatchOdds({
                             bgColor={`blue${index + 1}`}
                             rate={
                               +data?.runners?.[indexes]?.ex?.availableToBack?.[
-                                (isMobile ? 0 : 2) - index
+                                (isMobile ? (backLayCount === 6 ? 2 : 0) : 2) -
+                                  index
                               ]?.price || 0
                             }
                             percent={
                               data?.runners?.[indexes]?.ex?.availableToBack?.[
-                                (isMobile ? 0 : 2) - index
+                                (isMobile ? (backLayCount === 6 ? 2 : 0) : 2) -
+                                  index
                               ]?.size
                             }
                             onClick={() => {
                               const rate = parseFloat(
                                 data?.runners?.[indexes]?.ex?.availableToBack?.[
-                                  (isMobile ? 0 : 2) - index
+                                  (isMobile
+                                    ? backLayCount === 6
+                                      ? 2
+                                      : 0
+                                    : 2) - index
                                 ]?.price || 0
                               );
 
@@ -325,7 +330,12 @@ function MatchOdds({
                                     betId: data?.id,
                                     eventType: matchDetails?.matchType,
                                     matchId: matchDetails?.id,
-                                    placeIndex: (isMobile ? 0 : 2) - index,
+                                    placeIndex:
+                                      (isMobile
+                                        ? backLayCount === 6
+                                          ? 2
+                                          : 0
+                                        : 2) - index,
                                     matchBetType: data?.type,
                                   },
                                   data
@@ -422,10 +432,9 @@ function MatchOdds({
                         ))}
                     </BetStatusOverlay>
                   </td>
-                  {data?.activeStatus !== 'live' ? <div className="overlay">
-
-                  </div> : null
-                  }
+                  {data?.activeStatus !== "live" ? (
+                    <div className="overlay"></div>
+                  ) : null}
                   {!isMobile && <td></td>}
                 </tr>
               );

@@ -56,7 +56,8 @@ const MobileGameDetail = () => {
                         title={matchDetails?.title}
                         rightComponent={
                           <span className="title-16 f400">
-                            {matchDetails?.startAt && ( formatDate(matchDetails?.startAt))}
+                            {matchDetails?.startAt &&
+                              formatDate(matchDetails?.startAt)}
                           </span>
                         }
                       />
