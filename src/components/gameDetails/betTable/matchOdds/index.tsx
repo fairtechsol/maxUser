@@ -42,7 +42,27 @@ function MatchOdds({
   } else {
     arr = ["A", "B", "C"];
   }
-
+  const calculateValue=(data:any,indexs:number,matchDetails:any,matchs:any)=>{
+        if(data?.type === "tiedMatch1"){
+          if(indexs === 0){
+            return Number(matchDetails?.profitLossDataMatch?.yesRateTie)
+          }else{
+            return Number(matchDetails?.profitLossDataMatch?.noRateTie)
+          }
+        }else if(data?.type === "completeMatch"){
+          if(indexs === 0){
+            return Number(matchDetails?.profitLossDataMatch?.yesRateComplete)
+          }else{
+            return Number(matchDetails?.profitLossDataMatch?.noRateComplete)
+          }
+        }else{
+          if(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]){
+            return Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`])
+          }else{
+            return Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`])
+          }
+        }
+  }
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -210,16 +230,11 @@ function MatchOdds({
                               : ""
                             }`}
                         >
-                          {calculateProfitLoss(
+                          {selectedBet?.team?.stake > 0 && selectedBet?.data?.type == data.type ? (Number(calculateProfitLoss(
                             data,
                             selectedBet,
-                            data?.type === "completeMatch" ||
-                              data?.type === "tiedMatch1"
-                              ? indexes === 0
-                                ? "YES"
-                                : "NO"
-                              : matchDetails?.[`team${matchs}`]
-                          )}
+                            data?.type === "completeMatch" || data?.type === "tiedMatch1" ? indexes === 0 ? "YES" : "NO" : matchDetails?.[`team${matchs}`],
+                          )) + Number(calculateValue(data,indexes,matchDetails,matchs))): null}
                         </span>
                       </div>
                     </div>

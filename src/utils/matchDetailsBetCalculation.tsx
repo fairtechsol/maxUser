@@ -3,8 +3,9 @@ import { matchBettingType } from "./constants";
 export const calculateProfitLoss = (
   betData: any,
   selectedData: any,
-  team: string
+  team: string,
 ) => {
+  // console.log('first',selectedData)
   if (
     betData?.id != selectedData?.data?.id ||
     !betData?.id ||
@@ -12,41 +13,113 @@ export const calculateProfitLoss = (
   ) {
     return "";
   }
-  if (selectedData?.team?.type == "lay") {
-    if (selectedData?.team?.betOnTeam == team) {
-      return -parseFloat((+selectedData?.team?.stake || 0).toFixed(2));
-    } else {
-      return selectedData?.data?.type == matchBettingType.matchOdd
-        ? parseFloat(
-            (
-              (+selectedData?.team?.stake || 0) *
-              (parseFloat(selectedData?.team?.rate) / 100)
-            ).toFixed(2)
-          )
-        : parseFloat(
-            (
-              (+selectedData?.team?.stake || 0) *
-              (parseFloat(selectedData?.team?.rate) - 1)
-            ).toFixed(2)
-          );
+  // if (selectedData?.team?.type == "lay") {
+  //   if (selectedData?.team?.betOnTeam == team) {
+  //     return -parseFloat((+selectedData?.team?.stake || 0).toFixed(2));
+  //   } else {
+  //     return selectedData?.data?.type == matchBettingType.matchOdd
+  //       ? parseFloat(
+  //           (
+  //             (+selectedData?.team?.stake || 0) *
+  //             (parseFloat(selectedData?.team?.rate) / 100)
+  //           ).toFixed(2)
+  //         )
+  //       : parseFloat(
+  //           (
+  //             (+selectedData?.team?.stake || 0) *
+  //             (parseFloat(selectedData?.team?.rate) - 1)
+  //           ).toFixed(2)
+  //         );
+  //   }
+  // } else {
+  //   if (selectedData?.team?.betOnTeam != team) {
+  //     return -parseFloat((+selectedData?.team?.stake || 0).toFixed(2));
+  //   } else {
+  //     return selectedData?.data?.type == matchBettingType.matchOdd
+  //       ? parseFloat(
+  //           (
+  //             (+selectedData?.team?.stake || 0) *
+  //             (parseFloat(selectedData?.team?.rate) - 1)
+  //           ).toFixed(2)
+  //         )
+  //       : parseFloat(
+  //           (
+  //             (+selectedData?.team?.stake || 0) *
+  //             (parseFloat(selectedData?.team?.rate) / 100)
+  //           ).toFixed(2)
+  //         );
+  //   }
+  // }
+
+  if (
+    betData?.type === matchBettingType.matchOdd ||
+    betData?.type === matchBettingType.tiedMatch1 ||
+    betData?.type === matchBettingType.completeMatch
+  ){
+  
+    if(selectedData?.team?.type === 'lay'){
+      let value = 0 ;
+      value = +selectedData?.team?.stake * (+selectedData?.team?.rate - 1)
+     if(selectedData?.team?.betOnTeam == team){
+     
+      return  - value?.toFixed(2)
+     }else{
+      return +selectedData?.team?.stake?.toFixed(2)
+     }
+    }else{
+      
+      let value = 0 ;
+      value = (+selectedData?.team?.stake * (+selectedData?.team?.rate - 1))
+      if(selectedData?.team?.betOnTeam == team){
+     
+        return value
+      }else{
+        return -selectedData?.team?.stake
+      }
     }
-  } else {
-    if (selectedData?.team?.betOnTeam != team) {
-      return -parseFloat((+selectedData?.team?.stake || 0).toFixed(2));
-    } else {
-      return selectedData?.data?.type == matchBettingType.matchOdd
-        ? parseFloat(
-            (
-              (+selectedData?.team?.stake || 0) *
-              (parseFloat(selectedData?.team?.rate) - 1)
-            ).toFixed(2)
-          )
-        : parseFloat(
-            (
-              (+selectedData?.team?.stake || 0) *
-              (parseFloat(selectedData?.team?.rate) / 100)
-            ).toFixed(2)
-          );
+  }else if(betData?.type === "session"){
+    // console.log('selectedData',selectedData)
+    if(selectedData?.team?.type === 'no'){
+      let value = 0 ;
+      value = +selectedData?.team?.stake * (+selectedData?.team?.rate)/100
+     if(selectedData?.team?.betOnTeam == team){
+     
+      return  -value?.toFixed(2)
+     }else{
+      return +selectedData?.team?.stake?.toFixed(2)
+     }
+    }else{
+      
+      let value = 0 ;
+      value = (+selectedData?.team?.stake * (+selectedData?.team?.rate))/100
+      if(selectedData?.team?.betOnTeam == team){
+     
+        return value?.toFixed(2)
+      }else{
+        return -selectedData?.team?.stake?.toFixed(2)
+      }
+    }
+  }else{
+    // console.log('selectedData',selectedData)
+    if(selectedData?.team?.type === 'lay'){
+      let value = 0 ;
+      value = +selectedData?.team?.stake * (+selectedData?.team?.rate)/100
+     if(selectedData?.team?.betOnTeam == team){
+     
+      return  - value?.toFixed(2)
+     }else{
+      return +selectedData?.team?.stake?.toFixed(2)
+     }
+    }else{
+      
+      let value = 0 ;
+      value = (+selectedData?.team?.stake * (+selectedData?.team?.rate))/100
+      if(selectedData?.team?.betOnTeam == team){
+     
+        return value?.toFixed(2)
+      }else{
+        return -selectedData?.team?.stake?.toFixed(2)
+      }
     }
   }
 };
