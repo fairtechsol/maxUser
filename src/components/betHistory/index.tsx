@@ -128,7 +128,7 @@ const BetHistoryComponent = () => {
                 closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
-                format="dd-MM-yyyy"
+                format="yyyy-MM-dd"
                 minDate={minDate}
                 maxDate={new Date()}
               />
@@ -141,7 +141,7 @@ const BetHistoryComponent = () => {
                 closeCalendar={true}
                 clearIcon={false}
                 className="w-100"
-                format="dd-MM-yyyy"
+                format="yyyy-MM-dd"
                 minDate={minDate2}
                 maxDate={new Date()}
               />
@@ -272,7 +272,7 @@ const BetHistoryComponent = () => {
                           : "bg-blue3"
                         }`}
                     >
-                      {moment(item?.createdAt).format('MMMM DD YYYY h:mm A')}
+                      {moment(item?.createdAt).format('DD-MM-YYYY h:mm:ss A')}
                     </td>
                     <td
                       className={` ${item?.betType === "NO" || item?.betType === "LAY"
@@ -280,7 +280,7 @@ const BetHistoryComponent = () => {
                           : "bg-blue3"
                         }`}
                     >
-                      {moment(item?.match?.startAt).format('MMMM DD YYYY h:mm A')}
+                      {moment(item?.match?.startAt).format('DD-MM-YYYY h:mm:ss A')}
                     </td>
                   </tr>
                 );
