@@ -126,7 +126,7 @@ function SessionMarketTable({
                       onClick={(item:any) => handleMinModalToggle(item.id)} 
                       />
                         <SmoothDropdownModal
-                          minMax={formattedMinMax(item?.min, item?.max)}
+                          minMax={formattedMinMax(JSON.parse(item)?.minBet, JSON.parse(item)?.maxBet)}
                           show={modalStates[item.id]}
                         setShow={(value: any) => setModalStates((prevState: any) => ({ ...prevState, [item.id]: value }))} 
                         /></span>}

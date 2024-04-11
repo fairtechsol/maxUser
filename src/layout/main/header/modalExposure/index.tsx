@@ -15,7 +15,7 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
 
   return (
     <CustomModal show={show} setShow={setShow} title={"My Market"}>
-      <CustomTable
+           <div className="market"><CustomTable
         bordered={isMobile}
         striped={!isMobile}
         columns={[
@@ -39,17 +39,20 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
         itemCount={10}
         setTableConfig={() => {}}
       >
-        {myMarketList?.map((item: any, index: number) => {
+            {myMarketList?.map((item: any, index: number) => {
           return (
+         
             <tr key={index}>
               <td>{item?.eventType}</td>
-              <td>{item?.eventName}</td>
+              <td style={{color: "#007bff"}}>{item?.eventName}</td>
               <td>{item?.groupedmarkettype}</td>
               <td>{item?.trade}</td>
             </tr>
+
           );
         })}
       </CustomTable>
+      </div>
     </CustomModal>
   );
 };
