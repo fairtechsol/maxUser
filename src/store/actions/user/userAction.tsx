@@ -129,8 +129,8 @@ export const updateBetDataOnDeclare = createAsyncThunk<any, any>(
 
 export const updateBetDataOnUndeclare = createAsyncThunk<any, any>(
   "/user/betData/undeclare",
-  async (balance) => {
-    return balance;
+  async (data) => {
+    return data;
   }
 );
 
@@ -149,15 +149,15 @@ export const updateMaxLossForBet = createAsyncThunk<any, any>(
 
 export const updateBalanceOnBetDelete = createAsyncThunk<any, any>(
   "/user/balanceOnBetDelete",
-  async (balance) => {
-    return balance;
+  async (data) => {
+    return data;
   }
 );
 
 export const updateTeamRatesOnDeleteMatch = createAsyncThunk<any, any>(
   "/user/profitLoss/deleteMatch",
-  async (balance) => {
-    return balance;
+  async (data) => {
+    return data;
   }
 );
 
@@ -170,8 +170,8 @@ export const updateDeleteReasonBet = createAsyncThunk<any, any>(
 
 export const updateProfitLossOnDeleteSession = createAsyncThunk<any, any>(
   "/user/profitLoss/deleteSession",
-  async (balance) => {
-    return balance;
+  async (data) => {
+    return data;
   }
 );
 
@@ -184,8 +184,8 @@ export const updateRunAmountOnDeleteBet = createAsyncThunk<any, any>(
 
 export const updateBalanceFromSocket = createAsyncThunk<any, any>(
   "/user/balanceFromSocket",
-  async (balance) => {
-    return balance;
+  async (data) => {
+    return data;
   }
 );
 

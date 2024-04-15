@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import "./style.scss";
 interface props {
   bgColor?: string;
-  title: string;
+  title?: string;
   padding?: string | number;
   style?: React.CSSProperties;
   customClass?: string;

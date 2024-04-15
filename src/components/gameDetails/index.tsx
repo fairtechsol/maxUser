@@ -253,7 +253,9 @@ const GameDetails = () => {
         socketService.userBalance.declaredMatchResultAllUser(handleMatchResult);
         socketService.userBalance.sessionNoResult(getUserProfile);
         socketService.userBalance.matchResultUnDeclared(handleMatchResult);
-        socketService.userBalance.unDeclaredMatchResultAllUser(handleMatchResult);
+        socketService.userBalance.unDeclaredMatchResultAllUser(
+          handleMatchResult
+        );
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
       };

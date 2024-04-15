@@ -109,7 +109,57 @@ const matchListSlice = createSlice({
           overUnder,
         } = action.payload;
 
-        let newSessionBettings = sessionBettings;
+        let removedsessionBettings = state.matchDetails.sessionBettings.filter(
+          (item: any) => {
+            return apiSession.some(
+              (apiItem: any) => apiItem?.id === JSON.parse(item)?.id
+            );
+          }
+        );
+
+        let newSessionBettings = removedsessionBettings.filter((item: any) => {
+          return sessionBettings.some(
+            (apiItem: any) => JSON.parse(apiItem)?.id === JSON.parse(item)?.id
+          );
+        });
+
+        apiSession.forEach((apiItem: any) => {
+          if (
+            !newSessionBettings.some(
+              (item: any) => JSON.parse(item).id === apiItem.id
+            )
+          ) {
+            newSessionBettings.push(
+              JSON.stringify({
+                id: apiItem?.id,
+                name: apiItem?.RunnerName,
+                yesRate: apiItem.BackPrice1,
+                yesPercent: apiItem.BackSize1,
+                noRate: apiItem.LayPrice1,
+                noPercent: apiItem.LaySize1,
+                selectionId: apiItem.SelectionId,
+                minBet: apiItem.min,
+                maxBet: apiItem.max,
+                activeStatus: apiItem.activeStatus,
+                updatedAt: apiItem.updatedAt,
+                type: "session",
+                isManual: false,
+                status:
+                  apiItem.GameStatus === "" ? "active" : apiItem.GameStatus,
+              })
+            );
+          }
+        });
+        sessionBettings.forEach((apiItem: any) => {
+          if (
+            !newSessionBettings.some(
+              (item: any) => JSON.parse(item).id === apiItem.id
+            )
+          ) {
+            newSessionBettings.push(apiItem);
+          }
+        });
+
         state.matchDetails = {
           ...state.matchDetails,
           manualSessionActive: sessionBettings?.length >= 0 ? true : false,
@@ -152,6 +202,10 @@ const matchListSlice = createSlice({
                   noRate: matchingApiSession.LayPrice1,
                   noPercent: matchingApiSession.LaySize1,
                   activeStatus: "live",
+                  status:
+                    matchingApiSession.GameStatus === ""
+                      ? "active"
+                      : matchingApiSession.GameStatus,
                 });
               } else {
                 return JSON.stringify({
@@ -164,6 +218,10 @@ const matchListSlice = createSlice({
                     parsedItem.activeStatus === "live"
                       ? "save"
                       : parsedItem.activeStatus,
+                  status:
+                    matchingApiSession.GameStatus === ""
+                      ? "active"
+                      : matchingApiSession.GameStatus,
                 });
               }
             }

@@ -30,7 +30,6 @@ function ApiSessionMarketTable({
   data,
   title,
   matchDetails,
-  // minMax
 }: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
 
@@ -107,7 +106,8 @@ function ApiSessionMarketTable({
         </thead>
 
         <tbody style={{ position: "relative" }}>
-          {data?.map((item: any, index: number) => {
+          {data?.map((bet: any, index: number) => {
+            let item = JSON.parse(bet);
             return (
               <tr className="overlay-trigger " key={index}>
                 <td>
@@ -123,16 +123,16 @@ function ApiSessionMarketTable({
                       }}
                       className="backLayRunner-country session-country title-12"
                     >
-                      {item?.RunnerName}
+                      {item?.name}
                     </span>
 
                     {isMobile && (
                       <span className="minmaxi">
                         <IoInformationCircle
-                          onClick={() => handleMinModalToggle(item.id)}
+                          onClick={() => handleMinModalToggle(item?.id)}
                         />
                         <SmoothDropdownModal
-                          minMax={formattedMinMax(item?.min, item?.max)}
+                          minMax={formattedMinMax(item?.minBet, item?.maxBet)}
                           show={modalStates[item.id]}
                           setShow={(value: any) =>
                             setModalStates((prevState: any) => ({
@@ -178,8 +178,8 @@ function ApiSessionMarketTable({
 
                 <td colSpan={isMobile ? 2 : 3}>
                   <BetStatusOverlay
-                    title={item?.GameStatus}
-                    active={item?.GameStatus !== "" ? true : false}
+                    title={item?.status}
+                    active={item?.status !== teamStatus.active}
                   >
                     <BackLayBox
                       customClass={
@@ -187,22 +187,19 @@ function ApiSessionMarketTable({
                       }
                       // overlay={true}
                       bgColor="red1"
-                      rate={item?.LayPrice1 ?? 0}
-                      percent={item?.LaySize1 ?? 0}
+                      rate={item?.noRate ?? 0}
+                      percent={item?.noPercent ?? 0}
                       onClick={() => {
                         if (item.activeStatus === "save") {
                           return true;
                         }
-                        const rate = parseFloat(item?.LayPrice1 ?? 0);
-                        const percent = parseInt(item?.LaySize1 ?? 0);
-                        if (
-                          rate > 0 &&
-                          item?.GameStatus == teamStatus.apiActive
-                        ) {
+                        const rate = parseFloat(item?.noRate ?? 0);
+                        const percent = parseInt(item?.noPercent ?? 0);
+                        if (rate > 0 && item?.status == teamStatus.active) {
                           handleClick(
                             {
                               betId: item?.id,
-                              name: item?.RunnerName,
+                              name: item?.name,
                               rate: rate,
                               type: "no",
                               stake: 0,
@@ -214,28 +211,25 @@ function ApiSessionMarketTable({
                           );
                         }
                       }}
-                      active={item?.GameStatus !== "" ? true : false}
+                      active={item?.status !== teamStatus.active}
                     />
                     <BackLayBox
                       customClass={
                         isMobile ? "bet-place-box" : "bet-place-box50"
                       }
                       bgColor="blue3"
-                      rate={item?.BackPrice1}
-                      percent={item?.BackSize1}
+                      rate={item?.yesRate}
+                      percent={item?.yesPercent}
                       onClick={() => {
                         if (item.activeStatus === "save") {
                           return true;
                         }
-                        const rate = parseFloat(item?.BackPrice1);
-                        const percent = parseFloat(item?.BackSize1);
-                        if (
-                          rate > 0 &&
-                          item?.GameStatus == teamStatus.apiActive
-                        ) {
+                        const rate = parseFloat(item?.yesRate);
+                        const percent = parseFloat(item?.yesPercent);
+                        if (rate > 0 && item?.status == teamStatus.active) {
                           handleClick(
                             {
-                              name: item?.RunnerName,
+                              name: item?.name,
                               rate: rate,
                               type: "yes",
                               stake: 0,
@@ -248,13 +242,13 @@ function ApiSessionMarketTable({
                           );
                         }
                       }}
-                      active={item?.GameStatus !== "" ? true : false}
+                      active={item?.status !== teamStatus.active}
                     />
                     {!isMobile && (
                       <div className="minMax">
                         <div className="minMaxBox d-flex flex-column justify-content-end text-right px-2 title-12">
-                          <span className="">Min:{item?.min}</span>
-                          <span>Max:{item?.max}</span>
+                          <span className="">Min:{item?.minBet}</span>
+                          <span>Max:{item?.maxBet}</span>
                         </div>
                       </div>
                     )}

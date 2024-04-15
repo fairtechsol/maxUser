@@ -176,11 +176,11 @@ const MobileGameDetail = () => {
                                     <BetTable
                                       title={"Session Market"}
                                       type={MatchType.API_SESSION_MARKET}
-                                      data={matchDetails?.apiSession}
+                                      data={matchDetails?.sessionBettings}
                                     />
                                   </Col>
                                 )}
-                                {matchDetails?.manualSessionActive && (
+                                {/* {matchDetails?.manualSessionActive && (
                                   <Col md={12}>
                                     <BetTable
                                       title={"Quick Session Market"}
@@ -188,7 +188,7 @@ const MobileGameDetail = () => {
                                       data={matchDetails?.sessionBettings}
                                     />
                                   </Col>
-                                )}
+                                )} */}
                               </Row>
                               {matchDetails?.apiTideMatch?.isActive && (
                                 <Col className="g-0" md={12}>
