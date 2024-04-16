@@ -15,7 +15,7 @@ import {
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
-import { FaChevronUp,FaChevronDown  } from "react-icons/fa";
+import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 
 const placeBetHeader = [
   {},
@@ -43,6 +43,7 @@ const PlacedBet = () => {
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
+  const [matchOddRate, setMatchOddRate] = useState<any>(null)
   const { buttonValues, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -77,15 +78,19 @@ const PlacedBet = () => {
       }
     }
   }, [buttonValues]);
+ 
 
   useEffect(() => {
-    if (selectedBet?.team?.stake) {
-      setStake(selectedBet?.team?.stake || 0);
-    } else {
-      setStake(0);
-    }
+      if (selectedBet?.team?.stake) {
+        setStake(selectedBet?.team?.stake || 0);
+      } else {
+        setStake(0);
+      }
   }, [selectedBet]);
 
+  useEffect(() => {
+    setMatchOddRate(selectedBet?.team?.rate)
+}, [selectedBet]);
   useEffect(() => {
     // Get browser information
     const { userAgent, appName, appVersion, platform } = navigator;
@@ -129,193 +134,219 @@ const PlacedBet = () => {
     ) {
       profit =
         selectedBet?.team?.type === "back"
-          ? (value * ((selectedBet?.team?.rate - 1) * 100)) / 100
+          ? (value * ((matchOddRate - 1) * 100)) / 100
           : value;
     } else {
       profit =
         selectedBet?.team?.type === "back"
-          ? (value * selectedBet?.team?.rate) / 100
+          ? (value * matchOddRate) / 100
           : value;
     }
     return Number(profit.toFixed(2));
   };
-
+  const handleUp = () => {
+if(selectedBet?.team?.matchBetType == 'matchOdd'){
+  setMatchOddRate(matchOddRate + 0.01)
+}
+  }
+  const handleDown = () => {
+    if(selectedBet?.team?.matchBetType == 'matchOdd'){
+      setMatchOddRate(matchOddRate - 0.01)
+    }
+  }
   return (
     <>
-    <div className="loader-container">
-      {(loading || matchOddLoading) && <CustomLoader />}
-      <RightPanelContainer title="Place Bet">
+      <div className="loader-container">
+        {(loading || matchOddLoading) && <CustomLoader />}
+        <RightPanelContainer title="Place Bet">
 
-        {selectedBet ? (
+          {selectedBet ? (
 
-          <Table className="w-full">
-            <thead>
-              <tr className="bg-darkGrey">
-                {placeBetHeader?.map((item, index) => (
-                  <th key={index} className="title-12 bg-darkGrey" style={{textAlign:item?.name === "Profit" ? "end" :"start"}} >
-                    {item?.name}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                className={
-                  selectedBet?.team?.type == "lay" ||
-                    selectedBet?.team?.type == "no"
-                    ? "place-bet-table-red"
-                    : "place-bet-table-blue"
-                }
-              >
-                <td width={"8%"}>
-                  <span
-                    className=" text-danger title-12 cursor-pointer"
-                    onClick={() => {
-                      dispatch(selectedBetAction(null));
-                    }}
-                  >
-                    <ImCross />
-                  </span>
-                </td>
-                <td width={"34%"}>
-                  <span className="f600 title-14">
-                    {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
-                  </span>
-                </td>
-                <td width={"20%"} > 
-                <div style={{display:"flex",flexDirection:"row",height:"24px"}}>
-                <input
-                    // disabled
-                    placeholder=""
-                    className="p-0 w-75 br-0"
-                    style={{border: '2px solid #f0f0f0'}}
-                    value={selectedBet?.team?.rate}
-                  />
-                  <div style={{backgroundColor:"#f0f0f0",display:"flex",flexDirection:"column",width:"15px",height:"100%",justifyContent:"space-around"}}>
-                    <FaChevronUp style={{width:'8px',height:'10px'}} />
-                    <FaChevronDown style={{width:'8px',height:'10px'}}/>
-                  </div>
-                </div>
-                 
-                </td>
-                <td  width={"20%"}>
-                  <input
-                    value={stake}
-                    min={0}
-                    onChange={(e) => {
-                      dispatch(
-                        selectedBetAction({
-                          ...selectedBet,
-                          team: { ...selectedBet?.team, stake: +e.target.value },
-                        })
-                      );
-                    }}
-                    type="number"
-                    placeholder=""
-                    className="p-0 h-25 w-100 br-0"
-                    style={{border: '2px solid #f0f0f0'}}
-                  />
-                </td>
-                <td width={"18%"} style={{textAlign:"end"}}>
-                  <span className="f500" style={{textAlign:"end"}}>{handleProfit(stake)}</span>
-                </td>
-              </tr>
-              <tr
-                className={
-                  selectedBet?.team?.type == "lay" ||
-                    selectedBet?.team?.type == "no"
-                    ? "place-bet-table-red"
-                    : "place-bet-table-blue"
-                }
-              >
+            <Table className="w-full">
+              <thead>
+                <tr className="bg-darkGrey">
+                  {placeBetHeader?.map((item, index) => (
+                    <th key={index} className="title-12 bg-darkGrey" style={{ textAlign: item?.name === "Profit" ? "end" : "start" }} >
+                      {item?.name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  className={
+                    selectedBet?.team?.type == "lay" ||
+                      selectedBet?.team?.type == "no"
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
+                  }
+                >
+                  <td width={"8%"}>
+                    <span
+                      className=" text-danger title-12 cursor-pointer"
+                      onClick={() => {
+                        dispatch(selectedBetAction(null));
+                      }}
+                    >
+                      <ImCross />
+                    </span>
+                  </td>
+                  <td width={"34%"}>
+                    <span className="f600 title-14">
+                      {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
+                    </span>
+                  </td>
+                  <td width={"20%"} >
+                    <div style={{ display: "flex", flexDirection: "row", height: "24px" }}>
+                      <input
+                        // disabled
+                        placeholder=""
+                        className="p-0 w-75 br-0"
+                        style={{ border: '2px solid #f0f0f0' }}
+                        value={matchOddRate}
+                      />
+                      <div style={{ backgroundColor: "#f0f0f0", display: "flex", flexDirection: "column", width: "15px", height: "100%", justifyContent: "space-around" }}>
+                        <FaChevronUp style={{ width: '8px', height: '10px' }} onClick={handleUp} />
+                        <FaChevronDown style={{ width: '8px', height: '10px' }} onClick={handleDown} />
+                      </div>
+                    </div>
 
-                <td colSpan={5}>
-                  <Container fluid>
-                    <Row>
-                      {valueLabel?.map((item: any, index: any) => (
-                        <Col className="p-1" key={index} md={3}>
+                  </td>
+                  <td width={"20%"}>
+                    <input
+                      value={stake}
+                      min={0}
+                      onChange={(e) => {
+                        dispatch(
+                          selectedBetAction({
+                            ...selectedBet,
+                            team: { ...selectedBet?.team, stake: +e.target.value },
+                          })
+                        );
+                      }}
+                      type="number"
+                      placeholder=""
+                      className="p-0 h-25 w-100 br-0"
+                      style={{ border: '2px solid #f0f0f0' }}
+                    />
+                  </td>
+                  <td width={"18%"} style={{ textAlign: "end" }}>
+                    <span className="f500" style={{ textAlign: "end" }}>{handleProfit(stake)}</span>
+                  </td>
+                </tr>
+                <tr
+                  className={
+                    selectedBet?.team?.type == "lay" ||
+                      selectedBet?.team?.type == "no"
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
+                  }
+                >
+
+                  <td colSpan={5}>
+                    <Container fluid>
+                      <Row>
+                        {valueLabel?.map((item: any, index: any) => (
+                          <Col className="p-1" key={index} md={3}>
+                            <CustomButton
+                              className="w-100 bg-darkGrey border-0 text-black"
+                              size="sm"
+                              onClick={() => {
+                                dispatch(
+                                  selectedBetAction({
+                                    ...selectedBet,
+                                    team: {
+                                      ...selectedBet?.team,
+                                      stake: +item?.value,
+                                    },
+                                  })
+                                );
+                              }}
+                            >
+                              {item?.label}
+                            </CustomButton>
+                          </Col>
+                        ))}
+                      </Row>
+                      <Row>
+                        <Col md={6}>
                           <CustomButton
-                            className="w-100 bg-darkGrey border-0 text-black"
+                            className="bg-danger border-0 py-2"
                             size="sm"
                             onClick={() => {
-                              dispatch(
-                                selectedBetAction({
-                                  ...selectedBet,
-                                  team: {
-                                    ...selectedBet?.team,
-                                    stake: +item?.value,
-                                  },
-                                })
-                              );
+                              dispatch(selectedBetAction(null));
                             }}
                           >
-                            {item?.label}
+                            Reset
                           </CustomButton>
                         </Col>
-                      ))}
-                    </Row>
-                    <Row>
-                      <Col md={6}>
-                        <CustomButton
-                          className="bg-danger border-0 py-2"
-                          size="sm"
-                          onClick={() => {
-                            dispatch(selectedBetAction(null));
-                          }}
-                        >
-                          Reset
-                        </CustomButton>
-                      </Col>
-                      <Col md={6} className="text-end">
+                        <Col md={6} className="text-end">
 
 
-                        <CustomButton
-                          className="bg-success border-0 py-2"
-                          size="sm"
-                          onClick={() => {
-                            if (loading) {
-                              return;
-                            } else {
-                              let payloadForSession: any = {
-                                betId: selectedBet?.team?.betId,
-                                betType: selectedBet?.team?.type.toUpperCase(),
-                                browserDetail: browserInfo?.userAgent,
-                                eventName: selectedBet?.team?.name,
-                                eventType: selectedBet?.team?.eventType,
-                                matchId: selectedBet?.team?.matchId,
-                                ipAddress:
-                                  ipAddress === "Not found" || !ipAddress
-                                    ? "192.168.1.100"
-                                    : ipAddress,
-                                odds: selectedBet?.team?.rate,
-                                ratePercent: selectedBet?.team?.percent,
-                                stake: selectedBet?.team?.stake,
-                              };
-                              let payloadForBettings: any = {
-                                betId: selectedBet?.team?.betId,
-                                teamA: selectedBet?.team?.teamA,
-                                teamB: selectedBet?.team?.teamB,
-                                teamC: selectedBet?.team?.teamC,
-                                bettingType:
-                                  selectedBet?.team?.type.toUpperCase(),
-                                browserDetail: browserInfo?.userAgent,
-                                matchId: selectedBet?.team?.matchId,
-                                ipAddress:
-                                  ipAddress === "Not found" || !ipAddress
-                                    ? "192.168.1.100"
-                                    : ipAddress,
-                                odd: selectedBet?.team?.rate,
-                                stake: selectedBet?.team?.stake,
-                                matchBetType: selectedBet?.team?.matchBetType,
-                                betOnTeam: selectedBet?.team?.betOnTeam,
-                                placeIndex: selectedBet?.team?.placeIndex,
-                              };
-                              if (
-                                selectedBet?.data?.type === "matchOdd" ||
-                                selectedBet?.team?.matchBetType === "matchOdd"
-                              ) {
-                                setMatchOddLoading(true);
-                                setTimeout(() => {
+                          <CustomButton
+                            className="bg-success border-0 py-2"
+                            size="sm"
+                            onClick={() => {
+                              if (loading) {
+                                return;
+                              } else {
+                                let payloadForSession: any = {
+                                  betId: selectedBet?.team?.betId,
+                                  betType: selectedBet?.team?.type.toUpperCase(),
+                                  browserDetail: browserInfo?.userAgent,
+                                  eventName: selectedBet?.team?.name,
+                                  eventType: selectedBet?.team?.eventType,
+                                  matchId: selectedBet?.team?.matchId,
+                                  ipAddress:
+                                    ipAddress === "Not found" || !ipAddress
+                                      ? "192.168.1.100"
+                                      : ipAddress,
+                                  odds: selectedBet?.team?.rate,
+                                  ratePercent: selectedBet?.team?.percent,
+                                  stake: selectedBet?.team?.stake,
+                                };
+                                let payloadForBettings: any = {
+                                  betId: selectedBet?.team?.betId,
+                                  teamA: selectedBet?.team?.teamA,
+                                  teamB: selectedBet?.team?.teamB,
+                                  teamC: selectedBet?.team?.teamC,
+                                  bettingType:
+                                    selectedBet?.team?.type.toUpperCase(),
+                                  browserDetail: browserInfo?.userAgent,
+                                  matchId: selectedBet?.team?.matchId,
+                                  ipAddress:
+                                    ipAddress === "Not found" || !ipAddress
+                                      ? "192.168.1.100"
+                                      : ipAddress,
+                                  odd: matchOddRate,
+                                  stake: selectedBet?.team?.stake,
+                                  matchBetType: selectedBet?.team?.matchBetType,
+                                  betOnTeam: selectedBet?.team?.betOnTeam,
+                                  placeIndex: selectedBet?.team?.placeIndex,
+                                };
+                                if (
+                                  selectedBet?.data?.type === "matchOdd" ||
+                                  selectedBet?.team?.matchBetType === "matchOdd"
+                                ) {
+                                  // setMatchOddLoading(true);
+                                  console.log('payloadForBettings', payloadForBettings)
+                                  // setTimeout(() => {
+                                  //   dispatch(
+                                  //     placeBet({
+                                  //       url:
+                                  //         selectedBet?.data?.type === "session" ||
+                                  //           selectedBet?.data?.SelectionId
+                                  //           ? ApiConstants.BET.PLACEBETSESSION
+                                  //           : ApiConstants.BET.PLACEBETMATCHBETTING,
+                                  //       data:
+                                  //         selectedBet?.data?.type === "session" ||
+                                  //           selectedBet?.data?.SelectionId
+                                  //           ? JSON.stringify(payloadForSession)
+                                  //           : JSON.stringify(payloadForBettings),
+                                  //     })
+                                  //   );
+                                  // }, getProfile?.delayTime * 1000);
+                                } else {
                                   dispatch(
                                     placeBet({
                                       url:
@@ -330,40 +361,24 @@ const PlacedBet = () => {
                                           : JSON.stringify(payloadForBettings),
                                     })
                                   );
-                                }, getProfile?.delayTime * 1000);
-                              } else {
-                                dispatch(
-                                  placeBet({
-                                    url:
-                                      selectedBet?.data?.type === "session" ||
-                                        selectedBet?.data?.SelectionId
-                                        ? ApiConstants.BET.PLACEBETSESSION
-                                        : ApiConstants.BET.PLACEBETMATCHBETTING,
-                                    data:
-                                      selectedBet?.data?.type === "session" ||
-                                        selectedBet?.data?.SelectionId
-                                        ? JSON.stringify(payloadForSession)
-                                        : JSON.stringify(payloadForBettings),
-                                  })
-                                );
+                                }
+                                setStake(0);
                               }
-                              setStake(0);
-                            }
-                          }}
-                        >
-                          Submit
-                        </CustomButton>
-                      </Col>
-                    </Row>
-                  </Container>
-                </td>
-              </tr>
-            </tbody>
-          </Table>
-        ) : (
-          ""
-        )}
-      </RightPanelContainer>
+                            }}
+                          >
+                            Submit
+                          </CustomButton>
+                        </Col>
+                      </Row>
+                    </Container>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          ) : (
+            ""
+          )}
+        </RightPanelContainer>
 
       </div>
     </>
