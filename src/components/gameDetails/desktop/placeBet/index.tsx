@@ -15,6 +15,7 @@ import {
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
+import { FaChevronUp,FaChevronDown  } from "react-icons/fa";
 
 const placeBetHeader = [
   {},
@@ -151,7 +152,7 @@ const PlacedBet = () => {
             <thead>
               <tr className="bg-darkGrey">
                 {placeBetHeader?.map((item, index) => (
-                  <th key={index} className="title-12 text-start bg-darkGrey">
+                  <th key={index} className="title-12 bg-darkGrey" style={{textAlign:item?.name === "Profit" ? "end" :"start"}} >
                     {item?.name}
                   </th>
                 ))}
@@ -166,7 +167,7 @@ const PlacedBet = () => {
                     : "place-bet-table-blue"
                 }
               >
-                <td>
+                <td width={"8%"}>
                   <span
                     className=" text-danger title-12 cursor-pointer"
                     onClick={() => {
@@ -176,20 +177,28 @@ const PlacedBet = () => {
                     <ImCross />
                   </span>
                 </td>
-                <td>
-                  <span className="f500 title-12">
+                <td width={"34%"}>
+                  <span className="f600 title-14">
                     {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
                   </span>
                 </td>
-                <td> 
-                  <input
-                    disabled
+                <td width={"20%"} > 
+                <div style={{display:"flex",flexDirection:"row",height:"24px"}}>
+                <input
+                    // disabled
                     placeholder=""
-                    className="p-0 h-25 w-50"
+                    className="p-0 w-75 br-0"
+                    style={{border: '2px solid #f0f0f0'}}
                     value={selectedBet?.team?.rate}
                   />
+                  <div style={{backgroundColor:"#f0f0f0",display:"flex",flexDirection:"column",width:"15px",height:"100%",justifyContent:"space-around"}}>
+                    <FaChevronUp style={{width:'8px',height:'10px'}} />
+                    <FaChevronDown style={{width:'8px',height:'10px'}}/>
+                  </div>
+                </div>
+                 
                 </td>
-                <td>
+                <td  width={"20%"}>
                   <input
                     value={stake}
                     min={0}
@@ -203,11 +212,12 @@ const PlacedBet = () => {
                     }}
                     type="number"
                     placeholder=""
-                    className="p-0 h-25 w-50"
+                    className="p-0 h-25 w-100 br-0"
+                    style={{border: '2px solid #f0f0f0'}}
                   />
                 </td>
-                <td>
-                  <span className="f500">{handleProfit(stake)}</span>
+                <td width={"18%"} style={{textAlign:"end"}}>
+                  <span className="f500" style={{textAlign:"end"}}>{handleProfit(stake)}</span>
                 </td>
               </tr>
               <tr
