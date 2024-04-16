@@ -328,24 +328,23 @@ if(selectedBet?.team?.matchBetType == 'matchOdd'){
                                   selectedBet?.data?.type === "matchOdd" ||
                                   selectedBet?.team?.matchBetType === "matchOdd"
                                 ) {
-                                  // setMatchOddLoading(true);
-                                  console.log('payloadForBettings', payloadForBettings)
-                                  // setTimeout(() => {
-                                  //   dispatch(
-                                  //     placeBet({
-                                  //       url:
-                                  //         selectedBet?.data?.type === "session" ||
-                                  //           selectedBet?.data?.SelectionId
-                                  //           ? ApiConstants.BET.PLACEBETSESSION
-                                  //           : ApiConstants.BET.PLACEBETMATCHBETTING,
-                                  //       data:
-                                  //         selectedBet?.data?.type === "session" ||
-                                  //           selectedBet?.data?.SelectionId
-                                  //           ? JSON.stringify(payloadForSession)
-                                  //           : JSON.stringify(payloadForBettings),
-                                  //     })
-                                  //   );
-                                  // }, getProfile?.delayTime * 1000);
+                                  setMatchOddLoading(true);
+                                  setTimeout(() => {
+                                    dispatch(
+                                      placeBet({
+                                        url:
+                                          selectedBet?.data?.type === "session" ||
+                                            selectedBet?.data?.SelectionId
+                                            ? ApiConstants.BET.PLACEBETSESSION
+                                            : ApiConstants.BET.PLACEBETMATCHBETTING,
+                                        data:
+                                          selectedBet?.data?.type === "session" ||
+                                            selectedBet?.data?.SelectionId
+                                            ? JSON.stringify(payloadForSession)
+                                            : JSON.stringify(payloadForBettings),
+                                      })
+                                    );
+                                  }, getProfile?.delayTime * 1000);
                                 } else {
                                   dispatch(
                                     placeBet({
