@@ -80,7 +80,7 @@ const Login = () => {
           src="/maxbetLogo.png"
           alt="fairGame"
           className="img-fluid"
-          style={{ width: "90%", height: "55px" }}
+          style={{ width: "80%", height: "44px" }}
         />
         <div className="auth-box-form rounded-2 bg-light mt-3">
           <h4 className="auth-title title-24 fw-normal text-center mb-2">
