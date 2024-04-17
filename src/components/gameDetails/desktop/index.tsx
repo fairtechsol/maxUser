@@ -280,7 +280,7 @@ const DesktopGameDetail = () => {
               <h5>Contact Admin</h5>
               <Button
                 variant="primary"
-                className="mt-3"
+                className="mt-3 mb-3"
                 onClick={() => setShowContactAdmin(false)}
               >
                 Cancel

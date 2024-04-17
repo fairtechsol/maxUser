@@ -206,6 +206,7 @@ function ApiSessionMarketTable({
                               percent: percent,
                               eventType: matchDetails?.matchType,
                               matchId: matchDetails?.id,
+                              matchBetType: 'apiSession',
                             },
                             item
                           );
@@ -237,6 +238,7 @@ function ApiSessionMarketTable({
                               percent: percent,
                               eventType: matchDetails?.matchType,
                               matchId: matchDetails?.id,
+                              matchBetType: 'apiSession',
                             },
                             item
                           );

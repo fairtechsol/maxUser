@@ -1,5 +1,4 @@
 import { matchBettingType } from "./constants";
-
 export const calculateProfitLoss = (
   betData: any,
   selectedData: any,
@@ -50,7 +49,6 @@ export const calculateProfitLoss = (
   //         );
   //   }
   // }
-
   if (
     betData?.type === matchBettingType.matchOdd ||
     betData?.type === matchBettingType.tiedMatch1 ||

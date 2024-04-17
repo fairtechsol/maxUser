@@ -148,32 +148,26 @@ function MatchOdds({
                           isMobile ? "f500" : "f500"
                         } `}
                       >
-                        {/* {data?.type === "completeMatch" ||
+                        {data?.type === "completeMatch" ||
                           data?.type === "tiedMatch1"
                           ? indexes === 0
                             ? "YES"
                             : "NO"
-                          : matchDetails?.[`team${matchs}`]} */}
-                        {!isMobile &&
-                          (data?.type === "completeMatch" ||
-                          data?.type === "tiedMatch1"
-                            ? indexes === 0
-                              ? "YES"
-                              : "NO"
-                            : matchDetails?.[`team${matchs}`])}
-                        {isMobile &&
-                          data?.type !== "bookmaker" &&
-                          matchDetails?.[`team${matchs}`]}
-                        {data?.type === "bookmaker" &&
-                          isMobile &&
+                          : matchDetails?.[`team${matchs}`]}
+                        {/* {!isMobile && (
+                          data?.type === "completeMatch" ||
+                            data?.type === "tiedMatch1" ?
+                            (indexes === 0 ? "YES" : "NO") :
+                            matchDetails?.[`team${matchs}`]
+                        )}
+                        {isMobile && (data?.type === "completeMatch" || data?.type === "tiedMatch1") && (
+                          (indexes === 0 ? "YES" : "NO")
+                        )}
+                        {isMobile && data?.type !== "bookmaker" && data?.type !== "completeMatch" && data?.type !== "tiedMatch1" && (
                           matchDetails?.[`team${matchs}`]
-                            ?.split(" ")
-                            .slice(0, 2)
-                            .join(" ") +
-                            (matchDetails?.[`team${matchs}`]?.split(" ")
-                              .length > 2
-                              ? " ..."
-                              : "")}
+                        )}
+                        {(data?.type === "bookmaker" && isMobile) && (
+                          matchDetails?.[`team${matchs}`]?.split(' ').slice(0, 2).join(' ') + (matchDetails?.[`team${matchs}`]?.split(' ').length > 2 ? ' ...' : ''))} */}
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100">
                         <span
