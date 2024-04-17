@@ -65,10 +65,10 @@ export const calculateProfitLoss = (
         return parseFloat(selectedData?.team?.stake)?.toFixed(2);
       }
     } else {
-      let value = 0;
+      let value: any = 0;
       value = +selectedData?.team?.stake * (+selectedData?.team?.rate - 1);
       if (selectedData?.team?.betOnTeam == team) {
-        return value;
+        return parseFloat(value).toFixed(2);
       } else {
         return -parseFloat(selectedData?.team?.stake).toFixed(2);
       }
