@@ -25,6 +25,8 @@ const ProfitLossComponent = () => {
     (state: RootState) => state.currentBetList
   );
 
+  console.log(fromDate, "<<")
+  // const formattedToDate = toDate.toLocaleDateString('en-GB'); 
   const handleSubmit = () => {
     try {
       if (getProfile?.id) {
@@ -66,7 +68,8 @@ const ProfitLossComponent = () => {
           <Stack gap={2}>
             <Row className="g-2 mt-1">
               <Col md={2} xs={6}>
-                <DatePicker
+                <DatePicker 
+                  format="yyyy-MM-dd"
                   onChange={setFromDate}
                   value={fromDate}
                   closeCalendar={true}
@@ -79,6 +82,7 @@ const ProfitLossComponent = () => {
               </Col>
               <Col md={2} xs={6}>
                 <DatePicker
+                 format="yyyy-MM-dd"
                   onChange={setToDate}
                   value={toDate}
                   closeCalendar={true}
