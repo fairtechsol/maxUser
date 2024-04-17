@@ -15,7 +15,7 @@ import {
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
-import { toast } from "react-toastify";
+import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 
 const placeBetHeader = [
   {},
@@ -43,6 +43,7 @@ const PlacedBet = () => {
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
+  const [matchOddRate, setMatchOddRate] = useState<any>(null);
   const { buttonValues, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -87,6 +88,9 @@ const PlacedBet = () => {
   }, [selectedBet]);
 
   useEffect(() => {
+    setMatchOddRate(selectedBet?.team?.rate);
+  }, [selectedBet]);
+  useEffect(() => {
     // Get browser information
     const { userAgent, appName, appVersion, platform } = navigator;
     const info: any = { userAgent, appName, appVersion, platform };
@@ -129,17 +133,26 @@ const PlacedBet = () => {
     ) {
       profit =
         selectedBet?.team?.type === "back"
-          ? (value * ((selectedBet?.team?.rate - 1) * 100)) / 100
+          ? (value * ((matchOddRate - 1) * 100)) / 100
           : value;
     } else {
       profit =
         selectedBet?.team?.type === "back"
-          ? (value * selectedBet?.team?.rate) / 100
+          ? (value * matchOddRate) / 100
           : value;
     }
     return Number(profit.toFixed(2));
   };
-
+  const handleUp = () => {
+    if (selectedBet?.team?.matchBetType == "matchOdd") {
+      setMatchOddRate(matchOddRate + 0.01);
+    }
+  };
+  const handleDown = () => {
+    if (selectedBet?.team?.matchBetType == "matchOdd") {
+      setMatchOddRate(matchOddRate - 0.01);
+    }
+  };
   return (
     <>
       <div className="loader-container">
@@ -150,7 +163,13 @@ const PlacedBet = () => {
               <thead>
                 <tr className="bg-darkGrey">
                   {placeBetHeader?.map((item, index) => (
-                    <th key={index} className="title-12 text-start bg-darkGrey">
+                    <th
+                      key={index}
+                      className="title-12 bg-darkGrey"
+                      style={{
+                        textAlign: item?.name === "Profit" ? "end" : "start",
+                      }}
+                    >
                       {item?.name}
                     </th>
                   ))}
@@ -165,7 +184,7 @@ const PlacedBet = () => {
                       : "place-bet-table-blue"
                   }
                 >
-                  <td>
+                  <td width={"8%"}>
                     <span
                       className=" text-danger title-12 cursor-pointer"
                       onClick={() => {
@@ -175,20 +194,48 @@ const PlacedBet = () => {
                       <ImCross />
                     </span>
                   </td>
-                  <td>
-                    <span className="f500 title-12">
+                  <td width={"34%"}>
+                    <span className="f600 title-14">
                       {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
                     </span>
                   </td>
-                  <td>
-                    <input
-                      disabled
-                      placeholder=""
-                      className="p-0 h-25 w-50"
-                      value={selectedBet?.team?.rate}
-                    />
+                  <td width={"20%"}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        height: "24px",
+                      }}
+                    >
+                      <input
+                        // disabled
+                        placeholder=""
+                        className="p-0 w-75 br-0"
+                        style={{ border: "2px solid #f0f0f0" }}
+                        value={matchOddRate}
+                      />
+                      <div
+                        style={{
+                          backgroundColor: "#f0f0f0",
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "15px",
+                          height: "100%",
+                          justifyContent: "space-around",
+                        }}
+                      >
+                        <FaChevronUp
+                          style={{ width: "8px", height: "10px" }}
+                          onClick={handleUp}
+                        />
+                        <FaChevronDown
+                          style={{ width: "8px", height: "10px" }}
+                          onClick={handleDown}
+                        />
+                      </div>
+                    </div>
                   </td>
-                  <td>
+                  <td width={"20%"}>
                     <input
                       value={stake}
                       min={0}
@@ -205,11 +252,14 @@ const PlacedBet = () => {
                       }}
                       type="number"
                       placeholder=""
-                      className="p-0 h-25 w-50"
+                      className="p-0 h-25 w-100 br-0"
+                      style={{ border: "2px solid #f0f0f0" }}
                     />
                   </td>
-                  <td>
-                    <span className="f500">{handleProfit(stake)}</span>
+                  <td width={"18%"} style={{ textAlign: "end" }}>
+                    <span className="f500" style={{ textAlign: "end" }}>
+                      {handleProfit(stake)}
+                    </span>
                   </td>
                 </tr>
                 <tr
@@ -262,25 +312,6 @@ const PlacedBet = () => {
                             className="bg-success border-0 py-2"
                             size="sm"
                             onClick={() => {
-                              if (
-                                selectedBet?.team?.stake <
-                                (selectedBet?.data?.minBet ||
-                                  selectedBet?.data?.min)
-                              ) {
-                                toast.error(
-                                  "Stake value must be greater or equal to min bet"
-                                );
-                                return;
-                              } else if (
-                                selectedBet?.team?.stake >
-                                (selectedBet?.data?.maxBet ||
-                                  selectedBet?.data?.max)
-                              ) {
-                                toast.error(
-                                  "Stake value must be smaller or equal to max bet"
-                                );
-                                return;
-                              }
                               if (loading) {
                                 return;
                               } else {
@@ -313,7 +344,7 @@ const PlacedBet = () => {
                                     ipAddress === "Not found" || !ipAddress
                                       ? "192.168.1.100"
                                       : ipAddress,
-                                  odd: selectedBet?.team?.rate,
+                                  odd: matchOddRate,
                                   stake: selectedBet?.team?.stake,
                                   matchBetType: selectedBet?.team?.matchBetType,
                                   betOnTeam: selectedBet?.team?.betOnTeam,

@@ -3,7 +3,7 @@ import { matchBettingType } from "./constants";
 export const calculateProfitLoss = (
   betData: any,
   selectedData: any,
-  team: string,
+  team: string
 ) => {
   // console.log('first',selectedData)
   if (
@@ -55,70 +55,60 @@ export const calculateProfitLoss = (
     betData?.type === matchBettingType.matchOdd ||
     betData?.type === matchBettingType.tiedMatch1 ||
     betData?.type === matchBettingType.completeMatch
-  ){
-  
-    if(selectedData?.team?.type === 'lay'){
-      let value = 0 ;
-      value = +selectedData?.team?.stake * (+selectedData?.team?.rate - 1)
-     if(selectedData?.team?.betOnTeam == team){
-     
-      return  - value?.toFixed(2)
-     }else{
-      return +selectedData?.team?.stake?.toFixed(2)
-     }
-    }else{
-      
-      let value = 0 ;
-      value = (+selectedData?.team?.stake * (+selectedData?.team?.rate - 1))
-      if(selectedData?.team?.betOnTeam == team){
-     
-        return value
-      }else{
-        return -selectedData?.team?.stake
+  ) {
+    if (selectedData?.team?.type === "lay") {
+      let value: any = 0;
+      value = +selectedData?.team?.stake * (+selectedData?.team?.rate - 1);
+      if (selectedData?.team?.betOnTeam == team) {
+        return -parseFloat(value)?.toFixed(2);
+      } else {
+        return parseFloat(selectedData?.team?.stake)?.toFixed(2);
+      }
+    } else {
+      let value = 0;
+      value = +selectedData?.team?.stake * (+selectedData?.team?.rate - 1);
+      if (selectedData?.team?.betOnTeam == team) {
+        return value;
+      } else {
+        return -parseFloat(selectedData?.team?.stake).toFixed(2);
       }
     }
-  }else if(betData?.type === "session"){
+  } else if (betData?.type === "session") {
     // console.log('selectedData',selectedData)
-    if(selectedData?.team?.type === 'no'){
-      let value = 0 ;
-      value = +selectedData?.team?.stake * (+selectedData?.team?.rate)/100
-     if(selectedData?.team?.betOnTeam == team){
-     
-      return  -value?.toFixed(2)
-     }else{
-      return +selectedData?.team?.stake?.toFixed(2)
-     }
-    }else{
-      
-      let value = 0 ;
-      value = (+selectedData?.team?.stake * (+selectedData?.team?.rate))/100
-      if(selectedData?.team?.betOnTeam == team){
-     
-        return value?.toFixed(2)
-      }else{
-        return -selectedData?.team?.stake?.toFixed(2)
+    if (selectedData?.team?.type === "no") {
+      let value: any = 0;
+      value = (+selectedData?.team?.stake * +selectedData?.team?.rate) / 100;
+      if (selectedData?.team?.betOnTeam == team) {
+        return -parseFloat(value)?.toFixed(2);
+      } else {
+        return parseFloat(selectedData?.team?.stake)?.toFixed(2);
+      }
+    } else {
+      let value: any = 0;
+      value = (+selectedData?.team?.stake * +selectedData?.team?.rate) / 100;
+      if (selectedData?.team?.betOnTeam == team) {
+        return parseFloat(value)?.toFixed(2);
+      } else {
+        return -parseFloat(selectedData?.team?.stake)?.toFixed(2);
       }
     }
-  }else{
+  } else {
     // console.log('selectedData',selectedData)
-    if(selectedData?.team?.type === 'lay'){
-      let value = 0 ;
-      value = +selectedData?.team?.stake * (+selectedData?.team?.rate)/100
-     if(selectedData?.team?.betOnTeam == team){
-     
-      return  - value?.toFixed(2)
-     }else{
-      return +selectedData?.team?.stake?.toFixed(2)
-     }
-    }else{
-      
-      let value = 0 ;
-      value = (+selectedData?.team?.stake * (+selectedData?.team?.rate))/100
-      if(selectedData?.team?.betOnTeam == team){
-     
-        return value?.toFixed(2)
-      }else{
-        return -selectedData?.team?.stake?.toFixed(2)
+    if (selectedData?.team?.type === "lay") {
+      let value: any = 0;
+      value = (+selectedData?.team?.stake * +selectedData?.team?.rate) / 100;
+      if (selectedData?.team?.betOnTeam == team) {
+        return -parseFloat(value)?.toFixed(2);
+      } else {
+        return parseFloat(selectedData?.team?.stake)?.toFixed(2);
+      }
+    } else {
+      let value: any = 0;
+      value = (+selectedData?.team?.stake * +selectedData?.team?.rate) / 100;
+      if (selectedData?.team?.betOnTeam == team) {
+        return parseFloat(value)?.toFixed(2);
+      } else {
+        return -parseFloat(selectedData?.team?.stake)?.toFixed(2);
       }
     }
   }

@@ -117,7 +117,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     }
     return isNaN(profit) ? 0 : Number(parseFloat(profit).toFixed(2) ?? 0);
   };
-  
+
   return (
     <>
       <CustomModal
@@ -137,13 +137,13 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           fluid
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
-            <Col xs={6} className="f500 title-12">
+            <Col xs={6} className="f600 title-14">
               {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
             </Col>
             <Col xs={6} className="d-flex justify-content-end">
               <CustomButton
                 onClick={() => {
-                  if (selectedBet?.team?.matchBetType !== 'matchOdd') {
+                  if (selectedBet?.team?.matchBetType !== "matchOdd") {
                     return true;
                   }
                   dispatch(
@@ -151,12 +151,15 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       ...selectedBet,
                       team: {
                         ...selectedBet?.team,
-                        rate: parseInt(selectedBet?.team?.rate) == 0 ? 0 : parseInt(selectedBet?.team?.rate) - 1,
+                        rate:
+                          parseInt(selectedBet?.team?.rate) == 0
+                            ? 0
+                            : parseInt(selectedBet?.team?.rate) - 1,
                       },
                     })
                   );
                 }}
-                className="bg-secondary py-0"
+                className="bg-secondary py-0 br-0"
               >
                 <span className="f900 text-black">-</span>
               </CustomButton>
@@ -164,11 +167,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 min={0}
                 value={+selectedBet?.team?.rate || 0}
                 type="number"
-                className="w-50"
+                className="w-50 br-0"
+                style={{ border: "1px solid #000" }}
               />
               <CustomButton
                 onClick={() => {
-                  if (selectedBet?.team?.matchBetType !== 'matchOdd') {
+                  if (selectedBet?.team?.matchBetType !== "matchOdd") {
                     return true;
                   }
                   dispatch(
@@ -181,7 +185,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                     })
                   );
                 }}
-                className="bg-secondary f900 text-black"
+                className="bg-secondary f900 text-black br-0"
               >
                 <span className="f900 text-black">+</span>
               </CustomButton>
@@ -205,13 +209,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 // disabled
                 type="number"
                 placeholder=""
-                className="w-100"
+                className="w-100 br-0"
+                style={{ border: "0.5px solid #000" }}
               />
             </Col>
 
             <Col xs={4} className="f800 title-12">
               <CustomButton
-                className="f400 w-100"
+                className="f400 w-100 br-0"
                 onClick={() => {
                   try {
                     if (
@@ -314,7 +319,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             {valueLabel?.map((item: any, index: number) => (
               <Col key={index} xs={4}>
                 <CustomButton
-                  className="w-100 border-0 bg-secondary f400 text-black"
+                  className="w-100 border-0 bg-secondary f600 text-black"
                   size="sm"
                   onClick={() => {
                     dispatch(
@@ -342,66 +347,118 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       <div className="col-md-4 flex-start">
                         <div className="row">
                           <div className="col-md-12">
-                            <span>{selectedBet?.team?.teamA}</span>
+                            <span className="f400 title-12">
+                              {selectedBet?.team?.teamA}
+                            </span>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-12">
-                            <span>{selectedBet?.team?.teamB}</span>
+                            <span className="f400 title-12">
+                              {selectedBet?.team?.teamB}
+                            </span>
                           </div>
+                          {selectedBet?.team?.teamC && (
+                            <div className="row">
+                              <div className="col-md-12">
+                                <span className="f400 title-12">
+                                  {selectedBet?.team?.teamC}
+                                </span>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                        {selectedBet?.team?.teamC && (
-                        <div className="row">
-                          <div className="col-md-12">
-                            <span>{selectedBet?.team?.teamC}</span>
-                          </div>
-                        </div>
-                      )}
                       </div>
                     </div>
                     <div className="row row5">
                       <div className="col-md-4">
                         <div className="row">
                           <div className="col-md-12">
-                            <span>{matchDetails?.profitLossDataMatch?.teamARate}</span>
+                            <span className="f600 title-12">
+                              {matchDetails?.profitLossDataMatch?.teamARate ||
+                                0}
+                            </span>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-12">
-                            <span>{matchDetails?.profitLossDataMatch?.teamBRate}</span>
+                            <span className="f600 title-12">
+                              {matchDetails?.profitLossDataMatch?.teamBRate ||
+                                0}
+                            </span>
                           </div>
+                          {selectedBet?.team?.teamC && (
+                            <div className="row">
+                              <div className="col-md-12">
+                                <span className="f600 title-12">
+                                  {matchDetails?.profitLossDataMatch
+                                    ?.teamCRate || 0}
+                                </span>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                        {selectedBet?.team?.teamC && (
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span>{matchDetails?.profitLossDataMatch?.teamCRate}</span>
-                        </div>
-                      </div>
-                       )}
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-md-4">
                         <div className="row">
                           <div className="col-md-12">
-                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? "color-green" : "color-red"}>
-                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className="col-md-12">
-                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? "color-green" : "color-red"}>
-                            {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
+                            <span
+                              style={{ fontSize: "12px", fontWeight: "600" }}
+                              className={
+                                selectedBet?.team?.betOnTeam ===
+                                selectedBet?.team?.teamA
+                                  ? "color-green"
+                                  : "color-red"
+                              }
+                            >
+                              {selectedBet?.team?.betOnTeam ===
+                              selectedBet?.team?.teamA
+                                ? handleProfit(stake)
+                                : -selectedBet?.team?.stake}
+                            </span>
                           </div>
                         </div>
                       </div>
-                      {selectedBet?.team?.teamC && (
                       <div className="row">
                         <div className="col-md-12">
-                          <span className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? "color-green" : "color-red"}>
-                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
+                          <span
+                            style={{ fontSize: "12px", fontWeight: "600" }}
+                            className={
+                              selectedBet?.team?.betOnTeam ===
+                              selectedBet?.team?.teamB
+                                ? "color-green"
+                                : "color-red"
+                            }
+                          >
+                            {selectedBet?.team?.betOnTeam ===
+                            selectedBet?.team?.teamB
+                              ? handleProfit(stake)
+                              : -selectedBet?.team?.stake}
+                          </span>
                         </div>
                       </div>
+
+                      {selectedBet?.team?.teamC && (
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span
+                              style={{ fontSize: "12px", fontWeight: "600" }}
+                              className={
+                                selectedBet?.team?.betOnTeam ===
+                                selectedBet?.team?.teamC
+                                  ? "color-green"
+                                  : "color-red"
+                              }
+                            >
+                              {selectedBet?.team?.betOnTeam ===
+                              selectedBet?.team?.teamC
+                                ? handleProfit(stake)
+                                : -selectedBet?.team?.stake}
+                            </span>
+                          </div>
+                        </div>
                       )}
                     </div>
                   </>
