@@ -109,48 +109,47 @@ const matchListSlice = createSlice({
           overUnder,
         } = action.payload;
 
-        let removedsessionBettings = state.matchDetails.sessionBettings.filter(
-          (item: any) => {
-            return apiSession.some(
+        let removedsessionBettings =
+          state.matchDetails?.sessionBettings?.filter((item: any) => {
+            return apiSession?.some(
               (apiItem: any) => apiItem?.id === JSON.parse(item)?.id
             );
-          }
-        );
+          });
 
-        let newSessionBettings = removedsessionBettings.filter((item: any) => {
-          return sessionBettings.some(
+        let newSessionBettings = removedsessionBettings?.filter((item: any) => {
+          return sessionBettings?.some(
             (apiItem: any) => JSON.parse(apiItem)?.id === JSON.parse(item)?.id
           );
         });
 
-        apiSession.forEach((apiItem: any) => {
+        apiSession?.forEach((apiItem: any) => {
           if (
-            !newSessionBettings.some(
-              (item: any) => JSON.parse(item).id === apiItem.id
+            !newSessionBettings?.some(
+              (item: any) => JSON.parse(item)?.id === apiItem?.id
             )
           ) {
-            newSessionBettings.push(
+            newSessionBettings?.push(
               JSON.stringify({
                 id: apiItem?.id,
                 name: apiItem?.RunnerName,
-                yesRate: apiItem.BackPrice1,
-                yesPercent: apiItem.BackSize1,
-                noRate: apiItem.LayPrice1,
-                noPercent: apiItem.LaySize1,
-                selectionId: apiItem.SelectionId,
-                minBet: apiItem.min,
-                maxBet: apiItem.max,
-                activeStatus: apiItem.activeStatus,
-                updatedAt: apiItem.updatedAt,
+                yesRate: apiItem?.BackPrice1,
+                yesPercent: apiItem?.BackSize1,
+                noRate: apiItem?.LayPrice1,
+                noPercent: apiItem?.LaySize1,
+                selectionId: apiItem?.SelectionId,
+                minBet: apiItem?.min,
+                maxBet: apiItem?.max,
+                activeStatus: apiItem?.activeStatus,
+                updatedAt: apiItem?.updatedAt,
                 type: "session",
                 isManual: false,
                 status:
-                  apiItem.GameStatus === "" ? "active" : apiItem.GameStatus,
+                  apiItem?.GameStatus === "" ? "active" : apiItem?.GameStatus,
               })
             );
           }
         });
-        sessionBettings.forEach((apiItem: any) => {
+        sessionBettings?.forEach((apiItem: any) => {
           if (
             !newSessionBettings.some(
               (item: any) => JSON.parse(item).id === apiItem.id
@@ -162,8 +161,10 @@ const matchListSlice = createSlice({
 
         state.matchDetails = {
           ...state.matchDetails,
-          manualSessionActive: sessionBettings?.length >= 0 ? true : false,
-          apiSessionActive: apiSession?.length >= 0 ? true : false,
+          manualSessionActive:
+            sessionBettings && sessionBettings?.length >= 0 ? true : false,
+          apiSessionActive:
+            apiSession && apiSession?.length >= 0 ? true : false,
           apiSession: apiSession,
           apiTideMatch: apiTiedMatch,
           bookmaker: bookmaker,
