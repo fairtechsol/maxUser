@@ -107,15 +107,24 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       profit =
         selectedBet?.team?.type === "back"
           ? (value * ((selectedBet?.team?.rate - 1) * 100)) / 100
-          : value;
+          : -(value * ((selectedBet?.team?.rate - 1) * 100)) / 100;
     } else {
       profit =
         selectedBet?.team?.type === "back"
           ? (value * selectedBet?.team?.rate) / 100
-          : value;
+          : -(value * selectedBet?.team?.rate) / 100;
     }
-    return isNaN(profit) ? 0 : Number(parseFloat(profit).toFixed(2) ?? 0);
+    return isNaN(profit) ? 0 : parseFloat(profit).toFixed(2) ?? 0;
   };
+  const handleColor = (team : any) =>{
+    let green = "color-green"
+    let red = "color-red"
+    if(selectedBet?.team?.betOnTeam === team){
+      return selectedBet?.team?.type === "back" ? green : red
+    }else{
+      return selectedBet?.team?.type === "back" ?  red : green
+    }
+  }
   
   return (
     <>
@@ -358,21 +367,21 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                     <div className="col-md-4">
                       <div className="row">
                         <div className="col-md-12">
-                          <span style={{fontSize:"12px",fontWeight:"600"}} className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? "color-green" : "color-red"}>
-                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
+                          <span style={{fontSize:"12px",fontWeight:"600"}} className={handleColor(selectedBet?.team?.teamA)}>
+                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA  ? handleProfit(stake)  : (selectedBet?.team?.type === "back" ? -selectedBet?.team?.stake : selectedBet?.team?.stake)}</span>
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-md-12">
-                          <span style={{fontSize:"12px",fontWeight:"600"}} className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? "color-green" : "color-red"}>
-                            {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
+                          <span style={{fontSize:"12px",fontWeight:"600"}} className={handleColor(selectedBet?.team?.teamB)}>
+                            {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? handleProfit(stake)  : (selectedBet?.team?.type === "back" ? -selectedBet?.team?.stake : selectedBet?.team?.stake)}</span>
                         </div>
                       </div>
                       {selectedBet?.team?.teamC && (
                       <div className="row">
                         <div className="col-md-12">
-                          <span style={{fontSize:"12px",fontWeight:"600"}} className={selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? "color-green" : "color-red"}>
-                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? handleProfit(stake)  : -selectedBet?.team?.stake}</span>
+                          <span style={{fontSize:"12px",fontWeight:"600"}} className={handleColor(selectedBet?.team?.teamC)}>
+                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? handleProfit(stake)  : (selectedBet?.team?.type === "back" ? -selectedBet?.team?.stake : selectedBet?.team?.stake)}</span>
                         </div>
                       </div>
                       )}
