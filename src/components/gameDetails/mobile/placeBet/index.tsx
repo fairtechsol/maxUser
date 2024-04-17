@@ -318,7 +318,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               </Col>
             ))}
             <div className="container d-flex justify-content-between mt-2">
-              {selectedBet?.data?.type && (selectedBet.data.type === 'quickbookmaker1' || selectedBet.data.type === 'matchOdd' || selectedBet.data.type === 'bookmaker') && (
+              {selectedBet?.data?.type && (selectedBet.data.type !== 'session' && selectedBet.team.matchBetType !== 'apiSession') && (
 
                 <>
                   <div className="row">
