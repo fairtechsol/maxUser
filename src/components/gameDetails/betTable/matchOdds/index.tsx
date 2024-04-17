@@ -50,21 +50,25 @@ function MatchOdds({
   ) => {
     if (data?.type === "tiedMatch1") {
       if (indexs === 0) {
-        return Number(matchDetails?.profitLossDataMatch?.yesRateTie);
+        return Number(matchDetails?.profitLossDataMatch?.yesRateTie) || 0;
       } else {
-        return Number(matchDetails?.profitLossDataMatch?.noRateTie);
+        return Number(matchDetails?.profitLossDataMatch?.noRateTie) || 0;
       }
     } else if (data?.type === "completeMatch") {
       if (indexs === 0) {
-        return Number(matchDetails?.profitLossDataMatch?.yesRateComplete);
+        return Number(matchDetails?.profitLossDataMatch?.yesRateComplete) || 0;
       } else {
-        return Number(matchDetails?.profitLossDataMatch?.noRateComplete);
+        return Number(matchDetails?.profitLossDataMatch?.noRateComplete) || 0;
       }
     } else {
       if (matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) {
-        return Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]);
+        return (
+          Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) || 0
+        );
       } else {
-        return Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]);
+        return (
+          Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) || 0
+        );
       }
     }
   };
@@ -149,7 +153,7 @@ function MatchOdds({
                         } `}
                       >
                         {data?.type === "completeMatch" ||
-                          data?.type === "tiedMatch1"
+                        data?.type === "tiedMatch1"
                           ? indexes === 0
                             ? "YES"
                             : "NO"
