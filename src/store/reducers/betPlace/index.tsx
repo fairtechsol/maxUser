@@ -54,6 +54,7 @@ const placedBet = createSlice({
         state.loading = true;
         state.success = false;
         state.error = null;
+        state.runAmount = [];
       })
       .addCase(getRunAmount.fulfilled, (state, action) => {
         state.loading = false;
