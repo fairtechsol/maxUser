@@ -39,7 +39,6 @@ const GameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const { success } = useSelector((state: RootState) => state.match.matchList);
-  const { runAmount } = useSelector((state: RootState) => state.bets);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -102,9 +101,8 @@ const GameDetails = () => {
           })
         );
         dispatch(getPlacedBets(id));
-        dispatch(resetRunAmountModal({showModal : false,id:event?.betId}))
-          dispatch(resetRunAmount({id:event?.betId}));
-        
+        dispatch(resetRunAmountModal({ showModal: false, id: event?.betId }));
+        dispatch(resetRunAmount({ id: event?.betId }));
       }
     } catch (e) {
       console.log(e);
