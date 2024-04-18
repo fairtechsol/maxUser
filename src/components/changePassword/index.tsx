@@ -68,8 +68,6 @@ const ChangePasswordComponent = () => {
     debouncedInputValue(query);
   };
 
-  console.log(errors, "errors");
-
   return (
     <ReportContainer title="Change Password">
       <form onSubmit={handleSubmit}>
