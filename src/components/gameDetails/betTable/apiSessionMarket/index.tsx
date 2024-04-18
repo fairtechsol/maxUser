@@ -12,7 +12,7 @@ import "./style.scss";
 import { useState } from "react";
 import CustomModal from "../../../commonComponent/modal";
 import RunBoxTable from "../runBoxTable";
-import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
+import { getRunAmount, resetRunAmountModal } from "../../../../store/actions/betPlace/betPlaceActions";
 import { useSelector } from "react-redux";
 import { teamStatus } from "../../../../utils/constants";
 import Desktop from "../../../rules/categoryRules/desktop";
@@ -33,10 +33,7 @@ function ApiSessionMarketTable({
 }: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
 
-  const { runAmount } = useSelector((state: RootState) => state.bets);
-
-  // State for the "Run Position" modal
-  const [showRunModal, setShowRunModal] = useState(false);
+  const { runAmount,runAmountModal } = useSelector((state: RootState) => state.bets);
 
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
@@ -62,6 +59,9 @@ function ApiSessionMarketTable({
   // const handleMinModalToggle = () => {
   //   setShowMinsModal(!showMinsModal);
   // };
+  const handleModal =(event:any)=>{
+    dispatch(resetRunAmountModal({showModal : event,id:runAmount?.betId}))
+  }
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
       <Table className="mb-0">
@@ -118,7 +118,8 @@ function ApiSessionMarketTable({
                         if (item.activeStatus === "save") {
                           return true;
                         }
-                        setShowRunModal(true);
+                        // setShowRunModal(true);
+                        dispatch(resetRunAmountModal({showModal : true,id:item?.id}))
                         dispatch(getRunAmount(item?.id));
                       }}
                       className="backLayRunner-country session-country title-12"
@@ -268,10 +269,10 @@ function ApiSessionMarketTable({
       <CustomModal
         customClass="runAmountBetModal"
         title={"Run Position"}
-        show={showRunModal}
-        setShow={setShowRunModal}
+        show={runAmountModal}
+        setShow={handleModal}
       >
-        <RunBoxTable runAmount={{ betPlaced: runAmount }} />
+        <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
       </CustomModal>
     </div>
   );
