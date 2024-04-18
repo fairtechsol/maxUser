@@ -43,8 +43,12 @@ export const getRunAmount = createAsyncThunk<any, any>(
   async (id, thunkApi) => {
     try {
       const resp = await service.get(`${ApiConstants.BET.RUN_AMOUNT}/${id}`);
-      if (resp) {
-        return JSON.parse(resp?.data?.profitLoss).betPlaced;
+      if (resp?.data?.profitLoss) {
+        let data ={
+          id: id,
+          arr : JSON.parse(resp?.data?.profitLoss[0]) ? JSON.parse(resp?.data?.profitLoss).betPlaced : []
+        }
+        return data;
       }
     } catch (error: any) {
       const err = error as AxiosError;
@@ -73,7 +77,17 @@ export const updateBetsPlaced: any = createAsyncThunk<any, any>(
     return placedBets;
   }
 );
-
+export const resetRunAmountModal: any = createAsyncThunk<any, any>(
+  "/resetRunAmountModal/reset",
+  async (placedBets) => {
+    return placedBets;
+  }
+);
+export const resetRunAmount: any = createAsyncThunk<any, any>(
+  "/resetRunAmount/reset",
+  async (placedBets) => {
+    return placedBets;
+  }
+);
 export const betsSuccessReset = createAction("success/reset");
 export const betPlaceSuccessReset = createAction("betPlaceSuccess/reset");
-export const resetRunAmount = createAction("resetRunAmount/reset");
