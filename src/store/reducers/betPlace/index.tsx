@@ -88,10 +88,10 @@ const placedBet = createSlice({
         state.error = action?.error?.message;
       })
       .addCase(updateBetsPlaced.fulfilled, (state, action) => {
-        const betId = action.payload.betId;
+        const betId = action.payload?.betId;
 
-        const isBetAlreadyPlaced = state.placedBets.some(
-          (item: any) => item.id === betId
+        const isBetAlreadyPlaced = state.placedBets?.some(
+          (item: any) => item?.id === betId
         );
         if (!isBetAlreadyPlaced) {
           state.placedBets = [action.payload, ...state.placedBets];
@@ -103,23 +103,23 @@ const placedBet = createSlice({
       .addCase(updateDeleteReasonBet.fulfilled, (state, action) => {
         const { betPlacedId, deleteReason } = action.payload;
         const updateDeleteReason = (bet: any) => {
-          if (betPlacedId.includes(bet.id)) {
+          if (betPlacedId?.includes(bet?.id)) {
             bet.deleteReason = deleteReason;
           }
 
           return bet;
         };
 
-        const updatedBetPlaced = state.placedBets.map(updateDeleteReason);
+        const updatedBetPlaced = state.placedBets?.map(updateDeleteReason);
 
         state.placedBets = Array.from(new Set(updatedBetPlaced));
       })
       .addCase(updateRunAmountOnDeleteBet.fulfilled, (state, action) => {
         const { betId, profitLoss } = action.payload;
-        if (betId === state.runAmount.betId) {
+        if (betId === state.runAmount?.betId) {
           state.runAmount = {
             ...state.runAmount,
-            runAmount: profitLoss.betPlaced,
+            runAmount: profitLoss?.betPlaced,
           };
         }
       })
