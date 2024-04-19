@@ -88,8 +88,8 @@ const otherMatchDetail = createSlice({
             if (!JSON.parse(item)?.selectionId) {
               const parsedItem = JSON.parse(item);
               let id = parsedItem?.id;
-              const matchingSession = sessionBettings.find(
-                (sessionItem: any) => JSON.parse(sessionItem).id === id
+              const matchingSession = sessionBettings?.find(
+                (sessionItem: any) => JSON.parse(sessionItem)?.id === id
               );
               let parsedSession = JSON.parse(matchingSession);
               if (parsedSession) {
@@ -101,16 +101,16 @@ const otherMatchDetail = createSlice({
             } else {
               const parsedItem = JSON.parse(item);
               let id = parsedItem?.id;
-              const matchingApiSession = apiSession.find(
-                (sessionItem: any) => sessionItem.id === id
+              const matchingApiSession = apiSession?.find(
+                (sessionItem: any) => sessionItem?.id === id
               );
               if (matchingApiSession) {
                 return JSON.stringify({
                   ...parsedItem,
-                  yesRate: matchingApiSession.BackPrice1,
-                  yesPercent: matchingApiSession.BackSize1,
-                  noRate: matchingApiSession.LayPrice1,
-                  noPercent: matchingApiSession.LaySize1,
+                  yesRate: matchingApiSession?.BackPrice1,
+                  yesPercent: matchingApiSession?.BackSize1,
+                  noRate: matchingApiSession?.LayPrice1,
+                  noPercent: matchingApiSession?.LaySize1,
                   activeStatus: "live",
                 });
               } else {
@@ -143,12 +143,12 @@ const otherMatchDetail = createSlice({
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              [profitLossDataForMatchConstants[matchBetType].A]:
-                newTeamRateData.teamA,
-              [profitLossDataForMatchConstants[matchBetType].B]:
-                newTeamRateData.teamB,
-              [profitLossDataForMatchConstants[matchBetType].C]:
-                newTeamRateData.teamC,
+              [profitLossDataForMatchConstants[matchBetType]?.A]:
+                newTeamRateData?.teamA,
+              [profitLossDataForMatchConstants[matchBetType]?.B]:
+                newTeamRateData?.teamB,
+              [profitLossDataForMatchConstants[matchBetType]?.C]:
+                newTeamRateData?.teamC,
             },
           };
         } else {
@@ -156,10 +156,10 @@ const otherMatchDetail = createSlice({
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              [profitLossDataForMatchConstants[matchBetType].A]:
-                newTeamRateData.teamA,
-              [profitLossDataForMatchConstants[matchBetType].B]:
-                newTeamRateData.teamB,
+              [profitLossDataForMatchConstants[matchBetType]?.A]:
+                newTeamRateData?.teamA,
+              [profitLossDataForMatchConstants[matchBetType]?.B]:
+                newTeamRateData?.teamB,
             },
           };
         }

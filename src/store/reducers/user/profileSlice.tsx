@@ -133,7 +133,7 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload.newUserExposure ?? action.payload.exposure,
+            exposure: action.payload?.newUserExposure ?? action.payload?.exposure,
           },
         };
       })
@@ -142,7 +142,7 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload.newUserExposure ?? action.payload.exposure,
+            exposure: action.payload?.newUserExposure ?? action.payload?.exposure,
           },
         };
       })
@@ -151,7 +151,7 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload.newUserExposure ?? action.payload.exposure,
+            exposure: action.payload?.newUserExposure ?? action.payload?.exposure,
           },
         };
       })
@@ -160,8 +160,8 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload.exposure,
-            currentBalance: action.payload.currentBalance,
+            exposure: action.payload?.exposure,
+            currentBalance: action.payload?.currentBalance,
           },
         };
       })
@@ -170,8 +170,8 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload.exposure,
-            currentBalance: action.payload.currentBalance,
+            exposure: action.payload?.exposure,
+            currentBalance: action.payload?.currentBalance,
           },
         };
       })
@@ -180,8 +180,8 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            currentBalance: action.payload.currentBalance,
-            profitLoss: action.payload.profitLoss,
+            currentBalance: action.payload?.currentBalance,
+            profitLoss: action.payload?.profitLoss,
           },
         };
       });

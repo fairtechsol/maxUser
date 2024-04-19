@@ -42,17 +42,17 @@ const betPlace = createSlice({
         const betId = action.payload?.betPlaced?.placedBet?.betId;
 
         if (
-          !state.betPlaceData.some(
-            (item: any) => item.betPlaced.placedBet.betId === betId
+          !state.betPlaceData?.some(
+            (item: any) => item?.betPlaced?.placedBet?.betId === betId
           )
         ) {
           state.betPlaceData = [...state.betPlaceData, action.payload];
         } else {
-          const existingIndex = state.betPlaceData.findIndex(
-            (item: any) => item.betPlaced.placedBet.betId === betId
+          const existingIndex = state.betPlaceData?.findIndex(
+            (item: any) => item?.betPlaced?.placedBet?.betId === betId
           );
           if (existingIndex !== -1) {
-            let updatedSlice = state.betPlaceData.splice(existingIndex, 1);
+            let updatedSlice = state?.betPlaceData?.splice(existingIndex, 1);
             state.betPlaceData = [...updatedSlice, action.payload];
           }
         }
