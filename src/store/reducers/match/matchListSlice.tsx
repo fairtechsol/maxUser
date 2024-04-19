@@ -151,11 +151,11 @@ const matchListSlice = createSlice({
         });
         sessionBettings?.forEach((apiItem: any) => {
           if (
-            !newSessionBettings.some(
-              (item: any) => JSON.parse(item).id === apiItem.id
+            !newSessionBettings?.some(
+              (item: any) => JSON.parse(item)?.id === apiItem?.id
             )
           ) {
-            newSessionBettings.push(apiItem);
+            newSessionBettings?.push(apiItem);
           }
         });
 
@@ -204,9 +204,9 @@ const matchListSlice = createSlice({
                   noPercent: matchingApiSession?.LaySize1,
                   activeStatus: "live",
                   status:
-                    matchingApiSession.GameStatus === ""
+                    matchingApiSession?.GameStatus === ""
                       ? "active"
-                      : matchingApiSession.GameStatus,
+                      : matchingApiSession?.GameStatus,
                 });
               } else {
                 return JSON.stringify({
@@ -218,11 +218,11 @@ const matchListSlice = createSlice({
                   activeStatus:
                     parsedItem?.activeStatus === "live"
                       ? "save"
-                      : parsedItem.activeStatus,
+                      : parsedItem?.activeStatus,
                   status:
-                    matchingApiSession.GameStatus === ""
+                    matchingApiSession?.GameStatus === ""
                       ? "active"
-                      : matchingApiSession.GameStatus,
+                      : matchingApiSession?.GameStatus,
                 });
               }
             }

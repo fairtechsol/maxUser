@@ -142,7 +142,7 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload.newUserExposure ?? action.payload.exposure,
+            exposure: action.payload?.newUserExposure ?? action.payload?.exposure,
           },
         };
       })
