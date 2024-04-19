@@ -66,8 +66,8 @@ const otherMatchDetail = createSlice({
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              yesRateTie: newTeamRateData.teamA,
-              noRateTie: newTeamRateData.teamB,
+              yesRateTie: newTeamRateData?.teamA,
+              noRateTie: newTeamRateData?.teamB,
             },
           };
         } else if (["completeMatch"].includes(matchBetType)) {
@@ -75,8 +75,8 @@ const otherMatchDetail = createSlice({
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              yesRateComplete: newTeamRateData.teamA,
-              noRateComplete: newTeamRateData.teamB,
+              yesRateComplete: newTeamRateData?.teamA,
+              noRateComplete: newTeamRateData?.teamB,
             },
           };
         } else {
@@ -84,9 +84,9 @@ const otherMatchDetail = createSlice({
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              teamARate: newTeamRateData.teamA,
-              teamBRate: newTeamRateData.teamB,
-              teamCRate: newTeamRateData.teamC,
+              teamARate: newTeamRateData?.teamA,
+              teamBRate: newTeamRateData?.teamB,
+              teamCRate: newTeamRateData?.teamC,
             },
           };
         }
@@ -95,7 +95,7 @@ const otherMatchDetail = createSlice({
         const { betPlaced, profitLossData } = action.payload;
         if (state?.otherMatchDetails?.id === betPlaced?.placedBet?.matchId) {
           const updatedProfitLossDataSession =
-            state.otherMatchDetails?.profitLossDataSession.map((item: any) => {
+            state.otherMatchDetails?.profitLossDataSession?.map((item: any) => {
               if (item?.betId === betPlaced?.placedBet?.betId) {
                 return {
                   ...item,
@@ -106,11 +106,11 @@ const otherMatchDetail = createSlice({
               return item;
             });
 
-          const betIndex = updatedProfitLossDataSession.findIndex(
+          const betIndex = updatedProfitLossDataSession?.findIndex(
             (item: any) => item?.betId === betPlaced?.placedBet?.betId
           );
           if (betIndex === -1) {
-            updatedProfitLossDataSession.push({
+            updatedProfitLossDataSession?.push({
               betId: betPlaced?.placedBet?.betId,
               maxLoss: JSON.parse(profitLossData)?.maxLoss,
               totalBet: 1,
