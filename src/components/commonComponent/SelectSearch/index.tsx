@@ -47,7 +47,7 @@ const SelectSearch = (props: any) => {
           styles={customStyles}
           className={`selectSearch ${filedClass}`}
           value={value}
-          defaultValue={defaultValue}
+          // defaultValue={defaultValue}
           onChange={onChange}
           onBlur={onBlur}
           options={options}
