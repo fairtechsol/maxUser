@@ -122,7 +122,7 @@ function ApiSessionMarketTable({
                         dispatch(resetRunAmountModal({showModal : true,id:item?.id}))
                         dispatch(getRunAmount(item?.id));
                       }}
-                      className="backLayRunner-country session-country title-12"
+                      className="backLayRunner-country session-country title-10"
                     >
                       {item?.name}
                     </span>
