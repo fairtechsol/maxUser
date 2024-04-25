@@ -14,6 +14,7 @@ import HTFTMarketTable from "./htftmarket";
 import { MatchType } from "../../../utils/enum";
 import { formattedMinMax } from "../../../utils/formatMinMax";
 import OverUnderMarket from "./overUnder";
+import SetWinner from "./setWinner";
 interface BetTableProps {
   title: string;
   type: string;
@@ -101,7 +102,14 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           matchDetails={otherMatchDetails}
           title={title}
         />
-      ) : (
+      ) : type === MatchType.SET_WINNER ? (
+        <SetWinner
+          minMax={formattedMinMax(data?.minBet, data?.maxBet)}
+          data={data}
+          backLayCount={backLayCount}
+          matchDetails={otherMatchDetails}
+        />
+      ) :  (
         <HTFTMarketTable
         //   data={data}
         //   title={title}

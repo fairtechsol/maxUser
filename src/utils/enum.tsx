@@ -9,4 +9,5 @@ export const MatchType = {
   UNDER_OVER: "underOver",
   SESSION_MARKET: "sessionMarket",
   API_SESSION_MARKET: "apiSessionMarket",
+  SET_WINNER: "setWinner",
 };

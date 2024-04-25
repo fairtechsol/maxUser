@@ -49,7 +49,7 @@ const FootballDesktopGameDetail = () => {
                   rightComponent={
                     <span className="title-16 f500">
                       {/* {formatDate(otherMatchDetails?.startAt)} */}
-                      {otherMatchDetails?.startAt && ( formatDate(otherMatchDetails?.startAt))}
+                      {otherMatchDetails?.startAt && (formatDate(otherMatchDetails?.startAt))}
                     </span>
                   }
                 />
@@ -61,6 +61,26 @@ const FootballDesktopGameDetail = () => {
                     title={otherMatchDetails?.matchOdd?.name}
                     type={MatchType.MATCH_ODDS}
                     data={otherMatchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
+
+              {otherMatchDetails?.setWinner1?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={otherMatchDetails?.setWinner1?.name}
+                    type={MatchType.SET_WINNER}
+                    data={otherMatchDetails?.setWinner1}
+                  />
+                </Col>
+              )}
+
+              {otherMatchDetails?.setWinner2?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={otherMatchDetails?.setWinner2?.name}
+                    type={MatchType.SET_WINNER}
+                    data={otherMatchDetails?.setWinner2}
                   />
                 </Col>
               )}
@@ -166,10 +186,10 @@ const FootballDesktopGameDetail = () => {
                 {/* <BetTable /> */}
               {/* </Col> */}
               {/* <Col md={4}> */}
-                {/* <BetTable /> */}
+              {/* <BetTable /> */}
               {/* </Col> */}
               {/* <Col md={12}> */}
-                {/* <BetTable /> */}
+              {/* <BetTable /> */}
               {/* </Col> */}
               {/* )} */}
               {/* {otherMatchDetails?.manualSessionActive && ( */}

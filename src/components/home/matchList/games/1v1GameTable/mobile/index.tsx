@@ -108,8 +108,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                           className="text-decoration-none text-black"
                           to={`/${
                             mTypeid === "cricket"
-                              ? "game-detail"
-                              : "other-game-detail"
+                              ? "game-detail/cricket" : `other-game-detail/${mTypeid}`
                           }/${item?.id}`}
                         >
                           <b className="title-14 f600">{item?.title}</b>

@@ -76,6 +76,26 @@ const FootballMobileGameDetail = () => {
                         />
                       </Col>
                     )}
+                     {otherMatchDetails?.setWinner1?.isActive && (
+                      <Col className="g-0" md={12}>
+                        <BetTable
+                          title={otherMatchDetails?.setWinner1?.name}
+                          type={MatchType.SET_WINNER}
+                          data={otherMatchDetails?.setWinner1}
+                          backLayCount={2}
+                        />
+                      </Col>
+                    )}
+                     {otherMatchDetails?.setWinner2?.isActive && (
+                      <Col className="g-0" md={12}>
+                        <BetTable
+                          title={otherMatchDetails?.setWinner2?.name}
+                          type={MatchType.SET_WINNER}
+                          data={otherMatchDetails?.setWinner2}
+                          backLayCount={2}
+                        />
+                      </Col>
+                    )}
 
                     {otherMatchDetails?.bookmaker?.isActive && (
                       <Col className="g-0" md={12}>
