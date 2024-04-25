@@ -366,23 +366,16 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                               {selectedBet?.team?.teamB}
                             </span>
                           </div>
+                        </div>
+                        {selectedBet?.team?.teamC && (
                           <div className="row">
                             <div className="col-md-12">
                               <span className="f400 title-12">
-                                {selectedBet?.team?.teamB}
+                                {selectedBet?.team?.teamC}
                               </span>
                             </div>
-                            {selectedBet?.team?.teamC && (
-                              <div className="row">
-                                <div className="col-md-12">
-                                  <span className="f400 title-12">
-                                    {selectedBet?.team?.teamC}
-                                  </span>
-                                </div>
-                              </div>
-                            )}
                           </div>
-                        </div>
+                        )}
                       </div>
                     </div>
                     <div className="row row5">
