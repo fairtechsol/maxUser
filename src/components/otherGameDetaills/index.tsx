@@ -23,7 +23,7 @@ import {
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
-import { expertSocketService, socketService } from "../../socketManager";
+import { expertSocketService, socket, socketService } from "../../socketManager";
 import {
   otherMatchDetailAction,
   updateMatchRates,
@@ -119,7 +119,7 @@ const FootballGameDetails = () => {
 
   useEffect(() => {
     try {
-      if (success) {
+      if (success && socket) {
         expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
@@ -129,7 +129,7 @@ const FootballGameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [success]);
+  }, [success, socket]);
 
   useEffect(() => {
     try {

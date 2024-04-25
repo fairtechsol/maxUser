@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MatchList from "../../components/home";
-import { expertSocketService, socketService } from "../../socketManager";
+import {
+  expertSocketService,
+  socket,
+  socketService,
+} from "../../socketManager";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import CustomModal from "../../components/commonComponent/modal";
@@ -38,28 +42,32 @@ const Home = () => {
   };
   useEffect(() => {
     try {
-      expertSocketService.match.matchAdded(getMatchListServiceSocket);
-      socketService.userBalance.matchResultDeclared(getMatchListServiceSocket);
-      socketService.userBalance.matchResultUnDeclared(
-        getMatchListServiceSocket
-      );
-      socketService.userBalance.declaredMatchResultAllUser(
-        getMatchListServiceSocket
-      );
-      socketService.userBalance.unDeclaredMatchResultAllUser(
-        getMatchListServiceSocket
-      );
+      if (socket) {
+        expertSocketService.match.matchAdded(getMatchListServiceSocket);
+        socketService.userBalance.matchResultDeclared(
+          getMatchListServiceSocket
+        );
+        socketService.userBalance.matchResultUnDeclared(
+          getMatchListServiceSocket
+        );
+        socketService.userBalance.declaredMatchResultAllUser(
+          getMatchListServiceSocket
+        );
+        socketService.userBalance.unDeclaredMatchResultAllUser(
+          getMatchListServiceSocket
+        );
+        return () => {
+          expertSocketService.match.matchAddedOff();
+          socketService.userBalance.matchResultDeclaredOff();
+          socketService.userBalance.matchResultUnDeclaredOff();
+          socketService.userBalance.declaredMatchResultAllUserOff();
+          socketService.userBalance.unDeclaredMatchResultAllUserOff();
+        };
+      }
     } catch (e) {
       console.log(e);
     }
-    return () => {
-      expertSocketService.match.matchAddedOff();
-      socketService.userBalance.matchResultDeclaredOff();
-      socketService.userBalance.matchResultUnDeclaredOff();
-      socketService.userBalance.declaredMatchResultAllUserOff();
-      socketService.userBalance.unDeclaredMatchResultAllUserOff();
-    };
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     if (matchType) {
