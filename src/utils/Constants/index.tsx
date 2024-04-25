@@ -98,6 +98,16 @@ export const profitLossDataForMatchConstants = {
     B: "teamBRate",
     C: "teamCRate",
   },
+  [matchBettingType.setWinner1]: {
+    A: "teamARate",
+    B: "teamBRate",
+    C: "teamCRate",
+  },
+  [matchBettingType.setWinner2]: {
+    A: "teamARate",
+    B: "teamBRate",
+    C: "teamCRate",
+  },
   [matchBettingType.bookmaker]: {
     A: "teamARate",
     B: "teamBRate",
@@ -172,6 +182,7 @@ export const transType = {
 export const availableGameType: any = {
   cricket: "cricket",
   football: "football",
+  tennis: "tennis"
 };
 
 export const baseUrls = {

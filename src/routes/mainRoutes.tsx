@@ -61,11 +61,11 @@ const MainRoutes = {
     { path: "secure-auth", element: <SecureAuthVerification /> },
     { path: "change-password", element: <ChangePassword /> },
     {
-      path: "game-detail/:id",
+      path: "game-detail/:type/:id",
       element: <GameDetail />,
     },
     {
-      path: "other-game-detail/:id",
+      path: "other-game-detail/:type/:id",
       element: <FootballGameDetail />,
     },
     {

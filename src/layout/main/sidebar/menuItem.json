@@ -15,7 +15,7 @@
         "id": "tennis",
         "name": "Tennis",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/game-list/tennis"
       },
       {
         "id": "cricket",

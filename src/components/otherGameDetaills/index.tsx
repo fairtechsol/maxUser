@@ -38,8 +38,7 @@ const FootballGameDetails = () => {
     (state: RootState) => state.otherGames.matchDetail
   );
   // const navigate = useNavigate();
-  const { id } = useParams();
-
+  const { id, type } = useParams();
   useEffect(() => {
     dispatch(getButtonValue());
   }, [dispatch]);
@@ -109,7 +108,7 @@ const FootballGameDetails = () => {
       if (id && getProfile?.roleName) {
         dispatch(selectedBetAction(null));
         dispatch(
-          otherMatchDetailAction({ matchId: id, matchType: "football" })
+          otherMatchDetailAction({ matchId: id, matchType: type })
         );
         dispatch(getPlacedBets(id));
       }
@@ -159,7 +158,7 @@ const FootballGameDetails = () => {
         if (id) {
           dispatch(selectedBetAction(null));
           dispatch(
-            otherMatchDetailAction({ matchId: id, matchType: "football" })
+            otherMatchDetailAction({ matchId: id, matchType: type })
           );
           dispatch(getPlacedBets(id));
           dispatch(getPlacedBets(id));
