@@ -101,10 +101,12 @@ export const profitLossDataForMatchConstants = {
   [matchBettingType.setWinner1]: {
     A: "teamARate",
     B: "teamBRate",
+    C: "teamCRate",
   },
   [matchBettingType.setWinner2]: {
     A: "teamARate",
     B: "teamBRate",
+    C: "teamCRate",
   },
   [matchBettingType.bookmaker]: {
     A: "teamARate",
