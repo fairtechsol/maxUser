@@ -25,7 +25,7 @@ const MyBet = () => {
 
   return (
     <RightPanelContainer title={"My Bet"}>
-      <div style={{ maxHeight: "70vh", overflow: "auto" }}>
+      <div className="betList" style={{ maxHeight: "70vh", overflow: "auto" }}>
         <Table className="w-full">
           <thead>
             <tr className="bg-darkGrey">
