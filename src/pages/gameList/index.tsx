@@ -4,7 +4,11 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/commonComponent/loader";
 import DesktopMatchList from "../../components/home/matchList/desktop";
 import SportsFilters from "../../components/home/sportsFilters";
-import { expertSocketService, socketService } from "../../socketManager";
+import {
+  expertSocketService,
+  socket,
+  socketService,
+} from "../../socketManager";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
@@ -28,18 +32,28 @@ const GameList = () => {
 
   useEffect(() => {
     try {
-      expertSocketService.match.matchAdded(getMatchListService);
-      socketService.userBalance.matchResultDeclared(getMatchListService);
-      socketService.userBalance.matchResultUnDeclared(getMatchListService);
-      socketService.userBalance.declaredMatchResultAllUser(getMatchListService);
-      socketService.userBalance.unDeclaredMatchResultAllUser(getMatchListService);
+      if (socket) {
+        expertSocketService.match.matchAdded(getMatchListService);
+        socketService.userBalance.matchResultDeclared(getMatchListService);
+        socketService.userBalance.matchResultUnDeclared(getMatchListService);
+        socketService.userBalance.declaredMatchResultAllUser(
+          getMatchListService
+        );
+        socketService.userBalance.unDeclaredMatchResultAllUser(
+          getMatchListService
+        );
+        return () => {
+          expertSocketService.match.matchAddedOff();
+          socketService.userBalance.matchResultDeclaredOff();
+          socketService.userBalance.matchResultUnDeclaredOff();
+          socketService.userBalance.declaredMatchResultAllUserOff();
+          socketService.userBalance.unDeclaredMatchResultAllUserOff();
+        };
+      }
     } catch (e) {
       console.log(e);
     }
-    return () => {
-      expertSocketService.match.matchAddedOff();
-    };
-  }, []);
+  }, [socket]);
 
   return (
     <>

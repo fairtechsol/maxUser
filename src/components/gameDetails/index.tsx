@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { expertSocketService, socketService } from "../../socketManager";
+import {
+  expertSocketService,
+  socket,
+  socketService,
+} from "../../socketManager";
 import {
   getMatchList,
   matchDetailAction,
@@ -205,7 +209,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     try {
-      if (success) {
+      if (success && socket) {
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
@@ -233,7 +237,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [success]);
+  }, [success, socket]);
 
   useEffect(() => {
     try {
