@@ -67,6 +67,7 @@ const otherMatchDetail = createSlice({
           firstHalfGoal,
           halfTime,
           overUnder,
+          setWinner,
         } = action.payload;
 
         let newSessionBettings = sessionBettings;
@@ -84,6 +85,7 @@ const otherMatchDetail = createSlice({
           firstHalfGoal,
           halfTime,
           overUnder,
+          setWinner,
           sessionBettings: newSessionBettings?.map((item: any) => {
             if (!JSON.parse(item)?.selectionId) {
               const parsedItem = JSON.parse(item);

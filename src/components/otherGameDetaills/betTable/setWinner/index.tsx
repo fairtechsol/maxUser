@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
 import {
+  profitLossDataForMatchConstants,
   teamStatus,
 } from "../../../../utils/constants";
 import { calculateProfitLoss } from "../../../../utils/matchDetailsBetCalculation";
@@ -88,7 +89,7 @@ function SetWinner({
                         {matchDetails?.[`team${matchs}`]}
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100">
-                        {/* <span
+                        <span
                           className={`title-14  ${
                             matchDetails?.profitLossDataMatch?.[
                               profitLossDataForMatchConstants[data?.type][
@@ -108,7 +109,7 @@ function SetWinner({
                                 ]
                               ]
                             : 0}
-                        </span> */}
+                        </span>
                         <span
                           className={`title-14 ${
                             Number(

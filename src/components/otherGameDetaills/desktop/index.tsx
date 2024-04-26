@@ -66,18 +66,16 @@ const FootballDesktopGameDetail = () => {
               )}
 
               {otherMatchDetails?.setWinner?.length > 0 &&
-                otherMatchDetails?.setWinner?.map(
-                  (item: any, index: number) => (
-                    <div key={index}>
-                      {item?.isActive && (
-                        <Col md={12}>
-                          <BetTable
-                            title={item?.name}
-                            type={MatchType.SET_WINNER}
-                            data={otherMatchDetails?.setWinner}
-                          />
-                        </Col>
-                      )}
+                otherMatchDetails?.setWinner?.filter((item: any) => item?.isActive)?.map(
+                  (item: any) => (
+                    <div key={item?.id}>
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.SET_WINNER}
+                          data={item}
+                        />
+                      </Col>
                     </div>
                   )
                 )}
@@ -108,34 +106,30 @@ const FootballDesktopGameDetail = () => {
               )}
 
               {otherMatchDetails?.quickBookmaker?.length > 0 &&
-                otherMatchDetails?.quickBookmaker?.map(
-                  (item: any, index: number) => (
-                    <div key={index}>
-                      {item?.isActive && (
-                        <Col md={12}>
-                          <BetTable
-                            title={item?.name}
-                            type={MatchType.BOOKMAKER}
-                            data={item}
-                          />
-                        </Col>
-                      )}
+                otherMatchDetails?.quickBookmaker?.filter((item: any) => item?.isActive)?.map(
+                  (item: any) => (
+                    <div key={item?.id}>
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.BOOKMAKER}
+                          data={item}
+                        />
+                      </Col>
                     </div>
                   )
                 )}
               {otherMatchDetails?.firstHalfGoal?.length > 0 &&
-                otherMatchDetails?.firstHalfGoal?.map(
-                  (item: any, index: number) => (
-                    <div key={index}>
-                      {item?.isActive && (
-                        <Col md={12}>
-                          <BetTable
-                            title={item?.name}
-                            type={MatchType.UNDER_OVER}
-                            data={item}
-                          />
-                        </Col>
-                      )}
+                otherMatchDetails?.firstHalfGoal?.filter((item: any) => item?.isActive)?.map(
+                  (item: any) => (
+                    <div key={item?.id}>
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.UNDER_OVER}
+                          data={item}
+                        />
+                      </Col>
                     </div>
                   )
                 )}
@@ -151,18 +145,16 @@ const FootballDesktopGameDetail = () => {
               )}
 
               {otherMatchDetails?.overUnder?.length > 0 &&
-                otherMatchDetails?.overUnder?.map(
-                  (item: any, index: number) => (
-                    <div key={index}>
-                      {item?.isActive && (
-                        <Col md={12}>
-                          <BetTable
-                            title={item?.name}
-                            type={MatchType.UNDER_OVER}
-                            data={item}
-                          />
-                        </Col>
-                      )}
+                otherMatchDetails?.overUnder?.filter((item: any) => item?.isActive)?.map(
+                  (item: any) => (
+                    <div key={item?.id}>
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.UNDER_OVER}
+                          data={item}
+                        />
+                      </Col>
                     </div>
                   )
                 )}

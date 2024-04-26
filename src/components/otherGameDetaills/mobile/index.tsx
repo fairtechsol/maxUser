@@ -24,7 +24,7 @@ const FootballMobileGameDetail = () => {
   );
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  
+
   return (
     <div>
       <FootballPlaceBet show={show} setShow={setShow} />
@@ -77,19 +77,17 @@ const FootballMobileGameDetail = () => {
                       </Col>
                     )}
                     {otherMatchDetails?.setWinner?.length > 0 &&
-                      otherMatchDetails?.setWinner?.map(
-                        (item: any, index: number) => (
-                          <div key={index} className="p-0">
-                            {item?.isActive && (
-                              <Col className="g-0" md={12}>
-                                <BetTable
-                                  title={item?.name}
-                                  type={MatchType.SET_WINNER}
-                                  data={otherMatchDetails?.setWinner}
-                                  backLayCount={2}
-                                />
-                              </Col>
-                            )}
+                      otherMatchDetails?.setWinner?.filter((item: any) => item?.isActive)?.map(
+                        (item: any) => (
+                          <div key={item?.id} className="p-0">
+                            <Col className="g-0" md={12}>
+                              <BetTable
+                                title={item?.name}
+                                type={MatchType.SET_WINNER}
+                                data={item}
+                                backLayCount={2}
+                              />
+                            </Col>
                           </div>
                         )
                       )}
@@ -105,27 +103,24 @@ const FootballMobileGameDetail = () => {
                     )}
 
                     {otherMatchDetails?.quickBookmaker?.length > 0 &&
-                      otherMatchDetails?.quickBookmaker?.map(
-                        (item: any, index: number) => (
-                          <div key={index} className="p-0">
-                            {item?.isActive && (
-                              <Col className="g-0" md={12}>
-                                <BetTable
-                                  title={item?.name}
-                                  type={MatchType.BOOKMAKER}
-                                  data={item}
-                                  backLayCount={2}
-                                />
-                              </Col>
-                            )}
+                      otherMatchDetails?.quickBookmaker?.filter((item: any) => item?.isActive)?.map(
+                        (item: any) => (
+                          <div key={item?.id} className="p-0">
+                            <Col className="g-0" md={12}>
+                              <BetTable
+                                title={item?.name}
+                                type={MatchType.BOOKMAKER}
+                                data={item}
+                                backLayCount={2}
+                              />
+                            </Col>
                           </div>
                         )
                       )}
                     {otherMatchDetails?.firstHalfGoal?.length > 0 &&
-                      otherMatchDetails?.firstHalfGoal?.map(
-                        (item: any, index: number) => (
-                          <div key={index} className="p-0">
-                            {item?.isActive && (
+                      otherMatchDetails?.firstHalfGoal?.filter((item: any) => item?.isActive)?.map(
+                        (item: any) => (
+                          <div key={item?.id} className="p-0">
                               <Col className="g-0" md={12}>
                                 <BetTable
                                   title={item?.name}
@@ -134,7 +129,6 @@ const FootballMobileGameDetail = () => {
                                   backLayCount={2}
                                 />
                               </Col>
-                            )}
                           </div>
                         )
                       )}
@@ -149,10 +143,9 @@ const FootballMobileGameDetail = () => {
                       </Col>
                     )}
                     {otherMatchDetails?.overUnder?.length > 0 &&
-                      otherMatchDetails?.overUnder?.map(
-                        (item: any, index: number) => (
-                          <div key={index} className="p-0">
-                            {item?.isActive && (
+                      otherMatchDetails?.overUnder?.filter((item: any) => item?.isActive)?.map(
+                        (item: any) => (
+                          <div key={item?.id} className="p-0">
                               <Col className="g-0" md={12}>
                                 <BetTable
                                   title={item?.name}
@@ -161,7 +154,6 @@ const FootballMobileGameDetail = () => {
                                   backLayCount={2}
                                 />
                               </Col>
-                            )}
                           </div>
                         )
                       )}
