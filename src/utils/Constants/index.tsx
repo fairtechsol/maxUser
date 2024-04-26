@@ -98,16 +98,6 @@ export const profitLossDataForMatchConstants = {
     B: "teamBRate",
     C: "teamCRate",
   },
-  [matchBettingType.setWinner1]: {
-    A: "teamARate",
-    B: "teamBRate",
-    C: "teamCRate",
-  },
-  [matchBettingType.setWinner2]: {
-    A: "teamARate",
-    B: "teamBRate",
-    C: "teamCRate",
-  },
   [matchBettingType.bookmaker]: {
     A: "teamARate",
     B: "teamBRate",
@@ -149,6 +139,17 @@ export const profitLossDataForMatchConstants = {
       prev[`overUnder${curr}.5`] = {
         A: `yesRateUnderOver${curr}.5`,
         B: `noRateUnderOver${curr}.5`,
+      };
+      return prev;
+    },
+    {}
+  ),
+  ...Array.from({ length: 20 }, (_, index) => index).reduce(
+    (prev: any, curr) => {
+      prev[`setWinner${curr}`] = {
+        A: `userTeamARateSetWinner${curr}`,
+        B: `userTeamBRateSetWinner${curr}`,
+        C: `userTeamRateSetWinner${curr}`,
       };
       return prev;
     },

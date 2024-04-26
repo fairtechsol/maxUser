@@ -61,7 +61,7 @@ const FootballMobileGameDetail = () => {
                         title={otherMatchDetails?.title}
                         rightComponent={
                           <span className="title-16 f500">
-                             {otherMatchDetails?.startAt && ( formatDate(otherMatchDetails?.startAt))}
+                            {otherMatchDetails?.startAt && (formatDate(otherMatchDetails?.startAt))}
                           </span>
                         }
                       />
@@ -76,27 +76,21 @@ const FootballMobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                     {otherMatchDetails?.setWinner1?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={otherMatchDetails?.setWinner1?.name}
-                          type={MatchType.SET_WINNER}
-                          data={otherMatchDetails?.setWinner1}
-                          backLayCount={2}
-                        />
-                      </Col>
-                    )}
-                     {otherMatchDetails?.setWinner2?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={otherMatchDetails?.setWinner2?.name}
-                          type={MatchType.SET_WINNER}
-                          data={otherMatchDetails?.setWinner2}
-                          backLayCount={2}
-                        />
-                      </Col>
-                    )}
-
+                    {otherMatchDetails?.setWinner?.length > 0 &&
+                      otherMatchDetails?.setWinner?.filter((item: any) => item?.isActive)?.map(
+                        (item: any) => (
+                          <div key={item?.id} className="p-0">
+                            <Col className="g-0" md={12}>
+                              <BetTable
+                                title={item?.name}
+                                type={MatchType.SET_WINNER}
+                                data={item}
+                                backLayCount={2}
+                              />
+                            </Col>
+                          </div>
+                        )
+                      )}
                     {otherMatchDetails?.bookmaker?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
@@ -109,27 +103,24 @@ const FootballMobileGameDetail = () => {
                     )}
 
                     {otherMatchDetails?.quickBookmaker?.length > 0 &&
-                      otherMatchDetails?.quickBookmaker?.map(
-                        (item: any, index: number) => (
-                          <div key={index} className="p-0">
-                            {item?.isActive && (
-                              <Col className="g-0" md={12}>
-                                <BetTable
-                                  title={item?.name}
-                                  type={MatchType.BOOKMAKER}
-                                  data={item}
-                                  backLayCount={2}
-                                />
-                              </Col>
-                            )}
+                      otherMatchDetails?.quickBookmaker?.filter((item: any) => item?.isActive)?.map(
+                        (item: any) => (
+                          <div key={item?.id} className="p-0">
+                            <Col className="g-0" md={12}>
+                              <BetTable
+                                title={item?.name}
+                                type={MatchType.BOOKMAKER}
+                                data={item}
+                                backLayCount={2}
+                              />
+                            </Col>
                           </div>
                         )
                       )}
                     {otherMatchDetails?.firstHalfGoal?.length > 0 &&
-                      otherMatchDetails?.firstHalfGoal?.map(
-                        (item: any, index: number) => (
-                          <div key={index} className="p-0">
-                            {item?.isActive && (
+                      otherMatchDetails?.firstHalfGoal?.filter((item: any) => item?.isActive)?.map(
+                        (item: any) => (
+                          <div key={item?.id} className="p-0">
                               <Col className="g-0" md={12}>
                                 <BetTable
                                   title={item?.name}
@@ -138,7 +129,6 @@ const FootballMobileGameDetail = () => {
                                   backLayCount={2}
                                 />
                               </Col>
-                            )}
                           </div>
                         )
                       )}
@@ -153,10 +143,9 @@ const FootballMobileGameDetail = () => {
                       </Col>
                     )}
                     {otherMatchDetails?.overUnder?.length > 0 &&
-                      otherMatchDetails?.overUnder?.map(
-                        (item: any, index: number) => (
-                          <div key={index} className="p-0">
-                            {item?.isActive && (
+                      otherMatchDetails?.overUnder?.filter((item: any) => item?.isActive)?.map(
+                        (item: any) => (
+                          <div key={item?.id} className="p-0">
                               <Col className="g-0" md={12}>
                                 <BetTable
                                   title={item?.name}
@@ -165,7 +154,6 @@ const FootballMobileGameDetail = () => {
                                   backLayCount={2}
                                 />
                               </Col>
-                            )}
                           </div>
                         )
                       )}
