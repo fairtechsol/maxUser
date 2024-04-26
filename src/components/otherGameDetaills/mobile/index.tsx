@@ -24,7 +24,7 @@ const FootballMobileGameDetail = () => {
   );
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
+  
   return (
     <div>
       <FootballPlaceBet show={show} setShow={setShow} />
@@ -61,7 +61,7 @@ const FootballMobileGameDetail = () => {
                         title={otherMatchDetails?.title}
                         rightComponent={
                           <span className="title-16 f500">
-                             {otherMatchDetails?.startAt && ( formatDate(otherMatchDetails?.startAt))}
+                            {otherMatchDetails?.startAt && (formatDate(otherMatchDetails?.startAt))}
                           </span>
                         }
                       />
@@ -76,27 +76,23 @@ const FootballMobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                     {otherMatchDetails?.setWinner1?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={otherMatchDetails?.setWinner1?.name}
-                          type={MatchType.SET_WINNER}
-                          data={otherMatchDetails?.setWinner1}
-                          backLayCount={2}
-                        />
-                      </Col>
-                    )}
-                     {otherMatchDetails?.setWinner2?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={otherMatchDetails?.setWinner2?.name}
-                          type={MatchType.SET_WINNER}
-                          data={otherMatchDetails?.setWinner2}
-                          backLayCount={2}
-                        />
-                      </Col>
-                    )}
-
+                    {otherMatchDetails?.setWinner?.length > 0 &&
+                      otherMatchDetails?.setWinner?.map(
+                        (item: any, index: number) => (
+                          <div key={index} className="p-0">
+                            {item?.isActive && (
+                              <Col className="g-0" md={12}>
+                                <BetTable
+                                  title={item?.name}
+                                  type={MatchType.SET_WINNER}
+                                  data={otherMatchDetails?.setWinner}
+                                  backLayCount={2}
+                                />
+                              </Col>
+                            )}
+                          </div>
+                        )
+                      )}
                     {otherMatchDetails?.bookmaker?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable

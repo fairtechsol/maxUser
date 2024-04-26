@@ -65,25 +65,22 @@ const FootballDesktopGameDetail = () => {
                 </Col>
               )}
 
-              {otherMatchDetails?.setWinner1?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={otherMatchDetails?.setWinner1?.name}
-                    type={MatchType.SET_WINNER}
-                    data={otherMatchDetails?.setWinner1}
-                  />
-                </Col>
-              )}
-
-              {otherMatchDetails?.setWinner2?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={otherMatchDetails?.setWinner2?.name}
-                    type={MatchType.SET_WINNER}
-                    data={otherMatchDetails?.setWinner2}
-                  />
-                </Col>
-              )}
+              {otherMatchDetails?.setWinner?.length > 0 &&
+                otherMatchDetails?.setWinner?.map(
+                  (item: any, index: number) => (
+                    <div key={index}>
+                      {item?.isActive && (
+                        <Col md={12}>
+                          <BetTable
+                            title={item?.name}
+                            type={MatchType.SET_WINNER}
+                            data={otherMatchDetails?.setWinner}
+                          />
+                        </Col>
+                      )}
+                    </div>
+                  )
+                )}
               <Col md={12}>
                 {/* <BetTable /> */}
               </Col>
