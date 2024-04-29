@@ -146,9 +146,9 @@ function MatchOdds({
               return (
                 <tr className="overlay-trigger" key={indexes}>
                   <td>
-                    <div className="backLayRunner d-flex flex-column px-1 w-100">
-                      <span
-                        className={`backLayRunner-country title-12  ${
+                    <div className="backLayRunner d-flex flex-column px-1 w-100 mt-1">
+                      <span 
+                        className={`backLayRunner-countrytrunc title-12  ${
                           isMobile ? "f500" : "f500"
                         } `}
                       >
@@ -173,7 +173,7 @@ function MatchOdds({
                         {(data?.type === "bookmaker" && isMobile) && (
                           matchDetails?.[`team${matchs}`]?.split(' ').slice(0, 2).join(' ') + (matchDetails?.[`team${matchs}`]?.split(' ').length > 2 ? ' ...' : ''))} */}
                       </span>
-                      <div className="d-flex align-items-center justify-content-between w-100">
+                      <div className="d-flex align-items-center justify-content-between w-100 mt-1">
                         <span
                           className={`title-14  ${
                             data?.type === "tiedMatch1"

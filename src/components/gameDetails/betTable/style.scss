@@ -33,11 +33,23 @@
         line-height: 1.8;
     }
 }
-
+.backLayRunner-countrytrunc span {
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block; /* Ensures the ellipsis works */
+    max-width: 60%;
+}
 .htfttable{
     background-color: $lightGray;
 }
-
+.oddsmatch{
+    font-size: 10px;
+    display: flex;
+    text-align: start;
+    justify-content: flex-start;
+}
 @media screen and (max-width: 768px) {
     .gameTable table th,
     .gameTable table td {

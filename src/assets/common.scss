@@ -92,7 +92,12 @@ body table.table {
 .blinking-text {
   animation: blink 1s infinite;
 }
-
+.color{
+  background-color: $primary !important;
+}
+.font{
+  font-size: 12px;
+}
 // mobile tabs
 .m-tab {
   border-radius: 0px !important;
@@ -100,11 +105,11 @@ body table.table {
   justify-content: flex-start;
   align-self: start;
   background-color: $primary !important;
-  padding: 10px 0px !important;
+  // padding: 0px 10px !important;
   color: $white !important;
-  border-right: none !important;
-  div {
-    border-right: 1px solid $white !important;
+  border-right: 1px solid $white !important;
+  width: 100% !important;
+  div{
     width: 100% !important;
   }
 }
