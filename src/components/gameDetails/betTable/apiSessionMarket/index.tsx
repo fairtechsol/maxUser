@@ -145,7 +145,7 @@ function ApiSessionMarketTable({
                       </span>
                     )}
                   </div>
-                  <div className="backLayRunner d-flex flex-column px-1">
+                  <div className="backLayRunner d-flex flex-column px-1 mt-1">
                     <span
                       className={`title-14 ${
                         matchDetails?.profitLossDataSession

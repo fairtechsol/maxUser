@@ -25,9 +25,8 @@ const MobileGameDetail = () => {
       <PlacedBet show={show} setShow={setShow} />
 
       <CommonTabs
-        customClass="overflow-x-auto overflow-y-hidden no-wrap d-flex mr-6  justify-content-start;"
         defaultActive="odds"
-        fill={true}
+        className="color"
       >
         {[
           {
@@ -44,12 +43,12 @@ const MobileGameDetail = () => {
               key={item?.id}
               eventKey={item?.id}
               tabClassName="m-tab"
-              title={<div>{item?.name}</div>}
+              title={<div className="font">{item?.name}</div>}
             >
               {index == 0 ? (
                 <Container fluid>
                   <Row>
-                    <Col className="g-0" md={12}>
+                    {/* <Col className="g-0" md={12}>
                       <BetTableHeader
                         customClass="py-2"
                         customTextClass="title-12"
@@ -60,7 +59,7 @@ const MobileGameDetail = () => {
                           </span>
                         }
                       />
-                    </Col>
+                    </Col> */}
                     {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
