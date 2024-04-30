@@ -74,7 +74,7 @@ function MatchOdds({
   };
   return (
     <div
-      className={`gameTable table-responsive sessionFancyTable borderTable border `}
+      className={`gameTable table-responsive sessionFancyTable borderTable border`}
     >
       <Table className="mb-0">
         <thead>
@@ -175,7 +175,7 @@ function MatchOdds({
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100 mt-1">
                         <span
-                          className={`title-14  ${
+                          className={`title-14 mt-1  ${
                             data?.type === "tiedMatch1"
                               ? indexes === 0
                                 ? matchDetails?.profitLossDataMatch
@@ -471,7 +471,7 @@ function MatchOdds({
                   {data?.activeStatus !== "live" ? (
                     <div className="overlay"></div>
                   ) : null}
-                  {!isMobile && <td></td>}
+                  {/* {!isMobile && <td></td>} */}
                 </tr>
               );
             })}
