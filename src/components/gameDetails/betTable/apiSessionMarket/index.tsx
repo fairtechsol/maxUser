@@ -145,22 +145,21 @@ function ApiSessionMarketTable({
                       </span>
                     )}
                   </div>
-                  <div className="backLayRunner d-flex flex-column px-1 mt-1">
+                  <div className="backLayRunner d-flex flex-column px-1">
                     <span
-                      className={`title-14 ${
-                        matchDetails?.profitLossDataSession
-                          ? matchDetails?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            ) < 0
-                            ? "color-red"
-                            : "color-green"
-                          : ""
-                      }`}
+                      className={`proloss-value title-14 ${matchDetails?.profitLossDataSession
+                        ? matchDetails?.profitLossDataSession?.reduce(
+                          (accumulator: any, bet: any) => {
+                            const maxLossToAdd =
+                              bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                            return accumulator + maxLossToAdd;
+                          },
+                          0
+                        ) < 0
+                          ? "color-red"
+                          : "color-green"
+                        : ""
+                        }`}
                     >
                       {matchDetails?.profitLossDataSession
                         ? matchDetails?.profitLossDataSession?.reduce(
