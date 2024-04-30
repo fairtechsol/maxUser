@@ -268,7 +268,7 @@ const GameDetails = () => {
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {

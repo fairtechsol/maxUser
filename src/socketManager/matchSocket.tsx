@@ -12,7 +12,7 @@ export const matchSocketService = {
     });
   },
   leaveAllRooms: () => {
-    expertSocket?.emit("leaveAll");
+    matchSocket?.emit("leaveAll");
   },
   leaveMatchRoom: (matchId: any) => {
     matchSocket?.emit("disconnectCricketData", {
