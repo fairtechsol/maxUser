@@ -107,7 +107,7 @@ function BookmakerTable({
                 className="border-0 bookmaker-bet-place"
               ></th>
             )}
-            {!isMobile && <th className="border-0 bookmaker-bet-place"></th>}
+            {!isMobile && <th className="border-0 bookmaker-bet-place-desktop"></th>}
           </tr>
         </thead>
         <tbody>
