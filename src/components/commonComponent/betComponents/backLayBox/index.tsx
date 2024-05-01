@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
-
+import isMobile from "../../../../utils/screenDimension";
 interface props {
   bgColor?: string;
   rate: any;
@@ -53,7 +53,7 @@ function BackLayBox({
           className={`backLayBox text-center d-flex cursor-pointer`}
         >
           <h5 className="backLay-rate f500 title-16 m-0 pt-3">
-            {parseFloat(rate || 0) <= 0 || active ? "-" : rate}{" "}
+            {parseFloat(rate || 0) <= 0 || active ? isMobile?"0":"-" : rate}{" "}
           </h5>
           
           {+percent > 0 && parseFloat(rate) > 0 && (

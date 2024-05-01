@@ -79,20 +79,20 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                       <React.Fragment>
                         <BackLayComponent
                           heading="1"
-                          backRate={"-"}
-                          layRate={"-"}
+                          backRate={"0"}
+                          layRate={"0"}
                           active={false}
                         />
                         <BackLayComponent
                           heading="X"
-                          backRate={"-"}
-                          layRate={"-"}
+                          backRate={"0"}
+                          layRate={"0"}
                           active={false}
                         />
                         <BackLayComponent
                           heading="2"
-                          backRate={"-"}
-                          layRate={"-"}
+                          backRate={"0"}
+                          layRate={"0"}
                           active={false}
                         />
                       </React.Fragment>
