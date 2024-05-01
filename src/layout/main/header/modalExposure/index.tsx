@@ -4,10 +4,11 @@ import CustomTable from "../../../../components/commonComponent/table";
 import isMobile from "../../../../utils/screenDimension";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
+import { Link } from "react-router-dom";
 
 interface ExposureModalInterface {
   show: boolean;
-  setShow: React.Dispatch<React.SetStateAction<string>>;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
@@ -44,7 +45,7 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
          
             <tr key={index}>
               <td>{item?.eventType}</td>
-              <td style={{color: "#007bff"}}>{item?.eventName}</td>
+              <td style={{color: "#007bff"}}><Link to={item.eventType==='cricket'?`/game-detail/${item.eventType}/${item.matchId}`:`/other-game-detail/${item.eventType}/${item.matchId}`} onClick={() => setShow(false)}>{item?.eventName}</Link></td>
               <td>{item?.groupedmarkettype}</td>
               <td>{item?.trade}</td>
             </tr>
