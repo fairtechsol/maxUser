@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
 import isMobile from "../../../../utils/screenDimension";
+import {useLocation } from "react-router-dom";
 interface props {
   bgColor?: string;
   rate: any;
@@ -26,7 +27,7 @@ function BackLayBox({
   const inlineStyle: React.CSSProperties = {
     ...style,
   };
-
+  const location = useLocation();
   const [tempRate, setTempRate] = useState("0");
   const [isYellow, setIsYellow] = useState(false);
 
@@ -39,7 +40,7 @@ function BackLayBox({
       setTempRate(rate);
     }
   }, [rate]);
-
+  // console.log("pathname", location.pathname);
   return (
     <div
       className={`backLay ${overlay ? "overlay" : ""}  ${
@@ -47,24 +48,43 @@ function BackLayBox({
       } bg-${isYellow ? "secondary" : bgColor}`}
       style={{ ...inlineStyle }}
     >
-      <BetStatusOverlay>
+      {location.pathname == "/home" ? (
         <div
           onClick={() => onClick()}
-          className={`backLayBox text-center d-flex cursor-pointer`}
+          className={`backLayBox text-center d-flex cursor-pointer homeLayBox`}
         >
-          <h5 className="backLay-rate f500 title-16 m-0 pt-3">
-            {parseFloat(rate || 0) <= 0 || active ? isMobile?"0":"-" : rate}{" "}
+          <h5 className="backLay-rate f500 title-15 m-0 pt-1">
+            {parseFloat(rate || 0) <= 0 || active
+              ? isMobile
+                ? "0"
+                : "-"
+              : rate}{" "}
           </h5>
-          
-          {+percent > 0 && parseFloat(rate) > 0 && (
-            <span className="backLay-percent title-10">
-              {percent >= 1000
-                ? (percent / 1000)?.toFixed(1) + "k"
-                : percent?.toString()}
-            </span>
-          )}
         </div>
-      </BetStatusOverlay>
+      ) : (
+        <BetStatusOverlay>
+          <div
+            onClick={() => onClick()}
+            className={`backLayBox text-center d-flex cursor-pointer`}
+          >
+            <h5 className="backLay-rate f500 title-16 m-0 pt-3">
+              {parseFloat(rate || 0) <= 0 || active
+                ? isMobile
+                  ? "0"
+                  : "-"
+                : rate}{" "}
+            </h5>
+
+            {+percent > 0 && parseFloat(rate) > 0 && (
+              <span className="backLay-percent title-10">
+                {percent >= 1000
+                  ? (percent / 1000)?.toFixed(1) + "k"
+                  : percent?.toString()}
+              </span>
+            )}
+          </div>
+        </BetStatusOverlay>
+      )}
     </div>
   );
 }

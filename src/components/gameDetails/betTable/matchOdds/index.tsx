@@ -79,7 +79,11 @@ function MatchOdds({
       <Table className="mb-0">
         <thead>
           <tr>
-            {data?.type === "bookmaker" ?  <th className="border-0 px-2" colSpan={2}>
+            {data?.type === "bookmaker" ? isMobile ? <th className="border-0 px-2" colSpan={2}>
+              {minMax && isMobile && (
+                <span className="f700 title-14">{minMax}</span>
+              )}
+            </th> : <th className="border-0 px-2" >
               {minMax && isMobile && (
                 <span className="f700 title-14">{minMax}</span>
               )}
