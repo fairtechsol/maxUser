@@ -136,7 +136,7 @@ function SessionMarketTable({
                     <div className="backLayRunner d-flex flex-column px-1">
 
                       <span
-                        className={`title-14 ${matchDetails?.profitLossDataSession?.length > 0
+                        className={`title-14 mt-2 ${matchDetails?.profitLossDataSession?.length > 0
                             ? matchDetails?.profitLossDataSession?.reduce(
                               (accumulator: any, bet: any) => {
                                 const maxLossToAdd =
