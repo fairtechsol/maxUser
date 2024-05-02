@@ -20,7 +20,7 @@
 .betStatusOverlay h5 {
   font-family: Arial, Verdana, Helvetica, sans-serif;
   z-index: 223;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 900;
   margin-bottom: 0px !important;
   display: flex;
@@ -29,5 +29,8 @@
 }
 
 .bet-overlay {
-  height: 45px;
+  height: 35px;
+}
+.box-height{
+  height: 30px;
 }
