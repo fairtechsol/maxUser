@@ -17,7 +17,7 @@ const BackLayComponent = ({
 }: BackLayComponentProps) => {
   return (
     <>
-      <td>
+      <td style={{width:"5%"}}>
         <BackLayBox
           bgColor={"blue3"}
           rate={backRate}
@@ -25,7 +25,7 @@ const BackLayComponent = ({
           percent={backPercent}
         />
       </td>
-      <td>
+      <td style={{width:"5%"}}>
         <BackLayBox
           bgColor={"red1"}
           rate={layRate}

@@ -79,20 +79,20 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                       <React.Fragment>
                         <BackLayComponent
                           heading="1"
-                          backRate={"-"}
-                          layRate={"-"}
+                          backRate={"0"}
+                          layRate={"0"}
                           active={false}
                         />
                         <BackLayComponent
                           heading="X"
-                          backRate={"-"}
-                          layRate={"-"}
+                          backRate={"0"}
+                          layRate={"0"}
                           active={false}
                         />
                         <BackLayComponent
                           heading="2"
-                          backRate={"-"}
-                          layRate={"-"}
+                          backRate={"0"}
+                          layRate={"0"}
                           active={false}
                         />
                       </React.Fragment>
@@ -125,7 +125,6 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                         ) : (
                           ""
                         )}
-                        <FiMonitor />
                         {item?.manualSessionActive || item?.apiSessionActive ? (
                           <span className="fancy">
                             <img src={fancy} alt={"fancy"} />
@@ -209,7 +208,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
           </div>
         )}
       </div>
-      {location.pathname === "/home" ? (
+      {location.pathname === "/home" || location.pathname === "/inPlay" ? (
         <div className="tab-pane active casino-tables d-flex">
           <div className="container-fluid">
             <div className="row row5">

@@ -79,11 +79,22 @@ function MatchOdds({
       <Table className="mb-0">
         <thead>
           <tr>
-            <th className="border-0 px-2">
+            {data?.type === "bookmaker" ? isMobile ? <th className="border-0 px-2" colSpan={2}>
+              {minMax && isMobile && (
+                <span className="f700 title-14">{minMax}</span>
+              )}
+            </th> : <th className="border-0 px-2" >
               {minMax && isMobile && (
                 <span className="f700 title-14">{minMax}</span>
               )}
             </th>
+            :
+            <th className="border-0 px-2" >
+            {minMax && isMobile && (
+              <span className="f700 title-14">{minMax}</span>
+            )}
+          </th> }
+           
             {/* {isMobile && (
               <>
                 <th className="text-center bg-blue1 bet-place-box50 f400">BACK</th>
@@ -110,7 +121,7 @@ function MatchOdds({
               <>
                 {data?.type === "bookmaker" ? (
                   <>
-                    <th className="border-0 match-odd-bet-place"></th>
+                    {/* <th className="border-0 match-odd-bet-place"></th> */}
                     <th className="bg-blue1 text-center match-odd-bet-placem f400 w-20 title-14">
                       BACK
                     </th>
@@ -150,7 +161,7 @@ function MatchOdds({
                       <span 
                         className={`backLayRunner-countrytrunc title-12  ${
                           isMobile ? "f500" : "f500"
-                        } `}
+                        }  ${data?.type === "bookmaker" ? "bookmaker-style" : ""}`}
                       >
                         {data?.type === "completeMatch" ||
                         data?.type === "tiedMatch1"
@@ -169,9 +180,9 @@ function MatchOdds({
                         )}
                         {isMobile && data?.type !== "bookmaker" && data?.type !== "completeMatch" && data?.type !== "tiedMatch1" && (
                           matchDetails?.[`team${matchs}`]
-                        )}
-                        {(data?.type === "bookmaker" && isMobile) && (
-                          matchDetails?.[`team${matchs}`]?.split(' ').slice(0, 2).join(' ') + (matchDetails?.[`team${matchs}`]?.split(' ').length > 2 ? ' ...' : ''))} */}
+                        )}*/}
+                        {/* {(data?.type === "bookmaker" && isMobile) && (
+                          matchDetails?.[`team${matchs}`]?.split(' ').slice(0, 2).join(' ') + (matchDetails?.[`team${matchs}`]?.split(' ').length > 2 ? ' ...' : ''))}  */}
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100 mt-1">
                         <span
