@@ -46,7 +46,7 @@ const MainRoutes = {
       element: <Home />,
     },
     {
-      path: "sports",
+      path: "inPlay",
       element: <Home />,
     },
     {

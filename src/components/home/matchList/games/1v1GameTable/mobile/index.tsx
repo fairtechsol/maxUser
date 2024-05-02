@@ -209,7 +209,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
           </div>
         )}
       </div>
-      {location.pathname === "/home" ? (
+      {location.pathname === "/home" || location.pathname === "/inPlay" ? (
         <div className="tab-pane active casino-tables d-flex">
           <div className="container-fluid">
             <div className="row row5">
