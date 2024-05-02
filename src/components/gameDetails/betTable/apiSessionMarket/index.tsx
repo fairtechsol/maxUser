@@ -146,7 +146,7 @@ function ApiSessionMarketTable({
                     )}
                   </div>
                   <div className="backLayRunner d-flex flex-column px-1">
-                    <div className="gap"></div>
+                 {!isMobile &&   <div className="gap"></div>}
                     <span
                       className={`proloss-value title-14 ${matchDetails?.profitLossDataSession
                         ? matchDetails?.profitLossDataSession?.reduce(
