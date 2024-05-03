@@ -79,22 +79,29 @@ function MatchOdds({
       <Table className="mb-0">
         <thead>
           <tr>
-            {data?.type === "bookmaker" ? isMobile ? <th className="border-0 px-2" colSpan={2}>
-              {minMax && isMobile && (
-                <span className="f700 title-14">{minMax}</span>
-              )}
-            </th> : <th className="border-0 px-2" >
-              {minMax && isMobile && (
-                <span className="f700 title-14">{minMax}</span>
-              )}
-            </th>
-            :
-            <th className="border-0 px-2" >
-            {minMax && isMobile && (
-              <span className="f700 title-14">{minMax}</span>
+            {data?.type === "bookmaker" ? (
+              isMobile ? (
+                // <th className="border-0 px-2">
+                //   {minMax && isMobile && (
+                //     <span className="f700 title-14">{minMax}</span>
+                //   )}
+                // </th>
+                <></>
+              ) : (
+                <th className="border-0 px-2">
+                  {minMax && isMobile && (
+                    <span className="f700 title-14">{minMax}</span>
+                  )}
+                </th>
+              )
+            ) : (
+              <th className="border-0 px-2">
+                {minMax && isMobile && (
+                  <span className="f700 title-14">{minMax}</span>
+                )}
+              </th>
             )}
-          </th> }
-           
+
             {/* {isMobile && (
               <>
                 <th className="text-center bg-blue1 bet-place-box50 f400">BACK</th>
@@ -121,14 +128,14 @@ function MatchOdds({
               <>
                 {data?.type === "bookmaker" ? (
                   <>
-                    {/* <th className="border-0 match-odd-bet-place"></th> */}
+                    {/* <th className="border-0 match-odd-bet-place"></th>
                     <th className="bg-blue1 text-center match-odd-bet-placem f400 w-20 title-14">
                       BACK
                     </th>
                     <th className="bg-red1 text-center match-odd-bet-placem f400 w-20 title-14">
                       LAY
                     </th>
-                    <th className="border-0 match-odd-bet-place"></th>
+                    <th className="border-0 match-odd-bet-place"></th> */}
                   </>
                 ) : (
                   <>
@@ -151,14 +158,37 @@ function MatchOdds({
           </tr>
         </thead>
         <tbody>
+          {isMobile && data?.type === "bookmaker" && (
+            <tr>
+              <td colSpan={2} style={{backgroundColor:"#fff"}}>
+                {minMax && isMobile && (
+                  <span className="f700 title-14">{minMax}</span>
+                )}
+              </td>
+              {/* <td style={{width:'11.5%'}}></td> */}
+              <td
+                className="bg-blue1 text-center   match-odd-bet-placem f400 w-20 title-14"
+                style={{ width: "4%" }}
+              >
+                BACK
+              </td>
+              <td
+                className="bg-red1 text-center match-odd-bet-placem f400 w-20 title-14"
+                style={{ width: "5%" }}
+              >
+                LAY
+              </td>
+              <td style={{ width: "13%",backgroundColor:'#fff' }}></td>
+            </tr>
+          )}
           {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((matchs, indexes) => {
               return (
                 <tr className="overlay-trigger" key={indexes}>
-                  <td>
+                  <td style={{ width: "100%" }}>
                     <div className="backLayRunner d-flex flex-column px-1 w-100 mt-1">
-                      <span 
+                      <span
                         className={`backLayRunner-countrytrunc title-12  ${
                           isMobile ? "f500" : "f500"
                         }  ${data?.type === "bookmaker" ? "bookmaker-style" : ""}`}
@@ -292,7 +322,10 @@ function MatchOdds({
                       </div>
                     </div>
                   </td>
-                  <td colSpan={backLayCount === 2 ? 2 : 6}>
+                  <td
+                    colSpan={backLayCount === 2 ? 2 : 6}
+                    style={data?.type === "bookmaker" ? { width: "35%" } : {}}
+                  >
                     <BetStatusOverlay
                       title={data?.runners?.[indexes]?.status.toLowerCase()}
                       active={
