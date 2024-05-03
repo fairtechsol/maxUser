@@ -5,14 +5,17 @@ import FootballDesktopGameDetail from "./desktop";
 import FootballMobileGameDetail from "./mobile";
 import { useSelector } from "react-redux";
 import {
-  // useNavigate,
+  useNavigate,
   useParams,
 } from "react-router-dom";
 import { useEffect } from "react";
 import {
   getButtonValue,
   getProfileInMatchDetail,
+  updateBalanceOnBetDelete,
   updateBalanceOnSessionResult,
+  updateDeleteReasonBet,
+  updateTeamRatesOnDeleteMatch,
   // updateBalance,
 } from "../../store/actions/user/userAction";
 import {
@@ -23,7 +26,11 @@ import {
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
-import { expertSocketService, socket, socketService } from "../../socketManager";
+import {
+  expertSocketService,
+  socket,
+  socketService,
+} from "../../socketManager";
 import {
   otherMatchDetailAction,
   updateMatchRates,
@@ -37,7 +44,7 @@ const FootballGameDetails = () => {
   const { success } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
   );
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { id, type } = useParams();
   useEffect(() => {
     dispatch(getButtonValue());
@@ -103,13 +110,38 @@ const FootballGameDetails = () => {
     dispatch(getProfileInMatchDetail());
   };
 
+  const resultDeclared = (event: any) => {
+    try {
+      if (event?.matchId === id) {
+        navigate("/home");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleMatchbetDeleted = (event: any) => {
+    try {
+      dispatch(
+        updateBalanceOnBetDelete({
+          exposure: event?.exposure,
+          currentBalance: event?.currentBalance,
+        })
+      );
+      if (event?.matchId === id) {
+        dispatch(updateTeamRatesOnDeleteMatch(event));
+        dispatch(updateDeleteReasonBet(event));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     try {
       if (id && getProfile?.roleName) {
         dispatch(selectedBetAction(null));
-        dispatch(
-          otherMatchDetailAction({ matchId: id, matchType: type })
-        );
+        dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
         dispatch(getPlacedBets(id));
       }
     } catch (e) {
@@ -123,8 +155,9 @@ const FootballGameDetails = () => {
         expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-        // socketService.userBalance.matchResultDeclared(resultDeclared);
-        // socketService.userBalance.matchDeleteBet(betDeleted);
+        socketService.userBalance.matchResultDeclared(resultDeclared);
+        socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
+        socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
       }
     } catch (error) {
       console.log(error);
@@ -137,8 +170,8 @@ const FootballGameDetails = () => {
         expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userMatchBetPlacedOff();
-        // socketService.userBalance.matchResultDeclaredOff();
-        // socketService.userBalance.matchDeleteBetOff();
+        socketService.userBalance.matchResultDeclaredOff();
+        socketService.userBalance.matchDeleteBetOff();
         socketService.userBalance.sessionResult(sessionResultDeclared);
         socketService.userBalance.sessionResultUnDeclare(sessionResultDeclared);
         socketService.userBalance.matchResultDeclared(handleMatchResult);
@@ -157,9 +190,7 @@ const FootballGameDetails = () => {
       if (document.visibilityState === "visible") {
         if (id) {
           dispatch(selectedBetAction(null));
-          dispatch(
-            otherMatchDetailAction({ matchId: id, matchType: type })
-          );
+          dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
           dispatch(getPlacedBets(id));
           dispatch(getPlacedBets(id));
         }

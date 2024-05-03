@@ -183,7 +183,7 @@ export const transType = {
 export const availableGameType: any = {
   cricket: "cricket",
   football: "football",
-  tennis: "tennis"
+  tennis: "tennis",
 };
 
 export const baseUrls = {
