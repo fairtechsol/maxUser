@@ -30,6 +30,7 @@ const DesktopHeader = () => {
   const [openExposure, setOpenExposure] = useState(false);
   const [show, setShow] = useState(false);
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
+  const [searchKeyword, setSearchKeyword] = useState('')
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -42,6 +43,7 @@ const DesktopHeader = () => {
     if (open === false) {
       dispatch(SearchListReset());
     }
+    setSearchKeyword('')
     setOpen(!open);
   };
 
@@ -76,21 +78,28 @@ const DesktopHeader = () => {
           </div>
           <ul className="d-flex align-items-center white-text gap-3 list-unstyled mb-0 float-end h-100">
             <li className="d-flex gap-3 align-items-center">
+            <div>
               <Collapse in={open} dimension="width">
-                <div id="searchCollapse" className="position-relative">
+                <div id="searchCollapse" className="position-relative" >
                   <CustomInput
                     placeholder="All Events"
+                    inputClass="headerSearch"
+                    value={searchKeyword}
                     onChange={(e: any) => {
+                      setSearchKeyword(e.target.value)
                       if (e.target.value?.length > 2) {
                         debouncedInputValue(e.target.value);
+                      }else if(e.target.value?.length == 0){
+                        setSearchKeyword('')
                       }
                     }}
                   />
-                  {searchedMatchList && (
+                  {(searchedMatchList && searchKeyword) && (
                     <SearchResult setOpen={setOpen} data={searchedMatchList} />
                   )}
                 </div>
               </Collapse>
+                </div>
               <span>
                 <FaSearchPlus
                   aria-expanded={open}

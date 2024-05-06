@@ -40,6 +40,11 @@ const MyBet = () => {
             </tr>
           </thead>
           <tbody>
+            {placedBets?.length <1 &&(
+              <tr>
+                <th colSpan={3} style={{textAlign:'center'}}><span className="f400 title-14">No records Found</span></th>
+              </tr>
+            )}
             {placedBets &&
               Array.from(new Set(placedBets))?.map((bet: any) => {
                 return (

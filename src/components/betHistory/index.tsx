@@ -21,7 +21,9 @@ import moment from "moment";
 const BetHistoryComponent = () => {
   const minDate = new Date();
   minDate.setMonth(minDate.getMonth() - 1);
-  const [fromDate, setFromDate] = useState<any>(new Date());
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  const [fromDate, setFromDate] = useState<any>(sevenDaysAgo);
   const [toDate, setToDate] = useState<any>(new Date());
   const { ReportBetList } = useSelector(
     (state: RootState) => state.currentBetList

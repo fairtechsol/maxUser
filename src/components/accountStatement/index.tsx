@@ -19,7 +19,9 @@ import ReportContainer from "../containers/reportContainer";
 const AccountStatementComponent = () => {
   const minDate = new Date();
   minDate.setMonth(minDate.getMonth() - 1);
-  const [from, setFrom] = useState<any>(new Date());
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  const [from, setFrom] = useState<any>(sevenDaysAgo);
   const [to, setTo] = useState<any>(new Date());
   const [type, setType] = useState<any>("");
   const [firstTime, setFirstTime] = useState<any>(false);

@@ -38,7 +38,7 @@ const initialState: InitialState = {
   error: null,
   matchDetails: null,
   selectedBet: null,
-  searchedMatchList: [],
+  searchedMatchList: null,
 };
 
 const matchListSlice = createSlice({

@@ -116,10 +116,10 @@ function MatchOdds({
             )}
             {!isMobile && (
               <>
-                <th className="text-center bg-blue1 match-odd-bet-place f400">
+                <th className="text-center bg-blue1 match-odd-bet-place f700 title-15">
                   BACK
                 </th>
-                <th className="text-center bg-red1 match-odd-bet-place f400">
+                <th className="text-center bg-red1 match-odd-bet-place f700 title-15">
                   LAY
                 </th>
               </>
