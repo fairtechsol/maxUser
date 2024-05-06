@@ -129,7 +129,10 @@ const PlacedBet = () => {
     } else if (
       selectedBet?.data?.type === matchBettingType.matchOdd ||
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
-      selectedBet?.data?.type === matchBettingType.completeMatch
+      selectedBet?.data?.type === matchBettingType.completeMatch ||
+      selectedBet?.data?.type === matchBettingType.halfTime ||
+      selectedBet?.data?.type.includes('overUnder') ||
+      selectedBet?.data?.type.includes('firstHalfGoal') 
     ) {
       profit =
         selectedBet?.team?.type === "back"

@@ -122,7 +122,7 @@ function ApiSessionMarketTable({
                         dispatch(resetRunAmountModal({showModal : true,id:item?.id}))
                         dispatch(getRunAmount(item?.id));
                       }}
-                      className="backLayRunner-country session-country title-10"
+                      className="backLayRunner-country session-country title-12 f700"
                     >
                       {item?.name}
                     </span>
@@ -133,7 +133,8 @@ function ApiSessionMarketTable({
                           onClick={() => handleMinModalToggle(item?.id)}
                         />
                         <SmoothDropdownModal
-                          minMax={formattedMinMax(item?.minBet, item?.maxBet)}
+                          min={item?.minBet}
+                          max={item?.maxBet}
                           show={modalStates[item.id]}
                           setShow={(value: any) =>
                             setModalStates((prevState: any) => ({

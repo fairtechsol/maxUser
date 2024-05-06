@@ -97,7 +97,7 @@ function MatchOdds({
             ) : (
               <th className="border-0 px-2">
                 {minMax && isMobile && (
-                  <span className="f700 title-14">{minMax}</span>
+                  <span className="f700 title-14 px-2">{minMax}</span>
                 )}
               </th>
             )}
@@ -162,7 +162,7 @@ function MatchOdds({
             <tr>
               <td colSpan={2} style={{backgroundColor:"#fff"}}>
                 {minMax && isMobile && (
-                  <span className="f700 title-14">{minMax}</span>
+                  <span className="f700 title-14 px-2">{minMax}</span>
                 )}
               </td>
               {/* <td style={{width:'11.5%'}}></td> */}
@@ -190,7 +190,7 @@ function MatchOdds({
                     <div className="backLayRunner d-flex flex-column px-1 w-100 mt-1">
                       <span
                         className={`backLayRunner-countrytrunc title-12  ${
-                          isMobile ? "f500" : "f500"
+                          isMobile ? "f700" : "f500"
                         } `}
                       >
                         {data?.type === "completeMatch" ||

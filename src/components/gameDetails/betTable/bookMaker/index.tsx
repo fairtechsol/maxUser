@@ -58,7 +58,7 @@ function BookmakerTable({
               <div className="px-2 text-info">
                 {minMax &&
                   (isMobile ? (
-                    <span className="f900 title-12 px-2 text-black">
+                    <span className="f900 title-12 px-1 text-black">
                       {minMax}
                     </span>
                   ) : (
@@ -122,7 +122,7 @@ function BookmakerTable({
                 <td>
                   <div className="backLayRunner d-flex flex-column px-1 w-100">
                     <span
-                      className={`backLayRunner-country title-12  ${isMobile ? "f500" : "f500"
+                      className={`backLayRunner-country title-12  ${isMobile ? "f700" : "f500"
                         } `}
                     >
                       {data?.type === "tiedMatch2"
