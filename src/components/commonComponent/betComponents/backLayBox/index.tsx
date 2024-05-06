@@ -53,12 +53,15 @@ function BackLayBox({
           onClick={() => onClick()}
           className={`backLayBox text-center d-flex cursor-pointer homeLayBox`}
         >
-          <h5 className="backLay-rate f500 title-15 m-0 pt-1">
+          {/* <h5 className="backLay-rate f500 title-15 m-0 pt-1">
             {parseFloat(rate || 0) <= 0 || active
               ? isMobile
                 ? "0"
                 : "-"
               : rate}{" "}
+          </h5> */}
+          <h5 className={`backLay-rate f500 title-15 m-0 pt-2 ${isMobile ? 'mt-1' : ''}`}>
+            {parseFloat(rate || 0) <= 0 || active ? (isMobile ? "0" : "-") : rate}{" "}
           </h5>
         </div>
       ) : (
@@ -67,7 +70,7 @@ function BackLayBox({
             onClick={() => onClick()}
             className={`backLayBox text-center d-flex cursor-pointer`}
           >
-            <h5 className="backLay-rate f500 title-16 m-0 pt-3">
+            <h5 className="backLay-rate f500 title-16 m-0 pt-4">
               {parseFloat(rate || 0) <= 0 || active
                 ? isMobile
                   ? "0"

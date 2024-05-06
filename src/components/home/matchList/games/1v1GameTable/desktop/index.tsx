@@ -136,7 +136,7 @@ const MatchListRow = ({ item, matchType }: any) => {
             ) : (
               ""
             )}
-            <FiMonitor />
+            {/* <FiMonitor /> */}
             {item?.manualSessionActive || item?.apiSessionActive ? (
               <span className="fancy">
                 <img src="/ic_fancy.png" alt={"fancy"} />

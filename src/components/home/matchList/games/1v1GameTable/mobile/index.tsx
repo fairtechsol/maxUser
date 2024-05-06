@@ -125,7 +125,6 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                         ) : (
                           ""
                         )}
-                        <FiMonitor />
                         {item?.manualSessionActive || item?.apiSessionActive ? (
                           <span className="fancy">
                             <img src={fancy} alt={"fancy"} />

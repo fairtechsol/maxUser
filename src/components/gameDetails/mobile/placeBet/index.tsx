@@ -276,6 +276,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       matchBetType: selectedBet?.team?.matchBetType,
                       betOnTeam: selectedBet?.team?.betOnTeam,
                       placeIndex: selectedBet?.team?.placeIndex,
+                      bettingName: selectedBet?.data?.name,
                     };
                     if (
                       selectedBet?.data?.type === "matchOdd" ||

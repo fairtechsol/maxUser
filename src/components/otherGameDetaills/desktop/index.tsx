@@ -8,9 +8,9 @@ import { IoInformationCircle } from "react-icons/io5";
 import CustomModal from "../../commonComponent/modal";
 import BetTable from "../../otherGameDetaills/betTable/index";
 import PlacedBet from "../../gameDetails/desktop/placeBet";
-import MyBetFootball from "./myBet";
 import { MatchType } from "../../../utils/enum";
 import { formatDate } from "../../../utils/dateUtils";
+import MyBet from "../../gameDetails/desktop/myBet";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -49,7 +49,8 @@ const FootballDesktopGameDetail = () => {
                   rightComponent={
                     <span className="title-16 f500">
                       {/* {formatDate(otherMatchDetails?.startAt)} */}
-                      {otherMatchDetails?.startAt && (formatDate(otherMatchDetails?.startAt))}
+                      {otherMatchDetails?.startAt &&
+                        formatDate(otherMatchDetails?.startAt)}
                     </span>
                   }
                 />
@@ -66,8 +67,9 @@ const FootballDesktopGameDetail = () => {
               )}
 
               {otherMatchDetails?.setWinner?.length > 0 &&
-                otherMatchDetails?.setWinner?.filter((item: any) => item?.isActive)?.map(
-                  (item: any) => (
+                otherMatchDetails?.setWinner
+                  ?.filter((item: any) => item?.isActive)
+                  ?.map((item: any) => (
                     <div key={item?.id}>
                       <Col md={12}>
                         <BetTable
@@ -77,23 +79,12 @@ const FootballDesktopGameDetail = () => {
                         />
                       </Col>
                     </div>
-                  )
-                )}
-              <Col md={12}>
-                {/* <BetTable /> */}
-              </Col>
-              <Col md={12}>
-                {/* <BetTable /> */}
-              </Col>
-              <Col md={6}>
-                {/* <BetTable /> */}
-              </Col>
-              <Col md={6}>
-                {/* <BetTable /> */}
-              </Col>
-              <Col md={4}>
-                {/* <BetTable /> */}
-              </Col>
+                  ))}
+              <Col md={12}>{/* <BetTable /> */}</Col>
+              <Col md={12}>{/* <BetTable /> */}</Col>
+              <Col md={6}>{/* <BetTable /> */}</Col>
+              <Col md={6}>{/* <BetTable /> */}</Col>
+              <Col md={4}>{/* <BetTable /> */}</Col>
 
               {otherMatchDetails?.bookmaker?.isActive && (
                 <Col md={12}>
@@ -106,8 +97,9 @@ const FootballDesktopGameDetail = () => {
               )}
 
               {otherMatchDetails?.quickBookmaker?.length > 0 &&
-                otherMatchDetails?.quickBookmaker?.filter((item: any) => item?.isActive)?.map(
-                  (item: any) => (
+                otherMatchDetails?.quickBookmaker
+                  ?.filter((item: any) => item?.isActive)
+                  ?.map((item: any) => (
                     <div key={item?.id}>
                       <Col md={12}>
                         <BetTable
@@ -117,11 +109,11 @@ const FootballDesktopGameDetail = () => {
                         />
                       </Col>
                     </div>
-                  )
-                )}
+                  ))}
               {otherMatchDetails?.firstHalfGoal?.length > 0 &&
-                otherMatchDetails?.firstHalfGoal?.filter((item: any) => item?.isActive)?.map(
-                  (item: any) => (
+                otherMatchDetails?.firstHalfGoal
+                  ?.filter((item: any) => item?.isActive)
+                  ?.map((item: any) => (
                     <div key={item?.id}>
                       <Col md={12}>
                         <BetTable
@@ -131,8 +123,7 @@ const FootballDesktopGameDetail = () => {
                         />
                       </Col>
                     </div>
-                  )
-                )}
+                  ))}
 
               {otherMatchDetails?.halfTime?.isActive && (
                 <Col md={12}>
@@ -145,8 +136,9 @@ const FootballDesktopGameDetail = () => {
               )}
 
               {otherMatchDetails?.overUnder?.length > 0 &&
-                otherMatchDetails?.overUnder?.filter((item: any) => item?.isActive)?.map(
-                  (item: any) => (
+                otherMatchDetails?.overUnder
+                  ?.filter((item: any) => item?.isActive)
+                  ?.map((item: any) => (
                     <div key={item?.id}>
                       <Col md={12}>
                         <BetTable
@@ -156,8 +148,7 @@ const FootballDesktopGameDetail = () => {
                         />
                       </Col>
                     </div>
-                  )
-                )}
+                  ))}
 
               {/* <Col md={12}>
                 <BetTable />
@@ -276,7 +267,7 @@ const FootballDesktopGameDetail = () => {
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBetFootball />
+                <MyBet />
               </Col>
             </Row>
           </Container>
