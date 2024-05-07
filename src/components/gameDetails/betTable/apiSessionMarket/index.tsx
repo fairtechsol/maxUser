@@ -12,7 +12,10 @@ import "./style.scss";
 import { useState } from "react";
 import CustomModal from "../../../commonComponent/modal";
 import RunBoxTable from "../runBoxTable";
-import { getRunAmount, resetRunAmountModal } from "../../../../store/actions/betPlace/betPlaceActions";
+import {
+  getRunAmount,
+  resetRunAmountModal,
+} from "../../../../store/actions/betPlace/betPlaceActions";
 import { useSelector } from "react-redux";
 import { teamStatus } from "../../../../utils/constants";
 import Desktop from "../../../rules/categoryRules/desktop";
@@ -33,7 +36,9 @@ function ApiSessionMarketTable({
 }: ApiSessionMarketTableProps) {
   const dispatch: AppDispatch = useDispatch();
 
-  const { runAmount,runAmountModal } = useSelector((state: RootState) => state.bets);
+  const { runAmount, runAmountModal } = useSelector(
+    (state: RootState) => state.bets
+  );
 
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
@@ -59,9 +64,9 @@ function ApiSessionMarketTable({
   // const handleMinModalToggle = () => {
   //   setShowMinsModal(!showMinsModal);
   // };
-  const handleModal =(event:any)=>{
-    dispatch(resetRunAmountModal({showModal : event,id:runAmount?.betId}))
-  }
+  const handleModal = (event: any) => {
+    dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
+  };
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
       <Table className="mb-0">
@@ -119,10 +124,12 @@ function ApiSessionMarketTable({
                           return true;
                         }
                         // setShowRunModal(true);
-                        dispatch(resetRunAmountModal({showModal : true,id:item?.id}))
+                        dispatch(
+                          resetRunAmountModal({ showModal: true, id: item?.id })
+                        );
                         dispatch(getRunAmount(item?.id));
                       }}
-                      className="backLayRunner-country session-country title-10"
+                      className="backLayRunner-country session-country title-10 cursor-pointer"
                     >
                       {item?.name}
                     </span>
@@ -146,21 +153,22 @@ function ApiSessionMarketTable({
                     )}
                   </div>
                   <div className="backLayRunner d-flex flex-column px-1">
-                 {!isMobile &&   <div className="gap"></div>}
+                    {!isMobile && <div className="gap"></div>}
                     <span
-                      className={`proloss-value title-14 ${matchDetails?.profitLossDataSession
-                        ? matchDetails?.profitLossDataSession?.reduce(
-                          (accumulator: any, bet: any) => {
-                            const maxLossToAdd =
-                              bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                            return accumulator + maxLossToAdd;
-                          },
-                          0
-                        ) < 0
-                          ? "color-red"
-                          : "color-green"
-                        : ""
-                        }`}
+                      className={`proloss-value title-14 ${
+                        matchDetails?.profitLossDataSession
+                          ? matchDetails?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            ) < 0
+                            ? "color-red"
+                            : "color-green"
+                          : ""
+                      }`}
                     >
                       {matchDetails?.profitLossDataSession
                         ? matchDetails?.profitLossDataSession?.reduce(
@@ -180,7 +188,10 @@ function ApiSessionMarketTable({
                 <td colSpan={isMobile ? 2 : 3}>
                   <BetStatusOverlay
                     title={item?.status}
-                    active={item?.status !== teamStatus.active}
+                    active={
+                      item?.status !== teamStatus.active ||
+                      item?.activeStatus !== "live"
+                    }
                   >
                     <BackLayBox
                       customClass={
@@ -207,7 +218,7 @@ function ApiSessionMarketTable({
                               percent: percent,
                               eventType: matchDetails?.matchType,
                               matchId: matchDetails?.id,
-                              matchBetType: 'apiSession',
+                              matchBetType: "apiSession",
                             },
                             item
                           );
@@ -239,7 +250,7 @@ function ApiSessionMarketTable({
                               percent: percent,
                               eventType: matchDetails?.matchType,
                               matchId: matchDetails?.id,
-                              matchBetType: 'apiSession',
+                              matchBetType: "apiSession",
                             },
                             item
                           );

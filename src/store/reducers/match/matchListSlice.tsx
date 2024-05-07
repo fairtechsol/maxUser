@@ -18,6 +18,7 @@ import {
   updateProfitLossOnDeleteSession,
   updateTeamRatesOnDeleteMatch,
 } from "../../actions/user/userAction";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 interface InitialState {
   success: boolean;
@@ -107,7 +108,7 @@ const matchListSlice = createSlice({
           firstHalfGoal,
           halfTime,
           overUnder,
-          setWinner
+          setWinner,
         } = action.payload;
 
         let removedsessionBettings =
@@ -204,7 +205,7 @@ const matchListSlice = createSlice({
                   yesPercent: matchingApiSession?.BackSize1,
                   noRate: matchingApiSession?.LayPrice1,
                   noPercent: matchingApiSession?.LaySize1,
-                  activeStatus: "live",
+                  activeStatus: matchingApiSession?.activeStatus,
                   status:
                     matchingApiSession?.GameStatus === ""
                       ? "active"
@@ -337,9 +338,10 @@ const matchListSlice = createSlice({
       .addCase(updateBetDataOnUndeclare.fulfilled, (state, action) => {
         const { betId, profitLoss, matchId } = action.payload;
         if (state?.matchDetails?.id === matchId) {
-          const isBetIdPresent = state.matchDetails?.profitLossDataSession?.find(
-            (item: any) => item?.betId === betId
-          );
+          const isBetIdPresent =
+            state.matchDetails?.profitLossDataSession?.find(
+              (item: any) => item?.betId === betId
+            );
 
           const updatedProfitLossDataSession = isBetIdPresent
             ? state.matchDetails?.profitLossDataSession?.map((item: any) =>
@@ -367,33 +369,35 @@ const matchListSlice = createSlice({
         }
       })
       .addCase(updateTeamRatesOnDeleteMatch.fulfilled, (state, action) => {
-        const { matchBetType, redisObject } = action.payload;
-        if (["tiedMatch1", "tiedMatch2"].includes(matchBetType)) {
+        const {
+          matchBetType,
+          redisObject,
+          teamArateRedisKey,
+          teamBrateRedisKey,
+          teamCrateRedisKey,
+        } = action.payload;
+        if (redisObject[teamCrateRedisKey]) {
           state.matchDetails = {
             ...state.matchDetails,
             profitLossDataMatch: {
-              ...state.matchDetails.profitLossDataMatch,
-              yesRateTie: redisObject[action.payload?.teamArateRedisKey],
-              noRateTie: redisObject[action.payload?.teamBrateRedisKey],
-            },
-          };
-        } else if (["completeMatch"].includes(matchBetType)) {
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails.profitLossDataMatch,
-              yesRateComplete: redisObject[action.payload?.teamArateRedisKey],
-              noRateComplete: redisObject[action.payload?.teamBrateRedisKey],
+              ...state.matchDetails?.profitLossDataMatch,
+              [profitLossDataForMatchConstants[matchBetType].A]:
+                redisObject[teamArateRedisKey],
+              [profitLossDataForMatchConstants[matchBetType].B]:
+                redisObject[teamBrateRedisKey],
+              [profitLossDataForMatchConstants[matchBetType].C]:
+                redisObject[teamCrateRedisKey],
             },
           };
         } else {
           state.matchDetails = {
             ...state.matchDetails,
             profitLossDataMatch: {
-              ...state.matchDetails.profitLossDataMatch,
-              teamARate: redisObject[action.payload?.teamArateRedisKey],
-              teamBRate: redisObject[action.payload?.teamBrateRedisKey],
-              teamCRate: redisObject[action.payload?.teamCrateRedisKey],
+              ...state.matchDetails?.profitLossDataMatch,
+              [profitLossDataForMatchConstants[matchBetType].A]:
+                redisObject[teamArateRedisKey],
+              [profitLossDataForMatchConstants[matchBetType].B]:
+                redisObject[teamBrateRedisKey],
             },
           };
         }

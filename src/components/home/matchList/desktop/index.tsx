@@ -13,13 +13,12 @@ import MatchListJson from "../matchList.json";
 import "./style.scss";
 import { useParams } from "react-router-dom";
 
-const DesktopMatchList = ({ type, setMatchType }: any) => {
+const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
   const { id } = useParams();
   const dispatch: AppDispatch = useDispatch();
-  const { matchList } = useSelector(
+  const { matchList, success } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  const { getProfile } = useSelector((state: RootState) => state.user.profile);
 
   const setMatchOddRatesInRedux = (event: any) => {
     dispatch(updateMatchOddRates(event));
@@ -27,12 +26,9 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
 
   useEffect(() => {
     try {
-      if (matchList && getProfile?.roleName) {
+      if (success) {
         matchList?.forEach((element: any) => {
-          expertSocketService.match.joinMatchRoom(
-            element?.id,
-            getProfile?.roleName
-          );
+          expertSocketService.match.joinMatchRoom(element?.id, "user");
         });
         matchList?.forEach((element: any) => {
           expertSocketService.match.getMatchRates(
@@ -40,25 +36,26 @@ const DesktopMatchList = ({ type, setMatchType }: any) => {
             setMatchOddRatesInRedux
           );
         });
+        return () => {
+          // expertSocketService.match.leaveAllRooms();
+          matchList?.forEach((element: any) => {
+            expertSocketService.match.leaveMatchRoom(element?.id);
+            expertSocketService.match.getMatchRatesOff(element?.id);
+          });
+        };
       }
     } catch (e) {
       console.log(e);
     }
-  }, [matchList?.length, getProfile?.roleName]);
+  }, [success, id, matchType]);
 
-  useEffect(() => {
-    try {
-      return () => {
-        expertSocketService.match.leaveAllRooms();
-        matchList?.forEach((element: any) => {
-          expertSocketService.match.leaveMatchRoom(element?.id);
-          expertSocketService.match.getMatchRatesOff(element?.id);
-        });
-      };
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [id, matchType]);
 
   useEffect(() => {
     if (id) {

@@ -155,7 +155,13 @@ export const updateBalanceOnBetDelete = createAsyncThunk<any, any>(
 );
 
 export const updateTeamRatesOnDeleteMatch = createAsyncThunk<any, any>(
-  "/user/profitLoss/deleteMatch",
+  "/user/profitLoss/deleteMatchBets",
+  async (data) => {
+    return data;
+  }
+);
+export const updateTeamRatesOnDeleteMatchOther = createAsyncThunk<any, any>(
+  "/user/profitLoss/deleteMatchBetsOther",
   async (data) => {
     return data;
   }
@@ -184,6 +190,13 @@ export const updateRunAmountOnDeleteBet = createAsyncThunk<any, any>(
 
 export const updateBalanceFromSocket = createAsyncThunk<any, any>(
   "/user/balanceFromSocket",
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateMatchRatesOnMarketUndeclare = createAsyncThunk<any, any>(
+  "/teamRates/marketUndeclare",
   async (data) => {
     return data;
   }

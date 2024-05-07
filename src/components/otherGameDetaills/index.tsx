@@ -4,10 +4,7 @@ import isMobile from "../../utils/screenDimension";
 import FootballDesktopGameDetail from "./desktop";
 import FootballMobileGameDetail from "./mobile";
 import { useSelector } from "react-redux";
-import {
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import {
   getButtonValue,
@@ -15,7 +12,8 @@ import {
   updateBalanceOnBetDelete,
   updateBalanceOnSessionResult,
   updateDeleteReasonBet,
-  updateTeamRatesOnDeleteMatch,
+  updateMatchRatesOnMarketUndeclare,
+  updateTeamRatesOnDeleteMatchOther,
   // updateBalance,
 } from "../../store/actions/user/userAction";
 import {
@@ -129,11 +127,24 @@ const FootballGameDetails = () => {
         })
       );
       if (event?.matchId === id) {
-        dispatch(updateTeamRatesOnDeleteMatch(event));
+        dispatch(updateTeamRatesOnDeleteMatchOther(event));
         dispatch(updateDeleteReasonBet(event));
       }
     } catch (e) {
       console.log(e);
+    }
+  };
+
+  const handleMatchMarketResult = (event: any) => {
+    try {
+      if (event?.matchId === id) {
+        if (event?.betType !== "quickbookmaker1") {
+          dispatch(getPlacedBets(id));
+          dispatch(updateMatchRatesOnMarketUndeclare(event));
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -158,6 +169,9 @@ const FootballGameDetails = () => {
         socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
         socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
+        socketService.userBalance.matchResultUnDeclared(
+          handleMatchMarketResult
+        );
       }
     } catch (error) {
       console.log(error);
