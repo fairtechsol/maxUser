@@ -17,7 +17,7 @@ import {
   // updateBalance,
 } from "../../store/actions/user/userAction";
 import {
-  getMatchList,
+  // getMatchList,
   selectedBetAction,
 } from "../../store/actions/match/matchListAction";
 import {

@@ -7,7 +7,7 @@ import {
   socketService,
 } from "../../socketManager";
 import {
-  getMatchList,
+  // getMatchList,
   matchDetailAction,
   selectedBetAction,
   updateMatchRates,
