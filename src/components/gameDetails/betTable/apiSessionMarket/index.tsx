@@ -283,7 +283,9 @@ function ApiSessionMarketTable({
         show={runAmountModal}
         setShow={handleModal}
       >
+        <div style={{width:'100%',height:'500px',overflowY:'auto'}}>
         <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+        </div>
       </CustomModal>
     </div>
   );
