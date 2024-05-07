@@ -5,93 +5,99 @@
     "type": "group",
     "children": [
       {
-        "id": "football",
-        "name": "Football",
+        "id": "temocasino",
+        "name": "Tembo Casino",
         "type": "liveItem",
         "blink": true,
-        "path": "/game-list/football"
+        "path": "/contact-admin"
       },
       {
-        "id": "tennis",
-        "name": "Tennis",
-        "type": "liveItem",
-        "path": "/game-list/tennis"
-      },
-      {
-        "id": "cricket",
-        "name": "Cricket",
-        "type": "liveItem",
-        "path": "/game-list/cricket"
-      },
-      {
-        "id": "ice_hockey",
-        "name": "Ice Hockey",
+        "id": "livecasino",
+        "name": "Live Casino",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "volleyball",
-        "name": "Volleyball",
+        "id": "slotgame",
+        "name": "Slot Game",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "politics",
-        "name": "Politics",
+        "id": "race2020",
+        "name": "Race 20-20",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "basketball",
-        "name": "Basketball",
+        "id": "casinoqueen",
+        "name": "Casino Queen",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "table_tennis",
-        "name": "Table Tennis",
+        "id": "dragontiger",
+        "name": "Dragon Tiger",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "darts",
-        "name": "Darts",
+        "id": "sportscasino",
+        "name": "Sports Casino",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "badminton",
-        "name": "Badminton",
+        "id": "andarbahar",
+        "name": "Andar Bahar",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "kabaddi",
-        "name": "Kabaddi",
+        "id": "bollywoodcasino",
+        "name": "Bollywood Casino",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "boxing",
-        "name": "Boxing",
+        "id": "casinowar",
+        "name": "Casino War",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "american_football",
-        "name": "American Football",
+        "id": "worli",
+        "name": "Worli",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "mixed_martial_arts",
-        "name": "Mixed Martial Arts",
+        "id": "lottery",
+        "name": "Lottery",
         "type": "liveItem",
         "path": "/contact-admin"
       },
       {
-        "id": "motor_sport",
-        "name": "Motor Sport",
+        "id": "3cardsjudgement",
+        "name": "3 Cards Judgement",
+        "type": "liveItem",
+        "path": "/contact-admin"
+      },
+      {
+        "id": "binary",
+        "name": "Binary",
+        "type": "liveItem",
+        "path": "/contact-admin"
+      },
+      {
+        "id": "virtual_sport",
+        "name": "Virtual Sport",
+        "type": "liveItem",
+        "path": "/contact-admin"
+      },
+      {
+        "id": "cricketcasino",
+        "name": "Cricket Casino",
         "type": "liveItem",
         "path": "/contact-admin"
       }

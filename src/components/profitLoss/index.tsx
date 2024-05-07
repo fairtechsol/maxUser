@@ -17,7 +17,9 @@ const ProfitLossComponent = () => {
   const minDate = new Date();
   minDate.setMonth(minDate.getMonth() - 1);
   const dispatch: AppDispatch = useDispatch();
-  const [fromDate, setFromDate] = useState<any>(new Date());
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  const [fromDate, setFromDate] = useState<any>(sevenDaysAgo);
   const [toDate, setToDate] = useState<any>(new Date());
   const [minDate2, setminDate2] = useState<any>(minDate)
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
@@ -25,7 +27,6 @@ const ProfitLossComponent = () => {
     (state: RootState) => state.currentBetList
   );
 
-  console.log(fromDate, "<<")
   // const formattedToDate = toDate.toLocaleDateString('en-GB'); 
   const handleSubmit = () => {
     try {

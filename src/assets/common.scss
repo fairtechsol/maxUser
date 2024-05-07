@@ -215,6 +215,24 @@ body select {
     border-color: transparent !important ;
   }
 }
+.matchListTab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary !important;
+  color: $white !important ;
+  padding: 10px;
+  border: 0.5px $white solid;
+}
+.matchListTab.active{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $secondary !important;
+  color: $white !important ;
+  padding: 10px;
+  border: 0.5px $white solid;
+}
 .nav-tab{
   padding-left: 0px;
   padding-right: 0px;

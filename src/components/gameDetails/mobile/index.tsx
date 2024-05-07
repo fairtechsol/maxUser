@@ -10,24 +10,64 @@ import BetTable from "../betTable";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import ContactAdmin from "../../commonComponent/contactAdmin";
+
+const markets = [
+  {
+    id: "fancy",
+    name: "Fancy",
+  },
+  {
+    id: "fancy1",
+    name: "Fancy 1",
+  },
+  {
+    id: "meter",
+    name: "Meter",
+  },
+  {
+    id: "khado",
+    name: "Khado",
+  },
+  {
+    id: "oddEven",
+    name: "OdD Even",
+  },
+  {
+    id: "wicket",
+    name: "WICKET",
+  },
+  {
+    id: "four",
+    name: "FOUR",
+  },
+  {
+    id: "six",
+    name: "SIX",
+  },
+  {
+    id: "cricketcasino",
+    name: "CRICKET CASINO",
+  },
+];
 
 const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
+  const [marketActive, setMarketActive] = useState("fancy");
 
   const { matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
+  const handleMarket = (type: string) => {
+    setMarketActive(type);
+  };
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
 
-      <CommonTabs
-        defaultActive="odds"
-        className="color"
-      >
+      <CommonTabs defaultActive="odds" className="color">
         {[
           {
             id: "odds",
@@ -131,78 +171,102 @@ const MobileGameDetail = () => {
                     )}
 
                     <Col className="g-0" md={12}>
-                      <CommonTabs
-                        customClass="overflow-x-auto overflow-y-hidden no-wrap"
-                        defaultActive="fancy"
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
                       >
-                        {[
-                          {
-                            id: "fancy",
-                            name: "Fancy",
-                          },
-                          // {
-                          //   id: "fancy1",
-                          //   name: "Fancy 1",
-                          // },
-                          // {
-                          //   id: "meter",
-                          //   name: "Meter",
-                          // },
-                          // {
-                          //   id: "khado",
-                          //   name: "Khado",
-                          // },
-                          // {
-                          //   id: "oddEven",
-                          //   name: "OdeEven",
-                          // },
-                        ]?.map((item, index) => {
-                          return (
-                            <Tab
-                              key={index}
-                              eventKey={item?.id}
-                              tabClassName="m-match-list-tabs"
-                              title={
-                                <div className="title-12 text-uppercase f500">
-                                  <span>{item?.name}</span>
+                        <div
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            flexDirection: "row",
+                          }}
+                        >
+                          {markets?.map((item, index) => {
+                            return (
+                              index < 5 && (
+                                <div
+                                  className={`matchListTab ${
+                                    item?.id === marketActive ? "active" : ""
+                                  }`}
+                                  style={{ width: "20%" }}
+                                  onClick={() => handleMarket(item?.id)}
+                                >
+                                  <span className="title-12 text-uppercase f500">
+                                    {item?.name}
+                                  </span>
                                 </div>
-                              }
-                            >
-                              <Row>
-                                {matchDetails?.apiSessionActive && (
-                                  <Col md={12}>
-                                    <BetTable
-                                      title={"Session Market"}
-                                      type={MatchType.API_SESSION_MARKET}
-                                      data={matchDetails?.sessionBettings}
-                                    />
-                                  </Col>
-                                )}
-                                {/* {matchDetails?.manualSessionActive && (
-                                  <Col md={12}>
-                                    <BetTable
-                                      title={"Quick Session Market"}
-                                      type={MatchType.SESSION_MARKET}
-                                      data={matchDetails?.sessionBettings}
-                                    />
-                                  </Col>
-                                )} */}
-                              </Row>
-                              {matchDetails?.apiTideMatch?.isActive && (
-                                <Col className="g-0" md={12}>
-                                  <BetTable
-                                    title={matchDetails?.apiTideMatch?.name}
-                                    type={MatchType.MATCH_ODDS}
-                                    data={matchDetails?.apiTideMatch}
-                                    backLayCount={2}
-                                  />
-                                </Col>
-                              )}
-                              <div style={{ height: "80px" }}></div>
-                            </Tab>
-                          );
-                        })}
-                      </CommonTabs>
+                              )
+                            );
+                          })}
+                        </div>
+                        <div
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            flexDirection: "row",
+                          }}
+                        >
+                          {markets?.map((item, index) => {
+                            return (
+                              index > 4 && (
+                                <div
+                                  className={`matchListTab ${
+                                    item?.id === marketActive ? "active" : ""
+                                  }`}
+                                  style={{ width: index==8?"34%":"22%" }}
+                                  onClick={() => handleMarket(item?.id)}
+                                >
+                                  <span className="title-12 text-uppercase f500">
+                                    {item?.name}
+                                  </span>
+                                </div>
+                              )
+                            );
+                          })}
+                        </div>
+                      </div>
+                      {marketActive != "fancy" ? (
+                        <>
+                          <ContactAdmin />
+                        </>
+                      ) : (
+                        <>
+                          {matchDetails?.apiSessionActive && (
+                            <Col md={12}>
+                              <BetTable
+                                title={"Session Market"}
+                                type={MatchType.API_SESSION_MARKET}
+                                data={matchDetails?.sessionBettings}
+                              />
+                            </Col>
+                          )}
+                        </>
+                      )}
+                      {/* <Row>
+                        {matchDetails?.apiSessionActive && (
+                          <Col md={12}>
+                            <BetTable
+                              title={"Session Market"}
+                              type={MatchType.API_SESSION_MARKET}
+                              data={matchDetails?.sessionBettings}
+                            />
+                          </Col>
+                        )}
+                      </Row> */}
+                      {matchDetails?.apiTideMatch?.isActive && (
+                        <Col className="g-0" md={12}>
+                          <BetTable
+                            title={matchDetails?.apiTideMatch?.name}
+                            type={MatchType.MATCH_ODDS}
+                            data={matchDetails?.apiTideMatch}
+                            backLayCount={2}
+                          />
+                        </Col>
+                      )}
                     </Col>
                   </Row>
                 </Container>

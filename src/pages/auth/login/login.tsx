@@ -80,7 +80,7 @@ const Login = () => {
           src="/maxbetLogo.png"
           alt="fairGame"
           className="img-fluid"
-          style={{ width: "80%", height: "44px" }}
+          style={{ width: "100%", height: "50px" }}
         />
         <div className="auth-box-form rounded-2 bg-light mt-3">
           <h4 className="auth-title title-24 fw-normal text-center mb-2">
@@ -139,7 +139,7 @@ const Login = () => {
             </div>
           </CustomButton>
           <p className="auth-box-descrip mt-1">
-            This site is protected by reCAPTCHA and the Google
+            This site is protected by reCAPTCHA and the Google<br/>
             <a
               href="https://policies.google.com/privacy"
               className="text-primaryBlue text-decoration-none ps-1 pe-1"
