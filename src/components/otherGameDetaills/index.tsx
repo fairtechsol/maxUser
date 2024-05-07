@@ -17,7 +17,7 @@ import {
   // updateBalance,
 } from "../../store/actions/user/userAction";
 import {
-  getMatchList,
+  // getMatchList,
   selectedBetAction,
 } from "../../store/actions/match/matchListAction";
 import {
@@ -101,7 +101,7 @@ const FootballGameDetails = () => {
   };
 
   const handleMatchResult = () => {
-    dispatch(getMatchList({}));
+    // dispatch(getMatchList({}));
     dispatch(getProfileInMatchDetail());
   };
   const getUserProfile = () => {
@@ -111,7 +111,14 @@ const FootballGameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
-        navigate("/home");
+        if (
+          event?.gameType === "cricket" ||
+          event?.betType === "quickbookmaker1"
+        ) {
+          navigate(`/game-list/${event?.gameType}`);
+        } else {
+          dispatch(getPlacedBets(id));
+        }
       }
     } catch (e) {
       console.log(e);
@@ -166,7 +173,7 @@ const FootballGameDetails = () => {
         expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-        socketService.userBalance.matchResultDeclared(resultDeclared);
+        // socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
         socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
         socketService.userBalance.matchResultUnDeclared(

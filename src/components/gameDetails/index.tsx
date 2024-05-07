@@ -7,7 +7,7 @@ import {
   socketService,
 } from "../../socketManager";
 import {
-  getMatchList,
+  // getMatchList,
   matchDetailAction,
   selectedBetAction,
   updateMatchRates,
@@ -87,7 +87,14 @@ const GameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
-        navigate("/home");
+        if (
+          event?.gameType === "cricket" ||
+          event?.betType === "quickbookmaker1"
+        ) {
+          navigate(`/game-list/${event?.gameType}`);
+        } else {
+          dispatch(getPlacedBets(id));
+        }
       }
     } catch (e) {
       console.log(e);
@@ -188,7 +195,7 @@ const GameDetails = () => {
   };
 
   const handleMatchResult = () => {
-    dispatch(getMatchList({}));
+    // dispatch(getMatchList({}));
     dispatch(getProfileInMatchDetail());
   };
   const getUserProfile = () => {
@@ -224,7 +231,7 @@ const GameDetails = () => {
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-        socketService.userBalance.matchResultDeclared(resultDeclared);
+        // socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
         socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
         socketService.userBalance.sessionDeleteBet(handleSessionBetDeleted);
