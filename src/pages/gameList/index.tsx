@@ -18,17 +18,25 @@ const GameList = () => {
 
   const { id } = useParams();
   const [_, setMatchType] = useState("");
+  const dispatch: AppDispatch = useDispatch();
 
-  const getMatchListService = () => {
+  const getMatchListService = (event: any) => {
     try {
-      dispatch(getMatchList({ matchType: id }));
+      if (event?.gameType === id) {
+        setTimeout(() => {
+          dispatch(getMatchList({ matchType: id }));
+        }, 500);
+      }
     } catch (e) {
       console.log(e);
     }
   };
 
-  const dispatch: AppDispatch = useDispatch();
-  useEffect(getMatchListService, [id]);
+  useEffect(() => {
+    if (id) {
+      dispatch(getMatchList({ matchType: id }));
+    }
+  }, [id]);
 
   useEffect(() => {
     try {
