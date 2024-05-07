@@ -3,6 +3,40 @@ html {
   -webkit-text-size-adjust: 100% !important;
 }
 
+
+.bg-blue-600 {
+  background-color: rgba(212, 237, 218, 0.85);
+  font-size: 12px;
+  color: green;
+}
+
+.bg-red-600 {
+  // background-color: rgba(245, 198, 203, 0.85);
+  background-color: rgba(248, 215, 218, 0.85);
+  color: #721c24;
+  font-size: 12px;
+}
+
+.bg-gray-600 {
+  background-color: #4b5563; /* Example hexadecimal color code for gray */
+}
+
+.bg-orange-400 {
+  background-color: rgba(245, 198, 203, 0.85); /* Example hexadecimal color code for orange */
+}
+
+.bg-indigo-600 {
+  background-color: #4f46e5; /* Example hexadecimal color code for indigo */
+}
+
+.bg-white-600 {
+  background-color: #ffffff; /* Example hexadecimal color code for white */
+}
+
+.font-gray-300 {
+  color: #d1d5db; /* Example hexadecimal color code for gray */
+}
+
 body {
   font-family: "Roboto Condensed", sans-serif !important;
   line-height: 15px;

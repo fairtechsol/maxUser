@@ -4,7 +4,7 @@ import { Constants } from "./utils/constants";
 
 const toastOptions = {
   autoClose: 1500,
-  hideProgressBar: false,
+  hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: true,
 };

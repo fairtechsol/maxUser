@@ -46,7 +46,7 @@ function BookmakerTable({
 
   return (
     <div
-      className={`gameTable table-responsive sessionFancyTable borderTable border `}
+      className={`gameTable table-responsive-lg sessionFancyTable borderTable border `}
     >
       <Table className="mb-0">
         <thead>
