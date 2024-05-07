@@ -1,50 +1,50 @@
-// import { lazy } from "react";
+import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layout/main";
-// import Loadable from "../utils/loadable";
-import Home from "../pages/home";
-import GameDetail from "../pages/gameDetails";
-import FootballGameDetail from "../pages/otherGameDetails";
-import AccountStatement from "../pages/accountStatement";
-import ProfitLoss from "../pages/profitLoss";
-import BetHistory from "../pages/betHistory";
-import UnsettledBet from "../pages/unsettledBet";
-import Mobile from "../components/rules/mobile";
-import ChangeButtonValue from "../pages/changeButtonValues";
-import SecureAuthVerification from "../pages/auth/secureAuthVerification";
-import ChangePassword from "../pages/auth/changePassword";
-import ContactAdmin from "../components/commonComponent/contactAdmin";
-import GameList from "../pages/gameList";
+import Loadable from "../utils/loadable";
+// import Home from "../pages/home";
+// import GameDetail from "../pages/gameDetails";
+// import FootballGameDetail from "../pages/otherGameDetails";
+// import AccountStatement from "../pages/accountStatement";
+// import ProfitLoss from "../pages/profitLoss";
+// import BetHistory from "../pages/betHistory";
+// import UnsettledBet from "../pages/unsettledBet";
+// import Mobile from "../components/rules/mobile";
+// import ChangeButtonValue from "../pages/changeButtonValues";
+// import SecureAuthVerification from "../pages/auth/secureAuthVerification";
+// import ChangePassword from "../pages/auth/changePassword";
+// import ContactAdmin from "../components/commonComponent/contactAdmin";
+// import GameList from "../pages/gameList";
 
 // ==============================|| Main ROUTING ||============================== //
-// const Home = Loadable(lazy(() => import("../pages/home")));
-// const GameDetail = Loadable(lazy(() => import("../pages/gameDetails")));
-// const FootballGameDetail = Loadable(
-//   lazy(() => import("../pages/otherGameDetails"))
-// );
+const Home = Loadable(lazy(() => import("../pages/home")));
+const GameDetail = Loadable(lazy(() => import("../pages/gameDetails")));
+const FootballGameDetail = Loadable(
+  lazy(() => import("../pages/otherGameDetails"))
+);
 
-// const AccountStatement = Loadable(
-//   lazy(() => import("../pages/accountStatement"))
-// );
-// const ProfitLoss = Loadable(lazy(() => import("../pages/profitLoss")));
-// const BetHistory = Loadable(lazy(() => import("../pages/betHistory")));
-// const UnsettledBet = Loadable(lazy(() => import("../pages/unsettledBet")));
-// const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
-// const ChangeBtnValue = Loadable(
-//   lazy(() => import("../pages/changeButtonValues"))
-// );
+const AccountStatement = Loadable(
+  lazy(() => import("../pages/accountStatement"))
+);
+const ProfitLoss = Loadable(lazy(() => import("../pages/profitLoss")));
+const BetHistory = Loadable(lazy(() => import("../pages/betHistory")));
+const UnsettledBet = Loadable(lazy(() => import("../pages/unsettledBet")));
+const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
+const ChangeButtonValue = Loadable(
+  lazy(() => import("../pages/changeButtonValues"))
+);
 
-// const SecureAuthVerification = Loadable(
-//   lazy(() => import("../pages/auth/secureAuthVerification"))
-// );
-// const ChangePassword = Loadable(
-//   lazy(() => import("../pages/auth/changePassword"))
-// );
-// const ContactAdmin = Loadable(
-//   lazy(() => import("../components/commonComponent/contactAdmin"))
-// );
+const SecureAuthVerification = Loadable(
+  lazy(() => import("../pages/auth/secureAuthVerification"))
+);
+const ChangePassword = Loadable(
+  lazy(() => import("../pages/auth/changePassword"))
+);
+const ContactAdmin = Loadable(
+  lazy(() => import("../components/commonComponent/contactAdmin"))
+);
 
-// const GameList = Loadable(lazy(() => import("../pages/gameList/index")));
+const GameList = Loadable(lazy(() => import("../pages/gameList/index")));
 
 const MainRoutes = {
   path: "/",

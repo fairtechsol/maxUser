@@ -10,6 +10,8 @@ const Loader = () => {
   );
 };
 
+export default Loader;
+
 export const LoaderOnRefresh = () => {
   return (
     <div className="auth-main loader-main text-center d-flex flex-column justify-content-center align-items-center">
@@ -18,5 +20,3 @@ export const LoaderOnRefresh = () => {
     </div>
   );
 };
-
-export default Loader;
