@@ -51,7 +51,8 @@ function BackLayBox({
       {location.pathname == "/home" ? (
         <div
           onClick={() => onClick()}
-          className={`backLayBox text-center d-flex cursor-pointer homeLayBox`}
+          className={`backLayBox text-center d-flex cursor-pointer`}
+          style={{height:'30px'}}
         >
           {/* <h5 className="backLay-rate f500 title-15 m-0 pt-1">
             {parseFloat(rate || 0) <= 0 || active
@@ -68,9 +69,9 @@ function BackLayBox({
         <BetStatusOverlay>
           <div
             onClick={() => onClick()}
-            className={`backLayBox text-center d-flex cursor-pointer`}
+            className={`backLayBox text-center d-flex cursor-pointer `}
           >
-            <h5 className="backLay-rate f500 title-16 m-0 pt-4">
+            <h5 className="backLay-rate f500 title-16 m-1 pt-4">
               {parseFloat(rate || 0) <= 0 || active
                 ? isMobile
                   ? "0"

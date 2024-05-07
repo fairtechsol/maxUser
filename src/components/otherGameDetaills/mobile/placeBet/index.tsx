@@ -108,7 +108,8 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
       selectedBet?.data?.type === matchBettingType.completeMatch ||
       selectedBet?.data?.type === matchBettingType.halfTime ||
       selectedBet?.data?.type.includes('overUnder') ||
-      selectedBet?.data?.type.includes('firstHalfGoal') 
+      selectedBet?.data?.type.includes('firstHalfGoal') ||
+      selectedBet?.data?.type.includes('setWinner')
     ) {
       profit =
         selectedBet?.team?.type === "back"

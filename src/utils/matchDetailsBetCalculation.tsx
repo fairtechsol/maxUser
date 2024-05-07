@@ -55,7 +55,8 @@ export const calculateProfitLoss = (
     betData?.type === matchBettingType.completeMatch ||
     betData?.type === matchBettingType.halfTime ||
     betData?.type.includes('overUnder') ||
-    betData?.type.includes('firstHalfGoal') 
+    betData?.type.includes('firstHalfGoal') ||
+    betData?.type.includes('setWinner')
   ) {
     if (selectedData?.team?.type === "lay") {
       let value: any = 0;

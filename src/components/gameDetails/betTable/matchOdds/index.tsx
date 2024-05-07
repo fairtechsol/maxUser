@@ -521,6 +521,7 @@ function MatchOdds({
             })}
         </tbody>
       </Table>
+      {data?.type === "bookmaker" && (<div className="f600 title-12 pe-2" style={{textAlign:'end',color:'#8b0000'}}>IPL Cup Winner Bets Started in our Exchange</div>)}
     </div>
   );
 }
