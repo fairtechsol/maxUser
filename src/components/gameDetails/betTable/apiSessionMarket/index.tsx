@@ -21,7 +21,7 @@ import { teamStatus } from "../../../../utils/constants";
 import Desktop from "../../../rules/categoryRules/desktop";
 import Mobile from "../../../rules/mobile";
 import SmoothDropdownModal from "../../../commonComponent/minMaxModal";
-import { formattedMinMax } from "../../../../utils/formatMinMax";
+// import { formattedMinMax } from "../../../../utils/formatMinMax";
 
 interface ApiSessionMarketTableProps {
   data: any;
@@ -140,7 +140,8 @@ function ApiSessionMarketTable({
                           onClick={() => handleMinModalToggle(item?.id)}
                         />
                         <SmoothDropdownModal
-                          minMax={formattedMinMax(item?.minBet, item?.maxBet)}
+                          min={item?.minBet}
+                          max={item?.maxBet}
                           show={modalStates[item.id]}
                           setShow={(value: any) =>
                             setModalStates((prevState: any) => ({

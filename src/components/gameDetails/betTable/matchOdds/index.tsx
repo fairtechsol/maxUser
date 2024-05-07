@@ -97,7 +97,7 @@ function MatchOdds({
             ) : (
               <th className="border-0 px-2">
                 {minMax && isMobile && (
-                  <span className="f700 title-14">{minMax}</span>
+                  <span className="f700 title-14 px-2">{minMax}</span>
                 )}
               </th>
             )}
@@ -116,10 +116,10 @@ function MatchOdds({
             )}
             {!isMobile && (
               <>
-                <th className="text-center bg-blue1 match-odd-bet-place f400">
+                <th className="text-center bg-blue1 match-odd-bet-place f700 title-15">
                   BACK
                 </th>
-                <th className="text-center bg-red1 match-odd-bet-place f400">
+                <th className="text-center bg-red1 match-odd-bet-place f700 title-15">
                   LAY
                 </th>
               </>
@@ -162,7 +162,7 @@ function MatchOdds({
             <tr>
               <td colSpan={2} style={{backgroundColor:"#fff"}}>
                 {minMax && isMobile && (
-                  <span className="f700 title-14">{minMax}</span>
+                  <span className="f700 title-14 px-2">{minMax}</span>
                 )}
               </td>
               {/* <td style={{width:'11.5%'}}></td> */}
@@ -521,6 +521,7 @@ function MatchOdds({
             })}
         </tbody>
       </Table>
+      {data?.type === "bookmaker" && (<div className="f600 title-12 pe-2" style={{textAlign:'end',color:'#8b0000'}}>IPL Cup Winner Bets Started in our Exchange</div>)}
     </div>
   );
 }

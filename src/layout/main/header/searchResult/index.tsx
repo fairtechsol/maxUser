@@ -23,12 +23,10 @@ const SearchResult = ({ data, setOpen }: any) => {
   //     document.removeEventListener('keydown', handleKeyDown);
   //   };
   // }, [setOpen]);
-
-
   return (
-    <div className="position-absolute bg-white text-black p-2 search-result">
+    <div className="position-absolute bg-white text-black p-1 search-result">
       {data?.length == 0 ? (
-        <p className="text-center">No real-time records found</p>
+        <p className="text-start pt-1">No real-time records found</p>
       ) : (
         data?.map((item: any, index: number) => (
           <Link
@@ -37,18 +35,18 @@ const SearchResult = ({ data, setOpen }: any) => {
               setOpen(false);
             }}
             className="text-decoration-none"
-            to={`/game-detail/${item?.id}`}
+            to={`/game-detail/${item.matchType}/${item?.id}`}
           >
             <div key={index} className="d-flex flex-column w-100 border-bottom">
               <div className="d-flex justify-content-between align-items-center">
-                <div className="f400 title-16 text-capitalize font-color">
+                <div className="f700 title-16 text-capitalize font-color">
                   {item?.matchType}
                 </div>
                 <div className="title-14 font-color">
                   {moment(item?.startAt).format("MM/DD/YYYY hh:mm:ss A")}
                 </div>
               </div>
-              <div className="title-12 font-color">{item?.title}</div>
+              <div className="title-15 font-color">{item?.title}</div>
             </div>
           </Link>
         ))

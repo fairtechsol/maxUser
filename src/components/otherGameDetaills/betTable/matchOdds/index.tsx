@@ -39,7 +39,36 @@ function FootballMatchOdds({
     (state: RootState) => state.match.matchList
   );
   let arr = ["A", "B", "C"];
-
+  const calculateValue = (
+    data: any,
+    indexs: number,
+    matchDetails: any,
+    matchs: any
+  ) => {
+    if (data?.type === "tiedMatch1") {
+      if (indexs === 0) {
+        return Number(matchDetails?.profitLossDataMatch?.yesRateTie) || 0;
+      } else {
+        return Number(matchDetails?.profitLossDataMatch?.noRateTie) || 0;
+      }
+    } else if (data?.type === "completeMatch") {
+      if (indexs === 0) {
+        return Number(matchDetails?.profitLossDataMatch?.yesRateComplete) || 0;
+      } else {
+        return Number(matchDetails?.profitLossDataMatch?.noRateComplete) || 0;
+      }
+    } else {
+      if (matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) {
+        return (
+          Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) || 0
+        );
+      } else {
+        return (
+          Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) || 0
+        );
+      }
+    }
+  };
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -116,7 +145,12 @@ function FootballMatchOdds({
                               calculateProfitLoss(
                                 data,
                                 selectedBet,
-                                matchDetails?.[`team${matchs}`]
+                                data?.type === "completeMatch" ||
+                                  data?.type === "tiedMatch1"
+                                  ? indexes === 0
+                                    ? "YES"
+                                    : "NO"
+                                  : matchDetails?.[`team${matchs}`]
                               ) || 0
                             ) < 0
                               ? "color-red"
@@ -124,19 +158,43 @@ function FootballMatchOdds({
                                   calculateProfitLoss(
                                     data,
                                     selectedBet,
-                                    matchDetails?.[`team${matchs}`]
+                                    data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                      ? indexes === 0
+                                        ? "YES"
+                                        : "NO"
+                                      : matchDetails?.[`team${matchs}`]
                                   ) || 0
                                 ) > 0
                               ? "color-green"
                               : ""
                           }`}
                         >
-                          {calculateProfitLoss(
-                            data,
-                            selectedBet,
-                            matchDetails?.[`team${matchs}`]
-                          )}
+                          {selectedBet?.team?.stake > 0 &&
+                          selectedBet?.data?.type == data.type
+                            ? Number(
+                                calculateProfitLoss(
+                                  data,
+                                  selectedBet,
+                                  data?.type === "completeMatch" ||
+                                    data?.type === "tiedMatch1"
+                                    ? indexes === 0
+                                      ? "YES"
+                                      : "NO"
+                                    : matchDetails?.[`team${matchs}`]
+                                )
+                              ) +
+                              Number(
+                                calculateValue(
+                                  data,
+                                  indexes,
+                                  matchDetails,
+                                  matchs
+                                )
+                              )
+                            : null}
                         </span>
+                       
                       </div>
                     </div>
                   </td>
