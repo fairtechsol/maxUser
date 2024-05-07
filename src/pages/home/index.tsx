@@ -67,7 +67,7 @@ const Home = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [socket]);
+  }, [socket, matchType]);
 
   useEffect(() => {
     if (matchType) {
@@ -86,7 +86,7 @@ const Home = () => {
 
   return (
     <div>
-      <MatchList setMatchType={setMatchType} />
+      <MatchList setMatchType={setMatchType} matchType={matchType} />
       <CustomModal
         customClass="modalFull-90 rule-popup"
         show={show}

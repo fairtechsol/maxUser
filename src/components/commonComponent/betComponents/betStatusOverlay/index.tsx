@@ -15,7 +15,9 @@ const BetStatusOverlay = ({ title, children, active }: Props) => {
           {active && (
             <div className="betStatusOverlay">
               {title && title !== "Lock" && (
-                <h5 className="text-uppercase">{title}</h5>
+                <h5 className="text-uppercase">
+                  {title === "active" ? "" : title}
+                </h5>
               )}
               {title === "Lock" && <FaLock />}
             </div>
