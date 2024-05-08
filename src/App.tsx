@@ -40,7 +40,7 @@ function App() {
           height: "100px",
           // marginLeft: "15%", marginTop: "10%",
           ...(isMobile
-            ? {width: "100%",marginTop: "5%"}
+            ? {width: "100%",marginTop: "1%"}
             : {}),
         }}
       />
