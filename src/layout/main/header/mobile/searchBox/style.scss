@@ -39,12 +39,10 @@
     height: 30px;
     outline: none;
     border: none;
-    padding: 0 20px 0 30px;
+    // padding: 0 20px 0 30px;
     transition: all 1s;
     opacity: 0;
     z-index: 5;
-    font-weight: bolder;
-    letter-spacing: 0.1em;
     &:hover {
       cursor: pointer;
     }
@@ -89,5 +87,6 @@
     width: 220px;
     opacity: 1;
     cursor: text;
+    font-size: 12px;
   }
 }

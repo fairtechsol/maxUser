@@ -129,7 +129,7 @@ function ApiSessionMarketTable({
                         );
                         dispatch(getRunAmount(item?.id));
                       }}
-                      className="backLayRunner-country session-country title-10 cursor-pointer"
+                      className={`${isMobile ? 'backLayRunner-country session-country title-12 f600' : 'backLayRunner-country session-country title-10'}`}
                     >
                       {item?.name}
                     </span>

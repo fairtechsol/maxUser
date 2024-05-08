@@ -51,8 +51,7 @@ function BackLayBox({
       {location.pathname == "/home" ? (
         <div
           onClick={() => onClick()}
-          className={`backLayBox text-center d-flex cursor-pointer`}
-          style={{height:'30px'}}
+          className={`backLayBox text-center d-flex cursor-pointer ${isMobile ? " " : "boxheight"}`}
         >
           {/* <h5 className="backLay-rate f500 title-15 m-0 pt-1">
             {parseFloat(rate || 0) <= 0 || active
