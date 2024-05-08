@@ -70,13 +70,13 @@ function BackLayBox({
             onClick={() => onClick()}
             className={`backLayBox text-center d-flex cursor-pointer `}
           >
-            <h5 className="backLay-rate f500 title-16 m-1 pt-4">
+            <span className={isMobile ? "backLay-rate f500 title-16 m-1 pt-3" : "backLay-rate f500 title-16 m-1 pt-4"}>
               {parseFloat(rate || 0) <= 0 || active
                 ? isMobile
                   ? "0"
                   : "-"
                 : rate}{" "}
-            </h5>
+            </span>
 
             {+percent > 0 && parseFloat(rate) > 0 && (
               <span className="backLay-percent title-10">
