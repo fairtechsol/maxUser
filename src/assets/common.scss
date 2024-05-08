@@ -2,7 +2,10 @@
 html {
   -webkit-text-size-adjust: 100% !important;
 }
-
+.custom-toast {
+  height: 45px; /* Increase the height here */
+  border-radius: 3px; /* Adjust the border radius here */
+}
 
 .bg-blue-600 {
   background-color: rgba(212, 237, 218, 0.85);
