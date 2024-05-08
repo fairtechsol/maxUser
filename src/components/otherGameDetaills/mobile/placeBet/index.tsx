@@ -436,8 +436,8 @@ const handleTeamRates=(team:string,type:string)=>{
                               selectedBet?.team?.teamA
                                 ? handleProfit(stake)
                                 : selectedBet?.team?.type === "back"
-                                ? -selectedBet?.team?.stake
-                                : selectedBet?.team?.stake}
+                                ?  isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
+                                : isNaN(selectedBet?.team?.stake) ? 0 :  selectedBet?.team?.stake}
                             </span>
                           </div>
                         </div>
@@ -451,8 +451,8 @@ const handleTeamRates=(team:string,type:string)=>{
                               selectedBet?.team?.teamB
                                 ? handleProfit(stake)
                                 : selectedBet?.team?.type === "back"
-                                ? -selectedBet?.team?.stake
-                                : selectedBet?.team?.stake}
+                                ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
+                                : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake}
                             </span>
                           </div>
                         </div>
@@ -470,8 +470,8 @@ const handleTeamRates=(team:string,type:string)=>{
                                 selectedBet?.team?.teamC
                                   ? handleProfit(stake)
                                   : selectedBet?.team?.type === "back"
-                                  ? -selectedBet?.team?.stake
-                                  : selectedBet?.team?.stake}
+                                  ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
+                                  : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake}
                               </span>
                             </div>
                           </div>
