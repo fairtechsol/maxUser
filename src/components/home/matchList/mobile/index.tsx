@@ -70,7 +70,11 @@ const MobileMatchList = ({ type, setMatchType }: any) => {
                 tabClassName="m-match-list-tabs"
                 title={
                   <div className="title-12 text-uppercase f500 nav-tab">
-                    <div className="text-white tab-icon">{item?.icon}</div>
+                    {item?.img ? ( 
+                      <img src={item?.img} alt={item?.name} className="tab-img" />
+                    ) : (
+                      <div className="text-white tab-icon">{item?.icon}</div>
+                    )}
                     <span className="navtab-name">{item?.name}</span>
                   </div>
                 }

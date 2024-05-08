@@ -235,17 +235,15 @@ body select {
   border-radius: 0px !important;
   background-color: $secondary !important;
   // padding: 1px;
-  padding-left: 0px;
-  padding-right: 0px;
+  // padding-left: 0px;
+  // padding-right: 0px;
+  padding: 3px 2px 5px;
   flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
+  // overflow-x: auto;
+  // overflow-y: hidden;
   color: $black;
-  width: 100%;
+  width: 90%;
   white-space: nowrap;  
-  &:hover {
-    border: none !important;
-  }
   &.active {
     background-color: $primary !important;
     color: $white !important;
@@ -278,6 +276,12 @@ margin-right: 0%;
 }
 .navtab-name{
   font-weight: 410;
+}
+.tab-img{
+  display: block;
+  margin: 0 auto; 
+  height: 24px;
+  width: 34px;
 }
 
 /* ===== for title ====  */
