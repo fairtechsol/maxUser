@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Tabs } from "react-bootstrap";
 import "./style.scss";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import SportsFilterJson from "../../home/sportsFilters/sportsFilters.json";
 const CommonTabs = ({
   children,
@@ -11,7 +11,7 @@ const CommonTabs = ({
   selectedTab,
   ...props
 }: any) => {
-  const [key, setKey] = useState(defaultActive ?? "cricket");
+  const [key, setKey] = useState("cricket");
   const navigate = useNavigate();
   useEffect(() => {
     if (props?.id) {
@@ -22,23 +22,26 @@ const CommonTabs = ({
     }
   }, [props?.id]);
 
+  useEffect(() => {
+    setKey(defaultActive);
+  }, [defaultActive]);
+
   return (
     <Tabs
       activeKey={key}
       onSelect={(k: any) => {
         if (callback) {
-            callback(k);
-          }
-          setKey(k);
-          const sportsFilterArray = SportsFilterJson();
-          const sportsFilterIds = sportsFilterArray.map((item: any) => item.id);
-          if (sportsFilterIds.includes(k)) {
+          callback(k);
+        }
+        setKey(k);
+        const sportsFilterArray = SportsFilterJson();
+        const sportsFilterIds = sportsFilterArray.map((item: any) => item.id);
+        if (sportsFilterIds.includes(k)) {
           navigate(`/${k}`);
         }
         // if (k) {
         //   navigate(`/${k}`);
         // }
-        
       }}
       id="uncontrolled-tab-example"
       className={`w-100 ${customClass}`}
