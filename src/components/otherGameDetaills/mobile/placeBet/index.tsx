@@ -132,7 +132,19 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
       return selectedBet?.team?.type === "back" ? red : green;
     }
   };
-
+const handleTeamRates=(team:string,type:string)=>{
+  let rate;
+  if(team?.includes('.5')){
+    let name = team?.split('_');
+    rate = otherMatchDetails?.profitLossDataMatch[`${type ==='A' ?'yes':'no'}RateUnderOver${name[name?.length-1]}`]
+  }else if(team?.includes('set_winner')){
+    let name = team?.length == 11 ? `userTeam${type}RateSetWinner${team[10]}`:`userTeam${type}RateSetWinner${team[10]+team[11]}`
+    rate = otherMatchDetails?.profitLossDataMatch[name]
+  }else{
+    rate = otherMatchDetails?.profitLossDataMatch[`team${type}Rate`]
+  }
+  return rate || 0;
+}
   return (
     <>
       <CustomModal
@@ -390,16 +402,14 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                         <div className="row">
                           <div className="col-md-12">
                             <span className="f600 title-12">
-                              {otherMatchDetails?.profitLossDataMatch?.teamARate ||
-                                0}
+                              {handleTeamRates(selectedBet?.data?.name,'A')}
                             </span>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-12">
                             <span className="f600 title-12">
-                              {otherMatchDetails?.profitLossDataMatch?.teamBRate ||
-                                0}
+                            {handleTeamRates(selectedBet?.data?.name,'B')}
                             </span>
                           </div>
                         </div>
@@ -407,8 +417,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                           <div className="row">
                             <div className="col-md-12">
                               <span className="f600 title-12">
-                                {otherMatchDetails?.profitLossDataMatch?.teamCRate ||
-                                  0}
+                              {handleTeamRates(selectedBet?.data?.name,'C')}
                               </span>
                             </div>
                           </div>
