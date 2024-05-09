@@ -231,6 +231,14 @@ function BookmakerTable({
                               (+data[`backTeam${item}`] || 0) -
                               (isMobile ? 0 : 2) +
                               index;
+                              let rateValue;
+                              if((data.type=== "quickbookmaker1" ||
+                              data.type === "quickbookmaker2" ||
+                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
+                                rateValue = index <2 ? Math.trunc(rate) : rate;
+                              }else{
+                                rateValue = rate
+                              }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active
@@ -243,7 +251,7 @@ function BookmakerTable({
                                         ? "YES"
                                         : "NO"
                                       : matchDetails?.[`team${item}`],
-                                  rate: rate,
+                                  rate: rateValue,
                                   type: "back",
                                   stake: 0,
                                   teamA:
@@ -292,6 +300,14 @@ function BookmakerTable({
                           }
                           onClick={() => {
                             const rate = +(data[`layTeam${item}`] || 0) + index;
+                            let rateValue;
+                              if((data.type=== "quickbookmaker1" ||
+                              data.type === "quickbookmaker2" ||
+                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
+                                rateValue = index  > 0 ? Math.trunc(rate) : rate;
+                              }else{
+                                rateValue = rate
+                              }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active
@@ -304,7 +320,7 @@ function BookmakerTable({
                                         ? "YES"
                                         : "NO"
                                       : matchDetails?.[`team${item}`],
-                                  rate: rate,
+                                  rate: rateValue,
                                   type: "lay",
                                   stake: 0,
                                   teamA:
