@@ -31,6 +31,19 @@ const GameList = () => {
       console.log(e);
     }
   };
+  const getMatchListServiceOnDeclare = (event: any) => {
+    try {
+      if (event?.gameType === id) {
+        if (event?.betType === "quickbookmaker1") {
+          setTimeout(() => {
+            dispatch(getMatchList({ matchType: id }));
+          }, 500);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     if (id) {
@@ -42,13 +55,17 @@ const GameList = () => {
     try {
       if (socket) {
         expertSocketService.match.matchAdded(getMatchListService);
-        socketService.userBalance.matchResultDeclared(getMatchListService);
-        socketService.userBalance.matchResultUnDeclared(getMatchListService);
+        socketService.userBalance.matchResultDeclared(
+          getMatchListServiceOnDeclare
+        );
+        socketService.userBalance.matchResultUnDeclared(
+          getMatchListServiceOnDeclare
+        );
         socketService.userBalance.declaredMatchResultAllUser(
-          getMatchListService
+          getMatchListServiceOnDeclare
         );
         socketService.userBalance.unDeclaredMatchResultAllUser(
-          getMatchListService
+          getMatchListServiceOnDeclare
         );
         return () => {
           expertSocketService.match.matchAddedOff();
