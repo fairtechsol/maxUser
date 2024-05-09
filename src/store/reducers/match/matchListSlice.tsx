@@ -376,31 +376,18 @@ const matchListSlice = createSlice({
           teamBrateRedisKey,
           teamCrateRedisKey,
         } = action.payload;
-        if (redisObject[teamCrateRedisKey]) {
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails?.profitLossDataMatch,
-              [profitLossDataForMatchConstants[matchBetType].A]:
-                redisObject[teamArateRedisKey],
-              [profitLossDataForMatchConstants[matchBetType].B]:
-                redisObject[teamBrateRedisKey],
-              [profitLossDataForMatchConstants[matchBetType].C]:
-                redisObject[teamCrateRedisKey],
-            },
-          };
-        } else {
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails?.profitLossDataMatch,
-              [profitLossDataForMatchConstants[matchBetType].A]:
-                redisObject[teamArateRedisKey],
-              [profitLossDataForMatchConstants[matchBetType].B]:
-                redisObject[teamBrateRedisKey],
-            },
-          };
-        }
+        state.matchDetails = {
+          ...state.matchDetails,
+          profitLossDataMatch: {
+            ...state.matchDetails?.profitLossDataMatch,
+            [profitLossDataForMatchConstants[matchBetType].A]:
+              redisObject[teamArateRedisKey],
+            [profitLossDataForMatchConstants[matchBetType].B]:
+              redisObject[teamBrateRedisKey],
+            [profitLossDataForMatchConstants[matchBetType].C]:
+              redisObject[teamCrateRedisKey],
+          },
+        };
       })
       .addCase(updateProfitLossOnDeleteSession.fulfilled, (state, action) => {
         const { betId, profitLoss, matchId } = action.payload;

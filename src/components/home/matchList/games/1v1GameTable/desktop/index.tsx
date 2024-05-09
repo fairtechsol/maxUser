@@ -68,57 +68,57 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                   <td>No matches available</td>
                 </tr>
               ) : (
-                <>{
-                  mTypeid === "cricket" && (<tr className="one-v-one-row overflow-hidden">
-                  <td className="px-2 w-50 align-middle">
-                    <div className="d-flex justify-content-between align-items-center ">
-                      {/* <Link
-          className="text-decoration-none"
-          to={`/game-detail/${item?.id}`}
-        > */}
-                      <div className="text-decoration-none">
-                        <div
-                          className="one-v-one-title title-14"
-                          style={{ color: "#343a40" }}
-                        >
-                          Ball By Ball
+                <>
+                  {availableGameType[mTypeid] === "cricket" && (
+                    <tr className="one-v-one-row overflow-hidden">
+                      <td className="px-2 w-50 align-middle">
+                        <div className="d-flex justify-content-between align-items-center ">
+                          {/* <Link
+            className="text-decoration-none"
+            to={`/game-detail/${item?.id}`}
+          > */}
+                          <div className="text-decoration-none">
+                            <div
+                              className="one-v-one-title title-14"
+                              style={{ color: "#343a40" }}
+                            >
+                              Ball By Ball
+                            </div>
+                          </div>
+                          <div className="d-flex align-items-center gap-2">
+                            <span
+                              className="liveDot"
+                              style={{ marginRight: "50px" }}
+                            ></span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="d-flex align-items-center gap-2">
-                        <span
-                          className="liveDot"
-                          style={{ marginRight: "50px" }}
-                        ></span>
-                      </div>
-                    </div>
-                  </td>
+                      </td>
 
-                  <React.Fragment>
-                    <BackLayComponent
-                      backRate={0}
-                      layRate={0}
-                      active={false}
-                      backPercent={0}
-                      layPercent={0}
-                    />
-                    <BackLayComponent
-                      backRate={0}
-                      layRate={0}
-                      active={false}
-                      backPercent={0}
-                      layPercent={0}
-                    />
-                    <BackLayComponent
-                      backRate={0}
-                      layRate={0}
-                      active={false}
-                      backPercent={0}
-                      layPercent={0}
-                    />
-                  </React.Fragment>
-                </tr>)
-                }
-                  
+                      <React.Fragment>
+                        <BackLayComponent
+                          backRate={0}
+                          layRate={0}
+                          active={false}
+                          backPercent={0}
+                          layPercent={0}
+                        />
+                        <BackLayComponent
+                          backRate={0}
+                          layRate={0}
+                          active={false}
+                          backPercent={0}
+                          layPercent={0}
+                        />
+                        <BackLayComponent
+                          backRate={0}
+                          layRate={0}
+                          active={false}
+                          backPercent={0}
+                          layPercent={0}
+                        />
+                      </React.Fragment>
+                    </tr>
+                  )}
                   {matchList?.map((item: any, index: number) => {
                     return (
                       <MatchListRow

@@ -61,6 +61,7 @@ function BackLayBox({
   };
   return (
     <div
+      onClick={() => onClick()}
       className={`backLay ${overlay ? "overlay" : ""}  ${
         customClass ? customClass : ""
       } bg-${isYellow ? "secondary" : bgColor}`}
@@ -68,7 +69,7 @@ function BackLayBox({
     >
       {location.pathname == "/home" ? (
         <div
-          onClick={() => onClick()}
+          // onClick={() => onClick()}
           className={`backLayBox text-center d-flex cursor-pointer ${
             isMobile ? " " : "boxheight"
           }`}
@@ -95,16 +96,22 @@ function BackLayBox({
       ) : (
         <BetStatusOverlay>
           <div
-            onClick={() => onClick()}
+            // onClick={() => onClick()}
             className={`backLayBox text-center d-flex cursor-pointer `}
           >
-            <h5 className={isMobile ? "backLay-rate f500 title-16 m-1 pt-3" : "backLay-rate f500 title-16 m-1 pt-4"}>
+            <span
+              className={
+                isMobile
+                  ? "backLay-rate f500 title-16 m-1 pt-3"
+                  : "backLay-rate f500 title-16 m-1 pt-4"
+              }
+            >
               {parseFloat(rate || 0) <= 0 || active
                 ? isMobile
                   ? "0"
                   : "-"
                 : handleRate(rate)}{" "}
-            </h5>
+            </span>
 
             {+percent > 0 && parseFloat(rate) > 0 && (
               <span className="backLay-percent title-10">
