@@ -53,12 +53,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
 
   return (
     <div
-      className={`bg-lightGray match-list-container ${isSportsRoute ? "match-list-containerm" : ""}`}
+      className={`bg-lightGray match-list-container ${isSportsRoute ? "match-list-containerm" : ""} ${location.pathname === "/home" || location.pathname === "/inPlay" ? '':'match-list-h'}`}
     >
       <div
         className={`scrollable-container ${isSportsRoute ? "match-list-containerm" : ""}`}
         ref={boxRef}
-        style={{height:'400px'}}
+        style={location.pathname === "/home" || location.pathname === "/inPlay" ?{height:'400px'}:{}}
       >
         {availableGameType[mTypeid || id] ? (
           <>
