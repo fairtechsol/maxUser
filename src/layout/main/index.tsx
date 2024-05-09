@@ -1,7 +1,7 @@
 // import { GiHamburgerMenu } from 'react-icons/gi';
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { socketService } from "../../socketManager";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import {
@@ -19,13 +19,20 @@ import TopBar from "./topbar";
 
 const MainLayout = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     if (!sessionStorage.getItem("jwtMaxUser")) {
       navigate("/");
+    } else if (
+      sessionStorage.getItem("jwtMaxUser") &&
+      sessionStorage.getItem("forceChangePassword") &&
+      !["login", "change-password"].includes(location.pathname)
+    ) {
+      navigate("/change-password");
     }
-  }, [navigate]);
+  }, [location.pathname]);
 
   const updateLoggedUserBalance = (event: any) => {
     dispatch(updateBalanceFromSocket(event));
