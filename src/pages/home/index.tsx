@@ -40,21 +40,35 @@ const Home = () => {
       console.log(e);
     }
   };
+
+  const getMatchListServiceOnDeclare = (event: any) => {
+    try {
+      if (event?.gameType === matchType) {
+        if (event?.betType === "quickbookmaker1") {
+          setTimeout(() => {
+            dispatch(getMatchList({ matchType: matchType }));
+          }, 500);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
     try {
       if (socket) {
         expertSocketService.match.matchAdded(getMatchListServiceSocket);
         socketService.userBalance.matchResultDeclared(
-          getMatchListServiceSocket
+          getMatchListServiceOnDeclare
         );
         socketService.userBalance.matchResultUnDeclared(
-          getMatchListServiceSocket
+          getMatchListServiceOnDeclare
         );
         socketService.userBalance.declaredMatchResultAllUser(
-          getMatchListServiceSocket
+          getMatchListServiceOnDeclare
         );
         socketService.userBalance.unDeclaredMatchResultAllUser(
-          getMatchListServiceSocket
+          getMatchListServiceOnDeclare
         );
         return () => {
           expertSocketService.match.matchAddedOff();

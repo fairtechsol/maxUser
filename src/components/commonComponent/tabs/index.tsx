@@ -23,7 +23,11 @@ const CommonTabs = ({
   }, [props?.id]);
 
   useEffect(() => {
-    setKey(defaultActive);
+    if (defaultActive) {
+      setKey(defaultActive);
+    } else {
+      setKey("cricket");
+    }
   }, [defaultActive]);
 
   return (
