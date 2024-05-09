@@ -56,33 +56,31 @@ const MobileMatchList = ({ type, setMatchType }: any) => {
       <CommonTabs
         callback={setMatchType}
         customClass="overflow-x-auto overflow-y-hidden no-wrap"
-        defaultActive="cricket"
+        defaultActive={type}
         fill={true}
         justify={true}
       >
-        {MatchListJson()
-          ?.filter((item) => item?.id == type || !type)
-          ?.map((item) => {
-            return (
-              <Tab
-                key={item?.id}
-                eventKey={item?.id}
-                tabClassName="m-match-list-tabs"
-                title={
-                  <div className="title-12 text-uppercase f500 nav-tab">
-                    <div className="text-white tab-icon">{item?.icon}</div>
-                    <span className="navtab-name">{item?.name}</span>
-                  </div>
-                }
-              >
-                {item?.type === GAME_TYPE.ONE_V_ONE ? (
-                  <OneVOneGameTable id={item?.id} />
-                ) : (
-                  ""
-                )}
-              </Tab>
-            );
-          })}
+        {MatchListJson()?.map((item) => {
+          return (
+            <Tab
+              key={item?.id}
+              eventKey={item?.id}
+              tabClassName="m-match-list-tabs"
+              title={
+                <div className="title-12 text-uppercase f500 nav-tab">
+                  <div className="text-white tab-icon">{item?.icon}</div>
+                  <span className="navtab-name">{item?.name}</span>
+                </div>
+              }
+            >
+              {item?.type === GAME_TYPE.ONE_V_ONE ? (
+                <OneVOneGameTable id={item?.id} />
+              ) : (
+                ""
+              )}
+            </Tab>
+          );
+        })}
       </CommonTabs>
     </div>
   );
