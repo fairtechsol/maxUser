@@ -70,10 +70,13 @@ const Home = () => {
   }, [socket, matchType]);
 
   useEffect(() => {
-    if (matchType) {
+    if (
+      matchType &&
+      ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
+    ) {
       getMatchListService();
     }
-  }, [matchType]);
+  }, [matchType, location.pathname.split("/")[1]]);
 
   useEffect(() => {
     rulesPopShow ? setShow(true) : setShow(false);

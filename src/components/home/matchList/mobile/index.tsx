@@ -56,7 +56,7 @@ const MobileMatchList = ({ type, setMatchType }: any) => {
       <CommonTabs
         callback={setMatchType}
         customClass="overflow-x-auto overflow-y-hidden no-wrap"
-        defaultActive="cricket"
+        defaultActive={type}
         fill={true}
         justify={true}
       >

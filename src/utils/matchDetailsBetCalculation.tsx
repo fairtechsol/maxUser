@@ -12,43 +12,6 @@ export const calculateProfitLoss = (
   ) {
     return "";
   }
-  // if (selectedData?.team?.type == "lay") {
-  //   if (selectedData?.team?.betOnTeam == team) {
-  //     return -parseFloat((+selectedData?.team?.stake || 0).toFixed(2));
-  //   } else {
-  //     return selectedData?.data?.type == matchBettingType.matchOdd
-  //       ? parseFloat(
-  //           (
-  //             (+selectedData?.team?.stake || 0) *
-  //             (parseFloat(selectedData?.team?.rate) / 100)
-  //           ).toFixed(2)
-  //         )
-  //       : parseFloat(
-  //           (
-  //             (+selectedData?.team?.stake || 0) *
-  //             (parseFloat(selectedData?.team?.rate) - 1)
-  //           ).toFixed(2)
-  //         );
-  //   }
-  // } else {
-  //   if (selectedData?.team?.betOnTeam != team) {
-  //     return -parseFloat((+selectedData?.team?.stake || 0).toFixed(2));
-  //   } else {
-  //     return selectedData?.data?.type == matchBettingType.matchOdd
-  //       ? parseFloat(
-  //           (
-  //             (+selectedData?.team?.stake || 0) *
-  //             (parseFloat(selectedData?.team?.rate) - 1)
-  //           ).toFixed(2)
-  //         )
-  //       : parseFloat(
-  //           (
-  //             (+selectedData?.team?.stake || 0) *
-  //             (parseFloat(selectedData?.team?.rate) / 100)
-  //           ).toFixed(2)
-  //         );
-  //   }
-  // }
   if (
     betData?.type === matchBettingType.matchOdd ||
     betData?.type === matchBettingType.tiedMatch1 ||

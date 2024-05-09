@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
 import isMobile from "../../../../utils/screenDimension";
-import {useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 interface props {
   bgColor?: string;
   rate: any;
@@ -43,6 +43,7 @@ function BackLayBox({
   // console.log("pathname", location.pathname);
   return (
     <div
+      onClick={() => onClick()}
       className={`backLay ${overlay ? "overlay" : ""}  ${
         customClass ? customClass : ""
       } bg-${isYellow ? "secondary" : bgColor}`}
@@ -50,8 +51,10 @@ function BackLayBox({
     >
       {location.pathname == "/home" ? (
         <div
-          onClick={() => onClick()}
-          className={`backLayBox text-center d-flex cursor-pointer ${isMobile ? " " : "boxheight"}`}
+          // onClick={() => onClick()}
+          className={`backLayBox text-center d-flex cursor-pointer ${
+            isMobile ? " " : "boxheight"
+          }`}
         >
           {/* <h5 className="backLay-rate f500 title-15 m-0 pt-1">
             {parseFloat(rate || 0) <= 0 || active
@@ -60,17 +63,31 @@ function BackLayBox({
                 : "-"
               : rate}{" "}
           </h5> */}
-          <h5 className={`backLay-rate f500 title-15 m-0 pt-2 ${isMobile ? 'mt-1' : ''}`}>
-            {parseFloat(rate || 0) <= 0 || active ? (isMobile ? "0" : "-") : rate}{" "}
+          <h5
+            className={`backLay-rate f500 title-15 m-0 pt-2 ${
+              isMobile ? "mt-1" : ""
+            }`}
+          >
+            {parseFloat(rate || 0) <= 0 || active
+              ? isMobile
+                ? "0"
+                : "-"
+              : rate}{" "}
           </h5>
         </div>
       ) : (
         <BetStatusOverlay>
           <div
-            onClick={() => onClick()}
+            // onClick={() => onClick()}
             className={`backLayBox text-center d-flex cursor-pointer `}
           >
-            <span className={isMobile ? "backLay-rate f500 title-16 m-1 pt-3" : "backLay-rate f500 title-16 m-1 pt-4"}>
+            <span
+              className={
+                isMobile
+                  ? "backLay-rate f500 title-16 m-1 pt-3"
+                  : "backLay-rate f500 title-16 m-1 pt-4"
+              }
+            >
               {parseFloat(rate || 0) <= 0 || active
                 ? isMobile
                   ? "0"
