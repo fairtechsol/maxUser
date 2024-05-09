@@ -12,6 +12,9 @@ interface props {
   onClick?: any;
   style?: React.CSSProperties;
   active?: boolean;
+  indexs?: number;
+  type?: string;
+  box?: string;
   // onClick?: () => void;
 }
 function BackLayBox({
@@ -23,6 +26,9 @@ function BackLayBox({
   onClick,
   style,
   active,
+  indexs,
+  type,
+  box
 }: props) {
   const inlineStyle: React.CSSProperties = {
     ...style,
@@ -30,7 +36,7 @@ function BackLayBox({
   const location = useLocation();
   const [tempRate, setTempRate] = useState("0");
   const [isYellow, setIsYellow] = useState(false);
-
+  // console.log('first',type)
   useEffect(() => {
     if (parseFloat(rate) != parseFloat(tempRate)) {
       setTimeout(() => {
@@ -40,7 +46,19 @@ function BackLayBox({
       setTempRate(rate);
     }
   }, [rate]);
-  // console.log("pathname", location.pathname);
+  const handleRate = (rate: any) => {
+    let value;
+    if (
+      (type === "quickbookmaker1" ||
+      type === "quickbookmaker2" ||
+      type === "quickbookmaker3" || type === 'tiedMatch2') && !isMobile
+    ) {
+      value = indexs !== undefined && (box=='lay'? indexs > 0 : indexs<2) ? Math.trunc(rate) : rate;
+    } else {
+      value = rate;
+    }
+    return value;
+  };
   return (
     <div
       onClick={() => onClick()}
@@ -92,7 +110,7 @@ function BackLayBox({
                 ? isMobile
                   ? "0"
                   : "-"
-                : rate}{" "}
+                : handleRate(rate)}{" "}
             </span>
 
             {+percent > 0 && parseFloat(rate) > 0 && (

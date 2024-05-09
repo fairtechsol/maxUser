@@ -213,6 +213,9 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
+                          indexs={index}
+                          type={data.type}
+                          box={'back'}
                           customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
@@ -228,6 +231,14 @@ function BookmakerTable({
                               (+data[`backTeam${item}`] || 0) -
                               (isMobile ? 0 : 2) +
                               index;
+                              let rateValue;
+                              if((data.type=== "quickbookmaker1" ||
+                              data.type === "quickbookmaker2" ||
+                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
+                                rateValue = index <2 ? Math.trunc(rate) : rate;
+                              }else{
+                                rateValue = rate
+                              }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active
@@ -240,7 +251,7 @@ function BookmakerTable({
                                         ? "YES"
                                         : "NO"
                                       : matchDetails?.[`team${item}`],
-                                  rate: rate,
+                                  rate: rateValue,
                                   type: "back",
                                   stake: 0,
                                   teamA:
@@ -274,6 +285,9 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
+                          indexs={index}
+                          type={data.type}
+                          box={'lay'}
                           customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
@@ -286,6 +300,14 @@ function BookmakerTable({
                           }
                           onClick={() => {
                             const rate = +(data[`layTeam${item}`] || 0) + index;
+                            let rateValue;
+                              if((data.type=== "quickbookmaker1" ||
+                              data.type === "quickbookmaker2" ||
+                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
+                                rateValue = index  > 0 ? Math.trunc(rate) : rate;
+                              }else{
+                                rateValue = rate
+                              }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active
@@ -298,7 +320,7 @@ function BookmakerTable({
                                         ? "YES"
                                         : "NO"
                                       : matchDetails?.[`team${item}`],
-                                  rate: rate,
+                                  rate: rateValue,
                                   type: "lay",
                                   stake: 0,
                                   teamA:

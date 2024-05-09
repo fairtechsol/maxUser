@@ -43,7 +43,45 @@ function OverUnderMarket({
   let arr = ["A", "B"];
 
   const matchResult: any = title?.match(/\d+(\.\d+)?/g);
-
+  const calculateValue = (
+    data: any,
+    indexs: number,
+    matchDetails: any,
+    matchs: any
+  ) => {
+    let rate;
+    if (data?.type === "tiedMatch1") {
+      if (indexs === 0) {
+        rate = Number(matchDetails?.profitLossDataMatch?.yesRateTie) || 0;
+      } else {
+        rate = Number(matchDetails?.profitLossDataMatch?.noRateTie) || 0;
+      }
+    } else if (data?.type === "completeMatch") {
+      if (indexs === 0) {
+        rate = Number(matchDetails?.profitLossDataMatch?.yesRateComplete) || 0;
+      } else {
+        rate = Number(matchDetails?.profitLossDataMatch?.noRateComplete) || 0;
+      }
+    } else if(data?.type?.includes('.5')){
+      let name =  data?.name?.split('_');
+      if (indexs === 0) {
+        rate = Number(matchDetails?.profitLossDataMatch[`yesRateUnderOver${name[name?.length-1]}`]) || 0;
+      } else {
+        rate = Number(matchDetails?.profitLossDataMatch[`noRateUnderOver${name[name?.length-1]}`]) || 0;
+      }
+    } else {
+      if (matchDetails?.profitLossDataMatch?.[`userTeam${matchs}RateSetWinner${data?.name[data?.name?.length-1]}`]) {
+        rate = (
+        Number(matchDetails?.profitLossDataMatch?.[`userTeam${matchs}RateSetWinner${data?.name[data?.name?.length-1]}`]) || 0
+        );
+      } else {
+        rate = (
+          Number(matchDetails?.profitLossDataMatch?.[`userTeam${matchs}RateSetWinner${data?.name[data?.name?.length-1]}`]) || 0
+        );
+      }
+    }
+    return rate;
+  };
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -80,7 +118,7 @@ function OverUnderMarket({
         <tbody>
           {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
-            ?.map((_, indexes) => {
+            ?.map((matchs, indexes) => {
               return (
                 <tr key={indexes}>
                   <td>
@@ -128,30 +166,59 @@ function OverUnderMarket({
                         </span>
                         <span
                           className={`title-14 ${
-                            Number(
+                            (Number(
                               calculateProfitLoss(
                                 data,
                                 selectedBet,
-                                indexes === 0 ? "Under" : "Over"
-                              ) || 0
-                            ) < 0
+                                matchs=='A'?'UNDER':'OVER'
+                              )
+                            ) +
+                            Number(
+                              calculateValue(
+                                data,
+                                indexes,
+                                matchDetails,
+                                matchs
+                              )
+                            )) < 0
                               ? "color-red"
-                              : Number(
-                                  calculateProfitLoss(
-                                    data,
-                                    selectedBet,
-                                    indexes === 0 ? "Under" : "Over"
-                                  ) || 0
-                                ) > 0
+                              : (Number(
+                                calculateProfitLoss(
+                                  data,
+                                  selectedBet,
+                                  matchs=='A'?'UNDER':'OVER'
+                                )
+                              ) +
+                              Number(
+                                calculateValue(
+                                  data,
+                                  indexes,
+                                  matchDetails,
+                                  matchs
+                                )
+                              )) > 0
                               ? "color-green"
                               : ""
                           }`}
                         >
-                          {calculateProfitLoss(
-                            data,
-                            selectedBet,
-                            indexes === 0 ? "Under" : "Over"
-                          )}
+                          {selectedBet?.team?.stake > 0 &&
+                          selectedBet?.data?.type == data.type
+                            ? (Number(
+                                calculateProfitLoss(
+                                  data,
+                                  selectedBet,
+                                  matchs=='A'?'UNDER':'OVER'
+                                )
+                              ) +
+                              Number(
+                                calculateValue(
+                                  data,
+                                  indexes,
+                                  matchDetails,
+                                  matchs
+                                )
+                              )).toFixed(2)
+                            : null}
                         </span>
                       </div>
                     </div>

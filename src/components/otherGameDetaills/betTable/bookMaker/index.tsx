@@ -45,7 +45,36 @@ function FootballBookmakerTable({
   } else {
     arr = ["A", "B", "C"];
   }
-
+  const calculateValue = (
+    data: any,
+    indexs: number,
+    matchDetails: any,
+    matchs: any
+  ) => {
+    if (data?.type === "tiedMatch1") {
+      if (indexs === 0) {
+        return Number(matchDetails?.profitLossDataMatch?.yesRateTie) || 0;
+      } else {
+        return Number(matchDetails?.profitLossDataMatch?.noRateTie) || 0;
+      }
+    } else if (data?.type === "completeMatch") {
+      if (indexs === 0) {
+        return Number(matchDetails?.profitLossDataMatch?.yesRateComplete) || 0;
+      } else {
+        return Number(matchDetails?.profitLossDataMatch?.noRateComplete) || 0;
+      }
+    } else {
+      if (matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) {
+        return (
+          Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) || 0
+        );
+      } else {
+        return (
+          Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) || 0
+        );
+      }
+    }
+  };
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -146,30 +175,74 @@ function FootballBookmakerTable({
                       </span>
                       <span
                         className={`title-14 ${
-                          Number(
+                          (Number(
                             calculateProfitLoss(
                               data,
                               selectedBet,
-                              matchDetails?.[`team${item}`]
-                            ) || 0
-                          ) < 0
+                              data?.type === "completeMatch" ||
+                                data?.type === "tiedMatch1"
+                                ? i === 0
+                                  ? "YES"
+                                  : "NO"
+                                : matchDetails?.[`team${item}`]
+                            )
+                          ) +
+                          Number(
+                            calculateValue(
+                              data,
+                              i,
+                              matchDetails,
+                              item
+                            )
+                          )) < 0
                             ? "color-red"
-                            : Number(
-                                calculateProfitLoss(
-                                  data,
-                                  selectedBet,
-                                  matchDetails?.[`team${item}`]
-                                ) || 0
-                              ) > 0
+                            : (Number(
+                              calculateProfitLoss(
+                                data,
+                                selectedBet,
+                                data?.type === "completeMatch" ||
+                                  data?.type === "tiedMatch1"
+                                  ? i === 0
+                                    ? "YES"
+                                    : "NO"
+                                  : matchDetails?.[`team${item}`]
+                              )
+                            ) +
+                            Number(
+                              calculateValue(
+                                data,
+                                i,
+                                matchDetails,
+                                item
+                              )
+                            )) > 0
                             ? "color-green"
                             : ""
                         }`}
                       >
-                        {calculateProfitLoss(
-                          data,
-                          selectedBet,
-                          matchDetails?.[`team${item}`]
-                        )}
+                        {selectedBet?.team?.stake > 0 &&
+                          selectedBet?.data?.type == data.type
+                            ? (Number(
+                                calculateProfitLoss(
+                                  data,
+                                  selectedBet,
+                                  data?.type === "completeMatch" ||
+                                    data?.type === "tiedMatch1"
+                                    ? i === 0
+                                      ? "YES"
+                                      : "NO"
+                                    : matchDetails?.[`team${item}`]
+                                )
+                              ) +
+                              Number(
+                                calculateValue(
+                                  data,
+                                  i,
+                                  matchDetails,
+                                  item
+                                )
+                              )).toFixed(2)
+                            : null}
                       </span>
                     </div>
                   </div>
@@ -189,6 +262,9 @@ function FootballBookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
+                          indexs={index}
+                          type={data.type}
+                          box={'back'}
                           customClass={`match-odd-bet-place ${
                             isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
@@ -205,6 +281,14 @@ function FootballBookmakerTable({
                               (+data[`backTeam${item}`] || 0) -
                               (isMobile ? 0 : 2) +
                               index;
+                              let rateValue;
+                              if((data.type=== "quickbookmaker1" ||
+                              data.type === "quickbookmaker2" ||
+                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
+                                rateValue = index <2 ? Math.trunc(rate) : rate;
+                              }else{
+                                rateValue = rate
+                              }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active
@@ -212,7 +296,7 @@ function FootballBookmakerTable({
                               handleClick(
                                 {
                                   betOnTeam: matchDetails?.[`team${item}`],
-                                  rate: rate,
+                                  rate: rateValue,
                                   type: "back",
                                   stake: 0,
                                   teamA: matchDetails?.teamA,
@@ -241,6 +325,9 @@ function FootballBookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
+                          indexs={index}
+                          type={data.type}
+                          box={'lay'}
                           customClass={`match-odd-bet-place ${
                             isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
@@ -254,6 +341,14 @@ function FootballBookmakerTable({
                           }
                           onClick={() => {
                             const rate = +(data[`layTeam${item}`] || 0) + index;
+                            let rateValue;
+                              if((data.type=== "quickbookmaker1" ||
+                              data.type === "quickbookmaker2" ||
+                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
+                                rateValue = index  > 0 ? Math.trunc(rate) : rate;
+                              }else{
+                                rateValue = rate
+                              }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active
@@ -261,7 +356,7 @@ function FootballBookmakerTable({
                               handleClick(
                                 {
                                   betOnTeam: matchDetails?.[`team${item}`],
-                                  rate: rate,
+                                  rate: rateValue,
                                   type: "lay",
                                   stake: 0,
                                   teamA: matchDetails?.teamA,
