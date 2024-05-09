@@ -30,18 +30,17 @@ const FootballMobileGameDetail = () => {
       <FootballPlaceBet show={show} setShow={setShow} />
 
       <CommonTabs
-        customClass="overflow-x-auto overflow-y-hidden no-wrap"
+       className="color"
         defaultActive="odds"
-        fill={true}
       >
         {[
           {
             id: "odds",
-            name: "Odds",
+            name: "ODDS",
           },
           {
             id: "matchedBet",
-            name: `Matched Bet(${Array.from(new Set(placedBets))?.length})`,
+            name: `MATCHED BET(${Array.from(new Set(placedBets))?.length})`,
           },
         ]?.map((item, index) => {
           return (

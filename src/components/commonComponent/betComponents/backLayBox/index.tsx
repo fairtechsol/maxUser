@@ -46,7 +46,6 @@ function BackLayBox({
       setTempRate(rate);
     }
   }, [rate]);
-  console.log("pathname", type);
   const handleRate = (rate: any) => {
     let value;
     if (
@@ -99,7 +98,7 @@ function BackLayBox({
             onClick={() => onClick()}
             className={`backLayBox text-center d-flex cursor-pointer `}
           >
-            <h5 className="backLay-rate f500 title-16 m-1 pt-4">
+            <h5 className={isMobile ? "backLay-rate f500 title-16 m-1 pt-3" : "backLay-rate f500 title-16 m-1 pt-4"}>
               {parseFloat(rate || 0) <= 0 || active
                 ? isMobile
                   ? "0"
