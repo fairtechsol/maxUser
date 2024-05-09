@@ -37,7 +37,7 @@ const BetHistoryComponent = () => {
   ];
   const optionsType = [
     { value: "MATCHED", label: "Matched" },
-    { value: "UNMATCHED", label: "UnMatched" },
+    // { value: "UNMATCHED", label: "UnMatched" },
     { value: "DELETED", label: "Deleted" },
   ];
   const dispatch: AppDispatch = useDispatch();

@@ -60,27 +60,33 @@ const MobileMatchList = ({ type, setMatchType }: any) => {
         fill={true}
         justify={true}
       >
-        {MatchListJson()?.map((item) => {
-          return (
-            <Tab
-              key={item?.id}
-              eventKey={item?.id}
-              tabClassName="m-match-list-tabs"
-              title={
-                <div className="title-12 text-uppercase f500 nav-tab">
-                  <div className="text-white tab-icon">{item?.icon}</div>
-                  <span className="navtab-name">{item?.name}</span>
-                </div>
-              }
-            >
-              {item?.type === GAME_TYPE.ONE_V_ONE ? (
-                <OneVOneGameTable id={item?.id} />
-              ) : (
-                ""
-              )}
-            </Tab>
-          );
-        })}
+        {MatchListJson()
+          // ?.filter((item) => item?.id == type || !type)
+          ?.map((item) => {
+            return (
+              <Tab
+                key={item?.id}
+                eventKey={item?.id}
+                tabClassName="m-match-list-tabs"
+                title={
+                  <div className="title-12 text-uppercase f500 nav-tab">
+                    {item?.img ? ( 
+                      <img src={item?.img} alt={item?.name} className="tab-img" />
+                    ) : (
+                      <div className="text-white tab-icon">{item?.icon}</div>
+                    )}
+                    <span className="navtab-name">{item?.name}</span>
+                  </div>
+                }
+              >
+                {item?.type === GAME_TYPE.ONE_V_ONE ? (
+                  <OneVOneGameTable id={item?.id} />
+                ) : (
+                  ""
+                )}
+              </Tab>
+            );
+          })}
       </CommonTabs>
     </div>
   );

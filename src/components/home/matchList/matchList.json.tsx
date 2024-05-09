@@ -11,6 +11,7 @@ import { FaTableTennis } from "react-icons/fa";
 import { GiPoolTriangle } from "react-icons/gi";
 import { TbPlayVolleyball } from "react-icons/tb";
 import { GiHound } from "react-icons/gi";
+import { Grey, Horse, Kabaddi, Snooker, TableT, Volley } from "../../../assets/images";
 const MatchListJson = () => {
   return [
     {
@@ -18,12 +19,14 @@ const MatchListJson = () => {
       name: "Football",
       icon: <RiFootballLine />,
       type: GAME_TYPE.ONE_V_ONE,
+    
     },
     {
       id: "tennis",
       name: "Tennis",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <IoTennisball />,
+    
     },
     {
       id: "cricket",
@@ -36,18 +39,21 @@ const MatchListJson = () => {
       name: "Horse Racing",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <GiHorseHead />,
+      img: Horse
     },
     {
       id: "tabletennis",
       name: "Table Tennis",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <FaTableTennis />,
+      img: TableT
     },
     {
       id: "greyhoundracing",
       name: "Greyhound Racing",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <GiHound />,
+      img: Grey
     },
     {
       id: "basketball",
@@ -60,12 +66,14 @@ const MatchListJson = () => {
       name: "Volleyball",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <TbPlayVolleyball />,
+      img: Volley
     },
     {
       id: "kabaddi",
       name: "Kabaddi",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <MdSportsKabaddi />,
+      img: Kabaddi
     },
     {
       id: "futsal",
@@ -84,6 +92,7 @@ const MatchListJson = () => {
       id: "snooker",
       name: "Snooker",
       type: GAME_TYPE.ONE_V_ONE,
+      img: Snooker
     },
   ];
 };
