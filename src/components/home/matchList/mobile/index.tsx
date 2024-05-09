@@ -61,7 +61,7 @@ const MobileMatchList = ({ type, setMatchType }: any) => {
         justify={true}
       >
         {MatchListJson()
-          ?.filter((item) => item?.id == type || !type)
+          // ?.filter((item) => item?.id == type || !type)
           ?.map((item) => {
             return (
               <Tab
