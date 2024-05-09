@@ -1,5 +1,4 @@
-import React from "react";
-// import { FiMonitor } from "react-icons/fi";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { RootState } from "../../../../../../store/store";
@@ -7,39 +6,12 @@ import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import moment from "moment-timezone";
 import { Img } from "react-image";
-import {
-  availableGameType,
-  casinoIcons,
-} from "../../../../../../utils/constants";
+import { availableGameType, casinoIcons } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import fancy from "../../../../../../assets/images/ic_fancy.png";
 import bm from "../../../../../../assets/images/ic_bm.png";
+
 const MobileOneVOneGame = ({ mTypeid }: any) => {
-  // const mainContainerRef = useRef<any>(null);
-
-  // const scrollableContainerRef = useRef<any>(null);
-
-  // useEffect(() => {
-  //   const mainContainer = mainContainerRef.current;
-  //   const scrollableContainer = scrollableContainerRef.current;
-
-  //   const handleScroll = () => {
-  //     // Check if scroll position is at the bottom of the scrollable container
-  //     if (
-  //       scrollableContainer.scrollTop + scrollableContainer.clientHeight >=
-  //       scrollableContainer.scrollHeight
-  //     ) {
-  //       // Scroll the main container into view smoothly
-  //       mainContainer.scrollIntoView({ behavior: 'smooth' });
-  //     }
-  //   };
-
-  //   scrollableContainer.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     scrollableContainer.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -47,16 +19,46 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const location = useLocation();
   const isSportsRoute = location.pathname === "/sports";
+
+  const [isAtBottom, setIsAtBottom] = useState(false);
+  const boxRef = useRef<HTMLDivElement>(null); // Specify the type of useRef
+
+  const handleScroll = useCallback(() => {
+    const box = boxRef.current;
+    if (box) {
+      setIsAtBottom(box.scrollTop + box.clientHeight >= box.scrollHeight);
+    }
+  }, []);
+
+  useEffect(() => {
+    const box = boxRef.current;
+    if (box) {
+      box.addEventListener('scroll', handleScroll);
+    }
+    return () => {
+      if (box) {
+        box.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [handleScroll]);
+
+  useEffect(() => {
+    if (isAtBottom) {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  }, [isAtBottom]);
+
   return (
     <div
-      className={`bg-lightGray match-list-container ${
-        isSportsRoute ? "match-list-containerm" : ""
-      }`}
+      className={`bg-lightGray match-list-container ${isSportsRoute ? "match-list-containerm" : ""}`}
     >
       <div
-        className={`scrollable-container ${
-          isSportsRoute ? "match-list-containerm" : ""
-        }`}
+        className={`scrollable-container ${isSportsRoute ? "match-list-containerm" : ""}`}
+        ref={boxRef}
+        style={{height:'400px'}}
       >
         {availableGameType[mTypeid || id] ? (
           <>

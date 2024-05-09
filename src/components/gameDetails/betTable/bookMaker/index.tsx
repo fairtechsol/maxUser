@@ -213,6 +213,9 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
+                          indexs={index}
+                          type={data.type}
+                          box={'back'}
                           customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
@@ -274,6 +277,9 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
+                          indexs={index}
+                          type={data.type}
+                          box={'lay'}
                           customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
