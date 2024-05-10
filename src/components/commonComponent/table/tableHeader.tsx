@@ -12,6 +12,7 @@ interface TableHeaderProps {
   setTableConfig: any;
   rowPerPage: number;
   setRowPerPage: any;
+  paginationCount?:boolean;
 }
 
 const TableHeader: React.FC<TableHeaderProps> = ({
@@ -21,6 +22,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({
   setTableConfig,
   rowPerPage,
   setRowPerPage,
+  paginationCount,
 }) => {
   const [keyword, setKeyword] = useState("");
   useEffect(() => {
@@ -47,7 +49,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({
           </CustomButton>
         </div>
       )}
-      {isPagination && (
+      {isPagination && paginationCount &&(
         <RowPerPage value={rowPerPage} onChange={setRowPerPage} />
       )}
       {isSearch && <SearchBox value={keyword} onSearch={setKeyword} />}
