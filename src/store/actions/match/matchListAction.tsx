@@ -204,7 +204,11 @@ export const getCompetitionMatches = createAsyncThunk<any, any>(
         `${ApiConstants.EXPERT.COMPETITIONMATCHES}${requestData?.id}/${requestData?.date}`
       );
       if (resp?.data) {
-        return resp?.data;
+        let data = {
+          data: resp?.data,
+          matchType:requestData?.matchType
+        }
+        return data;
       }
     } catch (error) {
       const err = error as AxiosError;

@@ -79,11 +79,11 @@ const MenuCollapse: React.FC<{
         competitionIndex
       ].children.findIndex((item: any) => item?.id === selectedDate);
       selectedMatchChildren[competitionIndex].children[dateIndex].children =
-        competitionMatches?.map((item: any) => ({
+        competitionMatches?.data?.map((item: any) => ({
           name: item?.title,
           id: item?.id,
           type: "item",
-          path: `/game-detail/${item?.id}`,
+          path: `/${competitionMatches?.matchType === 'cricket'?'game-detail':'other-game-detail'}/${competitionMatches?.matchType}/${item?.id}`,
         }));
       setMenuItemList(tempList);
     }
@@ -127,6 +127,7 @@ const MenuCollapse: React.FC<{
                             getCompetitionMatches({
                               date: menuItemChild?.id,
                               id: sideBarChild?.id,
+                              matchType:data?.id
                             })
                           );
                         }
