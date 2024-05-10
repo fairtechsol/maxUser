@@ -8,7 +8,7 @@ import {
 interface InitialState {
   competitionList: Array<object>;
   competitionDates: Array<object>;
-  competitionMatches: Array<object>;
+  competitionMatches: any;
   loading: boolean;
   success: boolean;
   error: any;
@@ -17,7 +17,7 @@ interface InitialState {
 const initialState: InitialState = {
   competitionList: [],
   competitionDates: [],
-  competitionMatches: [],
+  competitionMatches: null,
   loading: false,
   success: false,
   error: null,
