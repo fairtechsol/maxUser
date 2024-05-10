@@ -126,7 +126,9 @@ export const betReportList = createAsyncThunk<any, any>(
           requestData.status
         }&betPlaced.eventType=${requestData?.matchType}&keyword=${
           requestData?.keyword || ""
-        }${requestData?.filter || ""}`
+        }${requestData?.filter || ""}&page=${requestData.page || 1}&limit=${
+          requestData.limit || 10
+        }`
       );
       if (resp?.data) {
         return resp?.data;
