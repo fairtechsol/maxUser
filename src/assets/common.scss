@@ -284,6 +284,31 @@ margin-right: 0%;
   width: 34px;
 }
 
+/* ===== for reports  ====  */
+
+.coloumn-6 {
+  flex: 0 0 auto;
+  width: 50%;
+  display: grid;
+  justify-content: flex-start;
+  text-align: start;
+  font-size: 11px;
+}
+.reportBody{
+  font-size: 12px;
+}
+
+.unsetteled-bet {
+  padding: 1px 5px;
+  box-shadow: 0 3px 5px -3px;
+  margin-bottom: 5px;
+}
+
+.unsetteled-bet a {
+  color: #2587d0 !important;
+}
+
+
 /* ===== for title ====  */
 .title-46 {
   font-size: 46px !important;

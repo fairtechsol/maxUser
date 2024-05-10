@@ -135,10 +135,11 @@ const UnsettledBetComponent = () => {
               />
             </Col>
           </Row>
-          <CustomTable
+          {!isMobile && <CustomTable
             bordered={true}
             striped={!isMobile}
             isPagination={true}
+            paginationCount={true}
             isSearch={true}
             setTableConfig={setTableConfig}
             itemCount={
@@ -165,31 +166,89 @@ const UnsettledBetComponent = () => {
                     >
                       {column.type === "date"
                         ? moment(_.get(item, column?.id)).format(
-                            "MM/DD/YYYY hh:mm:ss A"
-                          )
+                          "MM/DD/YYYY hh:mm:ss A"
+                        )
                         : column.type === "index"
-                        ? `${index + 1}`
-                        : _.get(item, column.id)}
+                          ? `${index + 1}`
+                          : _.get(item, column.id)}
                     </td>
                     // <td key={index}>{item.userName}</td>
                   ))}
                 </tr>
               ))}
-            {/* <tr className={`${isMobile && "title-12"}`}>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123456</td>
-              <td>123459999999996</td>
-            </tr> */}
-          </CustomTable>
+          </CustomTable>}
         </Stack>
       </div>
+      {isMobile && <CustomTable
+        bordered={true}
+        striped={!isMobile}
+        isPagination={true}
+        paginationCount={false}
+        isSearch={false}
+        setTableConfig={setTableConfig}
+        itemCount={
+          ReportBetList && ReportBetList?.count > 0
+            ? ReportBetList?.count
+            : 0
+        }
+        columns={[]}
+      >
+        <Row className="row row5 mt-2">
+          <Col className="col-12" colspan={12}>
+            {ReportBetList?.count > 0 &&
+              ReportBetList?.rows?.map((item: any, index: number) => {
+                return (
+                  <div className={`unsetteled-bet ${item.betType === "NO" || item.betType === "LAY"
+                    ? "bg-red1"
+                    : "bg-blue3"}`} key={index}>
+                    <div className="row row5">
+                      <div className="col-6 coloumn-6">
+                        <div>
+                          <a>
+                            <span>{item.eventName}</span>
+                          </a>
+                        </div>
+                        <div>
+                          <span>Event Type: {item.eventType}</span>
+                        </div>
+                        <div>
+                          <span>Market Name: </span> {item?.marketType}
+                        </div>
+                        <div>
+                          <span>Place Date: </span> {moment(item?.createdAt).format(
+                            "MM/DD/YYYY hh:mm:ss A")}
+                        </div>
+                        <div>
+                          <span>Matched Date: </span> {moment(item?.match?.startAt)
+                            .format(
+                              "MM/DD/YYYY hh:mm:ss A")}
+                        </div>
+                      </div>
+                      <Col className="col-2 reportBody" colspan={6}>
+                        <div>
+                          <span>Nation</span>
+                        </div>
+                        <div>{item.teamName}</div>
+                      </Col>
+                      <div className="col-2 text-right reportBody">
+                        <div>
+                          <span>Rate</span>
+                        </div>
+                        <div>{item.odds}</div>
+                      </div>
+                      <div className="col-2 text-right reportBody">
+                        <div>
+                          <span>Amount</span>
+                        </div>
+                        <div>{item.amount}</div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+          </Col>
+        </Row>
+      </CustomTable>}
     </ReportContainer>
   );
 };
