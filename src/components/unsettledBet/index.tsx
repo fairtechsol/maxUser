@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import _ from "lodash";
 
 interface Column {
   id: string;
@@ -58,7 +59,7 @@ const columns: Column[] = [
     type: "date",
   },
   {
-    id: "createdAt",
+    id: "match.startAt",
     label: "Match Date",
     type: "date",
   },
@@ -67,7 +68,7 @@ const columns: Column[] = [
 const UnsettledBetComponent = () => {
   const dispatch: AppDispatch = useDispatch();
   const [tableConfig, setTableConfig] = useState<any>(null);
-  const [selectedOption, setSelectedOption] = useState("MATCHED");
+  const [selectedOption, setSelectedOption] = useState("PENDING");
   const { ReportBetList } = useSelector(
     (state: RootState) => state.currentBetList
   );
@@ -80,6 +81,7 @@ const UnsettledBetComponent = () => {
           status: e.target.id,
           page: 1,
           limit: tableConfig?.rowPerPage,
+          keyword: tableConfig?.keyword,
         })
       );
     } else {
@@ -91,7 +93,7 @@ const UnsettledBetComponent = () => {
     dispatch(
       settleUnsettleMatch({
         status: selectedOption,
-        page: 1,
+        page: tableConfig?.page,
         limit: tableConfig?.rowPerPage,
         keyword: tableConfig?.keyword,
       })
@@ -107,9 +109,9 @@ const UnsettledBetComponent = () => {
                 label="Matched"
                 name="matched"
                 type="radio"
-                id={"MATCHED"}
+                id={"PENDING"}
                 onChange={(e) => handleCheckboxChange(e)}
-                defaultChecked={selectedOption === "MATCHED"}
+                defaultChecked={selectedOption === "PENDING"}
               />
             </Col>
             <Col md={2} xs={4}>
@@ -162,12 +164,12 @@ const UnsettledBetComponent = () => {
                       }
                     >
                       {column.type === "date"
-                        ? moment(item[column?.id]).format(
+                        ? moment(_.get(item, column?.id)).format(
                             "MM/DD/YYYY hh:mm:ss A"
                           )
                         : column.type === "index"
                         ? `${index + 1}`
-                        : item[column.id]}
+                        : _.get(item, column.id)}
                     </td>
                     // <td key={index}>{item.userName}</td>
                   ))}

@@ -67,10 +67,13 @@ const CustomTable: React.FC<CustomTableProps> = ({
 
   //   for api fetching when sort or page change
   useEffect(() => {
-    setTableConfig({
-      page: currentPage,
-      sort: sortConfig,
-      rowPerPage: rowPerPage,
+    setTableConfig((prev: any) => {
+      return {
+        ...prev,
+        page: currentPage,
+        sort: sortConfig,
+        rowPerPage: rowPerPage,
+      };
     });
     // alert(tHeadTheme);
   }, [currentPage, sortConfig, rowPerPage]);
@@ -91,11 +94,9 @@ const CustomTable: React.FC<CustomTableProps> = ({
             {/* Table header with sorting icons */}
             {columns.map((column, index) => (
               <th
-              className={`${tHeadTheme} text-center ${
-                isMobile
-                  ? "bg-secondary title-12 f800 p-1"
-                  : "f400"
-              }`}
+                className={`${tHeadTheme} text-center ${
+                  isMobile ? "bg-secondary title-12 f800 p-1" : "f400"
+                }`}
                 key={index}
               >
                 {column.label}
@@ -136,7 +137,6 @@ const CustomTable: React.FC<CustomTableProps> = ({
           currentPage={currentPage}
           totalPages={Math.ceil(itemCount / rowPerPage)}
           onPageChange={onPageChange}
-        
         />
       )}
     </div>
