@@ -28,12 +28,12 @@ const BetHistoryComponent = () => {
   const { ReportBetList } = useSelector(
     (state: RootState) => state.currentBetList
   );
-  const [minDate2, setminDate2] = useState<any>(minDate)
-
+  const [minDate2, setminDate2] = useState<any>(minDate);
 
   const optionsMatch = [
     { value: "cricket", label: "Cricket" },
     { value: "football", label: "Football" },
+    { value: "tennis", label: "Tennis" },
   ];
   const optionsType = [
     { value: "MATCHED", label: "Matched" },
@@ -41,7 +41,7 @@ const BetHistoryComponent = () => {
     { value: "DELETED", label: "Deleted" },
   ];
   const dispatch: AppDispatch = useDispatch();
-  const [tableConfig, setTableConfig] = useState<TableConfig | null>(null);
+  const [tableConfig, setTableConfig] = useState<TableConfig | any>(null);
   const [selectType, setSelectType] = useState({
     value: "MATCHED",
     label: "Matched",
@@ -56,6 +56,8 @@ const BetHistoryComponent = () => {
       betReportList({
         status: selectType?.value,
         matchType: selectMatch?.value,
+        page: tableConfig?.page,
+        limit: tableConfig?.rowPerPage,
       })
     );
   }, [tableConfig]);
@@ -89,6 +91,8 @@ const BetHistoryComponent = () => {
           status: selectType?.value,
           matchType: selectMatch?.value,
           filter: filter,
+          page: 1,
+          limit: tableConfig.rowPerPage,
         })
       );
     }
@@ -97,14 +101,12 @@ const BetHistoryComponent = () => {
     const date = Math.floor(new Date().getTime() / 1000);
     const timestamp = Math.floor(new Date(fromDate).getTime() / 1000);
     if (timestamp !== date) {
-      setminDate2(fromDate)
+      setminDate2(fromDate);
     }
-  }, [fromDate])
+  }, [fromDate]);
   return (
-
     <ReportContainer title="Bet History">
       <div>
-
         <Stack gap={2} className="h-100">
           <Row className="g-2 mt-1 align-items-center">
             <Col md={2} xs={6}>
@@ -154,8 +156,9 @@ const BetHistoryComponent = () => {
               <CustomButton
                 onClick={(e: any) => handleLoad(e)}
                 size={isMobile ? "sm" : "lg"}
-                className={`${isMobile ? "w-100" : " bg-primaryBlue"
-                  } border-0 `}
+                className={`${
+                  isMobile ? "w-100" : " bg-primaryBlue"
+                } border-0 `}
                 style={{ height: "35px" }}
               >
                 Submit
@@ -208,8 +211,8 @@ const BetHistoryComponent = () => {
                 label: "Match Date",
               },
             ]}
-          // itemCount={10}
-          // setTableConfig={() => {}}
+            // itemCount={10}
+            // setTableConfig={() => {}}
           >
             {ReportBetList &&
               ReportBetList?.count > 0 &&
@@ -217,50 +220,56 @@ const BetHistoryComponent = () => {
                 return (
                   <tr key={item?.id} className={`${isMobile && "title-12"}`}>
                     <td
-                      className={` ${item?.betType === "NO" || item?.betType === "LAY"
-                        ? "bg-red1"
-                        : "bg-blue3"
-                        }`}
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
                     >
                       {item?.eventType}
                     </td>
                     <td
-                      className={` ${item?.betType === "NO" || item?.betType === "LAY"
-                        ? "bg-red1"
-                        : "bg-blue3"
-                        }`}
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
                     >
                       {item?.teamName}
                     </td>
                     <td
-                      className={` ${item?.betType === "NO" || item?.betType === "LAY"
-                        ? "bg-red1"
-                        : "bg-blue3"
-                        }`}
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
                     >
                       {item?.betType}
                     </td>
                     <td
-                      className={` ${item?.betType === "NO" || item?.betType === "LAY"
-                        ? "bg-red1"
-                        : "bg-blue3"
-                        }`}
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
                     >
                       {item?.odds}
                     </td>
                     <td
-                      className={` ${item?.betType === "NO" || item?.betType === "LAY"
-                        ? "bg-red1"
-                        : "bg-blue3"
-                        }`}
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
                     >
                       {item?.amount}
                     </td>
                     <td
-                      className={` ${item?.betType === "NO" || item?.betType === "LAY"
-                        ? "bg-red1"
-                        : "bg-blue3"
-                        }`}
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
                     >
                       {/* {item?.winAmount} */}
                       {item.result === "LOSS" ? (
@@ -270,20 +279,24 @@ const BetHistoryComponent = () => {
                       )}
                     </td>
                     <td
-                      className={` ${item?.betType === "NO" || item?.betType === "LAY"
-                        ? "bg-red1"
-                        : "bg-blue3"
-                        }`}
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
                     >
-                      {moment(item?.createdAt).format('DD-MM-YYYY h:mm:ss A')}
+                      {moment(item?.createdAt).format("DD-MM-YYYY h:mm:ss A")}
                     </td>
                     <td
-                      className={` ${item?.betType === "NO" || item?.betType === "LAY"
-                        ? "bg-red1"
-                        : "bg-blue3"
-                        }`}
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
                     >
-                      {moment(item?.match?.startAt).format('DD-MM-YYYY h:mm:ss A')}
+                      {moment(item?.match?.startAt).format(
+                        "DD-MM-YYYY h:mm:ss A"
+                      )}
                     </td>
                   </tr>
                 );

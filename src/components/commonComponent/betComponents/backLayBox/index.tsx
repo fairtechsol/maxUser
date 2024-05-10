@@ -13,7 +13,7 @@ interface props {
   style?: React.CSSProperties;
   active?: boolean;
   indexs?: number;
-  type?: string;
+  type?: string | any;
   box?: string;
   // onClick?: () => void;
 }
@@ -28,7 +28,7 @@ function BackLayBox({
   active,
   indexs,
   type,
-  box
+  box,
 }: props) {
   const inlineStyle: React.CSSProperties = {
     ...style,
@@ -49,11 +49,18 @@ function BackLayBox({
   const handleRate = (rate: any) => {
     let value;
     if (
-      (type === "quickbookmaker1" ||
-      type === "quickbookmaker2" ||
-      type === "quickbookmaker3" || type === 'tiedMatch2') && !isMobile
+      [
+        "quickbookmaker1",
+        "quickbookmaker2",
+        "quickbookmaker3",
+        "tiedMatch2",
+      ].includes(type) &&
+      !isMobile
     ) {
-      value = indexs !== undefined && (box=='lay'? indexs > 0 : indexs<2) ? Math.trunc(rate) : rate;
+      value =
+        indexs !== undefined && (box == "lay" ? indexs > 0 : indexs < 2)
+          ? Math.trunc(rate)
+          : rate;
     } else {
       value = rate;
     }
@@ -61,7 +68,10 @@ function BackLayBox({
   };
   return (
     <div
-      onClick={() => onClick()}
+      onClick={(e: any) => {
+        e.stopPropagation();
+        onClick();
+      }}
       className={`backLay ${overlay ? "overlay" : ""}  ${
         customClass ? customClass : ""
       } bg-${isYellow ? "secondary" : bgColor}`}
@@ -82,9 +92,9 @@ function BackLayBox({
               : rate}{" "}
           </h5> */}
           <h5
-            className={`backLay-rate f500 title-15 m-0 pt-2 ${
-              isMobile ? "mt-1" : ""
-            }`}
+            className={`${
+              isMobile ? "backLay-rate-m" : "backLay-rate"
+            } f500 title-15`}
           >
             {parseFloat(rate || 0) <= 0 || active
               ? isMobile
@@ -102,8 +112,8 @@ function BackLayBox({
             <span
               className={
                 isMobile
-                  ? "backLay-rate f500 title-16 m-1 pt-3"
-                  : "backLay-rate f500 title-16 m-1 pt-4"
+                  ? "backLay-rate f500 title-16"
+                  : "backLay-rate f500 title-16"
               }
             >
               {parseFloat(rate || 0) <= 0 || active

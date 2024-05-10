@@ -1,25 +1,31 @@
 @import "/src/assets/variable.scss";
 
 .backLayBox {
-  display: flex;
+  // display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
-  height: 50%;
+  // height: 50%;
   justify-content: center;
-  padding: 5px 0px;
+  // padding: 5px 0px;
 }
 .backLay {
   width: 100%;
   border-right: 0.5px solid white;
-  }
+}
 
 .bookmaker-width-26 {
   width: 26% !important;
 }
-.boxheight{
+.boxheight {
   height: 30px;
 }
-.boxsession{
+.boxsession {
   height: 48px;
+}
+.backLay-rate {
+  line-height: 16px;
+}
+.backLay-rate-m {
+  line-height: 26px;
 }
