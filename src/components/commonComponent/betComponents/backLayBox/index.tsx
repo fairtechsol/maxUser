@@ -92,9 +92,9 @@ function BackLayBox({
               : rate}{" "}
           </h5> */}
           <h5
-            className={`backLay-rate f500 title-15 m-0 pt-2 ${
-              isMobile ? "mt-1" : ""
-            }`}
+            className={`${
+              isMobile ? "backLay-rate-m" : "backLay-rate"
+            } f500 title-15`}
           >
             {parseFloat(rate || 0) <= 0 || active
               ? isMobile
@@ -112,8 +112,8 @@ function BackLayBox({
             <span
               className={
                 isMobile
-                  ? "backLay-rate f500 title-16 m-1"
-                  : "backLay-rate f500 title-16 m-1"
+                  ? "backLay-rate f500 title-16"
+                  : "backLay-rate f500 title-16"
               }
             >
               {parseFloat(rate || 0) <= 0 || active
