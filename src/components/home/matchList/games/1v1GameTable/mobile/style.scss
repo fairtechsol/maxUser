@@ -99,3 +99,11 @@
   font-size: 16px;
   font-weight: bold;
 }
+
+.no-record-found {
+  display: flex;
+  height: 38px;
+  justify-content: center;
+  align-items: center;
+  background-color: #ccc;
+}
