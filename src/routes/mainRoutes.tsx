@@ -86,7 +86,7 @@ const MainRoutes = {
       element: <Mobile />,
     },
     {
-      path: "game-list/:id",
+      path: "game-list/:type",
       element: <GameList />,
     },
     {
