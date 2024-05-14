@@ -16,14 +16,14 @@ import isMobile from "../../utils/screenDimension";
 const GameList = () => {
   const { loading } = useSelector((state: RootState) => state.match.matchList);
 
-  const { id } = useParams();
+  const { type } = useParams();
   const dispatch: AppDispatch = useDispatch();
 
   const getMatchListService = (event: any) => {
     try {
-      if (event?.gameType === id) {
+      if (event?.gameType === type) {
         setTimeout(() => {
-          dispatch(getMatchList({ matchType: id }));
+          dispatch(getMatchList({ matchType: type }));
         }, 500);
       }
     } catch (e) {
@@ -32,10 +32,10 @@ const GameList = () => {
   };
   const getMatchListServiceOnDeclare = (event: any) => {
     try {
-      if (event?.gameType === id) {
+      if (event?.gameType === type) {
         if (event?.betType === "quickbookmaker1") {
           setTimeout(() => {
-            dispatch(getMatchList({ matchType: id }));
+            dispatch(getMatchList({ matchType: type }));
           }, 500);
         }
       }
@@ -45,10 +45,10 @@ const GameList = () => {
   };
 
   useEffect(() => {
-    if (id) {
-      dispatch(getMatchList({ matchType: id }));
+    if (type) {
+      dispatch(getMatchList({ matchType: type }));
     }
-  }, [id]);
+  }, [type]);
 
   useEffect(() => {
     try {
@@ -83,9 +83,9 @@ const GameList = () => {
     <>
       {loading && <Loader />}
       {isMobile ? (
-        <SportsFilters type={id} />
+        <SportsFilters type={type} />
       ) : (
-        <DesktopMatchList type={id} setMatchType={() => {}} />
+        <DesktopMatchList type={type} setMatchType={() => {}} />
       )}
     </>
   );
