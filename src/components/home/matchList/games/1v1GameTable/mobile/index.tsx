@@ -1,15 +1,18 @@
+import moment from "moment-timezone";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Img } from "react-image";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
+import bm from "../../../../../../assets/images/ic_bm.png";
+import fancy from "../../../../../../assets/images/ic_fancy.png";
 import { RootState } from "../../../../../../store/store";
+import {
+  availableGameType,
+  casinoIcons,
+} from "../../../../../../utils/constants";
+import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
-import moment from "moment-timezone";
-import { Img } from "react-image";
-import { availableGameType, casinoIcons } from "../../../../../../utils/constants";
-import ContactAdmin from "../../../../../commonComponent/contactAdmin";
-import fancy from "../../../../../../assets/images/ic_fancy.png";
-import bm from "../../../../../../assets/images/ic_bm.png";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
@@ -33,11 +36,11 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   useEffect(() => {
     const box = boxRef.current;
     if (box) {
-      box.addEventListener('scroll', handleScroll);
+      box.addEventListener("scroll", handleScroll);
     }
     return () => {
       if (box) {
-        box.removeEventListener('scroll', handleScroll);
+        box.removeEventListener("scroll", handleScroll);
       }
     };
   }, [handleScroll]);
@@ -46,25 +49,37 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
     if (isAtBottom) {
       window.scrollTo({
         top: document.body.scrollHeight,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   }, [isAtBottom]);
 
   return (
     <div
-      className={`bg-lightGray match-list-container ${isSportsRoute ? "match-list-containerm" : ""} ${location.pathname === "/home" || location.pathname === "/inPlay" ? '':'match-list-h'}`}
+      className={`bg-lightGray match-list-container ${
+        isSportsRoute ? "match-list-containerm" : ""
+      } ${
+        location.pathname === "/home" || location.pathname === "/inPlay"
+          ? ""
+          : "match-list-h"
+      }`}
     >
       <div
-        className={`scrollable-container ${isSportsRoute ? "match-list-containerm" : ""}`}
+        className={`scrollable-container ${
+          isSportsRoute ? "match-list-containerm" : ""
+        }`}
         ref={boxRef}
-        style={location.pathname === "/home" || location.pathname === "/inPlay" ?{height:'400px'}:{}}
+        style={
+          location.pathname === "/home" || location.pathname === "/inPlay"
+            ? { height: !matchList || matchList?.length === 0 ? "" : "400px" }
+            : {}
+        }
       >
         {availableGameType[mTypeid || id] ? (
           <>
             {!matchList || matchList?.length === 0 ? (
-              <div className="text-center">
-                <p>No matches available</p>
+              <div className="text-center no-record-found">
+                <span>No real-time records found</span>
               </div>
             ) : (
               <>
@@ -110,7 +125,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                           className="text-decoration-none text-black"
                           to={`/${
                             mTypeid === "cricket"
-                              ? "game-detail/cricket" : `other-game-detail/${mTypeid}`
+                              ? "game-detail/cricket"
+                              : `other-game-detail/${mTypeid}`
                           }/${item?.id}`}
                         >
                           <b className="title-14 f600">{item?.title}</b>
