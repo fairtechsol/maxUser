@@ -131,9 +131,9 @@ const PlacedBet = () => {
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
       selectedBet?.data?.type === matchBettingType.completeMatch ||
       selectedBet?.data?.type === matchBettingType.halfTime ||
-      selectedBet?.data?.type.includes('overUnder') ||
-      selectedBet?.data?.type.includes('firstHalfGoal') ||
-      selectedBet?.data?.type.includes('setWinner')
+      selectedBet?.data?.type.includes("overUnder") ||
+      selectedBet?.data?.type.includes("firstHalfGoal") ||
+      selectedBet?.data?.type.includes("setWinner")
     ) {
       profit =
         selectedBet?.team?.type === "back"
@@ -354,6 +354,7 @@ const PlacedBet = () => {
                                   betOnTeam: selectedBet?.team?.betOnTeam,
                                   placeIndex: selectedBet?.team?.placeIndex,
                                   bettingName: selectedBet?.data?.name,
+                                  gameType: selectedBet?.team?.eventType,
                                 };
                                 if (
                                   selectedBet?.data?.type === "matchOdd" ||
