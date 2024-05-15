@@ -103,11 +103,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     } else if (
       selectedBet?.data?.type === matchBettingType.matchOdd ||
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
-      selectedBet?.data?.type === matchBettingType.completeMatch  ||
+      selectedBet?.data?.type === matchBettingType.completeMatch ||
       selectedBet?.data?.type === matchBettingType.halfTime ||
-      selectedBet?.data?.type.includes('overUnder') ||
-      selectedBet?.data?.type.includes('firstHalfGoal') ||
-      selectedBet?.data?.type.includes('setWinner')
+      selectedBet?.data?.type.includes("overUnder") ||
+      selectedBet?.data?.type.includes("firstHalfGoal") ||
+      selectedBet?.data?.type.includes("setWinner")
     ) {
       profit =
         selectedBet?.team?.type === "back"
@@ -121,16 +121,31 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     }
     return isNaN(profit) ? 0 : parseFloat(profit).toFixed(2) ?? 0;
   };
-  const handleColor = (team: any) => {
-    let green = "color-green";
-    let red = "color-red";
-    if (selectedBet?.team?.betOnTeam === team) {
-      return selectedBet?.team?.type === "back" ? green : red;
-    } else {
-      return selectedBet?.team?.type === "back" ? red : green;
-    }
-  };
 
+
+  const handleProLoss = (data: any, type: string) => {
+    let profit: any;
+    if (data?.betOnTeam === data[`team${type}`]) {
+      profit = (
+        Number(handleProfit(stake)) +
+        Number(matchDetails?.profitLossDataMatch[`team${type}Rate`])
+      ).toFixed(2);
+    } else {
+      profit =
+        data?.type === "back"
+          ? (
+              -Number(data?.stake) +
+              Number(matchDetails?.profitLossDataMatch[`team${type}Rate`])
+            ).toFixed(2)
+          : (
+              Number(data?.stake) +
+              Number(matchDetails?.profitLossDataMatch[`team${type}Rate`])
+            ).toFixed(2);
+    }
+    return isNaN(profit)
+      ? Number(matchDetails?.profitLossDataMatch[`team${type}Rate`]).toFixed(2)
+      : parseFloat(profit).toFixed(2);
+  };
   return (
     <>
       <CustomModal
@@ -419,14 +434,15 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           <div className="col-md-12">
                             <span
                               style={{ fontSize: "12px", fontWeight: "600" }}
-                              className={handleColor(selectedBet?.team?.teamA)}
+                              className={Number(handleProLoss(selectedBet?.team, "A")) > 0 ? "color-green":"color-red"}
                             >
-                              {selectedBet?.team?.betOnTeam ===
+                              {handleProLoss(selectedBet?.team, "A")}
+                              {/* {selectedBet?.team?.betOnTeam ===
                               selectedBet?.team?.teamA
-                                ? handleProfit(stake)
+                                ? selectedBet?.team?.stake ? (Number(handleProfit(stake)) + Number(matchDetails?.profitLossDataMatch?.teamARate)).toFixed(2) : 0
                                 : selectedBet?.team?.type === "back"
                                 ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
-                                : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake}
+                                : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
                             </span>
                           </div>
                         </div>
@@ -434,14 +450,15 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           <div className="col-md-12">
                             <span
                               style={{ fontSize: "12px", fontWeight: "600" }}
-                              className={handleColor(selectedBet?.team?.teamB)}
+                              className={Number(handleProLoss(selectedBet?.team, "B")) > 0 ? "color-green":"color-red"}
                             >
-                              {selectedBet?.team?.betOnTeam ===
+                              {handleProLoss(selectedBet?.team, "B")}
+                              {/* {selectedBet?.team?.betOnTeam ===
                               selectedBet?.team?.teamB
-                                ? handleProfit(stake)
+                                ? selectedBet?.team?.stake ? (Number(handleProfit(stake)) + Number(matchDetails?.profitLossDataMatch?.teamBRate)).toFixed(2) : 0
                                 : selectedBet?.team?.type === "back"
                                 ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
-                                : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake}
+                                : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
                             </span>
                           </div>
                         </div>
@@ -451,16 +468,15 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                             <div className="col-md-12">
                               <span
                                 style={{ fontSize: "12px", fontWeight: "600" }}
-                                className={handleColor(
-                                  selectedBet?.team?.teamC
-                                )}
+                                className={Number(handleProLoss(selectedBet?.team, "C")) > 0 ? "color-green":"color-red"}
                               >
-                                {selectedBet?.team?.betOnTeam ===
+                                {handleProLoss(selectedBet?.team, "C")}
+                                {/* {selectedBet?.team?.betOnTeam ===
                                 selectedBet?.team?.teamC
-                                  ? handleProfit(stake)
+                                  ? selectedBet?.team?.stake ? (Number(handleProfit(stake)) + Number(matchDetails?.profitLossDataMatch?.teamCRate)).toFixed(2) : 0
                                   : selectedBet?.team?.type === "back"
                                   ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
-                                  : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake}
+                                  : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
                               </span>
                             </div>
                           </div>
