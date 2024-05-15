@@ -173,6 +173,7 @@ const AccountStatementComponent = () => {
             </Col>
           </Row>
           <CustomTable
+              paginationCount={true}
             bordered={true}
             striped={!isMobile}
             isPagination={true}

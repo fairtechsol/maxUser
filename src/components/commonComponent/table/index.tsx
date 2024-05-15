@@ -27,6 +27,7 @@ interface CustomTableProps {
   tBodyTheme?: string;
   bordered?: boolean;
   striped?: boolean;
+  paginationCount?: boolean;
 }
 
 const CustomTable: React.FC<CustomTableProps> = ({
@@ -41,6 +42,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
   enablePdfExcel,
   tHeadTheme,
   tBodyTheme,
+  paginationCount,
   ...props
 }) => {
   // State for sorting configuration and current page
@@ -86,6 +88,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
         setTableConfig={setTableConfig}
         rowPerPage={rowPerPage}
         setRowPerPage={setRowPerPage}
+        paginationCount={paginationCount}
       />
       {/* Table for displaying data */}
       <Table {...props} responsive>

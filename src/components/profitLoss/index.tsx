@@ -185,6 +185,7 @@ const ProfitLossComponent = () => {
             <CustomTable
               bordered={true}
               striped={!isMobile}
+              paginationCount={true}
               columns={[
                 {
                   id: "eventType",
