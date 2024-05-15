@@ -184,7 +184,7 @@ const MatchListRow = ({ item, matchType }: any) => {
               {item?.title} /{" "}
               {moment(item?.startAt)
                 .tz(timezone)
-                .format("MMM DD YYYY h:mmA [IST]")}
+                .format("MMM DD YYYY h:mmA ([IST])")}
             </div>
           </Link>
           <div className="d-flex align-items-center gap-2">
@@ -228,16 +228,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              backPercent={
-                (item?.runners &&
-                  item?.runners[0]?.ex?.availableToBack[0]?.size) ??
-                ""
-              }
-              layPercent={
-                (item?.runners &&
-                  item?.runners[0]?.ex?.availableToLay[0]?.size) ??
-                ""
-              }
+            //   backPercent={
+            //     (item?.runners &&
+            //       item?.runners[0]?.ex?.availableToBack[0]?.size) ??
+            //     ""
+            //   }
+            //   layPercent={
+            //     (item?.runners &&
+            //       item?.runners[0]?.ex?.availableToLay[0]?.size) ??
+            //     ""
+            //   }
             />
             <BackLayComponent
               backRate={
@@ -251,16 +251,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              backPercent={
-                (item?.runners &&
-                  item?.runners[2]?.ex?.availableToBack[0]?.size) ??
-                ""
-              }
-              layPercent={
-                (item?.runners &&
-                  item?.runners[2]?.ex?.availableToLay[0]?.size) ??
-                ""
-              }
+              // backPercent={
+              //   (item?.runners &&
+              //     item?.runners[2]?.ex?.availableToBack[0]?.size) ??
+              //   ""
+              // }
+              // layPercent={
+              //   (item?.runners &&
+              //     item?.runners[2]?.ex?.availableToLay[0]?.size) ??
+              //   ""
+              // }
             />
             <BackLayComponent
               backRate={
@@ -274,16 +274,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              backPercent={
-                (item?.runners &&
-                  item?.runners[1]?.ex?.availableToBack[0]?.size) ??
-                ""
-              }
-              layPercent={
-                (item?.runners &&
-                  item?.runners[1]?.ex?.availableToLay[0]?.size) ??
-                ""
-              }
+              // backPercent={
+              //   (item?.runners &&
+              //     item?.runners[1]?.ex?.availableToBack[0]?.size) ??
+              //   ""
+              // }
+              // layPercent={
+              //   (item?.runners &&
+              //     item?.runners[1]?.ex?.availableToLay[0]?.size) ??
+              //   ""
+              // }
             />
           </React.Fragment>
         );
