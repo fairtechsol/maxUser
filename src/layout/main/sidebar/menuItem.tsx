@@ -8,6 +8,7 @@ import {
   getCompetitionMatches,
 } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
+import moment from "moment";
 
 interface Props {
   item: any;
@@ -57,7 +58,7 @@ const MenuCollapse: React.FC<{
       );
       selectedMatchChildren[competitionIndex].children = competitionDates?.map(
         (item: any) => ({
-          name: item?.startdate,
+          name: moment.utc(item?.startdate).format('YYYY/MM/DD'),
           id: item?.startdate,
           type: "collapse",
           children: [],
