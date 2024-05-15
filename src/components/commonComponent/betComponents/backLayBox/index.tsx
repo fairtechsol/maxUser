@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
 import isMobile from "../../../../utils/screenDimension";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 interface props {
   bgColor?: string;
   rate: any;
@@ -36,7 +36,7 @@ function BackLayBox({
   const location = useLocation();
   const [tempRate, setTempRate] = useState("0");
   const [isYellow, setIsYellow] = useState(false);
-  // console.log('first',type)
+  const params = useParams();
   useEffect(() => {
     if (parseFloat(rate) != parseFloat(tempRate)) {
       setTimeout(() => {
@@ -93,7 +93,7 @@ function BackLayBox({
           </h5> */}
           <h5
             className={`${
-              isMobile ? "backLay-rate-m" : "backLay-rate"
+              isMobile ? "backLay-rate-m mb-1" : "backLay-rate"
             } f500 title-15`}
           >
             {parseFloat(rate || 0) <= 0 || active
@@ -112,7 +112,7 @@ function BackLayBox({
             <span
               className={
                 isMobile
-                  ? "backLay-rate f500 title-16"
+                  ? `backLay-rate f500 title-16 ${params?.type ? "" : "mb-2"}`
                   : "backLay-rate f500 title-16"
               }
             >
