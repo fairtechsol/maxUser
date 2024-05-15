@@ -107,9 +107,9 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
       selectedBet?.data?.type === matchBettingType.completeMatch ||
       selectedBet?.data?.type === matchBettingType.halfTime ||
-      selectedBet?.data?.type.includes('overUnder') ||
-      selectedBet?.data?.type.includes('firstHalfGoal') ||
-      selectedBet?.data?.type.includes('setWinner')
+      selectedBet?.data?.type.includes("overUnder") ||
+      selectedBet?.data?.type.includes("firstHalfGoal") ||
+      selectedBet?.data?.type.includes("setWinner")
     ) {
       profit =
         selectedBet?.team?.type === "back"
@@ -123,28 +123,46 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
     }
     return isNaN(profit) ? 0 : parseFloat(profit).toFixed(2) ?? 0;
   };
-  const handleColor = (team: any) => {
-    let green = "color-green";
-    let red = "color-red";
-    if (selectedBet?.team?.betOnTeam === team) {
-      return selectedBet?.team?.type === "back" ? green : red;
+
+  const handleTeamRates = (team: string, type: string) => {
+    let rate;
+    if (team?.includes(".5")) {
+      let name = team?.split("_");
+      rate =
+        otherMatchDetails?.profitLossDataMatch[
+          `${type === "A" ? "yes" : "no"}RateUnderOver${name[name?.length - 1]}`
+        ];
+    } else if (team?.includes("set_winner")) {
+      let name =
+        team?.length == 11
+          ? `userTeam${type}RateSetWinner${team[10]}`
+          : `userTeam${type}RateSetWinner${team[10] + team[11]}`;
+      rate = otherMatchDetails?.profitLossDataMatch[name];
     } else {
-      return selectedBet?.team?.type === "back" ? red : green;
+      rate = otherMatchDetails?.profitLossDataMatch[`team${type}Rate`];
     }
+    return rate || 0;
   };
-const handleTeamRates=(team:string,type:string)=>{
-  let rate;
-  if(team?.includes('.5')){
-    let name = team?.split('_');
-    rate = otherMatchDetails?.profitLossDataMatch[`${type ==='A' ?'yes':'no'}RateUnderOver${name[name?.length-1]}`]
-  }else if(team?.includes('set_winner')){
-    let name = team?.length == 11 ? `userTeam${type}RateSetWinner${team[10]}`:`userTeam${type}RateSetWinner${team[10]+team[11]}`
-    rate = otherMatchDetails?.profitLossDataMatch[name]
-  }else{
-    rate = otherMatchDetails?.profitLossDataMatch[`team${type}Rate`]
-  }
-  return rate || 0;
-}
+  const handleProLoss = (data: any, name: any, type: string) => {
+    let profit: any;
+    if (data?.betOnTeam === data[`team${type}`]) {
+      profit = (
+        Number(handleProfit(stake)) + Number(handleTeamRates(name, type))
+      ).toFixed(2);
+    } else {
+      profit =
+        data?.type === "back"
+          ? (
+              -Number(data?.stake) + Number(handleTeamRates(name, type))
+            ).toFixed(2)
+          : (Number(data?.stake) + Number(handleTeamRates(name, type))).toFixed(
+              2
+            );
+    }
+    return isNaN(profit)
+      ? Number(handleTeamRates(name, type)).toFixed(2)
+      : parseFloat(profit).toFixed(2);
+  };
   return (
     <>
       <CustomModal
@@ -402,14 +420,14 @@ const handleTeamRates=(team:string,type:string)=>{
                         <div className="row">
                           <div className="col-md-12">
                             <span className="f600 title-12">
-                              {handleTeamRates(selectedBet?.data?.name,'A')}
+                              {handleTeamRates(selectedBet?.data?.name, "A")}
                             </span>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-12">
                             <span className="f600 title-12">
-                            {handleTeamRates(selectedBet?.data?.name,'B')}
+                              {handleTeamRates(selectedBet?.data?.name, "B")}
                             </span>
                           </div>
                         </div>
@@ -417,7 +435,7 @@ const handleTeamRates=(team:string,type:string)=>{
                           <div className="row">
                             <div className="col-md-12">
                               <span className="f600 title-12">
-                              {handleTeamRates(selectedBet?.data?.name,'C')}
+                                {handleTeamRates(selectedBet?.data?.name, "C")}
                               </span>
                             </div>
                           </div>
@@ -430,14 +448,23 @@ const handleTeamRates=(team:string,type:string)=>{
                           <div className="col-md-12">
                             <span
                               style={{ fontSize: "12px", fontWeight: "600" }}
-                              className={handleColor(selectedBet?.team?.teamA)}
+                              className={Number(handleProLoss(
+                                selectedBet?.team,
+                                selectedBet?.data?.name,
+                                "A"
+                              )) > 0 ? "color-green":"color-red"}
                             >
-                              {selectedBet?.team?.betOnTeam ===
+                              {handleProLoss(
+                                selectedBet?.team,
+                                selectedBet?.data?.name,
+                                "A"
+                              )}
+                              {/* {selectedBet?.team?.betOnTeam ===
                               selectedBet?.team?.teamA
                                 ? handleProfit(stake)
                                 : selectedBet?.team?.type === "back"
                                 ?  isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
-                                : isNaN(selectedBet?.team?.stake) ? 0 :  selectedBet?.team?.stake}
+                                : isNaN(selectedBet?.team?.stake) ? 0 :  selectedBet?.team?.stake} */}
                             </span>
                           </div>
                         </div>
@@ -445,14 +472,23 @@ const handleTeamRates=(team:string,type:string)=>{
                           <div className="col-md-12">
                             <span
                               style={{ fontSize: "12px", fontWeight: "600" }}
-                              className={handleColor(selectedBet?.team?.teamB)}
+                              className={Number(handleProLoss(
+                                selectedBet?.team,
+                                selectedBet?.data?.name,
+                                "B"
+                              )) > 0 ? "color-green":"color-red"}
                             >
-                              {selectedBet?.team?.betOnTeam ===
+                              {handleProLoss(
+                                selectedBet?.team,
+                                selectedBet?.data?.name,
+                                "B"
+                              )}
+                              {/* {selectedBet?.team?.betOnTeam ===
                               selectedBet?.team?.teamB
                                 ? handleProfit(stake)
                                 : selectedBet?.team?.type === "back"
                                 ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
-                                : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake}
+                                : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
                             </span>
                           </div>
                         </div>
@@ -462,16 +498,23 @@ const handleTeamRates=(team:string,type:string)=>{
                             <div className="col-md-12">
                               <span
                                 style={{ fontSize: "12px", fontWeight: "600" }}
-                                className={handleColor(
-                                  selectedBet?.team?.teamC
-                                )}
+                                className={Number(handleProLoss(
+                                  selectedBet?.team,
+                                  selectedBet?.data?.name,
+                                  "C"
+                                )) > 0 ? "color-green":"color-red"}
                               >
-                                {selectedBet?.team?.betOnTeam ===
+                                {handleProLoss(
+                                  selectedBet?.team,
+                                  selectedBet?.data?.name,
+                                  "C"
+                                )}
+                                {/* {selectedBet?.team?.betOnTeam ===
                                 selectedBet?.team?.teamC
                                   ? handleProfit(stake)
                                   : selectedBet?.team?.type === "back"
                                   ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
-                                  : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake}
+                                  : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
                               </span>
                             </div>
                           </div>
