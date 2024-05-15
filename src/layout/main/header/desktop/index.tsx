@@ -119,7 +119,7 @@ const DesktopHeader = () => {
             <li>
               <div className="balance-cont">
                 <div>
-                  Balance:<b>{getProfile?.userBal?.currentBalance}</b>
+                  Balance:<b>{parseFloat(getProfile?.userBal?.currentBalance).toFixed(2)}</b>
                 </div>
                 <div>
                   <span

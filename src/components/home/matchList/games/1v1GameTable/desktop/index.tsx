@@ -49,9 +49,8 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
           <tr>
             {tableHeading?.map((item) => (
               <th
-                className={`title-14 ${
-                  item?.textAlign === "center" ? "text-center" : ""
-                }`}
+                className={`title-14 ${item?.textAlign === "center" ? "text-center" : ""
+                  }`}
                 colSpan={item?.colspan}
                 key={item?.id}
               >
@@ -91,10 +90,10 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                             </div>
                           </div>
                           <div className="d-flex align-items-center gap-2">
-                            <span
+                            {/* <span
                               className="liveDot"
                               style={{ marginRight: "50px" }}
-                            ></span>
+                            ></span> */}
                           </div>
                         </div>
                       </td>
@@ -146,14 +145,16 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         </tbody>
       </Table>
       <div className="col-md-12 mt-4">
-        {casinoIcons.map((item, index) => (
-          <a href={item.url} key={index} className="">
-            <div className="d-inline-block casinoicons">
-              <Img src={item.imgSrc} className="img-fluid" alt={item.name} />
-              <div className="casino-name">{item.name}</div>
-            </div>
-          </a>
-        ))}
+        {["/home"].includes(location.pathname) && (
+          casinoIcons.map((item, index) => (
+            <Link to={item.url} key={index} className="">
+              <div className="d-inline-block casinoicons">
+                <Img src={item.imgSrc} className="img-fluid" alt={item.name} />
+                <div className="casino-name">{item.name}</div>
+              </div>
+            </Link>
+          ))
+        )}
       </div>
     </>
   );
@@ -171,11 +172,10 @@ const MatchListRow = ({ item, matchType }: any) => {
           > */}
           <Link
             className="text-decoration-none"
-            to={`/${
-              matchType === "cricket"
+            to={`/${matchType === "cricket"
                 ? "game-detail/cricket"
                 : `other-game-detail/${matchType}`
-            }/${item?.id}`}
+              }/${item?.id}`}
           >
             <div
               className="one-v-one-title title-14"

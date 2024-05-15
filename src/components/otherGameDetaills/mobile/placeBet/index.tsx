@@ -182,10 +182,10 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
           fluid
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
-            <Col xs={6} className="f600 title-14">
+            <Col xs={8} className="f600 title-14">
               {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
             </Col>
-            <Col xs={6} className="d-flex justify-content-end">
+            <Col xs={4} className="d-flex justify-content-end">
               <CustomButton
                 onClick={() => {
                   if (selectedBet?.team?.matchBetType !== "matchOdd") {
@@ -356,7 +356,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                   }
                 }}
               >
-                Submit
+               <span style={{height: "15px", display: "flex", alignItems: "center", justifyContent: "center"}}> Submit</span>
               </CustomButton>
             </Col>
             <Col xs={4} className="title-12 text-center">

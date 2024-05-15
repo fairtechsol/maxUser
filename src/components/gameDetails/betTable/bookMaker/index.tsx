@@ -70,7 +70,7 @@ function BookmakerTable({
             </th>
             {backLayCount === 6 && !isMobile && (
               <>
-                <th className="border-0 bookmaker-bet-place"></th>
+                <th className="bookmaker-bet-place-desktop"></th>
                 <th className="border-0 bookmaker-bet-place"></th>
               </>
             )}

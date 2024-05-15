@@ -110,7 +110,7 @@ function MatchOdds({
             )} */}
             {!isMobile && (
               <>
-                <th className="border-0 match-odd-bet-place"></th>
+                <th className="bookmaker-bet-place-desktop-match"></th>
                 <th className="border-0 match-odd-bet-place"></th>
               </>
             )}
@@ -152,7 +152,7 @@ function MatchOdds({
             {!isMobile && (
               <>
                 <th className="border-0 match-odd-bet-place"></th>
-                <th className="border-0 match-odd-bet-place"></th>
+                <th className="bookmaker-bet-place-desktop-match"></th>
               </>
             )}
           </tr>

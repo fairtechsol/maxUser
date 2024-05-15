@@ -3793,7 +3793,7 @@ textarea.form-control-lg {
   padding: 6px;
   font-size: var(--bs-nav-link-font-size);
   font-weight: var(--bs-nav-link-font-weight);
-  color: var(--bs-nav-link-color);
+  color:#000000;
   text-decoration: none;
   background: none;
   border: 0;

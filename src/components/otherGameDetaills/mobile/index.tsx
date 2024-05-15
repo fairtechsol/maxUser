@@ -48,7 +48,7 @@ const FootballMobileGameDetail = () => {
               key={item?.id}
               eventKey={item?.id}
               tabClassName="m-tab"
-              title={<div>{item?.name}</div>}
+              title={<div className="font">{item?.name}</div>}
             >
               {index == 0 ? (
                 <Container fluid>
