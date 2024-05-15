@@ -4,8 +4,8 @@ interface BackLayComponentProps {
   backRate: string | number;
   layRate: string | number;
   active: boolean;
-  backPercent: string | number;
-  layPercent: string | number;
+  backPercent?: string | number;
+  layPercent?: string | number;
 }
 
 const BackLayComponent = ({
