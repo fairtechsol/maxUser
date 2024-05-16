@@ -146,6 +146,17 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       ? Number(matchDetails?.profitLossDataMatch[`team${type}Rate`] ? matchDetails?.profitLossDataMatch[`team${type}Rate`] : 0).toFixed(2)
       : parseFloat(profit).toFixed(2);
   };
+  const handleTeamRates=(type:any,team:string)=>{
+    let rate;
+    if(type==="matchOdd" || type==="bookmaker" || type==="quickbookmaker1" || type==="quickbookmaker2" || type==="quickbookmaker3"){
+      rate = matchDetails?.profitLossDataMatch[`team${team}Rate`]
+    }else if(type==="completeMatch" || type==="completeManual"){
+      rate = team ==="A" ? matchDetails?.profitLossDataMatch?.yesRateComplete : matchDetails?.profitLossDataMatch?.noRateComplete
+    }else{
+      rate = team ==="A" ? matchDetails?.profitLossDataMatch?.yesRateTie : matchDetails?.profitLossDataMatch?.noRateTie
+    }
+    return rate || 0 ;
+  }
   return (
     <>
       <CustomModal
@@ -406,16 +417,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                         <div className="row">
                           <div className="col-md-12">
                             <span className="f600 title-12">
-                              {matchDetails?.profitLossDataMatch?.teamARate ||
-                                0}
+                                {handleTeamRates(selectedBet?.team?.matchBetType,"A")}
                             </span>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-12">
                             <span className="f600 title-12">
-                              {matchDetails?.profitLossDataMatch?.teamBRate ||
-                                0}
+                                {handleTeamRates(selectedBet?.team?.matchBetType,"B")}
                             </span>
                           </div>
                         </div>
