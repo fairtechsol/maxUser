@@ -145,7 +145,7 @@ const PlacedBet = () => {
           ? (value * matchOddRate) / 100
           : value;
     }
-    return Number(profit.toFixed(2));
+    return parseFloat(profit).toFixed(2);
   };
   const handleUp = () => {
     if (selectedBet?.team?.matchBetType == "matchOdd") {

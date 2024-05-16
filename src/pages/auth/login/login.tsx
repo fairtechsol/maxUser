@@ -21,6 +21,7 @@ import isMobile from "../../../utils/screenDimension";
 import "./style.scss";
 import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
+import Loader from "../../../components/commonComponent/loader";
 
 const Login = () => {
   // const [loginState, setLoginState] = useState({
@@ -74,13 +75,13 @@ const Login = () => {
       className="auth-main text-center d-flex justify-content-center"
       onSubmit={handleSubmit}
     >
-      {/* {loading && <Loader />} */}
+      {loading && <Loader />}
       <div className="auth-box ">
         <img
           src="/maxbetLogo.png"
           alt="fairGame"
           className="img-fluid"
-          style={{ width: "100%", height: "50px" }}
+          style={{ width: isMobile ? "90%" : "100%", height: isMobile ? "42px" : "50px" }}
         />
         <div className="auth-box-form rounded-2 bg-light mt-3">
           <h4 className="auth-title title-24 fw-normal text-center mb-2">
