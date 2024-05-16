@@ -1,18 +1,18 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 // import { FiMonitor } from "react-icons/fi";
+import moment from "moment-timezone";
+import { Img } from "react-image";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../../../../store/store";
-import BackLayComponent from "./backlayComponent";
-import { Img } from "react-image";
-import "./style.scss";
-import moment from "moment-timezone";
-import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import {
   availableGameType,
   casinoIcons,
 } from "../../../../../../utils/constants";
+import ContactAdmin from "../../../../../commonComponent/contactAdmin";
+import BackLayComponent from "./backlayComponent";
+import "./style.scss";
 const tableHeading = [
   {
     id: "game",
@@ -65,7 +65,12 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
             <>
               {!matchList || matchList?.length === 0 ? (
                 <tr>
-                  <td>No matches available</td>
+                  <td style={{ backgroundColor: "#ccc" }}>
+                    No real-time records found
+                  </td>
+                  {[1, 2, 3, 4, 5].map((item: number) => (
+                    <td key={item} style={{ backgroundColor: "#ccc" }}></td>
+                  ))}
                 </tr>
               ) : (
                 <>
@@ -179,7 +184,7 @@ const MatchListRow = ({ item, matchType }: any) => {
               {item?.title} /{" "}
               {moment(item?.startAt)
                 .tz(timezone)
-                .format("MMM DD YYYY h:mmA [IST]")}
+                .format("MMM DD YYYY h:mmA ([IST])")}
             </div>
           </Link>
           <div className="d-flex align-items-center gap-2">
@@ -223,16 +228,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              backPercent={
-                (item?.runners &&
-                  item?.runners[0]?.ex?.availableToBack[0]?.size) ??
-                ""
-              }
-              layPercent={
-                (item?.runners &&
-                  item?.runners[0]?.ex?.availableToLay[0]?.size) ??
-                ""
-              }
+            //   backPercent={
+            //     (item?.runners &&
+            //       item?.runners[0]?.ex?.availableToBack[0]?.size) ??
+            //     ""
+            //   }
+            //   layPercent={
+            //     (item?.runners &&
+            //       item?.runners[0]?.ex?.availableToLay[0]?.size) ??
+            //     ""
+            //   }
             />
             <BackLayComponent
               backRate={
@@ -246,16 +251,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              backPercent={
-                (item?.runners &&
-                  item?.runners[2]?.ex?.availableToBack[0]?.size) ??
-                ""
-              }
-              layPercent={
-                (item?.runners &&
-                  item?.runners[2]?.ex?.availableToLay[0]?.size) ??
-                ""
-              }
+              // backPercent={
+              //   (item?.runners &&
+              //     item?.runners[2]?.ex?.availableToBack[0]?.size) ??
+              //   ""
+              // }
+              // layPercent={
+              //   (item?.runners &&
+              //     item?.runners[2]?.ex?.availableToLay[0]?.size) ??
+              //   ""
+              // }
             />
             <BackLayComponent
               backRate={
@@ -269,16 +274,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              backPercent={
-                (item?.runners &&
-                  item?.runners[1]?.ex?.availableToBack[0]?.size) ??
-                ""
-              }
-              layPercent={
-                (item?.runners &&
-                  item?.runners[1]?.ex?.availableToLay[0]?.size) ??
-                ""
-              }
+              // backPercent={
+              //   (item?.runners &&
+              //     item?.runners[1]?.ex?.availableToBack[0]?.size) ??
+              //   ""
+              // }
+              // layPercent={
+              //   (item?.runners &&
+              //     item?.runners[1]?.ex?.availableToLay[0]?.size) ??
+              //   ""
+              // }
             />
           </React.Fragment>
         );

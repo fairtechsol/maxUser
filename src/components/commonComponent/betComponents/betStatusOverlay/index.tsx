@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { FaLock } from "react-icons/fa";
 import "./style.scss";
+import { useParams } from "react-router-dom";
 
 interface Props {
   children?: ReactNode;
@@ -8,10 +9,12 @@ interface Props {
   active?: boolean;
 }
 const BetStatusOverlay = ({ title, children, active }: Props) => {
+
+  const {id} = useParams();
   return (
     <>
       {
-        <div className={`box-height d-flex position-relative bet-overlay`}>
+        <div className={`box-height d-flex position-relative ${id ? "bet-overlay" : "bet-overlay-matchlist"}`}>
           {active && (
             <div className="betStatusOverlay">
               {title && title !== "Lock" && (
