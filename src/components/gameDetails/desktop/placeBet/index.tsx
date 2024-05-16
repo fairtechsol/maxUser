@@ -131,9 +131,9 @@ const PlacedBet = () => {
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
       selectedBet?.data?.type === matchBettingType.completeMatch ||
       selectedBet?.data?.type === matchBettingType.halfTime ||
-      selectedBet?.data?.type.includes('overUnder') ||
-      selectedBet?.data?.type.includes('firstHalfGoal') ||
-      selectedBet?.data?.type.includes('setWinner')
+      selectedBet?.data?.type.includes("overUnder") ||
+      selectedBet?.data?.type.includes("firstHalfGoal") ||
+      selectedBet?.data?.type.includes("setWinner")
     ) {
       profit =
         selectedBet?.team?.type === "back"
@@ -156,6 +156,16 @@ const PlacedBet = () => {
     if (selectedBet?.team?.matchBetType == "matchOdd") {
       setMatchOddRate(matchOddRate - 0.01);
     }
+  };
+  const handleName = (selected: any) => {
+    let name;
+    if (selected?.data?.name?.includes(".5")) {
+      const parts = selected?.data?.name?.split("_");
+      name = selected?.team?.betOnTeam + " " + parts[parts?.length - 1];
+    } else {
+      name = selected?.team?.betOnTeam;
+    }
+    return name;
   };
   return (
     <>
@@ -200,7 +210,8 @@ const PlacedBet = () => {
                   </td>
                   <td width={"34%"}>
                     <span className="f600 title-14">
-                      {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
+                      {handleName(selectedBet)}
+                      {/* {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam} */}
                     </span>
                   </td>
                   <td width={"20%"}>
