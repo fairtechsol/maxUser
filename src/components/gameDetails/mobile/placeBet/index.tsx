@@ -143,7 +143,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             ).toFixed(2);
     }
     return isNaN(profit)
-      ? Number(matchDetails?.profitLossDataMatch[`team${type}Rate`]).toFixed(2)
+      ? Number(matchDetails?.profitLossDataMatch[`team${type}Rate`] ? matchDetails?.profitLossDataMatch[`team${type}Rate`] : 0).toFixed(2)
       : parseFloat(profit).toFixed(2);
   };
   return (
