@@ -325,42 +325,42 @@ const BetHistoryComponent = () => {
                 return (
                   <div className={`unsetteled-bet ${item.betType === "NO" || item.betType === "LAY"
                     ? "bg-red1"
-                    : "bg-blue3"}`} key={index}>
+                    : "bg-blue4"}`} key={index}>
                     <div className="row row5">
                       <div className="col-6 coloumn-6">
                         <div>
                           <a>
-                            <span>{item.eventName}</span>
+                            <span  className="f500" style={{color:'#2881bb'}}>{item.eventName}</span>
                           </a>
                         </div>
                         <div>
-                          <span>Nation: </span> {item?.teamName}
+                          <span className="f600">Nation: </span> {item?.teamName}
                         </div>
                         <div>
-                          <span>Place Date: </span> {moment(item?.createdAt).format(
+                          <span className="f600">Place Date: </span> {moment(item?.createdAt).format(
                             "MM/DD/YYYY hh:mm:ss A")}
                         </div>
                         <div>
-                          <span>Matched Date: </span> {moment(item?.match?.startAt)
+                          <span className="f600">Matched Date: </span> {moment(item?.match?.startAt)
                             .format(
                               "MM/DD/YYYY hh:mm:ss A")}
                         </div>
                       </div>
                       <Col className="col-2 reportBody" colspan={6}>
                         <div>
-                          <span>User Rate</span>
+                          <span className="f600">User Rate</span>
                         </div>
                         <div>{item.odds}</div>
                       </Col>
                       <div className="col-2 text-right reportBody">
                         <div>
-                          <span>Amount</span>
+                          <span className="f600">Amount</span>
                         </div>
                         <div>{item.amount}</div>
                       </div>
                       <div className="col-2 text-right reportBody">
                         <div>
-                          <span>P&L</span>
+                          <span className="f600">P&L</span>
                         </div>
                         <div> {item.result === "LOSS" ? (
                           <span className="color-green">-{item.lossAmount}</span>

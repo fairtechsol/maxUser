@@ -157,6 +157,16 @@ const PlacedBet = () => {
       setMatchOddRate(matchOddRate - 0.01);
     }
   };
+  const handleName = (selected: any) => {
+    let name;
+    if (selected?.data?.name?.includes(".5")) {
+      const parts = selected?.data?.name?.split("_");
+      name = selected?.team?.betOnTeam + " " + parts[parts?.length - 1];
+    } else {
+      name = selected?.team?.betOnTeam;
+    }
+    return name;
+  };
   return (
     <>
       <div className="loader-container">
@@ -200,7 +210,8 @@ const PlacedBet = () => {
                   </td>
                   <td width={"34%"}>
                     <span className="f600 title-14">
-                      {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
+                      {handleName(selectedBet)}
+                      {/* {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam} */}
                     </span>
                   </td>
                   <td width={"20%"}>
