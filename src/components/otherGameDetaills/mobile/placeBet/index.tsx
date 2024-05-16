@@ -313,6 +313,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                       betOnTeam: selectedBet?.team?.betOnTeam,
                       placeIndex: selectedBet?.team?.placeIndex,
                       bettingName: selectedBet?.data?.name,
+                      gameType: selectedBet?.team?.eventType,
                     };
                     if (
                       selectedBet?.data?.type === "matchOdd" ||

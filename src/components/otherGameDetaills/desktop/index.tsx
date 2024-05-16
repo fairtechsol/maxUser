@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 // import "./style.scss";
-import { IoInformationCircle } from "react-icons/io5";
 import CustomModal from "../../commonComponent/modal";
 import BetTable from "../../otherGameDetaills/betTable/index";
 import PlacedBet from "../../gameDetails/desktop/placeBet";
@@ -244,26 +243,6 @@ const FootballDesktopGameDetail = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
-                <div
-                  onClick={() => setShowContactAdmin(true)}
-                  style={{
-                    display: "flex",
-                    margin: "10px 0",
-                    marginBottom: "0",
-                    alignItems: "center",
-                  }}
-                  className="fs-4"
-                >
-                  <IoInformationCircle />
-                  <h6
-                    style={{ margin: "0 0 0 5px", color: "#ff0000" }}
-                    className="fs-5 text-decoration-underline cursor-pointer blinking-text"
-                  >
-                    Ball by Ball
-                  </h6>
-                </div>
-              </Col>
               <Col md={12}>
                 <PlacedBet />
               </Col>

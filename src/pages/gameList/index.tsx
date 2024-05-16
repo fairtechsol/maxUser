@@ -46,7 +46,9 @@ const GameList = () => {
 
   useEffect(() => {
     if (type) {
-      dispatch(getMatchList({ matchType: type }));
+      // setTimeout(() => {       
+        dispatch(getMatchList({ matchType: type }));
+      // }, 500);
     }
   }, [type]);
 
@@ -57,14 +59,12 @@ const GameList = () => {
         socketService.userBalance.matchResultDeclared(
           getMatchListServiceOnDeclare
         );
-        socketService.userBalance.matchResultUnDeclared(
-          getMatchListServiceOnDeclare
-        );
+        socketService.userBalance.matchResultUnDeclared(getMatchListService);
         socketService.userBalance.declaredMatchResultAllUser(
           getMatchListServiceOnDeclare
         );
         socketService.userBalance.unDeclaredMatchResultAllUser(
-          getMatchListServiceOnDeclare
+          getMatchListService
         );
         return () => {
           expertSocketService.match.matchAddedOff();
