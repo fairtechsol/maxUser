@@ -246,7 +246,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                       ...selectedBet,
                       team: {
                         ...selectedBet?.team,
-                        stake: parseInt(e.target.value),
+                        stake: parseFloat(e.target.value),
                       },
                     })
                   );
