@@ -124,28 +124,30 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
 
 
   const handleProLoss = (data: any, type: string) => {
+    console.log('first',data)
     let profit: any;
     if (data?.betOnTeam === data[`team${type}`]) {
       profit = (
         Number(handleProfit(stake)) +
-        Number(matchDetails?.profitLossDataMatch[`team${type}Rate`])
+        Number(handleTeamRates(data?.matchBetType,type))
       ).toFixed(2);
     } else {
       profit =
         data?.type === "back"
           ? (
               -Number(data?.stake) +
-              Number(matchDetails?.profitLossDataMatch[`team${type}Rate`])
+              Number(handleTeamRates(data?.matchBetType,type))
             ).toFixed(2)
           : (
               Number(data?.stake) +
-              Number(matchDetails?.profitLossDataMatch[`team${type}Rate`])
+              Number(handleTeamRates(data?.matchBetType,type))
             ).toFixed(2);
     }
     return isNaN(profit)
-      ? Number(matchDetails?.profitLossDataMatch[`team${type}Rate`] ? matchDetails?.profitLossDataMatch[`team${type}Rate`] : 0).toFixed(2)
+      ? Number(handleTeamRates(data?.matchBetType,type) ? Number(handleTeamRates(data?.matchBetType,type)) : 0).toFixed(2)
       : parseFloat(profit).toFixed(2);
   };
+
   const handleTeamRates=(type:any,team:string)=>{
     let rate;
     if(type==="matchOdd" || type==="bookmaker" || type==="quickbookmaker1" || type==="quickbookmaker2" || type==="quickbookmaker3"){
