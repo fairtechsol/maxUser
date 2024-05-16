@@ -157,7 +157,13 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
               {matchDetails?.apiSessionActive && (
-                <Col md={(window.innerWidth >= 768 && window.innerWidth <= 1021) ? 12 : 6}>
+                <Col
+                  md={
+                    window.innerWidth >= 768 && window.innerWidth <= 1021
+                      ? 12
+                      : 6
+                  }
+                >
                   <BetTable
                     title={"Session Market"}
                     type={MatchType.API_SESSION_MARKET}

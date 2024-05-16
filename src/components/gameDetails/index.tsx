@@ -231,7 +231,7 @@ const GameDetails = () => {
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-        // socketService.userBalance.matchResultDeclared(resultDeclared);
+        socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
         socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
         socketService.userBalance.sessionDeleteBet(handleSessionBetDeleted);
@@ -244,7 +244,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [success, socket]);
+  }, [success, socket, id]);
 
   useEffect(() => {
     try {
