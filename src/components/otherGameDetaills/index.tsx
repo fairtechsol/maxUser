@@ -112,10 +112,9 @@ const FootballGameDetails = () => {
     try {
       if (event?.matchId === id) {
         if (
-          event?.gameType === "cricket" ||
           event?.betType === "quickbookmaker1"
         ) {
-          navigate(`/game-list/${event?.gameType}`);
+          navigate(`${isMobile ? `/sports` : `/game-list/${event?.gameType}`}`);
         } else {
           dispatch(getPlacedBets(id));
         }
