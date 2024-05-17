@@ -74,7 +74,7 @@ const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
               <Tab
                 key={id ?? item?.id}
                 eventKey={id ?? item?.id}
-                tabClassName="match-list-tabs title-14"
+                tabClassName="match-list-tabs title-12"
                 title={item?.name}
               >
                 {item?.type === GAME_TYPE.ONE_V_ONE ? (
