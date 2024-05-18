@@ -21,7 +21,16 @@ const placeBetHeader = [
 
 const MyBet = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
+  const handleTeamName = (item: any) => {
+    let team;
+    if (item?.bettingName?.includes(".5")) {
+      let name = item?.bettingName.split("_");
+      team = item?.teamName + " " + name[name?.length - 1];
+    } else {
+      team = item?.teamName;
+    }
+    return team;
+  };
   return (
     <Table className="w-full" bordered>
       <thead>
@@ -51,7 +60,7 @@ const MyBet = () => {
                 >
                   {bet?.marketBetType === "SESSION"
                     ? bet?.eventName
-                    : bet?.teamName}
+                    : handleTeamName(bet)}
                 </th>
                 <th
                   className={`title-12 text-start ${

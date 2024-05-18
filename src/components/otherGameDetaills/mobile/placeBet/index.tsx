@@ -163,6 +163,16 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
       ? Number(handleTeamRates(name, type)).toFixed(2)
       : parseFloat(profit).toFixed(2);
   };
+  const handleName = (selected: any) => {
+    let name;
+    if (selected?.data?.name?.includes(".5")) {
+      const parts = selected?.data?.name?.split("_");
+      name = selected?.team?.betOnTeam + " " + parts[parts?.length - 1];
+    } else {
+      name = selected?.team?.betOnTeam;
+    }
+    return name;
+  };
   return (
     <>
       <CustomModal
@@ -183,7 +193,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
             <Col xs={8} className="f600 title-14">
-              {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
+            {handleName(selectedBet)}
             </Col>
             <Col xs={4} className="d-flex justify-content-end">
               <CustomButton
