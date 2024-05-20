@@ -69,11 +69,16 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
           isSportsRoute ? "match-list-containerm" : ""
         }`}
         ref={boxRef}
-        style={
-          location.pathname === "/home" || location.pathname === "/inPlay"
-            ? { height: !matchList || matchList?.length === 0 ? "" : "400px" }
-            : {}
-        }
+        // style={
+        //   location.pathname === "/home" || location.pathname === "/inPlay"
+        //     ? { height: !matchList || matchList?.length === 0 ? "" : "400px" }
+        //     : {}
+        // }
+        style={{
+          minHeight: location.pathname === "/home" || location.pathname === "/inPlay" ? "50%" : "50%",
+          maxHeight: location.pathname === "/home" || location.pathname === "/inPlay" ? "400px" : "",
+          overflowY: location.pathname === "/home" || location.pathname === "/inPlay" ? "auto" : "visible"
+        }}
       >
         {availableGameType[mTypeid || id] ? (
           <>
