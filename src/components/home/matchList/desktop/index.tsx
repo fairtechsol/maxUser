@@ -26,7 +26,7 @@ const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
 
   useEffect(() => {
     try {
-      if (success) {
+      if (success && matchList.length > 0) {
         matchList?.forEach((element: any) => {
           expertSocketService.match.joinMatchRoom(element?.id, "user");
         });
@@ -47,11 +47,10 @@ const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
     } catch (e) {
       console.log(e);
     }
-  }, [success, id, matchType]);
+  }, [matchList.length, success, id, matchType]);
 
   // useEffect(() => {
   //   try {
-
   //   } catch (error) {
   //     console.log(error);
   //   }
