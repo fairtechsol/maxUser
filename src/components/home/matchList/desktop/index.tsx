@@ -49,12 +49,12 @@ const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
     }
   }, [matchList.length, success, id, matchType]);
 
-  useEffect(() => {
-    try {
-    } catch (error) {
-      console.log(error);
-    }
-  }, [id, matchType]);
+  // useEffect(() => {
+  //   try {
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [id, matchType]);
 
   useEffect(() => {
     if (id) {
