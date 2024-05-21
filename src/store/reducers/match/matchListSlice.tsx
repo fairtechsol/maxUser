@@ -50,7 +50,7 @@ const matchListSlice = createSlice({
     builder
       .addCase(getMatchList.pending, (state) => {
         state.loading = true;
-        state.success = false;
+        // state.success = false;
         state.error = null;
       })
       .addCase(getMatchList.fulfilled, (state, action) => {
