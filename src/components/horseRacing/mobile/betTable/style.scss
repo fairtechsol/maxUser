@@ -1,0 +1,214 @@
+.match-title {
+    position: relative;
+    cursor: pointer;
+}
+
+.match-title {
+    background-color: #ffc742d9;
+    // padding: 4px 8px;
+    color: black;
+    font-size: 14px;
+    display: table;
+    width: 100%;
+}
+.tab-content>.active {
+    display: block;
+}
+.match-name {
+    font-weight: bold;
+}
+.float-right {
+    float: right !important;
+}
+.horse-banner {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.market-title {
+    font-size: 13px;
+    padding: 3px 6px;
+}
+
+.market-title {
+    background-color: #ffc742d9;
+    padding: 4px 8px;
+    color: black;
+    font-size: 13px;
+}
+.table-header {
+    border-top: 1px solid #aaa;
+}
+.table-header, .table-row {
+    display: flex;
+    display: -ms-flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #aaa;
+}
+.table-row {
+    background-color: #f2f2f2;
+    position: relative;
+}
+.table-header > div:first-child, .table-row > div:first-child {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.horse-detail .country-name {
+    background: #e5e5e5;
+}
+@media screen and (orientation: portrait) {
+    .main-market .box-4, .fancy-market .box-4 {
+        width: 60%;
+        min-width: 60%;
+        max-width: 60%;
+    }
+}
+.table-header > div, .table-row > div {
+    padding: 2px 0;
+    border: 1px solid #aaa;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+.box-4 {
+    width: 40%;
+    min-width: 40%;
+    max-width: 40%;
+}
+.horse-detail .country-name .custom-control {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.custom-control {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
+}
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.custom-control-input {
+    position: absolute;
+    z-index: -1;
+
+    opacity: 0;
+}
+
+.custom-control-label::after {
+    top: 0;
+    width: 20px;
+    height: 20px;
+}
+.custom-control-label::after {
+    position: absolute;
+    top: .25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    border: 1px solid;
+    background: #fff;
+}
+.horse-detail .country-name {
+    background: #e5e5e5;
+}
+.horse-detail .country-name label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    font-size: var(--font-body);
+}
+
+.custom-control-label {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+    display: flex;
+}
+@media screen and (orientation: portrait) {
+    .main-market .box-1, .fancy-market .box-1 {
+        width: 20%;
+        min-width: 20%;
+        max-width: 20%;
+    }
+}
+
+.table-header > div, .table-row > div {
+    padding: 2px 0;
+    border: 1px solid #aaa;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+.back {
+    background-color: #a7d8fd !important;
+}
+.table-row > div .odd {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 3px;
+    line-height: 16px;
+}
+
+// .d-block {
+//     display: block !important;
+// }
+.table-row > div .odd ~ span {
+    font-size: 12px;
+    line-height: 14px;
+}
+@media screen and (orientation: portrait) {
+    .main-market .box-1, .fancy-market .box-1 {
+        width: 20%;
+        min-width: 20%;
+        max-width: 20%;
+    }
+}
+
+.table-header > div, .table-row > div {
+    padding: 2px 0;
+    border: 1px solid #aaa;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+.lay {
+    background-color: #f9c9d4 !important;
+}
+.table-header > div:first-child, .table-row > div:first-child {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.horse-detail .country-name {
+    background: #e5e5e5;
+}
+@media screen and (orientation: portrait) {
+    .main-market .box-4, .fancy-market .box-4 {
+        width: 60%;
+        min-width: 60%;
+        max-width: 60%;
+    }
+}
+.table-header > div, .table-row > div {
+    padding: 2px 0;
+    border: 1px solid #aaa;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+.box-4 {
+    width: 40%;
+    min-width: 40%;
+    max-width: 40%;
+}
+.float-left {
+    float: left !important;
+}
