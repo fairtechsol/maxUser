@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    getCompetitionDates,
-    getCompetitionList,
-    getCompetitionMatches,
+  getCompetitionDates,
+  getCompetitionList,
+  getCompetitionMatches,
 } from "../../actions/match/matchListAction";
 
 interface InitialState {
@@ -32,6 +32,7 @@ const sidebarListSlice = createSlice({
       .addCase(getCompetitionList.pending, (state) => {
         state.loading = false;
         state.success = false;
+        state.competitionList = [];
         state.error = null;
       })
       .addCase(getCompetitionList.fulfilled, (state, action) => {

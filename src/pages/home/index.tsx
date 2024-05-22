@@ -40,13 +40,15 @@ const Home = () => {
       console.log(e);
     }
   };
-  const getMatchListServiceSocket = () => {
+  const getMatchListServiceSocket = (event: any) => {
     try {
-      dispatch(
-        getMatchList({
-          matchType: matchType,
-        })
-      );
+      if (event?.gameType === matchType) {
+        dispatch(
+          getMatchList({
+            matchType: event?.gameType,
+          })
+        );
+      }
     } catch (e) {
       console.log(e);
     }
