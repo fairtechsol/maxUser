@@ -15,6 +15,7 @@ import CustomModal from "../../components/commonComponent/modal";
 import Desktop from "../../components/rules/desktop";
 import { rulesModalShowFalse } from "../../store/actions/authAction";
 import isMobile from "../../utils/screenDimension";
+import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/horseMatchListAction";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -99,9 +100,16 @@ const Home = () => {
   useEffect(() => {
     if (
       matchType &&
+      ["cricket", "football", "tennis"].includes(matchType) &&
       ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
     ) {
       getMatchListService();
+    } else if (
+      matchType &&
+      ["horseRacing", "greyhoundracing"].includes(matchType) &&
+      ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
+    ) {
+      dispatch(getHorseRacingCountryWiseList());
     }
   }, [matchType, location.pathname.split("/")[1]]);
 
