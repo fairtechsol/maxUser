@@ -55,7 +55,10 @@ const HorseRacingTabsDesktop = () => {
   };
   return (
     <>
-      <Tab.Container onSelect={handleSelect} activeKey={activeTab}>
+      <Tab.Container
+        onSelect={handleSelect}
+        activeKey={activeTab}
+      >
         <Nav variant="tabs" className="navi-tabs mt-2">
           {countryWiseList?.map((item: any) => (
             <Nav.Item key={item?.countryCode} className="navi-item">
