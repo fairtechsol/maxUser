@@ -3,7 +3,7 @@ import service from "../../../service";
 import { AxiosError } from "axios";
 import { ApiConstants } from "../../../utils/constants";
 
-export const getMatchDetailHorseRacing = createAsyncThunk<any, string>(
+export const getMatchDetailHorseRacing = createAsyncThunk<any, any>(
   "horseRacing/matchDetail",
   async (requestData, thunkApi) => {
     try {
