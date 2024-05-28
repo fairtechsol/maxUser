@@ -69,7 +69,11 @@ const HorseRacingTabsDesktop = () => {
           {Object.entries(racingList)?.map(([matchName, item]: any) => {
             console.log(matchName, item);
             return (
-              <Tab.Pane eventKey={item[0]?.countryCode} key={item?.id}>
+              <Tab.Pane
+                eventKey={item[0]?.countryCode}
+                key={item?.id}
+                className="m-0 p-0"
+              >
                 <RaceDetails matchName={matchName} item={item} />
               </Tab.Pane>
             );

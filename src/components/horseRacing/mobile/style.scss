@@ -34,14 +34,14 @@
     background-color: #ffc742;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: space-between;
     width: 100vw;
     color: #495057; 
     border-radius: 0px;
   }
   
   .tabs-nav .nav-link.active {
-    width: 30dvw;/* Change this to your desired active tab background color */
+    // width: 30vw;/* Change this to your desired active tab background color */
     background-color: #004a25;
     color: #fff;
   }
