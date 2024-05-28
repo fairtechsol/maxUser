@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { Tab, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.scss";
-import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
-import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/horseMatchListAction";
 import moment from "moment";
+import { useEffect, useState } from "react";
+import { Tab } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/horseMatchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
+import CommonTabs from "../../commonComponent/tabs";
+import "./style.scss";
 
 const HorseRacingTabsDesktop = () => {
   const { countryWiseList, racingList } = useSelector(
@@ -31,7 +31,7 @@ const HorseRacingTabsDesktop = () => {
     return item?.map((gameDetail: any) => (
       <div className="coupon-card coupon-card-first" key={gameDetail?.id}>
         <div className="card-content">
-          <table className="table coupon-table table-bordered">
+          <table className="table coupon-table table-bordered ">
             <tbody>
               <tr>
                 <td style={{ width: "30%" }}>
@@ -41,7 +41,7 @@ const HorseRacingTabsDesktop = () => {
                   <div className="horse-time-detail">
                     {item?.map((race: any) => (
                       <a href={`race/${race?.id}`} key={race?.id}>
-                        <span>{moment(race.startAt).format("hh:mm")}</span>
+                        <span>{moment(race.startAt).format("HH:mm")}</span>
                       </a>
                     ))}
                   </div>
@@ -55,31 +55,26 @@ const HorseRacingTabsDesktop = () => {
   };
   return (
     <>
-      <Tab.Container defaultActiveKey={countryWiseList[0]?.countryCode}>
-        <Nav variant="tabs" className="navi-tabs mt-2">
-          {countryWiseList?.map((item: any) => (
-            <Nav.Item key={item?.countryCode} className="navi-item">
-              <Nav.Link eventKey={item?.countryCode} className="navi-link">
-                {item?.countryCode}
-              </Nav.Link>
-            </Nav.Item>
-          ))}
-        </Nav>
-        <Tab.Content>
-          {Object.entries(racingList)?.map(([matchName, item]: any) => {
-            console.log(matchName, item);
-            return (
-              <Tab.Pane
-                eventKey={item[0]?.countryCode}
-                key={item?.id}
-                onSelect={handleSelect}
-              >
-                <RaceDetails matchName={matchName} item={item} />
-              </Tab.Pane>
-            );
-          })}
-        </Tab.Content>
-      </Tab.Container>
+      <CommonTabs
+        callback={handleSelect}
+        defaultActive={activeTab}
+        id={activeTab}
+      >
+        {countryWiseList?.map((item: any) => (
+          <Tab
+            key={item?.countryCode}
+            eventKey={item?.countryCode}
+            tabClassName="match-list-tabs title-12"
+            title={item?.countryCode}
+            style={{ padding: "0px" }}
+          >
+            {Object.entries(racingList)?.map(([matchName, item]: any) => {
+              console.log(matchName, item);
+              return <RaceDetails matchName={matchName} item={item} />;
+            })}
+          </Tab>
+        ))}
+      </CommonTabs>
     </>
   );
 };
