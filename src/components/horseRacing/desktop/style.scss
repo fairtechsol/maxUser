@@ -16,22 +16,24 @@
   display: block;
 }
 .coupon-card {
-    margin-bottom: 16px;
     border-radius: 0 0 2px 2px;
 }
 .table {
   margin-bottom: 0 !important;
 }
+.coupon-table tr {
+  margin: 0 !important;
+}
 .coupon-table tr td {
-  padding: 0;
+  padding: 0 ;
   vertical-align: middle;
   font-size: 14px;
   word-wrap: break-word;
 }
-// .table.coupon-table {
-//   margin-bottom: 0;
-//   border-collapse: collapse;
-// }
+.table.coupon-table {
+  margin-bottom: 0;
+  border-collapse: collapse;
+}
 
 .table.coupon-table td {
   padding: 3px;
@@ -48,7 +50,7 @@
 }
 
 .horse-time-detail {
-  width: 100%;
+  width: 50%;
   display: flex;
   flex-wrap: wrap;
   // padding: 5px 5px 0 5px;
@@ -57,37 +59,27 @@
   // margin-bottom: 0;
   display: flex;
 }
+.navi-link{
+  width: 100%;
+}
+.navi-item{
+  max-height: 8% ;
+}
 
-.tabs-navs {
-    background-color: #ffc742;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-between;
-    // width: 100%;
-    color: #495057;
-    overflow-y: hidden;
-    position: relative;
-  }
-  .tabs-navs{
-   min-width: none;
-   max-width: 15%;
-    text-align: left !important;
-  }
-
-  .tabs-navs .nav-link {
+  .navi-tabs .nav-link.active {
     flex: 1 0 10%;
-    text-align: left; 
-    color: #495057; 
+    background-color: #ffc742; 
+    color: #000; 
+  }
+  .navi-tabs .navi-item {
+    margin: 0; 
+    background-color: #dddddd;
   }
   
-
-  .tabs-navs .nav-link.active {
-    flex: 1 0 10%;
-    background-color: #004a25; 
-    color: white; 
+  .navi-tabs .navi-link {
+    padding: 0; /* Remove padding from Nav.Link */
+    margin: 0; /* Remove margin from Nav.Link */
   }
-  
 
   @media (max-width: 768px) {
     .tabs-navs .nav-link {

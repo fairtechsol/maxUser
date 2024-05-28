@@ -3,6 +3,7 @@ import { Container, Nav, Tab, Table, Card } from 'react-bootstrap';
 import "./style.scss";
 import isMobile from '../../../../utils/screenDimension';
 import HorseRace from '../../desktop/betTable';
+import HorseModal from '../infoModal';
 const raceData = [
     {
       id: '1',
@@ -169,7 +170,25 @@ const HorseRaceTabs = () => {
   };
 
 
+  const [showModal, setShowModal] = useState(false);
+  const [currentHorse, setCurrentHorse] = useState({});
+  const [modalStyle, setModalStyle] = useState({});
 
+  const handleShowModal = (event:any, horse:any) => {
+    const rect = event.target.getBoundingClientRect();
+    setCurrentHorse(horse);
+    setModalStyle({
+      position: 'absolute',
+      top: `${rect.bottom}px`,
+      left: `${rect.left}px`,
+      transform: 'translateY(10px)', // Slight adjustment to position the modal below the click target
+    });
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
@@ -225,7 +244,7 @@ const HorseRaceTabs = () => {
                            
                             <label htmlFor={horse.id} className="custom-control-label">
                             <span className="horse-mobile-arrow">
-                              <i data-toggle="collapse" data-target={`#detail-${horse.id}`} className="fas fa-angle-down"></i>
+                              <i data-toggle="collapse" data-target={`#detail-${horse.id}`} className="fas fa-angle-down"    onClick={(event) => handleShowModal(event, horse)}></i>
                             </span>
                               <div>{horse.number}<br />({horse.position})</div>
                               <div><img src={horse.image} alt={horse.name} /></div>
@@ -255,7 +274,8 @@ const HorseRaceTabs = () => {
           </Tab.Pane>
         ))}
       {/* </Tab.Content> */}
-   
+      <HorseModal show={showModal} handleClose={handleCloseModal} horseData={currentHorse} />
+
    {!isMobile && <HorseRace data={sampleData}/>}
     </>
   );

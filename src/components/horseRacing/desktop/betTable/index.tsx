@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
+import PlacedBet from "../../../gameDetails/desktop/placeBet";
+import MyBet from "../../../gameDetails/desktop/myBet";
 
 
   
 
 const HorseRace = ({ data }:any) => {
+
+  const placeBetRef = useRef<HTMLDivElement>(null);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
+        const sticky = placeBetRef?.current.offsetTop;
+        setIsSticky(window.scrollY > sticky);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className="featured-box horse-detail">
+    <><div className="featured-box horse-detail">
       <Row className="row5">
-        <Col md={10} className="coupon-card featured-box-detail">
+        <Col md={8} className="coupon-card featured-box-detail">
           <div className="horse-banner">
             <div className="time-detail">
               <h5 className="mb-0">{data.location}</h5>
@@ -41,7 +61,7 @@ const HorseRace = ({ data }:any) => {
               <div className="market-odd-box no-border d-none d-md-flex"></div>
             </div>
             <div className="market-body">
-              {data.races.map((race:any) => (
+              {data.races.map((race: any) => (
                 <div className="market-row" key={race.id}>
                   <div className="market-nation-detail">
                     <div className="form-check">
@@ -49,8 +69,7 @@ const HorseRace = ({ data }:any) => {
                         type="checkbox"
                         id={race.id}
                         name={race.id}
-                        className="form-check-input"
-                      />
+                        className="form-check-input" />
                       <label htmlFor={race.id} className="form-check-label">
                         <div>
                           {race.number}<br />({race.age})
@@ -109,8 +128,29 @@ const HorseRace = ({ data }:any) => {
             </div>
           </div>
         </Col>
+    
+      <Col md={3} className="ps-0">
+        <Container className="p-0" fluid ref={placeBetRef}>
+          <Row
+            className={` ${isSticky ? "position-fixed top-0" : ""}`}
+            style={{
+              width: isSticky
+                ? placeBetRef.current?.offsetWidth + "px"
+                : "100%",
+            }}
+          >
+            <Col md={12}>
+              <PlacedBet />
+            </Col>
+            <Col md={12}>
+              <MyBet />
+            </Col>
+          </Row>
+        </Container>
+      </Col>
       </Row>
     </div>
+    </>
   );
 };
 

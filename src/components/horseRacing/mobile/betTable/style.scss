@@ -96,7 +96,7 @@ input[type=checkbox], input[type=radio] {
 .custom-control-input {
     position: absolute;
     z-index: -1;
-
+    
     opacity: 0;
 }
 
@@ -212,3 +212,38 @@ input[type=checkbox], input[type=radio] {
 .float-left {
     float: left !important;
 }
+.table-header > div:last-child, .table-row > div:last-child {
+    border-right: 1px solid #aaa;
+    padding-right: 5px;
+}
+.horse-detail .jockey-detail {
+    font-size: 12px;
+    // background: #333;
+    padding: 6px 14px;
+    // position: absolute;
+    color: #ddd;
+    z-index: 1000;
+    border-radius: 4px;
+    top: 20px;
+    width: auto;
+    min-width: unset;
+    max-width: unset;
+    left: 10px;
+}
+.fa-angle-down:before {
+    content: "\f107";
+}
+
+// .horse-modal-body {
+//     background-color: rgba(0, 0, 0, 0.8); /* Transparent black background */
+//     border-radius: 10px; /* Curved radius */
+//     color: white;
+//     display: flex;
+//     justify-content: space-around;
+//     padding: 20px;
+//     text-align: center;
+//   }
+  
+//   .horse-mobile-arrow i {
+//     cursor: pointer;
+//   }

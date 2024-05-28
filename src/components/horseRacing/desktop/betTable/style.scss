@@ -7,7 +7,7 @@
 }
   
 .coupon-card {
-    margin-bottom: 16px;
+    // margin-bottom: 16px;
     border-radius: 0 0 2px 2px;
 }
 .featured-box-detail {
@@ -166,7 +166,7 @@ input[type=checkbox], input[type=radio] {
     color: #000;
     padding: 0 3px;
     margin-right: 5px;
-    font-size: 13px;
+    font-size: 10px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -182,7 +182,7 @@ span b{
     }
 }
 .market-odd-box {
-    width: 62px;
+    width: 55px;
     padding: 2px 0;
     display: flex;
     flex-wrap: wrap;
@@ -204,7 +204,7 @@ span b{
     }
 }
 .market-odd-box .market-odd {
-    font-size: 18px;
+    font-size: 16px;
     // font-weight: bold;
     margin-bottom: 3px;
     line-height: 1;

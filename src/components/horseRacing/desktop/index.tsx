@@ -1,118 +1,137 @@
-import React, { useState } from 'react';
-import { Tab, Tabs, Container, Row, Col, Nav } from 'react-bootstrap';
+import React, {  useState } from 'react';
+import { Tab, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.scss'; // Ensure this path is correct for your setup
+import './style.scss'; 
 
 const raceData = [
   {
-    id: 'goku6667679',
-    country: 'GB',
-    gameName: 'Brighton',
-    races: [
-      { time: '18:50', link: '/race/:id' },
-      { time: '19:20', link: '/race-detail/10/776951135' },
-      { time: '19:50', link: '/race-detail/10/488787912' },
-      { time: '20:20', link: '/race-detail/10/586095343' },
-      { time: '20:50', link: '/race-detail/10/601592739' },
-      { time: '21:25', link: '/race-detail/10/860947308' },
+    id: 1,
+    gameDetails: [
+      {
+        gameName: "Le Lion Dangers",
+        races: [
+          { link: "/race/:id", time: "16:03" },
+          { link: "/race/:id", time: "16:38" },
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+          // Add more race details here
+        ],
+      },
+      {
+        gameName: "Another Game Name",
+        races: [
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+          // Add more race details here
+        ],
+      },
+      {
+        gameName: "Another Game Name",
+        races: [
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+          // Add more race details here
+        ],
+      },
     ],
   },
   {
-    id: 'goku7689931',
-    country: 'FR',
-    gameName: 'Paris',
-    races: [
-      { time: '18:40', link: '/race-detail/10/862218549' },
-      { time: '19:10', link: '/race-detail/10/692571697' },
-      { time: '19:40', link: '/race-detail/10/701929847' },
-      { time: '20:10', link: '/race-detail/10/741608642' },
-      { time: '20:40', link: '/race-detail/10/859534408' },
-      { time: '21:10', link: '/race-detail/10/526954061' },
+    id: 2,
+    gameDetails: [
+      {
+        gameName: "ParisLongchamp",
+        races: [
+          { link: "/race-detail/10/712776540", time: "20:08" },
+          { link: "/race-detail/10/497753989", time: "20:43" },
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+          // Add more race details here
+        ],
+      },
+      {
+        gameName: "Another Game Name",
+        races: [
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+          // Add more race details here
+        ],
+      },
+      {
+        gameName: "Another Game Name",
+        races: [
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+          { link: "/race/:id", time: "17:00" },
+          { link: "/race/:id", time: "17:30" },
+        ],
+      },
     ],
   },
-  {
-    id: 'goku6106757',
-    country: 'AU',
-    gameName: 'Melbourne',
-    races: [
-      { time: '21:50', link: '/race-detail/10/621036572' },
-      { time: '22:20', link: '/race-detail/10/627576674' },
-      { time: '22:50', link: '/race-detail/10/592197515' },
-      { time: '23:20', link: '/race-detail/10/758304899' },
-      { time: '23:50', link: '/race-detail/10/671889173' },
-    ],
-  },
-  {
-    id: 'goku6679520',
-    country: 'IE',
-    gameName: 'Dublin',
-    races: [
-      { time: '21:50', link: '/race-detail/10/621036572' },
-      { time: '22:20', link: '/race-detail/10/627576674' },
-      { time: '22:50', link: '/race-detail/10/592197515' },
-      { time: '23:20', link: '/race-detail/10/758304899' },
-      { time: '23:50', link: '/race-detail/10/671889173' },
-    ],
-  },
-  {
-    id: 'goku6468355',
-    country: 'ZA',
-    gameName: 'Johannesburg',
-    races: [
-      { time: '21:55', link: '/race-detail/10/782494365' },
-      { time: '22:28', link: '/race-detail/10/757926870' },
-      { time: '22:58', link: '/race-detail/10/735332740' },
-      { time: '23:28', link: '/race-detail/10/814519332' },
-    ],
-  },
+
 ];
 
 const HorseRacingTabsDesktop = () => {
   const [activeTab, setActiveTab] = useState(raceData[0].id);
+ 
 
   const handleSelect = (key:any) => {
     setActiveTab(key);
   };
-
+  const RaceDetails = ({ gameDetails }:any) => {
+    return gameDetails.map((gameDetail:any, index:any) => (
+      <div className="coupon-card coupon-card-first" key={index}>
+        <div className="card-content">
+          <table className="table coupon-table table-bordered">
+            <tbody>
+              <tr>
+                <td style={{ width: '30%' }}>
+                  <a className="text-dark">{gameDetail.gameName}</a>
+                </td>
+                <td>
+                  <div className="horse-time-detail">
+                    {gameDetail.races.map((race:any, index:any) => (
+                      <a href={race.link} key={index}>
+                        <span>{race.time}</span>
+                      </a>
+                    ))}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ));
+  };
   return (
-    <>
-      <Nav variant="tabs" activeKey={activeTab} onSelect={handleSelect} className="tabs-navs">
+    <><Tab.Container defaultActiveKey={raceData[0].id.toString()}>
+      <Nav variant="tabs" className="navi-tabs mt-2">
         {raceData.map((race) => (
-          <Nav.Item key={race.id}>
-            <Nav.Link eventKey={race.id}>{race.country}</Nav.Link>
+          <Nav.Item key={race.id} className='navi-item'>
+            <Nav.Link eventKey={race.id.toString()} className="navi-link">
+              {race.gameDetails[0].gameName.split(" ")[0].substring(0, 2).toUpperCase()}
+            </Nav.Link>
           </Nav.Item>
         ))}
       </Nav>
-      {/* <Tab.Content> */}
+      <Tab.Content>
         {raceData.map((race) => (
-        
-            <div key={race.id} className="coupon-card coupon-card-first">
-              <div className="card-content">
-                <table className="table coupon-table table-bordered">
-                  <tbody>
-                    <tr>
-                      <td style={{ width: '30%' }}>
-                        <a className="text-dark">{race.gameName}</a>
-                      </td>
-                      <td>
-                        <div className="horse-time-detail">
-                          {race.races.map((r, index) => (
-                            <a href={r.link} key={index}>
-                              <span>{r.time}</span>
-                            </a>
-                          ))}
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-   
+          <Tab.Pane eventKey={race.id.toString()} key={race.id}>
+            <RaceDetails gameDetails={race.gameDetails} />
+          </Tab.Pane>
         ))}
-      {/* </Tab.Content> */}
-    </>
-  );
+      </Tab.Content>
+    </Tab.Container>
+   </>
+);
+
+
 };
 
 export default HorseRacingTabsDesktop;
