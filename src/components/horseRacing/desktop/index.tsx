@@ -55,10 +55,7 @@ const HorseRacingTabsDesktop = () => {
   };
   return (
     <>
-      <Tab.Container
-        onSelect={handleSelect}
-        activeKey={activeTab}
-      >
+      <Tab.Container onSelect={handleSelect} activeKey={activeTab}>
         <Nav variant="tabs" className="navi-tabs mt-2">
           {countryWiseList?.map((item: any) => (
             <Nav.Item key={item?.countryCode} className="navi-item">
@@ -72,7 +69,11 @@ const HorseRacingTabsDesktop = () => {
           {Object.entries(racingList)?.map(([matchName, item]: any) => {
             console.log(matchName, item);
             return (
-              <Tab.Pane eventKey={item[0]?.countryCode} key={item?.id}>
+              <Tab.Pane
+                eventKey={item[0]?.countryCode}
+                key={item?.id}
+                className="m-0 p-0"
+              >
                 <RaceDetails matchName={matchName} item={item} />
               </Tab.Pane>
             );
