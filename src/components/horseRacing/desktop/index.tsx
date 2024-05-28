@@ -1,7 +1,9 @@
-import React, {  useState } from 'react';
-import { Tab, Nav } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.scss'; 
+import { useState } from "react";
+import { Tab, Nav } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./style.scss";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 const raceData = [
   {
@@ -73,29 +75,31 @@ const raceData = [
       },
     ],
   },
-
 ];
 
 const HorseRacingTabsDesktop = () => {
   const [activeTab, setActiveTab] = useState(raceData[0].id);
- 
 
-  const handleSelect = (key:any) => {
+  const handleSelect = (key: any) => {
     setActiveTab(key);
   };
-  const RaceDetails = ({ gameDetails }:any) => {
-    return gameDetails.map((gameDetail:any, index:any) => (
+
+  const { countryWiseList } = useSelector(
+    (state: RootState) => state.horseRacing.matchList
+  );
+  const RaceDetails = ({ gameDetails }: any) => {
+    return gameDetails.map((gameDetail: any, index: any) => (
       <div className="coupon-card coupon-card-first" key={index}>
         <div className="card-content">
           <table className="table coupon-table table-bordered">
             <tbody>
               <tr>
-                <td style={{ width: '30%' }}>
+                <td style={{ width: "30%" }}>
                   <a className="text-dark">{gameDetail.gameName}</a>
                 </td>
                 <td>
                   <div className="horse-time-detail">
-                    {gameDetail.races.map((race:any, index:any) => (
+                    {gameDetail.races.map((race: any, index: any) => (
                       <a href={race.link} key={index}>
                         <span>{race.time}</span>
                       </a>
@@ -110,28 +114,27 @@ const HorseRacingTabsDesktop = () => {
     ));
   };
   return (
-    <><Tab.Container defaultActiveKey={raceData[0].id.toString()}>
-      <Nav variant="tabs" className="navi-tabs mt-2">
-        {raceData.map((race) => (
-          <Nav.Item key={race.id} className='navi-item'>
-            <Nav.Link eventKey={race.id.toString()} className="navi-link">
-              {race.gameDetails[0].gameName.split(" ")[0].substring(0, 2).toUpperCase()}
-            </Nav.Link>
-          </Nav.Item>
-        ))}
-      </Nav>
-      <Tab.Content>
-        {raceData.map((race) => (
-          <Tab.Pane eventKey={race.id.toString()} key={race.id}>
-            <RaceDetails gameDetails={race.gameDetails} />
-          </Tab.Pane>
-        ))}
-      </Tab.Content>
-    </Tab.Container>
-   </>
-);
-
-
+    <>
+      <Tab.Container defaultActiveKey={countryWiseList[0].countryCode}>
+        <Nav variant="tabs" className="navi-tabs mt-2">
+          {countryWiseList.map((item: any) => (
+            <Nav.Item key={item?.countryCode} className="navi-item">
+              <Nav.Link eventKey={item.countryCode} className="navi-link">
+                {item.countryCode}
+              </Nav.Link>
+            </Nav.Item>
+          ))}
+        </Nav>
+        <Tab.Content>
+          {raceData.map((race) => (
+            <Tab.Pane eventKey={race.id.toString()} key={race.id}>
+              <RaceDetails gameDetails={race.gameDetails} />
+            </Tab.Pane>
+          ))}
+        </Tab.Content>
+      </Tab.Container>
+    </>
+  );
 };
 
 export default HorseRacingTabsDesktop;
