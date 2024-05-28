@@ -4,7 +4,7 @@ import { Table } from "react-bootstrap";
 import moment from "moment-timezone";
 import { Img } from "react-image";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { RootState } from "../../../../../../store/store";
 import {
   availableGameType,
@@ -13,6 +13,7 @@ import {
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
+import HorseRacingComponent from "../../../../../horseRacing";
 const tableHeading = [
   {
     id: "game",
@@ -37,7 +38,28 @@ const tableHeading = [
     textAlign: "center",
   },
 ];
-
+const tableHeading2 = [
+  {
+    id: "FR",
+    name: "FR",
+  },
+  {
+    id: "GB",
+    name: "GB",
+  },
+  {
+    id: "IE",
+    name: "IE",
+  },
+  {
+    id: "AU",
+    name: "AU",
+  },
+  {
+    id: "ZA",
+    name: "ZA",
+  },
+];
 const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
@@ -47,20 +69,26 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
       <Table className="matchListTable-desktop mb-4">
         <thead>
           <tr>
-            {tableHeading?.map((item) => (
-              <th
-                className={`title-14 ${item?.textAlign === "center" ? "text-center" : ""
-                  }`}
-                colSpan={item?.colspan}
-                key={item?.id}
-              >
-                {item?.name}
-              </th>
-            ))}
+            {availableGameType[mTypeid] === "horseRacing" ? (
+              <>
+                </>
+            ) : (<>
+              {tableHeading?.map((item) => (
+                <th
+                  className={`title-14 ${item?.textAlign === "center" ? "text-center" : ""
+                    }`}
+                  colSpan={item?.colspan}
+                  key={item?.id}
+                >
+                  {item?.name}
+                </th>
+              ))}
+            </>)}
+            { }
           </tr>
         </thead>
         <tbody>
-          {availableGameType[mTypeid] ? (
+          {availableGameType[mTypeid] ? availableGameType[mTypeid] === "horseRacing" ? <HorseRacingComponent/> : (
             <>
               {!matchList || matchList?.length === 0 ? (
                 <tr>
@@ -170,11 +198,11 @@ const MatchListRow = ({ item, matchType }: any) => {
             className="text-decoration-none"
             to={`/game-detail/${item?.id}`}
           > */}
-          <Link
+          <NavLink
             className="text-decoration-none"
             to={`/${matchType === "cricket"
-                ? "game-detail/cricket"
-                : `other-game-detail/${matchType}`
+              ? "game-detail/cricket"
+              : `other-game-detail/${matchType}`
               }/${item?.id}`}
           >
             <div
@@ -186,7 +214,7 @@ const MatchListRow = ({ item, matchType }: any) => {
                 .tz(timezone)
                 .format("MMM DD YYYY h:mmA ([IST])")}
             </div>
-          </Link>
+          </NavLink>
           <div className="d-flex align-items-center gap-2">
             {item?.startAt || item?.stopAt ? (
               <span className="liveDot"></span>
@@ -251,16 +279,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              // backPercent={
-              //   (item?.runners &&
-              //     item?.runners[2]?.ex?.availableToBack[0]?.size) ??
-              //   ""
-              // }
-              // layPercent={
-              //   (item?.runners &&
-              //     item?.runners[2]?.ex?.availableToLay[0]?.size) ??
-              //   ""
-              // }
+            // backPercent={
+            //   (item?.runners &&
+            //     item?.runners[2]?.ex?.availableToBack[0]?.size) ??
+            //   ""
+            // }
+            // layPercent={
+            //   (item?.runners &&
+            //     item?.runners[2]?.ex?.availableToLay[0]?.size) ??
+            //   ""
+            // }
             />
             <BackLayComponent
               backRate={
@@ -274,16 +302,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              // backPercent={
-              //   (item?.runners &&
-              //     item?.runners[1]?.ex?.availableToBack[0]?.size) ??
-              //   ""
-              // }
-              // layPercent={
-              //   (item?.runners &&
-              //     item?.runners[1]?.ex?.availableToLay[0]?.size) ??
-              //   ""
-              // }
+            // backPercent={
+            //   (item?.runners &&
+            //     item?.runners[1]?.ex?.availableToBack[0]?.size) ??
+            //   ""
+            // }
+            // layPercent={
+            //   (item?.runners &&
+            //     item?.runners[1]?.ex?.availableToLay[0]?.size) ??
+            //   ""
+            // }
             />
           </React.Fragment>
         );

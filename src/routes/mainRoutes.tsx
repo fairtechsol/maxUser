@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
+import HorseRaceTabs from "../components/horseRacing/mobile/betTable";
 // import Home from "../pages/home";
 // import GameDetail from "../pages/gameDetails";
 // import FootballGameDetail from "../pages/otherGameDetails";
@@ -80,6 +81,10 @@ const MainRoutes = {
     {
       path: "other-game-detail/:type/:id",
       element: <FootballGameDetail />,
+    },
+    {
+      path: "race/:id",
+      element: <HorseRaceTabs />,
     },
     {
       path: "rules",

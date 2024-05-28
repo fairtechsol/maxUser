@@ -216,7 +216,7 @@ function BookmakerTable({
                           indexs={index}
                           type={data.type}
                           box={'back'}
-                          customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
+                          customClass={`bookmaker-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
                             }`}
@@ -288,7 +288,7 @@ function BookmakerTable({
                           indexs={index}
                           type={data.type}
                           box={'lay'}
-                          customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
+                          customClass={`bookmaker-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
                             }`}

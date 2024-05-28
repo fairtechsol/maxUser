@@ -41,7 +41,7 @@ const MatchListJson = () => {
       img: Esoc
     },
     {
-      id: "horseracing",
+      id: "horseRacing",
       name: "Horse Racing",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <GiHorseHead />,
