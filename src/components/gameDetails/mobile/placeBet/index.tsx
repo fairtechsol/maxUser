@@ -124,7 +124,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
 
 
   const handleProLoss = (data: any, type: string) => {
-    console.log('first',data)
+    // console.log('first',data)
     let profit: any;
     if (data?.betOnTeam === data[`team${type}`]) {
       profit = (
@@ -312,11 +312,44 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       bettingName: selectedBet?.data?.name,
                       gameType: selectedBet?.team?.eventType,
                     };
+                    let payloadForRace: any = {
+                      betId: selectedBet?.team?.betId,
+                      bettingType:
+                        selectedBet?.team?.type.toUpperCase(),
+                      browserDetail: browserInfo?.userAgent,
+                      matchId: selectedBet?.team?.matchId,
+                      ipAddress:
+                        ipAddress === "Not found" || !ipAddress
+                          ? "192.168.1.100"
+                          : ipAddress,
+                      odd: selectedBet?.team?.rate,
+                      stake: selectedBet?.team?.stake,
+                      matchBetType: selectedBet?.team?.matchBetType,
+                      betOnTeam: selectedBet?.team?.betOnTeam,
+                      placeIndex: selectedBet?.team?.placeIndex,
+                      bettingName: selectedBet?.team?.bettingName,
+                      selectionId: selectedBet?.team?.selectionId,
+                      runnerId: selectedBet?.team?.runnerId,
+                    };
                     if (
                       selectedBet?.data?.type === "matchOdd" ||
                       selectedBet?.team?.matchBetType === "matchOdd"
                     ) {
                       setMatchOddLoading(true);
+                      if (
+                        selectedBet?.team?.eventType ===
+                        "horseRacing"
+                      ) {
+                        setTimeout(() => {
+                          dispatch(
+                            placeBet({
+                              url: ApiConstants.BET
+                                .PLACEBETRACEBETTING,
+                              data: JSON.stringify(payloadForRace),
+                            })
+                          );
+                        }, getProfile?.delayTime * 1000);
+                      } else {
                       setTimeout(() => {
                         dispatch(
                           placeBet({
@@ -333,6 +366,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           })
                         );
                       }, getProfile?.delayTime * 1000);
+                    }
                     } else {
                       dispatch(
                         placeBet({

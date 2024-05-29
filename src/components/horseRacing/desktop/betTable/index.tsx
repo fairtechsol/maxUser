@@ -28,22 +28,21 @@ const HorseRace = ({ data }: any) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const remainingTime = (time: any) => {
+  const remainingTime = (time:any) => {
     const endTime = moment(time);
     const currentTime = moment();
     const duration = moment.duration(endTime.diff(currentTime));
-
+  
     const hours = Math.floor(duration.asHours());
     const minutes = duration.minutes();
-
-    if (hours <= 0) {
-      if (minutes === 0) {
-        return "";
-      }
+  
+    if (hours === 0 && minutes === 0) {
+      return '';
+    } else if (hours === 0) {
       return `${minutes} Minutes Remaining`;
+    } else {
+      return `${hours} Hours and ${minutes} Minutes Remaining`;
     }
-
-    return `${hours} Hours and ${minutes} Minutes Remaining`;
   };
 
   const handleClick = (team: any, data: any) => {
