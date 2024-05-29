@@ -6,6 +6,7 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { NavLink } from "react-router-dom";
 
 const HorseRacingTabsMobile = () => {
   const { countryWiseList, racingList } = useSelector(
@@ -57,9 +58,9 @@ const HorseRacingTabsMobile = () => {
                     <Col xs={12}>
                       {item?.map((dates: any) => (
                         <div className="horse-time-detail-m">
-                          <a href={dates.link} key={dates?.id}>
+                          <NavLink to={`/race/${dates?.id}`} key={dates?.id}>
                             <span>{moment(dates.startAt).format("hh:mm")}</span>
-                          </a>
+                          </NavLink>
                         </div>
                       ))}
                     </Col>

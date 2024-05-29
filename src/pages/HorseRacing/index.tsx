@@ -44,15 +44,15 @@ const RaceDetail = () => {
     try {
       if (success && socket) {
         expertSocketService.match.getMatchRatesOff(id);
-        socketService.userBalance.userSessionBetPlacedOff();
-        socketService.userBalance.userMatchBetPlacedOff();
-        socketService.userBalance.matchResultDeclaredOff();
-        socketService.userBalance.declaredMatchResultAllUserOff();
-        socketService.userBalance.matchDeleteBetOff();
-        socketService.userBalance.sessionDeleteBetOff();
-        socketService.userBalance.sessionResultOff();
-        socketService.userBalance.sessionNoResultOff();
-        socketService.userBalance.sessionResultUnDeclareOff();
+        // socketService.userBalance.userSessionBetPlacedOff();
+        // socketService.userBalance.userMatchBetPlacedOff();
+        // socketService.userBalance.matchResultDeclaredOff();
+        // socketService.userBalance.declaredMatchResultAllUserOff();
+        // socketService.userBalance.matchDeleteBetOff();
+        // socketService.userBalance.sessionDeleteBetOff();
+        // socketService.userBalance.sessionResultOff();
+        // socketService.userBalance.sessionNoResultOff();
+        // socketService.userBalance.sessionResultUnDeclareOff();
         expertSocketService.match.joinMatchRoom(id, "user");
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         // socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
@@ -77,15 +77,15 @@ const RaceDetail = () => {
       return () => {
         expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
-        socketService.userBalance.userSessionBetPlacedOff();
-        socketService.userBalance.userMatchBetPlacedOff();
-        socketService.userBalance.matchResultDeclaredOff();
-        socketService.userBalance.declaredMatchResultAllUserOff();
-        socketService.userBalance.matchDeleteBetOff();
-        socketService.userBalance.sessionDeleteBetOff();
-        socketService.userBalance.sessionResultOff();
-        socketService.userBalance.sessionNoResultOff();
-        socketService.userBalance.sessionResultUnDeclareOff();
+        // socketService.userBalance.userSessionBetPlacedOff();
+        // socketService.userBalance.userMatchBetPlacedOff();
+        // socketService.userBalance.matchResultDeclaredOff();
+        // socketService.userBalance.declaredMatchResultAllUserOff();
+        // socketService.userBalance.matchDeleteBetOff();
+        // socketService.userBalance.sessionDeleteBetOff();
+        // socketService.userBalance.sessionResultOff();
+        // socketService.userBalance.sessionNoResultOff();
+        // socketService.userBalance.sessionResultUnDeclareOff();
         // socketService.userBalance.sessionResult(sessionResultDeclared);
         // socketService.userBalance.sessionResultUnDeclare(sessionResultDeclared);
         // socketService.userBalance.matchResultDeclared(handleMatchResult);
