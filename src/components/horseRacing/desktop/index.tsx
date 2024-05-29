@@ -30,7 +30,7 @@ const HorseRacingTabsDesktop = () => {
 
   const RaceDetails = ({ matchName, item }: any) => {
     return item?.map((gameDetail: any) => (
-      <div className="coupon-card coupon-card-first" key={gameDetail?.id}>
+      <div className="coupon-card coupon-card-first p-0" key={gameDetail?.id}>
         <div className="card-content">
           <table className="table coupon-table table-bordered ">
             <tbody>
@@ -55,7 +55,7 @@ const HorseRacingTabsDesktop = () => {
     ));
   };
   return (
-    <>
+    <div className="horseRacingTab">
       <CommonTabs
         callback={handleSelect}
         defaultActive={activeTab}
@@ -65,9 +65,9 @@ const HorseRacingTabsDesktop = () => {
           <Tab
             key={item?.countryCode}
             eventKey={item?.countryCode}
-            tabClassName="match-list-tabs title-12"
+            tabClassName="match-tabs title-12"
             title={item?.countryCode}
-            style={{ padding: "0px" }}
+            style={{padding: "0px"}}
           >
             {Object.entries(racingList)?.map(([matchName, item]: any) => (
               <RaceDetails matchName={matchName} item={item} />
@@ -75,7 +75,7 @@ const HorseRacingTabsDesktop = () => {
           </Tab>
         ))}
       </CommonTabs>
-    </>
+    </div>
   );
 };
 
