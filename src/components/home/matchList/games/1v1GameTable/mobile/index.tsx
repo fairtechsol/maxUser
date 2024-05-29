@@ -54,28 +54,6 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
       });
     }
   }, [isAtBottom]);
-  const tableHeading2 = [
-    {
-      id: "FR",
-      name: "FR",
-    },
-    {
-      id: "GB",
-      name: "GB",
-    },
-    {
-      id: "IE",
-      name: "IE",
-    },
-    {
-      id: "AU",
-      name: "AU",
-    },
-    {
-      id: "ZA",
-      name: "ZA",
-    },
-  ];
 
   return (
     <div

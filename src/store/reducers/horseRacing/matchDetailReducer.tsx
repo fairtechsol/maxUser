@@ -29,6 +29,7 @@ const matchDetailSlice = createSlice({
         state.loading = true;
         state.success = false;
         state.error = null;
+        state.matchDetail = null;
       })
       .addCase(getMatchDetailHorseRacing.fulfilled, (state, action) => {
         state.loading = false;
