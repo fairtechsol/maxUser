@@ -71,7 +71,7 @@ const FootballDesktopGameDetail = () => {
               <Col md={6}>{/* <BetTable /> */}</Col>
               <Col md={4}>{/* <BetTable /> */}</Col>
 
-              {otherMatchDetails?.bookmaker?.isActive && (
+              {/* {otherMatchDetails?.bookmaker?.isActive && (
                 <Col md={12}>
                   <BetTable
                     title={otherMatchDetails?.bookmaker?.name}
@@ -79,7 +79,7 @@ const FootballDesktopGameDetail = () => {
                     data={otherMatchDetails?.bookmaker}
                   />
                 </Col>
-              )}
+              )} */}
 
               {otherMatchDetails?.quickBookmaker?.length > 0 &&
                 otherMatchDetails?.quickBookmaker

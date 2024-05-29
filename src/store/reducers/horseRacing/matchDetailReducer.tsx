@@ -61,7 +61,11 @@ const matchDetailSlice = createSlice({
         };
       })
       .addCase(updateTeamRatesForHorseRacing.fulfilled, (state, action) => {
-        state.matchDetail = action.payload;
+        const { teamData } = action.payload;
+        state.matchDetail = {
+          ...state.matchDetail,
+          profitLossDataMatch: teamData,
+        };
       });
   },
 });

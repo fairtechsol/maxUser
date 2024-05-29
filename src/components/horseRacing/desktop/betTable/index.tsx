@@ -57,7 +57,7 @@ const HorseRace = ({ data }: any) => {
     <>
       <div className="featured-box horse-detail">
         <Row className="row5">
-          <Col  className="coupon-card featured-box-detail">
+          <Col className="coupon-card featured-box-detail">
             <div className="horse-banner">
               <div className="time-detail px-2">
                 <h5 className="mb-0">
@@ -98,7 +98,7 @@ const HorseRace = ({ data }: any) => {
               </div>
               <div className="market-body">
                 {data?.matchOdd?.runners.map((race: any) => (
-                  <div className="market-row suspended-row removed" key={race.id}>
+                  <div className="market-row removed" key={race?.id}>
                     <div className="market-nation-detail">
                       <div className="form-check">
                         <input
@@ -117,13 +117,13 @@ const HorseRace = ({ data }: any) => {
                           </div>
                           <div>
                             <span className="market-nation-name">
-                              {race.sortPriority}. {race.runnerName}
+                              {race.runnerName}
                             </span>
                             <span
                               className="market-book float-right"
                               style={{ color: "black" }}
                             >
-                              0
+                              {data?.profitLossDataMatch && data?.profitLossDataMatch[race?.id]}
                             </span>
                             <div className="jockey-detail d-none d-md-flex">
                               <span className="jockey-detail-box">
@@ -164,7 +164,7 @@ const HorseRace = ({ data }: any) => {
                         const rate = parseFloat(
                           race?.ex?.availableToBack[0]?.price
                         );
-                        if(rate>0){
+                        if (rate > 0) {
                           handleClick(
                             {
                               betOnTeam: race.runnerName,
@@ -177,8 +177,8 @@ const HorseRace = ({ data }: any) => {
                               matchBetType: data?.matchOdd?.type,
                               bettingName: "Match Odd",
                               placeIndex: 0,
-                              selectionId:JSON.stringify(race?.selectionId),
-                              runnerId:race?.id,
+                              selectionId: JSON.stringify(race?.selectionId),
+                              runnerId: race?.id,
                             },
                             data?.matchOdd
                           );
@@ -198,7 +198,7 @@ const HorseRace = ({ data }: any) => {
                         const rate = parseFloat(
                           race?.ex?.availableToLay[0]?.price
                         );
-                        if(rate > 0){
+                        if (rate > 0) {
                           handleClick(
                             {
                               betOnTeam: race.runnerName,
@@ -211,13 +211,12 @@ const HorseRace = ({ data }: any) => {
                               matchBetType: data?.matchOdd?.type,
                               bettingName: "Match Odd",
                               placeIndex: 0,
-                              selectionId:JSON.stringify(race?.selectionId),
-                              runnerId:race?.id,
+                              selectionId: JSON.stringify(race?.selectionId),
+                              runnerId: race?.id,
                             },
                             data?.matchOdd
                           );
                         }
-                        
                       }}
                     >
                       <span className="market-odd">

@@ -29,10 +29,7 @@ const FootballMobileGameDetail = () => {
     <div>
       <FootballPlaceBet show={show} setShow={setShow} />
 
-      <CommonTabs
-       className="color"
-        defaultActive="odds"
-      >
+      <CommonTabs className="color" defaultActive="odds">
         {[
           {
             id: "odds",
@@ -60,7 +57,8 @@ const FootballMobileGameDetail = () => {
                         title={otherMatchDetails?.title}
                         rightComponent={
                           <span className="title-16 f500">
-                            {otherMatchDetails?.startAt && (formatDate(otherMatchDetails?.startAt))}
+                            {otherMatchDetails?.startAt &&
+                              formatDate(otherMatchDetails?.startAt)}
                           </span>
                         }
                       />
@@ -76,8 +74,9 @@ const FootballMobileGameDetail = () => {
                       </Col>
                     )}
                     {otherMatchDetails?.setWinner?.length > 0 &&
-                      otherMatchDetails?.setWinner?.filter((item: any) => item?.isActive)?.map(
-                        (item: any) => (
+                      otherMatchDetails?.setWinner
+                        ?.filter((item: any) => item?.isActive)
+                        ?.map((item: any) => (
                           <div key={item?.id} className="p-0">
                             <Col className="g-0" md={12}>
                               <BetTable
@@ -88,9 +87,8 @@ const FootballMobileGameDetail = () => {
                               />
                             </Col>
                           </div>
-                        )
-                      )}
-                    {otherMatchDetails?.bookmaker?.isActive && (
+                        ))}
+                    {/* {otherMatchDetails?.bookmaker?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
                           title={otherMatchDetails?.bookmaker?.name}
@@ -99,11 +97,12 @@ const FootballMobileGameDetail = () => {
                           backLayCount={2}
                         />
                       </Col>
-                    )}
+                    )} */}
 
                     {otherMatchDetails?.quickBookmaker?.length > 0 &&
-                      otherMatchDetails?.quickBookmaker?.filter((item: any) => item?.isActive)?.map(
-                        (item: any) => (
+                      otherMatchDetails?.quickBookmaker
+                        ?.filter((item: any) => item?.isActive)
+                        ?.map((item: any) => (
                           <div key={item?.id} className="p-0">
                             <Col className="g-0" md={12}>
                               <BetTable
@@ -114,23 +113,22 @@ const FootballMobileGameDetail = () => {
                               />
                             </Col>
                           </div>
-                        )
-                      )}
+                        ))}
                     {otherMatchDetails?.firstHalfGoal?.length > 0 &&
-                      otherMatchDetails?.firstHalfGoal?.filter((item: any) => item?.isActive)?.map(
-                        (item: any) => (
+                      otherMatchDetails?.firstHalfGoal
+                        ?.filter((item: any) => item?.isActive)
+                        ?.map((item: any) => (
                           <div key={item?.id} className="p-0">
-                              <Col className="g-0" md={12}>
-                                <BetTable
-                                  title={item?.name}
-                                  type={MatchType.UNDER_OVER}
-                                  data={item}
-                                  backLayCount={2}
-                                />
-                              </Col>
+                            <Col className="g-0" md={12}>
+                              <BetTable
+                                title={item?.name}
+                                type={MatchType.UNDER_OVER}
+                                data={item}
+                                backLayCount={2}
+                              />
+                            </Col>
                           </div>
-                        )
-                      )}
+                        ))}
                     {otherMatchDetails?.halfTime?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
@@ -142,20 +140,20 @@ const FootballMobileGameDetail = () => {
                       </Col>
                     )}
                     {otherMatchDetails?.overUnder?.length > 0 &&
-                      otherMatchDetails?.overUnder?.filter((item: any) => item?.isActive)?.map(
-                        (item: any) => (
+                      otherMatchDetails?.overUnder
+                        ?.filter((item: any) => item?.isActive)
+                        ?.map((item: any) => (
                           <div key={item?.id} className="p-0">
-                              <Col className="g-0" md={12}>
-                                <BetTable
-                                  title={item?.name}
-                                  type={MatchType.UNDER_OVER}
-                                  data={item}
-                                  backLayCount={2}
-                                />
-                              </Col>
+                            <Col className="g-0" md={12}>
+                              <BetTable
+                                title={item?.name}
+                                type={MatchType.UNDER_OVER}
+                                data={item}
+                                backLayCount={2}
+                              />
+                            </Col>
                           </div>
-                        )
-                      )}
+                        ))}
 
                     {/* <Col className="g-0" md={12}>
                       <CommonTabs
