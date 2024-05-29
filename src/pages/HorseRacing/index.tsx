@@ -15,6 +15,7 @@ import {
   socketService,
 } from "../../socketManager";
 import { useParams } from "react-router-dom";
+import { getButtonValue } from "../../store/actions/user/userAction";
 
 const RaceDetail = () => {
   // const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
@@ -23,7 +24,9 @@ const RaceDetail = () => {
   const { matchDetail, success } = useSelector(
     (state: RootState) => state.horseRacing.matchDetail
   );
-
+  useEffect(() => {
+    dispatch(getButtonValue());
+  }, []);
   useEffect(() => {
     dispatch(getMatchDetailHorseRacing(id));
   }, []);
