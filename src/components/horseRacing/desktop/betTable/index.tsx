@@ -35,11 +35,18 @@ const HorseRace = ({ data }: any) => {
 
     const hours = Math.floor(duration.asHours());
     const minutes = duration.minutes();
+
+    if (hours <= 0) {
+      if (minutes === 0) {
+        return "";
+      }
+      return `${minutes} Minutes Remaining`;
+    }
+
     return `${hours} Hours and ${minutes} Minutes Remaining`;
   };
 
   const handleClick = (team: any, data: any) => {
-    console.log(team, ">>>>>>>>>>>>>>", data);
     dispatch(
       selectedBetAction({
         team,
@@ -73,7 +80,9 @@ const HorseRace = ({ data }: any) => {
             <div className="game-market market-12">
               <div className="market-title mt-1">
                 {"MATCH ODDS"}
-                <span className="float-right">Max : {data?.maxBet}</span>
+                <span className="float-right">
+                  Max : {data?.matchOdd?.maxBet}
+                </span>
               </div>
               <div className="market-header">
                 <div className="market-nation-detail"></div>
@@ -156,22 +165,25 @@ const HorseRace = ({ data }: any) => {
                         const rate = parseFloat(
                           race?.ex?.availableToBack[0]?.price
                         );
-
-                        handleClick(
-                          {
-                            betOnTeam: race.runnerName,
-                            rate: rate,
-                            type: "back",
-                            stake: 0,
-                            betId: data?.matchOdd?.id,
-                            eventType: data?.matchType,
-                            matchId: data?.id,
-                            matchBetType: data?.matchOdd?.type,
-                            bettingName: "Match Odd",
-                            placeIndex: 0,
-                          },
-                          data?.matchOdd
-                        );
+                        if(rate>0){
+                          handleClick(
+                            {
+                              betOnTeam: race.runnerName,
+                              rate: rate,
+                              type: "back",
+                              stake: 0,
+                              betId: data?.matchOdd?.id,
+                              eventType: data?.matchType,
+                              matchId: data?.id,
+                              matchBetType: data?.matchOdd?.type,
+                              bettingName: "Match Odd",
+                              placeIndex: 0,
+                              selectionId:JSON.stringify(race?.selectionId),
+                              runnerId:race?.id,
+                            },
+                            data?.matchOdd
+                          );
+                        }
                       }}
                     >
                       <span className="market-odd">
@@ -187,22 +199,26 @@ const HorseRace = ({ data }: any) => {
                         const rate = parseFloat(
                           race?.ex?.availableToLay[0]?.price
                         );
-
-                        handleClick(
-                          {
-                            betOnTeam: race.runnerName,
-                            rate: rate,
-                            type: "lay",
-                            stake: 0,
-                            betId: data?.matchOdd?.id,
-                            eventType: data?.matchType,
-                            matchId: data?.id,
-                            matchBetType: data?.matchOdd?.type,
-                            bettingName: "Match Odd",
-                            placeIndex: 0,
-                          },
-                          data?.matchOdd
-                        );
+                        if(rate > 0){
+                          handleClick(
+                            {
+                              betOnTeam: race.runnerName,
+                              rate: rate,
+                              type: "lay",
+                              stake: 0,
+                              betId: data?.matchOdd?.id,
+                              eventType: data?.matchType,
+                              matchId: data?.id,
+                              matchBetType: data?.matchOdd?.type,
+                              bettingName: "Match Odd",
+                              placeIndex: 0,
+                              selectionId:JSON.stringify(race?.selectionId),
+                              runnerId:race?.id,
+                            },
+                            data?.matchOdd
+                          );
+                        }
+                        
                       }}
                     >
                       <span className="market-odd">

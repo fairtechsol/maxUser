@@ -210,7 +210,9 @@ const PlacedBet = () => {
                   </td>
                   <td width={"34%"}>
                     <span className="f600 title-14">
-                      {selectedBet?.team?.eventType ==='horseRacing' ? 'MATCH_ODDS':handleName(selectedBet)}
+                      {selectedBet?.team?.eventType === "horseRacing"
+                        ? "MATCH_ODDS"
+                        : handleName(selectedBet)}
                       {/* {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam} */}
                     </span>
                   </td>
@@ -367,36 +369,72 @@ const PlacedBet = () => {
                                   bettingName: selectedBet?.data?.name,
                                   gameType: selectedBet?.team?.eventType,
                                 };
+                                let payloadForRace: any = {
+                                  betId: selectedBet?.team?.betId,
+                                  bettingType:
+                                    selectedBet?.team?.type.toUpperCase(),
+                                  browserDetail: browserInfo?.userAgent,
+                                  matchId: selectedBet?.team?.matchId,
+                                  ipAddress:
+                                    ipAddress === "Not found" || !ipAddress
+                                      ? "192.168.1.100"
+                                      : ipAddress,
+                                  odd: matchOddRate,
+                                  stake: selectedBet?.team?.stake,
+                                  matchBetType: selectedBet?.team?.matchBetType,
+                                  betOnTeam: selectedBet?.team?.betOnTeam,
+                                  placeIndex: selectedBet?.team?.placeIndex,
+                                  bettingName: selectedBet?.team?.bettingName,
+                                  selectionId: selectedBet?.team?.selectionId,
+                                  runnerId: selectedBet?.team?.runnerId,
+                                };
                                 if (
                                   selectedBet?.data?.type === "matchOdd" ||
                                   selectedBet?.team?.matchBetType === "matchOdd"
                                 ) {
                                   setMatchOddLoading(true);
-                                  setTimeout(() => {
-                                    dispatch(
-                                      placeBet({
-                                        url:
-                                          selectedBet?.data?.type ===
-                                            "session" ||
-                                          selectedBet?.data?.SelectionId
-                                            ? ApiConstants.BET.PLACEBETSESSION
-                                            : selectedBet?.team?.gameType ===
-                                              "other"
-                                            ? ApiConstants.BET
-                                                .PLACEBETMATCHBETTINGOTHER
-                                            : ApiConstants.BET
-                                                .PLACEBETMATCHBETTING,
-                                        data:
-                                          selectedBet?.data?.type ===
-                                            "session" ||
-                                          selectedBet?.data?.SelectionId
-                                            ? JSON.stringify(payloadForSession)
-                                            : JSON.stringify(
-                                                payloadForBettings
-                                              ),
-                                      })
-                                    );
-                                  }, getProfile?.delayTime * 1000);
+                                  if (
+                                    selectedBet?.team?.eventType ===
+                                    "horseRacing"
+                                  ) {
+                                    setTimeout(() => {
+                                      dispatch(
+                                        placeBet({
+                                          url: ApiConstants.BET
+                                            .PLACEBETRACEBETTING,
+                                          data: JSON.stringify(payloadForRace),
+                                        })
+                                      );
+                                    }, getProfile?.delayTime * 1000);
+                                  } else {
+                                    setTimeout(() => {
+                                      dispatch(
+                                        placeBet({
+                                          url:
+                                            selectedBet?.data?.type ===
+                                              "session" ||
+                                            selectedBet?.data?.SelectionId
+                                              ? ApiConstants.BET.PLACEBETSESSION
+                                              : selectedBet?.team?.gameType ===
+                                                "other"
+                                              ? ApiConstants.BET
+                                                  .PLACEBETMATCHBETTINGOTHER
+                                              : ApiConstants.BET
+                                                  .PLACEBETMATCHBETTING,
+                                          data:
+                                            selectedBet?.data?.type ===
+                                              "session" ||
+                                            selectedBet?.data?.SelectionId
+                                              ? JSON.stringify(
+                                                  payloadForSession
+                                                )
+                                              : JSON.stringify(
+                                                  payloadForBettings
+                                                ),
+                                        })
+                                      );
+                                    }, getProfile?.delayTime * 1000);
+                                  }
                                 } else {
                                   dispatch(
                                     placeBet({

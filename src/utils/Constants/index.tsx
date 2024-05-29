@@ -27,6 +27,7 @@ export const ApiConstants = {
     PLACEBETSESSION: "bet/session",
     PLACEBETMATCHBETTING: "bet/matchBetting",
     PLACEBETMATCHBETTINGOTHER: "bet/other/matchBetting",
+    PLACEBETRACEBETTING: "bet/raceBetting",
     GETPLACEDBETS: "bet",
     RUN_AMOUNT: "bet/session/profitLoss",
     MY_MARKET: "bet/myMarket",
