@@ -58,9 +58,9 @@ const HorseRace = ({ data }: any) => {
     <>
       <div className="featured-box horse-detail">
         <Row className="row5">
-          <Col md={8} className="coupon-card featured-box-detail">
+          <Col  className="coupon-card featured-box-detail">
             <div className="horse-banner">
-              <div className="time-detail">
+              <div className="time-detail px-2">
                 <h5 className="mb-0">
                   {data?.countryCode}
                   {" > "}
@@ -99,7 +99,7 @@ const HorseRace = ({ data }: any) => {
               </div>
               <div className="market-body">
                 {data?.matchOdd?.runners.map((race: any) => (
-                  <div className="market-row" key={race.id}>
+                  <div className="market-row suspended-row removed" key={race.id}>
                     <div className="market-nation-detail">
                       <div className="form-check">
                         <input
@@ -250,7 +250,7 @@ const HorseRace = ({ data }: any) => {
             </div>
           </Col>
 
-          <Col md={3} className="ps-0">
+          <Col className="ps-0">
             <Container className="p-0" fluid ref={placeBetRef}>
               <Row
                 className={` ${isSticky ? "position-fixed top-0" : ""}`}

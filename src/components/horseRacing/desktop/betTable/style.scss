@@ -104,11 +104,10 @@
 }
 
 .market-nation-detail {
-    width: 56%;
+    width: calc(100% - 330px);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0 5px;
+    padding: 2px 5px;
     font-size: 12px;
 }
 
@@ -155,7 +154,25 @@ input[type=checkbox], input[type=radio] {
     display: inline-block;
     width: 25px;
 }
+.market-12 .market-nation-detail .form-check label > div:last-child {
+    width: calc(100% - 10px);
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.market-12 .market-nation-detail .market-nation-name {
+    font-weight: bold;
+    width: calc(100% - 10px);
+}
+.market-nation-detail .market-nation-name {
+    font-weight: 400;
+    max-width: 100%;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
 
 .market-12 .market-odd-box {
     min-height: 20px;
@@ -242,17 +259,34 @@ span b{
     flex-wrap: wrap;
 }
   
-//   .market-nation-detail {
-//     flex: 2;
-//     display: flex;
-//     align-items: center;
-//   }
+.market-12 .suspended-row.removed::after {
+    color: #fff;
+}
+.suspended-row {
+    position: relative;
+}
+
+.suspended-row::after {
+    content: attr(data-title);
+    background-color: #373636d6;
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: absolute;
+    height: 100%;
+    width: 330px;
+    right: 0;
+    top: 0;
+    cursor: not-allowed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
   
-//   .market-nation-name {
-//     font-weight: bold;
-//   }
-  
-//   .jockey-detail-box {
-//     margin-right: 10px;
-//   }
-  
+@media only screen and (min-width: 1400px) and (max-width: 1599px) {
+    .market-12 .suspended-row::after, .market-12 .suspended-table::after {
+        width: 330px;
+    }
+}
