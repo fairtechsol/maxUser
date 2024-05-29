@@ -20,6 +20,7 @@
 .horse-banner {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: calc(100% - 8px);
@@ -285,6 +286,15 @@ span b{
     pointer-events: none;
 }
   
+
+.horse-status {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.text-success {
+    color: #28a745 !important;
+}
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
     .market-12 .suspended-row::after, .market-12 .suspended-table::after {
         width: 330px;

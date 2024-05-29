@@ -65,6 +65,7 @@ const HorseRace = ({ data }: any) => {
                   {" > "}
                   {data?.venue}
                 </h5>
+                
                 <div>
                   <span>
                     {moment(data?.startAt).format("YYYY-MM-DD HH:mm")}
@@ -72,9 +73,13 @@ const HorseRace = ({ data }: any) => {
                   <span>| {data?.title}</span>{" "}
                   <span className="horse-timer">
                     <span>|</span> {remainingTime(data?.startAt)}
+
                   </span>
+               
                 </div>
+            
               </div>
+              <div className="text-success horse-status">   open    </div>
             </div>
             <div className="game-market market-12">
               <div className="market-title mt-1">

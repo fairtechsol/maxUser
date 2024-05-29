@@ -42,7 +42,7 @@ const HorseRacingTabsDesktop = () => {
                   <div className="horse-time-detail">
                     {item?.map((race: any) => (
                       <NavLink to={`/race/${race?.id}`} key={race?.id}>
-                        <span>{moment(race.startAt).format("HH:mm")}</span>
+                        <span className="active">{moment(race.startAt).format("HH:mm")}</span>
                       </NavLink>
                     ))}
                   </div>
