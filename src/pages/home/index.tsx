@@ -44,11 +44,15 @@ const Home = () => {
   const getMatchListServiceSocket = (event: any) => {
     try {
       if (event?.gameType === matchType) {
-        dispatch(
-          getMatchList({
-            matchType: event?.gameType,
-          })
-        );
+        if (["cricket", "football", "tennis"].includes(matchType)) {
+          dispatch(
+            getMatchList({
+              matchType: event?.gameType,
+            })
+          );
+        } else if (["horseRacing", "greyhound"].includes(matchType)) {
+          dispatch(getHorseRacingCountryWiseList());
+        }
       }
     } catch (e) {
       console.log(e);
@@ -58,10 +62,14 @@ const Home = () => {
   const getMatchListServiceOnDeclare = (event: any) => {
     try {
       if (event?.gameType === matchType) {
-        if (event?.betType === "quickbookmaker1") {
-          setTimeout(() => {
-            dispatch(getMatchList({ matchType: matchType }));
-          }, 500);
+        if (["cricket", "football", "tennis"].includes(matchType)) {
+          if (event?.betType === "quickbookmaker1") {
+            setTimeout(() => {
+              dispatch(getMatchList({ matchType: matchType }));
+            }, 500);
+          }
+        } else if (["horseRacing", "greyHound"].includes(matchType)) {
+          dispatch(getHorseRacingCountryWiseList());
         }
       }
     } catch (e) {
