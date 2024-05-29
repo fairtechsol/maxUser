@@ -85,7 +85,7 @@ const GameList = () => {
       {isMobile ? (
         <SportsFilters type={type} />
       ) : (
-        <DesktopMatchList type={type} setMatchType={() => {}} />
+        <DesktopMatchList matchTypeGameList={type} setMatchType={() => {}} />
       )}
     </>
   );

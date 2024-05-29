@@ -28,16 +28,16 @@ const HorseRace = ({ data }: any) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const remainingTime = (time:any) => {
+  const remainingTime = (time: any) => {
     const endTime = moment(time);
     const currentTime = moment();
     const duration = moment.duration(endTime.diff(currentTime));
-  
+
     const hours = Math.floor(duration.asHours());
     const minutes = duration.minutes();
-  
+
     if (hours === 0 && minutes === 0) {
-      return '';
+      return "";
     } else if (hours === 0) {
       return `${minutes} Minutes Remaining`;
     } else {
@@ -123,7 +123,8 @@ const HorseRace = ({ data }: any) => {
                               className="market-book float-right"
                               style={{ color: "black" }}
                             >
-                              {data?.profitLossDataMatch && data?.profitLossDataMatch[race?.id]}
+                              {data?.profitLossDataMatch &&
+                                data?.profitLossDataMatch[race?.id]}
                             </span>
                             <div className="jockey-detail d-none d-md-flex">
                               <span className="jockey-detail-box">
@@ -142,7 +143,7 @@ const HorseRace = ({ data }: any) => {
                         </label>
                       </div>
                     </div>
-                    <div className="market-odd-box back2">
+                    <div className="market-odd-box bg-blue1">
                       <span className="market-odd">
                         {race?.ex?.availableToBack[2]?.price}
                       </span>
@@ -150,7 +151,7 @@ const HorseRace = ({ data }: any) => {
                         {race?.ex?.availableToBack[2]?.size}
                       </span>
                     </div>
-                    <div className="market-odd-box back1">
+                    <div className="market-odd-box bg-blue2">
                       <span className="market-odd">
                         {race?.ex?.availableToBack[1]?.price}
                       </span>
@@ -159,7 +160,7 @@ const HorseRace = ({ data }: any) => {
                       </span>
                     </div>
                     <div
-                      className="market-odd-box back"
+                      className="market-odd-box bg-blue3"
                       onClick={() => {
                         const rate = parseFloat(
                           race?.ex?.availableToBack[0]?.price
@@ -193,7 +194,7 @@ const HorseRace = ({ data }: any) => {
                       </span>
                     </div>
                     <div
-                      className="market-odd-box lay"
+                      className="market-odd-box bg-red1"
                       onClick={() => {
                         const rate = parseFloat(
                           race?.ex?.availableToLay[0]?.price
@@ -226,7 +227,7 @@ const HorseRace = ({ data }: any) => {
                         {race?.ex?.availableToLay[0]?.size}
                       </span>
                     </div>
-                    <div className="market-odd-box lay1">
+                    <div className="market-odd-box bg-red2">
                       <span className="market-odd">
                         {race?.ex?.availableToLay[1]?.price}
                       </span>
@@ -234,7 +235,7 @@ const HorseRace = ({ data }: any) => {
                         {race?.ex?.availableToLay[1]?.size}
                       </span>
                     </div>
-                    <div className="market-odd-box lay2">
+                    <div className="market-odd-box bg-red3">
                       <span className="market-odd">
                         {race?.ex?.availableToLay[2]?.price}
                       </span>
