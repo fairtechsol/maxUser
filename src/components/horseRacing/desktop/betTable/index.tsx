@@ -35,11 +35,18 @@ const HorseRace = ({ data }: any) => {
 
     const hours = Math.floor(duration.asHours());
     const minutes = duration.minutes();
+
+    if (hours <= 0) {
+      if (minutes === 0) {
+        return "";
+      }
+      return `${minutes} Minutes Remaining`;
+    }
+
     return `${hours} Hours and ${minutes} Minutes Remaining`;
   };
 
   const handleClick = (team: any, data: any) => {
-    console.log(team, ">>>>>>>>>>>>>>", data);
     dispatch(
       selectedBetAction({
         team,
@@ -73,7 +80,9 @@ const HorseRace = ({ data }: any) => {
             <div className="game-market market-12">
               <div className="market-title mt-1">
                 {"MATCH ODDS"}
-                <span className="float-right">Max : {data?.maxBet}</span>
+                <span className="float-right">
+                  Max : {data?.matchOdd?.maxBet}
+                </span>
               </div>
               <div className="market-header">
                 <div className="market-nation-detail"></div>

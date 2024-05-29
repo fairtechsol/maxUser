@@ -123,7 +123,12 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (success && matchList.length > 0 && isMobile) {
+    if (
+      success &&
+      matchList.length > 0 &&
+      isMobile &&
+      ["cricket", "football", "tennis"].includes(matchType)
+    ) {
       matchList?.forEach((element: any) => {
         expertSocketService.match.joinMatchRoom(element?.id, "user");
       });
