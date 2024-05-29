@@ -3,6 +3,7 @@ import {
   getMatchDetailHorseRacing,
   updateMatchRatesForHorseRacing,
   updateTeamRatesForHorseRacing,
+  updateTeamRatesForHorseRacingOnDelete,
 } from "../../actions/horseRacing/horseMatchDetailActions";
 
 interface InitialState {
@@ -66,7 +67,17 @@ const matchDetailSlice = createSlice({
           ...state.matchDetail,
           profitLossDataMatch: teamData,
         };
-      });
+      })
+      .addCase(
+        updateTeamRatesForHorseRacingOnDelete.fulfilled,
+        (state, action) => {
+          const { teamRate } = action.payload;
+          state.matchDetail = {
+            ...state.matchDetail,
+            profitLossDataMatch: teamRate,
+          };
+        }
+      );
   },
 });
 

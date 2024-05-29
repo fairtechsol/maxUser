@@ -54,3 +54,10 @@ export const updateTeamRatesForHorseRacing = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateTeamRatesForHorseRacingOnDelete = createAsyncThunk<any, any>(
+  "horseRacing/teamRatesUpdateOnDelete",
+  async (data) => {
+    return data;
+  }
+);
