@@ -210,7 +210,7 @@ const PlacedBet = () => {
                   </td>
                   <td width={"34%"}>
                     <span className="f600 title-14">
-                      {handleName(selectedBet)}
+                      {selectedBet?.team?.eventType ==='horseRacing' ? 'MATCH_ODDS':handleName(selectedBet)}
                       {/* {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam} */}
                     </span>
                   </td>

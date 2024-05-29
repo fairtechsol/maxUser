@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Nav, Tab, Table, Card } from 'react-bootstrap';
 import "./style.scss";
 import isMobile from '../../../../utils/screenDimension';
 import HorseRace from '../../desktop/betTable';
 import HorseModal from '../infoModal';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from '../../../../store/store';
+import { useSelector } from 'react-redux';
+import { getMatchDetailHorseRacing } from '../../../../store/actions/horseRacing/horseMatchDetailActions';
 const raceData = [
     {
       id: '1',
@@ -164,11 +168,13 @@ const raceData = [
 
 const HorseRaceTabs = () => {
   const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
-
+  const dispatch: AppDispatch = useDispatch();
   const handleSelect = (selectedTab:any) => {
     setActiveTab(selectedTab);
   };
-
+  const { matchDetail } = useSelector(
+    (state: RootState) => state.horseRacing.matchDetail
+  );
 
   const [showModal, setShowModal] = useState(false);
   const [currentHorse, setCurrentHorse] = useState({});
@@ -189,7 +195,6 @@ const HorseRaceTabs = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
   return (
     <>
       {/* <Nav variant="tabs" activeKey={activeTab} onSelect={handleSelect} className="tabs-nav">
@@ -276,7 +281,7 @@ const HorseRaceTabs = () => {
       {/* </Tab.Content> */}
       <HorseModal show={showModal} handleClose={handleCloseModal} horseData={currentHorse} />
 
-   {!isMobile && <HorseRace data={sampleData}/>}
+   {/* {!isMobile && <HorseRace data={matchDetail}/>} */}
     </>
   );
 };

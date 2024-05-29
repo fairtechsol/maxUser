@@ -31,6 +31,7 @@ const ProfitLoss = Loadable(lazy(() => import("../pages/profitLoss")));
 const BetHistory = Loadable(lazy(() => import("../pages/betHistory")));
 const UnsettledBet = Loadable(lazy(() => import("../pages/unsettledBet")));
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
+const RaceDetail = Loadable(lazy(() => import("../pages/HorseRacing")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -84,7 +85,7 @@ const MainRoutes = {
     },
     {
       path: "race/:id",
-      element: <HorseRaceTabs />,
+      element: <RaceDetail />,
     },
     {
       path: "rules",

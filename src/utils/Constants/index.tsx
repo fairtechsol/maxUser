@@ -31,6 +31,14 @@ export const ApiConstants = {
     RUN_AMOUNT: "bet/session/profitLoss",
     MY_MARKET: "bet/myMarket",
   },
+  HORSERACING: {
+    MATCH: {
+      GET_COUNTRY_WISE_LIST: "/match/countryWiseList",
+      GET_RACING_LIST: "/match/racing/list",
+      DELETE_BET: "/bet/deleteMultipleBetForRace",
+      GET_MATCH_DETAIL: "/match/racing",
+    },
+  },
 };
 
 export const Constants = {
@@ -184,7 +192,7 @@ export const availableGameType: any = {
   cricket: "cricket",
   football: "football",
   tennis: "tennis",
-  horseRacing: "horseRacing"
+  horseRacing: "horseRacing",
 };
 
 export const baseUrls = {
