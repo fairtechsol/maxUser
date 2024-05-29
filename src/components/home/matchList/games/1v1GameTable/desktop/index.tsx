@@ -38,28 +38,6 @@ const tableHeading = [
     textAlign: "center",
   },
 ];
-const tableHeading2 = [
-  {
-    id: "FR",
-    name: "FR",
-  },
-  {
-    id: "GB",
-    name: "GB",
-  },
-  {
-    id: "IE",
-    name: "IE",
-  },
-  {
-    id: "AU",
-    name: "AU",
-  },
-  {
-    id: "ZA",
-    name: "ZA",
-  },
-];
 const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList

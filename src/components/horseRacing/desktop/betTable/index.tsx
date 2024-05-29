@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { useEffect, useRef, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
 import PlacedBet from "../../../gameDetails/desktop/placeBet";
@@ -56,7 +56,7 @@ const HorseRace = ({ data }: any) => {
               <div className="time-detail">
                 <h5 className="mb-0">
                   {data?.countryCode}
-                  {">"}
+                  {" > "}
                   {data?.venue}
                 </h5>
                 <div>

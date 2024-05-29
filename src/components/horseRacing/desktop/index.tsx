@@ -7,6 +7,7 @@ import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/hors
 import { AppDispatch, RootState } from "../../../store/store";
 import CommonTabs from "../../commonComponent/tabs";
 import "./style.scss";
+import { NavLink } from "react-router-dom";
 
 const HorseRacingTabsDesktop = () => {
   const { countryWiseList, racingList } = useSelector(
@@ -40,9 +41,9 @@ const HorseRacingTabsDesktop = () => {
                 <td>
                   <div className="horse-time-detail">
                     {item?.map((race: any) => (
-                      <a href={`race/${race?.id}`} key={race?.id}>
+                      <NavLink to={`/race/${race?.id}`} key={race?.id}>
                         <span>{moment(race.startAt).format("HH:mm")}</span>
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </td>
@@ -68,10 +69,9 @@ const HorseRacingTabsDesktop = () => {
             title={item?.countryCode}
             style={{ padding: "0px" }}
           >
-            {Object.entries(racingList)?.map(([matchName, item]: any) => {
-              console.log(matchName, item);
-              return <RaceDetails matchName={matchName} item={item} />;
-            })}
+            {Object.entries(racingList)?.map(([matchName, item]: any) => (
+              <RaceDetails matchName={matchName} item={item} />
+            ))}
           </Tab>
         ))}
       </CommonTabs>

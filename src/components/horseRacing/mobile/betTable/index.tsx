@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Nav, Tab, Table, Card } from 'react-bootstrap';
+import  { useState } from 'react';
+import {  Tab, Card } from 'react-bootstrap';
 import "./style.scss";
 import isMobile from '../../../../utils/screenDimension';
-import HorseRace from '../../desktop/betTable';
 import HorseModal from '../infoModal';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from '../../../../store/store';
-import { useSelector } from 'react-redux';
-import { getMatchDetailHorseRacing } from '../../../../store/actions/horseRacing/horseMatchDetailActions';
+// import { useDispatch } from 'react-redux';
+// import { AppDispatch, RootState } from '../../../../store/store';
+// import { useSelector } from 'react-redux';
 const raceData = [
     {
       id: '1',
@@ -120,65 +118,19 @@ const raceData = [
   ];
 
 
-  const sampleData = {
-    location: "AU > Balaklava",
-    date: "2024-05-22 10:30",
-    raceInfo: "R4 1600m CL1",
-    remainingTime: "23 Minutes Remaining",
-    marketTitle: "MATCH_ODDS",
-    maxBet: 25000,
-    races: [
-      {
-        id: 64490,
-        number: 1,
-        name: "Thermodynamic",
-        jockey: "Jacob Opperman",
-        trainer: "Aaron Bain & Ned Taylor",
-        age: 4,
-        imageUrl: "https://sitethemedata.com/race_icons/6477464835361/64490.png",
-        odds: {
-          back: [3.25, 3.3, 3.65],
-          lay: [4, 4.4, 4.5]
-        },
-        volumes: {
-          back: [11.04, 7.05, 3.7],
-          lay: [4.72, 1.53, 1.53]
-        }
-      },
-      {
-        id: 68471,
-        number: 2,
-        name: "First Tosen",
-        jockey: "Callan Murray",
-        trainer: "Peter Hardacre",
-        age: 4,
-        imageUrl: "https://sitethemedata.com/race_icons/6477464835361/68471.png",
-        odds: {
-          back: [5, 5.5, 5.6],
-          lay: [7.6, 8, 8.2]
-        },
-        volumes: {
-          back: [7.84, 1.55, 2.99],
-          lay: [3.94, 8.64, 4.63]
-        }
-      }
-    ]
-  };
-
-
 const HorseRaceTabs = () => {
-  const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
-  const dispatch: AppDispatch = useDispatch();
-  const handleSelect = (selectedTab:any) => {
-    setActiveTab(selectedTab);
-  };
-  const { matchDetail } = useSelector(
-    (state: RootState) => state.horseRacing.matchDetail
-  );
+  // const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
+  // const dispatch: AppDispatch = useDispatch();
+  // const handleSelect = (selectedTab:any) => {
+  //   setActiveTab(selectedTab);
+  // };
+  // const { matchDetail } = useSelector(
+  //   (state: RootState) => state.horseRacing.matchDetail
+  // );
 
   const [showModal, setShowModal] = useState(false);
   const [currentHorse, setCurrentHorse] = useState({});
-  const [modalStyle, setModalStyle] = useState({});
+  const [_, setModalStyle] = useState({});
 
   const handleShowModal = (event:any, horse:any) => {
     const rect = event.target.getBoundingClientRect();

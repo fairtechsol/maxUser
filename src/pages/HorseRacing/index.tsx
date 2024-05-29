@@ -1,26 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import HorseRace from "../../components/horseRacing/desktop/betTable";
 import HorseRaceTabs from "../../components/horseRacing/mobile/betTable";
 import isMobile from "../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getMatchDetailHorseRacing, updateMatchRatesForHorseRacing } from "../../store/actions/horseRacing/horseMatchDetailActions";
-import { expertSocketService, socket, socketService } from "../../socketManager";
+import {
+  getMatchDetailHorseRacing,
+  updateMatchRatesForHorseRacing,
+} from "../../store/actions/horseRacing/horseMatchDetailActions";
+import {
+  expertSocketService,
+  socket,
+  socketService,
+} from "../../socketManager";
 import { useParams } from "react-router-dom";
 
 const RaceDetail = () => {
   // const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
-  const {id} = useParams();
+  const { id } = useParams();
   const dispatch: AppDispatch = useDispatch();
-  const { matchDetail ,success } = useSelector(
+  const { matchDetail, success } = useSelector(
     (state: RootState) => state.horseRacing.matchDetail
   );
-  
+
   useEffect(() => {
-    dispatch(getMatchDetailHorseRacing(id))
-   }, [])
-   const setMatchRatesInRedux = (event: any) => {
+    dispatch(getMatchDetailHorseRacing(id));
+  }, []);
+  
+  const setMatchRatesInRedux = (event: any) => {
     try {
       if (id === event?.id) {
         dispatch(updateMatchRatesForHorseRacing(event));
@@ -29,7 +37,7 @@ const RaceDetail = () => {
       console.log(e);
     }
   };
-   useEffect(() => {
+  useEffect(() => {
     try {
       if (success && socket) {
         expertSocketService.match.getMatchRatesOff(id);
@@ -42,8 +50,8 @@ const RaceDetail = () => {
         socketService.userBalance.sessionResultOff();
         socketService.userBalance.sessionNoResultOff();
         socketService.userBalance.sessionResultUnDeclareOff();
-        expertSocketService.match.joinMatchRoom(id, 'user');
-        expertSocketService.match.getMatchRates(id,setMatchRatesInRedux);
+        expertSocketService.match.joinMatchRoom(id, "user");
+        expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         // socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         // socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         // socketService.userBalance.matchResultDeclared(resultDeclared);
@@ -59,7 +67,7 @@ const RaceDetail = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [success, socket,id]);
+  }, [success, socket, id]);
 
   useEffect(() => {
     try {
@@ -92,7 +100,7 @@ const RaceDetail = () => {
     }
   }, [id]);
 
-  return isMobile ? <HorseRaceTabs /> : <HorseRace data={matchDetail}/>;
+  return isMobile ? <HorseRaceTabs /> : <HorseRace data={matchDetail} />;
 };
 
 export default RaceDetail;
