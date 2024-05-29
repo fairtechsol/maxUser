@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import {
   getMatchDetailHorseRacing,
   updateMatchRatesForHorseRacing,
+  updateTeamRatesForHorseRacing,
 } from "../../store/actions/horseRacing/horseMatchDetailActions";
 import {
   expertSocketService,
@@ -16,6 +17,10 @@ import {
 } from "../../socketManager";
 import { useParams } from "react-router-dom";
 import { getButtonValue } from "../../store/actions/user/userAction";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
 
 const RaceDetail = () => {
   // const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
@@ -24,13 +29,7 @@ const RaceDetail = () => {
   const { matchDetail, success } = useSelector(
     (state: RootState) => state.horseRacing.matchDetail
   );
-  useEffect(() => {
-    dispatch(getButtonValue());
-  }, []);
-  useEffect(() => {
-    dispatch(getMatchDetailHorseRacing(id));
-  }, []);
-  
+
   const setMatchRatesInRedux = (event: any) => {
     try {
       if (id === event?.id) {
@@ -40,12 +39,36 @@ const RaceDetail = () => {
       console.log(e);
     }
   };
+
+  const setMatchBetsPlaced = (event: any) => {
+    try {
+      if (event?.jobData?.matchId === id) {
+        dispatch(updateBetsPlaced(event?.jobData?.newBet));
+        dispatch(updateTeamRatesForHorseRacing(event));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      if (id) {
+        dispatch(getMatchDetailHorseRacing(id));
+        dispatch(getPlacedBets(id));
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
   useEffect(() => {
     try {
       if (success && socket) {
         expertSocketService.match.getMatchRatesOff(id);
         // socketService.userBalance.userSessionBetPlacedOff();
-        // socketService.userBalance.userMatchBetPlacedOff();
+        socketService.userBalance.userMatchBetPlacedOff();
         // socketService.userBalance.matchResultDeclaredOff();
         // socketService.userBalance.declaredMatchResultAllUserOff();
         // socketService.userBalance.matchDeleteBetOff();
@@ -56,7 +79,7 @@ const RaceDetail = () => {
         expertSocketService.match.joinMatchRoom(id, "user");
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         // socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
-        // socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
+        socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         // socketService.userBalance.matchResultDeclared(resultDeclared);
         // socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
         // socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
@@ -78,7 +101,7 @@ const RaceDetail = () => {
         expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
         // socketService.userBalance.userSessionBetPlacedOff();
-        // socketService.userBalance.userMatchBetPlacedOff();
+        socketService.userBalance.userMatchBetPlacedOff();
         // socketService.userBalance.matchResultDeclaredOff();
         // socketService.userBalance.declaredMatchResultAllUserOff();
         // socketService.userBalance.matchDeleteBetOff();
