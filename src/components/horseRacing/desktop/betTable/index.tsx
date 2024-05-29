@@ -165,22 +165,25 @@ const HorseRace = ({ data }: any) => {
                         const rate = parseFloat(
                           race?.ex?.availableToBack[0]?.price
                         );
-
-                        handleClick(
-                          {
-                            betOnTeam: race.runnerName,
-                            rate: rate,
-                            type: "back",
-                            stake: 0,
-                            betId: data?.matchOdd?.id,
-                            eventType: data?.matchType,
-                            matchId: data?.id,
-                            matchBetType: data?.matchOdd?.type,
-                            bettingName: "Match Odd",
-                            placeIndex: 0,
-                          },
-                          data?.matchOdd
-                        );
+                        if(rate>0){
+                          handleClick(
+                            {
+                              betOnTeam: race.runnerName,
+                              rate: rate,
+                              type: "back",
+                              stake: 0,
+                              betId: data?.matchOdd?.id,
+                              eventType: data?.matchType,
+                              matchId: data?.id,
+                              matchBetType: data?.matchOdd?.type,
+                              bettingName: "Match Odd",
+                              placeIndex: 0,
+                              selectionId:JSON.stringify(race?.selectionId),
+                              runnerId:race?.id,
+                            },
+                            data?.matchOdd
+                          );
+                        }
                       }}
                     >
                       <span className="market-odd">
@@ -196,22 +199,26 @@ const HorseRace = ({ data }: any) => {
                         const rate = parseFloat(
                           race?.ex?.availableToLay[0]?.price
                         );
-
-                        handleClick(
-                          {
-                            betOnTeam: race.runnerName,
-                            rate: rate,
-                            type: "lay",
-                            stake: 0,
-                            betId: data?.matchOdd?.id,
-                            eventType: data?.matchType,
-                            matchId: data?.id,
-                            matchBetType: data?.matchOdd?.type,
-                            bettingName: "Match Odd",
-                            placeIndex: 0,
-                          },
-                          data?.matchOdd
-                        );
+                        if(rate > 0){
+                          handleClick(
+                            {
+                              betOnTeam: race.runnerName,
+                              rate: rate,
+                              type: "lay",
+                              stake: 0,
+                              betId: data?.matchOdd?.id,
+                              eventType: data?.matchType,
+                              matchId: data?.id,
+                              matchBetType: data?.matchOdd?.type,
+                              bettingName: "Match Odd",
+                              placeIndex: 0,
+                              selectionId:JSON.stringify(race?.selectionId),
+                              runnerId:race?.id,
+                            },
+                            data?.matchOdd
+                          );
+                        }
+                        
                       }}
                     >
                       <span className="market-odd">
