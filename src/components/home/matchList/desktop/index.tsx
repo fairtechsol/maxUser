@@ -26,7 +26,14 @@ const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
 
   useEffect(() => {
     try {
-      if (success && matchList.length > 0) {
+      if (["horseRacing", "greyhoundRacing"].includes(matchType)) {
+        expertSocketService.match.leaveAllRooms();
+      }
+      if (
+        success &&
+        matchList.length > 0 &&
+        ["cricket", "football", "tennis"].includes(matchType)
+      ) {
         matchList?.forEach((element: any) => {
           expertSocketService.match.joinMatchRoom(element?.id, "user");
         });
@@ -36,25 +43,24 @@ const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
             setMatchOddRatesInRedux
           );
         });
-        return () => {
-          // expertSocketService.match.leaveAllRooms();
-          matchList?.forEach((element: any) => {
-            expertSocketService.match.leaveMatchRoom(element?.id);
-            expertSocketService.match.getMatchRatesOff(element?.id);
-          });
-        };
       }
     } catch (e) {
       console.log(e);
     }
   }, [matchList.length, success, id, matchType]);
 
-  // useEffect(() => {
-  //   try {
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [id, matchType]);
+  useEffect(() => {
+    try {
+      return () => {
+        matchList?.forEach((element: any) => {
+          expertSocketService.match.leaveMatchRoom(element?.id);
+          expertSocketService.match.getMatchRatesOff(element?.id);
+        });
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, [matchType]);
 
   useEffect(() => {
     if (id) {
