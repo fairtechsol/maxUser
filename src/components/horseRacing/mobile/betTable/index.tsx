@@ -3,9 +3,12 @@ import { Tab, Card } from "react-bootstrap";
 import "./style.scss";
 import HorseModal from "../infoModal";
 // import { useDispatch } from 'react-redux';
-import { RootState } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { useDispatch } from "react-redux";
+import PlacedBet from "../../../gameDetails/mobile/placeBet";
 
 const HorseRaceTabs = () => {
   // const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
@@ -13,10 +16,11 @@ const HorseRaceTabs = () => {
   // const handleSelect = (selectedTab:any) => {
   //   setActiveTab(selectedTab);
   // };
+  const dispatch: AppDispatch = useDispatch();
   const { matchDetail } = useSelector(
     (state: RootState) => state.horseRacing.matchDetail
   );
-
+  const [show, setShow] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [currentHorse, setCurrentHorse] = useState({});
   const [_, setModalStyle] = useState({});
@@ -37,18 +41,33 @@ const HorseRaceTabs = () => {
     setShowModal(false);
   };
 
-  const remainingTime = (time: any) => {
-    const endTime = moment(time);
-    const currentTime = moment();
-    const duration = moment.duration(endTime.diff(currentTime));
+ const remainingTime = (time:any) => {
+  const endTime = moment(time);
+  const currentTime = moment();
+  const duration = moment.duration(endTime.diff(currentTime));
 
-    const hours = Math.floor(duration.asHours());
-    const minutes = duration.minutes();
+  const hours = Math.floor(duration.asHours());
+  const minutes = duration.minutes();
+
+  if (hours === 0 && minutes === 0) {
+    return '';
+  } else if (hours === 0) {
+    return `${minutes} Minutes Remaining`;
+  } else {
     return `${hours} Hours and ${minutes} Minutes Remaining`;
+  }
+};
+  const handleClick = (team: any, data: any) => {
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
   };
-
   return (
     <>
+    <PlacedBet show={show} setShow={setShow} />
       <Tab.Pane className="show no-padding-margin">
         <Card>
           <Card.Body className="car-body">
@@ -137,7 +156,30 @@ const HorseRaceTabs = () => {
                         </label>
                       </div>
                     </div>
-                    <div className="box-1 back  back lock text-center back">
+                    <div className="box-1 back  back lock text-center back"  onClick={() => {
+                        const rate = parseFloat(
+                          runner?.ex?.availableToBack[0]?.price
+                        );
+                        if(rate>0){
+                          handleClick(
+                            {
+                              betOnTeam: runner?.runnerName,
+                              rate: rate,
+                              type: "back",
+                              stake: 0,
+                              betId: matchDetail?.matchOdd?.id,
+                              eventType: matchDetail?.matchType,
+                              matchId: matchDetail?.id,
+                              matchBetType: matchDetail?.matchOdd?.type,
+                              bettingName: "Match Odd",
+                              placeIndex: 0,
+                              selectionId:JSON.stringify(runner?.selectionId),
+                              runnerId:runner?.id,
+                            },
+                            matchDetail?.matchOdd
+                          );
+                        }
+                      }}>
                       <span className="odd d-block">
                         {runner?.ex?.availableToBack[0]?.price}
                       </span>
@@ -145,7 +187,30 @@ const HorseRaceTabs = () => {
                         {runner?.ex?.availableToBack[0]?.size}
                       </span>
                     </div>
-                    <div className="box-1 lay  text-center lay">
+                    <div className="box-1 lay  text-center lay" onClick={() => {
+                        const rate = parseFloat(
+                          runner?.ex?.availableToLay[0]?.price
+                        );
+                        if(rate>0){
+                          handleClick(
+                            {
+                              betOnTeam: runner?.runnerName,
+                              rate: rate,
+                              type: "lay",
+                              stake: 0,
+                              betId: matchDetail?.matchOdd?.id,
+                              eventType: matchDetail?.matchType,
+                              matchId: matchDetail?.id,
+                              matchBetType: matchDetail?.matchOdd?.type,
+                              bettingName: "Match Odd",
+                              placeIndex: 0,
+                              selectionId:JSON.stringify(runner?.selectionId),
+                              runnerId:runner?.id,
+                            },
+                            matchDetail?.matchOdd
+                          );
+                        }
+                      }}>
                       <span className="odd d-block">
                         {runner?.ex?.availableToLay[0]?.price}
                       </span>
