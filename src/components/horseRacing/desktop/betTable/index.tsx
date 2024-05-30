@@ -5,10 +5,15 @@ import "./style.scss";
 import PlacedBet from "../../../gameDetails/desktop/placeBet";
 import MyBet from "../../../gameDetails/desktop/myBet";
 import moment from "moment";
-import MatchOddComponent from "../MatchOddComponent";
-import CombinedComponent from "../CombinedComponent";
+import MatchOddComponent from "../matchOddComponent";
+import CombinedComponent from "../combinedComponent";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 
-const HorseRaceDetailDesktop = ({ data }: any) => {
+const HorseRaceDetailDesktop = () => {
+  const { matchDetail } = useSelector(
+    (state: RootState) => state.horseRacing.matchDetail
+  );
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
@@ -49,33 +54,33 @@ const HorseRaceDetailDesktop = ({ data }: any) => {
             <div className="horse-banner">
               <div className="time-detail px-2">
                 <h5 className="mb-0">
-                  {data?.countryCode}
+                  {matchDetail?.countryCode}
                   {" > "}
-                  {data?.venue}
+                  {matchDetail?.venue}
                 </h5>
 
                 <div>
                   <span>
-                    {moment(data?.startAt).format("YYYY-MM-DD HH:mm")}
+                    {moment(matchDetail?.startAt).format("YYYY-MM-DD HH:mm")}
                   </span>{" "}
-                  <span>| {data?.title}</span>{" "}
+                  <span>| {matchDetail?.title}</span>{" "}
                   <span className="horse-timer">
-                    {remainingTime(data?.startAt)}
+                    {remainingTime(matchDetail?.startAt)}
                   </span>
                 </div>
               </div>
               {new Date().getTime() >
                 new Date(
-                  new Date(data?.startAt).setMinutes(
-                    new Date(data?.startAt).getMinutes() -
-                      parseInt(data?.betPlaceStartBefore)
+                  new Date(matchDetail?.startAt).setMinutes(
+                    new Date(matchDetail?.startAt).getMinutes() -
+                      parseInt(matchDetail?.betPlaceStartBefore)
                   )
                 ).getTime() && (
                 <div className="text-success horse-status"> open </div>
               )}
             </div>
             <CombinedComponent />
-            <MatchOddComponent data={data} />
+            <MatchOddComponent data={matchDetail} />
           </Col>
 
           <Col className="ps-0">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const RatesBox = ({ rate, percent, bgColor, onClick }: any) => {
+const RatesBoxMobile = ({ rate, percent, bgColor, onClick }: any) => {
   const [tempRate, setTempRate] = useState("0");
   const [isYellow, setIsYellow] = useState(false);
 
@@ -16,17 +16,17 @@ const RatesBox = ({ rate, percent, bgColor, onClick }: any) => {
 
   return (
     <div
-      className={`market-odd-box ${isYellow ? "bg-secondary" : bgColor}`}
+      className={`box-1 text-center ${isYellow ? "bg-secondary" : bgColor}`}
       onClick={() => {
         if (onClick) {
           onClick();
         }
       }}
     >
-      <span className="market-odd">{rate}</span>
-      <span className="market-volume">{percent}</span>
+      <span className="odd d-block">{rate}</span>
+      <span className="d-block">{percent}</span>
     </div>
   );
 };
 
-export default RatesBox;
+export default RatesBoxMobile;
