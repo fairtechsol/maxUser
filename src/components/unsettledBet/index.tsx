@@ -103,6 +103,7 @@ const UnsettledBetComponent = () => {
     <ReportContainer title="Un-Setteled Bet">
       <div>
         <Stack gap={2}>
+        {!isMobile ? 
           <Row className="g-2 mt-1">
             <Col md={2} xs={4}>
               <Form.Check
@@ -134,7 +135,36 @@ const UnsettledBetComponent = () => {
                 defaultChecked={selectedOption === "DELETED"}
               />
             </Col>
-          </Row>
+          </Row> : 
+          <div style={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <div style={{width:'70%',display:'flex',flexDirection:'row',justifyContent:'space-around',alignItems:'center',paddingTop:'10px'}}>
+            <Form.Check
+                label="Matched"
+                name="matched"
+                type="radio"
+                id={"PENDING"}
+                onChange={(e) => handleCheckboxChange(e)}
+                defaultChecked={selectedOption === "PENDING"}
+              />
+               <Form.Check
+                label="Un-Matched"
+                name="matched"
+                type="radio"
+                id={"UNMATCHED"}
+                onChange={(e) => handleCheckboxChange(e)}
+                defaultChecked={selectedOption === "UNMATCHED"}
+              />
+              <Form.Check
+                label="Deleted"
+                name="matched"
+                type="radio"
+                id={"DELETED"}
+                onChange={(e) => handleCheckboxChange(e)}
+                defaultChecked={selectedOption === "DELETED"}
+              />
+             
+            </div>
+            </div>}
           {!isMobile && <CustomTable
             bordered={true}
             striped={!isMobile}
@@ -209,36 +239,36 @@ const UnsettledBetComponent = () => {
                           </a>
                         </div>
                         <div>
-                          <span>Event Type: {item.eventType}</span>
+                          <span className="f600">Event Type: {item.eventType}</span>
                         </div>
                         <div>
-                          <span>Market Name: </span> {item?.marketType}
+                          <span className="f600">Market Name: </span> {item?.marketType}
                         </div>
                         <div>
-                          <span>Place Date: </span> {moment(item?.createdAt).format(
+                          <span className="f600">Place Date: </span> {moment(item?.createdAt).format(
                             "MM/DD/YYYY hh:mm:ss A")}
                         </div>
                         <div>
-                          <span>Matched Date: </span> {moment(item?.match?.startAt)
+                          <span className="f600">Matched Date: </span> {moment(item?.match?.startAt)
                             .format(
                               "MM/DD/YYYY hh:mm:ss A")}
                         </div>
                       </div>
                       <Col className="col-2 reportBody" colspan={6}>
                         <div>
-                          <span>Nation</span>
+                          <span className="f600">Nation</span>
                         </div>
                         <div>{item.teamName}</div>
                       </Col>
                       <div className="col-2 text-right reportBody">
                         <div>
-                          <span>Rate</span>
+                          <span className="f600">Rate</span>
                         </div>
                         <div>{item.odds}</div>
                       </div>
                       <div className="col-2 text-right reportBody">
                         <div>
-                          <span>Amount</span>
+                          <span className="f600">Amount</span>
                         </div>
                         <div>{item.amount}</div>
                       </div>
