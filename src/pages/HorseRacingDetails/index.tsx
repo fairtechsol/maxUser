@@ -1,6 +1,4 @@
 import { useEffect } from "react";
-import HorseRace from "../../components/horseRacing/desktop/betTable";
-import HorseRaceTabs from "../../components/horseRacing/mobile/betTable";
 import isMobile from "../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
@@ -17,11 +15,17 @@ import {
   socketService,
 } from "../../socketManager";
 import { useNavigate, useParams } from "react-router-dom";
-import { getButtonValue, getProfileInMatchDetail, updateBalanceOnBetDelete } from "../../store/actions/user/userAction";
+import {
+  getButtonValue,
+  getProfileInMatchDetail,
+  updateBalanceOnBetDelete,
+} from "../../store/actions/user/userAction";
 import {
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
+import HorseRaceDetailMobile from "../../components/horseRacing/mobile/betTable";
+import HorseRaceDetailDesktop from "../../components/horseRacing/desktop/betTable";
 
 const RaceDetail = () => {
   // const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
@@ -31,8 +35,7 @@ const RaceDetail = () => {
   const { matchDetail, success } = useSelector(
     (state: RootState) => state.horseRacing.matchDetail
   );
- 
-  
+
   const setMatchRatesInRedux = (event: any) => {
     try {
       if (id === event?.id) {
@@ -126,9 +129,7 @@ const RaceDetail = () => {
         socketService.userBalance.matchResultDeclared(getUserProfile);
         socketService.userBalance.declaredMatchResultAllUser(getUserProfile);
         socketService.userBalance.matchResultUnDeclared(getUserProfile);
-        socketService.userBalance.unDeclaredMatchResultAllUser(
-          getUserProfile
-        );
+        socketService.userBalance.unDeclaredMatchResultAllUser(getUserProfile);
         socketService.userBalance.matchDeleteBet(getUserProfile);
       };
     } catch (e) {
@@ -136,7 +137,11 @@ const RaceDetail = () => {
     }
   }, [id]);
 
-  return isMobile ? <HorseRaceTabs /> : <HorseRace data={matchDetail} />;
+  return isMobile ? (
+    <HorseRaceDetailMobile />
+  ) : (
+    <HorseRaceDetailDesktop data={matchDetail} />
+  );
 };
 
 export default RaceDetail;

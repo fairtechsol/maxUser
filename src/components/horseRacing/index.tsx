@@ -1,9 +1,13 @@
 import isMobile from "../../utils/screenDimension";
-import HorseRacingTabsDesktop from "./desktop";
-import HorseRacingTabsMobile from "./mobile";
+import HorseRacingListTabsDesktop from "./desktop";
+import HorseRacingListTabsMobile from "./mobile";
 
-const HorseRacingComponent = () => {
-  return isMobile ? <HorseRacingTabsMobile /> : <HorseRacingTabsDesktop />;
+const HorseRacingComponentList = () => {
+  return isMobile ? (
+    <HorseRacingListTabsMobile />
+  ) : (
+    <HorseRacingListTabsDesktop />
+  );
 };
 
-export default HorseRacingComponent;
+export default HorseRacingComponentList;

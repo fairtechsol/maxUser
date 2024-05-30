@@ -30,7 +30,7 @@ const ProfitLoss = Loadable(lazy(() => import("../pages/profitLoss")));
 const BetHistory = Loadable(lazy(() => import("../pages/betHistory")));
 const UnsettledBet = Loadable(lazy(() => import("../pages/unsettledBet")));
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
-const RaceDetail = Loadable(lazy(() => import("../pages/HorseRacing")));
+const RaceDetail = Loadable(lazy(() => import("../pages/HorseRacingDetails")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
