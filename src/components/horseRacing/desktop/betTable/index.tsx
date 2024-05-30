@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
@@ -14,6 +14,7 @@ const HorseRace = ({ data }: any) => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const dispatch: AppDispatch = useDispatch();
+  const [suspendedText, setSuspendedText] = useState("Removed");
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
@@ -103,7 +104,9 @@ const HorseRace = ({ data }: any) => {
               </div>
               <div className="market-body">
                 {data?.matchOdd?.runners.map((race: any) => (
-                  <div className="market-row removed" key={race?.id}>
+                  <div className={`market-row ${suspendedText ? 'suspended-row' : ''} removed`} 
+                  key={race?.id} 
+                  data-title={suspendedText}>
                     <div className="market-nation-detail">
                       <div className="form-check">
                         <input
