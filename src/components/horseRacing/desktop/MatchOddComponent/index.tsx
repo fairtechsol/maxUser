@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import RatesBox from "../ratesBox";
 
 const MatchOddComponent = ({ data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -83,24 +84,20 @@ const MatchOddComponent = ({ data }: any) => {
                   </label>
                 </div>
               </div>
-              <div className="market-odd-box bg-blue1">
-                <span className="market-odd">
-                  {race?.ex?.availableToBack[2]?.price}
-                </span>
-                <span className="market-volume">
-                  {race?.ex?.availableToBack[2]?.size}
-                </span>
-              </div>
-              <div className="market-odd-box bg-blue2">
-                <span className="market-odd">
-                  {race?.ex?.availableToBack[1]?.price}
-                </span>
-                <span className="market-volume">
-                  {race?.ex?.availableToBack[1]?.size}
-                </span>
-              </div>
-              <div
-                className="market-odd-box bg-blue3"
+              <RatesBox
+                rate={race?.ex?.availableToBack[2]?.price}
+                percent={race?.ex?.availableToBack[2]?.size}
+                bgColor="bg-blue1"
+              />
+              <RatesBox
+                rate={race?.ex?.availableToBack[1]?.price}
+                percent={race?.ex?.availableToBack[1]?.size}
+                bgColor="bg-blue2"
+              />
+              <RatesBox
+                rate={race?.ex?.availableToBack[0]?.price}
+                percent={race?.ex?.availableToBack[0]?.size}
+                bgColor="bg-blue3"
                 onClick={() => {
                   const rate = parseFloat(race?.ex?.availableToBack[0]?.price);
                   if (rate > 0) {
@@ -123,16 +120,11 @@ const MatchOddComponent = ({ data }: any) => {
                     );
                   }
                 }}
-              >
-                <span className="market-odd">
-                  {race?.ex?.availableToBack[0]?.price}
-                </span>
-                <span className="market-volume">
-                  {race?.ex?.availableToBack[0]?.size}
-                </span>
-              </div>
-              <div
-                className="market-odd-box bg-red1"
+              />
+              <RatesBox
+                rate={race?.ex?.availableToLay[0]?.price}
+                percent={race?.ex?.availableToLay[0]?.size}
+                bgColor="bg-red1"
                 onClick={() => {
                   const rate = parseFloat(race?.ex?.availableToLay[0]?.price);
                   if (rate > 0) {
@@ -155,30 +147,17 @@ const MatchOddComponent = ({ data }: any) => {
                     );
                   }
                 }}
-              >
-                <span className="market-odd">
-                  {race?.ex?.availableToLay[0]?.price}
-                </span>
-                <span className="market-volume">
-                  {race?.ex?.availableToLay[0]?.size}
-                </span>
-              </div>
-              <div className="market-odd-box bg-red2">
-                <span className="market-odd">
-                  {race?.ex?.availableToLay[1]?.price}
-                </span>
-                <span className="market-volume">
-                  {race?.ex?.availableToLay[1]?.size}
-                </span>
-              </div>
-              <div className="market-odd-box bg-red3">
-                <span className="market-odd">
-                  {race?.ex?.availableToLay[2]?.price}
-                </span>
-                <span className="market-volume">
-                  {race?.ex?.availableToLay[2]?.size}
-                </span>
-              </div>
+              />
+              <RatesBox
+                rate={race?.ex?.availableToLay[1]?.price}
+                percent={race?.ex?.availableToLay[1]?.size}
+                bgColor="bg-red2"
+              />
+              <RatesBox
+                rate={race?.ex?.availableToLay[2]?.price}
+                percent={race?.ex?.availableToLay[2]?.size}
+                bgColor="bg-red3"
+              />
             </div>
           ))}
       </div>

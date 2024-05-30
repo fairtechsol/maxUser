@@ -2,6 +2,8 @@
 // import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 // import { AppDispatch } from "../../../../store/store";
 
+import RatesBox from "../ratesBox";
+
 const CombinedComponent = () => {
   //   const dispatch: AppDispatch = useDispatch();
 
@@ -35,17 +37,12 @@ const CombinedComponent = () => {
           <div className="market-nation-detail" style={{ height: "2.5rem" }}>
             <span className="form-check-label">1 + 2 + 3 + 4</span>
           </div>
-          <div className="market-odd-box bg-blue1">
-            <span className="market-odd"></span>
-            <span className="market-volume"></span>
-          </div>
-          <div className="market-odd-box bg-blue2">
-            <span className="market-odd"></span>
-            <span className="market-volume"></span>
-          </div>
-          <div
-            className="market-odd-box bg-blue3"
-            onClick={() => {
+          <RatesBox bgColor="bg-blue1" />
+          <RatesBox bgColor="bg-blue2" />
+          <RatesBox
+            bgColor="bg-blue3"
+            onClick={
+              () => {}
               // const rate = parseFloat(
               //   race?.ex?.availableToBack[0]?.price
               // );
@@ -68,14 +65,12 @@ const CombinedComponent = () => {
               //     data?.matchOdd
               //   );
               // }
-            }}
-          >
-            <span className="market-odd"></span>
-            <span className="market-volume"></span>
-          </div>
-          <div
-            className="market-odd-box bg-red1"
-            onClick={() => {
+            }
+          />
+          <RatesBox
+            bgColor="bg-red1"
+            onClick={
+              () => {}
               // const rate = parseFloat(
               //   race?.ex?.availableToLay[0]?.price
               // );
@@ -98,19 +93,10 @@ const CombinedComponent = () => {
               //     data?.matchOdd
               //   );
               // }
-            }}
-          >
-            <span className="market-odd"></span>
-            <span className="market-volume"></span>
-          </div>
-          <div className="market-odd-box bg-red2">
-            <span className="market-odd"></span>
-            <span className="market-volume"></span>
-          </div>
-          <div className="market-odd-box bg-red3">
-            <span className="market-odd"></span>
-            <span className="market-volume"></span>
-          </div>
+            }
+          />
+          <RatesBox bgColor="bg-red2" />
+          <RatesBox bgColor="bg-red3" />
         </div>
       </div>
     </div>
