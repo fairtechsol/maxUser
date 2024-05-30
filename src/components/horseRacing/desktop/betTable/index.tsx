@@ -1,20 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
 import PlacedBet from "../../../gameDetails/desktop/placeBet";
 import MyBet from "../../../gameDetails/desktop/myBet";
 import moment from "moment";
-import { AppDispatch } from "../../../../store/store";
-import { useDispatch } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import MatchOddComponent from "../MatchOddComponent";
+import CombinedComponent from "../CombinedComponent";
 
-const HorseRace = ({ data }: any) => {
-  // console.log("data", data);
+const HorseRaceDetailDesktop = ({ data }: any) => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
-  const [suspendedText, setSuspendedText] = useState("Removed");
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
@@ -37,22 +33,13 @@ const HorseRace = ({ data }: any) => {
     const hours = Math.floor(duration.asHours());
     const minutes = duration.minutes();
 
-    if (hours === 0 && minutes === 0) {
+    if (hours <= 0 && minutes <= 0) {
       return "";
-    } else if (hours === 0) {
-      return `${minutes} Minutes Remaining`;
+    } else if (hours <= 0) {
+      return `| ${minutes} Minutes Remaining`;
     } else {
-      return `${hours} Hours and ${minutes} Minutes Remaining`;
+      return `| ${hours} Hours and ${minutes} Minutes Remaining`;
     }
-  };
-
-  const handleClick = (team: any, data: any) => {
-    dispatch(
-      selectedBetAction({
-        team,
-        data,
-      })
-    );
   };
   return (
     <>
@@ -66,195 +53,29 @@ const HorseRace = ({ data }: any) => {
                   {" > "}
                   {data?.venue}
                 </h5>
-                
+
                 <div>
                   <span>
                     {moment(data?.startAt).format("YYYY-MM-DD HH:mm")}
                   </span>{" "}
                   <span>| {data?.title}</span>{" "}
                   <span className="horse-timer">
-                    <span>|</span> {remainingTime(data?.startAt)}
-
+                    {remainingTime(data?.startAt)}
                   </span>
-               
                 </div>
-            
               </div>
-              <div className="text-success horse-status">   open    </div>
+              {new Date().getTime() >
+                new Date(
+                  new Date(data?.startAt).setMinutes(
+                    new Date(data?.startAt).getMinutes() -
+                      parseInt(data?.betPlaceStartBefore)
+                  )
+                ).getTime() && (
+                <div className="text-success horse-status"> open </div>
+              )}
             </div>
-            <div className="game-market market-12">
-              <div className="market-title mt-1">
-                {"MATCH ODDS"}
-                <span className="float-right">
-                  Max : {data?.matchOdd?.maxBet}
-                </span>
-              </div>
-              <div className="market-header">
-                <div className="market-nation-detail"></div>
-                <div className="market-odd-box no-border d-none d-md-flex"></div>
-                <div className="market-odd-box no-border d-none d-md-flex"></div>
-                <div className="market-odd-box back">
-                  <b>Back</b>
-                </div>
-                <div className="market-odd-box lay">
-                  <b>Lay</b>
-                </div>
-                <div className="market-odd-box d-none d-md-flex"></div>
-                <div className="market-odd-box no-border d-none d-md-flex"></div>
-              </div>
-              <div className="market-body">
-                {data?.matchOdd?.runners.map((race: any) => (
-                  <div className={`market-row ${suspendedText ? 'suspended-row' : ''} removed`} 
-                  key={race?.id} 
-                  data-title={suspendedText}>
-                    <div className="market-nation-detail">
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          id={race.id}
-                          name={race.id}
-                          className="form-check-input"
-                        />
-                        <label htmlFor={race.id} className="form-check-label">
-                          <div>
-                            {race?.metadata?.CLOTH_NUMBER}
-                            <br />({race?.metadata?.AGE})
-                          </div>
-                          <div>
-                            {/* <img src={race.imageUrl} alt={race.name} /> */}
-                          </div>
-                          <div>
-                            <span className="market-nation-name">
-                              {race.runnerName}
-                            </span>
-                            <span
-                              className="market-book float-right"
-                              style={{ color: "black" }}
-                            >
-                              {data?.profitLossDataMatch &&
-                                data?.profitLossDataMatch[race?.id]}
-                            </span>
-                            <div className="jockey-detail d-none d-md-flex">
-                              <span className="jockey-detail-box">
-                                <b>Jockey:-</b>{" "}
-                                <span>{race?.metadata?.JOCKEY_NAME}</span>
-                              </span>
-                              <span className="jockey-detail-box">
-                                <b>Trainer:-</b>{" "}
-                                <span>{race?.metadata?.TRAINER_NAME}</span>
-                              </span>
-                              <span className="jockey-detail-box">
-                                <b>Age:-</b> <span>{race?.metadata?.AGE}</span>
-                              </span>
-                            </div>
-                          </div>
-                        </label>
-                      </div>
-                    </div>
-                    <div className="market-odd-box bg-blue1">
-                      <span className="market-odd">
-                        {race?.ex?.availableToBack[2]?.price}
-                      </span>
-                      <span className="market-volume">
-                        {race?.ex?.availableToBack[2]?.size}
-                      </span>
-                    </div>
-                    <div className="market-odd-box bg-blue2">
-                      <span className="market-odd">
-                        {race?.ex?.availableToBack[1]?.price}
-                      </span>
-                      <span className="market-volume">
-                        {race?.ex?.availableToBack[1]?.size}
-                      </span>
-                    </div>
-                    <div
-                      className="market-odd-box bg-blue3"
-                      onClick={() => {
-                        const rate = parseFloat(
-                          race?.ex?.availableToBack[0]?.price
-                        );
-                        if (rate > 0) {
-                          handleClick(
-                            {
-                              betOnTeam: race.runnerName,
-                              rate: rate,
-                              type: "back",
-                              stake: 0,
-                              betId: data?.matchOdd?.id,
-                              eventType: data?.matchType,
-                              matchId: data?.id,
-                              matchBetType: data?.matchOdd?.type,
-                              bettingName: "Match Odd",
-                              placeIndex: 0,
-                              selectionId: JSON.stringify(race?.selectionId),
-                              runnerId: race?.id,
-                            },
-                            data?.matchOdd
-                          );
-                        }
-                      }}
-                    >
-                      <span className="market-odd">
-                        {race?.ex?.availableToBack[0]?.price}
-                      </span>
-                      <span className="market-volume">
-                        {race?.ex?.availableToBack[0]?.size}
-                      </span>
-                    </div>
-                    <div
-                      className="market-odd-box bg-red1"
-                      onClick={() => {
-                        const rate = parseFloat(
-                          race?.ex?.availableToLay[0]?.price
-                        );
-                        if (rate > 0) {
-                          handleClick(
-                            {
-                              betOnTeam: race.runnerName,
-                              rate: rate,
-                              type: "lay",
-                              stake: 0,
-                              betId: data?.matchOdd?.id,
-                              eventType: data?.matchType,
-                              matchId: data?.id,
-                              matchBetType: data?.matchOdd?.type,
-                              bettingName: "Match Odd",
-                              placeIndex: 0,
-                              selectionId: JSON.stringify(race?.selectionId),
-                              runnerId: race?.id,
-                            },
-                            data?.matchOdd
-                          );
-                        }
-                      }}
-                    >
-                      <span className="market-odd">
-                        {race?.ex?.availableToLay[0]?.price}
-                      </span>
-                      <span className="market-volume">
-                        {race?.ex?.availableToLay[0]?.size}
-                      </span>
-                    </div>
-                    <div className="market-odd-box bg-red2">
-                      <span className="market-odd">
-                        {race?.ex?.availableToLay[1]?.price}
-                      </span>
-                      <span className="market-volume">
-                        {race?.ex?.availableToLay[1]?.size}
-                      </span>
-                    </div>
-                    <div className="market-odd-box bg-red3">
-                      <span className="market-odd">
-                        {race?.ex?.availableToLay[2]?.price}
-                      </span>
-                      <span className="market-volume">
-                        {race?.ex?.availableToLay[2]?.size}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <CombinedComponent />
+            <MatchOddComponent data={data} />
           </Col>
 
           <Col className="ps-0">
@@ -282,4 +103,4 @@ const HorseRace = ({ data }: any) => {
   );
 };
 
-export default HorseRace;
+export default HorseRaceDetailDesktop;

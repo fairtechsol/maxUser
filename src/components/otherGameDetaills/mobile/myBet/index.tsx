@@ -21,16 +21,6 @@ const placeBetHeader = [
 
 const MyBet = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const handleTeamName = (item: any) => {
-    let team;
-    if (item?.bettingName?.includes(".5")) {
-      let name = item?.bettingName.split("_");
-      team = item?.teamName + " " + name[name?.length - 1];
-    } else {
-      team = item?.teamName;
-    }
-    return team;
-  };
   return (
     <Table className="w-full" bordered>
       <thead>
@@ -46,11 +36,14 @@ const MyBet = () => {
         {placedBets &&
           Array.from(new Set(placedBets))?.map((bet: any) => {
             return (
-              <tr key={bet?.id}  className={`position-relative ${
-                bet?.betType === "NO" || bet?.betType === "LAY"
-                  ? "bg-red1"
-                  : "bg-blue3"
-              }`}>
+              <tr
+                key={bet?.id}
+                className={`position-relative ${
+                  bet?.betType === "NO" || bet?.betType === "LAY"
+                    ? "bg-red1"
+                    : "bg-blue3"
+                }`}
+              >
                 <th
                   className={`title-12 text-start ${
                     bet?.betType === "NO" || bet?.betType === "LAY"
@@ -60,7 +53,7 @@ const MyBet = () => {
                 >
                   {bet?.marketBetType === "SESSION"
                     ? bet?.eventName
-                    : handleTeamName(bet)}
+                    : bet?.bettingName}
                 </th>
                 <th
                   className={`title-12 text-start ${

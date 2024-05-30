@@ -12,11 +12,12 @@ import PlacedBet from "../../../gameDetails/mobile/placeBet";
 import CommonTabs from "../../../commonComponent/tabs";
 import MyBet from "../../../gameDetails/desktop/myBet";
 
-const HorseRaceTabs = () => {
+const HorseRaceDetailMobile = () => {
   const dispatch: AppDispatch = useDispatch();
   const { matchDetail } = useSelector(
     (state: RootState) => state.horseRacing.matchDetail
   );
+  const { placedBets } = useSelector((state: RootState) => state.bets);
   const [show, setShow] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [currentHorse, setCurrentHorse] = useState({});
@@ -74,7 +75,7 @@ const HorseRaceTabs = () => {
             },
             {
               id: "matchedBet",
-              name: `MATCHED BET(${Array.from(new Set("placedBets"))?.length})`,
+              name: `MATCHED BET(${Array.from(new Set(placedBets))?.length})`,
             },
           ]?.map((item, index) => {
             return (
@@ -305,4 +306,4 @@ const HorseRaceTabs = () => {
   );
 };
 
-export default HorseRaceTabs;
+export default HorseRaceDetailMobile;

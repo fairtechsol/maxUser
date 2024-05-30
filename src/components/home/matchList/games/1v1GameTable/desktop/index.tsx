@@ -13,7 +13,7 @@ import {
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
-import HorseRacingComponent from "../../../../../horseRacing";
+import HorseRacingComponentList from "../../../../../horseRacing";
 const tableHeading = [
   {
     id: "game",
@@ -70,7 +70,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         <tbody>
           {availableGameType[mTypeid] ? (
             availableGameType[mTypeid] === "horseRacing" ? (
-              <HorseRacingComponent />
+              <HorseRacingComponentList />
             ) : (
               <>
                 {!matchList || matchList?.length === 0 ? (

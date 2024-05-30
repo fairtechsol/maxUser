@@ -13,7 +13,7 @@ import {
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
-import HorseRacingComponent from "../../../../../horseRacing";
+import HorseRacingComponentList from "../../../../../horseRacing";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
@@ -84,7 +84,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
         {availableGameType[mTypeid || id] ? (
         <>
           {availableGameType[mTypeid] === "horseRacing" ? (
-            <HorseRacingComponent />
+            <HorseRacingComponentList />
           ) : (
             <>
               {!matchList || matchList.length === 0 ? (

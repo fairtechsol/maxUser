@@ -22,16 +22,6 @@ const placeBetHeader = [
 
 const MyBet = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const handleTeamName = (item: any) => {
-    let team;
-    if (item?.bettingName?.includes(".5")) {
-      let name = item?.bettingName.split("_");
-      team = item?.teamName + " " + name[name?.length - 1];
-    } else {
-      team = item?.teamName;
-    }
-    return team;
-  };
   return (
     <RightPanelContainer title={"My Bet"}>
       <div className="betList" style={{ maxHeight: "70vh", overflow: "auto" }}>
@@ -74,7 +64,7 @@ const MyBet = () => {
                           : "bg-blue3"
                       }`}
                     >
-                      {handleTeamName(bet)}
+                      {bet?.bettingName}
                     </th>
                     <th
                       className={`title-12 text-start f500 ${
