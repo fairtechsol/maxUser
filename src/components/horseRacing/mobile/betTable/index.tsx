@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import PlacedBet from "../../../gameDetails/mobile/placeBet";
 import CommonTabs from "../../../commonComponent/tabs";
 import MyBet from "../../../gameDetails/desktop/myBet";
+import MatchOddCompnentMobile from "../matchOddComponent";
+import CombinedComponentMobile from "../combinedComponent";
 
 const HorseRaceDetailMobile = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -47,9 +49,9 @@ const HorseRaceDetailMobile = () => {
     const hours = Math.floor(duration.asHours());
     const minutes = duration.minutes();
 
-    if (hours === 0 && minutes === 0) {
+    if (hours <= 0 && minutes <= 0) {
       return "";
-    } else if (hours === 0) {
+    } else if (hours <= 0) {
       return `${minutes} Minutes Remaining`;
     } else {
       return `${hours} Hours and ${minutes} Minutes Remaining`;
@@ -119,172 +121,11 @@ const HorseRaceDetailMobile = () => {
                               </div>
                             </div>
                           </div>
-                          <div className="market-title mt-1">
-                            MATCH_ODDS
-                            <span className="float-right">
-                              Max: {matchDetail?.matchOdd?.maxBet}
-                            </span>
-                          </div>
-                          <div className="main-market">
-                            <div className="table-header">
-                              <div className="float-left country-name box-4 min-max"></div>
-                              <div className="back box-1 float-left text-center">
-                                <b>Back</b>
-                              </div>
-                              <div className="lay box-1 float-left text-center">
-                                <b>Lay</b>
-                              </div>
-                            </div>
-                            <div className="table-body">
-                              {matchDetail?.matchOdd?.runners?.map(
-                                (runner: any) => (
-                                  <div
-                                    data-title="ACTIVE"
-                                    className="table-row"
-                                    key={runner?.id}
-                                  >
-                                    <div className="float-left country-name box-4">
-                                      <div className="custom-control custom-checkbox">
-                                        <input
-                                          type="checkbox"
-                                          id={runner?.id}
-                                          name={runner?.runnerName}
-                                          className="custom-control-input"
-                                          value={runner?.runnerName}
-                                        />
-
-                                        <label
-                                          htmlFor={runner.id}
-                                          className="custom-control-label"
-                                        >
-                                          <span className="horse-mobile-arrow">
-                                            <i
-                                              data-toggle="collapse"
-                                              data-target={`#detail-${runner.id}`}
-                                              className="fas fa-angle-down"
-                                              onClick={(event) =>
-                                                handleShowModal(event, runner)
-                                              }
-                                            ></i>
-                                          </span>
-                                          <div>
-                                            {runner?.number}
-                                            <br />({runner?.position})
-                                          </div>
-                                          <div>
-                                            <img
-                                              src={runner?.image}
-                                              alt={runner?.name}
-                                            />
-                                          </div>
-                                          <div>
-                                            <span>{runner.runnerName}</span>
-                                            <div
-                                              className="w-100"
-                                              style={{ color: "black" }}
-                                            >
-                                              {runner.metadata?.AGE}
-                                            </div>
-                                          </div>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div
-                                      className="box-1 back  back lock text-center back"
-                                      onClick={() => {
-                                        const rate = parseFloat(
-                                          runner?.ex?.availableToBack[0]?.price
-                                        );
-                                        if (rate > 0) {
-                                          handleClick(
-                                            {
-                                              betOnTeam: runner?.runnerName,
-                                              rate: rate,
-                                              type: "back",
-                                              stake: 0,
-                                              betId: matchDetail?.matchOdd?.id,
-                                              eventType: matchDetail?.matchType,
-                                              matchId: matchDetail?.id,
-                                              matchBetType:
-                                                matchDetail?.matchOdd?.type,
-                                              bettingName: "Match Odd",
-                                              placeIndex: 0,
-                                              selectionId: JSON.stringify(
-                                                runner?.selectionId
-                                              ),
-                                              runnerId: runner?.id,
-                                            },
-                                            matchDetail?.matchOdd
-                                          );
-                                        }
-                                      }}
-                                    >
-                                      <span className="odd d-block">
-                                        {runner?.ex?.availableToBack[0]?.price}
-                                      </span>
-                                      <span className="d-block">
-                                        {runner?.ex?.availableToBack[0]?.size}
-                                      </span>
-                                    </div>
-                                    <div
-                                      className="box-1 lay  text-center lay"
-                                      onClick={() => {
-                                        const rate = parseFloat(
-                                          runner?.ex?.availableToLay[0]?.price
-                                        );
-                                        if (rate > 0) {
-                                          handleClick(
-                                            {
-                                              betOnTeam: runner?.runnerName,
-                                              rate: rate,
-                                              type: "lay",
-                                              stake: 0,
-                                              betId: matchDetail?.matchOdd?.id,
-                                              eventType: matchDetail?.matchType,
-                                              matchId: matchDetail?.id,
-                                              matchBetType:
-                                                matchDetail?.matchOdd?.type,
-                                              bettingName: "Match Odd",
-                                              placeIndex: 0,
-                                              selectionId: JSON.stringify(
-                                                runner?.selectionId
-                                              ),
-                                              runnerId: runner?.id,
-                                            },
-                                            matchDetail?.matchOdd
-                                          );
-                                        }
-                                      }}
-                                    >
-                                      <span className="odd d-block">
-                                        {runner?.ex?.availableToLay[0]?.price}
-                                      </span>
-                                      <span className="d-block">
-                                        {" "}
-                                        {runner?.ex?.availableToLay[0]?.size}
-                                      </span>
-                                    </div>
-                                    <div
-                                      id={`detail-${runner?.id}`}
-                                      className="collapse box-10 jockey-detail"
-                                    >
-                                      <span>
-                                        <b>Jockey:</b>{" "}
-                                        {runner.metadata?.JOCKEY_NAME}
-                                      </span>
-                                      <span>
-                                        <b>Trainer:</b>{" "}
-                                        {runner.metadata?.TRAINER_NAME}
-                                      </span>
-                                      <span>
-                                        <b>Age:</b> {runner.metadata?.AGE}
-                                      </span>
-                                    </div>
-                                  </div>
-                                )
-                              )}
-                            </div>
-                          </div>
+                          <CombinedComponentMobile />
+                          <MatchOddCompnentMobile
+                            handleShowModal={handleShowModal}
+                            handleClick={handleClick}
+                          />
                         </Card.Body>
                       </Card>
                     </Tab.Pane>

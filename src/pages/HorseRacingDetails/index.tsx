@@ -29,11 +29,10 @@ import HorseRaceDetailMobile from "../../components/horseRacing/mobile/betTable"
 import HorseRaceDetailDesktop from "../../components/horseRacing/desktop/betTable";
 
 const RaceDetail = () => {
-  // const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
-  const { matchDetail, success } = useSelector(
+  const { success } = useSelector(
     (state: RootState) => state.horseRacing.matchDetail
   );
 
@@ -139,11 +138,7 @@ const RaceDetail = () => {
     }
   }, [id]);
 
-  return isMobile ? (
-    <HorseRaceDetailMobile />
-  ) : (
-    <HorseRaceDetailDesktop data={matchDetail} />
-  );
+  return isMobile ? <HorseRaceDetailMobile /> : <HorseRaceDetailDesktop />;
 };
 
 export default RaceDetail;
