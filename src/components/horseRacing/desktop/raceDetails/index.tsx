@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const RaceDetails = ({ matchName, item }: any) => {
   return (
     <>
-      <div className="coupon-card coupon-card-first">
+      <div className="coupon-card coupon-card-first p-0">
         <div className="card-content">
           <table className="table coupon-table table-bordered ">
             <tbody>
