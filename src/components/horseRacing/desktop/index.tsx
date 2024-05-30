@@ -28,25 +28,27 @@ const HorseRacingTabsDesktop = () => {
   }, [activeTab, countryWiseList]);
 
   return (
-    <CommonTabs
-      callback={handleSelect}
-      defaultActive={activeTab}
-      id={activeTab}
-    >
-      {countryWiseList?.map((item: any) => (
-        <Tab
-          key={item?.countryCode}
-          eventKey={item?.countryCode}
-          tabClassName="match-list-tabs title-12"
-          title={item?.countryCode}
-          style={{ padding: "0px" }}
-        >
-          {Object.entries(racingList)?.map(([matchName, item]: any) => (
-            <RaceDetails matchName={matchName} item={item} />
-          ))}
-        </Tab>
-      ))}
-    </CommonTabs>
+    <div className="horseRacingTab">
+      <CommonTabs
+        callback={handleSelect}
+        defaultActive={activeTab}
+        id={activeTab}
+      >
+        {countryWiseList?.map((item: any) => (
+          <Tab
+            key={item?.countryCode}
+            eventKey={item?.countryCode}
+            tabClassName="match-tabs title-12"
+            title={item?.countryCode}
+            style={{ padding: "0px" }}
+          >
+            {Object.entries(racingList)?.map(([matchName, item]: any) => (
+              <RaceDetails matchName={matchName} item={item} />
+            ))}
+          </Tab>
+        ))}
+      </CommonTabs>
+    </div>
   );
 };
 

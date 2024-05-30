@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tab, Card } from "react-bootstrap";
+import { Tab, Card, Container, Row } from "react-bootstrap";
 import "./style.scss";
 import HorseModal from "../infoModal";
 // import { useDispatch } from 'react-redux';
@@ -9,6 +9,8 @@ import moment from "moment";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useDispatch } from "react-redux";
 import PlacedBet from "../../../gameDetails/mobile/placeBet";
+import CommonTabs from "../../../commonComponent/tabs";
+import MyBet from "../../../gameDetails/desktop/myBet";
 
 const HorseRaceTabs = () => {
   // const [activeTab, setActiveTab] = useState(raceData[0]?.id || '');
@@ -67,7 +69,28 @@ const HorseRaceTabs = () => {
   };
   return (
     <>
+    <div>
     <PlacedBet show={show} setShow={setShow} />
+    <CommonTabs defaultActive="odds" className="color">
+        {[
+          {
+            id: "odds",
+            name: "ODDS",
+          },
+          {
+            id: "matchedBet",
+            name: `MATCHED BET(${Array.from(new Set("placedBets"))?.length})`,
+          },
+        ]?.map((item, index) => {
+          return (
+            <Tab
+              key={item?.id}
+              eventKey={item?.id}
+              tabClassName="m-tab"
+              title={<div className="font p-1 px-2">{item?.name}</div>}
+            >
+              {index == 0 ? (
+                  <Row>
       <Tab.Pane className="show no-padding-margin">
         <Card>
           <Card.Body className="car-body">
@@ -240,11 +263,22 @@ const HorseRaceTabs = () => {
           </Card.Body>
         </Card>
       </Tab.Pane>
+     
+      </Row>
+     
+              ) : (
+                <MyBet />
+              )}
+            </Tab>
+          );
+        })}
+      </CommonTabs>
       <HorseModal
         show={showModal}
         handleClose={handleCloseModal}
         horseData={currentHorse}
       />
+      </div>
     </>
   );
 };

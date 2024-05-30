@@ -17,17 +17,18 @@
 }
 
 .horse-banner {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: calc(100% - 8px);
-  margin-left: 4px;
-  margin-right: 4px;
-  margin-top: 0;
-  position: relative;
-  margin-top: 8px;
-  margin-bottom: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 8px);
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 0;
+    position: relative;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .time-detail h5 {
@@ -279,7 +280,15 @@ span b {
   align-items: center;
   pointer-events: none;
 }
-
+  
+.horse-status {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.text-success {
+    color: #28a745 !important;
+}
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
   .market-12 .suspended-row::after,
   .market-12 .suspended-table::after {

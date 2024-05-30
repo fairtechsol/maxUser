@@ -6,6 +6,7 @@
     border-radius: 4px;
     margin-right: 5px;
     margin-bottom: 5px;
+    font-size: 12px;
     cursor: pointer;
     position: relative;
     -webkit-border-radius: 4px;
@@ -25,7 +26,11 @@
     display: flex;
 }
 
-
+.tabs-nav .nav-item {
+  flex: 1 1 0;
+  padding-top: 0 !important;
+  padding-bottom: 0;
+}
 .tabs-nav .nav-item{
   display: flex;
   flex-direction: column;
@@ -53,8 +58,20 @@
   .game-name{
     flex: 1 0 100%; /* This means each tab will take up 25% of the container width */
     max-width: 100vw; /* Ensure it doesn't exceed 25% of the width */
+    font-size: 14px;
   }
-  
+
+
+  .game-list {
+    background-color: #f1f5f8;
+    border-bottom: 1px solid #d6d8d7;
+}
+.game-icon .fa-tv {
+  color: #000;
+  font-size: 12px;
+  margin-top: 6px;
+  vertical-align: top;
+}
   .game-icon{
     padding: 10px;
   }
