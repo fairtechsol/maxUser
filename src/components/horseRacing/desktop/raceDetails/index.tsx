@@ -2,18 +2,6 @@ import moment from "moment";
 import { NavLink } from "react-router-dom";
 
 const RaceListItems = ({ matchName, item }: any) => {
-  const remainingTime = (item: any) => {
-    const endTime = moment(item.startAt);
-    const currentTime = moment();
-    const duration = moment.duration(endTime.diff(currentTime));
-
-    const minutes = duration.minutes();
-
-    if (minutes <= item?.betPlaceStartBefore) {
-      return true;
-    } else return false;
-  };
-
   return (
     <>
       <div className="coupon-card coupon-card-first p-0">

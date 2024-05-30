@@ -69,7 +69,9 @@ const Home = () => {
             }, 500);
           }
         } else if (["horseRacing", "greyHound"].includes(matchType)) {
-          dispatch(getHorseRacingCountryWiseList());
+          setTimeout(() => {
+            dispatch(getHorseRacingCountryWiseList());
+          }, 500);
         }
       }
     } catch (e) {
