@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react';
-import { sportsRules } from '../../utils/constants/index';
+import { sportsRules } from '../../utils/Constants/index';
 import './index.scss';
 import { Row, Col, Nav, Tab } from 'react-bootstrap';
 
