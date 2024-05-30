@@ -13,8 +13,12 @@ import MatchListJson from "../matchList.json";
 import "./style.scss";
 import { useParams } from "react-router-dom";
 
-const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
-  const { id } = useParams();
+const DesktopMatchList = ({
+  matchTypeGameList,
+  setMatchType,
+  matchType,
+}: any) => {
+  const { type } = useParams();
   const dispatch: AppDispatch = useDispatch();
   const { matchList, success } = useSelector(
     (state: RootState) => state.match.matchList
@@ -26,13 +30,10 @@ const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
 
   useEffect(() => {
     try {
-      if (["horseRacing", "greyhoundRacing"].includes(matchType)) {
-        expertSocketService.match.leaveAllRooms();
-      }
       if (
         success &&
         matchList.length > 0 &&
-        ["cricket", "football", "tennis"].includes(matchType)
+        ["cricket", "football", "tennis"].includes(matchType || type)
       ) {
         matchList?.forEach((element: any) => {
           expertSocketService.match.joinMatchRoom(element?.id, "user");
@@ -43,47 +44,46 @@ const DesktopMatchList = ({ type, setMatchType, matchType }: any) => {
             setMatchOddRatesInRedux
           );
         });
+        return () => {
+          matchList?.forEach((element: any) => {
+            expertSocketService.match.leaveMatchRoom(element?.id);
+            expertSocketService.match.getMatchRatesOff(element?.id);
+          });
+        };
       }
     } catch (e) {
       console.log(e);
     }
-  }, [matchList.length, success, id, matchType]);
+  }, [matchList.length, success, type, matchType]);
 
   useEffect(() => {
-    try {
-      return () => {
-        matchList?.forEach((element: any) => {
-          expertSocketService.match.leaveMatchRoom(element?.id);
-          expertSocketService.match.getMatchRatesOff(element?.id);
-        });
-      };
-    } catch (error) {
-      console.log(error);
+    if (type) {
+      setMatchType(type);
     }
-  }, [matchType]);
-
-  useEffect(() => {
-    if (id) {
-      setMatchType(id);
-    }
-  }, [id]);
+  }, [type]);
 
   return (
     <div className="m-1 p-0 w-100">
       {" "}
-      <CommonTabs callback={setMatchType} defaultActive={id ?? type} id={id}>
+      <CommonTabs
+        callback={setMatchType}
+        defaultActive={type ?? matchTypeGameList}
+        id={type}
+      >
         {MatchListJson()
-          ?.filter((item) => item?.id == type || !type)
+          ?.filter(
+            (item) => item?.id == matchTypeGameList || !matchTypeGameList
+          )
           ?.map((item) => {
             return (
               <Tab
-                key={id ?? item?.id}
-                eventKey={id ?? item?.id}
+                key={type ?? item?.id}
+                eventKey={type ?? item?.id}
                 tabClassName="match-list-tabs title-12"
                 title={item?.name}
               >
                 {item?.type === GAME_TYPE.ONE_V_ONE ? (
-                  <OneVOneGameTable id={id ?? item?.id} />
+                  <OneVOneGameTable id={type ?? item?.id} />
                 ) : (
                   ""
                 )}
