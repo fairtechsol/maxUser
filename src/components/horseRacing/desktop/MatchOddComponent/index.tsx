@@ -41,6 +41,28 @@ const MatchOddComponent = ({ data }: any) => {
           ?.map((race: any, index: number) => (
             <div className="market-row removed" key={race?.id}>
               <div className="market-nation-detail">
+              {data?.matchType==='greyHound' ?  
+                       <div className="form-check" style={{paddingLeft:0,alignItems:"flex-start"}}>
+                      <span className="market-nation-name">
+                             {race.runnerName}
+                           </span>
+                       <label style={{alignItems:"flex-end",width:"auto"}}>
+
+
+                         <div>
+
+                           <span
+                             className="market-book float-right"
+                             style={{ color: "black" }}
+                           >
+                             {data?.profitLossDataMatch &&
+                               data?.profitLossDataMatch[race?.id] || 0}
+                           </span>
+
+                         </div>
+                       </label>
+                     </div>
+                      :
                 <div className="form-check">
                   <input
                     type="checkbox"
@@ -94,21 +116,21 @@ const MatchOddComponent = ({ data }: any) => {
                       </div>
                     </div>
                   </label>
-                </div>
+                </div>}
               </div>
               <RatesBox
-                rate={race?.ex?.availableToBack[2]?.price}
-                percent={race?.ex?.availableToBack[2]?.size}
+                rate={race?.ex?.availableToBack[2]?.price || 0}
+                percent={race?.ex?.availableToBack[2]?.size || 0}
                 bgColor="bg-blue1"
               />
               <RatesBox
-                rate={race?.ex?.availableToBack[1]?.price}
-                percent={race?.ex?.availableToBack[1]?.size}
+                rate={race?.ex?.availableToBack[1]?.price || 0}
+                percent={race?.ex?.availableToBack[1]?.size || 0}
                 bgColor="bg-blue2"
               />
               <RatesBox
-                rate={race?.ex?.availableToBack[0]?.price}
-                percent={race?.ex?.availableToBack[0]?.size}
+                rate={race?.ex?.availableToBack[0]?.price || 0}
+                percent={race?.ex?.availableToBack[0]?.size || 0}
                 bgColor="bg-blue3"
                 onClick={() => {
                   const rate = parseFloat(race?.ex?.availableToBack[0]?.price);
@@ -134,8 +156,8 @@ const MatchOddComponent = ({ data }: any) => {
                 }}
               />
               <RatesBox
-                rate={race?.ex?.availableToLay[0]?.price}
-                percent={race?.ex?.availableToLay[0]?.size}
+                rate={race?.ex?.availableToLay[0]?.price || 0}
+                percent={race?.ex?.availableToLay[0]?.size || 0}
                 bgColor="bg-red1"
                 onClick={() => {
                   const rate = parseFloat(race?.ex?.availableToLay[0]?.price);
@@ -161,13 +183,13 @@ const MatchOddComponent = ({ data }: any) => {
                 }}
               />
               <RatesBox
-                rate={race?.ex?.availableToLay[1]?.price}
-                percent={race?.ex?.availableToLay[1]?.size}
+                rate={race?.ex?.availableToLay[1]?.price || 0}
+                percent={race?.ex?.availableToLay[1]?.size || 0}
                 bgColor="bg-red2"
               />
               <RatesBox
-                rate={race?.ex?.availableToLay[2]?.price}
-                percent={race?.ex?.availableToLay[2]?.size}
+                rate={race?.ex?.availableToLay[2]?.price || 0}
+                percent={race?.ex?.availableToLay[2]?.size || 0}
                 bgColor="bg-red3"
               />
             </div>
