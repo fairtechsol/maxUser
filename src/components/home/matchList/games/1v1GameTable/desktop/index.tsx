@@ -9,7 +9,7 @@ import { RootState } from "../../../../../../store/store";
 import {
   availableGameType,
   casinoIcons,
-} from "../../../../../../utils/Constants";
+} from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";

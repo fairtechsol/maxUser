@@ -12,7 +12,7 @@ import PlacedBet from "../../../gameDetails/mobile/placeBet";
 import CommonTabs from "../../../commonComponent/tabs";
 import MyBet from "../../../gameDetails/desktop/myBet";
 import MatchOddCompnentMobile from "../matchOddComponent";
-import CombinedComponentMobile from "../combinedComponent";
+// import CombinedComponentMobile from "../combinedComponent";
 
 const HorseRaceDetailMobile = () => {
   const dispatch: AppDispatch = useDispatch();
