@@ -57,18 +57,28 @@ const MatchOddComponent = ({ data }: any) => {
                       {/* <img src={race.imageUrl} alt={race.name} /> */}
                     </div>
                     <div>
-                      <span className="market-nation-name">
-                        {`${index + 1}. ${race.runnerName
-                          .split(".")?.[1]
-                          ?.trim()}`}
-                      </span>
-                      <span
-                        className="market-book float-right"
-                        style={{ color: "black" }}
-                      >
-                        {data?.profitLossDataMatch &&
-                          data?.profitLossDataMatch[race?.id]}
-                      </span>
+                      <div className="d-flex justify-content-between w-100">
+                        <span className="market-nation-name ">
+                          {`${index + 1}. ${race.runnerName
+                            .split(".")?.[1]
+                            ?.trim()}`}
+                        </span>
+                        <span
+                          className={`market-book float-right ${
+                            data?.profitLossDataMatch &&
+                            data?.profitLossDataMatch[race?.id]
+                              ? data?.profitLossDataMatch[race?.id] > 0
+                                ? "color-green"
+                                : "color-red"
+                              : ""
+                          }`}
+                        >
+                          {data?.profitLossDataMatch &&
+                          data?.profitLossDataMatch[race?.id]
+                            ? data?.profitLossDataMatch[race?.id]
+                            : 0}
+                        </span>
+                      </div>
                       <div className="jockey-detail d-none d-md-flex">
                         <span className="jockey-detail-box">
                           <b>Jockey:-</b>{" "}
