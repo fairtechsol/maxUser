@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Constants } from "./utils/Constants";
+import { Constants } from "./utils/constants";
 
 const toastOptions = {
   autoClose: 1500,
