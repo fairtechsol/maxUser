@@ -91,7 +91,7 @@ const GameDetails = () => {
           event?.gameType === "cricket" ||
           event?.betType === "quickbookmaker1"
         ) {
-          navigate(`/game-list/${event?.gameType}`);
+          navigate(`/home`);
         } else {
           dispatch(getPlacedBets(id));
         }

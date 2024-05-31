@@ -17,7 +17,7 @@
 
 
 .horse-time-detail-m {
-  width: 100%;
+  // width: 100%;
     display: flex;
     flex-wrap: wrap;
     padding: 5px 5px 0 5px;
@@ -65,6 +65,7 @@
   .game-list {
     background-color: #f1f5f8;
     border-bottom: 1px solid #d6d8d7;
+    padding-left: 5px;
 }
 .game-icon .fa-tv {
   color: #000;

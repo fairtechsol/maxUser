@@ -55,7 +55,7 @@ const HorseRacingListTabsMobile = () => {
                     </Col>
                   </Row>
                   <Row className="row5">
-                    <Col xs={12}>
+                    <Col style={{display:'flex',flexDirection:'row'}}>
                       {item?.map((dates: any) => (
                         <div className="horse-time-detail-m">
                           <NavLink to={`/race/${dates?.id}`} key={dates?.id}>
