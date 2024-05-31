@@ -38,7 +38,7 @@ const MatchOddComponent = ({ data }: any) => {
         {data?.matchOdd?.runners
           ?.slice()
           ?.sort((a: any, b: any) => a?.sortPriority - b?.sortPriority)
-          ?.map((race: any) => (
+          ?.map((race: any, index: number) => (
             <div className="market-row removed" key={race?.id}>
               <div className="market-nation-detail">
                 <div className="form-check">
@@ -51,14 +51,16 @@ const MatchOddComponent = ({ data }: any) => {
                   <label htmlFor={race.id} className="form-check-label">
                     <div>
                       {race?.metadata?.CLOTH_NUMBER}
-                      <br />({race?.metadata?.AGE})
+                      <br />({race?.metadata?.STALL_DRAW})
                     </div>
                     <div>
                       {/* <img src={race.imageUrl} alt={race.name} /> */}
                     </div>
                     <div>
                       <span className="market-nation-name">
-                        {race.runnerName}
+                        {`${index + 1}. ${race.runnerName
+                          .split(".")?.[1]
+                          ?.trim()}`}
                       </span>
                       <span
                         className="market-book float-right"
