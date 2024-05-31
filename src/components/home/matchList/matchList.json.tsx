@@ -55,7 +55,7 @@ const MatchListJson = () => {
       img: TableT
     },
     {
-      id: "greyhoundracing",
+      id: "greyhoundRacing",
       name: "Greyhound Racing",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <GiHound />,

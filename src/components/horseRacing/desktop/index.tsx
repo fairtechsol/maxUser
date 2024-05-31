@@ -6,9 +6,9 @@ import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/hors
 import { AppDispatch, RootState } from "../../../store/store";
 import CommonTabs from "../../commonComponent/tabs";
 import "./style.scss";
-import RaceDetails from "./raceDetails";
+import RaceListItems from "./raceDetails";
 
-const HorseRacingTabsDesktop = () => {
+const HorseRacingListTabsDesktop = () => {
   const { countryWiseList, racingList } = useSelector(
     (state: RootState) => state.horseRacing.matchList
   );
@@ -43,7 +43,7 @@ const HorseRacingTabsDesktop = () => {
             style={{ padding: "0px" }}
           >
             {Object.entries(racingList)?.map(([matchName, item]: any) => (
-              <RaceDetails matchName={matchName} item={item} />
+              <RaceListItems matchName={matchName} item={item} />
             ))}
           </Tab>
         ))}
@@ -52,4 +52,4 @@ const HorseRacingTabsDesktop = () => {
   );
 };
 
-export default HorseRacingTabsDesktop;
+export default HorseRacingListTabsDesktop;
