@@ -105,7 +105,28 @@ const HorseRace = ({ data }: any) => {
                 {data?.matchOdd?.runners.map((race: any) => (
                   <div className="market-row removed" key={race?.id}>
                     <div className="market-nation-detail">
-                      <div className="form-check">
+                      {data?.matchType==='greyHound' ?  
+                       <div className="form-check" style={{paddingLeft:0,alignItems:"flex-start"}}>
+                      <span className="market-nation-name">
+                             {race.runnerName}
+                           </span>
+                       <label style={{alignItems:"flex-end",width:"auto"}}>
+                         
+                        
+                         <div>
+                           
+                           <span
+                             className="market-book float-right"
+                             style={{ color: "black" }}
+                           >
+                             {data?.profitLossDataMatch &&
+                               data?.profitLossDataMatch[race?.id] || 0}
+                           </span>
+                           
+                         </div>
+                       </label>
+                     </div>
+                      :  <div className="form-check">
                         <input
                           type="checkbox"
                           id={race.id}
@@ -146,22 +167,23 @@ const HorseRace = ({ data }: any) => {
                             </div>
                           </div>
                         </label>
-                      </div>
+                      </div>}
+                     
                     </div>
                     <div className="market-odd-box bg-blue1">
                       <span className="market-odd">
-                        {race?.ex?.availableToBack[2]?.price}
+                        {race?.ex?.availableToBack[2]?.price || 0}
                       </span>
                       <span className="market-volume">
-                        {race?.ex?.availableToBack[2]?.size}
+                        {race?.ex?.availableToBack[2]?.size || 0}
                       </span>
                     </div>
                     <div className="market-odd-box bg-blue2">
                       <span className="market-odd">
-                        {race?.ex?.availableToBack[1]?.price}
+                        {race?.ex?.availableToBack[1]?.price || 0}
                       </span>
                       <span className="market-volume">
-                        {race?.ex?.availableToBack[1]?.size}
+                        {race?.ex?.availableToBack[1]?.size || 0}
                       </span>
                     </div>
                     <div
@@ -192,10 +214,10 @@ const HorseRace = ({ data }: any) => {
                       }}
                     >
                       <span className="market-odd">
-                        {race?.ex?.availableToBack[0]?.price}
+                        {race?.ex?.availableToBack[0]?.price || 0}
                       </span>
                       <span className="market-volume">
-                        {race?.ex?.availableToBack[0]?.size}
+                        {race?.ex?.availableToBack[0]?.size || 0}
                       </span>
                     </div>
                     <div
@@ -226,26 +248,26 @@ const HorseRace = ({ data }: any) => {
                       }}
                     >
                       <span className="market-odd">
-                        {race?.ex?.availableToLay[0]?.price}
+                        {race?.ex?.availableToLay[0]?.price || 0}
                       </span>
                       <span className="market-volume">
-                        {race?.ex?.availableToLay[0]?.size}
+                        {race?.ex?.availableToLay[0]?.size || 0}
                       </span>
                     </div>
                     <div className="market-odd-box bg-red2">
                       <span className="market-odd">
-                        {race?.ex?.availableToLay[1]?.price}
+                        {race?.ex?.availableToLay[1]?.price || 0}
                       </span>
                       <span className="market-volume">
-                        {race?.ex?.availableToLay[1]?.size}
+                        {race?.ex?.availableToLay[1]?.size || 0}
                       </span>
                     </div>
                     <div className="market-odd-box bg-red3">
                       <span className="market-odd">
-                        {race?.ex?.availableToLay[2]?.price}
+                        {race?.ex?.availableToLay[2]?.price || 0}
                       </span>
                       <span className="market-volume">
-                        {race?.ex?.availableToLay[2]?.size}
+                        {race?.ex?.availableToLay[2]?.size || 0}
                       </span>
                     </div>
                   </div>

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants, matchBettingType } from "../../../../utils/constants";
+import { ApiConstants, matchBettingType } from "../../../../utils/Constants";
 import CustomButton from "../../../commonComponent/button";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
@@ -395,7 +395,8 @@ const PlacedBet = () => {
                                   setMatchOddLoading(true);
                                   if (
                                     selectedBet?.team?.eventType ===
-                                    "horseRacing"
+                                    "horseRacing" || selectedBet?.team?.eventType ===
+                                    "greyHound"
                                   ) {
                                     setTimeout(() => {
                                       dispatch(

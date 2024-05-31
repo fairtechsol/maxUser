@@ -132,6 +132,7 @@ const HorseRaceTabs = () => {
                   <b>Lay</b>
                 </div>
               </div>
+              
               <div className="table-body">
                 {matchDetail?.matchOdd?.runners?.map((runner: any) => (
                   <div
@@ -140,6 +141,19 @@ const HorseRaceTabs = () => {
                     key={runner?.id}
                   >
                     <div className="float-left country-name box-4">
+                    {matchDetail?.matchType==='greyHound' ?  
+                    <div className="">
+                    <label
+                      htmlFor={runner.id}
+                      className="custom-control-label"
+                    >
+                      
+                      <div>
+                        <span>{runner.runnerName}</span>
+                      </div>
+                    </label>
+                  </div>
+                    :
                       <div className="custom-control custom-checkbox">
                         <input
                           type="checkbox"
@@ -177,7 +191,7 @@ const HorseRaceTabs = () => {
                             </div>
                           </div>
                         </label>
-                      </div>
+                      </div>}
                     </div>
                     <div className="box-1 back  back lock text-center back"  onClick={() => {
                         const rate = parseFloat(
