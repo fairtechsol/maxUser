@@ -47,7 +47,8 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
       <Table className="matchListTable-desktop mb-4">
         <thead>
           <tr>
-            {availableGameType[mTypeid] === "horseRacing" ? (
+            {availableGameType[mTypeid] === "horseRacing" ||
+            availableGameType[mTypeid] === "greyhoundRacing" ? (
               <></>
             ) : (
               <>
@@ -69,7 +70,8 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         </thead>
         <tbody>
           {availableGameType[mTypeid] ? (
-            availableGameType[mTypeid] === "horseRacing" ? (
+            availableGameType[mTypeid] === "horseRacing" ||
+            availableGameType[mTypeid] === "greyhoundRacing" ? (
               <HorseRacingComponentList />
             ) : (
               <>
