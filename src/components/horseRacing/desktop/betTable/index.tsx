@@ -79,7 +79,7 @@ const HorseRaceDetailDesktop = () => {
                 <div className="text-success horse-status"> open </div>
               )}
             </div>
-            <CombinedComponent />
+            {/* <CombinedComponent /> */}
             <MatchOddComponent data={matchDetail} />
           </Col>
 

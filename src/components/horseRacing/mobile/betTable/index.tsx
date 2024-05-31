@@ -121,7 +121,7 @@ const HorseRaceDetailMobile = () => {
                               </div>
                             </div>
                           </div>
-                          <CombinedComponentMobile />
+                          {/* <CombinedComponentMobile /> */}
                           <MatchOddCompnentMobile
                             handleShowModal={handleShowModal}
                             handleClick={handleClick}
