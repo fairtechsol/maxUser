@@ -28,6 +28,19 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
           {matchDetail?.matchOdd?.runners?.map((runner: any, index: number) => (
             <div data-title="ACTIVE" className="table-row" key={runner?.id}>
               <div className="float-left country-name box-4">
+              {matchDetail?.matchType==='greyHound' ?  
+                    <div className="">
+                    <label
+                      htmlFor={runner.id}
+                      className="custom-control-label"
+                    >
+
+                      <div>
+                        <span>{runner.runnerName}</span>
+                      </div>
+                    </label>
+                  </div>
+                    :
                 <div className="custom-control custom-checkbox">
                   <input
                     type="checkbox"
@@ -78,7 +91,7 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
                       </div>
                     </div>
                   </label>
-                </div>
+                </div>}
               </div>
               <RatesBoxMobile
                 rate={runner?.ex?.availableToBack[0]?.price}
