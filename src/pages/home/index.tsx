@@ -51,7 +51,7 @@ const Home = () => {
             })
           );
         } else if (["horseRacing", "greyhound"].includes(matchType)) {
-          dispatch(getHorseRacingCountryWiseList());
+          dispatch(getHorseRacingCountryWiseList(matchType));
         }
       }
     } catch (e) {
@@ -70,7 +70,7 @@ const Home = () => {
           }
         } else if (["horseRacing", "greyHound"].includes(matchType)) {
           setTimeout(() => {
-            dispatch(getHorseRacingCountryWiseList());
+            dispatch(getHorseRacingCountryWiseList(matchType));
           }, 500);
         }
       }
@@ -116,10 +116,10 @@ const Home = () => {
       getMatchListService();
     } else if (
       matchType &&
-      ["horseRacing", "greyhoundracing"].includes(matchType) &&
+      ["horseRacing", "greyhoundRacing"].includes(matchType) &&
       ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
     ) {
-      dispatch(getHorseRacingCountryWiseList());
+      dispatch(getHorseRacingCountryWiseList(matchType === "greyhoundRacing" ? "greyHound" : matchType));
     }
   }, [matchType, location.pathname.split("/")[1]]);
 

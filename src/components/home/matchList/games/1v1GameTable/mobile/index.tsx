@@ -83,8 +83,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
       >
         {availableGameType[mTypeid || id] ? (
         <>
-          {availableGameType[mTypeid] === "horseRacing" ? (
-            <HorseRacingComponentList />
+          {availableGameType[mTypeid] === "horseRacing" || availableGameType[mTypeid] === "greyhoundRacing" ? (
+            <HorseRacingComponentList matchType={mTypeid}/>
           ) : (
             <>
               {!matchList || matchList.length === 0 ? (

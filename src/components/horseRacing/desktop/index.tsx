@@ -8,7 +8,7 @@ import CommonTabs from "../../commonComponent/tabs";
 import "./style.scss";
 import RaceListItems from "./raceDetails";
 
-const HorseRacingListTabsDesktop = () => {
+const HorseRacingListTabsDesktop = ({ matchType }: any) => {
   const { countryWiseList, racingList } = useSelector(
     (state: RootState) => state.horseRacing.matchList
   );
@@ -23,9 +23,9 @@ const HorseRacingListTabsDesktop = () => {
       setActiveTab(countryWiseList[0]?.countryCode);
     }
     if (activeTab !== "") {
-      dispatch(getHorseRacingMatchList({ countryCode: activeTab }));
+      dispatch(getHorseRacingMatchList({ countryCode: activeTab, matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType }));
     }
-  }, [activeTab, countryWiseList]);
+  }, [activeTab, countryWiseList, matchType]);
 
   return (
     <div className="horseRacingTab">
