@@ -23,7 +23,22 @@ export const getMatchList = createAsyncThunk<any, any>(
     }
   }
 );
-
+export const getMatchListSearch = createAsyncThunk<any, any>(
+  "/match/search",
+  async ({searchKeyword }, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.MATCH.MATCHSEARCHLIST}/${searchKeyword || ""}`
+      );
+      if (resp) {
+        return resp;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 export const SearchList = createAsyncThunk<any, any>(
   "/match/searchlist",
   async (requestData, thunkApi) => {

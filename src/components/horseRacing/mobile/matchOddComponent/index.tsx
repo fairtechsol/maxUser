@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import RatesBoxMobile from "../ratesBox";
+import moment from "moment";
 
 const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
   const { matchDetail } = useSelector(
@@ -26,7 +27,26 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
         </div>
         <div className="table-body">
           {matchDetail?.matchOdd?.runners?.map((runner: any, index: number) => (
-            <div data-title="ACTIVE" className="table-row" key={runner?.id}>
+            <div
+              data-title={
+                runner?.status !== "ACTIVE"
+                  ? runner?.status === "REMOVED"
+                    ? `${runner?.status} - ${
+                        runner?.adjustmentFactor
+                      }%, ${moment(runner?.removalDate).format(
+                        "MM/DD/YYYY HH:mm:ss A ([IST])"
+                      )}`
+                    : runner?.status
+                  : ""
+              }
+              className={`table-row ${
+                runner?.status !== "ACTIVE" ||
+                matchDetail?.matchOdd?.activeStatus !== "live"
+                  ? "suspended"
+                  : ""
+              } removed`}
+              key={runner?.id}
+            >
               <div className="float-left country-name box-4">
                 {matchDetail?.matchType === "greyHound" ? (
                   <div className="">

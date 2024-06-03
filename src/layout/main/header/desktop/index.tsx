@@ -8,7 +8,7 @@ import CustomInput from "../../../../components/commonComponent/input";
 import LogoSection from "../../../../components/commonComponent/logoSection";
 import MarqueeHeader from "../../../../components/commonComponent/marquee";
 import { logout } from "../../../../store/actions/authAction";
-import { getMatchList } from "../../../../store/actions/match/matchListAction";
+import { getMatchListSearch } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
@@ -57,14 +57,13 @@ const DesktopHeader = () => {
   const debouncedInputValue = useMemo(() => {
     return debounce((value) => {
       dispatch(
-        getMatchList({
+        getMatchListSearch({
           type: "search",
           searchKeyword: value,
         })
       );
     }, 500);
   }, []);
-
   return (
     <>
       <Row className=" w-100vw" >

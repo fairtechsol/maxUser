@@ -35,7 +35,7 @@ const SearchResult = ({ data, setOpen }: any) => {
               setOpen(false);
             }}
             className="text-decoration-none"
-            to={`/game-detail/${item.matchType}/${item?.id}`}
+            to={item?.matchType==="greyHound" || item?.matchType==="horseRacing"?`/race/${item?.id}`:`/game-detail/${item.matchType}/${item?.id}`}
           >
             <div key={index} className="d-flex flex-column w-100 border-bottom">
               <div className="d-flex justify-content-between align-items-center">

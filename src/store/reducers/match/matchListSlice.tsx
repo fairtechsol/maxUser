@@ -3,6 +3,7 @@ import {
   SearchList,
   SearchListReset,
   getMatchList,
+  getMatchListSearch,
   matchDetailAction,
   matchListReset,
   searchListReset,
@@ -409,6 +410,21 @@ const matchListSlice = createSlice({
             profitLossDataSession: updatedProfitLossDataSession,
           };
         }
+      })
+      .addCase(getMatchListSearch.pending, (state) => {
+        state.loading = true;
+        // state.success = false;
+        state.error = null;
+      })
+      .addCase(getMatchListSearch.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.searchedMatchList = action.payload?.data;
+        
+      })
+      .addCase(getMatchListSearch.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
       });
   },
 });
