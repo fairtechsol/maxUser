@@ -28,22 +28,36 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
           {matchDetail?.matchOdd?.runners?.map((runner: any, index: number) => (
             <div data-title="ACTIVE" className="table-row" key={runner?.id}>
               <div className="float-left country-name box-4">
-                {matchDetail?.matchType === 'greyHound' ?
+                {matchDetail?.matchType === "greyHound" ? (
                   <div className="">
-                    <label
-                      htmlFor={runner.id}
-                      className="custom-control-label"
-                    >
+                    <label htmlFor={runner.id} className="custom-control-label">
                       <div>
-                        <span>{`${index + 1}. ${runner.runnerName
-                          .split(".")?.[1]
-                          ?.trim() ? runner.runnerName
-                            .split(".")?.[1]
-                            ?.trim() : runner.runnerName}`}</span>
+                        <span>{`${index + 1}. ${
+                          runner.runnerName.split(".")?.[1]?.trim()
+                            ? runner.runnerName.split(".")?.[1]?.trim()
+                            : runner.runnerName
+                        }`}</span>
                       </div>
                     </label>
+                    <div className="d-flex justify-content-end">
+                      <span
+                        className={`${
+                          matchDetail?.profitLossDataMatch &&
+                          matchDetail?.profitLossDataMatch[runner?.id]
+                            ? matchDetail?.profitLossDataMatch[runner?.id] > 0
+                              ? "color-green"
+                              : "color-red"
+                            : ""
+                        }`}
+                      >
+                        {matchDetail?.profitLossDataMatch &&
+                        matchDetail?.profitLossDataMatch[runner?.id]
+                          ? matchDetail?.profitLossDataMatch[runner?.id]
+                          : 0}
+                      </span>
+                    </div>
                   </div>
-                  :
+                ) : (
                   <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
@@ -52,7 +66,6 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
                       className="custom-control-input"
                       value={runner?.runnerName}
                     />
-
                     <label htmlFor={runner.id} className="custom-control-label">
                       <span className="horse-mobile-arrow">
                         <i
@@ -70,33 +83,43 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
                         <img src={runner?.image} alt={runner?.name} />
                       </div>
                       <div>
-                        <span>{`${index + 1}. ${runner.runnerName
-                          .split(".")?.[1]
-                          ?.trim() ? runner.runnerName
-                            .split(".")?.[1]
-                            ?.trim() : runner.runnerName}`}</span>
+                        <span>{`${index + 1}. ${
+                          runner.runnerName.split(".")?.[1]?.trim()
+                            ? runner.runnerName.split(".")?.[1]?.trim()
+                            : runner.runnerName
+                        }`}</span>
                         <div className="w-100" style={{ color: "black" }}>
                           {/* {runner.metadata?.AGE}
-                         */}{" "}
+                           */}{" "}
                           <span
-                            className={`${matchDetail?.profitLossDataMatch &&
+                            className={`${
+                              matchDetail?.profitLossDataMatch &&
                               matchDetail?.profitLossDataMatch[runner?.id]
-                              ? matchDetail?.profitLossDataMatch[runner?.id] > 0
-                                ? "color-green"
-                                : "color-red"
-                              : ""
-                              }`}
+                                ? matchDetail?.profitLossDataMatch[runner?.id] >
+                                  0
+                                  ? "color-green"
+                                  : "color-red"
+                                : ""
+                            }`}
                           >
                             {matchDetail?.profitLossDataMatch &&
-                              matchDetail?.profitLossDataMatch[runner?.id]
+                            matchDetail?.profitLossDataMatch[runner?.id]
                               ? matchDetail?.profitLossDataMatch[runner?.id]
                               : 0}
                           </span>
                         </div>
                       </div>
                     </label>
-                  </div>}
+                  </div>
+                )}
               </div>
+              {/* <BetStatusOverlayHorseRacing
+                active={
+                  runner?.status !== "ACTIVE" ||
+                  matchDetail?.matchOdd?.activeStatus !== "live"
+                }
+                liveData={runner}
+              > */}
               <RatesBoxMobile
                 rate={runner?.ex?.availableToBack[0]?.price}
                 percent={runner?.ex?.availableToBack[0]?.size}
@@ -153,6 +176,7 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
                 }}
                 bgColor="bg-red3"
               />
+              {/* </BetStatusOverlayHorseRacing> */}
               <div
                 id={`detail-${runner?.id}`}
                 className="collapse box-10 jockey-detail"
