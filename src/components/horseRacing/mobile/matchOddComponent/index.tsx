@@ -26,7 +26,7 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
         </div>
         <div className="table-body">
           {matchDetail?.matchOdd?.runners?.map((runner: any, index: number) => (
-            <div data-title="ACTIVE" className="table-row" key={runner?.id}>
+            <div data-title="ACTIVE" className="table-row suspended removed" key={runner?.id}>
               <div className="float-left country-name box-4">
                 {matchDetail?.matchType === "greyHound" ? (
                   <div className="">
