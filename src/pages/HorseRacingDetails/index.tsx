@@ -68,7 +68,7 @@ const RaceDetail = () => {
     } catch (e) {
       console.error(e);
     }
-  }, []);
+  }, [id]);
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
