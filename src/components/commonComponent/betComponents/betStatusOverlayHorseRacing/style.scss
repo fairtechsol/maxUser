@@ -1,0 +1,38 @@
+.betStatusOverlay {
+  position: absolute;
+  // content: attr(data-title);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ff0000;
+  width: 100%;
+  height: 100%;
+  /* text-transform: uppercase; */
+  cursor: not-allowed;
+  align-items: center;
+  display: flex;
+  display: -ms-flex;
+  display: -webkit-flex;
+  justify-content: center;
+  z-index: 222;
+}
+
+.betStatusOverlay h5 {
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  z-index: 223;
+  font-size: 14px;
+  font-weight: 900;
+  margin-bottom: 0px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.bet-overlay-horse {
+  height: 40px !important;
+}
+.box-height {
+  height: 30px;
+}

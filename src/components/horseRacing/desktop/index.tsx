@@ -19,11 +19,19 @@ const HorseRacingListTabsDesktop = ({ matchType }: any) => {
   };
 
   useEffect(() => {
-    if (countryWiseList && countryWiseList?.length > 0 && activeTab === "") {
+    if (countryWiseList?.length > 0 && activeTab === "") {
       setActiveTab(countryWiseList[0]?.countryCode);
     }
+  }, [countryWiseList, matchType]);
+
+  useEffect(() => {
     if (activeTab !== "") {
-      dispatch(getHorseRacingMatchList({ countryCode: activeTab, matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType }));
+      dispatch(
+        getHorseRacingMatchList({
+          countryCode: activeTab,
+          matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType,
+        })
+      );
     }
   }, [activeTab, countryWiseList, matchType]);
 
