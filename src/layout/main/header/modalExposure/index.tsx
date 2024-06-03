@@ -16,43 +16,55 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
 
   return (
     <CustomModal show={show} setShow={setShow} title={"My Market"}>
-           <div className="market"><CustomTable
-        bordered={isMobile}
-        striped={!isMobile}
-        columns={[
-          {
-            id: "eventType",
-            label: "EventType",
-          },
-          {
-            id: "eventName",
-            label: "Event Name",
-          },
-          {
-            id: "matchName",
-            label: "Match Name",
-          },
-          {
-            id: "trade",
-            label: "Trade",
-          },
-        ]}
-        itemCount={10}
-        setTableConfig={() => {}}
-      >
-            {myMarketList?.map((item: any, index: number) => {
-          return (
-         
-            <tr key={index}>
-              <td>{item?.eventType}</td>
-              <td style={{color: "#007bff"}}><Link to={item.eventType==='cricket'?`/game-detail/${item.eventType}/${item.matchId}`:`/other-game-detail/${item.eventType}/${item.matchId}`} onClick={() => setShow(false)}>{item?.eventName}</Link></td>
-              <td>{item?.groupedmarkettype}</td>
-              <td>{item?.trade}</td>
-            </tr>
-
-          );
-        })}
-      </CustomTable>
+      <div className="market">
+        <CustomTable
+          bordered={isMobile}
+          striped={!isMobile}
+          columns={[
+            {
+              id: "eventType",
+              label: "EventType",
+            },
+            {
+              id: "eventName",
+              label: "Event Name",
+            },
+            {
+              id: "matchName",
+              label: "Match Name",
+            },
+            {
+              id: "trade",
+              label: "Trade",
+            },
+          ]}
+          itemCount={10}
+          setTableConfig={() => {}}
+        >
+          {myMarketList?.map((item: any, index: number) => {
+            return (
+              <tr key={index}>
+                <td>{item?.eventType}</td>
+                <td style={{ color: "#007bff" }}>
+                  <Link
+                    to={
+                      item.eventType === "cricket"
+                        ? `/game-detail/${item.eventType}/${item.matchId}`
+                        : ["greyHound", "horseRacing"].includes(item.eventType)
+                        ? `/race/${item.matchId}`
+                        : `/other-game-detail/${item.eventType}/${item.matchId}`
+                    }
+                    onClick={() => setShow(false)}
+                  >
+                    {item?.eventName}
+                  </Link>
+                </td>
+                <td>{item?.groupedmarkettype}</td>
+                <td>{item?.trade}</td>
+              </tr>
+            );
+          })}
+        </CustomTable>
       </div>
     </CustomModal>
   );
