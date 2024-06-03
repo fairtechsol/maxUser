@@ -2,11 +2,11 @@ import isMobile from "../../utils/screenDimension";
 import HorseRacingListTabsDesktop from "./desktop";
 import HorseRacingListTabsMobile from "./mobile";
 
-const HorseRacingComponentList = () => {
+const HorseRacingComponentList = ({matchType}:any) => {
   return isMobile ? (
-    <HorseRacingListTabsMobile />
+    <HorseRacingListTabsMobile matchType={matchType}/>
   ) : (
-    <HorseRacingListTabsDesktop />
+    <HorseRacingListTabsDesktop matchType={matchType}/>
   );
 };
 

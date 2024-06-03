@@ -194,6 +194,7 @@ export const availableGameType: any = {
   football: "football",
   tennis: "tennis",
   horseRacing: "horseRacing",
+  greyhoundRacing: "greyhoundRacing",
 };
 
 export const baseUrls = {

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
 
-const HorseRacingListTabsMobile = () => {
+const HorseRacingListTabsMobile = ({ matchType }: any) => {
   const { countryWiseList, racingList } = useSelector(
     (state: RootState) => state.horseRacing.matchList
   );
@@ -23,7 +23,7 @@ const HorseRacingListTabsMobile = () => {
       setActiveTab(countryWiseList[0]?.countryCode);
     }
     if (activeTab !== "") {
-      dispatch(getHorseRacingMatchList({ countryCode: activeTab }));
+      dispatch(getHorseRacingMatchList({ countryCode: activeTab, matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType  }));
     }
   }, [activeTab, countryWiseList]);
 

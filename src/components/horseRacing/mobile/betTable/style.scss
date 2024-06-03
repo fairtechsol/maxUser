@@ -233,16 +233,39 @@ input[type=checkbox], input[type=radio] {
     content: "\f107";
 }
 
-// .horse-modal-body {
-//     background-color: rgba(0, 0, 0, 0.8); /* Transparent black background */
-//     border-radius: 10px; /* Curved radius */
-//     color: white;
-//     display: flex;
-//     justify-content: space-around;
-//     padding: 20px;
-//     text-align: center;
-//   }
-  
-//   .horse-mobile-arrow i {
-//     cursor: pointer;
-//   }
+.horse-detail .suspended.removed:after {
+    font-size: 9px;
+    padding: 0 2px;
+    color: #fff;
+}
+
+.horse-detail .suspended:after {
+    height: 45px;
+}
+.main-market .suspended:after {
+    width: 40%;
+    content: attr(data-title);
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 16px;
+    color: #ff3c3c;
+}
+.suspended::after {
+    width: 100%;
+}
+.suspended:after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--white-color);
+    text-transform: uppercase;
+    font-family: "Font Awesome 5 Free";
+    content: "\f023";
+    font-weight: 900;
+    font-size: 18px;
+    top: 0;
+    z-index: 10;
+}

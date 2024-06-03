@@ -34,6 +34,8 @@ const BetHistoryComponent = () => {
     { value: "cricket", label: "Cricket" },
     { value: "football", label: "Football" },
     { value: "tennis", label: "Tennis" },
+    { value: "horseRacing", label: "Horse Racing" },
+    // { value: "greyHoundRacing", label: "GreyHound Racing" },
   ];
   const optionsType = [
     { value: "MATCHED", label: "Matched" },

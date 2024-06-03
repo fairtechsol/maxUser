@@ -48,15 +48,14 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         <thead>
           <tr>
             {availableGameType[mTypeid] === "horseRacing" ||
-            availableGameType[mTypeid] === "greyhoundRacing" ? (
+              availableGameType[mTypeid] === "greyhoundRacing" ? (
               <></>
             ) : (
               <>
                 {tableHeading?.map((item) => (
                   <th
-                    className={`title-14 ${
-                      item?.textAlign === "center" ? "text-center" : ""
-                    }`}
+                    className={`title-14 ${item?.textAlign === "center" ? "text-center" : ""
+                      }`}
                     colSpan={item?.colspan}
                     key={item?.id}
                   >
@@ -65,14 +64,14 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                 ))}
               </>
             )}
-            {}
+            { }
           </tr>
         </thead>
         <tbody>
           {availableGameType[mTypeid] ? (
             availableGameType[mTypeid] === "horseRacing" ||
-            availableGameType[mTypeid] === "greyhoundRacing" ? (
-              <HorseRacingComponentList />
+              availableGameType[mTypeid] === "greyhoundRacing" ? (
+              <HorseRacingComponentList  matchType={mTypeid}/>
             ) : (
               <>
                 {!matchList || matchList?.length === 0 ? (
@@ -188,11 +187,10 @@ const MatchListRow = ({ item, matchType }: any) => {
           > */}
           <NavLink
             className="text-decoration-none"
-            to={`/${
-              matchType === "cricket"
+            to={`/${matchType === "cricket"
                 ? "game-detail/cricket"
                 : `other-game-detail/${matchType}`
-            }/${item?.id}`}
+              }/${item?.id}`}
           >
             <div
               className="one-v-one-title title-14"
@@ -245,16 +243,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              //   backPercent={
-              //     (item?.runners &&
-              //       item?.runners[0]?.ex?.availableToBack[0]?.size) ??
-              //     ""
-              //   }
-              //   layPercent={
-              //     (item?.runners &&
-              //       item?.runners[0]?.ex?.availableToLay[0]?.size) ??
-              //     ""
-              //   }
+            //   backPercent={
+            //     (item?.runners &&
+            //       item?.runners[0]?.ex?.availableToBack[0]?.size) ??
+            //     ""
+            //   }
+            //   layPercent={
+            //     (item?.runners &&
+            //       item?.runners[0]?.ex?.availableToLay[0]?.size) ??
+            //     ""
+            //   }
             />
             <BackLayComponent
               backRate={
@@ -268,16 +266,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              // backPercent={
-              //   (item?.runners &&
-              //     item?.runners[2]?.ex?.availableToBack[0]?.size) ??
-              //   ""
-              // }
-              // layPercent={
-              //   (item?.runners &&
-              //     item?.runners[2]?.ex?.availableToLay[0]?.size) ??
-              //   ""
-              // }
+            // backPercent={
+            //   (item?.runners &&
+            //     item?.runners[2]?.ex?.availableToBack[0]?.size) ??
+            //   ""
+            // }
+            // layPercent={
+            //   (item?.runners &&
+            //     item?.runners[2]?.ex?.availableToLay[0]?.size) ??
+            //   ""
+            // }
             />
             <BackLayComponent
               backRate={
@@ -291,16 +289,16 @@ const MatchListRow = ({ item, matchType }: any) => {
                 0
               }
               active={false}
-              // backPercent={
-              //   (item?.runners &&
-              //     item?.runners[1]?.ex?.availableToBack[0]?.size) ??
-              //   ""
-              // }
-              // layPercent={
-              //   (item?.runners &&
-              //     item?.runners[1]?.ex?.availableToLay[0]?.size) ??
-              //   ""
-              // }
+            // backPercent={
+            //   (item?.runners &&
+            //     item?.runners[1]?.ex?.availableToBack[0]?.size) ??
+            //   ""
+            // }
+            // layPercent={
+            //   (item?.runners &&
+            //     item?.runners[1]?.ex?.availableToLay[0]?.size) ??
+            //   ""
+            // }
             />
           </React.Fragment>
         );
