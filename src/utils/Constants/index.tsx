@@ -5,6 +5,7 @@ export const ApiConstants = {
   OLD_PASSWORD: "/user/check/oldPassword",
   MATCH: {
     MATCHLIST: "/match/list",
+    MATCHSEARCHLIST: "/match/search",
     SEARCHLIST: "/user/searchlist",
     MATCHDETAILS: "/match/",
     OTHERMATCHDETAILS: "/match/other/",
