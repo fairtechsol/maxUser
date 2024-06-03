@@ -34,12 +34,11 @@ const SportsFilters = ({ type, setMatchType }: any) => {
                   <span style={tabTitleStyle}>{item?.name}</span>
                 </span>
               }
-            >
-              <MobileMatchList setMatchType={setMatchType} type={type} />
-            </Tab>
+            ></Tab>
           );
         })}
       </CommonTabs>
+      <MobileMatchList setMatchType={setMatchType} type={type} />
     </div>
   );
 };

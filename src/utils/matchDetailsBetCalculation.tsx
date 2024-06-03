@@ -4,7 +4,6 @@ export const calculateProfitLoss = (
   selectedData: any,
   team: string
 ) => {
-  // console.log('first',team)
   if (
     betData?.id != selectedData?.data?.id ||
     !betData?.id ||
@@ -39,7 +38,6 @@ export const calculateProfitLoss = (
       }
     }
   } else if (betData?.type === "session") {
-    // console.log('selectedData',selectedData)
     if (selectedData?.team?.type === "no") {
       let value: any = 0;
       value = (+selectedData?.team?.stake * +selectedData?.team?.rate) / 100;
@@ -58,7 +56,6 @@ export const calculateProfitLoss = (
       }
     }
   } else {
-    // console.log('selectedData',selectedData)
     if (selectedData?.team?.type === "lay") {
       let value: any = 0;
       value = (+selectedData?.team?.stake * +selectedData?.team?.rate) / 100;

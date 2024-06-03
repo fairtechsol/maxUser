@@ -124,7 +124,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
 
 
   const handleProLoss = (data: any, type: string) => {
-    // console.log('first',data)
     let profit: any;
     if (data?.betOnTeam === data[`team${type}`]) {
       profit = (

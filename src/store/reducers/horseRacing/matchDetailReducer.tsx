@@ -53,10 +53,13 @@ const matchDetailSlice = createSlice({
               const runnersData = matchOdd?.runners?.find(
                 (items: any) => items?.selectionId == item?.selectionId
               );
-              return {
-                ...item,
-                ...runnersData,
-              };
+              if (runnersData) {
+                return {
+                  ...item,
+                  ...runnersData,
+                };
+              }
+              return item;
             }),
           },
         };

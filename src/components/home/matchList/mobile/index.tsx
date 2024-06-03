@@ -1,12 +1,10 @@
 import { Tab } from "react-bootstrap";
-import { GAME_TYPE } from "../../../../utils/enum";
-// import { onTabSwitch } from "../../../../utils/tabSwitch";
 import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
 import "./style.scss";
 
-const MobileMatchList = ({ type, setMatchType }: any) => {
+const MobileMatchList = ({ setMatchType, type }: any) => {
   // const dispatch: AppDispatch = useDispatch();
   // const { matchList, success } = useSelector(
   //   (state: RootState) => state.match.matchList
@@ -76,16 +74,11 @@ const MobileMatchList = ({ type, setMatchType }: any) => {
                     <span className="navtab-name">{item?.name}</span>
                   </div>
                 }
-              >
-                {item?.type === GAME_TYPE.ONE_V_ONE ? (
-                  <OneVOneGameTable id={item?.id} />
-                ) : (
-                  ""
-                )}
-              </Tab>
+              ></Tab>
             );
           })}
       </CommonTabs>
+      <OneVOneGameTable id={type} />
     </div>
   );
 };
