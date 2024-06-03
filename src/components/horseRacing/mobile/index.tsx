@@ -23,7 +23,12 @@ const HorseRacingListTabsMobile = ({ matchType }: any) => {
       setActiveTab(countryWiseList[0]?.countryCode);
     }
     if (activeTab !== "") {
-      dispatch(getHorseRacingMatchList({ countryCode: activeTab, matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType  }));
+      dispatch(
+        getHorseRacingMatchList({
+          countryCode: activeTab,
+          matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType,
+        })
+      );
     }
   }, [activeTab, countryWiseList]);
 
@@ -55,7 +60,7 @@ const HorseRacingListTabsMobile = ({ matchType }: any) => {
                     </Col>
                   </Row>
                   <Row className="row5">
-                    <Col style={{display:'flex',flexDirection:'row'}}>
+                    <Col style={{ display: "flex", flexDirection: "row" }}>
                       {item?.map((dates: any) => (
                         <div className="horse-time-detail-m">
                           <NavLink to={`/race/${dates?.id}`} key={dates?.id}>

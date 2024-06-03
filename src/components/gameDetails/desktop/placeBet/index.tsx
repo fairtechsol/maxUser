@@ -163,7 +163,7 @@ const PlacedBet = () => {
       const parts = selected?.data?.name?.split("_");
       name = selected?.team?.betOnTeam + " " + parts[parts?.length - 1];
     } else {
-      name = selected?.team?.betOnTeam;
+      name = selected?.team?.betOnTeam ?? selected?.team?.name;
     }
     return name;
   };
@@ -395,8 +395,8 @@ const PlacedBet = () => {
                                   setMatchOddLoading(true);
                                   if (
                                     selectedBet?.team?.eventType ===
-                                    "horseRacing" || selectedBet?.team?.eventType ===
-                                    "greyHound"
+                                      "horseRacing" ||
+                                    selectedBet?.team?.eventType === "greyHound"
                                   ) {
                                     setTimeout(() => {
                                       dispatch(

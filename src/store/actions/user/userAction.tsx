@@ -89,7 +89,6 @@ export const getProfileInMatchDetail = createAsyncThunk<any>(
   async (_, thunkApi) => {
     try {
       const resp = await service.get(`${ApiConstants.USER.GET_PROFILE}`);
-      // console.log("API Request user: Success", resp.data);
       if (resp) {
         return resp?.data;
       }

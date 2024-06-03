@@ -160,7 +160,7 @@ function MatchOdds({
         <tbody>
           {isMobile && data?.type === "bookmaker" && (
             <tr>
-              <td colSpan={2} style={{backgroundColor:"#fff"}}>
+              <td colSpan={2} style={{ backgroundColor: "#fff" }}>
                 {minMax && isMobile && (
                   <span className="f700 title-14 px-2">{minMax}</span>
                 )}
@@ -178,7 +178,7 @@ function MatchOdds({
               >
                 LAY
               </td>
-              <td style={{ width: "13%",backgroundColor:'#fff' }}></td>
+              <td style={{ width: "13%", backgroundColor: "#fff" }}></td>
             </tr>
           )}
           {arr
@@ -191,7 +191,9 @@ function MatchOdds({
                       <span
                         className={`backLayRunner-countrytrunc title-12  ${
                           isMobile ? "f500" : "f500"
-                        }  ${data?.type === "bookmaker" ? "bookmaker-style" : ""}`}
+                        }  ${
+                          data?.type === "bookmaker" ? "bookmaker-style" : ""
+                        }`}
                       >
                         {data?.type === "completeMatch" ||
                         data?.type === "tiedMatch1"
@@ -521,7 +523,14 @@ function MatchOdds({
             })}
         </tbody>
       </Table>
-      {data?.type === "bookmaker" && (<div className="f600 title-12 pe-2" style={{textAlign:'end',color:'#8b0000'}}>IPL Cup Winner Bets Started in our Exchange</div>)}
+      {data?.type === "bookmaker" && (
+        <div
+          className="f600 title-12 pe-2"
+          style={{ textAlign: "end", color: "#8b0000" }}
+        >
+          IPL Cup Winner Bets Started in our Exchange
+        </div>
+      )}
     </div>
   );
 }

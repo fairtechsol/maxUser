@@ -3,15 +3,14 @@ import { Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { expertSocketService } from "../../../../socketManager";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { GAME_TYPE } from "../../../../utils/enum";
 // import { onTabSwitch } from "../../../../utils/tabSwitch";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { updateMatchOddRates } from "../../../../store/actions/match/matchListAction";
 import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
 import "./style.scss";
-import { useParams } from "react-router-dom";
 
 const DesktopMatchList = ({
   matchTypeGameList,
@@ -77,20 +76,15 @@ const DesktopMatchList = ({
           ?.map((item) => {
             return (
               <Tab
-                key={type ?? item?.id}
+                key={item?.id}
                 eventKey={type ?? item?.id}
                 tabClassName="match-list-tabs title-12"
                 title={item?.name}
-              >
-                {item?.type === GAME_TYPE.ONE_V_ONE ? (
-                  <OneVOneGameTable id={type ?? item?.id} />
-                ) : (
-                  ""
-                )}
-              </Tab>
+              ></Tab>
             );
           })}
       </CommonTabs>
+      <OneVOneGameTable id={type ?? matchType} />
     </div>
   );
 };

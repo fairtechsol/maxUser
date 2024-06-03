@@ -64,7 +64,11 @@ const MyBet = () => {
                           : "bg-blue3"
                       }`}
                     >
-                      {bet?.bettingName}
+                      {["horseRacing", "greyHound"].includes(bet?.eventType)
+                        ? bet?.teamName?.split(".")?.[1]?.trim()
+                          ? bet?.teamName?.split(".")?.[1]?.trim()
+                          : bet?.teamName
+                        : bet?.bettingName ?? bet?.teamName}
                     </th>
                     <th
                       className={`title-12 text-start f500 ${

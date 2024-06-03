@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import CustomModal from "../../components/commonComponent/modal";
 import MatchList from "../../components/home";
+import Desktop from "../../components/rules/desktop";
 import {
   expertSocketService,
   socket,
   socketService,
 } from "../../socketManager";
+import { rulesModalShowFalse } from "../../store/actions/authAction";
+import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/horseMatchListAction";
 import {
   getMatchList,
   updateMatchOddRates,
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
-import CustomModal from "../../components/commonComponent/modal";
-import Desktop from "../../components/rules/desktop";
-import { rulesModalShowFalse } from "../../store/actions/authAction";
 import isMobile from "../../utils/screenDimension";
-import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/horseMatchListAction";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -119,7 +119,11 @@ const Home = () => {
       ["horseRacing", "greyhoundRacing"].includes(matchType) &&
       ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
     ) {
-      dispatch(getHorseRacingCountryWiseList(matchType === "greyhoundRacing" ? "greyHound" : matchType));
+      dispatch(
+        getHorseRacingCountryWiseList(
+          matchType === "greyhoundRacing" ? "greyHound" : matchType
+        )
+      );
     }
   }, [matchType, location.pathname.split("/")[1]]);
 

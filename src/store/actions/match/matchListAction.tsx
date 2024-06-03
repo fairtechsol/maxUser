@@ -223,8 +223,8 @@ export const getCompetitionMatches = createAsyncThunk<any, any>(
       if (resp?.data) {
         let data = {
           data: resp?.data,
-          matchType:requestData?.matchType
-        }
+          matchType: requestData?.matchType,
+        };
         return data;
       }
     } catch (error) {
