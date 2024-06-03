@@ -28,70 +28,74 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
           {matchDetail?.matchOdd?.runners?.map((runner: any, index: number) => (
             <div data-title="ACTIVE" className="table-row" key={runner?.id}>
               <div className="float-left country-name box-4">
-              {matchDetail?.matchType==='greyHound' ?  
-                    <div className="">
+                {matchDetail?.matchType === 'greyHound' ?
+                  <div className="">
                     <label
                       htmlFor={runner.id}
                       className="custom-control-label"
                     >
-
                       <div>
-                        <span>{runner.runnerName}</span>
+                        <span>{`${index + 1}. ${runner.runnerName
+                          .split(".")?.[1]
+                          ?.trim() ? runner.runnerName
+                            .split(".")?.[1]
+                            ?.trim() : runner.runnerName}`}</span>
                       </div>
                     </label>
                   </div>
-                    :
-                <div className="custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    id={runner?.id}
-                    name={runner?.runnerName}
-                    className="custom-control-input"
-                    value={runner?.runnerName}
-                  />
+                  :
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      id={runner?.id}
+                      name={runner?.runnerName}
+                      className="custom-control-input"
+                      value={runner?.runnerName}
+                    />
 
-                  <label htmlFor={runner.id} className="custom-control-label">
-                    <span className="horse-mobile-arrow">
-                      <i
-                        data-toggle="collapse"
-                        data-target={`#detail-${runner.id}`}
-                        className="fas fa-angle-down"
-                        onClick={(event) => handleShowModal(event, runner)}
-                      ></i>
-                    </span>
-                    <div>
-                      {runner?.number}
-                      <br />({runner?.metadata?.STALL_DRAW})
-                    </div>
-                    <div>
-                      <img src={runner?.image} alt={runner?.name} />
-                    </div>
-                    <div>
-                      <span>{`${index + 1}. ${runner.runnerName
-                        .split(".")?.[1]
-                        ?.trim()}`}</span>
-                      <div className="w-100" style={{ color: "black" }}>
-                        {/* {runner.metadata?.AGE}
+                    <label htmlFor={runner.id} className="custom-control-label">
+                      <span className="horse-mobile-arrow">
+                        <i
+                          data-toggle="collapse"
+                          data-target={`#detail-${runner.id}`}
+                          className="fas fa-angle-down"
+                          onClick={(event) => handleShowModal(event, runner)}
+                        ></i>
+                      </span>
+                      <div>
+                        {runner?.number}
+                        <br />({runner?.metadata?.STALL_DRAW})
+                      </div>
+                      <div>
+                        <img src={runner?.image} alt={runner?.name} />
+                      </div>
+                      <div>
+                        <span>{`${index + 1}. ${runner.runnerName
+                          .split(".")?.[1]
+                          ?.trim() ? runner.runnerName
+                            .split(".")?.[1]
+                            ?.trim() : runner.runnerName}`}</span>
+                        <div className="w-100" style={{ color: "black" }}>
+                          {/* {runner.metadata?.AGE}
                          */}{" "}
-                        <span
-                          className={`${
-                            matchDetail?.profitLossDataMatch &&
-                            matchDetail?.profitLossDataMatch[runner?.id]
+                          <span
+                            className={`${matchDetail?.profitLossDataMatch &&
+                              matchDetail?.profitLossDataMatch[runner?.id]
                               ? matchDetail?.profitLossDataMatch[runner?.id] > 0
                                 ? "color-green"
                                 : "color-red"
                               : ""
-                          }`}
-                        >
-                          {matchDetail?.profitLossDataMatch &&
-                          matchDetail?.profitLossDataMatch[runner?.id]
-                            ? matchDetail?.profitLossDataMatch[runner?.id]
-                            : 0}
-                        </span>
+                              }`}
+                          >
+                            {matchDetail?.profitLossDataMatch &&
+                              matchDetail?.profitLossDataMatch[runner?.id]
+                              ? matchDetail?.profitLossDataMatch[runner?.id]
+                              : 0}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </label>
-                </div>}
+                    </label>
+                  </div>}
               </div>
               <RatesBoxMobile
                 rate={runner?.ex?.availableToBack[0]?.price}
