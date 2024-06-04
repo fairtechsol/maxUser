@@ -173,7 +173,6 @@ const MatchListRow = ({ item, matchType }: any) => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const currentTime = new Date().getTime();
   const startAt = new Date(item?.startAt).getTime();
-  const stopAt = new Date(item?.stopAt).getTime();
   return (
     <tr className="one-v-one-row overflow-hidden">
       <td className="px-2 w-50 align-middle">
@@ -201,7 +200,7 @@ const MatchListRow = ({ item, matchType }: any) => {
             </div>
           </NavLink>
           <div className="d-flex align-items-center gap-2">
-            {currentTime >= startAt && currentTime <= stopAt ? (
+            {currentTime >= startAt  ? (
               <span className="liveDot"></span>
             ) : (
               ""
