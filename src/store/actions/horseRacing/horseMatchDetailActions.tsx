@@ -61,3 +61,9 @@ export const updateTeamRatesForHorseRacingOnDelete = createAsyncThunk<any, any>(
     return data;
   }
 );
+export const updateBalanceOnHorseBetPlace = createAsyncThunk<any, any>(
+  "horseRacing/updateBalanceOnHorseBetPlace",
+  async (data) => {
+    return data;
+  }
+);
