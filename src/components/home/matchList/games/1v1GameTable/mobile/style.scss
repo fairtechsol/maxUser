@@ -4,9 +4,6 @@
 }
 .scrollable-container {
   flex: 1;
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-  scroll-behavior: smooth;
   max-height: 50%;
 }
 
@@ -14,30 +11,26 @@
   height: 100%;
   max-height: 100vh;
   flex: 1;
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
+  // overflow-y: auto;
+  // overscroll-behavior-y: contain;
   scroll-behavior: smooth;
   // height: 100%;
   // overflow-y: auto;
-}
-
-.match-list-container {
-  // height: calc(100vh - 200px);
-  overflow-y: auto;
 }
 .match-list-h {
   height: calc(100vh - 200px);
 }
 .match-list-containerm {
-  height: 100%;
-  // overflow-y: auto;
+  // height: 100%;
+  overflow-y: auto;
+  max-height: 100%;
 }
 // .tab-content>.active {
 //     display: block;
 // }
-.end-of-scroll {
-  overscroll-behavior-y: auto;
-}
+// .end-of-scroll {
+//   overscroll-behavior-y: auto;
+// }
 .casino-tables {
   background-color: $light;
   display: flex !important;
