@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
 
-const HorseRacingListTabsMobile = ({ matchType }: any) => {
+const DragonTigerMobile = ({ matchType }: any) => {
   const { countryWiseList, racingList } = useSelector(
     (state: RootState) => state.horseRacing.matchList
   );
@@ -80,4 +80,4 @@ const HorseRacingListTabsMobile = ({ matchType }: any) => {
   );
 };
 
-export default HorseRacingListTabsMobile;
+export default DragonTigerMobile;

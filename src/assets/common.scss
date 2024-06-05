@@ -377,7 +377,37 @@ img {
   vertical-align: middle;
   border-style: none;
 }
-
+.cardResultBoxContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.cardResultBoxHeader{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+  background-color: #ffc742D9;
+}
+.cardResultBoxRound{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  margin-top: 10px;
+  gap: 5px;
+}
+.cardResultCircle{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #355e3b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* ===== for title ====  */
 .title-46 {
   font-size: 46px !important;
