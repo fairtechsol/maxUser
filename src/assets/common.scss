@@ -314,6 +314,64 @@ margin-right: 0%;
   color: #2587d0 !important;
 }
 
+/* ===== for casino ====  */
+
+.featured-box {
+  padding-top: 5px;
+  max-width: 100% !important;
+  -ms-flex: 0 0 100% !important;
+  flex: 0 0 100% !important;
+}
+.coupon-card {
+  padding: 0px 0px 0px 7px;
+  margin-bottom: 16px;
+  border-radius: 0 0 2px 2px;
+}
+.game-heading {
+  position: relative;
+}
+
+.game-heading {
+  background-color: #ffc742;
+  color: #000000;
+  padding: 5px;
+}
+.game-heading .card-header-title {
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.game-heading .card-header-title {
+  font-size: 14px;
+}
+.div-figure {
+  width: 31.33% !important;
+  overflow: hidden;
+  margin-right: 1% !important;
+  margin-left: 1% !important;
+  padding: 0;
+  max-width: 31.33%;
+  float: left;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: #000;
+}
+.m-b-30 {
+  margin-bottom: 30px;
+}
+.div-figure img {
+  -webkit-transition: all 0.5s linear !important;
+  transition: all 0.5s linear !important;
+  -webkit-transform: scale3d(1, 1, 1) !important;
+  transform: scale3d(1, 1, 1) !important;
+}
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+}
 
 /* ===== for title ====  */
 .title-46 {
