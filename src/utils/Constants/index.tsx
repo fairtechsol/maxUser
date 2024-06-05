@@ -1,3 +1,5 @@
+import { dt6,dt20,dt2020,dtl20 } from "../../assets/images";
+import { dayteen,twentyteen,teencasino,teenplayer,testteen } from "../../assets/images";
 export const ApiConstants = {
   LOGIN: "auth/login",
   LOGOUT: "auth/logout",
@@ -1443,58 +1445,49 @@ export const card3 = {
   dragonTiger: [
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:dt2020,
       name: "20-20 DRAGON TIGER 2",
     },
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:dtl20,
       name: "20-20 DRAGON TIGER LION",
     },
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:dt6,
       name: "1 DAY DRAGON TIGER",
     },
     {
       url: "/dt20",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:dt20,
       name: "20-20 DRAGON TIGER",
     },
   ],
   teenPatti: [
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:teencasino,
       name: "TEENPATTI 2.0",
     },
     {
       url: "/teenPatti20",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:twentyteen,
       name: "20-20 TEENPATTI",
     },
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:dayteen,
       name: "1 DAY TEENPATTI",
     },
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:testteen,
       name: "TEST TEENPATTI",
     },
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:teenplayer,
       name: "OPEN TEENPATTI",
     },
   ],
