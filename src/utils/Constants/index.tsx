@@ -1439,3 +1439,79 @@ export const casinoIcons = [
     name: "Lucky 7 - A",
   },
 ];
+export const card3 = {
+  dragonTiger: [
+    {
+      url: "/contact-admin",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "20-20 DRAGON TIGER 2",
+    },
+    {
+      url: "/contact-admin",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "20-20 DRAGON TIGER LION",
+    },
+    {
+      url: "/contact-admin",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "1 DAY DRAGON TIGER",
+    },
+    {
+      url: "/dt20",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "20-20 DRAGON TIGER",
+    },
+  ],
+  teenPatti: [
+    {
+      url: "/contact-admin",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "TEENPATTI 2.0",
+    },
+    {
+      url: "/teenPatti20",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "20-20 TEENPATTI",
+    },
+    {
+      url: "/contact-admin",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "1 DAY TEENPATTI",
+    },
+    {
+      url: "/contact-admin",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "TEST TEENPATTI",
+    },
+    {
+      url: "/contact-admin",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "OPEN TEENPATTI",
+    },
+  ],
+  anderBahar : [
+    {
+      url: "/contact-admin",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "ANDAR BAHAR 2",
+    },
+    {
+      url: "/contact-admin",
+      imgSrc:
+        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      name: "ANDAR BAHAR",
+    },
+  ]
+};
+
+
