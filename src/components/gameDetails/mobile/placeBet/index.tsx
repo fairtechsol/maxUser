@@ -158,6 +158,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     }
     return rate || 0 ;
   }
+  const handleKeyDown = (e:any) => {
+    if (e.key === 'e' || e.key === 'E') {
+      e.preventDefault();
+    }
+  };
   return (
     <>
       <CustomModal
@@ -241,13 +246,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       ...selectedBet,
                       team: {
                         ...selectedBet?.team,
-                        stake: parseInt(e.target.value),
+                        stake: +e.target.value,
                       },
                     })
                   );
                 }}
                 // disabled
                 type="number"
+                onKeyDown={handleKeyDown}
                 placeholder=""
                 className="w-100 br-0"
                 style={{ border: "0.5px solid #000" }}

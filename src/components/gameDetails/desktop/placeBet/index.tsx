@@ -167,6 +167,11 @@ const PlacedBet = () => {
     }
     return name;
   };
+  const handleKeyDown = (e:any) => {
+    if (e.key === 'e' || e.key === 'E') {
+      e.preventDefault();
+    }
+  };
   return (
     <>
       <div className="loader-container">
@@ -268,6 +273,7 @@ const PlacedBet = () => {
                         );
                       }}
                       type="number"
+                      onKeyDown={handleKeyDown}
                       placeholder=""
                       className="p-0 h-25 w-100 br-0"
                       style={{ border: "2px solid #f0f0f0" }}

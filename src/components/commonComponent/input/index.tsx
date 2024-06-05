@@ -62,6 +62,7 @@ const CustomInput = (props: any) => {
             }`}
             name={id}
             type={type}
+            autoComplete="current-password"
             {...prop}
           />
         )}

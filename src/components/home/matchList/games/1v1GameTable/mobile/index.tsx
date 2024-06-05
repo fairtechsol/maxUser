@@ -135,7 +135,10 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                         </div>
                       </div>
                     )}
-                    {matchList.map((item: any, index: number) => (
+                    {matchList.map((item: any, index: number) => {
+                       const currentTime = new Date().getTime();
+                       const startAt = new Date(item?.startAt).getTime();
+                      return(<>
                       <div key={index} className="px-3 py-1 m-game-one-v-one">
                         <div className="d-flex justify-content-between">
                           <div className="d-flex flex-column">
@@ -156,7 +159,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                             </Link>
                           </div>
                           <div className="d-flex align-items-center gap-2">
-                            {item?.startAt || item?.stopAt ? (
+                            { currentTime >= startAt  ? (
                               <span className="liveDot"></span>
                             ) : (
                               ""
@@ -235,7 +238,9 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                           ))}
                         </div>
                       </div>
-                    ))}
+                      </>)
+                      
+                    })}
                   </>
                 )}
               </>
