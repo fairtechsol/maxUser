@@ -31,6 +31,10 @@ const BetHistory = Loadable(lazy(() => import("../pages/betHistory")));
 const UnsettledBet = Loadable(lazy(() => import("../pages/unsettledBet")));
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
 const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
+const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
+const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
+const CardList3 = Loadable(lazy(() => import("../pages/cardList3")));
+const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -91,8 +95,22 @@ const MainRoutes = {
       element: <Mobile />,
     },
     {
+      path: "teenPatti20",
+      element: <TeenPatti20 />,
+    },
+    {
+      path: "dt20",
+      element: <DragonTiger20 />,
+    },
+    {
       path: "game-list/:type",
       element: <GameList />,
+    },{
+      path: "card3-list/:type",
+      element: <CardList3 />,
+    },{
+      path: "card4-list/:type",
+      element: <CardList4 />,
     },
     {
       path: "contact-admin",
