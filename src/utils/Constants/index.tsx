@@ -1,4 +1,4 @@
-import { dt6,dt20,dt2020,dtl20 } from "../../assets/images";
+import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen } from "../../assets/images";
 import { dayteen,twentyteen,teencasino,teenplayer,testteen } from "../../assets/images";
 export const ApiConstants = {
   LOGIN: "auth/login",
@@ -1417,7 +1417,7 @@ export const casinoIcons = [
     name: "Bollywood Casino",
   },
   {
-    url: "/casino/dt20",
+    url: "/dt20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "20-20 Dragon Tiger",
@@ -1506,5 +1506,71 @@ export const card3 = {
     },
   ]
 };
-
+export const  dragonTigerCards= [
+  {
+    code: 0,
+    imgSrc:A,
+    value: 0,
+  },
+  {
+    code: 1,
+    imgSrc:two,
+    value: 0,
+  },
+  {
+    code: 2,
+    imgSrc:three,
+    value: 0,
+  },
+  {
+    code: 3,
+    imgSrc:four,
+    value: 0,
+  },
+  {
+    code: 4,
+    imgSrc:five,
+    value: 0,
+  },
+  {
+    code: 5,
+    imgSrc:six,
+    value: 0,
+  },
+  {
+    code: 6,
+    imgSrc:seven,
+    value: 0,
+  },
+  {
+    code: 7,
+    imgSrc:eight,
+    value: 0,
+  },
+  {
+    code: 8,
+    imgSrc:nine,
+    value: 0,
+  },
+  {
+    code: 9,
+    imgSrc:ten,
+    value: 0,
+  },
+  {
+    code: 10,
+    imgSrc:eleven,
+    value: 0,
+  },
+  {
+    code: 11,
+    imgSrc:twelve,
+    value: 0,
+  },
+  {
+    code: 12,
+    imgSrc:thirteen,
+    value: 0,
+  },
+]
 

@@ -1,13 +1,13 @@
 import isMobile from "../../utils/screenDimension";
-import HorseRacingListTabsDesktop from "./desktop";
-import HorseRacingListTabsMobile from "./mobile";
+import DragonTigerDesktop from "./desktop";
+import DragonTigerMobile from "./mobile";
 
-const HorseRacingComponentList = ({ matchType }: any) => {
+const DragonTigerComponentList = ({ matchType }: any) => {
   return isMobile ? (
-    <HorseRacingListTabsMobile matchType={matchType} />
+    <DragonTigerMobile matchType={matchType} />
   ) : (
-    <HorseRacingListTabsDesktop matchType={matchType} />
+    <DragonTigerDesktop matchType={matchType} />
   );
 };
 
-export default HorseRacingComponentList;
+export default DragonTigerComponentList;
