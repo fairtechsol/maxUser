@@ -1,7 +1,15 @@
-import { dt20, dt2020, dt6, dtl20 } from "../../assets/images";
 import { card3 } from "../../utils/constants";
+import { useParams } from "react-router-dom";
 
+type Card3Keys = keyof typeof card3;
 const CardList3 = () => {
+  const { type } = useParams<{ type: string }>();
+
+  if (!type || !(type in card3)) {
+    return <div>Invalid game</div>;
+  }
+
+  const items = card3[type as Card3Keys];
   return (
     <>
       <div className="col-md-12 featured-box">
@@ -11,42 +19,16 @@ const CardList3 = () => {
           </div>
         </div>
         <div>
-          <div className="m-b-30 div-figure">
-            <a href="/casino/dt202" className="">
-              <img
-                src={dt2020}
-                className="img-fluid"
-              />
-            </a>
-          </div>
-          <div className="m-b-30 div-figure">
-            <a href="/casino/dtl20" className="">
-              <img
-                src={dtl20}
-                className="img-fluid"
-              />
-            </a>
-          </div>
-          <div className="m-b-30 div-figure">
-            <a href="/casino/dt20" className="">
-              <img
-                src={dt20}
-                className="img-fluid"
-              />
-            </a>
-          </div>
-          <div className="m-b-30 div-figure">
-            <a href="/casino/dt6" className="">
-              <img
-                src={dt6}
-                className="img-fluid"
-              />
-            </a>
-          </div>
+          {items.map((item: any) => (
+            <div className="m-b-30 div-figure">
+              <a href={item.url} className="">
+                <img src={item.imgSrc} className="img-fluid" alt={item.name} />
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </>
   );
 };
-
 export default CardList3;
