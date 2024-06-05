@@ -359,10 +359,15 @@ margin-right: 0%;
   margin-bottom: 30px;
 }
 .div-figure img {
-  -webkit-transition: all 0.5s linear !important;
-  transition: all 0.5s linear !important;
-  -webkit-transform: scale3d(1, 1, 1) !important;
-  transform: scale3d(1, 1, 1) !important;
+  -webkit-transition: transform 0.5s linear;
+  transition: transform 0.5s linear;
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+}
+
+.div-figure:hover img {
+  -webkit-transform: scale3d(1.1, 1.1, 1.1);
+  transform: scale3d(1.1, 1.1, 1.1);
 }
 .img-fluid {
   max-width: 100%;
