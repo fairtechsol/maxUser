@@ -11,11 +11,9 @@ const DesktopTopBar = () => {
           <Link
             key={item?.id}
             to={
-              item?.id === "home"
-                ? item?.link
-                : item?.link === "/contact-admin"
-                ? item?.link
-                : `/game-list${item?.link}`
+              item?.id === "cricket" || item?.id === "football" || item?.id === "tennis" 
+                ? `/game-list${item?.link}`
+                : item?.link
             }
             className={`text-decoration-none f600 title-13 text-black topbar-link ${
               item?.blink ? "blinking-text" : ""
