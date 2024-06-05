@@ -33,6 +33,7 @@ const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
 const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
 const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
 const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
+const DragonTigerSecond20 = Loadable(lazy(() => import("../pages/dragonSecond20")));
 const CardList3 = Loadable(lazy(() => import("../pages/cardList3")));
 const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
 const ChangeButtonValue = Loadable(
@@ -101,6 +102,10 @@ const MainRoutes = {
     {
       path: "dt20",
       element: <DragonTiger20 />,
+    },
+    {
+      path: "dt202",
+      element: <DragonTigerSecond20 />,
     },
     {
       path: "game-list/:type",
