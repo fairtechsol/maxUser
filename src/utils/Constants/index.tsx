@@ -2,8 +2,10 @@ export const ApiConstants = {
   LOGIN: "auth/login",
   LOGOUT: "auth/logout",
   CHANGEPASSWORD: "user/changePassword",
+  OLD_PASSWORD: "/user/check/oldPassword",
   MATCH: {
     MATCHLIST: "/match/list",
+    MATCHSEARCHLIST: "/match/search",
     SEARCHLIST: "/user/searchlist",
     MATCHDETAILS: "/match/",
     OTHERMATCHDETAILS: "/match/other/",
@@ -25,17 +27,27 @@ export const ApiConstants = {
   BET: {
     PLACEBETSESSION: "bet/session",
     PLACEBETMATCHBETTING: "bet/matchBetting",
+    PLACEBETMATCHBETTINGOTHER: "bet/other/matchBetting",
+    PLACEBETRACEBETTING: "bet/raceBetting",
     GETPLACEDBETS: "bet",
     RUN_AMOUNT: "bet/session/profitLoss",
     MY_MARKET: "bet/myMarket",
+  },
+  HORSERACING: {
+    MATCH: {
+      GET_COUNTRY_WISE_LIST: "/match/countryWiseList",
+      GET_RACING_LIST: "/match/racing/list",
+      DELETE_BET: "/bet/deleteMultipleBetForRace",
+      GET_MATCH_DETAIL: "/match/racing",
+    },
   },
 };
 
 export const Constants = {
   pageLimit: 15,
-  apiBasePath: "http://107.23.165.155:5000",
-  expertSocketBasePath: "http://107.23.165.155:6060",
-  thirdParty: "http://107.23.165.155:3200",
+  apiBasePath: "https://devmaxbet9api.fairgame.club",
+  expertSocketBasePath: "https://devexpertapi.fairgame.club",
+  thirdParty: "https://devserviceapi.fairgame.club",
   localThird: "http://localhost:3200",
   WEBSOCKET: "websocket",
   POLLING: "polling",
@@ -72,7 +84,104 @@ export const matchBettingType = {
   tiedMatch1: "tiedMatch1",
   tiedMatch2: "tiedMatch2",
   completeMatch: "completeMatch",
+  completeManual: "completeManual",
+  ...Array.from({ length: 20 }, (_, index) => index).reduce(
+    (prev: any, curr) => {
+      prev[`overUnder${curr}.5`] = `overUnder${curr}.5`;
+      return prev;
+    },
+    {}
+  ),
+  ...Array.from({ length: 20 }, (_, index) => index).reduce(
+    (prev: any, curr) => {
+      prev[`firstHalfGoal${curr}.5`] = `firstHalfGoal${curr}.5`;
+      return prev;
+    },
+    {}
+  ),
+  halfTime: "halfTime",
 };
+
+export const profitLossDataForMatchConstants = {
+  [matchBettingType.matchOdd]: {
+    A: "teamARate",
+    B: "teamBRate",
+    C: "teamCRate",
+  },
+  [matchBettingType.bookmaker]: {
+    A: "teamARate",
+    B: "teamBRate",
+    C: "teamCRate",
+  },
+  [matchBettingType.quickbookmaker1]: {
+    A: "teamARate",
+    B: "teamBRate",
+    C: "teamCRate",
+  },
+  [matchBettingType.quickbookmaker2]: {
+    A: "teamARate",
+    B: "teamBRate",
+    C: "teamCRate",
+  },
+  [matchBettingType.quickbookmaker3]: {
+    A: "teamARate",
+    B: "teamBRate",
+    C: "teamCRate",
+  },
+  [matchBettingType.tiedMatch1]: {
+    A: "yesRateTie",
+    B: "noRateTie",
+  },
+  [matchBettingType.tiedMatch2]: {
+    A: "yesRateTie",
+    B: "noRateTie",
+  },
+  [matchBettingType.completeMatch]: {
+    A: "yesRateComplete",
+    B: "noRateComplete",
+  },
+  [matchBettingType.completeManual]: {
+    A: "yesRateComplete",
+    B: "noRateComplete",
+  },
+  ...Array.from({ length: 20 }, (_, index) => index).reduce(
+    (prev: any, curr) => {
+      prev[`overUnder${curr}.5`] = {
+        A: `yesRateUnderOver${curr}.5`,
+        B: `noRateUnderOver${curr}.5`,
+      };
+      return prev;
+    },
+    {}
+  ),
+  ...Array.from({ length: 20 }, (_, index) => index).reduce(
+    (prev: any, curr) => {
+      prev[`setWinner${curr}`] = {
+        A: `userTeamARateSetWinner${curr}`,
+        B: `userTeamBRateSetWinner${curr}`,
+        C: `userTeamRateSetWinner${curr}`,
+      };
+      return prev;
+    },
+    {}
+  ),
+  ...Array.from({ length: 20 }, (_, index) => index).reduce(
+    (prev: any, curr) => {
+      prev[`firstHalfGoal${curr}.5`] = {
+        A: `yesRateFirstHalfGoal${curr}.5`,
+        B: `noRateFirstHalfGoal${curr}.5`,
+      };
+      return prev;
+    },
+    {}
+  ),
+  [matchBettingType.halfTime]: {
+    A: "userTeamARateHalfTime",
+    B: "userTeamBRateHalfTime",
+    C: "userTeamCRateHalfTime",
+  },
+};
+
 export const transType = {
   add: "add",
   withDraw: "withDraw",
@@ -84,6 +193,9 @@ export const transType = {
 export const availableGameType: any = {
   cricket: "cricket",
   football: "football",
+  tennis: "tennis",
+  horseRacing: "horseRacing",
+  greyhoundRacing: "greyhoundRacing",
 };
 
 export const baseUrls = {

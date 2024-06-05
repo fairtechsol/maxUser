@@ -43,7 +43,7 @@ const PlacedBet = () => {
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
-  const [matchOddRate, setMatchOddRate] = useState<any>(null)
+  const [matchOddRate, setMatchOddRate] = useState<any>(null);
   const { buttonValues, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -78,19 +78,18 @@ const PlacedBet = () => {
       }
     }
   }, [buttonValues]);
- 
 
   useEffect(() => {
-      if (selectedBet?.team?.stake) {
-        setStake(selectedBet?.team?.stake || 0);
-      } else {
-        setStake(0);
-      }
+    if (selectedBet?.team?.stake) {
+      setStake(selectedBet?.team?.stake || 0);
+    } else {
+      setStake(0);
+    }
   }, [selectedBet]);
 
   useEffect(() => {
-    setMatchOddRate(selectedBet?.team?.rate)
-}, [selectedBet]);
+    setMatchOddRate(selectedBet?.team?.rate);
+  }, [selectedBet]);
   useEffect(() => {
     // Get browser information
     const { userAgent, appName, appVersion, platform } = navigator;
@@ -130,7 +129,11 @@ const PlacedBet = () => {
     } else if (
       selectedBet?.data?.type === matchBettingType.matchOdd ||
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
-      selectedBet?.data?.type === matchBettingType.completeMatch
+      selectedBet?.data?.type === matchBettingType.completeMatch ||
+      selectedBet?.data?.type === matchBettingType.halfTime ||
+      selectedBet?.data?.type.includes("overUnder") ||
+      selectedBet?.data?.type.includes("firstHalfGoal") ||
+      selectedBet?.data?.type.includes("setWinner")
     ) {
       profit =
         selectedBet?.team?.type === "back"
@@ -142,31 +145,50 @@ const PlacedBet = () => {
           ? (value * matchOddRate) / 100
           : value;
     }
-    return Number(profit.toFixed(2));
+    return parseFloat(profit).toFixed(2);
   };
   const handleUp = () => {
-if(selectedBet?.team?.matchBetType == 'matchOdd'){
-  setMatchOddRate(matchOddRate + 0.01)
-}
-  }
-  const handleDown = () => {
-    if(selectedBet?.team?.matchBetType == 'matchOdd'){
-      setMatchOddRate(matchOddRate - 0.01)
+    if (selectedBet?.team?.matchBetType == "matchOdd") {
+      setMatchOddRate(matchOddRate + 0.01);
     }
-  }
+  };
+  const handleDown = () => {
+    if (selectedBet?.team?.matchBetType == "matchOdd") {
+      setMatchOddRate(matchOddRate - 0.01);
+    }
+  };
+  const handleName = (selected: any) => {
+    let name;
+    if (selected?.data?.name?.includes(".5")) {
+      const parts = selected?.data?.name?.split("_");
+      name = selected?.team?.betOnTeam + " " + parts[parts?.length - 1];
+    } else {
+      name = selected?.team?.betOnTeam ?? selected?.team?.name;
+    }
+    return name;
+  };
+  const handleKeyDown = (e:any) => {
+    if (e.key === 'e' || e.key === 'E') {
+      e.preventDefault();
+    }
+  };
   return (
     <>
       <div className="loader-container">
         {(loading || matchOddLoading) && <CustomLoader />}
         <RightPanelContainer title="Place Bet">
-
           {selectedBet ? (
-
             <Table className="w-full">
               <thead>
                 <tr className="bg-darkGrey">
                   {placeBetHeader?.map((item, index) => (
-                    <th key={index} className="title-12 bg-darkGrey" style={{ textAlign: item?.name === "Profit" ? "end" : "start" }} >
+                    <th
+                      key={index}
+                      className="title-12 bg-darkGrey"
+                      style={{
+                        textAlign: item?.name === "Profit" ? "end" : "start",
+                      }}
+                    >
                       {item?.name}
                     </th>
                   ))}
@@ -176,7 +198,7 @@ if(selectedBet?.team?.matchBetType == 'matchOdd'){
                 <tr
                   className={
                     selectedBet?.team?.type == "lay" ||
-                      selectedBet?.team?.type == "no"
+                    selectedBet?.team?.type == "no"
                       ? "place-bet-table-red"
                       : "place-bet-table-blue"
                   }
@@ -193,24 +215,47 @@ if(selectedBet?.team?.matchBetType == 'matchOdd'){
                   </td>
                   <td width={"34%"}>
                     <span className="f600 title-14">
-                      {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
+                      {selectedBet?.team?.eventType === "horseRacing"
+                        ? "MATCH_ODDS"
+                        : handleName(selectedBet)}
+                      {/* {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam} */}
                     </span>
                   </td>
-                  <td width={"20%"} >
-                    <div style={{ display: "flex", flexDirection: "row", height: "24px" }}>
+                  <td width={"20%"}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        height: "24px",
+                      }}
+                    >
                       <input
                         // disabled
                         placeholder=""
                         className="p-0 w-75 br-0"
-                        style={{ border: '2px solid #f0f0f0' }}
+                        style={{ border: "2px solid #f0f0f0" }}
                         value={matchOddRate}
                       />
-                      <div style={{ backgroundColor: "#f0f0f0", display: "flex", flexDirection: "column", width: "15px", height: "100%", justifyContent: "space-around" }}>
-                        <FaChevronUp style={{ width: '8px', height: '10px' }} onClick={handleUp} />
-                        <FaChevronDown style={{ width: '8px', height: '10px' }} onClick={handleDown} />
+                      <div
+                        style={{
+                          backgroundColor: "#f0f0f0",
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "15px",
+                          height: "100%",
+                          justifyContent: "space-around",
+                        }}
+                      >
+                        <FaChevronUp
+                          style={{ width: "8px", height: "10px" }}
+                          onClick={handleUp}
+                        />
+                        <FaChevronDown
+                          style={{ width: "8px", height: "10px" }}
+                          onClick={handleDown}
+                        />
                       </div>
                     </div>
-
                   </td>
                   <td width={"20%"}>
                     <input
@@ -220,29 +265,34 @@ if(selectedBet?.team?.matchBetType == 'matchOdd'){
                         dispatch(
                           selectedBetAction({
                             ...selectedBet,
-                            team: { ...selectedBet?.team, stake: +e.target.value },
+                            team: {
+                              ...selectedBet?.team,
+                              stake: +e.target.value,
+                            },
                           })
                         );
                       }}
                       type="number"
+                      onKeyDown={handleKeyDown}
                       placeholder=""
                       className="p-0 h-25 w-100 br-0"
-                      style={{ border: '2px solid #f0f0f0' }}
+                      style={{ border: "2px solid #f0f0f0" }}
                     />
                   </td>
                   <td width={"18%"} style={{ textAlign: "end" }}>
-                    <span className="f500" style={{ textAlign: "end" }}>{handleProfit(stake)}</span>
+                    <span className="f500" style={{ textAlign: "end" }}>
+                      {handleProfit(stake)}
+                    </span>
                   </td>
                 </tr>
                 <tr
                   className={
                     selectedBet?.team?.type == "lay" ||
-                      selectedBet?.team?.type == "no"
+                    selectedBet?.team?.type == "no"
                       ? "place-bet-table-red"
                       : "place-bet-table-blue"
                   }
                 >
-
                   <td colSpan={5}>
                     <Container fluid>
                       <Row>
@@ -281,8 +331,6 @@ if(selectedBet?.team?.matchBetType == 'matchOdd'){
                           </CustomButton>
                         </Col>
                         <Col md={6} className="text-end">
-
-
                           <CustomButton
                             className="bg-success border-0 py-2"
                             size="sm"
@@ -292,7 +340,8 @@ if(selectedBet?.team?.matchBetType == 'matchOdd'){
                               } else {
                                 let payloadForSession: any = {
                                   betId: selectedBet?.team?.betId,
-                                  betType: selectedBet?.team?.type.toUpperCase(),
+                                  betType:
+                                    selectedBet?.team?.type.toUpperCase(),
                                   browserDetail: browserInfo?.userAgent,
                                   eventName: selectedBet?.team?.name,
                                   eventType: selectedBet?.team?.eventType,
@@ -323,39 +372,92 @@ if(selectedBet?.team?.matchBetType == 'matchOdd'){
                                   matchBetType: selectedBet?.team?.matchBetType,
                                   betOnTeam: selectedBet?.team?.betOnTeam,
                                   placeIndex: selectedBet?.team?.placeIndex,
+                                  bettingName: selectedBet?.data?.name,
+                                  gameType: selectedBet?.team?.eventType,
+                                };
+                                let payloadForRace: any = {
+                                  betId: selectedBet?.team?.betId,
+                                  bettingType:
+                                    selectedBet?.team?.type.toUpperCase(),
+                                  browserDetail: browserInfo?.userAgent,
+                                  matchId: selectedBet?.team?.matchId,
+                                  ipAddress:
+                                    ipAddress === "Not found" || !ipAddress
+                                      ? "192.168.1.100"
+                                      : ipAddress,
+                                  odd: matchOddRate,
+                                  stake: selectedBet?.team?.stake,
+                                  matchBetType: selectedBet?.team?.matchBetType,
+                                  betOnTeam: selectedBet?.team?.betOnTeam,
+                                  placeIndex: selectedBet?.team?.placeIndex,
+                                  bettingName: selectedBet?.team?.bettingName,
+                                  selectionId: selectedBet?.team?.selectionId,
+                                  runnerId: selectedBet?.team?.runnerId,
                                 };
                                 if (
                                   selectedBet?.data?.type === "matchOdd" ||
                                   selectedBet?.team?.matchBetType === "matchOdd"
                                 ) {
                                   setMatchOddLoading(true);
-                                  setTimeout(() => {
-                                    dispatch(
-                                      placeBet({
-                                        url:
-                                          selectedBet?.data?.type === "session" ||
+                                  if (
+                                    selectedBet?.team?.eventType ===
+                                      "horseRacing" ||
+                                    selectedBet?.team?.eventType === "greyHound"
+                                  ) {
+                                    setTimeout(() => {
+                                      dispatch(
+                                        placeBet({
+                                          url: ApiConstants.BET
+                                            .PLACEBETRACEBETTING,
+                                          data: JSON.stringify(payloadForRace),
+                                        })
+                                      );
+                                    }, getProfile?.delayTime * 1000);
+                                  } else {
+                                    setTimeout(() => {
+                                      dispatch(
+                                        placeBet({
+                                          url:
+                                            selectedBet?.data?.type ===
+                                              "session" ||
                                             selectedBet?.data?.SelectionId
-                                            ? ApiConstants.BET.PLACEBETSESSION
-                                            : ApiConstants.BET.PLACEBETMATCHBETTING,
-                                        data:
-                                          selectedBet?.data?.type === "session" ||
+                                              ? ApiConstants.BET.PLACEBETSESSION
+                                              : selectedBet?.team?.gameType ===
+                                                "other"
+                                              ? ApiConstants.BET
+                                                  .PLACEBETMATCHBETTINGOTHER
+                                              : ApiConstants.BET
+                                                  .PLACEBETMATCHBETTING,
+                                          data:
+                                            selectedBet?.data?.type ===
+                                              "session" ||
                                             selectedBet?.data?.SelectionId
-                                            ? JSON.stringify(payloadForSession)
-                                            : JSON.stringify(payloadForBettings),
-                                      })
-                                    );
-                                  }, getProfile?.delayTime * 1000);
+                                              ? JSON.stringify(
+                                                  payloadForSession
+                                                )
+                                              : JSON.stringify(
+                                                  payloadForBettings
+                                                ),
+                                        })
+                                      );
+                                    }, getProfile?.delayTime * 1000);
+                                  }
                                 } else {
                                   dispatch(
                                     placeBet({
                                       url:
                                         selectedBet?.data?.type === "session" ||
-                                          selectedBet?.data?.SelectionId
+                                        selectedBet?.data?.SelectionId
                                           ? ApiConstants.BET.PLACEBETSESSION
-                                          : ApiConstants.BET.PLACEBETMATCHBETTING,
+                                          : selectedBet?.team?.gameType ===
+                                            "other"
+                                          ? ApiConstants.BET
+                                              .PLACEBETMATCHBETTINGOTHER
+                                          : ApiConstants.BET
+                                              .PLACEBETMATCHBETTING,
                                       data:
                                         selectedBet?.data?.type === "session" ||
-                                          selectedBet?.data?.SelectionId
+                                        selectedBet?.data?.SelectionId
                                           ? JSON.stringify(payloadForSession)
                                           : JSON.stringify(payloadForBettings),
                                     })
@@ -378,7 +480,6 @@ if(selectedBet?.team?.matchBetType == 'matchOdd'){
             ""
           )}
         </RightPanelContainer>
-
       </div>
     </>
   );

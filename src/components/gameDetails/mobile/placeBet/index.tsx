@@ -13,6 +13,7 @@ import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";
 import "./style.scss";
+import { toast } from "react-toastify";
 
 interface PlaceBetProps {
   show: boolean;
@@ -29,7 +30,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     (state: RootState) => state.user.profile
   );
 
-  const { selectedBet, matchDetails} = useSelector(
+  const { selectedBet, matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
   );
   const { success, loading, error } = useSelector(
@@ -102,7 +103,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     } else if (
       selectedBet?.data?.type === matchBettingType.matchOdd ||
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
-      selectedBet?.data?.type === matchBettingType.completeMatch
+      selectedBet?.data?.type === matchBettingType.completeMatch ||
+      selectedBet?.data?.type === matchBettingType.halfTime ||
+      selectedBet?.data?.type.includes("overUnder") ||
+      selectedBet?.data?.type.includes("firstHalfGoal") ||
+      selectedBet?.data?.type.includes("setWinner")
     ) {
       profit =
         selectedBet?.team?.type === "back"
@@ -116,34 +121,74 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     }
     return isNaN(profit) ? 0 : parseFloat(profit).toFixed(2) ?? 0;
   };
-  const handleColor = (team : any) =>{
-    let green = "color-green"
-    let red = "color-red"
-    if(selectedBet?.team?.betOnTeam === team){
-      return selectedBet?.team?.type === "back" ? green : red
-    }else{
-      return selectedBet?.team?.type === "back" ?  red : green
+
+
+  const handleProLoss = (data: any, type: string) => {
+    let profit: any;
+    if (data?.betOnTeam === data[`team${type}`]) {
+      profit = (
+        Number(handleProfit(stake)) +
+        Number(handleTeamRates(data?.matchBetType,type))
+      ).toFixed(2);
+    } else {
+      profit =
+        data?.type === "back"
+          ? (
+              -Number(data?.stake) +
+              Number(handleTeamRates(data?.matchBetType,type))
+            ).toFixed(2)
+          : (
+              Number(data?.stake) +
+              Number(handleTeamRates(data?.matchBetType,type))
+            ).toFixed(2);
     }
+    return isNaN(profit)
+      ? Number(handleTeamRates(data?.matchBetType,type) ? Number(handleTeamRates(data?.matchBetType,type)) : 0).toFixed(2)
+      : parseFloat(profit).toFixed(2);
+  };
+
+  const handleTeamRates=(type:any,team:string)=>{
+    let rate;
+    if(type==="matchOdd" || type==="bookmaker" || type==="quickbookmaker1" || type==="quickbookmaker2" || type==="quickbookmaker3"){
+      rate = matchDetails?.profitLossDataMatch[`team${team}Rate`]
+    }else if(type==="completeMatch" || type==="completeManual"){
+      rate = team ==="A" ? matchDetails?.profitLossDataMatch?.yesRateComplete : matchDetails?.profitLossDataMatch?.noRateComplete
+    }else{
+      rate = team ==="A" ? matchDetails?.profitLossDataMatch?.yesRateTie : matchDetails?.profitLossDataMatch?.noRateTie
+    }
+    return rate || 0 ;
   }
-  
+  const handleKeyDown = (e:any) => {
+    if (e.key === 'e' || e.key === 'E') {
+      e.preventDefault();
+    }
+  };
   return (
     <>
       <CustomModal
-        title={"PlaceBet"}
+        title={"Place Bet"}
         show={show && selectedBet}
         setShow={() => {
           dispatch(selectedBetAction(null));
         }}
       >
-        <Container className={`${selectedBet?.team?.type === 'lay' || selectedBet?.team?.type === 'no' ? 'bg-red1' : 'bg-blue1'}`} fluid>
+        <Container
+          className={`${
+            selectedBet?.team?.type === "lay" ||
+            selectedBet?.team?.type === "no"
+              ? "bg-red1"
+              : "bg-blue1"
+          }`}
+          fluid
+        >
           <Row className="row-cols-md-3 g-2 align-items-center">
-            <Col xs={6} className="f600 title-14">
+            <Col xs={8} className="f600 title-14">
               {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
             </Col>
-            <Col xs={6} className="d-flex justify-content-end">
+            <Col xs={4} className="d-flex justify-content-end">
               <CustomButton
                 onClick={() => {
-                  if (selectedBet?.team?.matchBetType !== 'matchOdd') {
+                  if (selectedBet?.team?.matchBetType !== "matchOdd") {
                     return true;
                   }
                   dispatch(
@@ -151,7 +196,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       ...selectedBet,
                       team: {
                         ...selectedBet?.team,
-                        rate: parseInt(selectedBet?.team?.rate) == 0 ? 0 : parseInt(selectedBet?.team?.rate) - 1,
+                        rate:
+                          parseInt(selectedBet?.team?.rate) == 0
+                            ? 0
+                            : parseInt(selectedBet?.team?.rate) - 1,
                       },
                     })
                   );
@@ -165,11 +213,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 value={+selectedBet?.team?.rate || 0}
                 type="number"
                 className="w-50 br-0"
-                style={{border: '1px solid #000'}}
+                style={{ border: "1px solid #000" }}
               />
               <CustomButton
                 onClick={() => {
-                  if (selectedBet?.team?.matchBetType !== 'matchOdd') {
+                  if (selectedBet?.team?.matchBetType !== "matchOdd") {
                     return true;
                   }
                   dispatch(
@@ -198,24 +246,43 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       ...selectedBet,
                       team: {
                         ...selectedBet?.team,
-                        stake: parseInt(e.target.value),
+                        stake: +e.target.value,
                       },
                     })
                   );
                 }}
                 // disabled
                 type="number"
+                onKeyDown={handleKeyDown}
                 placeholder=""
                 className="w-100 br-0"
-                style={{border: '0.5px solid #000'}}
+                style={{ border: "0.5px solid #000" }}
               />
             </Col>
 
             <Col xs={4} className="f800 title-12">
               <CustomButton
-                className="f400 w-100 br-0"
+              style={{ height: "28px" }}
+                className="f600 w-100 br-0"
                 onClick={() => {
                   try {
+                    if (
+                      selectedBet?.team?.stake <
+                      (selectedBet?.data?.minBet || selectedBet?.data?.min)
+                    ) {
+                      toast.error(
+                        "Stake value must be greater or equal to min bet"
+                      );
+                      return;
+                    } else if (
+                      selectedBet?.team?.stake >
+                      (selectedBet?.data?.maxBet || selectedBet?.data?.max)
+                    ) {
+                      toast.error(
+                        "Stake value must be smaller or equal to max bet"
+                      );
+                      return;
+                    }
                     if (loading) {
                       return;
                     }
@@ -247,39 +314,76 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       matchBetType: selectedBet?.team?.matchBetType,
                       betOnTeam: selectedBet?.team?.betOnTeam,
                       placeIndex: selectedBet?.team?.placeIndex,
+                      bettingName: selectedBet?.data?.name,
+                      gameType: selectedBet?.team?.eventType,
+                    };
+                    let payloadForRace: any = {
+                      betId: selectedBet?.team?.betId,
+                      bettingType:
+                        selectedBet?.team?.type.toUpperCase(),
+                      browserDetail: browserInfo?.userAgent,
+                      matchId: selectedBet?.team?.matchId,
+                      ipAddress:
+                        ipAddress === "Not found" || !ipAddress
+                          ? "192.168.1.100"
+                          : ipAddress,
+                      odd: selectedBet?.team?.rate,
+                      stake: selectedBet?.team?.stake,
+                      matchBetType: selectedBet?.team?.matchBetType,
+                      betOnTeam: selectedBet?.team?.betOnTeam,
+                      placeIndex: selectedBet?.team?.placeIndex,
+                      bettingName: selectedBet?.team?.bettingName,
+                      selectionId: selectedBet?.team?.selectionId,
+                      runnerId: selectedBet?.team?.runnerId,
                     };
                     if (
                       selectedBet?.data?.type === "matchOdd" ||
                       selectedBet?.team?.matchBetType === "matchOdd"
                     ) {
                       setMatchOddLoading(true);
+                      if (
+                        selectedBet?.team?.eventType ===
+                        "horseRacing" || selectedBet?.team?.eventType ===
+                        "greyHound"
+                      ) {
+                        setTimeout(() => {
+                          dispatch(
+                            placeBet({
+                              url: ApiConstants.BET
+                                .PLACEBETRACEBETTING,
+                              data: JSON.stringify(payloadForRace),
+                            })
+                          );
+                        }, getProfile?.delayTime * 1000);
+                      } else {
                       setTimeout(() => {
                         dispatch(
                           placeBet({
                             url:
                               selectedBet?.data?.type === "session" ||
-                                selectedBet?.data?.SelectionId
+                              selectedBet?.data?.SelectionId
                                 ? ApiConstants.BET.PLACEBETSESSION
                                 : ApiConstants.BET.PLACEBETMATCHBETTING,
                             data:
                               selectedBet?.data?.type === "session" ||
-                                selectedBet?.data?.SelectionId
+                              selectedBet?.data?.SelectionId
                                 ? JSON.stringify(payloadForSession)
                                 : JSON.stringify(payloadForBettings),
                           })
                         );
                       }, getProfile?.delayTime * 1000);
+                    }
                     } else {
                       dispatch(
                         placeBet({
                           url:
                             selectedBet?.data?.type === "session" ||
-                              selectedBet?.data?.SelectionId
+                            selectedBet?.data?.SelectionId
                               ? ApiConstants.BET.PLACEBETSESSION
                               : ApiConstants.BET.PLACEBETMATCHBETTING,
                           data:
                             selectedBet?.data?.type === "session" ||
-                              selectedBet?.data?.SelectionId
+                            selectedBet?.data?.SelectionId
                               ? JSON.stringify(payloadForSession)
                               : JSON.stringify(payloadForBettings),
                         })
@@ -290,7 +394,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                   }
                 }}
               >
-                Submit
+                <span style={{height: "15px", display: "flex", alignItems: "center", justifyContent: "center"}}> Submit</span>
+               
               </CustomButton>
             </Col>
             <Col xs={4} className="title-12 text-center">
@@ -318,84 +423,125 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               </Col>
             ))}
             <div className="container d-flex justify-content-between mt-2">
-              {selectedBet?.data?.type && (selectedBet.data.type !== 'session' && selectedBet.team.matchBetType !== 'apiSession') && (
-
-                <>
-                  <div className="row">
-                    <div className="col-md-4 flex-start">
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span className="f400 title-12">{selectedBet?.team?.teamA}</span>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span className="f400 title-12">{selectedBet?.team?.teamB}</span>
-                        </div>
-                      </div>
-                      {selectedBet?.team?.teamC && (
+              {selectedBet?.data?.type &&
+                selectedBet.data.type !== "session" &&
+                selectedBet.team.matchBetType !== "apiSession" && (
+                  <>
+                    <div className="row">
+                      <div className="col-md-4 flex-start">
                         <div className="row">
                           <div className="col-md-12">
-                            <span className="f400 title-12">{selectedBet?.team?.teamC}</span>
+                            <span className="f400 title-12">
+                              {selectedBet?.team?.teamA}
+                            </span>
                           </div>
                         </div>
-                      )}
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span className="f400 title-12">
+                              {selectedBet?.team?.teamB}
+                            </span>
+                          </div>
+                        </div>
+                        {selectedBet?.team?.teamC && (
+                          <div className="row">
+                            <div className="col-md-12">
+                              <span className="f400 title-12">
+                                {selectedBet?.team?.teamC}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="row row5">
+                      <div className="col-md-4">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span className="f600 title-12">
+                                {handleTeamRates(selectedBet?.team?.matchBetType,"A")}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span className="f600 title-12">
+                                {handleTeamRates(selectedBet?.team?.matchBetType,"B")}
+                            </span>
+                          </div>
+                        </div>
+                        {selectedBet?.team?.teamC && (
+                          <div className="row">
+                            <div className="col-md-12">
+                              <span className="f600 title-12">
+                                {matchDetails?.profitLossDataMatch?.teamCRate ||
+                                  0}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-4">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span
+                              style={{ fontSize: "12px", fontWeight: "600" }}
+                              className={Number(handleProLoss(selectedBet?.team, "A")) > 0 ? "color-green":"color-red"}
+                            >
+                              {handleProLoss(selectedBet?.team, "A")}
+                              {/* {selectedBet?.team?.betOnTeam ===
+                              selectedBet?.team?.teamA
+                                ? selectedBet?.team?.stake ? (Number(handleProfit(stake)) + Number(matchDetails?.profitLossDataMatch?.teamARate)).toFixed(2) : 0
+                                : selectedBet?.team?.type === "back"
+                                ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
+                                : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-12">
+                            <span
+                              style={{ fontSize: "12px", fontWeight: "600" }}
+                              className={Number(handleProLoss(selectedBet?.team, "B")) > 0 ? "color-green":"color-red"}
+                            >
+                              {handleProLoss(selectedBet?.team, "B")}
+                              {/* {selectedBet?.team?.betOnTeam ===
+                              selectedBet?.team?.teamB
+                                ? selectedBet?.team?.stake ? (Number(handleProfit(stake)) + Number(matchDetails?.profitLossDataMatch?.teamBRate)).toFixed(2) : 0
+                                : selectedBet?.team?.type === "back"
+                                ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
+                                : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
+                            </span>
+                          </div>
+                        </div>
 
+                        {selectedBet?.team?.teamC && (
+                          <div className="row">
+                            <div className="col-md-12">
+                              <span
+                                style={{ fontSize: "12px", fontWeight: "600" }}
+                                className={Number(handleProLoss(selectedBet?.team, "C")) > 0 ? "color-green":"color-red"}
+                              >
+                                {handleProLoss(selectedBet?.team, "C")}
+                                {/* {selectedBet?.team?.betOnTeam ===
+                                selectedBet?.team?.teamC
+                                  ? selectedBet?.team?.stake ? (Number(handleProfit(stake)) + Number(matchDetails?.profitLossDataMatch?.teamCRate)).toFixed(2) : 0
+                                  : selectedBet?.team?.type === "back"
+                                  ? isNaN(selectedBet?.team?.stake) ? 0 : -selectedBet?.team?.stake
+                                  : isNaN(selectedBet?.team?.stake) ? 0 : selectedBet?.team?.stake} */}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div><div className="row row5">
-                    <div className="col-md-4">
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span className="f600 title-12">{matchDetails?.profitLossDataMatch?.teamARate || 0}</span>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span className="f600 title-12">{matchDetails?.profitLossDataMatch?.teamBRate || 0}</span>
-                        </div>
-                      </div>
-                      {selectedBet?.team?.teamC && (
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span className="f600 title-12">{matchDetails?.profitLossDataMatch?.teamCRate || 0}</span>
-                        </div>
-                      </div>
-                       )}
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-4">
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span style={{fontSize:"12px",fontWeight:"600"}} className={handleColor(selectedBet?.team?.teamA)}>
-                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamA  ? handleProfit(stake)  : (selectedBet?.team?.type === "back" ? -selectedBet?.team?.stake : selectedBet?.team?.stake)}</span>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span style={{fontSize:"12px",fontWeight:"600"}} className={handleColor(selectedBet?.team?.teamB)}>
-                            {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamB ? handleProfit(stake)  : (selectedBet?.team?.type === "back" ? -selectedBet?.team?.stake : selectedBet?.team?.stake)}</span>
-                        </div>
-                      </div>
-                      {selectedBet?.team?.teamC && (
-                      <div className="row">
-                        <div className="col-md-12">
-                          <span style={{fontSize:"12px",fontWeight:"600"}} className={handleColor(selectedBet?.team?.teamC)}>
-                          {selectedBet?.team?.betOnTeam ===  selectedBet?.team?.teamC ? handleProfit(stake)  : (selectedBet?.team?.type === "back" ? -selectedBet?.team?.stake : selectedBet?.team?.stake)}</span>
-                        </div>
-                      </div>
-                      )}
-                    </div>
-                  </div>
-                </>
-              )}
+                  </>
+                )}
             </div>
-
-
           </Row>
-
         </Container>
-
       </CustomModal>
       {(loading || matchOddLoading) && <Loader />}
     </>

@@ -4,7 +4,7 @@ import { Constants } from "./utils/constants";
 
 const toastOptions = {
   autoClose: 1500,
-  hideProgressBar: false,
+  hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: true,
 };
@@ -31,7 +31,7 @@ service.interceptors.request.use(
   (config) => {
     config.headers["Content-Type"] = "application/json";
 
-    const authToken = sessionStorage.getItem("userToken");
+    const authToken = sessionStorage.getItem("jwtMaxUser");
     config.headers.Authorization = `Bearer ${authToken}`;
     return config;
   },
@@ -61,7 +61,7 @@ service.interceptors.response.use(
     } else if (error.response.status === 409) {
       toast.error(error.response.data.message);
     } else if (error.response.status === 401) {
-      toast.error(error.response.data.message);
+      // toast.error(error.response.data.message);
       window.location.replace("/login");
       sessionStorage.clear();
     }

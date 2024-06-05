@@ -6,10 +6,16 @@ import ReportContainer from "../containers/reportContainer";
 
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { changePassword } from "../../store/actions/authAction";
-import { AppDispatch } from "../../store/store";
-import { changePassValidationSchema } from "../../utils/fieldValidations/auth";
+import {
+  changePassword,
+  checkOldPassword,
+} from "../../store/actions/authAction";
+import { AppDispatch, RootState } from "../../store/store";
+import { changePasswordValidation } from "../../utils/fieldValidations/auth";
 import ValidationError from "../commonComponent/validationError";
+import { debounce } from "lodash";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 
 const ChangePasswordComponent = () => {
   // State object to store the values of input fields
@@ -18,17 +24,18 @@ const ChangePasswordComponent = () => {
   //   newPassword: "",
   //   confirmNewPassword: "",
   // });
-    const initialValues: any = {
+  const initialValues: any = {
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",
   };
 
   const dispatch: AppDispatch = useDispatch();
+  const { oldPasswordMatched } = useSelector((state: RootState) => state.auth);
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: changePassValidationSchema,
+    validationSchema: changePasswordValidation(oldPasswordMatched),
     onSubmit: (values: any) => {
       dispatch(changePassword(values));
     },
@@ -49,6 +56,18 @@ const ChangePasswordComponent = () => {
   //   // Add logic here to handle the password change
   // };
 
+  const debouncedInputValue = useMemo(() => {
+    return debounce((value) => {
+      dispatch(checkOldPassword({ oldPassword: value }));
+    }, 500);
+  }, []);
+
+  const handleOldPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    formik.handleChange(e);
+    debouncedInputValue(query);
+  };
+
   return (
     <ReportContainer title="Change Password">
       <form onSubmit={handleSubmit}>
@@ -62,11 +81,11 @@ const ChangePasswordComponent = () => {
             // value={formik.values.currentPassword}
             id={"oldPassword"}
             name={"oldPassword"}
-            onChange={formik.handleChange}
+            onChange={handleOldPasswordChange}
           />
           <ValidationError
-            touched={touched.currentPassword}
-            errors={errors.currentPassword}
+            touched={touched.oldPassword}
+            errors={errors.oldPassword}
           />
           <CustomInput
             title="New Password"

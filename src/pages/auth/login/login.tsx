@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 // import { FaHandPointDown, FaKey } from "react-icons/fa";
 // import { IoPerson } from "react-icons/io5";
 import { MdOutlineLogin } from "react-icons/md";
-import { AiOutlineLoading } from 'react-icons/ai'; // Import the AiOutlineLoading spinner
+import { AiOutlineLoading } from "react-icons/ai"; // Import the AiOutlineLoading spinner
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../../components/commonComponent/button";
@@ -21,6 +21,7 @@ import isMobile from "../../../utils/screenDimension";
 import "./style.scss";
 import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
+import Loader from "../../../components/commonComponent/loader";
 
 const Login = () => {
   // const [loginState, setLoginState] = useState({
@@ -74,13 +75,13 @@ const Login = () => {
       className="auth-main text-center d-flex justify-content-center"
       onSubmit={handleSubmit}
     >
-      {/* {loading && <Loader />} */}
+      {loading && <Loader />}
       <div className="auth-box ">
         <img
           src="/maxbetLogo.png"
           alt="fairGame"
           className="img-fluid"
-          style={{ width: "80%", height: "44px" }}
+          style={{ width: isMobile ? "90%" : "100%", height: isMobile ? "42px" : "50px" }}
         />
         <div className="auth-box-form rounded-2 bg-light mt-3">
           <h4 className="auth-title title-24 fw-normal text-center mb-2">
@@ -114,9 +115,9 @@ const Login = () => {
             isUnderlinedInput={isMobile}
             value={formik.values.password}
             onChange={formik.handleChange}
-          // onChange={(e: any) => {
-          //   setLoginState({ ...loginState, password: e.target.value });
-          // }}
+            // onChange={(e: any) => {
+            //   setLoginState({ ...loginState, password: e.target.value });
+            // }}
           />
           <ValidationError
             touched={touched.password}
@@ -126,14 +127,20 @@ const Login = () => {
             className="w-100 ml-6"
             variant="primary"
             type="submit"
-          // loading={loading}
+            // loading={loading}
           >
             <div className="button-container">
-              <span className="login-text">Login</span>{loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}
+              <span className="login-text">Login</span>
+              {loading ? (
+                <AiOutlineLoading className="spinner-icon" />
+              ) : (
+                <MdOutlineLogin className="login-icon" />
+              )}
               {/* {!isMobile ? <span className="login-text">Login </span> : <span><span className="mlogintext">Login {loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}</span></span>} */}
-            </div></CustomButton>
+            </div>
+          </CustomButton>
           <p className="auth-box-descrip mt-1">
-            This site is protected by reCAPTCHA and the Google
+            This site is protected by reCAPTCHA and the Google<br/>
             <a
               href="https://policies.google.com/privacy"
               className="text-primaryBlue text-decoration-none ps-1 pe-1"

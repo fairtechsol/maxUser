@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
-
+import isMobile from "../../../../utils/screenDimension";
+import { useLocation, useParams } from "react-router-dom";
 interface props {
   bgColor?: string;
   rate: any;
@@ -11,6 +12,9 @@ interface props {
   onClick?: any;
   style?: React.CSSProperties;
   active?: boolean;
+  indexs?: number;
+  type?: string | any;
+  box?: string;
   // onClick?: () => void;
 }
 function BackLayBox({
@@ -22,14 +26,17 @@ function BackLayBox({
   onClick,
   style,
   active,
+  indexs,
+  type,
+  box,
 }: props) {
   const inlineStyle: React.CSSProperties = {
     ...style,
   };
-
+  const location = useLocation();
   const [tempRate, setTempRate] = useState("0");
   const [isYellow, setIsYellow] = useState(false);
-
+  const params = useParams();
   useEffect(() => {
     if (parseFloat(rate) != parseFloat(tempRate)) {
       setTimeout(() => {
@@ -39,32 +46,93 @@ function BackLayBox({
       setTempRate(rate);
     }
   }, [rate]);
-
+  const handleRate = (rate: any) => {
+    let value;
+    if (
+      [
+        "quickbookmaker1",
+        "quickbookmaker2",
+        "quickbookmaker3",
+        "tiedMatch2",
+      ].includes(type) &&
+      !isMobile
+    ) {
+      value =
+        indexs !== undefined && (box == "lay" ? indexs > 0 : indexs < 2)
+          ? Math.trunc(rate)
+          : rate;
+    } else {
+      value = rate;
+    }
+    return value;
+  };
   return (
     <div
+      onClick={(e: any) => {
+        e.stopPropagation();
+        onClick();
+      }}
       className={`backLay ${overlay ? "overlay" : ""}  ${
         customClass ? customClass : ""
       } bg-${isYellow ? "secondary" : bgColor}`}
       style={{ ...inlineStyle }}
     >
-      <BetStatusOverlay>
+      {location.pathname == "/home" ? (
         <div
-          onClick={() => onClick()}
-          className={`backLayBox text-center d-flex cursor-pointer`}
+          // onClick={() => onClick()}
+          className={`backLayBox text-center d-flex cursor-pointer ${
+            isMobile ? " " : "boxheight"
+          }`}
         >
-          <h5 className="backLay-rate f500 title-16 m-0 pt-4">
-            {parseFloat(rate || 0) <= 0 || active ? "-" : rate}{" "}
+          {/* <h5 className="backLay-rate f500 title-15 m-0 pt-1">
+            {parseFloat(rate || 0) <= 0 || active
+              ? isMobile
+                ? "0"
+                : "-"
+              : rate}{" "}
+          </h5> */}
+          <h5
+            className={`${
+              isMobile ? "backLay-rate-m mb-1" : "backLay-rate"
+            } f500 title-15`}
+          >
+            {parseFloat(rate || 0) <= 0 || active
+              ? isMobile
+                ? "0"
+                : "-"
+              : rate}{" "}
           </h5>
-          
-          {+percent > 0 && parseFloat(rate) > 0 && (
-            <span className="backLay-percent title-10">
-              {percent >= 1000
-                ? (percent / 1000)?.toFixed(1) + "k"
-                : percent?.toString()}
-            </span>
-          )}
         </div>
-      </BetStatusOverlay>
+      ) : (
+        <BetStatusOverlay>
+          <div
+            // onClick={() => onClick()}
+            className={`backLayBox text-center d-flex cursor-pointer `}
+          >
+            <span
+              className={
+                isMobile
+                  ? `backLay-rate f500 title-16 ${params?.type ? "" : "mb-2"}`
+                  : "backLay-rate f500 title-16"
+              }
+            >
+              {parseFloat(rate || 0) <= 0 || active
+                ? isMobile
+                  ? "0"
+                  : "-"
+                : handleRate(rate)}{" "}
+            </span>
+
+            {+percent > 0 && parseFloat(rate) > 0 && (
+              <span className="backLay-percent title-10">
+                {percent >= 1000
+                  ? (percent / 1000)?.toFixed(1) + "k"
+                  : percent?.toString()}
+              </span>
+            )}
+          </div>
+        </BetStatusOverlay>
+      )}
     </div>
   );
 }

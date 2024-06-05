@@ -2,15 +2,15 @@
   { "id": "home", "name": "Home", "link": "/home", "type": "desktop" },
   { "id": "cricket", "name": "Cricket", "link": "/cricket", "type": "desktop" },
   {
-    "id": "iccWC2023",
-    "name": "ICC WC 2023",
+    "id": "ipl2024",
+    "name": "IPL 2024",
     "link": "/contact-admin",
     "type": "both",
     "blink": true
   },
   {
     "id": "election2023",
-    "name": "Election 2023",
+    "name": "LOK SABHA 2024",
     "link": "/contact-admin",
     "type": "both",
     "blink": true
@@ -18,7 +18,7 @@
   {
     "id": "tennis",
     "name": "Tennis",
-    "link": "/contact-admin",
+    "link": "/tennis",
     "type": "desktop"
   },
   {
@@ -40,14 +40,14 @@
     "type": "desktop"
   },
   {
-    "id": "badminton",
-    "name": "Badminton",
+    "id": "basketball",
+    "name": "BASKETBALL",
     "link": "/contact-admin",
     "type": "desktop"
   },
   {
-    "id": "americanFootball",
-    "name": "American Football",
+    "id": "volleyball",
+    "name": "VOLLEYBALL",
     "link": "/contact-admin",
     "type": "desktop"
   },

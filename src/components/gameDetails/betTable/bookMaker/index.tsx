@@ -46,7 +46,7 @@ function BookmakerTable({
 
   return (
     <div
-      className={`gameTable table-responsive sessionFancyTable borderTable border `}
+      className={`gameTable table-responsive-lg sessionFancyTable borderTable border `}
     >
       <Table className="mb-0">
         <thead>
@@ -58,7 +58,7 @@ function BookmakerTable({
               <div className="px-2 text-info">
                 {minMax &&
                   (isMobile ? (
-                    <span className="f900 title-12 px-2 text-black">
+                    <span className="f900 title-12 px-1 text-black">
                       {minMax}
                     </span>
                   ) : (
@@ -70,7 +70,7 @@ function BookmakerTable({
             </th>
             {backLayCount === 6 && !isMobile && (
               <>
-                <th className="border-0 bookmaker-bet-place"></th>
+                <th className="bookmaker-bet-place-desktop"></th>
                 <th className="border-0 bookmaker-bet-place"></th>
               </>
             )}
@@ -92,10 +92,14 @@ function BookmakerTable({
               </>
             ) : (
               <>
-                <th className={`text-center bg-blue1 bookmaker-bet-place f400 title-14`}>
+                <th
+                  className={`text-center bg-blue1 bookmaker-bet-place f400 title-15`}
+                >
                   BACK
                 </th>
-                <th className={`text-center bg-red1 bookmaker-bet-place f400 title-1`}>
+                <th
+                  className={`text-center bg-red1 bookmaker-bet-place f400 title-15`}
+                >
                   LAY
                 </th>
               </>
@@ -118,7 +122,7 @@ function BookmakerTable({
                 <td>
                   <div className="backLayRunner d-flex flex-column px-1 w-100">
                     <span
-                      className={`backLayRunner-country title-12  ${isMobile ? "f500" : "f500"
+                      className={`backLayRunner-country title-12  ${isMobile ? "f700" : "f500"
                         } `}
                     >
                       {data?.type === "tiedMatch2"
@@ -209,7 +213,10 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
-                          customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
+                          indexs={index}
+                          type={data.type}
+                          box={'back'}
+                          customClass={`bookmaker-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
                             }`}
@@ -224,6 +231,14 @@ function BookmakerTable({
                               (+data[`backTeam${item}`] || 0) -
                               (isMobile ? 0 : 2) +
                               index;
+                              let rateValue;
+                              if((data.type=== "quickbookmaker1" ||
+                              data.type === "quickbookmaker2" ||
+                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
+                                rateValue = index <2 ? Math.trunc(rate) : rate;
+                              }else{
+                                rateValue = rate
+                              }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active
@@ -236,7 +251,7 @@ function BookmakerTable({
                                         ? "YES"
                                         : "NO"
                                       : matchDetails?.[`team${item}`],
-                                  rate: rate,
+                                  rate: rateValue,
                                   type: "back",
                                   stake: 0,
                                   teamA:
@@ -270,7 +285,10 @@ function BookmakerTable({
                       ?.map((_: any, index: number) => (
                         <BackLayBox
                           key={index}
-                          customClass={`match-odd-bet-place ${isMobile && backLayCount != 2
+                          indexs={index}
+                          type={data.type}
+                          box={'lay'}
+                          customClass={`bookmaker-bet-place ${isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
                             }`}
@@ -282,6 +300,14 @@ function BookmakerTable({
                           }
                           onClick={() => {
                             const rate = +(data[`layTeam${item}`] || 0) + index;
+                            let rateValue;
+                              if((data.type=== "quickbookmaker1" ||
+                              data.type === "quickbookmaker2" ||
+                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
+                                rateValue = index  > 0 ? Math.trunc(rate) : rate;
+                              }else{
+                                rateValue = rate
+                              }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active
@@ -294,7 +320,7 @@ function BookmakerTable({
                                         ? "YES"
                                         : "NO"
                                       : matchDetails?.[`team${item}`],
-                                  rate: rate,
+                                  rate: rateValue,
                                   type: "lay",
                                   stake: 0,
                                   teamA:

@@ -74,16 +74,34 @@ function MatchOdds({
   };
   return (
     <div
-      className={`gameTable table-responsive sessionFancyTable borderTable border`}
+      className={`gameTable table-responsive-lg sessionFancyTable borderTable border`}
     >
       <Table className="mb-0">
         <thead>
           <tr>
-            <th className="border-0 px-2">
-              {minMax && isMobile && (
-                <span className="f700 title-14">{minMax}</span>
-              )}
-            </th>
+            {data?.type === "bookmaker" ? (
+              isMobile ? (
+                // <th className="border-0 px-2">
+                //   {minMax && isMobile && (
+                //     <span className="f700 title-14">{minMax}</span>
+                //   )}
+                // </th>
+                <></>
+              ) : (
+                <th className="border-0 px-2">
+                  {minMax && isMobile && (
+                    <span className="f700 title-14">{minMax}</span>
+                  )}
+                </th>
+              )
+            ) : (
+              <th className="border-0 px-2">
+                {minMax && isMobile && (
+                  <span className="f700 title-14 px-2">{minMax}</span>
+                )}
+              </th>
+            )}
+
             {/* {isMobile && (
               <>
                 <th className="text-center bg-blue1 bet-place-box50 f400">BACK</th>
@@ -92,16 +110,16 @@ function MatchOdds({
             )} */}
             {!isMobile && (
               <>
-                <th className="border-0 match-odd-bet-place"></th>
+                <th className="bookmaker-bet-place-desktop-match"></th>
                 <th className="border-0 match-odd-bet-place"></th>
               </>
             )}
             {!isMobile && (
               <>
-                <th className="text-center bg-blue1 match-odd-bet-place f400">
+                <th className="text-center bg-blue1 match-odd-bet-place f700 title-15">
                   BACK
                 </th>
-                <th className="text-center bg-red1 match-odd-bet-place f400">
+                <th className="text-center bg-red1 match-odd-bet-place f700 title-15">
                   LAY
                 </th>
               </>
@@ -110,14 +128,14 @@ function MatchOdds({
               <>
                 {data?.type === "bookmaker" ? (
                   <>
-                    <th className="border-0 match-odd-bet-place"></th>
+                    {/* <th className="border-0 match-odd-bet-place"></th>
                     <th className="bg-blue1 text-center match-odd-bet-placem f400 w-20 title-14">
                       BACK
                     </th>
                     <th className="bg-red1 text-center match-odd-bet-placem f400 w-20 title-14">
                       LAY
                     </th>
-                    <th className="border-0 match-odd-bet-place"></th>
+                    <th className="border-0 match-odd-bet-place"></th> */}
                   </>
                 ) : (
                   <>
@@ -134,23 +152,48 @@ function MatchOdds({
             {!isMobile && (
               <>
                 <th className="border-0 match-odd-bet-place"></th>
-                <th className="border-0 match-odd-bet-place"></th>
+                <th className="bookmaker-bet-place-desktop-match"></th>
               </>
             )}
           </tr>
         </thead>
         <tbody>
+          {isMobile && data?.type === "bookmaker" && (
+            <tr>
+              <td colSpan={2} style={{ backgroundColor: "#fff" }}>
+                {minMax && isMobile && (
+                  <span className="f700 title-14 px-2">{minMax}</span>
+                )}
+              </td>
+              {/* <td style={{width:'11.5%'}}></td> */}
+              <td
+                className="bg-blue1 text-center   match-odd-bet-placem f400 w-20 title-14"
+                style={{ width: "4%" }}
+              >
+                BACK
+              </td>
+              <td
+                className="bg-red1 text-center match-odd-bet-placem f400 w-20 title-14"
+                style={{ width: "5%" }}
+              >
+                LAY
+              </td>
+              <td style={{ width: "13%", backgroundColor: "#fff" }}></td>
+            </tr>
+          )}
           {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((matchs, indexes) => {
               return (
                 <tr className="overlay-trigger" key={indexes}>
-                  <td>
+                  <td style={{ width: "100%" }}>
                     <div className="backLayRunner d-flex flex-column px-1 w-100 mt-1">
-                      <span 
+                      <span
                         className={`backLayRunner-countrytrunc title-12  ${
                           isMobile ? "f500" : "f500"
-                        } `}
+                        }  ${
+                          data?.type === "bookmaker" ? "bookmaker-style" : ""
+                        }`}
                       >
                         {data?.type === "completeMatch" ||
                         data?.type === "tiedMatch1"
@@ -169,9 +212,9 @@ function MatchOdds({
                         )}
                         {isMobile && data?.type !== "bookmaker" && data?.type !== "completeMatch" && data?.type !== "tiedMatch1" && (
                           matchDetails?.[`team${matchs}`]
-                        )}
-                        {(data?.type === "bookmaker" && isMobile) && (
-                          matchDetails?.[`team${matchs}`]?.split(' ').slice(0, 2).join(' ') + (matchDetails?.[`team${matchs}`]?.split(' ').length > 2 ? ' ...' : ''))} */}
+                        )}*/}
+                        {/* {(data?.type === "bookmaker" && isMobile) && (
+                          matchDetails?.[`team${matchs}`]?.split(' ').slice(0, 2).join(' ') + (matchDetails?.[`team${matchs}`]?.split(' ').length > 2 ? ' ...' : ''))}  */}
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100 mt-1">
                         <span
@@ -281,7 +324,10 @@ function MatchOdds({
                       </div>
                     </div>
                   </td>
-                  <td colSpan={backLayCount === 2 ? 2 : 6}>
+                  <td
+                    colSpan={backLayCount === 2 ? 2 : 6}
+                    style={data?.type === "bookmaker" ? { width: "35%" } : {}}
+                  >
                     <BetStatusOverlay
                       title={data?.runners?.[indexes]?.status.toLowerCase()}
                       active={
@@ -477,6 +523,14 @@ function MatchOdds({
             })}
         </tbody>
       </Table>
+      {data?.type === "bookmaker" && (
+        <div
+          className="f600 title-12 pe-2"
+          style={{ textAlign: "end", color: "#8b0000" }}
+        >
+          IPL Cup Winner Bets Started in our Exchange
+        </div>
+      )}
     </div>
   );
 }

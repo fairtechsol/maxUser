@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
   authReset,
+  checkOldPassword,
   login,
   rulesModalShowFalse,
   rulesModalShowTrue,
@@ -11,6 +12,7 @@ const initialState = {
   loading: false,
   forceChangePassword: false,
   rulesPopShow: false,
+  oldPasswordMatched: false,
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
@@ -24,6 +26,17 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.forceChangePassword = action?.payload?.forceChangePassword;
     })
     .addCase(login.rejected, (state) => {
+      state.loading = false;
+    })
+    .addCase(checkOldPassword.pending, (state) => {
+      state.loading = true;
+      state.oldPasswordMatched = false;
+    })
+    .addCase(checkOldPassword.fulfilled, (state, action) => {
+      state.loading = false;
+      state.oldPasswordMatched = action.payload;
+    })
+    .addCase(checkOldPassword.rejected, (state) => {
       state.loading = false;
     })
     .addCase(authReset, (state) => {

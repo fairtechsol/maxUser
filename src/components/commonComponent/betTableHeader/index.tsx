@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import "./style.scss";
 interface props {
   bgColor?: string;
-  title: string;
+  title?: string;
   padding?: string | number;
   style?: React.CSSProperties;
   customClass?: string;
@@ -27,7 +27,7 @@ function BetTableHeader({
       `}
       style={{ ...inlineStyle }}
     >
-      <span className={`text-black ${customTextClass??"title-14 f500"}`}>{title}</span>
+      <span className={`text-black ${customTextClass??"title-15 f700"}`}>{title}</span>
       
       {rightComponent}
     </div>

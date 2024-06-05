@@ -35,5 +35,10 @@
 }
 
 .bet-overlay {
-  height: 45px;
+  height: 45px !important;
+  align-items: center;
+}
+.bet-overlay-matchlist {
+  height: 25px;
+  align-items: center;
 }

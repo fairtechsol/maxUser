@@ -41,8 +41,8 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
       {loading && <Loader />}
 
       {isMobile &&
-        (type === MatchType.SESSION_MARKET ||
-          type === MatchType.API_SESSION_MARKET) ? (
+      (type === MatchType.SESSION_MARKET ||
+        type === MatchType.API_SESSION_MARKET) ? (
         ""
       ) : (
         <BetTableHeader
@@ -51,13 +51,14 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           rightComponent={
             <div>
               {type === MatchType.MATCH_ODDS && !isMobile && (
-                <span className="f400 title-14">
+                <span className="f700 title-14">
                   Maximum Bet {data?.maxBet}
                 </span>
               )}
               <span
-                className={`${isMobile ? "text-black title-16" : "text-white title-20"
-                  }`}
+                className={`${
+                  isMobile ? "text-black title-16" : "text-white title-20"
+                }`}
               >
                 <IoInformationCircle
                   onClick={() => {

@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { expertSocketService, socketService } from "../../socketManager";
 import {
-  getMatchList,
+  expertSocketService,
+  socket,
+  socketService,
+} from "../../socketManager";
+import {
+  // getMatchList,
   matchDetailAction,
   selectedBetAction,
   updateMatchRates,
@@ -39,7 +43,6 @@ const GameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const { success } = useSelector((state: RootState) => state.match.matchList);
-  const { runAmount } = useSelector((state: RootState) => state.bets);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -84,7 +87,14 @@ const GameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
-        navigate("/home");
+        if (
+          event?.gameType === "cricket" ||
+          event?.betType === "quickbookmaker1"
+        ) {
+          navigate(`/home`);
+        } else {
+          dispatch(getPlacedBets(id));
+        }
       }
     } catch (e) {
       console.log(e);
@@ -102,9 +112,8 @@ const GameDetails = () => {
           })
         );
         dispatch(getPlacedBets(id));
-        dispatch(resetRunAmountModal({showModal : false,id:event?.betId}))
-          dispatch(resetRunAmount({id:event?.betId}));
-        
+        dispatch(resetRunAmountModal({ showModal: false, id: event?.betId }));
+        dispatch(resetRunAmount({ id: event?.betId }));
       }
     } catch (e) {
       console.log(e);
@@ -186,7 +195,7 @@ const GameDetails = () => {
   };
 
   const handleMatchResult = () => {
-    dispatch(getMatchList({}));
+    // dispatch(getMatchList({}));
     dispatch(getProfileInMatchDetail());
   };
   const getUserProfile = () => {
@@ -207,7 +216,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     try {
-      if (success) {
+      if (success && socket) {
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
@@ -235,7 +244,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [success]);
+  }, [success, socket, id]);
 
   useEffect(() => {
     try {
@@ -257,14 +266,16 @@ const GameDetails = () => {
         socketService.userBalance.declaredMatchResultAllUser(handleMatchResult);
         socketService.userBalance.sessionNoResult(getUserProfile);
         socketService.userBalance.matchResultUnDeclared(handleMatchResult);
-        socketService.userBalance.unDeclaredMatchResultAllUser(handleMatchResult);
+        socketService.userBalance.unDeclaredMatchResultAllUser(
+          handleMatchResult
+        );
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
       };
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {

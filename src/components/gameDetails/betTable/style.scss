@@ -35,11 +35,17 @@
 }
 .backLayRunner-countrytrunc span {
     line-height: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block; /* Ensures the ellipsis works */
-    max-width: 60%;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+}
+.bookmaker-style {
+   display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+//   text-overflow: ellipsis;
+//   display: block;
 }
 .htfttable{
     background-color: $lightGray;

@@ -1,20 +1,36 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MatchList from "../../components/home";
-import { expertSocketService, socketService } from "../../socketManager";
-import { getMatchList } from "../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../store/store";
 import CustomModal from "../../components/commonComponent/modal";
+import MatchList from "../../components/home";
 import Desktop from "../../components/rules/desktop";
+import {
+  expertSocketService,
+  socket,
+  socketService,
+} from "../../socketManager";
 import { rulesModalShowFalse } from "../../store/actions/authAction";
+import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/horseMatchListAction";
+import {
+  getMatchList,
+  updateMatchOddRates,
+} from "../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../store/store";
+import isMobile from "../../utils/screenDimension";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
   const { rulesPopShow } = useSelector((state: RootState) => state.auth);
   const [matchType, setMatchType] = useState("cricket");
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
+  const { matchList, success } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
-  const getMatchListService = (matchType: any) => {
+  const setMatchOddRatesInRedux = (event: any) => {
+    dispatch(updateMatchOddRates(event));
+  };
+
+  const getMatchListService = () => {
     try {
       dispatch(
         getMatchList({
@@ -25,44 +41,92 @@ const Home = () => {
       console.log(e);
     }
   };
-  const getMatchListServiceSocket = () => {
-    
+  const getMatchListServiceSocket = (event: any) => {
     try {
-      dispatch(
-        getMatchList({
-          matchType: matchType,
-        })
-      );
+      if (event?.gameType === matchType) {
+        if (["cricket", "football", "tennis"].includes(matchType)) {
+          dispatch(
+            getMatchList({
+              matchType: event?.gameType,
+            })
+          );
+        } else if (["horseRacing", "greyhound"].includes(matchType)) {
+          dispatch(getHorseRacingCountryWiseList(matchType));
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getMatchListServiceOnDeclare = (event: any) => {
+    try {
+      if (event?.gameType === matchType) {
+        if (["cricket", "football", "tennis"].includes(matchType)) {
+          if (event?.betType === "quickbookmaker1") {
+            setTimeout(() => {
+              dispatch(getMatchList({ matchType: matchType }));
+            }, 500);
+          }
+        } else if (["horseRacing", "greyHound"].includes(matchType)) {
+          setTimeout(() => {
+            dispatch(getHorseRacingCountryWiseList(matchType));
+          }, 500);
+        }
+      }
     } catch (e) {
       console.log(e);
     }
   };
   useEffect(() => {
     try {
-      expertSocketService.match.matchAdded(getMatchListServiceSocket);
-      socketService.userBalance.matchResultDeclared(getMatchListServiceSocket);
-      socketService.userBalance.matchResultUnDeclared(getMatchListServiceSocket);
-      socketService.userBalance.declaredMatchResultAllUser(getMatchListServiceSocket);
-      socketService.userBalance.unDeclaredMatchResultAllUser(getMatchListServiceSocket);
+      if (socket) {
+        expertSocketService.match.matchAdded(getMatchListServiceSocket);
+        socketService.userBalance.matchResultDeclared(
+          getMatchListServiceOnDeclare
+        );
+        socketService.userBalance.matchResultUnDeclared(
+          getMatchListServiceOnDeclare
+        );
+        socketService.userBalance.declaredMatchResultAllUser(
+          getMatchListServiceOnDeclare
+        );
+        socketService.userBalance.unDeclaredMatchResultAllUser(
+          getMatchListServiceOnDeclare
+        );
+        return () => {
+          expertSocketService.match.matchAddedOff();
+          socketService.userBalance.matchResultDeclaredOff();
+          socketService.userBalance.matchResultUnDeclaredOff();
+          socketService.userBalance.declaredMatchResultAllUserOff();
+          socketService.userBalance.unDeclaredMatchResultAllUserOff();
+        };
+      }
     } catch (e) {
       console.log(e);
     }
-    return () => {
-      expertSocketService.match.matchAddedOff();
-      socketService.userBalance.matchResultDeclaredOff();
-      socketService.userBalance.matchResultUnDeclaredOff();
-      socketService.userBalance.declaredMatchResultAllUserOff();
-      socketService.userBalance.unDeclaredMatchResultAllUserOff();
-    };
-  }, []);
-  
-  useEffect(() => {
-    if (matchType) {
-      getMatchListService(matchType)
-    }
+  }, [socket, matchType]);
 
-  }, [matchType]);
-  
+  useEffect(() => {
+    if (
+      matchType &&
+      ["cricket", "football", "tennis"].includes(matchType) &&
+      ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
+    ) {
+      getMatchListService();
+    } else if (
+      matchType &&
+      ["horseRacing", "greyhoundRacing"].includes(matchType) &&
+      ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
+    ) {
+      dispatch(
+        getHorseRacingCountryWiseList(
+          matchType === "greyhoundRacing" ? "greyHound" : matchType
+        )
+      );
+    }
+  }, [matchType, location.pathname.split("/")[1]]);
+
   useEffect(() => {
     rulesPopShow ? setShow(true) : setShow(false);
   }, []);
@@ -71,9 +135,39 @@ const Home = () => {
     setShow(false);
     dispatch(rulesModalShowFalse());
   };
+
+  useEffect(() => {
+    if (
+      success &&
+      matchList.length > 0 &&
+      isMobile &&
+      ["cricket", "football", "tennis"].includes(matchType)
+    ) {
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.joinMatchRoom(element?.id, "user");
+      });
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.getMatchRates(
+          element?.id,
+          setMatchOddRatesInRedux
+        );
+      });
+    }
+
+    return () => {
+      // expertSocketService.match.leaveAllRooms();
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.leaveMatchRoom(element?.id);
+      });
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.getMatchRatesOff(element?.id);
+      });
+    };
+  }, [matchList.length, success, matchType]);
+
   return (
     <div>
-      <MatchList setMatchType={setMatchType} />
+      <MatchList setMatchType={setMatchType} matchType={matchType} />
       <CustomModal
         customClass="modalFull-90 rule-popup"
         show={show}

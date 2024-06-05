@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import "./style.scss";
 import { RootState } from "../../../../store/store";
 import { useSelector } from "react-redux";
+import DeleteBetOverlay from "../../../commonComponent/betComponents/deleteBetRow";
 const placeBetHeader = [
   {
     id: "matchedBet",
@@ -36,7 +37,11 @@ const MyBet = () => {
         {placedBets &&
           Array.from(new Set(placedBets))?.map((bet: any) => {
             return (
-              <tr key={bet?.id}>
+              <tr key={bet?.id} className={`position-relative ${
+                bet?.betType === "NO" || bet?.betType === "LAY"
+                  ? "bg-red1"
+                  : "bg-blue3"
+              }`}>
                 <th
                   className={`title-12 text-start ${
                     bet?.betType === "NO" || bet?.betType === "LAY"
@@ -66,6 +71,7 @@ const MyBet = () => {
                 >
                   {bet?.amount}
                 </th>
+                <DeleteBetOverlay title={bet?.deleteReason} />
               </tr>
             );
           })}

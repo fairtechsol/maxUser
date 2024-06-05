@@ -4,21 +4,20 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 // import "./style.scss";
-import { IoInformationCircle } from "react-icons/io5";
 import CustomModal from "../../commonComponent/modal";
 import BetTable from "../../otherGameDetaills/betTable/index";
 import PlacedBet from "../../gameDetails/desktop/placeBet";
-import MyBetFootball from "./myBet";
 import { MatchType } from "../../../utils/enum";
 import { formatDate } from "../../../utils/dateUtils";
+import MyBet from "../../gameDetails/desktop/myBet";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
 
-  const { matchDetails } = useSelector(
-    (state: RootState) => state.match.matchList
+  const { otherMatchDetails } = useSelector(
+    (state: RootState) => state.otherGames.matchDetail
   );
 
   useEffect(() => {
@@ -45,52 +44,135 @@ const FootballDesktopGameDetail = () => {
               <Col md={12}>
                 <BetTableHeader
                   customClass="mt-2 py-2"
-                  title={matchDetails?.title}
+                  title={otherMatchDetails?.title}
                   rightComponent={
                     <span className="title-16 f500">
-                      {formatDate(matchDetails?.startAt)}
+                      {/* {formatDate(otherMatchDetails?.startAt)} */}
+                      {otherMatchDetails?.startAt &&
+                        formatDate(otherMatchDetails?.startAt)}
                     </span>
                   }
                 />
               </Col>
 
-              {matchDetails?.bookmaker?.isActive && (
+              {otherMatchDetails?.matchOdd?.isActive && (
                 <Col md={12}>
                   <BetTable
-                    title={matchDetails?.bookmaker?.name}
+                    title={otherMatchDetails?.matchOdd?.name}
                     type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.bookmaker}
+                    data={otherMatchDetails?.matchOdd}
                   />
                 </Col>
               )}
-              <Col md={12}>
-                {/* <BetTable /> */}
-              </Col>
-              <Col md={12}>
-                {/* <BetTable /> */}
-              </Col>
-              <Col md={6}>
-                {/* <BetTable /> */}
-              </Col>
-              <Col md={6}>
-                {/* <BetTable /> */}
-              </Col>
-              <Col md={4}>
-                {/* <BetTable /> */}
-              </Col>
 
-              {/* {matchDetails?.apiSessionActive && ( */}
-              <Col md={4}>
-                {/* <BetTable /> */}
-              </Col>
-              <Col md={4}>
-                {/* <BetTable /> */}
+              <Col md={12}>{/* <BetTable /> */}</Col>
+              <Col md={12}>{/* <BetTable /> */}</Col>
+              <Col md={6}>{/* <BetTable /> */}</Col>
+              <Col md={6}>{/* <BetTable /> */}</Col>
+              <Col md={4}>{/* <BetTable /> */}</Col>
+
+              {/* {otherMatchDetails?.bookmaker?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={otherMatchDetails?.bookmaker?.name}
+                    type={MatchType.MATCH_ODDS}
+                    data={otherMatchDetails?.bookmaker}
+                  />
+                </Col>
+              )} */}
+
+              {otherMatchDetails?.quickBookmaker?.length > 0 &&
+                otherMatchDetails?.quickBookmaker
+                  ?.filter((item: any) => item?.isActive)
+                  ?.map((item: any) => (
+                    <div key={item?.id}>
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.BOOKMAKER}
+                          data={item}
+                        />
+                      </Col>
+                    </div>
+                  ))}
+
+              {otherMatchDetails?.setWinner?.length > 0 &&
+                otherMatchDetails?.setWinner
+                  ?.filter((item: any) => item?.isActive)
+                  ?.map((item: any) => (
+                    <div key={item?.id}>
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.SET_WINNER}
+                          data={item}
+                        />
+                      </Col>
+                    </div>
+                  ))}
+              {otherMatchDetails?.firstHalfGoal?.length > 0 &&
+                otherMatchDetails?.firstHalfGoal
+                  ?.filter((item: any) => item?.isActive)
+                  ?.map((item: any) => (
+                    <div key={item?.id}>
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.UNDER_OVER}
+                          data={item}
+                        />
+                      </Col>
+                    </div>
+                  ))}
+
+              {otherMatchDetails?.halfTime?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={otherMatchDetails?.halfTime?.name}
+                    type={MatchType.MATCH_ODDS}
+                    data={otherMatchDetails?.halfTime}
+                  />
+                </Col>
+              )}
+
+              {otherMatchDetails?.overUnder?.length > 0 &&
+                otherMatchDetails?.overUnder
+                  ?.filter((item: any) => item?.isActive)
+                  ?.map((item: any) => (
+                    <div key={item?.id}>
+                      <Col md={12}>
+                        <BetTable
+                          title={item?.name}
+                          type={MatchType.UNDER_OVER}
+                          data={item}
+                        />
+                      </Col>
+                    </div>
+                  ))}
+
+              {/* <Col md={12}>
+                <BetTable />
               </Col>
               <Col md={12}>
-                {/* <BetTable /> */}
+                <BetTable />
               </Col>
+              <Col md={6}>
+                <BetTable />
+              </Col>
+              <Col md={6}>
+                <BetTable />
+              </Col>
+              <Col md={4}>
+                {/* <BetTable /> */}
+              {/* </Col> */}
+              {/* <Col md={4}> */}
+              {/* <BetTable /> */}
+              {/* </Col> */}
+              {/* <Col md={12}> */}
+              {/* <BetTable /> */}
+              {/* </Col> */}
               {/* )} */}
-              {/* {matchDetails?.manualSessionActive && ( */}
+              {/* {otherMatchDetails?.manualSessionActive && ( */}
               {/* <Col md={4}>
                   <BetTable
                   />
@@ -162,30 +244,10 @@ const FootballDesktopGameDetail = () => {
               }}
             >
               <Col md={12}>
-                <div
-                  onClick={() => setShowContactAdmin(true)}
-                  style={{
-                    display: "flex",
-                    margin: "10px 0",
-                    marginBottom: "0",
-                    alignItems: "center",
-                  }}
-                  className="fs-4"
-                >
-                  <IoInformationCircle />
-                  <h6
-                    style={{ margin: "0 0 0 5px", color: "#ff0000" }}
-                    className="fs-5 text-decoration-underline cursor-pointer blinking-text"
-                  >
-                    Ball by Ball
-                  </h6>
-                </div>
-              </Col>
-              <Col md={12}>
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBetFootball />
+                <MyBet />
               </Col>
             </Row>
           </Container>

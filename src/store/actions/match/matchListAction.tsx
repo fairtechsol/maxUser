@@ -23,7 +23,22 @@ export const getMatchList = createAsyncThunk<any, any>(
     }
   }
 );
-
+export const getMatchListSearch = createAsyncThunk<any, any>(
+  "/match/search",
+  async ({searchKeyword }, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.MATCH.MATCHSEARCHLIST}/${searchKeyword || ""}`
+      );
+      if (resp) {
+        return resp;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 export const SearchList = createAsyncThunk<any, any>(
   "/match/searchlist",
   async (requestData, thunkApi) => {
@@ -126,7 +141,9 @@ export const betReportList = createAsyncThunk<any, any>(
           requestData.status
         }&betPlaced.eventType=${requestData?.matchType}&keyword=${
           requestData?.keyword || ""
-        }${requestData?.filter || ""}`
+        }${requestData?.filter || ""}&page=${requestData.page || 1}&limit=${
+          requestData.limit || 10
+        }`
       );
       if (resp?.data) {
         return resp?.data;
@@ -167,7 +184,9 @@ export const settleUnsettleMatch = createAsyncThunk<any, any>(
       const resp = await service.get(
         `${ApiConstants.MATCH.CURRENTBET}?page=${page || 1}&limit=${
           limit || 15
-        }&status=${status}&searchBy=user.userName&keyword=${keyword || ""}`
+        }&status=${status}&searchBy=betPlaced.eventName&keyword=${
+          keyword || ""
+        }`
       );
       if (resp?.data) {
         return resp?.data;
@@ -202,7 +221,11 @@ export const getCompetitionMatches = createAsyncThunk<any, any>(
         `${ApiConstants.EXPERT.COMPETITIONMATCHES}${requestData?.id}/${requestData?.date}`
       );
       if (resp?.data) {
-        return resp?.data;
+        let data = {
+          data: resp?.data,
+          matchType: requestData?.matchType,
+        };
+        return data;
       }
     } catch (error) {
       const err = error as AxiosError;

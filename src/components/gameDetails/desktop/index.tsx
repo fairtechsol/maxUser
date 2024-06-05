@@ -35,7 +35,6 @@ const DesktopGameDetail = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <Container fluid>
       <Row>
@@ -48,7 +47,8 @@ const DesktopGameDetail = () => {
                   title={matchDetails?.title}
                   rightComponent={
                     <span className="title-16 f400">
-                      {matchDetails?.startAt && ( formatDate(matchDetails?.startAt))}
+                      {matchDetails?.startAt &&
+                        formatDate(matchDetails?.startAt)}
                     </span>
                   }
                 />
@@ -157,15 +157,21 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
               {matchDetails?.apiSessionActive && (
-                <Col md={6}>
+                <Col
+                  md={
+                    window.innerWidth >= 768 && window.innerWidth <= 1021
+                      ? 12
+                      : 6
+                  }
+                >
                   <BetTable
                     title={"Session Market"}
                     type={MatchType.API_SESSION_MARKET}
-                    data={matchDetails?.apiSession}
+                    data={matchDetails?.sessionBettings}
                   />
                 </Col>
               )}
-              {matchDetails?.manualSessionActive && (
+              {/* {matchDetails?.manualSessionActive && (
                 <Col md={6}>
                   <BetTable
                     title={"Quick Session Market"}
@@ -173,7 +179,7 @@ const DesktopGameDetail = () => {
                     data={matchDetails?.sessionBettings}
                   />
                 </Col>
-              )}
+              )} */}
 
               {/* <Col md={12}>
                 <CommonTabs

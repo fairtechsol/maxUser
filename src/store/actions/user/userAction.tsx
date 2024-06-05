@@ -39,7 +39,7 @@ export const getAccountStatement = createAsyncThunk<any, any>(
           page || 1
         }&limit=${limit || 15}&searchBy=${searchBy}&keyword=${
           keyword || ""
-        }${filter}`
+        }&sort=transaction.createdAt:DESC${filter}`
       );
       if (resp) {
         return resp?.data;
@@ -89,7 +89,6 @@ export const getProfileInMatchDetail = createAsyncThunk<any>(
   async (_, thunkApi) => {
     try {
       const resp = await service.get(`${ApiConstants.USER.GET_PROFILE}`);
-      // console.log("API Request user: Success", resp.data);
       if (resp) {
         return resp?.data;
       }
@@ -129,8 +128,8 @@ export const updateBetDataOnDeclare = createAsyncThunk<any, any>(
 
 export const updateBetDataOnUndeclare = createAsyncThunk<any, any>(
   "/user/betData/undeclare",
-  async (balance) => {
-    return balance;
+  async (data) => {
+    return data;
   }
 );
 
@@ -149,15 +148,21 @@ export const updateMaxLossForBet = createAsyncThunk<any, any>(
 
 export const updateBalanceOnBetDelete = createAsyncThunk<any, any>(
   "/user/balanceOnBetDelete",
-  async (balance) => {
-    return balance;
+  async (data) => {
+    return data;
   }
 );
 
 export const updateTeamRatesOnDeleteMatch = createAsyncThunk<any, any>(
-  "/user/profitLoss/deleteMatch",
-  async (balance) => {
-    return balance;
+  "/user/profitLoss/deleteMatchBets",
+  async (data) => {
+    return data;
+  }
+);
+export const updateTeamRatesOnDeleteMatchOther = createAsyncThunk<any, any>(
+  "/user/profitLoss/deleteMatchBetsOther",
+  async (data) => {
+    return data;
   }
 );
 
@@ -170,8 +175,8 @@ export const updateDeleteReasonBet = createAsyncThunk<any, any>(
 
 export const updateProfitLossOnDeleteSession = createAsyncThunk<any, any>(
   "/user/profitLoss/deleteSession",
-  async (balance) => {
-    return balance;
+  async (data) => {
+    return data;
   }
 );
 
@@ -184,8 +189,15 @@ export const updateRunAmountOnDeleteBet = createAsyncThunk<any, any>(
 
 export const updateBalanceFromSocket = createAsyncThunk<any, any>(
   "/user/balanceFromSocket",
-  async (balance) => {
-    return balance;
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateMatchRatesOnMarketUndeclare = createAsyncThunk<any, any>(
+  "/teamRates/marketUndeclare",
+  async (data) => {
+    return data;
   }
 );
 

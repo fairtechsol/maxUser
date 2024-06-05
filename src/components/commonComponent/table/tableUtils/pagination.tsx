@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
 
 interface PaginationComponentProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (pageNumber: number) => void;
-
 }
 
 const PaginationComponent: React.FC<PaginationComponentProps> = ({
@@ -13,6 +12,45 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
   totalPages,
   onPageChange,
 }) => {
+  const [pageComp, setPageComp] = useState([]);
+
+  useEffect(() => {
+    let isPageNumberOutOfRange: Boolean;
+    const pageNumbers: any = [...new Array(totalPages)].map((_, index) => {
+      const pageNumber = index + 1;
+      const isPageNumberFirst = pageNumber === 1;
+      const isPageNumberLast = pageNumber === totalPages;
+      const isCurrentPageWithinTwoPageNumbers =
+        Math.abs(pageNumber - currentPage) < 1;
+
+      if (
+        isPageNumberFirst ||
+        isPageNumberLast ||
+        isCurrentPageWithinTwoPageNumbers
+      ) {
+        isPageNumberOutOfRange = false;
+        return (
+          <Pagination.Item
+            key={pageNumber}
+            onClick={() => onPageChange(pageNumber)}
+            active={pageNumber === currentPage}
+          >
+            {pageNumber}
+          </Pagination.Item>
+        );
+      }
+
+      if (!isPageNumberOutOfRange) {
+        isPageNumberOutOfRange = true;
+        return <Pagination.Ellipsis key={pageNumber} className="muted" />;
+      }
+
+      return null;
+    });
+
+    setPageComp(pageNumbers);
+  }, [totalPages, currentPage]);
+
   return (
     <Pagination>
       <div className={`paginationContainer`}>
@@ -29,16 +67,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
           Prev
         </Pagination.Prev>
 
-        {[...Array(totalPages)].map((_, index) => (
-          <Pagination.Item
-            key={index + 1}
-            active={index + 1 === currentPage}
-            onClick={() => onPageChange(index + 1)}
-            className="cursor-pointer"
-          >
-            {index + 1}
-          </Pagination.Item>
-        ))}
+        {pageComp?.map((item) => item)}
 
         <Pagination.Next
           disabled={currentPage === totalPages}

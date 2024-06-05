@@ -1,8 +1,9 @@
 // import { GiHamburgerMenu } from 'react-icons/gi';
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { socketService } from "../../socketManager";
+import { getMatchList } from "../../store/actions/match/matchListAction";
 import {
   getProfile,
   marqueeNotification,
@@ -15,17 +16,23 @@ import "../layout.scss";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import TopBar from "./topbar";
-import { getMatchList } from "../../store/actions/match/matchListAction";
 
 const MainLayout = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    if (!sessionStorage.getItem("userToken")) {
+    if (!sessionStorage.getItem("jwtMaxUser")) {
       navigate("/");
+    } else if (
+      sessionStorage.getItem("jwtMaxUser") &&
+      sessionStorage.getItem("forceChangePassword") &&
+      !["login", "change-password"].includes(location.pathname)
+    ) {
+      navigate("/change-password");
     }
-  }, [navigate]);
+  }, [location.pathname]);
 
   const updateLoggedUserBalance = (event: any) => {
     dispatch(updateBalanceFromSocket(event));
@@ -49,17 +56,17 @@ const MainLayout = () => {
   };
 
   useEffect(() => {
-    if (!sessionStorage.getItem("userToken")) {
+    if (!sessionStorage.getItem("jwtMaxUser")) {
       navigate("/login");
       sessionStorage.clear();
     } else {
       dispatch(getProfile());
       dispatch(marqueeNotification());
     }
-  }, [sessionStorage.getItem("userToken")]);
+  }, [sessionStorage.getItem("jwtMaxUser")]);
 
   useEffect(() => {
-    if (sessionStorage.getItem("userToken")) {
+    if (sessionStorage.getItem("jwtMaxUser")) {
       socketService.connect();
       socketService.auth.logout();
       socketService.userBalance.updateUserBalance(updateLoggedUserBalance);
@@ -78,7 +85,7 @@ const MainLayout = () => {
     return () => {
       socketService.disconnect();
     };
-  }, [sessionStorage.getItem("userToken")]);
+  }, [sessionStorage.getItem("jwtMaxUser")]);
 
   return (
     <>

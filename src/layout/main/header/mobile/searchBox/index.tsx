@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { getMatchList } from "../../../../../store/actions/match/matchListAction";
+import {getMatchListSearch } from "../../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../../store/store";
 import SearchResult from "../../searchResult";
 import "./style.scss";
@@ -23,7 +23,7 @@ const SearchBox = () => {
   const debouncedInputValue = useMemo(() => {
     return debounce((value) => {
       dispatch(
-        getMatchList({
+        getMatchListSearch({
           type: "search",
           searchKeyword: value,
         })

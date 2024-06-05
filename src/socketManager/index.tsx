@@ -12,13 +12,13 @@ export const initialiseSocket = () => {
   socket = io(baseUrls.socket, {
     transports: [`${Constants.WEBSOCKET}`],
     auth: {
-      token: `${sessionStorage.getItem("userToken")}`,
+      token: `${sessionStorage.getItem("jwtMaxUser")}`,
     },
   });
   expertSocket = io(baseUrls.expertSocket, {
     transports: [`${Constants.WEBSOCKET}`],
     auth: {
-      token: `${sessionStorage.getItem("userToken")}`,
+      token: `${sessionStorage.getItem("jwtMaxUser")}`,
     },
   });
   matchSocket = io(baseUrls.matchSocket, {
@@ -34,15 +34,15 @@ export const socketService = {
   connect: () => {
     initialiseSocket();
     // Connect to the socket server
-    socket.connect();
-    expertSocket.connect();
-    matchSocket.connect();
+    socket?.connect();
+    expertSocket?.connect();
+    matchSocket?.connect();
   },
   disconnect: () => {
     // Disconnect from the socket server
-    socket.disconnect();
-    expertSocket.disconnect();
-    matchSocket.disconnect();
+    socket?.disconnect();
+    expertSocket?.disconnect();
+    matchSocket?.disconnect();
   },
   auth: { ...authSocketService },
   userBalance: { ...userBalanceSocketService },

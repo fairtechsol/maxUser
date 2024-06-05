@@ -4,7 +4,7 @@ import "./style.scss";
 
 const DesktopTopBar = () => {
   return (
-    <div className="p-2 bg-secondary d-flex gap-4 f400 title-14 overflow-auto no-wrap">
+    <div className="p-2 bg-secondary d-flex gap-4 title-12 overflow-auto no-wrap">
       {topBarJson
         ?.filter((item) => item?.type === "desktop" || item?.type === "both")
         ?.map((item) => (
@@ -17,7 +17,7 @@ const DesktopTopBar = () => {
                 ? item?.link
                 : `/game-list${item?.link}`
             }
-            className={`text-decoration-none text-black topbar-link ${
+            className={`text-decoration-none f600 title-13 text-black topbar-link ${
               item?.blink ? "blinking-text" : ""
             }`}
           >

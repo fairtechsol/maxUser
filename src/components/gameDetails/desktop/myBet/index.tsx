@@ -22,10 +22,9 @@ const placeBetHeader = [
 
 const MyBet = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
   return (
     <RightPanelContainer title={"My Bet"}>
-      <div style={{ maxHeight: "70vh", overflow: "auto" }}>
+      <div className="betList" style={{ maxHeight: "70vh", overflow: "auto" }}>
         <Table className="w-full">
           <thead>
             <tr className="bg-darkGrey">
@@ -40,6 +39,13 @@ const MyBet = () => {
             </tr>
           </thead>
           <tbody>
+            {placedBets?.length < 1 && (
+              <tr>
+                <th colSpan={3} style={{ textAlign: "center" }}>
+                  <span className="f400 title-14">No records Found</span>
+                </th>
+              </tr>
+            )}
             {placedBets &&
               Array.from(new Set(placedBets))?.map((bet: any) => {
                 return (
@@ -58,7 +64,11 @@ const MyBet = () => {
                           : "bg-blue3"
                       }`}
                     >
-                      {bet?.teamName}
+                      {["horseRacing", "greyHound"].includes(bet?.eventType)
+                        ? bet?.teamName?.split(".")?.[1]?.trim()
+                          ? bet?.teamName?.split(".")?.[1]?.trim()
+                          : bet?.teamName
+                        : bet?.bettingName ?? bet?.teamName}
                     </th>
                     <th
                       className={`title-12 text-start f500 ${

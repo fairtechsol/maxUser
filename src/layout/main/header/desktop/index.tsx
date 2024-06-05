@@ -8,7 +8,7 @@ import CustomInput from "../../../../components/commonComponent/input";
 import LogoSection from "../../../../components/commonComponent/logoSection";
 import MarqueeHeader from "../../../../components/commonComponent/marquee";
 import { logout } from "../../../../store/actions/authAction";
-import { getMatchList } from "../../../../store/actions/match/matchListAction";
+import { getMatchListSearch } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
@@ -30,6 +30,7 @@ const DesktopHeader = () => {
   const [openExposure, setOpenExposure] = useState(false);
   const [show, setShow] = useState(false);
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
+  const [searchKeyword, setSearchKeyword] = useState('')
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -42,6 +43,7 @@ const DesktopHeader = () => {
     if (open === false) {
       dispatch(SearchListReset());
     }
+    setSearchKeyword('')
     setOpen(!open);
   };
 
@@ -55,17 +57,16 @@ const DesktopHeader = () => {
   const debouncedInputValue = useMemo(() => {
     return debounce((value) => {
       dispatch(
-        getMatchList({
+        getMatchListSearch({
           type: "search",
           searchKeyword: value,
         })
       );
     }, 500);
   }, []);
-
   return (
     <>
-      <Row className=" w-100">
+      <Row className=" w-100vw" >
         <Col xs={12}>
           <div className="float-start">
             <Link to={"/home"}>
@@ -76,21 +77,28 @@ const DesktopHeader = () => {
           </div>
           <ul className="d-flex align-items-center white-text gap-3 list-unstyled mb-0 float-end h-100">
             <li className="d-flex gap-3 align-items-center">
+            <div>
               <Collapse in={open} dimension="width">
-                <div id="searchCollapse" className="position-relative">
+                <div id="searchCollapse" className="position-relative" >
                   <CustomInput
                     placeholder="All Events"
+                    inputClass="headerSearch"
+                    value={searchKeyword}
                     onChange={(e: any) => {
+                      setSearchKeyword(e.target.value)
                       if (e.target.value?.length > 2) {
                         debouncedInputValue(e.target.value);
+                      }else if(e.target.value?.length == 0){
+                        setSearchKeyword('')
                       }
                     }}
                   />
-                  {searchedMatchList && (
+                  {(searchedMatchList && searchKeyword) && (
                     <SearchResult setOpen={setOpen} data={searchedMatchList} />
                   )}
                 </div>
               </Collapse>
+                </div>
               <span>
                 <FaSearchPlus
                   aria-expanded={open}
@@ -110,7 +118,7 @@ const DesktopHeader = () => {
             <li>
               <div className="balance-cont">
                 <div>
-                  Balance:<b>{getProfile?.userBal?.currentBalance}</b>
+                  Balance:<b>{(parseFloat(getProfile?.userBal?.currentBalance)).toFixed(2)}</b>
                 </div>
                 <div>
                   <span

@@ -12,7 +12,6 @@ const SelectSearch = (props: any) => {
     isSearchable,
     onChange,
     value,
-    defaultValue,
     label,
     customClass,
     filedClass,

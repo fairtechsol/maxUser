@@ -1,18 +1,74 @@
 import { Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
+import {
+  profitLossDataForMatchConstants,
+  teamStatus,
+} from "../../../../utils/constants";
+import { calculateProfitLoss } from "../../../../utils/matchDetailsBetCalculation";
 import isMobile from "../../../../utils/screenDimension";
-import "../../../gameDetails/betTable/apiSessionMarket/style.scss";
-import "../style.scss";
-// interface MatchOddsProps {
-//   minMax?: any;
-//   data: any;
-//   matchDetails?: any;
-//   backLayCount?: number;
-// }
-function FootballMatchOdds() {
+import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
+import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
+import "./style.scss";
 
+interface MatchOddsProps {
+  minMax?: any;
+  data: any;
+  matchDetails?: any;
+  backLayCount?: number;
+}
+function FootballMatchOdds({
+  minMax,
+  data,
+  matchDetails,
+  backLayCount,
+}: MatchOddsProps) {
+  const dispatch: AppDispatch = useDispatch();
 
-  
+  const handleClick = (team: any, data: any) => {
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+  };
 
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+  let arr = ["A", "B", "C"];
+  const calculateValue = (
+    data: any,
+    indexs: number,
+    matchDetails: any,
+    matchs: any
+  ) => {
+    if (data?.type === "tiedMatch1") {
+      if (indexs === 0) {
+        return Number(matchDetails?.profitLossDataMatch?.yesRateTie) || 0;
+      } else {
+        return Number(matchDetails?.profitLossDataMatch?.noRateTie) || 0;
+      }
+    } else if (data?.type === "completeMatch") {
+      if (indexs === 0) {
+        return Number(matchDetails?.profitLossDataMatch?.yesRateComplete) || 0;
+      } else {
+        return Number(matchDetails?.profitLossDataMatch?.noRateComplete) || 0;
+      }
+    } else {
+      if (matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) {
+        return (
+          Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) || 0
+        );
+      } else {
+        return (
+          Number(matchDetails?.profitLossDataMatch?.[`team${matchs}Rate`]) || 0
+        );
+      }
+    }
+  };
   return (
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border `}
@@ -21,8 +77,8 @@ function FootballMatchOdds() {
         <thead>
           <tr>
             <th className="border-0">
-              {100 && isMobile && (
-                <span className="f700 title-14">{1000}</span>
+              {minMax && isMobile && (
+                <span className="f700 title-14">{minMax}</span>
               )}
             </th>
             {!isMobile && (
@@ -31,8 +87,13 @@ function FootballMatchOdds() {
                 <th className="border-0 match-odd-bet-place"></th>
               </>
             )}
-            <th className="text-center bg-blue3 match-odd-bet-place">Back</th>
-            <th className="text-center bg-red1 match-odd-bet-place">Lay</th>
+            <th className="text-center bg-blue3 match-odd-bet-place f400">
+              {" "}
+              BACK
+            </th>
+            <th className="text-center bg-red1 match-odd-bet-place f400">
+              LAY
+            </th>
             {!isMobile && (
               <>
                 <th className="border-0 match-odd-bet-place"></th>
@@ -42,7 +103,7 @@ function FootballMatchOdds() {
           </tr>
         </thead>
         <tbody>
-          {/* {arr
+          {arr
             ?.filter((item) => matchDetails?.[`team${item}`] != null)
             ?.map((matchs, indexes) => {
               return (
@@ -51,69 +112,36 @@ function FootballMatchOdds() {
                     <div className="backLayRunner d-flex flex-column px-1 w-100">
                       <span
                         className={`backLayRunner-country title-12  ${
-                          isMobile ? "f900" : "f600"
+                          isMobile ? "f900" : "f500"
                         } `}
                       >
-                        {data?.type === "completeMatch" ||
-                        data?.type === "tiedMatch1"
-                          ? indexes === 0
-                            ? "YES"
-                            : "NO"
-                          : matchDetails?.[`team${matchs}`]}
+                        {matchDetails?.[`team${matchs}`]}
                       </span>
                       <div className="d-flex align-items-center justify-content-between w-100">
                         <span
                           className={`title-14  ${
-                            data?.type === "tiedMatch1"
-                              ? indexes === 0
-                                ? matchDetails?.profitLossDataMatch
-                                    ?.yesRateTie < 0
-                                  ? "color-red"
-                                  : "color-green"
-                                : matchDetails?.profitLossDataMatch?.noRateTie <
-                                  0
-                                ? "color-red"
-                                : "color-green"
-                              : data?.type === "completeMatch"
-                              ? indexes === 0
-                                ? matchDetails?.profitLossDataMatch
-                                    ?.yesRateComplete < 0
-                                  ? "color-red"
-                                  : "color-green"
-                                : matchDetails?.profitLossDataMatch
-                                    ?.noRateComplete < 0
-                                ? "color-red"
-                                : "color-green"
-                              : matchDetails?.profitLossDataMatch?.[
-                                  `team${matchs}Rate`
-                                ] < 0
+                            matchDetails?.profitLossDataMatch?.[
+                              profitLossDataForMatchConstants[data?.type][
+                                matchs
+                              ]
+                            ] < 0
                               ? "color-red"
                               : "color-green"
                           }`}
                         >
-                          {data?.type === "tiedMatch1"
-                            ? indexes === 0
-                              ? matchDetails?.profitLossDataMatch?.yesRateTie ??
-                                0
-                              : matchDetails?.profitLossDataMatch?.noRateTie ??
-                                0
-                            : data?.type === "completeMatch"
-                            ? indexes === 0
-                              ? matchDetails?.profitLossDataMatch
-                                  ?.yesRateComplete ?? 0
-                              : matchDetails?.profitLossDataMatch
-                                  ?.noRateComplete ?? 0
-                            : matchDetails?.profitLossDataMatch?.[
-                                `team${matchs}Rate`
-                              ]
+                          {matchDetails?.profitLossDataMatch?.[
+                            profitLossDataForMatchConstants[data?.type][matchs]
+                          ]
                             ? matchDetails?.profitLossDataMatch?.[
-                                `team${matchs}Rate`
+                                profitLossDataForMatchConstants[data?.type][
+                                  matchs
+                                ]
                               ]
                             : 0}
                         </span>
                         <span
                           className={`title-14 ${
-                            Number(
+                            (Number(
                               calculateProfitLoss(
                                 data,
                                 selectedBet,
@@ -123,36 +151,66 @@ function FootballMatchOdds() {
                                     ? "YES"
                                     : "NO"
                                   : matchDetails?.[`team${matchs}`]
-                              ) || 0
-                            ) < 0
+                              )
+                            ) +
+                            Number(
+                              calculateValue(
+                                data,
+                                indexes,
+                                matchDetails,
+                                matchs
+                              )
+                            )) < 0
                               ? "color-red"
-                              : Number(
-                                  calculateProfitLoss(
-                                    data,
-                                    selectedBet,
-                                    data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                      ? indexes === 0
-                                        ? "YES"
-                                        : "NO"
-                                      : matchDetails?.[`team${matchs}`]
-                                  ) || 0
-                                ) > 0
+                              :(Number(
+                                calculateProfitLoss(
+                                  data,
+                                  selectedBet,
+                                  data?.type === "completeMatch" ||
+                                    data?.type === "tiedMatch1"
+                                    ? indexes === 0
+                                      ? "YES"
+                                      : "NO"
+                                    : matchDetails?.[`team${matchs}`]
+                                )
+                              ) +
+                              Number(
+                                calculateValue(
+                                  data,
+                                  indexes,
+                                  matchDetails,
+                                  matchs
+                                )
+                              )) > 0
                               ? "color-green"
                               : ""
                           }`}
                         >
-                          {calculateProfitLoss(
-                            data,
-                            selectedBet,
-                            data?.type === "completeMatch" ||
-                              data?.type === "tiedMatch1"
-                              ? indexes === 0
-                                ? "YES"
-                                : "NO"
-                              : matchDetails?.[`team${matchs}`]
-                          )}
+                          {selectedBet?.team?.stake > 0 &&
+                          selectedBet?.data?.type == data.type
+                            ? (Number(
+                                calculateProfitLoss(
+                                  data,
+                                  selectedBet,
+                                  data?.type === "completeMatch" ||
+                                    data?.type === "tiedMatch1"
+                                    ? indexes === 0
+                                      ? "YES"
+                                      : "NO"
+                                    : matchDetails?.[`team${matchs}`]
+                                )
+                              ) +
+                              Number(
+                                calculateValue(
+                                  data,
+                                  indexes,
+                                  matchDetails,
+                                  matchs
+                                )
+                              )).toFixed(2)
+                            : null}
                         </span>
+                       
                       </div>
                     </div>
                   </td>
@@ -210,16 +268,8 @@ function FootballMatchOdds() {
                                     rate: rate,
                                     type: "back",
                                     stake: 0,
-                                    teamA:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? "YES"
-                                        : matchDetails?.teamA,
-                                    teamB:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? "NO"
-                                        : matchDetails?.teamB,
+                                    teamA: matchDetails?.teamA,
+                                    teamB: matchDetails?.teamB,
                                     teamC: matchDetails?.teamC
                                       ? matchDetails?.teamC
                                       : "",
@@ -228,6 +278,7 @@ function FootballMatchOdds() {
                                     matchId: matchDetails?.id,
                                     placeIndex: (isMobile ? 0 : 2) - index,
                                     matchBetType: data?.type,
+                                    gameType: "other",
                                   },
                                   data
                                 );
@@ -272,26 +323,12 @@ function FootballMatchOdds() {
                               ) {
                                 handleClick(
                                   {
-                                    betOnTeam:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? indexes === 0
-                                          ? "YES"
-                                          : "NO"
-                                        : matchDetails?.[`team${matchs}`],
+                                    betOnTeam: matchDetails?.[`team${matchs}`],
                                     rate: rate,
                                     type: "lay",
                                     stake: 0,
-                                    teamA:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? "YES"
-                                        : matchDetails?.teamA,
-                                    teamB:
-                                      data?.type === "completeMatch" ||
-                                      data?.type === "tiedMatch1"
-                                        ? "NO"
-                                        : matchDetails?.teamB,
+                                    teamA: matchDetails?.teamA,
+                                    teamB: matchDetails?.teamB,
                                     teamC: matchDetails?.teamC
                                       ? matchDetails?.teamC
                                       : "",
@@ -300,6 +337,7 @@ function FootballMatchOdds() {
                                     matchId: matchDetails?.id,
                                     placeIndex: index,
                                     matchBetType: data?.type,
+                                    gameType: "other",
                                   },
                                   data
                                 );
@@ -319,7 +357,7 @@ function FootballMatchOdds() {
                   {!isMobile && <td></td>}
                 </tr>
               );
-            })} */}
+            })}
         </tbody>
       </Table>
     </div>

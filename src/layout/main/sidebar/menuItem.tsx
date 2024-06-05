@@ -8,6 +8,7 @@ import {
   getCompetitionMatches,
 } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
+import moment from "moment";
 
 interface Props {
   item: any;
@@ -48,45 +49,60 @@ const MenuCollapse: React.FC<{
   );
 
   useEffect(() => {
-    if (selectedCompetition !== "") {
-      const tempList = [...menuItemList];
-      const selectedMatchChildren =
-        tempList[1].children[selectedMatchIndex].children;
-      const competitionIndex = selectedMatchChildren.findIndex(
-        (item: any) => item?.id === selectedCompetition
-      );
-      selectedMatchChildren[competitionIndex].children = competitionDates?.map(
-        (item: any) => ({
-          name: item?.startdate,
-          id: item?.startdate,
-          type: "collapse",
-          children: [],
-        })
-      );
-      setMenuItemList(tempList);
+    try {
+      if (selectedCompetition !== "") {
+        const tempList = [...menuItemList];
+        const selectedMatchChildren =
+          tempList[1].children[selectedMatchIndex].children;
+        const competitionIndex = selectedMatchChildren.findIndex(
+          (item: any) => item?.id === selectedCompetition
+        );
+        selectedMatchChildren[competitionIndex].children = competitionDates?.map(
+          (item: any) => ({
+            name: moment.utc(item?.startdate).format("YYYY/MM/DD"),
+            id: item?.startdate,
+            type: "collapse",
+            children: [],
+          })
+        );
+        setMenuItemList(tempList);
+      }
+    } catch (error) {
+      console.log(error)
     }
+    
   }, [competitionDates, selectedCompetition, selectedMatchIndex]);
 
   useEffect(() => {
-    if (selectedDate !== "") {
-      const tempList = [...menuItemList];
-      const selectedMatchChildren =
-        tempList[1].children[selectedMatchIndex].children;
-      const competitionIndex = selectedMatchChildren.findIndex(
-        (item: any) => item?.id === selectedCompetition
-      );
-      const dateIndex = selectedMatchChildren[
-        competitionIndex
-      ].children.findIndex((item: any) => item?.id === selectedDate);
-      selectedMatchChildren[competitionIndex].children[dateIndex].children =
-        competitionMatches?.map((item: any) => ({
-          name: item?.title,
-          id: item?.id,
-          type: "item",
-          path: `/game-detail/${item?.id}`,
-        }));
-      setMenuItemList(tempList);
+    try {
+      if (selectedDate !== "") {
+        const tempList = [...menuItemList];
+        const selectedMatchChildren =
+          tempList[1].children[selectedMatchIndex].children;
+        const competitionIndex = selectedMatchChildren.findIndex(
+          (item: any) => item?.id === selectedCompetition
+        );
+        const dateIndex = selectedMatchChildren[
+          competitionIndex
+        ].children.findIndex((item: any) => item?.id === selectedDate);
+        selectedMatchChildren[competitionIndex].children[dateIndex].children =
+          competitionMatches?.data?.map((item: any) => ({
+            name: item?.title,
+            id: item?.id,
+            type: "item",
+            path: `/${
+              competitionMatches?.matchType === "cricket"
+                ? "game-detail"
+                : "other-game-detail"
+            }/${competitionMatches?.matchType}/${item?.id}`,
+            children: []
+          }));
+        setMenuItemList(tempList);
+      }
+    } catch (error) {
+      console.log(error)
     }
+   
   }, [
     competitionMatches,
     selectedDate,
@@ -127,6 +143,7 @@ const MenuCollapse: React.FC<{
                             getCompetitionMatches({
                               date: menuItemChild?.id,
                               id: sideBarChild?.id,
+                              matchType: data?.id,
                             })
                           );
                         }
@@ -167,6 +184,7 @@ const MenuGroup: React.FC<{
   setMenuItemList: any;
 }> = ({ data, menuItemList, setMenuItemList }) => {
   const [selectedMatch, setSelectedMatch] = useState("");
+  const [selectedMatchIndex, setSelectedMatchIndex] = useState(0);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -175,21 +193,27 @@ const MenuGroup: React.FC<{
   );
 
   useEffect(() => {
-    if (selectedMatch !== "") {
-      const tempList = [...menuItemList];
-      const matchIndex = tempList[1].children.findIndex(
-        (item: any) => item?.id === selectedMatch
-      );
-      tempList[1].children[matchIndex].children = competitionList?.map(
-        (item: any) => ({
-          name: item?.competitionName,
-          id: item?.competitionId,
-          type: "collapse",
-          children: [],
-        })
-      );
-      setMenuItemList(tempList);
+    try {
+      if (selectedMatch !== "") {
+        const tempList = [...menuItemList];
+        const matchIndex = tempList[1].children.findIndex(
+          (item: any) => item?.id === selectedMatch
+        );
+        tempList[1].children[matchIndex].children = competitionList?.map(
+          (item: any) => ({
+            name: item?.competitionName,
+            id: item?.competitionId,
+            type: "collapse",
+            children: [],
+          })
+        );
+        setSelectedMatchIndex(matchIndex);
+        setMenuItemList(tempList);
+      }
+    } catch (error) {
+      console.log(error)
     }
+  
   }, [competitionList, selectedMatch]);
 
   return (
@@ -202,7 +226,7 @@ const MenuGroup: React.FC<{
             {data?.name}
           </Accordion.Header>
           <Accordion.Body className="p-0">
-            {data?.children?.map((sideBarChild: any, index: number) => (
+            {data?.children?.map((sideBarChild: any) => (
               <Accordion
                 onSelect={(e: any) => {
                   if (e == 0) {
@@ -210,7 +234,7 @@ const MenuGroup: React.FC<{
                     dispatch(getCompetitionList(sideBarChild?.id));
                   }
                 }}
-                key={index}
+                key={sideBarChild?.id}
                 defaultActiveKey={[]}
               >
                 {sideBarChild?.type === "group" ? (
@@ -225,7 +249,7 @@ const MenuGroup: React.FC<{
                 ) : (
                   <MenuCollapse
                     data={sideBarChild}
-                    selectedMatchIndex={index}
+                    selectedMatchIndex={selectedMatchIndex}
                     menuItemList={menuItemList}
                     setMenuItemList={setMenuItemList}
                   />

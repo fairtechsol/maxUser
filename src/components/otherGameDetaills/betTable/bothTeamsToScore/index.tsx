@@ -3,8 +3,9 @@ import { IoInformationCircle } from "react-icons/io5";
 // import { useDispatch } from "react-redux";
 // import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import {
-  //  AppDispatch,
-   RootState } from "../../../../store/store";
+  // AppDispatch,
+  RootState,
+} from "../../../../store/store";
 // import { teamStatus } from "../../../../utils/constants";
 import isMobile from "../../../../utils/screenDimension";
 // import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
@@ -47,7 +48,9 @@ function TeamMarketTable({
   // };
 
   return (
-    <div className={`gameTable table-responsive sessionFancyTable borderTable border`}>
+    <div
+      className={`gameTable table-responsive sessionFancyTable borderTable border`}
+    >
       <Table className="mb-0">
         <thead>
           <tr>

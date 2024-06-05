@@ -12,6 +12,7 @@ import {
   updateBalanceOnSessionBet,
   updateBalanceOnSessionResult,
 } from "../../actions/user/userAction";
+import { updateUserBalanceOnPlaceBet } from "../../actions/otherMatchActions";
 
 interface InitialState {
   transactionPassword: string;
@@ -128,6 +129,15 @@ const profileSlice = createSlice({
         state.error = action?.error?.message;
       })
       .addCase(updateBalance.fulfilled, (state, action) => {
+        state.getProfile = {
+          ...state.getProfile,
+          userBal: {
+            ...state?.getProfile?.userBal,
+            exposure: action.payload?.newUserExposure ?? action.payload?.exposure,
+          },
+        };
+      })
+      .addCase(updateUserBalanceOnPlaceBet.fulfilled, (state, action) => {
         state.getProfile = {
           ...state.getProfile,
           userBal: {

@@ -4,7 +4,6 @@ export const calculateProfitLoss = (
   selectedData: any,
   team: string
 ) => {
-  // console.log('first',selectedData)
   if (
     betData?.id != selectedData?.data?.id ||
     !betData?.id ||
@@ -12,47 +11,14 @@ export const calculateProfitLoss = (
   ) {
     return "";
   }
-  // if (selectedData?.team?.type == "lay") {
-  //   if (selectedData?.team?.betOnTeam == team) {
-  //     return -parseFloat((+selectedData?.team?.stake || 0).toFixed(2));
-  //   } else {
-  //     return selectedData?.data?.type == matchBettingType.matchOdd
-  //       ? parseFloat(
-  //           (
-  //             (+selectedData?.team?.stake || 0) *
-  //             (parseFloat(selectedData?.team?.rate) / 100)
-  //           ).toFixed(2)
-  //         )
-  //       : parseFloat(
-  //           (
-  //             (+selectedData?.team?.stake || 0) *
-  //             (parseFloat(selectedData?.team?.rate) - 1)
-  //           ).toFixed(2)
-  //         );
-  //   }
-  // } else {
-  //   if (selectedData?.team?.betOnTeam != team) {
-  //     return -parseFloat((+selectedData?.team?.stake || 0).toFixed(2));
-  //   } else {
-  //     return selectedData?.data?.type == matchBettingType.matchOdd
-  //       ? parseFloat(
-  //           (
-  //             (+selectedData?.team?.stake || 0) *
-  //             (parseFloat(selectedData?.team?.rate) - 1)
-  //           ).toFixed(2)
-  //         )
-  //       : parseFloat(
-  //           (
-  //             (+selectedData?.team?.stake || 0) *
-  //             (parseFloat(selectedData?.team?.rate) / 100)
-  //           ).toFixed(2)
-  //         );
-  //   }
-  // }
   if (
     betData?.type === matchBettingType.matchOdd ||
     betData?.type === matchBettingType.tiedMatch1 ||
-    betData?.type === matchBettingType.completeMatch
+    betData?.type === matchBettingType.completeMatch ||
+    betData?.type === matchBettingType.halfTime ||
+    betData?.type.includes("overUnder") ||
+    betData?.type.includes("firstHalfGoal") ||
+    betData?.type.includes("setWinner")
   ) {
     if (selectedData?.team?.type === "lay") {
       let value: any = 0;
@@ -72,7 +38,6 @@ export const calculateProfitLoss = (
       }
     }
   } else if (betData?.type === "session") {
-    // console.log('selectedData',selectedData)
     if (selectedData?.team?.type === "no") {
       let value: any = 0;
       value = (+selectedData?.team?.stake * +selectedData?.team?.rate) / 100;
@@ -91,7 +56,6 @@ export const calculateProfitLoss = (
       }
     }
   } else {
-    // console.log('selectedData',selectedData)
     if (selectedData?.team?.type === "lay") {
       let value: any = 0;
       value = (+selectedData?.team?.stake * +selectedData?.team?.rate) / 100;

@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    getCompetitionDates,
-    getCompetitionList,
-    getCompetitionMatches,
+  getCompetitionDates,
+  getCompetitionList,
+  getCompetitionMatches,
 } from "../../actions/match/matchListAction";
 
 interface InitialState {
   competitionList: Array<object>;
   competitionDates: Array<object>;
-  competitionMatches: Array<object>;
+  competitionMatches: any;
   loading: boolean;
   success: boolean;
   error: any;
@@ -17,7 +17,7 @@ interface InitialState {
 const initialState: InitialState = {
   competitionList: [],
   competitionDates: [],
-  competitionMatches: [],
+  competitionMatches: null,
   loading: false,
   success: false,
   error: null,
@@ -32,6 +32,7 @@ const sidebarListSlice = createSlice({
       .addCase(getCompetitionList.pending, (state) => {
         state.loading = false;
         state.success = false;
+        state.competitionList = [];
         state.error = null;
       })
       .addCase(getCompetitionList.fulfilled, (state, action) => {

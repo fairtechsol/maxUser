@@ -2056,14 +2056,18 @@ progress {
 }
 @media (max-width: 767.98px) {
   .table-responsive-md {
-    overflow-x: auto;
+    overflow-x: none;
+    width: 10%;
+    overflow: hidden;
     -webkit-overflow-scrolling: touch;
   }
 }
 @media (max-width: 991.98px) {
   .table-responsive-lg {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: none;
+    width: 100%;
+    overflow: hidden;
+    /* -webkit-overflow-scrolling: touch; */
   }
 }
 @media (max-width: 1199.98px) {
@@ -3785,10 +3789,11 @@ textarea.form-control-lg {
 
 .nav-link {
   display: block;
-  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  /* padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x); */
+  padding: 6px;
   font-size: var(--bs-nav-link-font-size);
   font-weight: var(--bs-nav-link-font-weight);
-  color: var(--bs-nav-link-color);
+  color:#000000;
   text-decoration: none;
   background: none;
   border: 0;
@@ -4388,7 +4393,7 @@ textarea.form-control-lg {
 
 .card-body {
   flex: 1 1 auto;
-  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+  padding: inherit;
   color: var(--bs-card-color);
 }
 
@@ -7612,7 +7617,9 @@ textarea.form-control-lg {
 .w-100 {
   width: 100% !important;
 }
-
+.w-100vw {
+  width: 100vw !important;
+}
 .w-auto {
   width: auto !important;
 }
