@@ -2,7 +2,7 @@ import isMobile from "../../utils/screenDimension";
 import DragonTigerDesktop from "./desktop";
 import DragonTigerMobile from "./mobile";
 
-const DragonTigerComponentList = ({ matchType }: any) => {
+const DragonTigerSecondComponentList = ({ matchType }: any) => {
   return isMobile ? (
     <DragonTigerMobile matchType={matchType} />
   ) : (
@@ -10,4 +10,4 @@ const DragonTigerComponentList = ({ matchType }: any) => {
   );
 };
 
-export default DragonTigerComponentList;
+export default DragonTigerSecondComponentList;

@@ -1273,7 +1273,7 @@ export const casinoIcons = [
     name: "Andar Bahar 2",
   },
   {
-    url: "/casino/dt202",
+    url: "/dt202",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
     name: "20-20 Dragon Tiger 2",
@@ -1444,7 +1444,7 @@ export const casinoIcons = [
 export const card3 = {
   dragonTiger: [
     {
-      url: "/contact-admin",
+      url: "/dt202",
       imgSrc:dt2020,
       name: "20-20 DRAGON TIGER 2",
     },

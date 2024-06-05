@@ -16,7 +16,7 @@ const DragonTigerDesktop = () => {
       <div style={{width:"70%",height:"40vh",margin:"5px"}}>
       <div className="horseRacingTabHeader">
         <div>
-          <span style={{fontSize:"16px",fontWeight:"600"}}>20-20 DRAGON TIGER</span>
+          <span style={{fontSize:"16px",fontWeight:"600"}}>20-20 DRAGON TIGER 2</span>
           <a style={{fontSize:"14px",textDecoration:"underline"}}>{' '}RULES</a>
         </div>
         <span>Round ID: 240506171245</span>
