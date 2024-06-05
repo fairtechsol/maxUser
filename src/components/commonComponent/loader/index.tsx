@@ -1,4 +1,4 @@
-import loader from "../../../assets/images/loader.gif";
+import loader from "../../../assets/images/gameicons/loader.gif";
 import LogoSection from "../logoSection";
 import "./style.scss";
 

@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Img } from "react-image";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
-import bm from "../../../../../../assets/images/ic_bm.png";
-import fancy from "../../../../../../assets/images/ic_fancy.png";
+import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
+import fancy from "../../../../../../assets/images/gameicons/ic_fancy.png";
 import { RootState } from "../../../../../../store/store";
 import {
   availableGameType,
