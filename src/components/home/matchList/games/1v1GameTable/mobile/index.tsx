@@ -78,16 +78,16 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
         style={{
           minHeight:
             location.pathname === "/home" || location.pathname === "/inPlay"
-              ? "50%"
-              : "50%",
+              ? ""
+              : "",
           maxHeight:
             location.pathname === "/home" || location.pathname === "/inPlay"
-              ? "400px"
+              ? ""
               : "",
-          overflowY:
-            location.pathname === "/home" || location.pathname === "/inPlay"
-              ? "auto"
-              : "visible",
+          // overflowY:
+          //   location.pathname === "/home" || location.pathname === "/inPlay"
+          //     ? "hidden"
+          //     : "visible",
         }}
       >
         {availableGameType[mTypeid || id] ? (
