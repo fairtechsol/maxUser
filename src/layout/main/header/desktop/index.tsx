@@ -30,7 +30,7 @@ const DesktopHeader = () => {
   const [openExposure, setOpenExposure] = useState(false);
   const [show, setShow] = useState(false);
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
-  const [searchKeyword, setSearchKeyword] = useState('')
+  const [searchKeyword, setSearchKeyword] = useState("");
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -43,7 +43,7 @@ const DesktopHeader = () => {
     if (open === false) {
       dispatch(SearchListReset());
     }
-    setSearchKeyword('')
+    setSearchKeyword("");
     setOpen(!open);
   };
 
@@ -66,7 +66,7 @@ const DesktopHeader = () => {
   }, []);
   return (
     <>
-      <Row className=" w-100vw" >
+      <Row className=" w-100vw">
         <Col xs={12}>
           <div className="float-start">
             <Link to={"/home"}>
@@ -77,28 +77,31 @@ const DesktopHeader = () => {
           </div>
           <ul className="d-flex align-items-center white-text gap-3 list-unstyled mb-0 float-end h-100">
             <li className="d-flex gap-3 align-items-center">
-            <div>
-              <Collapse in={open} dimension="width">
-                <div id="searchCollapse" className="position-relative" >
-                  <CustomInput
-                    placeholder="All Events"
-                    inputClass="headerSearch"
-                    value={searchKeyword}
-                    onChange={(e: any) => {
-                      setSearchKeyword(e.target.value)
-                      if (e.target.value?.length > 2) {
-                        debouncedInputValue(e.target.value);
-                      }else if(e.target.value?.length == 0){
-                        setSearchKeyword('')
-                      }
-                    }}
-                  />
-                  {(searchedMatchList && searchKeyword) && (
-                    <SearchResult setOpen={setOpen} data={searchedMatchList} />
-                  )}
-                </div>
-              </Collapse>
-                </div>
+              <div>
+                <Collapse in={open} dimension="width">
+                  <div id="searchCollapse" className="position-relative">
+                    <CustomInput
+                      placeholder="All Events"
+                      inputClass="headerSearch"
+                      value={searchKeyword}
+                      onChange={(e: any) => {
+                        setSearchKeyword(e.target.value);
+                        if (e.target.value?.length > 2) {
+                          debouncedInputValue(e.target.value);
+                        } else if (e.target.value?.length == 0) {
+                          setSearchKeyword("");
+                        }
+                      }}
+                    />
+                    {searchedMatchList && searchKeyword && (
+                      <SearchResult
+                        setOpen={setOpen}
+                        data={searchedMatchList}
+                      />
+                    )}
+                  </div>
+                </Collapse>
+              </div>
               <span>
                 <FaSearchPlus
                   aria-expanded={open}
@@ -118,14 +121,17 @@ const DesktopHeader = () => {
             <li>
               <div className="balance-cont">
                 <div>
-                  Balance:<b>{(parseFloat(getProfile?.userBal?.currentBalance)).toFixed(2)}</b>
+                  Balance:
+                  <b>
+                    {parseFloat(getProfile?.userBal?.currentBalance).toFixed(2)}
+                  </b>
                 </div>
                 <div>
                   <span
                     onClick={handleClickExposureModalOpen}
                     className="white-text text-decoration-underline cursor-pointer"
                   >
-                    Exposure:<b>{getProfile?.userBal?.exposure}</b>
+                    Exposure:<b>{parseFloat(getProfile?.userBal?.exposure).toFixed(2)}</b>
                   </span>
                   <ExposureModal
                     show={openExposure}

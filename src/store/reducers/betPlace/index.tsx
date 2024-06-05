@@ -20,7 +20,7 @@ interface InitialState {
   success: boolean;
   loading: boolean;
   error: any;
-  runAmountModal:boolean;
+  runAmountModal: boolean;
 }
 
 const initialState: InitialState = {
@@ -30,7 +30,7 @@ const initialState: InitialState = {
   loading: false,
   success: false,
   error: null,
-  runAmountModal:false,
+  runAmountModal: false,
 };
 
 const placedBet = createSlice({
@@ -60,13 +60,13 @@ const placedBet = createSlice({
         state.runAmount = [];
       })
       .addCase(getRunAmount.fulfilled, (state, action) => {
-        const {id,arr} = action.payload
+        const { id, arr } = action.payload;
         state.loading = false;
         state.success = true;
-        let data ={
-          betId : id,
-          runAmountData:arr?.length > 0 ? arr : []
-        }
+        let data = {
+          betId: id,
+          runAmountData: arr?.length > 0 ? arr : [],
+        };
         state.runAmount = data;
       })
       .addCase(getRunAmount.rejected, (state, action) => {
@@ -125,22 +125,21 @@ const placedBet = createSlice({
         }
       })
       .addCase(resetRunAmount.fulfilled, (state, action) => {
-        const {id}= action.payload
-        if(state.runAmount?.betId === id){
-          state.runAmount = {}
+        const { id } = action.payload;
+        if (state.runAmount?.betId === id) {
+          state.runAmount = {};
         }
         // return { ...state, runAmount: [] };
       })
       .addCase(resetRunAmountModal.fulfilled, (state, action) => {
-        const {id,showModal}= action.payload
-        if(showModal){
-          state.runAmountModal = showModal
-        }else{
-          if(state.runAmount?.betId === id){
-            state.runAmountModal = showModal
+        const { id, showModal } = action.payload;
+        if (showModal) {
+          state.runAmountModal = showModal;
+        } else {
+          if (state.runAmount?.betId === id) {
+            state.runAmountModal = showModal;
           }
         }
-        
       });
   },
 });
