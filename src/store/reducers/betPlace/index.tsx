@@ -3,6 +3,7 @@ import {
   betsSuccessReset,
   getMyMarket,
   getPlacedBets,
+  getPlacedBetsForAccountStatement,
   getRunAmount,
   resetRunAmount,
   resetRunAmountModal,
@@ -50,6 +51,20 @@ const placedBet = createSlice({
         state.placedBets = action.payload;
       })
       .addCase(getPlacedBets.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(getPlacedBetsForAccountStatement.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(getPlacedBetsForAccountStatement.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.placedBets = action.payload;
+      })
+      .addCase(getPlacedBetsForAccountStatement.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })
