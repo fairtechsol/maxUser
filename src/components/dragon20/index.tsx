@@ -4,7 +4,7 @@ import DragonTigerMobile from "./mobile";
 
 const DragonTigerComponentList = ({ matchType }: any) => {
   return isMobile ? (
-    <DragonTigerMobile matchType={matchType} />
+    <DragonTigerMobile />
   ) : (
     <DragonTigerDesktop />
   );

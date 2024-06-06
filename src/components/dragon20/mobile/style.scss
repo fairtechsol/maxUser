@@ -90,6 +90,97 @@
     width: 20px;
     padding: 10px 7px 0px 1px;
   }
+  .dt20header{
+    width: 100%;
+    background-color: #004a25;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+  .dt20subheader1{
+    width: 40%;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .dt20subheader2{
+    width: 60%;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    font-size: 12px;
+  }
+  .horseRacingTabHeaderMob{
+    width: 100%;
+    height: 10%;
+    background-color: #ffc742;
+    padding: 2px 4px;
+  }
+  .tiePairContainer{
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .tiePairRateBoxMain{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    justify-content: center;
+    align-items: center;
+  }
+  .dt20TabBox{
+    width: 100%;
+    background-color: #004a25;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+  .dt20tabheader{
+    width: 30%;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .oddEvenContainerMob{
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .cardContainerMob{
+    width: 100%;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 8px;
+  }
+  .tiePairbtnMob-theme {
+    color: #fff !important;
+    background-image: linear-gradient(to right, #004a25, #ffc742) !important;
+    width: 100% !important;
+    // border-radius: 4px !important;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
+    border: 0 !important;
+    padding: 2px 8px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    font-weight: 600;
+    position: relative;
+    text-align: center;
+  }
   /* Ensure the tabs are horizontally scrollable on smaller devices */
   @media (max-width: 768px) {
     // .tabs-nav {
