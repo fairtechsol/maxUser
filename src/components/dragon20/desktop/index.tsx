@@ -4,9 +4,12 @@ import TiePairBox from "./TiePairBox";
 import OddEven from "./OddEvenBox";
 import CardBox from "./CardsBox";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import RulesModal from "../../commonComponent/rulesModal"
+import { useState } from "react";
+import { dtrules } from "../../../assets/images";
 
 const DragonTigerDesktop = () => {
- 
+  const [show, setShow] = useState(false);
 
   return (
     <div className="horseRacingTab">
@@ -14,7 +17,7 @@ const DragonTigerDesktop = () => {
       <div className="horseRacingTabHeader">
         <div>
           <span style={{fontSize:"16px",fontWeight:"600"}}>20-20 DRAGON TIGER</span>
-          <a style={{fontSize:"14px",textDecoration:"underline"}}>{' '}RULES</a>
+          <span style={{fontSize:"14px",textDecoration:"underline"}} onClick={()=>setShow(true)}>{' '}RULES</span>
         </div>
         <span>Round ID: 240506171245</span>
       </div>
@@ -33,6 +36,7 @@ const DragonTigerDesktop = () => {
      <CardBox name={"TIGER"} rate={12.00}/>
       </div>
       <div style={{width:"70%",margin:"5px"}}><CardResultBox /></div>
+      <RulesModal show={show} setShow={setShow} rule={dtrules}/>
     </div>
   );
 };

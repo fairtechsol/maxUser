@@ -1435,7 +1435,7 @@ export const casinoIcons = [
     name: "Lottery",
   },
   {
-    url: "/casino/lucky7",
+    url: "/lucky7-A",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
     name: "Lucky 7 - A",

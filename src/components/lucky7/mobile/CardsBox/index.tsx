@@ -26,16 +26,6 @@ const CardBox = ({ name, rate }: any) => {
             </span>
           </div>
           <div style={{ width: "45%", textAlign: "end" }}>
-            {/* <IoInformationCircle
-              color="#ffc742"
-              onClick={() => setModelOpen(!modelOpen)}
-            />
-            <SmoothDropdownModal
-              min={100}
-              max={1000}
-              show={modelOpen}
-              setShow={() => setModelOpen(false)}
-            /> */}
              <span className="minmaxi">
              <IoInformationCircle
               color="#ffc742"

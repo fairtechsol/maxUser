@@ -31,3 +31,7 @@ export { default as dt2020 } from "./dragonTiger/dt202.webp";
 export { default as dtl20 } from "./dragonTiger/dtl20.webp";
 export { default as lucky7A } from "./lucky7/Lucky7-A.webp";
 export { default as luck7B } from "./lucky7/lucky7B.webp";
+export { default as luckyrules } from "./rules/lucky7-rules.webp";
+export { default as tprules } from "./rules/tp-rules.webp";
+export { default as dtrules } from "./rules/dragon-tiger-20-rules.webp";
+export { default as abjrules } from "./rules/abj-rules.webp";
