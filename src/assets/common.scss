@@ -343,6 +343,7 @@ margin-right: 0%;
 
 .game-heading .card-header-title {
   font-size: 14px;
+  font-weight: 600;
 }
 .div-figure {
   width: 31.33% !important;
@@ -388,7 +389,7 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 8px;
+  padding: 6px 8px;
   background-color: #ffc742D9;
 }
 .cardResultBoxRound{
@@ -399,6 +400,7 @@ img {
   align-items: center;
   margin-top: 10px;
   gap: 5px;
+  margin-bottom: 10px;
 }
 .cardResultCircle{
   width: 30px;
@@ -408,6 +410,171 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.casino-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #004a25;
+  box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
+  height: 40px;
+  align-items: center;
+}
+
+.casino-header .round a {
+  color: #000000;
+  text-decoration: underline;
+ font-size: 12px;
+}
+
+.casino-title {
+  background-color: #ffc742;
+  padding: 4px 8px;
+  color: #000;
+  font-size: 14px;
+}
+.casino-video {
+  position: absolute;
+  background-color: #000;
+  // height: 100%;
+}
+
+.casino-container table tbody, .casino-container table thead, .casino-container table tbody tr, .casino-container table thead tr {
+  position: relative;
+  width: 100%;
+}
+
+.table-bordered td, .table-bordered th {
+  border: 1px solid #aaa;
+}
+.back {
+  background-color: #a7d8fd !important;
+}
+
+.box-5 {
+  width: 50%;
+  min-width: 50%;
+  max-width: 50%;
+  font-size: 12px;
+}
+.casino-container .table td {
+  border-bottom: 0;
+  line-height: 1;
+}
+.casino-container .table tr {
+  background-color: rgba(0, 0, 0, 0.05);
+  display: table;
+  width: 100%;
+}
+.table thead th {
+  border-bottom: 0;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.table-bordered thead td, .table-bordered thead th {
+  border-bottom-width: 1px;
+}
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #dee2e6;
+}
+.casino-container .table td {
+  border-bottom: 0;
+  padding-left: 2px;
+  font-size: 14px;
+}
+
+.table td, .table th {
+  padding: 2px;
+  vertical-align: middle;
+}
+
+.table thead th tr b{
+  padding-left: 2px;
+}
+.b-table-sticky-header, .table-responsive, [class*=table-responsive-] {
+  margin-bottom: 0.5rem;
+}
+.rules-table .table {
+  background-color: rgb(241 245 248);
+}
+.box-7{
+  font-size: 12px;
+}
+.box-3{
+  font-size: 12px;
+}
+.coupon-table .tablebg{
+  background-color: rgb(241 245 248);
+}
+
+.coupon-table thead th {
+  font-size: 12px;
+  // font-weight: 700;
+  text-align: center;
+  padding: 6px 0;
+  padding-left: 2px;
+  color: #303030;
+  line-height: 1;
+}
+.coupon-table thead td tr{
+  padding: 4px 0;
+
+}
+.back, .back-color {
+  background-color: #72bbef !important;
+}
+.box-2 {
+  width: 20%;
+  min-width: 20%;
+  max-width: 20%;
+  font-size: 10px;
+}
+.coupon-table tr td:first-child {
+  padding-left: 15px;
+  vertical-align: middle;
+  padding-right: 15px;
+}
+.coupon-table tr td:first-child {
+  padding-left: 15px;
+  vertical-align: middle;
+  padding-right: 15px;
+}
+.fontb{
+  font-size: 9px;
+  padding: 0px;
+  line-height: 0.8;
+}
+
+// .table tr.bet-info {
+//   background-color: rgba(0, 0, 0, 0.05);
+//   display: table;
+//   width: 100%;
+// }
+.teenpatti-20 .suspended:after {
+  width: 50%;
+}
+
+.suspended:after {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Font Awesome 5 Free";
+  content: "\f023";
+  font-weight: 900;
+  font-size: 18px;
+  top: 0;
+}
+
+.suspended {
+  position: relative;
 }
 /* ===== for title ====  */
 .title-46 {

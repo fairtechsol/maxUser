@@ -1,83 +1,91 @@
-import { useEffect, useState } from "react";
-import { Tab, Tabs, Row, Col } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
+
+import RulesHead from "../../commonComponent/mobileRulesHead";
 import "./style.scss";
-import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/horseMatchListAction";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import moment from "moment";
-import { NavLink } from "react-router-dom";
+import CardResultBox from "../../commonComponent/cardResultBox";
 
-const HorseRacingListTabsMobile = ({ matchType }: any) => {
-  const { countryWiseList, racingList } = useSelector(
-    (state: RootState) => state.horseRacing.matchList
-  );
-  const [activeTab, setActiveTab] = useState("");
-  const dispatch: AppDispatch = useDispatch();
-  const handleSelect = (key: any) => {
-    setActiveTab(key);
-  };
-
-  useEffect(() => {
-    if (countryWiseList && countryWiseList?.length > 0 && activeTab === "") {
-      setActiveTab(countryWiseList[0]?.countryCode);
-    }
-    if (activeTab !== "") {
-      dispatch(
-        getHorseRacingMatchList({
-          countryCode: activeTab,
-          matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType,
-        })
-      );
-    }
-  }, [activeTab, countryWiseList]);
-
+const TeenPattiMobile = () => {
+  const tableData = [
+    { player: "Player A", odds: "1.98", pairPlus: "Pair plus A" },
+    {
+      player: "Player B",
+      odds: "1.98",
+      pairPlus: "Pair plus B",
+      isSuspended: true,
+    },
+  ];
+  const dummyData = [
+    { label: 'Pair (Double)', value: '1 To 1' },
+    { label: 'Flush (Color)', value: '1 To 4' },
+    { label: 'Straight (Rown)', value: '1 To 6' },
+    { label: 'Trio (Teen)', value: '1 To 35' },
+    { label: 'Straight Flush (Pakki Rown)', value: '1 To 45' }
+  ];
   return (
-    <Tabs
-      id="horse-racing-tabs"
-      activeKey={activeTab}
-      onSelect={handleSelect}
-      className="tabs-nav nav-links"
-    >
-      {countryWiseList?.map((code: any) => (
-        <Tab
-          eventKey={code.countryCode}
-          title={code.countryCode}
-          key={code.countryCode}
-        >
-          {Object.entries(racingList)?.map(([matchName, item]: any) => (
-            <div className="bet-table tab-pane fade horse-table active show">
-              <div className="game-listing-container">
-                <div className="game-list pt-1 pb-1">
-                  <Row className="row5">
-                    <Col xs={12}>
-                      <p className="mb-0 game-name">
-                        <span className="game-icon">
-                          <i className="fas fa-tv"></i>
-                        </span>
-                        <strong>{matchName}</strong>
-                      </p>
-                    </Col>
-                  </Row>
-                  <Row className="row5">
-                    <Col style={{ display: "flex", flexDirection: "row" }}>
-                      {item?.map((dates: any) => (
-                        <div className="horse-time-detail-m">
-                          <NavLink to={`/race/${dates?.id}`} key={dates?.id}>
-                            <span>{moment(dates.startAt).format("hh:mm")}</span>
-                          </NavLink>
-                        </div>
-                      ))}
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </div>
+    <div >
+  
+        <RulesHead />
+        {/* <CasinoVideo /> */}
+     
+      <div className="table-responsive mb-1 casino-container teenpatti-20 " style={{ left: 0, width: '100%',height: "30%", fontWeight: "200", padding: "0px !important"  }}>
+        <Table bordered className="mb-0">
+          <thead>
+            <tr>
+              <th className="box-5 min-max f400 title-12">Min:100 Max:300000</th>
+              <th colSpan={2} className="box-5 text-center back f400">
+                BACK
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <tr key={index}>
+                <td className="box-5">
+                  <b>{row.player}</b>
+                </td>
+                <td className="box-2 back text-center">
+                  <span className="odds d-block">
+                    <b>{row.odds}</b>
+                  </span>
+                  <span style={{ color: "black" }}>0</span>
+                </td>
+                <td
+                  className={`box-3 back text-center ${
+                    row.isSuspended ? "suspendedtd" : ""
+                  }`}
+                >
+                  <span className="odds d-block">
+                    <b>{row.pairPlus}</b>
+                  </span>
+                  <span style={{ color: "black" }}>0</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+      <CardResultBox />
+      <div className="casino-title" style={{ position: 'relative',}}><span >Rules</span></div>
+      <div className="table-responsive rules-table">
+      <Table bordered>
+        <thead>
+          <tr>
+            <th colSpan={2} className="box-10 text-center">Pair Plus</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dummyData.map((item, index) => (
+            <tr key={index}>
+              <td className="box-7">{item.label}</td>
+              <td className="box-3">{item.value}</td>
+            </tr>
           ))}
-        </Tab>
-      ))}
-    </Tabs>
+        </tbody>
+      </Table>
+    </div>
+   
+    </div>
   );
 };
 
-export default HorseRacingListTabsMobile;
+export default TeenPattiMobile;

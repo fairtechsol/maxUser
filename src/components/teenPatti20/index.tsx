@@ -1,13 +1,13 @@
 import isMobile from "../../utils/screenDimension";
-import HorseRacingListTabsDesktop from "./desktop";
-import HorseRacingListTabsMobile from "./mobile";
+import TeenPattiDesktop from "./desktop";
+import TeenPattiMobile from "./mobile";
 
-const HorseRacingComponentList = ({ matchType }: any) => {
+const TeentPattiComponentList = () => {
   return isMobile ? (
-    <HorseRacingListTabsMobile matchType={matchType} />
+    <TeenPattiMobile />
   ) : (
-    <HorseRacingListTabsDesktop matchType={matchType} />
+    <TeenPattiDesktop  />
   );
 };
 
-export default HorseRacingComponentList;
+export default TeentPattiComponentList;

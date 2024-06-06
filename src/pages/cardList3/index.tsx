@@ -7,6 +7,7 @@ type Card3Keys = keyof typeof card3;
 const typeToTitle: { [key: string]: string } = {
   dragonTiger: "DRAGON TIGER",
   teenPatti: "TEENPATTI",
+  lucky7: "LUCKY7"
   // Add other mappings as needed
 };
 
