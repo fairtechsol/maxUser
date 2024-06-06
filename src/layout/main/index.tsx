@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { socketService } from "../../socketManager";
-import { getMatchList } from "../../store/actions/match/matchListAction";
+// import { getMatchList } from "../../store/actions/match/matchListAction";
 import {
   getProfile,
   marqueeNotification,
