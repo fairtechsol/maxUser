@@ -11,9 +11,9 @@ import {
   casinoIcons,
 } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
+import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
-import HorseRacingComponentList from "../../../../../horseRacing";
 const tableHeading = [
   {
     id: "game",
@@ -48,7 +48,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         <thead>
           <tr>
             {availableGameType[mTypeid] === "horseRacing" ||
-            availableGameType[mTypeid] === "greyhoundRacing" ? (
+            availableGameType[mTypeid] === "greyHound" ? (
               <></>
             ) : (
               <>
@@ -71,7 +71,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         <tbody>
           {availableGameType[mTypeid] ? (
             availableGameType[mTypeid] === "horseRacing" ||
-            availableGameType[mTypeid] === "greyhoundRacing" ? (
+            availableGameType[mTypeid] === "greyHound" ? (
               <HorseRacingComponentList matchType={mTypeid} />
             ) : (
               <>
@@ -200,11 +200,7 @@ const MatchListRow = ({ item, matchType }: any) => {
             </div>
           </NavLink>
           <div className="d-flex align-items-center gap-2">
-            {currentTime >= startAt  ? (
-              <span className="liveDot"></span>
-            ) : (
-              ""
-            )}
+            {currentTime >= startAt ? <span className="liveDot"></span> : ""}
             {/* <FiMonitor /> */}
             {item?.manualSessionActive || item?.apiSessionActive ? (
               <span className="fancy">
