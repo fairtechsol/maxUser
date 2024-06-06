@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/horseMatchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import CommonTabs from "../../commonComponent/tabs";
-import "./style.scss";
 import RaceListItems from "./raceDetails";
+import "./style.scss";
 
 const HorseRacingListTabsDesktop = ({ matchType }: any) => {
   const { countryWiseList, racingList } = useSelector(
@@ -29,7 +29,7 @@ const HorseRacingListTabsDesktop = ({ matchType }: any) => {
       dispatch(
         getHorseRacingMatchList({
           countryCode: activeTab,
-          matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType,
+          matchType: matchType,
         })
       );
     }
