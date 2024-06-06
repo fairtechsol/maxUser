@@ -1,82 +1,105 @@
 import { useEffect, useState } from "react";
-import { Tab, Tabs, Row, Col } from "react-bootstrap";
 import "./style.scss";
-import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/horseMatchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
+import TiePairBox from "./TiePairBox";
+import OddEven from "./OddEvenBox";
+import CardBox from "./CardsBox";
+import CardResultBox from "../../commonComponent/cardResultBox";
 
-const DragonTigerMobile = ({ matchType }: any) => {
-  const { countryWiseList, racingList } = useSelector(
-    (state: RootState) => state.horseRacing.matchList
-  );
-  const [activeTab, setActiveTab] = useState("");
+const DragonTigerMobile = () => {
+  const [activeTab, setActiveTab] = useState(false);
+  const [activeCardTab, setActiveCardTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const handleSelect = (key: any) => {
     setActiveTab(key);
   };
 
-  useEffect(() => {
-    if (countryWiseList && countryWiseList?.length > 0 && activeTab === "") {
-      setActiveTab(countryWiseList[0]?.countryCode);
-    }
-    if (activeTab !== "") {
-      dispatch(
-        getHorseRacingMatchList({
-          countryCode: activeTab,
-          matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType,
-        })
-      );
-    }
-  }, [activeTab, countryWiseList]);
-
   return (
-    <Tabs
-      id="horse-racing-tabs"
-      activeKey={activeTab}
-      onSelect={handleSelect}
-      className="tabs-nav nav-links"
-    >
-      {countryWiseList?.map((code: any) => (
-        <Tab
-          eventKey={code.countryCode}
-          title={code.countryCode}
-          key={code.countryCode}
-        >
-          {Object.entries(racingList)?.map(([matchName, item]: any) => (
-            <div className="bet-table tab-pane fade horse-table active show">
-              <div className="game-listing-container">
-                <div className="game-list pt-1 pb-1">
-                  <Row className="row5">
-                    <Col xs={12}>
-                      <p className="mb-0 game-name">
-                        <span className="game-icon">
-                          <i className="fas fa-tv"></i>
-                        </span>
-                        <strong>{matchName}</strong>
-                      </p>
-                    </Col>
-                  </Row>
-                  <Row className="row5">
-                    <Col style={{ display: "flex", flexDirection: "row" }}>
-                      {item?.map((dates: any) => (
-                        <div className="horse-time-detail-m">
-                          <NavLink to={`/race/${dates?.id}`} key={dates?.id}>
-                            <span>{moment(dates.startAt).format("hh:mm")}</span>
-                          </NavLink>
-                        </div>
-                      ))}
-                    </Col>
-                  </Row>
+    <>
+      <div>
+        <div className="dt20header">
+          <div className="dt20subheader1">
+            <span
+              style={{ fontSize: "12px", fontWeight: "bold" }}
+              onClick={() => setActiveTab(false)}
+            >
+              GAME
+            </span>
+            <span style={{ fontSize: "18px" }}> | </span>
+            <span
+              style={{ fontSize: "12px", fontWeight: "bold" }}
+              onClick={() => setActiveTab(true)}
+            >
+              PLACED BET(2)
+            </span>
+          </div>
+          <div className="dt20subheader2">
+            <span style={{ textDecoration: "underline" }}>Rules</span>
+            <span> Round ID:4353455 </span>
+          </div>
+        </div>
+        {!activeTab ? (
+          <div
+            style={{ width: "100%", display: "flex", flexDirection: "column" }}
+          >
+            <div style={{ width: "100%", height: "28vh" }}>
+              <div className="horseRacingTabHeaderMob">
+                <div>
+                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
+                    20-20 DRAGON TIGER
+                  </span>
                 </div>
               </div>
+              <div
+                style={{
+                  width: "100%",
+                  height: "90%",
+                  backgroundColor: "#000",
+                }}
+              ></div>
             </div>
-          ))}
-        </Tab>
-      ))}
-    </Tabs>
+            <div style={{ width: "100%" }}>
+              <TiePairBox />
+            </div>
+            <div className="dt20TabBox">
+              <div className="dt20tabheader">
+                <span
+                  style={{ fontSize: "12px", fontWeight: "bold" }}
+                  onClick={() => setActiveCardTab(false)}
+                >
+                  DRAGON
+                </span>
+                <span style={{ fontSize: "18px" }}> | </span>
+                <span
+                  style={{ fontSize: "12px", fontWeight: "bold" }}
+                  onClick={() => setActiveCardTab(true)}
+                >
+                  TIGER
+                </span>
+              </div>
+            </div>
+            {activeCardTab ? (
+              <div>
+              <OddEven name={"DRAGON"} />
+              <CardBox name={"DRAGON"} rate={12.00}/>
+              </div>
+            ) : (
+              <div>
+              <OddEven name={"TIGER"} />
+              <CardBox name={"TIGER"} rate={10.00}/>
+              </div>
+            )}
+            <div style={{width:"100%",marginTop:"15px"}}><CardResultBox /></div>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+    </>
   );
 };
 
