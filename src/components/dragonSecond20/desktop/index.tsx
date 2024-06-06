@@ -7,6 +7,7 @@ import TiePairBox from "./TiePairBox";
 import OddEven from "./OddEvenBox";
 import CardBox from "./CardsBox";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 
 const DragonTigerDesktop = () => {
  
@@ -21,7 +22,9 @@ const DragonTigerDesktop = () => {
         </div>
         <span>Round ID: 240506171245</span>
       </div>
-      <div style={{width:"100%",height:"92%",backgroundColor:"#000"}}></div>
+      <div style={{width:"100%",height:"92%",backgroundColor:"red"}}>
+        <VideoFrame time={'1'}/>
+      </div>
       </div>
       
       <div style={{width:"70%",margin:"5px"}}>
