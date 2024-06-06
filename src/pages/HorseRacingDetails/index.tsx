@@ -20,6 +20,7 @@ import {
   getButtonValue,
   getProfileInMatchDetail,
   updateBalanceOnBetDelete,
+  updateDeleteReasonBet,
 } from "../../store/actions/user/userAction";
 import {
   getPlacedBets,
@@ -91,7 +92,7 @@ const RaceDetail = () => {
       );
       if (event?.matchId === id) {
         dispatch(updateTeamRatesForHorseRacingOnDelete(event));
-        // dispatch(updateDeleteReasonBet(event));
+        dispatch(updateDeleteReasonBet(event));
       }
     } catch (e) {
       console.log(e);

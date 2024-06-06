@@ -47,7 +47,6 @@ const MainLayout = () => {
   };
 
   const handleMatchResult = () => {
-    dispatch(getMatchList({}));
     dispatch(getProfile());
   };
 
