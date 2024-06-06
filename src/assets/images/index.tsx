@@ -29,3 +29,5 @@ export { default as dt6 } from "./dragonTiger/dt6.webp";
 export { default as dt20 } from "./dragonTiger/dt20.webp";
 export { default as dt2020 } from "./dragonTiger/dt202.webp";
 export { default as dtl20 } from "./dragonTiger/dtl20.webp";
+export { default as lucky7A } from "./lucky7/Lucky7-A.webp";
+export { default as luck7B } from "./lucky7/lucky7B.webp";

@@ -1,63 +1,156 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect, useState } from "react";
-import { Tab } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/horseMatchListAction";
-import { AppDispatch, RootState } from "../../../store/store";
-import CommonTabs from "../../commonComponent/tabs";
 import "./style.scss";
-import RaceListItems from "./raceDetails";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import CardResultBox from "../../commonComponent/cardResultBox";
+import PlacedBet from "../../gameDetails/desktop/placeBet";
+import MyBet from "../../gameDetails/desktop/myBet";
+import { useRef, useState } from "react";
 
-const HorseRacingListTabsDesktop = ({ matchType }: any) => {
-  const { countryWiseList, racingList } = useSelector(
-    (state: RootState) => state.horseRacing.matchList
-  );
-  const [activeTab, setActiveTab] = useState("");
-  const dispatch: AppDispatch = useDispatch();
-  const handleSelect = (key: any) => {
-    setActiveTab(key);
-  };
-
-  useEffect(() => {
-    if (countryWiseList?.length > 0 && activeTab === "") {
-      setActiveTab(countryWiseList[0]?.countryCode);
-    }
-  }, [countryWiseList, matchType]);
-
-  useEffect(() => {
-    if (activeTab !== "") {
-      dispatch(
-        getHorseRacingMatchList({
-          countryCode: activeTab,
-          matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType,
-        })
-      );
-    }
-  }, [activeTab, countryWiseList, matchType]);
-
+const TeenPattiDesktop = () => {
+  const placeBetRef = useRef<HTMLDivElement>(null);
+  const [isSticky, setIsSticky] = useState(false);
+  const dummyData = [
+    {
+      player: "Player A",
+      odds: "1.98",
+      pairPlus: "Pair plus A",
+      isSuspended: true,
+    },
+    {
+      player: "Player B",
+      odds: "1.98",
+      pairPlus: "Pair plus B",
+      isSuspended: true,
+    },
+  ];
+  const dummyData2 = [
+    { label: "Pair (Double)", value: "1 To 1" },
+    { label: "Flush (Color)", value: "1 To 4" },
+    { label: "Straight (Rown)", value: "1 To 6" },
+    { label: "Trio (Teen)", value: "1 To 35" },
+    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
+  ];
   return (
-    <div className="horseRacingTab">
-      <CommonTabs
-        callback={handleSelect}
-        defaultActive={activeTab}
-        id={activeTab}
-      >
-        {countryWiseList?.map((item: any) => (
-          <Tab
-            key={item?.countryCode}
-            eventKey={item?.countryCode}
-            tabClassName="match-tabs title-12"
-            title={item?.countryCode}
-            style={{ padding: "0px" }}
-          >
-            {Object.entries(racingList)?.map(([matchName, item]: any) => (
-              <RaceListItems matchName={matchName} item={item} />
-            ))}
-          </Tab>
-        ))}
-      </CommonTabs>
-    </div>
+    <Container>
+      <Row>
+        <Col md={8}>
+          <div style={{ height: "40vh", margin: "5px" }}>
+            <div className="horseRacingTabHeader">
+              <div>
+                <span style={{ fontSize: "16px", fontWeight: "600" }}>
+                  20-20 TEENPATTI
+                </span>
+                <a style={{ fontSize: "14px", textDecoration: "underline" }}>
+                  {" "}
+                  RULES
+                </a>
+              </div>
+              <span>Round ID: 240506171245</span>
+            </div>
+            <div
+              style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
+            ></div>
+            <div className="table-responsive coupon-table">
+              <Table bordered className="tablebg">
+                <thead>
+                  <tr>
+                    <th className="box-5"></th>
+                    <th className="box-2 back-color text-center">BACK</th>
+                    <th className="box-3 back-color"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dummyData.map((row, index) => (
+                    <tr
+                      key={index}
+                      className={`bet-info ${
+                        row.isSuspended ? "suspended" : ""
+                      }`}
+                      data-title={row.isSuspended ? "SUSPENDED" : ""}
+                    >
+                      <td className="box-5">
+                        <b>{row.player}</b>
+                      </td>
+                      <td className="text-center box-2 back">
+                        <Button variant="link" className="back">
+                          <span className="d-block text-bold odd">
+                            <b className="fontb">{row.odds}</b>
+                          </span>
+                          <span
+                            className="d-block fontb"
+                            style={{ color: "black" }}
+                          >
+                            0
+                          </span>
+                        </Button>
+                      </td>
+                      <td className="text-center box-3 back">
+                        <Button variant="link" className="back">
+                          <span className="d-block text-bold odd">
+                            <b className="fontb">{row.pairPlus}</b>
+                          </span>
+                          <span
+                            className="d-block fontb"
+                            style={{ color: "black" }}
+                          >
+                            0
+                          </span>
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+            <CardResultBox />
+          </div>
+        </Col>
+        <Col md={4} className="ps-0">
+          <Container className="p-0" fluid ref={placeBetRef}>
+            <Row
+              className={` ${isSticky ? "position-fixed top-0" : ""}`}
+              style={{
+                width: isSticky
+                  ? placeBetRef.current?.offsetWidth + "px"
+                  : "100%",
+              }}
+            >
+              <Col md={12}>
+                <PlacedBet />
+              </Col>
+              <Col md={12}>
+                <MyBet />
+              </Col>
+              <Col>
+                <div className="casino-title" style={{ position: "relative" }}>
+                  <span>Rules</span>
+                </div>
+                <div className="table-responsive rules-table">
+                  <Table bordered>
+                    <thead>
+                      <tr>
+                        <th colSpan={2} className="box-10 text-center">
+                          Pair Plus
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {dummyData2.map((item, index) => (
+                        <tr key={index}>
+                          <td className="box-7">{item.label}</td>
+                          <td className="box-3">{item.value}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
-export default HorseRacingListTabsDesktop;
+export default TeenPattiDesktop;

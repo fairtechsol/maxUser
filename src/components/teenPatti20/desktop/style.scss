@@ -41,7 +41,14 @@
 //   padding: 0px !important;
 //   margin-top: 10px !important;
 // }
-
+.horseRacingTabHeader{
+  width: 100%;
+  height: 10%;
+  background-color: #ffc742;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
 .match-tabs {
   margin:  0 !important;
   border-right: 1px solid $secondary !important;

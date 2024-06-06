@@ -1,4 +1,4 @@
-import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen } from "../../assets/images";
+import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen, lucky7A, luck7B } from "../../assets/images";
 import { dayteen,twentyteen,teencasino,teenplayer,testteen } from "../../assets/images";
 export const ApiConstants = {
   LOGIN: "auth/login",
@@ -1345,7 +1345,7 @@ export const casinoIcons = [
     name: "1 Day Teenpatti",
   },
   {
-    url: "/casino/teenpatti/t20",
+    url: "/teenPatti20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "20-20 Teenpatti",
@@ -1490,6 +1490,19 @@ export const card3 = {
       imgSrc:teenplayer,
       name: "OPEN TEENPATTI",
     },
+  ],
+  lucky7: [
+    {
+      url: "/lucky7-A",
+      imgSrc:lucky7A,
+      name: "Lucky 7 A",
+    },
+    {
+      url: "/contact-admin",
+      imgSrc:luck7B,
+      name: "Lucky 7 B",
+    },
+
   ],
   anderBahar : [
     {

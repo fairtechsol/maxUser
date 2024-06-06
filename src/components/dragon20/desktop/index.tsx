@@ -1,7 +1,4 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect, useState } from "react";
-import { Tab } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import "./style.scss";
 import TiePairBox from "./TiePairBox";
 import OddEven from "./OddEvenBox";
