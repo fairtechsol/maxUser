@@ -1267,7 +1267,7 @@ export const casinoIcons = [
     name: "5Five Cricket",
   },
   {
-    url: "/casino/ab2",
+    url: "/abj2",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
     name: "Andar Bahar 2",
@@ -1506,7 +1506,7 @@ export const card3 = {
   ],
   abj : [
     {
-      url: "/contact-admin",
+      url: "/abj2",
       imgSrc:abjlist2,
       name: "ANDAR BAHAR 2",
     },
