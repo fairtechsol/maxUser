@@ -9,10 +9,13 @@ import TiePairBox from "./TiePairBox";
 import OddEven from "./OddEvenBox";
 import CardBox from "./CardsBox";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import RulesModal from "../../commonComponent/rulesModal";
+import { luckyrules } from "../../../assets/images";
 
 const Lucky7Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [activeCardTab, setActiveCardTab] = useState(false);
+  const [show, setShow] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const handleSelect = (key: any) => {
     setActiveTab(key);
@@ -38,7 +41,7 @@ const Lucky7Mobile = () => {
             </span>
           </div>
           <div className="dt20subheader2">
-            <span style={{ textDecoration: "underline" }}>Rules</span>
+            <span style={{ textDecoration: "underline" }} onClick={()=>setShow(true)}>Rules</span>
             <span> Round ID:4353455 </span>
           </div>
         </div>
@@ -70,6 +73,7 @@ const Lucky7Mobile = () => {
           <></>
         )}
       </div>
+      <RulesModal show={show} setShow={setShow} rule={luckyrules}/>
     </>
   );
 };
