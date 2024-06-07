@@ -35,3 +35,5 @@ export { default as luckyrules } from "./rules/lucky7-rules.webp";
 export { default as tprules } from "./rules/tp-rules.webp";
 export { default as dtrules } from "./rules/dragon-tiger-20-rules.webp";
 export { default as abjrules } from "./rules/abj-rules.webp";
+export { default as abjlist } from "./anderBahar/andar-bahar.webp";
+export { default as abjlist2 } from "./anderBahar/andar-bahar2.webp";

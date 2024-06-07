@@ -1,4 +1,4 @@
-import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen, lucky7A, luck7B } from "../../assets/images";
+import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen, lucky7A, luck7B, abjlist, abjlist2 } from "../../assets/images";
 import { dayteen,twentyteen,teencasino,teenplayer,testteen } from "../../assets/images";
 export const ApiConstants = {
   LOGIN: "auth/login",
@@ -1504,17 +1504,15 @@ export const card3 = {
     },
 
   ],
-  anderBahar : [
+  abj : [
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:abjlist2,
       name: "ANDAR BAHAR 2",
     },
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:abjlist,
       name: "ANDAR BAHAR",
     },
   ]
