@@ -13,7 +13,7 @@ const CommonButtonBox = ({ value1,value2,value3,width }: any) => {
       <div>
         <span style={{fontSize:"16px",fontWeight:"bolder"}}>{(parseFloat(value1).toFixed(2))}</span>
       </div>
-      <div className="tiePairbtn-theme">
+      <div className="tiePairbtn-theme suspended">
       <span>{value2 === "icon1" ? (
             <>
               <ImDiamonds color="#ff0000" />

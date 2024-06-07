@@ -11,7 +11,7 @@ const CommonCardImg = () => {
     <div className="commonCardImgContainer">
       {cardData?.map((item:any,index:any)=>{
         return(<>
-         <div style={{display:"flex",flexDirection:"column",justifyContent:"space-around",alignItems:"center"}}>
+         <div className="suspended" style={{display:"flex",flexDirection:"column",justifyContent:"space-around",alignItems:"center"}}>
         <img src={item?.imgSrc} width={"40px"}/>
         <span style={{fontSize:"12px"}}>{item?.value}</span>
       </div></>)
