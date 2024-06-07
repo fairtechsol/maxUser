@@ -6,7 +6,7 @@ import CardBox from "./CardsBox";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import { useState } from "react";
 import RulesModal from "../../commonComponent/rulesModal";
-import { luckyrules } from "../../../assets/images";
+import { abjrules } from "../../../assets/images";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -17,7 +17,7 @@ const Abj2Desktop = () => {
       <div style={{width:"70%",height:"40vh",margin:"5px"}}>
       <div className="horseRacingTabHeader">
         <div>
-          <span style={{fontSize:"16px",fontWeight:"600"}}>LUCKY 7 - A</span>
+          <span style={{fontSize:"16px",fontWeight:"600"}}>ANDAR BAHAR 2</span>
           <a style={{fontSize:"14px",textDecoration:"underline"}} onClick={()=>setShow(true)}>{' '}RULES</a>
         </div>
         <span>Round ID: 240506171245</span>
@@ -36,7 +36,7 @@ const Abj2Desktop = () => {
      <CardBox name={"DRAGON"} rate={12.00}/>
       </div>
       <div style={{width:"70%",margin:"5px"}}><CardResultBox /></div>
-      <RulesModal show={show} setShow={setShow} rule={luckyrules}/>
+      <RulesModal show={show} setShow={setShow} rule={abjrules}/>
     </div>
   );
 };

@@ -10,7 +10,7 @@ import OddEven from "./OddEvenBox";
 import CardBox from "./CardsBox";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import { luckyrules } from "../../../assets/images";
+import { abjrules } from "../../../assets/images";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -73,7 +73,7 @@ const Abj2Mobile = () => {
           <></>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={luckyrules}/>
+      <RulesModal show={show} setShow={setShow} rule={abjrules}/>
     </>
   );
 };
