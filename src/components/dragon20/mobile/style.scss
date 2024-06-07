@@ -181,13 +181,9 @@
     position: relative;
     text-align: center;
   }
-  /* Ensure the tabs are horizontally scrollable on smaller devices */
+
   @media (max-width: 768px) {
-    // .tabs-nav {
-    //   overflow-x: auto; /* Enable horizontal scrolling */
-    //   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    //   width: 100%;
-    // }
+
   
     .game-name {
       flex: 1 0 25%; /* Maintain 25% width on mobile */

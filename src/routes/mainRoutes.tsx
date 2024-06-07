@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
+import Cards32 from "../pages/cards32";
 // import Home from "../pages/home";
 // import GameDetail from "../pages/gameDetails";
 // import FootballGameDetail from "../pages/otherGameDetails";
@@ -103,6 +104,10 @@ const MainRoutes = {
     {
       path: "lucky7-A",
       element: <Lucky7 />,
+    },
+    {
+      path: "32cards-A",
+      element: <Cards32 />,
     },
     {
       path: "dt20",

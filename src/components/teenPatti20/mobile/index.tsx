@@ -44,14 +44,14 @@ const TeenPattiMobile = () => {
                   <b>{row.player}</b>
                 </td>
                 <td className="box-2 back text-center">
-                  <span className="odds d-block">
+                  <span className="odds d-block ">
                     <b>{row.odds}</b>
                   </span>
                   <span style={{ color: "black" }}>0</span>
                 </td>
                 <td
-                  className={`box-3 back text-center ${
-                    row.isSuspended ? "suspendedtd" : ""
+                  className={`box-3 back text-center postion-relative ${
+                    row.isSuspended ? "" : ""
                   }`}
                 >
                   <span className="odds d-block">
