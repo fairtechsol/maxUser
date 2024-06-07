@@ -355,7 +355,7 @@ const PlacedBet = () => {
                                 );
                                 return;
                               }
-                              if (matchOddLoading) {
+                              if (loading || matchOddLoading) {
                                 return;
                               } else {
                                 let payloadForSession: any = {
