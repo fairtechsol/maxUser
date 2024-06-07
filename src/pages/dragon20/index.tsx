@@ -5,24 +5,27 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import DragonTigerComponentList from "../../components/dragon20";
+import { expertSocketService, socket, socketService } from "../../socketManager";
 
 const DragonTiger20 = () => {
   const { id } = useParams();
+  const type ="dt20"
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   // const { success } = useSelector(
   //   (state: RootState) => state.horseRacing.matchDetail
   // );
 
-  // const setMatchRatesInRedux = (event: any) => {
-  //   try {
-  //     if (id === event?.id) {
-  //       dispatch(updateMatchRatesForHorseRacing(event));
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const setMatchRatesInRedux = (event: any) => {
+    console.log('event',event)
+    try {
+      if (id === event?.id) {
+        // dispatch(updateMatchRatesForHorseRacing(event));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   // const setMatchBetsPlaced = (event: any) => {
   //   try {
@@ -76,45 +79,40 @@ const DragonTiger20 = () => {
   //   }
   // };
 
-  // useEffect(() => {
-  //   try {
-  //     if (success && socket) {
-  //       expertSocketService.match.getMatchRatesOff(id);
-  //       socketService.userBalance.userMatchBetPlacedOff();
-  //       socketService.userBalance.matchResultDeclaredOff();
-  //       socketService.userBalance.declaredMatchResultAllUserOff();
-  //       socketService.userBalance.matchDeleteBetOff();
-  //       expertSocketService.match.joinMatchRoom(id, "user");
-  //       expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
-  //       socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-  //       socketService.userBalance.matchResultDeclared(resultDeclared);
-  //       socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
-  //       socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [success, socket, id]);
+  useEffect(() => {
+    try {
+      if ( socket) {
+        socketService.card.joinMatchRoom(type);
+        socketService.card.getCardRates(type, setMatchRatesInRedux);
+        // socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
+        // socketService.userBalance.matchResultDeclared(resultDeclared);
+        // socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
+        // socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [ socket]);
 
-  // useEffect(() => {
-  //   try {
-  //     return () => {
-  //       expertSocketService.match.leaveMatchRoom(id);
-  //       expertSocketService.match.getMatchRatesOff(id);
-  //       socketService.userBalance.userMatchBetPlacedOff();
-  //       socketService.userBalance.matchResultDeclaredOff();
-  //       socketService.userBalance.declaredMatchResultAllUserOff();
-  //       socketService.userBalance.matchDeleteBetOff();
-  //       socketService.userBalance.matchResultDeclared(getUserProfile);
-  //       socketService.userBalance.declaredMatchResultAllUser(getUserProfile);
-  //       socketService.userBalance.matchResultUnDeclared(getUserProfile);
-  //       socketService.userBalance.unDeclaredMatchResultAllUser(getUserProfile);
-  //       socketService.userBalance.matchDeleteBet(getUserProfile);
-  //     };
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }, [id]);
+  useEffect(() => {
+    try {
+      return () => {
+        expertSocketService.match.leaveMatchRoom(type);
+        expertSocketService.match.getMatchRatesOff(type);
+        // socketService.userBalance.userMatchBetPlacedOff();
+        // socketService.userBalance.matchResultDeclaredOff();
+        // socketService.userBalance.declaredMatchResultAllUserOff();
+        // socketService.userBalance.matchDeleteBetOff();
+        // socketService.userBalance.matchResultDeclared(getUserProfile);
+        // socketService.userBalance.declaredMatchResultAllUser(getUserProfile);
+        // socketService.userBalance.matchResultUnDeclared(getUserProfile);
+        // socketService.userBalance.unDeclaredMatchResultAllUser(getUserProfile);
+        // socketService.userBalance.matchDeleteBet(getUserProfile);
+      };
+    } catch (e) {
+      console.log(e);
+    }
+  }, [type]);
 
   return <DragonTigerComponentList /> ;
 };

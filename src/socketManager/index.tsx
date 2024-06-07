@@ -3,10 +3,12 @@ import { Constants, baseUrls } from "../utils/constants";
 import { authSocketService } from "./authSocket";
 import { matchSocketService } from "./matchSocket";
 import { userBalanceSocketService } from "./userBalance";
+import { cardSocketService } from "./cardSocket";
 
 export let socket: any = null;
 export let expertSocket: any = null;
 export let matchSocket: any = null;
+export let cardSocket: any = null;
 
 export const initialiseSocket = () => {
   socket = io(baseUrls.socket, {
@@ -28,6 +30,13 @@ export const initialiseSocket = () => {
         : `${Constants.WEBSOCKET}`,
     ],
   });
+  cardSocket = io(baseUrls.cardSocket, {
+    transports: [
+      process.env.NODE_ENV === "production"
+        ? `${Constants.POLLING}`
+        : `${Constants.WEBSOCKET}`,
+    ],
+  });
 };
 
 export const socketService = {
@@ -37,15 +46,18 @@ export const socketService = {
     socket?.connect();
     expertSocket?.connect();
     matchSocket?.connect();
+    cardSocket?.connect();
   },
   disconnect: () => {
     // Disconnect from the socket server
     socket?.disconnect();
     expertSocket?.disconnect();
     matchSocket?.disconnect();
+    cardSocket?.disconnect();
   },
   auth: { ...authSocketService },
   userBalance: { ...userBalanceSocketService },
+  card: { ...cardSocketService },
   // Add other socket-related methods as needed
 };
 

@@ -51,6 +51,7 @@ export const Constants = {
   expertSocketBasePath: "https://devexpertapi.fairgame.club",
   thirdParty: "https://devserviceapi.fairgame.club",
   localThird: "http://localhost:3200",
+  localThirdCard: "https://3200dev.fairgame.club",
   WEBSOCKET: "websocket",
   POLLING: "polling",
   apiBasePathLive: "https://betfairapi.fairgame7.com",
@@ -213,6 +214,10 @@ export const baseUrls = {
     process.env.NODE_ENV === "production"
       ? Constants.thirdParty
       : Constants.localThird,
+  cardSocket:
+    process.env.NODE_ENV === "production"
+      ? Constants.thirdParty
+      : Constants.localThirdCard,
 };
 
 // use below baseUrl for live build
