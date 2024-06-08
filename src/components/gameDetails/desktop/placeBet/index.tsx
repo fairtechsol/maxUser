@@ -325,7 +325,7 @@ const PlacedBet = () => {
                             className="bg-danger border-0 py-2"
                             size="sm"
                             onClick={() => {
-                              dispatch(selectedBetAction(null));
+                              setStake(0);
                             }}
                           >
                             Reset

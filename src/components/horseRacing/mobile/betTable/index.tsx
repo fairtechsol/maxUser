@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tab, Card, Row } from "react-bootstrap";
+import { Tab, Card, Row, Col } from "react-bootstrap";
 import "./style.scss";
 // import { useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from "../../../../store/store";
@@ -72,7 +72,7 @@ const HorseRaceDetailMobile = () => {
                     <Tab.Pane className="show no-padding-margin">
                       <Card>
                         <Card.Body className="car-body">
-                          <div className="match-title">
+                          <div className="match-title px-2 py-1">
                             <span className="match-name">
                               {matchDetail?.venue}
                             </span>
