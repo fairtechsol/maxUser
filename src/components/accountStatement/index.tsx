@@ -188,8 +188,8 @@ const AccountStatementComponent = () => {
               paginationCount={true}
               bordered={true}
               striped={!isMobile}
-              isPagination={true}
-              isSearch={true}
+              isPagination={firstTime}
+              isSearch={firstTime}
               columns={[
                 {
                   id: "createdAt",
