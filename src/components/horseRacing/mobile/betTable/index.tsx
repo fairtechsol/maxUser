@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Tab, Card, Row } from "react-bootstrap";
 import "./style.scss";
-import HorseModal from "../infoModal";
 // import { useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from "../../../../store/store";
 import { useSelector } from "react-redux";
@@ -21,25 +20,6 @@ const HorseRaceDetailMobile = () => {
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
   const [show, setShow] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const [currentHorse, setCurrentHorse] = useState({});
-  const [_, setModalStyle] = useState({});
-
-  const handleShowModal = (event: any, horse: any) => {
-    const rect = event.target.getBoundingClientRect();
-    setCurrentHorse(horse);
-    setModalStyle({
-      position: "absolute",
-      top: `${rect.bottom}px`,
-      left: `${rect.left}px`,
-      transform: "translateY(10px)", // Slight adjustment to position the modal below the click target
-    });
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
 
   const remainingTime = (time: any) => {
     const endTime = moment(time);
@@ -121,11 +101,7 @@ const HorseRaceDetailMobile = () => {
                               </div>
                             </div>
                           </div>
-                          {/* <CombinedComponentMobile /> */}
-                          <MatchOddCompnentMobile
-                            handleShowModal={handleShowModal}
-                            handleClick={handleClick}
-                          />
+                          <MatchOddCompnentMobile handleClick={handleClick} />
                         </Card.Body>
                       </Card>
                     </Tab.Pane>
@@ -137,11 +113,6 @@ const HorseRaceDetailMobile = () => {
             );
           })}
         </CommonTabs>
-        <HorseModal
-          show={showModal}
-          handleClose={handleCloseModal}
-          horseData={currentHorse}
-        />
       </div>
     </>
   );

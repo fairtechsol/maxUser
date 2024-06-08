@@ -230,6 +230,21 @@ input[type=checkbox], input[type=radio] {
     max-width: unset;
     left: 10px;
 }
+
+.horse-detail .jockey-detail-mobile {
+    font-size: 12px;
+    background: #333;
+    padding: 6px 14px;
+    position: absolute;
+    color: #ddd;
+    z-index: 1000;
+    border-radius: 4px;
+    top: 20px;
+    width: auto;
+    min-width: unset;
+    max-width: unset;
+    left: 10px;
+}
 .fa-angle-down:before {
     content: "\f107";
 }
