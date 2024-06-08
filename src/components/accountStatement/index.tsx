@@ -39,7 +39,10 @@ const AccountStatementComponent = () => {
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
-  const handleClose = () => setShow({ status: false, betId: [] });
+  const handleClose = () => {
+    setSelectedOption("matched");
+    setShow({ status: false, betId: [] });
+  };
 
   useEffect(() => {
     if (getProfile?.id && tableConfig && firstTime) {
@@ -351,77 +354,86 @@ const AccountStatementComponent = () => {
                 </tr>
               </thead>
               <tbody>
-                {placedBets?.map((item: any, index: number) => (
-                  <tr key={item?.id}>
-                    <td
-                      className={`${
-                        item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
-                    >
-                      {index + 1}
-                    </td>
-                    <td
-                      className={`${
-                        item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
-                    >
-                      {item?.teamName}
-                    </td>
-                    <td
-                      className={`${
-                        item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
-                    >
-                      {item?.betType}
-                    </td>
-                    <td
-                      className={`${
-                        item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
-                    >
-                      {item?.odds}
-                    </td>
-                    <td
-                      className={`${
-                        item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
-                    >
-                      {item?.amount}
-                    </td>
-                    <td
-                      className={`${
-                        item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
-                      style={{
-                        color: item?.result === "LOSS" ? "#dc3545" : "#28a745",
-                      }}
-                    >
-                      {item?.result === "LOSS"
-                        ? `-${Math.floor(item?.lossAmount).toFixed(2)}`
-                        : Math.floor(item?.winAmount).toFixed(2)}
-                    </td>
-                    <td
-                      className={`${
-                        item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
-                    >
-                      {moment(item?.createdAt).format("MM/DD/YYYY hh:mm:ss A")}
-                    </td>
-                    <td
-                      className={`${
-                        item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                      }`}
-                    >
-                      {item?.racingMatch
-                        ? moment(item?.racingMatch?.startAt).format(
-                            "MM/DD/YYYY hh:mm:ss A"
-                          )
-                        : moment(item?.match?.startAt).format(
-                            "MM/DD/YYYY hh:mm:ss A"
-                          )}
-                    </td>
+                {placedBets?.length === 0 && (
+                  <tr>
+                    <td colSpan={12}>No Record Found</td>
                   </tr>
-                ))}
+                )}
+                {placedBets?.length >= 0 &&
+                  placedBets?.map((item: any, index: number) => (
+                    <tr key={item?.id}>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {index + 1}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.teamName}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.betType}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.odds}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.amount}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                        style={{
+                          color:
+                            item?.result === "LOSS" ? "#dc3545" : "#28a745",
+                        }}
+                      >
+                        {item?.result === "LOSS"
+                          ? `-${Math.floor(item?.lossAmount).toFixed(2)}`
+                          : Math.floor(item?.winAmount).toFixed(2)}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {moment(item?.createdAt).format(
+                          "MM/DD/YYYY hh:mm:ss A"
+                        )}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.racingMatch
+                          ? moment(item?.racingMatch?.startAt).format(
+                              "MM/DD/YYYY hh:mm:ss A"
+                            )
+                          : moment(item?.match?.startAt).format(
+                              "MM/DD/YYYY hh:mm:ss A"
+                            )}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           ) : (
