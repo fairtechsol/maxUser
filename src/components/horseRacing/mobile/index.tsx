@@ -40,6 +40,7 @@ const HorseRacingListTabsMobile = ({ matchType }: any) => {
     >
       {countryWiseList?.map((code: any) => (
         <Tab
+        className="text-left"
           eventKey={code.countryCode}
           title={code.countryCode}
           key={code.countryCode}

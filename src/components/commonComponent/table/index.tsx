@@ -28,6 +28,7 @@ interface CustomTableProps {
   bordered?: boolean;
   striped?: boolean;
   paginationCount?: boolean;
+  width?: any;
 }
 
 const CustomTable: React.FC<CustomTableProps> = ({
@@ -43,6 +44,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
   tHeadTheme,
   tBodyTheme,
   paginationCount,
+  width,
   ...props
 }) => {
   // State for sorting configuration and current page
@@ -80,7 +82,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
     // alert(tHeadTheme);
   }, [currentPage, sortConfig, rowPerPage]);
   return (
-    <div className={`${customClass ?? ""} customTable`}>
+    <div className={`${customClass ?? ""}`}>
       <TableHeader
         enablePdfExcel={enablePdfExcel}
         isPagination={isPagination}
@@ -91,7 +93,8 @@ const CustomTable: React.FC<CustomTableProps> = ({
         paginationCount={paginationCount}
       />
       {/* Table for displaying data */}
-      <Table {...props} responsive>
+      <div className="w-100">
+      <Table {...props} responsive style={width ? { width: width } : {}}>
         <thead>
           <tr>
             {/* Table header with sorting icons */}
@@ -134,6 +137,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
           )}
         </tbody>
       </Table>
+      </div>
       {/* Pagination component for navigating through pages */}
       {isPagination && (
         <PaginationComponent

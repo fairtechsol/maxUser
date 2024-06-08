@@ -9,6 +9,7 @@ import MatchOddComponent from "../matchOddComponent";
 // import CombinedComponent from "../combinedComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
+import BetTableHeader from "../../../commonComponent/betTableHeader";
 
 const HorseRaceDetailDesktop = () => {
   const { matchDetail } = useSelector(
@@ -93,6 +94,9 @@ const HorseRaceDetailDesktop = () => {
                     : "100%",
                 }}
               >
+                <Col>
+                <BetTableHeader customClass="mt-2 rounded-top-1  rounded-bottom-0 py-2" title={"Live Match"} />
+                </Col>
                 <Col md={12}>
                   <PlacedBet />
                 </Col>

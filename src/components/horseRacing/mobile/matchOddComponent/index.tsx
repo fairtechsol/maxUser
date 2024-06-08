@@ -60,7 +60,7 @@ const MatchOddCompnentMobile = ({ handleClick }: any) => {
               } removed`}
               key={runner?.id}
             >
-              <div className="float-left country-name box-4">
+              <div className="float-left country-name box-4 title-12">
                 {matchDetail?.matchType === "greyHound" ? (
                   <div className="">
                     <label htmlFor={runner.id} className="custom-control-label">
