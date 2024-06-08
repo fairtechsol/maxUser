@@ -1,17 +1,27 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { dragonTigerCards } from "../../../../utils/constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const CommonCardImg = () => {
-  const [cardData, setCardData] = useState(dragonTigerCards)
+const CommonCardImg = ({cardData,setValue,handleBet}:any) => {
+  const [cardImg, setCardImg] = useState(dragonTigerCards)
   const dispatch: AppDispatch = useDispatch();
+  
+  useEffect(() => {
+    const mergedArray = cardData?.map((item:any, index:any) => {
+      return {
+        ...item,
+        ...dragonTigerCards[index]
+        };
+        });
+        setCardImg(mergedArray)
+        }, [cardData])
 
   return (
     <div className="commonCardImgContainer">
-      {cardData?.map((item:any,index:any)=>{
+      {cardImg?.map((item:any,index:any)=>{
         return(<>
-         <div className="suspended" style={{display:"flex",flexDirection:"column",justifyContent:"space-around",alignItems:"center"}}>
+         <div className={item?.gstatus==="0"?"suspended":""} style={{display:"flex",flexDirection:"column",justifyContent:"space-around",alignItems:"center"}} onClick={()=>handleBet(item)}>
         <img src={item?.imgSrc} width={"40px"}/>
         <span style={{fontSize:"12px"}}>{item?.value}</span>
       </div></>)

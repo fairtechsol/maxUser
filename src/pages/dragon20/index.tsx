@@ -1,26 +1,28 @@
 import { useEffect } from "react";
-import isMobile from "../../utils/screenDimension";
+// import isMobile from "../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import DragonTigerComponentList from "../../components/dragon20";
 import { expertSocketService, socket, socketService } from "../../socketManager";
+import { getDragonTigerDetailHorseRacing, updateCardMatchRates } from "../../store/actions/cards/cardDetail";
+import Loader from "../../components/commonComponent/loader";
+import { getButtonValue } from "../../store/actions/user/userAction";
 
 const DragonTiger20 = () => {
   const { id } = useParams();
   const type ="dt20"
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
-  // const { success } = useSelector(
-  //   (state: RootState) => state.horseRacing.matchDetail
-  // );
-
+  const { success ,dragonTigerDetail,loading} = useSelector(
+    (state: RootState) => state.card
+  );
+console.error('first',success,dragonTigerDetail)
   const setMatchRatesInRedux = (event: any) => {
-    console.log('event',event)
     try {
-      if (id === event?.id) {
-        // dispatch(updateMatchRatesForHorseRacing(event));
+      if (type === event?.data?.data?.data?.t1[0]?.gtype) {
+        dispatch(updateCardMatchRates(event?.data?.data?.data));
       }
     } catch (e) {
       console.log(e);
@@ -39,17 +41,14 @@ const DragonTiger20 = () => {
   //   }
   // };
 
-  // useEffect(() => {
-  //   try {
-  //     dispatch(getButtonValue());
-  //     if (id) {
-  //       dispatch(getMatchDetailHorseRacing(id));
-  //       dispatch(getPlacedBets(id));
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // }, [id]);
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(type));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [id]);
   // const resultDeclared = (event: any) => {
   //   try {
   //     if (event?.matchId === id) {
@@ -114,7 +113,7 @@ const DragonTiger20 = () => {
     }
   }, [type]);
 
-  return <DragonTigerComponentList /> ;
+  return loading ? <Loader /> : <DragonTigerComponentList /> ;
 };
 
 export default DragonTiger20;

@@ -43,6 +43,12 @@ export const ApiConstants = {
       GET_MATCH_DETAIL: "/match/racing",
     },
   },
+  CARDS: {
+    MATCH: {
+      GET_CARD_DETAIL: "/match/card",
+      PLACE_BET:"/bet/cardBetting"
+    },
+  },
 };
 
 export const Constants = {

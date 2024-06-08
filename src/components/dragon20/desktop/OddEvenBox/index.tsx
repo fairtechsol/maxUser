@@ -1,11 +1,33 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const OddEven = ({ name, data }: any) => {
+const OddEven = ({ name, data,odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = 100;
-  const max = 10000;
+  const min = odds?.[0]?.min;
+  const max = odds?.[0]?.max;
+  // console.log(data,'first',odds)
+  const handleBet=(item:any)=>{
+    let team ={
+      "bettingType": "BACK",
+      "matchId": data?.id,
+      "odd": item?.rate,
+      "stake": 0,
+      "matchBetType": "matchOdd",
+      "betOnTeam":item?.nat,
+      "name":item?.nat,
+      "bettingName": "Match odds",
+      "selectionId": item?.sid
+    }
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+    console.log('team',team)
+  }
   return (
     <>
       <div className="oddEvenContainer">
@@ -14,16 +36,22 @@ const OddEven = ({ name, data }: any) => {
         </div>
         <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
           <CommonButtonBox
-            value1={10.0}
+            value1={odds?.[0]?.rate}
             value2={"EVEN"}
             value3={15}
             width={"40%"}
+            handleBet={handleBet}
+            lock={odds?.[0]?.gstatus==="0"?true:false}
+            data={odds?.[0]}
           />
           <CommonButtonBox
-            value1={40.0}
+            value1={odds?.[1]?.rate}
             value2={"ODD"}
             value3={15}
             width={"40%"}
+            handleBet={handleBet}
+            lock={odds?.[1]?.gstatus==="0"?true:false}
+            data={odds?.[1]}
           />
         </div>
         <div style={{ textAlign: "end" }}>
@@ -34,16 +62,22 @@ const OddEven = ({ name, data }: any) => {
       </div>
       <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
           <CommonButtonBox
-            value1={10.0}
+            value1={odds?.[2]?.rate}
             value2={"icon1"}
             value3={15}
             width={"40%"}
+            handleBet={handleBet}
+            lock={odds?.[2]?.gstatus==="0"?true:false}
+            data={odds?.[2]}
           />
           <CommonButtonBox
-            value1={40.0}
+            value1={odds?.[3]?.rate}
             value2={"icon2"}
             value3={15}
             width={"40%"}
+            handleBet={handleBet}
+            lock={odds?.[3]?.gstatus==="0"?true:false}
+            data={odds?.[3]}
           />
         </div>
         <div style={{ textAlign: "end" }}>
