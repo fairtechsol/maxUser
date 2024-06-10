@@ -50,7 +50,7 @@ const Home = () => {
               matchType: event?.gameType,
             })
           );
-        } else if (["horseRacing", "greyhound"].includes(matchType)) {
+        } else if (["horseRacing", "greyHound"].includes(matchType)) {
           dispatch(getHorseRacingCountryWiseList(matchType));
         }
       }
@@ -66,12 +66,12 @@ const Home = () => {
           if (event?.betType === "quickbookmaker1") {
             setTimeout(() => {
               dispatch(getMatchList({ matchType: matchType }));
-            }, 500);
+            }, 1000);
           }
         } else if (["horseRacing", "greyHound"].includes(matchType)) {
           setTimeout(() => {
             dispatch(getHorseRacingCountryWiseList(matchType));
-          }, 500);
+          }, 1000);
         }
       }
     } catch (e) {
@@ -116,14 +116,10 @@ const Home = () => {
       getMatchListService();
     } else if (
       matchType &&
-      ["horseRacing", "greyhoundRacing"].includes(matchType) &&
+      ["horseRacing", "greyHound"].includes(matchType) &&
       ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
     ) {
-      dispatch(
-        getHorseRacingCountryWiseList(
-          matchType === "greyhoundRacing" ? "greyHound" : matchType
-        )
-      );
+      dispatch(getHorseRacingCountryWiseList(matchType));
     }
   }, [matchType, location.pathname.split("/")[1]]);
 

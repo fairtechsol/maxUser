@@ -1,17 +1,25 @@
 import { BiCricketBall } from "react-icons/bi";
+import { GiBasketballBall } from "react-icons/gi";
 import { IoTennisball } from "react-icons/io5";
+import { MdSportsKabaddi } from "react-icons/md";
 import { RiFootballLine } from "react-icons/ri";
 import { GAME_TYPE } from "../../../utils/enum";
-import { GiBasketballBall } from "react-icons/gi";
-import { MdSportsKabaddi } from "react-icons/md";
 
-import { IoGameController } from "react-icons/io5";
-import { GiHorseHead } from "react-icons/gi";
 import { FaTableTennis } from "react-icons/fa";
-import { GiPoolTriangle } from "react-icons/gi";
+import { GiHorseHead, GiHound, GiPoolTriangle } from "react-icons/gi";
+import { IoGameController } from "react-icons/io5";
 import { TbPlayVolleyball } from "react-icons/tb";
-import { GiHound } from "react-icons/gi";
-import { Badmin, Esoc, Grey, Horse, Kabaddi, Snooker, TableT, Volley, amfootball } from "../../../assets/images";
+import {
+  Badmin,
+  Esoc,
+  Grey,
+  Horse,
+  Kabaddi,
+  Snooker,
+  TableT,
+  Volley,
+  amfootball,
+} from "../../../assets/images";
 const MatchListJson = () => {
   return [
     {
@@ -19,14 +27,12 @@ const MatchListJson = () => {
       name: "Football",
       icon: <RiFootballLine />,
       type: GAME_TYPE.ONE_V_ONE,
-    
     },
     {
       id: "tennis",
       name: "Tennis",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <IoTennisball />,
-    
     },
     {
       id: "cricket",
@@ -38,28 +44,28 @@ const MatchListJson = () => {
       id: "esoccer",
       name: "Esoccer",
       type: GAME_TYPE.ONE_V_ONE,
-      img: Esoc
+      img: Esoc,
     },
     {
       id: "horseRacing",
       name: "Horse Racing",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <GiHorseHead />,
-      img: Horse
+      img: Horse,
     },
     {
       id: "tabletennis",
       name: "Table Tennis",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <FaTableTennis />,
-      img: TableT
+      img: TableT,
     },
     {
-      id: "greyhoundRacing",
+      id: "greyHound",
       name: "Greyhound Racing",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <GiHound />,
-      img: Grey
+      img: Grey,
     },
     {
       id: "basketball",
@@ -72,26 +78,26 @@ const MatchListJson = () => {
       name: "Volleyball",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <TbPlayVolleyball />,
-      img: Volley
+      img: Volley,
     },
     {
       id: "kabaddi",
       name: "Kabaddi",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <MdSportsKabaddi />,
-      img: Kabaddi
+      img: Kabaddi,
     },
     {
       id: "badminton",
       name: "Badminton",
       type: GAME_TYPE.ONE_V_ONE,
-      img: Badmin
+      img: Badmin,
     },
     {
       id: "americanfootball",
       name: "American Football",
       type: GAME_TYPE.ONE_V_ONE,
-      img: amfootball
+      img: amfootball,
     },
     {
       id: "futsal",
@@ -110,7 +116,7 @@ const MatchListJson = () => {
       id: "snooker",
       name: "Snooker",
       type: GAME_TYPE.ONE_V_ONE,
-      img: Snooker
+      img: Snooker,
     },
   ];
 };

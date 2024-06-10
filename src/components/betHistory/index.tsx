@@ -275,9 +275,9 @@ const BetHistoryComponent = () => {
                     >
                       {/* {item?.winAmount} */}
                       {item.result === "LOSS" ? (
-                        <span className="color-green">-{item.lossAmount}</span>
+                        <span className="color-red">-{item.lossAmount}</span>
                       ) : (
-                        <span className="color-red">{item.winAmount}</span>
+                        <span className="color-green">{item.winAmount}</span>
                       )}
                     </td>
                     <td
@@ -365,9 +365,9 @@ const BetHistoryComponent = () => {
                           <span className="f600">P&L</span>
                         </div>
                         <div> {item.result === "LOSS" ? (
-                          <span className="color-green">-{item.lossAmount}</span>
+                          <span className="color-red">-{item.lossAmount}</span>
                         ) : (
-                          <span className="color-red">{item.winAmount}</span>
+                          <span className="color-green">{item.winAmount}</span>
                         )}</div>
                       </div>
                     </div>

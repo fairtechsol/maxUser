@@ -2,11 +2,24 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import RatesBoxMobile from "../ratesBox";
 import moment from "moment";
+import { useState } from "react";
 
-const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
+const MatchOddCompnentMobile = ({ handleClick }: any) => {
   const { matchDetail } = useSelector(
     (state: RootState) => state.horseRacing.matchDetail
   );
+  const [showRunnerDetail, setShowRunnerDetail] = useState<any>([]);
+
+  const handleShowRunnerDetail = (runnerId: string) => {
+    setShowRunnerDetail((prev: any) => {
+      if (prev.includes(runnerId)) {
+        return prev.filter((item: any) => item !== runnerId);
+      } else {
+        return [...prev, runnerId];
+      }
+    });
+  };
+
   return (
     <>
       <div className="market-title mt-1">
@@ -47,7 +60,7 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
               } removed`}
               key={runner?.id}
             >
-              <div className="float-left country-name box-4">
+              <div className="float-left country-name box-4 title-12">
                 {matchDetail?.matchType === "greyHound" ? (
                   <div className="">
                     <label htmlFor={runner.id} className="custom-control-label">
@@ -78,68 +91,92 @@ const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
                     </div>
                   </div>
                 ) : (
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      id={runner?.id}
-                      name={runner?.runnerName}
-                      className="custom-control-input"
-                      value={runner?.runnerName}
-                    />
-                    <label htmlFor={runner.id} className="custom-control-label">
-                      <span className="horse-mobile-arrow">
-                        <i
-                          data-toggle="collapse"
-                          data-target={`#detail-${runner.id}`}
-                          className="fas fa-angle-down"
-                          onClick={(event) => handleShowModal(event, runner)}
-                        ></i>
-                      </span>
-                      <div>
-                        {runner?.number}
-                        <br />({runner?.metadata?.STALL_DRAW})
-                      </div>
-                      <div>
-                        <img src={runner?.image} alt={runner?.name} />
-                      </div>
-                      <div>
-                        <span>{`${index + 1}. ${
-                          runner.runnerName.split(".")?.[1]?.trim()
-                            ? runner.runnerName.split(".")?.[1]?.trim()
-                            : runner.runnerName
-                        }`}</span>
-                        <div className="w-100" style={{ color: "black" }}>
-                          {/* {runner.metadata?.AGE}
-                           */}{" "}
-                          <span
-                            className={`${
-                              matchDetail?.profitLossDataMatch &&
-                              matchDetail?.profitLossDataMatch[runner?.id]
-                                ? matchDetail?.profitLossDataMatch[runner?.id] >
-                                  0
-                                  ? "color-green"
-                                  : "color-red"
-                                : ""
-                            }`}
-                          >
-                            {matchDetail?.profitLossDataMatch &&
-                            matchDetail?.profitLossDataMatch[runner?.id]
-                              ? matchDetail?.profitLossDataMatch[runner?.id]
-                              : 0}
+                  <>
+                    {showRunnerDetail?.includes(runner?.id) && (
+                      <div className="horse-detail">
+                        <div className="jockey-detail-mobile ">
+                          <span style={{ color: "#ddd" }}>
+                            <b>Jockey:</b>
+                            {runner?.runnerName}
+                          </span>
+                          <span style={{ color: "#ddd" }}>
+                            <b>Trainer:</b>
+                            {runner?.metadata?.JOCKEY_NAME}
+                          </span>
+                          <span style={{ color: "#ddd" }}>
+                            <b>Age:</b>
+                            {runner?.metadata?.AGE}
                           </span>
                         </div>
                       </div>
-                    </label>
-                  </div>
+                    )}
+                    <div className="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        id={runner?.id}
+                        name={runner?.runnerName}
+                        className="custom-control-input"
+                        value={runner?.runnerName}
+                      />
+                      <label
+                        htmlFor={runner.id}
+                        className="custom-control-label"
+                      >
+                        <span className="horse-mobile-arrow">
+                          <i
+                            data-toggle="collapse"
+                            data-target={`#detail-${runner.id}`}
+                            className="fas fa-angle-down"
+                            onClick={() => handleShowRunnerDetail(runner?.id)}
+                          ></i>
+                        </span>
+                        <div>
+                          {runner?.number}
+                          <br />({runner?.metadata?.STALL_DRAW})
+                        </div>
+                        <div>
+                          <img src={runner?.image} alt={runner?.name} />
+                        </div>
+                        <div>
+                          <span>{`${index + 1}. ${
+                            runner.runnerName.split(".")?.[1]?.trim()
+                              ? runner.runnerName.split(".")?.[1]?.trim()
+                              : runner.runnerName
+                          }`}</span>
+                          <div className="w-100" style={{ color: "black" }}>
+                            {/* {runner.metadata?.AGE}
+                             */}{" "}
+                            <span
+                              className={`${
+                                matchDetail?.profitLossDataMatch &&
+                                matchDetail?.profitLossDataMatch[runner?.id]
+                                  ? matchDetail?.profitLossDataMatch[
+                                      runner?.id
+                                    ] > 0
+                                    ? "color-green"
+                                    : "color-red"
+                                  : ""
+                              }`}
+                            >
+                              {matchDetail?.profitLossDataMatch &&
+                              matchDetail?.profitLossDataMatch[runner?.id]
+                                ? matchDetail?.profitLossDataMatch[runner?.id]
+                                : 0}
+                            </span>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </>
                 )}
               </div>
               {/* <BetStatusOverlayHorseRacing
                 active={
                   runner?.status !== "ACTIVE" ||
                   matchDetail?.matchOdd?.activeStatus !== "live"
-                }
-                liveData={runner}
-              > */}
+                  }
+                  liveData={runner}
+                  > */}
               <RatesBoxMobile
                 rate={runner?.ex?.availableToBack[0]?.price}
                 percent={runner?.ex?.availableToBack[0]?.size}

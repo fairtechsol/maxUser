@@ -133,7 +133,7 @@ const GameDetails = () => {
         );
         setTimeout(() => {
           dispatch(getPlacedBets(id));
-        }, 300);
+        }, 500);
       }
     } catch (e) {
       console.log(e);

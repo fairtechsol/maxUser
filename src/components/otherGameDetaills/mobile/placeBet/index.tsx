@@ -193,7 +193,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
             <Col xs={8} className="f600 title-14">
-            {handleName(selectedBet)}
+              {handleName(selectedBet)}
             </Col>
             <Col xs={4} className="d-flex justify-content-end">
               <CustomButton
@@ -291,7 +291,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                       );
                       return;
                     }
-                    if (loading) {
+                    if (loading || matchOddLoading) {
                       return;
                     }
                     let payloadForSession: any = {
@@ -367,7 +367,17 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                   }
                 }}
               >
-               <span style={{height: "15px", display: "flex", alignItems: "center", justifyContent: "center"}}> Submit</span>
+                <span
+                  style={{
+                    height: "15px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {" "}
+                  Submit
+                </span>
               </CustomButton>
             </Col>
             <Col xs={4} className="title-12 text-center">
@@ -459,11 +469,17 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                           <div className="col-md-12">
                             <span
                               style={{ fontSize: "12px", fontWeight: "600" }}
-                              className={Number(handleProLoss(
-                                selectedBet?.team,
-                                selectedBet?.data?.name,
-                                "A"
-                              )) > 0 ? "color-green":"color-red"}
+                              className={
+                                Number(
+                                  handleProLoss(
+                                    selectedBet?.team,
+                                    selectedBet?.data?.name,
+                                    "A"
+                                  )
+                                ) > 0
+                                  ? "color-green"
+                                  : "color-red"
+                              }
                             >
                               {handleProLoss(
                                 selectedBet?.team,
@@ -483,11 +499,17 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                           <div className="col-md-12">
                             <span
                               style={{ fontSize: "12px", fontWeight: "600" }}
-                              className={Number(handleProLoss(
-                                selectedBet?.team,
-                                selectedBet?.data?.name,
-                                "B"
-                              )) > 0 ? "color-green":"color-red"}
+                              className={
+                                Number(
+                                  handleProLoss(
+                                    selectedBet?.team,
+                                    selectedBet?.data?.name,
+                                    "B"
+                                  )
+                                ) > 0
+                                  ? "color-green"
+                                  : "color-red"
+                              }
                             >
                               {handleProLoss(
                                 selectedBet?.team,
@@ -509,11 +531,17 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
                             <div className="col-md-12">
                               <span
                                 style={{ fontSize: "12px", fontWeight: "600" }}
-                                className={Number(handleProLoss(
-                                  selectedBet?.team,
-                                  selectedBet?.data?.name,
-                                  "C"
-                                )) > 0 ? "color-green":"color-red"}
+                                className={
+                                  Number(
+                                    handleProLoss(
+                                      selectedBet?.team,
+                                      selectedBet?.data?.name,
+                                      "C"
+                                    )
+                                  ) > 0
+                                    ? "color-green"
+                                    : "color-red"
+                                }
                               >
                                 {handleProLoss(
                                   selectedBet?.team,

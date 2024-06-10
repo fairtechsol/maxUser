@@ -1,12 +1,11 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
-import { Tab, Tabs, Row, Col } from "react-bootstrap";
-import "./style.scss";
+import { Col, Row, Tab, Tabs } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { getHorseRacingMatchList } from "../../../store/actions/horseRacing/horseMatchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import moment from "moment";
-import { NavLink } from "react-router-dom";
+import "./style.scss";
 
 const HorseRacingListTabsMobile = ({ matchType }: any) => {
   const { countryWiseList, racingList } = useSelector(
@@ -26,7 +25,7 @@ const HorseRacingListTabsMobile = ({ matchType }: any) => {
       dispatch(
         getHorseRacingMatchList({
           countryCode: activeTab,
-          matchType: matchType === "greyhoundRacing" ? "greyHound" : matchType,
+          matchType: matchType,
         })
       );
     }
@@ -41,6 +40,7 @@ const HorseRacingListTabsMobile = ({ matchType }: any) => {
     >
       {countryWiseList?.map((code: any) => (
         <Tab
+        className="text-left"
           eventKey={code.countryCode}
           title={code.countryCode}
           key={code.countryCode}
