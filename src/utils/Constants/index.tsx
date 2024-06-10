@@ -1,4 +1,4 @@
-import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen, lucky7A, luck7B } from "../../assets/images";
+import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen, lucky7A, luck7B, abjlist, abjlist2 } from "../../assets/images";
 import { dayteen,twentyteen,teencasino,teenplayer,testteen } from "../../assets/images";
 export const ApiConstants = {
   LOGIN: "auth/login",
@@ -43,6 +43,12 @@ export const ApiConstants = {
       GET_MATCH_DETAIL: "/match/racing",
     },
   },
+  CARDS: {
+    MATCH: {
+      GET_CARD_DETAIL: "/match/card",
+      PLACE_BET:"/bet/cardBetting"
+    },
+  },
 };
 
 export const Constants = {
@@ -51,6 +57,7 @@ export const Constants = {
   expertSocketBasePath: "https://devexpertapi.fairgame.club",
   thirdParty: "https://devserviceapi.fairgame.club",
   localThird: "http://localhost:3200",
+  localThirdCard: "https://3200dev.fairgame.club",
   WEBSOCKET: "websocket",
   POLLING: "polling",
   apiBasePathLive: "https://betfairapi.fairgame7.com",
@@ -213,6 +220,10 @@ export const baseUrls = {
     process.env.NODE_ENV === "production"
       ? Constants.thirdParty
       : Constants.localThird,
+  cardSocket:
+    process.env.NODE_ENV === "production"
+      ? Constants.thirdParty
+      : Constants.localThirdCard,
 };
 
 // use below baseUrl for live build
@@ -1267,7 +1278,7 @@ export const casinoIcons = [
     name: "5Five Cricket",
   },
   {
-    url: "/casino/ab2",
+    url: "/abj2",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
     name: "Andar Bahar 2",
@@ -1435,7 +1446,7 @@ export const casinoIcons = [
     name: "Lottery",
   },
   {
-    url: "/casino/lucky7",
+    url: "/lucky7-A",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
     name: "Lucky 7 - A",
@@ -1504,17 +1515,15 @@ export const card3 = {
     },
 
   ],
-  anderBahar : [
+  abj : [
     {
-      url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      url: "/abj2",
+      imgSrc:abjlist2,
       name: "ANDAR BAHAR 2",
     },
     {
       url: "/contact-admin",
-      imgSrc:
-        "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+      imgSrc:abjlist,
       name: "ANDAR BAHAR",
     },
   ]
