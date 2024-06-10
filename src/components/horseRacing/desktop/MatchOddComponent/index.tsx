@@ -53,16 +53,17 @@ const MatchOddComponent = ({ data }: any) => {
                     <label style={{ alignItems: "flex-end", width: "auto" }}>
                       <div>
                         <span
-                          className={`market-book float-right ${data?.profitLossDataMatch &&
-                              data?.profitLossDataMatch[race?.id]
+                          className={`market-book float-right ${
+                            data?.profitLossDataMatch &&
+                            data?.profitLossDataMatch[race?.id]
                               ? data?.profitLossDataMatch[race?.id] > 0
                                 ? "color-green"
                                 : "color-red"
                               : ""
-                            }`}
+                          }`}
                         >
                           {data?.profitLossDataMatch &&
-                            data?.profitLossDataMatch[race?.id]
+                          data?.profitLossDataMatch[race?.id]
                             ? data?.profitLossDataMatch[race?.id]
                             : 0}
                         </span>
@@ -88,23 +89,24 @@ const MatchOddComponent = ({ data }: any) => {
                       <div>
                         <div className="d-flex justify-content-between w-100">
                           <span className="market-nation-name ">
-                            {`${index + 1}. ${race?.runnerName
-                              ?.split(".")?.[1]
-                              ?.trim() ? race?.runnerName
-                                ?.split(".")?.[1]
-                                ?.trim() : race?.runnerName}`}
+                            {`${index + 1}. ${
+                              race?.runnerName?.split(".")?.[1]?.trim()
+                                ? race?.runnerName?.split(".")?.[1]?.trim()
+                                : race?.runnerName
+                            }`}
                           </span>
                           <span
-                            className={`market-book float-right ${data?.profitLossDataMatch &&
-                                data?.profitLossDataMatch[race?.id]
+                            className={`market-book float-right ${
+                              data?.profitLossDataMatch &&
+                              data?.profitLossDataMatch[race?.id]
                                 ? data?.profitLossDataMatch[race?.id] > 0
                                   ? "color-green"
                                   : "color-red"
                                 : ""
-                              }`}
+                            }`}
                           >
                             {data?.profitLossDataMatch &&
-                              data?.profitLossDataMatch[race?.id]
+                            data?.profitLossDataMatch[race?.id]
                               ? data?.profitLossDataMatch[race?.id]
                               : 0}
                           </span>
@@ -139,15 +141,15 @@ const MatchOddComponent = ({ data }: any) => {
                     race?.ex?.availableToBack[2]?.price
                       ? race?.ex?.availableToBack[2]?.price
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   percent={
                     race?.ex?.availableToBack[2]?.size
                       ? race?.ex?.availableToBack[2]?.size
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   bgColor="bg-blue1"
                 />
@@ -156,15 +158,15 @@ const MatchOddComponent = ({ data }: any) => {
                     race?.ex?.availableToBack[1]?.price
                       ? race?.ex?.availableToBack[1]?.price
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   percent={
                     race?.ex?.availableToBack[1]?.size
                       ? race?.ex?.availableToBack[1]?.size
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   bgColor="bg-blue2"
                 />
@@ -173,15 +175,15 @@ const MatchOddComponent = ({ data }: any) => {
                     race?.ex?.availableToBack[0]?.price
                       ? race?.ex?.availableToBack[0]?.price
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   percent={
                     race?.ex?.availableToBack[0]?.size
                       ? race?.ex?.availableToBack[0]?.size
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   bgColor="bg-blue3"
                   onClick={() => {
@@ -214,15 +216,15 @@ const MatchOddComponent = ({ data }: any) => {
                     race?.ex?.availableToLay[0]?.price
                       ? race?.ex?.availableToLay[0]?.price
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   percent={
                     race?.ex?.availableToLay[0]?.size
                       ? race?.ex?.availableToLay[0]?.size
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   bgColor="bg-red1"
                   onClick={() => {
@@ -253,15 +255,15 @@ const MatchOddComponent = ({ data }: any) => {
                     race?.ex?.availableToLay[1]?.price
                       ? race?.ex?.availableToLay[1]?.price
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   percent={
                     race?.ex?.availableToLay[1]?.size
                       ? race?.ex?.availableToLay[1]?.size
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   bgColor="bg-red2"
                 />
@@ -270,15 +272,15 @@ const MatchOddComponent = ({ data }: any) => {
                     race?.ex?.availableToLay[2]?.price
                       ? race?.ex?.availableToLay[2]?.price
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   percent={
                     race?.ex?.availableToLay[2]?.size
                       ? race?.ex?.availableToLay[2]?.size
                       : data?.matchType === "horseRacing"
-                        ? ""
-                        : 0
+                      ? ""
+                      : 0
                   }
                   bgColor="bg-red3"
                 />

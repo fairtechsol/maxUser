@@ -38,16 +38,39 @@ export const getPlacedBets = createAsyncThunk<any, any>(
   }
 );
 
+export const getPlacedBetsForAccountStatement = createAsyncThunk<any, any>(
+  "placed/betForAccountStatement",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.BET.GETPLACEDBETS}?betId=inArr${JSON.stringify(
+          requestData.betId
+        )}&createBy=eq${requestData.userId}&status=${
+          requestData.status
+        }&sort=betPlaced.createdAt:DESC&isCurrentBets=true`
+      );
+      if (resp) {
+        return resp?.data?.rows;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+
 export const getRunAmount = createAsyncThunk<any, any>(
   "/runAmount",
   async (id, thunkApi) => {
     try {
       const resp = await service.get(`${ApiConstants.BET.RUN_AMOUNT}/${id}`);
       if (resp?.data?.profitLoss) {
-        let data ={
+        let data = {
           id: id,
-          arr : JSON.parse(resp?.data?.profitLoss[0]) ? JSON.parse(resp?.data?.profitLoss).betPlaced : []
-        }
+          arr: JSON.parse(resp?.data?.profitLoss[0])
+            ? JSON.parse(resp?.data?.profitLoss).betPlaced
+            : [],
+        };
         return data;
       }
     } catch (error: any) {

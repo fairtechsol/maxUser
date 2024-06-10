@@ -283,7 +283,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       );
                       return;
                     }
-                    if (loading) {
+                    if (loading || matchOddLoading) {
                       return;
                     }
                     let payloadForSession: any = {

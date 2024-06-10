@@ -1,5 +1,4 @@
-import { Col, Row, Stack } from "react-bootstrap";
-
+import { Button, Col, Form, Modal, Row, Stack, Table } from "react-bootstrap";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import "react-calendar/dist/Calendar.css";
@@ -15,6 +14,8 @@ import CustomButton from "../commonComponent/button";
 import NotSet from "../commonComponent/notSet";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
+import "./style.scss";
+import { getPlacedBetsForAccountStatement } from "../../store/actions/betPlace/betPlaceActions";
 
 const AccountStatementComponent = () => {
   const minDate = new Date();
@@ -25,7 +26,9 @@ const AccountStatementComponent = () => {
   const [to, setTo] = useState<any>(new Date());
   const [type, setType] = useState<any>("");
   const [firstTime, setFirstTime] = useState<any>(false);
-  const [minDate2, setminDate2] = useState<any>(minDate)
+  const [minDate2, setminDate2] = useState<any>(minDate);
+  const [show, setShow] = useState({ status: false, betId: [] });
+  const [selectedOption, setSelectedOption] = useState("matched");
 
   const [tableConfig, setTableConfig] = useState<any>(null);
   const dispatch: AppDispatch = useDispatch();
@@ -33,6 +36,14 @@ const AccountStatementComponent = () => {
   const { transactions, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
+
+  const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setSelectedOption("matched");
+    setShow({ status: false, betId: [] });
+  };
+
   useEffect(() => {
     if (getProfile?.id && tableConfig && firstTime) {
       let filter = "";
@@ -64,208 +75,450 @@ const AccountStatementComponent = () => {
       );
     }
   }, [getProfile?.id, tableConfig]);
-  
+
   useEffect(() => {
-    const date =  Math.floor(new Date().getTime() / 1000);
+    const date = Math.floor(new Date().getTime() / 1000);
     const timestamp = Math.floor(new Date(from).getTime() / 1000);
-    if(timestamp !== date){
-      setminDate2(from)
+    if (timestamp !== date) {
+      setminDate2(from);
     }
-  }, [from])
+  }, [from]);
   return (
-    <ReportContainer title="Account Statement">
-      <div>
-        <Stack gap={2}>
-          <Row className="g-2 mt-1">
-            <Col md={2} xs={6}>
-              <DatePicker
-                onChange={setFrom}
-                format="yyyy-MM-dd"
-                value={from}
-                closeCalendar={true}
-                clearIcon={false}
-                className="w-100"
-                minDate={minDate}
-                maxDate={new Date()}
-              />
-              {/* <CustomInput type="date" style={{ appearance: "textfield" }} /> */}
-            </Col>
-            <Col md={2} xs={6}>
-              <DatePicker
-                onChange={setTo}
-                value={to}
-                format="yyyy-MM-dd"
-                closeCalendar={true}
-                clearIcon={false}
-                className="w-100"
-                minDate={minDate2}
-                maxDate={new Date()}
-              />
-              {/* <CustomInput type="date" /> */}
-            </Col>
-            <Col md={2} xs={12}>
-              <SelectSearch
-                options={[
-                  {
-                    value: "",
-                    label: "All",
-                  },
-                  {
-                    value: "addWithdraw",
-                    label: "Deposit/Withdraw Report",
-                  },
-                  {
-                    value: "game",
-                    label: "Game Report",
-                  },
-                ]}
-                placeholder="All"
-                onChange={setType}
-                value={type}
-                defaultValue={""}
-              />
-            </Col>
-            <Col md={2} xs={12}>
-              <CustomButton
-                size={isMobile ? "sm" : "lg"}
-                className={`${
-                  isMobile ? "w-100" : " bg-primaryBlue"
-                } border-0 `}
-                onClick={() => {
-                  if (getProfile?.id && tableConfig) {
-                    let filter = "";
+    <>
+      <ReportContainer title="Account Statement">
+        <div>
+          <Stack gap={2}>
+            <Row className="g-2 mt-1">
+              <Col md={2} xs={6}>
+                <DatePicker
+                  onChange={setFrom}
+                  format="yyyy-MM-dd"
+                  value={from}
+                  closeCalendar={true}
+                  clearIcon={false}
+                  className="w-100"
+                  minDate={minDate}
+                  maxDate={new Date()}
+                />
+                {/* <CustomInput type="date" style={{ appearance: "textfield" }} /> */}
+              </Col>
+              <Col md={2} xs={6}>
+                <DatePicker
+                  onChange={setTo}
+                  value={to}
+                  format="yyyy-MM-dd"
+                  closeCalendar={true}
+                  clearIcon={false}
+                  className="w-100"
+                  minDate={minDate2}
+                  maxDate={new Date()}
+                />
+                {/* <CustomInput type="date" /> */}
+              </Col>
+              <Col md={2} xs={12}>
+                <SelectSearch
+                  options={[
+                    {
+                      value: "",
+                      label: "All",
+                    },
+                    {
+                      value: "addWithdraw",
+                      label: "Deposit/Withdraw Report",
+                    },
+                    {
+                      value: "game",
+                      label: "Game Report",
+                    },
+                  ]}
+                  placeholder="All"
+                  onChange={setType}
+                  value={type}
+                  defaultValue={""}
+                />
+              </Col>
+              <Col md={2} xs={12}>
+                <CustomButton
+                  size={isMobile ? "sm" : "lg"}
+                  className={`${
+                    isMobile ? "w-100" : " bg-primaryBlue"
+                  } border-0 `}
+                  onClick={() => {
+                    if (getProfile?.id && tableConfig) {
+                      let filter = "";
 
-                    if (from && to) {
-                      filter += `&createdAt=between${moment(
-                        new Date(from)
-                      )?.format("YYYY-MM-DD")}|${moment(
-                        new Date(to).setDate(to.getDate() + 1)
-                      )?.format("YYYY-MM-DD")}`;
-                    } else if (from) {
-                      filter += `&createdAt=gte${moment(from)?.format(
-                        "YYYY-MM-DD"
-                      )}`;
-                    } else if (to) {
-                      filter += `&createdAt=lte${moment(to)?.format(
-                        "YYYY-MM-DD"
-                      )}`;
-                    }
-                    if (type) {
-                      filter += `&statementType=${type?.value}`;
-                    }
+                      if (from && to) {
+                        filter += `&createdAt=between${moment(
+                          new Date(from)
+                        )?.format("YYYY-MM-DD")}|${moment(
+                          new Date(to).setDate(to.getDate() + 1)
+                        )?.format("YYYY-MM-DD")}`;
+                      } else if (from) {
+                        filter += `&createdAt=gte${moment(from)?.format(
+                          "YYYY-MM-DD"
+                        )}`;
+                      } else if (to) {
+                        filter += `&createdAt=lte${moment(to)?.format(
+                          "YYYY-MM-DD"
+                        )}`;
+                      }
+                      if (type) {
+                        filter += `&statementType=${type?.value}`;
+                      }
 
-                    dispatch(
-                      getAccountStatement({
-                        userId: getProfile?.id,
-                        page: tableConfig?.page,
-                        limit: tableConfig?.rowPerPage,
-                        searchBy: "description",
-                        keyword: tableConfig?.keyword || "",
-                        filter,
-                      })
-                    );
-                  }
-                  setFirstTime(true);
-                }}
-              >
-                Submit
-              </CustomButton>
-            </Col>
-          </Row>
-          <CustomTable
+                      dispatch(
+                        getAccountStatement({
+                          userId: getProfile?.id,
+                          page: tableConfig?.page,
+                          limit: tableConfig?.rowPerPage,
+                          searchBy: "description",
+                          keyword: tableConfig?.keyword || "",
+                          filter,
+                        })
+                      );
+                    }
+                    setFirstTime(true);
+                  }}
+                >
+                  Submit
+                </CustomButton>
+              </Col>
+            </Row>
+            <CustomTable
+            width={"1200px"}
               paginationCount={true}
-            bordered={true}
-            striped={!isMobile}
-            isPagination={true}
-            isSearch={true}
-            columns={[
-              {
-                id: "createdAt",
-                label: "Date",
-              },
-              {
-                id: "srNo",
-                label: "Sr No",
-              },
-              {
-                id: "amount",
-                label: "Credit",
-              },
-              {
-                id: "amount",
-                label: "Debit",
-              },
-              {
-                id: "closingBalance",
-                label: "Balance",
-              },
-              {
-                id: "description",
-                label: "Remark",
-              },
-            ]}
-            itemCount={transactions?.count || 0}
-            setTableConfig={(data: any) => {
-              setTableConfig(data);
-            }}
-          >
-            {transactions?.transactions?.map((item: any, index: number) => {
-              return (
-                <tr className={`${isMobile && "title-12"}`} key={index}>
-                  <td>
-                    {moment(new Date(item?.createdAt)).format(
-                      "YYYY-MM-DD hh:mm"
-                    )}
-                  </td>
-                  <td>
-                    {index +
-                      (tableConfig?.rowPerPage || 15) *
-                        (tableConfig?.page - 1 || 0) +
-                      1}
-                  </td>
-                  <td className="color-green">
-                    <NotSet
-                      item={
-                        item?.transType == transType.add ||
-                        item?.transType == transType.creditRefer ||
-                        item?.transType == transType.win
-                          ? item?.amount
-                          : null
+              bordered={true}
+              striped={!isMobile}
+              isPagination={firstTime}
+              isSearch={firstTime}
+              columns={[
+                {
+                  id: "createdAt",
+                  label: "Date",
+                },
+                {
+                  id: "srNo",
+                  label: "Sr No",
+                },
+                {
+                  id: "amount",
+                  label: "Credit",
+                },
+                {
+                  id: "amount",
+                  label: "Debit",
+                },
+                {
+                  id: "closingBalance",
+                  label: "Balance",
+                },
+                {
+                  id: "description",
+                  label: "Remark",
+                },
+              ]}
+              itemCount={transactions?.count || 0}
+              setTableConfig={(data: any) => {
+                setTableConfig(data);
+              }}
+            >
+              {transactions?.transactions?.map((item: any, index: number) => {
+                return (
+                  <tr className={`${isMobile && "title-12"}`} key={index}>
+                    <td>
+                      {moment(new Date(item?.createdAt)).format(
+                        "YYYY-MM-DD hh:mm"
+                      )}
+                    </td>
+                    <td>
+                      {index +
+                        (tableConfig?.rowPerPage || 15) *
+                          (tableConfig?.page - 1 || 0) +
+                        1}
+                    </td>
+                    <td className="color-green">
+                      <NotSet
+                        item={
+                          item?.transType == transType.add ||
+                          item?.transType == transType.creditRefer ||
+                          item?.transType == transType.win
+                            ? item?.amount
+                            : null
+                        }
+                      />
+                    </td>
+                    <td className="color-red">
+                      <NotSet
+                        item={
+                          item?.transType == transType.loss ||
+                          item?.transType == transType.withDraw
+                            ? item?.amount
+                            : null
+                        }
+                      />
+                    </td>
+                    <td
+                      className={
+                        parseInt(item?.closingBalance) < 0
+                          ? "color-red"
+                          : parseInt(item?.closingBalance) > 0
+                          ? "color-green"
+                          : ""
                       }
-                    />
-                  </td>
-                  <td className="color-red">
-                    <NotSet
-                      item={
-                        item?.transType == transType.loss ||
-                        item?.transType == transType.withDraw
-                          ? item?.amount
-                          : null
-                      }
-                    />
-                  </td>
-                  <td
-                    className={
-                      parseInt(item?.closingBalance) < 0
-                        ? "color-red"
-                        : parseInt(item?.closingBalance) > 0
-                        ? "color-green"
-                        : ""
-                    }
-                  >
-                    {" "}
-                    <NotSet item={item?.closingBalance} />
-                  </td>
-                  <td>
-                    <NotSet item={item?.description} />
-                  </td>
+                    >
+                      {" "}
+                      <NotSet item={item?.closingBalance} />
+                    </td>
+                    <td
+                      onClick={() => {
+                        if (item?.betId) {
+                          setShow({ status: true, betId: item?.betId });
+                          dispatch(
+                            getPlacedBetsForAccountStatement({
+                              betId: item?.betId,
+                              status: "MATCHED",
+                              userId: getProfile?.id,
+                            })
+                          );
+                        }
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <NotSet item={item?.description} />
+                    </td>
+                  </tr>
+                );
+              })}
+            </CustomTable>
+          </Stack>
+        </div>
+      </ReportContainer>
+      <Modal
+        show={show.status}
+        onHide={handleClose}
+        size="xl"
+        dialogClassName="custom-modal"
+      >
+        <Modal.Body>
+          <Form className="d-flex align-self-center justify-content-center">
+            <div key="inline-radio" className="mb-3">
+              <Form.Check
+                inline
+                label="Matched"
+                name="group1"
+                type="radio"
+                id="inline-radio-1"
+                checked={selectedOption === "matched"}
+                onChange={() => {
+                  setSelectedOption("matched");
+                  dispatch(
+                    getPlacedBetsForAccountStatement({
+                      betId: show?.betId,
+                      status: "MATCHED",
+                      userId: getProfile?.id,
+                    })
+                  );
+                }}
+              />
+              <Form.Check
+                inline
+                label="Deleted"
+                name="group1"
+                type="radio"
+                id="inline-radio-2"
+                checked={selectedOption === "deleted"}
+                onChange={() => {
+                  setSelectedOption("deleted");
+                  dispatch(
+                    getPlacedBetsForAccountStatement({
+                      betId: show?.betId,
+                      status: "DELETED",
+                      userId: getProfile?.id,
+                    })
+                  );
+                }}
+              />
+            </div>
+          </Form>
+          {!isMobile ? (
+            <Table bordered hover>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nation</th>
+                  <th>Side</th>
+                  <th>Rate</th>
+                  <th>Amount</th>
+                  <th>Win/Loss</th>
+                  <th>Place Date</th>
+                  <th>Match Date</th>
                 </tr>
-              );
-            })}
-          </CustomTable>
-        </Stack>
-      </div>
-    </ReportContainer>
+              </thead>
+              <tbody>
+                {placedBets?.length === 0 && (
+                  <tr>
+                    <td colSpan={12}>No Record Found</td>
+                  </tr>
+                )}
+                {placedBets?.length >= 0 &&
+                  placedBets?.map((item: any, index: number) => (
+                    <tr key={item?.id}>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {index + 1}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.teamName}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.betType}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.odds}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.amount}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                        style={{
+                          color:
+                            item?.result === "LOSS" ? "#dc3545" : "#28a745",
+                        }}
+                      >
+                        {item?.result === "LOSS"
+                          ? `-${Math.floor(item?.lossAmount).toFixed(2)}`
+                          : Math.floor(item?.winAmount).toFixed(2)}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {moment(item?.createdAt).format(
+                          "MM/DD/YYYY hh:mm:ss A"
+                        )}
+                      </td>
+                      <td
+                        className={`${
+                          item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                        }`}
+                      >
+                        {item?.racingMatch
+                          ? moment(item?.racingMatch?.startAt).format(
+                              "MM/DD/YYYY hh:mm:ss A"
+                            )
+                          : moment(item?.match?.startAt).format(
+                              "MM/DD/YYYY hh:mm:ss A"
+                            )}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+          ) : (
+            <Row className="row">
+              <Col className="col-12" colspan={12}>
+                {placedBets?.map((item: any, index: number) => {
+                  return (
+                    <div
+                      className={`unsetteled-bet ${
+                        item.betType === "NO" || item.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                      key={index}
+                    >
+                      <div className="row">
+                        <div className="col-6 coloumn-6">
+                          <div>
+                            <span className="f600">Nation: </span>{" "}
+                            {item?.teamName}
+                          </div>
+                          <div>
+                            <span className="f600">Placed Bet: </span>{" "}
+                            {moment(item?.createdAt).format(
+                              "MM/DD/YYYY hh:mm:ss A"
+                            )}
+                          </div>
+                          <div>
+                            <span className="f600">Matched Date: </span>{" "}
+                            {item?.racingMatch
+                              ? moment(item?.racingMatch?.startAt).format(
+                                  "MM/DD/YYYY hh:mm:ss A"
+                                )
+                              : moment(item?.match?.startAt).format(
+                                  "MM/DD/YYYY hh:mm:ss A"
+                                )}
+                          </div>
+                        </div>
+                        <Col className="col-2 reportBody" colspan={6}>
+                          <div>
+                            <span className="f600">Rate</span>
+                          </div>
+                          <div>{item.odds}</div>
+                        </Col>
+                        <div className="col-2 text-right reportBody">
+                          <div>
+                            <span className="f600">Amount</span>
+                          </div>
+                          <div>{item.amount}</div>
+                        </div>
+                        <div className="col-2 text-right reportBody">
+                          <div>
+                            <span className="f600">W&L</span>
+                          </div>
+                          <div
+                            style={{
+                              color:
+                                item?.result === "LOSS" ? "#dc3545" : "#28a745",
+                            }}
+                          >
+                            {item?.result === "LOSS"
+                              ? `-${Math.floor(item?.lossAmount).toFixed(2)}`
+                              : Math.floor(item?.winAmount).toFixed(2)}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </Col>
+            </Row>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            className="btn btn-danger"
+            onClick={handleClose}
+          >
+            {isMobile ? "Cancel" : "Close"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 

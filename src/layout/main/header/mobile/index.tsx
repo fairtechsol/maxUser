@@ -44,25 +44,25 @@ const MobileHeader = () => {
     <>
       <div className="float-start d-flex align-items-center gap-2">
         <div className="logodiv">
-        <FaHome className="text-white title-20" />
-        <Link to={"home"}>
-          <Navbar.Brand>
+          <FaHome className="text-white title-20" />
+          <Link to={"home"}>
+            <Navbar.Brand>
               <LogoSection width="auto" height="17px" />
-          </Navbar.Brand>
-        </Link>
+            </Navbar.Brand>
+          </Link>
         </div>
       </div>
       <div className="d-flex flex-column align-items-center white-text list-unstyled float-end h-100">
         {show?.balance && (
           <div className="d-flex gap-1 align-items-center justify-content-end w-100">
             <FaLandmark className="text-white title-18" />
-            <b>{getProfile?.userBal?.currentBalance}</b>
+            <b>{parseFloat(getProfile?.userBal?.currentBalance).toFixed(2)}</b>
           </div>
         )}
         <div className="d-flex gap-1">
           {show?.exposure && (
             <u onClick={handleClickExposureModalOpen}>
-              Exp:{getProfile?.userBal?.exposure}
+              Exp:{parseFloat(getProfile?.userBal?.exposure).toFixed(2)}
             </u>
           )}
           <ExposureModal

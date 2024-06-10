@@ -24,7 +24,7 @@ const GameList = () => {
       if (event?.gameType === type) {
         setTimeout(() => {
           dispatch(getMatchList({ matchType: type }));
-        }, 500);
+        }, 1000);
       }
     } catch (e) {
       console.log(e);
@@ -36,7 +36,7 @@ const GameList = () => {
         if (event?.betType === "quickbookmaker1") {
           setTimeout(() => {
             dispatch(getMatchList({ matchType: type }));
-          }, 500);
+          }, 1000);
         }
       }
     } catch (e) {

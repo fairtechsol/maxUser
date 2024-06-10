@@ -1,32 +1,61 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const TiePairBox = ({ data }: any) => {
+const TiePairBox = ({tiePair, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = 100;
-  const max = 10000;
-
+  const min =tiePair?.[0]?.min;
+  const max =tiePair?.[0]?.max;
+  const handleBet=(item:any)=>{
+    let team ={
+      "bettingType": "BACK",
+      "matchId": data?.id,
+      "odd": item?.rate,
+      "stake": 0,
+      "matchBetType": "matchOdd",
+      "betOnTeam":item?.nat,
+      "name":item?.nat,
+      "bettingName": "Match odds",
+      "selectionId": item?.sid
+    }
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+    console.log('team',team)
+  }
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMain">
         <CommonButtonBox
-          value1={10.0}
-          value2={"Dragon"}
-          value3={15}
+         value1={tiePair?.[0]?.rate}
+         value2={"Dragon"}
+         value3={15}
           width={"35%"}
+          handleBet={handleBet}
+          lock={tiePair?.[0]?.gstatus==="0"?true:false}
+          data={tiePair?.[0]}
         />
         <CommonButtonBox
-          value1={20.0}
-          value2={"Tie"}
-          value3={15}
+         value1={tiePair?.[2]?.rate}
+         value2={"Tie"}
+         value3={15}
           width={"20%"}
+          handleBet={handleBet}
+          lock={tiePair?.[2]?.gstatus==="0"?true:false}
+          data={tiePair?.[2]}
         />
         <CommonButtonBox
-          value1={30.0}
-          value2={"Tiger"}
+          value1={tiePair?.[3]?.rate}
+          value2={"Pair"}
           value3={15}
           width={"35%"}
+          handleBet={handleBet}
+          lock={tiePair?.[1]?.gstatus==="0"?true:false}
+          data={tiePair?.[1]}
         />
       </div>
       <CommonButtonBox
@@ -34,6 +63,9 @@ const TiePairBox = ({ data }: any) => {
           value2={"Pair"}
           value3={15}
           width={"95%"}
+          handleBet={handleBet}
+          lock={tiePair?.[3]?.gstatus==="0"?true:false}
+          data={tiePair?.[3]}
         />
       <div style={{ textAlign: "end",width:"100%" }}>
         <span style={{fontSize:"14px" }}>Min:</span>

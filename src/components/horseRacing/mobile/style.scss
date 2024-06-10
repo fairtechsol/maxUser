@@ -44,7 +44,9 @@
     border-radius: 0px;
     font-size: 12px;
   }
-
+  .tabs-nav .nav-item .nav-link {
+    text-align: left;
+  }
 .tabs-nav .nav-links{
   background-color: #ffc742;
   display: flex;
@@ -52,14 +54,15 @@
   color: #495057; 
   border-radius: 0px;
   font-size: 12px;
-
+  text-align: left;
+  justify-content: flex-start;
 }
   .tabs-nav .nav-link.active {
     // width: 30vw;/* Change this to your desired active tab background color */
     background-color: #004a25;
     color: #fff;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-size: 12px;
   }

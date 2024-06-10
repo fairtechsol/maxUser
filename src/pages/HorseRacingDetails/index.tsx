@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
   getMatchDetailHorseRacing,
+  updateBalanceOnHorseBetPlace,
   updateMatchRatesForHorseRacing,
   updateTeamRatesForHorseRacing,
   updateTeamRatesForHorseRacingOnDelete,
@@ -18,8 +19,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   getButtonValue,
   getProfileInMatchDetail,
-  updateBalance,
   updateBalanceOnBetDelete,
+  updateDeleteReasonBet,
 } from "../../store/actions/user/userAction";
 import {
   getPlacedBets,
@@ -51,7 +52,7 @@ const RaceDetail = () => {
       if (event?.jobData?.matchId === id) {
         dispatch(updateBetsPlaced(event?.jobData?.newBet));
         dispatch(updateTeamRatesForHorseRacing(event));
-        dispatch(updateBalance(event?.jobData));
+        dispatch(updateBalanceOnHorseBetPlace(event?.jobData));
       }
     } catch (e) {
       console.log(e);
@@ -91,7 +92,7 @@ const RaceDetail = () => {
       );
       if (event?.matchId === id) {
         dispatch(updateTeamRatesForHorseRacingOnDelete(event));
-        // dispatch(updateDeleteReasonBet(event));
+        dispatch(updateDeleteReasonBet(event));
       }
     } catch (e) {
       console.log(e);

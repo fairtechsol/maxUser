@@ -13,6 +13,7 @@ import {
   updateBalanceOnSessionResult,
 } from "../../actions/user/userAction";
 import { updateUserBalanceOnPlaceBet } from "../../actions/otherMatchActions";
+import { updateBalanceOnHorseBetPlace } from "../../actions/horseRacing/horseMatchDetailActions";
 
 interface InitialState {
   transactionPassword: string;
@@ -133,7 +134,18 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload?.newUserExposure ?? action.payload?.exposure,
+            exposure:
+              action.payload?.newUserExposure ?? action.payload?.exposure,
+          },
+        };
+      })
+      .addCase(updateBalanceOnHorseBetPlace.fulfilled, (state, action) => {
+        state.getProfile = {
+          ...state.getProfile,
+          userBal: {
+            ...state?.getProfile?.userBal,
+            exposure:
+              action.payload?.newUserExposure ?? action.payload?.exposure,
           },
         };
       })
@@ -142,7 +154,8 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload?.newUserExposure ?? action.payload?.exposure,
+            exposure:
+              action.payload?.newUserExposure ?? action.payload?.exposure,
           },
         };
       })
@@ -151,7 +164,8 @@ const profileSlice = createSlice({
           ...state.getProfile,
           userBal: {
             ...state?.getProfile?.userBal,
-            exposure: action.payload?.newUserExposure ?? action.payload?.exposure,
+            exposure:
+              action.payload?.newUserExposure ?? action.payload?.exposure,
           },
         };
       })
