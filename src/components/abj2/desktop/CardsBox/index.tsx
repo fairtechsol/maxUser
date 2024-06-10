@@ -1,21 +1,40 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const CardBox = ({ name, rate }: any) => {
+const CardBox = ({ cards, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = 100;
-  const max = 10000;
+  const handleBet=(item:any)=>{
+    let team ={
+      "bettingType": "BACK",
+      "matchId": data?.id,
+      "odd": item?.rate,
+      "stake": 0,
+      "matchBetType": "matchOdd",
+      "betOnTeam":item?.nat,
+      "name":item?.nat,
+      "bettingName": "Match odds",
+      "selectionId": item?.sid
+    }
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+    console.log('team',team)
+  }
   return (
     <>
       <div className="cardContainer">
         <div style={{ textAlign: "center" }}>
           <span style={{ fontSize: "16px"}}>
-            {rate}
+          {parseFloat(isNaN(cards?.[0]?.b1)?0:cards?.[0]?.b1)}
           </span>
         </div>
         <div>
-          <CommonCardImg/>
+          <CommonCardImg cardData={cards} handleBet={handleBet}/>
         </div>
        
       </div>
