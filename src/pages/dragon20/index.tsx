@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import {useParams } from "react-router-dom";
 import DragonTigerComponentList from "../../components/dragon20";
 import { expertSocketService, socket, socketService } from "../../socketManager";
 import { getDragonTigerDetailHorseRacing, updateCardMatchRates } from "../../store/actions/cards/cardDetail";
@@ -11,7 +10,6 @@ import Loader from "../../components/commonComponent/loader";
 import { getButtonValue } from "../../store/actions/user/userAction";
 
 const DragonTiger20 = () => {
-  const { id } = useParams();
   const type ="dt20"
   // const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
@@ -48,7 +46,7 @@ const DragonTiger20 = () => {
     } catch (e) {
       console.error(e);
     }
-  }, [id]);
+  }, [type]);
   // const resultDeclared = (event: any) => {
   //   try {
   //     if (event?.matchId === id) {
@@ -96,8 +94,8 @@ const DragonTiger20 = () => {
   useEffect(() => {
     try {
       return () => {
-        expertSocketService.match.leaveMatchRoom(type);
-        expertSocketService.match.getMatchRatesOff(type);
+        socketService.card.leaveMatchRoom(type);
+         socketService.card.getCardRatesOff(type);
         // socketService.userBalance.userMatchBetPlacedOff();
         // socketService.userBalance.matchResultDeclaredOff();
         // socketService.userBalance.declaredMatchResultAllUserOff();
