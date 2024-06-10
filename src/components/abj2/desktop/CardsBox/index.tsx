@@ -10,19 +10,14 @@ const CardBox = ({ name, rate }: any) => {
     <>
       <div className="cardContainer">
         <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "16px",fontWeight:"bolder" }}>
-            {parseFloat(rate).toFixed(2)}
+          <span style={{ fontSize: "16px"}}>
+            {rate}
           </span>
         </div>
         <div>
           <CommonCardImg/>
         </div>
-        <div style={{ textAlign: "end" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div>
+       
       </div>
     </>
   );

@@ -1,53 +1,51 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import CommonButtonBox from "../CommonButtonBox";
+import OddButtonBox from "../OddButtonBox";
 
 const OddEven = ({ card }: any) => {
-  const dispatch: AppDispatch = useDispatch();
-  const min = 100;
-  const max = 10000;
+ 
   return (
     <>
       <div className="oddEvenContainer">
         {card ? <> <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
-          <CommonButtonBox
+          <OddButtonBox
             value1={10.0}
-            value2={"EVEN"}
-            value3={15}
+            value2={"ODD"}
+            profitLoss={15}
             width={"40%"}
           />
-          <CommonButtonBox
+          <OddButtonBox
             value1={40.0}
-            value2={"ODD"}
-            value3={15}
+            value2={"EVEN"}
+            profitLoss={15}
             width={"40%"}
           />
         </div>
-        <div style={{ textAlign: "end" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div></>:<><div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
-          <CommonButtonBox
+       </>:<><div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
+       <OddButtonBox
             value1={10.0}
             value2={"icon1"}
-            value3={15}
-            width={"40%"}
+            profitLoss={15}
+            width={"20%"}
           />
-          <CommonButtonBox
+          <OddButtonBox
             value1={40.0}
             value2={"icon2"}
-            value3={15}
-            width={"40%"}
+            profitLoss={15}
+            width={"20%"}
+          />
+           <OddButtonBox
+            value1={10.0}
+            value2={"icon3"}
+            profitLoss={15}
+            width={"20%"}
+          />
+          <OddButtonBox
+            value1={40.0}
+            value2={"icon4"}
+            profitLoss={15}
+            width={"20%"}
           />
         </div>
-        <div style={{ textAlign: "end" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div></>}
+       </>}
        
       
       </div>

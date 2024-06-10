@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
-import TiePairBox from "./TiePairBox";
+import SBetBox from "./Sbox";
 import OddEven from "./OddEvenBox";
 import CardBox from "./CardsBox";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -14,7 +14,7 @@ const Abj2Desktop = () => {
 
   return (
     <div className="horseRacingTab">
-      <div style={{width:"70%",height:"40vh",margin:"5px"}}>
+      <div style={{width:"70%",height:"38vh",margin:"5px"}}>
       <div className="horseRacingTabHeader">
         <div>
           <span style={{fontSize:"16px",fontWeight:"600"}}>ANDAR BAHAR 2</span>
@@ -25,15 +25,16 @@ const Abj2Desktop = () => {
       <div style={{width:"100%",height:"92%",backgroundColor:"#000"}}></div>
       </div>
       
-      <div style={{width:"70%",margin:"5px"}}>
-     <TiePairBox/>
+      <div className="row-flex" style={{width:"70%",margin:"5px"}}>
+     <SBetBox type={"A"}/>
+     <SBetBox type={"B"}/>
       </div>
       <div style={{width:"70%",margin:"5px",display:"flex",flexDirection:"row",gap:"8px"}}>
-     <OddEven name={"DRAGON"} card={true}/>
-     <OddEven name={"TIGER"} card={false}/>
+     <OddEven card={true}/>
+     <OddEven card={false}/>
       </div>
       <div style={{width:"70%",margin:"5px",display:"flex",flexDirection:"row",gap:"8px"}}>
-     <CardBox name={"DRAGON"} rate={12.00}/>
+     <CardBox  rate={12}/>
       </div>
       <div style={{width:"70%",margin:"5px"}}><CardResultBox /></div>
       <RulesModal show={show} setShow={setShow} rule={abjrules}/>

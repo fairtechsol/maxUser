@@ -43,16 +43,16 @@
 // }
 
 .match-tabs {
-  margin:  0 !important;
+  margin: 0 !important;
   border-right: 1px solid $secondary !important;
   border-radius: 0px !important;
   background-color: $gray;
   &:hover {
-      border-right: 1px solid $secondary !important;
+    border-right: 1px solid $secondary !important;
   }
   &.active {
-      background-color: $secondary !important;
-      border-color: transparent !important ;
+    background-color: $secondary !important;
+    border-color: transparent !important ;
   }
 }
 
@@ -128,33 +128,36 @@
   padding: 0; /* Remove padding from Nav.Link */
   margin: 0; /* Remove margin from Nav.Link */
 }
-.tiePairContainer{
-  width: 100%;
-  background-color: #eee;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
+.sBoxContainer {
+  width: 50%;
+  background-color: #ddd;
+  padding-top: 5px;
 }
-.tiePairRateBoxMainlucky{
+.sBoxMainlucky {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  gap: 3%;
 }
-.commonButtonBoxContainer{
+.commonButtonBoxContainerSbox {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3px;
+  // gap: 3px;
+  border: 3px solid yellow;
+  border-radius: 8px;
+  line-height: 1.2;
 }
 .tiePairbtn-theme {
   color: #fff !important;
   background-image: linear-gradient(to right, #004a25, #ffc742) !important;
   width: 100% !important;
   border-radius: 4px !important;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
   border: 0 !important;
   padding: 2px 8px !important;
   cursor: pointer !important;
@@ -163,15 +166,15 @@
   position: relative;
   text-align: center;
 }
-.oddEvenContainer{
+.oddEvenContainer {
   width: 50%;
   background-color: #eee;
-  padding: 10px;
+  padding-top: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.cardContainer{
+.cardContainer {
   width: 100%;
   background-color: #eee;
   padding: 10px;
@@ -179,7 +182,7 @@
   flex-direction: column;
   justify-content: space-around;
 }
-.commonCardImgContainer{
+.commonCardImgContainer {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -188,13 +191,43 @@
   gap: 5px;
   margin-top: 5px;
 }
-.horseRacingTabHeader{
+.horseRacingTabHeader {
   width: 100%;
   height: 8%;
   background-color: #ffc742;
   display: flex;
   justify-content: space-between;
   padding: 6px 8px;
+}
+.commonButtonBoxContainerOdd {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.evenOddbtn-theme {
+  padding: 8px 0;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  background-color: #72bbef !important;
+  text-align: center;
+  line-height: 1;
+}
+.column-flex {
+  display: flex;
+  flex-direction: column;
+}
+.row-flex {
+  display: flex;
+  flex-direction: row;
+}
+.justify-space-a {
+  justify-content: space-around;
+}
+.align-center {
+  align-items: center;
 }
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
