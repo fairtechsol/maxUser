@@ -7,7 +7,6 @@ const OddEven = ({ data, card,odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = odds?.[0]?.min;
   const max = odds?.[0]?.max;
-  console.log('first',data)
   const handleBet=(item:any)=>{
     let team ={
       "bettingType": "BACK",

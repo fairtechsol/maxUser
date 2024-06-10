@@ -8,7 +8,7 @@ import {
 } from "../../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants, matchBettingType } from "../../../../utils/constants";
+import { ApiConstants } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";

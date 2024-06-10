@@ -297,14 +297,14 @@ const PlacedBet = () => {
                                   selectionId: selectedBet?.team?.selectionId,
                                 };
                                 setMatchOddLoading(true);
-                                setTimeout(() => {
+
                                   dispatch(
                                     placeBet({
                                       url: ApiConstants.CARDS.MATCH.PLACE_BET,
                                       data: JSON.stringify(payload),
                                     })
                                   );
-                                }, getProfile?.delayTime * 1000);
+                               
                                 setStake(0);
                               }
                             }}

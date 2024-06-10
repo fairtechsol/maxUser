@@ -5,7 +5,7 @@ import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
 
-const CommonButtonBox = ({ value1,value2,value3,width }: any) => {
+const CommonButtonBox = ({ value1,value2,value3,width,handleBet,lock,data }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   return (
@@ -13,7 +13,7 @@ const CommonButtonBox = ({ value1,value2,value3,width }: any) => {
       <div>
         <span style={{fontSize:"12px",fontWeight:"bolder"}}>{(parseFloat(value1).toFixed(2))}</span>
       </div>
-      <div className="tiePairbtnlucky-theme">
+      <div className={`tiePairbtn-theme ${lock?'suspended':''}`} onClick={()=>handleBet(data)}>
       {value2 === "icon1" ? (
             <>
               <ImDiamonds color="#ff0000" />{' '}

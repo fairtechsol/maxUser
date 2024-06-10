@@ -18,7 +18,6 @@ const Lucky7Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  console.log("dragonTigerDetail", dragonTigerDetail);
   const roundId = (id: any) => {
     const Id = id?.split(".");
     return Id[1];
@@ -73,16 +72,18 @@ const Lucky7Desktop = () => {
               }}
             >
               <OddEven
-               name={"DRAGON"} 
-               odds={dragonTigerDetail?.redBlack}
-              data={dragonTigerDetail}
-              card={true}
-               />
+                name={"DRAGON"}
+                odds={dragonTigerDetail?.redBlack}
+                data={dragonTigerDetail}
+                card={true}
+              />
 
-              <OddEven name={"TIGER"}   
-               odds={dragonTigerDetail?.luckOdds}
-               card={false}
-              data={dragonTigerDetail} />
+              <OddEven
+                name={"TIGER"}
+                odds={dragonTigerDetail?.luckOdds}
+                card={false}
+                data={dragonTigerDetail}
+              />
             </div>
             <div
               style={{
@@ -94,9 +95,10 @@ const Lucky7Desktop = () => {
               }}
             >
               <CardBox
-              cardData={dragonTigerDetail?.luckyCards}
-              data={dragonTigerDetail}
-               rate={dragonTigerDetail?.luckyCards?.rate} />
+                cardData={dragonTigerDetail?.luckyCards}
+                data={dragonTigerDetail}
+                rate={dragonTigerDetail?.luckyCards?.rate}
+              />
             </div>
             <div style={{ width: "100%", margin: "5px" }}>
               <CardResultBox />

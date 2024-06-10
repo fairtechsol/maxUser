@@ -19,7 +19,7 @@ const Lucky7 = () => {
   const { success ,dragonTigerDetail,loading} = useSelector(
     (state: RootState) => state.card
   );
-console.error('first',success,dragonTigerDetail)
+// console.error('first',success,dragonTigerDetail)
   const setMatchRatesInRedux = (event: any) => {
     try {
       if (type === event?.data?.data?.data?.t1[0]?.gtype) {
