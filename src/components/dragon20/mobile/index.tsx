@@ -1,30 +1,30 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./style.scss";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
+import {  RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
-import moment from "moment";
-import { NavLink } from "react-router-dom";
 import TiePairBox from "./TiePairBox";
 import OddEven from "./OddEvenBox";
 import CardBox from "./CardsBox";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import { dtrules } from "../../../assets/images";
+import PlacedBet from "./placeBet";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
-  const handleSelect = (key: any) => {
-    setActiveTab(key);
+  const [show1, setShow1] = useState(false);
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const roundId = (id: any) => {
+    const Id = id?.split(".");
+    return Id[1];
   };
-
   return (
     <>
       <div>
         <div className="dt20header">
+      <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
             <span
               style={{ fontSize: "12px", fontWeight: "bold" }}
@@ -42,7 +42,9 @@ const DragonTigerMobile = () => {
           </div>
           <div className="dt20subheader2">
             <span style={{ textDecoration: "underline" }} onClick={()=>setShow(true)}>Rules</span>
-            <span> Round ID:4353455 </span>
+            <span> {dragonTigerDetail?.videoInfo
+                ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}`
+                : ""} </span>
           </div>
         </div>
         {!activeTab ? (
@@ -53,7 +55,7 @@ const DragonTigerMobile = () => {
               <div className="horseRacingTabHeaderMob">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    20-20 DRAGON TIGER
+                  {dragonTigerDetail?.name}
                   </span>
                 </div>
               </div>
@@ -66,7 +68,8 @@ const DragonTigerMobile = () => {
               ></div>
             </div>
             <div style={{ width: "100%" }}>
-              <TiePairBox />
+              <TiePairBox  tiePair={dragonTigerDetail?.tiePair}
+            data={dragonTigerDetail}/>
             </div>
             <div className="dt20TabBox">
               <div className="dt20tabheader">
@@ -87,13 +90,21 @@ const DragonTigerMobile = () => {
             </div>
             {activeCardTab ? (
               <div>
-              <OddEven name={"DRAGON"} />
-              <CardBox name={"DRAGON"} rate={12.00}/>
+              <OddEven name={"DRAGON"} 
+            odds={dragonTigerDetail?.dragonOdds}
+            data={dragonTigerDetail}/>
+              <CardBox name={"DRAGON"} 
+            cardData={dragonTigerDetail?.dragonCards}
+            data={dragonTigerDetail}/>
               </div>
             ) : (
               <div>
-              <OddEven name={"TIGER"} />
-              <CardBox name={"TIGER"} rate={10.00}/>
+              <OddEven name={"TIGER"} 
+            odds={dragonTigerDetail?.tigerOdds}
+            data={dragonTigerDetail}/>
+              <CardBox name={"TIGER"} 
+            cardData={dragonTigerDetail?.tigerCards}
+            data={dragonTigerDetail}/>
               </div>
             )}
             <div style={{width:"100%",marginTop:"15px"}}><CardResultBox /></div>

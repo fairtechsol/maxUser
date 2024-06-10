@@ -4,17 +4,17 @@ import { ImClubs  } from "react-icons/im";
 import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
-const CommonButtonBox = ({ value1, value2, value3, width }: any) => {
+const CommonButtonBox = ({ value1,value2,value3,width,handleBet,lock,data }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   return (
     <div className="commonButtonBoxContainer" style={{ width: width }}>
       <div>
         <span style={{ fontSize: "12px", fontWeight: "bolder" }}>
-          {parseFloat(value1).toFixed(2)}
+        {(parseFloat(isNaN(value1)?0:value1).toFixed(2))}
         </span>
       </div>
-      <div className="tiePairbtnMob-theme">
+      <div className={`tiePairbtnMob-theme ${lock?'suspended':''}`} onClick={()=>!lock ? handleBet(data):null}>
         <span style={{ fontSize: "14px" }}>
           {value2 === "icon1" ? (
             <>
@@ -32,7 +32,7 @@ const CommonButtonBox = ({ value1, value2, value3, width }: any) => {
         </span>
       </div>
       <div>
-        <span style={{ fontSize: "12px" }}>{value3}</span>
+        <span style={{ fontSize: "12px" }}>{isNaN(value3)?0:value3}</span>
       </div>
     </div>
   );
