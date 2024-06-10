@@ -8,7 +8,8 @@ const typeToTitle: { [key: string]: string } = {
   dragonTiger: "DRAGON TIGER",
   teenPatti: "TEENPATTI",
   lucky7: "LUCKY7",
-  cards32: "CARDS32"
+  cards32: "CARDS32",
+  abj : "ANDAR BAHAR",
   // Add other mappings as needed
 };
 

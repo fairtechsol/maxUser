@@ -38,6 +38,7 @@ const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
 const DragonTigerSecond20 = Loadable(lazy(() => import("../pages/dragonSecond20")));
 const CardList3 = Loadable(lazy(() => import("../pages/cardList3")));
 const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
+const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -108,6 +109,10 @@ const MainRoutes = {
     {
       path: "32cards-A",
       element: <Cards32 />,
+    },
+    {
+      path: "abj2",
+      element: <Abj2 />,
     },
     {
       path: "dt20",

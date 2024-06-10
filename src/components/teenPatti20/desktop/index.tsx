@@ -5,10 +5,13 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import PlacedBet from "../../gameDetails/desktop/placeBet";
 import MyBet from "../../gameDetails/desktop/myBet";
 import { useRef, useState } from "react";
+import RulesModal from "../../commonComponent/rulesModal";
+import { tprules } from "../../../assets/images";
 
 const TeenPattiDesktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+  const [show, setShow] = useState(false);
   const dummyData = [
     {
       player: "Player A",
@@ -40,10 +43,10 @@ const TeenPattiDesktop = () => {
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
                   20-20 TEENPATTI
                 </span>
-                <a style={{ fontSize: "14px", textDecoration: "underline" }}>
+                <span style={{ fontSize: "14px", textDecoration: "underline" }} onClick={()=>setShow(true)}>
                   {" "}
                   RULES
-                </a>
+                </span>
               </div>
               <span>Round ID: 240506171245</span>
             </div>
@@ -144,6 +147,7 @@ const TeenPattiDesktop = () => {
                     </tbody>
                   </Table>
                 </div>
+                <RulesModal show={show} setShow={setShow} rule={tprules}/>
               </Col>
             </Row>
           </Container>
