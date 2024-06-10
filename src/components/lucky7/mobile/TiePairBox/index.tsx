@@ -2,30 +2,58 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
 import { seven } from "../../../../assets/images";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const TiePairBox = ({ data }: any) => {
+const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = 100;
-  const max = 10000;
+  const min =lowHigh?.[0]?.min;
+  const max =lowHigh?.[0]?.max;
+
+  const handleBet=(item:any)=>{
+    let team ={
+      "bettingType": "BACK",
+      "matchId": data?.id,
+      "odd": item?.rate,
+      "stake": 0,
+      "matchBetType": "matchOdd",
+      "betOnTeam":item?.nat,
+      "name":item?.nat,
+      "bettingName": "Match odds",
+      "selectionId": item?.sid
+    }
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+    console.log('team',team)
+  }
 
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
         <CommonButtonBox
-          value1={10.0}
+          value1={lowHigh?.[0]?.rate}
           value2={"LOW Card"}
           value3={15}
           width={"40%"}
+          handleBet={handleBet}
+          lock={lowHigh?.[0]?.gstatus==="0"?true:false}
+          data={lowHigh?.[0]}
         />
         <div >
         <img src={seven} width={"55px"} height={"70px"} style={{marginTop:"22px"}}/>
         </div>
          
         <CommonButtonBox
-          value1={40.0}
+          value1={lowHigh?.[1]?.rate}
           value2={"HIGH Card"}
           value3={15}
           width={"40%"}
+          handleBet={handleBet}
+          lock={lowHigh?.[1]?.gstatus==="0"?true:false}
+          data={lowHigh?.[1]}
         />
        
       </div>

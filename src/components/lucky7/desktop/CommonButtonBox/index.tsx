@@ -5,15 +5,15 @@ import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
 
-const CommonButtonBox = ({ value1,value2,value3,width }: any) => {
-  const dispatch: AppDispatch = useDispatch();
+const CommonButtonBox = ({ value1,value2,value3,width,handleBet,lock,data }: any) => {
+  // const dispatch: AppDispatch = useDispatch();
 
   return (
     <div className="commonButtonBoxContainer" style={{width:width}}>
       <div>
         <span style={{fontSize:"16px",fontWeight:"bolder"}}>{(parseFloat(value1).toFixed(2))}</span>
       </div>
-      <div className="tiePairbtn-theme">
+      <div className={`tiePairbtn-theme ${lock?'suspended':''}`} onClick={()=>handleBet(data)}>
       <span>{value2 === "icon1" ? (
             <>
               <ImDiamonds color="#ff0000" />
@@ -25,7 +25,7 @@ const CommonButtonBox = ({ value1,value2,value3,width }: any) => {
               <GiSpades  color="#000000"/>
             </>
           ) : (
-            value2
+            value2 
           )}</span>
       </div>
       <div>

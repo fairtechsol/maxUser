@@ -5,9 +5,9 @@ const RaceListItems = ({ matchName, item }: any) => {
   return (
     <>
       <div className="coupon-card coupon-card-first p-0">
-        <div className="card-content">
-          <table className="table coupon-table table-bordered ">
-            <tbody>
+        <div className="card-content p-0">
+          <table className="table coupon-table table-bordered p-0">
+            <tbody className="p-0">
               <tr>
                 <td style={{ width: "30%" }}>
                   <a className="text-dark">{matchName}</a>

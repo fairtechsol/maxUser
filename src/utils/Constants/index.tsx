@@ -1,4 +1,4 @@
-import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen, lucky7A, luck7B, abjlist, abjlist2 } from "../../assets/images";
+import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen, lucky7A, luck7B, cards32A, cards32B, abjlist2, abjlist } from "../../assets/images";
 import { dayteen,twentyteen,teencasino,teenplayer,testteen } from "../../assets/images";
 export const ApiConstants = {
   LOGIN: "auth/login",
@@ -1404,7 +1404,7 @@ export const casinoIcons = [
     name: "3 Cards Judgement",
   },
   {
-    url: "/casino/card32a",
+    url: "/32cards-A",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
     name: "32 Cards A",
@@ -1511,6 +1511,19 @@ export const card3 = {
     {
       url: "/contact-admin",
       imgSrc:luck7B,
+      name: "Lucky 7 B",
+    },
+
+  ],
+  cards32: [
+    {
+      url: "/32cards-A",
+      imgSrc: cards32A,
+      name: "Lucky 7 A",
+    },
+    {
+      url: "/contact-admin",
+      imgSrc: cards32B,
       name: "Lucky 7 B",
     },
 

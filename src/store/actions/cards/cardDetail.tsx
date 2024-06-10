@@ -77,3 +77,10 @@ export const updateCardMatchRates = createAsyncThunk<any, any>(
       return data;
     }
   );
+
+  export const update7CardMatchRates = createAsyncThunk<any, any>(
+    "lucky7/matchRatesUpdate",
+    async (data) => {
+      return data;
+    }
+  );

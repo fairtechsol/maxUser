@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import RatesBoxMobile from "../ratesBox";
 import moment from "moment";
+import "../style.scss";
 
 const MatchOddCompnentMobile = ({ handleShowModal, handleClick }: any) => {
   const { matchDetail } = useSelector(

@@ -274,9 +274,10 @@ input[type=checkbox], input[type=radio] {
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 50%;
     right: 0;
     background-color: rgba(0, 0, 0, 0.6);
-    color: var(--white-color);
+    color: #ffffff;
     text-transform: uppercase;
     font-family: "Font Awesome 5 Free";
     content: "\f023";

@@ -34,7 +34,7 @@ const TeenPattiDesktop = () => {
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
   return (
-    <Container>
+    <div>
       <Row>
         <Col md={8}>
           <div style={{ height: "40vh", margin: "5px" }}>
@@ -153,7 +153,7 @@ const TeenPattiDesktop = () => {
           </Container>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

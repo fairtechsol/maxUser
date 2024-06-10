@@ -101,7 +101,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       e.preventDefault();
     }
   };
-  console.log('selectedBet',selectedBet)
+  // console.log('selectedBet',selectedBet)
   return (
     <>
       <CustomModal
@@ -195,14 +195,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       selectionId: selectedBet?.team?.selectionId,
                     };
                     setMatchOddLoading(true);
-                    setTimeout(() => {
                       dispatch(
                         placeBet({
                           url: ApiConstants.CARDS.MATCH.PLACE_BET,
                           data: JSON.stringify(payload),
                         })
                       );
-                    }, getProfile?.delayTime * 1000);
                     setStake(0);
                   } catch (e) {
                     console.log(e);

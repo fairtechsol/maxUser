@@ -4,12 +4,33 @@ import CommonCardImg from "../CommonCardImg";
 import { IoInformationCircle } from "react-icons/io5";
 import SmoothDropdownModal from "../minMaxModal";
 import { useState } from "react";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const CardBox = ({ name, rate }: any) => {
+const CardBox = ({ cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
-  const min = 100;
-  const max = 10000;
+  const min = cardData?.[0]?.min;
+  const max = cardData?.[0]?.max;
+  const handleBet=(item:any)=>{
+    let team ={
+      "bettingType": "BACK",
+      "matchId": data?.id,
+      "odd": item?.rate,
+      "stake": 0,
+      "matchBetType": "matchOdd",
+      "betOnTeam":item?.nat,
+      "name":item?.nat,
+      "bettingName": "Match odds",
+      "selectionId": item?.sid
+    }
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+    console.log('team',team)
+  }
   return (
     <>
       <div className="cardContainer">
@@ -22,7 +43,7 @@ const CardBox = ({ name, rate }: any) => {
                 alignSelf: "center",
               }}
             >
-              {parseFloat(rate).toFixed(2)}
+              {parseFloat(isNaN(cardData?.[0]?.rate)?0:cardData?.[0]?.rate).toFixed(2)}
             </span>
           </div>
           <div style={{ width: "45%", textAlign: "end" }}>
@@ -32,8 +53,8 @@ const CardBox = ({ name, rate }: any) => {
               onClick={() => setModelOpen(!modelOpen)}
             />
             <SmoothDropdownModal
-              min={100}
-              max={1000}
+              min={min}
+              max={max}
               show={modelOpen}
               setShow={() => setModelOpen(false)}
             />
@@ -41,7 +62,7 @@ const CardBox = ({ name, rate }: any) => {
           </div>
         </div>
         <div>
-          <CommonCardImg />
+          <CommonCardImg cardData={cardData} handleBet={handleBet}/>
         </div>
       </div>
     </>

@@ -23,7 +23,7 @@ const RatesBoxMobile = ({ rate, percent, bgColor, onClick }: any) => {
         }
       }}
     >
-      <span className="odd d-block">{rate}</span>
+      <span className="odd d-block f500 title-15">{rate}</span>
       <span className="d-block">{percent}</span>
     </div>
   );
