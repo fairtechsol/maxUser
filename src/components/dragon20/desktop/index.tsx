@@ -18,7 +18,7 @@ const DragonTigerDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   // console.log('dragonTigerDetail',dragonTigerDetail)
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
+  const [isSticky] = useState(false);
   const roundId = (id: any) => {
     const Id = id?.split(".");
     return Id[1];

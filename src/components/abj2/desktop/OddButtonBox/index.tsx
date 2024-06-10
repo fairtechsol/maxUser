@@ -3,7 +3,6 @@ import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
 
 const OddButtonBox = ({ profitLoss,value1,value2,lock,handleBet,data }: any) => {
-
   return (
     <div className="commonButtonBoxContainerOdd" >
       <div >

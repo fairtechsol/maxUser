@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Abj2ComponentList from "../../components/abj2";
 import { socket, socketService } from "../../socketManager";
-import { getDragonTigerDetailHorseRacing, updateCardMatchRates } from "../../store/actions/cards/cardDetail";
+import { getDragonTigerDetailHorseRacing, updateCardAbjRates, updateCardMatchRates } from "../../store/actions/cards/cardDetail";
 import { getButtonValue } from "../../store/actions/user/userAction";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
@@ -20,7 +20,7 @@ console.error('first',success,dragonTigerDetail)
   const setMatchRatesInRedux = (event: any) => {
     try {
       if (type === event?.data?.data?.data?.t1[0]?.gtype) {
-        dispatch(updateCardMatchRates(event?.data?.data?.data));
+        dispatch(updateCardAbjRates(event?.data?.data?.data));
       }
     } catch (e) {
       console.log(e);
