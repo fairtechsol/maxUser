@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants, matchBettingType } from "../../../../utils/constants";
+import { ApiConstants } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
@@ -78,11 +78,10 @@ const PlacedBet = () => {
       }
     }
   }, [buttonValues]);
- 
+
   useEffect(() => {
     if (selectedBet?.team?.stake) {
       setStake(selectedBet?.team?.stake || 0);
-
     } else {
       setStake(0);
     }
@@ -108,7 +107,7 @@ const PlacedBet = () => {
     };
     fetchData();
   }, []);
-console.log('selectedBet',selectedBet)
+  console.log("selectedBet", selectedBet);
   useEffect(() => {
     if (success) {
       dispatch(selectedBetAction(null));
@@ -120,9 +119,8 @@ console.log('selectedBet',selectedBet)
     }
   }, [success, error]);
 
- 
-  const handleKeyDown = (e:any) => {
-    if (e.key === 'e' || e.key === 'E') {
+  const handleKeyDown = (e: any) => {
+    if (e.key === "e" || e.key === "E") {
       e.preventDefault();
     }
   };
@@ -149,9 +147,7 @@ console.log('selectedBet',selectedBet)
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  className={"place-bet-table-blue"}
-                >
+                <tr className={"place-bet-table-blue"}>
                   <td width={"8%"}>
                     <span
                       className=" text-danger title-12 cursor-pointer"
@@ -193,12 +189,20 @@ console.log('selectedBet',selectedBet)
                         }}
                       >
                         <FaChevronUp
-                        color="#a6b2bb"
-                          style={{ width: "8px", height: "10px",marginLeft:"3px" }}
+                          color="#a6b2bb"
+                          style={{
+                            width: "8px",
+                            height: "10px",
+                            marginLeft: "3px",
+                          }}
                         />
                         <FaChevronDown
-                        color="#a6b2bb"
-                          style={{ width: "8px", height: "10px",marginLeft:"3px" }}
+                          color="#a6b2bb"
+                          style={{
+                            width: "8px",
+                            height: "10px",
+                            marginLeft: "3px",
+                          }}
                         />
                       </div>
                     </div>
@@ -231,9 +235,7 @@ console.log('selectedBet',selectedBet)
                     </span>
                   </td>
                 </tr>
-                <tr
-                  className={"place-bet-table-blue"}
-                >
+                <tr className={"place-bet-table-blue"}>
                   <td colSpan={5}>
                     <Container fluid>
                       <Row>
@@ -265,7 +267,7 @@ console.log('selectedBet',selectedBet)
                             className="bg-danger border-0 py-2"
                             size="sm"
                             onClick={() => {
-                              dispatch(selectedBetAction(null));
+                              setStake(0);
                             }}
                           >
                             Reset
@@ -279,131 +281,30 @@ console.log('selectedBet',selectedBet)
                               if (loading) {
                                 return;
                               } else {
-                                let payloadForSession: any = {
-                                  betId: selectedBet?.team?.betId,
-                                  betType:
-                                    selectedBet?.team?.type.toUpperCase(),
-                                  browserDetail: browserInfo?.userAgent,
-                                  eventName: selectedBet?.team?.name,
-                                  eventType: selectedBet?.team?.eventType,
-                                  matchId: selectedBet?.team?.matchId,
-                                  ipAddress:
-                                    ipAddress === "Not found" || !ipAddress
-                                      ? "192.168.1.100"
-                                      : ipAddress,
-                                  odds: selectedBet?.team?.rate,
-                                  ratePercent: selectedBet?.team?.percent,
-                                  stake: selectedBet?.team?.stake,
-                                };
-                                let payloadForBettings: any = {
-                                  betId: selectedBet?.team?.betId,
-                                  teamA: selectedBet?.team?.teamA,
-                                  teamB: selectedBet?.team?.teamB,
-                                  teamC: selectedBet?.team?.teamC,
-                                  bettingType:
-                                    selectedBet?.team?.type.toUpperCase(),
+                                let payload: any = {
+                                  bettingType: selectedBet?.team?.bettingType,
                                   browserDetail: browserInfo?.userAgent,
                                   matchId: selectedBet?.team?.matchId,
                                   ipAddress:
                                     ipAddress === "Not found" || !ipAddress
                                       ? "192.168.1.100"
                                       : ipAddress,
-                                  odd: matchOddRate,
+                                  odd: parseFloat(selectedBet?.team?.odd),
                                   stake: selectedBet?.team?.stake,
                                   matchBetType: selectedBet?.team?.matchBetType,
                                   betOnTeam: selectedBet?.team?.betOnTeam,
-                                  placeIndex: selectedBet?.team?.placeIndex,
-                                  bettingName: selectedBet?.data?.name,
-                                  gameType: selectedBet?.team?.eventType,
-                                };
-                                let payloadForRace: any = {
-                                  betId: selectedBet?.team?.betId,
-                                  bettingType:
-                                    selectedBet?.team?.type.toUpperCase(),
-                                  browserDetail: browserInfo?.userAgent,
-                                  matchId: selectedBet?.team?.matchId,
-                                  ipAddress:
-                                    ipAddress === "Not found" || !ipAddress
-                                      ? "192.168.1.100"
-                                      : ipAddress,
-                                  odd: matchOddRate,
-                                  stake: selectedBet?.team?.stake,
-                                  matchBetType: selectedBet?.team?.matchBetType,
-                                  betOnTeam: selectedBet?.team?.betOnTeam,
-                                  placeIndex: selectedBet?.team?.placeIndex,
                                   bettingName: selectedBet?.team?.bettingName,
                                   selectionId: selectedBet?.team?.selectionId,
-                                  runnerId: selectedBet?.team?.runnerId,
                                 };
-                                if (
-                                  selectedBet?.data?.type === "matchOdd" ||
-                                  selectedBet?.team?.matchBetType === "matchOdd"
-                                ) {
-                                  setMatchOddLoading(true);
-                                  if (
-                                    selectedBet?.team?.eventType ===
-                                      "horseRacing" ||
-                                    selectedBet?.team?.eventType === "greyHound"
-                                  ) {
-                                    setTimeout(() => {
-                                      dispatch(
-                                        placeBet({
-                                          url: ApiConstants.BET
-                                            .PLACEBETRACEBETTING,
-                                          data: JSON.stringify(payloadForRace),
-                                        })
-                                      );
-                                    }, getProfile?.delayTime * 1000);
-                                  } else {
-                                    setTimeout(() => {
-                                      dispatch(
-                                        placeBet({
-                                          url:
-                                            selectedBet?.data?.type ===
-                                              "session" ||
-                                            selectedBet?.data?.SelectionId
-                                              ? ApiConstants.BET.PLACEBETSESSION
-                                              : selectedBet?.team?.gameType ===
-                                                "other"
-                                              ? ApiConstants.BET
-                                                  .PLACEBETMATCHBETTINGOTHER
-                                              : ApiConstants.BET
-                                                  .PLACEBETMATCHBETTING,
-                                          data:
-                                            selectedBet?.data?.type ===
-                                              "session" ||
-                                            selectedBet?.data?.SelectionId
-                                              ? JSON.stringify(
-                                                  payloadForSession
-                                                )
-                                              : JSON.stringify(
-                                                  payloadForBettings
-                                                ),
-                                        })
-                                      );
-                                    }, getProfile?.delayTime * 1000);
-                                  }
-                                } else {
+                                setMatchOddLoading(true);
+                                setTimeout(() => {
                                   dispatch(
                                     placeBet({
-                                      url:
-                                        selectedBet?.data?.type === "session" ||
-                                        selectedBet?.data?.SelectionId
-                                          ? ApiConstants.BET.PLACEBETSESSION
-                                          : selectedBet?.team?.gameType ===
-                                            "other"
-                                          ? ApiConstants.BET
-                                              .PLACEBETMATCHBETTINGOTHER
-                                          : ApiConstants.BET
-                                              .PLACEBETMATCHBETTING,
-                                      data:
-                                        selectedBet?.data?.type === "session" ||
-                                        selectedBet?.data?.SelectionId
-                                          ? JSON.stringify(payloadForSession)
-                                          : JSON.stringify(payloadForBettings),
+                                      url: ApiConstants.CARDS.MATCH.PLACE_BET,
+                                      data: JSON.stringify(payload),
                                     })
                                   );
-                                }
+                                }, getProfile?.delayTime * 1000);
                                 setStake(0);
                               }
                             }}
