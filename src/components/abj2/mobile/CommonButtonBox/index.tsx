@@ -1,37 +1,13 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import { ImClubs  } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
-import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
-
-const CommonButtonBox = ({ value1,value2,value3,width }: any) => {
-  const dispatch: AppDispatch = useDispatch();
+import "../style.scss"
+const CommonButtonBox = ({ name,value1,background,text,lock ,data,handleBet}: any) => {
 
   return (
-    <div className="commonButtonBoxContainer" style={{width:width}}>
-      <div>
-        <span style={{fontSize:"12px",fontWeight:"bolder"}}>{(parseFloat(value1).toFixed(2))}</span>
-      </div>
-      <div className="tiePairbtnlucky-theme">
-      {value2 === "icon1" ? (
-            <>
-              <ImDiamonds color="#ff0000" />{' '}
-              <BiSolidHeart color="#ff0000"/>
-            </>
-          ) : value2 === "icon2" ? (
-            <>
-              <ImClubs  color="#000000"/>{' '}
-              <GiSpades  color="#000000"/>
-            </>
-          ) : (
-            <span style={{fontSize:"14px"}}>
-            {value2}
-            </span>
-          )}
+    <div className={`commonButtonBoxContainerSbox-m ${lock?'suspended':""}`} style={{width:"100%",backgroundColor:background}} onClick={()=>!lock ? handleBet(data):null}>
+      <div className={``}>
+        <span style={{fontSize:"14px",fontWeight:"bolder",color:text}}>{name}</span>
       </div>
       <div>
-      <span style={{fontSize:"12px"}}>{value3}</span>
+      <span style={{fontSize:"14px",color:text}}>{value1}</span>
       </div>
     </div>
   );
