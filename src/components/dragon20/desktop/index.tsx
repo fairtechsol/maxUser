@@ -16,7 +16,6 @@ import { Col, Container, Row } from "react-bootstrap";
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  // console.log('dragonTigerDetail',dragonTigerDetail)
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky] = useState(false);
   const roundId = (id: any) => {

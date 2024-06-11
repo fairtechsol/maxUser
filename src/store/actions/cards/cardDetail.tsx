@@ -91,3 +91,10 @@ export const updateCardMatchRates = createAsyncThunk<any, any>(
       return data;
     }
   );
+
+  export const updateTeenPattiMatchRates = createAsyncThunk<any, any>(
+    "teen20/matchRatesUpdate",
+    async (data) => {
+      return data;
+    }
+  );
