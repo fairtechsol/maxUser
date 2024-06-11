@@ -26,4 +26,7 @@ export const cardSocketService = {
   userCardBetPlacedOff: () => {
     socket?.off("userCardBetPlaced");
   },
+  getLiveGameResultTop10: (matchType: any, callback: any) => {
+    cardSocket?.on(`liveGameResultTop10${matchType}`, callback);
+  },
 };

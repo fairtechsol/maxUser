@@ -49,22 +49,22 @@ export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
 //   }
 // );
 export const placeBetDragonTiger = createAsyncThunk<any, any>(
-    "dragonTiger/placeBetDragonTiger",
-    async (requestData, thunkApi) => {
-      try {
-        const resp = await service.post(
-          `${ApiConstants.CARDS.MATCH.PLACE_BET}`,
-          requestData
-        );
-        if (resp?.data) {
-          return resp?.data;
-        }
-      } catch (error) {
-        const err = error as AxiosError;
-        return thunkApi.rejectWithValue(err.response?.status);
+  "dragonTiger/placeBetDragonTiger",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.post(
+        `${ApiConstants.CARDS.MATCH.PLACE_BET}`,
+        requestData
+      );
+      if (resp?.data) {
+        return resp?.data;
       }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
     }
-  );
+  }
+);
 // export const updateTeamRatesForHorseRacingOnDelete = createAsyncThunk<any, any>(
 //   "horseRacing/teamRatesUpdateOnDelete",
 //   async (data) => {
@@ -72,25 +72,18 @@ export const placeBetDragonTiger = createAsyncThunk<any, any>(
 //   }
 // );
 export const updateCardMatchRates = createAsyncThunk<any, any>(
-    "dt20/matchRatesUpdate",
-    async (data) => {
-      return data;
-    }
-  );
+  "dt20/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 
-  export const update7CardMatchRates = createAsyncThunk<any, any>(
-    "lucky7/matchRatesUpdate",
-    async (data) => {
-      return data;
-    }
-  );
-
-  export const updateCardAbjRates = createAsyncThunk<any, any>(
-    "abj2/matchRatesUpdate",
-    async (data) => {
-      return data;
-    }
-  );
+export const update7CardMatchRates = createAsyncThunk<any, any>(
+  "lucky7/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 
   export const updateTeenPattiMatchRates = createAsyncThunk<any, any>(
     "teen20/matchRatesUpdate",
@@ -98,3 +91,27 @@ export const updateCardMatchRates = createAsyncThunk<any, any>(
       return data;
     }
   );
+export const updateCardAbjRates = createAsyncThunk<any, any>(
+  "abj2/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+export const updateLiveGameResultTop10 = createAsyncThunk<any, any>(
+  "update/LiveGameResultTop10",
+  async (data) => {
+    return data;
+  }
+);
+export const updateBalanceOnBetPlaceCards = createAsyncThunk<any, any>(
+  "update/balanceOnBetPlaceCards",
+  async (data) => {
+    return data;
+  }
+);
+export const updateProfitLossCards = createAsyncThunk<any, any>(
+  "update/profitLossCards",
+  async (data) => {
+    return data;
+  }
+);

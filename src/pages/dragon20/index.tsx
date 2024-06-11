@@ -6,7 +6,10 @@ import DragonTigerComponentList from "../../components/dragon20";
 import { socket, socketService } from "../../socketManager";
 import {
   getDragonTigerDetailHorseRacing,
+  updateBalanceOnBetPlaceCards,
   updateCardMatchRates,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
 import Loader from "../../components/commonComponent/loader";
 import { getButtonValue } from "../../store/actions/user/userAction";
@@ -24,11 +27,7 @@ const DragonTiger20 = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      if (
-        cardGamesType.dragonTiger20 === event?.data?.data?.data?.t1[0]?.gtype
-      ) {
-        dispatch(updateCardMatchRates(event?.data?.data?.data));
-      }
+      dispatch(updateCardMatchRates(event?.data?.data?.data));
     } catch (e) {
       console.log(e);
     }
@@ -37,13 +36,19 @@ const DragonTiger20 = () => {
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.dragonTiger20) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
+      dispatch(updateProfitLossCards(event?.userRedisObj));
     }
+  };
+
+  const handleLiveGameResultTop10 = (event: any) => {
+    dispatch(updateLiveGameResultTop10(event?.data));
   };
 
   useEffect(() => {
     try {
-        dispatch(getButtonValue());
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTiger20));
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTiger20));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
@@ -61,6 +66,10 @@ const DragonTiger20 = () => {
         socketService.card.getCardRates(
           cardGamesType.dragonTiger20,
           setMatchRatesInRedux
+        );
+        socketService.card.getLiveGameResultTop10(
+          cardGamesType.dragonTiger20,
+          handleLiveGameResultTop10
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
       }

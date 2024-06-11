@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./style.scss";
-import {  RootState } from "../../../store/store";
+import { RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
 import TiePairBox from "./TiePairBox";
 import OddEven from "./OddEvenBox";
@@ -19,6 +19,9 @@ const DragonTigerMobile = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
   const roundId = (id: any) => {
+    if (typeof id !== "string" || !id.includes(".")) {
+      return id || 0;
+    }
     const Id = id?.split(".");
     return Id[1];
   };
@@ -26,7 +29,7 @@ const DragonTigerMobile = () => {
     <>
       <div>
         <div className="dt20header">
-      <PlacedBet show={show1} setShow={setShow1} />
+          <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
             <span
               style={{ fontSize: "12px", fontWeight: "bold" }}
@@ -43,10 +46,18 @@ const DragonTigerMobile = () => {
             </span>
           </div>
           <div className="dt20subheader2">
-            <span style={{ textDecoration: "underline" }} onClick={()=>setShow(true)}>Rules</span>
-            <span> {dragonTigerDetail?.videoInfo
+            <span
+              style={{ textDecoration: "underline" }}
+              onClick={() => setShow(true)}
+            >
+              Rules
+            </span>
+            <span>
+              {" "}
+              {dragonTigerDetail?.videoInfo
                 ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}`
-                : ""} </span>
+                : ""}{" "}
+            </span>
           </div>
         </div>
         {!activeTab ? (
@@ -57,7 +68,7 @@ const DragonTigerMobile = () => {
               <div className="horseRacingTabHeaderMob">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                  {dragonTigerDetail?.name}
+                    {dragonTigerDetail?.name}
                   </span>
                 </div>
               </div>
@@ -70,8 +81,10 @@ const DragonTigerMobile = () => {
               ></div>
             </div>
             <div style={{ width: "100%" }}>
-              <TiePairBox  tiePair={dragonTigerDetail?.tiePair}
-            data={dragonTigerDetail}/>
+              <TiePairBox
+                tiePair={dragonTigerDetail?.tiePair}
+                data={dragonTigerDetail}
+              />
             </div>
             <div className="dt20TabBox">
               <div className="dt20tabheader">
@@ -92,32 +105,42 @@ const DragonTigerMobile = () => {
             </div>
             {activeCardTab ? (
               <div>
-              <OddEven name={"DRAGON"} 
-            odds={dragonTigerDetail?.dragonOdds}
-            data={dragonTigerDetail}/>
-              <CardBox name={"DRAGON"} 
-            cardData={dragonTigerDetail?.dragonCards}
-            data={dragonTigerDetail}/>
+                <OddEven
+                  name={"DRAGON"}
+                  odds={dragonTigerDetail?.dragonOdds}
+                  data={dragonTigerDetail}
+                />
+                <CardBox
+                  name={"DRAGON"}
+                  cardData={dragonTigerDetail?.dragonCards}
+                  data={dragonTigerDetail}
+                />
               </div>
             ) : (
               <div>
-              <OddEven name={"TIGER"} 
-            odds={dragonTigerDetail?.tigerOdds}
-            data={dragonTigerDetail}/>
-              <CardBox name={"TIGER"} 
-            cardData={dragonTigerDetail?.tigerCards}
-            data={dragonTigerDetail}/>
+                <OddEven
+                  name={"TIGER"}
+                  odds={dragonTigerDetail?.tigerOdds}
+                  data={dragonTigerDetail}
+                />
+                <CardBox
+                  name={"TIGER"}
+                  cardData={dragonTigerDetail?.tigerCards}
+                  data={dragonTigerDetail}
+                />
               </div>
             )}
-            <div style={{width:"100%",marginTop:"15px"}}><CardResultBox /></div>
+            <div style={{ width: "100%", marginTop: "15px" }}>
+              <CardResultBox />
+            </div>
           </div>
         ) : (
           <>
-          <MyBet/>
+            <MyBet />
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={dtrules}/>
+      <RulesModal show={show} setShow={setShow} rule={dtrules} />
     </>
   );
 };

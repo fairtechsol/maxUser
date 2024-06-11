@@ -14,6 +14,7 @@ import {
 } from "../../actions/user/userAction";
 import { updateUserBalanceOnPlaceBet } from "../../actions/otherMatchActions";
 import { updateBalanceOnHorseBetPlace } from "../../actions/horseRacing/horseMatchDetailActions";
+import { updateBalanceOnBetPlaceCards } from "../../actions/cards/cardDetail";
 
 interface InitialState {
   transactionPassword: string;
@@ -196,6 +197,16 @@ const profileSlice = createSlice({
             ...state?.getProfile?.userBal,
             currentBalance: action.payload?.currentBalance,
             profitLoss: action.payload?.profitLoss,
+          },
+        };
+      })
+      .addCase(updateBalanceOnBetPlaceCards.fulfilled, (state, action) => {
+        state.getProfile = {
+          ...state.getProfile,
+          userBal: {
+            ...state?.getProfile?.userBal,
+            exposure:
+              action.payload?.newUserExposure ?? action.payload?.exposure,
           },
         };
       });
