@@ -23,10 +23,16 @@ export const cardSocketService = {
   userCardBetPlaced: (callback: any) => {
     socket?.on("userCardBetPlaced", callback);
   },
+  getLiveGameResultTop10: (matchType: any, callback: any) => {
+    cardSocket?.on(`liveGameResultTop10${matchType}`, callback);
+  },
+  cardResult: (callback: any) => {
+    socket?.on("cardResult", callback);
+  },
   userCardBetPlacedOff: () => {
     socket?.off("userCardBetPlaced");
   },
-  getLiveGameResultTop10: (matchType: any, callback: any) => {
-    cardSocket?.on(`liveGameResultTop10${matchType}`, callback);
+  cardResultOff: () => {
+    socket?.off("cardResult");
   },
 };
