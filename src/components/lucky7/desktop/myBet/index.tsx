@@ -2,7 +2,7 @@ import { Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import DeleteBetOverlay from "../../../commonComponent/betComponents/deleteBetRow";
-import RightPanelContainer from "../rightPanelContainer";
+import RightPanelContainer from "../../../lucky7/desktop/rightPanelContainer";
 import "./style.scss";
 
 const placeBetHeader = [
