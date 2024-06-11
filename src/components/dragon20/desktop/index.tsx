@@ -29,7 +29,6 @@ const DragonTigerDesktop = () => {
   };
 
   const handleClose = () => {
-    window.location.reload();
     setShowInactivityModal(false);
   };
 
