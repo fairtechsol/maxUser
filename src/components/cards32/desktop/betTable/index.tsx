@@ -54,6 +54,7 @@ const DynamicTable = () => {
   //     </div>
   //   ))}
   // </div>
+  <>
   <Table bordered className='cards-container'>
   <thead>
     <tr>
@@ -62,21 +63,21 @@ const DynamicTable = () => {
       <th className='lay f400 text-center lh-1'>LAY</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody className='casino-32A '>
     {runners.map((runner, index) => (
-      <tr key={index}>
-        <td className="box-6 lh-1 title-14">
+      <tr key={index} className='suspended'>
+        <td className="box-6 lh-1 title-14 ">
           {runner.name}
           <br />
           {runner.profitLoss}
         </td>
-        <td className="box-2 back text-center title-12 lh-1 position-relative ">
+        <td className="box-2 back text-center title-12 lh-1  ">
           {runner.backPrice}
          
           <br />
           <span className="title-10">{runner.backSize}</span>
         </td>
-        <td className="box-2 lay text-center title-12 lh-1 position-relative ">
+        <td className="box-2 lay text-center title-12 lh-1 ">
           {runner.layPrice}
          
           <br />
@@ -87,6 +88,7 @@ const DynamicTable = () => {
     ))}
   </tbody>
 </Table>
+</>
   );
 };
 
