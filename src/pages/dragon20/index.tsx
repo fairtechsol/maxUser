@@ -44,6 +44,11 @@ const DragonTiger20 = () => {
   const handleLiveGameResultTop10 = (event: any) => {
     dispatch(updateLiveGameResultTop10(event?.data));
   };
+  const handleCardResult = (event: any) => {
+    if (event?.matchId === dragonTigerDetail?.id) {
+      dispatch(getPlacedBets(dragonTigerDetail?.id));
+    }
+  };
 
   useEffect(() => {
     try {
@@ -62,6 +67,7 @@ const DragonTiger20 = () => {
       if (socket && dragonTigerDetail?.id) {
         socketService.card.getCardRatesOff(cardGamesType.dragonTiger20);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
         socketService.card.joinMatchRoom(cardGamesType.dragonTiger20);
         socketService.card.getCardRates(
           cardGamesType.dragonTiger20,
@@ -72,6 +78,7 @@ const DragonTiger20 = () => {
           handleLiveGameResultTop10
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+        socketService.card.cardResult(handleCardResult);
       }
     } catch (error) {
       console.log(error);
@@ -84,6 +91,7 @@ const DragonTiger20 = () => {
         socketService.card.leaveMatchRoom(cardGamesType.dragonTiger20);
         socketService.card.getCardRatesOff(cardGamesType.dragonTiger20);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
       };
     } catch (e) {
       console.log(e);
