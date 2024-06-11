@@ -9,6 +9,7 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import { luckyrules } from "../../../assets/images";
 import PlacedBet from "./placeBet";
+import MyBet from "./myBet";
 
 const Lucky7Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -16,6 +17,7 @@ const Lucky7Mobile = () => {
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { placedBets } = useSelector((state: RootState) => state.bets);
   const roundId = (id: any) => {
     const Id = id?.split(".");
     return Id[1];
@@ -38,7 +40,7 @@ const Lucky7Mobile = () => {
               style={{ fontSize: "12px", fontWeight: "bold" }}
               onClick={() => setActiveTab(true)}
             >
-              PLACED BET(2)
+              PLACED BET({placedBets?.length || 0})
             </span>
           </div>
           <div className="dt20subheader2">
@@ -123,7 +125,7 @@ const Lucky7Mobile = () => {
             </div>
           </div>
         ) : (
-          <></>
+          <><MyBet/></>
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={luckyrules} />
