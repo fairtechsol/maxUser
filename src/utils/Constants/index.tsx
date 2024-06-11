@@ -1,5 +1,35 @@
-import { dt6,dt20,dt2020,dtl20,A,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen, lucky7A, luck7B, cards32A, cards32B, abjlist2, abjlist } from "../../assets/images";
-import { dayteen,twentyteen,teencasino,teenplayer,testteen } from "../../assets/images";
+import {
+  dt6,
+  dt20,
+  dt2020,
+  dtl20,
+  A,
+  two,
+  three,
+  four,
+  five,
+  six,
+  seven,
+  eight,
+  nine,
+  ten,
+  eleven,
+  twelve,
+  thirteen,
+  lucky7A,
+  luck7B,
+  cards32A,
+  cards32B,
+  abjlist2,
+  abjlist,
+} from "../../assets/images";
+import {
+  dayteen,
+  twentyteen,
+  teencasino,
+  teenplayer,
+  testteen,
+} from "../../assets/images";
 export const ApiConstants = {
   LOGIN: "auth/login",
   LOGOUT: "auth/logout",
@@ -46,7 +76,7 @@ export const ApiConstants = {
   CARDS: {
     MATCH: {
       GET_CARD_DETAIL: "/match/card",
-      PLACE_BET:"/bet/cardBetting"
+      PLACE_BET: "/bet/cardBetting",
     },
   },
 };
@@ -63,7 +93,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -205,6 +235,10 @@ export const availableGameType: any = {
   tennis: "tennis",
   horseRacing: "horseRacing",
   greyHound: "greyHound",
+};
+
+export const cardGamesType: any = {
+  dragonTiger20: "dt20",
 };
 
 export const baseUrls = {
@@ -1456,64 +1490,63 @@ export const card3 = {
   dragonTiger: [
     {
       url: "/dt202",
-      imgSrc:dt2020,
+      imgSrc: dt2020,
       name: "20-20 DRAGON TIGER 2",
     },
     {
       url: "/contact-admin",
-      imgSrc:dtl20,
+      imgSrc: dtl20,
       name: "20-20 DRAGON TIGER LION",
     },
     {
       url: "/contact-admin",
-      imgSrc:dt6,
+      imgSrc: dt6,
       name: "1 DAY DRAGON TIGER",
     },
     {
       url: "/dt20",
-      imgSrc:dt20,
+      imgSrc: dt20,
       name: "20-20 DRAGON TIGER",
     },
   ],
   teenPatti: [
     {
       url: "/contact-admin",
-      imgSrc:teencasino,
+      imgSrc: teencasino,
       name: "TEENPATTI 2.0",
     },
     {
       url: "/teenPatti20",
-      imgSrc:twentyteen,
+      imgSrc: twentyteen,
       name: "20-20 TEENPATTI",
     },
     {
       url: "/contact-admin",
-      imgSrc:dayteen,
+      imgSrc: dayteen,
       name: "1 DAY TEENPATTI",
     },
     {
       url: "/contact-admin",
-      imgSrc:testteen,
+      imgSrc: testteen,
       name: "TEST TEENPATTI",
     },
     {
       url: "/contact-admin",
-      imgSrc:teenplayer,
+      imgSrc: teenplayer,
       name: "OPEN TEENPATTI",
     },
   ],
   lucky7: [
     {
       url: "/lucky7-A",
-      imgSrc:lucky7A,
+      imgSrc: lucky7A,
       name: "Lucky 7 A",
     },
     {
       url: "/contact-admin",
-      imgSrc:luck7B,
+      imgSrc: luck7B,
       name: "Lucky 7 B",
     },
-
   ],
   cards32: [
     {
@@ -1526,86 +1559,84 @@ export const card3 = {
       imgSrc: cards32B,
       name: "Lucky 7 B",
     },
-
   ],
-  abj : [
+  abj: [
     {
       url: "/abj2",
-      imgSrc:abjlist2,
+      imgSrc: abjlist2,
       name: "ANDAR BAHAR 2",
     },
     {
       url: "/contact-admin",
-      imgSrc:abjlist,
+      imgSrc: abjlist,
       name: "ANDAR BAHAR",
     },
-  ]
+  ],
 };
-export const  dragonTigerCards= [
+export const dragonTigerCards = [
   {
     code: 0,
-    imgSrc:A,
+    imgSrc: A,
     value: 0,
   },
   {
     code: 1,
-    imgSrc:two,
+    imgSrc: two,
     value: 0,
   },
   {
     code: 2,
-    imgSrc:three,
+    imgSrc: three,
     value: 0,
   },
   {
     code: 3,
-    imgSrc:four,
+    imgSrc: four,
     value: 0,
   },
   {
     code: 4,
-    imgSrc:five,
+    imgSrc: five,
     value: 0,
   },
   {
     code: 5,
-    imgSrc:six,
+    imgSrc: six,
     value: 0,
   },
   {
     code: 6,
-    imgSrc:seven,
+    imgSrc: seven,
     value: 0,
   },
   {
     code: 7,
-    imgSrc:eight,
+    imgSrc: eight,
     value: 0,
   },
   {
     code: 8,
-    imgSrc:nine,
+    imgSrc: nine,
     value: 0,
   },
   {
     code: 9,
-    imgSrc:ten,
+    imgSrc: ten,
     value: 0,
   },
   {
     code: 10,
-    imgSrc:eleven,
+    imgSrc: eleven,
     value: 0,
   },
   {
     code: 11,
-    imgSrc:twelve,
+    imgSrc: twelve,
     value: 0,
   },
   {
     code: 12,
-    imgSrc:thirteen,
+    imgSrc: thirteen,
     value: 0,
   },
-]
-
+];
