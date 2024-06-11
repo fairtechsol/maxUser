@@ -107,7 +107,10 @@ const cardDetail = createSlice({
       .addCase(updateProfitLossCards.fulfilled, (state, action) => {
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
-          profitLoss: action.payload,
+          profitLoss: {
+            ...state.dragonTigerDetail.profitLoss,
+            ...action.payload,
+          },
         };
       });
   },

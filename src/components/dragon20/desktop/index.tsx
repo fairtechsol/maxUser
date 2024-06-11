@@ -5,18 +5,19 @@ import OddEven from "./OddEvenBox";
 import CardBox from "./CardsBox";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { dtrules } from "../../../assets/images";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import PlacedBet from "./placeBet";
 import MyBet from "./myBet";
 import { Col, Container, Row } from "react-bootstrap";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  // console.log('dragonTigerDetail',dragonTigerDetail)
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky] = useState(false);
   const roundId = (id: any) => {
@@ -26,6 +27,19 @@ const DragonTigerDesktop = () => {
     const Id = id.split(".");
     return Id[1];
   };
+
+  const handleClose = () => {
+    window.location.reload();
+    setShowInactivityModal(false);
+  };
+
+  useEffect(() => {
+    let timer = 5 * 1000 * 60;
+    setTimeout(() => {
+      setShowInactivityModal(true);
+    }, timer);
+  }, []);
+
   return (
     <div>
       <Row>
@@ -37,7 +51,11 @@ const DragonTigerDesktop = () => {
                   {dragonTigerDetail?.name}
                 </span>
                 <span
-                  style={{ fontSize: "14px", textDecoration: "underline" }}
+                  style={{
+                    fontSize: "14px",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
                   onClick={() => setShow(true)}
                 >
                   {" "}
@@ -126,6 +144,7 @@ const DragonTigerDesktop = () => {
           </Container>
         </Col>
       </Row>
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </div>
   );
 };

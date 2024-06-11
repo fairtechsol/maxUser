@@ -14,7 +14,11 @@ const CardResultBox = () => {
       <div className="cardResultBoxRound">
         {liveGameResultTop10?.length > 0 &&
           liveGameResultTop10.map((item: any) => (
-            <div className="cardResultCircle" key={item?.mid}>
+            <div
+              className="cardResultCircle"
+              key={item?.mid}
+              style={{ backgroundColor: item?.result === "3" ? "#ffc742" : "" }}
+            >
               <span
                 style={{
                   fontSize: "16px",
@@ -22,7 +26,7 @@ const CardResultBox = () => {
                   color: item?.result === "2" ? "#ffff33" : "#ff4500",
                 }}
               >
-                {item?.result === "2" ? "T" : "D"}
+                {item?.result === "1" ? "D" : "T"}
               </span>
             </div>
           ))}
