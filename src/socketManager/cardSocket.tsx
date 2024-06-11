@@ -1,9 +1,9 @@
-import {cardSocket } from ".";
+import { cardSocket, socket } from ".";
 
 export const cardSocketService = {
   joinMatchRoom: (matchType: any) => {
     cardSocket?.emit("initLiveData", {
-        liveGameTypeId: matchType,
+      liveGameTypeId: matchType,
     });
   },
   getCardRates: (gameTypeId: any, callback: any) => {
@@ -11,7 +11,7 @@ export const cardSocketService = {
   },
   leaveMatchRoom: (gameTypeId: any) => {
     cardSocket?.emit("disconnectLiveGame", {
-        liveGameTypeId: gameTypeId,
+      liveGameTypeId: gameTypeId,
     });
   },
   leaveAllRooms: () => {
@@ -19,5 +19,11 @@ export const cardSocketService = {
   },
   getCardRatesOff: (gameTypeId: any) => {
     cardSocket?.off(`liveGameData${gameTypeId}`);
+  },
+  userCardBetPlaced: (callback: any) => {
+    socket?.on("userCardBetPlaced", callback);
+  },
+  userCardBetPlacedOff: () => {
+    socket?.off("userCardBetPlaced");
   },
 };
