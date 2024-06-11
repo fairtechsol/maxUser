@@ -39,7 +39,7 @@ const DragonTigerMobile = () => {
               style={{ fontSize: "12px", fontWeight: "bold" }}
               onClick={() => setActiveTab(true)}
             >
-              PLACED BET({placedBets?.length})
+              PLACED BET({placedBets?.length || 0})
             </span>
           </div>
           <div className="dt20subheader2">

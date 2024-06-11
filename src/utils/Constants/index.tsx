@@ -239,6 +239,10 @@ export const availableGameType: any = {
 
 export const cardGamesType: any = {
   dragonTiger20: "dt20",
+  andarBahar2: "abj",
+  teen20: "teen20",
+  card32: "card32",
+  lucky7: "lucky7",
 };
 
 export const baseUrls = {
