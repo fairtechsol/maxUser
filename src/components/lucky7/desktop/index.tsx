@@ -11,7 +11,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import PlacedBet from "./placeBet";
-import MyBet from "./myBet";
+import MyBet from "../../abj2/desktop/myBet";
 
 const Lucky7Desktop = () => {
   const [show, setShow] = useState(false);

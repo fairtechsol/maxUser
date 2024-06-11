@@ -1,6 +1,4 @@
 import { Table } from "react-bootstrap";
-
-import "./style.scss";
 import { RootState } from "../../../../store/store";
 import { useSelector } from "react-redux";
 import DeleteBetOverlay from "../../../commonComponent/betComponents/deleteBetRow";
