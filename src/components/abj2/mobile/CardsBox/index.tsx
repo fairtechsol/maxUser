@@ -1,48 +1,42 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
-import { IoInformationCircle } from "react-icons/io5";
-import SmoothDropdownModal from "../minMaxModal";
-import { useState } from "react";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const CardBox = ({ name, rate }: any) => {
+const CardBox = ({ cards, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = 100;
-  const max = 10000;
+  const handleBet=(item:any)=>{
+    let team ={
+      "bettingType": "BACK",
+      "matchId": data?.id,
+      "odd": item?.rate,
+      "stake": 0,
+      "matchBetType": "matchOdd",
+      "betOnTeam":item?.nat,
+      "name":item?.nat,
+      "bettingName": "Match odds",
+      "selectionId": item?.sid
+    }
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+    console.log('team',team)
+  }
   return (
     <>
       <div className="cardContainer">
-        <div style={{ width: "100%", display: "flex", flexDirection: "row" }}>
-          <div style={{ width: "55%", textAlign: "end" }}>
-            <span
-              style={{
-                fontSize: "16px",
-                fontWeight: "bolder",
-                alignSelf: "center",
-              }}
-            >
-              {parseFloat(rate).toFixed(2)}
-            </span>
-          </div>
-          <div style={{ width: "45%", textAlign: "end" }}>
-             <span className="minmaxi">
-             <IoInformationCircle
-              color="#ffc742"
-              onClick={() => setModelOpen(!modelOpen)}
-            />
-            <SmoothDropdownModal
-              min={100}
-              max={1000}
-              show={modelOpen}
-              setShow={() => setModelOpen(false)}
-            />
-                      </span>
-          </div>
+        <div style={{ textAlign: "center" }}>
+          <span style={{ fontSize: "16px"}}>
+          {parseFloat(isNaN(cards?.[0]?.b1)?0:cards?.[0]?.b1)}
+          </span>
         </div>
         <div>
-          <CommonCardImg />
+          <CommonCardImg cardData={cards} handleBet={handleBet}/>
         </div>
+       
       </div>
     </>
   );

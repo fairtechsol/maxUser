@@ -5,26 +5,30 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
-import TiePairBox from "./TiePairBox";
+import SBetBox from "./Sbox";
 import OddEven from "./OddEvenBox";
 import CardBox from "./CardsBox";
-import CardResultBox from "../../commonComponent/cardResultBox";
+// import CardResultBox from "../../commonComponent/cardResultBox";
+// import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import { abjrules } from "../../../assets/images";
+import CardResultBox from "../../commonComponent/cardResultBox";
+import PlacedBet from "./placeBet";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
-  const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
-  const handleSelect = (key: any) => {
-    setActiveTab(key);
+  const [show1, setShow1] = useState(false);
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const roundId = (id: any) => {
+    const Id = id?.split(".");
+    return Id[1];
   };
-
   return (
     <>
     <div>
         <div className="dt20header">
+        <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
             <span
               style={{ fontSize: "12px", fontWeight: "bold" }}
@@ -42,30 +46,34 @@ const Abj2Mobile = () => {
           </div>
           <div className="dt20subheader2">
             <span style={{ textDecoration: "underline" }} onClick={()=>setShow(true)}>Rules</span>
-            <span> Round ID:4353455 </span>
+            <span> {dragonTigerDetail?.videoInfo
+                ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}`
+                : ""} </span>
           </div>
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
           <div style={{width:"100%",height:"25vh"}}>
           <div className="horseRacingTabHeader">
-            <div>
-              <span style={{fontSize:"14px",fontWeight:"600"}}>Lucky 7 - A</span>
+            <div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
+              <span style={{fontSize:"14px",fontWeight:"600"}}>{dragonTigerDetail?.name}</span>
+              <span style={{fontSize:"14px",fontWeight:"600"}}>Min:{dragonTigerDetail?.videoInfo?.min} Max:{dragonTigerDetail?.videoInfo?.max}</span>
             </div>
            
           </div>
           <div style={{width:"100%",height:"92%",backgroundColor:"#000"}}></div>
           </div>
           
-          <div style={{width:"100%",marginTop:"15px"}}>
-         <TiePairBox/>
+          <div style={{width:"100%",marginTop:"10px"}}>
+          <SBetBox type={"A"} odds={dragonTigerDetail?.abjSa} data={dragonTigerDetail}/>
+          <SBetBox type={"B"} odds={dragonTigerDetail?.abjSb} data={dragonTigerDetail}/>
           </div>
-          <div style={{width:"100%",padding:"10px 5px",display:"flex",flexDirection:"row",gap:"8px"}}>
-         <OddEven name={"DRAGON"} card={true}/>
-         <OddEven name={"TIGER"} card={false}/>
+          <div style={{width:"100%",padding:"5px 0px",display:"flex",flexDirection:"column",gap:"8px"}}>
+          <OddEven card={true} odds={dragonTigerDetail?.oddEven} data={dragonTigerDetail}/>
+          <OddEven card={false} odds={dragonTigerDetail?.abjCards} data={dragonTigerDetail}/>
           </div>
           <div style={{width:"100%",display:"flex",flexDirection:"row",gap:"8px"}}>
-         <CardBox name={"DRAGON"} rate={12.00}/>
+          <CardBox  rate={12} cards={dragonTigerDetail?.cards} data={dragonTigerDetail}/>
           </div>
           <div style={{width:"100%",marginTop:"10px"}}><CardResultBox /></div>
         </div>

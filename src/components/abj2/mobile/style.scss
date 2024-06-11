@@ -234,7 +234,48 @@
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }
+.sBoxContainer-m {
+  width: 100%;
+  background-color: #ddd;
+  padding-top: 5px;
+}
+.sBoxMainlucky-m {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 3%;
+}
 
+.oddEvenContainer-m {
+  width: 100%;
+  background-color: #eee;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.commonButtonBoxContainerSbox-m {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // gap: 3px;
+  border: 3px solid yellow;
+  border-radius: 8px;
+  // line-height: 1.2;
+}
+.evenOddbtn-theme-m {
+  padding: 8px 0;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  background-color: #72bbef !important;
+  text-align: center;
+  // line-height: 1;
+}
 @media (max-width: 768px) {
   .tabs-navs .nav-link {
     flex: 1 0 10%;
