@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./style.scss";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
+import { RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
-import moment from "moment";
-import { NavLink } from "react-router-dom";
 import SBetBox from "./Sbox";
 import OddEven from "./OddEvenBox";
 import CardBox from "./CardsBox";
