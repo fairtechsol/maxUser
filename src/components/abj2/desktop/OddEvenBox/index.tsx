@@ -34,7 +34,7 @@ const OddEven = ({ card,odds,data }: any) => {
             value2={"ODD"}
             profitLoss={15}
             width={"40%"}
-            lock={odds?.[0]?.gstatus}
+            lock={odds?.[0]?.gstatus=== "0" ? true : false}
             data={odds?.[0]}
             handleBet={handleBet}
           />
@@ -43,7 +43,7 @@ const OddEven = ({ card,odds,data }: any) => {
             value2={"EVEN"}
             profitLoss={15}
             width={"40%"}
-            lock={odds?.[1]?.gstatus}
+            lock={odds?.[1]?.gstatus=== "0" ? true : false}
             data={odds?.[1]}
             handleBet={handleBet}
           />
@@ -54,7 +54,7 @@ const OddEven = ({ card,odds,data }: any) => {
             value2={"icon1"}
             profitLoss={15}
             width={"20%"}
-            lock={odds?.[1]?.gstatus}
+            lock={odds?.[1]?.gstatus=== "0" ? true : false}
             data={odds?.[1]}
             handleBet={handleBet}
           />
@@ -63,7 +63,7 @@ const OddEven = ({ card,odds,data }: any) => {
             value2={"icon2"}
             profitLoss={15}
             width={"20%"}
-            lock={odds?.[0]?.gstatus}
+            lock={odds?.[0]?.gstatus=== "0" ? true : false}
             data={odds?.[0]}
             handleBet={handleBet}
           />
@@ -72,7 +72,7 @@ const OddEven = ({ card,odds,data }: any) => {
             value2={"icon3"}
             profitLoss={15}
             width={"20%"}
-            lock={odds?.[2]?.gstatus}
+            lock={odds?.[2]?.gstatus=== "0" ? true : false}
             data={odds?.[2]}
             handleBet={handleBet}
           />
@@ -81,7 +81,7 @@ const OddEven = ({ card,odds,data }: any) => {
             value2={"icon4"}
             profitLoss={15}
             width={"20%"}
-            lock={odds?.[3]?.gstatus}
+            lock={odds?.[3]?.gstatus=== "0" ? true : false}
             data={odds?.[3]}
             handleBet={handleBet}
           />
