@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { socket, socketService } from "../../socketManager";
 import {
   getDragonTigerDetailHorseRacing,
+  updateLiveGameResultTop10,
   updateTeenPattiMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import Loader from "../../components/commonComponent/loader";
@@ -39,6 +40,14 @@ const TeenPatti20 = () => {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
     }
   };
+  const handleLiveGameResultTop10 = (event: any) => {
+    dispatch(updateLiveGameResultTop10(event?.data));
+  };
+  const handleCardResult = (event: any) => {
+    if (event?.matchId === dragonTigerDetail?.id) {
+      dispatch(getPlacedBets(dragonTigerDetail?.id));
+    }
+  };
 
   useEffect(() => {
     try {
@@ -57,12 +66,18 @@ const TeenPatti20 = () => {
       if (socket && dragonTigerDetail?.id) {
         socketService.card.getCardRatesOff(cardGamesType.teen20);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
         socketService.card.joinMatchRoom(cardGamesType.teen20);
         socketService.card.getCardRates(
           cardGamesType.teen20,
           setMatchRatesInRedux
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+        socketService.card.getLiveGameResultTop10(
+          cardGamesType.teen20,
+          handleLiveGameResultTop10
+        );
+        socketService.card.cardResult(handleCardResult);
       }
     } catch (error) {
       console.log(error);
@@ -75,6 +90,7 @@ const TeenPatti20 = () => {
         socketService.card.leaveMatchRoom(cardGamesType.teen20);
         socketService.card.getCardRatesOff(cardGamesType.teen20);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
       };
     } catch (e) {
       console.log(e);

@@ -49,7 +49,7 @@ const TeenPattiDesktop = () => {
         dragonTigerDetail,
       })
     );
-    console.log('team',team)
+    // console.log('team',team)
   }
   return (
     <div>
@@ -71,7 +71,7 @@ const TeenPattiDesktop = () => {
               </div>
               <span>
                 {dragonTigerDetail?.videoInfo
-                  ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}`
+                  ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${dragonTigerDetail?.videoInfo?.max}`
                   : ""}
               </span>
             </div>
