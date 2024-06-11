@@ -12,7 +12,7 @@ import { ApiConstants } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";
-import "./style.scss";
+// import "./style.scss";
 
 interface PlaceBetProps {
   show: boolean;

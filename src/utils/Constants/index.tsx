@@ -93,7 +93,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -239,6 +239,10 @@ export const availableGameType: any = {
 
 export const cardGamesType: any = {
   dragonTiger20: "dt20",
+  andarBahar2: "abj",
+  teen20: "teen20",
+  card32: "card32",
+  lucky7: "lucky7",
 };
 
 export const baseUrls = {

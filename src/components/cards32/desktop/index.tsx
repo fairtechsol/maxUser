@@ -55,7 +55,7 @@ const Lucky7Desktop = () => {
           </div>
           <div className="bet-table-container">
           <DynamicTable  />
-        <DynamicTable  />
+          <DynamicTable  />
         </div>
           {/* <Row>
             <Col>
