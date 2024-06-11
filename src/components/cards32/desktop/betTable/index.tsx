@@ -1,94 +1,122 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
-import "./style.scss"
-const DynamicTable = () => {
-  const runners = [
-    {
-      name: 'Player 8',
-      profitLoss: 0,
-      backPrice: '12.20',
-      backSize: '1000000',
-      layPrice: '13.70',
-      laySize: '1000000',
-      suspended: true
-    },
-    {
-      name: 'Player 9',
-      profitLoss: 0,
-      backPrice: '5.95',
-      backSize: '1000000',
-      layPrice: '6.45',
-      laySize: '1000000',
-      suspended: true
-    },
-  ];
+import React from "react";
+import { Table } from "react-bootstrap";
+import "./style.scss";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { useSelector } from "react-redux";
+const DynamicTable = ({ odds, data }: any) => {
+  const dispatch: AppDispatch = useDispatch();
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
+  const handleBet = (item: any) => {
+    let team = {
+      bettingType: "BACK",
+      matchId: data?.id,
+      odd: item?.b1,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.nat,
+      name: item?.nat,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+    };
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+    console.log("team", team);
+  };
+  console.log(data, "data");
 
   return (
-  //   <div className="bet-table">
-  //   <div className="table-header">
-  //     <div style={{width:"60%"}}><div className="header-cell">Player</div></div>
-  //     <div style={{width:"40%", display:"flex", justifyContent: "space-around"}}> 
-  //     <div className="header-cell-2">BACK</div>
-  //     <div className="header-cell-2">LAY</div>
-  //     </div>
-     
-  //   </div>
-  //   {runners.map((runner, index) => (
-  //     <div key={index} className="table-row">
-  //       <div className="cell player-cell">
-  //         {runner.name}
-  //         <br />
-  //         {runner.profitLoss}
-  //       </div>
-  //       <div className="cell back-cell">
-  //         {runner.backPrice}
-  //         <br />
-  //         {runner.backSize}
-  //       </div>
-  //       <div className="cell lay-cell">
-  //         {runner.layPrice}
-  //         <br />
-  //         {runner.laySize}
-  //       </div>
-  //     </div>
-  //   ))}
-  // </div>
-  <>
-  <Table bordered className='cards-container'>
-  <thead>
-    <tr>
-      <th></th>
-      <th className='back f400 text-center lh-1'>BACK</th>
-      <th className='lay f400 text-center lh-1'>LAY</th>
-    </tr>
-  </thead>
-  <tbody className='casino-32A '>
-    {runners.map((runner, index) => (
-      <tr key={index} className='suspended'>
-        <td className="box-6 lh-1 title-14 ">
-          {runner.name}
-          <br />
-          {runner.profitLoss}
-        </td>
-        <td className="box-2 back text-center title-12 lh-1  ">
-          {runner.backPrice}
-         
-          <br />
-          <span className="title-10">{runner.backSize}</span>
-        </td>
-        <td className="box-2 lay text-center title-12 lh-1 ">
-          {runner.layPrice}
-         
-          <br />
-          <span className="title-10">{runner.laySize}</span>
-        </td>
-        
-      </tr>
-    ))}
-  </tbody>
-</Table>
-</>
+    <div className="card32-table-container">
+      <div className="card32-table-row" style={{ lineHeight: 2 }}>
+        <div style={{ width: "50%", border: "0.1px solid #fff" }}></div>
+        <div
+          style={{
+            width: "50%",
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <div className="card32-table-item back" style={{ width: "50%" }}>
+            BACK
+          </div>
+          <div className="card32-table-item lay" style={{ width: "50%" }}>
+            LAY
+          </div>
+        </div>
+      </div>
+      <div className="card32-table-row" style={{ lineHeight: 1 }}>
+        <div
+          style={{
+            width: "50%",
+            padding: "10px",
+            border: "0.1px solid #fff",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+            {odds?.[0]?.nat}
+          </span>
+          <span>0</span>
+        </div>
+        <div
+          className={odds?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""}
+          style={{
+            width: "50%",
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null : handleBet(odds?.[0])}>
+            <span className="f12-b">{odds?.[0]?.b1}</span>
+            <span className="f10-b">{odds?.[0]?.bs1}</span>
+          </div>
+          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null : handleBet(odds?.[0])}>
+            <span className="f12-b">{odds?.[0]?.l1}</span>
+            <span className="f10-b">{odds?.[0]?.ls1}</span>
+          </div>
+        </div>
+      </div>
+      <div className="card32-table-row" style={{ lineHeight: 1 }}>
+        <div
+          style={{
+            width: "50%",
+            padding: "10px",
+            border: "0.1px solid #fff",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+            {odds?.[1]?.nat}
+          </span>
+          <span>0</span>
+        </div>
+        <div
+          className={odds?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""}
+          style={{
+            width: "50%",
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null:handleBet(odds?.[1])}>
+            <span className="f12-b">{odds?.[1]?.b1}</span>
+            <span className="f10-b">{odds?.[1]?.bs1}</span>
+          </div>
+          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null:handleBet(odds?.[1])}>
+            <span className="f12-b">{odds?.[1]?.l1}</span>
+            <span className="f10-b">{odds?.[1]?.ls1}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

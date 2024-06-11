@@ -27,4 +27,12 @@
     background-color: #ffc742;
     padding: 2px 4px;
   }
+  .tab {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+  }
   
+  .active-tab {
+    border-top: 2px solid white;
+  }

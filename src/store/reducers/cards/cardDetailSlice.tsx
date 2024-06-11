@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getDragonTigerDetailHorseRacing,
   update7CardMatchRates,
-  updateCardAbjRates,
+  updateCard32MatchRates, updateCardAbjRates,
   updateCardMatchRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
@@ -16,6 +16,7 @@ interface InitialState {
   dragonTigerDetail: any;
   lucky7Detail: any;
   liveGameResultTop10: any;
+  cards32Detail: any;
 }
 
 const initialState: InitialState = {
@@ -25,6 +26,7 @@ const initialState: InitialState = {
   dragonTigerDetail: [],
   lucky7Detail: [],
   liveGameResultTop10: [],
+  cards32Detail:[]
 };
 
 const cardDetail = createSlice({
@@ -124,6 +126,19 @@ const cardDetail = createSlice({
             videoInfo,
             playerA,
             playerB,
+        };
+      })
+      .addCase(updateCard32MatchRates.fulfilled, (state, action) => {
+        const {t1,t2}=action.payload
+        const videoInfo = { ...t1[0] };
+        const set1 = t2.slice(0, 2);
+        const set2 = t2.slice(2, 4);
+
+        state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            set1,
+            set2,
         };
       });
   },

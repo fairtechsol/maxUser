@@ -1,34 +1,22 @@
 import { useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./style.scss";
-import PlacedBet from "../../gameDetails/desktop/placeBet";
-import MyBet from "../../gameDetails/desktop/myBet";
 import DynamicTable from "./betTable";
 import CardResultBox from "../../commonComponent/cardResultBox";
-const runners = [
-  {
-    name: 'Player 8',
-    profitLoss: 0,
-    backPrice: '12.20',
-    backSize: '1000000',
-    layPrice: '13.70',
-    laySize: '1000000'
-  },
-  {
-    name: 'Player 9',
-    profitLoss: 0,
-    backPrice: '5.95',
-    backSize: '1000000',
-    layPrice: '6.45',
-    laySize: '1000000'
-  },
-];
-const Lucky7Desktop = () => {
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import PlacedBet from "./placeBet";
+import MyBet from "./myBet";
+
+const Cards32Desktop = ({odds}:any) => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const halfIndex = Math.ceil(runners.length / 2);
-  const firstHalf = runners.slice(0, halfIndex);
-  const secondHalf = runners.slice(halfIndex);
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  // console.log(dragonTigerDetail,"efdsjkn");
+  const roundId = (id: any) => {
+    const Id = id?.split(".");
+    return Id[1];
+  };
   return (
     <div>
       <Row>
@@ -37,14 +25,16 @@ const Lucky7Desktop = () => {
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
-                  CARDS 32-A
+                {dragonTigerDetail?.name}
                 </span>
                 <a style={{ fontSize: "14px", textDecoration: "underline" }}>
                   {" "}
                   RULES
                 </a>
               </div>
-              <span>Round ID: 240506171245</span>
+              <span>{dragonTigerDetail?.videoInfo
+                  ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${dragonTigerDetail?.videoInfo?.max}`
+                  : ""}</span>
             </div>
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
@@ -53,9 +43,10 @@ const Lucky7Desktop = () => {
 
             {/* </Row> */}
           </div>
-          <div className="bet-table-container">
-          <DynamicTable  />
-          <DynamicTable  />
+          <div className="d-flex px-2">
+          <DynamicTable  odds={dragonTigerDetail?.set1} data={dragonTigerDetail} />
+          <div style={{width:"10px"}}></div>
+          <DynamicTable   odds={dragonTigerDetail?.set2} data={dragonTigerDetail} />
         </div>
           {/* <Row>
             <Col>
@@ -96,4 +87,4 @@ const Lucky7Desktop = () => {
   );
 };
 
-export default Lucky7Desktop;
+export default Cards32Desktop;
