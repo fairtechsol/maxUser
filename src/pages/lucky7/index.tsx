@@ -1,11 +1,8 @@
-
-
-import { useParams } from "react-router-dom";
 import Lucky7ComponentList from "../../components/lucky7";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getDragonTigerDetailHorseRacing, update7CardMatchRates } from "../../store/actions/cards/cardDetail";
+import { getDragonTigerDetailHorseRacing, update7CardMatchRates, updateLiveGameResultTop10 } from "../../store/actions/cards/cardDetail";
 import { useEffect } from "react";
 import { getButtonValue } from "../../store/actions/user/userAction";
 import { socket, socketService } from "../../socketManager";
@@ -36,6 +33,14 @@ const Lucky7 = () => {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
     }
   };
+  const handleLiveGameResultTop10 = (event: any) => {
+    dispatch(updateLiveGameResultTop10(event?.data));
+  };
+  const handleCardResult = (event: any) => {
+    if (event?.matchId === dragonTigerDetail?.id) {
+      dispatch(getPlacedBets(dragonTigerDetail?.id));
+    }
+  };
 
   useEffect(() => {
     try {
@@ -54,12 +59,18 @@ const Lucky7 = () => {
       if (socket && dragonTigerDetail?.id) {
         socketService.card.getCardRatesOff(cardGamesType.lucky7);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
         socketService.card.joinMatchRoom(cardGamesType.lucky7);
         socketService.card.getCardRates(
           cardGamesType.lucky7,
           setMatchRatesInRedux
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+        socketService.card.getLiveGameResultTop10(
+          cardGamesType.lucky7,
+          handleLiveGameResultTop10
+        );
+        socketService.card.cardResult(handleCardResult);
       }
     } catch (error) {
       console.log(error);
@@ -72,6 +83,7 @@ const Lucky7 = () => {
         socketService.card.leaveMatchRoom(cardGamesType.lucky7);
         socketService.card.getCardRatesOff(cardGamesType.lucky7);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
       };
     } catch (e) {
       console.log(e);

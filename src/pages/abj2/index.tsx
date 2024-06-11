@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Abj2ComponentList from "../../components/abj2";
 import { socket, socketService } from "../../socketManager";
-import { getDragonTigerDetailHorseRacing, updateCardAbjRates, updateCardMatchRates } from "../../store/actions/cards/cardDetail";
+import { getDragonTigerDetailHorseRacing, updateCardAbjRates, updateCardMatchRates, updateLiveGameResultTop10 } from "../../store/actions/cards/cardDetail";
 import { getButtonValue } from "../../store/actions/user/userAction";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
@@ -45,16 +45,29 @@ const Abj2 = () => {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
     }
   };
-
+  const handleLiveGameResultTop10 = (event: any) => {
+    dispatch(updateLiveGameResultTop10(event?.data));
+  };
+  const handleCardResult = (event: any) => {
+    if (event?.matchId === dragonTigerDetail?.id) {
+      dispatch(getPlacedBets(dragonTigerDetail?.id));
+    }
+  };
   
   useEffect(() => {
     try {
       if ( socket && dragonTigerDetail?.id) {
         socketService.card.getCardRatesOff(cardGamesType.andarBahar2);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
         socketService.card.joinMatchRoom(cardGamesType.andarBahar2);
         socketService.card.getCardRates(cardGamesType.andarBahar2, setMatchRatesInRedux);
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+        socketService.card.getLiveGameResultTop10(
+          cardGamesType.andarBahar2,
+          handleLiveGameResultTop10
+        );
+        socketService.card.cardResult(handleCardResult);
       }
     } catch (error) {
       console.log(error);
@@ -67,6 +80,7 @@ const Abj2 = () => {
         socketService.card.leaveMatchRoom(cardGamesType.andarBahar2);
         socketService.card.getCardRatesOff(cardGamesType.andarBahar2);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
       };
     } catch (e) {
       console.log(e);
