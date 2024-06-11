@@ -20,7 +20,10 @@ const DragonTigerDesktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky] = useState(false);
   const roundId = (id: any) => {
-    const Id = id?.split(".");
+    if (typeof id !== "string" || !id.includes(".")) {
+      return id || 0;
+    }
+    const Id = id.split(".");
     return Id[1];
   };
   return (
