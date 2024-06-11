@@ -27,11 +27,7 @@ const DragonTiger20 = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      if (
-        cardGamesType.dragonTiger20 === event?.data?.data?.data?.t1[0]?.gtype
-      ) {
-        dispatch(updateCardMatchRates(event?.data?.data?.data));
-      }
+      dispatch(updateCardMatchRates(event?.data?.data?.data));
     } catch (e) {
       console.log(e);
     }
@@ -51,8 +47,8 @@ const DragonTiger20 = () => {
 
   useEffect(() => {
     try {
-        dispatch(getButtonValue());
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTiger20));
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTiger20));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
