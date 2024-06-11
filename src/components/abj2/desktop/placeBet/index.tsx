@@ -107,7 +107,6 @@ const PlacedBet = () => {
     };
     fetchData();
   }, []);
-  console.log("selectedBet", selectedBet);
   useEffect(() => {
     if (success) {
       dispatch(selectedBetAction(null));
@@ -297,14 +296,12 @@ const PlacedBet = () => {
                                   selectionId: selectedBet?.team?.selectionId,
                                 };
                                 setMatchOddLoading(true);
-
                                   dispatch(
                                     placeBet({
                                       url: ApiConstants.CARDS.MATCH.PLACE_BET,
                                       data: JSON.stringify(payload),
                                     })
                                   );
-                               
                                 setStake(0);
                               }
                             }}

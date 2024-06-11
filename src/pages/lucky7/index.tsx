@@ -8,21 +8,22 @@ import { useSelector } from "react-redux";
 import { getDragonTigerDetailHorseRacing, update7CardMatchRates } from "../../store/actions/cards/cardDetail";
 import { useEffect } from "react";
 import { getButtonValue } from "../../store/actions/user/userAction";
-import { expertSocketService, socket, socketService } from "../../socketManager";
+import { socket, socketService } from "../../socketManager";
 import Loader from "../../components/commonComponent/loader";
+import { cardGamesType } from "../../utils/constants";
+import { getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
 
 const Lucky7 = () => {
-  const { id } = useParams();
-  const type ="lucky7"
-  // const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
-  const { success ,dragonTigerDetail,loading} = useSelector(
+  const { loading, dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
-// console.error('first',success,dragonTigerDetail)
+
   const setMatchRatesInRedux = (event: any) => {
     try {
-      if (type === event?.data?.data?.data?.t1[0]?.gtype) {
+      if (
+        cardGamesType.lucky7 === event?.data?.data?.data?.t1[0]?.gtype
+      ) {
         dispatch(update7CardMatchRates(event?.data?.data?.data));
       }
     } catch (e) {
@@ -30,51 +31,52 @@ const Lucky7 = () => {
     }
   };
 
+  const handleBetPlacedOnDT20 = (event: any) => {
+    if (event?.jobData?.matchType === cardGamesType.lucky7) {
+      dispatch(updateBetsPlaced(event?.jobData?.newBet));
+    }
+  };
+
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(type));
+        dispatch(getButtonValue());
+        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7));
+      if (dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
+      }
     } catch (e) {
       console.error(e);
     }
-  }, [id]);
-
+  }, [dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
-      if ( socket) {
-        socketService.card.joinMatchRoom(type);
-        socketService.card.getCardRates(type, setMatchRatesInRedux);
-        // socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-        // socketService.userBalance.matchResultDeclared(resultDeclared);
-        // socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
-        // socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
+      if (socket && dragonTigerDetail?.id) {
+        socketService.card.getCardRatesOff(cardGamesType.lucky7);
+        socketService.card.userCardBetPlacedOff();
+        socketService.card.joinMatchRoom(cardGamesType.lucky7);
+        socketService.card.getCardRates(
+          cardGamesType.lucky7,
+          setMatchRatesInRedux
+        );
+        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
       }
     } catch (error) {
       console.log(error);
     }
-  }, [ socket]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
       return () => {
-        expertSocketService.match.leaveMatchRoom(type);
-        expertSocketService.match.getMatchRatesOff(type);
-        // socketService.userBalance.userMatchBetPlacedOff();
-        // socketService.userBalance.matchResultDeclaredOff();
-        // socketService.userBalance.declaredMatchResultAllUserOff();
-        // socketService.userBalance.matchDeleteBetOff();
-        // socketService.userBalance.matchResultDeclared(getUserProfile);
-        // socketService.userBalance.declaredMatchResultAllUser(getUserProfile);
-        // socketService.userBalance.matchResultUnDeclared(getUserProfile);
-        // socketService.userBalance.unDeclaredMatchResultAllUser(getUserProfile);
-        // socketService.userBalance.matchDeleteBet(getUserProfile);
+        socketService.card.leaveMatchRoom(cardGamesType.lucky7);
+        socketService.card.getCardRatesOff(cardGamesType.lucky7);
+        socketService.card.userCardBetPlacedOff();
       };
     } catch (e) {
       console.log(e);
     }
-  }, [type]);
-
+  }, [dragonTigerDetail?.id]);
 
   return loading ? <Loader /> : <Lucky7ComponentList/>;
 };

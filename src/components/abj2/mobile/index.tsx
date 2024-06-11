@@ -14,12 +14,14 @@ import RulesModal from "../../commonComponent/rulesModal";
 import { abjrules } from "../../../assets/images";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import PlacedBet from "./placeBet";
+import MyBet from "./myBet";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { placedBets } = useSelector((state: RootState) => state.bets);
   const roundId = (id: any) => {
     const Id = id?.split(".");
     return Id[1];
@@ -41,7 +43,7 @@ const Abj2Mobile = () => {
               style={{ fontSize: "12px", fontWeight: "bold" }}
               onClick={() => setActiveTab(true)}
             >
-              PLACED BET(2)
+              PLACED BET({placedBets?.length || 0})
             </span>
           </div>
           <div className="dt20subheader2">
@@ -78,7 +80,7 @@ const Abj2Mobile = () => {
           <div style={{width:"100%",marginTop:"10px"}}><CardResultBox /></div>
         </div>
         ) : (
-          <></>
+          <><MyBet/></>
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={abjrules}/>
