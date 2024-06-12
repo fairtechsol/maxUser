@@ -95,8 +95,15 @@ export const updateCardAbjRates = createAsyncThunk<any, any>(
   "abj2/matchRatesUpdate",
   async (data) => {
     return data;
-  }
-);
+  });
+
+
+  export const updateCard32MatchRates = createAsyncThunk<any, any>(
+    "card32/matchRatesUpdate",
+    async (data) => {
+      return data;
+    }
+  );
 export const updateLiveGameResultTop10 = createAsyncThunk<any, any>(
   "update/LiveGameResultTop10",
   async (data) => {
