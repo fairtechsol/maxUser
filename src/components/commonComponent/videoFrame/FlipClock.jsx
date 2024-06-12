@@ -57,13 +57,13 @@ const FlipClock = ({ value }) => {
         TickModule.DOM.destroy(tickRef.current);
       }
     };
-  }, []); // Empty dependency array to ensure this runs only once
+  }, []); 
 
   useEffect(() => {
     if (tickRef.current) {
       tickRef.current.value = value;
     }
-  }, [value]); // Dependency array with value
+  }, [value]); 
 
   return <div ref={divRef}></div>;
 };
