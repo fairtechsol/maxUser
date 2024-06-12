@@ -26,7 +26,6 @@ const RulesHead = () => {
             },
           ]?.map((item, index) => {
             return (
-                
               <Tab
                 key={item?.id}
                 eventKey={item?.id}
@@ -44,13 +43,13 @@ const RulesHead = () => {
                   </span>
                 </div> */}
               </Tab>
-              
-              );
+            );
           })}
         </CommonTabs>
       </div>
-      <div className="casino-title"><span >20-20 Teenpatti</span></div>
-
+      <div className="casino-title">
+        <span>20-20 Teenpatti</span>
+      </div>
     </div>
   );
 };

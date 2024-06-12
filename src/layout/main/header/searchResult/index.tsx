@@ -36,8 +36,9 @@ const SearchResult = ({ data, setOpen }: any) => {
             }}
             className="text-decoration-none"
             to={item?.matchType==="greyHound" || item?.matchType==="horseRacing"?`/race/${item?.id}`:`/game-detail/${item.matchType}/${item?.id}`}
+            key={index}
           >
-            <div key={index} className="d-flex flex-column w-100 border-bottom">
+            <div className="d-flex flex-column w-100 border-bottom">
               <div className="d-flex justify-content-between align-items-center">
                 <div className="f700 title-16 text-capitalize font-color">
                   {item?.matchType}
