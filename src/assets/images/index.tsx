@@ -38,3 +38,8 @@ export { default as dtrules } from "./rules/dragon-tiger-20-rules.webp";
 export { default as abjrules } from "./rules/abj-rules.webp";
 export { default as abjlist } from "./anderBahar/andar-bahar.webp";
 export { default as abjlist2 } from "./anderBahar/andar-bahar2.webp";
+export { default as back } from "./cards/back.png";
+export { default as club } from "./cards/clubs.png";
+export { default as diamond } from "./cards/diamond.png";
+export { default as heart } from "./cards/heart.png";
+export { default as spade } from "./cards/spade.png";
