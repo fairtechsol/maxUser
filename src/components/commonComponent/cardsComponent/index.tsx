@@ -16,8 +16,8 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
   return (
     <div
       style={{
-        borderRadius: "5px",
-        border: "1px solid yellow",
+        borderRadius: "2px",
+        // border: "1px solid yellow",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

@@ -154,7 +154,7 @@ const TeenPattiDesktop = () => {
                     <span className="f10-b">44</span>
                   </div>
                   <div
-                    className={`teenPatti-table-item ${playerA?.[0]?.gstatus !="0" && playerA?.[1]?.gstatus==="0" ? "suspended":""}`}
+                    className={`teenPatti-table-item ${playerB?.[0]?.gstatus !="0" && playerB?.[1]?.gstatus==="0" ? "suspended":""}`}
                     style={{ width: "60%" }}
                     onClick={()=>playerB?.[1]?.gstatus==="0"?null: handleBet(playerB?.[1])}
                   >
