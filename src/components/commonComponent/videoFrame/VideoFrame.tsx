@@ -1,8 +1,8 @@
 
 import React, { memo, useState } from "react";
-import FlipClock from "./flipClock";
+import FlipClock from "./FlipClock";
 
-const VideoFrame = ({   time }:any) => {
+const VideoFrame = ({  result, time }:any) => {
   const [showModal, setModalOpen] = useState(false);
 
   return (
@@ -31,11 +31,11 @@ const VideoFrame = ({   time }:any) => {
               position: "relative",
             }}
           >
-            {/* {result && ( */}
+            {result && (
               <div style={{ position: "absolute", left: "10px", top: "10x" }}>
-                {111}
+              {result}
               </div>
-            {/* )} */}
+             )} 
             {time && (
               <div
                 style={{

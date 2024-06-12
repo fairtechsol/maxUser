@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import PlacedBet from "./placeBet";
 import MyBet from "./myBet";
+import Teen20Result from "./teenCard";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -77,7 +79,7 @@ const TeenPattiDesktop = () => {
             </div>
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
-            ></div>
+            ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}/></div>
             <div className="teenPatti-table-container">
               <div className="teenPatti-table-row" style={{lineHeight:2}}>
                 <div style={{ width: "50%",border:"0.1px solid #fff" }}></div>

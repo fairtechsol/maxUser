@@ -41,7 +41,6 @@ const cardDetail = createSlice({
         state.error = null;
       })
       .addCase(getDragonTigerDetailHorseRacing.fulfilled, (state, action) => {
-        state.loading = false;
         state.success = true;
         state.dragonTigerDetail = action.payload;
       })
@@ -51,6 +50,7 @@ const cardDetail = createSlice({
       })
       .addCase(updateCardMatchRates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
+        state.loading = false;
         const videoInfo = { ...t1[0] };
         const tiePair = t2.slice(0, 4);
         const dragonOdds = t2.slice(4, 8);
@@ -72,6 +72,7 @@ const cardDetail = createSlice({
       })
       .addCase(update7CardMatchRates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
+        state.loading = false;
         const videoInfo = { ...t1[0] };
         const lowHigh = t2.slice(0, 2);
         const redBlack = t2.slice(2, 4);
@@ -88,6 +89,7 @@ const cardDetail = createSlice({
       })
       .addCase(updateCardAbjRates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
+        state.loading = false;
         const videoInfo = { ...t1[0] };
         const abjSa = t2.slice(0, 3);
         const abjSb = t2.slice(3, 6);
@@ -118,6 +120,7 @@ const cardDetail = createSlice({
       })
       .addCase(updateTeenPattiMatchRates.fulfilled, (state, action) => {
         const {t1,t2}=action.payload
+        state.loading = false;
         const videoInfo = { ...t1[0] };
         const playerA = t2.slice(0, 2);
         const playerB = t2.slice(2, 4);
