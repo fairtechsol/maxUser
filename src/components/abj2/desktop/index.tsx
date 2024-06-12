@@ -16,7 +16,7 @@ import PlacedBet from "./placeBet";
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
+  const [isSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const roundId = (id: any) => {
     const Id = id?.split(".");
