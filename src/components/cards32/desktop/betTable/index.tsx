@@ -19,7 +19,7 @@ const DynamicTable = ({ odds, data }: any) => {
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: item?.sid,
+      selectionId: "1",
     };
     dispatch(
       selectedBetAction({
@@ -29,7 +29,7 @@ const DynamicTable = ({ odds, data }: any) => {
     );
     console.log("team", team);
   };
-  console.log(data, "data");
+  // console.log(data, "data");
 
   return (
     <div className="card32-table-container">
