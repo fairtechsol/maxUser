@@ -9,7 +9,7 @@ import {
   updateTeenPattiMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import Loader from "../../components/commonComponent/loader";
-import { getButtonValue } from "../../store/actions/user/userAction";
+import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
 import { cardGamesType } from "../../utils/constants";
 import {
   getPlacedBets,
@@ -46,6 +46,7 @@ const TeenPatti20 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
+      dispatch(getProfileInMatchDetail())
     }
   };
 

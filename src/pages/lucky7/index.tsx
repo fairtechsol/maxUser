@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getDragonTigerDetailHorseRacing, update7CardMatchRates, updateLiveGameResultTop10 } from "../../store/actions/cards/cardDetail";
 import { useEffect } from "react";
-import { getButtonValue } from "../../store/actions/user/userAction";
+import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
 import { socket, socketService } from "../../socketManager";
 import Loader from "../../components/commonComponent/loader";
 import { cardGamesType } from "../../utils/constants";
@@ -39,6 +39,7 @@ const Lucky7 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
+      dispatch(getProfileInMatchDetail())
     }
   };
 

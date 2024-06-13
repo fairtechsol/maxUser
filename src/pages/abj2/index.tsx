@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Abj2ComponentList from "../../components/abj2";
 import { socket, socketService } from "../../socketManager";
 import { getDragonTigerDetailHorseRacing, updateCardAbjRates, updateCardMatchRates, updateLiveGameResultTop10 } from "../../store/actions/cards/cardDetail";
-import { getButtonValue } from "../../store/actions/user/userAction";
+import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useSelector } from "react-redux";
@@ -51,6 +51,7 @@ const Abj2 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
+      dispatch(getProfileInMatchDetail())
     }
   };
   

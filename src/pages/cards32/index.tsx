@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { cardGamesType } from "../../utils/constants";
 import {  getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
 import { useEffect } from "react";
-import { getButtonValue } from "../../store/actions/user/userAction";
+import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
 import { getDragonTigerDetailHorseRacing, updateCard32MatchRates } from "../../store/actions/cards/cardDetail";
 import { socket, socketService } from "../../socketManager";
 
@@ -29,6 +29,13 @@ const Cards32 = () => {
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.card32) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
+    }
+  };
+
+  const handleCardResult = (event: any) => {
+    if (event?.matchId === dragonTigerDetail?.id) {
+      dispatch(getPlacedBets(dragonTigerDetail?.id));
+      dispatch(getProfileInMatchDetail());
     }
   };
 
@@ -55,6 +62,7 @@ const Cards32 = () => {
           setMatchRatesInRedux
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+        socketService.card.cardResult(handleCardResult);
       }
     } catch (error) {
       console.log(error);
@@ -67,6 +75,7 @@ const Cards32 = () => {
         socketService.card.leaveMatchRoom(cardGamesType.card32);
         socketService.card.getCardRatesOff(cardGamesType.card32);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
       };
     } catch (e) {
       console.log(e);
