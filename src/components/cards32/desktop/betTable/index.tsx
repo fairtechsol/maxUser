@@ -9,13 +9,13 @@ const DynamicTable = ({ odds, data }: any) => {
     let team = {
       bettingType: type,
       matchId: data?.id,
-      odd: item?.b1,
+      odd: type==="BACK"? item?.b1:item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: "1",
+      selectionId: item?.sid,
     };
     dispatch(
       selectedBetAction({
