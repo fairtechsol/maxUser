@@ -8,9 +8,9 @@ import { RootState } from "../../../store/store";
 import PlacedBet from "./placeBet";
 import MyBet from "./myBet";
 
-const Cards32Desktop = ({odds}:any) => {
+const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
+  const [isSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   // console.log(dragonTigerDetail,"efdsjkn");
   const roundId = (id: any) => {

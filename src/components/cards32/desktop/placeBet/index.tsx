@@ -44,7 +44,7 @@ const PlacedBet = () => {
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
   const [matchOddRate, setMatchOddRate] = useState<any>(null);
-  const { buttonValues, getProfile } = useSelector(
+  const { buttonValues } = useSelector(
     (state: RootState) => state.user.profile
   );
 
@@ -296,12 +296,14 @@ const PlacedBet = () => {
                                   selectionId: selectedBet?.team?.selectionId,
                                 };
                                 setMatchOddLoading(true);
+
                                   dispatch(
                                     placeBet({
                                       url: ApiConstants.CARDS.MATCH.PLACE_BET,
                                       data: JSON.stringify(payload),
                                     })
                                   );
+                               
                                 setStake(0);
                               }
                             }}
