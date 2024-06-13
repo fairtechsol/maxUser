@@ -35,7 +35,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         <CommonButtonBox
           value1={lowHigh?.[0]?.rate}
           value2={"LOW CARD"}
-          value3={15}
+          value3={data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
+                ]
+              : 0}
           width={"30%"}
           handleBet={handleBet}
           lock={lowHigh?.[0]?.gstatus==="0"?true:false}
@@ -48,7 +52,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         <CommonButtonBox
           value1={lowHigh?.[1]?.rate}
           value2={"HIGH CARD"}
-          value3={15}
+          value3={data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
+                ]
+              : 0}
           width={"30%"}
           handleBet={handleBet}
           lock={lowHigh?.[1]?.gstatus==="0"?true:false}
