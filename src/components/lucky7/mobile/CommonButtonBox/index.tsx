@@ -13,7 +13,7 @@ const CommonButtonBox = ({ value1,value2,value3,width,handleBet,lock,data }: any
       <div>
         <span style={{fontSize:"12px",fontWeight:"bolder"}}>{(parseFloat(value1).toFixed(2))}</span>
       </div>
-      <div className={`tiePairbtn-theme ${lock?'suspended':''}`} onClick={()=>handleBet(data)}>
+      <div className={`tiePairbtn-theme ${lock?'suspended':''}`} onClick={()=>!lock ? handleBet(data):null}>
       {value2 === "icon1" ? (
             <>
               <ImDiamonds color="#ff0000" />{' '}

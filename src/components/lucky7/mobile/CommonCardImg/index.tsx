@@ -26,7 +26,7 @@ const CommonCardImg = ({ cardData, handleBet }: any) => {
               justifyContent: "space-around",
               alignItems: "center",
             }}
-            onClick={() => handleBet(item)}
+            onClick={() =>(item?.gstatus != "0" ? handleBet(item) : null)}
           >
             {" "}
             <img src={item?.imgSrc} width={"30px"} />

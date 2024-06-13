@@ -1,24 +1,23 @@
 
 import "./style.scss";
-import { AppDispatch, RootState } from "../../../../store/store";
+import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useSelector } from "react-redux";
+
 const DynamicTable = ({ odds, data, back }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
-  const handleBet = (item: any) => {
+  const handleBet = (item: any,type:any) => {
     let team = {
-      bettingType: "BACK",
+      bettingType: type,
       matchId: data?.id,
-      odd: item?.b1,
+      odd: type==="BACK"? item?.b1:item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: "1",
+      selectionId: item?.sid,
     };
     dispatch(
       selectedBetAction({
@@ -72,11 +71,11 @@ const DynamicTable = ({ odds, data, back }: any) => {
             flexDirection: "row",
           }}
         >
-          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null : handleBet(odds?.[0])}>
+          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null : handleBet(odds?.[0],"BACK")}>
             <span className="f12-b">{odds?.[0]?.b1}</span>
             <span className="f10-b">{odds?.[0]?.bs1}</span>
           </div>
-          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null : handleBet(odds?.[0])}>
+          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null : handleBet(odds?.[0],"LAY")}>
             <span className="f12-b">{odds?.[0]?.l1}</span>
             <span className="f10-b">{odds?.[0]?.ls1}</span>
           </div>
@@ -105,11 +104,11 @@ const DynamicTable = ({ odds, data, back }: any) => {
             flexDirection: "row",
           }}
         >
-          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null:handleBet(odds?.[1])}>
+          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null:handleBet(odds?.[1],"BACK")}>
             <span className="f12-b">{odds?.[1]?.b1}</span>
             <span className="f10-b">{odds?.[1]?.bs1}</span>
           </div>
-          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null:handleBet(odds?.[1])}>
+          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null:handleBet(odds?.[1],"LAY")}>
             <span className="f12-b">{odds?.[1]?.l1}</span>
             <span className="f10-b">{odds?.[1]?.ls1}</span>
           </div>
