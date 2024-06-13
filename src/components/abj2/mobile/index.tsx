@@ -60,7 +60,7 @@ const Abj2Mobile = () => {
         {!activeTab ? (
           <div className="horseRacingTab">
             <div style={{ width: "100%", height: "25vh" }}>
-              <div className="horseRacingTabHeader">
+              <div className="horseRacingTabHeader-m">
                 <div
                   style={{
                     width: "100%",

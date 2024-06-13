@@ -11,6 +11,8 @@ import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Dragon20Result from "../desktop/dragonCard";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -61,7 +63,7 @@ const DragonTigerMobile = () => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%", height: "28vh" }}>
-              <div className="horseRacingTabHeaderMob">
+              <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
@@ -74,7 +76,7 @@ const DragonTigerMobile = () => {
                   height: "90%",
                   backgroundColor: "#000",
                 }}
-              ></div>
+              ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}/></div>
             </div>
             <div style={{ width: "100%" }}>
               <TiePairBox
