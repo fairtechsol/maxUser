@@ -133,6 +133,7 @@ const cardDetail = createSlice({
       })
       .addCase(updateCard32MatchRates.fulfilled, (state, action) => {
         const {t1,t2}=action.payload
+        state.loading = false;
         const videoInfo = { ...t1[0] };
         const set1 = t2.slice(0, 2);
         const set2 = t2.slice(2, 4);
