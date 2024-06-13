@@ -61,18 +61,18 @@ const DynamicTable = ({ odds, data }: any) => {
           <span>0</span>
         </div>
         <div
-          className={odds?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""}
+          className={odds?.[0]?.gstatus === "SUSPENDED" || odds?.[0]?.gstatus ==="CLOSED" ? "suspended" : ""}
           style={{
             width: "50%",
             display: "flex",
             flexDirection: "row",
           }}
         >
-          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null : handleBet(odds?.[0],"BACK")}>
+          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED" || odds?.[0]?.gstatus ==="CLOSED" ? null : handleBet(odds?.[0],"BACK")}>
             <span className="f12-b">{odds?.[0]?.b1}</span>
             <span className="f10-b">{odds?.[0]?.bs1}</span>
           </div>
-          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null : handleBet(odds?.[0],"LAY")}>
+          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED" || odds?.[0]?.gstatus ==="CLOSED" ? null : handleBet(odds?.[0],"LAY")}>
             <span className="f12-b">{odds?.[0]?.l1}</span>
             <span className="f10-b">{odds?.[0]?.ls1}</span>
           </div>
@@ -94,18 +94,18 @@ const DynamicTable = ({ odds, data }: any) => {
           <span>0</span>
         </div>
         <div
-          className={odds?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""}
+          className={odds?.[1]?.gstatus === "SUSPENDED" || odds?.[1]?.gstatus ==="CLOSED"? "suspended" : ""}
           style={{
             width: "50%",
             display: "flex",
             flexDirection: "row",
           }}
         >
-          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null:handleBet(odds?.[1],"BACK")}>
+          <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED" || odds?.[1]?.gstatus ==="CLOSED" ? null:handleBet(odds?.[1],"BACK")}>
             <span className="f12-b">{odds?.[1]?.b1}</span>
             <span className="f10-b">{odds?.[1]?.bs1}</span>
           </div>
-          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED"  ? null:handleBet(odds?.[1],"LAY")}>
+          <div className="card32-table-item lay" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED" || odds?.[1]?.gstatus ==="CLOSED" ? null:handleBet(odds?.[1],"LAY")}>
             <span className="f12-b">{odds?.[1]?.l1}</span>
             <span className="f10-b">{odds?.[1]?.ls1}</span>
           </div>
