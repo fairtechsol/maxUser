@@ -31,7 +31,7 @@ const DynamicTable = ({ odds, data, back }: any) => {
   // console.log(data, "data");
 
   return (
-    <div className="card32-table-container">
+    <div className="card32-table-container-m">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
         <div style={{ width: "50%", border: "0.1px solid #fff" }}></div>
        {back && (<div

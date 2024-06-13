@@ -55,7 +55,7 @@ const Cards32Mobile = () => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%", height: "28vh" }}>
-              <div className="horseRacingTabHeaderMob">
+              <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
                   {dragonTigerDetail?.name}

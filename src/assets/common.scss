@@ -546,11 +546,22 @@ img {
   line-height: 0.8;
 }
 
-// .table tr.bet-info {
-//   background-color: rgba(0, 0, 0, 0.05);
-//   display: table;
-//   width: 100%;
-// }
+.horseRacingTabHeader{
+  width: 100%;
+  height: 12%;
+  background-color: #ffc742;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 8px;
+}
+.horseRacingTabHeader-m{
+  width: 100%;
+  height: 18%;
+  background-color: #ffc742;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 8px;
+}
 .teenpatti-20 .suspended:after {
   width: 50%;
 }

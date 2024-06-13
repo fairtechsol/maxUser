@@ -53,7 +53,7 @@ const Abj2Mobile = () => {
         {!activeTab ? (
           <div className="horseRacingTab">
           <div style={{width:"100%",height:"25vh"}}>
-          <div className="horseRacingTabHeader">
+          <div className="horseRacingTabHeader-m">
             <div style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
               <span style={{fontSize:"14px",fontWeight:"600"}}>{dragonTigerDetail?.name}</span>
               <span style={{fontSize:"14px",fontWeight:"600"}}>Min:{dragonTigerDetail?.videoInfo?.min} Max:{dragonTigerDetail?.videoInfo?.max}</span>
