@@ -87,12 +87,14 @@ const DragonTiger20 = () => {
 
   useEffect(() => {
     try {
-      return () => {
-        socketService.card.leaveMatchRoom(cardGamesType.dragonTiger20);
-        socketService.card.getCardRatesOff(cardGamesType.dragonTiger20);
-        socketService.card.userCardBetPlacedOff();
-        socketService.card.cardResultOff();
-      };
+      if (dragonTigerDetail?.id) {
+        return () => {
+          socketService.card.leaveMatchRoom(cardGamesType.dragonTiger20);
+          socketService.card.getCardRatesOff(cardGamesType.dragonTiger20);
+          socketService.card.userCardBetPlacedOff();
+          socketService.card.cardResultOff();
+        };
+      }
     } catch (e) {
       console.log(e);
     }
