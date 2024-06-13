@@ -13,6 +13,8 @@ import PlacedBet from "./placeBet";
 import MyBet from "./myBet";
 import { Col, Container, Row } from "react-bootstrap";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Dragon20Result from "./dragonCard";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -69,7 +71,7 @@ const DragonTigerDesktop = () => {
             </div>
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
-            ></div>
+            ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}/></div>
           </div>
 
           <div style={{ width: "100%", margin: "5px" }}>
