@@ -10,6 +10,8 @@ import RulesModal from "../../commonComponent/rulesModal";
 import { luckyrules } from "../../../assets/images";
 import PlacedBet from "./placeBet";
 import MyBet from "./myBet";
+import Lucky7Result from "../desktop/lucky7Card";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 
 const Lucky7Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -61,7 +63,7 @@ const Lucky7Mobile = () => {
         {!activeTab ? (
           <div className="horseRacingTab">
             <div style={{ width: "100%", height: "25vh" }}>
-              <div className="horseRacingTabHeader">
+              <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
                   {dragonTigerDetail?.name}
@@ -74,7 +76,7 @@ const Lucky7Mobile = () => {
                   height: "92%",
                   backgroundColor: "#000",
                 }}
-              ></div>
+              ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}/></div>
             </div>
 
             <div style={{ width: "100%", marginTop: "15px" }}>

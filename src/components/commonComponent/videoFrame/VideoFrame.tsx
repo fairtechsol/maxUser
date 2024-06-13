@@ -1,6 +1,7 @@
 
 import React, { memo, useState } from "react";
 import FlipClock from "./FlipClock";
+import isMobile from "../../../utils/screenDimension";
 
 const VideoFrame = ({  result, time }:any) => {
   const [showModal, setModalOpen] = useState(false);
@@ -26,7 +27,7 @@ const VideoFrame = ({  result, time }:any) => {
         <div>
           <div
             style={{
-              height: "37vh",
+              height:isMobile ? "25vh" : "37vh",
               backgroundColor: "black",
               position: "relative",
             }}

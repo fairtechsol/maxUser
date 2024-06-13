@@ -12,6 +12,8 @@ import PlacedBet from "./placeBet";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { useDispatch } from "react-redux";
 import MyBet from "./myBet";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Teen20Result from "../desktop/teenCard";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -95,7 +97,7 @@ const TeenPattiMobile = () => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%", height: "28vh" }}>
-              <div className="horseRacingTabHeaderMob">
+              <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
@@ -105,10 +107,10 @@ const TeenPattiMobile = () => {
               <div
                 style={{
                   width: "100%",
-                  height: "90%",
+                  height: "20%",
                   backgroundColor: "#000",
                 }}
-              ></div>
+              ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}/></div>
             </div>
             <div style={{ width: "100%" }}>
               <div className="teenPatti-table-container-m">
