@@ -86,14 +86,16 @@ export const Constants = {
   apiBasePath: "https://devmaxbet9api.fairgame.club",
   expertSocketBasePath: "https://devexpertapi.fairgame.club",
   thirdParty: "https://devserviceapi.fairgame.club",
+  thirdPartyCard: "https://casinoserviceapi.fairgame.club",
   localThird: "http://localhost:3200",
+  // localThirdCard: "https://3200dev.fairgame.club",
   localThirdCard: "http://localhost:3201",
   WEBSOCKET: "websocket",
   POLLING: "polling",
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -260,7 +262,7 @@ export const baseUrls = {
       : Constants.localThird,
   cardSocket:
     process.env.NODE_ENV === "production"
-      ? Constants.thirdParty
+      ? Constants.thirdPartyCard
       : Constants.localThirdCard,
 };
 
@@ -1286,31 +1288,31 @@ export const sportsRules = [
 
 export const casinoIcons = [
   {
-    url: "/casino/ball_by_ball",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
     name: "Ball By Ball",
   },
   {
-    url: "/casino/superover",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
     name: "Super Over",
   },
   {
-    url: "/casino/race/t20",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
     name: "Race 20-20",
   },
   {
-    url: "/casino/queen",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
     name: "Casino Queen",
   },
   {
-    url: "/casino/cricketv3",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
     name: "5Five Cricket",
@@ -1328,67 +1330,67 @@ export const casinoIcons = [
     name: "20-20 Dragon Tiger 2",
   },
   {
-    url: "/casino/baccarat2",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
     name: "Baccarat 2",
   },
   {
-    url: "/casino/baccarat",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
     name: "Baccarat",
   },
   {
-    url: "/casino/lucky7eu",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
     name: "Lucky 7 - B",
   },
   {
-    url: "/casino/teenpatti-list/teen6",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teencasino.jpg",
     name: "Teenpatti 2.0",
   },
   {
-    url: "/casino/cc20",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
     name: "20-20 Cricket Match",
   },
   {
-    url: "/casino/cmeter",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
     name: "Casino Meter",
   },
   {
-    url: "/casino/war",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
     name: "Casino War",
   },
   {
-    url: "/casino/dtl20",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
     name: "20-20 DTL",
   },
   {
-    url: "/casino/teenpatti/test",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "Test Teenpatti",
   },
   {
-    url: "/casino/teenpatti/open",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "Open Teenpatti",
   },
   {
-    url: "/casino/teenpatti/oneday",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "1 Day Teenpatti",
@@ -1400,43 +1402,43 @@ export const casinoIcons = [
     name: "20-20 Teenpatti",
   },
   {
-    url: "/casino/poker/6player",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "6 Player Poker",
   },
   {
-    url: "/casino/poker/oneday",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "1 Day Poker",
   },
   {
-    url: "/casino/poker/t20",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "20-20 Poker",
   },
   {
-    url: "/casino/ab20",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
     name: "Andar Bahar",
   },
   {
-    url: "/casino/worli",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
     name: "Worli Matka",
   },
   {
-    url: "/casino/worli2",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
     name: "Instant Worli",
   },
   {
-    url: "/casino/3cardj",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
     name: "3 Cards Judgement",
@@ -1448,19 +1450,19 @@ export const casinoIcons = [
     name: "32 Cards A",
   },
   {
-    url: "/casino/card32b",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
     name: "32 Cards B",
   },
   {
-    url: "/casino/aaa",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
     name: "Amar Akbar Anthony",
   },
   {
-    url: "/casino/ddb",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
     name: "Bollywood Casino",
@@ -1472,13 +1474,13 @@ export const casinoIcons = [
     name: "20-20 Dragon Tiger",
   },
   {
-    url: "/casino/dt6",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "1 Day Dragon Tiger",
   },
   {
-    url: "/casino/lottery",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lottery.jpg",
     name: "Lottery",
