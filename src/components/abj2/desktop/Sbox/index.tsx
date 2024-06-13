@@ -12,7 +12,7 @@ const SBetBox = ({ type, odds, data }: any) => {
       "odd": item?.b1,
       "stake": 0,
       "matchBetType": "matchOdd",
-      "betOnTeam":item?.nat,
+      "betOnTeam":item?.nat+" "+type,
       "name":item?.nat,
       "bettingName": "Match odds",
       "selectionId": item?.sid
@@ -23,7 +23,7 @@ const SBetBox = ({ type, odds, data }: any) => {
         data,
       })
     );
-    console.log('team',team)
+    // console.log('team',team)
   }
   return (
     <div className="sBoxContainer">
