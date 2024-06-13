@@ -2,7 +2,7 @@ import Lucky7ComponentList from "../../components/lucky7";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getDragonTigerDetailHorseRacing, update7CardMatchRates, updateLiveGameResultTop10 } from "../../store/actions/cards/cardDetail";
+import { getDragonTigerDetailHorseRacing, update7CardMatchRates, updateBalanceOnBetPlaceCards, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
 import { useEffect } from "react";
 import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
 import { socket, socketService } from "../../socketManager";
@@ -31,6 +31,8 @@ const Lucky7 = () => {
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.lucky7) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
+      dispatch(updateProfitLossCards(event?.userRedisObj));
     }
   };
   const handleLiveGameResultTop10 = (event: any) => {

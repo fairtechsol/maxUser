@@ -1,15 +1,16 @@
 import { useState } from "react";
-import "./style.scss";
-import { RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
-import TiePairBox from "./TiePairBox";
-import OddEven from "./OddEvenBox";
-import CardBox from "./CardsBox";
+import { dtrules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
+import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import { dtrules } from "../../../assets/images";
-import PlacedBet from "./placeBet";
+import CardBox from "./CardsBox";
+import OddEven from "./OddEvenBox";
+import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
+import PlacedBet from "./placeBet";
+import "./style.scss";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -18,13 +19,6 @@ const DragonTigerMobile = () => {
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const roundId = (id: any) => {
-    if (typeof id !== "string" || !id.includes(".")) {
-      return id || 0;
-    }
-    const Id = id?.split(".");
-    return Id[1];
-  };
   return (
     <>
       <div>
@@ -55,7 +49,9 @@ const DragonTigerMobile = () => {
             <span>
               {" "}
               {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}`
+                ? `Round ID:  ${handleRoundId(
+                    dragonTigerDetail?.videoInfo?.mid
+                  )}`
                 : ""}{" "}
             </span>
           </div>

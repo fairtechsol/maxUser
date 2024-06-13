@@ -1,29 +1,26 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.scss";
-import TiePairBox from "./TiePairBox";
-import OddEven from "./OddEvenBox";
-import CardBox from "./CardsBox";
-import CardResultBox from "../../commonComponent/cardResultBox";
 import { useRef, useState } from "react";
-import RulesModal from "../../commonComponent/rulesModal";
-import { luckyrules } from "../../../assets/images";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import PlacedBet from "./placeBet";
+import { handleRoundId } from "../../../utils/formatMinMax";
 import MyBet from "../../abj2/desktop/myBet";
+import CardResultBox from "../../commonComponent/cardResultBox";
+import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import CardBox from "./CardsBox";
+import OddEven from "./OddEvenBox";
+import TiePairBox from "./TiePairBox";
 import Lucky7Result from "./lucky7Card";
+import PlacedBet from "./placeBet";
+import "./style.scss";
 
 const Lucky7Desktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  const roundId = (id: any) => {
-    const Id = id?.split(".");
-    return Id[1];
-  };
   return (
     <div>
       <Row>
@@ -45,7 +42,9 @@ const Lucky7Desktop = () => {
                 </div>
                 <span>
                   {dragonTigerDetail?.videoInfo
-                    ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}`
+                    ? `Round ID:  ${handleRoundId(
+                        dragonTigerDetail?.videoInfo?.mid
+                      )}`
                     : ""}
                 </span>
               </div>
@@ -55,7 +54,12 @@ const Lucky7Desktop = () => {
                   height: "92%",
                   backgroundColor: "#000",
                 }}
-              ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}/></div>
+              >
+                <VideoFrame
+                  time={dragonTigerDetail?.videoInfo?.autotime}
+                  result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}
+                />
+              </div>
             </div>
 
             <div style={{ width: "100%", margin: "5px" }}>

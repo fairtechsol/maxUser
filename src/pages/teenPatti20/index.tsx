@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 import { socket, socketService } from "../../socketManager";
 import {
   getDragonTigerDetailHorseRacing,
+  updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
+  updateProfitLossCards,
   updateTeenPattiMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import Loader from "../../components/commonComponent/loader";
@@ -38,6 +40,8 @@ const TeenPatti20 = () => {
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.teen20) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
+      dispatch(updateProfitLossCards(event?.userRedisObj));
     }
   };
   const handleLiveGameResultTop10 = (event: any) => {

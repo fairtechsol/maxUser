@@ -1,18 +1,18 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.scss";
-import { Button, Col, Container, Row, Table } from "react-bootstrap";
-import CardResultBox from "../../commonComponent/cardResultBox";
 import { useRef, useState } from "react";
-import RulesModal from "../../commonComponent/rulesModal";
+import { Col, Container, Row, Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
-import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import PlacedBet from "./placeBet";
-import MyBet from "./myBet";
-import Teen20Result from "./teenCard";
+import { AppDispatch, RootState } from "../../../store/store";
+import { handleRoundId } from "../../../utils/formatMinMax";
+import CardResultBox from "../../commonComponent/cardResultBox";
+import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import MyBet from "./myBet";
+import PlacedBet from "./placeBet";
+import "./style.scss";
+import Teen20Result from "./teenCard";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -21,7 +21,7 @@ const TeenPattiDesktop = () => {
   const [show, setShow] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
-  
+
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
     { label: "Flush (Color)", value: "1 To 4" },
@@ -29,22 +29,18 @@ const TeenPattiDesktop = () => {
     { label: "Trio (Teen)", value: "1 To 35" },
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
-  const roundId = (id: any) => {
-    const Id = id?.split(".");
-    return Id[1];
-  };
-  const handleBet=(item:any)=>{
-    let team ={
-      "bettingType": "BACK",
-      "matchId": dragonTigerDetail?.id,
-      "odd": item?.rate,
-      "stake": 0,
-      "matchBetType": "matchOdd",
-      "betOnTeam":item?.nat,
-      "name":item?.nat,
-      "bettingName": "Match odds",
-      "selectionId": item?.sid
-    }
+  const handleBet = (item: any) => {
+    let team = {
+      bettingType: "BACK",
+      matchId: dragonTigerDetail?.id,
+      odd: item?.rate,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.nat,
+      name: item?.nat,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+    };
     dispatch(
       selectedBetAction({
         team,
@@ -52,7 +48,7 @@ const TeenPattiDesktop = () => {
       })
     );
     // console.log('team',team)
-  }
+  };
   return (
     <div>
       <Row>
@@ -73,16 +69,25 @@ const TeenPattiDesktop = () => {
               </div>
               <span>
                 {dragonTigerDetail?.videoInfo
-                  ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${dragonTigerDetail?.videoInfo?.max}`
+                  ? `Round ID:  ${handleRoundId(
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
+                      dragonTigerDetail?.videoInfo?.max
+                    }`
                   : ""}
               </span>
             </div>
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
-            ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}/></div>
+            >
+              <VideoFrame
+                time={dragonTigerDetail?.videoInfo?.autotime}
+                result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+              />
+            </div>
             <div className="teenPatti-table-container">
-              <div className="teenPatti-table-row" style={{lineHeight:2}}>
-                <div style={{ width: "50%",border:"0.1px solid #fff" }}></div>
+              <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
+                <div style={{ width: "50%", border: "0.1px solid #fff" }}></div>
                 <div
                   style={{
                     width: "50%",
@@ -103,11 +108,25 @@ const TeenPattiDesktop = () => {
                   ></div>
                 </div>
               </div>
-              <div className="teenPatti-table-row" style={{lineHeight:1}}>
-                <div style={{ width: "50%",padding:"10px",border:"0.1px solid #fff" }}>
-                  <span style={{fontSize:"14px",fontWeight:"bolder"}}>{playerA?.[0]?.nat}</span>
+              <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
+                <div
+                  style={{
+                    width: "50%",
+                    padding: "10px",
+                    border: "0.1px solid #fff",
+                  }}
+                >
+                  <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+                    {playerA?.[0]?.nat}
+                  </span>
                 </div>
-                <div className={playerA?.[0]?.gstatus==="0" && playerA?.[1]?.gstatus==="0" ? "suspended":""}
+                <div
+                  className={
+                    playerA?.[0]?.gstatus === "0" &&
+                    playerA?.[1]?.gstatus === "0"
+                      ? "suspended"
+                      : ""
+                  }
                   style={{
                     width: "50%",
                     backgroundColor: "#72bbef",
@@ -118,26 +137,53 @@ const TeenPattiDesktop = () => {
                   <div
                     className="teenPatti-table-item"
                     style={{ width: "40%" }}
-                    onClick={()=>playerA?.[0]?.gstatus==="0"?null: handleBet(playerA?.[0])}
+                    onClick={() =>
+                      playerA?.[0]?.gstatus === "0"
+                        ? null
+                        : handleBet(playerA?.[0])
+                    }
                   >
                     <span className="f12-b">{playerA?.[0]?.rate}</span>
                     <span className="f10-b">0</span>
                   </div>
                   <div
-                    className={`teenPatti-table-item ${playerA?.[0]?.gstatus !="0" && playerA?.[1]?.gstatus==="0" ? "suspended":""}`}
+                    className={`teenPatti-table-item ${
+                      playerA?.[0]?.gstatus != "0" &&
+                      playerA?.[1]?.gstatus === "0"
+                        ? "suspended"
+                        : ""
+                    }`}
                     style={{ width: "60%" }}
-                    onClick={()=>playerA?.[1]?.gstatus==="0"?null: handleBet(playerA?.[1])}
+                    onClick={() =>
+                      playerA?.[1]?.gstatus === "0"
+                        ? null
+                        : handleBet(playerA?.[1])
+                    }
                   >
                     <span className="f12-b">{playerA?.[1]?.nat}</span>
                     <span className="f10-b">0</span>
                   </div>
                 </div>
               </div>
-              <div className="teenPatti-table-row" style={{lineHeight:1}}>
-                <div style={{ width: "50%",padding:"10px",border:"0.1px solid #fff" }}>
-                  <span style={{fontSize:"14px",fontWeight:"bolder"}}>{playerB?.[0]?.nat}</span>
+              <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
+                <div
+                  style={{
+                    width: "50%",
+                    padding: "10px",
+                    border: "0.1px solid #fff",
+                  }}
+                >
+                  <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+                    {playerB?.[0]?.nat}
+                  </span>
                 </div>
-                <div className={playerB?.[0]?.gstatus==="0" && playerB?.[1]?.gstatus==="0" ? "suspended":""}
+                <div
+                  className={
+                    playerB?.[0]?.gstatus === "0" &&
+                    playerB?.[1]?.gstatus === "0"
+                      ? "suspended"
+                      : ""
+                  }
                   style={{
                     width: "50%",
                     backgroundColor: "#72bbef",
@@ -148,15 +194,28 @@ const TeenPattiDesktop = () => {
                   <div
                     className="teenPatti-table-item"
                     style={{ width: "40%" }}
-                    onClick={()=>playerB?.[0]?.gstatus==="0"?null: handleBet(playerB?.[0])}
+                    onClick={() =>
+                      playerB?.[0]?.gstatus === "0"
+                        ? null
+                        : handleBet(playerB?.[0])
+                    }
                   >
                     <span className="f12-b">{playerB?.[0]?.rate}</span>
                     <span className="f10-b">44</span>
                   </div>
                   <div
-                    className={`teenPatti-table-item ${playerB?.[0]?.gstatus !="0" && playerB?.[1]?.gstatus==="0" ? "suspended":""}`}
+                    className={`teenPatti-table-item ${
+                      playerB?.[0]?.gstatus != "0" &&
+                      playerB?.[1]?.gstatus === "0"
+                        ? "suspended"
+                        : ""
+                    }`}
                     style={{ width: "60%" }}
-                    onClick={()=>playerB?.[1]?.gstatus==="0"?null: handleBet(playerB?.[1])}
+                    onClick={() =>
+                      playerB?.[1]?.gstatus === "0"
+                        ? null
+                        : handleBet(playerB?.[1])
+                    }
                   >
                     <span className="f12-b">{playerB?.[1]?.nat}</span>
                     <span className="f10-b">7</span>
@@ -164,8 +223,8 @@ const TeenPattiDesktop = () => {
                 </div>
               </div>
             </div>
-            <div style={{width:"100%",marginTop:"10px"}}>
-            <CardResultBox />
+            <div style={{ width: "100%", marginTop: "10px" }}>
+              <CardResultBox />
             </div>
           </div>
         </Col>

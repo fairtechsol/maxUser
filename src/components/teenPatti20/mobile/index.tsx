@@ -1,17 +1,16 @@
-import { Container, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
-import RulesHead from "../../commonComponent/mobileRulesHead";
-import "./style.scss";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { tprules } from "../../../assets/images";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
+import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import { tprules } from "../../../assets/images";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
-import PlacedBet from "./placeBet";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { useDispatch } from "react-redux";
 import MyBet from "./myBet";
+import PlacedBet from "./placeBet";
+import "./style.scss";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -21,13 +20,6 @@ const TeenPattiMobile = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const roundId = (id: any) => {
-    if (typeof id !== "string" || !id.includes(".")) {
-      return id || 0;
-    }
-    const Id = id?.split(".");
-    return Id[1];
-  };
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
     { label: "Flush (Color)", value: "1 To 4" },
@@ -85,7 +77,9 @@ const TeenPattiMobile = () => {
             <span>
               {" "}
               {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}`
+                ? `Round ID:  ${handleRoundId(
+                    dragonTigerDetail?.videoInfo?.mid
+                  )}`
                 : ""}{" "}
             </span>
           </div>
@@ -112,17 +106,22 @@ const TeenPattiMobile = () => {
             </div>
             <div style={{ width: "100%" }}>
               <div className="teenPatti-table-container-m">
-                <div className="teenPatti-table-row" >
+                <div className="teenPatti-table-row">
                   <div
-                    style={{ width: "50%", border: "0.1px solid #dee2e6",textAlign:"left" }}
+                    style={{
+                      width: "50%",
+                      border: "0.1px solid #dee2e6",
+                      textAlign: "left",
+                    }}
                   >
                     <span className="f12-b">
-                    Min: {dragonTigerDetail?.videoInfo?.min} Max: {dragonTigerDetail?.videoInfo?.max}
+                      Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
+                      {dragonTigerDetail?.videoInfo?.max}
                     </span>
                   </div>
                   <div className="teen-back-m">BACK</div>
                 </div>
-                <div className="teenPatti-table-row" >
+                <div className="teenPatti-table-row">
                   <div
                     style={{
                       width: "50%",

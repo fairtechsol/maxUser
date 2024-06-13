@@ -9,7 +9,7 @@ import { cardGamesType } from "../../utils/constants";
 import {  getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
 import { useEffect } from "react";
 import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
-import { getDragonTigerDetailHorseRacing, updateCard32MatchRates } from "../../store/actions/cards/cardDetail";
+import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCard32MatchRates, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
 import { socket, socketService } from "../../socketManager";
 
 const Cards32 = () => {
@@ -29,6 +29,8 @@ const Cards32 = () => {
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.card32) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
+      dispatch(updateProfitLossCards(event?.userRedisObj));
     }
   };
 

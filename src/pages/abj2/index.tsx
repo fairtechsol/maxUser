@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Abj2ComponentList from "../../components/abj2";
 import { socket, socketService } from "../../socketManager";
-import { getDragonTigerDetailHorseRacing, updateCardAbjRates, updateCardMatchRates, updateLiveGameResultTop10 } from "../../store/actions/cards/cardDetail";
+import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCardAbjRates, updateCardMatchRates, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
 import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
@@ -43,6 +43,8 @@ const Abj2 = () => {
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.andarBahar2) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
+      dispatch(updateProfitLossCards(event?.userRedisObj));
     }
   };
   const handleLiveGameResultTop10 = (event: any) => {
