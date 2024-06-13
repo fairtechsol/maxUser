@@ -16,8 +16,8 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
   return (
     <div
       style={{
-        borderRadius: "5px",
-        border: "1px solid yellow",
+        borderRadius: "2px",
+        // border: "1px solid yellow",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -69,6 +69,7 @@ interface HandleCardsProps {
 }
 
 export const HandleCards: React.FC<HandleCardsProps> = ({ card }) => {
+  
   const [type, setType] = useState("");
   const [number, setNumber] = useState("");
 
@@ -80,7 +81,7 @@ export const HandleCards: React.FC<HandleCardsProps> = ({ card }) => {
   if (card === "1") {
     return <PlayingCard number="0" type="" lock={true} />;
   }
-
+  // console.log(card?.substring(0, card.length - 2),'jjjjjj',card)
   switch (type) {
     case "DD":
       return <PlayingCard number={number} type="heart" />;
@@ -95,40 +96,4 @@ export const HandleCards: React.FC<HandleCardsProps> = ({ card }) => {
   }
 };
 
-export const Teen20Result: React.FC = () => {
-  const data = {
-    C1: "10DD",
-    C2: "2CC",
-    C3: "9HH",
-    C4: "7SS",
-    C5: "5DD",
-    C6: "6CC",
-  };
 
-  return (
-    <Container>
-      <Row>
-        <Col>
-          <h6 style={{ color: "white" }}>Player A</h6>
-          <div style={{ display: "flex", gap: "20px" }}>
-            <HandleCards card={data?.C1} />
-            <HandleCards card={data?.C2} />
-            <HandleCards card={data?.C3} />
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h6 style={{ color: "white" }}>Player B</h6>
-          <div style={{ display: "flex", gap: "20px" }}>
-            <HandleCards card={data?.C4} />
-            <HandleCards card={data?.C5} />
-            <HandleCards card={data?.C6} />
-          </div>
-        </Col>
-      </Row>
-    </Container>
-  );
-};
-
-export default Teen20Result;

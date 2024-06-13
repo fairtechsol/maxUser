@@ -33,7 +33,7 @@ const CardList3 = () => {
         </div>
         <div>
           {items.map((item: any, index: number) => (
-            <div key={index} className="m-b-30 div-figure">
+            <div key={index} className="m-b-30 div-figure mt-3">
               <a href={item.url} className="">
                 <img src={item.imgSrc} className="img-fluid" alt={item.name} />
               </a>

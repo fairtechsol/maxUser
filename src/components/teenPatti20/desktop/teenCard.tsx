@@ -18,8 +18,8 @@ const Teen20Result: React.FC<Props> = ({ data }:any) => {
     <Container>
       <Row>
         <Col>
-          <h6 style={{ color: "white" }}>Player A</h6>
-          <div style={{ display: "flex", gap: "20px" }}>
+          <span style={{ color: "white",fontWeight:"bolder" }}>PLAYER A</span>
+          <div style={{ display: "flex", gap: "10px" }}>
             <HandleCards card={data?.C1} />
             <HandleCards card={data?.C2} />
             <HandleCards card={data?.C3} />
@@ -28,8 +28,8 @@ const Teen20Result: React.FC<Props> = ({ data }:any) => {
       </Row>
       <Row>
         <Col>
-          <h6 style={{ color: "white" }}>Player B</h6>
-          <div style={{ display: "flex", gap: "20px" }}>
+          <span style={{ color: "white",fontWeight:"bolder"  }}>PLAYER B</span>
+          <div style={{ display: "flex", gap: "10px" }}>
             <HandleCards card={data?.C4} />
             <HandleCards card={data?.C5} />
             <HandleCards card={data?.C6} />

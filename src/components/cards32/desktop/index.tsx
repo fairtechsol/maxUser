@@ -7,10 +7,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import PlacedBet from "./placeBet";
 import MyBet from "./myBet";
+import Card32Result from "./card32Card";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 
-const Cards32Desktop = ({odds}:any) => {
+const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
+  const [isSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   // console.log(dragonTigerDetail,"efdsjkn");
   const roundId = (id: any) => {
@@ -38,7 +40,7 @@ const Cards32Desktop = ({odds}:any) => {
             </div>
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
-            ></div>
+            ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Card32Result data={dragonTigerDetail?.videoInfo} />}/></div>
             {/* <Row md={4}> */}
 
             {/* </Row> */}

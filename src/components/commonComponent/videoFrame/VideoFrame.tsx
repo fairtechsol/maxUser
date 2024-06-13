@@ -32,7 +32,7 @@ const VideoFrame = ({  result, time }:any) => {
             }}
           >
             {result && (
-              <div style={{ position: "absolute", left: "10px", top: "10x" }}>
+              <div style={{ position: "absolute", top: "10x" }}>
               {result}
               </div>
              )} 

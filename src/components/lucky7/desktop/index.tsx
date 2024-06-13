@@ -12,6 +12,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import PlacedBet from "./placeBet";
 import MyBet from "../../abj2/desktop/myBet";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Lucky7Result from "./lucky7Card";
 
 const Lucky7Desktop = () => {
   const [show, setShow] = useState(false);
@@ -53,7 +55,7 @@ const Lucky7Desktop = () => {
                   height: "92%",
                   backgroundColor: "#000",
                 }}
-              ></div>
+              ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}/></div>
             </div>
 
             <div style={{ width: "100%", margin: "5px" }}>
