@@ -1,9 +1,8 @@
-
 import { dragonTigerCards } from "../../../../utils/constants";
 import { useEffect, useState } from "react";
 
 const CommonCardImg = ({ cardData, handleBet }: any) => {
-  const [cardImg, setCardImg] = useState(dragonTigerCards)
+  const [cardImg, setCardImg] = useState(dragonTigerCards);
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
       return {
@@ -16,20 +15,24 @@ const CommonCardImg = ({ cardData, handleBet }: any) => {
 
   return (
     <div className="commonCardImgContainer">
-      {cardImg?.map((item:any)=>{
-        return(<>
-  <div
-              className={item?.gstatus === "0" ? "suspended" : ""}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
-              onClick={() => handleBet(item)}
-            >        <img src={item?.imgSrc} width={"30px"}/>
-        <span style={{fontSize:"12px"}}>{item?.value}</span>
-      </div></>)
+      {cardImg?.map((item: any) => {
+        return (
+          <div
+            key={item?.code}
+            className={item?.gstatus === "0" ? "suspended" : ""}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+            onClick={() => handleBet(item)}
+          >
+            {" "}
+            <img src={item?.imgSrc} width={"30px"} />
+            <span style={{ fontSize: "12px" }}>{item?.value}</span>
+          </div>
+        );
       })}
     </div>
   );

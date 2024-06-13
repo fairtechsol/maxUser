@@ -40,13 +40,16 @@ const HorseRacingListTabsMobile = ({ matchType }: any) => {
     >
       {countryWiseList?.map((code: any) => (
         <Tab
-        className="text-left"
+          className="text-left"
           eventKey={code.countryCode}
           title={code.countryCode}
           key={code.countryCode}
         >
           {Object.entries(racingList)?.map(([matchName, item]: any) => (
-            <div className="bet-table tab-pane fade horse-table active show">
+            <div
+              className="bet-table tab-pane fade horse-table active show"
+              key={matchName}
+            >
               <div className="game-listing-container">
                 <div className="game-list pt-1 pb-1">
                   <Row className="row5">
@@ -62,8 +65,8 @@ const HorseRacingListTabsMobile = ({ matchType }: any) => {
                   <Row className="row5">
                     <Col style={{ display: "flex", flexDirection: "row" }}>
                       {item?.map((dates: any) => (
-                        <div className="horse-time-detail-m">
-                          <NavLink to={`/race/${dates?.id}`} key={dates?.id}>
+                        <div className="horse-time-detail-m" key={dates?.id}>
+                          <NavLink to={`/race/${dates?.id}`}>
                             <span>{moment(dates.startAt).format("hh:mm")}</span>
                           </NavLink>
                         </div>

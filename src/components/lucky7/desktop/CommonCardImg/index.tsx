@@ -1,6 +1,6 @@
 import { dragonTigerCards } from "../../../../utils/constants";
 import { useEffect, useState } from "react";
-import "../../desktop/style.scss"
+import "../../desktop/style.scss";
 const CommonCardImg = ({ cardData, handleBet }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
   useEffect(() => {
@@ -17,22 +17,21 @@ const CommonCardImg = ({ cardData, handleBet }: any) => {
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any) => {
         return (
-          <>
-            <div
-              className={item?.gstatus === "0" ? "suspended" : ""}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
-              onClick={() => handleBet(item)}
-            >
-              {" "}
-              <img src={item?.imgSrc} width={"40px"} />
-              <span style={{ fontSize: "12px" }}>{item?.value}</span>
-            </div>
-          </>
+          <div
+            className={item?.gstatus === "0" ? "suspended" : ""}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+            onClick={() => handleBet(item)}
+            key={item?.code}
+          >
+            {" "}
+            <img src={item?.imgSrc} width={"40px"} />
+            <span style={{ fontSize: "12px" }}>{item?.value}</span>
+          </div>
         );
       })}
     </div>
