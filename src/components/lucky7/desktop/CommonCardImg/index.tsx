@@ -1,7 +1,7 @@
 import { dragonTigerCards } from "../../../../utils/constants";
 import { useEffect, useState } from "react";
 import "../../desktop/style.scss";
-const CommonCardImg = ({ cardData, handleBet }: any) => {
+const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
@@ -30,7 +30,15 @@ const CommonCardImg = ({ cardData, handleBet }: any) => {
           >
             {" "}
             <img src={item?.imgSrc} width={"40px"} />
-            <span style={{ fontSize: "12px" }}>{item?.value}</span>
+            <span style={{ fontSize: "12px" }}>
+              {data?.profitLoss
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${item?.sid}_card`
+                    ]
+                  : 0
+                : 0}
+            </span>
           </div>
         );
       })}

@@ -36,7 +36,7 @@ const CardBox = ({ name, rate, cardData, data }: any) => {
           </span>
         </div>
         <div>
-          <CommonCardImg cardData={cardData} handleBet={handleBet}/>
+          <CommonCardImg cardData={cardData} handleBet={handleBet} data={data}/>
         </div>
         <div style={{ textAlign: "end" }}>
         <span style={{ fontWeight: "bolder" }}>Min:</span>
