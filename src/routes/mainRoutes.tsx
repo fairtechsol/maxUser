@@ -82,6 +82,7 @@ const MainRoutes = {
 
     { path: "secure-auth", element: <SecureAuthVerification /> },
     { path: "change-password", element: <ChangePassword /> },
+    { path: "casino-report", element: <ContactAdmin /> },
     {
       path: "game-detail/:type/:id",
       element: <GameDetail />,

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from "react-router-dom";
 import { card3 } from "../../utils/constants";
 
 type Card3Keys = keyof typeof card3;
@@ -9,7 +8,7 @@ const typeToTitle: { [key: string]: string } = {
   teenPatti: "TEENPATTI",
   lucky7: "LUCKY7",
   cards32: "CARDS32",
-  abj : "ANDAR BAHAR",
+  abj: "ANDAR BAHAR",
   // Add other mappings as needed
 };
 
@@ -34,9 +33,9 @@ const CardList3 = () => {
         <div>
           {items.map((item: any, index: number) => (
             <div key={index} className="m-b-30 div-figure mt-3">
-              <a href={item.url} className="">
+              <NavLink to={item.url} className="">
                 <img src={item.imgSrc} className="img-fluid" alt={item.name} />
-              </a>
+              </NavLink>
             </div>
           ))}
         </div>

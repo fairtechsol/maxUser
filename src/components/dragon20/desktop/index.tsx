@@ -1,20 +1,21 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.scss";
-import TiePairBox from "./TiePairBox";
-import OddEven from "./OddEvenBox";
-import CardBox from "./CardsBox";
-import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
 import { useEffect, useRef, useState } from "react";
-import { dtrules } from "../../../assets/images";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import PlacedBet from "./placeBet";
-import MyBet from "./myBet";
 import { Col, Container, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { dtrules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
+import { handleRoundId } from "../../../utils/formatMinMax";
+import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import CardBox from "./CardsBox";
+import OddEven from "./OddEvenBox";
+import TiePairBox from "./TiePairBox";
 import Dragon20Result from "./dragonCard";
+import MyBet from "./myBet";
+import PlacedBet from "./placeBet";
+import "./style.scss";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -22,13 +23,6 @@ const DragonTigerDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky] = useState(false);
-  const roundId = (id: any) => {
-    if (typeof id !== "string" || !id.includes(".")) {
-      return id || 0;
-    }
-    const Id = id.split(".");
-    return Id[1];
-  };
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -65,13 +59,20 @@ const DragonTigerDesktop = () => {
               </div>
               <span>
                 {dragonTigerDetail?.videoInfo
-                  ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}`
+                  ? `Round ID:  ${handleRoundId(
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}`
                   : ""}
               </span>
             </div>
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
-            ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}/></div>
+            >
+              <VideoFrame
+                time={dragonTigerDetail?.videoInfo?.autotime}
+                result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}
+              />
+            </div>
           </div>
 
           <div style={{ width: "100%", margin: "5px" }}>

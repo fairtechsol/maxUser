@@ -1,15 +1,16 @@
 import { useState } from "react";
-import "./style.scss";
-import {  RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
-import TiePairBox from "./TiePairBox";
-import OddEven from "./OddEvenBox";
-import CardBox from "./CardsBox";
+import { luckyrules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
+import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import { luckyrules } from "../../../assets/images";
-import PlacedBet from "./placeBet";
+import CardBox from "./CardsBox";
+import OddEven from "./OddEvenBox";
+import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
+import PlacedBet from "./placeBet";
+import "./style.scss";
 import Lucky7Result from "../desktop/lucky7Card";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 
@@ -20,10 +21,6 @@ const Lucky7Mobile = () => {
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const roundId = (id: any) => {
-    const Id = id?.split(".");
-    return Id[1];
-  };
 
   return (
     <>
@@ -55,7 +52,9 @@ const Lucky7Mobile = () => {
             <span>
               {" "}
               {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${roundId(dragonTigerDetail?.videoInfo?.mid)}`
+                ? `Round ID:  ${handleRoundId(
+                    dragonTigerDetail?.videoInfo?.mid
+                  )}`
                 : ""}{" "}
             </span>
           </div>
@@ -66,7 +65,7 @@ const Lucky7Mobile = () => {
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                  {dragonTigerDetail?.name}
+                    {dragonTigerDetail?.name}
                   </span>
                 </div>
               </div>
@@ -127,7 +126,9 @@ const Lucky7Mobile = () => {
             </div>
           </div>
         ) : (
-          <><MyBet/></>
+          <>
+            <MyBet />
+          </>
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={luckyrules} />

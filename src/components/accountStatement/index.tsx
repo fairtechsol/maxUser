@@ -185,7 +185,7 @@ const AccountStatementComponent = () => {
               </Col>
             </Row>
             <CustomTable
-            width={"1200px"}
+              width={isMobile ? "1200px" : ""}
               paginationCount={true}
               bordered={true}
               striped={!isMobile}

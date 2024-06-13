@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import Abj2ComponentList from "../../components/abj2";
 import { socket, socketService } from "../../socketManager";
-import { getDragonTigerDetailHorseRacing, updateCardAbjRates, updateCardMatchRates, updateLiveGameResultTop10 } from "../../store/actions/cards/cardDetail";
-import { getButtonValue } from "../../store/actions/user/userAction";
+import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCardAbjRates, updateCardMatchRates, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
+import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useSelector } from "react-redux";
@@ -43,6 +43,8 @@ const Abj2 = () => {
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.andarBahar2) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
+      dispatch(updateProfitLossCards(event?.userRedisObj));
     }
   };
   const handleLiveGameResultTop10 = (event: any) => {
@@ -51,6 +53,7 @@ const Abj2 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
+      dispatch(getProfileInMatchDetail())
     }
   };
   

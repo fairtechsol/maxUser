@@ -2,9 +2,9 @@ import Lucky7ComponentList from "../../components/lucky7";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getDragonTigerDetailHorseRacing, update7CardMatchRates, updateLiveGameResultTop10 } from "../../store/actions/cards/cardDetail";
+import { getDragonTigerDetailHorseRacing, update7CardMatchRates, updateBalanceOnBetPlaceCards, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
 import { useEffect } from "react";
-import { getButtonValue } from "../../store/actions/user/userAction";
+import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
 import { socket, socketService } from "../../socketManager";
 import Loader from "../../components/commonComponent/loader";
 import { cardGamesType } from "../../utils/constants";
@@ -31,6 +31,8 @@ const Lucky7 = () => {
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.lucky7) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
+      dispatch(updateProfitLossCards(event?.userRedisObj));
     }
   };
   const handleLiveGameResultTop10 = (event: any) => {
@@ -39,6 +41,7 @@ const Lucky7 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
+      dispatch(getProfileInMatchDetail())
     }
   };
 
