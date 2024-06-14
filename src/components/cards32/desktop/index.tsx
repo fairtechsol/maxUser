@@ -74,7 +74,7 @@ const Cards32Desktop = () => {
             </Col>
           </Row> */}
           <div className="mt-2">
-            <CardResultBox name={["8","9","10","11"]} type={"card32"}/>
+            <CardResultBox data={dragonTigerDetail} name={["8","9","10","11"]} type={"card32"}/>
           </div>
         </Col>
         <Col md={4}>

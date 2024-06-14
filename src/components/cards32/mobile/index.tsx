@@ -68,10 +68,13 @@ const Cards32Mobile = () => {
                   height: "90%",
                   backgroundColor: "#000",
                 }}
-              > <VideoFrame
-              time={dragonTigerDetail?.videoInfo?.autotime}
-              result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
-            /></div>
+              >
+                {" "}
+                <VideoFrame
+                  time={dragonTigerDetail?.videoInfo?.autotime}
+                  result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
+                />
+              </div>
             </div>
             <div className="mt-4">
               <DynamicTable
@@ -88,7 +91,11 @@ const Cards32Mobile = () => {
             </div>
             <div style={{ marginTop: "10px" }}>
               {" "}
-              <CardResultBox  name={["8","9","10","11"]} type={"card32"}/>
+              <CardResultBox
+                data={dragonTigerDetail}
+                name={["8", "9", "10", "11"]}
+                type={"card32"}
+              />
             </div>
           </div>
         ) : (

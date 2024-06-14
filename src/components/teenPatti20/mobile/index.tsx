@@ -104,7 +104,12 @@ const TeenPattiMobile = () => {
                   height: "20%",
                   backgroundColor: "#000",
                 }}
-              ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}/></div>
+              >
+                <VideoFrame
+                  time={dragonTigerDetail?.videoInfo?.autotime}
+                  result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                />
+              </div>
             </div>
             <div className="mt-2" style={{ width: "100%" }}>
               <div className="teenPatti-table-container-m">
@@ -241,7 +246,7 @@ const TeenPattiMobile = () => {
             </div>
 
             <div style={{ width: "100%", marginTop: "15px" }}>
-              <CardResultBox name={["A","B"]}/>
+              <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
             </div>
             <div>
               <div className="casino-title" style={{ position: "relative" }}>

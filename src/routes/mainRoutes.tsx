@@ -30,12 +30,17 @@ const AccountStatement = Loadable(
 const ProfitLoss = Loadable(lazy(() => import("../pages/profitLoss")));
 const BetHistory = Loadable(lazy(() => import("../pages/betHistory")));
 const UnsettledBet = Loadable(lazy(() => import("../pages/unsettledBet")));
+const CasinoReports = Loadable(
+  lazy(() => import("../pages/reports/casinoReport"))
+);
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
 const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
 const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
 const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
 const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
-const DragonTigerSecond20 = Loadable(lazy(() => import("../pages/dragonSecond20")));
+const DragonTigerSecond20 = Loadable(
+  lazy(() => import("../pages/dragonSecond20"))
+);
 const CardList3 = Loadable(lazy(() => import("../pages/cardList3")));
 const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
 const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
@@ -78,11 +83,11 @@ const MainRoutes = {
     { path: "profit-loss", element: <ProfitLoss /> },
     { path: "bet-history", element: <BetHistory /> },
     { path: "unsettled-bet", element: <UnsettledBet /> },
+    { path: "casino-report", element: <CasinoReports /> },
     { path: "change-btn-value", element: <ChangeButtonValue /> },
 
     { path: "secure-auth", element: <SecureAuthVerification /> },
     { path: "change-password", element: <ChangePassword /> },
-    { path: "casino-report", element: <ContactAdmin /> },
     {
       path: "game-detail/:type/:id",
       element: <GameDetail />,
@@ -126,10 +131,12 @@ const MainRoutes = {
     {
       path: "game-list/:type",
       element: <GameList />,
-    },{
+    },
+    {
       path: "card3-list/:type",
       element: <CardList3 />,
-    },{
+    },
+    {
       path: "card4-list/:type",
       element: <CardList4 />,
     },
