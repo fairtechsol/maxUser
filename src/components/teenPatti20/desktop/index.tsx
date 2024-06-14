@@ -224,7 +224,7 @@ const TeenPattiDesktop = () => {
               </div>
             </div>
             <div style={{ width: "100%", marginTop: "10px" }}>
-              <CardResultBox />
+              <CardResultBox name={["A","B"]}/>
             </div>
           </div>
         </Col>
