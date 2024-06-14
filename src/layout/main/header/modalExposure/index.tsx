@@ -5,6 +5,7 @@ import isMobile from "../../../../utils/screenDimension";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { Link } from "react-router-dom";
+import { navigateToGameDetail } from "../../../../utils/constants";
 
 interface ExposureModalInterface {
   show: boolean;
@@ -52,7 +53,9 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
                         ? `/game-detail/${item.eventType}/${item.matchId}`
                         : ["greyHound", "horseRacing"].includes(item.eventType)
                         ? `/race/${item.matchId}`
-                        : `/other-game-detail/${item.eventType}/${item.matchId}`
+                        : ["football", "tennis"].includes(item.eventType)
+                        ? `/other-game-detail/${item.eventType}/${item.matchId}`
+                        : `/${navigateToGameDetail[item.eventType]}`
                     }
                     onClick={() => setShow(false)}
                   >
