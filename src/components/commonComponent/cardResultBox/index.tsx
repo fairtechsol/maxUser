@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { useNavigate } from "react-router-dom";
 
-const CardResultBox = ({ data }: any) => {
+const CardResultBox = ({ data, name, type }: any) => {
   const navigate = useNavigate();
   const { liveGameResultTop10 } = useSelector((state: RootState) => state.card);
   return (
@@ -28,17 +28,44 @@ const CardResultBox = ({ data }: any) => {
             <div
               className="cardResultCircle"
               key={item?.mid}
-              style={{ backgroundColor: item?.result === "3" ? "#ffc742" : "" }}
+              style={{
+                backgroundColor:
+                  type === "card32"
+                    ? ""
+                    : item?.result === "3"
+                    ? "#ffc742"
+                    : "",
+              }}
             >
-              <span
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "600",
-                  color: item?.result === "2" ? "#ffff33" : "#ff4500",
-                }}
-              >
-                {item?.result === "1" ? "D" : "T"}
-              </span>
+              {type === "card32" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "#ffff33",
+                  }}
+                >
+                  {item?.result === "1"
+                    ? name?.[0]
+                    : item?.result === "2"
+                    ? name?.[1]
+                    : item?.result === "3"
+                    ? name?.[2]
+                    : item?.result === "4"
+                    ? name?.[3]
+                    : null}
+                </span>
+              ) : (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: item?.result === "2" ? "#ffff33" : "#ff4500",
+                  }}
+                >
+                  {item?.result === "1" ? name?.[0] : name?.[1]}
+                </span>
+              )}
             </div>
           ))}
       </div>

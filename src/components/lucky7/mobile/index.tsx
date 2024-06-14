@@ -75,10 +75,15 @@ const Lucky7Mobile = () => {
                   height: "92%",
                   backgroundColor: "#000",
                 }}
-              ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}/></div>
+              >
+                <VideoFrame
+                  time={dragonTigerDetail?.videoInfo?.autotime}
+                  result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}
+                />
+              </div>
             </div>
 
-            <div style={{ width: "100%", marginTop: "15px" }}>
+            <div style={{ width: "100%", marginTop: "30px" }}>
               <TiePairBox
                 lowHigh={dragonTigerDetail?.lowHigh}
                 data={dragonTigerDetail}
@@ -122,7 +127,7 @@ const Lucky7Mobile = () => {
               />
             </div>
             <div style={{ width: "100%", marginTop: "10px" }}>
-              <CardResultBox data={dragonTigerDetail} />
+              <CardResultBox data={dragonTigerDetail} name={["L", "H"]} />
             </div>
           </div>
         ) : (

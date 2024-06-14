@@ -8,6 +8,8 @@ import DynamicTable from "./betTable";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import Card32Result from "../desktop/card32Card";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 const Cards32Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -66,9 +68,15 @@ const Cards32Mobile = () => {
                   height: "90%",
                   backgroundColor: "#000",
                 }}
-              ></div>
+              >
+                {" "}
+                <VideoFrame
+                  time={dragonTigerDetail?.videoInfo?.autotime}
+                  result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
+                />
+              </div>
             </div>
-            <div>
+            <div className="mt-4">
               <DynamicTable
                 back={true}
                 odds={dragonTigerDetail?.set1}
@@ -83,7 +91,11 @@ const Cards32Mobile = () => {
             </div>
             <div style={{ marginTop: "10px" }}>
               {" "}
-              <CardResultBox data={dragonTigerDetail}/>
+              <CardResultBox
+                data={dragonTigerDetail}
+                name={["8", "9", "10", "11"]}
+                type={"card32"}
+              />
             </div>
           </div>
         ) : (

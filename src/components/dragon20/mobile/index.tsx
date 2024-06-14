@@ -76,7 +76,14 @@ const DragonTigerMobile = () => {
                   height: "90%",
                   backgroundColor: "#000",
                 }}
-              ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}/></div>
+              >
+                <VideoFrame
+                  time={dragonTigerDetail?.videoInfo?.autotime}
+                  result={
+                    <Dragon20Result data={dragonTigerDetail?.videoInfo} />
+                  }
+                />
+              </div>
             </div>
             <div style={{ width: "100%" }}>
               <TiePairBox
@@ -129,7 +136,7 @@ const DragonTigerMobile = () => {
               </div>
             )}
             <div style={{ width: "100%", marginTop: "15px" }}>
-              <CardResultBox data={dragonTigerDetail} />
+              <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
             </div>
           </div>
         ) : (
