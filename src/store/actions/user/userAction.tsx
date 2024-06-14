@@ -50,6 +50,26 @@ export const getAccountStatement = createAsyncThunk<any, any>(
     }
   }
 );
+export const getCardReport = createAsyncThunk<any, any>(
+  "user/card/report",
+  async ({ type, page, limit, searchBy, keyword, filter }) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.USER.CARD_REPORT}${type}?page=${
+          page || 1
+        }&limit=${limit || 15}&searchBy=${searchBy}&keyword=${
+          keyword || ""
+        }&sort=cardResult.createdAt:DESC${filter}`
+      );
+      if (resp) {
+        return resp?.data;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      throw err;
+    }
+  }
+);
 
 export const getButtonValue = createAsyncThunk<any>(
   "user/getButtonValue",

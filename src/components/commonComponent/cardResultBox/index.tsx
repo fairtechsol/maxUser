@@ -1,14 +1,25 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import { useNavigate } from "react-router-dom";
 
-const CardResultBox = () => {
+const CardResultBox = ({ data }: any) => {
+  const navigate = useNavigate();
   const { liveGameResultTop10 } = useSelector((state: RootState) => state.card);
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">
         <span style={{ fontSize: "14px" }}>Last Result</span>
         <a>
-          <span style={{ fontSize: "14px" }}>View All</span>
+          <span
+            style={{ fontSize: "14px", cursor: "pointer" }}
+            onClick={() =>
+              navigate("/casino-report", {
+                state: { cardType: data?.type },
+              })
+            }
+          >
+            View All
+          </span>
         </a>
       </div>
       <div className="cardResultBoxRound">

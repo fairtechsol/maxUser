@@ -241,7 +241,7 @@ const TeenPattiMobile = () => {
             </div>
 
             <div style={{ width: "100%", marginTop: "15px" }}>
-              <CardResultBox />
+              <CardResultBox data={dragonTigerDetail} />
             </div>
             <div>
               <div className="casino-title" style={{ position: "relative" }}>

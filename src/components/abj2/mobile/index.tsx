@@ -133,7 +133,7 @@ const Abj2Mobile = () => {
               />
             </div>
             <div style={{ width: "100%", marginTop: "10px" }}>
-              <CardResultBox />
+              <CardResultBox data={dragonTigerDetail}/>
             </div>
           </div>
         ) : (
