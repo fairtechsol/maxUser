@@ -143,7 +143,11 @@ const CasinoReports = () => {
 
                     dispatch(
                       getCardReport({
-                        type: type.value,
+                        type: type
+                          ? type.value
+                          : typeFromState
+                          ? typeFromState.value
+                          : "teen20",
                         page: tableConfig?.page,
                         limit: tableConfig?.rowPerPage,
                         searchBy: "description",
