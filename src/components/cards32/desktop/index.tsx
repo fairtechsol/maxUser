@@ -52,7 +52,7 @@ const Cards32Desktop = () => {
 
             {/* </Row> */}
           </div>
-          <div className="d-flex px-2">
+          <div className="d-flex px-2 mt-4">
             <DynamicTable
               odds={dragonTigerDetail?.set1}
               data={dragonTigerDetail}
