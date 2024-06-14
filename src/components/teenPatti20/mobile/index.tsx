@@ -106,7 +106,7 @@ const TeenPattiMobile = () => {
                 }}
               ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}/></div>
             </div>
-            <div style={{ width: "100%" }}>
+            <div className="mt-2" style={{ width: "100%" }}>
               <div className="teenPatti-table-container-m">
                 <div className="teenPatti-table-row">
                   <div

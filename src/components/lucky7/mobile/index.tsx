@@ -78,7 +78,7 @@ const Lucky7Mobile = () => {
               ><VideoFrame time={dragonTigerDetail?.videoInfo?.autotime} result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}/></div>
             </div>
 
-            <div style={{ width: "100%", marginTop: "15px" }}>
+            <div style={{ width: "100%", marginTop: "30px" }}>
               <TiePairBox
                 lowHigh={dragonTigerDetail?.lowHigh}
                 data={dragonTigerDetail}
