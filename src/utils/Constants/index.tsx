@@ -247,6 +247,19 @@ export const cardGamesType: any = {
   lucky7: "lucky7",
 };
 
+export const navigateToGameDetail = {
+  [availableGameType.cricket]: "/game-detail/",
+  [availableGameType.football]: "/other-game-detail/",
+  [availableGameType.tennis]: "/other-game-detail/",
+  [availableGameType.horseRacing]: "/race/",
+  [availableGameType.greyHound]: "/race/",
+  [cardGamesType.teen20]: "teenPatti20",
+  [cardGamesType.card32]: "32cards-A",
+  [cardGamesType.lucky7]: "lucky7-A",
+  [cardGamesType.abj]: "abj2",
+  [cardGamesType.dt20]: "dt20",
+}
+
 export const baseUrls = {
   socket:
     process.env.NODE_ENV === "production"
