@@ -89,7 +89,7 @@ const AccountStatementComponent = () => {
         <div>
           <Stack gap={2}>
             <Row className="g-2 mt-1">
-              <Col md={2} xs={6}>
+              <Col lg={2} md={3} xs={6}>
                 <DatePicker
                   onChange={setFrom}
                   format="yyyy-MM-dd"
@@ -102,7 +102,7 @@ const AccountStatementComponent = () => {
                 />
                 {/* <CustomInput type="date" style={{ appearance: "textfield" }} /> */}
               </Col>
-              <Col md={2} xs={6}>
+              <Col lg={2} md={3} xs={6}>
                 <DatePicker
                   onChange={setTo}
                   value={to}
