@@ -10,9 +10,12 @@ import Card32Result from "./card32Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import RulesModal from "../../commonComponent/rulesModal";
+import { card32rules } from "../../../assets/images";
 
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
+  const [show, setShow] = useState(false);
   const [isSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   return (
@@ -25,7 +28,7 @@ const Cards32Desktop = () => {
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
                   {dragonTigerDetail?.name}
                 </span>
-                <a style={{ fontSize: "14px", textDecoration: "underline" }}>
+                <a style={{ fontSize: "14px", textDecoration: "underline" }} onClick={() => setShow(true)}>
                   {" "}
                   RULES
                 </a>
@@ -76,6 +79,7 @@ const Cards32Desktop = () => {
           <div className="mt-2">
             <CardResultBox name={["8","9","10","11"]} type={"card32"}/>
           </div>
+          <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
