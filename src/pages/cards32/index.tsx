@@ -9,7 +9,7 @@ import { cardGamesType } from "../../utils/constants";
 import {  getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
 import { useEffect } from "react";
 import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
-import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCard32MatchRates, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
+import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCard32MatchRates, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
 import { socket, socketService } from "../../socketManager";
 
 const Cards32 = () => {
@@ -40,7 +40,9 @@ const Cards32 = () => {
       dispatch(getProfileInMatchDetail());
     }
   };
-
+  const handleLiveGameResultTop10 = (event: any) => {
+    dispatch(updateLiveGameResultTop10(event?.data));
+  };
   useEffect(() => {
     try {
         dispatch(getButtonValue());
@@ -58,12 +60,17 @@ const Cards32 = () => {
       if (socket && dragonTigerDetail?.id) {
         socketService.card.getCardRatesOff(cardGamesType.card32);
         socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
         socketService.card.joinMatchRoom(cardGamesType.card32);
         socketService.card.getCardRates(
           cardGamesType.card32,
           setMatchRatesInRedux
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+        socketService.card.getLiveGameResultTop10(
+          cardGamesType.card32,
+          handleLiveGameResultTop10
+        );
         socketService.card.cardResult(handleCardResult);
       }
     } catch (error) {

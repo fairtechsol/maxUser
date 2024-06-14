@@ -83,7 +83,7 @@ const Cards32Mobile = () => {
             </div>
             <div style={{ marginTop: "10px" }}>
               {" "}
-              <CardResultBox />
+              <CardResultBox  name={["8","9","10","11"]} type={"card32"}/>
             </div>
           </div>
         ) : (

@@ -122,7 +122,7 @@ const DragonTigerDesktop = () => {
             />
           </div>
           <div style={{ width: "100%", margin: "5px" }}>
-            <CardResultBox />
+            <CardResultBox name={["D","T"]}/>
           </div>
           <RulesModal show={show} setShow={setShow} rule={dtrules} />
         </Col>

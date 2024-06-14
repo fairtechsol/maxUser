@@ -122,7 +122,7 @@ const Lucky7Mobile = () => {
               />
             </div>
             <div style={{ width: "100%", marginTop: "10px" }}>
-              <CardResultBox />
+              <CardResultBox name={["L","H"]}/>
             </div>
           </div>
         ) : (
