@@ -282,7 +282,7 @@ const PlacedBet = () => {
                   </td>
                   <td width={"18%"} style={{ textAlign: "end" }}>
                     <span className="f500" style={{ textAlign: "end" }}>
-                      {handleProfit(stake)}
+                      {selectedBet?.team?.eventType==="horseRacing" || selectedBet?.team?.eventType==="greyHound"? 0 : handleProfit(stake)}
                     </span>
                   </td>
                 </tr>

@@ -399,7 +399,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
               </CustomButton>
             </Col>
             <Col xs={4} className="title-12 text-center">
-              {handleProfit(stake)}
+            {selectedBet?.team?.eventType==="horseRacing" || selectedBet?.team?.eventType==="greyHound"? 0 : handleProfit(stake)} 
             </Col>
             {valueLabel?.map((item: any, index: number) => (
               <Col key={index} xs={4}>
@@ -425,7 +425,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             <div className="container d-flex justify-content-between mt-2">
               {selectedBet?.data?.type &&
                 selectedBet.data.type !== "session" &&
-                selectedBet.team.matchBetType !== "apiSession" && (
+                selectedBet.team.matchBetType !== "apiSession" &&
+                selectedBet?.team?.eventType !== "horseRacing" &&
+                selectedBet?.team?.eventType !== "greyHound" && (
                   <>
                     <div className="row">
                       <div className="col-md-4 flex-start">
