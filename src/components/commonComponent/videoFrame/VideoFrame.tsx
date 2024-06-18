@@ -27,7 +27,7 @@ const VideoFrame = ({  result, time }:any) => {
         <div>
           <div
             style={{
-              height:isMobile ? "25vh" : "37vh",
+              height:isMobile ? "30vh" : "40vh",
               backgroundColor: "black",
               position: "relative",
             }}
@@ -41,9 +41,11 @@ const VideoFrame = ({  result, time }:any) => {
               <div
                 style={{
                   position: "absolute",
-                  right: "10px",
-                  bottom: "10px",
-                  fontSize: "2.5em",
+                  right: isMobile ? "-82px" :"10px",
+                  bottom: isMobile ? "8px" :"10px",
+                  fontSize: isMobile ? "1.5rem" : "2.5em",
+                  height: isMobile ? "2rem" : "",
+                  width: isMobile ? "150px" : ""
                 }}
               >
                 <FlipClock value={time?.length === 1 ? "0" + time : time} />

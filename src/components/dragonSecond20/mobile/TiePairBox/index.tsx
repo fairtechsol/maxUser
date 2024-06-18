@@ -8,7 +8,7 @@ const TiePairBox = ({ data }: any) => {
   const max = 10000;
 
   return (
-    <div className="tiePairContainer">
+    <div className="tiePairContainer-m">
       <div className="tiePairRateBoxMain">
         <CommonButtonBox
           value1={10.0}

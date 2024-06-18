@@ -28,7 +28,7 @@ const TiePairBox = ({ tiePair, data }: any) => {
     console.log("team", team);
   };
   return (
-    <div className="tiePairContainer">
+    <div className="tiePairContainer-m">
       <div className="tiePairRateBoxMain">
         <CommonButtonBox
           value1={tiePair?.[0]?.rate}
