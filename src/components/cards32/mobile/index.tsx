@@ -76,7 +76,7 @@ const Cards32Mobile = () => {
                 />
               </div>
             </div>
-            <div className="mt-4">
+            <div className="mt-5">
               <DynamicTable
                 back={true}
                 odds={dragonTigerDetail?.set1}

@@ -32,7 +32,7 @@ const DynamicTable = ({ odds, data, back }: any) => {
   return (
     <div className="card32-table-container-m">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
-        <div style={{ width: "50%", border: "0.1px solid #fff" }}></div>
+        <div style={{ width: "50%" }}></div>
        {back && (<div
           style={{
             width: "50%",
@@ -40,10 +40,10 @@ const DynamicTable = ({ odds, data, back }: any) => {
             flexDirection: "row",
           }}
         >
-          <div className="card32-table-item back" style={{ width: "50%" }}>
+          <div className="card32-table-item-m back" style={{ width: "50%" }}>
             BACK
           </div>
-          <div className="card32-table-item lay" style={{ width: "50%" }}>
+          <div className="card32-table-item-m lay" style={{ width: "50%" }}>
             LAY
           </div>
         </div>)}
@@ -85,8 +85,7 @@ const DynamicTable = ({ odds, data, back }: any) => {
         <div
           style={{
             width: "50%",
-            padding: "10px",
-            border: "0.1px solid #fff",
+            padding: "8px",
             display: "flex",
             flexDirection: "column",
           }}
