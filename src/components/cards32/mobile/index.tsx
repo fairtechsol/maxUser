@@ -10,14 +10,12 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import Card32Result from "../desktop/card32Card";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import RulesModal from "../../commonComponent/rulesModal";
+import { card32rules } from "../../../assets/images";
 const Cards32Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
-  const [activeCardTab, setActiveCardTab] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
-  const handleSelect = (key: any) => {
-    setActiveTab(key);
-  };
+  const [show, setShow] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   return (
     <>
@@ -40,7 +38,7 @@ const Cards32Mobile = () => {
             </span>
           </div>
           <div className="dt20subheader2">
-            <span style={{ textDecoration: "underline" }}>Rules</span>
+            <span style={{ textDecoration: "underline" }} onClick={() => setShow(true)}>Rules</span>
             <span>
               {dragonTigerDetail?.videoInfo
                 ? `Round ID:  ${handleRoundId(
@@ -104,6 +102,7 @@ const Cards32Mobile = () => {
           </>
         )}
       </div>
+      <RulesModal show={show} setShow={setShow} rule={card32rules} />
     </>
   );
 };
