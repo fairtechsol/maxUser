@@ -27,7 +27,7 @@ const CommonButtonBox = ({ value1,value2,value3,width,handleBet,lock,data }: any
           )}</span>
       </div>
       <div>
-      <span style={{fontSize:"16px"}}>{value3}</span>
+      <span style={{fontSize:"16px"}}>{value3 || 0}</span>
       </div>
     </div>
   );

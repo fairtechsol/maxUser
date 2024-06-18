@@ -27,7 +27,6 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         data,
       })
     );
-    console.log('team',team)
   }
   return (
     <div className="tiePairContainer">
@@ -54,7 +53,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value2={"HIGH CARD"}
           value3={data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
+                  `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
                 ]
               : 0}
           width={"30%"}

@@ -144,7 +144,17 @@ const TeenPattiDesktop = () => {
                     }
                   >
                     <span className="f12-b">{playerA?.[0]?.rate}</span>
-                    <span className="f10-b">0</span>
+                    <span className="f10-b">
+                      {dragonTigerDetail?.profitLoss
+                        ? dragonTigerDetail?.profitLoss[
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                          ]
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                   <div
                     className={`teenPatti-table-item ${
@@ -161,7 +171,17 @@ const TeenPattiDesktop = () => {
                     }
                   >
                     <span className="f12-b">{playerA?.[1]?.nat}</span>
-                    <span className="f10-b">0</span>
+                    <span className="f10-b">
+                      {dragonTigerDetail?.profitLoss
+                        ? dragonTigerDetail?.profitLoss[
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                          ]
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -201,7 +221,17 @@ const TeenPattiDesktop = () => {
                     }
                   >
                     <span className="f12-b">{playerB?.[0]?.rate}</span>
-                    <span className="f10-b">44</span>
+                    <span className="f10-b">
+                      {dragonTigerDetail?.profitLoss
+                        ? dragonTigerDetail?.profitLoss[
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
+                          ]
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                   <div
                     className={`teenPatti-table-item ${
@@ -218,7 +248,17 @@ const TeenPattiDesktop = () => {
                     }
                   >
                     <span className="f12-b">{playerB?.[1]?.nat}</span>
-                    <span className="f10-b">7</span>
+                    <span className="f10-b">
+                      {dragonTigerDetail?.profitLoss
+                        ? dragonTigerDetail?.profitLoss[
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                          ]
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                 </div>
               </div>

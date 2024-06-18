@@ -62,7 +62,7 @@ const CardBox = ({ cardData, data }: any) => {
           </div>
         </div>
         <div>
-          <CommonCardImg cardData={cardData} handleBet={handleBet}/>
+          <CommonCardImg cardData={cardData} handleBet={handleBet} data={data}/>
         </div>
       </div>
     </>

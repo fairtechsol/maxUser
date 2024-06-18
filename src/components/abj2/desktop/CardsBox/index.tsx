@@ -34,7 +34,7 @@ const CardBox = ({ cards, data }: any) => {
           </span>
         </div>
         <div>
-          <CommonCardImg cardData={cards} handleBet={handleBet}/>
+          <CommonCardImg cardData={cards} handleBet={handleBet} data={data}/>
         </div>
        
       </div>
