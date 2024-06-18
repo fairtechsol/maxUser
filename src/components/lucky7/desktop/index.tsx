@@ -62,7 +62,7 @@ const Lucky7Desktop = () => {
               </div>
             </div>
 
-            <div style={{ width: "100%", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "5% 5px" }}>
               <TiePairBox
                 lowHigh={dragonTigerDetail?.lowHigh}
                 data={dragonTigerDetail}

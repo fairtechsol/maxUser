@@ -75,7 +75,7 @@ const DragonTigerDesktop = () => {
             </div>
           </div>
 
-          <div style={{ width: "100%", margin: "5px" }}>
+          <div style={{ width: "100%", margin: "4% 5px" }}>
             <TiePairBox
               tiePair={dragonTigerDetail?.tiePair}
               data={dragonTigerDetail}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import { back, club, diamond, heart, spade } from "../../../assets/images";
+import isMobile from "../../../utils/screenDimension";
 // import Club from "../../assets/cards/clubs.png";
 // import Diamond from "../../assets/cards/diamond.png";
 // import Heart from "../../assets/cards/heart.png";
@@ -18,22 +18,23 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
       style={{
         borderRadius: "2px",
         // border: "1px solid yellow",
+        // lineHeight: isMobile ?  "2" :"0.8",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        padding: "8px",
+        // padding: isMobile ?  "0px" :"8px",
         background: lock ? `url(${back})` : "white",
-        height: "45px",
-        width: "35px",
+        height: isMobile ?  "20px" :"40px",
+        width: isMobile ?  "16px" :"30px",
         backgroundSize: "100% 100%",
       }}
     >
       {!lock && (
         <>
-          <h6 style={{ color: type === "heart" || type === "diamond" ? "red" : "black", fontWeight: "800", lineHeight: "1" }}>
+          <span style={{ color: type === "heart" || type === "diamond" ? "red" : "black", fontWeight: "800", lineHeight: "0.8" , fontSize: isMobile ? "12px" : "16px", }}>
             {number}
-          </h6>
+          </span>
           <Icons type={type} />
         </>
       )}
@@ -47,7 +48,7 @@ interface IconsProps {
 
 export const Icons: React.FC<IconsProps> = ({ type }) => {
   const renderImage = (src: string) => {
-    return <img width="15" alt={type} src={src} />;
+    return <img width={isMobile ? "8" :"15"} alt={type} src={src} />;
   };
 
   switch (type) {

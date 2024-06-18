@@ -29,7 +29,7 @@ const DynamicTable = ({ odds, data }: any) => {
   return (
     <div className="card32-table-container">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
-        <div style={{ width: "50%", border: "0.1px solid #fff" }}></div>
+        <div style={{ width: "50%" }}></div>
         <div
           style={{
             width: "50%",
@@ -49,10 +49,11 @@ const DynamicTable = ({ odds, data }: any) => {
         <div
           style={{
             width: "50%",
-            padding: "10px",
+            padding: "8px",
             border: "0.1px solid #fff",
             display: "flex",
             flexDirection: "column",
+            cursor: "pointer"
           }}
         >
           <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
@@ -66,6 +67,7 @@ const DynamicTable = ({ odds, data }: any) => {
             width: "50%",
             display: "flex",
             flexDirection: "row",
+            cursor: "pointer"
           }}
         >
           <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED" || odds?.[0]?.gstatus ==="CLOSED" ? null : handleBet(odds?.[0],"BACK")}>
@@ -86,6 +88,7 @@ const DynamicTable = ({ odds, data }: any) => {
             border: "0.1px solid #fff",
             display: "flex",
             flexDirection: "column",
+            cursor: "pointer"
           }}
         >
           <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
@@ -99,6 +102,7 @@ const DynamicTable = ({ odds, data }: any) => {
             width: "50%",
             display: "flex",
             flexDirection: "row",
+            cursor: "pointer"
           }}
         >
           <div className="card32-table-item back" style={{ width: "50%" }} onClick={()=>odds?.[0]?.gstatus === "SUSPENDED" || odds?.[1]?.gstatus ==="CLOSED" ? null:handleBet(odds?.[1],"BACK")}>

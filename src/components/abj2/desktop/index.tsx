@@ -13,6 +13,8 @@ import SBetBox from "./Sbox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Abj2Result from "./abj2Card";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -54,10 +56,15 @@ const Abj2Desktop = () => {
                   height: "92%",
                   backgroundColor: "#000",
                 }}
-              ></div>
+              >
+                <VideoFrame
+                time={dragonTigerDetail?.videoInfo?.autotime}
+                result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+              />
+              </div>
             </div>
 
-            <div className="row-flex" style={{ width: "100%", margin: "5px" }}>
+            <div className="row-flex" style={{ width: "100%", margin: "7% 5px" }}>
               <SBetBox
                 type={"A"}
                 odds={dragonTigerDetail?.abjSa}
