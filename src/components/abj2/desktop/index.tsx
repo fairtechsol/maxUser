@@ -105,7 +105,7 @@ const Abj2Desktop = () => {
               />
             </div>
             <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox  name={["A","B"]}/>
+              <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
             </div>
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>

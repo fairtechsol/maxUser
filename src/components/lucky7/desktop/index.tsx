@@ -107,7 +107,7 @@ const Lucky7Desktop = () => {
               />
             </div>
             <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox  name={["L","H"]}/>
+              <CardResultBox data={dragonTigerDetail} name={["L", "H"]} />
             </div>
             <RulesModal show={show} setShow={setShow} rule={luckyrules} />
           </div>
