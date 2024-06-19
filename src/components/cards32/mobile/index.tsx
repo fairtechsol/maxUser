@@ -79,12 +79,14 @@ const Cards32Mobile = () => {
                 back={true}
                 odds={dragonTigerDetail?.set1}
                 data={dragonTigerDetail}
+                playerNum={[8, 9]}
               />
 
               <DynamicTable
                 back={false}
                 odds={dragonTigerDetail?.set2}
                 data={dragonTigerDetail}
+                playerNum={[10, 11]}
               />
             </div>
             <div style={{ marginTop: "10px" }}>

@@ -5,26 +5,26 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const SBetBox = ({ type, odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const handleBet=(item:any)=>{
-    let team ={
-      "bettingType": "BACK",
-      "matchId": data?.id,
-      "odd": item?.b1,
-      "stake": 0,
-      "matchBetType": "matchOdd",
-      "betOnTeam":item?.nat,
-      "name":item?.nat,
-      "bettingName": "Match odds",
-      "selectionId": item?.sid
-    }
+  const handleBet = (item: any) => {
+    let team = {
+      bettingType: "BACK",
+      matchId: data?.id,
+      odd: item?.b1,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.nat,
+      name: item?.nat,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+    };
     dispatch(
       selectedBetAction({
         team,
         data,
       })
     );
-    console.log('team',team)
-  }
+    console.log("team", team);
+  };
   return (
     <div className="sBoxContainer-m">
       <div className="sBoxMainlucky-m">
@@ -54,7 +54,17 @@ const SBetBox = ({ type, odds, data }: any) => {
             data={odds?.[0]}
             handleBet={handleBet}
           />
-          <span style={{ fontSize: "14px" }}>0</span>
+          <span style={{ fontSize: "14px" }}>
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                ]
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                  ]
+                : 0
+              : 0}
+          </span>
         </div>
         <div
           className="column-flex justify-space-a align-center"
@@ -70,7 +80,17 @@ const SBetBox = ({ type, odds, data }: any) => {
             data={odds?.[1]}
             handleBet={handleBet}
           />
-          <span style={{ fontSize: "14px" }}>1</span>
+          <span style={{ fontSize: "14px" }}>
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                ]
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                  ]
+                : 0
+              : 0}
+          </span>
         </div>
 
         <div
@@ -87,7 +107,17 @@ const SBetBox = ({ type, odds, data }: any) => {
             data={odds?.[2]}
             handleBet={handleBet}
           />
-          <span style={{ fontSize: "14px" }}>2</span>
+          <span style={{ fontSize: "14px" }}>
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                ]
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                  ]
+                : 0
+              : 0}
+          </span>
         </div>
         <div style={{ width: "5%", paddingBottom: "20px" }}>
           <span

@@ -59,11 +59,13 @@ const Cards32Desktop = () => {
             <DynamicTable
               odds={dragonTigerDetail?.set1}
               data={dragonTigerDetail}
+              playerNum={[8, 9]}
             />
             <div style={{ width: "10px" }}></div>
             <DynamicTable
               odds={dragonTigerDetail?.set2}
               data={dragonTigerDetail}
+              playerNum={[10, 11]}
             />
           </div>
           {/* <Row>
@@ -77,7 +79,11 @@ const Cards32Desktop = () => {
             </Col>
           </Row> */}
           <div className="mt-2">
-            <CardResultBox data={dragonTigerDetail} name={["8","9","10","11"]} type={"card32"}/>
+            <CardResultBox
+              data={dragonTigerDetail}
+              name={["8", "9", "10", "11"]}
+              type={"card32"}
+            />
           </div>
           <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>
