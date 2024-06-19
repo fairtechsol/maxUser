@@ -29,7 +29,26 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
             onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
           >
             <img src={item?.imgSrc} width={"45px"} />
-            <span style={{ fontSize: "12px" }}>
+            <span
+              style={{ fontSize: "12px" }}
+              className={`${
+                data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${item?.sid}_card`
+                    ]
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ] > 0
+                      ? "color-green"
+                      : data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${item?.sid}_card`
+                        ] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
               {" "}
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
