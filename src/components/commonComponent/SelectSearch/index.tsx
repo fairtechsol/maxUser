@@ -19,6 +19,7 @@ const SelectSearch = (props: any) => {
     onBlur,
     touched,
     errors,
+    isOptionDisabled,
   } = props;
 
   const customStyles = {
@@ -53,6 +54,7 @@ const SelectSearch = (props: any) => {
           placeholder={placeholder}
           isMulti={isMultiOption}
           isSearchable={isMultiOption === undefined ? false : isSearchable}
+          isOptionDisabled={isOptionDisabled}
         />
         <CustomErrorMessage touched={touched} errors={errors} />
       </Form.Group>
