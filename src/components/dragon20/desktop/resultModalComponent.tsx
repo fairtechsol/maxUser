@@ -46,11 +46,11 @@ const pair = resultData?.[0]?.split(' ')
         <div className="dt20resultCardContainer">
           <span className="fs-5">Tiger</span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            <div className="casino-winner-icon">
               {data?.result?.win === "2" && (
-                <FaTrophy size={30} color="#169733" />
-              )}
+            <div className="casino-winner-icon">
+              <FaTrophy size={30} color="#169733" />
             </div>
+              )}
             <div
               style={{
                 border: "1px solid #fdef34",
