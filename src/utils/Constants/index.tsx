@@ -82,6 +82,7 @@ export const ApiConstants = {
     },
   },
 };
+export const cardUrl ="https://video.proexch.in/route/?id="
 
 export const Constants = {
   pageLimit: 15,
@@ -248,7 +249,13 @@ export const cardGamesType: any = {
   card32: "card32",
   lucky7: "lucky7",
 };
-
+export const cardGamesId: any = {
+  dragonTiger20: 3035,
+  andarBahar2: 3043,
+  teen20: 3030,
+  card32: 3055,
+  lucky7: 3058,
+};
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
   [availableGameType.football]: "/other-game-detail/",

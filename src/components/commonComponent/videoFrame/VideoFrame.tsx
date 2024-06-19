@@ -1,8 +1,9 @@
 import { memo } from "react";
 import FlipClock from "./FlipClock";
 import isMobile from "../../../utils/screenDimension";
+import { cardUrl } from "../../../utils/constants";
 
-const VideoFrame = ({ result, time }: any) => {
+const VideoFrame = ({ result, time,id }: any) => {
   // const [showModal, setModalOpen] = useState(false);
 
   return (
@@ -34,17 +35,16 @@ const VideoFrame = ({ result, time }: any) => {
               <div style={{ position: "absolute", top: "10x" }}>{result}</div>
             )}
             <div>
-              {/* <iframe src="https://alpha-n.qnsports.live/route/?id=3057" /> */}
-              {/* <iframe
-                width="560"
-                height="315"
-                src="https://alpha-n.qnsports.live/route/?id=3057"
-                title="YouTube video player"
+              <iframe
+                width="100%"
+                height={isMobile?"250":"380"}
+                src={`${cardUrl}${id}`}
+                // title="YouTube video player"
                 // frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                // referrerpolicy="strict-origin-when-cross-origin"
+                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy={"strict-origin-when-cross-origin"}
                 // allowfullscreen
-              ></iframe> */}
+              ></iframe>
             </div>
             {time && (
               <div

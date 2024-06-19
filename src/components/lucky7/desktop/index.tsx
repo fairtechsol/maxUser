@@ -15,6 +15,7 @@ import TiePairBox from "./TiePairBox";
 import Lucky7Result from "./lucky7Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import { cardGamesId } from "../../../utils/constants";
 
 const Lucky7Desktop = () => {
   const [show, setShow] = useState(false);
@@ -58,6 +59,7 @@ const Lucky7Desktop = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}
+                  id={cardGamesId?.lucky7}
                 />
               </div>
             </div>

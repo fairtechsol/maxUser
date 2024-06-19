@@ -13,6 +13,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
+import { cardGamesId } from "../../../utils/constants";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -83,6 +84,7 @@ const TeenPattiDesktop = () => {
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                id={cardGamesId?.teen20}
               />
             </div>
             <div className="teenPatti-table-container">

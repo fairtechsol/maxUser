@@ -16,6 +16,7 @@ import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import { cardGamesId } from "../../../utils/constants";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -71,6 +72,7 @@ const DragonTigerDesktop = () => {
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}
+                id={cardGamesId?.dragonTiger20}
               />
             </div>
           </div>

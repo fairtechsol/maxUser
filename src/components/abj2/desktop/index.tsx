@@ -15,6 +15,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Abj2Result from "./abj2Card";
+import { cardGamesId } from "../../../utils/constants";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -60,6 +61,7 @@ const Abj2Desktop = () => {
                 <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+                id={cardGamesId?.andarBahar2}
               />
               </div>
             </div>

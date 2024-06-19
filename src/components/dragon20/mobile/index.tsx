@@ -13,6 +13,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/dragonCard";
+import { cardGamesId } from "../../../utils/constants";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -82,6 +83,7 @@ const DragonTigerMobile = () => {
                   result={
                     <Dragon20Result data={dragonTigerDetail?.videoInfo} />
                   }
+                  id={cardGamesId?.dragonTiger20}
                 />
               </div>
             </div>
