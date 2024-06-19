@@ -11,13 +11,15 @@ import {
   updateTeenPattiMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import Loader from "../../components/commonComponent/loader";
-import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
+import {
+  getButtonValue,
+  getProfileInMatchDetail,
+} from "../../store/actions/user/userAction";
 import { cardGamesType } from "../../utils/constants";
 import {
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
-
 
 import TeentPattiComponentList from "../../components/teenPatti20";
 
@@ -29,9 +31,7 @@ const TeenPatti20 = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      
-        dispatch(updateTeenPattiMatchRates(event?.data?.data?.data));
-     
+      dispatch(updateTeenPattiMatchRates(event?.data?.data?.data));
     } catch (e) {
       console.log(e);
     }
@@ -50,14 +50,14 @@ const TeenPatti20 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
-      dispatch(getProfileInMatchDetail())
+      dispatch(getProfileInMatchDetail());
     }
   };
 
   useEffect(() => {
     try {
-        dispatch(getButtonValue());
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teen20));
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teen20));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
@@ -102,7 +102,7 @@ const TeenPatti20 = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <TeentPattiComponentList/>;
+  return loading ? <Loader /> : <TeentPattiComponentList />;
 };
 
 export default TeenPatti20;
