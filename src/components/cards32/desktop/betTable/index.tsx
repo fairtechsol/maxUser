@@ -28,7 +28,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
 
   let player1Key = `player${playerNum[0]}`;
   let player2Key = `player${playerNum[1]}`;
-  
+
   return (
     <div className="card32-table-container">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
@@ -62,15 +62,27 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
           <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
             {odds?.[0]?.nat}
           </span>
-          <span>
+          <span
+            className={`${
+              data?.profitLoss
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  ? JSON.parse(
+                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    )[player1Key] > 0
+                    ? "color-green"
+                    : JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )[player1Key] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
             {data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_1_card`
-                ]
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                 ? JSON.parse(
-                    data?.profitLoss[
-                      `${data?.videoInfo?.mid}_1_card`
-                    ]
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player1Key]
                 : 0
               : 0}
@@ -132,15 +144,27 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
           <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
             {odds?.[1]?.nat}
           </span>
-          <span>
+          <span
+            className={`${
+              data?.profitLoss
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  ? JSON.parse(
+                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    )[player2Key] > 0
+                    ? "color-green"
+                    : JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )[player2Key] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
             {data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_1_card`
-                ]
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                 ? JSON.parse(
-                    data?.profitLoss[
-                      `${data?.videoInfo?.mid}_1_card`
-                    ]
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player2Key]
                 : 0
               : 0}
