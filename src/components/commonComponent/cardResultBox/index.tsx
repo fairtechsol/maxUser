@@ -4,23 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { useState } from "react";
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
 import { ResultComponent } from "../resultComponent";
 
 const CardResultBox = ({ data, name, type }: any) => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const [lgShow, setLgShow] = useState(false);
-  const { liveGameResultTop10 ,resultData} = useSelector((state: RootState) => state.card);
+  const { liveGameResultTop10, resultData } = useSelector(
+    (state: RootState) => state.card
+  );
 
-
-  const handleResult=(id:any)=>{
+  const handleResult = (id: any) => {
     setLgShow(true);
-    dispatch(
-      resultDragonTiger(id)
-    );
-  }
-
+    dispatch(resultDragonTiger(id));
+  };
 
   return (
     <div className="cardResultBoxContainer">
@@ -53,7 +51,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? "#ffc742"
                     : "",
               }}
-              onClick={()=>handleResult(item?.mid)}
+              onClick={() => handleResult(item?.mid)}
             >
               {type === "card32" ? (
                 <span
@@ -93,12 +91,13 @@ const CardResultBox = ({ data, name, type }: any) => {
         onHide={() => setLgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            Large Modal
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body><ResultComponent data={resultData}/></Modal.Body>
+        <Modal.Body style={{ padding: 0 }}>
+          <ResultComponent
+            data={resultData}
+            setfalse={setLgShow}
+            type={resultData?.gameType}
+          />
+        </Modal.Body>
       </Modal>
     </div>
   );
