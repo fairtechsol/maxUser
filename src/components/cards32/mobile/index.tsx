@@ -12,6 +12,7 @@ import Card32Result from "../desktop/card32Card";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import RulesModal from "../../commonComponent/rulesModal";
 import { card32rules } from "../../../assets/images";
+import { cardGamesId } from "../../../utils/constants";
 const Cards32Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -72,6 +73,7 @@ const Cards32Mobile = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
+                  id={cardGamesId?.card32}
                 />
               </div>
             </div>
