@@ -66,7 +66,7 @@ const CasinoReports = () => {
   }, [state]);
 
   useEffect(() => {
-    if (tableConfig && typeFromState) {
+    if (tableConfig && (type || typeFromState || "teen20")) {
       let filter = "";
 
       if (date) {
@@ -150,7 +150,7 @@ const CasinoReports = () => {
                           : "teen20",
                         page: tableConfig?.page,
                         limit: tableConfig?.rowPerPage,
-                        searchBy: "description",
+                        searchBy: "cardResult.result ->> 'mid'",
                         keyword: tableConfig?.keyword || "",
                         filter,
                       })

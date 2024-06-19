@@ -34,7 +34,11 @@ const OddEven = ({ card, odds, data }: any) => {
           <CommonButtonBox
             value1={odds?.[0]?.rate}
             value2={"EVEN"}
-            value3={15}
+            value3={data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                ]
+              : 0}
             width={"45%"}
             handleBet={handleBet}
             lock={odds?.[0]?.gstatus==="0"?true:false}
@@ -43,7 +47,11 @@ const OddEven = ({ card, odds, data }: any) => {
           <CommonButtonBox
             value1={odds?.[1]?.rate}
             value2={"ODD"}
-            value3={15}
+            value3={data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                ]
+              : 0}
             width={"45%"}
             handleBet={handleBet}
             lock={odds?.[1]?.gstatus==="0"?true:false}
@@ -59,7 +67,11 @@ const OddEven = ({ card, odds, data }: any) => {
           <CommonButtonBox
             value1={odds?.[0]?.rate}
             value2={"icon1"}
-            value3={15}
+            value3={data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                ]
+              : 0}
             width={"45%"}
             handleBet={handleBet}
             lock={odds?.[0]?.gstatus==="0"?true:false}
@@ -68,7 +80,11 @@ const OddEven = ({ card, odds, data }: any) => {
           <CommonButtonBox
             value1={odds?.[1]?.rate}
             value2={"icon2"}
-            value3={15}
+            value3={data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                ]
+              : 0}
             width={"45%"}
             handleBet={handleBet}
             lock={odds?.[1]?.gstatus==="0"?true:false}

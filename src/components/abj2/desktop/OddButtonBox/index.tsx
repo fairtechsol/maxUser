@@ -33,7 +33,7 @@ const OddButtonBox = ({ profitLoss,value1,value2,lock,handleBet,data }: any) => 
       <span> {(parseFloat(isNaN(value1)?0:value1).toFixed(2))}</span>
       </div>
       <div>
-      <span style={{fontSize:"16px"}}>{profitLoss}</span>
+      <span style={{fontSize:"16px"}}>{profitLoss || 0}</span>
       </div>
     </div>
   );
