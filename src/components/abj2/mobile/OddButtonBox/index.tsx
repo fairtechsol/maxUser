@@ -44,7 +44,18 @@ const OddButtonBox = ({
         <span> {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}</span>
       </div>
       <div>
-        <span style={{ fontSize: "16px" }}>{profitLoss || 0}</span>
+        <span
+          style={{ fontSize: "16px" }}
+          className={`${
+            profitLoss && profitLoss > 0
+              ? "color-green"
+              : profitLoss < 0
+              ? "color-red"
+              : ""
+          }`}
+        >
+          {profitLoss || 0}
+        </span>
       </div>
     </div>
   );
