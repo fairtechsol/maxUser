@@ -48,13 +48,12 @@ export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
 //     return data;
 //   }
 // );
-export const placeBetDragonTiger = createAsyncThunk<any, any>(
-  "dragonTiger/placeBetDragonTiger",
+export const resultDragonTiger = createAsyncThunk<any, any>(
+  "result/placeBetDragonTiger",
   async (requestData, thunkApi) => {
     try {
-      const resp = await service.post(
-        `${ApiConstants.CARDS.MATCH.PLACE_BET}`,
-        requestData
+      const resp = await service.get(
+        `${ApiConstants.CARDS.MATCH.RESULT}/${requestData}`
       );
       if (resp?.data) {
         return resp?.data;
