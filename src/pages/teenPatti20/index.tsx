@@ -100,6 +100,7 @@ const TeenPatti20 = () => {
         socketService.card.getCardRatesOff(cardGamesType.teen20);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
+        dispatch(selectedBetAction(null));
       };
     } catch (e) {
       console.log(e);

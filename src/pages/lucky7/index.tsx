@@ -91,6 +91,7 @@ const Lucky7 = () => {
         socketService.card.getCardRatesOff(cardGamesType.lucky7);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
+        dispatch(selectedBetAction(null));
       };
     } catch (e) {
       console.log(e);

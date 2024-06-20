@@ -101,6 +101,7 @@ const DragonTiger20 = () => {
           socketService.card.getCardRatesOff(cardGamesType.dragonTiger20);
           socketService.card.userCardBetPlacedOff();
           socketService.card.cardResultOff();
+          dispatch(selectedBetAction(null));
         };
       }
     } catch (e) {
