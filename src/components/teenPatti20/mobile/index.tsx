@@ -13,6 +13,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Teen20Result from "../desktop/teenCard";
+import { cardGamesId } from "../../../utils/constants";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -108,6 +109,7 @@ const TeenPattiMobile = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                  id={cardGamesId?.teen20}
                 />
               </div>
             </div>

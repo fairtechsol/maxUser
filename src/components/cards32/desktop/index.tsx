@@ -12,6 +12,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import RulesModal from "../../commonComponent/rulesModal";
 import { card32rules } from "../../../assets/images";
+import { cardGamesId } from "../../../utils/constants";
 
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -52,6 +53,7 @@ const Cards32Desktop = () => {
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
+                id={cardGamesId?.card32}
               />
             </div>
             {/* <Row md={4}> */}
