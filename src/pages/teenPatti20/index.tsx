@@ -22,6 +22,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 
 import TeentPattiComponentList from "../../components/teenPatti20";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const TeenPatti20 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -32,6 +33,9 @@ const TeenPatti20 = () => {
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateTeenPattiMatchRates(event?.data?.data?.data));
+      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+        dispatch(selectedBetAction(null));
+      }
     } catch (e) {
       console.log(e);
     }

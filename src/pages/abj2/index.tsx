@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Loader from "../../components/commonComponent/loader";
 import { getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
 import { cardGamesType } from "../../utils/constants";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const Abj2 = () => {
 
@@ -20,6 +21,9 @@ const Abj2 = () => {
     try {
       if (cardGamesType.andarBahar2 === event?.data?.data?.data?.t1[0]?.gtype) {
         dispatch(updateCardAbjRates(event?.data?.data?.data));
+      }
+      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+        dispatch(selectedBetAction(null));
       }
     } catch (e) {
       console.log(e);
