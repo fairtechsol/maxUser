@@ -9,6 +9,7 @@ import { socket, socketService } from "../../socketManager";
 import Loader from "../../components/commonComponent/loader";
 import { cardGamesType } from "../../utils/constants";
 import { getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const Lucky7 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -22,6 +23,9 @@ const Lucky7 = () => {
         cardGamesType.lucky7 === event?.data?.data?.data?.t1[0]?.gtype
       ) {
         dispatch(update7CardMatchRates(event?.data?.data?.data));
+      }
+      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+        dispatch(selectedBetAction(null));
       }
     } catch (e) {
       console.log(e);
@@ -87,6 +91,7 @@ const Lucky7 = () => {
         socketService.card.getCardRatesOff(cardGamesType.lucky7);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
+        dispatch(selectedBetAction(null));
       };
     } catch (e) {
       console.log(e);

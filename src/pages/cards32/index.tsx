@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
 import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCard32MatchRates, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
 import { socket, socketService } from "../../socketManager";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const Cards32 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -21,6 +22,9 @@ const Cards32 = () => {
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateCard32MatchRates(event?.data?.data?.data));
+      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+        dispatch(selectedBetAction(null));
+      }
     } catch (e) {
       console.log(e);
     }
@@ -85,6 +89,7 @@ const Cards32 = () => {
         socketService.card.getCardRatesOff(cardGamesType.card32);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
+        dispatch(selectedBetAction(null));
       };
     } catch (e) {
       console.log(e);

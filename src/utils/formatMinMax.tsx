@@ -9,7 +9,7 @@ export const formattedMinMax = (min: any, max: any) => {
 
 export const handleRoundId = (id: any) => {
   if (typeof id !== "string" || !id.includes(".")) {
-    return id || 0;
+    return 0;
   }
   const Id = id.split(".");
   return Id[1];
