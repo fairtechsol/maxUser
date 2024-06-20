@@ -52,7 +52,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
               <></>
             ) : (
               <>
-                {tableHeading?.map((item) => (
+                {availableGameType[mTypeid] && tableHeading?.map((item) => (
                   <th
                     className={`title-14 ${
                       item?.textAlign === "center" ? "text-center" : ""
