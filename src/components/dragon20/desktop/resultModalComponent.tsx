@@ -18,8 +18,6 @@ const dragonData = desc?.[1]?.split('|')
 const tigerData = desc?.[2]?.split('|')
 const dragonCard = dragonData?.[2]
 const tigerCard  = tigerData?.[2]
-const pair = resultData?.[0]?.split(' ')
-
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
@@ -74,7 +72,7 @@ const pair = resultData?.[0]?.split(' ')
           </div>
           <div className="d-sm-flex flex-sm-row">
             <span className="dt20CommonText">Pair</span>
-            <span className="dt20CommonText-2">{pair?.[0]}</span>
+            <span className="dt20CommonText-2">{resultData?.[1]}</span>
           </div>
           <div className="d-sm-flex flex-sm-row">
             <span className="dt20CommonText">Odd/Even</span>
