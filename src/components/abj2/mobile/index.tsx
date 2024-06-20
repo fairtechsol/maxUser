@@ -13,6 +13,8 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Abj2Result from "../desktop/abj2Card";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -83,10 +85,15 @@ const Abj2Mobile = () => {
                   height: "92%",
                   backgroundColor: "#000",
                 }}
-              ></div>
+              >
+                  <VideoFrame
+                time={dragonTigerDetail?.videoInfo?.autotime}
+                result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+              />
+              </div>
             </div>
 
-            <div style={{ width: "100%", marginTop: "10px" }}>
+            <div style={{ width: "100%", marginTop: "20%" }}>
               <SBetBox
                 type={"A"}
                 odds={dragonTigerDetail?.abjSa}
