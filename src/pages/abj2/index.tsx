@@ -1,25 +1,41 @@
 import { useEffect } from "react";
 import Abj2ComponentList from "../../components/abj2";
 import { socket, socketService } from "../../socketManager";
-import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCardAbjRates, updateCardMatchRates, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
-import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
+import {
+  getDragonTigerDetailHorseRacing,
+  updateBalanceOnBetPlaceCards,
+  updateCardAbjRates,
+  updateCardMatchRates,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
+} from "../../store/actions/cards/cardDetail";
+import {
+  getButtonValue,
+  getProfileInMatchDetail,
+} from "../../store/actions/user/userAction";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import Loader from "../../components/commonComponent/loader";
-import { getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
 import { cardGamesType } from "../../utils/constants";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const Abj2 = () => {
-
   const dispatch: AppDispatch = useDispatch();
-  const {dragonTigerDetail,loading} = useSelector(
+  const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
   const setMatchRatesInRedux = (event: any) => {
     try {
       if (cardGamesType.andarBahar2 === event?.data?.data?.data?.t1[0]?.gtype) {
         dispatch(updateCardAbjRates(event?.data?.data?.data));
+      }
+      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+        dispatch(selectedBetAction(null));
       }
     } catch (e) {
       console.log(e);
@@ -38,8 +54,6 @@ const Abj2 = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-
-
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.andarBahar2) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
@@ -53,18 +67,21 @@ const Abj2 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
-      dispatch(getProfileInMatchDetail())
+      dispatch(getProfileInMatchDetail());
     }
   };
-  
+
   useEffect(() => {
     try {
-      if ( socket && dragonTigerDetail?.id) {
+      if (socket && dragonTigerDetail?.id) {
         socketService.card.getCardRatesOff(cardGamesType.andarBahar2);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         socketService.card.joinMatchRoom(cardGamesType.andarBahar2);
-        socketService.card.getCardRates(cardGamesType.andarBahar2, setMatchRatesInRedux);
+        socketService.card.getCardRates(
+          cardGamesType.andarBahar2,
+          setMatchRatesInRedux
+        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.andarBahar2,
@@ -75,7 +92,7 @@ const Abj2 = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [ socket,dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
@@ -84,13 +101,14 @@ const Abj2 = () => {
         socketService.card.getCardRatesOff(cardGamesType.andarBahar2);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
+        dispatch(selectedBetAction(null));
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <Abj2ComponentList/>;
+  return loading ? <Loader /> : <Abj2ComponentList />;
 };
 
 export default Abj2;

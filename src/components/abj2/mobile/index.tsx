@@ -14,7 +14,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Abj2Result from "../desktop/abj2Card";
+import { cardGamesId } from "../../../utils/constants";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -85,12 +85,13 @@ const Abj2Mobile = () => {
                   height: "92%",
                   backgroundColor: "#000",
                 }}
-              >
-                  <VideoFrame
-                time={dragonTigerDetail?.videoInfo?.autotime}
-                result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
-              />
-              </div>
+              ><VideoFrame
+              time={dragonTigerDetail?.videoInfo?.autotime}
+              // result={
+              //   <Dragon20Result data={dragonTigerDetail?.videoInfo} />
+              // }
+                id={cardGamesId?.andarBahar2}
+            /></div>
             </div>
 
             <div style={{ width: "100%", marginTop: "20%" }}>

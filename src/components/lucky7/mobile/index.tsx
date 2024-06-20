@@ -13,6 +13,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import Lucky7Result from "../desktop/lucky7Card";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import { cardGamesId } from "../../../utils/constants";
 
 const Lucky7Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -79,6 +80,7 @@ const Lucky7Mobile = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}
+                  id={cardGamesId?.lucky7}
                 />
               </div>
             </div>

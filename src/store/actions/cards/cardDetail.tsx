@@ -84,29 +84,29 @@ export const update7CardMatchRates = createAsyncThunk<any, any>(
   }
 );
 
-  export const updateTeenPattiMatchRates = createAsyncThunk<any, any>(
-    "teen20/matchRatesUpdate",
-    async (data) => {
-      return data;
-    }
-  );
+export const updateTeenPattiMatchRates = createAsyncThunk<any, any>(
+  "teen20/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 export const updateCardAbjRates = createAsyncThunk<any, any>(
   "abj2/matchRatesUpdate",
   async (data) => {
     return data;
-  });
+  }
+);
 
-
-  export const updateCard32MatchRates = createAsyncThunk<any, any>(
-    "card32/matchRatesUpdate",
-    async (data) => {
-      return data;
-    }
-  );
+export const updateCard32MatchRates = createAsyncThunk<any, any>(
+  "card32/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 export const updateLiveGameResultTop10 = createAsyncThunk<any, any>(
   "update/LiveGameResultTop10",
   async (data) => {
-    return data;
+    return data?.data?.data;
   }
 );
 export const updateBalanceOnBetPlaceCards = createAsyncThunk<any, any>(

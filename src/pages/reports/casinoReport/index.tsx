@@ -16,6 +16,7 @@ import moment from "moment";
 import { useLocation } from "react-router-dom";
 
 const cardGames = [
+  { value: "", label: "Select Casino Type", disabled: true },
   {
     value: "dt20",
     label: "20-20 Dragon Tiger",
@@ -113,6 +114,7 @@ const CasinoReports = () => {
                           label: "20-20 Teen Patti",
                         }
                   }
+                  isOptionDisabled={(option: any) => option.disabled}
                 />
               </Col>
               <Col lg={2} md={3} xs={6}>

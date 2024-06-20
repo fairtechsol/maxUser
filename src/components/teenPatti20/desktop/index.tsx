@@ -13,6 +13,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
+import { cardGamesId } from "../../../utils/constants";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -83,6 +84,7 @@ const TeenPattiDesktop = () => {
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                id={cardGamesId?.teen20}
               />
             </div>
             <div className="teenPatti-table-container">
@@ -144,7 +146,25 @@ const TeenPattiDesktop = () => {
                     }
                   >
                     <span className="f12-b">{playerA?.[0]?.rate}</span>
-                    <span className="f10-b">
+                    <span
+                      className={`f10-b ${
+                        dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                            ]
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }`}
+                    >
                       {dragonTigerDetail?.profitLoss
                         ? dragonTigerDetail?.profitLoss[
                             `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
@@ -171,7 +191,25 @@ const TeenPattiDesktop = () => {
                     }
                   >
                     <span className="f12-b">{playerA?.[1]?.nat}</span>
-                    <span className="f10-b">
+                    <span
+                      className={`f10-b ${
+                        dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                            ]
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }`}
+                    >
                       {dragonTigerDetail?.profitLoss
                         ? dragonTigerDetail?.profitLoss[
                             `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
@@ -221,7 +259,25 @@ const TeenPattiDesktop = () => {
                     }
                   >
                     <span className="f12-b">{playerB?.[0]?.rate}</span>
-                    <span className="f10-b">
+                    <span
+                      className={`f10-b ${
+                        dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
+                            ]
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }`}
+                    >
                       {dragonTigerDetail?.profitLoss
                         ? dragonTigerDetail?.profitLoss[
                             `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
@@ -248,7 +304,25 @@ const TeenPattiDesktop = () => {
                     }
                   >
                     <span className="f12-b">{playerB?.[1]?.nat}</span>
-                    <span className="f10-b">
+                    <span
+                      className={`f10-b ${
+                        dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                            ]
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }`}
+                    >
                       {dragonTigerDetail?.profitLoss
                         ? dragonTigerDetail?.profitLoss[
                             `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
