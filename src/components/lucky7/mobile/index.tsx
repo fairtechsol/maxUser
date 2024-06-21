@@ -130,7 +130,7 @@ const Lucky7Mobile = () => {
               />
             </div>
             <div style={{ width: "100%", marginTop: "10px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["L", "H"]} />
+              <CardResultBox data={dragonTigerDetail} name={["L", "H", "T"]} />
             </div>
          </div>
           </div>

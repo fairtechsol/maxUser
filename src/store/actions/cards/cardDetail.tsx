@@ -106,7 +106,7 @@ export const updateCard32MatchRates = createAsyncThunk<any, any>(
 export const updateLiveGameResultTop10 = createAsyncThunk<any, any>(
   "update/LiveGameResultTop10",
   async (data) => {
-    return data?.data?.data;
+    return data;
   }
 );
 export const updateBalanceOnBetPlaceCards = createAsyncThunk<any, any>(

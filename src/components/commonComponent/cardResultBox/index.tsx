@@ -77,10 +77,16 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "2" ? "#ffff33" : "#ff4500",
+                    color: item?.result === "2" ? "#ffff33" : item?.result === "2" ? "00ff00" : "#ff4500",
                   }}
                 >
-                  {item?.result === "1" ? name?.[0] : name?.[1]}
+                  {item?.result === "1"
+                    ? name?.[0]
+                    : item?.result === "2"
+                    ? name?.[1]
+                    : name?.[2]
+                    ? name?.[2]
+                    : ""}
                 </span>
               )}
             </div>

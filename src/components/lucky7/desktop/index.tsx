@@ -77,54 +77,59 @@ const Lucky7Desktop = () => {
                 />
               </div>
             </div>
-  <div style={{height:"550px"}}> <div style={{ width: "100%", margin: "5% 5px" }}>
-              <TiePairBox
-                lowHigh={dragonTigerDetail?.lowHigh}
-                data={dragonTigerDetail}
-              />
-            </div>
-            <div
-              style={{
-                width: "100%",
-                margin: "5px",
-                display: "flex",
-                flexDirection: "row",
-                gap: "8px",
-              }}
-            >
-              <OddEven
-                name={"DRAGON"}
-                odds={dragonTigerDetail?.redBlack}
-                data={dragonTigerDetail}
-                card={true}
-              />
+            <div style={{ height: "550px" }}>
+              <div style={{ width: "100%", margin: "5% 5px" }}>
+                <TiePairBox
+                  lowHigh={dragonTigerDetail?.lowHigh}
+                  data={dragonTigerDetail}
+                />
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "5px",
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "8px",
+                }}
+              >
+                <OddEven
+                  name={"DRAGON"}
+                  odds={dragonTigerDetail?.redBlack}
+                  data={dragonTigerDetail}
+                  card={true}
+                />
 
-              <OddEven
-                name={"TIGER"}
-                odds={dragonTigerDetail?.luckOdds}
-                card={false}
-                data={dragonTigerDetail}
-              />
+                <OddEven
+                  name={"TIGER"}
+                  odds={dragonTigerDetail?.luckOdds}
+                  card={false}
+                  data={dragonTigerDetail}
+                />
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "5px",
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "8px",
+                }}
+              >
+                <CardBox
+                  cardData={dragonTigerDetail?.luckyCards}
+                  data={dragonTigerDetail}
+                  rate={dragonTigerDetail?.luckyCards?.rate}
+                />
+              </div>
+              <div style={{ width: "100%", margin: "5px" }}>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["L", "H", "T"]}
+                />
+              </div>
             </div>
-            <div
-              style={{
-                width: "100%",
-                margin: "5px",
-                display: "flex",
-                flexDirection: "row",
-                gap: "8px",
-              }}
-            >
-              <CardBox
-                cardData={dragonTigerDetail?.luckyCards}
-                data={dragonTigerDetail}
-                rate={dragonTigerDetail?.luckyCards?.rate}
-              />
-            </div>
-            <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["L", "H"]} />
-            </div></div>
-           
+
             <RulesModal show={show} setShow={setShow} rule={luckyrules} />
           </div>
         </Col>
