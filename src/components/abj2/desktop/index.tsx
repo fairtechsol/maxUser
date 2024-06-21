@@ -83,7 +83,7 @@ const Abj2Desktop = () => {
             <div style={{ height: "460px" }}>
               <div
                 className="row-flex"
-                style={{ width: "100%", margin: "4% 2% 5px 5px" }}
+                style={{ width: "100%", margin: "5% 2% 5px 5px" }}
               >
                 <SBetBox
                   type={"A"}

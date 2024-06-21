@@ -54,7 +54,8 @@ const Cards32Mobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "28vh" }}>
+       
+           <div style={{ width: "100%", height: "240px" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -77,6 +78,7 @@ const Cards32Mobile = () => {
                 />
               </div>
             </div>
+            <div style={{ height: "400px" }}>
             <div className="mt-5">
               <DynamicTable
                 back={true}
@@ -100,7 +102,10 @@ const Cards32Mobile = () => {
                 type={"card32"}
               />
             </div>
-          </div>
+            </div>
+          
+           </div>
+          
         ) : (
           <>
             <MyBet />

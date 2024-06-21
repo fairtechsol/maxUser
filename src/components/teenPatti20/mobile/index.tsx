@@ -91,7 +91,7 @@ const TeenPattiMobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "28vh" }}>
+            <div style={{ width: "100%", height: "250px" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -113,7 +113,7 @@ const TeenPattiMobile = () => {
                 />
               </div>
             </div>
-            <div className="mt-2" style={{ width: "100%" }}>
+            <div style={{height: "480px"}}><div className="mt-2" style={{ width: "100%" }}>
               <div className="teenPatti-table-container-m">
                 <div className="teenPatti-table-row">
                   <div
@@ -401,7 +401,8 @@ const TeenPattiMobile = () => {
                   </tbody>
                 </Table>
               </div>
-            </div>
+            </div></div>
+            
           </div>
         ) : (
           <>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import "./style.scss";
@@ -15,52 +15,34 @@ interface Props {
   };
 }
 
-// Custom arrow components if needed
-const SampleNextArrow = (props:any) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block', background: 'red' }}
-      onClick={onClick}
-    />
-  );
-};
-
-const SamplePrevArrow = (props:any) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block', background: 'green' }}
-      onClick={onClick}
-    />
-  );
-};
 const Abj2Result: React.FC<Props> = ({ data }: any) => {
   const elements = data?.cards?.split(",");
-  const [nav1, setNav1] = useState();
-  const [nav2, setNav2] = useState();
   const primaryCards = elements?.slice(0, 3);
   const cards = elements?.slice(3);
-  const teamA = cards?.filter((_: any, index: number) => index % 2 === 0);
-  const teamB = cards?.filter((_: any, index: number) => index % 2 !== 0);
-  // console.log(data , "dws")
-  const sliderSettings = (length:any) => ({
+  const teamA = cards?.filter(
+    (item: any, index: number) => index % 2 === 0 && item !== "1"
+  );
+  const teamB = cards?.filter(
+    (item: any, index: number) => index % 2 !== 0 && item !== "1"
+  );
 
-    infinite: length > 3,
+  // console.log(data , "dws")
+  const sliderSettings = (length: any, arrow: any) => ({
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    arrows: length > 3,
-    
+    arrows: arrow,
+    initialSlide: length - 1,
+    rtl: true,
+
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: length > 3
+          infinite: false,
         },
       },
       {
@@ -68,26 +50,26 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: length > 3,
+          infinite: false,
         },
       },
     ],
   });
 
-  return  data?.mid !="0" && ( 
- 
-
-      <div 
-      style={{
-        width: isMobile ? "104px" : "160px",
-       marginLeft: isMobile ? "5px" :"10px",
-       position: "absolute",
-       top: "0",
-       left: "0",
-       background: "rgba(0, 0, 0, 0.4)",
-       height: "auto",
-       padding: "5px"
-       }}>
+  return (
+    data?.mid != "0" && (
+      <div
+        style={{
+          width: isMobile ? "104px" : "160px",
+          marginLeft: isMobile ? "5px" : "10px",
+          position: "absolute",
+          top: "0",
+          left: "0",
+          background: "rgba(0, 0, 0, 0.4)",
+          height: "auto",
+          padding: "5px",
+        }}
+      >
         <Row>
           {primaryCards?.[0] !== "1" && (
             <Col xs={1} style={{ display: "flex", flexDirection: "column" }}>
@@ -132,7 +114,7 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
               />
             </div>
           </Col>
-          <Col xs={2} >
+          <Col xs={2}>
             <div>
               <HandleCards
                 card={primaryCards?.[0] !== "1" ? primaryCards?.[2] : ""}
@@ -145,36 +127,64 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
             </div>
           </Col>
 
-         <Col xs={2} style={{ margin: "10px 0px 0px 20px" }}>
+          <Col xs={2} style={{ margin: "0px 0px 0px 10px" }}>
             <div
-              style={{ width: isMobile ? "70px" :"110px", margin: "0px 10px 0px 10px" }}
+              style={{
+                width: isMobile ? "70px" : "110px",
+                margin: "0px 10px 0px 10px",
+              }}
             >
               <div>
-                {" "}
-                <Slider {...sliderSettings(teamB?.length)}>
-                  {teamB &&
-                    teamB.map((item: any, index: any) => (
-                      <div key={index}>
-                        <HandleCards card={item !== "1" ? item : ""} />
-                      </div>
-                    ))}
-                </Slider>
+                {teamB?.length > 3 ? (
+                  <Slider {...sliderSettings(teamB?.length, teamB?.length > 3)}>
+                    {teamB &&
+                      teamB?.map((item: any, index: any) => (
+                        <div key={index}>
+                          <HandleCards card={item !== "1" ? item : ""} />
+                        </div>
+                      ))}
+                  </Slider>
+                ) : (
+                  <Row style={{ gap: "10px" }}>
+                    {teamB &&
+                      teamB?.map((item: any) => {
+                        return (
+                          <>
+                            <HandleCards card={item !== "1" ? item : ""} />
+                          </>
+                        );
+                      })}
+                  </Row>
+                )}
               </div>
               <div className="mt-2">
-                <Slider {...sliderSettings(teamA?.length)}>
-                  {teamA &&
-                    teamA.map((item: any, index: any) => (
-                      <div key={index}>
-                        <HandleCards card={item !== "1" ? item : ""} />
-                      </div>
-                    ))}
-                </Slider>
+              {teamA?.length > 3 ? (
+                  <Slider {...sliderSettings(teamA?.length, teamA?.length > 3)}>
+                    {teamA &&
+                      teamA?.map((item: any, index: any) => (
+                        <div key={index}>
+                          <HandleCards card={item !== "1" ? item : ""} />
+                        </div>
+                      ))}
+                  </Slider>
+                ) : (
+                  <Row style={{ gap: "10px" }}>
+                    {teamA &&
+                      teamA?.map((item: any) => {
+                        return (
+                          <>
+                            <HandleCards card={item !== "1" ? item : ""} />
+                          </>
+                        );
+                      })}
+                  </Row>
+                )}
               </div>
             </div>
           </Col>
         </Row>
       </div>
-
+    )
   );
 };
 
