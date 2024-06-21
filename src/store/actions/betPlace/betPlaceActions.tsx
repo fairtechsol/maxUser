@@ -43,9 +43,13 @@ export const getPlacedBetsForAccountStatement = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.BET.GETPLACEDBETS}?betId=inArr${JSON.stringify(
+        `${ApiConstants.BET.GETPLACEDBETS}?${
           requestData.betId
-        )}&createBy=eq${requestData.userId}&status=${
+            ? `&betId=inArr${JSON.stringify(requestData.betId)}`
+            : requestData.runnerId
+            ? `&runnerId=eq${requestData.runnerId}`
+            : ""
+        }&createBy=eq${requestData.userId}&status=${
           requestData.status
         }&sort=betPlaced.createdAt:DESC&isCurrentBets=true`
       );

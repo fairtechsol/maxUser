@@ -27,7 +27,7 @@ const AccountStatementComponent = () => {
   const [type, setType] = useState<any>("");
   const [firstTime, setFirstTime] = useState<any>(false);
   const [minDate2, setminDate2] = useState<any>(minDate);
-  const [show, setShow] = useState({ status: false, betId: [] });
+  const [show, setShow] = useState({ status: false, betId: [], runnerId: "" });
   const [selectedOption, setSelectedOption] = useState("matched");
 
   const [tableConfig, setTableConfig] = useState<any>(null);
@@ -41,7 +41,7 @@ const AccountStatementComponent = () => {
 
   const handleClose = () => {
     setSelectedOption("matched");
-    setShow({ status: false, betId: [] });
+    setShow({ status: false, betId: [], runnerId: "" });
   };
 
   useEffect(() => {
@@ -271,11 +271,30 @@ const AccountStatementComponent = () => {
                     </td>
                     <td
                       onClick={() => {
-                        if (item?.betId) {
-                          setShow({ status: true, betId: item?.betId });
+                        const match =
+                          item?.description.match(/Rno\. (\d+\.\d+)/);
+                        if (item?.betId?.length > 0) {
+                          setShow({
+                            status: true,
+                            betId: item?.betId,
+                            runnerId: "",
+                          });
                           dispatch(
                             getPlacedBetsForAccountStatement({
                               betId: item?.betId,
+                              status: "MATCHED",
+                              userId: getProfile?.id,
+                            })
+                          );
+                        } else if (match && match[1]) {
+                          setShow({
+                            status: true,
+                            betId: [],
+                            runnerId: match[1],
+                          });
+                          dispatch(
+                            getPlacedBetsForAccountStatement({
+                              runnerId: match[1],
                               status: "MATCHED",
                               userId: getProfile?.id,
                             })
@@ -311,13 +330,23 @@ const AccountStatementComponent = () => {
                 checked={selectedOption === "matched"}
                 onChange={() => {
                   setSelectedOption("matched");
-                  dispatch(
-                    getPlacedBetsForAccountStatement({
-                      betId: show?.betId,
-                      status: "MATCHED",
-                      userId: getProfile?.id,
-                    })
-                  );
+                  if (show?.betId?.length > 0) {
+                    dispatch(
+                      getPlacedBetsForAccountStatement({
+                        betId: show?.betId,
+                        status: "MATCHED",
+                        userId: getProfile?.id,
+                      })
+                    );
+                  } else if (show?.runnerId) {
+                    dispatch(
+                      getPlacedBetsForAccountStatement({
+                        runnerId: show?.runnerId,
+                        status: "MATCHED",
+                        userId: getProfile?.id,
+                      })
+                    );
+                  }
                 }}
               />
               <Form.Check
@@ -329,13 +358,23 @@ const AccountStatementComponent = () => {
                 checked={selectedOption === "deleted"}
                 onChange={() => {
                   setSelectedOption("deleted");
-                  dispatch(
-                    getPlacedBetsForAccountStatement({
-                      betId: show?.betId,
-                      status: "DELETED",
-                      userId: getProfile?.id,
-                    })
-                  );
+                  if (show?.betId?.length > 0) {
+                    dispatch(
+                      getPlacedBetsForAccountStatement({
+                        betId: show?.betId,
+                        status: "DELETED",
+                        userId: getProfile?.id,
+                      })
+                    );
+                  } else if (show?.runnerId) {
+                    dispatch(
+                      getPlacedBetsForAccountStatement({
+                        runnerId: show?.runnerId,
+                        status: "DELETED",
+                        userId: getProfile?.id,
+                      })
+                    );
+                  }
                 }}
               />
             </div>
