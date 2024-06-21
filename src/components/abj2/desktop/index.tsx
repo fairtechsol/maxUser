@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { abjrules } from "../../../assets/images";
@@ -20,8 +20,22 @@ import { cardGamesId } from "../../../utils/constants";
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
+        const sticky = placeBetRef?.current.offsetTop;
+        setIsSticky(window.scrollY > sticky);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div>
       <Row>
@@ -53,8 +67,9 @@ const Abj2Desktop = () => {
               </div>
               <div
                 style={{
+                  // flex: '1 0 auto',
                   width: "100%",
-                  height: "92%",
+                  // height: "92%",
                   backgroundColor: "#000",
                 }}
               >
@@ -68,7 +83,7 @@ const Abj2Desktop = () => {
             <div style={{ height: "460px" }}>
               <div
                 className="row-flex"
-                style={{ width: "100%", margin: "4% 2% 5px 5px" }}
+                style={{ width: "100%", margin: "5% 2% 5px 5px" }}
               >
                 <SBetBox
                   type={"A"}
@@ -120,7 +135,6 @@ const Abj2Desktop = () => {
                 <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
               </div>
             </div>
-
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>

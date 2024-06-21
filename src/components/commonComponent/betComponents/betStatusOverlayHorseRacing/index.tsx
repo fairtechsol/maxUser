@@ -15,7 +15,7 @@ const BetStatusOverlayHorseRacing = ({ children, active, liveData }: Props) => {
       {
         <div className="box-height d-flex position-relative bet-overlay-horse">
           {active && (
-            <div className="betStatusOverlay">
+            <div className="betStatusOverlay-h">
               {!["ACTIVE", undefined, null].includes(status) && (
                 <h5 className="text-uppercase">
                   {status === "active"

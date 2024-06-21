@@ -63,7 +63,7 @@ const DragonTigerMobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "28vh" }}>
+            <div style={{ width: "100%", height: "250px" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -87,7 +87,9 @@ const DragonTigerMobile = () => {
                 />
               </div>
             </div>
-            <div style={{ width: "100%" }}>
+
+          <div style={{height: "820px"}}>
+          <div style={{ width: "100%" }}>
               <TiePairBox
                 tiePair={dragonTigerDetail?.tiePair}
                 data={dragonTigerDetail}
@@ -140,6 +142,7 @@ const DragonTigerMobile = () => {
             <div style={{ width: "100%", marginTop: "15px" }}>
               <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
             </div>
+          </div>
           </div>
         ) : (
           <>

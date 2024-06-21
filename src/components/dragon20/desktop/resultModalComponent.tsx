@@ -2,6 +2,7 @@ import React from "react";
 import { Container} from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
+import isMobile from "../../../utils/screenDimension";
 interface Props {
   data: {
     C1: string;
@@ -24,10 +25,10 @@ const tigerCard  = tigerData?.[2]
       <div className="dt20resultModal">
         <div className="dt20resultCardContainer">
           <span className="fs-5">Dragon</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
+          <div className={isMobile ? 'row-flex-mobile' : 'd-sm-flex flex-row justify-content-center align-items-center'} >
             {data?.result?.win === "1" && (
               <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
+                <FaTrophy size={isMobile ? 20 : 30} color="#169733" />
               </div>
             )}
             <div
@@ -43,10 +44,10 @@ const tigerCard  = tigerData?.[2]
         </div>
         <div className="dt20resultCardContainer">
           <span className="fs-5">Tiger</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
+          <div className={isMobile ? 'row-flex-mobile' : 'd-sm-flex flex-row justify-content-center align-items-center'} >
               {data?.result?.win === "2" && (
             <div className="casino-winner-icon">
-              <FaTrophy size={30} color="#169733" />
+              <FaTrophy size={isMobile ? 20 : 30} color="#169733" />
             </div>
               )}
             <div
@@ -63,7 +64,7 @@ const tigerCard  = tigerData?.[2]
       </div>
       <div className="w-100 d-sm-flex justify-content-center align-items-center mt-2">
         <div
-          className="w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
+          className={isMobile ? 'w-100 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2' : "w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"}
           style={{ boxShadow: "0 0 4px -1px" }}
         >
           <div className="d-sm-flex flex-sm-row">

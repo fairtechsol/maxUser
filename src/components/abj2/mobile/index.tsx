@@ -15,6 +15,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId } from "../../../utils/constants";
+import Abj2Result from "../desktop/abj2Card";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -61,7 +62,7 @@ const Abj2Mobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "25vh" }}>
+            <div style={{ width: "100%", height: "210px" }}>
               <div className="horseRacingTabHeader-m">
                 <div
                   style={{
@@ -87,14 +88,13 @@ const Abj2Mobile = () => {
                 }}
               ><VideoFrame
               time={dragonTigerDetail?.videoInfo?.autotime}
-              // result={
-              //   <Dragon20Result data={dragonTigerDetail?.videoInfo} />
-              // }
+              result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
                 id={cardGamesId?.andarBahar2}
             /></div>
             </div>
 
-            <div style={{ width: "100%", marginTop: "10px" }}>
+            <div style={{height: "650px"}}>
+            <div style={{ width: "100%", marginTop: "20%" }}>
               <SBetBox
                 type={"A"}
                 odds={dragonTigerDetail?.abjSa}
@@ -142,6 +142,7 @@ const Abj2Mobile = () => {
             </div>
             <div style={{ width: "100%", marginTop: "10px" }}>
               <CardResultBox data={dragonTigerDetail} name={["A","B"]}/>
+            </div>
             </div>
           </div>
         ) : (

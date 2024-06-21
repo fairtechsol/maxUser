@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { luckyrules } from "../../../assets/images";
@@ -20,8 +20,22 @@ import { cardGamesId } from "../../../utils/constants";
 const Lucky7Desktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
+        const sticky = placeBetRef?.current.offsetTop;
+        setIsSticky(window.scrollY > sticky);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div>
       <Row>

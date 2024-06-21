@@ -62,7 +62,7 @@ const Lucky7Mobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "25vh" }}>
+            <div style={{ width: "100%", height: "250px" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -85,7 +85,8 @@ const Lucky7Mobile = () => {
               </div>
             </div>
 
-            <div style={{ width: "100%", marginTop: "30px" }}>
+         <div style={{ height: "550px"}}>
+         <div style={{ width: "100%", marginTop: "30px" }}>
               <TiePairBox
                 lowHigh={dragonTigerDetail?.lowHigh}
                 data={dragonTigerDetail}
@@ -131,6 +132,7 @@ const Lucky7Mobile = () => {
             <div style={{ width: "100%", marginTop: "10px" }}>
               <CardResultBox data={dragonTigerDetail} name={["L", "H", "T"]} />
             </div>
+         </div>
           </div>
         ) : (
           <>

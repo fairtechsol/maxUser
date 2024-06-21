@@ -32,7 +32,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
     >
       {!lock && (
         <>
-          <span style={{ color: type === "heart" || type === "diamond" ? "red" : "black", fontWeight: "800", lineHeight: "0.8" , fontSize: isMobile ? "12px" : "16px", }}>
+          <span style={{ color: type === "heart" || type === "diamond" ? "red" : "black", fontWeight: "800", lineHeight: isMobile ? "1" : "1.2" , fontSize: isMobile ? "12px" : "18px", }}>
             {number}
           </span>
           <Icons type={type} />
