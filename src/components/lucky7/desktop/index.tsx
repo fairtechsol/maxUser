@@ -41,7 +41,7 @@ const Lucky7Desktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "40vh", margin: "5px" }}>
+            <div style={{ width: "100%", height: "400px", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -77,8 +77,7 @@ const Lucky7Desktop = () => {
                 />
               </div>
             </div>
-
-            <div style={{ width: "100%", margin: "5% 5px" }}>
+  <div style={{height:"550px"}}> <div style={{ width: "100%", margin: "5% 5px" }}>
               <TiePairBox
                 lowHigh={dragonTigerDetail?.lowHigh}
                 data={dragonTigerDetail}
@@ -124,7 +123,8 @@ const Lucky7Desktop = () => {
             </div>
             <div style={{ width: "100%", margin: "5px" }}>
               <CardResultBox data={dragonTigerDetail} name={["L", "H"]} />
-            </div>
+            </div></div>
+           
             <RulesModal show={show} setShow={setShow} rule={luckyrules} />
           </div>
         </Col>

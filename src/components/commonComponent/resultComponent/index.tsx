@@ -8,6 +8,7 @@ import { cardGamesType } from "../../../utils/constants";
 import Dragon20ResultComponent from "../../dragon20/desktop/resultModalComponent";
 import Lucky7ResultComponent from "../../lucky7/desktop/resultModalComponent";
 import Teen20ResultComponent from "../../teenPatti20/desktop/resultModalComponent";
+import Card32ResultComponent from "../../cards32/desktop/resultModalComponent";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
@@ -56,7 +57,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
       ) : type === cardGamesType?.teen20 ? (
         <><Teen20ResultComponent data={data}/></>
       ) : type === cardGamesType?.card32 ? (
-        <></>
+        <><Card32ResultComponent data={data}/></>
       ) : type === cardGamesType?.lucky7 ? (
         <><Lucky7ResultComponent data={data}/></>
       ): (

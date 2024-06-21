@@ -69,7 +69,8 @@ const TeenPattiDesktop = () => {
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ height: "40vh", margin: "5px" }}>
+          <div style={{margin: "5px" }}>
+            <div style={{height:"400px",marginBottom:".30px"}}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -102,7 +103,9 @@ const TeenPattiDesktop = () => {
                 id={cardGamesId?.teen20}
               />
             </div>
-            <div className="teenPatti-table-container">
+            </div>
+            
+            <div className="teenPatti-table-container" style={{height:"350px"}}>
               <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
                 <div style={{ width: "50%", border: "0.1px solid #fff" }}></div>
                 <div

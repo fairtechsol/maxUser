@@ -55,7 +55,7 @@ const DragonTigerDesktop = () => {
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ width: "100%", height: "40vh", margin: "5px" }}>
+          <div style={{ width: "100%", height: "400px", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -91,56 +91,58 @@ const DragonTigerDesktop = () => {
               />
             </div>
           </div>
+          <div style={{height:"760px"}}>
+            <div style={{ width: "100%", margin: "4% 5px" }}>
+              <TiePairBox
+                tiePair={dragonTigerDetail?.tiePair}
+                data={dragonTigerDetail}
+              />
+            </div>
+            <div
+              style={{
+                width: "100%",
+                margin: "5px",
+                display: "flex",
+                flexDirection: "row",
+                gap: "8px",
+              }}
+            >
+              <OddEven
+                name={"DRAGON"}
+                odds={dragonTigerDetail?.dragonOdds}
+                data={dragonTigerDetail}
+              />
+              <OddEven
+                name={"TIGER"}
+                odds={dragonTigerDetail?.tigerOdds}
+                data={dragonTigerDetail}
+              />
+            </div>
+            <div
+              style={{
+                width: "100%",
+                margin: "5px",
+                display: "flex",
+                flexDirection: "row",
+                gap: "8px",
+              }}
+            >
+              <CardBox
+                name={"DRAGON"}
+                cardData={dragonTigerDetail?.dragonCards}
+                data={dragonTigerDetail}
+              />
+              <CardBox
+                name={"TIGER"}
+                cardData={dragonTigerDetail?.tigerCards}
+                data={dragonTigerDetail}
+              />
+            </div>
+            <div style={{ width: "100%", margin: "5px" }}>
+              <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+            </div>
+          </div>
 
-          <div style={{ width: "100%", margin: "4% 5px" }}>
-            <TiePairBox
-              tiePair={dragonTigerDetail?.tiePair}
-              data={dragonTigerDetail}
-            />
-          </div>
-          <div
-            style={{
-              width: "100%",
-              margin: "5px",
-              display: "flex",
-              flexDirection: "row",
-              gap: "8px",
-            }}
-          >
-            <OddEven
-              name={"DRAGON"}
-              odds={dragonTigerDetail?.dragonOdds}
-              data={dragonTigerDetail}
-            />
-            <OddEven
-              name={"TIGER"}
-              odds={dragonTigerDetail?.tigerOdds}
-              data={dragonTigerDetail}
-            />
-          </div>
-          <div
-            style={{
-              width: "100%",
-              margin: "5px",
-              display: "flex",
-              flexDirection: "row",
-              gap: "8px",
-            }}
-          >
-            <CardBox
-              name={"DRAGON"}
-              cardData={dragonTigerDetail?.dragonCards}
-              data={dragonTigerDetail}
-            />
-            <CardBox
-              name={"TIGER"}
-              cardData={dragonTigerDetail?.tigerCards}
-              data={dragonTigerDetail}
-            />
-          </div>
-          <div style={{ width: "100%", margin: "5px" }}>
-            <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
-          </div>
           <RulesModal show={show} setShow={setShow} rule={dtrules} />
         </Col>
         <Col md={4}>

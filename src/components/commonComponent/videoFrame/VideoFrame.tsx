@@ -26,7 +26,7 @@ const VideoFrame = ({ result, time,id }: any) => {
         <div>
           <div
             style={{
-              height: isMobile ? "30vh" : "40vh",
+              // height: isMobile ? "30vh" : "40vh",
               backgroundColor: "black",
               position: "relative",
             }}
