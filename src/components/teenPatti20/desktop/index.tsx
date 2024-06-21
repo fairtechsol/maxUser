@@ -89,8 +89,8 @@ const TeenPattiDesktop = () => {
               />
             </div>
             </div>
-            
-            <div className="teenPatti-table-container" style={{height:"350px"}}>
+            <div style={{height:"350px"}}>
+            <div className="teenPatti-table-container" >
               <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
                 <div style={{ width: "50%", border: "0.1px solid #fff" }}></div>
                 <div
@@ -343,6 +343,8 @@ const TeenPattiDesktop = () => {
             <div style={{ width: "100%", marginTop: "10px" }}>
               <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
             </div>
+            </div>
+            
           </div>
         </Col>
         <Col md={4} className="ps-0">
