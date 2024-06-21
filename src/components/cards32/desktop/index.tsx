@@ -23,7 +23,7 @@ const Cards32Desktop = () => {
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ height: "40vh", margin: "5px" }}>
+          <div style={{ height: "400px", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -60,6 +60,7 @@ const Cards32Desktop = () => {
 
             {/* </Row> */}
           </div>
+          <div style={{ height: "350px"}}>
           <div className="d-flex px-2 mt-5">
             <DynamicTable
               odds={dragonTigerDetail?.set1}
@@ -73,16 +74,6 @@ const Cards32Desktop = () => {
               playerNum={[10, 11]}
             />
           </div>
-          {/* <Row>
-            <Col>
-              {" "}
-              <CardsCompnentMobile />
-            </Col>
-            <Col>
-              {" "}
-              <CardsCompnentMobile />
-            </Col>
-          </Row> */}
           <div className="mt-2">
             <CardResultBox
               data={dragonTigerDetail}
@@ -90,6 +81,8 @@ const Cards32Desktop = () => {
               type={"card32"}
             />
           </div>
+          </div>
+         
           <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>
         <Col md={4}>
