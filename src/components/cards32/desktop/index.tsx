@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
@@ -17,8 +17,22 @@ import { cardGamesId } from "../../../utils/constants";
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
-  const [isSticky] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
+        const sticky = placeBetRef?.current.offsetTop;
+        setIsSticky(window.scrollY > sticky);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div>
       <Row>

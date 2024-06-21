@@ -23,7 +23,7 @@ const DragonTigerDesktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -34,6 +34,21 @@ const DragonTigerDesktop = () => {
     setTimeout(() => {
       setShowInactivityModal(true);
     }, timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
+        const sticky = placeBetRef?.current.offsetTop;
+        setIsSticky(window.scrollY > sticky);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (

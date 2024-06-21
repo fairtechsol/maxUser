@@ -19,7 +19,8 @@ const CardResultBox = ({ data, name, type }: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
   };
-
+  
+// console.log(liveGameResultTop10, "sgfvd",resultData )
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">

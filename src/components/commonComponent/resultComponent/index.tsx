@@ -39,7 +39,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         </span>
         <RxCross2 size={25} onClick={() => setfalse(false)} />
       </div>
-      <div className="resultModalSubHead" style={{fontSize:isMobile?"0.8rem":"1.1rem"}}>
+      <div className="resultModalSubHead" style={{fontSize:isMobile ? "0.8rem" : "1.1rem"}}>
         <div>
           <span style={{fontWeight:"bold"}}>Round Id:</span>
           <span>{handleRoundId(data?.result?.mid)}</span>

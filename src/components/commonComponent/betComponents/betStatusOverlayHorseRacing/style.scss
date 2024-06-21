@@ -1,4 +1,4 @@
-.betStatusOverlay {
+.betStatusOverlay-h {
   position: absolute;
   // content: attr(data-title);
   top: 0;
@@ -18,7 +18,7 @@
   z-index: 222;
 }
 
-.betStatusOverlay h5 {
+.betStatusOverlay-h h5 {
   font-family: Arial, Verdana, Helvetica, sans-serif;
   z-index: 223;
   font-size: 12px;

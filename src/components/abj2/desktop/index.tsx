@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { abjrules } from "../../../assets/images";
@@ -20,14 +20,28 @@ import { cardGamesId } from "../../../utils/constants";
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
+        const sticky = placeBetRef?.current.offsetTop;
+        setIsSticky(window.scrollY > sticky);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div>
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "38vh", margin: "5px" }}>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '40vh'  }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -53,8 +67,9 @@ const Abj2Desktop = () => {
               </div>
               <div
                 style={{
+                  // flex: '1 0 auto',
                   width: "100%",
-                  height: "92%",
+                  // height: "92%",
                   backgroundColor: "#000",
                 }}
               >
@@ -65,8 +80,8 @@ const Abj2Desktop = () => {
               />
               </div>
             </div>
-
-            <div className="row-flex" style={{ width: "100%", margin: "7% 5px" }}>
+                <div style={{ height: 'auto'}}>
+            <div className="row-flex" style={{ width: "100%", margin: "4% 5px" }}>
               <SBetBox
                 type={"A"}
                 odds={dragonTigerDetail?.abjSa}
@@ -115,6 +130,7 @@ const Abj2Desktop = () => {
             </div>
             <div style={{ width: "100%", margin: "5px" }}>
               <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
+            </div>
             </div>
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
