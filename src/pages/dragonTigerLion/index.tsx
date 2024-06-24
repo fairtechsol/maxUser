@@ -6,7 +6,7 @@ import { socket, socketService } from "../../socketManager";
 import {
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
-  updateCardMatchRates,
+  updateDragonTigerLionRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
@@ -31,7 +31,7 @@ const DragonTigerLion = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateCardMatchRates(event?.data?.data?.data));
+      dispatch(updateDragonTigerLionRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }

@@ -87,7 +87,7 @@ const DragonTigerDesktop = () => {
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}
-                id={cardGamesId?.dragonTiger20}
+                id={cardGamesId?.dragonTiger202}
               />
             </div>
           </div>

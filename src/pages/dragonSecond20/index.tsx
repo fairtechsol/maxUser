@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import DragonTigerComponentList from "../../components/dragon20";
 import { socket, socketService } from "../../socketManager";
 import {
   getDragonTigerDetailHorseRacing,
@@ -22,6 +21,7 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
+import DragonTigerSecondComponentList from "../../components/dragonSecond20";
 
 const DragonTiger202 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -109,7 +109,7 @@ const DragonTiger202 = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <DragonTigerComponentList />;
+  return loading ? <Loader /> : <DragonTigerSecondComponentList />;
 };
 
 export default DragonTiger202;

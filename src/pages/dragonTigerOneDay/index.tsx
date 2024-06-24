@@ -6,7 +6,7 @@ import { socket, socketService } from "../../socketManager";
 import {
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
-  updateCardMatchRates,
+  updateDragonTigerOneDayRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
@@ -31,7 +31,7 @@ const DragonTigerOneDay = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateCardMatchRates(event?.data?.data?.data));
+      dispatch(updateDragonTigerOneDayRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
@@ -39,7 +39,6 @@ const DragonTigerOneDay = () => {
       console.log(e);
     }
   };
-
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.dragonTigerOneDay) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));

@@ -121,3 +121,17 @@ export const updateProfitLossCards = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateDragonTigerLionRates = createAsyncThunk<any, any>(
+  "dtl20/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateDragonTigerOneDayRates = createAsyncThunk<any, any>(
+  "dtoneDay/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);

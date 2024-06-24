@@ -17,6 +17,7 @@ const Dragon20Result: React.FC<Props> = ({ data }:any) => {
           <div style={{ display: "flex", gap: "10px" }}>
             <HandleCards card={data?.C1} />
             <HandleCards card={data?.C2} />
+            <HandleCards card={data?.C3} />
           </div>
         </Col>
       </Row>
