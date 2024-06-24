@@ -41,6 +41,12 @@ const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
 const DragonTigerSecond20 = Loadable(
   lazy(() => import("../pages/dragonSecond20"))
 );
+const DragonTigerLion = Loadable(
+  lazy(() => import("../pages/dragonTigerLion"))
+);
+const DragonTigerOneDay = Loadable(
+  lazy(() => import("../pages/dragonTigerOneDay"))
+);
 const CardList3 = Loadable(lazy(() => import("../pages/cardList3")));
 const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
 const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
@@ -127,6 +133,14 @@ const MainRoutes = {
     {
       path: "dt202",
       element: <DragonTigerSecond20 />,
+    },
+    {
+      path: "dtl20",
+      element: <DragonTigerLion />,
+    },
+    {
+      path: "dt6",
+      element: <DragonTigerOneDay />,
     },
     {
       path: "game-list/:type",
