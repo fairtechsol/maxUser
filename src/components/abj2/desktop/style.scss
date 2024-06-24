@@ -240,6 +240,25 @@
   top: 0;
   z-index: 10;
 }
+.abjresultModal{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.abjresultCardContainer{
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.abjresultCardContainer2{
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }
