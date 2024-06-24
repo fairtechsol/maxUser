@@ -31,7 +31,7 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
       <Container>
         <Row>
           <Col>
-            <span style={{ color: max===parseInt(data?.C1) && max!=0?"green":"white" }}>{parseInt(data?.C1)>0?'Player 8:'+data?.C1:""}</span>
+            <span style={{ color: max===parseInt(data?.C1) && max!=0?"#04d373":"#fff",fontWeight:"600" }}>{parseInt(data?.C1)>0?'Player 8:'+data?.C1:""}</span>
             <div style={{ display: "flex", gap: "10px", flexDirection: "row" }}>
               {result?.[0]?.map((item: any) => {
                 return <HandleCards card={item != "1" ? item : ""} />;
@@ -41,7 +41,7 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
         </Row>
         <Row>
           <Col>
-            <span style={{ color:  max===parseInt(data?.C2) && max!=0?"green":"white" }}>{parseInt(data?.C1)>0?'Player 9:'+data?.C2:""}</span>
+            <span style={{ color:  max===parseInt(data?.C2) && max!=0?"#04d373":"#fff" ,fontWeight:"600"}}>{parseInt(data?.C1)>0?'Player 9:'+data?.C2:""}</span>
             <div style={{ display: "flex", gap: "10px", flexDirection: "row" }}>
               {result?.[1]?.map((item: any) => {
                 return <HandleCards card={item != "1" ? item : ""} />;
@@ -51,7 +51,7 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
         </Row>
         <Row>
           <Col>
-            <span style={{ color: max===parseInt(data?.C3) && max!=0?"green":"white" }}>{parseInt(data?.C1)>0?'Player 10:'+data?.C3:""}</span>
+            <span style={{ color: max===parseInt(data?.C3) && max!=0?"#04d373":"#fff" ,fontWeight:"600"}}>{parseInt(data?.C1)>0?'Player 10:'+data?.C3:""}</span>
             <div style={{ display: "flex", gap: "10px", flexDirection: "row" }}>
               {result?.[2]?.map((item: any) => {
                 return <HandleCards card={item != "1" ? item : ""} />;
@@ -61,7 +61,7 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
         </Row>
         <Row>
           <Col>
-            <span style={{ color: max===parseInt(data?.C4) && max!=0?"green":"white" }}>{parseInt(data?.C1)>0?'Player 11:'+data?.C4:""}</span>
+            <span style={{ color: max===parseInt(data?.C4) && max!=0?"#04d373":"#fff",fontWeight:"600" }}>{parseInt(data?.C1)>0?'Player 11:'+data?.C4:""}</span>
             <div style={{ display: "flex", gap: "10px", flexDirection: "row" }}>
               {result?.[3]?.map((item: any) => {
                 return <HandleCards card={item != "1" ? item : ""} />;
