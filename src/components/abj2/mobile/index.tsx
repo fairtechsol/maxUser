@@ -93,7 +93,7 @@ const Abj2Mobile = () => {
             /></div>
             </div>
 
-            <div style={{height: "650px"}}>
+            <div style={{height: "700px"}}>
             <div style={{ width: "100%", marginTop: "20%" }}>
               <SBetBox
                 type={"A"}
