@@ -45,3 +45,5 @@ export { default as club } from "./cards/clubs.png";
 export { default as diamond } from "./cards/diamond.png";
 export { default as heart } from "./cards/heart.png";
 export { default as spade } from "./cards/spade.png";
+export { default as leftArrow } from "./anderBahar/left-arrow-black.webp";
+export { default as rightArrow } from "./anderBahar/right_arrow_black.webp";

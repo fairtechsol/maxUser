@@ -107,7 +107,7 @@ const DesktopHeader = () => {
                   aria-expanded={open}
                   aria-controls="searchCollapse"
                   onClick={handleClickOpen}
-                  className="title-24"
+                  className="title-24 cursor-pointer"
                 />
               </span>
             </li>
@@ -116,7 +116,7 @@ const DesktopHeader = () => {
                 setShow(true);
               }}
             >
-              <b> Rules</b>
+              <b className="cursor-pointer"> Rules</b>
             </li>
             <li>
               <div className="balance-cont">
@@ -141,10 +141,11 @@ const DesktopHeader = () => {
               </div>
             </li>
             <li>
-              <Dropdown>
+              <Dropdown className="cursor-pointer">
                 <Dropdown.Toggle
                   as={CustomDropDown}
                   id="dropdown-custom-components"
+                  
                 >
                   {getProfile?.userName}
                 </Dropdown.Toggle>
@@ -168,7 +169,7 @@ const DesktopHeader = () => {
                     })}
                   <Dropdown.Divider />
                   <Dropdown.Item
-                    className="title-14"
+                    className="title-14 px-2"
                     eventKey={"sign-out"}
                     onClick={() => {
                       dispatch(logout());

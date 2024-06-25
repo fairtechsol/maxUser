@@ -19,11 +19,7 @@ const Lucky7 = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      if (
-        cardGamesType.lucky7 === event?.data?.data?.data?.t1[0]?.gtype
-      ) {
         dispatch(update7CardMatchRates(event?.data?.data?.data));
-      }
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }

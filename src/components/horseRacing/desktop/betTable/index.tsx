@@ -95,7 +95,10 @@ const HorseRaceDetailDesktop = () => {
                 }}
               >
                 <Col>
-                <BetTableHeader customClass="mt-2 rounded-top-1  rounded-bottom-0 py-2" title={"Live Match"} />
+                  <BetTableHeader
+                    customClass="mt-2 rounded-top-1  rounded-bottom-0 py-2"
+                    title={"Live Match"}
+                  />
                 </Col>
                 <Col md={12}>
                   <PlacedBet />

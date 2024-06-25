@@ -45,39 +45,44 @@ const MobileMatchList = ({ setMatchType, type }: any) => {
   return (
     <div className="m-0 p-0 w-100">
       {" "}
-      <CommonTabs
-        callback={setMatchType}
-        customClass="overflow-x-auto overflow-y-hidden no-wrap"
-        defaultActive={type}
-        fill={true}
-        justify={true}
-      >
-        {MatchListJson()
-          // ?.filter((item) => item?.id == type || !type)
-          ?.map((item) => {
-            return (
-              <Tab
-                key={item?.id}
-                eventKey={item?.id}
-                tabClassName="m-match-list-tabs"
-                title={
-                  <div className="title-12 text-uppercase f500 nav-tab">
-                    {item?.img ? (
-                      <img
-                        src={item?.img}
-                        alt={item?.name}
-                        className="tab-img"
-                      />
-                    ) : (
-                      <div className="text-white tab-icon">{item?.icon}</div>
-                    )}
-                    <span className="navtab-name">{item?.name}</span>
-                  </div>
-                }
-              ></Tab>
-            );
-          })}
-      </CommonTabs>
+      {location.pathname !== "/casino-slot" &&
+        location.pathname !== "/other" && (
+          <CommonTabs
+            callback={setMatchType}
+            customClass="overflow-x-auto overflow-y-hidden no-wrap"
+            defaultActive={type}
+            fill={true}
+            justify={true}
+          >
+            {MatchListJson()
+              // ?.filter((item) => item?.id == type || !type)
+              ?.map((item) => {
+                return (
+                  <Tab
+                    key={item?.id}
+                    eventKey={item?.id}
+                    tabClassName="m-match-list-tabs"
+                    title={
+                      <div className="title-12 text-uppercase f500 nav-tab">
+                        {item?.img ? (
+                          <img
+                            src={item?.img}
+                            alt={item?.name}
+                            className="tab-img"
+                          />
+                        ) : (
+                          <div className="text-white tab-icon">
+                            {item?.icon}
+                          </div>
+                        )}
+                        <span className="navtab-name">{item?.name}</span>
+                      </div>
+                    }
+                  ></Tab>
+                );
+              })}
+          </CommonTabs>
+        )}
       <OneVOneGameTable id={type} />
     </div>
   );
