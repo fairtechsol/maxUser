@@ -9,14 +9,15 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
-import TiePairBox from "./TiePairBox";
+import BackLay from "./BackLay";
 import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
+import PairBox from "./PairBox";
+import CardBox from "./cardBox";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -117,11 +118,22 @@ const DragonTigerDesktop = () => {
             </div>
           </div>
           <div style={{ height: "760px" }}>
-            <div style={{ width: "100%", margin: "4% 5px" }}>
-              <TiePairBox
-                tiePair={dragonTigerDetail?.tiePair}
-                data={dragonTigerDetail}
-              />
+            <div
+              className="d-sm-flex flex-row justify-content-around align-items-center"
+              style={{ width: "100%", marginTop: "4%", gap: "10px" }}
+            >
+              <div className="w-50">
+                <BackLay
+                  matchOddsData={dragonTigerDetail?.matchOddsData}
+                  data={dragonTigerDetail}
+                />
+              </div>
+              <div className="w-50">
+                <PairBox
+                  odds={dragonTigerDetail?.pair}
+                  data={dragonTigerDetail}
+                />
+              </div>
             </div>
             <div
               style={{
@@ -133,33 +145,29 @@ const DragonTigerDesktop = () => {
               }}
             >
               <OddEven
-                name={"DRAGON"}
-                odds={dragonTigerDetail?.dragonOdds}
+                title1={"even"}
+                title2={"odd"}
+                dragonData={dragonTigerDetail?.dragonData}
+                tigerData={dragonTigerDetail?.tigerData}
                 data={dragonTigerDetail}
               />
               <OddEven
-                name={"TIGER"}
-                odds={dragonTigerDetail?.tigerOdds}
+                title1={"red"}
+                title2={"black"}
+                dragonData={dragonTigerDetail?.dragonData}
+                tigerData={dragonTigerDetail?.tigerData}
                 data={dragonTigerDetail}
               />
             </div>
             <div
               style={{
                 width: "100%",
-                margin: "5px",
-                display: "flex",
-                flexDirection: "row",
-                gap: "8px",
+                marginLeft: "5px",
               }}
             >
               <CardBox
-                name={"DRAGON"}
-                cardData={dragonTigerDetail?.dragonCards}
-                data={dragonTigerDetail}
-              />
-              <CardBox
-                name={"TIGER"}
-                cardData={dragonTigerDetail?.tigerCards}
+                dragonData={dragonTigerDetail?.dragonData}
+                tigerData={dragonTigerDetail?.tigerData}
                 data={dragonTigerDetail}
               />
             </div>

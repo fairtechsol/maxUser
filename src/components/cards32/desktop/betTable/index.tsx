@@ -28,7 +28,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
 
   let player1Key = `player${playerNum[0]}`;
   let player2Key = `player${playerNum[1]}`;
-
+console.log('first',odds)
   return (
     <div className="card32-table-container">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
@@ -91,7 +91,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
         <div
           className={
             odds?.[0]?.gstatus === "SUSPENDED" ||
-            odds?.[0]?.gstatus === "CLOSED"
+            odds?.[0]?.gstatus === "CLOSED"    
               ? "suspended"
               : ""
           }
@@ -107,7 +107,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[0]?.gstatus === "CLOSED"
+              odds?.[0]?.gstatus === "CLOSED" ||
+              odds?.[0]?.b1 ==="0.00" 
                 ? null
                 : handleBet(odds?.[0], "BACK")
             }
@@ -120,7 +121,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[0]?.gstatus === "CLOSED"
+              odds?.[0]?.gstatus === "CLOSED" ||
+              odds?.[0]?.l1 ==="0.00" 
                 ? null
                 : handleBet(odds?.[0], "LAY")
             }
@@ -189,7 +191,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[1]?.gstatus === "CLOSED"
+              odds?.[1]?.gstatus === "CLOSED" ||
+              odds?.[1]?.b1 ==="0.00" 
                 ? null
                 : handleBet(odds?.[1], "BACK")
             }
@@ -202,7 +205,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[1]?.gstatus === "CLOSED"
+              odds?.[1]?.gstatus === "CLOSED"||
+              odds?.[1]?.l1 ==="0.00" 
                 ? null
                 : handleBet(odds?.[1], "LAY")
             }
