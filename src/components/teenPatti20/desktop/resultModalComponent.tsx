@@ -26,7 +26,7 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
         <div className="teen20resultCardContainer">
           <span className="fs-5">Player A</span>
           <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center align-items-center mb-2"}>
-          {data?.result?.win === "1" && (
+          {data?.result?.win === "2" && (
               <div className="casino-winner-icon">
                 <FaTrophy size={30} color="#169733" />
               </div>
@@ -63,7 +63,7 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
         <div className="teen20resultCardContainer">
           <span className="fs-5">Player B</span>
           <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center align-items-center mb-2"}>
-            {data?.result?.win === "2" && (
+            {data?.result?.win === "3" && (
               <div className="casino-winner-icon">
                 <FaTrophy size={30} color="#169733" />
               </div>
