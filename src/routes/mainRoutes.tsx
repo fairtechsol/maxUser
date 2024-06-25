@@ -84,6 +84,14 @@ const MainRoutes = {
       element: <Home />,
     },
     {
+      path: "casino-slot",
+      element: <Home />,
+    },
+    {
+      path: "other",
+      element: <Home />,
+    },
+    {
       path: "account-statement",
       element: <AccountStatement />,
     },
