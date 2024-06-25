@@ -12,7 +12,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd: item?.rate,
+      odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -33,6 +33,24 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const dragonEvenOdd = dragonData?.slice(0, 2);
   const dragonRedBlack = dragonData?.slice(2, 4);
   // console.log(dragonData, "first", tigerData);
+  const handleLock = (status: any, value: any) => {
+    if (status != "ACTIVE" || value === "0.00") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const renderItem = (item: any, index: number) => (
+    <div
+      key={index}
+      className={`dtlsubTitle back-BackGround ${
+        handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+      }`}
+      onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
+    >
+      {item?.b1}
+    </div>
+  );
   return (
     <div className="w-100">
       <div
@@ -76,7 +94,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
           <div className="dtlTitle">Dragon </div>
-          <div
+          {/* <div
             className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
               dragonEvenOdd?.[0]?.gstatus === "CLOSED" ||
               dragonEvenOdd?.[0]?.b1 === "0.00"
@@ -105,11 +123,21 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
             {title2 === "odd"
               ? dragonEvenOdd?.[1]?.b1
               : dragonRedBlack?.[1]?.b1}
-          </div>
+          </div> */}
+          {renderItem(
+            title1 === "even"
+              ? dragonEvenOdd?.[0]
+              : dragonRedBlack?.[0],
+            0
+          )}
+          {renderItem(
+            title2 === "odd" ? dragonEvenOdd?.[1] : dragonRedBlack?.[1],
+            0
+          )}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
           <div className="dtlTitle"> Tiger</div>
-          <div className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
+          {/* <div className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
               tigerEvenOdd?.[0]?.gstatus === "CLOSED" ||
               tigerEvenOdd?.[0]?.b1 === "0.00"
                 ? "suspended"
@@ -132,7 +160,15 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
                   : ""
             }`}>
             {title2 === "odd" ? tigerEvenOdd?.[1]?.b1 : tigerRedBlack?.[1]?.b1}
-          </div>
+          </div> */}
+          {renderItem(
+            title1 === "even" ? tigerEvenOdd?.[0] : tigerRedBlack?.[0],
+            0
+          )}
+          {renderItem(
+            title2 === "odd" ? tigerEvenOdd?.[1] : tigerRedBlack?.[1],
+            0
+          )}
         </div>
       </div>
     </div>

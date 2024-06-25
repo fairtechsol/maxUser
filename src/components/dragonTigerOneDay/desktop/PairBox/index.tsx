@@ -42,7 +42,7 @@ const PairBox = ({ odds, data }: any) => {
               >
                 <CommonButtonBox
             value1={odds?.b1}
-            value2={"EVEN"}
+            value2={"Pair"}
             value3={
               data?.profitLoss
                 ? data?.profitLoss[
