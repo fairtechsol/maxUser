@@ -10,11 +10,13 @@ import Lucky7ResultComponent from "../../lucky7/desktop/resultModalComponent";
 import Teen20ResultComponent from "../../teenPatti20/desktop/resultModalComponent";
 import Card32ResultComponent from "../../cards32/desktop/resultModalComponent";
 import AbjResultComponent from "../../abj2/desktop/resultModalComponent";
+import Lucky7BResultComponent from "../../lucky7B/desktop/resultModalComponent";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
   teen20: "20-20 Teenpatti",
   lucky7: "Lucky 7 - A",
+  Lucky7B: "Lucky 7 - B",
   card32: "32 Cards A",
   abj: "Andar Bahar 2",
   // Add other mappings as needed
@@ -61,6 +63,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <><Card32ResultComponent data={data}/></>
       ) : type === cardGamesType?.lucky7 ? (
         <><Lucky7ResultComponent data={data}/></>
+      ) : type === cardGamesType?.lucky7B ? (
+        <><Lucky7BResultComponent data={data}/></>
       ): (
         <></>
       )}

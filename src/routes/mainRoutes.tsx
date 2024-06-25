@@ -120,7 +120,7 @@ const MainRoutes = {
       element: <Lucky7 />,
     },
     {
-      path: "lucky7-B",
+      path: "lucky7eu",
       element: <Lucky7B />,
     },
     {
