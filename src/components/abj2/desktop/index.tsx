@@ -15,13 +15,24 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Abj2Result from "./abj2Card";
-import { cardGamesId } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState(
+    `${cardUrl}${cardGamesId?.andarBahar2}`
+  );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
@@ -36,8 +47,37 @@ const Abj2Desktop = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShowInactivityModal(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, showInactivityModal]);
+
   return (
-    <div>
+    <>
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
@@ -76,7 +116,7 @@ const Abj2Desktop = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
-                  id={cardGamesId?.andarBahar2}
+                  id={videoFrameId}
                 />
               </div>
             </div>
@@ -158,7 +198,8 @@ const Abj2Desktop = () => {
           </Container>
         </Col>
       </Row>
-    </div>
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
+    </>
   );
 };
 

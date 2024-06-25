@@ -75,21 +75,18 @@ const CasinoReports = () => {
           "YYYY-MM-DD"
         )}`;
       }
-
-      dispatch(
-        getCardReport({
-          type: type
-            ? type.value
-            : typeFromState
-            ? typeFromState.value
-            : "teen20",
-          page: tableConfig?.page,
-          limit: tableConfig?.rowPerPage,
-          searchBy: "cardResult.result ->> 'mid'",
-          keyword: tableConfig?.keyword || "",
-          filter,
-        })
-      );
+      if (type || typeFromState) {
+        dispatch(
+          getCardReport({
+            type: type ? type.value : typeFromState ? typeFromState.value : "",
+            page: tableConfig?.page,
+            limit: tableConfig?.rowPerPage,
+            searchBy: "cardResult.result ->> 'mid'",
+            keyword: tableConfig?.keyword || "",
+            filter,
+          })
+        );
+      }
     }
   }, [tableConfig, typeFromState]);
 
@@ -110,8 +107,8 @@ const CasinoReports = () => {
                       : typeFromState
                       ? typeFromState
                       : {
-                          value: "teen20",
-                          label: "20-20 Teen Patti",
+                          value: "",
+                          label: "Select Casino Type",
                         }
                   }
                   isOptionDisabled={(option: any) => option.disabled}
@@ -143,20 +140,22 @@ const CasinoReports = () => {
                       ).format("YYYY-MM-DD")}`;
                     }
 
-                    dispatch(
-                      getCardReport({
-                        type: type
-                          ? type.value
-                          : typeFromState
-                          ? typeFromState.value
-                          : "teen20",
-                        page: tableConfig?.page,
-                        limit: tableConfig?.rowPerPage,
-                        searchBy: "cardResult.result ->> 'mid'",
-                        keyword: tableConfig?.keyword || "",
-                        filter,
-                      })
-                    );
+                    if (type || typeFromState) {
+                      dispatch(
+                        getCardReport({
+                          type: type
+                            ? type.value
+                            : typeFromState
+                            ? typeFromState.value
+                            : "",
+                          page: tableConfig?.page,
+                          limit: tableConfig?.rowPerPage,
+                          searchBy: "cardResult.result ->> 'mid'",
+                          keyword: tableConfig?.keyword || "",
+                          filter,
+                        })
+                      );
+                    }
                   }}
                 >
                   Submit

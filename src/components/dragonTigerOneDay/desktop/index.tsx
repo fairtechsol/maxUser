@@ -15,13 +15,17 @@ import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { cardGamesId } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import PairBox from "./PairBox";
 import CardBox from "./cardBox";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState(
+    `${cardUrl}${cardGamesId.dragonTiger20}`
+  );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -29,13 +33,6 @@ const DragonTigerDesktop = () => {
   const handleClose = () => {
     setShowInactivityModal(false);
   };
-
-  useEffect(() => {
-    let timer = 5 * 1000 * 60;
-    setTimeout(() => {
-      setShowInactivityModal(true);
-    }, timer);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +48,35 @@ const DragonTigerDesktop = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-// console.log('first',dragonTigerDetail)
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShowInactivityModal(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, showInactivityModal]);
+
   return (
     <div>
       <Row>
@@ -88,12 +113,15 @@ const DragonTigerDesktop = () => {
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}
-                id={cardGamesId?.dragonTigerOneDay}
+                id={videoFrameId}
               />
             </div>
           </div>
           <div style={{ height: "760px" }}>
-            <div className="d-sm-flex flex-row justify-content-around align-items-center" style={{ width: "100%", marginTop: "4%",gap:"10px" }}>
+            <div
+              className="d-sm-flex flex-row justify-content-around align-items-center"
+              style={{ width: "100%", marginTop: "4%", gap: "10px" }}
+            >
               <div className="w-50">
                 <BackLay
                   matchOddsData={dragonTigerDetail?.matchOddsData}

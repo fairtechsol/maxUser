@@ -28,7 +28,7 @@ import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { cardGamesId } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { ImClubs } from "react-icons/im";
 import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
@@ -153,6 +153,10 @@ const DragonTigerDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState(
+    `${cardUrl}${cardGamesId.dragonTiger20}`
+  );
   const [firstArr, setFirstArr] = useState(data1);
   const [secondArr, setSecondArr] = useState(data2);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
@@ -162,13 +166,6 @@ const DragonTigerDesktop = () => {
   const handleClose = () => {
     setShowInactivityModal(false);
   };
-
-  useEffect(() => {
-    let timer = 5 * 1000 * 60;
-    setTimeout(() => {
-      setShowInactivityModal(true);
-    }, timer);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -184,6 +181,34 @@ const DragonTigerDesktop = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShowInactivityModal(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
     const mergedArray = data1?.map((item1: any) => {
@@ -287,7 +312,7 @@ const DragonTigerDesktop = () => {
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}
-                id={cardGamesId?.dragonTigerLion}
+                id={videoFrameId}
               />
             </div>
           </div>
@@ -327,17 +352,44 @@ const DragonTigerDesktop = () => {
                         style={{ height: "50px" }}
                       >
                         <div className="dtlTitle">{item?.title}</div>
-                        <div className={`dtlsubTitle ${item?.dragon?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.dragon?.gstatus==="1" ? handleBet(item?.dragon) : null)}>
+                        <div
+                          className={`dtlsubTitle ${
+                            item?.dragon?.gstatus === "0" ? "suspended" : ""
+                          }`}
+                          onClick={() =>
+                            item?.dragon?.gstatus === "1"
+                              ? handleBet(item?.dragon)
+                              : null
+                          }
+                        >
                           {item?.dragon?.b1 || 0}
-                          <span style={{fontSize:"12px"}}>0</span>
+                          <span style={{ fontSize: "12px" }}>0</span>
                         </div>
-                        <div className={`dtlsubTitle ${item?.tiger?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.tiger?.gstatus==="1" ? handleBet(item?.tiger) : null)}>
+                        <div
+                          className={`dtlsubTitle ${
+                            item?.tiger?.gstatus === "0" ? "suspended" : ""
+                          }`}
+                          onClick={() =>
+                            item?.tiger?.gstatus === "1"
+                              ? handleBet(item?.tiger)
+                              : null
+                          }
+                        >
                           {item?.tiger?.b1 || 0}
-                          <span style={{fontSize:"12px"}}>0</span>
+                          <span style={{ fontSize: "12px" }}>0</span>
                         </div>
-                        <div className={`dtlsubTitle ${item?.lion?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.lion?.gstatus==="1" ? handleBet(item?.lion) : null)}>
+                        <div
+                          className={`dtlsubTitle ${
+                            item?.lion?.gstatus === "0" ? "suspended" : ""
+                          }`}
+                          onClick={() =>
+                            item?.lion?.gstatus === "1"
+                              ? handleBet(item?.lion)
+                              : null
+                          }
+                        >
                           {item?.lion?.b1 || 0}
-                          <span style={{fontSize:"12px"}}>0</span>
+                          <span style={{ fontSize: "12px" }}>0</span>
                         </div>
                       </div>
                     </>
@@ -370,17 +422,44 @@ const DragonTigerDesktop = () => {
                         style={{ height: "50px" }}
                       >
                         <div className="dtlTitle">{item?.title}</div>
-                        <div className={`dtlsubTitle ${item?.dragon?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.dragon?.gstatus==="1" ? handleBet(item?.dragon) : null)}>
+                        <div
+                          className={`dtlsubTitle ${
+                            item?.dragon?.gstatus === "0" ? "suspended" : ""
+                          }`}
+                          onClick={() =>
+                            item?.dragon?.gstatus === "1"
+                              ? handleBet(item?.dragon)
+                              : null
+                          }
+                        >
                           {item?.dragon?.b1 || 0}
-                          <span style={{fontSize:"12px"}}>0</span>
+                          <span style={{ fontSize: "12px" }}>0</span>
                         </div>
-                        <div className={`dtlsubTitle ${item?.tiger?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.tiger?.gstatus==="1" ? handleBet(item?.tiger) : null)}>
+                        <div
+                          className={`dtlsubTitle ${
+                            item?.tiger?.gstatus === "0" ? "suspended" : ""
+                          }`}
+                          onClick={() =>
+                            item?.tiger?.gstatus === "1"
+                              ? handleBet(item?.tiger)
+                              : null
+                          }
+                        >
                           {item?.tiger?.b1 || 0}
-                          <span style={{fontSize:"12px"}}>0</span>
+                          <span style={{ fontSize: "12px" }}>0</span>
                         </div>
-                        <div className={`dtlsubTitle ${item?.lion?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.lion?.gstatus==="1" ? handleBet(item?.lion) : null)}>
+                        <div
+                          className={`dtlsubTitle ${
+                            item?.lion?.gstatus === "0" ? "suspended" : ""
+                          }`}
+                          onClick={() =>
+                            item?.lion?.gstatus === "1"
+                              ? handleBet(item?.lion)
+                              : null
+                          }
+                        >
                           {item?.lion?.b1 || 0}
-                          <span style={{fontSize:"12px"}}>0</span>
+                          <span style={{ fontSize: "12px" }}>0</span>
                         </div>
                       </div>
                     </>

@@ -447,8 +447,8 @@ const AccountStatementComponent = () => {
                         }}
                       >
                         {item?.result === "LOSS"
-                          ? `-${Math.floor(item?.lossAmount).toFixed(2)}`
-                          : Math.floor(item?.winAmount).toFixed(2)}
+                          ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
+                          : parseFloat(item?.winAmount).toFixed(2)}
                       </td>
                       <td
                         className={`${
@@ -535,8 +535,8 @@ const AccountStatementComponent = () => {
                             }}
                           >
                             {item?.result === "LOSS"
-                              ? `-${Math.floor(item?.lossAmount).toFixed(2)}`
-                              : Math.floor(item?.winAmount).toFixed(2)}
+                              ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
+                              : parseFloat(item?.winAmount).toFixed(2)}
                           </div>
                         </div>
                       </div>

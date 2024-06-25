@@ -14,14 +14,25 @@ import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { cardGamesId } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import Lucky7BResult from "./lucky7Card";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Lucky7BDesktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState(
+    `${cardUrl}${cardGamesId.lucky7B}`
+  );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
@@ -36,8 +47,37 @@ const Lucky7BDesktop = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShowInactivityModal(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, showInactivityModal]);
+
   return (
-    <div>
+    <>
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
@@ -73,7 +113,7 @@ const Lucky7BDesktop = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Lucky7BResult data={dragonTigerDetail?.videoInfo} />}
-                  id={cardGamesId?.lucky7B}
+                  id={videoFrameId}
                 />
               </div>
             </div>
@@ -153,7 +193,8 @@ const Lucky7BDesktop = () => {
           </Container>
         </Col>
       </Row>
-    </div>
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
+    </>
   );
 };
 
