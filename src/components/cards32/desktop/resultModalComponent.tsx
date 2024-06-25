@@ -18,16 +18,15 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
       result[targetArray].push(item);
     });
   }
-console.log('first',result)
+// console.log('sssss',result)
   const allKeys = Object.keys(data ? data : 0);
   const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
   const numbers = cArray.map((key) => Number(data[key]));
   const max = Math.max(...numbers);
-  console.log("data", numbers);
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="card32resultModal">
-        <div className="card32resultCardContainer">
+        <div className="card32resultCardContainer mb-3">
           <span className="fs-5">Player 8</span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "1" && (
@@ -51,7 +50,7 @@ console.log('first',result)
            
           </div>
         </div>
-        <div className="card32resultCardContainer">
+        <div className="card32resultCardContainer mb-3">
           <span className="fs-5">Player 9</span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "2" && (
@@ -74,7 +73,7 @@ console.log('first',result)
             })}
           </div>
         </div>
-        <div className="card32resultCardContainer">
+        <div className="card32resultCardContainer mb-3">
           <span className="fs-5">Player 10</span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "3" && (
@@ -97,7 +96,7 @@ console.log('first',result)
             })}
           </div>
         </div>
-        <div className="card32resultCardContainer">
+        <div className="card32resultCardContainer mb-3">
           <span className="fs-5">Player 11</span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "4" && (
