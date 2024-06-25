@@ -275,6 +275,7 @@ export const navigateToGameDetail = {
   [cardGamesType.teen20]: "teenPatti20",
   [cardGamesType.card32]: "32cards-A",
   [cardGamesType.lucky7]: "lucky7-A",
+  [cardGamesType.lucky7B]: "lucky7-B",
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
 }
@@ -1374,7 +1375,7 @@ export const casinoIcons = [
     name: "Baccarat",
   },
   {
-    url: "",
+    url: "/lucky7-B",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
     name: "Lucky 7 - B",
