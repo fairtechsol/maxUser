@@ -2,25 +2,159 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { dtrules } from "../../../assets/images";
-import { RootState } from "../../../store/store";
+import {
+  dtrules,
+  A,
+  two,
+  three,
+  four,
+  five,
+  six,
+  seven,
+  eight,
+  nine,
+  ten,
+  eleven,
+  twelve,
+  thirteen,
+} from "../../../assets/images";
+import { AppDispatch, RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import TiePairBox from "./TiePairBox";
 import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import { cardGamesId } from "../../../utils/constants";
+import { ImClubs } from "react-icons/im";
+import { GiSpades } from "react-icons/gi";
+import { BiSolidHeart } from "react-icons/bi";
+import { ImDiamonds } from "react-icons/im";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { useDispatch } from "react-redux";
 
+const cardImg = (type: any) => {
+  return <img src={type} width={25} />;
+};
+const cardBlock = (type: any) => {
+  return (
+    <div>
+      <span>{type}</span>{" "}
+      {type != "Black" ? (
+        <>
+          <ImDiamonds color="#ff0000" /> <BiSolidHeart color="#ff0000" />
+        </>
+      ) : (
+        <>
+          <ImClubs color="#000000" /> <GiSpades color="#000000" />
+        </>
+      )}
+    </div>
+  );
+};
+const data1 = [
+  {
+    title: "Winner",
+    type: "Winner",
+    profitLoss: "0",
+  },
+  {
+    title: cardBlock("Black"),
+    type: "Black",
+    profitLoss: "0",
+  },
+  {
+    title: cardBlock("Red"),
+    type: "Red",
+    profitLoss: "0",
+  },
+  {
+    title: "Odd",
+    type: "Odd",
+    profitLoss: "0",
+  },
+  {
+    title: "Even",
+    type: "Even",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(A),
+    type: "A",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(two),
+    type: "2",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(three),
+    type: "3",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(four),
+    type: "4",
+    profitLoss: "0",
+  },
+];
+const data2 = [
+  {
+    title: cardImg(five),
+    type: "5",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(six),
+    type: "6",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(seven),
+    type: "7",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(eight),
+    type: "8",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(nine),
+    type: "9",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(ten),
+    type: "10",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(eleven),
+    type: "J",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(twelve),
+    type: "Q",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(thirteen),
+    type: "K",
+    profitLoss: "0",
+  },
+];
 const DragonTigerDesktop = () => {
+  const dispatch: AppDispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [firstArr, setFirstArr] = useState(data1);
+  const [secondArr, setSecondArr] = useState(data2);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -51,6 +185,72 @@ const DragonTigerDesktop = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const mergedArray = data1?.map((item1: any) => {
+      const matchDragon = dragonTigerDetail?.dragonData?.find((item2: any) =>
+        item2?.nat?.includes(item1.type)
+      );
+      const matchTiger = dragonTigerDetail?.tigerData?.find((item2: any) =>
+        item2?.nat?.includes(item1.type)
+      );
+      const matchLion = dragonTigerDetail?.lionData?.find((item2: any) =>
+        item2?.nat?.includes(item1.type)
+      );
+      if (matchDragon || matchTiger || matchLion) {
+        return {
+          ...item1,
+          dragon: matchDragon,
+          tiger: matchTiger,
+          lion: matchLion,
+        };
+      } else {
+        return item1;
+      }
+    });
+    const mergedArray2 = data2?.map((item1: any) => {
+      const matchDragon = dragonTigerDetail?.dragonData?.find((item2: any) =>
+        item2?.nat?.includes(item1.type)
+      );
+      const matchTiger = dragonTigerDetail?.tigerData?.find((item2: any) =>
+        item2?.nat?.includes(item1.type)
+      );
+      const matchLion = dragonTigerDetail?.lionData?.find((item2: any) =>
+        item2?.nat?.includes(item1.type)
+      );
+      if (matchDragon || matchTiger || matchLion) {
+        return {
+          ...item1,
+          dragon: matchDragon,
+          tiger: matchTiger,
+          lion: matchLion,
+        };
+      } else {
+        return item1;
+      }
+    });
+    setFirstArr(mergedArray);
+    setSecondArr(mergedArray2);
+  }, [dragonTigerDetail]);
+  const handleBet = (item: any) => {
+    let team = {
+      bettingType: "BACK",
+      matchId: dragonTigerDetail?.id,
+      odd: item?.b1,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.nat,
+      name: item?.nat,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+    };
+    dispatch(
+      selectedBetAction({
+        team,
+        dragonTigerDetail,
+      })
+    );
+    console.log("team", team);
+  };
   return (
     <div>
       <Row>
@@ -87,57 +287,108 @@ const DragonTigerDesktop = () => {
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}
-                id={cardGamesId?.dragonTiger20}
+                id={cardGamesId?.dragonTigerLion}
               />
             </div>
           </div>
-          <div style={{height:"760px"}}>
-            <div style={{ width: "100%", margin: "4% 5px" }}>
-              <TiePairBox
-                tiePair={dragonTigerDetail?.tiePair}
-                data={dragonTigerDetail}
-              />
-            </div>
+          <div style={{ height: "660px" }}>
             <div
               style={{
                 width: "100%",
-                margin: "5px",
                 display: "flex",
                 flexDirection: "row",
-                gap: "8px",
+                gap: "10px",
               }}
             >
-              <OddEven
-                name={"DRAGON"}
-                odds={dragonTigerDetail?.dragonOdds}
-                data={dragonTigerDetail}
-              />
-              <OddEven
-                name={"TIGER"}
-                odds={dragonTigerDetail?.tigerOdds}
-                data={dragonTigerDetail}
-              />
+              <div
+                style={{
+                  width: "50%",
+                  marginTop: "5%",
+                  display: "flex",
+                  flexDirection: "column",
+                  border: "0.3px solid #c7c8ca",
+                  marginLeft: "5px",
+                }}
+              >
+                <div
+                  className="w-100 d-sm-flex flex-row"
+                  style={{ height: "30px" }}
+                >
+                  <div className="dtlTitle"> </div>
+                  <div className="dtlsubTitle">Dragon</div>
+                  <div className="dtlsubTitle">Tiger</div>
+                  <div className="dtlsubTitle">Lion</div>
+                </div>
+                {firstArr?.map((item: any, index: any) => {
+                  return (
+                    <>
+                      <div
+                        className="w-100 d-sm-flex flex-row"
+                        style={{ height: "50px" }}
+                      >
+                        <div className="dtlTitle">{item?.title}</div>
+                        <div className={`dtlsubTitle ${item?.dragon?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.dragon?.gstatus==="1" ? handleBet(item?.dragon) : null)}>
+                          {item?.dragon?.b1 || 0}
+                          <span style={{fontSize:"12px"}}>0</span>
+                        </div>
+                        <div className={`dtlsubTitle ${item?.tiger?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.tiger?.gstatus==="1" ? handleBet(item?.tiger) : null)}>
+                          {item?.tiger?.b1 || 0}
+                          <span style={{fontSize:"12px"}}>0</span>
+                        </div>
+                        <div className={`dtlsubTitle ${item?.lion?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.lion?.gstatus==="1" ? handleBet(item?.lion) : null)}>
+                          {item?.lion?.b1 || 0}
+                          <span style={{fontSize:"12px"}}>0</span>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
+              <div
+                style={{
+                  width: "50%",
+                  marginTop: "5%",
+                  display: "flex",
+                  flexDirection: "column",
+                  border: "0.3px solid #c7c8ca",
+                }}
+              >
+                <div
+                  className="w-100 d-sm-flex flex-row"
+                  style={{ height: "30px" }}
+                >
+                  <div className="dtlTitle"> </div>
+                  <div className="dtlsubTitle">Dragon</div>
+                  <div className="dtlsubTitle">Tiger</div>
+                  <div className="dtlsubTitle">Lion</div>
+                </div>
+                {secondArr?.map((item: any, index: any) => {
+                  return (
+                    <>
+                      <div
+                        className="w-100 d-sm-flex flex-row"
+                        style={{ height: "50px" }}
+                      >
+                        <div className="dtlTitle">{item?.title}</div>
+                        <div className={`dtlsubTitle ${item?.dragon?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.dragon?.gstatus==="1" ? handleBet(item?.dragon) : null)}>
+                          {item?.dragon?.b1 || 0}
+                          <span style={{fontSize:"12px"}}>0</span>
+                        </div>
+                        <div className={`dtlsubTitle ${item?.tiger?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.tiger?.gstatus==="1" ? handleBet(item?.tiger) : null)}>
+                          {item?.tiger?.b1 || 0}
+                          <span style={{fontSize:"12px"}}>0</span>
+                        </div>
+                        <div className={`dtlsubTitle ${item?.lion?.gstatus==="0"?"suspended":""}`} onClick={() => (item?.lion?.gstatus==="1" ? handleBet(item?.lion) : null)}>
+                          {item?.lion?.b1 || 0}
+                          <span style={{fontSize:"12px"}}>0</span>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
             </div>
-            <div
-              style={{
-                width: "100%",
-                margin: "5px",
-                display: "flex",
-                flexDirection: "row",
-                gap: "8px",
-              }}
-            >
-              <CardBox
-                name={"DRAGON"}
-                cardData={dragonTigerDetail?.dragonCards}
-                data={dragonTigerDetail}
-              />
-              <CardBox
-                name={"TIGER"}
-                cardData={dragonTigerDetail?.tigerCards}
-                data={dragonTigerDetail}
-              />
-            </div>
+
             <div style={{ width: "100%", margin: "5px" }}>
               <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
             </div>

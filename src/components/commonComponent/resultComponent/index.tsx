@@ -50,7 +50,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         </div>
         <div>
         <span style={{fontWeight:"bold"}}>Match Time:</span>
-        <span>{moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A')}</span>
+        <span>{data?.createdAt ? moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A'):''}</span>
         </div>
       </div>
       {type === cardGamesType?.dragonTiger20 ? (
