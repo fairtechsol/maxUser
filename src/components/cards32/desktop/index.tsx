@@ -12,13 +12,24 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import RulesModal from "../../commonComponent/rulesModal";
 import { card32rules } from "../../../assets/images";
-import { cardGamesId } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState(
+    `${cardUrl}${cardGamesId?.card32}`
+  );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
@@ -33,8 +44,37 @@ const Cards32Desktop = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShowInactivityModal(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, showInactivityModal]);
+
   return (
-    <div>
+    <>
       <Row>
         <Col md={8}>
           <div style={{ height: "400px", margin: "5px" }}>
@@ -67,36 +107,36 @@ const Cards32Desktop = () => {
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
                 result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
-                id={cardGamesId?.card32}
+                id={videoFrameId}
               />
             </div>
             {/* <Row md={4}> */}
 
             {/* </Row> */}
           </div>
-          <div style={{ height: "350px"}}>
-          <div className="d-flex px-2 mt-5">
-            <DynamicTable
-              odds={dragonTigerDetail?.set1}
-              data={dragonTigerDetail}
-              playerNum={[8, 9]}
-            />
-            <div style={{ width: "10px" }}></div>
-            <DynamicTable
-              odds={dragonTigerDetail?.set2}
-              data={dragonTigerDetail}
-              playerNum={[10, 11]}
-            />
+          <div style={{ height: "350px" }}>
+            <div className="d-flex px-2 mt-5">
+              <DynamicTable
+                odds={dragonTigerDetail?.set1}
+                data={dragonTigerDetail}
+                playerNum={[8, 9]}
+              />
+              <div style={{ width: "10px" }}></div>
+              <DynamicTable
+                odds={dragonTigerDetail?.set2}
+                data={dragonTigerDetail}
+                playerNum={[10, 11]}
+              />
+            </div>
+            <div className="mt-2">
+              <CardResultBox
+                data={dragonTigerDetail}
+                name={["8", "9", "10", "11"]}
+                type={"card32"}
+              />
+            </div>
           </div>
-          <div className="mt-2">
-            <CardResultBox
-              data={dragonTigerDetail}
-              name={["8", "9", "10", "11"]}
-              type={"card32"}
-            />
-          </div>
-          </div>
-         
+
           <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>
         <Col md={4}>
@@ -119,7 +159,8 @@ const Cards32Desktop = () => {
           </Container>
         </Col>
       </Row>
-    </div>
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
+    </>
   );
 };
 
