@@ -20,7 +20,6 @@ const CardResultBox = ({ data, name, type }: any) => {
     dispatch(resultDragonTiger(id));
   };
   
-// console.log(liveGameResultTop10, "sgfvd",resultData )
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">
@@ -77,7 +76,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "2" ? "#ffff33" : item?.result === "2" ? "00ff00" : "#ff4500",
+                    color: item?.result === "3" ? "#ffff33" : item?.result === "2" ? "00ff00" : "#ff4500",
                   }}
                 >
                   {item?.result === "1"

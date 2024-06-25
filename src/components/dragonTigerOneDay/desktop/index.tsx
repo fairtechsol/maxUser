@@ -17,6 +17,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import { cardGamesId } from "../../../utils/constants";
 import PairBox from "./PairBox";
+import CardBox from "./cardBox";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -50,7 +51,7 @@ const DragonTigerDesktop = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
+// console.log('first',dragonTigerDetail)
   return (
     <div>
       <Row>
@@ -116,17 +117,32 @@ const DragonTigerDesktop = () => {
               }}
             >
               <OddEven
-                name={"DRAGON"}
-                odds={dragonTigerDetail?.dragonOdds}
+                title1={"even"}
+                title2={"odd"}
+                dragonData={dragonTigerDetail?.dragonData}
+                tigerData={dragonTigerDetail?.tigerData}
                 data={dragonTigerDetail}
               />
               <OddEven
-                name={"TIGER"}
-                odds={dragonTigerDetail?.tigerOdds}
+                title1={"red"}
+                title2={"black"}
+                dragonData={dragonTigerDetail?.dragonData}
+                tigerData={dragonTigerDetail?.tigerData}
                 data={dragonTigerDetail}
               />
             </div>
-
+            <div
+              style={{
+                width: "100%",
+                marginLeft: "5px",
+              }}
+            >
+              <CardBox
+                dragonData={dragonTigerDetail?.dragonData}
+                tigerData={dragonTigerDetail?.tigerData}
+                data={dragonTigerDetail}
+              />
+            </div>
             <div style={{ width: "100%", margin: "5px" }}>
               <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
             </div>

@@ -25,7 +25,7 @@ const PairBox = ({ odds, data }: any) => {
     );
     console.log("team", team);
   };
-
+// console.log('first',odds)
   return (
     <div className="w-100">
        <div
@@ -41,7 +41,7 @@ const PairBox = ({ odds, data }: any) => {
                 }}
               >
                 <CommonButtonBox
-            value1={odds?.[0]?.rate}
+            value1={odds?.b1}
             value2={"EVEN"}
             value3={
               data?.profitLoss
@@ -52,8 +52,8 @@ const PairBox = ({ odds, data }: any) => {
             }
             width={"90%"}
             handleBet={handleBet}
-            lock={odds?.[0]?.gstatus === "0" ? true : false}
-            data={odds?.[0]}
+            lock={odds?.gstatus === "CLOSED" || odds?.b1==="0.00" ? true : false}
+            data={odds}
           />
     </div>
     </div>
