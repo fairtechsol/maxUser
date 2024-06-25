@@ -10,7 +10,7 @@ interface Props {
   };
 }
 
-const Dragon20ResultComponent: React.FC<Props> = ({ data }: any) => {
+const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
 
 const resultCards = data?.result?.cards?.split(',')
 const desc = data?.result?.desc?.split('*')
@@ -93,4 +93,4 @@ const tigerCard  = tigerData?.[2]
   );
 };
 
-export default Dragon20ResultComponent;
+export default DragonTigerOneDayResultComponent;

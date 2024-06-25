@@ -14,6 +14,9 @@ import CustomTable from "../../../components/commonComponent/table";
 import NotSet from "../../../components/commonComponent/notSet";
 import moment from "moment";
 import { useLocation } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import { ResultComponent } from "../../../components/commonComponent/resultComponent";
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 
 const cardGames = [
   { value: "", label: "Select Casino Type", disabled: true },
@@ -43,6 +46,7 @@ const CasinoReports = () => {
   const dispatch: AppDispatch = useDispatch();
   const { state } = useLocation();
 
+  const [lgShow, setLgShow] = useState(false);
   const [date, setDate] = useState<any>(new Date());
   const [type, setType] = useState<any>(null);
 
@@ -51,7 +55,13 @@ const CasinoReports = () => {
   const [tableConfig, setTableConfig] = useState<any>(null);
 
   const { cardReport } = useSelector((state: RootState) => state.user.report);
-
+  const { resultData } = useSelector(
+    (state: RootState) => state.card
+  );
+  const handleResult = (id: any) => {
+    setLgShow(true);
+    dispatch(resultDragonTiger(id));
+  };
   useEffect(() => {
     if (state?.cardType) {
       let newType = cardGames.filter((item: any) => {
@@ -187,7 +197,7 @@ const CasinoReports = () => {
               {cardReport?.results?.map((item: any, index: number) => {
                 return (
                   <tr className={`${isMobile && "title-12"}`} key={index}>
-                    <td style={{ color: "#0d6efd" }}>
+                    <td style={{ color: "#0d6efd" }} onClick={() => handleResult(item?.mid)}>
                       <NotSet item={item?.mid} />
                     </td>
                     <td style={{ cursor: "pointer" }}>
@@ -200,6 +210,20 @@ const CasinoReports = () => {
           </Stack>
         </div>
       </ReportContainer>
+      <Modal
+        size="lg"
+        show={lgShow}
+        onHide={() => setLgShow(false)}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Body style={{ padding: 0 }}>
+          <ResultComponent
+            data={resultData}
+            setfalse={setLgShow}
+            type={resultData?.gameType}
+          />
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
