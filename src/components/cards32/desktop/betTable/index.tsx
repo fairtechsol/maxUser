@@ -108,7 +108,7 @@ console.log('first',odds)
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
               odds?.[0]?.gstatus === "CLOSED" ||
-              odds?.[0]?.b1 ==="0.00" 
+              parseFloat(odds?.[0]?.b1) ==0 
                 ? null
                 : handleBet(odds?.[0], "BACK")
             }
@@ -122,7 +122,7 @@ console.log('first',odds)
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
               odds?.[0]?.gstatus === "CLOSED" ||
-              odds?.[0]?.l1 ==="0.00" 
+              parseFloat(odds?.[0]?.l1) == 0 
                 ? null
                 : handleBet(odds?.[0], "LAY")
             }
