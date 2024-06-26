@@ -21,7 +21,7 @@ const DragonTigerMobile = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.dragonTiger20}`
+    `${cardUrl}${cardGamesId.dragonTiger202}`
   );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
