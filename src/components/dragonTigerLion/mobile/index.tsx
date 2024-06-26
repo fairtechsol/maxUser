@@ -5,48 +5,39 @@ import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
-import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/dragonCard";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
-  const [activeCardTab, setActiveCardTab] = useState(false);
+  const [activeCardTab, setActiveCardTab] = useState('dragon');
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.dragonTigerLion}`
+    `${cardUrl}${cardGamesId.dragonTiger20}`
   );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
     };
-
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
         setShow(true);
         setVideoFrameId("");
       }
     };
-
     const activityEvents = ["mousemove", "keydown", "scroll", "click"];
-
     activityEvents.forEach((event) => {
       window.addEventListener(event, resetTimer);
     });
-
     const intervalId = setInterval(checkInactivity, 1000);
-
     return () => {
       activityEvents.forEach((event) => {
         window.removeEventListener(event, resetTimer);
@@ -54,42 +45,25 @@ const DragonTigerMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, show]);
-
   return (
     <>
       <div>
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
-          <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
+            <span
+              style={{ fontSize: "12px", fontWeight: "bold" }}
+              onClick={() => setActiveTab(false)}
             >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
+              GAME
+            </span>
             <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
+            <span
+              style={{ fontSize: "12px", fontWeight: "bold" }}
+              onClick={() => setActiveTab(true)}
             >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
+              PLACED BET({placedBets?.length || 0})
+            </span>
           </div>
           <div className="dt20subheader2">
             <span
@@ -136,81 +110,58 @@ const DragonTigerMobile = () => {
                 />
               </div>
             </div>
-
             <div style={{ height: "820px" }}>
-              <div style={{ width: "100%" }}>
-                <TiePairBox
-                  tiePair={dragonTigerDetail?.tiePair}
-                  data={dragonTigerDetail}
-                />
-              </div>
               <div className="dt20TabBox">
-                <div className="dt20tabheader">
-                <div
-                    style={{
-                      height: "100%",
-                      borderTop: !activeCardTab ? "2px solid white" : "none",
-                      padding: "5px",
-                    }}
-                  >
-                    <span
-                      style={{ fontSize: "12px", fontWeight: "bold" }}
-                      onClick={() => setActiveCardTab(false)}
-                    >
-                      DRAGON
-                    </span>
-                  </div>
+                <div className="dtltabheader">
                   <span
-                    style={{ fontSize: "18px", padding: "5px 0px 0px 0px" }}
+                    style={{ fontSize: "12px", fontWeight: "bold" }}
+                    onClick={() => setActiveCardTab('dragon')}
                   >
-                    {" "}
-                    |{" "}
+                    DRAGON
                   </span>
-                  <div
-                    style={{
-                      height: "100%",
-                      borderTop: activeCardTab ? "2px solid white" : "none",
-                      padding: "5px",
-                    }}
+                  <span style={{ fontSize: "18px" }}> | </span>
+                  <span
+                    style={{ fontSize: "12px", fontWeight: "bold" }}
+                    onClick={() => setActiveCardTab('tiger')}
                   >
-                    <span
-                      style={{ fontSize: "12px", fontWeight: "bold" }}
-                      onClick={() => setActiveCardTab(true)}
-                    >
-                      TIGER
-                    </span>
-                  </div>
+                    TIGER
+                  </span>
+                  <span style={{ fontSize: "18px" }}> | </span>
+                  <span
+                    style={{ fontSize: "12px", fontWeight: "bold" }}
+                    onClick={() => setActiveCardTab('lion')}
+                  >
+                    LION
+                  </span>
                 </div>
               </div>
-              {activeCardTab ? (
+              {activeCardTab ==='dragon' ? (
                 <div>
                   <OddEven
                     name={"DRAGON"}
-                    odds={dragonTigerDetail?.dragonOdds}
-                    data={dragonTigerDetail}
-                  />
-                  <CardBox
-                    name={"DRAGON"}
-                    cardData={dragonTigerDetail?.dragonCards}
+                    odds={dragonTigerDetail?.dragonData}
                     data={dragonTigerDetail}
                   />
                 </div>
-              ) : (
+              ) : activeCardTab ==='tiger' ? (
                 <div>
                   <OddEven
                     name={"TIGER"}
-                    odds={dragonTigerDetail?.tigerOdds}
+                    odds={dragonTigerDetail?.tigerData}
                     data={dragonTigerDetail}
                   />
-                  <CardBox
-                    name={"TIGER"}
-                    cardData={dragonTigerDetail?.tigerCards}
+                </div>
+              ) :  (
+                <div>
+                  <OddEven
+                    name={"LION"}
+                    odds={dragonTigerDetail?.lionData}
                     data={dragonTigerDetail}
                   />
                 </div>
               )}
               <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+                <CardResultBox data={dragonTigerDetail} name={["D","T","L"]} />
               </div>
             </div>
           </div>
@@ -224,5 +175,4 @@ const DragonTigerMobile = () => {
     </>
   );
 };
-
 export default DragonTigerMobile;
