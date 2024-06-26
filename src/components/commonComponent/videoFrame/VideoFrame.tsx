@@ -3,7 +3,7 @@ import FlipClock from "./FlipClock";
 import isMobile from "../../../utils/screenDimension";
 import { cardUrl } from "../../../utils/constants";
 
-const VideoFrame = ({ result, time,id }: any) => {
+const VideoFrame = ({ result, time, id }: any) => {
   // const [showModal, setModalOpen] = useState(false);
 
   return (
@@ -37,7 +37,7 @@ const VideoFrame = ({ result, time,id }: any) => {
             <div>
               <iframe
                 width="100%"
-                height={isMobile?"250":"380"}
+                height={isMobile ? "250" : "380"}
                 src={id}
                 // title="YouTube video player"
                 // frameborder="0"
