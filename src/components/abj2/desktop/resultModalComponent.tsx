@@ -31,10 +31,10 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
     return (
       <div
       className={className}
-      style={{ ...style, display: 'block', cursor: 'pointer' , marginBottom: "80px",position: "absolute" }}
+      style={{ ...style, display: 'block', cursor: 'pointer' ,backgroundColor:"#9e9ba1",borderRadius:"10px" }}
       onClick={onClick}
     >
-      <img src={rightArrow} alt="Next" />
+      {/* <img src={rightArrow} alt="Next" /> */}
     </div>
     );
   }
@@ -44,10 +44,10 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
     return (
       <div
       className={className}
-      style={{ ...style, display: 'block', cursor: 'pointer', marginBottom: "80px",position: "absolute"  }}
+      style={{ ...style, display: 'block', cursor: 'pointer',backgroundColor:"#9e9ba1" ,borderRadius:"10px"}}
       onClick={onClick}
     >
-      <img src={leftArrow} alt="Previous" />
+      {/* <img src={leftArrow} alt="Previous" /> */}
 
     </div>
     );
@@ -56,11 +56,12 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
   const sliderSettings = (length: any, arrow: any) => ({
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: isMobile? 3 :10,
     slidesToScroll: 3,
+    // arrows: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    initialSlide: length > 3 ? length - 3 : 0,
+    initialSlide: isMobile? length > 3 ? length - 3 : 0 : 3,
 
     responsive: [
       {
@@ -140,14 +141,14 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
         <div className="abjresultCardContainer2">
         <div
               style={{
-                width: isMobile ? "70px" : "110px",
-                margin: "0px 10px 20px 10px",
+                width: isMobile ? "70px" : "85%",
+                margin: "8px 9px 10px 11px",
               }}
             >
               <div>
                 {teamB?.length > minLength ? (
                   <Slider {...sliderSettings(teamB.length, teamB.length > minLength)}>
-                  {teamB.map((item:any, index:any) => (
+                  {teamB?.map((item:any, index:any) => (
                     <div key={index}>
                       <HandleCards card={item} />
                     </div>
@@ -155,7 +156,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
                 </Slider>
               ) : (
                 <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                  {teamB.map((item:any, index:any) => (
+                  {teamB?.map((item:any, index:any) => (
                     <HandleCards key={index} card={item} />
                   ))}
                 </div>
@@ -164,7 +165,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
               <div className="">
               {teamA?.length > minLength ? (
                       <Slider {...sliderSettings(teamA.length, teamA.length > minLength)}>
-                      {teamA.map((item:any, index:any) => (
+                      {teamA?.map((item:any, index:any) => (
                         <div key={index}>
                           <HandleCards card={item} />
                         </div>
@@ -172,7 +173,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
                     </Slider>
                   ) : (
                     <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                      {teamA.map((item:any, index:any) => (
+                      {teamA?.map((item:any, index:any) => (
                         <HandleCards key={index} card={item} />
                       ))}
                     </div>
