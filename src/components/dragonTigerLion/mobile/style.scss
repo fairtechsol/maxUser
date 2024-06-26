@@ -106,7 +106,7 @@
   }
   .dt20subheader2{
     width: 60%;
-    color: #000;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -134,23 +134,22 @@
   .dt20TabBox{
     width: 100%;
     background-color: #004a25;
-    padding: 5px;
+    // padding: 5px;
     display: flex;
     flex-direction: row;
+    margin-top: 40px;
   }
-  .dt20tabheader{
-    width: 30%;
+  .dtltabheader{
+    width: 100%;
     color: #fff;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
   }
   .oddEvenContainerMob{
     width: 100%;
     background-color: #eee;
     padding: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
   }
   .cardContainerMob{
@@ -176,7 +175,36 @@
     position: relative;
     text-align: center;
   }
-
+.dlt-m-conatainer{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+  .dtlTitle-m{
+    width: 60%;
+    height: 50px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-bottom:0.1px solid #c7c8ca;
+    padding: 5px;
+    font-weight: 600;
+    color: #000;
+  }
+  .dtlsubTitle-m{
+    width: 40%;
+    height: 50px;
+    background-color: #72bbef;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom:0.1px solid #c7c8ca;
+    border-right: 0.1px solid #c7c8ca;
+    font-weight: 600;
+    color: #000;
+  }
   @media (max-width: 768px) {
 
   

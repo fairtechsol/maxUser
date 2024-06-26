@@ -19,7 +19,6 @@ const CardResultBox = ({ data, name, type }: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
   };
-  
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">
@@ -76,12 +75,12 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "3" ? "#ffff33" : item?.result === "2" ? "00ff00" : "#ff4500",
+                    color: item?.result === "3" ? "#ffff33" : item?.result === "2" ? "#00ff00" : "#ff4500",
                   }}
                 >
                   {item?.result === "1"
                     ? name?.[0]
-                    : item?.result === "2"
+                    : item?.result === "2" || item?.result === "21"
                     ? name?.[1]
                     : name?.[2]
                     ? name?.[2]
@@ -101,7 +100,7 @@ const CardResultBox = ({ data, name, type }: any) => {
           <ResultComponent
             data={resultData}
             setfalse={setLgShow}
-            type={resultData?.gameType}
+            type={data?.type}
           />
         </Modal.Body>
       </Modal>

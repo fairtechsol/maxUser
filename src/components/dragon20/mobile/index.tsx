@@ -130,19 +130,23 @@ const DragonTigerMobile = () => {
               </div>
               <div className="dt20TabBox">
                 <div className="dt20tabheader">
+                  <div style={{height: "100%",borderTop: !activeCardTab ? "2px solid white" : "none",  padding: "5px"}}>
                   <span
-                    style={{ fontSize: "12px", fontWeight: "bold" }}
+                    style={{ fontSize: "12px", fontWeight: "bold"}}
                     onClick={() => setActiveCardTab(false)}
                   >
                     DRAGON
                   </span>
-                  <span style={{ fontSize: "18px" }}> | </span>
+                  </div>
+                  <span style={{ fontSize: "18px", padding: "5px 0px 0px 0px" }}> | </span>
+                  <div style={{height: "100%",borderTop: activeCardTab ? "2px solid white" : "none", padding: "5px"}}>
                   <span
                     style={{ fontSize: "12px", fontWeight: "bold" }}
                     onClick={() => setActiveCardTab(true)}
                   >
                     TIGER
                   </span>
+                  </div>
                 </div>
               </div>
               {activeCardTab ? (
