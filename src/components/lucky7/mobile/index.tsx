@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
@@ -13,15 +13,47 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import Lucky7Result from "../desktop/lucky7Card";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { cardGamesId } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 
 const Lucky7Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   // const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState(
+    `${cardUrl}${cardGamesId.lucky7}`
+  );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShow(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, show]);
 
   return (
     <>
@@ -80,7 +112,7 @@ const Lucky7Mobile = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}
-                  id={cardGamesId?.lucky7}
+                  id={videoFrameId}
                 />
               </div>
             </div>

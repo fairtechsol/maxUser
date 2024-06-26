@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -12,13 +12,46 @@ import Card32Result from "../desktop/card32Card";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import RulesModal from "../../commonComponent/rulesModal";
 import { card32rules } from "../../../assets/images";
-import { cardGamesId } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 const Cards32Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
-  const [show, setShow] = useState(false);
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState(
+    `${cardUrl}${cardGamesId?.card32}`
+  );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShowInactivityModal(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, showInactivityModal]);
+
   return (
     <>
       <div>
@@ -40,7 +73,12 @@ const Cards32Mobile = () => {
             </span>
           </div>
           <div className="dt20subheader2">
-            <span style={{ textDecoration: "underline" }} onClick={() => setShow(true)}>Rules</span>
+            <span
+              style={{ textDecoration: "underline" }}
+              onClick={() => setShowInactivityModal(true)}
+            >
+              Rules
+            </span>
             <span>
               {dragonTigerDetail?.videoInfo
                 ? `Round ID:  ${handleRoundId(
@@ -54,8 +92,7 @@ const Cards32Mobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-       
-           <div style={{ width: "100%", height: "240px" }}>
+            <div style={{ width: "100%", height: "240px" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -74,45 +111,47 @@ const Cards32Mobile = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
-                  id={cardGamesId?.card32}
+                  id={videoFrameId}
                 />
               </div>
             </div>
             <div style={{ height: "400px" }}>
-            <div className="mt-5">
-              <DynamicTable
-                back={true}
-                odds={dragonTigerDetail?.set1}
-                data={dragonTigerDetail}
-                playerNum={[8, 9]}
-              />
+              <div className="mt-5">
+                <DynamicTable
+                  back={true}
+                  odds={dragonTigerDetail?.set1}
+                  data={dragonTigerDetail}
+                  playerNum={[8, 9]}
+                />
 
-              <DynamicTable
-                back={false}
-                odds={dragonTigerDetail?.set2}
-                data={dragonTigerDetail}
-                playerNum={[10, 11]}
-              />
+                <DynamicTable
+                  back={false}
+                  odds={dragonTigerDetail?.set2}
+                  data={dragonTigerDetail}
+                  playerNum={[10, 11]}
+                />
+              </div>
+              <div style={{ marginTop: "10px" }}>
+                {" "}
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["8", "9", "10", "11"]}
+                  type={"card32"}
+                />
+              </div>
             </div>
-            <div style={{ marginTop: "10px" }}>
-              {" "}
-              <CardResultBox
-                data={dragonTigerDetail}
-                name={["8", "9", "10", "11"]}
-                type={"card32"}
-              />
-            </div>
-            </div>
-          
-           </div>
-          
+          </div>
         ) : (
           <>
             <MyBet />
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <RulesModal
+        show={showInactivityModal}
+        setShow={setShowInactivityModal}
+        rule={card32rules}
+      />
     </>
   );
 };

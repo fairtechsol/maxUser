@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
@@ -12,16 +12,48 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { cardGamesId } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import Lucky7BResult from "../desktop/lucky7Card";
 
 const Lucky7BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   // const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState(
+    `${cardUrl}${cardGamesId.lucky7B}`
+  );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShow(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, show]);
 
   return (
     <>
@@ -80,59 +112,62 @@ const Lucky7BMobile = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Lucky7BResult data={dragonTigerDetail?.videoInfo} />}
-                  id={cardGamesId?.lucky7}
+                  id={videoFrameId}
                 />
               </div>
             </div>
 
-         <div style={{ height: "550px"}}>
-         <div style={{ width: "100%", marginTop: "30px" }}>
-              <TiePairBox
-                lowHigh={dragonTigerDetail?.lowHigh}
-                data={dragonTigerDetail}
-              />
+            <div style={{ height: "550px" }}>
+              <div style={{ width: "100%", marginTop: "30px" }}>
+                <TiePairBox
+                  lowHigh={dragonTigerDetail?.lowHigh}
+                  data={dragonTigerDetail}
+                />
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  padding: "10px 5px",
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "8px",
+                }}
+              >
+                <OddEven
+                  odds={dragonTigerDetail?.redBlack}
+                  data={dragonTigerDetail}
+                  name={"DRAGON"}
+                  card={true}
+                />
+                <OddEven
+                  name={"TIGER"}
+                  odds={dragonTigerDetail?.luckOdds}
+                  card={false}
+                  data={dragonTigerDetail}
+                />
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "8px",
+                }}
+              >
+                <CardBox
+                  name={"DRAGON"}
+                  cardData={dragonTigerDetail?.luckyCards}
+                  data={dragonTigerDetail}
+                  rate={dragonTigerDetail?.luckyCards?.rate}
+                />
+              </div>
+              <div style={{ width: "100%", marginTop: "10px" }}>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["L", "H", "T"]}
+                />
+              </div>
             </div>
-            <div
-              style={{
-                width: "100%",
-                padding: "10px 5px",
-                display: "flex",
-                flexDirection: "row",
-                gap: "8px",
-              }}
-            >
-              <OddEven
-                odds={dragonTigerDetail?.redBlack}
-                data={dragonTigerDetail}
-                name={"DRAGON"}
-                card={true}
-              />
-              <OddEven
-                name={"TIGER"}
-                odds={dragonTigerDetail?.luckOdds}
-                card={false}
-                data={dragonTigerDetail}
-              />
-            </div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "row",
-                gap: "8px",
-              }}
-            >
-              <CardBox
-                name={"DRAGON"}
-                cardData={dragonTigerDetail?.luckyCards}
-                data={dragonTigerDetail}
-                rate={dragonTigerDetail?.luckyCards?.rate}
-              />
-            </div>
-            <div style={{ width: "100%", marginTop: "10px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["L", "H", "T"]} />
-            </div>
-         </div>
           </div>
         ) : (
           <>
