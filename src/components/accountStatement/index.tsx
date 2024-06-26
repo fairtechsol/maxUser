@@ -295,7 +295,11 @@ const AccountStatementComponent = () => {
                           dispatch(
                             getPlacedBetsForAccountStatement({
                               runnerId: match[1],
-                              status: "MATCHED",
+                              result: `inArr${JSON.stringify([
+                                "WIN",
+                                "LOSS",
+                                "TIE",
+                              ])}`,
                               userId: getProfile?.id,
                             })
                           );
@@ -342,7 +346,11 @@ const AccountStatementComponent = () => {
                     dispatch(
                       getPlacedBetsForAccountStatement({
                         runnerId: show?.runnerId,
-                        status: "MATCHED",
+                        result: `inArr${JSON.stringify([
+                          "WIN",
+                          "LOSS",
+                          "TIE",
+                        ])}`,
                         userId: getProfile?.id,
                       })
                     );
