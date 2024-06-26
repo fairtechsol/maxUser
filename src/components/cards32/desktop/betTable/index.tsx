@@ -6,6 +6,9 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any, type: any) => {
+    if(type === "LAY" &&  item?.l1=="0.00"){
+      return;
+    }
     let team = {
       bettingType: type,
       matchId: data?.id,
@@ -28,6 +31,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
 
   let player1Key = `player${playerNum[0]}`;
   let player2Key = `player${playerNum[1]}`;
+// console.log('first',odds)
   return (
     <div className="card32-table-container">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
@@ -106,8 +110,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[0]?.gstatus === "CLOSED" ||
-              parseFloat(odds?.[0]?.b1) ==0 
+              odds?.[0]?.gstatus === "CLOSED" 
                 ? null
                 : handleBet(odds?.[0], "BACK")
             }
@@ -120,8 +123,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[0]?.gstatus === "CLOSED" ||
-              parseFloat(odds?.[0]?.l1) == 0 
+              odds?.[0]?.gstatus === "CLOSED" 
                 ? null
                 : handleBet(odds?.[0], "LAY")
             }
@@ -189,9 +191,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             className="card32-table-item back"
             style={{ width: "50%" }}
             onClick={() =>
-              odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[1]?.gstatus === "CLOSED" ||
-              odds?.[1]?.b1 ==="0.00" 
+              odds?.[1]?.gstatus === "SUSPENDED" ||
+              odds?.[1]?.gstatus === "CLOSED" 
                 ? null
                 : handleBet(odds?.[1], "BACK")
             }
@@ -203,9 +204,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             className="card32-table-item lay"
             style={{ width: "50%" }}
             onClick={() =>
-              odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[1]?.gstatus === "CLOSED"||
-              odds?.[1]?.l1 ==="0.00" 
+              odds?.[1]?.gstatus === "SUSPENDED" ||
+              odds?.[1]?.gstatus === "CLOSED"
                 ? null
                 : handleBet(odds?.[1], "LAY")
             }
