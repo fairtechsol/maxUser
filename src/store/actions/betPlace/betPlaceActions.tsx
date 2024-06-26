@@ -49,8 +49,14 @@ export const getPlacedBetsForAccountStatement = createAsyncThunk<any, any>(
             : requestData.runnerId
             ? `&runnerId=eq${requestData.runnerId}`
             : ""
-        }&createBy=eq${requestData.userId}&status=${
-          requestData.status
+        }${
+          requestData.result
+            ? `&result=${requestData.result}`
+            : requestData.status
+            ? `&status=${requestData.status}`
+            : ""
+        }&createBy=eq${
+          requestData.userId
         }&sort=betPlaced.createdAt:DESC&isCurrentBets=true`
       );
       if (resp) {
