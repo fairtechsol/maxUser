@@ -88,7 +88,7 @@ const Lucky7Desktop = () => {
                     {dragonTigerDetail?.name}
                   </span>
                   <a
-                    style={{ fontSize: "14px", textDecoration: "underline" }}
+                    style={{ fontSize: "14px", textDecoration: "underline",cursor: "pointer" }}
                     onClick={() => setShow(true)}
                   >
                     {" "}

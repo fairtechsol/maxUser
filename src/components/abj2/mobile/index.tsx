@@ -61,19 +61,25 @@ const Abj2Mobile = () => {
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
+          <div style={{height: "100%",borderTop: !activeTab ? "2px solid white" : "none",  padding: "5px"}}>
+
             <span
               style={{ fontSize: "12px", fontWeight: "bold" }}
               onClick={() => setActiveTab(false)}
             >
               GAME
             </span>
+            </div>
             <span style={{ fontSize: "18px" }}> | </span>
+            <div style={{height: "100%",borderTop: activeTab ? "2px solid white" : "none", padding: "5px"}}>
+
             <span
               style={{ fontSize: "12px", fontWeight: "bold" }}
               onClick={() => setActiveTab(true)}
             >
               PLACED BET({placedBets?.length || 0})
             </span>
+            </div>
           </div>
           <div className="dt20subheader2">
             <span

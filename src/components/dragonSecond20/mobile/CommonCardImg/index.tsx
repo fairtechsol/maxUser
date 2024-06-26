@@ -16,6 +16,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any) => {
         return (
+          <div>
           <div
             key={item?.sid}
             className={item?.gstatus === "0" ? "suspended" : ""}
@@ -28,37 +29,40 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
             onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
           >
             <img src={item?.imgSrc} width={"30px"} />
-            <span
-              style={{ fontSize: "12px" }}
-              className={`${
-                data?.profitLoss
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
-                      ? "color-green"
-                      : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
-                      ? "color-red"
-                      : ""
-                    : ""
-                  : ""
-              }`}
-            >
-              {data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
-                  : 0
-                : 0}
-            </span>
+           
           </div>
+           <div
+           style={{ fontSize: "12px", display: "flex",justifyContent: "center" }}
+           className={`${
+             data?.profitLoss
+               ? data?.profitLoss[
+                   `${data?.videoInfo?.mid}_${item?.sid}_card`
+                 ]
+                 ? data?.profitLoss[
+                     `${data?.videoInfo?.mid}_${item?.sid}_card`
+                   ] > 0
+                   ? "color-green"
+                   : data?.profitLoss[
+                       `${data?.videoInfo?.mid}_${item?.sid}_card`
+                     ] < 0
+                   ? "color-red"
+                   : ""
+                 : ""
+               : ""
+           }`}
+         >
+           {data?.profitLoss
+             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+               ? data?.profitLoss[
+                   `${data?.videoInfo?.mid}_${item?.sid}_card`
+                 ]
+               : 0
+             : 0}
+         </div>
+         </div>
         );
       })}
+      
     </div>
   );
 };

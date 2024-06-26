@@ -193,7 +193,7 @@
 .dt20header{
   width: 100%;
   background-color: #004a25;
-  padding: 5px;
+  // padding: 5px;
   display: flex;
   flex-direction: row;
 }
@@ -201,8 +201,6 @@
   width: 40%;
   color: #fff;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 .dt20subheader2{
   width: 60%;

@@ -155,7 +155,7 @@ const DragonTigerDesktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.dragonTiger20}`
+    `${cardUrl}${cardGamesId.dragonTigerLion}`
   );
   const [firstArr, setFirstArr] = useState(data1);
   const [secondArr, setSecondArr] = useState(data2);

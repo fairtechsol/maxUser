@@ -23,7 +23,7 @@ const DragonTigerDesktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.dragonTiger20}`
+    `${cardUrl}${cardGamesId.dragonTiger202}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
