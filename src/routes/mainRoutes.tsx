@@ -37,6 +37,7 @@ const CasinoReports = Loadable(
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
 const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
 const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
+const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
 const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
 const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
 const DragonTigerSecond20 = Loadable(
@@ -123,6 +124,12 @@ const MainRoutes = {
       path: "teenPatti20",
       element: <TeenPatti20 />,
     },
+    
+    {
+      path: "teenPatti1D",
+      element: <TeenPatti1D />,
+    },
+
     {
       path: "lucky7-A",
       element: <Lucky7 />,

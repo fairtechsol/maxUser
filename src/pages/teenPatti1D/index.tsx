@@ -21,10 +21,10 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 
-import TeentPattiComponentList from "../../components/teenPatti20";
+import TeentPattiComponentList from "../../components/teenPatti1D";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
-const TeenPatti20 = () => {
+const TeenPatti1D = () => {
   const dispatch: AppDispatch = useDispatch();
   const { loading, dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
@@ -110,4 +110,4 @@ const TeenPatti20 = () => {
   return loading ? <Loader /> : <TeentPattiComponentList />;
 };
 
-export default TeenPatti20;
+export default TeenPatti1D;
