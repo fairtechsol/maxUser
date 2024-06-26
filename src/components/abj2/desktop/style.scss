@@ -150,6 +150,7 @@
   border: 3px solid yellow;
   border-radius: 8px;
   line-height: 1.2;
+  cursor: pointer;
 }
 .tiePairbtn-theme {
   color: #fff !important;
@@ -189,6 +190,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
+  cursor: pointer;
   // margin-top: 5px;
 }
 
@@ -198,6 +200,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 .evenOddbtn-theme {
   padding: 8px 0;

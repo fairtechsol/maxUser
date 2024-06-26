@@ -10,7 +10,7 @@ const RulesModal = ({ show, setShow, rule }: any) => {
         <Modal.Header closeButton style={{backgroundColor:"#004a25",color:"#fff"}}>
           <Modal.Title>Rules</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{padding:"0px"}}>
+        <Modal.Body style={{padding:"0px", cursor: "pointer"}}>
           <img src={rule} width={"100%"} height={"550px"} />
         </Modal.Body>
       </Modal>

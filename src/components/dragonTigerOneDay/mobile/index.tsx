@@ -7,13 +7,14 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
-import TiePairBox from "./TiePairBox";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/dragonCard";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { Col } from "react-bootstrap";
+import BackLay from "../desktop/BackLay";
+import PairBox from "../desktop/PairBox";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -24,6 +25,8 @@ const DragonTigerMobile = () => {
     `${cardUrl}${cardGamesId.dragonTigerOneDay}`
   );
   const [show1, setShow1] = useState(false);
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
+
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
@@ -58,9 +61,12 @@ const DragonTigerMobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
-          <PlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
+   
+        <Col>
+          <div style={{ width: "100%", height: "30%", margin: "5px" }}>
+            <div className="horseRacingTabHeader">
+            <PlacedBet show={show1} setShow={setShow1} />
+            <div className="">
             <span
               style={{ fontSize: "12px", fontWeight: "bold" }}
               onClick={() => setActiveTab(false)}
@@ -75,115 +81,98 @@ const DragonTigerMobile = () => {
               PLACED BET({placedBets?.length || 0})
             </span>
           </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
-        {!activeTab ? (
-          <div
-            style={{ width: "100%", display: "flex", flexDirection: "column" }}
-          >
-            <div style={{ width: "100%", height: "250px" }}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
+              <div>
+                <span style={{ fontSize: "16px", fontWeight: "600" }}>
+                  {dragonTigerDetail?.name}
+                </span>
+                <span
+                  style={{
+                    fontSize: "14px",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setShow(true)}
+                >
+                  {" "}
+                  RULES
+                </span>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  height: "90%",
-                  backgroundColor: "#000",
-                }}
-              >
-                <VideoFrame
-                  time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={
-                    <Dragon20Result data={dragonTigerDetail?.videoInfo} />
-                  }
-                  id={videoFrameId}
-                />
-              </div>
+              <span>
+                {dragonTigerDetail?.videoInfo
+                  ? `Round ID:  ${handleRoundId(
+                      dragonTigerDetail?.videoInfo?.mid
+                    )}`
+                  : ""}
+              </span>
             </div>
-
-            <div style={{ height: "820px" }}>
-              <div style={{ width: "100%" }}>
-                <TiePairBox
-                  tiePair={dragonTigerDetail?.tiePair}
+            <div
+              style={{ width: "100%", height: "62%", backgroundColor: "#000" }}
+            >
+              <VideoFrame
+                time={dragonTigerDetail?.videoInfo?.autotime}
+                result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}
+                id={videoFrameId}
+              />
+            </div>
+          </div>
+          <div style={{ height: "760px" }}>
+            <div className="" style={{ width: "100%", gap:"10px" }}>
+              <div className="w-100">
+                <BackLay
+                  matchOddsData={dragonTigerDetail?.matchOddsData}
                   data={dragonTigerDetail}
                 />
               </div>
-              <div className="dt20TabBox">
-                <div className="dt20tabheader">
-                  <span
-                    style={{ fontSize: "12px", fontWeight: "bold" }}
-                    onClick={() => setActiveCardTab(false)}
-                  >
-                    DRAGON
-                  </span>
-                  <span style={{ fontSize: "18px" }}> | </span>
-                  <span
-                    style={{ fontSize: "12px", fontWeight: "bold" }}
-                    onClick={() => setActiveCardTab(true)}
-                  >
-                    TIGER
-                  </span>
-                </div>
-              </div>
-              {activeCardTab ? (
-                <div>
-                  <OddEven
-                    name={"DRAGON"}
-                    odds={dragonTigerDetail?.dragonOdds}
-                    data={dragonTigerDetail}
-                  />
-                  <CardBox
-                    name={"DRAGON"}
-                    cardData={dragonTigerDetail?.dragonCards}
-                    data={dragonTigerDetail}
-                  />
-                </div>
-              ) : (
-                <div>
-                  <OddEven
-                    name={"TIGER"}
-                    odds={dragonTigerDetail?.tigerOdds}
-                    data={dragonTigerDetail}
-                  />
-                  <CardBox
-                    name={"TIGER"}
-                    cardData={dragonTigerDetail?.tigerCards}
-                    data={dragonTigerDetail}
-                  />
-                </div>
-              )}
-              <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+              <div className="w-100">
+                <PairBox
+                  odds={dragonTigerDetail?.pair}
+                  data={dragonTigerDetail}
+                />
               </div>
             </div>
+            <div
+              style={{
+                width: "100%",
+                margin: "5px",
+                gap: "8px",
+              }}
+            >
+              <OddEven
+                title1={"even"}
+                title2={"odd"}
+                dragonData={dragonTigerDetail?.dragonData}
+                tigerData={dragonTigerDetail?.tigerData}
+                data={dragonTigerDetail}
+              />
+              <OddEven
+                title1={"red"}
+                title2={"black"}
+                dragonData={dragonTigerDetail?.dragonData}
+                tigerData={dragonTigerDetail?.tigerData}
+                data={dragonTigerDetail}
+              />
+            </div>
+            <div
+              style={{
+                width: "100%",
+                marginLeft: "5px",
+              }}
+            >
+              <CardBox
+                dragonData={dragonTigerDetail?.dragonData}
+                tigerData={dragonTigerDetail?.tigerData}
+                data={dragonTigerDetail}
+              />
+            </div>
+            <div style={{ width: "100%", margin: "5px" }}>
+              <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+            </div>
           </div>
-        ) : (
-          <>
-            <MyBet />
-          </>
-        )}
-      </div>
-      <RulesModal show={show} setShow={setShow} rule={dtrules} />
+
+          <RulesModal show={show} setShow={setShow} rule={dtrules} />
+        </Col>
+       
+    </div>
     </>
   );
 };

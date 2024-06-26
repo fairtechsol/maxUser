@@ -173,7 +173,7 @@ const CasinoReports = () => {
               </Col>
             </Row>
             <CustomTable
-              width={isMobile ? "1200px" : ""}
+              // width={isMobile ? "1200px" : ""}
               paginationCount={true}
               bordered={true}
               striped={!isMobile}

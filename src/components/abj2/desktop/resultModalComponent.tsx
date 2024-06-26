@@ -31,7 +31,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
     return (
       <div
       className={className}
-      style={{ ...style, display: 'block', cursor: 'pointer' , marginBottom: "80px",position: "absolute" }}
+      style={{ ...style, display: 'block', cursor: 'pointer' ,position: "absolute" }}
       onClick={onClick}
     >
       <img src={rightArrow} alt="Next" />
@@ -44,7 +44,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
     return (
       <div
       className={className}
-      style={{ ...style, display: 'block', cursor: 'pointer', marginBottom: "80px",position: "absolute"  }}
+      style={{ ...style, display: 'block', cursor: 'pointer', position: "absolute"  }}
       onClick={onClick}
     >
       <img src={leftArrow} alt="Previous" />
@@ -55,6 +55,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
   
   const sliderSettings = (length: any, arrow: any) => ({
     infinite: false,
+    arrows: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -148,9 +149,9 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
                 {teamB?.length > minLength ? (
                   <Slider {...sliderSettings(teamB.length, teamB.length > minLength)}>
                   {teamB.map((item:any, index:any) => (
-                    <div key={index}>
+                    <span key={index}>
                       <HandleCards card={item} />
-                    </div>
+                    </span>
                   ))}
                 </Slider>
               ) : (
@@ -165,9 +166,9 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
               {teamA?.length > minLength ? (
                       <Slider {...sliderSettings(teamA.length, teamA.length > minLength)}>
                       {teamA.map((item:any, index:any) => (
-                        <div key={index}>
+                        <span key={index}>
                           <HandleCards card={item} />
-                        </div>
+                        </span>
                       ))}
                     </Slider>
                   ) : (
