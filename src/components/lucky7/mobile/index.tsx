@@ -61,19 +61,35 @@ const Lucky7Mobile = () => {
         <div className="dt20header">
           <div className="dt20subheader1">
             <PlacedBet show={show1} setShow={setShow1} />
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(false)}
+            <div
+              style={{
+                height: "100%",
+                borderTop: !activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              GAME
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(false)}
+              >
+                GAME
+              </span>
+            </div>
             <span style={{ fontSize: "18px" }}> | </span>
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(true)}
+            <div
+              style={{
+                height: "100%",
+                borderTop: activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              PLACED BET({placedBets?.length || 0})
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(true)}
+              >
+                PLACED BET({placedBets?.length || 0})
+              </span>
+            </div>
           </div>
           <div className="dt20subheader2">
             <span

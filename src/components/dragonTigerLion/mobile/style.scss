@@ -134,7 +134,7 @@
   .dt20TabBox{
     width: 100%;
     background-color: #004a25;
-    padding: 5px;
+    // padding: 5px;
     display: flex;
     flex-direction: row;
   }
@@ -142,8 +142,6 @@
     width: 30%;
     color: #fff;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
   }
   .oddEvenContainerMob{
     width: 100%;
