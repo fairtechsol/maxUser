@@ -55,6 +55,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
     }
   }, [isAtBottom]);
 
+  const isScrollable = location.pathname === '/casino-slot';
   return (
     <div
       className={`bg-lightGray match-list-container ${
@@ -273,7 +274,13 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 <h4 className="text-uppercase mt-3">Our Casino</h4>
               </div>
             </div>
-            <div className="mt-2">
+            <div className="mt-2"
+             style={
+              isScrollable
+                ? { maxHeight: '400px', overflowY: 'auto' } // Adjust the maxHeight as needed
+                : {}
+            }
+            >
               {casinoIcons.map((item, index) => (
                 <Link to={item.url} key={index}>
                   <div className="d-inline-block casinoiconsm">

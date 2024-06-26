@@ -84,7 +84,7 @@ const Cards32Desktop = () => {
                   {dragonTigerDetail?.name}
                 </span>
                 <a
-                  style={{ fontSize: "14px", textDecoration: "underline" }}
+                  style={{ fontSize: "14px", textDecoration: "underline",cursor: "pointer" }}
                   onClick={() => setShow(true)}
                 >
                   {" "}

@@ -55,6 +55,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
   
   const sliderSettings = (length: any, arrow: any) => ({
     infinite: false,
+    arrows: false,
     speed: 500,
     slidesToShow: isMobile? 3 :10,
     slidesToScroll: 3,

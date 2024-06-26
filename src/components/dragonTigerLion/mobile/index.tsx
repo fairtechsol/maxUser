@@ -12,39 +12,32 @@ import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/dragonCard";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [activeCardTab, setActiveCardTab] = useState('dragon');
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.dragonTigerLion}`
+    `${cardUrl}${cardGamesId.dragonTiger20}`
   );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
     };
-
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
         setShow(true);
         setVideoFrameId("");
       }
     };
-
     const activityEvents = ["mousemove", "keydown", "scroll", "click"];
-
     activityEvents.forEach((event) => {
       window.addEventListener(event, resetTimer);
     });
-
     const intervalId = setInterval(checkInactivity, 1000);
-
     return () => {
       activityEvents.forEach((event) => {
         window.removeEventListener(event, resetTimer);
@@ -117,9 +110,7 @@ const DragonTigerMobile = () => {
                 />
               </div>
             </div>
-
             <div style={{ height: "820px" }}>
-             
               <div className="dt20TabBox">
                 <div className="dtltabheader">
                   <span
@@ -184,5 +175,4 @@ const DragonTigerMobile = () => {
     </>
   );
 };
-
 export default DragonTigerMobile;
