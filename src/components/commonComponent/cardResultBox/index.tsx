@@ -19,7 +19,6 @@ const CardResultBox = ({ data, name, type }: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
   };
-  
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">
@@ -101,7 +100,7 @@ const CardResultBox = ({ data, name, type }: any) => {
           <ResultComponent
             data={resultData}
             setfalse={setLgShow}
-            type={resultData?.gameType}
+            type={data?.type}
           />
         </Modal.Body>
       </Modal>
