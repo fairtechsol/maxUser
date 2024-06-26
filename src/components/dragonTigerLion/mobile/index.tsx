@@ -170,7 +170,7 @@ const DragonTigerMobile = () => {
                 </div>
               )}
               <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+                <CardResultBox data={dragonTigerDetail} name={["D","T","L"]} />
               </div>
             </div>
           </div>

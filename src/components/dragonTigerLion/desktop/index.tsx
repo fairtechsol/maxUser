@@ -469,7 +469,7 @@ const DragonTigerDesktop = () => {
             </div>
 
             <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+              <CardResultBox data={dragonTigerDetail} name={["D","T","L"]} />
             </div>
           </div>
 
