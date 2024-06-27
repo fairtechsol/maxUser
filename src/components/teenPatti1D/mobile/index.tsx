@@ -160,12 +160,15 @@ const TeenPattiMobile = () => {
                         width: "60%",
                         border: "0.1px solid #dee2e6",
                         textAlign: "left",
+                        display:"flex",
+                        flexDirection:"column"
                       }}
                     >
                       <span className="f12-b">
                         Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
                         {dragonTigerDetail?.videoInfo?.max}
                       </span>
+                      
                     </div>
 
                     <div
@@ -200,11 +203,14 @@ const TeenPattiMobile = () => {
                         width: "60%",
                         padding: "5px",
                         border: "0.1px solid #dee2e6",
+                        display:"flex",
+                        flexDirection:"column"
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                         {playerA?.[0]?.nat}
                       </span>
+                      <span>0</span>
                     </div>
                     <div
                       className={
@@ -315,11 +321,14 @@ const TeenPattiMobile = () => {
                         width: "60%",
                         padding: "5px",
                         border: "0.1px solid #dee2e6",
+                        display:"flex",
+                        flexDirection:"column"
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                         {playerB?.[0]?.nat}
                       </span>
+                      <span>0</span>
                     </div>
                     <div
                       className={
