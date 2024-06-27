@@ -64,8 +64,11 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           marginLeft: "5px",
         }}
       >
-        <div className={isMobile ? 'row-flex-mobile' :"w-100 d-sm-flex flex-row"} style={{ height: "30px" }}>
-          <div className="dtlTitle"> </div>
+        <div
+          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          style={{ height: "30px" }}
+        >
+          <div className="dtlTitle" style={{fontWeight:"400"}}>Min: {title1 === "even" ? dragonEvenOdd?.[0]?.min : dragonRedBlack?.[0]?.min} Max: {title1 === "even" ? dragonEvenOdd?.[0]?.max : dragonRedBlack?.[0]?.max}</div>
           <div className="dtlsubTitle back-BackGround">
             <span style={{ fontSize: "14px" }}>
               {title1 === "even" ? (
@@ -93,7 +96,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
             </span>
           </div>
         </div>
-        <div className={isMobile ? 'row-flex-mobile' :"w-100 d-sm-flex flex-row"} style={{ height: "30px" }}>
+        <div
+          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          style={{ height: "30px" }}
+        >
           <div className="dtlTitle">Dragon </div>
           {/* <div
             className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
@@ -126,9 +132,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               : dragonRedBlack?.[1]?.b1}
           </div> */}
           {renderItem(
-            title1 === "even"
-              ? dragonEvenOdd?.[0]
-              : dragonRedBlack?.[0],
+            title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0],
             0
           )}
           {renderItem(
@@ -136,7 +140,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
             0
           )}
         </div>
-        <div className={isMobile ? 'row-flex-mobile' :"w-100 d-sm-flex flex-row"} style={{ height: "30px" }}>
+        <div
+          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          style={{ height: "30px" }}
+        >
           <div className="dtlTitle"> Tiger</div>
           {/* <div className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
               tigerEvenOdd?.[0]?.gstatus === "CLOSED" ||

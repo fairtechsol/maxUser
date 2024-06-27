@@ -5,9 +5,13 @@ import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import SmoothDropdownModal from "../minMaxModal";
+import { IoInformationCircle } from "react-icons/io5";
+import { useState } from "react";
 
 const CardBox = ({ dragonData, tigerData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
+  const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -59,7 +63,23 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle"> </div>
+          <div className="dtlTitle">
+            {" "}
+            <div style={{ width: "30%", textAlign: "start" }}>
+              <span className="minmaxi">
+                <IoInformationCircle
+                  color="#ffc742"
+                  onClick={() => setModelOpen(!modelOpen)}
+                />
+                <SmoothDropdownModal
+                  min={dragonData?.[0]?.max}
+                  max={dragonData?.[0]?.min}
+                  show={modelOpen}
+                  setShow={() => setModelOpen(false)}
+                />
+              </span>
+            </div>
+          </div>
           <div className="dtlsubTitle">
             <GiSpades color="#000000" />
           </div>

@@ -13,7 +13,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/dragonCard";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import BackLay from "../desktop/BackLay";
-import PairBox from "../desktop/PairBox";
+import PairBox from "./PairBox";
 import MyBet from "./myBet";
 
 const DragonTigerMobile = () => {
@@ -142,7 +142,7 @@ const DragonTigerMobile = () => {
               </div>
             </div>
             <div style={{ height: "760px" }}>
-              <div className="" style={{ width: "100%", gap: "10px" }}>
+              <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <BackLay
                     matchOddsData={dragonTigerDetail?.matchOddsData}
@@ -156,7 +156,7 @@ const DragonTigerMobile = () => {
                   />
                 </div>
               </div>
-              <div style={{ width: "100%", margin: "5px", gap: "8px" }}>
+              <div style={{ width: "97%", gap: "8px" }}>
                 <OddEven
                   title1={"even"}
                   title2={"odd"}
@@ -172,14 +172,14 @@ const DragonTigerMobile = () => {
                   data={dragonTigerDetail}
                 />
               </div>
-              <div style={{ width: "100%", marginLeft: "5px" }}>
+              <div style={{ width: "97%", marginLeft: "5px" }}>
                 <CardBox
                   dragonData={dragonTigerDetail?.dragonData}
                   tigerData={dragonTigerDetail?.tigerData}
                   data={dragonTigerDetail}
                 />
               </div>
-              <div style={{ width: "100%", margin: "5px" }}>
+              <div style={{ width: "97%", margin: "5px" }}>
                 <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
               </div>
             </div>
