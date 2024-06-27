@@ -13,7 +13,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Teen1DResult from "../desktop/teenCard";
-import { cardGamesId } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/Constants";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -23,6 +23,30 @@ const TeenPattiMobile = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+
+  let AB1;
+  if (playerA?.[0]?.b1) {
+    //AB1 = (parseFloat(playerA?.[0]?.b1) * 0.1 + 1).toFixed(2);
+
+    AB1 = parseFloat(playerA[0].b1) * 0.01;
+    if (AB1 !== 0) {
+        AB1 += 1;
+    }
+    AB1 = AB1.toFixed(2);
+  }
+
+  let BB1;
+  if (playerB?.[0]?.b1) {
+    //BB1 = (parseFloat(playerB[0].b1) * 0.1 + 1).toFixed(2);
+
+    BB1 = parseFloat(playerA[0].b1) * 0.01;
+    if (BB1 !== 0) {
+        BB1 += 1;
+    }
+    BB1 = BB1.toFixed(2);
+  }
+
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
     { label: "Flush (Color)", value: "1 To 4" },
@@ -30,11 +54,25 @@ const TeenPattiMobile = () => {
     { label: "Trio (Teen)", value: "1 To 35" },
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
-  const handleBet = (item: any) => {
+
+  const updatedValue = (value: any) => {
+    let parsedValue = parseFloat(value) * 0.01;
+    if (parsedValue !== 0) {
+      parsedValue += 1;
+    }
+    return parsedValue.toFixed(2);
+  };
+
+  const handleBet = (item: any, type: any) => {
     let team = {
-      bettingType: "BACK",
+      bettingType: type,
       matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
+      odd:
+        type === "BACK"
+          ? item?.b1
+            ? updatedValue(item.b1)
+            : item.b1
+          : item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -107,9 +145,9 @@ const TeenPattiMobile = () => {
                 }}
               >
                 <VideoFrame
-                  time={dragonTigerDetail?.videoInfo?.autotime}
+                  time={dragonTigerDetail?.videoInfo?.lasttime}
                   result={<Teen1DResult data={dragonTigerDetail?.videoInfo} />}
-                  id={cardGamesId?.teen20}
+                  id={`${cardUrl}${cardGamesId.teenOneDay}`}
                 />
               </div>
             </div>
@@ -130,11 +168,13 @@ const TeenPattiMobile = () => {
                       </span>
                     </div>
 
-                    <div  style={{
-                          width: "40%",
-                          display:"flex",
-                          gap:"2px"
-                        }}>
+                    <div
+                      style={{
+                        width: "40%",
+                        display: "flex",
+                        gap: "2px",
+                      }}
+                    >
                       <div
                         className="teen-back-m w"
                         style={{
@@ -147,7 +187,7 @@ const TeenPattiMobile = () => {
                         className="teen-back-m"
                         style={{
                           width: "50%",
-                          background:"#f9c9d4"
+                          background: "#f9c9d4",
                         }}
                       >
                         LAY
@@ -168,8 +208,8 @@ const TeenPattiMobile = () => {
                     </div>
                     <div
                       className={
-                        playerA?.[0]?.gstatus === "0" &&
-                        playerA?.[1]?.gstatus === "0"
+                        playerA?.[0]?.gstatus === "SUSPENDED" &&
+                        playerA?.[0]?.gstatus === "SUSPENDED"
                           ? "suspended"
                           : ""
                       }
@@ -184,13 +224,14 @@ const TeenPattiMobile = () => {
                         className="teenPatti-table-item"
                         style={{ width: "50%" }}
                         onClick={() =>
-                          playerA?.[0]?.gstatus === "0"
+                          playerA?.[0]?.gstatus === "SUSPENDED"
                             ? null
-                            : handleBet(playerA?.[0])
+                            : handleBet(playerA?.[0], "BACK")
                         }
                       >
-                        <span className="f12-b">{playerA?.[0]?.rate}</span>
-                        <span
+                        <span className="f12-b">{AB1}</span>
+                        <span className="f10-b">{playerA?.[0]?.bs1}</span>
+                        {/* <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -218,7 +259,7 @@ const TeenPattiMobile = () => {
                                 ]
                               : 0
                             : 0}
-                        </span>
+                        </span> */}
                       </div>
                       <div
                         className={`teenPatti-table-item ${
@@ -227,15 +268,16 @@ const TeenPattiMobile = () => {
                             ? "suspended"
                             : ""
                         }`}
-                        style={{ width: "50%",background:"#f9c9d4" }}
+                        style={{ width: "50%", background: "#f9c9d4" }}
                         onClick={() =>
-                          playerA?.[1]?.gstatus === "0"
+                          playerA?.[0]?.gstatus === "SUSPENDED"
                             ? null
-                            : handleBet(playerA?.[1])
+                            : handleBet(playerA?.[0], "LAY")
                         }
                       >
-                        <span className="f12-b">{playerA?.[1]?.nat}</span>
-                        <span
+                        <span className="f12-b">{playerA?.[0]?.l1}</span>
+                        <span className="f10-b">{playerA?.[0]?.ls1}</span>
+                        {/* <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -263,7 +305,7 @@ const TeenPattiMobile = () => {
                                 ]
                               : 0
                             : 0}
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                   </div>
@@ -281,8 +323,8 @@ const TeenPattiMobile = () => {
                     </div>
                     <div
                       className={
-                        playerB?.[0]?.gstatus === "0" &&
-                        playerB?.[1]?.gstatus === "0"
+                        playerB?.[0]?.gstatus === "SUSPENDED" &&
+                        playerB?.[0]?.gstatus === "SUSPENDED"
                           ? "suspended"
                           : ""
                       }
@@ -297,13 +339,14 @@ const TeenPattiMobile = () => {
                         className="teenPatti-table-item"
                         style={{ width: "50%" }}
                         onClick={() =>
-                          playerB?.[0]?.gstatus === "0"
+                          playerB?.[0]?.gstatus === "SUSPENDED"
                             ? null
-                            : handleBet(playerB?.[0])
+                            : handleBet(playerB?.[0], "BACK")
                         }
                       >
-                        <span className="f12-b">{playerB?.[0]?.rate}</span>
-                        <span
+                         <span className="f12-b">{BB1}</span>
+                         <span className="f10-b">{playerB?.[0]?.bs1}</span>
+                        {/* <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -331,7 +374,7 @@ const TeenPattiMobile = () => {
                                 ]
                               : 0
                             : 0}
-                        </span>
+                        </span> */}
                       </div>
                       <div
                         className={`teenPatti-table-item ${
@@ -340,11 +383,11 @@ const TeenPattiMobile = () => {
                             ? "suspended"
                             : ""
                         }`}
-                        style={{ width: "50%" ,background:"#f9c9d4"}}
+                        style={{ width: "50%", background: "#f9c9d4" }}
                         onClick={() =>
-                          playerB?.[1]?.gstatus === "0"
+                          playerB?.[0]?.gstatus === "0"
                             ? null
-                            : handleBet(playerB?.[1])
+                            : handleBet(playerB?.[0], "LAY")
                         }
                       >
                         <span className="f12-b">{playerB?.[1]?.nat}</span>
