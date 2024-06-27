@@ -168,6 +168,10 @@ const DragonTigerDesktop = () => {
   const handleClose = () => {
     setShowInactivityModal(false);
   };
+  const [openModalIndex, setOpenModalIndex] = useState(null);
+  const handleModalOpen = (index: any) => {
+    setOpenModalIndex(openModalIndex === index ? null : index);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -352,7 +356,25 @@ const DragonTigerDesktop = () => {
                     style={{ height: "50px" }}
                     key={index}
                   >
-                    <div className="dtlTitle">{item?.title}</div>
+                    <div className="dtlTitle">
+                      {item?.title}
+                      <div style={{ width: "45%", textAlign: "end" }}>
+                        <span className="minmaxi">
+                          <IoInformationCircle
+                            color="#ffc742"
+                            onClick={() => handleModalOpen(index)}
+                          />
+                          {openModalIndex === index && (
+                            <SmoothDropdownModal
+                              min={item?.dragon?.min}
+                              max={item?.dragon?.max}
+                              show={openModalIndex === index}
+                              setShow={() => setOpenModalIndex(null)}
+                            />
+                          )}
+                        </span>
+                      </div>
+                    </div>
                     <div
                       className={`dtlsubTitle ${
                         item?.dragon?.gstatus === "0" ? "suspended" : ""
@@ -449,7 +471,25 @@ const DragonTigerDesktop = () => {
                     style={{ height: "50px" }}
                     key={index}
                   >
-                    <div className="dtlTitle">{item?.title}</div>
+                    <div className="dtlTitle">
+                      {item?.title}{" "}
+                      <div style={{ width: "45%", textAlign: "end" }}>
+                        <span className="minmaxi">
+                          <IoInformationCircle
+                            color="#ffc742"
+                            onClick={() => handleModalOpen(index + 9)}
+                          />
+                          {openModalIndex === index + 9 && (
+                            <SmoothDropdownModal
+                              min={item?.dragon?.min}
+                              max={item?.dragon?.max}
+                              show={openModalIndex === index + 9}
+                              setShow={() => setOpenModalIndex(null)}
+                            />
+                          )}
+                        </span>
+                      </div>
+                    </div>
                     <div
                       className={`dtlsubTitle ${
                         item?.dragon?.gstatus === "0" ? "suspended" : ""

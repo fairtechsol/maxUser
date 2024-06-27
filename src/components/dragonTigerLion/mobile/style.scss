@@ -143,6 +143,7 @@
     width: 100%;
     color: #fff;
     display: flex;
+    justify-content: space-around;
   }
   .oddEvenContainerMob{
     width: 100%;
@@ -185,7 +186,7 @@
     height: 50px;
     background-color: #ffffff;
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
     border-bottom:0.1px solid #c7c8ca;
     padding: 5px;
