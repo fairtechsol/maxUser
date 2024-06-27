@@ -14,7 +14,7 @@ import Dragon20Result from "../desktop/dragonCard";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
-  const [activeCardTab, setActiveCardTab] = useState('dragon');
+  const [activeCardTab, setActiveCardTab] = useState("dragon");
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
@@ -115,27 +115,27 @@ const DragonTigerMobile = () => {
                 <div className="dtltabheader">
                   <span
                     style={{ fontSize: "12px", fontWeight: "bold" }}
-                    onClick={() => setActiveCardTab('dragon')}
+                    onClick={() => setActiveCardTab("dragon")}
                   >
                     DRAGON
                   </span>
                   <span style={{ fontSize: "18px" }}> | </span>
                   <span
                     style={{ fontSize: "12px", fontWeight: "bold" }}
-                    onClick={() => setActiveCardTab('tiger')}
+                    onClick={() => setActiveCardTab("tiger")}
                   >
                     TIGER
                   </span>
                   <span style={{ fontSize: "18px" }}> | </span>
                   <span
                     style={{ fontSize: "12px", fontWeight: "bold" }}
-                    onClick={() => setActiveCardTab('lion')}
+                    onClick={() => setActiveCardTab("lion")}
                   >
                     LION
                   </span>
                 </div>
               </div>
-              {activeCardTab ==='dragon' ? (
+              {activeCardTab === "dragon" ? (
                 <div>
                   <OddEven
                     name={"DRAGON"}
@@ -143,7 +143,7 @@ const DragonTigerMobile = () => {
                     data={dragonTigerDetail}
                   />
                 </div>
-              ) : activeCardTab ==='tiger' ? (
+              ) : activeCardTab === "tiger" ? (
                 <div>
                   <OddEven
                     name={"TIGER"}
@@ -151,7 +151,7 @@ const DragonTigerMobile = () => {
                     data={dragonTigerDetail}
                   />
                 </div>
-              ) :  (
+              ) : (
                 <div>
                   <OddEven
                     name={"LION"}
@@ -161,7 +161,10 @@ const DragonTigerMobile = () => {
                 </div>
               )}
               <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["D","T","L"]} />
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["D", "T", "L"]}
+                />
               </div>
             </div>
           </div>
