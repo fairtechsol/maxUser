@@ -1560,7 +1560,7 @@ export const card3 = {
       name: "20-20 TEENPATTI",
     },
     {
-      url: "/teenPatti1D",
+      url: "/teen",
       imgSrc: dayteen,
       name: "1 DAY TEENPATTI",
     },

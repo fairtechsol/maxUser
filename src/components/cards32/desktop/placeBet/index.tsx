@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants } from "../../../../utils/constants";
+import { ApiConstants } from "../../../../utils/Constants";
 import CustomButton from "../../../commonComponent/button";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";

@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import service from "../../../service";
-import { ApiConstants } from "../../../utils/constants";
+import { ApiConstants } from "../../../utils/Constants";
 
 export const getMatchList = createAsyncThunk<any, any>(
   "/match/list",
@@ -109,6 +109,7 @@ export const setButtonValue = createAsyncThunk<any, any>(
 );
 
 export const SearchListReset = createAction("searchList/reset");
+
 export const selectedBetAction = createAsyncThunk<any, any>(
   "/match/selectedBet",
   async (data) => {

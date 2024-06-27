@@ -8,6 +8,7 @@ import {
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
+  updateTeenPatti1DMatchRates,
   updateTeenPattiMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import Loader from "../../components/commonComponent/loader";
@@ -32,7 +33,7 @@ const TeenPatti1D = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateTeenPattiMatchRates(event?.data?.data?.data));
+      dispatch(updateTeenPatti1DMatchRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
@@ -42,7 +43,7 @@ const TeenPatti1D = () => {
   };
 
   const handleBetPlacedOnDT20 = (event: any) => {
-    if (event?.jobData?.matchType === cardGamesType.teen20) {
+    if (event?.jobData?.matchType === cardGamesType.teenOneDay) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
       dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
       dispatch(updateProfitLossCards(event?.userRedisObj));
@@ -61,7 +62,7 @@ const TeenPatti1D = () => {
   useEffect(() => {
     try {
       dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teen20));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenOneDay));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
@@ -73,17 +74,17 @@ const TeenPatti1D = () => {
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
-        socketService.card.getCardRatesOff(cardGamesType.teen20);
+        socketService.card.getCardRatesOff(cardGamesType.teenOneDay);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.teen20);
+        socketService.card.joinMatchRoom(cardGamesType.teenOneDay);
         socketService.card.getCardRates(
-          cardGamesType.teen20,
+          cardGamesType.teenOneDay,
           setMatchRatesInRedux
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
-          cardGamesType.teen20,
+          cardGamesType.teenOneDay,
           handleLiveGameResultTop10
         );
         socketService.card.cardResult(handleCardResult);
@@ -96,8 +97,8 @@ const TeenPatti1D = () => {
   useEffect(() => {
     try {
       return () => {
-        socketService.card.leaveMatchRoom(cardGamesType.teen20);
-        socketService.card.getCardRatesOff(cardGamesType.teen20);
+        socketService.card.leaveMatchRoom(cardGamesType.teenOneDay);
+        socketService.card.getCardRatesOff(cardGamesType.teenOneDay);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));

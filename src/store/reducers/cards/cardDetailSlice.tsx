@@ -10,7 +10,8 @@ import {
   updateDragonTigerOneDayRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  updateTeenPattiMatchRates
+  updateTeenPattiMatchRates,
+  updateTeenPatti1DMatchRates
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -155,7 +156,25 @@ const cardDetail = createSlice({
             playerA,
             playerB,
         };
-      })
+      })  
+      .addCase(updateTeenPatti1DMatchRates.fulfilled, (state, action) => {
+        const { t1 } = action.payload;
+        state.loading = false;
+        
+        // Extracting the video information and players
+        const videoInfo = { ...t1[0] };
+        const playerA = t1.slice(0, 1);
+        const playerB = t1.slice(1, 2);
+        
+        // Updating the state
+        state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            playerA,
+            playerB,
+        };
+    })
+    
       .addCase(updateCard32MatchRates.fulfilled, (state, action) => {
         const {t1,t2}=action.payload
         state.loading = false;

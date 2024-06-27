@@ -1,7 +1,7 @@
 import { memo } from "react";
 import FlipClock from "./FlipClock";
 import isMobile from "../../../utils/screenDimension";
-import { cardUrl } from "../../../utils/constants";
+import { cardUrl } from "../../../utils/Constants";
 
 const VideoFrame = ({ result, time,id }: any) => {
   // const [showModal, setModalOpen] = useState(false);

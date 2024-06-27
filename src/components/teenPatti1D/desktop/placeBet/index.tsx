@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants } from "../../../../utils/constants";
+import { ApiConstants } from "../../../../utils/Constants";
 import CustomButton from "../../../commonComponent/button";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
@@ -125,17 +125,23 @@ const PlacedBet = () => {
   };
   return (
     <>
-      <div className="loader-container">
+     <div className="loader-container">
         {(loading || matchOddLoading) && <CustomLoader />}
         <RightPanelContainer title="Place Bet">
           {selectedBet ? (
             <Table className="w-full">
               <thead>
-                <tr className="bg-darkGrey">
+                <tr
+                  className={`bg-darkGrey ${
+                    selectedBet?.team?.bettingType === "BACK"
+                      ? "place-bet-table-blue"
+                      : "place-bet-table-red"
+                  }`}
+                >
                   {placeBetHeader?.map((item, index) => (
                     <th
                       key={index}
-                      className="title-12 bg-darkGrey"
+                      className={`title-12 bg-darkGrey`}
                       style={{
                         textAlign: item?.name === "Profit" ? "end" : "start",
                       }}
@@ -146,8 +152,15 @@ const PlacedBet = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className={"place-bet-table-blue"}>
-                  <td width={"8%"}>
+                <tr>
+                  <td
+                    width={"8%"}
+                    className={`${
+                      selectedBet?.team?.bettingType === "BACK"
+                        ? "bg-blue3"
+                        : "bg-red1"
+                    }`}
+                  >
                     <span
                       className=" text-danger title-12 cursor-pointer"
                       onClick={() => {
@@ -157,12 +170,26 @@ const PlacedBet = () => {
                       <ImCross />
                     </span>
                   </td>
-                  <td width={"34%"}>
+                  <td
+                    width={"34%"}
+                    className={`${
+                      selectedBet?.team?.bettingType === "BACK"
+                        ? "bg-blue3"
+                        : "bg-red1"
+                    }`}
+                  >
                     <span className="f600 title-14">
                       {selectedBet?.team?.name}
                     </span>
                   </td>
-                  <td width={"20%"}>
+                  <td
+                    width={"20%"}
+                    className={`${
+                      selectedBet?.team?.bettingType === "BACK"
+                        ? "bg-blue3"
+                        : "bg-red1"
+                    }`}
+                  >
                     <div
                       style={{
                         display: "flex",
@@ -206,7 +233,14 @@ const PlacedBet = () => {
                       </div>
                     </div>
                   </td>
-                  <td width={"20%"}>
+                  <td
+                    width={"20%"}
+                    className={`${
+                      selectedBet?.team?.bettingType === "BACK"
+                        ? "bg-blue3"
+                        : "bg-red1"
+                    }`}
+                  >
                     <input
                       value={stake}
                       min={0}
@@ -228,14 +262,29 @@ const PlacedBet = () => {
                       style={{ border: "2px solid #f0f0f0" }}
                     />
                   </td>
-                  <td width={"18%"} style={{ textAlign: "end" }}>
+                  <td
+                    width={"18%"}
+                    style={{ textAlign: "end" }}
+                    className={`${
+                      selectedBet?.team?.bettingType === "BACK"
+                        ? "bg-blue3"
+                        : "bg-red1"
+                    }`}
+                  >
                     <span className="f500" style={{ textAlign: "end" }}>
                       0
                     </span>
                   </td>
                 </tr>
-                <tr className={"place-bet-table-blue"}>
-                  <td colSpan={5}>
+                <tr>
+                  <td
+                    colSpan={5}
+                    className={`${
+                      selectedBet?.team?.bettingType === "BACK"
+                        ? "bg-blue3"
+                        : "bg-red1"
+                    }`}
+                  >
                     <Container fluid>
                       <Row>
                         {valueLabel?.map((item: any, index: any) => (
@@ -296,12 +345,14 @@ const PlacedBet = () => {
                                   selectionId: selectedBet?.team?.selectionId,
                                 };
                                 setMatchOddLoading(true);
-                                  dispatch(
-                                    placeBet({
-                                      url: ApiConstants.CARDS.MATCH.PLACE_BET,
-                                      data: JSON.stringify(payload),
-                                    })
-                                  );
+
+                                dispatch(
+                                  placeBet({
+                                    url: ApiConstants.CARDS.MATCH.PLACE_BET,
+                                    data: JSON.stringify(payload),
+                                  })
+                                );
+
                                 setStake(0);
                               }
                             }}
