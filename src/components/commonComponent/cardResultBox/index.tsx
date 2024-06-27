@@ -71,7 +71,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "3" || item?.result === "41" ? "#ffff33" : item?.result === "2" || item?.result === "21" ? "#ffffff" : "#ff4500",
+                    color: item?.result === "3" || item?.result === "41" ? "#f5cc03" : item?.result === "2" || item?.result === "21" ? "#ffffff" : "#ff4500",
                   }}
                 >
                   {item?.result === "1"
