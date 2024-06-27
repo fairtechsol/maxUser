@@ -295,6 +295,7 @@ const AccountStatementComponent = () => {
                           dispatch(
                             getPlacedBetsForAccountStatement({
                               runnerId: match[1],
+                              isCard: true,
                               result: `inArr${JSON.stringify([
                                 "WIN",
                                 "LOSS",
@@ -346,6 +347,7 @@ const AccountStatementComponent = () => {
                     dispatch(
                       getPlacedBetsForAccountStatement({
                         runnerId: show?.runnerId,
+                        isCard: true,
                         result: `inArr${JSON.stringify([
                           "WIN",
                           "LOSS",
@@ -451,11 +453,17 @@ const AccountStatementComponent = () => {
                         }`}
                         style={{
                           color:
-                            item?.result === "LOSS" ? "#dc3545" : "#28a745",
+                            item?.result === "LOSS"
+                              ? "#dc3545"
+                              : item?.result === "TIE"
+                              ? "#000"
+                              : "#28a745",
                         }}
                       >
                         {item?.result === "LOSS"
                           ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
+                          : item?.result === "TIE"
+                          ? 0
                           : parseFloat(item?.winAmount).toFixed(2)}
                       </td>
                       <td
@@ -539,11 +547,17 @@ const AccountStatementComponent = () => {
                           <div
                             style={{
                               color:
-                                item?.result === "LOSS" ? "#dc3545" : "#28a745",
+                                item?.result === "LOSS"
+                                  ? "#dc3545"
+                                  : item?.result === "TIE"
+                                  ? "#000"
+                                  : "#28a745",
                             }}
                           >
                             {item?.result === "LOSS"
                               ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
+                              : item?.result === "TIE"
+                              ? 0
                               : parseFloat(item?.winAmount).toFixed(2)}
                           </div>
                         </div>
