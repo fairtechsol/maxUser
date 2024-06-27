@@ -43,12 +43,7 @@ const CardResultBox = ({ data, name, type }: any) => {
               className="cardResultCircle"
               key={item?.mid}
               style={{
-                backgroundColor:
-                  type === "card32"
-                    ? ""
-                    : item?.result === "3"
-                    ? "#ffc742"
-                    : "",
+                backgroundColor:"#355e3b",
               }}
               onClick={() => handleResult(item?.mid)}
             >
@@ -75,7 +70,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "3" ? "#ffff33" : item?.result === "2" ? "#00ff00" : "#ff4500",
+                    color: item?.result === "3" ? "#ffff33" : item?.result === "2" ? "#ffffff" : "#ff4500",
                   }}
                 >
                   {item?.result === "1"

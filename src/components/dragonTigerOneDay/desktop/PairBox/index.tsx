@@ -9,7 +9,7 @@ const PairBox = ({ odds, data }: any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd: item?.rate,
+      odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
