@@ -162,7 +162,13 @@ const cardDetail = createSlice({
         state.loading = false;
         
         // Extracting the video information and players
-        const videoInfo = { ...t1[0] };
+        //const videoInfo = { ...t1[0] };
+        const videoInfo = {
+          ...t1[0],
+          C4: t1[1].C1,
+          C5: t1[1].C2,
+          C6: t1[1].C3
+      };
         const playerA = t1.slice(0, 1);
         const playerB = t1.slice(1, 2);
         
