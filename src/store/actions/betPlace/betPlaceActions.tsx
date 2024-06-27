@@ -47,7 +47,9 @@ export const getPlacedBetsForAccountStatement = createAsyncThunk<any, any>(
           requestData.betId
             ? `&betId=inArr${JSON.stringify(requestData.betId)}`
             : requestData.runnerId
-            ? `&runnerId=eq${requestData.runnerId}`
+            ? requestData.isCard
+              ? `&betPlaced.runnerId=${requestData.runnerId}`
+              : `runnerId=eq${requestData.runnerId}`
             : ""
         }${
           requestData.result
@@ -55,9 +57,9 @@ export const getPlacedBetsForAccountStatement = createAsyncThunk<any, any>(
             : requestData.status
             ? `&status=${requestData.status}`
             : ""
-        }&createBy=eq${
-          requestData.userId
-        }&sort=betPlaced.createdAt:DESC&isCurrentBets=true`
+        }&createBy=eq${requestData.userId}&sort=betPlaced.createdAt:DESC${
+          requestData.isCard ? "" : "&isCurrentBets=true"
+        }`
       );
       if (resp) {
         return resp?.data?.rows;
