@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
 import moment from "moment";
@@ -36,8 +36,14 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
   setfalse,
   type,
 }) => {
-  // console.log("resultData", data);
+  const [date, setDate] = useState<any>()
+useEffect(() => {
+  if(!date){
+    setDate(Date.now())
+  }
+}, [])
 
+// console.log('first',date)
   return (
     <Container style={{ padding: 0 }}>
       <div className="resultModalHeader">
@@ -53,7 +59,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         </div>
         <div>
         <span style={{fontWeight:"bold"}}>Match Time:</span>
-        <span>{data?.createdAt ? moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A'):''}</span>
+        <span>{data?.createdAt ? moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A'): moment(date).format('DD/MM/YYYY hh:mm:ss A')}</span>
         </div>
       </div>
       {type === cardGamesType?.dragonTiger20 ? (

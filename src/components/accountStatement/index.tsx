@@ -552,6 +552,7 @@ const AccountStatementComponent = () => {
                                   : item?.result === "WIN"
                                   ? "#28a745"
                                   : "#000",
+                                  overflowWrap:"anywhere"
                             }}
                           >
                             {item?.result === "LOSS"

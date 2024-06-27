@@ -39,16 +39,12 @@ const CardResultBox = ({ data, name, type }: any) => {
       <div className="cardResultBoxRound">
         {liveGameResultTop10?.length > 0 &&
           liveGameResultTop10.map((item: any) => (
+            
             <div
               className="cardResultCircle"
               key={item?.mid}
               style={{
-                backgroundColor:
-                  type === "card32"
-                    ? ""
-                    : item?.result === "3"
-                    ? "#ffc742"
-                    : "",
+                backgroundColor:"#355e3b",
               }}
               onClick={() => handleResult(item?.mid)}
             >
@@ -75,10 +71,11 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "3" ? "#ffff33" : item?.result === "2" ? "#00ff00" : "#ff4500",
+                    color: item?.result === "3" || item?.result === "41" ? "#f5cc03" : item?.result === "2" || item?.result === "21" ? "#ffffff" : "#ff4500",
                   }}
                 >
-                  {item?.result === "1"
+                  { type ==="teen20" ?  item?.result ==="0" ? name?.[1] : item?.result === "1" ? name?.[0] : name?.[2]
+                  : item?.result === "1"
                     ? name?.[0]
                     : item?.result === "2" || item?.result === "21"
                     ? name?.[1]

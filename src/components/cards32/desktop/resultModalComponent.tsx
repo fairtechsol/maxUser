@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
+import isMobile from "../../../utils/screenDimension";
 interface Props {
   data: {
     C1: string;
@@ -22,12 +23,12 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
   const allKeys = Object.keys(data ? data : 0);
   const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
   const numbers = cArray.map((key) => Number(data[key]));
-  const max = Math.max(...numbers);
+  // const max = Math.max(...numbers);
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="card32resultModal">
         <div className="card32resultCardContainer mb-3">
-          <span className="fs-5">Player 8</span>
+          <span style={{fontSize:isMobile?'14px':'20px'}}>Player 8</span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "1" && (
               <div className="casino-winner-icon">
@@ -51,7 +52,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
         <div className="card32resultCardContainer mb-3">
-          <span className="fs-5">Player 9</span>
+          <span style={{fontSize:isMobile?'14px':'20px'}}>Player 9</span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "2" && (
               <div className="casino-winner-icon">
@@ -74,7 +75,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
         <div className="card32resultCardContainer mb-3">
-          <span className="fs-5">Player 10</span>
+          <span style={{fontSize:isMobile?'14px':'20px'}}>Player 10</span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "3" && (
               <div className="casino-winner-icon">
@@ -97,7 +98,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
         <div className="card32resultCardContainer mb-3">
-          <span className="fs-5">Player 11</span>
+          <span style={{fontSize:isMobile?'14px':'20px'}}>Player 11</span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "4" && (
               <div className="casino-winner-icon">

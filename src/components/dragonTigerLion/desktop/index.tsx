@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { IoInformationCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import {
   dtrules,
@@ -35,6 +36,7 @@ import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { useDispatch } from "react-redux";
+import SmoothDropdownModal from "./minMaxModal";
 
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
@@ -162,7 +164,7 @@ const DragonTigerDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-
+  const [modelOpen, setModelOpen] = useState(false);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -339,19 +341,36 @@ const DragonTigerDesktop = () => {
                   className="w-100 d-sm-flex flex-row"
                   style={{ height: "30px" }}
                 >
-                  <div className="dtlTitle"> </div>
+                  <div className="dtlTitle"></div>
                   <div className="dtlsubTitle">Dragon</div>
                   <div className="dtlsubTitle">Tiger</div>
                   <div className="dtlsubTitle">Lion</div>
                 </div>
-                {firstArr?.map((item: any, index: any) => {
+                {firstArr?.map((item: any,index:number) => {
                   return (
                     <>
                       <div
                         className="w-100 d-sm-flex flex-row"
                         style={{ height: "50px" }}
+                        key={index}
                       >
-                        <div className="dtlTitle">{item?.title}</div>
+                        <div className="dtlTitle">
+                          {item?.title}
+                          {/* <div style={{ width: "45%", textAlign: "end" }}>
+                            <span className="minmaxi">
+                              <IoInformationCircle
+                                color="#ffc742"
+                                onClick={() => setModelOpen(!modelOpen)}
+                              />
+                              <SmoothDropdownModal
+                                min={item?.dragon?.min}
+                                max={item?.dragon?.max}
+                                show={modelOpen}
+                                setShow={() => setModelOpen(false)}
+                              />
+                            </span>
+                          </div> */}
+                        </div>
                         <div
                           className={`dtlsubTitle ${
                             item?.dragon?.gstatus === "0" ? "suspended" : ""
@@ -469,7 +488,7 @@ const DragonTigerDesktop = () => {
             </div>
 
             <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["D","T","L"]} />
+              <CardResultBox data={dragonTigerDetail} name={["D", "T", "L"]} />
             </div>
           </div>
 
