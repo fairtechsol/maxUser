@@ -163,10 +163,13 @@ const DragonTigerDesktop = () => {
   const [secondArr, setSecondArr] = useState(data2);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
-  const [modelOpen, setModelOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);const [modelOpen, setModelOpen] = useState(false);
   const handleClose = () => {
     setShowInactivityModal(false);
+  };
+  const [openModalIndex, setOpenModalIndex] = useState(null);
+  const handleModalOpen = (index:any) => {
+    setOpenModalIndex(openModalIndex === index ? null : index);
   };
 
   useEffect(() => {
@@ -346,7 +349,7 @@ const DragonTigerDesktop = () => {
                   <div className="dtlsubTitle">Tiger</div>
                   <div className="dtlsubTitle">Lion</div>
                 </div>
-                {firstArr?.map((item: any,index:number) => {
+                {firstArr?.map((item: any, index: number) => {
                   return (
                     <>
                       <div
@@ -356,20 +359,22 @@ const DragonTigerDesktop = () => {
                       >
                         <div className="dtlTitle">
                           {item?.title}
-                          {/* <div style={{ width: "45%", textAlign: "end" }}>
+                          <div style={{ width: "45%", textAlign: "end" }}>
                             <span className="minmaxi">
                               <IoInformationCircle
                                 color="#ffc742"
-                                onClick={() => setModelOpen(!modelOpen)}
+                                onClick={() => handleModalOpen(index)}
                               />
-                              <SmoothDropdownModal
-                                min={item?.dragon?.min}
-                                max={item?.dragon?.max}
-                                show={modelOpen}
-                                setShow={() => setModelOpen(false)}
-                              />
+                              {openModalIndex === index && (
+                                <SmoothDropdownModal
+                                  min={item?.dragon?.min}
+                                  max={item?.dragon?.max}
+                                  show={openModalIndex === index}
+                                  setShow={() => setOpenModalIndex(null)}
+                                />
+                              )}
                             </span>
-                          </div> */}
+                          </div>
                         </div>
                         <div
                           className={`dtlsubTitle ${
@@ -440,7 +445,24 @@ const DragonTigerDesktop = () => {
                         className="w-100 d-sm-flex flex-row"
                         style={{ height: "50px" }}
                       >
-                        <div className="dtlTitle">{item?.title}</div>
+                        <div className="dtlTitle">{item?.title}
+                        <div style={{ width: "45%", textAlign: "end" }}>
+                            <span className="minmaxi">
+                              <IoInformationCircle
+                                color="#ffc742"
+                                onClick={() => handleModalOpen(index+9)}
+                              />
+                              {openModalIndex === (index+9) && (
+                                <SmoothDropdownModal
+                                  min={item?.dragon?.min}
+                                  max={item?.dragon?.max}
+                                  show={openModalIndex === (index+9)}
+                                  setShow={() => setOpenModalIndex(null)}
+                                />
+                              )}
+                            </span>
+                          </div>
+                        </div>
                         <div
                           className={`dtlsubTitle ${
                             item?.dragon?.gstatus === "0" ? "suspended" : ""
