@@ -248,7 +248,36 @@ const OddEven = ({ data, odds }: any) => {
                     }
                   >
                     {item?.data?.b1 || 0}
-                    <span style={{ fontSize: "12px" }}>0</span>
+                    <span
+                      style={{ fontSize: "12px" }}
+                      className={
+                        data?.profitLoss
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                            ? data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : data?.profitLoss[
+                                  `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {data?.profitLoss
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                          ]
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                 </div>
               </>
@@ -268,18 +297,19 @@ const OddEven = ({ data, odds }: any) => {
             return (
               <>
                 <div className="dlt-m-conatainer">
-                  <div className="dtlTitle-m">{item?.title}
-                  <div style={{ width: "45%", textAlign: "end" }}>
+                  <div className="dtlTitle-m">
+                    {item?.title}
+                    <div style={{ width: "45%", textAlign: "end" }}>
                       <span className="minmaxi">
                         <IoInformationCircle
                           color="#ffc742"
-                          onClick={() => handleModalOpen(index+9)}
+                          onClick={() => handleModalOpen(index + 9)}
                         />
-                        {openModalIndex === index+9 && (
+                        {openModalIndex === index + 9 && (
                           <SmoothDropdownModal
                             min={item?.data?.min}
                             max={item?.data?.max}
-                            show={openModalIndex === index+9}
+                            show={openModalIndex === index + 9}
                             setShow={() => setOpenModalIndex(null)}
                           />
                         )}
@@ -295,7 +325,36 @@ const OddEven = ({ data, odds }: any) => {
                     }
                   >
                     {item?.data?.b1 || 0}
-                    <span style={{ fontSize: "12px" }}>0</span>
+                    <span
+                      style={{ fontSize: "12px" }}
+                      className={
+                        data?.profitLoss
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                            ? data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : data?.profitLoss[
+                                  `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {data?.profitLoss
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                          ]
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                 </div>
               </>

@@ -37,7 +37,7 @@ export { default as tprules } from "./rules/tp-rules.webp";
 export { default as dtrules } from "./rules/dragon-tiger-20-rules.webp";
 export { default as abjrules } from "./rules/abj-rules.webp";
 export { default as lucky7rules } from "./rules/lucky7-rules.webp";
-export { default as card32rules } from "./rules/card32rules.webp";
+export { default as card32rules } from "./rules/tt32_cards_rule.webp";
 export { default as abjlist } from "./anderBahar/andar-bahar.webp";
 export { default as abjlist2 } from "./anderBahar/andar-bahar2.webp";
 export { default as back } from "./cards/back.png";

@@ -1405,7 +1405,7 @@ export const casinoIcons = [
     name: "Casino War",
   },
   {
-    url: "",
+    url: "/dtl20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
     name: "20-20 DTL",
@@ -1423,7 +1423,7 @@ export const casinoIcons = [
     name: "Open Teenpatti",
   },
   {
-    url: "",
+    url: "/teen",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "1 Day Teenpatti",
@@ -1507,7 +1507,7 @@ export const casinoIcons = [
     name: "20-20 Dragon Tiger",
   },
   {
-    url: "",
+    url: "/dt6",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "1 Day Dragon Tiger",
