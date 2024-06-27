@@ -4,7 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 import moment from "moment";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import isMobile from "../../../utils/screenDimension";
-import { cardGamesType } from "../../../utils/constants";
+import { cardGamesType } from "../../../utils/Constants";
 import Dragon20ResultComponent from "../../dragon20/desktop/resultModalComponent";
 import Lucky7ResultComponent from "../../lucky7/desktop/resultModalComponent";
 import Teen20ResultComponent from "../../teenPatti20/desktop/resultModalComponent";
@@ -14,6 +14,8 @@ import Lucky7BResultComponent from "../../lucky7B/desktop/resultModalComponent";
 import DragonTigerLionResultComponent from "../../dragonTigerLion/desktop/resultModalComponent";
 import Dragon202ResultComponent from "../../dragonSecond20/desktop/resultModalComponent";
 import DragonTigerOneDayResultComponent from "../../dragonTigerOneDay/desktop/resultModalComponent";
+import Teen1DResultComponent from "../../teenPatti1D/desktop/resultModalComponent";
+import TeenPatti1D from "../../../pages/teenPatti1D";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
@@ -22,6 +24,7 @@ const title = {
   Lucky7B: "Lucky 7 - B",
   card32: "32 Cards A",
   abj: "Andar Bahar 2",
+  teen:"1 Day Teen Patti"
   // Add other mappings as needed
 };
 
@@ -36,7 +39,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
   setfalse,
   type,
 }) => {
-  // console.log("resultData", data);
+ console.log("resultData", data);
 
   return (
     <Container style={{ padding: 0 }}>
@@ -76,9 +79,10 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <><Lucky7BResultComponent data={data}/></>
       ):type === cardGamesType?.dragonTigerOneDay ? (
         <><DragonTigerOneDayResultComponent data={data}/></>
-      ): (
-        <></>
-      )}
-    </Container>
+      ):type === cardGamesType?.teen ?  (
+        <><Teen1DResultComponent data={data}/></>
+      ):<></>
+    }
+</Container>
   );
 };

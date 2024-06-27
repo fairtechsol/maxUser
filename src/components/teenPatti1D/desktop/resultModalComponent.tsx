@@ -10,7 +10,7 @@ interface Props {
   };
 }
 
-const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
+const Teen1DResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const playerA = resultCards?.filter(
     (_: any, index: number) => index % 2 === 0
@@ -47,7 +47,7 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerA?.[1]} />
+              <HandleCards card={playerA?.[0]} />
             </div>
             <div
               style={{
@@ -56,7 +56,7 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerA?.[2]} />
+              <HandleCards card={playerA?.[0]} />
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerB?.[1]} />
+              <HandleCards card={playerB?.[0]} />
             </div>
             <div
               style={{
@@ -93,7 +93,7 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerB?.[2]} />
+              <HandleCards card={playerB?.[0]} />
             </div>
           </div>
         </div>
@@ -102,4 +102,4 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 };
 
-export default Teen20ResultComponent;
+export default Teen1DResultComponent;

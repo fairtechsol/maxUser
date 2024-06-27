@@ -161,8 +161,8 @@ const cardDetail = createSlice({
         const { t1 } = action.payload;
         state.loading = false;
         
-        // Extracting the video information and players
-        //const videoInfo = { ...t1[0] };
+      
+    
         const videoInfo = {
           ...t1[0],
           C4: t1[1].C1,
@@ -172,7 +172,7 @@ const cardDetail = createSlice({
         const playerA = t1.slice(0, 1);
         const playerB = t1.slice(1, 2);
         
-        // Updating the state
+  
         state.dragonTigerDetail = {
             ...state.dragonTigerDetail,
             videoInfo,
