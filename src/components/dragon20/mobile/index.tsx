@@ -151,20 +151,7 @@ const DragonTigerMobile = () => {
               </div>
               {activeCardTab ? (
                 <div>
-                  <OddEven
-                    name={"DRAGON"}
-                    odds={dragonTigerDetail?.dragonOdds}
-                    data={dragonTigerDetail}
-                  />
-                  <CardBox
-                    name={"DRAGON"}
-                    cardData={dragonTigerDetail?.dragonCards}
-                    data={dragonTigerDetail}
-                  />
-                </div>
-              ) : (
-                <div>
-                  <OddEven
+                 <OddEven
                     name={"TIGER"}
                     odds={dragonTigerDetail?.tigerOdds}
                     data={dragonTigerDetail}
@@ -172,6 +159,19 @@ const DragonTigerMobile = () => {
                   <CardBox
                     name={"TIGER"}
                     cardData={dragonTigerDetail?.tigerCards}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+              ) : (
+                <div>
+                   <OddEven
+                    name={"DRAGON"}
+                    odds={dragonTigerDetail?.dragonOdds}
+                    data={dragonTigerDetail}
+                  />
+                  <CardBox
+                    name={"DRAGON"}
+                    cardData={dragonTigerDetail?.dragonCards}
                     data={dragonTigerDetail}
                   />
                 </div>

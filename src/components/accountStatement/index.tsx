@@ -540,6 +540,7 @@ const AccountStatementComponent = () => {
                             style={{
                               color:
                                 item?.result === "LOSS" ? "#dc3545" : "#28a745",
+                                overflowWrap:"anywhere"
                             }}
                           >
                             {item?.result === "LOSS"

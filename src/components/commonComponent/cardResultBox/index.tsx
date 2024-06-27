@@ -74,7 +74,8 @@ const CardResultBox = ({ data, name, type }: any) => {
                     color: item?.result === "3" || item?.result === "41" ? "#f5cc03" : item?.result === "2" || item?.result === "21" ? "#ffffff" : "#ff4500",
                   }}
                 >
-                  {item?.result === "1"
+                  { type ==="teen20" ?  item?.result ==="0" ? name?.[1] : item?.result === "1" ? name?.[0] : name?.[2]
+                  : item?.result === "1"
                     ? name?.[0]
                     : item?.result === "2" || item?.result === "21"
                     ? name?.[1]
