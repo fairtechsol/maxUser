@@ -1,7 +1,6 @@
 import { memo } from "react";
 import FlipClock from "./FlipClock";
 import isMobile from "../../../utils/screenDimension";
-import { cardUrl } from "../../../utils/constants";
 
 const VideoFrame = ({ result, time, id }: any) => {
   // const [showModal, setModalOpen] = useState(false);
@@ -33,7 +32,7 @@ const VideoFrame = ({ result, time, id }: any) => {
             }}
           >
             {result && (
-              <div style={{ position: "absolute", top: "10px", zIndex: "999" }}>{result}</div>
+              <div style={{ position: "absolute", zIndex: "999" }}>{result}</div>
             )}
             <div style={isMobile ?{display: "flex", overflow: "hidden"} : {}}>
               <iframe

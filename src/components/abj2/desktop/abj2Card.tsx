@@ -60,19 +60,19 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
     data?.mid != "0" && (
       <div
         style={{
-          width: isMobile ? "104px" : "160px",
-          marginLeft: isMobile ? "5px" : "10px",
+          width: "max-content",
+          marginLeft: isMobile ? "8px" : "10px",
           position: "absolute",
           top: "0",
           left: "0",
           background: "rgba(0, 0, 0, 0.4)",
           height: "auto",
-          padding: "5px",
+          padding: isMobile ? "0px" :  "5px",
         }}
       >
         <Row>
           {primaryCards?.[0] !== "1" && (
-            <Col xs={1} style={{ display: "flex", flexDirection: "column" }}>
+            <Col xs={1} style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
               <span
                 style={{
                   color: "#fff",
@@ -106,6 +106,7 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              //  marginTop: "20px"
             }}
           >
             <div>
@@ -114,7 +115,8 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
               />
             </div>
           </Col>
-          <Col xs={2}>
+          <Col xs={2}
+          style={isMobile ? {marginTop: "10px"} : {}}>
             <div>
               <HandleCards
                 card={primaryCards?.[0] !== "1" ? primaryCards?.[2] : ""}
@@ -131,7 +133,7 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
             <div
               style={{
                 width: isMobile ? "70px" : "110px",
-                margin: "0px 10px 0px 10px",
+                // margin: "0px 10px 0px 10px",
               }}
             >
               <div>
@@ -145,19 +147,19 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
                       ))}
                   </Slider>
                 ) : (
-                  <Row style={{ gap: "10px" }}>
+                  <Row style={{ gap: "10px", marginTop: isMobile ? "10px" : "0px"}}>
                     {teamB &&
-                      teamB?.map((item: any) => {
+                      teamB?.map((item: any, index: any) => {
                         return (
-                          <>
+                          <React.Fragment key={index}>
                             <HandleCards card={item !== "1" ? item : ""} />
-                          </>
+                          </React.Fragment>
                         );
                       })}
                   </Row>
                 )}
               </div>
-              <div className="mt-2">
+              <div className={isMobile ? "mt-1" : "mt-2"}>
               {teamA?.length > 3 ? (
                   <Slider {...sliderSettings(teamA?.length, teamA?.length > 3)}>
                     {teamA &&
@@ -168,13 +170,13 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
                       ))}
                   </Slider>
                 ) : (
-                  <Row style={{ gap: "10px" }}>
+                  <Row style={{ gap: "10px", marginTop: isMobile ? "10px" : "5px"}}>
                     {teamA &&
-                      teamA?.map((item: any) => {
+                      teamA?.map((item: any, index: any) => {
                         return (
-                          <>
+                          <React.Fragment key={index}>
                             <HandleCards card={item !== "1" ? item : ""} />
-                          </>
+                          </React.Fragment>
                         );
                       })}
                   </Row>
