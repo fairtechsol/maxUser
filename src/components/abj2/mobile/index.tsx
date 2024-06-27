@@ -169,9 +169,6 @@ const Abj2Mobile = () => {
               <div
                 style={{
                   width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
                 }}
               >
                 <CardBox

@@ -12,7 +12,6 @@ import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/dragonCard";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { Col } from "react-bootstrap";
 import BackLay from "../desktop/BackLay";
 import PairBox from "../desktop/PairBox";
 import MyBet from "./myBet";

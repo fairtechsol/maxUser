@@ -19,6 +19,7 @@ declare module '@pqina/flip' {
               repeat: boolean;
               children: Array<{
                 view: string;
+                style: string;
               }>;
             }>;
           };

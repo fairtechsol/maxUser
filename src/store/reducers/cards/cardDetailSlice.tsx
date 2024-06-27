@@ -210,11 +210,10 @@ const cardDetail = createSlice({
       })
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
-        state.success = false;
         state.error = null;
+        state.resultData=[];
       })
       .addCase(resultDragonTiger.fulfilled, (state, action) => {
-        state.success = true;
         state.resultData = action.payload;
       })
       .addCase(resultDragonTiger.rejected, (state, action) => {
