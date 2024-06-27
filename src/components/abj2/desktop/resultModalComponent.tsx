@@ -57,7 +57,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
     infinite: false,
     arrows: false,
     speed: 500,
-    slidesToShow: isMobile? 3 :10,
+    slidesToShow: isMobile ? 3 : 10,
     slidesToScroll: 3,
     // arrows: true,
     nextArrow: <SampleNextArrow />,
