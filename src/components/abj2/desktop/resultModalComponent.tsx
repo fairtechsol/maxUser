@@ -66,14 +66,14 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
 
   const sliderSettings = (length: any, arrow: any) => ({
     infinite: false,
-    arrows: false,
+    // arrows: false,
     speed: 500,
     slidesToShow: isMobile ? 3 : 10,
     slidesToScroll: 3,
-    // arrows: true,
+    arrows: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    initialSlide: isMobile ? (length > 3 ? length - 3 : 0) : 3,
+    // initialSlide: isMobile ? (length > 3 ? length - 3 : 0) : 3,
 
     responsive: [
       {
