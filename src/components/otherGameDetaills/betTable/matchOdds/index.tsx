@@ -141,7 +141,7 @@ function FootballMatchOdds({
                         </span>
                         <span
                           className={`title-14 ${
-                            (Number(
+                            Number(
                               calculateProfitLoss(
                                 data,
                                 selectedBet,
@@ -153,27 +153,6 @@ function FootballMatchOdds({
                                   : matchDetails?.[`team${matchs}`]
                               )
                             ) +
-                            Number(
-                              calculateValue(
-                                data,
-                                indexes,
-                                matchDetails,
-                                matchs
-                              )
-                            )) < 0
-                              ? "color-red"
-                              :(Number(
-                                calculateProfitLoss(
-                                  data,
-                                  selectedBet,
-                                  data?.type === "completeMatch" ||
-                                    data?.type === "tiedMatch1"
-                                    ? indexes === 0
-                                      ? "YES"
-                                      : "NO"
-                                    : matchDetails?.[`team${matchs}`]
-                                )
-                              ) +
                               Number(
                                 calculateValue(
                                   data,
@@ -181,36 +160,60 @@ function FootballMatchOdds({
                                   matchDetails,
                                   matchs
                                 )
-                              )) > 0
+                              ) <
+                            0
+                              ? "color-red"
+                              : Number(
+                                  calculateProfitLoss(
+                                    data,
+                                    selectedBet,
+                                    data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                      ? indexes === 0
+                                        ? "YES"
+                                        : "NO"
+                                      : matchDetails?.[`team${matchs}`]
+                                  )
+                                ) +
+                                  Number(
+                                    calculateValue(
+                                      data,
+                                      indexes,
+                                      matchDetails,
+                                      matchs
+                                    )
+                                  ) >
+                                0
                               ? "color-green"
                               : ""
                           }`}
                         >
                           {selectedBet?.team?.stake > 0 &&
                           selectedBet?.data?.type == data.type
-                            ? (Number(
-                                calculateProfitLoss(
-                                  data,
-                                  selectedBet,
-                                  data?.type === "completeMatch" ||
-                                    data?.type === "tiedMatch1"
-                                    ? indexes === 0
-                                      ? "YES"
-                                      : "NO"
-                                    : matchDetails?.[`team${matchs}`]
+                            ? (
+                                Number(
+                                  calculateProfitLoss(
+                                    data,
+                                    selectedBet,
+                                    data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                      ? indexes === 0
+                                        ? "YES"
+                                        : "NO"
+                                      : matchDetails?.[`team${matchs}`]
+                                  )
+                                ) +
+                                Number(
+                                  calculateValue(
+                                    data,
+                                    indexes,
+                                    matchDetails,
+                                    matchs
+                                  )
                                 )
-                              ) +
-                              Number(
-                                calculateValue(
-                                  data,
-                                  indexes,
-                                  matchDetails,
-                                  matchs
-                                )
-                              )).toFixed(2)
+                              ).toFixed(2)
                             : null}
                         </span>
-                       
                       </div>
                     </div>
                   </td>

@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Lucky7BResult from "../desktop/lucky7Card";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
-import Lucky7BResult from "../desktop/lucky7Card";
 
 const Lucky7BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -59,7 +59,7 @@ const Lucky7BMobile = () => {
     <>
       <div>
         <div className="dt20header">
-        <PlacedBet show={show1} setShow={setShow1} />
+          <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
             <div
               style={{
@@ -181,6 +181,7 @@ const Lucky7BMobile = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["L", "H", "T"]}
+                  type={cardGamesType.lucky7B}
                 />
               </div>
             </div>

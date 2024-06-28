@@ -1,15 +1,26 @@
-import Lucky7ComponentList from "../../components/lucky7";
-import { AppDispatch, RootState } from "../../store/store";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { getDragonTigerDetailHorseRacing, update7CardMatchRates, updateBalanceOnBetPlaceCards, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
 import { useEffect } from "react";
-import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
-import { socket, socketService } from "../../socketManager";
+import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/commonComponent/loader";
-import { cardGamesType } from "../../utils/constants";
-import { getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
+import Lucky7ComponentList from "../../components/lucky7";
+import { socket, socketService } from "../../socketManager";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
+import {
+  getDragonTigerDetailHorseRacing,
+  update7CardMatchRates,
+  updateBalanceOnBetPlaceCards,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
+} from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
+import {
+  getButtonValue,
+  getProfileInMatchDetail,
+} from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
+import { cardGamesType } from "../../utils/constants";
 
 const Lucky7 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -19,7 +30,7 @@ const Lucky7 = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-        dispatch(update7CardMatchRates(event?.data?.data?.data));
+      dispatch(update7CardMatchRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
@@ -41,14 +52,14 @@ const Lucky7 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
-      dispatch(getProfileInMatchDetail())
+      dispatch(getProfileInMatchDetail());
     }
   };
 
   useEffect(() => {
     try {
-        dispatch(getButtonValue());
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7));
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
@@ -94,7 +105,7 @@ const Lucky7 = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <Lucky7ComponentList/>;
+  return loading ? <Loader /> : <Lucky7ComponentList />;
 };
 
 export default Lucky7;

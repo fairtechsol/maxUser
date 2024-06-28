@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Teen1DResult from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Teen1DResult from "../desktop/teenCard";
-import { cardGamesId, cardUrl } from "../../../utils/Constants";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -23,7 +23,6 @@ const TeenPattiMobile = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
 
   // let AB1;
   // if (playerA?.[0]?.b1) {
@@ -67,7 +66,7 @@ const TeenPattiMobile = () => {
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
-     
+
       odd: type === "BACK" ? updatedValue(item.b1) : updatedValue(item?.l1),
       stake: 0,
       matchBetType: "matchOdd",
@@ -156,15 +155,14 @@ const TeenPattiMobile = () => {
                         width: "60%",
                         border: "0.1px solid #dee2e6",
                         textAlign: "left",
-                        display:"flex",
-                        flexDirection:"column"
+                        display: "flex",
+                        flexDirection: "column",
                       }}
                     >
                       <span className="f12-b">
                         Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
                         {dragonTigerDetail?.videoInfo?.max}
                       </span>
-                      
                     </div>
 
                     <div
@@ -199,8 +197,8 @@ const TeenPattiMobile = () => {
                         width: "60%",
                         padding: "5px",
                         border: "0.1px solid #dee2e6",
-                        display:"flex",
-                        flexDirection:"column"
+                        display: "flex",
+                        flexDirection: "column",
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
@@ -231,7 +229,9 @@ const TeenPattiMobile = () => {
                             : handleBet(playerA?.[0], "BACK")
                         }
                       >
-                        <span className="f12-b">{updatedValue(playerA?.[0]?.b1)}</span>
+                        <span className="f12-b">
+                          {updatedValue(playerA?.[0]?.b1)}
+                        </span>
                         <span className="f10-b">{playerA?.[0]?.bs1}</span>
                         {/* <span
                           className={`f10-b ${
@@ -277,7 +277,9 @@ const TeenPattiMobile = () => {
                             : handleBet(playerA?.[0], "LAY")
                         }
                       >
-                        <span className="f12-b">{updatedValue(playerA?.[0]?.l1)}</span>
+                        <span className="f12-b">
+                          {updatedValue(playerA?.[0]?.l1)}
+                        </span>
                         <span className="f10-b">{playerA?.[0]?.ls1}</span>
                         {/* <span
                           className={`f10-b ${
@@ -317,8 +319,8 @@ const TeenPattiMobile = () => {
                         width: "60%",
                         padding: "5px",
                         border: "0.1px solid #dee2e6",
-                        display:"flex",
-                        flexDirection:"column"
+                        display: "flex",
+                        flexDirection: "column",
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
@@ -349,8 +351,10 @@ const TeenPattiMobile = () => {
                             : handleBet(playerB?.[0], "BACK")
                         }
                       >
-                         <span className="f12-b">{updatedValue(playerB?.[0]?.b1)}</span>
-                         <span className="f10-b">{playerB?.[0]?.bs1}</span>
+                        <span className="f12-b">
+                          {updatedValue(playerB?.[0]?.b1)}
+                        </span>
+                        <span className="f10-b">{playerB?.[0]?.bs1}</span>
                         {/* <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
@@ -395,7 +399,9 @@ const TeenPattiMobile = () => {
                             : handleBet(playerB?.[0], "LAY")
                         }
                       >
-                        <span className="f12-b">{updatedValue(playerB?.[0]?.l1)}</span>
+                        <span className="f12-b">
+                          {updatedValue(playerB?.[0]?.l1)}
+                        </span>
                         <span className="f10-b">{playerB?.[0]?.ls1}</span>
                         {/* <span
                           className={`f10-b ${
@@ -433,7 +439,11 @@ const TeenPattiMobile = () => {
               </div>
 
               <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "B"]} type={"teen"}/>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "B"]}
+                  type={"teen"}
+                />
               </div>
               <div>
                 <div className="casino-title" style={{ position: "relative" }}>

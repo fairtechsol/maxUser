@@ -62,22 +62,46 @@ function OverUnderMarket({
       } else {
         rate = Number(matchDetails?.profitLossDataMatch?.noRateComplete) || 0;
       }
-    } else if(data?.type?.includes('.5')){
-      let name =  data?.name?.split('_');
+    } else if (data?.type?.includes(".5")) {
+      let name = data?.name?.split("_");
       if (indexs === 0) {
-        rate = Number(matchDetails?.profitLossDataMatch[`yesRateUnderOver${name[name?.length-1]}`]) || 0;
+        rate =
+          Number(
+            matchDetails?.profitLossDataMatch[
+              `yesRateUnderOver${name[name?.length - 1]}`
+            ]
+          ) || 0;
       } else {
-        rate = Number(matchDetails?.profitLossDataMatch[`noRateUnderOver${name[name?.length-1]}`]) || 0;
+        rate =
+          Number(
+            matchDetails?.profitLossDataMatch[
+              `noRateUnderOver${name[name?.length - 1]}`
+            ]
+          ) || 0;
       }
     } else {
-      if (matchDetails?.profitLossDataMatch?.[`userTeam${matchs}RateSetWinner${data?.name[data?.name?.length-1]}`]) {
-        rate = (
-        Number(matchDetails?.profitLossDataMatch?.[`userTeam${matchs}RateSetWinner${data?.name[data?.name?.length-1]}`]) || 0
-        );
+      if (
+        matchDetails?.profitLossDataMatch?.[
+          `userTeam${matchs}RateSetWinner${data?.name[data?.name?.length - 1]}`
+        ]
+      ) {
+        rate =
+          Number(
+            matchDetails?.profitLossDataMatch?.[
+              `userTeam${matchs}RateSetWinner${
+                data?.name[data?.name?.length - 1]
+              }`
+            ]
+          ) || 0;
       } else {
-        rate = (
-          Number(matchDetails?.profitLossDataMatch?.[`userTeam${matchs}RateSetWinner${data?.name[data?.name?.length-1]}`]) || 0
-        );
+        rate =
+          Number(
+            matchDetails?.profitLossDataMatch?.[
+              `userTeam${matchs}RateSetWinner${
+                data?.name[data?.name?.length - 1]
+              }`
+            ]
+          ) || 0;
       }
     }
     return rate;
@@ -166,29 +190,13 @@ function OverUnderMarket({
                         </span>
                         <span
                           className={`title-14 ${
-                            (Number(
+                            Number(
                               calculateProfitLoss(
                                 data,
                                 selectedBet,
-                                matchs=='A'?'UNDER':'OVER'
+                                matchs == "A" ? "UNDER" : "OVER"
                               )
                             ) +
-                            Number(
-                              calculateValue(
-                                data,
-                                indexes,
-                                matchDetails,
-                                matchs
-                              )
-                            )) < 0
-                              ? "color-red"
-                              : (Number(
-                                calculateProfitLoss(
-                                  data,
-                                  selectedBet,
-                                  matchs=='A'?'UNDER':'OVER'
-                                )
-                              ) +
                               Number(
                                 calculateValue(
                                   data,
@@ -196,28 +204,48 @@ function OverUnderMarket({
                                   matchDetails,
                                   matchs
                                 )
-                              )) > 0
+                              ) <
+                            0
+                              ? "color-red"
+                              : Number(
+                                  calculateProfitLoss(
+                                    data,
+                                    selectedBet,
+                                    matchs == "A" ? "UNDER" : "OVER"
+                                  )
+                                ) +
+                                  Number(
+                                    calculateValue(
+                                      data,
+                                      indexes,
+                                      matchDetails,
+                                      matchs
+                                    )
+                                  ) >
+                                0
                               ? "color-green"
                               : ""
                           }`}
                         >
                           {selectedBet?.team?.stake > 0 &&
                           selectedBet?.data?.type == data.type
-                            ? (Number(
-                                calculateProfitLoss(
-                                  data,
-                                  selectedBet,
-                                  matchs=='A'?'UNDER':'OVER'
+                            ? (
+                                Number(
+                                  calculateProfitLoss(
+                                    data,
+                                    selectedBet,
+                                    matchs == "A" ? "UNDER" : "OVER"
+                                  )
+                                ) +
+                                Number(
+                                  calculateValue(
+                                    data,
+                                    indexes,
+                                    matchDetails,
+                                    matchs
+                                  )
                                 )
-                              ) +
-                              Number(
-                                calculateValue(
-                                  data,
-                                  indexes,
-                                  matchDetails,
-                                  matchs
-                                )
-                              )).toFixed(2)
+                              ).toFixed(2)
                             : null}
                         </span>
                       </div>

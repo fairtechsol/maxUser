@@ -1,26 +1,24 @@
 import { useEffect } from "react";
-import { AppDispatch, RootState } from "../../store/store";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/commonComponent/loader";
 import { socket, socketService } from "../../socketManager";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
 import {
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
   updateTeenPatti1DMatchRates,
-  updateTeenPattiMatchRates,
 } from "../../store/actions/cards/cardDetail";
-import Loader from "../../components/commonComponent/loader";
 import {
   getButtonValue,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
-import { cardGamesType } from "../../utils/Constants";
-import {
-  getPlacedBets,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
+import { AppDispatch, RootState } from "../../store/store";
+import { cardGamesType } from "../../utils/constants";
 
 import TeentPattiComponentList from "../../components/teenPatti1D";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
