@@ -41,7 +41,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
   const renderItem = (item: any, index: number, type: any) =>
     type === "back" ? (
       <div
-        key={index}
+        // key={index}
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
         }`}
@@ -53,7 +53,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       </div>
     ) : (
       <div
-        key={index}
+        // key={index}
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
         }`}
@@ -84,7 +84,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           <div className="dtlTitle">
             {isMobile ? (
               <>
-                <span style={{fontWeight:"400"}}>
+                <span style={{ fontWeight: "400" }}>
                   Min:{min} Max:{max}
                 </span>
               </>
@@ -112,21 +112,91 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle">Dragon </div>
+          <div className="dtlTitle">
+            Dragon
+            <span
+              className={
+                data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                    ]
+                    ? JSON.parse(
+                        data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                        ]
+                      )["dragon"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                          ]
+                        )["dragon"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }
+            >
+              {data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                  ]
+                  ? JSON.parse(
+                      data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                      ]
+                    )["dragon"]
+                  : 0
+                : 0}
+            </span>
+          </div>
           {renderItem(matchOddsData?.[0], 0, "back")}
           {renderItem(matchOddsData?.[0], 1, "lay")}
-          {/* <div className={`dtlsubTitle back-BackGround ${matchOddsData?.[0]?.gstatus==="ACTIVE" || matchOddsData?.[0]?.b1 != "0.00" ?"":"suspended"}`}>{matchOddsData?.[0]?.b1}</div>
-                  <div className={`dtlsubTitle lay-BackGround ${matchOddsData?.[0]?.gstatus==="ACTIVE" || matchOddsData?.[0]?.l1 != "0.00" ?"":"suspended"}`}>{matchOddsData?.[0]?.l1}</div> */}
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle"> Tiger</div>
+          <div className="dtlTitle">
+            Tiger
+            <span
+              className={
+                data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                    ]
+                    ? JSON.parse(
+                        data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                        ]
+                      )["tiger"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                          ]
+                        )["tiger"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }
+            >
+              {data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                  ]
+                  ? JSON.parse(
+                      data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                      ]
+                    )["tiger"]
+                  : 0
+                : 0}
+            </span>
+          </div>
           {renderItem(matchOddsData?.[1], 2, "back")}
           {renderItem(matchOddsData?.[1], 3, "lay")}
-          {/* <div className={`dtlsubTitle back-BackGround ${matchOddsData?.[1]?.gstatus==="ACTIVE" || matchOddsData?.[1]?.b1 != "0.00" ?"":"suspended"}`}>{matchOddsData?.[1]?.b1}</div>
-                  <div className={`dtlsubTitle lay-BackGround ${matchOddsData?.[1]?.gstatus==="ACTIVE" || matchOddsData?.[1]?.l1 != "0.00" ?"":"suspended"}`}>{matchOddsData?.[1]?.l1}</div> */}
         </div>
       </div>
     </div>
