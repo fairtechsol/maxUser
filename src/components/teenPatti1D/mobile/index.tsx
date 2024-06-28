@@ -149,14 +149,21 @@ const TeenPattiMobile = () => {
             <div style={{ height: "480px" }}>
               <div className="mt-2" style={{ width: "100%" }}>
                 <div className="teenPatti-table-container-m">
-                  <div className="teenPatti-table-row">
+                  <div
+                    className="teenPatti-table-row"
+                    style={{
+                      border: "0px 0px 0px 0px solid #fff",
+                    }}
+                  >
                     <div
                       style={{
                         width: "60%",
-                        border: "0.1px solid #dee2e6",
+
                         textAlign: "left",
                         display: "flex",
                         flexDirection: "column",
+
+                        border: "1px solid #fff",
                       }}
                     >
                       <span className="f12-b">
@@ -191,14 +198,20 @@ const TeenPattiMobile = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="teenPatti-table-row">
+                  <div
+                    className="teenPatti-table-row"
+                    style={{
+                      border: "px solid #fff",
+                    }}
+                  >
                     <div
                       style={{
                         width: "60%",
                         padding: "5px",
-                        border: "0.1px solid #dee2e6",
+                        border: "0px solid #dee2e6",
                         display: "flex",
                         flexDirection: "column",
+                        borderTop: "1px solid #fff",
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
@@ -313,12 +326,17 @@ const TeenPattiMobile = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="teenPatti-table-row">
+                  <div
+                    className="teenPatti-table-row"
+                    style={{
+                      border: "px solid #fff",
+                    }}
+                  >
                     <div
                       style={{
                         width: "60%",
                         padding: "5px",
-                        border: "0.1px solid #dee2e6",
+                        borderTop: "1px solid #fff",
                         display: "flex",
                         flexDirection: "column",
                       }}

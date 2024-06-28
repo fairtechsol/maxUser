@@ -93,6 +93,8 @@ const CardResultBox = ({ data, name, type }: any) => {
                     : name?.[2]
                     ? name?.[2]
                     : ""}
+
+                 
                 </span>
               )}
             </div>

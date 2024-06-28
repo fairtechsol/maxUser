@@ -438,7 +438,7 @@ const TeenPattiDesktop = () => {
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["A", "", "B"]}
+                  name={["A", "B", "T"]}
                   type={"teen"}
                 />
               </div>
