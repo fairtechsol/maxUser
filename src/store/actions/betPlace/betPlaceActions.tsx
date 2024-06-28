@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import service from "../../../service";
 import { AxiosError } from "axios";
-import { ApiConstants } from "../../../utils/constants";
+import { ApiConstants } from "../../../utils/Constants";
 
 export const placeBet = createAsyncThunk<any, any>(
   "/placeBet",
