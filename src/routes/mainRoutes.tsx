@@ -51,6 +51,8 @@ const DragonTigerOneDay = Loadable(
 const CardList3 = Loadable(lazy(() => import("../pages/cardList3")));
 const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
 const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
+const Abj1 = Loadable(lazy(() => import("../pages/abj")));
+const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -170,6 +172,14 @@ const MainRoutes = {
     {
       path: "contact-admin",
       element: <ContactAdmin />,
+    },
+    {
+      path: "32cards-B",
+      element: <Cards32B />,
+    },
+    {
+      path: "ab20",
+      element: <Abj1 />,
     },
     {
       path: "*",
