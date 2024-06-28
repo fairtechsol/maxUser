@@ -33,7 +33,7 @@ const CardBox = ({ cardData, data }: any) => {
   }
   return (
     <>
-      <div className="cardContainer">
+      <div className="cardContainerMob">
         <div style={{ width: "100%", display: "flex", flexDirection: "row" }}>
           <div style={{ width: "55%", textAlign: "end" }}>
             <span
