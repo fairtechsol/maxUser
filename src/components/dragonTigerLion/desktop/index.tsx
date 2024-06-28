@@ -387,7 +387,26 @@ const DragonTigerDesktop = () => {
                       }
                     >
                       {item?.dragon?.b1 || 0}
-                      <span style={{ fontSize: "12px" }}>
+                      <span
+                        style={{ fontSize: "12px" }}
+                        className={
+                          dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                                ] > 0
+                                ? "color-green"
+                                : dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                                  ] < 0
+                                ? "color-red"
+                                : ""
+                              : ""
+                            : ""
+                        }
+                      >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
                               `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
@@ -410,7 +429,26 @@ const DragonTigerDesktop = () => {
                       }
                     >
                       {item?.tiger?.b1 || 0}
-                      <span style={{ fontSize: "12px" }}>
+                      <span
+                        style={{ fontSize: "12px" }}
+                        className={
+                          dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                                ] > 0
+                                ? "color-green"
+                                : dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                                  ] < 0
+                                ? "color-red"
+                                : ""
+                              : ""
+                            : ""
+                        }
+                      >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
                               `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
@@ -433,7 +471,26 @@ const DragonTigerDesktop = () => {
                       }
                     >
                       {item?.lion?.b1 || 0}
-                      <span style={{ fontSize: "12px" }}>
+                      <span
+                        style={{ fontSize: "12px" }}
+                        className={
+                          dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                                ] > 0
+                                ? "color-green"
+                                : dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                                  ] < 0
+                                ? "color-red"
+                                : ""
+                              : ""
+                            : ""
+                        }
+                      >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
                               `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
