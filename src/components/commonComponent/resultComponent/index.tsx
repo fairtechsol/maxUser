@@ -72,11 +72,11 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <span style={{fontWeight:"bold"}}>Match Time:</span>
         <span>{data?.createdAt ? moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A'):''}</span>
         </div> */}
-        <span>
+        {/* <span>
           {data?.createdAt
             ? moment(data?.createdAt).format("DD/MM/YYYY hh:mm:ss A")
             : moment(date).format("DD/MM/YYYY hh:mm:ss A")}
-        </span>
+        </span> */}
       </div>
       {type === cardGamesType?.dragonTiger20 ? (
         <>

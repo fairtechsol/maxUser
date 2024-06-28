@@ -13,7 +13,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Teen20Result from "../desktop/teenCard";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/Constants";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
