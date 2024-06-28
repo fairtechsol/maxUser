@@ -12,7 +12,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import Teen20Result from "./teenCard";
+import Teen1DResult from "./teenCard";
 import { cardGamesId, cardUrl } from "../../../utils/Constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
@@ -24,11 +24,12 @@ const TeenPattiDesktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.teen20}`
+    `${cardUrl}${cardGamesId.teenOneDay}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
 
+  console.log(dragonTigerDetail?.videoInfo, "ghvf");
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -55,11 +56,20 @@ const TeenPattiDesktop = () => {
     { label: "Trio (Teen)", value: "1 To 35" },
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
-  const handleBet = (item: any) => {
+
+  const updatedValue = (value: any) => {
+    let parsedValue = parseFloat(value) * 0.01;
+    if (parsedValue !== 0) {
+      parsedValue += 1;
+    }
+    return parsedValue.toFixed(2);
+  };
+
+  const handleBet = (item: any, type: any) => {
     let team = {
-      bettingType: "BACK",
+      bettingType: type,
       matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
+      odd: type === "BACK" ? updatedValue(item.b1) : updatedValue(item?.l1),
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -67,6 +77,7 @@ const TeenPattiDesktop = () => {
       bettingName: "Match odds",
       selectionId: item?.sid,
     };
+
     dispatch(
       selectedBetAction({
         team,
@@ -109,14 +120,14 @@ const TeenPattiDesktop = () => {
       <Row>
         <Col md={8}>
           <div style={{ margin: "5px" }}>
-            <div style={{ height: "400px", marginBottom: ".30px" }}>
+            <div style={{ height: "60%" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
-                    20-20 TEENPATTI
+                    1 DAY TEEN PATTI
                   </span>
                   <span
-                    style={{ fontSize: "14px", textDecoration: "underline", cursor: "pointer" }}
+                    style={{ fontSize: "14px", textDecoration: "underline" }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
@@ -141,59 +152,64 @@ const TeenPattiDesktop = () => {
                 }}
               >
                 <VideoFrame
-                  time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                  time={dragonTigerDetail?.videoInfo?.lasttime}
+                  result={<Teen1DResult data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
-            <div style={{ height: "350px" }}>
-              <div className="teenPatti-table-container">
+            <div style={{ height: "40%" }}>
+              <div
+                className="teenPatti-table-container"
+                style={{ marginTop: "1px" }}
+              >
                 <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
                   <div
-                    style={{ width: "50%", border: "0.1px solid #fff" }}
+                    style={{ width: "60%", border: "0.1px solid #fff" }}
                   ></div>
                   <div
                     style={{
-                      width: "50%",
+                      width: "40%",
                       backgroundColor: "#72bbef",
                       display: "flex",
                       flexDirection: "row",
                     }}
                   >
                     <div
-                      className="teenPatti-table-item f12-b"
-                      style={{ width: "40%" }}
+                      className="teenPatti-table-item fw-bold f16-b fs-12 fs-sm-14 fs-md-16 fs-lg-18"
+                      style={{ width: "50%" }}
                     >
                       BACK
                     </div>
                     <div
-                      className="teenPatti-table-item"
-                      style={{ width: "60%" }}
-                    ></div>
+                      className="teenPatti-table-item fw-bold f16-b fs-12 fs-sm-14 fs-md-16 fs-lg-18"
+                      style={{ width: "50%", background: "#f9c9d4" }}
+                    >
+                      LAY
+                    </div>
                   </div>
                 </div>
                 <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
                   <div
                     style={{
-                      width: "50%",
+                      width: "60%",
                       padding: "10px",
                       border: "0.1px solid #fff",
+                      display: "flex",
+                      flexDirection: "column",
                     }}
                   >
                     <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                       {playerA?.[0]?.nat}
                     </span>
+                    <span>0</span>
                   </div>
                   <div
                     className={
-                      playerA?.[0]?.gstatus === "0" &&
-                      playerA?.[1]?.gstatus === "0"
-                        ? "suspended"
-                        : ""
+                      playerA?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""
                     }
                     style={{
-                      width: "50%",
+                      width: "40%",
                       backgroundColor: "#72bbef",
                       display: "flex",
                       flexDirection: "row",
@@ -201,15 +217,17 @@ const TeenPattiDesktop = () => {
                   >
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "40%" }}
+                      style={{ width: "50%" }}
                       onClick={() =>
-                        playerA?.[0]?.gstatus === "0"
+                        playerA?.[0]?.gstatus === "SUSPENDED"
                           ? null
-                          : handleBet(playerA?.[0])
+                          : handleBet(playerA?.[0], "BACK")
                       }
                     >
-                      <span className="f12-b">{playerA?.[0]?.rate}</span>
-                      <span
+                      <span className="f12-b">
+                        {updatedValue(playerA?.[0]?.b1)}
+                      </span>
+                      {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -237,35 +255,38 @@ const TeenPattiDesktop = () => {
                               ]
                             : 0
                           : 0}
-                      </span>
+                      </span> */}
+                      <span className="f10-b">{playerA?.[0]?.bs1}</span>
                     </div>
                     <div
                       className={`teenPatti-table-item ${
-                        playerA?.[0]?.gstatus != "0" &&
-                        playerA?.[1]?.gstatus === "0"
-                          ? "suspended"
-                          : ""
+                        // playerA?.[0]?.gstatus === "SUSPENDED"
+                        //   ? "suspended"
+                        //   : ""
+                        ""
                       }`}
-                      style={{ width: "60%" }}
+                      style={{ width: "50%", background: "#f9c9d4" }}
                       onClick={() =>
-                        playerA?.[1]?.gstatus === "0"
+                        playerA?.[0]?.gstatus === "SUSPENDED"
                           ? null
-                          : handleBet(playerA?.[1])
+                          : handleBet(playerA?.[0], "LAY")
                       }
                     >
-                      <span className="f12-b">{playerA?.[1]?.nat}</span>
-                      <span
+                      <span className="f12-b">
+                        {updatedValue(playerA?.[0]?.l1)}
+                      </span>
+                      {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
                               ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
                                 ] > 0
                                 ? "color-green"
                                 : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
                                   ] < 0
                                 ? "color-red"
                                 : ""
@@ -275,38 +296,39 @@ const TeenPattiDesktop = () => {
                       >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
                             ]
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
                               ]
                             : 0
                           : 0}
-                      </span>
+                      </span> */}
+                      <span className="f10-b">{playerA?.[0]?.ls1}</span>
                     </div>
                   </div>
                 </div>
                 <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
                   <div
                     style={{
-                      width: "50%",
+                      width: "60%",
                       padding: "10px",
                       border: "0.1px solid #fff",
+                      display: "flex",
+                      flexDirection: "column",
                     }}
                   >
                     <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                       {playerB?.[0]?.nat}
                     </span>
+                    <span>0</span>
                   </div>
                   <div
                     className={
-                      playerB?.[0]?.gstatus === "0" &&
-                      playerB?.[1]?.gstatus === "0"
-                        ? "suspended"
-                        : ""
+                      playerB?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""
                     }
                     style={{
-                      width: "50%",
+                      width: "40%",
                       backgroundColor: "#72bbef",
                       display: "flex",
                       flexDirection: "row",
@@ -314,15 +336,25 @@ const TeenPattiDesktop = () => {
                   >
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "40%" }}
+                      style={{ width: "50%" }}
                       onClick={() =>
-                        playerB?.[0]?.gstatus === "0"
+                        playerB?.[0]?.gstatus === "SUSPENDED"
                           ? null
-                          : handleBet(playerB?.[0])
+                          : handleBet(playerB?.[0], "BACK")
                       }
+
+                      // onClick={() =>
+                      //   odds?.[0]?.gstatus === "SUSPENDED" ||
+                      //   odds?.[0]?.gstatus === "CLOSED" ||
+                      //   parseFloat(odds?.[0]?.b1) ==0
+                      //     ? null
+                      //     : handleBet(odds?.[0], "BACK")
+                      // }
                     >
-                      <span className="f12-b">{playerB?.[0]?.rate}</span>
-                      <span
+                      <span className="f12-b">
+                        {updatedValue(playerB?.[0]?.b1)}
+                      </span>
+                      {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -350,24 +382,26 @@ const TeenPattiDesktop = () => {
                               ]
                             : 0
                           : 0}
-                      </span>
+                      </span> */}
+                      <span className="f10-b">{playerB?.[0]?.bs1}</span>
                     </div>
                     <div
                       className={`teenPatti-table-item ${
-                        playerB?.[0]?.gstatus != "0" &&
-                        playerB?.[1]?.gstatus === "0"
-                          ? "suspended"
-                          : ""
+                        // playerB?.[0]?.gstatus != "0" &&
+                        // playerB?.[1]?.gstatus === "0"
+                        //   ? "suspended"
+                        //   : ""
+                        ""
                       }`}
-                      style={{ width: "60%" }}
+                      style={{ width: "50%", background: "#f9c9d4" }}
                       onClick={() =>
                         playerB?.[1]?.gstatus === "0"
                           ? null
-                          : handleBet(playerB?.[1])
+                          : handleBet(playerB?.[0], "LAY")
                       }
                     >
-                      <span className="f12-b">{playerB?.[1]?.nat}</span>
-                      <span
+                      <span className="f12-b">{playerB?.[0]?.l1}</span>
+                      {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -388,20 +422,25 @@ const TeenPattiDesktop = () => {
                       >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
                             ]
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
                               ]
                             : 0
                           : 0}
-                      </span>
+                      </span> */}
+                      <span className="f10-b">{playerB?.[0]?.ls1}</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "T", "B"]} type={"teen20"}/>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "", "B"]}
+                  type={"teen"}
+                />
               </div>
             </div>
           </div>

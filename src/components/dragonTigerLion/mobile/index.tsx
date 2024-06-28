@@ -51,19 +51,35 @@ const DragonTigerMobile = () => {
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(false)}
+          <div
+              style={{
+                height: "100%",
+                borderTop: !activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              GAME
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(false)}
+              >
+                GAME
+              </span>
+            </div>
             <span style={{ fontSize: "18px" }}> | </span>
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(true)}
+            <div
+              style={{
+                height: "100%",
+                borderTop: activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              PLACED BET({placedBets?.length || 0})
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(true)}
+              >
+                PLACED BET({placedBets?.length || 0})
+              </span>
+            </div>
           </div>
           <div className="dt20subheader2">
             <span
@@ -89,7 +105,7 @@ const DragonTigerMobile = () => {
             <div style={{ width: "100%", height: "250px" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
+                  <span style={{ fontSize: "14px", fontWeight: "600", wordSpacing: "-3px"  }}>
                     {dragonTigerDetail?.name}
                   </span>
                 </div>
@@ -114,21 +130,28 @@ const DragonTigerMobile = () => {
               <div className="dt20TabBox">
                 <div className="dtltabheader">
                   <span
-                    style={{ fontSize: "12px", fontWeight: "bold" }}
+                    style={{ fontSize: "12px", fontWeight: "bold",padding: "6px",
+                      width: "100%", textAlign: "center",
+                      borderTop: activeCardTab === "dragon" ? "2px solid white" : "none",
+                     }}
                     onClick={() => setActiveCardTab("dragon")}
                   >
                     DRAGON
                   </span>
                   <span style={{ fontSize: "18px" }}> | </span>
                   <span
-                    style={{ fontSize: "12px", fontWeight: "bold" }}
+                    style={{ fontSize: "12px", fontWeight: "bold",padding: "5px",
+                      width: "100%", textAlign: "center",
+                      borderTop: activeCardTab === "tiger" ? "2px solid white" : "none", }}
                     onClick={() => setActiveCardTab("tiger")}
                   >
                     TIGER
                   </span>
                   <span style={{ fontSize: "18px" }}> | </span>
                   <span
-                    style={{ fontSize: "12px", fontWeight: "bold" }}
+                    style={{ fontSize: "12px", fontWeight: "bold",padding: "5px",
+                      width: "100%", textAlign: "center",
+                      borderTop: activeCardTab === "lion" ? "2px solid white" : "none", }}
                     onClick={() => setActiveCardTab("lion")}
                   >
                     LION

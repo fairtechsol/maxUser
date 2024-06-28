@@ -132,7 +132,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
+  margin-top: 4%;
 }
 .teenPatti-table-row{
   background-color: #dee2e6;
@@ -146,7 +146,6 @@
   align-items: center;
   flex-direction: column;
   border: 0.2px solid #fff;
-  cursor: pointer;
 }
 .f12-b{
   font-size: 12px;
@@ -191,6 +190,24 @@
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }
+
+.border-all {
+  border: 1px solid #bfbfbf;
+}
+@media (min-width: 768px) {
+  .border-md-right {
+    border-right: 1px solid #bfbfbf;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+  }
+  .border-md-none {
+    border-right: 0px solid #bfbfbf;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+  }
+}
 
 @media (max-width: 768px) {
   .tabs-navs .nav-link {

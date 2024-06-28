@@ -44,7 +44,7 @@ const PlacedBet = () => {
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
   const [matchOddRate, setMatchOddRate] = useState<any>(null);
-  const { buttonValues } = useSelector(
+  const { buttonValues, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
 
@@ -123,10 +123,9 @@ const PlacedBet = () => {
       e.preventDefault();
     }
   };
-
   return (
     <>
-      <div className="loader-container">
+     <div className="loader-container">
         {(loading || matchOddLoading) && <CustomLoader />}
         <RightPanelContainer title="Place Bet">
           {selectedBet ? (
