@@ -8,14 +8,14 @@ import "./style.scss";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 import { abjrules } from "../../../assets/images";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Abj2Result from "../desktop/abj2Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
-import Abj2Result from "../desktop/abj2Card";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -61,24 +61,34 @@ const Abj2Mobile = () => {
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
-          <div style={{height: "100%",borderTop: !activeTab ? "2px solid white" : "none",  padding: "5px"}}>
-
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(false)}
+            <div
+              style={{
+                height: "100%",
+                borderTop: !activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              GAME
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(false)}
+              >
+                GAME
+              </span>
             </div>
             <span style={{ fontSize: "18px" }}> | </span>
-            <div style={{height: "100%",borderTop: activeTab ? "2px solid white" : "none", padding: "5px"}}>
-
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(true)}
+            <div
+              style={{
+                height: "100%",
+                borderTop: activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              PLACED BET({placedBets?.length || 0})
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(true)}
+              >
+                PLACED BET({placedBets?.length || 0})
+              </span>
             </div>
           </div>
           <div className="dt20subheader2">
@@ -178,7 +188,11 @@ const Abj2Mobile = () => {
                 />
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "B"]}
+                  type={cardGamesType.andarBahar2}
+                />
               </div>
             </div>
           </div>
@@ -188,7 +202,11 @@ const Abj2Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={showInactivityModal} setShow={setShowInactivityModal} rule={abjrules} />
+      <RulesModal
+        show={showInactivityModal}
+        setShow={setShowInactivityModal}
+        rule={abjrules}
+      />
     </>
   );
 };

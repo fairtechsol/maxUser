@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
+import { useSelector } from "react-redux";
+import { card32rules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "../../horseRacing/mobile/betTable/style.scss";
+import Card32Result from "../desktop/card32Card";
 import DynamicTable from "./betTable";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import Card32Result from "../desktop/card32Card";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import RulesModal from "../../commonComponent/rulesModal";
-import { card32rules } from "../../../assets/images";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
 const Cards32Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -58,7 +58,7 @@ const Cards32Mobile = () => {
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
-          <div
+            <div
               style={{
                 height: "100%",
                 borderTop: !activeTab ? "2px solid white" : "none",

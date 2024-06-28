@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import service from "../../../service";
 import { AxiosError } from "axios";
+import service from "../../../service";
 import { ApiConstants } from "../../../utils/constants";
 
 export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
@@ -97,6 +97,14 @@ export const updateTeenPattiMatchRates = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateTeenPatti1DMatchRates = createAsyncThunk<any, any>(
+  "teen/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+
 export const updateCardAbjRates = createAsyncThunk<any, any>(
   "abj2/matchRatesUpdate",
   async (data) => {

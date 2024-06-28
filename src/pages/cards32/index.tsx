@@ -1,17 +1,26 @@
-
-
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Cards32ComponentList from "../../components/cards32";
 import Loader from "../../components/commonComponent/loader";
-import { AppDispatch, RootState } from "../../store/store";
-import { useSelector } from "react-redux";
-import { cardGamesType } from "../../utils/constants";
-import {  getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
-import { useEffect } from "react";
-import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
-import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCard32MatchRates, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
 import { socket, socketService } from "../../socketManager";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
+import {
+  getDragonTigerDetailHorseRacing,
+  updateBalanceOnBetPlaceCards,
+  updateCard32MatchRates,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
+} from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
+import {
+  getButtonValue,
+  getProfileInMatchDetail,
+} from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
+import { cardGamesType } from "../../utils/constants";
 
 const Cards32 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -49,8 +58,8 @@ const Cards32 = () => {
   };
   useEffect(() => {
     try {
-        dispatch(getButtonValue());
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32));
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
@@ -96,7 +105,7 @@ const Cards32 = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> :<Cards32ComponentList/>;
+  return loading ? <Loader /> : <Cards32ComponentList />;
 };
 
 export default Cards32;

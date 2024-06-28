@@ -25,7 +25,7 @@ export const getMatchList = createAsyncThunk<any, any>(
 );
 export const getMatchListSearch = createAsyncThunk<any, any>(
   "/match/search",
-  async ({searchKeyword }, thunkApi) => {
+  async ({ searchKeyword }, thunkApi) => {
     try {
       const resp = await service.get(
         `${ApiConstants.MATCH.MATCHSEARCHLIST}/${searchKeyword || ""}`
@@ -109,6 +109,7 @@ export const setButtonValue = createAsyncThunk<any, any>(
 );
 
 export const SearchListReset = createAction("searchList/reset");
+
 export const selectedBetAction = createAsyncThunk<any, any>(
   "/match/selectedBet",
   async (data) => {

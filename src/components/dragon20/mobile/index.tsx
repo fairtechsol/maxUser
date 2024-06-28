@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { dtrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Dragon20Result from "../desktop/dragonCard";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/dragonCard";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -61,7 +61,7 @@ const DragonTigerMobile = () => {
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
-          <div
+            <div
               style={{
                 height: "100%",
                 borderTop: !activeTab ? "2px solid white" : "none",
@@ -146,28 +146,45 @@ const DragonTigerMobile = () => {
               </div>
               <div className="dt20TabBox">
                 <div className="dt20tabheader">
-                  <div style={{height: "100%",borderTop: !activeCardTab ? "2px solid white" : "none",  padding: "5px"}}>
-                  <span
-                    style={{ fontSize: "12px", fontWeight: "bold"}}
-                    onClick={() => setActiveCardTab(false)}
+                  <div
+                    style={{
+                      height: "100%",
+                      borderTop: !activeCardTab ? "2px solid white" : "none",
+                      padding: "5px",
+                    }}
                   >
-                    DRAGON
-                  </span>
+                    <span
+                      style={{ fontSize: "12px", fontWeight: "bold" }}
+                      onClick={() => setActiveCardTab(false)}
+                    >
+                      DRAGON
+                    </span>
                   </div>
-                  <span style={{ fontSize: "18px", padding: "5px 0px 0px 0px" }}> | </span>
-                  <div style={{height: "100%",borderTop: activeCardTab ? "2px solid white" : "none", padding: "5px"}}>
                   <span
-                    style={{ fontSize: "12px", fontWeight: "bold" }}
-                    onClick={() => setActiveCardTab(true)}
+                    style={{ fontSize: "18px", padding: "5px 0px 0px 0px" }}
                   >
-                    TIGER
+                    {" "}
+                    |{" "}
                   </span>
+                  <div
+                    style={{
+                      height: "100%",
+                      borderTop: activeCardTab ? "2px solid white" : "none",
+                      padding: "5px",
+                    }}
+                  >
+                    <span
+                      style={{ fontSize: "12px", fontWeight: "bold" }}
+                      onClick={() => setActiveCardTab(true)}
+                    >
+                      TIGER
+                    </span>
                   </div>
                 </div>
               </div>
               {activeCardTab ? (
                 <div>
-                 <OddEven
+                  <OddEven
                     name={"TIGER"}
                     odds={dragonTigerDetail?.tigerOdds}
                     data={dragonTigerDetail}
@@ -180,7 +197,7 @@ const DragonTigerMobile = () => {
                 </div>
               ) : (
                 <div>
-                   <OddEven
+                  <OddEven
                     name={"DRAGON"}
                     odds={dragonTigerDetail?.dragonOdds}
                     data={dragonTigerDetail}
@@ -193,7 +210,11 @@ const DragonTigerMobile = () => {
                 </div>
               )}
               <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["D", "T"]}
+                  type={cardGamesType.dragonTiger20}
+                />
               </div>
             </div>
           </div>

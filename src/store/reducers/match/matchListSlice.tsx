@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 import {
   SearchList,
   SearchListReset,
@@ -19,7 +20,6 @@ import {
   updateProfitLossOnDeleteSession,
   updateTeamRatesOnDeleteMatch,
 } from "../../actions/user/userAction";
-import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 interface InitialState {
   success: boolean;
@@ -420,7 +420,6 @@ const matchListSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.searchedMatchList = action.payload?.data;
-        
       })
       .addCase(getMatchListSearch.rejected, (state, action) => {
         state.loading = false;

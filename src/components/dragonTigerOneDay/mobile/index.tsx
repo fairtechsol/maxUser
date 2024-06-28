@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { dtrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import BackLay from "../desktop/BackLay";
+import Dragon20Result from "../desktop/dragonCard";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
-import PlacedBet from "./placeBet";
-import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/dragonCard";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
-import BackLay from "../desktop/BackLay";
 import PairBox from "./PairBox";
 import MyBet from "./myBet";
+import PlacedBet from "./placeBet";
+import "./style.scss";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -64,7 +64,7 @@ const DragonTigerMobile = () => {
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
-          <div
+            <div
               style={{
                 height: "100%",
                 borderTop: !activeTab ? "2px solid white" : "none",
@@ -114,7 +114,12 @@ const DragonTigerMobile = () => {
         {!activeTab ? (
           <>
             <div
-              style={{ width: "100%",display: "flex", flexDirection: "column", backgroundColor: "#000" }}
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                backgroundColor: "#000",
+              }}
             >
               <div style={{ width: "100%", height: "275px" }}>
                 <div className="horseRacingTabHeader-m">
@@ -180,7 +185,11 @@ const DragonTigerMobile = () => {
                 />
               </div>
               <div style={{ width: "97%", margin: "5px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["D", "T"]}
+                  type={cardGamesType.dragonTigerOneDay}
+                />
               </div>
             </div>
           </>
