@@ -401,7 +401,7 @@ const TeenPattiDesktop = () => {
                 </div>
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "", "B"]} />
+                <CardResultBox data={dragonTigerDetail} name={["A", "", "B"]} type={"teen20"}/>
               </div>
             </div>
           </div>

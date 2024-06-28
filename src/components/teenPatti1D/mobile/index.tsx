@@ -436,7 +436,7 @@ const TeenPattiMobile = () => {
               </div>
 
               <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
+                <CardResultBox data={dragonTigerDetail} name={["A", "B"]} type={"teen"}/>
               </div>
               <div>
                 <div className="casino-title" style={{ position: "relative" }}>

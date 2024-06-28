@@ -191,6 +191,24 @@
 //   margin: 0 !important;
 // }
 
+.border-all {
+  border: 1px solid #bfbfbf;
+}
+@media (min-width: 768px) {
+  .border-md-right {
+    border-right: 1px solid #bfbfbf;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+  }
+  .border-md-none {
+    border-right: 0px solid #bfbfbf;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+  }
+}
+
 @media (max-width: 768px) {
   .tabs-navs .nav-link {
     flex: 1 0 10%;

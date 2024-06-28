@@ -15,6 +15,8 @@ const CardResultBox = ({ data, name, type }: any) => {
     (state: RootState) => state.card
   );
 
+   console.log("typef",type)
+
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
@@ -101,7 +103,7 @@ const CardResultBox = ({ data, name, type }: any) => {
           <ResultComponent
             data={resultData}
             setfalse={setLgShow}
-            type={resultData?.gameType}
+            type={type}
           />
         </Modal.Body>
       </Modal>

@@ -11,7 +11,7 @@ const toastOptions = {
 
 const service = axios.create({
   baseURL:
-    process.env.NODE_ENV === "production"
+    process.env.NODE_ENV   === "production"
       ? Constants.apiBasePath
       : Constants.localPath,
 });

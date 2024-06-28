@@ -15,7 +15,7 @@ import DragonTigerLionResultComponent from "../../dragonTigerLion/desktop/result
 import Dragon202ResultComponent from "../../dragonSecond20/desktop/resultModalComponent";
 import DragonTigerOneDayResultComponent from "../../dragonTigerOneDay/desktop/resultModalComponent";
 import Teen1DResultComponent from "../../teenPatti1D/desktop/resultModalComponent";
-import TeenPatti1D from "../../../pages/teenPatti1D";
+
 
 const title = {
   dt20: "20-20 Dragon Tiger",
@@ -39,7 +39,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
   setfalse,
   type,
 }) => {
- console.log("resultData", data);
+ console.log(cardGamesType?.teen20,"typbe", type);
 
   return (
     <Container style={{ padding: 0 }}>
@@ -49,15 +49,15 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         </span>
         <RxCross2 size={25} onClick={() => setfalse(false)} />
       </div>
-      <div className="resultModalSubHead" style={{fontSize:isMobile ? "0.8rem" : "1.1rem"}}>
-        <div>
+      <div className="resultModalSubHea" style={{fontSize:isMobile ? "0.8rem" : "1.1rem"}}>
+        <div style={{display:"flex",justifyContent:"end",paddingRight:"15px"}}>
           <span style={{fontWeight:"bold"}}>Round Id:</span>
           <span>{handleRoundId(data?.result?.mid)}</span>
         </div>
-        <div>
+        {/* <div>
         <span style={{fontWeight:"bold"}}>Match Time:</span>
         <span>{data?.createdAt ? moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A'):''}</span>
-        </div>
+        </div> */}
       </div>
       {type === cardGamesType?.dragonTiger20 ? (
         <><Dragon20ResultComponent data={data}/></>
@@ -76,11 +76,9 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
       ):type === cardGamesType?.dragonTigerLion ? (
         <><DragonTigerLionResultComponent data={data}/></>
       ):type === cardGamesType?.teenOneDay ? (
-        <><Lucky7BResultComponent data={data}/></>
+        <><Teen1DResultComponent data={data}/></>
       ):type === cardGamesType?.dragonTigerOneDay ? (
         <><DragonTigerOneDayResultComponent data={data}/></>
-      ):type === cardGamesType?.teen ?  (
-        <><Teen1DResultComponent data={data}/></>
       ):<></>
     }
 </Container>
