@@ -24,28 +24,6 @@ const TeenPattiMobile = () => {
   const { playerA, playerB } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
-  // let AB1;
-  // if (playerA?.[0]?.b1) {
-  //   //AB1 = (parseFloat(playerA?.[0]?.b1) * 0.1 + 1).toFixed(2);
-
-  //   AB1 = parseFloat(playerA[0].b1) * 0.01;
-  //   if (AB1 !== 0) {
-  //       AB1 += 1;
-  //   }
-  //   AB1 = AB1.toFixed(2);
-  // }
-
-  // let BB1;
-  // if (playerB?.[0]?.b1) {
-  //   //BB1 = (parseFloat(playerB[0].b1) * 0.1 + 1).toFixed(2);
-
-  //   BB1 = parseFloat(playerA[0].b1) * 0.01;
-  //   if (BB1 !== 0) {
-  //       BB1 += 1;
-  //   }
-  //   BB1 = BB1.toFixed(2);
-  // }
-
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
     { label: "Flush (Color)", value: "1 To 4" },
@@ -217,7 +195,41 @@ const TeenPattiMobile = () => {
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                         {playerA?.[0]?.nat}
                       </span>
-                      <span>0</span>
+                      <span
+                        className={
+                          dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                              ]
+                              ? JSON.parse(
+                                  dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                  ]
+                                )["playera"] > 0
+                                ? "color-green"
+                                : JSON.parse(
+                                    dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                    ]
+                                  )["playera"] < 0
+                                ? "color-red"
+                                : ""
+                              : ""
+                            : ""
+                        }
+                      >
+                        {dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                            ]
+                            ? JSON.parse(
+                                dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                ]
+                              )["playera"]
+                            : 0
+                          : 0}
+                      </span>
                     </div>
                     <div
                       className={
@@ -246,35 +258,6 @@ const TeenPattiMobile = () => {
                           {updatedValue(playerA?.[0]?.b1)}
                         </span>
                         <span className="f10-b">{playerA?.[0]?.bs1}</span>
-                        {/* <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                ]
-                                ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                  ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
-                                : ""
-                              : ""
-                          }`}
-                        >
-                          {dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                ]
-                              : 0
-                            : 0}
-                        </span> */}
                       </div>
                       <div
                         className={`teenPatti-table-item ${
@@ -294,35 +277,6 @@ const TeenPattiMobile = () => {
                           {updatedValue(playerA?.[0]?.l1)}
                         </span>
                         <span className="f10-b">{playerA?.[0]?.ls1}</span>
-                        {/* <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                ]
-                                ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                  ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
-                                : ""
-                              : ""
-                          }`}
-                        >
-                          {dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                ]
-                              : 0
-                            : 0}
-                        </span> */}
                       </div>
                     </div>
                   </div>
@@ -344,7 +298,41 @@ const TeenPattiMobile = () => {
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                         {playerB?.[0]?.nat}
                       </span>
-                      <span>0</span>
+                      <span
+                        className={
+                          dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                              ]
+                              ? JSON.parse(
+                                  dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                  ]
+                                )["playerb"] > 0
+                                ? "color-green"
+                                : JSON.parse(
+                                    dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                    ]
+                                  )["playerb"] < 0
+                                ? "color-red"
+                                : ""
+                              : ""
+                            : ""
+                        }
+                      >
+                        {dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                            ]
+                            ? JSON.parse(
+                                dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                ]
+                              )["playerb"]
+                            : 0
+                          : 0}
+                      </span>
                     </div>
                     <div
                       className={
@@ -373,35 +361,6 @@ const TeenPattiMobile = () => {
                           {updatedValue(playerB?.[0]?.b1)}
                         </span>
                         <span className="f10-b">{playerB?.[0]?.bs1}</span>
-                        {/* <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                ]
-                                ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                  ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
-                                : ""
-                              : ""
-                          }`}
-                        >
-                          {dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                ]
-                              : 0
-                            : 0}
-                        </span> */}
                       </div>
                       <div
                         className={`teenPatti-table-item ${
@@ -421,35 +380,6 @@ const TeenPattiMobile = () => {
                           {updatedValue(playerB?.[0]?.l1)}
                         </span>
                         <span className="f10-b">{playerB?.[0]?.ls1}</span>
-                        {/* <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                ]
-                                ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                  ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
-                                : ""
-                              : ""
-                          }`}
-                        >
-                          {dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                ]
-                              : 0
-                            : 0}
-                        </span> */}
                       </div>
                     </div>
                   </div>

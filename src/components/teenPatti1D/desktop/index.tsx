@@ -29,6 +29,8 @@ const TeenPattiDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
 
+  console.log(playerA, playerB, "abcd", dragonTigerDetail);
+
   console.log(dragonTigerDetail?.videoInfo, "ghvf");
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -84,7 +86,6 @@ const TeenPattiDesktop = () => {
         dragonTigerDetail,
       })
     );
-    // console.log('team',team)
   };
 
   useEffect(() => {
@@ -202,7 +203,41 @@ const TeenPattiDesktop = () => {
                     <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                       {playerA?.[0]?.nat}
                     </span>
-                    <span>0</span>
+                    <span
+                      className={
+                        dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                            ]
+                            ? JSON.parse(
+                                dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                ]
+                              )["playera"] > 0
+                              ? "color-green"
+                              : JSON.parse(
+                                  dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                  ]
+                                )["playera"] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {dragonTigerDetail?.profitLoss
+                        ? dragonTigerDetail?.profitLoss[
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                          ]
+                          ? JSON.parse(
+                              dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                              ]
+                            )["playera"]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                   <div
                     className={
@@ -227,35 +262,6 @@ const TeenPattiDesktop = () => {
                       <span className="f12-b">
                         {updatedValue(playerA?.[0]?.b1)}
                       </span>
-                      {/* <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span> */}
                       <span className="f10-b">{playerA?.[0]?.bs1}</span>
                     </div>
                     <div
@@ -275,35 +281,6 @@ const TeenPattiDesktop = () => {
                       <span className="f12-b">
                         {updatedValue(playerA?.[0]?.l1)}
                       </span>
-                      {/* <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span> */}
                       <span className="f10-b">{playerA?.[0]?.ls1}</span>
                     </div>
                   </div>
@@ -321,7 +298,41 @@ const TeenPattiDesktop = () => {
                     <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                       {playerB?.[0]?.nat}
                     </span>
-                    <span>0</span>
+                    <span
+                      className={
+                        dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                            ]
+                            ? JSON.parse(
+                                dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                ]
+                              )["playerb"] > 0
+                              ? "color-green"
+                              : JSON.parse(
+                                  dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                  ]
+                                )["playerb"] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {dragonTigerDetail?.profitLoss
+                        ? dragonTigerDetail?.profitLoss[
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                          ]
+                          ? JSON.parse(
+                              dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                              ]
+                            )["playerb"]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                   <div
                     className={
@@ -342,47 +353,10 @@ const TeenPattiDesktop = () => {
                           ? null
                           : handleBet(playerB?.[0], "BACK")
                       }
-
-                      // onClick={() =>
-                      //   odds?.[0]?.gstatus === "SUSPENDED" ||
-                      //   odds?.[0]?.gstatus === "CLOSED" ||
-                      //   parseFloat(odds?.[0]?.b1) ==0
-                      //     ? null
-                      //     : handleBet(odds?.[0], "BACK")
-                      // }
                     >
                       <span className="f12-b">
                         {updatedValue(playerB?.[0]?.b1)}
                       </span>
-                      {/* <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span> */}
                       <span className="f10-b">{playerB?.[0]?.bs1}</span>
                     </div>
                     <div
@@ -401,35 +375,7 @@ const TeenPattiDesktop = () => {
                       }
                     >
                       <span className="f12-b">{playerB?.[0]?.l1}</span>
-                      {/* <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span> */}
+
                       <span className="f10-b">{playerB?.[0]?.ls1}</span>
                     </div>
                   </div>
