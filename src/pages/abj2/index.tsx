@@ -1,28 +1,26 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Abj2ComponentList from "../../components/abj2";
-import { socket, socketService } from "../../socketManager";
-import {
-  getDragonTigerDetailHorseRacing,
-  updateBalanceOnBetPlaceCards,
-  updateCardAbjRates,
-  updateCardMatchRates,
-  updateLiveGameResultTop10,
-  updateProfitLossCards,
-} from "../../store/actions/cards/cardDetail";
-import {
-  getButtonValue,
-  getProfileInMatchDetail,
-} from "../../store/actions/user/userAction";
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
-import { useSelector } from "react-redux";
 import Loader from "../../components/commonComponent/loader";
+import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
-import { cardGamesType } from "../../utils/constants";
+import {
+  getDragonTigerDetailHorseRacing,
+  updateBalanceOnBetPlaceCards,
+  updateCardAbjRates,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
+} from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
+import {
+  getButtonValue,
+  getProfileInMatchDetail,
+} from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
+import { cardGamesType } from "../../utils/constants";
 
 const Abj2 = () => {
   const dispatch: AppDispatch = useDispatch();

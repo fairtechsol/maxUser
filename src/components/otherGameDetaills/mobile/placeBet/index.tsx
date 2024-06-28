@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import {
   betPlaceSuccessReset,
   placeBet,
@@ -13,7 +14,6 @@ import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";
 import "./styles.scss";
-import { toast } from "react-toastify";
 
 interface PlaceBetProps {
   show: boolean;

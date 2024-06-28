@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
 import service from "../../../service";
 import { ApiConstants } from "../../../utils/constants";
-import { AxiosError } from "axios";
 
 export const otherMatchDetailAction = createAsyncThunk<any, any>(
   "/other/match/details",

@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import DynamicTable from "./betTable";
 import Card32Result from "./card32Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import RulesModal from "../../commonComponent/rulesModal";
-import { card32rules } from "../../../assets/images";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -84,7 +84,11 @@ const Cards32Desktop = () => {
                   {dragonTigerDetail?.name}
                 </span>
                 <a
-                  style={{ fontSize: "14px", textDecoration: "underline",cursor: "pointer" }}
+                  style={{
+                    fontSize: "14px",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
                   onClick={() => setShow(true)}
                 >
                   {" "}

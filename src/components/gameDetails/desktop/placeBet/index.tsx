@@ -1,22 +1,22 @@
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { ImCross } from "react-icons/im";
 
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants, matchBettingType } from "../../../../utils/constants";
-import CustomButton from "../../../commonComponent/button";
-import RightPanelContainer from "../rightPanelContainer";
-import "./style.scss";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { ApiConstants, matchBettingType } from "../../../../utils/constants";
+import CustomButton from "../../../commonComponent/button";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
-import { FaChevronUp, FaChevronDown } from "react-icons/fa";
-import { toast } from "react-toastify";
+import RightPanelContainer from "../rightPanelContainer";
+import "./style.scss";
 
 const placeBetHeader = [
   {},
@@ -282,7 +282,10 @@ const PlacedBet = () => {
                   </td>
                   <td width={"18%"} style={{ textAlign: "end" }}>
                     <span className="f500" style={{ textAlign: "end" }}>
-                      {selectedBet?.team?.eventType==="horseRacing" || selectedBet?.team?.eventType==="greyHound"? 0 : handleProfit(stake)}
+                      {selectedBet?.team?.eventType === "horseRacing" ||
+                      selectedBet?.team?.eventType === "greyHound"
+                        ? 0
+                        : handleProfit(stake)}
                     </span>
                   </td>
                 </tr>

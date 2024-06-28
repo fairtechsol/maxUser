@@ -1,9 +1,9 @@
 import io from "socket.io-client";
 import { Constants, baseUrls } from "../utils/constants";
 import { authSocketService } from "./authSocket";
+import { cardSocketService } from "./cardSocket";
 import { matchSocketService } from "./matchSocket";
 import { userBalanceSocketService } from "./userBalance";
-import { cardSocketService } from "./cardSocket";
 
 export let socket: any = null;
 export let expertSocket: any = null;

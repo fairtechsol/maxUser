@@ -2,23 +2,23 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { dtrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Dragon20Result from "../desktop/dragonCard";
 import OddEven from "./OddEvenBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/dragonCard";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [activeCardTab, setActiveCardTab] = useState("dragon");
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.dragonTiger20}`
+    `${cardUrl}${cardGamesId.dragonTigerLion}`
   );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
@@ -51,7 +51,7 @@ const DragonTigerMobile = () => {
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
-          <div
+            <div
               style={{
                 height: "100%",
                 borderTop: !activeTab ? "2px solid white" : "none",
@@ -105,7 +105,13 @@ const DragonTigerMobile = () => {
             <div style={{ width: "100%", height: "250px" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600", wordSpacing: "-3px"  }}>
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: "600",
+                      wordSpacing: "-3px",
+                    }}
+                  >
                     {dragonTigerDetail?.name}
                   </span>
                 </div>
@@ -130,28 +136,45 @@ const DragonTigerMobile = () => {
               <div className="dt20TabBox">
                 <div className="dtltabheader">
                   <span
-                    style={{ fontSize: "12px", fontWeight: "bold",padding: "6px",
-                      width: "100%", textAlign: "center",
-                      borderTop: activeCardTab === "dragon" ? "2px solid white" : "none",
-                     }}
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "bold",
+                      padding: "6px",
+                      width: "100%",
+                      textAlign: "center",
+                      borderTop:
+                        activeCardTab === "dragon" ? "2px solid white" : "none",
+                    }}
                     onClick={() => setActiveCardTab("dragon")}
                   >
                     DRAGON
                   </span>
                   <span style={{ fontSize: "18px" }}> | </span>
                   <span
-                    style={{ fontSize: "12px", fontWeight: "bold",padding: "5px",
-                      width: "100%", textAlign: "center",
-                      borderTop: activeCardTab === "tiger" ? "2px solid white" : "none", }}
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "bold",
+                      padding: "5px",
+                      width: "100%",
+                      textAlign: "center",
+                      borderTop:
+                        activeCardTab === "tiger" ? "2px solid white" : "none",
+                    }}
                     onClick={() => setActiveCardTab("tiger")}
                   >
                     TIGER
                   </span>
                   <span style={{ fontSize: "18px" }}> | </span>
                   <span
-                    style={{ fontSize: "12px", fontWeight: "bold",padding: "5px",
-                      width: "100%", textAlign: "center",
-                      borderTop: activeCardTab === "lion" ? "2px solid white" : "none", }}
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "bold",
+                      padding: "5px",
+                      width: "100%",
+                      textAlign: "center",
+                      borderTop:
+                        activeCardTab === "lion" ? "2px solid white" : "none",
+                    }}
                     onClick={() => setActiveCardTab("lion")}
                   >
                     LION
@@ -187,6 +210,7 @@ const DragonTigerMobile = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["D", "T", "L"]}
+                  type={cardGamesType.dragonTigerLion}
                 />
               </div>
             </div>

@@ -1,11 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import CustomModal from "../../../../components/commonComponent/modal";
 import CustomTable from "../../../../components/commonComponent/table";
-import isMobile from "../../../../utils/screenDimension";
-import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import { Link } from "react-router-dom";
 import { navigateToGameDetail } from "../../../../utils/constants";
+import isMobile from "../../../../utils/screenDimension";
 
 interface ExposureModalInterface {
   show: boolean;

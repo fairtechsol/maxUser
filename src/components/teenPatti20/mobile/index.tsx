@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Teen20Result from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Teen20Result from "../desktop/teenCard";
-import { cardGamesId, cardUrl } from "../../../utils/Constants";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -96,8 +96,6 @@ const TeenPattiMobile = () => {
               }}
             >
               <span
-
-              
                 style={{ fontSize: "12px", fontWeight: "bold" }}
                 onClick={() => setActiveTab(false)}
               >
@@ -411,7 +409,11 @@ const TeenPattiMobile = () => {
               </div>
 
               <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "T", "B"]}  type={"teen20"}/>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "T", "B"]}
+                  type={"teen20"}
+                />
               </div>
               <div>
                 <div className="casino-title" style={{ position: "relative" }}>

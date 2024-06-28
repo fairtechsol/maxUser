@@ -5,16 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Teen1DResult from "./teenCard";
-import { cardGamesId, cardUrl } from "../../../utils/Constants";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();

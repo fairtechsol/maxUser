@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Teen1DResult from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Teen1DResult from "../desktop/teenCard";
-import { cardGamesId, cardUrl } from "../../../utils/Constants";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -149,21 +149,21 @@ const TeenPattiMobile = () => {
             <div style={{ height: "480px" }}>
               <div className="mt-2" style={{ width: "100%" }}>
                 <div className="teenPatti-table-container-m">
-                  <div className="teenPatti-table-row"
-                  style={{
-                    border: "0px 0px 0px 0px solid #fff",
-                  }}
+                  <div
+                    className="teenPatti-table-row"
+                    style={{
+                      border: "0px 0px 0px 0px solid #fff",
+                    }}
                   >
                     <div
                       style={{
                         width: "60%",
-                      
+
                         textAlign: "left",
                         display: "flex",
                         flexDirection: "column",
-                        
-                          border: "1px solid #fff",
-                        
+
+                        border: "1px solid #fff",
                       }}
                     >
                       <span className="f12-b">
@@ -177,7 +177,6 @@ const TeenPattiMobile = () => {
                         width: "40%",
                         display: "flex",
                         gap: "2px",
-                       
                       }}
                     >
                       <div
@@ -199,9 +198,12 @@ const TeenPattiMobile = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="teenPatti-table-row"  style={{
-                    border: "px solid #fff",
-                  }}>
+                  <div
+                    className="teenPatti-table-row"
+                    style={{
+                      border: "px solid #fff",
+                    }}
+                  >
                     <div
                       style={{
                         width: "60%",
@@ -324,9 +326,12 @@ const TeenPattiMobile = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="teenPatti-table-row"  style={{
-                    border: "px solid #fff",
-                  }}>
+                  <div
+                    className="teenPatti-table-row"
+                    style={{
+                      border: "px solid #fff",
+                    }}
+                  >
                     <div
                       style={{
                         width: "60%",
@@ -334,7 +339,6 @@ const TeenPattiMobile = () => {
                         borderTop: "1px solid #fff",
                         display: "flex",
                         flexDirection: "column",
-                        
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>

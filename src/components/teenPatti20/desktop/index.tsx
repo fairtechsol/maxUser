@@ -5,16 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
-import { cardGamesId, cardUrl } from "../../../utils/Constants";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -116,7 +116,11 @@ const TeenPattiDesktop = () => {
                     20-20 TEENPATTI
                   </span>
                   <span
-                    style={{ fontSize: "14px", textDecoration: "underline", cursor: "pointer" }}
+                    style={{
+                      fontSize: "14px",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
@@ -401,7 +405,11 @@ const TeenPattiDesktop = () => {
                 </div>
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "T", "B"]} type={"teen20"}/>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "T", "B"]}
+                  type={"teen20"}
+                />
               </div>
             </div>
           </div>

@@ -175,7 +175,7 @@ function FootballBookmakerTable({
                       </span>
                       <span
                         className={`title-14 ${
-                          (Number(
+                          Number(
                             calculateProfitLoss(
                               data,
                               selectedBet,
@@ -187,42 +187,35 @@ function FootballBookmakerTable({
                                 : matchDetails?.[`team${item}`]
                             )
                           ) +
-                          Number(
-                            calculateValue(
-                              data,
-                              i,
-                              matchDetails,
-                              item
-                            )
-                          )) < 0
-                            ? "color-red"
-                            : (Number(
-                              calculateProfitLoss(
-                                data,
-                                selectedBet,
-                                data?.type === "completeMatch" ||
-                                  data?.type === "tiedMatch1"
-                                  ? i === 0
-                                    ? "YES"
-                                    : "NO"
-                                  : matchDetails?.[`team${item}`]
-                              )
-                            ) +
                             Number(
-                              calculateValue(
-                                data,
-                                i,
-                                matchDetails,
-                                item
-                              )
-                            )) > 0
+                              calculateValue(data, i, matchDetails, item)
+                            ) <
+                          0
+                            ? "color-red"
+                            : Number(
+                                calculateProfitLoss(
+                                  data,
+                                  selectedBet,
+                                  data?.type === "completeMatch" ||
+                                    data?.type === "tiedMatch1"
+                                    ? i === 0
+                                      ? "YES"
+                                      : "NO"
+                                    : matchDetails?.[`team${item}`]
+                                )
+                              ) +
+                                Number(
+                                  calculateValue(data, i, matchDetails, item)
+                                ) >
+                              0
                             ? "color-green"
                             : ""
                         }`}
                       >
                         {selectedBet?.team?.stake > 0 &&
-                          selectedBet?.data?.type == data.type
-                            ? (Number(
+                        selectedBet?.data?.type == data.type
+                          ? (
+                              Number(
                                 calculateProfitLoss(
                                   data,
                                   selectedBet,
@@ -235,14 +228,10 @@ function FootballBookmakerTable({
                                 )
                               ) +
                               Number(
-                                calculateValue(
-                                  data,
-                                  i,
-                                  matchDetails,
-                                  item
-                                )
-                              )).toFixed(2)
-                            : null}
+                                calculateValue(data, i, matchDetails, item)
+                              )
+                            ).toFixed(2)
+                          : null}
                       </span>
                     </div>
                   </div>
@@ -264,7 +253,7 @@ function FootballBookmakerTable({
                           key={index}
                           indexs={index}
                           type={data.type}
-                          box={'back'}
+                          box={"back"}
                           customClass={`match-odd-bet-place ${
                             isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
@@ -281,14 +270,18 @@ function FootballBookmakerTable({
                               (+data[`backTeam${item}`] || 0) -
                               (isMobile ? 0 : 2) +
                               index;
-                              let rateValue;
-                              if((data.type=== "quickbookmaker1" ||
-                              data.type === "quickbookmaker2" ||
-                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
-                                rateValue = index <2 ? Math.trunc(rate) : rate;
-                              }else{
-                                rateValue = rate
-                              }
+                            let rateValue;
+                            if (
+                              (data.type === "quickbookmaker1" ||
+                                data.type === "quickbookmaker2" ||
+                                data.type === "quickbookmaker3" ||
+                                data.type === "tiedMatch2") &&
+                              !isMobile
+                            ) {
+                              rateValue = index < 2 ? Math.trunc(rate) : rate;
+                            } else {
+                              rateValue = rate;
+                            }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active
@@ -327,7 +320,7 @@ function FootballBookmakerTable({
                           key={index}
                           indexs={index}
                           type={data.type}
-                          box={'lay'}
+                          box={"lay"}
                           customClass={`match-odd-bet-place ${
                             isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
@@ -342,13 +335,17 @@ function FootballBookmakerTable({
                           onClick={() => {
                             const rate = +(data[`layTeam${item}`] || 0) + index;
                             let rateValue;
-                              if((data.type=== "quickbookmaker1" ||
-                              data.type === "quickbookmaker2" ||
-                              data.type === "quickbookmaker3" || data.type === 'tiedMatch2') && !isMobile){
-                                rateValue = index  > 0 ? Math.trunc(rate) : rate;
-                              }else{
-                                rateValue = rate
-                              }
+                            if (
+                              (data.type === "quickbookmaker1" ||
+                                data.type === "quickbookmaker2" ||
+                                data.type === "quickbookmaker3" ||
+                                data.type === "tiedMatch2") &&
+                              !isMobile
+                            ) {
+                              rateValue = index > 0 ? Math.trunc(rate) : rate;
+                            } else {
+                              rateValue = rate;
+                            }
                             if (
                               rate > 0 &&
                               data?.[`statusTeam${item}`] == teamStatus.active

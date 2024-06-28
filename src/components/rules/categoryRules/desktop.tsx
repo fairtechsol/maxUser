@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { sportsRules } from "../../../utils/constants/index";
 
-import { Row, Col, Nav, Tab } from "react-bootstrap";
+import { Col, Nav, Row, Tab } from "react-bootstrap";
 
 const Desktop = () => {
   const [activeSport, setActiveSport] = useState<string>("Motor Sport");
