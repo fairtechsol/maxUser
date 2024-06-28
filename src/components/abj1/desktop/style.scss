@@ -196,6 +196,14 @@
   flex-direction: column;
   justify-content: space-around;
 }
+.abjcardContainer {
+  width: 100%;
+  // background-color: #eee;
+  // padding: 10px;
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-around;
+}
 .commonCardImgContainer {
   width: 100%;
   display: flex;

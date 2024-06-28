@@ -5,7 +5,7 @@ import {
   update7BCardMatchRates,
   update7CardMatchRates,
   updateCard32BMatchRates,
-  updateCard32MatchRates, updateCardAbjRates,
+  updateCard32MatchRates, updateCardAbj1Rates, updateCardAbjRates,
   updateCardMatchRates,
   updateDragonTigerLionRates,
   updateDragonTigerOneDayRates,
@@ -228,6 +228,21 @@ const cardDetail = createSlice({
             redBlack,
             singleCard,
             cardtotal,
+        };
+      })
+      .addCase(updateCardAbj1Rates.fulfilled, (state, action) => {
+        const { t1, t2,t3 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const cardInfo = { ...t3[0] };
+        const ander = t2.slice(0, 13);
+        const bahar = t2.slice(13, 26);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          cardInfo,
+          ander,
+          bahar,
         };
       })
       .addCase(resultDragonTiger.pending, (state) => {

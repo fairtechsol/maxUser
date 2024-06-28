@@ -149,3 +149,10 @@ export const updateCard32BMatchRates = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateCardAbj1Rates = createAsyncThunk<any, any>(
+  "abj1/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);

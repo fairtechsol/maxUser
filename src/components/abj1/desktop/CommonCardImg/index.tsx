@@ -1,7 +1,7 @@
 import { dragonTigerCards } from "../../../../utils/constants";
 import { useEffect, useState } from "react";
 
-const CommonCardImg = ({ cardData, handleBet, data }: any) => {
+const CommonCardImg = ({ cardData, handleBet, data,cardInfo }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
@@ -12,7 +12,10 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
     });
     setCardImg(mergedArray);
   }, [cardData]);
-
+console.log(cardInfo,'first',cardImg)
+const handlock=()=>{
+  
+}
   return (
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any) => {
@@ -29,7 +32,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
             }}
             onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
           >
-            <img src={item?.imgSrc} width={"45px"} />
+            <img src={item?.imgSrc} width={"30px"} />
          
           </div>
              <span

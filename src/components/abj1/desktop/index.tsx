@@ -8,8 +8,6 @@ import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import SBetBox from "./Sbox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
@@ -25,10 +23,9 @@ const Abj1Desktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.andarBahar2}`
+    `${cardUrl}${cardGamesId?.andarBahar1}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -81,14 +78,18 @@ const Abj1Desktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+            <div style={{ width: "100%", height: "440px", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
                   <a
-                    style={{ fontSize: "14px", textDecoration: "underline",cursor: "pointer" }}
+                    style={{
+                      fontSize: "14px",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
@@ -122,57 +123,29 @@ const Abj1Desktop = () => {
             </div>
             <div style={{ height: "460px" }}>
               <div
-                className="row-flex"
-                style={{ width: "100%", margin: "5% 2% 5px 5px" }}
-              >
-                <SBetBox
-                  type={"A"}
-                  odds={dragonTigerDetail?.abjSa}
-                  data={dragonTigerDetail}
-                />
-                <SBetBox
-                  type={"B"}
-                  odds={dragonTigerDetail?.abjSb}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
                 style={{
                   width: "100%",
                   margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <OddEven
-                  card={true}
-                  odds={dragonTigerDetail?.oddEven}
-                  data={dragonTigerDetail}
-                />
-                <OddEven
-                  card={false}
-                  odds={dragonTigerDetail?.abjCards}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
+                  display:"flex",
+                  flexDirection:"column"
                 }}
               >
                 <CardBox
-                  rate={12}
-                  cards={dragonTigerDetail?.cards}
+                  title={"ANDAR"}
+                  bgColor={"#ffa07a"}
+                  odds={dragonTigerDetail?.ander}
+                  data={dragonTigerDetail}
+                />
+                <CardBox
+                  title={"BAHAR"}
+                  bgColor={"#90ee90"}
+                  odds={dragonTigerDetail?.bahar}
                   data={dragonTigerDetail}
                 />
               </div>
+             
               <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
+                <CardResultBox data={dragonTigerDetail} name={["R", "R"]} />
               </div>
             </div>
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
