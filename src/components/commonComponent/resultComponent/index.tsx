@@ -57,10 +57,10 @@ useEffect(() => {
           <span style={{fontWeight:"bold"}}>Round Id:</span>
           <span>{handleRoundId(data?.result?.mid)}</span>
         </div>
-        <div>
+        {/* <div>
         <span style={{fontWeight:"bold"}}>Match Time:</span>
         <span>{data?.createdAt ? moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A'): moment(date).format('DD/MM/YYYY hh:mm:ss A')}</span>
-        </div>
+        </div> */}
       </div>
       {type === cardGamesType?.dragonTiger20 ? (
         <><Dragon20ResultComponent data={data}/></>

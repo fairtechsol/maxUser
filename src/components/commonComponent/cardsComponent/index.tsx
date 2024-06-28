@@ -27,7 +27,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         background: lock ? `url(${back})` : "white",
         height: isMobile ? "20px" : "40px",
         width: isMobile ? "16px" : "30px",
-        backgroundSize: "100% 100%",
+        backgroundSize: "100%",
         padding: "0px",
       }}
     >
