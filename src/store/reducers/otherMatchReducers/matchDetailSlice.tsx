@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 import {
   // SearchList,
   // SearchListReset,
@@ -10,7 +11,6 @@ import {
   updateMatchRates,
   updateTeamRatesOnPlaceBet,
 } from "../../actions/otherMatchActions";
-import { profitLossDataForMatchConstants } from "../../../utils/constants";
 import {
   updateMatchRatesOnMarketUndeclare,
   // updateTeamRatesOnDeleteMatch,

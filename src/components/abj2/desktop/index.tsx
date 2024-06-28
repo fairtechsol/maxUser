@@ -4,19 +4,19 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { abjrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import SBetBox from "./Sbox";
+import Abj2Result from "./abj2Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Abj2Result from "./abj2Card";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -88,7 +88,11 @@ const Abj2Desktop = () => {
                     {dragonTigerDetail?.name}
                   </span>
                   <a
-                    style={{ fontSize: "14px", textDecoration: "underline",cursor: "pointer" }}
+                    style={{
+                      fontSize: "14px",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
@@ -172,7 +176,11 @@ const Abj2Desktop = () => {
                 />
               </div>
               <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "B"]}
+                  type={cardGamesType.andarBahar2}
+                />
               </div>
             </div>
             <RulesModal show={show} setShow={setShow} rule={abjrules} />

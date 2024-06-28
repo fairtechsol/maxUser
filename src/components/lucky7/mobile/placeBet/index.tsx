@@ -92,12 +92,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     }
   }, [success, error]);
 
- 
-  
-
-  
-  const handleKeyDown = (e:any) => {
-    if (e.key === 'e' || e.key === 'E') {
+  const handleKeyDown = (e: any) => {
+    if (e.key === "e" || e.key === "E") {
       e.preventDefault();
     }
   };
@@ -122,13 +118,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
             <Col xs={8} className="f600 title-14">
-              {selectedBet?.team?.name }
+              {selectedBet?.team?.name}
             </Col>
             <Col xs={4} className="d-flex justify-content-end">
-              <CustomButton
-                
-                className="bg-secondary py-0 br-0"
-              >
+              <CustomButton className="bg-secondary py-0 br-0">
                 <span className="f900 text-black">-</span>
               </CustomButton>
               <input
@@ -138,10 +131,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 className="w-50 br-0"
                 style={{ border: "1px solid #000" }}
               />
-              <CustomButton
-                
-                className="bg-secondary f900 text-black br-0"
-              >
+              <CustomButton className="bg-secondary f900 text-black br-0">
                 <span className="f900 text-black">+</span>
               </CustomButton>
             </Col>
@@ -172,7 +162,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
 
             <Col xs={4} className="f800 title-12">
               <CustomButton
-              style={{ height: "28px" }}
+                style={{ height: "28px" }}
                 className="f600 w-100 br-0"
                 onClick={() => {
                   try {
@@ -195,20 +185,29 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       selectionId: selectedBet?.team?.selectionId,
                     };
                     setMatchOddLoading(true);
-                      dispatch(
-                        placeBet({
-                          url: ApiConstants.CARDS.MATCH.PLACE_BET,
-                          data: JSON.stringify(payload),
-                        })
-                      );
+                    dispatch(
+                      placeBet({
+                        url: ApiConstants.CARDS.MATCH.PLACE_BET,
+                        data: JSON.stringify(payload),
+                      })
+                    );
                     setStake(0);
                   } catch (e) {
                     console.log(e);
                   }
                 }}
               >
-                <span style={{height: "15px", display: "flex", alignItems: "center", justifyContent: "center"}}> Submit</span>
-               
+                <span
+                  style={{
+                    height: "15px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {" "}
+                  Submit
+                </span>
               </CustomButton>
             </Col>
             <Col xs={4} className="title-12 text-center">
@@ -235,9 +234,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 </CustomButton>
               </Col>
             ))}
-            <div className="container d-flex justify-content-between mt-2">
-             
-            </div>
+            <div className="container d-flex justify-content-between mt-2"></div>
           </Row>
         </Container>
       </CustomModal>

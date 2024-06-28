@@ -1,24 +1,26 @@
+import { useState } from "react";
 import { Table } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getRunAmount,
+  resetRunAmountModal,
+} from "../../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
 import { teamStatus } from "../../../../utils/constants";
+import { formattedMinMax } from "../../../../utils/formatMinMax";
 import isMobile from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
-import "../style.scss";
-import "./style.scss";
+import SmoothDropdownModal from "../../../commonComponent/minMaxModal";
 import CustomModal from "../../../commonComponent/modal";
-import RunBoxTable from "../runBoxTable";
-import { useState } from "react";
-import { getRunAmount, resetRunAmountModal } from "../../../../store/actions/betPlace/betPlaceActions";
-import { useSelector } from "react-redux";
 import Desktop from "../../../rules/categoryRules/desktop";
 import Mobile from "../../../rules/mobile";
-import SmoothDropdownModal from "../../../commonComponent/minMaxModal";
-import { formattedMinMax } from "../../../../utils/formatMinMax";
+import RunBoxTable from "../runBoxTable";
+import "../style.scss";
+import "./style.scss";
 
 interface SessionMarketTableProps {
   data: any;
@@ -31,7 +33,9 @@ function SessionMarketTable({
   title,
   matchDetails,
 }: SessionMarketTableProps) {
-  const { runAmount,runAmountModal } = useSelector((state: RootState) => state.bets);
+  const { runAmount, runAmountModal } = useSelector(
+    (state: RootState) => state.bets
+  );
   const [modalStates, setModalStates] = useState<any>({});
   // State for the "Rules" modal
   const [showRulesModal, setShowRulesModal] = useState(false);
@@ -48,14 +52,14 @@ function SessionMarketTable({
   };
 
   const handleMinModalToggle = (itemId: any) => {
-    setModalStates((prevState: { [x: string]: any; }) => ({
+    setModalStates((prevState: { [x: string]: any }) => ({
       ...prevState,
-      [itemId]: !prevState[itemId] // Toggle the modal state for the specific item
+      [itemId]: !prevState[itemId], // Toggle the modal state for the specific item
     }));
   };
-  const handleModal =(event:any)=>{
-    dispatch(resetRunAmountModal({showModal : event,id:runAmount?.betId}))
-  }
+  const handleModal = (event: any) => {
+    dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
+  };
   return (
     <div className={`gameTable sessionFancyTable borderTable border`}>
       <Table className="mb-0">
@@ -68,10 +72,11 @@ function SessionMarketTable({
                   rightComponent={
                     <div>
                       <span
-                        className={`${isMobile
+                        className={`${
+                          isMobile
                             ? "text-black title-16"
                             : "text-white title-20"
-                          }`}
+                        }`}
                       >
                         <IoInformationCircle
                           onClick={() => setShowRulesModal(true)}
@@ -100,11 +105,11 @@ function SessionMarketTable({
         <tbody>
           {data?.map((item: any, index: number) => {
             if (!JSON.parse(item).selectionId) {
-            //   const [showMinsModal, setShowMinsModal] = useState(false); // State for the dropdown modal
+              //   const [showMinsModal, setShowMinsModal] = useState(false); // State for the dropdown modal
 
-            //   const handleMinModalToggle = () => {
-            //     setShowMinsModal(!showMinsModal);
-            //   };
+              //   const handleMinModalToggle = () => {
+              //     setShowMinsModal(!showMinsModal);
+              //   };
               return (
                 // <BetStatusOverlay
                 //   key={index}
@@ -117,27 +122,62 @@ function SessionMarketTable({
                       <span
                         onClick={() => {
                           // setShowRunModal(true);
-                          dispatch(resetRunAmountModal({showModal : true,id:item?.id}))
+                          dispatch(
+                            resetRunAmountModal({
+                              showModal: true,
+                              id: item?.id,
+                            })
+                          );
                           dispatch(getRunAmount(JSON.parse(item)?.id));
                         }}
                         className="backLayRunner-country session-country title-12"
                       >
                         {JSON.parse(item)?.name}
                       </span>
-                      {isMobile &&  <span className="minmaxi"><IoInformationCircle
-                      onClick={(item:any) => handleMinModalToggle(item.id)} 
-                      />
-                        <SmoothDropdownModal
-                          minMax={formattedMinMax(JSON.parse(item)?.minBet, JSON.parse(item)?.maxBet)}
-                          show={modalStates[item.id]}
-                        setShow={(value: any) => setModalStates((prevState: any) => ({ ...prevState, [item.id]: value }))} 
-                        /></span>}
+                      {isMobile && (
+                        <span className="minmaxi">
+                          <IoInformationCircle
+                            onClick={(item: any) =>
+                              handleMinModalToggle(item.id)
+                            }
+                          />
+                          <SmoothDropdownModal
+                            minMax={formattedMinMax(
+                              JSON.parse(item)?.minBet,
+                              JSON.parse(item)?.maxBet
+                            )}
+                            show={modalStates[item.id]}
+                            setShow={(value: any) =>
+                              setModalStates((prevState: any) => ({
+                                ...prevState,
+                                [item.id]: value,
+                              }))
+                            }
+                          />
+                        </span>
+                      )}
                     </div>
                     <div className="backLayRunner d-flex flex-column px-1">
-
                       <span
-                        className={`title-14 mt-2 ${matchDetails?.profitLossDataSession?.length > 0
+                        className={`title-14 mt-2 ${
+                          matchDetails?.profitLossDataSession?.length > 0
                             ? matchDetails?.profitLossDataSession?.reduce(
+                                (accumulator: any, bet: any) => {
+                                  const maxLossToAdd =
+                                    bet?.betId === JSON.parse(item)?.id
+                                      ? +bet?.maxLoss
+                                      : 0;
+                                  return accumulator + maxLossToAdd;
+                                },
+                                0
+                              ) < 0
+                              ? "color-red"
+                              : "color-green"
+                            : ""
+                        }`}
+                      >
+                        {matchDetails?.profitLossDataSession?.length > 0
+                          ? matchDetails?.profitLossDataSession?.reduce(
                               (accumulator: any, bet: any) => {
                                 const maxLossToAdd =
                                   bet?.betId === JSON.parse(item)?.id
@@ -146,23 +186,7 @@ function SessionMarketTable({
                                 return accumulator + maxLossToAdd;
                               },
                               0
-                            ) < 0
-                              ? "color-red"
-                              : "color-green"
-                            : ""
-                          }`}
-                      >
-                        {matchDetails?.profitLossDataSession?.length > 0
-                          ? matchDetails?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === JSON.parse(item)?.id
-                                  ? +bet?.maxLoss
-                                  : 0;
-                              return accumulator + maxLossToAdd;
-                            },
-                            0
-                          )
+                            )
                           : 0}
                       </span>
                     </div>
@@ -251,7 +275,7 @@ function SessionMarketTable({
                 // </BetStatusOverlay>
               );
             } else return null;
-           } )}
+          })}
         </tbody>
       </Table>
       <CustomModal

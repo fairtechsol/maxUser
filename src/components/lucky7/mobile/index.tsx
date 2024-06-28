@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Lucky7Result from "../desktop/lucky7Card";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import Lucky7Result from "../desktop/lucky7Card";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
 
 const Lucky7Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -133,54 +133,58 @@ const Lucky7Mobile = () => {
               </div>
             </div>
 
-         <div style={{ height: "550px"}}>
-         <div style={{ width: "100%", marginTop: "30px" }}>
-              <TiePairBox
-                lowHigh={dragonTigerDetail?.lowHigh}
-                data={dragonTigerDetail}
-              />
+            <div style={{ height: "550px" }}>
+              <div style={{ width: "100%", marginTop: "30px" }}>
+                <TiePairBox
+                  lowHigh={dragonTigerDetail?.lowHigh}
+                  data={dragonTigerDetail}
+                />
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  padding: "10px 5px",
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "8px",
+                }}
+              >
+                <OddEven
+                  odds={dragonTigerDetail?.redBlack}
+                  data={dragonTigerDetail}
+                  name={"DRAGON"}
+                  card={true}
+                />
+                <OddEven
+                  name={"TIGER"}
+                  odds={dragonTigerDetail?.luckOdds}
+                  card={false}
+                  data={dragonTigerDetail}
+                />
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "8px",
+                }}
+              >
+                <CardBox
+                  name={"DRAGON"}
+                  cardData={dragonTigerDetail?.luckyCards}
+                  data={dragonTigerDetail}
+                  rate={dragonTigerDetail?.luckyCards?.rate}
+                />
+              </div>
+              <div style={{ width: "100%", marginTop: "10px" }}>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["L", "H", "T"]}
+                  type={cardGamesType.lucky7}
+                />
+              </div>
             </div>
-            <div
-              style={{
-                width: "100%",
-                padding: "10px 5px",
-                display: "flex",
-                flexDirection: "row",
-                gap: "8px",
-              }}
-            >
-              <OddEven
-                odds={dragonTigerDetail?.redBlack}
-                data={dragonTigerDetail}
-                name={"DRAGON"}
-                card={true}
-              />
-              <OddEven
-                name={"TIGER"}
-                odds={dragonTigerDetail?.luckOdds}
-                card={false}
-                data={dragonTigerDetail}
-              />
-            </div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "row",
-                gap: "8px",
-              }}
-            >
-              <CardBox
-                name={"DRAGON"}
-                cardData={dragonTigerDetail?.luckyCards}
-                data={dragonTigerDetail}
-                rate={dragonTigerDetail?.luckyCards?.rate}
-              />
-            </div>
-            <div style={{ width: "100%", marginTop: "10px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["L", "H", "T"]} />
-            </div>
-         </div>
           </div>
         ) : (
           <>

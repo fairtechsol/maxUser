@@ -78,11 +78,11 @@ export const ApiConstants = {
     MATCH: {
       GET_CARD_DETAIL: "/match/card",
       PLACE_BET: "/bet/cardBetting",
-      RESULT:"/card/result/detail"
+      RESULT: "/card/result/detail",
     },
   },
 };
-export const cardUrl ="https://video.proexch.in/route/?id="
+export const cardUrl = "https://video.proexch.in/route/?id=";
 
 export const Constants = {
   pageLimit: 15,
@@ -278,7 +278,7 @@ export const navigateToGameDetail = {
   [cardGamesType.lucky7B]: "lucky7-B",
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
-}
+};
 
 export const baseUrls = {
   socket:

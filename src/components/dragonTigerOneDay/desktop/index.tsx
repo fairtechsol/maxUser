@@ -4,20 +4,20 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { dtrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import OddEven from "./OddEvenBox";
 import BackLay from "./BackLay";
+import OddEven from "./OddEvenBox";
+import PairBox from "./PairBox";
+import CardBox from "./cardBox";
 import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
-import PairBox from "./PairBox";
-import CardBox from "./cardBox";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -172,7 +172,11 @@ const DragonTigerDesktop = () => {
               />
             </div>
             <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+              <CardResultBox
+                data={dragonTigerDetail}
+                name={["D", "T"]}
+                type={cardGamesType.dragonTigerOneDay}
+              />
             </div>
           </div>
 

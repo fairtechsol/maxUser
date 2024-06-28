@@ -1,8 +1,12 @@
 import { useEffect } from "react";
-import { AppDispatch, RootState } from "../../store/store";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/commonComponent/loader";
+import DragonTigerOneDayComponentList from "../../components/dragonTigerOneDay";
 import { socket, socketService } from "../../socketManager";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
 import {
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
@@ -10,18 +14,13 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
-import Loader from "../../components/commonComponent/loader";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getButtonValue,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import {
-  getPlacedBets,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
-import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import DragonTigerOneDayComponentList from "../../components/dragonTigerOneDay";
 
 const DragonTigerOneDay = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -60,7 +59,9 @@ const DragonTigerOneDay = () => {
   useEffect(() => {
     try {
       dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay));
+      dispatch(
+        getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay)
+      );
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }

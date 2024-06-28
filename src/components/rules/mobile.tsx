@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Accordion, Button } from "react-bootstrap";
 import { sportsRules } from "../../utils/constants/index";
 import "./index.scss";
-import { Accordion, Button } from "react-bootstrap";
 
 const Mobile = () => {
   const [activeSport, setActiveSport] = useState<string | null>(null);
@@ -27,7 +27,7 @@ const Mobile = () => {
         {sportsRules.map((sport, index) => (
           <Accordion.Item key={index} eventKey={sport.sportName}>
             <Accordion.Header
-              style={{  
+              style={{
                 backgroundColor:
                   activeSport === sport.sportName ? "" : "rgb(0, 74, 37)",
               }}

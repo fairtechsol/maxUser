@@ -1,21 +1,21 @@
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { ImCross } from "react-icons/im";
 
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants } from "../../../../utils/Constants";
-import CustomButton from "../../../commonComponent/button";
-import RightPanelContainer from "../rightPanelContainer";
-import "./style.scss";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { ApiConstants } from "../../../../utils/constants";
+import CustomButton from "../../../commonComponent/button";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
-import { FaChevronUp, FaChevronDown } from "react-icons/fa";
+import RightPanelContainer from "../rightPanelContainer";
+import "./style.scss";
 
 const placeBetHeader = [
   {},

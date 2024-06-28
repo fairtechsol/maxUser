@@ -55,9 +55,9 @@ export const getCardReport = createAsyncThunk<any, any>(
   async ({ type, page, limit, searchBy, keyword, filter }) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.USER.CARD_REPORT}${type}?page=${
-          page || 1
-        }&limit=${limit || 15}&searchBy=${searchBy}&keyword=${
+        `${ApiConstants.USER.CARD_REPORT}${type}?page=${page || 1}&limit=${
+          limit || 15
+        }&searchBy=${searchBy}&keyword=${
           keyword || ""
         }&sort=cardResult.createdAt:DESC${filter}`
       );

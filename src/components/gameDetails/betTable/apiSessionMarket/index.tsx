@@ -1,26 +1,25 @@
 import { Table } from "react-bootstrap";
 
-import { IoInformationCircle } from "react-icons/io5";
-import { useDispatch } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../../store/store";
-import isMobile from "../../../../utils/screenDimension";
-import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
-import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
-import BetTableHeader from "../../../commonComponent/betTableHeader";
-import "./style.scss";
 import { useState } from "react";
-import CustomModal from "../../../commonComponent/modal";
-import RunBoxTable from "../runBoxTable";
+import { IoInformationCircle } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getRunAmount,
   resetRunAmountModal,
 } from "../../../../store/actions/betPlace/betPlaceActions";
-import { useSelector } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
 import { teamStatus } from "../../../../utils/constants";
+import isMobile from "../../../../utils/screenDimension";
+import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
+import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
+import BetTableHeader from "../../../commonComponent/betTableHeader";
+import SmoothDropdownModal from "../../../commonComponent/minMaxModal";
+import CustomModal from "../../../commonComponent/modal";
 import Desktop from "../../../rules/categoryRules/desktop";
 import Mobile from "../../../rules/mobile";
-import SmoothDropdownModal from "../../../commonComponent/minMaxModal";
+import RunBoxTable from "../runBoxTable";
+import "./style.scss";
 // import { formattedMinMax } from "../../../../utils/formatMinMax";
 
 interface ApiSessionMarketTableProps {
@@ -129,7 +128,11 @@ function ApiSessionMarketTable({
                         );
                         dispatch(getRunAmount(item?.id));
                       }}
-                      className={`${isMobile ? 'backLayRunner-country session-country title-12 f600' : 'backLayRunner-country session-country title-10'}`}
+                      className={`${
+                        isMobile
+                          ? "backLayRunner-country session-country title-12 f600"
+                          : "backLayRunner-country session-country title-10"
+                      }`}
                     >
                       {item?.name}
                     </span>
@@ -284,8 +287,8 @@ function ApiSessionMarketTable({
         show={runAmountModal}
         setShow={handleModal}
       >
-        <div style={{width:'100%',height:'500px',overflowY:'auto'}}>
-        <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+        <div style={{ width: "100%", height: "500px", overflowY: "auto" }}>
+          <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
         </div>
       </CustomModal>
     </div>

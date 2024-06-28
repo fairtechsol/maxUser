@@ -1,5 +1,5 @@
-import { dragonTigerCards } from "../../../../utils/constants";
 import { useEffect, useState } from "react";
+import { dragonTigerCards } from "../../../../utils/constants";
 import "../../desktop/style.scss";
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);

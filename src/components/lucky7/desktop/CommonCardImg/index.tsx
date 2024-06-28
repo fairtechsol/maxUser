@@ -1,5 +1,5 @@
-import { dragonTigerCards } from "../../../../utils/constants";
 import { useEffect, useState } from "react";
+import { dragonTigerCards } from "../../../../utils/constants";
 import "../../desktop/style.scss";
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
@@ -18,23 +18,26 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
       {cardImg?.map((item: any) => {
         return (
           <div>
-          <div
-            className={item?.gstatus === "0" ? "suspended" : ""}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
-              alignItems: "center",
-            }}
-            onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
-            key={item?.code}
-          >
-            {" "}
-            <img src={item?.imgSrc} width={"40px"} />
-     
-          </div>
-          <span
-              style={{ fontSize: "12px", display: "flex",justifyContent: "center"  }}
+            <div
+              className={item?.gstatus === "0" ? "suspended" : ""}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+              onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
+              key={item?.code}
+            >
+              {" "}
+              <img src={item?.imgSrc} width={"40px"} />
+            </div>
+            <span
+              style={{
+                fontSize: "12px",
+                display: "flex",
+                justifyContent: "center",
+              }}
               className={`${
                 data?.profitLoss
                   ? data?.profitLoss[
@@ -61,7 +64,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                   : 0
                 : 0}
             </span>
-            </div>
+          </div>
         );
       })}
     </div>

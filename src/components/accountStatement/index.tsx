@@ -1,10 +1,11 @@
-import { Button, Col, Form, Modal, Row, Stack, Table } from "react-bootstrap";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import { Button, Col, Form, Modal, Row, Stack, Table } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import { useDispatch, useSelector } from "react-redux";
+import { getPlacedBetsForAccountStatement } from "../../store/actions/betPlace/betPlaceActions";
 import { getAccountStatement } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { transType } from "../../utils/constants";
@@ -15,7 +16,6 @@ import NotSet from "../commonComponent/notSet";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import "./style.scss";
-import { getPlacedBetsForAccountStatement } from "../../store/actions/betPlace/betPlaceActions";
 
 const AccountStatementComponent = () => {
   const minDate = new Date();
@@ -552,7 +552,7 @@ const AccountStatementComponent = () => {
                                   : item?.result === "WIN"
                                   ? "#28a745"
                                   : "#000",
-                                  overflowWrap:"anywhere"
+                              overflowWrap: "anywhere",
                             }}
                           >
                             {item?.result === "LOSS"
