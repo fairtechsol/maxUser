@@ -29,28 +29,6 @@ const TeenPattiDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
 
-  let AB1;
-  if (playerA?.[0]?.b1) {
-    //AB1 = (parseFloat(playerA?.[0]?.b1) * 0.1 + 1).toFixed(2);
-
-    AB1 = parseFloat(playerA[0].b1) * 0.01;
-    if (AB1 !== 0) {
-        AB1 += 1;
-    }
-    AB1 = AB1.toFixed(2);
-  }
-
-  let BB1;
-  if (playerB?.[0]?.b1) {
-    //BB1 = (parseFloat(playerB[0].b1) * 0.1 + 1).toFixed(2);
-
-    BB1 = parseFloat(playerA[0].b1) * 0.01;
-    if (BB1 !== 0) {
-        BB1 += 1;
-    }
-    BB1 = BB1.toFixed(2);
-  }
-
   console.log(dragonTigerDetail?.videoInfo, "ghvf");
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -79,19 +57,19 @@ const TeenPattiDesktop = () => {
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
 
-  const updatedValue = (value:any) => {
+  const updatedValue = (value: any) => {
     let parsedValue = parseFloat(value) * 0.01;
     if (parsedValue !== 0) {
-        parsedValue += 1;
+      parsedValue += 1;
     }
     return parsedValue.toFixed(2);
-};
+  };
 
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
-      odd: type === "BACK" ? (item?.b1 ? updatedValue(item.b1) : item.b1) : item?.l1,
+      odd: type === "BACK" ? updatedValue(item.b1) : updatedValue(item?.l1),
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -246,7 +224,9 @@ const TeenPattiDesktop = () => {
                           : handleBet(playerA?.[0], "BACK")
                       }
                     >
-                      <span className="f12-b">{AB1}</span>
+                      <span className="f12-b">
+                        {updatedValue(playerA?.[0]?.b1)}
+                      </span>
                       {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss
@@ -292,7 +272,9 @@ const TeenPattiDesktop = () => {
                           : handleBet(playerA?.[0], "LAY")
                       }
                     >
-                      <span className="f12-b">{playerA?.[0]?.l1}</span>
+                      <span className="f12-b">
+                        {updatedValue(playerA?.[0]?.l1)}
+                      </span>
                       {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss
@@ -369,7 +351,9 @@ const TeenPattiDesktop = () => {
                       //     : handleBet(odds?.[0], "BACK")
                       // }
                     >
-                      <span className="f12-b">{BB1}</span>
+                      <span className="f12-b">
+                        {updatedValue(playerB?.[0]?.b1)}
+                      </span>
                       {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss
@@ -452,7 +436,11 @@ const TeenPattiDesktop = () => {
                 </div>
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "", "B"]} type={"teen"} />
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "", "B"]}
+                  type={"teen"}
+                />
               </div>
             </div>
           </div>

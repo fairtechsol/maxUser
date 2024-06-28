@@ -235,7 +235,7 @@ const TeenPattiMobile = () => {
                             : handleBet(playerA?.[0], "BACK")
                         }
                       >
-                        <span className="f12-b">{AB1}</span>
+                        <span className="f12-b">{updatedValue(playerA?.[0]?.b1)}</span>
                         <span className="f10-b">{playerA?.[0]?.bs1}</span>
                         {/* <span
                           className={`f10-b ${
@@ -281,7 +281,7 @@ const TeenPattiMobile = () => {
                             : handleBet(playerA?.[0], "LAY")
                         }
                       >
-                        <span className="f12-b">{playerA?.[0]?.l1}</span>
+                        <span className="f12-b">{updatedValue(playerA?.[0]?.l1)}</span>
                         <span className="f10-b">{playerA?.[0]?.ls1}</span>
                         {/* <span
                           className={`f10-b ${
@@ -353,7 +353,7 @@ const TeenPattiMobile = () => {
                             : handleBet(playerB?.[0], "BACK")
                         }
                       >
-                         <span className="f12-b">{BB1}</span>
+                         <span className="f12-b">{updatedValue(playerB?.[0]?.b1)}</span>
                          <span className="f10-b">{playerB?.[0]?.bs1}</span>
                         {/* <span
                           className={`f10-b ${
@@ -399,8 +399,9 @@ const TeenPattiMobile = () => {
                             : handleBet(playerB?.[0], "LAY")
                         }
                       >
-                        <span className="f12-b">{playerB?.[1]?.nat}</span>
-                        <span
+                        <span className="f12-b">{updatedValue(playerB?.[0]?.l1)}</span>
+                        <span className="f10-b">{playerB?.[0]?.ls1}</span>
+                        {/* <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -428,7 +429,7 @@ const TeenPattiMobile = () => {
                                 ]
                               : 0
                             : 0}
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                   </div>
