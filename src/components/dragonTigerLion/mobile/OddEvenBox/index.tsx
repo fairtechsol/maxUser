@@ -5,6 +5,7 @@ import { ImClubs } from "react-icons/im";
 import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
+import { IoInformationCircle } from "react-icons/io5";
 import {
   dtrules,
   A,
@@ -22,6 +23,7 @@ import {
   thirteen,
 } from "../../../../assets/images";
 import { useEffect, useState } from "react";
+import SmoothDropdownModal from "../minMaxModal";
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
 };
@@ -139,7 +141,10 @@ const OddEven = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [firstArr, setFirstArr] = useState(data1);
   const [secondArr, setSecondArr] = useState(data2);
-  // console.log(data,'first',odds)
+  const [openModalIndex, setOpenModalIndex] = useState(null);
+  const handleModalOpen = (index: any) => {
+    setOpenModalIndex(openModalIndex === index ? null : index);
+  };
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -214,22 +219,65 @@ const OddEven = ({ data, odds }: any) => {
           {firstArr?.map((item: any, index: any) => {
             return (
               <>
-                <div
-                  className="dlt-m-conatainer"
-                >
-                  <div className="dtlTitle-m">{item?.title}</div>
+                <div className="dlt-m-conatainer">
+                  <div className="dtlTitle-m">
+                    {item?.title}
+                    <div style={{ width: "45%", textAlign: "end" }}>
+                      <span className="minmaxi">
+                        <IoInformationCircle
+                          color="#ffc742"
+                          onClick={() => handleModalOpen(index)}
+                        />
+                        {openModalIndex === index && (
+                          <SmoothDropdownModal
+                            min={item?.data?.min}
+                            max={item?.data?.max}
+                            show={openModalIndex === index}
+                            setShow={() => setOpenModalIndex(null)}
+                          />
+                        )}
+                      </span>
+                    </div>
+                  </div>
                   <div
                     className={`dtlsubTitle-m ${
                       item?.data?.gstatus === "0" ? "suspended" : ""
                     }`}
                     onClick={() =>
-                      item?.data?.gstatus === "1"
-                        ? handleBet(item?.data)
-                        : null
+                      item?.data?.gstatus === "1" ? handleBet(item?.data) : null
                     }
                   >
                     {item?.data?.b1 || 0}
-                    <span style={{ fontSize: "12px" }}>0</span>
+                    <span
+                      style={{ fontSize: "12px" }}
+                      className={
+                        data?.profitLoss
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                            ? data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : data?.profitLoss[
+                                  `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {data?.profitLoss
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                          ]
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                 </div>
               </>
@@ -248,21 +296,65 @@ const OddEven = ({ data, odds }: any) => {
           {secondArr?.map((item: any, index: any) => {
             return (
               <>
-                <div className="dlt-m-conatainer"
-                >
-                  <div className="dtlTitle-m">{item?.title}</div>
+                <div className="dlt-m-conatainer">
+                  <div className="dtlTitle-m">
+                    {item?.title}
+                    <div style={{ width: "45%", textAlign: "end" }}>
+                      <span className="minmaxi">
+                        <IoInformationCircle
+                          color="#ffc742"
+                          onClick={() => handleModalOpen(index + 9)}
+                        />
+                        {openModalIndex === index + 9 && (
+                          <SmoothDropdownModal
+                            min={item?.data?.min}
+                            max={item?.data?.max}
+                            show={openModalIndex === index + 9}
+                            setShow={() => setOpenModalIndex(null)}
+                          />
+                        )}
+                      </span>
+                    </div>
+                  </div>
                   <div
                     className={`dtlsubTitle-m ${
                       item?.data?.gstatus === "0" ? "suspended" : ""
                     }`}
                     onClick={() =>
-                      item?.data?.gstatus === "1"
-                        ? handleBet(item?.data)
-                        : null
+                      item?.data?.gstatus === "1" ? handleBet(item?.data) : null
                     }
                   >
                     {item?.data?.b1 || 0}
-                    <span style={{ fontSize: "12px" }}>0</span>
+                    <span
+                      style={{ fontSize: "12px" }}
+                      className={
+                        data?.profitLoss
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                            ? data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : data?.profitLoss[
+                                  `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {data?.profitLoss
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                          ]
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                 </div>
               </>
