@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { sportsRules } from '../../utils/constants/index';
-import './index.scss';
-import { Accordion, Button } from 'react-bootstrap';
+import { useState, useEffect } from "react";
+import { sportsRules } from "../../utils/constants/index";
+import "./index.scss";
+import { Accordion, Button } from "react-bootstrap";
 
 const Mobile = () => {
   const [activeSport, setActiveSport] = useState<string | null>(null);
@@ -19,33 +19,51 @@ const Mobile = () => {
 
   return (
     <>
-    <h3 style={{backgroundColor: "#ffc107", fontWeight: "bold"}}>Rules</h3>
-    <Accordion activeKey={activeSport} onSelect={(eventKey) => handleSelect(eventKey as string)}>
-      {sportsRules.map((sport, index) => (
-        <Accordion.Item key={index} eventKey={sport.sportName} >
-          <Accordion.Header  style={{backgroundColor: "#ffc107"}}>
-            <Button variant="link">
-              {sport.sportName}
-            </Button>
-          </Accordion.Header>
-          <Accordion.Body>
-            <h4>{sport.sportName} Rules</h4>
-            <ul>
-              {sport.rules.map((rule, ruleIndex) => (
-                <div key={ruleIndex}>
-                  <h5 className='text-danger'>{rule.category}</h5>
-                  <ul>
-                    {rule.description.map((description, descIndex) => (
-                      <li key={descIndex}>{description}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </ul>
-          </Accordion.Body>
-        </Accordion.Item>
-      ))}
-    </Accordion>
+      <h3 style={{ backgroundColor: "#ffc107", fontWeight: "bold" }}>Rules</h3>
+      <Accordion
+        activeKey={activeSport}
+        onSelect={(eventKey) => handleSelect(eventKey as string)}
+      >
+        {sportsRules.map((sport, index) => (
+          <Accordion.Item key={index} eventKey={sport.sportName}>
+            <Accordion.Header
+              style={{  
+                backgroundColor:
+                  activeSport === sport.sportName ? "" : "rgb(0, 74, 37)",
+              }}
+            >
+              <Button
+                variant="link"
+                className="text-light"
+                style={{
+                  backgroundColor:
+                    activeSport === sport.sportName
+                      ? "rgb(0, 74, 37)"
+                      : "rgb(0, 74, 37)",
+                  color: "rgb(0, 74, 37)",
+                }}
+              >
+                {sport.sportName}
+              </Button>
+            </Accordion.Header>
+            <Accordion.Body>
+              <h4>{sport.sportName} Rules</h4>
+              <ul>
+                {sport.rules.map((rule, ruleIndex) => (
+                  <div key={ruleIndex}>
+                    <h5 className="text-danger">{rule.category}</h5>
+                    <ul>
+                      {rule.description.map((description, descIndex) => (
+                        <li key={descIndex}>{description}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </ul>
+            </Accordion.Body>
+          </Accordion.Item>
+        ))}
+      </Accordion>
     </>
   );
 };
