@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { dtrules } from "../../../assets/images";
+import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -15,10 +15,10 @@ import { cardGamesId, cardUrl } from "../../../utils/constants";
 import BackLay from "../desktop/BackLay";
 import PairBox from "./PairBox";
 import MyBet from "./myBet";
+import TotalCards from "./totalCards";
 
 const Card32BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
-  const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
@@ -150,34 +150,29 @@ const Card32BMobile = () => {
                   />
                 </div>
                 <div className="w-100">
-                  <PairBox
-                    odds={dragonTigerDetail?.pair}
-                    data={dragonTigerDetail}
-                  />
+                <OddEven
+                odds={dragonTigerDetail?.oddEven}
+                data={dragonTigerDetail}
+              />
                 </div>
               </div>
               <div style={{ width: "97%", gap: "8px" }}>
-                <OddEven
-                  title1={"even"}
-                  title2={"odd"}
-                  dragonData={dragonTigerDetail?.dragonData}
-                  tigerData={dragonTigerDetail?.tigerData}
-                  data={dragonTigerDetail}
-                />
-                <OddEven
-                  title1={"red"}
-                  title2={"black"}
-                  dragonData={dragonTigerDetail?.dragonData}
-                  tigerData={dragonTigerDetail?.tigerData}
+              <PairBox
+                  matchOddsData={dragonTigerDetail?.redBlack}
                   data={dragonTigerDetail}
                 />
               </div>
+              <div style={{ width: "97%", gap: "8px" }}>
+              <TotalCards
+                odds={dragonTigerDetail?.cardtotal}
+                data={dragonTigerDetail}
+              />
+              </div>
               <div style={{ width: "97%", marginLeft: "5px" }}>
-                <CardBox
-                  dragonData={dragonTigerDetail?.dragonData}
-                  tigerData={dragonTigerDetail?.tigerData}
-                  data={dragonTigerDetail}
-                />
+              <CardBox
+                odds={dragonTigerDetail?.singleCard}
+                data={dragonTigerDetail}
+              />
               </div>
               <div style={{ width: "97%", margin: "5px" }}>
                 <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
@@ -191,7 +186,7 @@ const Card32BMobile = () => {
         )}
       </div>
 
-      <RulesModal show={show} setShow={setShow} rule={dtrules} />
+      <RulesModal show={show} setShow={setShow} rule={card32rules} />
     </>
   );
 };

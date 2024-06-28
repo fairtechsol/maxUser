@@ -80,7 +80,7 @@ const CardBox = ({ odds, data }: any) => {
             <div style={{ width: "53%", textAlign: "start"}}>11.2</div>
           </div>
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "auto",display:"flex" }}>
+        <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
           {odds?.slice(0,5)?.map((item:any,index:number)=>{
             return(
               <>
@@ -89,7 +89,7 @@ const CardBox = ({ odds, data }: any) => {
             )
           })}
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "auto",display:"flex" }}>
+        <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
         {odds?.slice(5,10)?.map((item:any,index:number)=>{
             return(
               <>
