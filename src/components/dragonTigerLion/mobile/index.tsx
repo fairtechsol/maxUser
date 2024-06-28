@@ -142,7 +142,7 @@ const DragonTigerMobile = () => {
                   <span
                     style={{ fontSize: "12px", fontWeight: "bold",padding: "5px",
                       width: "100%", textAlign: "center",
-                      borderTop: activeCardTab === "tiger" ? "3px solid white" : "none", }}
+                      borderTop: activeCardTab === "tiger" ? "2px solid white" : "none", }}
                     onClick={() => setActiveCardTab("tiger")}
                   >
                     TIGER
@@ -151,7 +151,7 @@ const DragonTigerMobile = () => {
                   <span
                     style={{ fontSize: "12px", fontWeight: "bold",padding: "5px",
                       width: "100%", textAlign: "center",
-                      borderTop: activeCardTab === "lion" ? "3px solid white" : "none", }}
+                      borderTop: activeCardTab === "lion" ? "2px solid white" : "none", }}
                     onClick={() => setActiveCardTab("lion")}
                   >
                     LION
