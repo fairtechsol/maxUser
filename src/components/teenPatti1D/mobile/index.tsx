@@ -67,12 +67,8 @@ const TeenPattiMobile = () => {
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
-      odd:
-        type === "BACK"
-          ? item?.b1
-            ? updatedValue(item.b1)
-            : item.b1
-          : item?.l1,
+     
+      odd: type === "BACK" ? updatedValue(item.b1) : updatedValue(item?.l1),
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
