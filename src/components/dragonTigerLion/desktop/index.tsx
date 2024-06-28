@@ -164,7 +164,7 @@ const DragonTigerDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const [modelOpen, setModelOpen] = useState(false);
+  const [activeCardTab, setActiveCardTab] = useState(false);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -286,7 +286,7 @@ const DragonTigerDesktop = () => {
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+          <div style={{ width: "100%", height: "400px", margin: "5px",wordSpacing: "-4px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -297,6 +297,7 @@ const DragonTigerDesktop = () => {
                     fontSize: "14px",
                     textDecoration: "underline",
                     cursor: "pointer",
+                    marginLeft: "5px"
                   }}
                   onClick={() => setShow(true)}
                 >
