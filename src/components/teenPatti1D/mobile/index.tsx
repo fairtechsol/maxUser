@@ -24,7 +24,6 @@ const TeenPattiMobile = () => {
   const { playerA, playerB } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
-
   // let AB1;
   // if (playerA?.[0]?.b1) {
   //   //AB1 = (parseFloat(playerA?.[0]?.b1) * 0.1 + 1).toFixed(2);
@@ -67,7 +66,7 @@ const TeenPattiMobile = () => {
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
-     
+
       odd: type === "BACK" ? updatedValue(item.b1) : updatedValue(item?.l1),
       stake: 0,
       matchBetType: "matchOdd",
@@ -150,21 +149,27 @@ const TeenPattiMobile = () => {
             <div style={{ height: "480px" }}>
               <div className="mt-2" style={{ width: "100%" }}>
                 <div className="teenPatti-table-container-m">
-                  <div className="teenPatti-table-row">
+                  <div className="teenPatti-table-row"
+                  style={{
+                    border: "0px 0px 0px 0px solid #fff",
+                  }}
+                  >
                     <div
                       style={{
                         width: "60%",
-                        border: "0.1px solid #dee2e6",
+                      
                         textAlign: "left",
-                        display:"flex",
-                        flexDirection:"column"
+                        display: "flex",
+                        flexDirection: "column",
+                        
+                          border: "1px solid #fff",
+                        
                       }}
                     >
                       <span className="f12-b">
                         Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
                         {dragonTigerDetail?.videoInfo?.max}
                       </span>
-                      
                     </div>
 
                     <div
@@ -172,6 +177,7 @@ const TeenPattiMobile = () => {
                         width: "40%",
                         display: "flex",
                         gap: "2px",
+                       
                       }}
                     >
                       <div
@@ -193,14 +199,17 @@ const TeenPattiMobile = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="teenPatti-table-row">
+                  <div className="teenPatti-table-row"  style={{
+                    border: "px solid #fff",
+                  }}>
                     <div
                       style={{
                         width: "60%",
                         padding: "5px",
-                        border: "0.1px solid #dee2e6",
-                        display:"flex",
-                        flexDirection:"column"
+                        border: "0px solid #dee2e6",
+                        display: "flex",
+                        flexDirection: "column",
+                        borderTop: "1px solid #fff",
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
@@ -231,7 +240,9 @@ const TeenPattiMobile = () => {
                             : handleBet(playerA?.[0], "BACK")
                         }
                       >
-                        <span className="f12-b">{updatedValue(playerA?.[0]?.b1)}</span>
+                        <span className="f12-b">
+                          {updatedValue(playerA?.[0]?.b1)}
+                        </span>
                         <span className="f10-b">{playerA?.[0]?.bs1}</span>
                         {/* <span
                           className={`f10-b ${
@@ -277,7 +288,9 @@ const TeenPattiMobile = () => {
                             : handleBet(playerA?.[0], "LAY")
                         }
                       >
-                        <span className="f12-b">{updatedValue(playerA?.[0]?.l1)}</span>
+                        <span className="f12-b">
+                          {updatedValue(playerA?.[0]?.l1)}
+                        </span>
                         <span className="f10-b">{playerA?.[0]?.ls1}</span>
                         {/* <span
                           className={`f10-b ${
@@ -311,14 +324,17 @@ const TeenPattiMobile = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="teenPatti-table-row">
+                  <div className="teenPatti-table-row"  style={{
+                    border: "px solid #fff",
+                  }}>
                     <div
                       style={{
                         width: "60%",
                         padding: "5px",
-                        border: "0.1px solid #dee2e6",
-                        display:"flex",
-                        flexDirection:"column"
+                        borderTop: "1px solid #fff",
+                        display: "flex",
+                        flexDirection: "column",
+                        
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
@@ -349,8 +365,10 @@ const TeenPattiMobile = () => {
                             : handleBet(playerB?.[0], "BACK")
                         }
                       >
-                         <span className="f12-b">{updatedValue(playerB?.[0]?.b1)}</span>
-                         <span className="f10-b">{playerB?.[0]?.bs1}</span>
+                        <span className="f12-b">
+                          {updatedValue(playerB?.[0]?.b1)}
+                        </span>
+                        <span className="f10-b">{playerB?.[0]?.bs1}</span>
                         {/* <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
@@ -395,7 +413,9 @@ const TeenPattiMobile = () => {
                             : handleBet(playerB?.[0], "LAY")
                         }
                       >
-                        <span className="f12-b">{updatedValue(playerB?.[0]?.l1)}</span>
+                        <span className="f12-b">
+                          {updatedValue(playerB?.[0]?.l1)}
+                        </span>
                         <span className="f10-b">{playerB?.[0]?.ls1}</span>
                         {/* <span
                           className={`f10-b ${
@@ -433,7 +453,11 @@ const TeenPattiMobile = () => {
               </div>
 
               <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "B"]} type={"teen"}/>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "B"]}
+                  type={"teen"}
+                />
               </div>
               <div>
                 <div className="casino-title" style={{ position: "relative" }}>
