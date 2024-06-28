@@ -22,7 +22,7 @@ const Card32BMobile = () => {
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.dragonTigerOneDay}`
+    `${cardUrl}${cardGamesId.card32B}`
   );
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);

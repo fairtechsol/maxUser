@@ -8,7 +8,7 @@ import { cardGamesType } from "../../utils/constants";
 import {  getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
 import { useEffect } from "react";
 import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
-import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCard32MatchRates, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
+import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCard32BMatchRates, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
 import { socket, socketService } from "../../socketManager";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Card32BComponentList from "../../components/cards32B";
@@ -21,7 +21,7 @@ const Cards32B = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateCard32MatchRates(event?.data?.data?.data));
+      dispatch(updateCard32BMatchRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
@@ -95,7 +95,6 @@ const Cards32B = () => {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
-
   return loading ? <Loader /> :<Card32BComponentList/>;
 };
 

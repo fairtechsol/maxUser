@@ -207,6 +207,39 @@
   font-weight: 600;
   color: #000;
 }
+.card32bTitle{
+  width: 60%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom:0.1px solid #c7c8ca;
+  padding: 5px;
+  font-weight: 600;
+  color: #000;
+}
+.card32bsubTitle{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom:0.1px solid #c7c8ca;
+  border-right: 0.1px solid #c7c8ca;
+  font-weight: 600;
+  color: #000;
+}
+.cardNumberTitle{
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom:0.1px solid #c7c8ca;
+  padding: 5px;
+  font-weight: 600;
+  color: #000;
+}
 .lay-BackGround{
   background-color: #faa9ba;
 }

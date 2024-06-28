@@ -112,21 +112,33 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle">Dragon </div>
+          <div className="dtlTitle">Player 8 </div>
           {renderItem(matchOddsData?.[0], 0, "back")}
           {renderItem(matchOddsData?.[0], 1, "lay")}
-          {/* <div className={`dtlsubTitle back-BackGround ${matchOddsData?.[0]?.gstatus==="ACTIVE" || matchOddsData?.[0]?.b1 != "0.00" ?"":"suspended"}`}>{matchOddsData?.[0]?.b1}</div>
-                  <div className={`dtlsubTitle lay-BackGround ${matchOddsData?.[0]?.gstatus==="ACTIVE" || matchOddsData?.[0]?.l1 != "0.00" ?"":"suspended"}`}>{matchOddsData?.[0]?.l1}</div> */}
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle"> Tiger</div>
+          <div className="dtlTitle"> Player 9</div>
           {renderItem(matchOddsData?.[1], 2, "back")}
           {renderItem(matchOddsData?.[1], 3, "lay")}
-          {/* <div className={`dtlsubTitle back-BackGround ${matchOddsData?.[1]?.gstatus==="ACTIVE" || matchOddsData?.[1]?.b1 != "0.00" ?"":"suspended"}`}>{matchOddsData?.[1]?.b1}</div>
-                  <div className={`dtlsubTitle lay-BackGround ${matchOddsData?.[1]?.gstatus==="ACTIVE" || matchOddsData?.[1]?.l1 != "0.00" ?"":"suspended"}`}>{matchOddsData?.[1]?.l1}</div> */}
+        </div>
+        <div
+          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          style={{ height: "30px" }}
+        >
+          <div className="dtlTitle"> Player 10</div>
+          {renderItem(matchOddsData?.[2], 2, "back")}
+          {renderItem(matchOddsData?.[2], 3, "lay")}
+        </div>
+        <div
+          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          style={{ height: "30px" }}
+        >
+          <div className="dtlTitle"> Player 11</div>
+          {renderItem(matchOddsData?.[3], 2, "back")}
+          {renderItem(matchOddsData?.[3], 3, "lay")}
         </div>
       </div>
     </div>

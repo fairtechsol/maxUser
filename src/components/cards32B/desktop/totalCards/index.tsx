@@ -5,7 +5,7 @@ import SmoothDropdownModal from "../minMaxModal";
 import { useState } from "react";
 import { IoInformationCircle } from "react-icons/io5";
 
-const OddEven = ({ data, odds}: any) => {
+const TotalCards = ({ data, odds}: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
@@ -28,11 +28,6 @@ const OddEven = ({ data, odds}: any) => {
     );
     console.log("team", team);
   };
-  
-  const player8 = odds?.slice(0, 2);
-  const player9 = odds?.slice(2, 4);
-  const player10 = odds?.slice(4, 6);
-  const player11 = odds?.slice(6, 8);
   // console.log(dragonData, "first", tigerData);
   const handleLock = (status: any, value: any) => {
     if (status != "ACTIVE" || value === "0.00") {
@@ -44,10 +39,10 @@ const OddEven = ({ data, odds}: any) => {
   const renderItem = (item: any, index: number) => (
     <div
       key={index}
-      className={`dtlsubTitle back-BackGround ${
+      className={`card32bsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
       }`}
-      onClick={() =>  !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
+      onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}
     </div>
@@ -74,48 +69,31 @@ const OddEven = ({ data, odds}: any) => {
                   onClick={() => setModelOpen(!modelOpen)}
                 />
                 <SmoothDropdownModal
-                  min={player8?.[0]?.max}
-                  max={player8?.[0]?.min}
+                  min={odds?.[0]?.max}
+                  max={odds?.[0]?.min}
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
               </span>
             </div>
           </div>
-          <div className="dtlsubTitle back-BackGround">
+          <div className="card32bsubTitle back-BackGround">
             <span style={{ fontSize: "14px" }}>
-            Even
-            </span>
-          </div>
-          <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>
-            Odd
+            Back
             </span>
           </div>
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Player 8 </div>
-          {renderItem(player8?.[1], 0)}
-          {renderItem(player8?.[0], 1)}
+        <div className="w-100 d-sm-flex flex-row" style={{ height: "45px" }}>
+          <div className="card32bTitle">8 & 9 Total</div>
+          {renderItem(odds?.[0], 0)}
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Player 9</div>
-         {renderItem(player9?.[1], 2)}
-         {renderItem(player9?.[0], 3)}
-        </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Player 10</div>
-         {renderItem(player10?.[1], 4)}
-         {renderItem(player10?.[0], 5)}
-        </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Player 11</div>
-         {renderItem(player11?.[1], 6)}
-         {renderItem(player11?.[0], 7)}
+        <div className="w-100 d-sm-flex flex-row" style={{ height: "45px" }}>
+          <div className="card32bTitle">10 & 11 Total</div>
+         {renderItem(odds?.[1], 1)}
         </div>
       </div>
     </div>
   );
 };
 
-export default OddEven;
+export default TotalCards;

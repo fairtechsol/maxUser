@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { dtrules } from "../../../assets/images";
+import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -18,13 +18,14 @@ import "./style.scss";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import PairBox from "./PairBox";
 import CardBox from "./cardBox";
+import TotalCards from "./totalCards";
 
 const Card32BDesktop = () => {
   const [show, setShow] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.dragonTigerOneDay}`
+    `${cardUrl}${cardGamesId.card32B}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -124,15 +125,15 @@ const Card32BDesktop = () => {
             >
               <div className="w-50">
                 <BackLay
-                  matchOddsData={dragonTigerDetail?.matchOddsData}
+                  matchOddsData={dragonTigerDetail?.matchOdd}
                   data={dragonTigerDetail}
                 />
               </div>
               <div className="w-50">
-                <PairBox
-                  odds={dragonTigerDetail?.pair}
-                  data={dragonTigerDetail}
-                />
+              <OddEven
+                odds={dragonTigerDetail?.oddEven}
+                data={dragonTigerDetail}
+              />
               </div>
             </div>
             <div
@@ -144,18 +145,12 @@ const Card32BDesktop = () => {
                 gap: "8px",
               }}
             >
-              <OddEven
-                title1={"even"}
-                title2={"odd"}
-                dragonData={dragonTigerDetail?.dragonData}
-                tigerData={dragonTigerDetail?.tigerData}
-                data={dragonTigerDetail}
-              />
-              <OddEven
-                title1={"red"}
-                title2={"black"}
-                dragonData={dragonTigerDetail?.dragonData}
-                tigerData={dragonTigerDetail?.tigerData}
+               <PairBox
+                  matchOddsData={dragonTigerDetail?.redBlack}
+                  data={dragonTigerDetail}
+                />
+              <TotalCards
+                odds={dragonTigerDetail?.cardtotal}
                 data={dragonTigerDetail}
               />
             </div>
@@ -166,17 +161,16 @@ const Card32BDesktop = () => {
               }}
             >
               <CardBox
-                dragonData={dragonTigerDetail?.dragonData}
-                tigerData={dragonTigerDetail?.tigerData}
+                odds={dragonTigerDetail?.singleCard}
                 data={dragonTigerDetail}
               />
             </div>
             <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+              <CardResultBox data={dragonTigerDetail} name={["8", "9", "10", "11"]} type={"card32eu"}/>
             </div>
           </div>
 
-          <RulesModal show={show} setShow={setShow} rule={dtrules} />
+          <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>

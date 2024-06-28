@@ -1,15 +1,11 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
-import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import SmoothDropdownModal from "../minMaxModal";
 import { IoInformationCircle } from "react-icons/io5";
 import { useState } from "react";
 
-const CardBox = ({ dragonData, tigerData, data }: any) => {
+const CardBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
@@ -47,7 +43,9 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
-      {item?.b1}
+      <span style={{fontFamily:"auto",fontSize:"30px"}}>{index+1===10?"0":index+1}</span>
+      {/* <span style={{fontSize:"16px"}}>{index===1?"0":''}</span> */}
+      
     </div>
   );
   return (
@@ -63,49 +61,42 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">
+          <div className="cardNumberTitle">
             {" "}
-            <div style={{ width: "30%", textAlign: "start" }}>
+            <div style={{ width: "47%", textAlign: "start" }}>
               <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
                   onClick={() => setModelOpen(!modelOpen)}
                 />
                 <SmoothDropdownModal
-                  min={dragonData?.[0]?.max}
-                  max={dragonData?.[0]?.min}
+                  min={odds?.[0]?.max}
+                  max={odds?.[0]?.min}
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
               </span>
             </div>
-          </div>
-          <div className="dtlsubTitle">
-            <GiSpades color="#000000" />
-          </div>
-          <div className="dtlsubTitle">
-            <BiSolidHeart color="#ff0000" />
-          </div>
-          <div className="dtlsubTitle">
-            <ImClubs color="#000000" />
-          </div>
-          <div className="dtlsubTitle">
-            <ImDiamonds color="#ff0000" />
+            <div style={{ width: "53%", textAlign: "start"}}>11.2</div>
           </div>
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Dragon </div>
-          {renderItem(dragonData?.[4], 4)}
-          {renderItem(dragonData?.[5], 5)}
-          {renderItem(dragonData?.[7], 7)}
-          {renderItem(dragonData?.[6], 6)}
+        <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
+          {odds?.slice(0,5)?.map((item:any,index:number)=>{
+            return(
+              <>
+              {renderItem(item, index)}
+              </>
+            )
+          })}
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle"> Tiger</div>
-          {renderItem(tigerData?.[4], 4)}
-          {renderItem(tigerData?.[5], 5)}
-          {renderItem(tigerData?.[7], 7)}
-          {renderItem(tigerData?.[6], 6)}
+        <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
+        {odds?.slice(5,10)?.map((item:any,index:number)=>{
+            return(
+              <>
+              {renderItem(item, index+5)}
+              </>
+            )
+          })}
         </div>
       </div>
     </div>
