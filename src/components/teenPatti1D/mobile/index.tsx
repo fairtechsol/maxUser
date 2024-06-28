@@ -25,27 +25,27 @@ const TeenPattiMobile = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
 
-  let AB1;
-  if (playerA?.[0]?.b1) {
-    //AB1 = (parseFloat(playerA?.[0]?.b1) * 0.1 + 1).toFixed(2);
+  // let AB1;
+  // if (playerA?.[0]?.b1) {
+  //   //AB1 = (parseFloat(playerA?.[0]?.b1) * 0.1 + 1).toFixed(2);
 
-    AB1 = parseFloat(playerA[0].b1) * 0.01;
-    if (AB1 !== 0) {
-        AB1 += 1;
-    }
-    AB1 = AB1.toFixed(2);
-  }
+  //   AB1 = parseFloat(playerA[0].b1) * 0.01;
+  //   if (AB1 !== 0) {
+  //       AB1 += 1;
+  //   }
+  //   AB1 = AB1.toFixed(2);
+  // }
 
-  let BB1;
-  if (playerB?.[0]?.b1) {
-    //BB1 = (parseFloat(playerB[0].b1) * 0.1 + 1).toFixed(2);
+  // let BB1;
+  // if (playerB?.[0]?.b1) {
+  //   //BB1 = (parseFloat(playerB[0].b1) * 0.1 + 1).toFixed(2);
 
-    BB1 = parseFloat(playerA[0].b1) * 0.01;
-    if (BB1 !== 0) {
-        BB1 += 1;
-    }
-    BB1 = BB1.toFixed(2);
-  }
+  //   BB1 = parseFloat(playerA[0].b1) * 0.01;
+  //   if (BB1 !== 0) {
+  //       BB1 += 1;
+  //   }
+  //   BB1 = BB1.toFixed(2);
+  // }
 
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
