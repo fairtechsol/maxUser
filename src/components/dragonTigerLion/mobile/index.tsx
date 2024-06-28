@@ -130,9 +130,9 @@ const DragonTigerMobile = () => {
               <div className="dt20TabBox">
                 <div className="dtltabheader">
                   <span
-                    style={{ fontSize: "12px", fontWeight: "bold",padding: "5px",
+                    style={{ fontSize: "12px", fontWeight: "bold",padding: "6px",
                       width: "100%", textAlign: "center",
-                      borderTop: activeCardTab === "dragon" ? "3px solid white" : "none",
+                      borderTop: activeCardTab === "dragon" ? "2px solid white" : "none",
                      }}
                     onClick={() => setActiveCardTab("dragon")}
                   >
