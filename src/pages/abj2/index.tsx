@@ -31,9 +31,7 @@ const Abj2 = () => {
   );
   const setMatchRatesInRedux = (event: any) => {
     try {
-      if (cardGamesType.andarBahar2 === event?.data?.data?.data?.t1[0]?.gtype) {
-        dispatch(updateCardAbjRates(event?.data?.data?.data));
-      }
+      dispatch(updateCardAbjRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }

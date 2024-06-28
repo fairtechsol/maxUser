@@ -45,6 +45,7 @@ const FlipClock = ({ value }) => {
             children: [
               {
                 view: "flip",
+                style: "flip-easing: ease-linear",
               },
             ],
           },
@@ -57,13 +58,13 @@ const FlipClock = ({ value }) => {
         TickModule.DOM.destroy(tickRef.current);
       }
     };
-  }, []); 
+  }, []);
 
   useEffect(() => {
     if (tickRef.current) {
       tickRef.current.value = value;
     }
-  }, [value]); 
+  }, [value]);
 
   return <div ref={divRef}></div>;
 };

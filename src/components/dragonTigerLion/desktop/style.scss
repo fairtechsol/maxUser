@@ -264,7 +264,7 @@
   width: 40%;
   background-color: #ffffff;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   border-bottom:0.1px solid #c7c8ca;
   padding: 5px;
@@ -282,6 +282,7 @@
   border-right: 0.1px solid #c7c8ca;
   font-weight: 600;
   color: #000;
+  cursor: pointer;
 }
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;

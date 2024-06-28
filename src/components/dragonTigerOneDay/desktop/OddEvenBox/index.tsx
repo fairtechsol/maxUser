@@ -5,9 +5,13 @@ import { ImClubs } from "react-icons/im";
 import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
+import SmoothDropdownModal from "../minMaxModal";
+import { useState } from "react";
+import { IoInformationCircle } from "react-icons/io5";
 
 const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const dispatch: AppDispatch = useDispatch();
+  const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -49,6 +53,32 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}
+      {data?.profitLoss &&
+        data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] && (
+          <span
+            className={
+              data?.profitLoss
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${item?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                : 0
+              : 0}
+          </span>
+        )}
     </div>
   );
   return (
@@ -64,7 +94,23 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle"> </div>
+          <div className="dtlTitle">
+            {" "}
+            <div style={{ width: "40%", textAlign: "start" }}>
+              <span className="minmaxi">
+                <IoInformationCircle
+                  color="#ffc742"
+                  onClick={() => setModelOpen(!modelOpen)}
+                />
+                <SmoothDropdownModal
+                  min={title1 === "even" ? dragonEvenOdd?.[0]?.max : dragonRedBlack?.[0]?.max}
+                  max={title1 === "even" ? dragonEvenOdd?.[0]?.min : dragonRedBlack?.[0]?.min}
+                  show={modelOpen}
+                  setShow={() => setModelOpen(false)}
+                />
+              </span>
+            </div>
+          </div>
           <div className="dtlsubTitle back-BackGround">
             <span style={{ fontSize: "14px" }}>
               {title1 === "even" ? (
@@ -125,14 +171,12 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               : dragonRedBlack?.[1]?.b1}
           </div> */}
           {renderItem(
-            title1 === "even"
-              ? dragonEvenOdd?.[0]
-              : dragonRedBlack?.[0],
+            title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0],
             0
           )}
           {renderItem(
             title2 === "odd" ? dragonEvenOdd?.[1] : dragonRedBlack?.[1],
-            0
+            1
           )}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
@@ -163,11 +207,11 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           </div> */}
           {renderItem(
             title1 === "even" ? tigerEvenOdd?.[0] : tigerRedBlack?.[0],
-            0
+            2
           )}
           {renderItem(
             title2 === "odd" ? tigerEvenOdd?.[1] : tigerRedBlack?.[1],
-            0
+            3
           )}
         </div>
       </div>

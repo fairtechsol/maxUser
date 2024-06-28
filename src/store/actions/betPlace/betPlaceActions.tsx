@@ -47,11 +47,19 @@ export const getPlacedBetsForAccountStatement = createAsyncThunk<any, any>(
           requestData.betId
             ? `&betId=inArr${JSON.stringify(requestData.betId)}`
             : requestData.runnerId
-            ? `&runnerId=eq${requestData.runnerId}`
+            ? requestData.isCard
+              ? `&betPlaced.runnerId=${requestData.runnerId}`
+              : `runnerId=eq${requestData.runnerId}`
             : ""
-        }&createBy=eq${requestData.userId}&status=${
-          requestData.status
-        }&sort=betPlaced.createdAt:DESC&isCurrentBets=true`
+        }${
+          requestData.result
+            ? `&result=${requestData.result}`
+            : requestData.status
+            ? `&status=${requestData.status}`
+            : ""
+        }&createBy=eq${requestData.userId}&sort=betPlaced.createdAt:DESC${
+          requestData.isCard ? "" : "&isCurrentBets=true"
+        }`
       );
       if (resp) {
         return resp?.data?.rows;

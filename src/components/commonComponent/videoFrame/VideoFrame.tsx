@@ -1,9 +1,8 @@
 import { memo } from "react";
 import FlipClock from "./FlipClock";
 import isMobile from "../../../utils/screenDimension";
-import { cardUrl } from "../../../utils/Constants";
 
-const VideoFrame = ({ result, time,id }: any) => {
+const VideoFrame = ({ result, time, id }: any) => {
   // const [showModal, setModalOpen] = useState(false);
 
   return (
@@ -29,16 +28,21 @@ const VideoFrame = ({ result, time,id }: any) => {
               // height: isMobile ? "30vh" : "40vh",
               backgroundColor: "black",
               position: "relative",
+              // width: "100vw"
             }}
           >
             {result && (
-              <div style={{ position: "absolute", top: "10x" }}>{result}</div>
+              <div style={{ position: "absolute", zIndex: "999" }}>{result}</div>
             )}
-            <div>
+            <div style={isMobile ? {display: "flex", overflow: "hidden"} : {}}>
               <iframe
                 width="100%"
-                height={isMobile?"250":"380"}
+                height={isMobile ? "250px" : "380px"}
                 src={id}
+                // transform={}
+                style={isMobile ?
+                  {transform :"scaleY(1.25)"} :{}
+                }
                 // title="YouTube video player"
                 // frameborder="0"
                 // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

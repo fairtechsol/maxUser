@@ -295,7 +295,12 @@ const AccountStatementComponent = () => {
                           dispatch(
                             getPlacedBetsForAccountStatement({
                               runnerId: match[1],
-                              status: "MATCHED",
+                              isCard: true,
+                              result: `inArr${JSON.stringify([
+                                "WIN",
+                                "LOSS",
+                                "TIE",
+                              ])}`,
                               userId: getProfile?.id,
                             })
                           );
@@ -342,7 +347,12 @@ const AccountStatementComponent = () => {
                     dispatch(
                       getPlacedBetsForAccountStatement({
                         runnerId: show?.runnerId,
-                        status: "MATCHED",
+                        isCard: true,
+                        result: `inArr${JSON.stringify([
+                          "WIN",
+                          "LOSS",
+                          "TIE",
+                        ])}`,
                         userId: getProfile?.id,
                       })
                     );
@@ -443,12 +453,18 @@ const AccountStatementComponent = () => {
                         }`}
                         style={{
                           color:
-                            item?.result === "LOSS" ? "#dc3545" : "#28a745",
+                            item?.result === "LOSS"
+                              ? "#dc3545"
+                              : item?.result === "TIE"
+                              ? "#000"
+                              : "#28a745",
                         }}
                       >
                         {item?.result === "LOSS"
                           ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
-                          : parseFloat(item?.winAmount).toFixed(2)}
+                          : item?.result === "WIN"
+                          ? parseFloat(item?.winAmount).toFixed(2)
+                          : 0}
                       </td>
                       <td
                         className={`${
@@ -531,12 +547,19 @@ const AccountStatementComponent = () => {
                           <div
                             style={{
                               color:
-                                item?.result === "LOSS" ? "#dc3545" : "#28a745",
+                                item?.result === "LOSS"
+                                  ? "#dc3545"
+                                  : item?.result === "WIN"
+                                  ? "#28a745"
+                                  : "#000",
+                                  overflowWrap:"anywhere"
                             }}
                           >
                             {item?.result === "LOSS"
                               ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
-                              : parseFloat(item?.winAmount).toFixed(2)}
+                              : item?.result === "WIN"
+                              ? parseFloat(item?.winAmount).toFixed(2)
+                              : 0}
                           </div>
                         </div>
                       </div>

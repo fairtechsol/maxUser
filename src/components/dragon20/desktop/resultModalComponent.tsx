@@ -77,15 +77,15 @@ const tigerCard  = tigerData?.[2]
           </div>
           <div className="d-sm-flex flex-sm-row">
             <span className="dt20CommonText">Odd/Even</span>
-            <span className="dt20CommonText-2">D : {dragonData[1]} | T : {tigerData[1]}</span>
+            <span className="dt20CommonText-2">D : {dragonData?.[1]} | T : {tigerData?.[1]}</span>
           </div>
           <div className="d-sm-flex flex-sm-row">
             <span className="dt20CommonText">Color</span>
-            <span className="dt20CommonText-2">D : {dragonData[0]} | T : {tigerData[0]}</span>
+            <span className="dt20CommonText-2">D : {dragonData?.[0]} | T : {tigerData?.[0]}</span>
           </div>
           <div className="d-sm-flex flex-sm-row">
             <span className="dt20CommonText">Card</span>
-            <span className="dt20CommonText-2">D : {dragonCard[dragonCard?.length-1]} | T : {tigerCard[tigerCard?.length-1]}</span>
+            <span className="dt20CommonText-2">D : {dragonCard?.[dragonCard?.length-1]} | T : {tigerCard?.[tigerCard?.length-1]}</span>
           </div>
         </div>
       </div>

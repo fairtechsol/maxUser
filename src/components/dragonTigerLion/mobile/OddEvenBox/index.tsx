@@ -1,18 +1,155 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
-import CommonButtonBox from "../CommonButtonBox";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { ImClubs } from "react-icons/im";
+import { GiSpades } from "react-icons/gi";
+import { BiSolidHeart } from "react-icons/bi";
+import { ImDiamonds } from "react-icons/im";
+import { IoInformationCircle } from "react-icons/io5";
+import {
+  dtrules,
+  A,
+  two,
+  three,
+  four,
+  five,
+  six,
+  seven,
+  eight,
+  nine,
+  ten,
+  eleven,
+  twelve,
+  thirteen,
+} from "../../../../assets/images";
+import { useEffect, useState } from "react";
+import SmoothDropdownModal from "../minMaxModal";
+const cardImg = (type: any) => {
+  return <img src={type} width={25} />;
+};
+const cardBlock = (type: any) => {
+  return (
+    <div>
+      <span>{type}</span>{" "}
+      {type != "Black" ? (
+        <>
+          <ImDiamonds color="#ff0000" /> <BiSolidHeart color="#ff0000" />
+        </>
+      ) : (
+        <>
+          <ImClubs color="#000000" /> <GiSpades color="#000000" />
+        </>
+      )}
+    </div>
+  );
+};
+const data1 = [
+  {
+    title: "Winner",
+    type: "Winner",
+    profitLoss: "0",
+  },
+  {
+    title: cardBlock("Black"),
+    type: "Black",
+    profitLoss: "0",
+  },
+  {
+    title: cardBlock("Red"),
+    type: "Red",
+    profitLoss: "0",
+  },
+  {
+    title: "Odd",
+    type: "Odd",
+    profitLoss: "0",
+  },
+  {
+    title: "Even",
+    type: "Even",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(A),
+    type: "A",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(two),
+    type: "2",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(three),
+    type: "3",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(four),
+    type: "4",
+    profitLoss: "0",
+  },
+];
+const data2 = [
+  {
+    title: cardImg(five),
+    type: "5",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(six),
+    type: "6",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(seven),
+    type: "7",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(eight),
+    type: "8",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(nine),
+    type: "9",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(ten),
+    type: "10",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(eleven),
+    type: "J",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(twelve),
+    type: "Q",
+    profitLoss: "0",
+  },
+  {
+    title: cardImg(thirteen),
+    type: "K",
+    profitLoss: "0",
+  },
+];
 const OddEven = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
-  // console.log(data,'first',odds)
+  const [firstArr, setFirstArr] = useState(data1);
+  const [secondArr, setSecondArr] = useState(data2);
+  const [openModalIndex, setOpenModalIndex] = useState(null);
+  const handleModalOpen = (index: any) => {
+    setOpenModalIndex(openModalIndex === index ? null : index);
+  };
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd: item?.rate,
+      odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -28,96 +165,201 @@ const OddEven = ({ data, odds }: any) => {
     );
     console.log("team", team);
   };
+
+  useEffect(() => {
+    const mergedArray = data1?.map((item1: any) => {
+      const matchData = odds?.find((item2: any) =>
+        item2?.nat?.includes(item1.type)
+      );
+      if (matchData) {
+        return {
+          ...item1,
+          data: matchData,
+        };
+      } else {
+        return item1;
+      }
+    });
+    const mergedArray2 = data2?.map((item1: any) => {
+      const matchData = odds?.find((item2: any) =>
+        item2?.nat?.includes(item1.type)
+      );
+      if (matchData) {
+        return {
+          ...item1,
+          data: matchData,
+        };
+      } else {
+        return item1;
+      }
+    });
+    setFirstArr(mergedArray);
+    setSecondArr(mergedArray2);
+  }, [data]);
   return (
     <>
-      <div className="oddEvenContainerMob">
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          gap: "10px",
+        }}
+      >
         <div
           style={{
+            width: "50%",
+            marginTop: "5%",
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-around",
+            flexDirection: "column",
+            border: "0.3px solid #c7c8ca",
+            marginLeft: "5px",
           }}
         >
-          <CommonButtonBox
-            value1={odds?.[0]?.rate}
-            value2={"Even"}
-            value3={
-              data?.profitLoss
-                ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                  ]
-                : 0
-            }
-            width={"40%"}
-            handleBet={handleBet}
-            lock={odds?.[0]?.gstatus === "0" ? true : false}
-            data={odds?.[0]}
-          />
-          <CommonButtonBox
-            value1={odds?.[1]?.rate}
-            value2={"Odd"}
-            value3={
-              data?.profitLoss
-                ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                  ]
-                : 0
-            }
-            width={"40%"}
-            handleBet={handleBet}
-            lock={odds?.[1]?.gstatus === "0" ? true : false}
-            data={odds?.[1]}
-          />
-        </div>
-        <div style={{ textAlign: "end" }}>
-          <span style={{ fontSize: "12px" }}>Min:</span>
-          <span style={{ fontSize: "12px" }}>{min}</span>
-          <span style={{ fontSize: "12px", marginLeft: "10px" }}>Max:</span>
-          <span style={{ fontSize: "12px" }}>{max}</span>
+          {firstArr?.map((item: any, index: any) => {
+            return (
+              <>
+                <div className="dlt-m-conatainer">
+                  <div className="dtlTitle-m">
+                    {item?.title}
+                    <div style={{ width: "45%", textAlign: "end" }}>
+                      <span className="minmaxi">
+                        <IoInformationCircle
+                          color="#ffc742"
+                          onClick={() => handleModalOpen(index)}
+                        />
+                        {openModalIndex === index && (
+                          <SmoothDropdownModal
+                            min={item?.data?.min}
+                            max={item?.data?.max}
+                            show={openModalIndex === index}
+                            setShow={() => setOpenModalIndex(null)}
+                          />
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className={`dtlsubTitle-m ${
+                      item?.data?.gstatus === "0" ? "suspended" : ""
+                    }`}
+                    onClick={() =>
+                      item?.data?.gstatus === "1" ? handleBet(item?.data) : null
+                    }
+                  >
+                    {item?.data?.b1 || 0}
+                    <span
+                      style={{ fontSize: "12px" }}
+                      className={
+                        data?.profitLoss
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                            ? data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : data?.profitLoss[
+                                  `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {data?.profitLoss
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                          ]
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </div>
         <div
           style={{
+            width: "50%",
+            marginTop: "5%",
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-around",
+            flexDirection: "column",
+            border: "0.3px solid #c7c8ca",
           }}
         >
-          <CommonButtonBox
-            value1={odds?.[2]?.rate}
-            value2={"icon1"}
-            value3={
-              data?.profitLoss
-                ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
-                  ]
-                : 0
-            }
-            width={"40%"}
-            handleBet={handleBet}
-            lock={odds?.[2]?.gstatus === "0" ? true : false}
-            data={odds?.[2]}
-          />
-          <CommonButtonBox
-            value1={odds?.[3]?.rate}
-            value2={"icon2"}
-            value3={
-              data?.profitLoss
-                ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
-                  ]
-                : 0
-            }
-            width={"40%"}
-            handleBet={handleBet}
-            lock={odds?.[3]?.gstatus === "0" ? true : false}
-            data={odds?.[3]}
-          />
-        </div>
-        <div style={{ textAlign: "end" }}>
-          <span style={{ fontSize: "12px" }}>Min:</span>
-          <span style={{ fontSize: "12px" }}>{min}</span>
-          <span style={{ fontSize: "12px", marginLeft: "10px" }}>Max:</span>
-          <span style={{ fontSize: "12px" }}>{max}</span>
+          {secondArr?.map((item: any, index: any) => {
+            return (
+              <>
+                <div className="dlt-m-conatainer">
+                  <div className="dtlTitle-m">
+                    {item?.title}
+                    <div style={{ width: "45%", textAlign: "end" }}>
+                      <span className="minmaxi">
+                        <IoInformationCircle
+                          color="#ffc742"
+                          onClick={() => handleModalOpen(index + 9)}
+                        />
+                        {openModalIndex === index + 9 && (
+                          <SmoothDropdownModal
+                            min={item?.data?.min}
+                            max={item?.data?.max}
+                            show={openModalIndex === index + 9}
+                            setShow={() => setOpenModalIndex(null)}
+                          />
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className={`dtlsubTitle-m ${
+                      item?.data?.gstatus === "0" ? "suspended" : ""
+                    }`}
+                    onClick={() =>
+                      item?.data?.gstatus === "1" ? handleBet(item?.data) : null
+                    }
+                  >
+                    {item?.data?.b1 || 0}
+                    <span
+                      style={{ fontSize: "12px" }}
+                      className={
+                        data?.profitLoss
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                            ? data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                              ] > 0
+                              ? "color-green"
+                              : data?.profitLoss[
+                                  `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                                ] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {data?.profitLoss
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                          ]
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
+                            ]
+                          : 0
+                        : 0}
+                    </span>
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </div>
       </div>
     </>

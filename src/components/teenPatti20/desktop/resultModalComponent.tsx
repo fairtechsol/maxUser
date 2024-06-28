@@ -23,11 +23,11 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
  
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="teen20resultModal">
-        <div className="teen20resultCardContainer">
+      <div className="flex-row justify-content-around" style={{display:"flex"}}>
+        <div className="teen20resultCardContainer mb-3">
           <span className="fs-5">Player A</span>
           <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center align-items-center mb-2"}>
-          {data?.result?.win === "2" && (
+          {data?.result?.win === "1" && (
               <div className="casino-winner-icon">
                 <FaTrophy size={30} color="#169733" />
               </div>
@@ -61,7 +61,11 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div>
         </div>
-        <div className="teen20resultCardContainer">
+        {data?.result?.win === "0" && (
+        <div className="d-sm-flex flex-row justify-content-center align-items-center">
+          <span className="fs-5">TIE</span>
+        </div> )}
+        <div className="teen20resultCardContainer mb-3">
           <span className="fs-5">Player B</span>
           <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center align-items-center mb-2"}>
             {data?.result?.win === "3" && (

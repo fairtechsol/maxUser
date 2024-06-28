@@ -40,6 +40,22 @@ const cardGames = [
     value: "lucky7",
     label: "Lucky 7 - A",
   },
+  {
+    value: "lucky7eu",
+    label: "Lucky 7 - B",
+  },
+  {
+    value: "dt202",
+    label: "20-20 Dragon Tiger 2",
+  },
+  {
+    value: "dtl20",
+    label: "Dragon Tiger Lion",
+  },
+  {
+    value: "dt6",
+    label: "Dragon Tiger 1 Day",
+  },
 ];
 
 const CasinoReports = () => {
@@ -55,9 +71,7 @@ const CasinoReports = () => {
   const [tableConfig, setTableConfig] = useState<any>(null);
 
   const { cardReport } = useSelector((state: RootState) => state.user.report);
-  const { resultData } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { resultData } = useSelector((state: RootState) => state.card);
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
@@ -173,7 +187,7 @@ const CasinoReports = () => {
               </Col>
             </Row>
             <CustomTable
-              width={isMobile ? "1200px" : ""}
+              // width={isMobile ? "1200px" : ""}
               paginationCount={true}
               bordered={true}
               striped={!isMobile}
@@ -197,10 +211,13 @@ const CasinoReports = () => {
               {cardReport?.results?.map((item: any, index: number) => {
                 return (
                   <tr className={`${isMobile && "title-12"}`} key={index}>
-                    <td style={{ color: "#0d6efd" }} onClick={() => handleResult(item?.mid)}>
+                    <td
+                      style={{ color: "#0d6efd", cursor: "pointer" }}
+                      onClick={() => handleResult(item?.mid)}
+                    >
                       <NotSet item={item?.mid} />
                     </td>
-                    <td style={{ cursor: "pointer" }}>
+                    <td>
                       <NotSet item={item?.result} />
                     </td>
                   </tr>

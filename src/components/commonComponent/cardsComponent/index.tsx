@@ -25,14 +25,22 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         alignItems: "center",
         // padding: isMobile ?  "0px" :"8px",
         background: lock ? `url(${back})` : "white",
-        height: isMobile ?  "20px" :"40px",
-        width: isMobile ?  "16px" :"30px",
+        height: isMobile ? "20px" : "40px",
+        width: isMobile ? "16px" : "30px",
         backgroundSize: "100% 100%",
+        padding: "0px",
       }}
     >
       {!lock && (
         <>
-          <span style={{ color: type === "heart" || type === "diamond" ? "red" : "black", fontWeight: "800", lineHeight: isMobile ? "1" : "1.2" , fontSize: isMobile ? "12px" : "18px", }}>
+          <span
+            style={{
+              color: type === "heart" || type === "diamond" ? "red" : "black",
+              fontWeight: "800",
+              lineHeight: isMobile ? "1" : "1.2",
+              fontSize: isMobile ? "12px" : "18px",
+            }}
+          >
             {number}
           </span>
           <Icons type={type} />

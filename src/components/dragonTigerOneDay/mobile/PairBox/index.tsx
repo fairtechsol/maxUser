@@ -29,7 +29,9 @@ const PairBox = ({ odds, data }: any) => {
         data,
       })
     );
+    console.log("team", team);
   };
+  // console.log("first", odds);
   return (
     <div className="w-100">
       <div
@@ -44,20 +46,6 @@ const PairBox = ({ odds, data }: any) => {
           alignItems: "center",
         }}
       >
-        <div style={{ width: "100%", textAlign: "end" }}>
-          <span className="minmaxi">
-            <IoInformationCircle
-              color="#ffc742"
-              onClick={() => setModelOpen(!modelOpen)}
-            />
-            <SmoothDropdownModal
-              min={min}
-              max={max}
-              show={modelOpen}
-              setShow={() => setModelOpen(false)}
-            />
-          </span>
-        </div>
         <CommonButtonBox
           value1={odds?.b1}
           value2={"Pair"}
@@ -75,6 +63,7 @@ const PairBox = ({ odds, data }: any) => {
           }
           data={odds}
         />
+        <div style={{width:"100%",textAlign:"end"}}>Min:{odds?.min} Max:{odds?.max}</div>
       </div>
     </div>
   );
