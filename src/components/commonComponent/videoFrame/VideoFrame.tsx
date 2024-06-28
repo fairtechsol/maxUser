@@ -34,7 +34,7 @@ const VideoFrame = ({ result, time, id }: any) => {
             {result && (
               <div style={{ position: "absolute", zIndex: "999" }}>{result}</div>
             )}
-            <div style={isMobile ?{display: "flex", overflow: "hidden"} : {}}>
+            <div style={isMobile ? {display: "flex", overflow: "hidden"} : {}}>
               <iframe
                 width="100%"
                 height={isMobile ? "250px" : "380px"}
