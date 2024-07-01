@@ -22,6 +22,9 @@ import {
   cards32B,
   abjlist2,
   abjlist,
+  p6,
+  p1d,
+  p20,
 } from "../../assets/images";
 import {
   dayteen,
@@ -257,6 +260,7 @@ export const cardGamesType: any = {
   teenTest: "teen9",
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
+  poker6: "poker6"
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -273,6 +277,7 @@ export const cardGamesId: any = {
   teenTest: 3048,
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
+  poker: 30500,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -288,6 +293,7 @@ export const navigateToGameDetail = {
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",
+  [cardGamesType.poker6]: "poker6",
 }
 
 export const baseUrls = {
@@ -1445,7 +1451,7 @@ export const casinoIcons = [
     name: "20-20 Teenpatti",
   },
   {
-    url: "",
+    url: "/poker6",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "6 Player Poker",
@@ -1493,7 +1499,7 @@ export const casinoIcons = [
     name: "32 Cards A",
   },
   {
-    url: "",
+    url: "/32cards-B",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
     name: "32 Cards B",
@@ -1619,6 +1625,23 @@ export const card3 = {
       url: "/ab20",
       imgSrc: abjlist,
       name: "ANDAR BAHAR",
+    },
+  ],
+  poker: [
+    {
+      url: "/poker6",
+      imgSrc: p6,
+      name: "POKER 6",
+    },
+    {
+      url: "/p120",
+      imgSrc: p1d,
+      name: "POKER 1 DAY",
+    },
+    {
+      url: "/p20",
+      imgSrc: p20,
+      name: "POKER 20 20",
     },
   ],
 };

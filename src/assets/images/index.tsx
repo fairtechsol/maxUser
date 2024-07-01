@@ -47,3 +47,7 @@ export { default as heart } from "./cards/heart.png";
 export { default as spade } from "./cards/spade.png";
 export { default as leftArrow } from "./anderBahar/left-arrow-black.webp";
 export { default as rightArrow } from "./anderBahar/right_arrow_black.webp";
+export { default as p6 } from "./poker/6p.webp";
+export { default as p20 } from "./poker/20P.webp";
+export { default as p1d } from "./poker/p1k.webp";
+export { default as p6rules } from "./poker/poker-rules.webp";
