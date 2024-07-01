@@ -1,42 +1,40 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { BiSolidHeart } from "react-icons/bi";
+import { GiSpades } from "react-icons/gi";
+import { ImClubs, ImDiamonds } from "react-icons/im";
 import { IoInformationCircle } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  dtrules,
   A,
-  two,
-  three,
-  four,
-  five,
-  six,
-  seven,
+  dtrules,
   eight,
-  nine,
-  ten,
   eleven,
-  twelve,
+  five,
+  four,
+  nine,
+  seven,
+  six,
+  ten,
   thirteen,
+  three,
+  twelve,
+  two,
 } from "../../../assets/images";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "./dragonCard";
+import SmoothDropdownModal from "./minMaxModal";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
-import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { useDispatch } from "react-redux";
-import SmoothDropdownModal from "./minMaxModal";
 
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
@@ -164,7 +162,7 @@ const DragonTigerDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const [modelOpen, setModelOpen] = useState(false);
+  const [activeCardTab, setActiveCardTab] = useState(false);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -286,7 +284,14 @@ const DragonTigerDesktop = () => {
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+          <div
+            style={{
+              width: "100%",
+              height: "400px",
+              margin: "5px",
+              wordSpacing: "-4px",
+            }}
+          >
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -297,6 +302,7 @@ const DragonTigerDesktop = () => {
                     fontSize: "14px",
                     textDecoration: "underline",
                     cursor: "pointer",
+                    marginLeft: "5px",
                   }}
                   onClick={() => setShow(true)}
                 >
@@ -386,7 +392,26 @@ const DragonTigerDesktop = () => {
                       }
                     >
                       {item?.dragon?.b1 || 0}
-                      <span style={{ fontSize: "12px" }}>
+                      <span
+                        style={{ fontSize: "12px" }}
+                        className={
+                          dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                                ] > 0
+                                ? "color-green"
+                                : dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
+                                  ] < 0
+                                ? "color-red"
+                                : ""
+                              : ""
+                            : ""
+                        }
+                      >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
                               `${dragonTigerDetail?.videoInfo?.mid}_${item?.dragon?.sid}_card`
@@ -409,7 +434,26 @@ const DragonTigerDesktop = () => {
                       }
                     >
                       {item?.tiger?.b1 || 0}
-                      <span style={{ fontSize: "12px" }}>
+                      <span
+                        style={{ fontSize: "12px" }}
+                        className={
+                          dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                                ] > 0
+                                ? "color-green"
+                                : dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
+                                  ] < 0
+                                ? "color-red"
+                                : ""
+                              : ""
+                            : ""
+                        }
+                      >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
                               `${dragonTigerDetail?.videoInfo?.mid}_${item?.tiger?.sid}_card`
@@ -432,7 +476,26 @@ const DragonTigerDesktop = () => {
                       }
                     >
                       {item?.lion?.b1 || 0}
-                      <span style={{ fontSize: "12px" }}>
+                      <span
+                        style={{ fontSize: "12px" }}
+                        className={
+                          dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                                ] > 0
+                                ? "color-green"
+                                : dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
+                                  ] < 0
+                                ? "color-red"
+                                : ""
+                              : ""
+                            : ""
+                        }
+                      >
                         {dragonTigerDetail?.profitLoss
                           ? dragonTigerDetail?.profitLoss[
                               `${dragonTigerDetail?.videoInfo?.mid}_${item?.lion?.sid}_card`
@@ -624,7 +687,11 @@ const DragonTigerDesktop = () => {
             </div>
 
             <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["D", "T", "L"]} />
+              <CardResultBox
+                data={dragonTigerDetail}
+                name={["D", "T", "L"]}
+                type={cardGamesType.dragonTigerLion}
+              />
             </div>
           </div>
 

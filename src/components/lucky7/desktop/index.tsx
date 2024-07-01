@@ -4,9 +4,11 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import MyBet from "../../abj2/desktop/myBet";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CardBox from "./CardsBox";
@@ -15,8 +17,6 @@ import TiePairBox from "./TiePairBox";
 import Lucky7Result from "./lucky7Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Lucky7Desktop = () => {
   const [show, setShow] = useState(false);
@@ -88,7 +88,11 @@ const Lucky7Desktop = () => {
                     {dragonTigerDetail?.name}
                   </span>
                   <a
-                    style={{ fontSize: "14px", textDecoration: "underline",cursor: "pointer" }}
+                    style={{
+                      fontSize: "14px",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
@@ -166,6 +170,7 @@ const Lucky7Desktop = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["L", "H", "T"]}
+                  type={cardGamesType.lucky7}
                 />
               </div>
             </div>

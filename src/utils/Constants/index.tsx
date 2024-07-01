@@ -78,11 +78,11 @@ export const ApiConstants = {
     MATCH: {
       GET_CARD_DETAIL: "/match/card",
       PLACE_BET: "/bet/cardBetting",
-      RESULT:"/card/result/detail"
+      RESULT: "/card/result/detail",
     },
   },
 };
-export const cardUrl ="https://video.proexch.in/route/?id="
+export const cardUrl = "https://video.proexch.in/route/?id=";
 
 export const Constants = {
   pageLimit: 15,
@@ -98,7 +98,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 

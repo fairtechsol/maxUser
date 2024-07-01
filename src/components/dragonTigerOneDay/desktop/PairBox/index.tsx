@@ -29,9 +29,7 @@ const PairBox = ({ odds, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
-  // console.log("first", odds);
   return (
     <div className="w-100">
       <div

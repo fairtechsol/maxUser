@@ -58,13 +58,29 @@ function SetWinner({
         return Number(matchDetails?.profitLossDataMatch?.noRateComplete) || 0;
       }
     } else {
-      if (matchDetails?.profitLossDataMatch?.[`userTeam${matchs}RateSetWinner${data?.name[data?.name?.length-1]}`]) {
+      if (
+        matchDetails?.profitLossDataMatch?.[
+          `userTeam${matchs}RateSetWinner${data?.name[data?.name?.length - 1]}`
+        ]
+      ) {
         return (
-        Number(matchDetails?.profitLossDataMatch?.[`userTeam${matchs}RateSetWinner${data?.name[data?.name?.length-1]}`]) || 0
+          Number(
+            matchDetails?.profitLossDataMatch?.[
+              `userTeam${matchs}RateSetWinner${
+                data?.name[data?.name?.length - 1]
+              }`
+            ]
+          ) || 0
         );
       } else {
         return (
-          Number(matchDetails?.profitLossDataMatch?.[`userTeam${matchs}RateSetWinner${data?.name[data?.name?.length-1]}`]) || 0
+          Number(
+            matchDetails?.profitLossDataMatch?.[
+              `userTeam${matchs}RateSetWinner${
+                data?.name[data?.name?.length - 1]
+              }`
+            ]
+          ) || 0
         );
       }
     }
@@ -141,7 +157,7 @@ function SetWinner({
                         </span>
                         <span
                           className={`title-14 ${
-                            (Number(
+                            Number(
                               calculateProfitLoss(
                                 data,
                                 selectedBet,
@@ -153,27 +169,6 @@ function SetWinner({
                                   : matchDetails?.[`team${matchs}`]
                               )
                             ) +
-                            Number(
-                              calculateValue(
-                                data,
-                                indexes,
-                                matchDetails,
-                                matchs
-                              )
-                            )) < 0
-                              ? "color-red"
-                              : (Number(
-                                calculateProfitLoss(
-                                  data,
-                                  selectedBet,
-                                  data?.type === "completeMatch" ||
-                                    data?.type === "tiedMatch1"
-                                    ? indexes === 0
-                                      ? "YES"
-                                      : "NO"
-                                    : matchDetails?.[`team${matchs}`]
-                                )
-                              ) +
                               Number(
                                 calculateValue(
                                   data,
@@ -181,36 +176,60 @@ function SetWinner({
                                   matchDetails,
                                   matchs
                                 )
-                              )) > 0
+                              ) <
+                            0
+                              ? "color-red"
+                              : Number(
+                                  calculateProfitLoss(
+                                    data,
+                                    selectedBet,
+                                    data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                      ? indexes === 0
+                                        ? "YES"
+                                        : "NO"
+                                      : matchDetails?.[`team${matchs}`]
+                                  )
+                                ) +
+                                  Number(
+                                    calculateValue(
+                                      data,
+                                      indexes,
+                                      matchDetails,
+                                      matchs
+                                    )
+                                  ) >
+                                0
                               ? "color-green"
                               : ""
                           }`}
                         >
                           {selectedBet?.team?.stake > 0 &&
                           selectedBet?.data?.type == data.type
-                            ? (Number(
-                                calculateProfitLoss(
-                                  data,
-                                  selectedBet,
-                                  data?.type === "completeMatch" ||
-                                    data?.type === "tiedMatch1"
-                                    ? indexes === 0
-                                      ? "YES"
-                                      : "NO"
-                                    : matchDetails?.[`team${matchs}`]
+                            ? (
+                                Number(
+                                  calculateProfitLoss(
+                                    data,
+                                    selectedBet,
+                                    data?.type === "completeMatch" ||
+                                      data?.type === "tiedMatch1"
+                                      ? indexes === 0
+                                        ? "YES"
+                                        : "NO"
+                                      : matchDetails?.[`team${matchs}`]
+                                  )
+                                ) +
+                                Number(
+                                  calculateValue(
+                                    data,
+                                    indexes,
+                                    matchDetails,
+                                    matchs
+                                  )
                                 )
-                              ) +
-                              Number(
-                                calculateValue(
-                                  data,
-                                  indexes,
-                                  matchDetails,
-                                  matchs
-                                )
-                              )).toFixed(2)
+                              ).toFixed(2)
                             : null}
                         </span>
-                       
                       </div>
                     </div>
                   </td>

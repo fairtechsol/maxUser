@@ -1,9 +1,12 @@
 import { useEffect } from "react";
-import { AppDispatch, RootState } from "../../store/store";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/commonComponent/loader";
 import DragonTigerComponentList from "../../components/dragon20";
 import { socket, socketService } from "../../socketManager";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
 import {
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
@@ -11,17 +14,13 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
-import Loader from "../../components/commonComponent/loader";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getButtonValue,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import {
-  getPlacedBets,
-  updateBetsPlaced,
-} from "../../store/actions/betPlace/betPlaceActions";
-import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const DragonTiger20 = () => {
   const dispatch: AppDispatch = useDispatch();

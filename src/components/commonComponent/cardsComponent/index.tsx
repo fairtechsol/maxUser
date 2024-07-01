@@ -27,7 +27,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         background: lock ? `url(${back})` : "white",
         height: isMobile ? "20px" : "40px",
         width: isMobile ? "16px" : "30px",
-        backgroundSize: "100% 100%",
+        backgroundSize: "100%",
         padding: "0px",
       }}
     >
@@ -90,7 +90,7 @@ export const HandleCards: React.FC<HandleCardsProps> = ({ card }) => {
   if (card === "1") {
     return <PlayingCard number="0" type="" lock={true} />;
   }
-  // console.log(card?.substring(0, card.length - 2),'jjjjjj',card)
+   console.log(card?.substring(0, card.length - 2),'jjjjjj',card)
   switch (type) {
     case "DD":
       return <PlayingCard number={number} type="heart" />;

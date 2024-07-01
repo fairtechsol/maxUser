@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { dtrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Dragon20Result from "../desktop/dragonCard";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/dragonCard";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -210,7 +210,11 @@ const DragonTigerMobile = () => {
                 </div>
               )}
               <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["D", "T"]}
+                  type={cardGamesType.dragonTiger202}
+                />
               </div>
             </div>
           </div>

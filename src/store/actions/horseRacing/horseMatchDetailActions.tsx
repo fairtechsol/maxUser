@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import service from "../../../service";
 import { AxiosError } from "axios";
+import service from "../../../service";
 import { ApiConstants } from "../../../utils/constants";
 
 export const getMatchDetailHorseRacing = createAsyncThunk<any, any>(

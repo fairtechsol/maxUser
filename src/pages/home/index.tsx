@@ -16,6 +16,7 @@ import {
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
+import Mobile from "../../components/rules/mobile";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -170,7 +171,7 @@ const Home = () => {
         setShow={popUpClose}
         title={"Rules"}
       >
-        <Desktop />
+       {isMobile ? <Mobile /> : <Desktop />}
       </CustomModal>
     </div>
   );

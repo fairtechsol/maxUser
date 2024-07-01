@@ -11,7 +11,8 @@ import {
   updateDragonTigerOneDayRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  updateTeenPattiMatchRates
+  updateTeenPattiMatchRates,
+  updateTeenPatti1DMatchRates
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -23,7 +24,7 @@ interface InitialState {
   lucky7BDetail: any;
   liveGameResultTop10: any;
   cards32Detail: any;
-  resultData:any;
+  resultData: any;
 }
 
 const initialState: InitialState = {
@@ -34,8 +35,8 @@ const initialState: InitialState = {
   lucky7Detail: [],
   lucky7BDetail: [],
   liveGameResultTop10: [],
-  cards32Detail:[],
-  resultData:null
+  cards32Detail: [],
+  resultData: null,
 };
 
 const cardDetail = createSlice({
@@ -52,6 +53,7 @@ const cardDetail = createSlice({
       .addCase(getDragonTigerDetailHorseRacing.fulfilled, (state, action) => {
         state.success = true;
         state.dragonTigerDetail = action.payload;
+        state.liveGameResultTop10 = action.payload.topTenResult;
       })
       .addCase(getDragonTigerDetailHorseRacing.rejected, (state, action) => {
         state.loading = false;
@@ -145,30 +147,54 @@ const cardDetail = createSlice({
         };
       })
       .addCase(updateTeenPattiMatchRates.fulfilled, (state, action) => {
-        const {t1,t2}=action.payload
+        const { t1, t2 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const playerA = t2.slice(0, 2);
         const playerB = t2.slice(2, 4);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          playerA,
+          playerB,
+        };
+      })  
+      .addCase(updateTeenPatti1DMatchRates.fulfilled, (state, action) => {
+        const { t1 } = action.payload;
+        state.loading = false;
+        
+      
+    
+        const videoInfo = {
+          ...t1[0],
+          C4: t1[1].C1,
+          C5: t1[1].C2,
+          C6: t1[1].C3
+      };
+        const playerA = t1.slice(0, 1);
+        const playerB = t1.slice(1, 2);
+        
+  
         state.dragonTigerDetail = {
             ...state.dragonTigerDetail,
             videoInfo,
             playerA,
             playerB,
         };
-      })
+    })
+    
       .addCase(updateCard32MatchRates.fulfilled, (state, action) => {
-        const {t1,t2}=action.payload
+        const { t1, t2 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const set1 = t2.slice(0, 2);
         const set2 = t2.slice(2, 4);
 
         state.dragonTigerDetail = {
-            ...state.dragonTigerDetail,
-            videoInfo,
-            set1,
-            set2,
+          ...state.dragonTigerDetail,
+          videoInfo,
+          set1,
+          set2,
         };
       })
       .addCase(updateDragonTigerLionRates.fulfilled, (state, action) => {
@@ -194,7 +220,7 @@ const cardDetail = createSlice({
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const pair = { ...t2[2] };
-        const matchOddsData =t2.slice(0, 2);
+        const matchOddsData = t2.slice(0, 2);
         const dragonData = t2.slice(3, 11);
         const tigerData = t2.slice(11, 19);
 
@@ -206,7 +232,7 @@ const cardDetail = createSlice({
           dragonData,
           tigerData,
           matchOddsData,
-          pair
+          pair,
         };
       })
       
@@ -248,7 +274,7 @@ const cardDetail = createSlice({
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;
-        state.resultData=[];
+        state.resultData = [];
       })
       .addCase(resultDragonTiger.fulfilled, (state, action) => {
         state.resultData = action.payload;

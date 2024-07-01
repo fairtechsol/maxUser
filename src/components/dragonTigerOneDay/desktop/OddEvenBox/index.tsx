@@ -53,6 +53,32 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}
+      {data?.profitLoss &&
+        data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] && (
+          <span
+            className={
+              data?.profitLoss
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${item?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                : 0
+              : 0}
+          </span>
+        )}
     </div>
   );
   return (

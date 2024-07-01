@@ -52,17 +52,18 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
               <></>
             ) : (
               <>
-                {availableGameType[mTypeid] && tableHeading?.map((item) => (
-                  <th
-                    className={`title-14 ${
-                      item?.textAlign === "center" ? "text-center" : ""
-                    }`}
-                    colSpan={item?.colspan}
-                    key={item?.id}
-                  >
-                    {item?.name}
-                  </th>
-                ))}
+                {availableGameType[mTypeid] &&
+                  tableHeading?.map((item) => (
+                    <th
+                      className={`title-14 ${
+                        item?.textAlign === "center" ? "text-center" : ""
+                      }`}
+                      colSpan={item?.colspan}
+                      key={item?.id}
+                    >
+                      {item?.name}
+                    </th>
+                  ))}
               </>
             )}
             {}

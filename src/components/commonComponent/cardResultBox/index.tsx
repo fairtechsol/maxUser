@@ -15,6 +15,8 @@ const CardResultBox = ({ data, name, type }: any) => {
     (state: RootState) => state.card
   );
 
+  //console.log("typef",type)
+
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
@@ -39,12 +41,11 @@ const CardResultBox = ({ data, name, type }: any) => {
       <div className="cardResultBoxRound">
         {liveGameResultTop10?.length > 0 &&
           liveGameResultTop10.map((item: any) => (
-            
             <div
               className="cardResultCircle"
               key={item?.mid}
               style={{
-                backgroundColor:"#355e3b",
+                backgroundColor: "#355e3b",
               }}
               onClick={() => handleResult(item?.mid)}
             >
@@ -71,17 +72,24 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "3" || item?.result === "41" ? "#f5cc03" : item?.result === "2" || item?.result === "21" ? "#ffffff" : "#ff4500",
+                    color: item?.result === "3" || item?.result === "41" || item?.result === "1" ? "#f5cc03" : item?.result === "2" || item?.result === "21" ? "#ff4500"  : "#ffffff",
                   }}
                 >
-                  { type ==="teen20" ?  item?.result ==="0" ? name?.[1] : item?.result === "1" ? name?.[0] : name?.[2]
-                  : item?.result === "1"
+                  {type === "teen20"
+                    ? item?.result === "0"
+                      ? name?.[1]
+                      : item?.result === "1"
+                      ? name?.[0]
+                      : name?.[2]
+                    : item?.result === "1"
                     ? name?.[0]
                     : item?.result === "2" || item?.result === "21"
                     ? name?.[1]
                     : name?.[2]
                     ? name?.[2]
                     : ""}
+
+                 
                 </span>
               )}
             </div>
@@ -94,11 +102,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Body style={{ padding: 0 }}>
-          <ResultComponent
-            data={resultData}
-            setfalse={setLgShow}
-            type={data?.type}
-          />
+          <ResultComponent data={resultData} setfalse={setLgShow} type={type} />
         </Modal.Body>
       </Modal>
     </div>
