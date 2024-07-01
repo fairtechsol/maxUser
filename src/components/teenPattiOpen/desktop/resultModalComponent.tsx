@@ -10,7 +10,7 @@ interface Props {
   };
 }
 
-const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
+const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const playerA = resultCards?.filter(
     (_: any, index: number) => index % 2 === 0
@@ -107,4 +107,4 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 };
 
-export default Teen20ResultComponent;
+export default TeenOpenResultComponent;

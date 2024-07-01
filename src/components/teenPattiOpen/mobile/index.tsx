@@ -10,7 +10,7 @@ import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Teen20Result from "../desktop/teenCard";
+import TeenOpenResult from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
@@ -21,7 +21,7 @@ const TeenPattiMobile = () => {
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.teen20}`
+    `${cardUrl}${cardGamesId.teenOpen}`
   );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
@@ -156,7 +156,7 @@ const TeenPattiMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                  result={<TeenOpenResult data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>

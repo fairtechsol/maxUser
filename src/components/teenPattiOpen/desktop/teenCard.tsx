@@ -13,7 +13,7 @@ interface Props {
   };
 }
 
-const Teen20Result: React.FC<Props> = ({ data }:any) => {
+const TeenOpenResult: React.FC<Props> = ({ data }:any) => {
   return data?.mid !="0" && (  
     <Container>
       <Row>
@@ -40,4 +40,4 @@ const Teen20Result: React.FC<Props> = ({ data }:any) => {
   );
 };
 
-export default Teen20Result;
+export default TeenOpenResult;

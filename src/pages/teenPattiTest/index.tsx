@@ -11,7 +11,7 @@ import {
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  updateTeenPattiMatchRates,
+  updateTeenPattiTestMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import {
   getButtonValue,
@@ -20,7 +20,7 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 
-import TeentPattiComponentList from "../../components/teenPatti20";
+import TeentPattiComponentList from "../../components/teenPattiTest";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const TeenPattiTest = () => {
@@ -31,7 +31,7 @@ const TeenPattiTest = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateTeenPattiMatchRates(event?.data?.data?.data));
+      dispatch(updateTeenPattiTestMatchRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }

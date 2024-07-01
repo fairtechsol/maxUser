@@ -56,6 +56,7 @@ export const resultDragonTiger = createAsyncThunk<any, any>(
         `${ApiConstants.CARDS.MATCH.RESULT}/${requestData}`
       );
       if (resp?.data) {
+      
         return resp?.data;
       }
     } catch (error) {
@@ -98,8 +99,23 @@ export const updateTeenPattiMatchRates = createAsyncThunk<any, any>(
   }
 );
 
+
 export const updateTeenPatti1DMatchRates = createAsyncThunk<any, any>(
   "teen/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateTeenPattiOpenMatchRates = createAsyncThunk<any, any>(
+  "teen8/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+); 
+
+export const updateTeenPattiTestMatchRates = createAsyncThunk<any, any>(
+  "teen9/matchRatesUpdate",
   async (data) => {
     return data;
   }

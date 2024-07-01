@@ -11,7 +11,7 @@ import {
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  updateTeenPattiMatchRates,
+  updateTeenPattiOpenMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import {
   getButtonValue,
@@ -20,7 +20,7 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 
-import TeentPattiComponentList from "../../components/teenPatti20";
+import TeentPattiComponentList from "../../components/teenPattiOpen";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const TeenPattiOpen = () => {
@@ -31,7 +31,7 @@ const TeenPattiOpen = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateTeenPattiMatchRates(event?.data?.data?.data));
+      dispatch(updateTeenPattiOpenMatchRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
@@ -41,7 +41,7 @@ const TeenPattiOpen = () => {
   };
 
   const handleBetPlacedOnDT20 = (event: any) => {
-    if (event?.jobData?.matchType === cardGamesType.teen20) {
+    if (event?.jobData?.matchType === cardGamesType.teenOpen) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
       dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
       dispatch(updateProfitLossCards(event?.userRedisObj));
@@ -60,7 +60,7 @@ const TeenPattiOpen = () => {
   useEffect(() => {
     try {
       dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teen20));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenOpen));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
@@ -72,17 +72,17 @@ const TeenPattiOpen = () => {
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
-        socketService.card.getCardRatesOff(cardGamesType.teen20);
+        socketService.card.getCardRatesOff(cardGamesType.teenOpen);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.teen20);
+        socketService.card.joinMatchRoom(cardGamesType.teenOpen);
         socketService.card.getCardRates(
-          cardGamesType.teen20,
+          cardGamesType.teenOpen,
           setMatchRatesInRedux
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
-          cardGamesType.teen20,
+          cardGamesType.teenOpen,
           handleLiveGameResultTop10
         );
         socketService.card.cardResult(handleCardResult);
@@ -95,8 +95,8 @@ const TeenPattiOpen = () => {
   useEffect(() => {
     try {
       return () => {
-        socketService.card.leaveMatchRoom(cardGamesType.teen20);
-        socketService.card.getCardRatesOff(cardGamesType.teen20);
+        socketService.card.leaveMatchRoom(cardGamesType.teenOpen);
+        socketService.card.getCardRatesOff(cardGamesType.teenOpen);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));

@@ -14,7 +14,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import Teen20Result from "./teenCard";
+import TeenOpenResult from "./teenCard";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -24,10 +24,12 @@ const TeenPattiDesktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.teen20}`
+    `${cardUrl}${cardGamesId.teenOpen}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
+  
+  console.log("Teen8",dragonTigerDetail)
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -113,7 +115,7 @@ const TeenPattiDesktop = () => {
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
-                    20-20 TEENPATTI
+                    OPEN TEENPATTI
                   </span>
                   <span
                     style={{
@@ -146,7 +148,7 @@ const TeenPattiDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                  result={<TeenOpenResult data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
