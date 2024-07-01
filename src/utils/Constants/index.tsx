@@ -1575,12 +1575,12 @@ export const card3 = {
       name: "1 DAY TEENPATTI",
     },
     {
-      url: "/contact-admin",
+      url: "/teen9",
       imgSrc: testteen,
       name: "TEST TEENPATTI",
     },
     {
-      url: "/contact-admin",
+      url: "/teen8",
       imgSrc: teenplayer,
       name: "OPEN TEENPATTI",
     },
