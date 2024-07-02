@@ -235,20 +235,30 @@ const cardDetail = createSlice({
           },
         };
       })
-       
+
       .addCase(updateTeenPattiTestMatchRates.fulfilled, (state, action) => {
+        // console.log("First", action.payload);
         const { t1, t2 } = action.payload;
         state.loading = false;
+
         const videoInfo = { ...t1[0] };
-        const playerA = t2.slice(0, 2);
-        const playerB = t2.slice(2, 4);
+
+        const sections = [
+          t2.slice(0, 1)[0],
+          t2.slice(1, 2)[0],
+          t2.slice(2, 3)[0],
+          t2.slice(3, 4)[0],
+          t2.slice(4, 5)[0],
+          t2.slice(5, 6)[0],
+        ];
+
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
-          playerA,
-          playerB,
+          sections,
         };
       })
+
       .addCase(updateCard32MatchRates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
         state.loading = false;

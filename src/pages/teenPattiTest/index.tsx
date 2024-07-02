@@ -41,7 +41,7 @@ const TeenPattiTest = () => {
   };
 
   const handleBetPlacedOnDT20 = (event: any) => {
-    if (event?.jobData?.matchType === cardGamesType.teen20) {
+    if (event?.jobData?.matchType === cardGamesType.teenTest) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
       dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
       dispatch(updateProfitLossCards(event?.userRedisObj));
@@ -60,7 +60,7 @@ const TeenPattiTest = () => {
   useEffect(() => {
     try {
       dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teen20));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenTest));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
@@ -72,17 +72,17 @@ const TeenPattiTest = () => {
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
-        socketService.card.getCardRatesOff(cardGamesType.teen20);
+        socketService.card.getCardRatesOff(cardGamesType.teenTest);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.teen20);
+        socketService.card.joinMatchRoom(cardGamesType.teenTest);
         socketService.card.getCardRates(
-          cardGamesType.teen20,
+          cardGamesType.teenTest,
           setMatchRatesInRedux
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
-          cardGamesType.teen20,
+          cardGamesType.teenTest,
           handleLiveGameResultTop10
         );
         socketService.card.cardResult(handleCardResult);
@@ -95,8 +95,8 @@ const TeenPattiTest = () => {
   useEffect(() => {
     try {
       return () => {
-        socketService.card.leaveMatchRoom(cardGamesType.teen20);
-        socketService.card.getCardRatesOff(cardGamesType.teen20);
+        socketService.card.leaveMatchRoom(cardGamesType.teenTest);
+        socketService.card.getCardRatesOff(cardGamesType.teenTest);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));

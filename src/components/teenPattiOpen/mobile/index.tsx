@@ -25,7 +25,8 @@ const TeenPattiMobile = () => {
   );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  const { playerA, playerB } = dragonTigerDetail;
+  //const { playerA, playerB } = dragonTigerDetail;
+  const { players, pairsPlus } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
@@ -82,6 +83,50 @@ const TeenPattiMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, show]);
+
+  const TeenPattiTableRow = ({ player, pairPlus }: any) => (
+    <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
+      <div
+        style={{ width: "40%", padding: "10px", border: "0.1px solid #fff" }}
+      >
+        <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+          {player.nat}
+        </span>
+      </div>
+      <div
+        className={player.gstatus === "0" ? "suspended" : ""}
+        style={{
+          width: "60%",
+          backgroundColor: "#72bbef",
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <div
+          className="teenPatti-table-item"
+          style={{ width: "50%" }}
+          onClick={() => (player.gstatus === "0" ? null : handleBet(player))}
+        >
+          <span className="f12-b">{player.rate}</span>
+          <span className={`f10-b ${"profit-loss-class"}`}>{0}</span>
+        </div>
+        <div
+          className={`teenPatti-table-item ${
+           // pairPlus.gstatus !== "0" ? "suspended" : 
+            ""
+          }`}
+          style={{ width: "50%" }}
+          onClick={() =>
+            pairPlus.gstatus === "0" ? null : handleBet(pairPlus)
+          }
+        >
+          <span className="f12-b">{pairPlus.nat}</span>
+          <span className={`f10-b ${"profit-loss-class"}`}>{0}</span>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <>
       <div>
@@ -156,7 +201,9 @@ const TeenPattiMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<TeenOpenResult data={dragonTigerDetail?.videoInfo} />}
+                  result={
+                    <TeenOpenResult data={dragonTigerDetail?.videoInfo} />
+                  }
                   id={videoFrameId}
                 />
               </div>
@@ -167,7 +214,7 @@ const TeenPattiMobile = () => {
                   <div className="teenPatti-table-row">
                     <div
                       style={{
-                        width: "50%",
+                        width: "20%",
                         border: "0.1px solid #dee2e6",
                         textAlign: "left",
                       }}
@@ -177,9 +224,36 @@ const TeenPattiMobile = () => {
                         {dragonTigerDetail?.videoInfo?.max}
                       </span>
                     </div>
-                    <div className="teen-back-m">BACK</div>
+                    <div
+                      style={{
+                        width: "80%",
+                        border: "0.1px solid #dee2e6",
+                        textAlign: "left",
+                        display: "flex",
+                      }}
+                    >
+                      <div
+                        className="teen-back-m"
+                        style={{
+                          border: "0.5px solid #dee2e6",
+                        }}
+                      >
+                        BACK
+                      </div>
+                      <div className="teen-back-m">BACK</div>
+                    </div>
                   </div>
-                  <div className="teenPatti-table-row">
+
+                  {players &&
+                    Object?.keys(players)?.map((key, index) => (
+                      <TeenPattiTableRow
+                        key={index}
+                        player={players[key]}
+                        pairPlus={pairsPlus[`pairPlus${index + 1}`]}
+                      />
+                    ))}
+
+                  {/* <div className="teenPatti-table-row">
                     <div
                       style={{
                         width: "50%",
@@ -292,6 +366,7 @@ const TeenPattiMobile = () => {
                       </div>
                     </div>
                   </div>
+
                   <div className="teenPatti-table-row">
                     <div
                       style={{
@@ -404,7 +479,7 @@ const TeenPattiMobile = () => {
                         </span>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -412,7 +487,7 @@ const TeenPattiMobile = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "T", "B"]}
-                  type={"teen20"}
+                  type={"teen8"}
                 />
               </div>
               <div>
