@@ -257,6 +257,7 @@ export const cardGamesType: any = {
   teenTest: "teen9",
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
+  race20:"race20",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -273,6 +274,7 @@ export const cardGamesId: any = {
   teenTest: 3048,
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
+  race20:3036
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -288,6 +290,7 @@ export const navigateToGameDetail = {
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",
+  [cardGamesType.race20]: "race20",
 }
 
 export const baseUrls = {
@@ -1343,7 +1346,7 @@ export const casinoIcons = [
     name: "Super Over",
   },
   {
-    url: "",
+    url: "/race20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
     name: "Race 20-20",
