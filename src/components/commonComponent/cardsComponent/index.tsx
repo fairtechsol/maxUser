@@ -90,7 +90,6 @@ export const HandleCards: React.FC<HandleCardsProps> = ({ card }) => {
   if (card === "1") {
     return <PlayingCard number="0" type="" lock={true} />;
   }
-   console.log(card?.substring(0, card.length - 2),'jjjjjj',card)
   switch (type) {
     case "DD":
       return <PlayingCard number={number} type="heart" />;

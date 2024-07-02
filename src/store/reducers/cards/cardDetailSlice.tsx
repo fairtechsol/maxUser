@@ -13,7 +13,9 @@ import {
   updateProfitLossCards,
   updateTeenPattiMatchRates,
   updateTeenPatti1DMatchRates,
-  updateCardPoker6Rates
+  updateCardPoker6Rates,
+  updateCardPoker1DayRates,
+  updateCardPoker20Rates
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -283,6 +285,31 @@ const cardDetail = createSlice({
           videoInfo,
           handsData,
           patternData,
+        };
+      })
+      .addCase(updateCardPoker1DayRates.fulfilled, (state, action) => {
+        const { t1, t2, t3} = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const oddsData = {...t2};
+        const playersBonusPair = {...t3};
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          oddsData,
+          playersBonusPair,
+        };
+      })
+      .addCase(updateCardPoker20Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const odds = t2.slice(0, 18);
+
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          odds,
         };
       })
       .addCase(resultDragonTiger.pending, (state) => {

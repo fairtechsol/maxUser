@@ -4,6 +4,8 @@ import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
 import Cards32 from "../pages/cards32";
 import Lucky7B from "../pages/lucky7B";
+import Poker1day from "../pages/poker1day";
+import Poker20 from "../pages/poker20";
 // import Home from "../pages/home";
 // import GameDetail from "../pages/gameDetails";
 // import FootballGameDetail from "../pages/otherGameDetails";
@@ -192,6 +194,14 @@ const MainRoutes = {
     {
       path: "poker6",
       element: <Poker6 />,
+    },
+    {
+      path: "poker",
+      element: <Poker1day />,
+    },
+    {
+      path: "poker20",
+      element: <Poker20 />,
     },
     {
       path: "*",

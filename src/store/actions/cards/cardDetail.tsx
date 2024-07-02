@@ -171,3 +171,16 @@ export const updateCardPoker6Rates = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateCardPoker1DayRates = createAsyncThunk<any, any>(
+  "poker1day/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+export const updateCardPoker20Rates = createAsyncThunk<any, any>(
+  "poker20/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);

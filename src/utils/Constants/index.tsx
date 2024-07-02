@@ -33,6 +33,7 @@ import {
   teenplayer,
   testteen,
 } from "../../assets/images";
+import Poker1day from "../../pages/poker1day";
 export const ApiConstants = {
   LOGIN: "auth/login",
   LOGOUT: "auth/logout",
@@ -101,7 +102,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -260,7 +261,10 @@ export const cardGamesType: any = {
   teenTest: "teen9",
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
-  poker6: "poker6"
+  poker6: "poker6",
+  poker1Day: "poker",
+  poker20: "poker20",
+  card3judge: "3cardj"
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -278,6 +282,8 @@ export const cardGamesId: any = {
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
   poker: 30500,
+  poker1Day: 3051,
+  poker20: 3052,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -294,6 +300,8 @@ export const navigateToGameDetail = {
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",
   [cardGamesType.poker6]: "poker6",
+  [cardGamesType.poker1Day]: "poker",
+  [cardGamesType.poker20]: "poker20",
 }
 
 export const baseUrls = {
@@ -1457,13 +1465,13 @@ export const casinoIcons = [
     name: "6 Player Poker",
   },
   {
-    url: "",
+    url: "/poker",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "1 Day Poker",
   },
   {
-    url: "",
+    url: "/poker20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "20-20 Poker",
@@ -1634,12 +1642,12 @@ export const card3 = {
       name: "POKER 6",
     },
     {
-      url: "/p120",
+      url: "/poker",
       imgSrc: p1d,
       name: "POKER 1 DAY",
     },
     {
-      url: "/p20",
+      url: "/poker20",
       imgSrc: p20,
       name: "POKER 20 20",
     },

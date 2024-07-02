@@ -1,33 +1,30 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { dtrules, p6rules } from "../../../assets/images";
+import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import TiePairBox from "./TiePairBox";
+import DynamicTable from "./betTable";
+import Card32Result from "./card32Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import Poker6Result from "./poker6Card";
 
-const Poker6Desktop = () => {
+const Poker20Desktop = () => {
+  const placeBetRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
-  const [activeTab, setActiveTab] = useState('tab1');
-
+  const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.poker}`
+    `${cardUrl}${cardGamesId?.poker20}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -77,16 +74,16 @@ const Poker6Desktop = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   return (
-    <div>
+    <>
       <Row>
         <Col md={8}>
-          <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+          <div style={{ height: "400px", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
                   {dragonTigerDetail?.name}
                 </span>
-                <span
+                <a
                   style={{
                     fontSize: "14px",
                     textDecoration: "underline",
@@ -96,75 +93,55 @@ const Poker6Desktop = () => {
                 >
                   {" "}
                   RULES
-                </span>
+                </a>
               </div>
               <span>
                 {dragonTigerDetail?.videoInfo
                   ? `Round ID:  ${handleRoundId(
                       dragonTigerDetail?.videoInfo?.mid
-                    )}`
+                    )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
+                      dragonTigerDetail?.videoInfo?.max
+                    }`
                   : ""}
               </span>
             </div>
             <div
-              style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
+              style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
             >
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
-                result={<Poker6Result data={dragonTigerDetail?.videoInfo} />}
+                result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
                 id={videoFrameId}
               />
             </div>
-          </div>
-          <div style={{ height: "760px" }}>
-          <div className="tab-containerp">
-        <div 
-          className={`hands ${activeTab === 'tab1' ? 'active' : ''}`} 
-          onClick={() => setActiveTab('tab1')}
-        >
-          Hands
-        </div>
-        <div 
-          className={`hands ${activeTab === 'tab2' ? 'active' : ''}`} 
-          onClick={() => setActiveTab('tab2')}
-        >
-          Pattern
-        </div>
-      </div>
+            {/* <Row md={4}> */}
 
-      <div className="tab-contentp">
-        {activeTab === 'tab1' && (
-          <div style={{ width: "100%",  }}>
-            <TiePairBox
-              handsData={dragonTigerDetail?.handsData}
-              data={dragonTigerDetail}
-              width={"49%"}
-              title={"hand"}
-            />
+            {/* </Row> */}
           </div>
-        )}
-        {activeTab === 'tab2' && (
-          <div style={{ width: "100%" }}>
-            <TiePairBox
-              handsData={dragonTigerDetail?.patternData}
-              data={dragonTigerDetail}
-              width={"30%"}
-              title={"pattern"}
-            />
-          </div>
-        )}
-      </div>
-           
-            <div style={{ width: "100%", margin: "5px" }}>
+          <div style={{ height: "350px" }}>
+            <div className="d-flex px-2 mt-5">
+              <DynamicTable
+                odds={dragonTigerDetail?.odds}
+                data={dragonTigerDetail}
+                playerNum={[8, 9]}
+              />
+              <div style={{ width: "10px" }}></div>
+              <DynamicTable
+                odds={dragonTigerDetail?.odds}
+                data={dragonTigerDetail}
+                playerNum={[10, 11]}
+              />
+            </div>
+            <div className="mt-2">
               <CardResultBox
                 data={dragonTigerDetail}
-                name={["D", "T"]}
-                type={cardGamesType.dragonTiger20}
+                name={["8", "9", "10", "11"]}
+                type={"card32"}
               />
             </div>
           </div>
 
-          <RulesModal show={show} setShow={setShow} rule={p6rules} />
+          <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
@@ -187,8 +164,8 @@ const Poker6Desktop = () => {
         </Col>
       </Row>
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
-    </div>
+    </>
   );
 };
 
-export default Poker6Desktop;
+export default Poker20Desktop;
