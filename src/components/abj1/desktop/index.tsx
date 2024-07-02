@@ -72,7 +72,6 @@ const Abj1Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-
   return (
     <>
       <Row>
@@ -135,12 +134,14 @@ const Abj1Desktop = () => {
                   bgColor={"#ffa07a"}
                   odds={dragonTigerDetail?.ander}
                   data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
                 />
                 <CardBox
                   title={"BAHAR"}
                   bgColor={"#90ee90"}
                   odds={dragonTigerDetail?.bahar}
                   data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
                 />
               </div>
              
