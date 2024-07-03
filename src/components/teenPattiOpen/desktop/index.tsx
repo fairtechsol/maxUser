@@ -15,8 +15,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import TeenOpenResult from "./teenCard";
-import { HandleCards } from "../../commonComponent/cardsComponent";
-
+import { HandleCards2 } from "../../cardsComponent2";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -30,7 +29,7 @@ const TeenPattiDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { players, pairsPlus } = dragonTigerDetail;
 
-  console.log("Teen8", players, pairsPlus);
+  console.log("Teen8d", dragonTigerDetail);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -140,19 +139,27 @@ const TeenPattiDesktop = () => {
     console.log("inside", cardsA, indx);
 
     return (
-      <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
+      <div className="teenPatti-table-row" style={{ lineHeight: 1 }} >
         <div
-          style={{ width: "40%", padding: "10px", border: "0.1px solid #fff",display:"flex",alignItems:"center",gap:"3px"}}
+          style={{
+            width: "40%",
+            padding: "10px",
+            border: "0.1px solid #fff",
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+          }}
         >
           <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
             {player?.nat}
           </span>
-          <HandleCards card={cardsA[indx] !== "1" ? cardsA[indx] : ""} 
-          />
-          <HandleCards
+
+          <HandleCards2 card={cardsA[indx] !== "1" ? cardsA[indx] : ""} />
+
+          <HandleCards2
             card={cardsA[9 + indx] !== "1" ? cardsA[indx + 9] : ""}
           />
-          <HandleCards
+          <HandleCards2
             card={cardsA[18 + indx] !== "1" ? cardsA[indx + 18] : ""}
           />
         </div>
@@ -233,12 +240,7 @@ const TeenPattiDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={
-                    <TeenOpenResult
-                      data={dragonTigerDetail?.videoInfo}
-                      array={cardsArray1}
-                    />
-                  }
+                  result={<TeenOpenResult data={cardsArray1} />}
                   id={videoFrameId}
                 />
               </div>
@@ -271,17 +273,16 @@ const TeenPattiDesktop = () => {
                 </div>
 
                 {players &&
-                  Object?.keys(players)?.map((key, index) => {
-                    return (
-                      <TeenPattiTableRow
-                        indx={index}
-                        player={players[key]}
-                        pairPlus={pairsPlus[`pairPlus${index + 1}`]}
-                        cardsA={cardsArray1}
-                        playersA={playersArray1}
-                      />
-                    );
-                  })}
+                  Object.keys(players).map((key, index) => (
+                    <TeenPattiTableRow
+                      key={key}
+                      indx={index}
+                      player={players[key]}
+                      pairPlus={pairsPlus[`pairPlus${index + 1}`]}
+                      cardsA={cardsArray1}
+                      playersA={playersArray1}
+                    />
+                  ))}
 
                 {/* <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
                   <div
