@@ -143,6 +143,7 @@ const TeenPattiDesktop = () => {
         <div
           style={{
             width: "40%",
+            height:"60px",
             padding: "10px",
             border: "0.1px solid #fff",
             display: "flex",
