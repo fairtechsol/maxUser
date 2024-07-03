@@ -4,6 +4,7 @@ import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
 import Cards32 from "../pages/cards32";
 import Lucky7B from "../pages/lucky7B";
+import CasinoWar from "../pages/casinoWar";
 // import Home from "../pages/home";
 // import GameDetail from "../pages/gameDetails";
 // import FootballGameDetail from "../pages/otherGameDetails";
@@ -142,6 +143,11 @@ const MainRoutes = {
     {
       path: "teen9",
       element: <TeenPattiTest />,
+    },
+    
+    {
+      path: "war",
+      element: <CasinoWar/>,
     },
 
     {

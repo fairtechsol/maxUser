@@ -257,7 +257,7 @@ export const cardGamesType: any = {
   teenTest: "teen9",
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
-  war:"war",
+  casinoWar:"war",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -274,7 +274,7 @@ export const cardGamesId: any = {
   teenTest: 3048,
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
-  war:3038
+  casinoWar:3038
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -1585,7 +1585,7 @@ export const card3 = {
       url: "/teen8",
       imgSrc: teenplayer,
       name: "OPEN TEENPATTI",
-      
+
     },
   ],
   lucky7: [

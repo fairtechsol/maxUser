@@ -17,6 +17,7 @@ import {
   updateTeenPatti1DMatchRates,
   updateTeenPattiOpenMatchRates,
   updateTeenPattiTestMatchRates,
+  casinoWarPattiMatchRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -332,6 +333,33 @@ const cardDetail = createSlice({
           bahar,
         };
       })
+      
+      .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
+        
+        console.log("war",action.payload)
+
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        
+        // Create an array of players from t2
+        const players = t2.map(({item}:any ) => ({
+            sid: item.sid,
+            nat: item.nat,
+            b1: item.b1,
+            gstatus: item.gstatus,
+            min: item.min,
+            max: item.max
+        }));
+        
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          players,
+        };
+        
+      })
+
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;

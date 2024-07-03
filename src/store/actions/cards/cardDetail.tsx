@@ -180,3 +180,10 @@ export const updateCardAbj1Rates = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const casinoWarPattiMatchRates = createAsyncThunk<any, any>(
+  "war/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
