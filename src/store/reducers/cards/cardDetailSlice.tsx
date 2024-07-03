@@ -185,55 +185,40 @@ const cardDetail = createSlice({
       })
 
       .addCase(updateTeenPattiOpenMatchRates.fulfilled, (state, action) => {
-        const { t1, t2 } = action.payload;
-        console.log("first", action.payload);
-        state.loading = false;
+        const payload = action?.payload;
+        console.log("first", payload);
+        if (payload) {
+          const { t1, t2 } = payload;
+          console.log("first", payload);
 
-        // Extract videoInfo from t1
-        const videoInfo = { ...t1[0] };
+          state.loading = false;
 
-        const player1 = t2.slice(0, 1)[0];
-        const player2 = t2.slice(1, 2)[0];
-        const player3 = t2.slice(2, 3)[0];
-        const player4 = t2.slice(3, 4)[0];
-        const player5 = t2.slice(4, 5)[0];
-        const player6 = t2.slice(5, 6)[0];
-        const player7 = t2.slice(6, 7)[0];
-        const player8 = t2.slice(7, 8)[0];
+          const videoInfo = { ...t1[0] };
 
-        const pairPlus1 = t2.slice(8, 9)[0];
-        const pairPlus2 = t2.slice(9, 10)[0];
-        const pairPlus3 = t2.slice(10, 11)[0];
-        const pairPlus4 = t2.slice(11, 12)[0];
-        const pairPlus5 = t2.slice(12, 13)[0];
-        const pairPlus6 = t2.slice(13, 14)[0];
-        const pairPlus7 = t2.slice(14, 15)[0];
-        const pairPlus8 = t2.slice(15, 16)[0];
+          const players = t2
+            .slice(0, 8)
+            .map((player: any, index: any) => ({
+              [`player${index + 1}`]: player,
+            }))
+            .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
 
-        state.dragonTigerDetail = {
-          ...state.dragonTigerDetail,
-          videoInfo,
-          players: {
-            player1,
-            player2,
-            player3,
-            player4,
-            player5,
-            player6,
-            player7,
-            player8,
-          },
-          pairsPlus: {
-            pairPlus1,
-            pairPlus2,
-            pairPlus3,
-            pairPlus4,
-            pairPlus5,
-            pairPlus6,
-            pairPlus7,
-            pairPlus8,
-          },
-        };
+          const pairsPlus = t2
+            .slice(8, 16)
+            .map((pair: any, index: any) => ({
+              [`pairPlus${index + 1}`]: pair,
+            }))
+            .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
+
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players,
+            pairsPlus,
+          };
+        } else {
+          console.error("Action payload is undefined");
+          state.loading = false;
+        }
       })
 
       .addCase(updateTeenPattiTestMatchRates.fulfilled, (state, action) => {

@@ -13,7 +13,7 @@ interface Props {
   };
 }
 
-const TeenOpenResult: React.FC<Props> = ({ data }:any) => {
+const TeenOpenResult: React.FC<Props> = ({ data ,array}:any) => {
 
   console.log("Video",data)
 
@@ -21,23 +21,23 @@ const TeenOpenResult: React.FC<Props> = ({ data }:any) => {
     <Container>
       <Row>
         <Col>
-          <span style={{ color: "white",fontWeight:"bolder" }}>PLAYER A</span>
+          <span style={{ color: "white",fontWeight:"bolder" }}>DEALER</span>
           <div style={{ display: "flex", gap: "10px" }}>
-            <HandleCards card={data?.C1} />
-            <HandleCards card={data?.C2} />
-            <HandleCards card={data?.C3} />
+            <HandleCards card={array[8]!=="1"?array[8]:""} />
+            <HandleCards card={array[17]!=="1"?array[17]:""} />
+            <HandleCards card={array[26]!=="1"?array[26]:""} />
           </div>
         </Col>
       </Row>
       <Row>
-        <Col>
+        {/* <Col>
           <span style={{ color: "white",fontWeight:"bolder"  }}>PLAYER B</span>
           <div style={{ display: "flex", gap: "10px" }}>
             <HandleCards card={data?.C4} />
             <HandleCards card={data?.C5} />
             <HandleCards card={data?.C6} />
           </div>
-        </Col>
+        </Col> */}
       </Row>
     </Container>
   );
