@@ -1,38 +1,17 @@
 import { useSelector } from "react-redux";
-import { HandleCards2 } from "../../../cardsComponent2";
 import { RootState } from "../../../../store/store";
 
-const TeenPattiTableRow = ({
-  player,
-  pairPlus,
-  indx,
-  cardsA,
-  handleBet,
-}: any) => {
+const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+
   return (
     <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
       <div
-        style={{
-          width: "40%",
-          height: "60px",
-          padding: "10px",
-          border: "0.1px solid #fff",
-          display: "flex",
-          alignItems: "center",
-          gap: "4px",
-        }}
+        style={{ width: "40%", padding: "10px", border: "0.1px solid #fff" }}
       >
         <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-          {player?.nat}
+          {player.nat}
         </span>
-
-        <HandleCards2 card={cardsA[indx] !== "1" ? cardsA[indx] : ""} />
-
-        <HandleCards2 card={cardsA[9 + indx] !== "1" ? cardsA[indx + 9] : ""} />
-        <HandleCards2
-          card={cardsA[18 + indx] !== "1" ? cardsA[indx + 18] : ""}
-        />
       </div>
       <div
         className={player.gstatus === "0" ? "suspended" : ""}
@@ -68,6 +47,7 @@ const TeenPattiTableRow = ({
                 : ""
             }`}
           >
+            {" "}
             {dragonTigerDetail?.profitLoss
               ? dragonTigerDetail?.profitLoss[
                   `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
@@ -81,7 +61,7 @@ const TeenPattiTableRow = ({
         </div>
         <div
           className={`teenPatti-table-item ${
-            //pairPlus.gstatus === "0" ? "suspended" :
+            // pairPlus.gstatus !== "0" ? "suspended" :
             ""
           }`}
           style={{ width: "50%" }}
@@ -109,6 +89,7 @@ const TeenPattiTableRow = ({
                 : ""
             }`}
           >
+            {" "}
             {dragonTigerDetail?.profitLoss
               ? dragonTigerDetail?.profitLoss[
                   `${dragonTigerDetail?.videoInfo?.mid}_${pairPlus?.sid}_card`
