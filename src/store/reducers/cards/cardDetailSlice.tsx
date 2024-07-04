@@ -15,7 +15,8 @@ import {
   updateTeenPatti1DMatchRates,
   updateCardPoker6Rates,
   updateCardPoker1DayRates,
-  updateCardPoker20Rates
+  updateCardPoker20Rates,
+  updateCricket5MatchRates
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -310,6 +311,19 @@ const cardDetail = createSlice({
           ...state.dragonTigerDetail,
           videoInfo,
           odds,
+        };
+      })
+      .addCase(updateCricket5MatchRates.fulfilled, (state, action) => {
+        const { t1, t2, t3 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const odds = {...t2};
+        const fancy = {...t3};
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          odds,
+          fancy
         };
       })
       .addCase(resultDragonTiger.pending, (state) => {

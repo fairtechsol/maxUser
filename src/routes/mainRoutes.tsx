@@ -6,6 +6,7 @@ import Cards32 from "../pages/cards32";
 import Lucky7B from "../pages/lucky7B";
 import Poker1day from "../pages/poker1day";
 import Poker20 from "../pages/poker20";
+import Cricket5 from "../pages/cricket5";
 // import Home from "../pages/home";
 // import GameDetail from "../pages/gameDetails";
 // import FootballGameDetail from "../pages/otherGameDetails";
@@ -37,7 +38,7 @@ const CasinoReports = Loadable(
   lazy(() => import("../pages/reports/casinoReport"))
 );
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
-const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
+const RaceDetail = Loadable(lazy(() => import("../pages/HorseRacingDetails")));
 const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
 const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
 const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
@@ -202,6 +203,10 @@ const MainRoutes = {
     {
       path: "poker20",
       element: <Poker20 />,
+    },
+    {
+      path: "cricketv3",
+      element: <Cricket5 />,
     },
     {
       path: "*",

@@ -25,6 +25,9 @@ import {
   p6,
   p1d,
   p20,
+  ballbyball,
+  superover,
+  crick5,
 } from "../../assets/images";
 import {
   dayteen,
@@ -264,7 +267,8 @@ export const cardGamesType: any = {
   poker6: "poker6",
   poker1Day: "poker",
   poker20: "poker20",
-  card3judge: "3cardj"
+  card3judge: "3cardj",
+  cricketv3:"cricketv3"
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -284,6 +288,7 @@ export const cardGamesId: any = {
   poker: 30500,
   poker1Day: 3051,
   poker20: 3052,
+  cricketv3: 3042,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -1369,7 +1374,7 @@ export const casinoIcons = [
     name: "Casino Queen",
   },
   {
-    url: "",
+    url: "/cricketv3",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
     name: "5Five Cricket",
@@ -1650,6 +1655,23 @@ export const card3 = {
       url: "/poker20",
       imgSrc: p20,
       name: "POKER 20 20",
+    },
+  ],
+  sportCasino: [
+    {
+      url: "/",
+      imgSrc: ballbyball,
+      name: "BALL BY BALL",
+    },
+    {
+      url: "/",
+      imgSrc: superover,
+      name: "SUPER OVER",
+    },
+    {
+      url: "/cricketv3",
+      imgSrc: crick5,
+      name: "5 5 Cricket",
     },
   ],
 };

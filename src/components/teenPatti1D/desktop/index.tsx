@@ -227,44 +227,10 @@ const TeenPattiDesktop = () => {
                       <span className="f12-b">
                         {updatedValue(playerA?.[0]?.b1)}
                       </span>
-                      {/* <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span> */}
                       <span className="f10-b">{playerA?.[0]?.bs1}</span>
                     </div>
                     <div
-                      className={`teenPatti-table-item ${
-                        // playerA?.[0]?.gstatus === "SUSPENDED"
-                        //   ? "suspended"
-                        //   : ""
-                        ""
-                      }`}
+                      className={`teenPatti-table-item`}
                       style={{ width: "50%", background: "#f9c9d4" }}
                       onClick={() =>
                         playerA?.[0]?.gstatus === "SUSPENDED"
@@ -275,35 +241,6 @@ const TeenPattiDesktop = () => {
                       <span className="f12-b">
                         {updatedValue(playerA?.[0]?.l1)}
                       </span>
-                      {/* <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span> */}
                       <span className="f10-b">{playerA?.[0]?.ls1}</span>
                     </div>
                   </div>
@@ -342,57 +279,14 @@ const TeenPattiDesktop = () => {
                           ? null
                           : handleBet(playerB?.[0], "BACK")
                       }
-
-                      // onClick={() =>
-                      //   odds?.[0]?.gstatus === "SUSPENDED" ||
-                      //   odds?.[0]?.gstatus === "CLOSED" ||
-                      //   parseFloat(odds?.[0]?.b1) ==0
-                      //     ? null
-                      //     : handleBet(odds?.[0], "BACK")
-                      // }
                     >
                       <span className="f12-b">
                         {updatedValue(playerB?.[0]?.b1)}
                       </span>
-                      {/* <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span> */}
                       <span className="f10-b">{playerB?.[0]?.bs1}</span>
                     </div>
                     <div
-                      className={`teenPatti-table-item ${
-                        // playerB?.[0]?.gstatus != "0" &&
-                        // playerB?.[1]?.gstatus === "0"
-                        //   ? "suspended"
-                        //   : ""
-                        ""
-                      }`}
+                      className={`teenPatti-table-item`}
                       style={{ width: "50%", background: "#f9c9d4" }}
                       onClick={() =>
                         playerB?.[1]?.gstatus === "0"

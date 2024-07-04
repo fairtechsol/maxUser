@@ -184,3 +184,10 @@ export const updateCardPoker20Rates = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateCricket5MatchRates = createAsyncThunk<any, any>(
+  "cricket5/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);

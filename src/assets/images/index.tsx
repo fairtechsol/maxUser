@@ -51,3 +51,7 @@ export { default as p6 } from "./poker/6p.webp";
 export { default as p20 } from "./poker/20P.webp";
 export { default as p1d } from "./poker/p1k.webp";
 export { default as p6rules } from "./poker/poker-rules.webp";
+export { default as ballbyball } from "./sportCasino/ballbyball.webp";
+export { default as superover } from "./sportCasino/superover.webp";
+export { default as crick5 } from "./sportCasino/crick5.webp";
+export { default as crick5rules } from "./sportCasino/cricketv3.webp";
