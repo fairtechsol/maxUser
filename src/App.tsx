@@ -17,7 +17,8 @@ const contextClass = {
   dark: "bg-white-600 font-gray-300",
 };
 function App() {
-  if (process.env.NODE_ENV === "production") console.log = () => { };
+  if (process.env.NODE_ENV === "production") console.log = () => {};
+
   return (
     <>
       <LogoutTimer />
@@ -34,14 +35,12 @@ function App() {
         closeButton={false}
         closeOnClick={false}
         draggable={false}
-        hideProgressBar={true} 
+        hideProgressBar={true}
         style={{
           width: "300px",
           height: "100px",
           // marginLeft: "15%", marginTop: "10%",
-          ...(isMobile
-            ? {width: "100%",marginTop: "1%"}
-            : {}),
+          ...(isMobile ? { width: "100%", marginTop: "1%" } : {}),
         }}
       />
     </>
