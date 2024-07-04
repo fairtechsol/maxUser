@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import SBetBox from "./Sbox";
 import "./style.scss";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 // import CardResultBox from "../../commonComponent/cardResultBox";
@@ -16,6 +13,9 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Abj2Result from "../desktop/abj2Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
+import OddBox from "./OddBox";
+import TotalsBox from "./TotalBox";
+import WinBox from "./win";
 
 const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -122,10 +122,7 @@ const Race20Mobile = () => {
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    Min:{dragonTigerDetail?.videoInfo?.min} Max:
-                    {dragonTigerDetail?.videoInfo?.max}
-                  </span>
+                 
                 </div>
               </div>
               <div
@@ -143,16 +140,10 @@ const Race20Mobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "700px" }}>
+            <div style={{ height: "800px" }}>
               <div style={{ width: "100%", marginTop: "20%" }}>
-                <SBetBox
-                  type={"A"}
-                  odds={dragonTigerDetail?.abjSa}
-                  data={dragonTigerDetail}
-                />
-                <SBetBox
-                  type={"B"}
-                  odds={dragonTigerDetail?.abjSb}
+              <OddBox
+                  odds={dragonTigerDetail?.cards}
                   data={dragonTigerDetail}
                 />
               </div>
@@ -165,14 +156,8 @@ const Race20Mobile = () => {
                   gap: "8px",
                 }}
               >
-                <OddEven
-                  card={true}
-                  odds={dragonTigerDetail?.oddEven}
-                  data={dragonTigerDetail}
-                />
-                <OddEven
-                  card={false}
-                  odds={dragonTigerDetail?.abjCards}
+                <TotalsBox
+                  odds={dragonTigerDetail?.total}
                   data={dragonTigerDetail}
                 />
               </div>
@@ -181,9 +166,8 @@ const Race20Mobile = () => {
                   width: "100%",
                 }}
               >
-                <CardBox
-                  rate={12}
-                  cards={dragonTigerDetail?.cards}
+                 <WinBox
+                  odds={dragonTigerDetail?.win}
                   data={dragonTigerDetail}
                 />
               </div>

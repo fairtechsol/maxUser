@@ -188,6 +188,15 @@
   flex-direction: row;
   justify-content: space-around;
 }
+.oddBoxContainer-m {
+  width: 100%;
+  background-color: #eee;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 .totalContainer {
   width: 40%;
   background-color: #eee;
@@ -198,6 +207,23 @@
 }
 .winContainer{
   width: 60%;
+  background-color: #eee;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.totalContainer-m {
+  width: 100%;
+  background-color: #eee;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.winContainer-m{
+  width: 100%;
   background-color: #eee;
   padding: 10px;
   display: flex;

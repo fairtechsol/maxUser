@@ -43,7 +43,7 @@ const TotalsBox = ({ odds, data }: any) => {
   // console.log('first',odds)
   return (
     <>
-      <div className="totalContainer">
+      <div className="totalContainer-m">
         <div className="total-mainRateBox">
           <div style={{ width: "30%" }}>
             <span></span>

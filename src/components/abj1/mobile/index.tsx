@@ -133,7 +133,7 @@ const Abj1Mobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "700px",marginTop:"65px" }}>
+            <div style={{ height: "450px",marginTop:"70px" }}>
              
               <div
                 style={{

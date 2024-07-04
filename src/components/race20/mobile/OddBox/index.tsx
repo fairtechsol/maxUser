@@ -65,13 +65,13 @@ const OddBox = ({ odds, data }: any) => {
           backgroundColor: "#eee",
         }}
       >
-        <div className="oddBoxContainer" style={{ gap: "5px" }}>
+        <div className="oddBoxContainer-m" style={{ gap: "5px" }}>
           {odds?.map((item: any, index: number) => {
             return (
               <>
                 <div
                   style={{
-                    width: "25%",
+                    width: "48%",
                     display: "flex",
                     flexDirection: "column",
                     gap: "5px",

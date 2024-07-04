@@ -64,7 +64,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         {item?.l1}
       </div>
     );
-  // console.log('first',matchOddsData)
+  console.log('fisssrst',matchOddsData)
   return (
     <div className="w-100">
       <div
