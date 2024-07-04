@@ -26,7 +26,6 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
     (item: any, index: number) => index % 2 !== 0 && item !== "1"
   );
 
-  // console.log(data , "dws")
   const sliderSettings = (length: any, arrow: any) => ({
     infinite: false,
     speed: 500,

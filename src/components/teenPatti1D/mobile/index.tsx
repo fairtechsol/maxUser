@@ -59,7 +59,6 @@ const TeenPattiMobile = () => {
         dragonTigerDetail,
       })
     );
-    // console.log('team',team)
   };
   return (
     <>

@@ -24,7 +24,6 @@ const WinBox = ({ odds, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   const handleLock=(item:any)=>{
    
@@ -35,7 +34,6 @@ const WinBox = ({ odds, data }: any) => {
       }
     
   }
-  // console.log("first", odds);
   return (
     <>
       <div className="winContainer">

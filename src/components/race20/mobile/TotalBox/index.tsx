@@ -22,10 +22,8 @@ const TotalsBox = ({ odds, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   const handleLock = (item: any, type: string) => {
-    // console.log(type, "first", item);
     if (type == "back") {
       if (item?.gstatus != "ACTIVE" || item?.b1 === "0.00") {
         return true;
@@ -40,7 +38,6 @@ const TotalsBox = ({ odds, data }: any) => {
       }
     }
   };
-  // console.log('first',odds)
   return (
     <>
       <div className="totalContainer-m">

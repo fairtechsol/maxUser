@@ -28,10 +28,7 @@ const TeenPattiDesktop = () => {
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
-
-  console.log(playerA, playerB, "abcd", dragonTigerDetail);
-
-  console.log(dragonTigerDetail?.videoInfo, "ghvf");
+  
   const handleClose = () => {
     setShowInactivityModal(false);
   };
