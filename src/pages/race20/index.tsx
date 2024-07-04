@@ -108,7 +108,7 @@ const Race20 = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <Race20ComponentList />;
+  return loading ? <Race20ComponentList /> : <Race20ComponentList />;
 };
 
 export default Race20;

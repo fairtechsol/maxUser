@@ -10,13 +10,13 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import SBetBox from "./Sbox";
 import Abj2Result from "./abj2Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import OddBox from "./OddBox";
+import TotalsBox from "./TotalBox";
+import WinBox from "./win";
 
 const Race20Desktop = () => {
   const [show, setShow] = useState(false);
@@ -75,7 +75,7 @@ const Race20Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-
+// console.log('first',dragonTigerDetail)
   return (
     <>
       <Row>
@@ -124,17 +124,16 @@ const Race20Desktop = () => {
             </div>
             <div style={{ height: "460px" }}>
               <div
-                className="row-flex"
-                style={{ width: "100%", margin: "5% 2% 5px 5px" }}
+                style={{
+                  width: "100%",
+                  margin: "5px",
+                  marginTop:"35px",
+                  display: "flex",
+                  gap: "8px",
+                }}
               >
-                <SBetBox
-                  type={"A"}
-                  odds={dragonTigerDetail?.abjSa}
-                  data={dragonTigerDetail}
-                />
-                <SBetBox
-                  type={"B"}
-                  odds={dragonTigerDetail?.abjSb}
+                <OddBox
+                  odds={dragonTigerDetail?.cards}
                   data={dragonTigerDetail}
                 />
               </div>
@@ -147,29 +146,12 @@ const Race20Desktop = () => {
                   gap: "8px",
                 }}
               >
-                <OddEven
-                  card={true}
-                  odds={dragonTigerDetail?.oddEven}
+                <TotalsBox
+                  odds={dragonTigerDetail?.total}
                   data={dragonTigerDetail}
                 />
-                <OddEven
-                  card={false}
-                  odds={dragonTigerDetail?.abjCards}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <CardBox
-                  rate={12}
-                  cards={dragonTigerDetail?.cards}
+                 <WinBox
+                  odds={dragonTigerDetail?.win}
                   data={dragonTigerDetail}
                 />
               </div>

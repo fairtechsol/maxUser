@@ -180,21 +180,69 @@
   position: relative;
   text-align: center;
 }
-.oddEvenContainer {
-  width: 50%;
+.oddBoxContainer {
+  width: 100%;
   background-color: #eee;
   padding-top: 5px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
 }
-.cardContainer {
-  width: 100%;
+.totalContainer {
+  width: 40%;
   background-color: #eee;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+.winContainer{
+  width: 60%;
+  background-color: #eee;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.subwinContainer{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.total-mainRateBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.win-mainRateBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+  margin-bottom: 12px;
+  gap: 10px;
+}
+.win-rateBox{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  line-height: 1;
+}
+.total-rateBox{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+  padding: 5px;
+  line-height: 1;
 }
 .commonCardImgContainer {
   width: 100%;
@@ -281,6 +329,23 @@
   animation: winnerbox 1.5s infinite;;
   border-radius: 50%;
   color: #169733;
+}
+.rate-box{
+  font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+}
+.casino-volume {
+  font-size: 12px;
+  font-weight: 100;
+  line-height: 1;
+  margin-top: 5px;
+}
+.lay-BackGround{
+  background-color: #faa9ba;
+}
+.back-BackGround{
+  background-color: #72bbef;
 }
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;

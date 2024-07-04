@@ -1,0 +1,155 @@
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../../store/store";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { HandleCards } from "../../../commonComponent/cardsComponent";
+
+const OddBox = ({ odds, data }: any) => {
+  const dispatch: AppDispatch = useDispatch();
+  const min = odds?.[0]?.min;
+  const max = odds?.[0]?.max;
+
+  const handleBet = (item: any,type:string) => {
+    let team = {
+      bettingType:type === "back" ? "BACK" : "LAY",
+      matchId: data?.id,
+      odd: type === "back" ? item?.b1 : item?.l1,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.nat,
+      name: item?.nat,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+    };
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+    console.log("team", team);
+  };
+  const handleCardRender = (card: string) => {
+    if (card?.includes("spade")) {
+      return "KHH";
+    } else if (card?.includes("heart")) {
+      return "KDD";
+    } else if (card?.includes("club")) {
+      return "KCC";
+    } else {
+      return "KSS";
+    }
+  };
+  const handleLock = (item: any, type: string) => {
+    console.log(type, "first", item);
+    if (type == "back") {
+      if (item?.gstatus != "ACTIVE" || item?.b1 === "0.00") {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      if (item?.gstatus != "ACTIVE" || item?.l1 === "0.00") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+  return (
+    <>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "#eee",
+        }}
+      >
+        <div className="oddBoxContainer" style={{ gap: "5px" }}>
+          {odds?.map((item: any, index: number) => {
+            return (
+              <>
+                <div
+                  style={{
+                    width: "25%",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "5px",
+                  }}
+                  key={index}
+                >
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <HandleCards card={handleCardRender(item?.nat)} />
+                  </div>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "space-around",
+                      gap: "5px",
+                      lineHeight: 1,
+                    }}
+                  >
+                    <div
+                      className={`back-BackGround ${
+                        handleLock(item, "back") ? "suspended" : ""
+                      }`}
+                      style={{
+                        width: "45%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection: "column",
+                        paddingTop: "7px",
+                      }}
+                      onClick={() =>
+                        handleLock(item, "back") ? null : handleBet(odds?.[0], "back")
+                      }
+                    >
+                      <span className="rate-box">{item?.b1}</span>
+                      <span className="casino-volume">{item?.bs1}</span>
+                    </div>
+                    <div
+                      className={`lay-BackGround ${
+                        handleLock(item, "lay") ? "suspended" : ""
+                      }`}
+                      style={{
+                        width: "50%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection: "column",
+                        paddingTop: "7px",
+                      }}
+                      onClick={() =>
+                        handleLock(item, "lay") ? null : handleBet(odds?.[0], "lay")
+                      }
+                    >
+                      <span className="rate-box">{item?.l1}</span>
+                      <span className="casino-volume">{item?.ls1}</span>
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          })}
+        </div>
+        <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
+          <span style={{ fontWeight: "bolder" }}>Min:</span>
+          <span>{min}</span>
+          <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
+          <span>{max}</span>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default OddBox;
