@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import _ from 'lodash'; 
 import {
   getDragonTigerDetailHorseRacing,
   resultDragonTiger,
@@ -334,31 +335,47 @@ const cardDetail = createSlice({
         };
       })
       
-      .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
-        
-        console.log("war",action.payload)
+     // Import lodash to use chunk function
 
-        const { t1, t2 } = action.payload;
-        state.loading = false;
-        const videoInfo = { ...t1[0] };
-        
-        // Create an array of players from t2
-        const players = t2.map(({item}:any ) => ({
-            sid: item.sid,
-            nat: item.nat,
-            b1: item.b1,
-            gstatus: item.gstatus,
-            min: item.min,
-            max: item.max
-        }));
-        
-        state.dragonTigerDetail = {
-          ...state.dragonTigerDetail,
-          videoInfo,
-          players,
-        };
-        
+      .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
+        console.log("war", action.payload);
+      
+        if (action.payload) {
+          const { t1, t2 } = action.payload;
+          state.loading = false;
+      
+          // Extract video info if t1 is present and has elements
+          const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
+      
+          // Create an array of players from t2 if t2 is present
+          const players = t2 ? t2.map(({ sid, nat, b1, gstatus, min, max }:any) => ({
+            sid,
+            nat,
+            b1,
+            gstatus,
+            min,
+            max
+          })) : [];
+      
+          // Chunk players into groups of 6
+          const chunkedPlayers = _.chunk(players, 6);
+      
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players: chunkedPlayers,
+          };
+        } else {
+          state.loading = false;
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo: "",
+            players: [],
+          };
+        }
       })
+      
+      
 
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
