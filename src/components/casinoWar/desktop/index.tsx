@@ -31,7 +31,7 @@ const TeenPattiDesktop = () => {
   //const { playerA, playerB } = dragonTigerDetail;
   const { players } = dragonTigerDetail;
 
-  console.log("CasinoWar", players);
+  console.log("CasinoWar", dragonTigerDetail);
 
   const handleClose = () => {
     setShowInactivityModal(false);
