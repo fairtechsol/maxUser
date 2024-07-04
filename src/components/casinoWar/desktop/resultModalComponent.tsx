@@ -57,7 +57,11 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
         className="flex-row justify-content-around"
         style={{ display: "flex" }}
       >
-        {players?.map((player, index) => (
+        {players?.map((player, index) => {
+          if(index !== 6){
+
+          
+          return(
           <div
             key={index}
             className="teen20resultCardContainer mb-3 "
@@ -95,7 +99,10 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
               </div>
             </div>
           </div>
-        ))}
+        )}else return<></>
+      }
+        
+        )}
         {data?.result?.win === "0" && (
           <div className="d-sm-flex flex-row justify-content-center align-items-center"></div>
         )}
