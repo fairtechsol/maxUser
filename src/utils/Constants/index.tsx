@@ -1430,7 +1430,7 @@ export const casinoIcons = [
     name: "Test Teenpatti",
   },
   {
-    url: "",
+    url: "/teen8",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "Open Teenpatti",
@@ -1578,12 +1578,12 @@ export const card3 = {
       name: "1 DAY TEENPATTI",
     },
     {
-      url: "/contact-admin",
+      url: "",
       imgSrc: testteen,
       name: "TEST TEENPATTI",
     },
     {
-      url: "/contact-admin",
+      url: "/teen8",
       imgSrc: teenplayer,
       name: "OPEN TEENPATTI",
     },

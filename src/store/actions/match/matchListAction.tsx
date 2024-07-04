@@ -104,6 +104,8 @@ export const setButtonValue = createAsyncThunk<any, any>(
     } catch (error: any) {
       const err = error as AxiosError;
       return thunkApi.rejectWithValue(err.response?.status);
+
+      
     }
   }
 );

@@ -76,10 +76,12 @@ const CasinoReports = () => {
 
   const { cardReport } = useSelector((state: RootState) => state.user.report);
   const { resultData } = useSelector((state: RootState) => state.card);
+  
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
   };
+
   useEffect(() => {
     if (state?.cardType) {
       let newType = cardGames.filter((item: any) => {
