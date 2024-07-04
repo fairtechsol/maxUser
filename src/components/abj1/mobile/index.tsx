@@ -133,48 +133,26 @@ const Abj1Mobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "700px" }}>
-              <div style={{ width: "100%", marginTop: "20%" }}>
-                <SBetBox
-                  type={"A"}
-                  odds={dragonTigerDetail?.abjSa}
-                  data={dragonTigerDetail}
-                />
-                <SBetBox
-                  type={"B"}
-                  odds={dragonTigerDetail?.abjSb}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  padding: "5px 0px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "8px",
-                }}
-              >
-                <OddEven
-                  card={true}
-                  odds={dragonTigerDetail?.oddEven}
-                  data={dragonTigerDetail}
-                />
-                <OddEven
-                  card={false}
-                  odds={dragonTigerDetail?.abjCards}
-                  data={dragonTigerDetail}
-                />
-              </div>
+            <div style={{ height: "700px",marginTop:"65px" }}>
+             
               <div
                 style={{
                   width: "100%",
                 }}
               >
+               <CardBox
+                  title={"ANDAR"}
+                  bgColor={"#ffa07a"}
+                  odds={dragonTigerDetail?.ander}
+                  data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
+                />
                 <CardBox
-                  rate={12}
-                  cards={dragonTigerDetail?.cards}
+                  title={"BAHAR"}
+                  bgColor={"#90ee90"}
+                  odds={dragonTigerDetail?.bahar}
                   data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
                 />
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
