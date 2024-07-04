@@ -62,7 +62,8 @@ const TeenPattiDesktop = () => {
     if (parsedValue !== 0) {
       parsedValue += 1;
     }
-    return parsedValue.toFixed(2);
+    //return parsedValue.toFixed(2);
+    return parsedValue
   };
 
   const handleBet = (item: any, type: any) => {
@@ -305,7 +306,7 @@ const TeenPattiDesktop = () => {
                             : 0
                           : 0}
                       </span> */}
-                      <span className="f10-b">{playerA?.[0]?.ls1}</span>
+                      <span className="f10-b">{ playerA?.[0]?.ls1}</span>
                     </div>
                   </div>
                 </div>
@@ -401,7 +402,7 @@ const TeenPattiDesktop = () => {
                           : handleBet(playerB?.[0], "LAY")
                       }
                     >
-                      <span className="f12-b">{playerB?.[0]?.l1}</span>
+                      <span className="f12-b">{ updatedValue(playerB?.[0]?.l1)}</span>
                       {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss

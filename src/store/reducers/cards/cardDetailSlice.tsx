@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import _ from "lodash";
 import {
   getDragonTigerDetailHorseRacing,
   resultDragonTiger,
@@ -17,7 +18,8 @@ import {
   updateTeenPatti1DMatchRates,
   updateTeenPattiOpenMatchRates,
   updateTeenPattiTestMatchRates,
-  updateCardRace20Rates
+  casinoWarPattiMatchRates,
+  updateCardRace20Rates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -186,55 +188,40 @@ const cardDetail = createSlice({
       })
 
       .addCase(updateTeenPattiOpenMatchRates.fulfilled, (state, action) => {
-        const { t1, t2 } = action.payload;
-        console.log("first", action.payload);
-        state.loading = false;
+        const payload = action?.payload;
+        console.log("first", payload);
+        if (payload) {
+          const { t1, t2 } = payload;
+          console.log("first", payload);
 
-        // Extract videoInfo from t1
-        const videoInfo = { ...t1[0] };
+          state.loading = false;
 
-        const player1 = t2.slice(0, 1)[0];
-        const player2 = t2.slice(1, 2)[0];
-        const player3 = t2.slice(2, 3)[0];
-        const player4 = t2.slice(3, 4)[0];
-        const player5 = t2.slice(4, 5)[0];
-        const player6 = t2.slice(5, 6)[0];
-        const player7 = t2.slice(6, 7)[0];
-        const player8 = t2.slice(7, 8)[0];
+          const videoInfo = { ...t1[0] };
 
-        const pairPlus1 = t2.slice(8, 9)[0];
-        const pairPlus2 = t2.slice(9, 10)[0];
-        const pairPlus3 = t2.slice(10, 11)[0];
-        const pairPlus4 = t2.slice(11, 12)[0];
-        const pairPlus5 = t2.slice(12, 13)[0];
-        const pairPlus6 = t2.slice(13, 14)[0];
-        const pairPlus7 = t2.slice(14, 15)[0];
-        const pairPlus8 = t2.slice(15, 16)[0];
+          const players = t2
+            .slice(0, 8)
+            .map((player: any, index: any) => ({
+              [`player${index + 1}`]: player,
+            }))
+            .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
 
-        state.dragonTigerDetail = {
-          ...state.dragonTigerDetail,
-          videoInfo,
-          players: {
-            player1,
-            player2,
-            player3,
-            player4,
-            player5,
-            player6,
-            player7,
-            player8,
-          },
-          pairsPlus: {
-            pairPlus1,
-            pairPlus2,
-            pairPlus3,
-            pairPlus4,
-            pairPlus5,
-            pairPlus6,
-            pairPlus7,
-            pairPlus8,
-          },
-        };
+          const pairsPlus = t2
+            .slice(8, 16)
+            .map((pair: any, index: any) => ({
+              [`pairPlus${index + 1}`]: pair,
+            }))
+            .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
+
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players,
+            pairsPlus,
+          };
+        } else {
+          console.error("Action payload is undefined");
+          state.loading = false;
+        }
       })
 
       .addCase(updateTeenPattiTestMatchRates.fulfilled, (state, action) => {
@@ -312,7 +299,6 @@ const cardDetail = createSlice({
           pair,
         };
       })
-
       .addCase(updateCard32BMatchRates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
         state.loading = false;
@@ -348,12 +334,61 @@ const cardDetail = createSlice({
           bahar,
         };
       })
+      .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
+        console.log("war", action.payload);
+
+        if (action.payload) {
+          const { t1, t2 } = action.payload;
+          state.loading = false;
+
+          // Extract video info if t1 is present and has elements
+          const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
+
+          // Create an array of players from t2 if t2 is present
+          const players = t2
+            ? t2.map(({ sid, nat, b1, gstatus, min, max }: any) => ({
+                sid,
+                nat,
+                b1,
+                gstatus,
+                min,
+                max,
+              }))
+            : [];
+
+          // Categorize players based on their nat value prefix
+          const categorizedPlayers = players.reduce((acc: any, player: any) => {
+            const category = player.nat.split(" ")[0]; // Extract category prefix
+            if (!acc[category]) acc[category] = [];
+            acc[category].push(player);
+            return acc;
+          }, {});
+
+          // Create chunks of 6 players for each category
+          const chunkedPlayers = Object.values(categorizedPlayers)
+            .map((category: any) => _.chunk(category, 6))
+            .flat();
+
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players: chunkedPlayers,
+          };
+        } else {
+          state.loading = false;
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo: "",
+            players: [],
+          };
+        }
+      })
       .addCase(updateCardRace20Rates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const cards = t2.slice(0, 4);
-        const total = t2.slice(4,6);
+        const total = t2.slice(4, 6);
         const win = t2.slice(6, 12);
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,

@@ -16,6 +16,7 @@ import Teen1DResultComponent from "../../teenPatti1D/desktop/resultModalComponen
 import Teen20ResultComponent from "../../teenPatti20/desktop/resultModalComponent";
 import TeenOpenResultComponent from "../../teenPattiOpen/desktop/resultModalComponent";
 import TeenTestResultComponent from "../../teenPattiTest/desktop/resultModalComponent";
+import CasinoWarResultComponent from "../../casinoWar/desktop/resultModalComponent";
 import Abj1ResultComponent from "../../abj1/desktop/resultModalComponent";
 
 const title = {
@@ -102,6 +103,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <TeenOpenResultComponent data={data}/>
       ):  type === cardGamesType?.teen9 ?(
         <TeenTestResultComponent data={data}/>
+      ):  type === cardGamesType?.casinoWar ?(
+        <CasinoWarResultComponent data={data}/>
       ):  type === cardGamesType?.andarBahar1 ?(
         <Abj1ResultComponent data={data}/>
       ): (
