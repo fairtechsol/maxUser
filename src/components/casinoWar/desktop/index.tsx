@@ -15,6 +15,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import CasinoWarResult from "./teenCard";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -158,42 +159,42 @@ const TeenPattiDesktop = () => {
             </div>
             <div style={{}}>
               <div className="teenPatti-table-container">
-                <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
+                <div className="teenPatti-table-row" style={{ lineHeight: 2 ,marginTop:"2px" ,}}>
                   <div
-                    style={{ width: "40%", border: "0.1px solid #fff" }}
+                    style={{ width: "40%",  }}
                   ></div>
                   <div
                     style={{
                       width: "60%",
-                      backgroundColor: "#72bbef",
+                      
                       display: "flex",
                       flexDirection: "row",
                     }}
                   >
                     <div
                       className="teenPatti-table-item f12-b"
-                      style={{ width: "16.5%" }}
-                    ></div>
+                      style={{ width: "16.7%",padding:"2px" }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo.C1} /></div>
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "16.5%" }}
-                    ></div>
+                      style={{ width: "16.7%",padding:"2px"  }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo.C2} /></div>
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "16.5%" }}
-                    ></div>
+                      style={{ width: "16.7%",padding:"2px"  }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo.C3} /></div>
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "16.5%" }}
-                    ></div>
+                      style={{ width: "16.7%",padding:"2px"  }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo.C4} /></div>
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "16.5%" }}
-                    ></div>
+                      style={{ width: "16.7%" }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo.C5} /></div>
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "16.5%" }}
-                    ></div>
+                      style={{ width: "16.7%",padding:"2px"  }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo.C6} /></div>
                   </div>
                 </div>
 
@@ -249,7 +250,7 @@ const TeenPattiDesktop = () => {
                 </div>
 
                 {dragonTigerDetail.players?.map((playerA: any, index: any) => {
-                  console.log("playerA", playerA);
+                  
                   return (
                     <div
                       key={index}

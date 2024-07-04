@@ -18,23 +18,23 @@ const CasinoWarResult: React.FC<Props> = ({ data }:any) => {
     <Container>
       <Row>
         <Col>
-          <span style={{ color: "white",fontWeight:"bolder" }}>PLAYER A</span>
+          <span style={{ color: "white",fontWeight:"bolder" }}>DEALER</span>
           <div style={{ display: "flex", gap: "10px" }}>
-            <HandleCards card={data?.C1} />
-            <HandleCards card={data?.C2} />
-            <HandleCards card={data?.C3} />
+            <HandleCards card={data?.C7} />
+            {/* <HandleCards card={data?.C2} />
+            <HandleCards card={data?.C3} /> */}
           </div>
         </Col>
       </Row>
       <Row>
-        <Col>
+        {/* <Col>
           <span style={{ color: "white",fontWeight:"bolder"  }}>PLAYER B</span>
           <div style={{ display: "flex", gap: "10px" }}>
             <HandleCards card={data?.C4} />
             <HandleCards card={data?.C5} />
             <HandleCards card={data?.C6} />
           </div>
-        </Col>
+        </Col> */}
       </Row>
     </Container>
   );
