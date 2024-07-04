@@ -93,10 +93,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           marginLeft: "5px",
         }}
       >
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
+        <div className="w-100 d-sm-flex flex-row" style={{ height: "35px" }}>
           <div className="dtlTitle">
             {" "}
-            <div style={{ width: "40%", textAlign: "start" }}>
+            <div style={{ width: "40%", textAlign: "start",height: "40px" }}>
               <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
@@ -138,38 +138,8 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
             </span>
           </div>
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Dragon </div>
-          {/* <div
-            className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
-              dragonEvenOdd?.[0]?.gstatus === "CLOSED" ||
-              dragonEvenOdd?.[0]?.b1 === "0.00"
-                ? "suspended"
-                : ""
-                :  dragonRedBlack?.[0]?.gstatus === "CLOSED" ||
-                dragonRedBlack?.[0]?.b1 === "0.00"
-                  ? "suspended"
-                  : ""
-            }`}
-          >
-            {title1 === "even"
-              ? dragonEvenOdd?.[0]?.b1
-              : dragonRedBlack?.[0]?.b1}
-          </div>
-          <div className={`dtlsubTitle back-BackGround ${ title2 === "odd" ?
-              dragonEvenOdd?.[0]?.gstatus === "CLOSED" ||
-              dragonEvenOdd?.[0]?.b1 === "0.00"
-                ? "suspended"
-                : ""
-                :  dragonRedBlack?.[0]?.gstatus === "CLOSED" ||
-                dragonRedBlack?.[0]?.b1 === "0.00"
-                  ? "suspended"
-                  : ""
-            }`}>
-            {title2 === "odd"
-              ? dragonEvenOdd?.[1]?.b1
-              : dragonRedBlack?.[1]?.b1}
-          </div> */}
+        <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
+          <div className="dtlTitle" >Dragon </div>
           {renderItem(
             title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0],
             0
@@ -179,7 +149,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
             1
           )}
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
+        <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
           <div className="dtlTitle"> Tiger</div>
           {/* <div className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
               tigerEvenOdd?.[0]?.gstatus === "CLOSED" ||
