@@ -1466,7 +1466,7 @@ export const casinoIcons = [
     name: "20-20 Poker",
   },
   {
-    url: "",
+    url: "/ab20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
     name: "Andar Bahar",

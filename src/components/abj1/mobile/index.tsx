@@ -15,7 +15,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import Abj2Result from "../desktop/abj2Card";
+import Abj2Result from "../desktop/abj1Card";
 
 const Abj1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);

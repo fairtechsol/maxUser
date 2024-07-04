@@ -15,10 +15,11 @@ interface Props {
   };
 }
 
-const Abj2Result: React.FC<Props> = ({ data }: any) => {
-  const elements = data?.cards?.split(",");
-  const primaryCards = elements?.slice(0, 3);
-  const cards = elements?.slice(3);
+const Abj1Result: React.FC<Props> = ({ data }: any) => {
+  const elementsAndar = data?.aall?.split(",");
+  const elementsBahar = data?.ball?.split(",");
+  const primaryCards = elementsAndar?.slice(0, 3);
+  const cards = elementsAndar?.slice(3);
   const teamA = cards?.filter(
     (item: any, index: number) => index % 2 === 0 && item !== "1"
   );
@@ -26,7 +27,7 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
     (item: any, index: number) => index % 2 !== 0 && item !== "1"
   );
 
-  // console.log(data , "dws")
+  console.log(elementsAndar , "dws",elementsBahar)
   const sliderSettings = (length: any, arrow: any) => ({
     infinite: false,
     speed: 500,
@@ -71,63 +72,8 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
         }}
       >
         <Row>
-          {primaryCards?.[0] !== "1" && (
-            <Col xs={1} style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
-              <span
-                style={{
-                  color: "#fff",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "end",
-                }}
-              >
-                A
-              </span>
-              <span
-                style={{
-                  color: "#fff",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "start",
-                }}
-              >
-                B
-              </span>
-            </Col>
-          )}
-
-          <Col
-            xs={2}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              //  marginTop: "20px"
-            }}
-          >
-            <div>
-              <HandleCards
-                card={primaryCards?.[0] !== "1" ? primaryCards?.[0] : ""}
-              />
-            </div>
-          </Col>
-          <Col xs={2}
-          style={isMobile ? {marginTop: "10px"} : {}}>
-            <div>
-              <HandleCards
-                card={primaryCards?.[0] !== "1" ? primaryCards?.[2] : ""}
-              />
-            </div>
-            <div style={{ marginTop: "10px" }}>
-              <HandleCards
-                card={primaryCards?.[0] !== "1" ? primaryCards?.[1] : ""}
-              />
-            </div>
-          </Col>
+         
+         
 
           <Col xs={2} style={{ margin: "0px 0px 0px 10px" }}>
             <div
@@ -135,12 +81,25 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
                 width: isMobile ? "70px" : "110px",
                 // margin: "0px 10px 0px 10px",
               }}
+            >{elementsAndar?.length>0 && (<span
+              style={{
+                color: "#fff",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "start",
+                marginLeft:"-12px",
+                fontWeight:"600"
+              }}
             >
+              ANDAR
+            </span>)}
+              
               <div>
-                {teamB?.length > 3 ? (
-                  <Slider {...sliderSettings(teamB?.length, teamB?.length > 3)}>
-                    {teamB &&
-                      teamB?.map((item: any, index: any) => (
+                {elementsAndar?.length > 3 ? (
+                  <Slider {...sliderSettings(elementsAndar?.length, elementsAndar?.length > 3)}>
+                    {elementsAndar &&
+                      elementsAndar?.map((item: any, index: any) => (
                         <div key={index}>
                           <HandleCards card={item !== "1" ? item : ""} />
                         </div>
@@ -148,8 +107,8 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
                   </Slider>
                 ) : (
                   <Row style={{ gap: "10px", marginTop: isMobile ? "10px" : "0px"}}>
-                    {teamB &&
-                      teamB?.map((item: any, index: any) => {
+                    {elementsAndar &&
+                      elementsAndar?.map((item: any, index: any) => {
                         return (
                           <React.Fragment key={index}>
                             <HandleCards card={item !== "1" ? item : ""} />
@@ -159,11 +118,24 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
                   </Row>
                 )}
               </div>
+              {elementsBahar?.length>0 && (<span
+              style={{
+                color: "#fff",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "start",
+                marginLeft:"-12px",
+                fontWeight:"600"
+              }}
+            >
+              BAHAR
+            </span>)}
               <div className={isMobile ? "mt-1" : "mt-2"}>
-              {teamA?.length > 3 ? (
-                  <Slider {...sliderSettings(teamA?.length, teamA?.length > 3)}>
-                    {teamA &&
-                      teamA?.map((item: any, index: any) => (
+              {elementsBahar?.length > 3 ? (
+                  <Slider {...sliderSettings(elementsBahar?.length, elementsBahar?.length > 3)}>
+                    {elementsBahar &&
+                      elementsBahar?.map((item: any, index: any) => (
                         <div key={index}>
                           <HandleCards card={item !== "1" ? item : ""} />
                         </div>
@@ -171,8 +143,8 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
                   </Slider>
                 ) : (
                   <Row style={{ gap: "10px", marginTop: isMobile ? "10px" : "5px"}}>
-                    {teamA &&
-                      teamA?.map((item: any, index: any) => {
+                    {elementsBahar &&
+                      elementsBahar?.map((item: any, index: any) => {
                         return (
                           <React.Fragment key={index}>
                             <HandleCards card={item !== "1" ? item : ""} />
@@ -190,4 +162,4 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
   );
 };
 
-export default Abj2Result;
+export default Abj1Result;
