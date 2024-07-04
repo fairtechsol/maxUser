@@ -77,7 +77,7 @@ const TeenPattiDesktop = () => {
     );
     // console.log('team',team)
   };
-
+  
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
@@ -226,9 +226,7 @@ const TeenPattiDesktop = () => {
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                        dragonTigerDetail?.videoInfo?.max
-                      }`
+                      )}`
                     : ""}
                 </span>
               </div>
@@ -264,12 +262,12 @@ const TeenPattiDesktop = () => {
                       className="teenPatti-table-item f12-b"
                       style={{ width: "50%" }}
                     >
-                      BACK
+                      BACK(Min: {dragonTigerDetail?.players?.player1?.min} Max: {dragonTigerDetail?.players?.player1?.max})
                     </div>
                     <div
-                      className="teenPatti-table-item"
+                      className="teenPatti-table-item f12-b"
                       style={{ width: "50%" }}
-                    ></div>
+                    >(Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min} Max: {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})</div>
                   </div>
                 </div>
 
