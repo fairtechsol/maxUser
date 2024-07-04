@@ -13,6 +13,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CasinoWarResult from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import "./style.scss";
 
 const TeenPattiMobile = () => {
@@ -25,7 +26,7 @@ const TeenPattiMobile = () => {
   );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  const { playerA, playerB } = dragonTigerDetail;
+  
   const { placedBets } = useSelector((state: RootState) => state.bets);
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
@@ -164,247 +165,149 @@ const TeenPattiMobile = () => {
             <div style={{ height: "480px" }}>
               <div className="mt-2" style={{ width: "100%" }}>
                 <div className="teenPatti-table-container-m">
-                  <div className="teenPatti-table-row">
+                <div className="teenPatti-table-row" style={{ lineHeight: 2 ,marginTop:"2px" ,background:"#ffffff"}}>
+                  <div
+                    style={{ width: "40%",  }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "60%",
+                      
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  >
                     <div
-                      style={{
-                        width: "50%",
-                        border: "0.1px solid #dee2e6",
-                        textAlign: "left",
-                      }}
-                    >
-                      <span className="f12-b">
-                        Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
-                        {dragonTigerDetail?.videoInfo?.max}
-                      </span>
-                    </div>
-                    <div className="teen-back-m">BACK</div>
+                      className="teenPatti-table-item f12-b"
+                      style={{ width: "16.7%",padding:"2px" }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C1} /></div>
+                    <div
+                      className="teenPatti-table-item"
+                      style={{ width: "16.7%",padding:"2px"  }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C2} /></div>
+                    <div
+                      className="teenPatti-table-item"
+                      style={{ width: "16.7%",padding:"2px"  }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C3} /></div>
+                    <div
+                      className="teenPatti-table-item"
+                      style={{ width: "16.7%",padding:"2px"  }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C4} /></div>
+                    <div
+                      className="teenPatti-table-item"
+                      style={{ width: "16.7%" }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C5} /></div>
+                    <div
+                      className="teenPatti-table-item"
+                      style={{ width: "16.7%",padding:"2px"  }}
+                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C6} /></div>
                   </div>
-                  <div className="teenPatti-table-row">
+                </div>
+
+                <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
+                  <div
+                    style={{ width: "40%", border: "0.1px solid #fff" }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "60%",
+                      backgroundColor: "#72bbef",
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  >
                     <div
-                      style={{
-                        width: "50%",
-                        padding: "5px",
-                        border: "0.1px solid #dee2e6",
-                      }}
+                      className="teenPatti-table-item f12-b"
+                      style={{ width: "16.7%" }}
                     >
-                      <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                        {playerA?.[0]?.nat}
-                      </span>
+                      1
                     </div>
                     <div
-                      className={
-                        playerA?.[0]?.gstatus === "0" &&
-                        playerA?.[1]?.gstatus === "0"
-                          ? "suspended"
-                          : ""
-                      }
-                      style={{
-                        width: "50%",
-                        backgroundColor: "#72bbef",
-                        display: "flex",
-                        flexDirection: "row",
-                      }}
+                      className="teenPatti-table-item f12-b"
+                      style={{ width: "16.7%" }}
                     >
-                      <div
-                        className="teenPatti-table-item"
-                        style={{ width: "40%" }}
-                        onClick={() =>
-                          playerA?.[0]?.gstatus === "0"
-                            ? null
-                            : handleBet(playerA?.[0])
-                        }
-                      >
-                        <span className="f12-b">{playerA?.[0]?.rate}</span>
-                        <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                ]
-                                ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                  ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
-                                : ""
-                              : ""
-                          }`}
-                        >
-                          {dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
-                                ]
-                              : 0
-                            : 0}
-                        </span>
-                      </div>
-                      <div
-                        className={`teenPatti-table-item ${
-                          playerA?.[0]?.gstatus != "0" &&
-                          playerA?.[1]?.gstatus === "0"
-                            ? "suspended"
-                            : ""
-                        }`}
-                        style={{ width: "60%" }}
-                        onClick={() =>
-                          playerA?.[1]?.gstatus === "0"
-                            ? null
-                            : handleBet(playerA?.[1])
-                        }
-                      >
-                        <span className="f12-b">{playerA?.[1]?.nat}</span>
-                        <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                ]
-                                ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                  ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
-                                : ""
-                              : ""
-                          }`}
-                        >
-                          {dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
-                                ]
-                              : 0
-                            : 0}
-                        </span>
-                      </div>
+                      2
+                    </div>
+                    <div
+                      className="teenPatti-table-item f12-b"
+                      style={{ width: "16.7%" }}
+                    >
+                      3
+                    </div>
+                    <div
+                      className="teenPatti-table-item f12-b"
+                      style={{ width: "16.7%" }}
+                    >
+                      4
+                    </div>
+                    <div
+                      className="teenPatti-table-item f12-b"
+                      style={{ width: "16.7%" }}
+                    >
+                      5
+                    </div>
+                    <div
+                      className="teenPatti-table-item f12-b"
+                      style={{ width: "16.7%" }}
+                    >
+                      6
                     </div>
                   </div>
-                  <div className="teenPatti-table-row">
+                </div>
+
+                {dragonTigerDetail.players?.map((playerA: any, index: any) => {
+                  
+                  return (
                     <div
-                      style={{
-                        width: "50%",
-                        padding: "5px",
-                        border: "0.1px solid #dee2e6",
-                      }}
-                    >
-                      <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                        {playerB?.[0]?.nat}
-                      </span>
-                    </div>
-                    <div
-                      className={
-                        playerB?.[0]?.gstatus === "0" &&
-                        playerB?.[1]?.gstatus === "0"
-                          ? "suspended"
-                          : ""
-                      }
-                      style={{
-                        width: "50%",
-                        backgroundColor: "#72bbef",
-                        display: "flex",
-                        flexDirection: "row",
-                      }}
+                      key={index}
+                      className="teenPatti-table-row"
+                      style={{ lineHeight: 1 }}
                     >
                       <div
-                        className="teenPatti-table-item"
-                        style={{ width: "40%" }}
-                        onClick={() =>
-                          playerB?.[0]?.gstatus === "0"
-                            ? null
-                            : handleBet(playerB?.[0])
-                        }
+                        style={{
+                          width: "40%",
+                          padding: "10px",
+                          border: "0.1px solid #fff",
+                        }}
                       >
-                        <span className="f12-b">{playerB?.[0]?.rate}</span>
                         <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                ]
-                                ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                  ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
-                                : ""
-                              : ""
-                          }`}
+                          style={{ fontSize: "14px", fontWeight: "bolder" }}
                         >
-                          {dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
-                                ]
-                              : 0
-                            : 0}
+                          {playerA[0]?.nat.split(" ")[0]}{" "}
+                          {/* Display category */}
                         </span>
                       </div>
                       <div
-                        className={`teenPatti-table-item ${
-                          playerA?.[0]?.gstatus != "0" &&
-                          playerA?.[1]?.gstatus === "0"
-                            ? "suspended"
-                            : ""
-                        }`}
-                        style={{ width: "60%" }}
-                        onClick={() =>
-                          playerB?.[1]?.gstatus === "0"
-                            ? null
-                            : handleBet(playerB?.[1])
+                        className={
+                          //playerA[0]?.gstatus === "0" ? "suspended" : 
+                          ""
                         }
+                        style={{
+                          width: "60%",
+                          backgroundColor: "#72bbef",
+                          display: "flex",
+                          flexDirection: "row",
+                        }}
                       >
-                        <span className="f12-b">{playerB?.[1]?.nat}</span>
-                        <span
-                          className={`f10-b ${
-                            dragonTigerDetail?.profitLoss
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                ]
-                                ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                  ] > 0
-                                  ? "color-green"
-                                  : dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                    ] < 0
-                                  ? "color-red"
-                                  : ""
-                                : ""
-                              : ""
-                          }`}
-                        >
-                          {dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
-                                ]
-                              : 0
-                            : 0}
-                        </span>
+                        {playerA.map((player: any, idx: any) => (
+                          <div
+                            key={player.sid}
+                            className={`teenPatti-table-item ${
+                              player.gstatus === "0" ? "suspended" : ""
+                            }`}
+                            style={{ width: "16.7%" }}
+                            onClick={() =>
+                              player.gstatus === "0" ? null : handleBet(player)
+                            }
+                          >
+                            <span className="f12-b">{player.b1}</span>
+                            <span className="f10-b">0</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  </div>
+                  );
+                })}
                 </div>
               </div>
 
