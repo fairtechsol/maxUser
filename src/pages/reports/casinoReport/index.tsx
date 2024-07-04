@@ -25,6 +25,10 @@ const cardGames = [
     label: "20-20 Dragon Tiger",
   },
   {
+    value: "ab20",
+    label: "Andar Bahar 1",
+  },
+  {
     value: "abj",
     label: "Andar Bahar 2",
   },
