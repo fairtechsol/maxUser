@@ -18,16 +18,7 @@ interface Props {
 const Abj1Result: React.FC<Props> = ({ data }: any) => {
   const elementsAndar = data?.aall?.split(",");
   const elementsBahar = data?.ball?.split(",");
-  const primaryCards = elementsAndar?.slice(0, 3);
-  const cards = elementsAndar?.slice(3);
-  const teamA = cards?.filter(
-    (item: any, index: number) => index % 2 === 0 && item !== "1"
-  );
-  const teamB = cards?.filter(
-    (item: any, index: number) => index % 2 !== 0 && item !== "1"
-  );
 
-  console.log(elementsAndar , "dws",elementsBahar)
   const sliderSettings = (length: any, arrow: any) => ({
     infinite: false,
     speed: 500,
