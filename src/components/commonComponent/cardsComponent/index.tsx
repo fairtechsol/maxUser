@@ -17,7 +17,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
     <div
       style={{
         borderRadius: "2px",
-        // border: "1px solid yellow",
+        border: "1px solid #fdf800",
         // lineHeight: isMobile ?  "2" :"0.8",
         display: "flex",
         flexDirection: "column",

@@ -46,13 +46,7 @@ const TeenPattiMobile = () => {
   //   BB1 = BB1.toFixed(2);
   // }
 
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
+
 
   const updatedValue = (value: any) => {
     let parsedValue = parseFloat(value) * 0.01;
@@ -463,46 +457,7 @@ const TeenPattiMobile = () => {
                   type={"teen"}
                 />
               </div>
-              <div>
-                <div className="casino-title" style={{ position: "relative" }}>
-                  <span>Rules</span>
-                </div>
-                <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                          Pair Plus
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rules.map((item, index) => (
-                        <tr key={index} style={{ lineHeight: 1 }}>
-                          <td
-                            className="box-7"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.label}
-                          </td>
-                          <td
-                            className="box-3"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.value}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </div>
-              </div>
+             
             </div>
           </div>
         ) : (

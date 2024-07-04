@@ -188,13 +188,9 @@ const cardDetail = createSlice({
       })
 
       .addCase(updateTeenPattiOpenMatchRates.fulfilled, (state, action) => {
-        const payload = action?.payload;
-        console.log("first", payload);
-        if (payload) {
-          const { t1, t2 } = payload;
-          console.log("first", payload);
-
-          state.loading = false;
+        const { t1, t2 } = action.payload;
+        // console.log("first", action.payload);
+        state.loading = false;
 
           const videoInfo = { ...t1[0] };
 
@@ -218,10 +214,6 @@ const cardDetail = createSlice({
             players,
             pairsPlus,
           };
-        } else {
-          console.error("Action payload is undefined");
-          state.loading = false;
-        }
       })
 
       .addCase(updateTeenPattiTestMatchRates.fulfilled, (state, action) => {

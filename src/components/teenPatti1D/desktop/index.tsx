@@ -464,7 +464,7 @@ const TeenPattiDesktop = () => {
                 <MyBet />
               </Col>
               <Col>
-                <div className="casino-title" style={{ position: "relative" }}>
+                {/* <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table">
@@ -485,7 +485,7 @@ const TeenPattiDesktop = () => {
                       ))}
                     </tbody>
                   </Table>
-                </div>
+                </div> */}
                 <RulesModal show={show} setShow={setShow} rule={tprules} />
               </Col>
             </Row>
