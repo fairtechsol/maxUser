@@ -15,7 +15,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import TeenOpenResult from "./teenCard";
-import { HandleCards2 } from "../../cardsComponent2";
+import TeenPattiTableRow from "./tableRow";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -28,8 +28,6 @@ const TeenPattiDesktop = () => {
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { players, pairsPlus } = dragonTigerDetail;
-
-  console.log("Teen8d", dragonTigerDetail);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -75,7 +73,6 @@ const TeenPattiDesktop = () => {
         dragonTigerDetail,
       })
     );
-    // console.log('team',team)
   };
   
   useEffect(() => {
@@ -128,76 +125,6 @@ const TeenPattiDesktop = () => {
 
   const { cardsArray: cardsArray1, playersArray: playersArray1 } =
     extractCardAndPlayerInfo(dragonTigerDetail?.videoInfo?.cards);
-
-  const TeenPattiTableRow = ({
-    player,
-    pairPlus,
-    indx,
-    cardsA,
-    playersA,
-  }: any) => {
-    console.log("inside", cardsA, indx);
-
-    return (
-      <div className="teenPatti-table-row" style={{ lineHeight: 1 }} >
-        <div
-          style={{
-            width: "40%",
-            height:"60px",
-            padding: "10px",
-            border: "0.1px solid #fff",
-            display: "flex",
-            alignItems: "center",
-            gap: "4px",
-          }}
-        >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-            {player?.nat}
-          </span>
-
-          <HandleCards2 card={cardsA[indx] !== "1" ? cardsA[indx] : ""} />
-
-          <HandleCards2
-            card={cardsA[9 + indx] !== "1" ? cardsA[indx + 9] : ""}
-          />
-          <HandleCards2
-            card={cardsA[18 + indx] !== "1" ? cardsA[indx + 18] : ""}
-          />
-        </div>
-        <div
-          className={player.gstatus === "0" ? "suspended" : ""}
-          style={{
-            width: "60%",
-            backgroundColor: "#72bbef",
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <div
-            className="teenPatti-table-item"
-            style={{ width: "50%" }}
-            onClick={() => (player.gstatus === "0" ? null : handleBet(player))}
-          >
-            <span className="f12-b">{player.rate}</span>
-            <span className={`f10-b ${"profit-loss-class"}`}>{0}</span>
-          </div>
-          <div
-            className={`teenPatti-table-item ${
-              //pairPlus.gstatus === "0" ? "suspended" :
-              ""
-            }`}
-            style={{ width: "50%" }}
-            onClick={() =>
-              pairPlus.gstatus === "0" ? null : handleBet(pairPlus)
-            }
-          >
-            <span className="f12-b">{pairPlus.nat}</span>
-            <span className={`f10-b ${"profit-loss-class"}`}>{0}</span>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <>
@@ -280,9 +207,9 @@ const TeenPattiDesktop = () => {
                       pairPlus={pairsPlus[`pairPlus${index + 1}`]}
                       cardsA={cardsArray1}
                       playersA={playersArray1}
+                      handleBet={handleBet}
                     />
                   ))}
-
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox

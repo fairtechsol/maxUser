@@ -1,13 +1,12 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
-import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import isMobile from "../../../../utils/screenDimension";
-import { IoInformationCircle } from "react-icons/io5";
 import { useState } from "react";
+import { BiSolidHeart } from "react-icons/bi";
+import { GiSpades } from "react-icons/gi";
+import { ImClubs, ImDiamonds } from "react-icons/im";
+import { IoInformationCircle } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import isMobile from "../../../../utils/screenDimension";
 import SmoothDropdownModal from "../minMaxModal";
 
 const CardBox = ({ dragonData, tigerData, data }: any) => {
@@ -31,7 +30,6 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   const handleLock = (status: any, value: any) => {
     if (status != "ACTIVE" || value === "0.00") {
@@ -63,8 +61,13 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           marginLeft: "5px",
         }}
       >
-        <div className={isMobile ? 'row-flex-mobile' :"w-100 d-sm-flex flex-row"} style={{ height: "30px" }}>
-          <div className="dtlTitle">  <div style={{ width: "30%", textAlign: "start" }}>
+        <div
+          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          style={{ height: "30px" }}
+        >
+          <div className="dtlTitle">
+            {" "}
+            <div style={{ width: "30%", textAlign: "start" }}>
               <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
@@ -77,7 +80,8 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
                   setShow={() => setModelOpen(false)}
                 />
               </span>
-            </div></div>
+            </div>
+          </div>
           <div className="dtlsubTitle">
             <GiSpades color="#000000" />
           </div>
@@ -91,14 +95,20 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
             <ImDiamonds color="#ff0000" />
           </div>
         </div>
-        <div className={isMobile ? 'row-flex-mobile' : "w-100 d-sm-flex flex-row"} style={{ height: "30px" }}>
+        <div
+          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          style={{ height: "30px" }}
+        >
           <div className="dtlTitle">Dragon </div>
           {renderItem(dragonData?.[4], 4)}
           {renderItem(dragonData?.[5], 5)}
           {renderItem(dragonData?.[7], 7)}
           {renderItem(dragonData?.[6], 6)}
         </div>
-        <div className={isMobile ? 'row-flex-mobile' : "w-100 d-sm-flex flex-row"} style={{ height: "30px" }}>
+        <div
+          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          style={{ height: "30px" }}
+        >
           <div className="dtlTitle"> Tiger</div>
           {renderItem(tigerData?.[4], 4)}
           {renderItem(tigerData?.[5], 5)}

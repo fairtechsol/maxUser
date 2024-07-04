@@ -189,10 +189,8 @@ const cardDetail = createSlice({
 
       .addCase(updateTeenPattiOpenMatchRates.fulfilled, (state, action) => {
         const payload = action?.payload;
-        console.log("first", payload);
         if (payload) {
           const { t1, t2 } = payload;
-          console.log("first", payload);
 
           state.loading = false;
 
@@ -225,7 +223,6 @@ const cardDetail = createSlice({
       })
 
       .addCase(updateTeenPattiTestMatchRates.fulfilled, (state, action) => {
-        // console.log("First", action.payload);
         const { t1, t2 } = action.payload;
         state.loading = false;
 
@@ -335,7 +332,6 @@ const cardDetail = createSlice({
         };
       })
       .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
-        console.log("war", action.payload);
 
         if (action.payload) {
           const { t1, t2 } = action.payload;

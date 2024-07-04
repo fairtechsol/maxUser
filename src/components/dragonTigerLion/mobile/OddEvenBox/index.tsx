@@ -1,28 +1,26 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
-import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
-import { IoInformationCircle } from "react-icons/io5";
-import {
-  dtrules,
-  A,
-  two,
-  three,
-  four,
-  five,
-  six,
-  seven,
-  eight,
-  nine,
-  ten,
-  eleven,
-  twelve,
-  thirteen,
-} from "../../../../assets/images";
 import { useEffect, useState } from "react";
+import { BiSolidHeart } from "react-icons/bi";
+import { GiSpades } from "react-icons/gi";
+import { ImClubs, ImDiamonds } from "react-icons/im";
+import { IoInformationCircle } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import {
+  A,
+  eight,
+  eleven,
+  five,
+  four,
+  nine,
+  seven,
+  six,
+  ten,
+  thirteen,
+  three,
+  twelve,
+  two,
+} from "../../../../assets/images";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import SmoothDropdownModal from "../minMaxModal";
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
@@ -163,7 +161,6 @@ const OddEven = ({ data, odds }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
 
   useEffect(() => {

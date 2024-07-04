@@ -26,7 +26,6 @@ const CardBox = ({ odds, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   const handleLock = (status: any, value: any) => {
     if (status != "ACTIVE" || value === "0.00") {

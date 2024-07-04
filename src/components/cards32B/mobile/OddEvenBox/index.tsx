@@ -26,14 +26,12 @@ const OddEven = ({ data, odds}: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   
   const player8 = odds?.slice(0, 2);
   const player9 = odds?.slice(2, 4);
   const player10 = odds?.slice(4, 6);
   const player11 = odds?.slice(6, 8);
-  // console.log(dragonData, "first", tigerData);
   const handleLock = (status: any, value: any) => {
     if (status != "ACTIVE" || value === "0.00") {
       return true;

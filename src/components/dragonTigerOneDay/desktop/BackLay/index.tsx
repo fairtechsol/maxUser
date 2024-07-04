@@ -1,10 +1,10 @@
+import { useState } from "react";
+import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import isMobile from "../../../../utils/screenDimension";
 import SmoothDropdownModal from "../minMaxModal";
-import { IoInformationCircle } from "react-icons/io5";
-import { useState } from "react";
 
 const BackLay = ({ matchOddsData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -29,7 +29,6 @@ const BackLay = ({ matchOddsData, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   const handleLock = (status: any, value: any) => {
     if (status != "ACTIVE" || value === "0.00") {
@@ -64,7 +63,6 @@ const BackLay = ({ matchOddsData, data }: any) => {
         {item?.l1}
       </div>
     );
-  // console.log('first',matchOddsData)
   return (
     <div className="w-100">
       <div
@@ -112,7 +110,15 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="dtlTitle" style={{display:"flex", flexDirection:"column",alignItems:'flex-start',lineHeight:1}}>
+          <div
+            className="dtlTitle"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              lineHeight: 1,
+            }}
+          >
             <span>Dragon</span>
             <span
               className={
@@ -157,7 +163,15 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="dtlTitle" style={{display:"flex", flexDirection:"column",alignItems:'flex-start',lineHeight:1}}>
+          <div
+            className="dtlTitle"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              lineHeight: 1,
+            }}
+          >
             <span>Tiger</span>
             <span
               className={

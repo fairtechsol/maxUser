@@ -7,7 +7,6 @@ const CardBox = ({ name, cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = cardData?.[0]?.min;
   const max = cardData?.[0]?.max;
-  // console.log('cardData',cardData)
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",

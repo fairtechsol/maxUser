@@ -25,7 +25,6 @@ const OddEven = ({ card, odds, data }: any) => {
         data,
       })
     );
-    console.log('team',team)
   }
   return (
     <>

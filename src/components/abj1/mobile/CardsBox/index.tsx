@@ -23,7 +23,6 @@ const CardBox = ({title, odds, data,cards,bgColor }: any) => {
         data,
       })
     );
-    console.log('team',team)
   }
   const arCards = cards?.ar?.split(",");
   const brCards = cards?.br?.split(",");

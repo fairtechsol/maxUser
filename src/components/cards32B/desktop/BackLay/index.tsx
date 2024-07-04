@@ -29,7 +29,6 @@ const BackLay = ({ matchOddsData, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   const handleLock = (status: any, value: any) => {
     if (status != "ACTIVE" || value === "0.00") {
@@ -64,7 +63,6 @@ const BackLay = ({ matchOddsData, data }: any) => {
         {item?.l1}
       </div>
     );
-  console.log('fisssrst',matchOddsData)
   return (
     <div className="w-100">
       <div
