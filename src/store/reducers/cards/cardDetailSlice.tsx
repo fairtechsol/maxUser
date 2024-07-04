@@ -4,15 +4,16 @@ import {
   resultDragonTiger,
   update7BCardMatchRates,
   update7CardMatchRates,
-  updateCard32MatchRates,
-  updateCardAbjRates,
+  updateCard32BMatchRates,
+  updateCard32MatchRates, updateCardAbj1Rates, updateCardAbjRates,
   updateCardMatchRates,
   updateDragonTigerLionRates,
   updateDragonTigerOneDayRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
   updateTeenPattiMatchRates,
-  updateTeenPatti1DMatchRates
+  updateTeenPatti1DMatchRates,
+  updateCardRace20Rates
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -233,6 +234,57 @@ const cardDetail = createSlice({
           tigerData,
           matchOddsData,
           pair,
+        };
+      })
+      
+      .addCase(updateCard32BMatchRates.fulfilled, (state, action) => {
+        const {t1,t2}=action.payload
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const matchOdd = t2.slice(0, 4);
+        const oddEven = t2.slice(4, 12);
+        const redBlack =  [t2[12], t2[13], t2[26]];
+        const singleCard = t2.slice(14, 24);
+        const cardtotal = t2.slice(24, 26);
+
+        state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            matchOdd,
+            oddEven,
+            redBlack,
+            singleCard,
+            cardtotal,
+        };
+      })
+      .addCase(updateCardAbj1Rates.fulfilled, (state, action) => {
+        const { t1, t2,t3 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const cardInfo = { ...t3[0] };
+        const ander = t2.slice(0, 13);
+        const bahar = t2.slice(13, 26);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          cardInfo,
+          ander,
+          bahar,
+        };
+      })
+      .addCase(updateCardRace20Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const cards = t2.slice(0, 4);
+        const total = t2.slice(4,6);
+        const win = t2.slice(6, 12);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          cards,
+          total,
+          win,
         };
       })
       .addCase(resultDragonTiger.pending, (state) => {

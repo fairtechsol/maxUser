@@ -150,3 +150,24 @@ export const updateDragonTigerOneDayRates = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateCard32BMatchRates = createAsyncThunk<any, any>(
+  "card32B/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateCardAbj1Rates = createAsyncThunk<any, any>(
+  "abj1/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateCardRace20Rates = createAsyncThunk<any, any>(
+  "race20/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);

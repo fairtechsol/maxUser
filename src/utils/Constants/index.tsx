@@ -245,26 +245,36 @@ export const availableGameType: any = {
 export const cardGamesType: any = {
   dragonTiger20: "dt20",
   andarBahar2: "abj",
+  andarBahar1: "ab20",
   teen20: "teen20",
   card32: "card32",
+  card32B: "card32eu",
   lucky7: "lucky7",
   dragonTiger202: "dt202",
   dragonTigerLion: "dtl20",
   teenOneDay: "teen",
+  teenOpen: "teen8",
+  teenTest: "teen9",
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
+  race20:"race20",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
   andarBahar2: 3043,
+  andarBahar1: 3053,
   teen20: 3030,
   card32: 3055,
+  card32B: 3034,
   lucky7: 3058,
   dragonTiger202: 3059,
   dragonTigerLion: 30470,
   teenOneDay: 3031,
+  teenOpen: 3049,
+  teenTest: 3048,
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
+  race20:3036
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -274,11 +284,14 @@ export const navigateToGameDetail = {
   [availableGameType.greyHound]: "/race/",
   [cardGamesType.teen20]: "teenPatti20",
   [cardGamesType.card32]: "32cards-A",
+  [cardGamesType.card32B]: "32cards-B",
   [cardGamesType.lucky7]: "lucky7-A",
   [cardGamesType.lucky7B]: "lucky7-B",
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
-};
+  [cardGamesType.andarBahar1]: "ab20",
+  [cardGamesType.race20]: "race20",
+}
 
 export const baseUrls = {
   socket:
@@ -1453,7 +1466,7 @@ export const casinoIcons = [
     name: "20-20 Poker",
   },
   {
-    url: "",
+    url: "/ab20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
     name: "Andar Bahar",
@@ -1591,12 +1604,12 @@ export const card3 = {
     {
       url: "/32cards-A",
       imgSrc: cards32A,
-      name: "Lucky 7 A",
+      name: "32cards A",
     },
     {
-      url: "/contact-admin",
+      url: "",
       imgSrc: cards32B,
-      name: "Lucky 7 B",
+      name: "32cards B",
     },
   ],
   abj: [
@@ -1606,7 +1619,7 @@ export const card3 = {
       name: "ANDAR BAHAR 2",
     },
     {
-      url: "/contact-admin",
+      url: "/ab20",
       imgSrc: abjlist,
       name: "ANDAR BAHAR",
     },
