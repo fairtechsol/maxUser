@@ -14,6 +14,8 @@ import Lucky7ResultComponent from "../../lucky7/desktop/resultModalComponent";
 import Lucky7BResultComponent from "../../lucky7B/desktop/resultModalComponent";
 import Teen1DResultComponent from "../../teenPatti1D/desktop/resultModalComponent";
 import Teen20ResultComponent from "../../teenPatti20/desktop/resultModalComponent";
+import TeenOpenResultComponent from "../../teenPattiOpen/desktop/resultModalComponent";
+import TeenTestResultComponent from "../../teenPattiTest/desktop/resultModalComponent";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
@@ -23,6 +25,8 @@ const title = {
   card32: "32 Cards A",
   abj: "Andar Bahar 2",
   teen: "1 Day Teen Patti",
+  teen8: "Open Teen Patti",
+  teen9: "Test Teen Patti",
   // Add other mappings as needed
 };
 
@@ -92,7 +96,11 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Teen1DResultComponent data={data} />
       ) : type === cardGamesType?.dragonTigerOneDay ? (
         <DragonTigerOneDayResultComponent data={data} />
-      ) : (
+      ): type === cardGamesType?.tee8? (
+        <TeenOpenResultComponent data={data}/>
+      ):  type === cardGamesType?.teen9 ?(
+        <TeenTestResultComponent data={data}/>
+      ): (
         <></>
       )}
     </Container>

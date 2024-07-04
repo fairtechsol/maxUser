@@ -68,6 +68,7 @@ const TeenPattiDesktop = () => {
   };
 
   const handleBet = (item: any, type: any) => {
+    
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
