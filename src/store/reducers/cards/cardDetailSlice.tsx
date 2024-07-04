@@ -335,45 +335,55 @@ const cardDetail = createSlice({
         };
       })
       
-     // Import lodash to use chunk function
+    
 
-      .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
-        console.log("war", action.payload);
-      
-        if (action.payload) {
-          const { t1, t2 } = action.payload;
-          state.loading = false;
-      
-          // Extract video info if t1 is present and has elements
-          const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
-      
-          // Create an array of players from t2 if t2 is present
-          const players = t2 ? t2.map(({ sid, nat, b1, gstatus, min, max }:any) => ({
-            sid,
-            nat,
-            b1,
-            gstatus,
-            min,
-            max
-          })) : [];
-      
-          // Chunk players into groups of 6
-          const chunkedPlayers = _.chunk(players, 6);
-      
-          state.dragonTigerDetail = {
-            ...state.dragonTigerDetail,
-            videoInfo,
-            players: chunkedPlayers,
-          };
-        } else {
-          state.loading = false;
-          state.dragonTigerDetail = {
-            ...state.dragonTigerDetail,
-            videoInfo: "",
-            players: [],
-          };
-        }
-      })
+
+.addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
+  console.log("war", action.payload);
+
+  if (action.payload) {
+    const { t1, t2 } = action.payload;
+    state.loading = false;
+
+    // Extract video info if t1 is present and has elements
+    const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
+
+    // Create an array of players from t2 if t2 is present
+    const players = t2 ? t2.map(({ sid, nat, b1, gstatus, min, max }:any) => ({
+      sid,
+      nat,
+      b1,
+      gstatus,
+      min,
+      max
+    })) : [];
+
+    // Categorize players based on their nat value prefix
+    const categorizedPlayers = players.reduce((acc:any, player:any) => {
+      const category = player.nat.split(' ')[0]; // Extract category prefix
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(player);
+      return acc;
+    }, {});
+
+    // Create chunks of 6 players for each category
+    const chunkedPlayers = Object.values(categorizedPlayers).map(category => _.chunk(category, 6)).flat();
+
+    state.dragonTigerDetail = {
+      ...state.dragonTigerDetail,
+      videoInfo,
+      players: chunkedPlayers,
+    };
+  } else {
+    state.loading = false;
+    state.dragonTigerDetail = {
+      ...state.dragonTigerDetail,
+      videoInfo: "",
+      players: [],
+    };
+  }
+})
+
       
       
 

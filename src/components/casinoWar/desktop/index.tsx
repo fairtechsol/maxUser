@@ -156,7 +156,7 @@ const TeenPattiDesktop = () => {
                 />
               </div>
             </div>
-            <div style={{  }}>
+            <div style={{}}>
               <div className="teenPatti-table-container">
                 <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
                   <div
@@ -213,28 +213,38 @@ const TeenPattiDesktop = () => {
                       className="teenPatti-table-item f12-b"
                       style={{ width: "16.7%" }}
                     >
-                      BACK
+                      1
                     </div>
                     <div
-                      className="teenPatti-table-item"
+                      className="teenPatti-table-item f12-b"
                       style={{ width: "16.7%" }}
-                    ></div>
+                    >
+                      2
+                    </div>
                     <div
-                      className="teenPatti-table-item"
+                      className="teenPatti-table-item f12-b"
                       style={{ width: "16.7%" }}
-                    ></div>
+                    >
+                      3
+                    </div>
                     <div
-                      className="teenPatti-table-item"
+                      className="teenPatti-table-item f12-b"
                       style={{ width: "16.7%" }}
-                    ></div>
+                    >
+                      4
+                    </div>
                     <div
-                      className="teenPatti-table-item"
+                      className="teenPatti-table-item f12-b"
                       style={{ width: "16.7%" }}
-                    ></div>
+                    >
+                      5
+                    </div>
                     <div
-                      className="teenPatti-table-item"
+                      className="teenPatti-table-item f12-b"
                       style={{ width: "16.7%" }}
-                    ></div>
+                    >
+                      6
+                    </div>
                   </div>
                 </div>
 
@@ -256,7 +266,8 @@ const TeenPattiDesktop = () => {
                         <span
                           style={{ fontSize: "14px", fontWeight: "bolder" }}
                         >
-                          {playerA[0]?.nat}
+                          {playerA[0]?.nat.split(" ")[0]}{" "}
+                          {/* Display category */}
                         </span>
                       </div>
                       <div
