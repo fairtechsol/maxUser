@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { back, club, diamond, heart, spade } from "../../../assets/images";
-import isMobile from "../../../utils/screenDimension";
+import { back , club, diamond, heart, spade} from "../../assets/images";
+import isMobile from "../../utils/screenDimension";
 // import Club from "../../assets/cards/clubs.png";
 // import Diamond from "../../assets/cards/diamond.png";
 // import Heart from "../../assets/cards/heart.png";
@@ -23,17 +23,15 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundSize:"100%",
-        WebkitBackgroundSize:"cover",
         // padding: isMobile ?  "0px" :"8px",
-        background: "white",
+        background: lock ? `url(${back})` : "white",
         height: isMobile ? "20px" : "40px",
         width: isMobile ? "16px" : "30px",
+        backgroundSize: "100%",
         padding: "0px",
-        border:"1px solid yellow",
       }}
     >
-      {!lock ? (
+      {!lock && (
         <>
           <span
             style={{
@@ -47,8 +45,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
           </span>
           <Icons type={type} />
         </>
-      ):<>
-      <img src={back} width={ isMobile ?16:30} height={ isMobile ?20:40} /></>}
+      )}
     </div>
   );
 };
@@ -76,11 +73,11 @@ export const Icons: React.FC<IconsProps> = ({ type }) => {
   }
 };
 
-interface HandleCardsProps {
+interface HandleCardsProps2 {
   card: string;
 }
 
-export const HandleCards: React.FC<HandleCardsProps> = ({ card }) => {
+export const HandleCards2: React.FC<HandleCardsProps2> = ({ card }) => {
   
   const [type, setType] = useState("");
   const [number, setNumber] = useState("");
@@ -93,6 +90,7 @@ export const HandleCards: React.FC<HandleCardsProps> = ({ card }) => {
   if (card === "1") {
     return <PlayingCard number="0" type="" lock={true} />;
   }
+   console.log(card?.substring(0, card.length - 2),'jjjjjj',card)
   switch (type) {
     case "DD":
       return <PlayingCard number={number} type="heart" />;

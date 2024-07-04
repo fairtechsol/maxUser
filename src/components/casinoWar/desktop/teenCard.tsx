@@ -13,19 +13,16 @@ interface Props {
   };
 }
 
-const TeenOpenResult: React.FC<Props> = ({ data }:any) => {
-
-  console.log("Video",data)
-
+const CasinoWarResult: React.FC<Props> = ({ data }:any) => {
   return data?.mid !="0" && (  
     <Container>
       <Row>
         <Col>
           <span style={{ color: "white",fontWeight:"bolder" }}>DEALER</span>
           <div style={{ display: "flex", gap: "10px" }}>
-            <HandleCards card={data?.[8]!=="1"?data?.[8]:""} />
-            <HandleCards card={data?.[17]!=="1"?data?.[17]:""} />
-            <HandleCards card={data?.[26]!=="1"?data?.[26]:""} />
+            <HandleCards card={data?.C7} />
+            {/* <HandleCards card={data?.C2} />
+            <HandleCards card={data?.C3} /> */}
           </div>
         </Col>
       </Row>
@@ -43,4 +40,4 @@ const TeenOpenResult: React.FC<Props> = ({ data }:any) => {
   );
 };
 
-export default TeenOpenResult;
+export default CasinoWarResult;

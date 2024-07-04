@@ -12,7 +12,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import Abj1Result from "./abj1Card";
 
@@ -146,7 +146,7 @@ const Abj1Desktop = () => {
               </div>
              
               <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["R", "R"]} />
+                <CardResultBox data={dragonTigerDetail} name={["R", "R","R"]} type={cardGamesType.andarBahar1}/>
               </div>
             </div>
             <RulesModal show={show} setShow={setShow} rule={abjrules} />

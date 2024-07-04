@@ -14,7 +14,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import Abj1Result from "../desktop/abj1Card";
 
 const Abj1Mobile = () => {
@@ -156,7 +156,7 @@ const Abj1Mobile = () => {
                 />
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["A", "B"]} />
+                <CardResultBox data={dragonTigerDetail} name={["R", "R","R"]} type={cardGamesType.andarBahar1}/>
               </div>
             </div>
           </div>

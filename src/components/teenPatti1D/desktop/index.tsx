@@ -64,11 +64,11 @@ const TeenPattiDesktop = () => {
     if (parsedValue !== 0) {
       parsedValue += 1;
     }
-    return parsedValue.toFixed(2);
+    //return parsedValue.toFixed(2);
+    return parsedValue;
   };
 
   const handleBet = (item: any, type: any) => {
-    
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
@@ -375,8 +375,38 @@ const TeenPattiDesktop = () => {
                           : handleBet(playerB?.[0], "LAY")
                       }
                     >
-                      <span className="f12-b">{playerB?.[0]?.l1}</span>
-
+                      <span className="f12-b">
+                        {updatedValue(playerB?.[0]?.l1)}
+                      </span>
+                      {/* <span
+                        className={`f10-b ${
+                          dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                                ] > 0
+                                ? "color-green"
+                                : dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[1]?.sid}_card`
+                                  ] < 0
+                                ? "color-red"
+                                : ""
+                              : ""
+                            : ""
+                        }`}
+                      >
+                        {dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
+                            ]
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
+                              ]
+                            : 0
+                          : 0}
+                      </span> */}
                       <span className="f10-b">{playerB?.[0]?.ls1}</span>
                     </div>
                   </div>
