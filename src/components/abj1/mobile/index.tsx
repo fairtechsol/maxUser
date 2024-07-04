@@ -15,7 +15,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import Abj2Result from "../desktop/abj2Card";
+import Abj1Result from "../desktop/abj1Card";
 
 const Abj1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -127,54 +127,32 @@ const Abj1Mobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
 
-            <div style={{ height: "700px" }}>
-              <div style={{ width: "100%", marginTop: "20%" }}>
-                <SBetBox
-                  type={"A"}
-                  odds={dragonTigerDetail?.abjSa}
-                  data={dragonTigerDetail}
-                />
-                <SBetBox
-                  type={"B"}
-                  odds={dragonTigerDetail?.abjSb}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  padding: "5px 0px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "8px",
-                }}
-              >
-                <OddEven
-                  card={true}
-                  odds={dragonTigerDetail?.oddEven}
-                  data={dragonTigerDetail}
-                />
-                <OddEven
-                  card={false}
-                  odds={dragonTigerDetail?.abjCards}
-                  data={dragonTigerDetail}
-                />
-              </div>
+            <div style={{ height: "450px",marginTop:"70px" }}>
+             
               <div
                 style={{
                   width: "100%",
                 }}
               >
+               <CardBox
+                  title={"ANDAR"}
+                  bgColor={"#ffa07a"}
+                  odds={dragonTigerDetail?.ander}
+                  data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
+                />
                 <CardBox
-                  rate={12}
-                  cards={dragonTigerDetail?.cards}
+                  title={"BAHAR"}
+                  bgColor={"#90ee90"}
+                  odds={dragonTigerDetail?.bahar}
                   data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
                 />
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>

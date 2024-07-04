@@ -12,9 +12,9 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Abj2Result from "./abj2Card";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import Abj1Result from "./abj1Card";
 
 const Abj1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -72,7 +72,6 @@ const Abj1Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-
   return (
     <>
       <Row>
@@ -116,7 +115,7 @@ const Abj1Desktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
                   id={videoFrameId}
                 />
               </div>
@@ -135,12 +134,14 @@ const Abj1Desktop = () => {
                   bgColor={"#ffa07a"}
                   odds={dragonTigerDetail?.ander}
                   data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
                 />
                 <CardBox
                   title={"BAHAR"}
                   bgColor={"#90ee90"}
                   odds={dragonTigerDetail?.bahar}
                   data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
                 />
               </div>
              

@@ -98,7 +98,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -257,6 +257,7 @@ export const cardGamesType: any = {
   teenTest: "teen9",
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
+  race20:"race20",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -273,6 +274,7 @@ export const cardGamesId: any = {
   teenTest: 3048,
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
+  race20:3036
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -288,6 +290,7 @@ export const navigateToGameDetail = {
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",
+  [cardGamesType.race20]: "race20",
 }
 
 export const baseUrls = {
@@ -1463,7 +1466,7 @@ export const casinoIcons = [
     name: "20-20 Poker",
   },
   {
-    url: "",
+    url: "/ab20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
     name: "Andar Bahar",
@@ -1604,7 +1607,7 @@ export const card3 = {
       name: "32cards A",
     },
     {
-      url: "/32cards-B",
+      url: "",
       imgSrc: cards32B,
       name: "32cards B",
     },
