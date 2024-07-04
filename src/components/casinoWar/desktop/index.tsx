@@ -63,7 +63,7 @@ const TeenPattiDesktop = () => {
     let team = {
       bettingType: "BACK",
       matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
+      odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,

@@ -15,7 +15,7 @@ const CardResultBox = ({ data, name, type }: any) => {
     (state: RootState) => state.card
   );
 
-  //console.log("typef",type)
+  console.log("typef",liveGameResultTop10, resultData)
 
   const handleResult = (id: any) => {
     setLgShow(true);
