@@ -23,15 +23,16 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        backgroundSize:"100%",
+        WebkitBackgroundSize:"cover",
         // padding: isMobile ?  "0px" :"8px",
-        background: lock ? `url(${back})` : "white",
+        background: "white",
         height: isMobile ? "20px" : "40px",
         width: isMobile ? "16px" : "30px",
-        backgroundSize: "100%",
         padding: "0px",
       }}
     >
-      {!lock && (
+      {!lock ? (
         <>
           <span
             style={{
@@ -45,7 +46,8 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
           </span>
           <Icons type={type} />
         </>
-      )}
+      ):<>
+      <img src={back} width={ isMobile ?16:30} height={ isMobile ?20:40} /></>}
     </div>
   );
 };

@@ -110,10 +110,10 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
-          <div className="dtlTitle">
-            Dragon
+          <div className="dtlTitle" style={{display:"flex", flexDirection:"column",alignItems:'flex-start',lineHeight:1}}>
+            <span>Dragon</span>
             <span
               className={
                 data?.profitLoss
@@ -155,10 +155,10 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
-          <div className="dtlTitle">
-            Tiger
+          <div className="dtlTitle" style={{display:"flex", flexDirection:"column",alignItems:'flex-start',lineHeight:1}}>
+            <span>Tiger</span>
             <span
               className={
                 data?.profitLoss

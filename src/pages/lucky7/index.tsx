@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/commonComponent/loader";
 import Lucky7ComponentList from "../../components/lucky7";
 import { socket, socketService } from "../../socketManager";
 import {
@@ -21,6 +20,7 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Lucky7 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -105,7 +105,7 @@ const Lucky7 = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <Lucky7ComponentList />;
+  return loading ? <InnerLoader /> : <Lucky7ComponentList />;
 };
 
 export default Lucky7;
