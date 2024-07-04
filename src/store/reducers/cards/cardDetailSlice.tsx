@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import _ from 'lodash'; 
+import _ from "lodash";
 import {
   getDragonTigerDetailHorseRacing,
   resultDragonTiger,
@@ -19,6 +19,7 @@ import {
   updateTeenPattiOpenMatchRates,
   updateTeenPattiTestMatchRates,
   casinoWarPattiMatchRates,
+  updateCardRace20Rates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -298,7 +299,6 @@ const cardDetail = createSlice({
           pair,
         };
       })
-
       .addCase(updateCard32BMatchRates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
         state.loading = false;
@@ -334,59 +334,70 @@ const cardDetail = createSlice({
           bahar,
         };
       })
-      
-    
+      .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
+        console.log("war", action.payload);
 
+        if (action.payload) {
+          const { t1, t2 } = action.payload;
+          state.loading = false;
 
-.addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
-  console.log("war", action.payload);
+          // Extract video info if t1 is present and has elements
+          const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
 
-  if (action.payload) {
-    const { t1, t2 } = action.payload;
-    state.loading = false;
+          // Create an array of players from t2 if t2 is present
+          const players = t2
+            ? t2.map(({ sid, nat, b1, gstatus, min, max }: any) => ({
+                sid,
+                nat,
+                b1,
+                gstatus,
+                min,
+                max,
+              }))
+            : [];
 
-    // Extract video info if t1 is present and has elements
-    const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
+          // Categorize players based on their nat value prefix
+          const categorizedPlayers = players.reduce((acc: any, player: any) => {
+            const category = player.nat.split(" ")[0]; // Extract category prefix
+            if (!acc[category]) acc[category] = [];
+            acc[category].push(player);
+            return acc;
+          }, {});
 
-    // Create an array of players from t2 if t2 is present
-    const players = t2 ? t2.map(({ sid, nat, b1, gstatus, min, max }:any) => ({
-      sid,
-      nat,
-      b1,
-      gstatus,
-      min,
-      max
-    })) : [];
+          // Create chunks of 6 players for each category
+          const chunkedPlayers = Object.values(categorizedPlayers)
+            .map((category: any) => _.chunk(category, 6))
+            .flat();
 
-    // Categorize players based on their nat value prefix
-    const categorizedPlayers = players.reduce((acc:any, player:any) => {
-      const category = player.nat.split(' ')[0]; // Extract category prefix
-      if (!acc[category]) acc[category] = [];
-      acc[category].push(player);
-      return acc;
-    }, {});
-
-    // Create chunks of 6 players for each category
-    const chunkedPlayers = Object.values(categorizedPlayers).map(category => _.chunk(category, 6)).flat();
-
-    state.dragonTigerDetail = {
-      ...state.dragonTigerDetail,
-      videoInfo,
-      players: chunkedPlayers,
-    };
-  } else {
-    state.loading = false;
-    state.dragonTigerDetail = {
-      ...state.dragonTigerDetail,
-      videoInfo: "",
-      players: [],
-    };
-  }
-})
-
-      
-      
-
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players: chunkedPlayers,
+          };
+        } else {
+          state.loading = false;
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo: "",
+            players: [],
+          };
+        }
+      })
+      .addCase(updateCardRace20Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const cards = t2.slice(0, 4);
+        const total = t2.slice(4, 6);
+        const win = t2.slice(6, 12);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          cards,
+          total,
+          win,
+        };
+      })
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;

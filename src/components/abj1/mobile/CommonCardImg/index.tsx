@@ -29,7 +29,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
             }}
             onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
           >
-            <img src={item?.imgSrc} width={"40px"} height={"50px"} />
+            <img src={item?.imgSrc} width={"30px"} height={"40px"} />
           
           </div>
             <span

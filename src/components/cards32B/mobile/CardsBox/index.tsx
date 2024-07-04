@@ -77,7 +77,7 @@ const CardBox = ({ odds, data }: any) => {
                 />
               </span>
             </div>
-            <div style={{ width: "53%", textAlign: "start"}}>11.2</div>
+            <div style={{ width: "53%", textAlign: "start"}}>{odds?.[0]?.b1}</div>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "auto",display:"flex" }}>
