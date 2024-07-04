@@ -159,7 +159,7 @@ const TeenPattiDesktop = () => {
             </div>
             <div style={{}}>
               <div className="teenPatti-table-container">
-                <div className="teenPatti-table-row" style={{ lineHeight: 2 ,marginTop:"2px" ,}}>
+                <div className="teenPatti-table-row" style={{ lineHeight: 2 ,marginTop:"2px" ,background:"fff"}}>
                   <div
                     style={{ width: "40%",  }}
                   ></div>
