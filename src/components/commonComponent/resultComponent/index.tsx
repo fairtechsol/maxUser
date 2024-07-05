@@ -100,7 +100,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <DragonTigerOneDayResultComponent data={data} />
       ): type === cardGamesType?.teenOpen? (
         <TeenOpenResultComponent data={data}/>
-      ):  type === cardGamesType?.teen9 ?(
+      ):  type === cardGamesType?.teenTest ?(
         <TeenTestResultComponent data={data}/>
       ):  type === cardGamesType?.casinoWar ?(
         <CasinoWarResultComponent data={data}/>
