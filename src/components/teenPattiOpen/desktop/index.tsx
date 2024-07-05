@@ -74,7 +74,7 @@ const TeenPattiDesktop = () => {
         dragonTigerDetail,
       })
     );
-    // console.log('team',team)
+    
   };
 
   useEffect(() => {

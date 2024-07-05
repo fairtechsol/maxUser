@@ -18,16 +18,16 @@ interface Props {
 
 const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
-  console.log(data);
-  // Initialize an array for 9 players
+  
+  
   const players = Array.from({ length: 9 }, () => []);
 
-  // Distribute cards in a round-robin manner
+  
   resultCards?.forEach((card: any, index: any) => {
     players[index % 9].push(card);
   });
 
-  // Define the layout for rendering
+  
   const layout = [
     { index: 0, label: "Player1" },
     { index: 8, label: "Dealer" },
