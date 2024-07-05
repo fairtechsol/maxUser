@@ -27,10 +27,10 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         WebkitBackgroundSize:"cover",
         // padding: isMobile ?  "0px" :"8px",
         background: "white",
-        height: isMobile ? "20px" : "40px",
-        width: isMobile ? "16px" : "30px",
+        height: isMobile ? "24px" : "40px",
+        width: isMobile ? "18px" : "30px",
         padding: "0px",
-        border:"1px solid yellow",
+        // border:"1px solid yellow",
       }}
     >
       {!lock ? (
