@@ -79,22 +79,22 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
                   borderRadius: "1px",
                   marginLeft: "5px",
                   position: "relative",
+                  display:"flex",
+                  justifyContent:"space-between",
+                  gap:"5px"
                 }}
               >
                 <HandleCards card={player.card} />
-                {data?.result?.sid.includes(player.id) && (
+               
+              </div>
+              {data?.result?.sid.includes(player.id) && (
                   <div
                     className="casino-winner-icon"
-                    style={{
-                      position: "absolute",
-                      top: "-10px",
-                      right: "-10px",
-                    }}
+                    style={{marginLeft:"5px"}}
                   >
                     <FaTrophy size={30} color="#169733" />
                   </div>
                 )}
-              </div>
             </div>
           </div>
         )}else return<></>
