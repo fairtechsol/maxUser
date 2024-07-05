@@ -98,7 +98,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Teen1DResultComponent data={data} />
       ) : type === cardGamesType?.dragonTigerOneDay ? (
         <DragonTigerOneDayResultComponent data={data} />
-      ): type === cardGamesType?.teen8? (
+      ): type === cardGamesType?.teenOpen? (
         <TeenOpenResultComponent data={data}/>
       ):  type === cardGamesType?.teen9 ?(
         <TeenTestResultComponent data={data}/>
