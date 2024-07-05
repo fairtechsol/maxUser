@@ -42,7 +42,7 @@ interface ResultComponentProps {
 export const ResultComponent: React.FC<ResultComponentProps> = ({
   data,
   setfalse,
-  type,
+  type
 }) => {
   const [date, setDate] = useState<any>();
   useEffect(() => {

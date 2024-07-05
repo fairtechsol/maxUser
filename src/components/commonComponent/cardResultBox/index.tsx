@@ -39,7 +39,7 @@ const CardResultBox = ({ data, name, type }: any) => {
       </div>
       <div className="cardResultBoxRound">
         {liveGameResultTop10?.length > 0 &&
-          liveGameResultTop10.map((item: any) => (
+          liveGameResultTop10?.map((item: any) => (
             <div
               className="cardResultCircle"
               key={item?.mid}
@@ -113,7 +113,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Body style={{ padding: 0 }}>
-          <ResultComponent data={resultData} setfalse={setLgShow} type={"war"} />
+          <ResultComponent data={resultData} setfalse={setLgShow} type={type} />
         </Modal.Body>
       </Modal>
     </div>

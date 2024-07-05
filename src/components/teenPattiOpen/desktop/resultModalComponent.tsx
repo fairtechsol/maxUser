@@ -140,7 +140,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
                   className="casino-winner-icon"
                   
                 >
-                  <FaTrophy size={30} color="#169733" />
+                  <FaTrophy className="casino-winner-icon" size={30} color="#169733" />
                 </div>
               )}
             </div>
