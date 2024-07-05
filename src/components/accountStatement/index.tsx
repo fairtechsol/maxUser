@@ -528,19 +528,19 @@ const AccountStatementComponent = () => {
                                 )}
                           </div>
                         </div>
-                        <Col className="col-2 reportBody" colspan={6}>
+                        <Col className="col-2 reportBody-a" colspan={6}>
                           <div>
                             <span className="f600">Rate</span>
                           </div>
                           <div>{item.odds}</div>
                         </Col>
-                        <div className="col-2 text-right reportBody">
+                        <div className="col-2 text-right reportBody-a">
                           <div>
                             <span className="f600">Amount</span>
                           </div>
                           <div>{item.amount}</div>
                         </div>
-                        <div className="col-2 text-right reportBody">
+                        <div className="col-2 text-right reportBody-a">
                           <div>
                             <span className="f600">W&L</span>
                           </div>
