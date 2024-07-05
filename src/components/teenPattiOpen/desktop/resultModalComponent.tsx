@@ -19,15 +19,15 @@ interface Props {
 const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   
-  
+  // Initialize an array for 9 players
   const players = Array.from({ length: 9 }, () => []);
 
-  
+  // Distribute cards in a round-robin manner
   resultCards?.forEach((card: any, index: any) => {
     players[index % 9].push(card);
   });
 
-  
+  // Define the layout for rendering
   const layout = [
     { index: 0, label: "Player1" },
     { index: 8, label: "Dealer" },
@@ -44,7 +44,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   const renderRow = (row: any) => (
     <div className="d-flex justify-content-between mb-3">
       {row?.map((position: any, posIndex: any) => (
-        <div key={posIndex} className="teen20resultCardContainer mx-">
+        <div key={posIndex} className="teen20resultCardContainer mx-2">
           {position.label !== "gap" && (
             <>
               <div>
@@ -53,7 +53,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
                   className={
                     isMobile
                       ? "row-flex-mobile"
-                      : "d-sm-flex flex-row justify-content-center align-items-between mb-2"
+                      : "d-sm-flex flex-row justify-content-center align-items-center mb-2"
                   }
                 >
                   {players[position.index]?.map((card: any, cardIndex: any) => (
@@ -62,23 +62,62 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
                       style={{
                         border: "1px solid #fdef34",
                         borderRadius: "1px",
-                        marginLeft: "0px",
+                        marginLeft: "5px",
                         position: "relative",
                       }}
                     >
                       <HandleCards card={card} />
+                      {data?.result?.win.includes((position.index + 1).toString()) && (
+                        <div
+                          className="casino-winner-icon"
+                          style={{ position: "absolute", top: "", right: "" }}
+                        >
+                          <FaTrophy size={30} color="#169733" />
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
-              {data?.result?.sid.includes((position.index + 1).toString()) && (
-                <div
-                  className="casino-winner-ico"
-                  style={{display:"flex",alignItems:"center",justifyContent:"center" }}
-                >
-                  <FaTrophy size={30} color="#169733" />
+            </>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
+  const renderColumn = () => (
+    <div className="d-flex flex-column align-items-center">
+      {layout.map((position: any, posIndex: any) => (
+        <div key={posIndex} className="teen20resultCardContainer mb-3" style={{border:"1px solid",width:"90%"}}>
+          {position.label !== "gap" && (
+            <>
+              <div>
+                <span className="fs-5">{position.label}</span>
+                <div className="d-flex flex-row justify-content-center align-items-center mb-2">
+                  {players[position.index]?.map((card: any, cardIndex: any) => (
+                    <div
+                      key={cardIndex}
+                      style={{
+                        border: "1px solid #fdef34",
+                        borderRadius: "1px",
+                        marginLeft: "5px",
+                        position: "relative",
+                      }}
+                    >
+                      <HandleCards card={card} />
+                      {data?.result?.win.includes((position.index + 1).toString()) && (
+                        <div
+                          className="casino-winner-icon"
+                          style={{ position: "absolute", top: "", right: "" }}
+                        >
+                          <FaTrophy size={30} color="#169733" />
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
-              )}
+              </div>
             </>
           )}
         </div>
@@ -88,9 +127,15 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-      {renderRow(layout.slice(0, 3))} {/* Players 1, Dealer, Player 8 */}
-      {renderRow(layout.slice(3, 6))} {/* Player 2, gap, Player 7 */}
-      {renderRow(layout.slice(6, 10))} {/* Players 3, 4, 5, 6 */}
+      {isMobile ? (
+        renderColumn()
+      ) : (
+        <>
+          {renderRow(layout.slice(0, 3))} {/* Players 1, Dealer, Player 8 */}
+          {renderRow(layout.slice(3, 6))} {/* Player 2, gap, Player 7 */}
+          {renderRow(layout.slice(6, 10))} {/* Players 3, 4, 5, 6 */}
+        </>
+      )}
     </Container>
   );
 };
