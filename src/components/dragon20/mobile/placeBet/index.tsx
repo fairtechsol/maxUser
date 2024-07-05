@@ -97,7 +97,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       e.preventDefault();
     }
   };
-  // console.log('selectedBet',selectedBet)
   return (
     <>
       <CustomModal

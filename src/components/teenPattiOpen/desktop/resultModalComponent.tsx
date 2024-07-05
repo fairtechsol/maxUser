@@ -17,10 +17,10 @@ interface Props {
 }
 
 const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
-  const resultCards = data?.result?.cards?.split(",");
+  const resultCards: any = data?.result?.cards?.split(",");
 
   // Initialize an array for 9 players
-  const players = Array.from({ length: 9 }, () => []);
+  const players: any = Array.from({ length: 9 }, () => []);
 
   // Distribute cards in a round-robin manner
   resultCards?.forEach((card: any, index: any) => {
@@ -149,7 +149,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
       ))}
     </div>
   );
-
+ 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       {isMobile ? (

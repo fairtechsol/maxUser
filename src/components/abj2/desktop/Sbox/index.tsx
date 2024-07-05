@@ -23,7 +23,6 @@ const SBetBox = ({ type, odds, data }: any) => {
         data,
       })
     );
-    // console.log('team',team)
   };
   return (
     <div className="sBoxContainer">

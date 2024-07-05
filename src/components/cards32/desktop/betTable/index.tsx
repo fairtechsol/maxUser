@@ -26,12 +26,10 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
         data,
       })
     );
-    // console.log("team", team);
   };
 
   let player1Key = `player${playerNum[0]}`;
   let player2Key = `player${playerNum[1]}`;
-// console.log('first',odds)
   return (
     <div className="card32-table-container">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>

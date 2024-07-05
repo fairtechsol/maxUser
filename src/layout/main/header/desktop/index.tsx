@@ -54,6 +54,15 @@ const DesktopHeader = () => {
     setOpenExposure(!openExposure);
   };
 
+  const handleSearchChange = (e: any) => {
+    setSearchKeyword(e.target.value);
+    if (e.target.value?.length > 2) {
+      debouncedInputValue(e.target.value);
+    } else if (e.target.value?.length == 0) {
+      setSearchKeyword("");
+    }
+  };
+
   const debouncedInputValue = useMemo(() => {
     return debounce((value) => {
       dispatch(
@@ -84,14 +93,7 @@ const DesktopHeader = () => {
                       placeholder="All Events"
                       inputClass="headerSearch"
                       value={searchKeyword}
-                      onChange={(e: any) => {
-                        setSearchKeyword(e.target.value);
-                        if (e.target.value?.length > 2) {
-                          debouncedInputValue(e.target.value);
-                        } else if (e.target.value?.length == 0) {
-                          setSearchKeyword("");
-                        }
-                      }}
+                      onChange={handleSearchChange}
                     />
                     {searchedMatchList && searchKeyword && (
                       <SearchResult
@@ -123,7 +125,7 @@ const DesktopHeader = () => {
                 <div>
                   Balance:
                   <b>
-                    {parseFloat(getProfile?.userBal?.currentBalance).toFixed(2)}
+                    {parseFloat(getProfile?.userBal?.currentBalance || 0).toFixed(2)}
                   </b>
                 </div>
                 <div>
@@ -131,7 +133,10 @@ const DesktopHeader = () => {
                     onClick={handleClickExposureModalOpen}
                     className="white-text text-decoration-underline cursor-pointer"
                   >
-                    Exposure:<b>{parseFloat(getProfile?.userBal?.exposure).toFixed(2)}</b>
+                    Exposure:
+                    <b>
+                      {parseFloat(getProfile?.userBal?.exposure || 0).toFixed(2)}
+                    </b>
                   </span>
                   <ExposureModal
                     show={openExposure}
@@ -145,7 +150,6 @@ const DesktopHeader = () => {
                 <Dropdown.Toggle
                   as={CustomDropDown}
                   id="dropdown-custom-components"
-                  
                 >
                   {getProfile?.userName}
                 </Dropdown.Toggle>

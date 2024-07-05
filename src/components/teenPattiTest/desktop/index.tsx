@@ -34,7 +34,6 @@ const TeenPattiDesktop = () => {
     setShowInactivityModal(false);
   };
 
-  console.log("object", dragonTigerDetail);
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {

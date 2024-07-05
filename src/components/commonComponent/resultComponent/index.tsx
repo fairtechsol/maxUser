@@ -51,7 +51,6 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
     }
   }, []);
 
- 
   return (
     <Container style={{ padding: 0 }}>
       <div className="resultModalHeader">

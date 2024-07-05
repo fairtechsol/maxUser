@@ -41,6 +41,10 @@ const cardGames = [
     label: "Teen Patti One Day",
   },
   {
+    value: "teen8",
+    label: "Open Teen Patti",
+  },
+  {
     value: "card32",
     label: "32 Cards - A",
   },
@@ -154,7 +158,7 @@ const CasinoReports = () => {
                   format="yyyy-MM-dd"
                   value={date}
                   closeCalendar={true}
-                  clearIcon={false}
+                  clearIcon={null}
                   className="w-100"
                 />
               </Col>

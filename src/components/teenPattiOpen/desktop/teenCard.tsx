@@ -15,8 +15,6 @@ interface Props {
 
 const TeenOpenResult: React.FC<Props> = ({ data }:any) => {
 
-
-
   return data?.mid !="0" && (  
     <Container>
       <Row>

@@ -1,13 +1,12 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const TiePairBox = ({ tiePair, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = tiePair?.[0]?.min;
   const max = tiePair?.[0]?.max;
-  // console.log(data,'tiePair',tiePair)
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -26,7 +25,6 @@ const TiePairBox = ({ tiePair, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
 
   return (

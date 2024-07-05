@@ -189,29 +189,22 @@ const cardDetail = createSlice({
 
       .addCase(updateTeenPattiOpenMatchRates.fulfilled, (state, action) => {
         const payload = action?.payload;
-      
         if (payload) {
           const { t1, t2 } = payload;
-         
-
           state.loading = false;
-
           const videoInfo = { ...t1[0] };
-
           const players = t2
             .slice(0, 8)
             .map((player: any, index: any) => ({
               [`player${index + 1}`]: player,
             }))
             .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
-
           const pairsPlus = t2
             .slice(8, 16)
             .map((pair: any, index: any) => ({
               [`pairPlus${index + 1}`]: pair,
             }))
             .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
-
           state.dragonTigerDetail = {
             ...state.dragonTigerDetail,
             videoInfo,
@@ -225,7 +218,6 @@ const cardDetail = createSlice({
       })
 
       .addCase(updateTeenPattiTestMatchRates.fulfilled, (state, action) => {
-        // console.log("First", action.payload);
         const { t1, t2 } = action.payload;
         state.loading = false;
 
@@ -335,7 +327,6 @@ const cardDetail = createSlice({
         };
       })
       .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
-        console.log("war", action.payload);
 
         if (action.payload) {
           const { t1, t2 } = action.payload;

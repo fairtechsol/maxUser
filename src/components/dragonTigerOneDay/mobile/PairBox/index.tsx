@@ -1,10 +1,8 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { IoInformationCircle } from "react-icons/io5";
-import { useState } from "react";
-import SmoothDropdownModal from "../minMaxModal";
 
 const PairBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -29,9 +27,7 @@ const PairBox = ({ odds, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
-  // console.log("first", odds);
   return (
     <div className="w-100">
       <div
@@ -63,7 +59,9 @@ const PairBox = ({ odds, data }: any) => {
           }
           data={odds}
         />
-        <div style={{width:"100%",textAlign:"end"}}>Min:{odds?.min} Max:{odds?.max}</div>
+        <div style={{ width: "100%", textAlign: "end" }}>
+          Min:{odds?.min} Max:{odds?.max}
+        </div>
       </div>
     </div>
   );
