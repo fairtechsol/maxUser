@@ -30,9 +30,8 @@ const Abj = () => {
   );
   const setMatchRatesInRedux = (event: any) => {
     try {
-      
-        dispatch(updateCardAbj1Rates(event?.data?.data?.data));
-      
+      dispatch(updateCardAbj1Rates(event?.data?.data?.data));
+
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
