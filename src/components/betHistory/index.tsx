@@ -132,7 +132,7 @@ const BetHistoryComponent = () => {
                 onChange={setFromDate}
                 value={fromDate}
                 closeCalendar={true}
-                clearIcon={false}
+                clearIcon={null}
                 className="w-100"
                 format="yyyy-MM-dd"
                 minDate={minDate}
@@ -145,7 +145,7 @@ const BetHistoryComponent = () => {
                 onChange={setToDate}
                 value={toDate}
                 closeCalendar={true}
-                clearIcon={false}
+                clearIcon={null}
                 className="w-100"
                 format="yyyy-MM-dd"
                 minDate={minDate2}
