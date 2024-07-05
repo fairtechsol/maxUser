@@ -24,7 +24,6 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
 
   let player1Key = `player${playerNum[0]}`;

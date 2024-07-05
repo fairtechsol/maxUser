@@ -31,8 +31,6 @@ const TeenPattiDesktop = () => {
   //const { playerA, playerB } = dragonTigerDetail;
   const { players } = dragonTigerDetail;
 
-  console.log("CasinoWar", dragonTigerDetail);
-
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -77,7 +75,6 @@ const TeenPattiDesktop = () => {
         dragonTigerDetail,
       })
     );
-    // console.log('team',team)
   };
 
   useEffect(() => {

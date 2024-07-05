@@ -25,7 +25,6 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
   );
   const minLength = isMobile ? 3 : 10;
 
-  // console.log('first',data)
   function SampleNextArrow(props: any) {
     const { className, style, onClick } = props;
     return (

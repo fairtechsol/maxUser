@@ -25,7 +25,6 @@ const TiePairBox = ({ tiePair, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   return (
     <div className="tiePairContainer-m">

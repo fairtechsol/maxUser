@@ -26,8 +26,6 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
     id: playerIds[index], // Distribute player IDs cyclically
   }));
 
-  console.log("object", players);
-
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div

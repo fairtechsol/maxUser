@@ -107,7 +107,7 @@ const Abj = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader />: <Abj1ComponentList />;
+  return loading ? <InnerLoader /> : <Abj1ComponentList />;
 };
 
 export default Abj;

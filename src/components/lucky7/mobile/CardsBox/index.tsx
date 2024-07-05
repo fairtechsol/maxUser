@@ -29,7 +29,6 @@ const CardBox = ({ cardData, data }: any) => {
         data,
       })
     );
-    console.log('team',team)
   }
   return (
     <>

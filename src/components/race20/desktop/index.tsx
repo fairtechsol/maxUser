@@ -75,7 +75,6 @@ const Race20Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-// console.log('first',dragonTigerDetail)
   return (
     <>
       <Row>

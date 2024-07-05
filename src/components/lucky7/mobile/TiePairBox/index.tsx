@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import CommonButtonBox from "../CommonButtonBox";
 import { seven } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import CommonButtonBox from "../CommonButtonBox";
 
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -27,7 +27,6 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
 
   return (
