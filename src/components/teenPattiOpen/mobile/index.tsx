@@ -486,7 +486,7 @@ const TeenPattiMobile = () => {
               <div style={{ width: "100%", marginTop: "15px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["A", "T", "B"]}
+                  name={["R", "R", "R"]}
                   type={"teen8"}
                 />
               </div>
