@@ -191,31 +191,30 @@ const cardDetail = createSlice({
         const payload = action?.payload;
         if (payload) {
           const { t1, t2 } = payload;
-
           state.loading = false;
-
           const videoInfo = { ...t1[0] };
-
           const players = t2
             .slice(0, 8)
             .map((player: any, index: any) => ({
               [`player${index + 1}`]: player,
             }))
             .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
-
           const pairsPlus = t2
             .slice(8, 16)
             .map((pair: any, index: any) => ({
               [`pairPlus${index + 1}`]: pair,
             }))
             .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
-
           state.dragonTigerDetail = {
             ...state.dragonTigerDetail,
             videoInfo,
             players,
             pairsPlus,
           };
+        } else {
+          console.error("Action payload is undefined");
+          state.loading = false;
+        }
       })
 
       .addCase(updateTeenPattiTestMatchRates.fulfilled, (state, action) => {
