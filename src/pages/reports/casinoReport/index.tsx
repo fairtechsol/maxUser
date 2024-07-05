@@ -158,7 +158,7 @@ const CasinoReports = () => {
                   format="yyyy-MM-dd"
                   value={date}
                   closeCalendar={true}
-                  clearIcon={false}
+                  clearIcon={null}
                   className="w-100"
                 />
               </Col>

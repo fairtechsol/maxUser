@@ -89,7 +89,7 @@ const ProfitLossComponent = () => {
                     onChange={setFromDate}
                     value={fromDate}
                     closeCalendar={true}
-                    clearIcon={false}
+                    clearIcon={null}
                     className="w-100"
                     minDate={minDate}
                     maxDate={new Date()}
@@ -102,7 +102,7 @@ const ProfitLossComponent = () => {
                     onChange={setToDate}
                     value={toDate}
                     closeCalendar={true}
-                    clearIcon={false}
+                    clearIcon={null}
                     className="w-100"
                     minDate={minDate2}
                     maxDate={new Date()}
@@ -167,7 +167,7 @@ const ProfitLossComponent = () => {
                     onChange={setFromDate}
                     value={fromDate}
                     closeCalendar={true}
-                    clearIcon={false}
+                    clearIcon={null}
                     className="w-100"
                     minDate={minDate}
                     maxDate={new Date()}
@@ -179,7 +179,7 @@ const ProfitLossComponent = () => {
                     onChange={setToDate}
                     value={toDate}
                     closeCalendar={true}
-                    clearIcon={false}
+                    clearIcon={null}
                     className="w-100"
                     minDate={minDate2}
                     maxDate={new Date()}

@@ -19,6 +19,7 @@ const CardResultBox = ({ data, name, type }: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
   };
+
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">
@@ -112,7 +113,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Body style={{ padding: 0 }}>
-          <ResultComponent data={resultData} setfalse={setLgShow} type={type} />
+          <ResultComponent data={resultData} setfalse={setLgShow} type={"teen8"} />
         </Modal.Body>
       </Modal>
     </div>

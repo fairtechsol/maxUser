@@ -95,7 +95,7 @@ const AccountStatementComponent = () => {
                   format="yyyy-MM-dd"
                   value={from}
                   closeCalendar={true}
-                  clearIcon={false}
+                  clearIcon={null}
                   className="w-100"
                   minDate={minDate}
                   maxDate={new Date()}
@@ -108,7 +108,7 @@ const AccountStatementComponent = () => {
                   value={to}
                   format="yyyy-MM-dd"
                   closeCalendar={true}
-                  clearIcon={false}
+                  clearIcon={null}
                   className="w-100"
                   minDate={minDate2}
                   maxDate={new Date()}
