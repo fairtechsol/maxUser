@@ -18,7 +18,7 @@ interface Props {
 
 const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
-  console.log(data)
+  console.log(data);
   // Initialize an array for 9 players
   const players = Array.from({ length: 9 }, () => []);
 
@@ -29,16 +29,16 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
 
   // Define the layout for rendering
   const layout = [
-    { index: 0, label: "Player1" }, 
-    { index: 8, label: "Dealer" }, 
+    { index: 0, label: "Player1" },
+    { index: 8, label: "Dealer" },
     { index: 7, label: "Player8" },
-    { index: 1, label: "Player2" }, 
-    { index: -1, label: "gap" }, 
+    { index: 1, label: "Player2" },
+    { index: -1, label: "gap" },
     { index: 6, label: "Player7" },
-    { index: 2, label: "Player3" }, 
-    { index: 3, label: "Player4" }, 
-    { index: 4, label: "Player5" }, 
-    { index: 5, label: "Player6" }
+    { index: 2, label: "Player3" },
+    { index: 3, label: "Player4" },
+    { index: 4, label: "Player5" },
+    { index: 5, label: "Player6" },
   ];
 
   const renderRow = (row: any) => (
@@ -47,30 +47,38 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
         <div key={posIndex} className="teen20resultCardContainer mx-">
           {position.label !== "gap" && (
             <>
-              <span className="fs-5">{position.label}</span>
-              <div className={isMobile ? "row-flex-mobile" : "d-sm-flex flex-row justify-content-center align-items-between mb-2"}>
-                {players[position.index]?.map((card: any, cardIndex: any) => (
-                  <div
-                    key={cardIndex}
-                    style={{
-                      border: "1px solid #fdef34",
-                      borderRadius: "1px",
-                      marginLeft: "0px",
-                      position: "relative",
-                    }}
-                  >
-                    <HandleCards card={card} />
-                    {data?.result?.win.includes((position.index + 1).toString()) && (
-                      <div
-                        className="casino-winner-icon"
-                        style={{ position: "absolute", top: "", right: "" }}
-                      >
-                        <FaTrophy size={30} color="#169733" />
-                      </div>
-                    )}
-                  </div>
-                ))}
+              <div>
+                <span className="fs-5">{position.label}</span>
+                <div
+                  className={
+                    isMobile
+                      ? "row-flex-mobile"
+                      : "d-sm-flex flex-row justify-content-center align-items-between mb-2"
+                  }
+                >
+                  {players[position.index]?.map((card: any, cardIndex: any) => (
+                    <div
+                      key={cardIndex}
+                      style={{
+                        border: "1px solid #fdef34",
+                        borderRadius: "1px",
+                        marginLeft: "0px",
+                        position: "relative",
+                      }}
+                    >
+                      <HandleCards card={card} />
+                    </div>
+                  ))}
+                </div>
               </div>
+              {data?.result?.sid.includes((position.index + 1).toString()) && (
+                <div
+                  className="casino-winner-ico"
+                  style={{display:"flex",alignItems:"center",justifyContent:"center" }}
+                >
+                  <FaTrophy size={30} color="#169733" />
+                </div>
+              )}
             </>
           )}
         </div>
