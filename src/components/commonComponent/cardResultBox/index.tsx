@@ -65,6 +65,18 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? name?.[3]
                     : null}
                 </span>
+              ) : type === "teen20" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: item?.result === "3"? "#ffff33": item?.result === "1" ? "#ff4500" :"#fff",
+                  }}
+                >
+                  {item?.result === "1"
+                    ? name?.[0] : item?.result === "3" ? name?.[2] : item?.result === "0" ? name?.[1]
+                    : null}
+                </span>
               ) : (
                 <span
                   style={{
