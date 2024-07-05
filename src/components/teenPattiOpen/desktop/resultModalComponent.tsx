@@ -110,13 +110,14 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
               width: "90%",
               border: "0.5px solid",
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "start",
               flexDirection: "row",
               alignItems: "center",
-              gap:"20px"
+              gap:"20px",
+            
             }}>
               
-                <span className="fs-5">{position.label}</span>
+                <span className="fs-5" style={{marginLeft:"10px"}}>{position.label}</span>
                 <div className="d-flex flex-row justify-content-center align-items-center mb-2">
                   {players[position.index]?.map((card: any, cardIndex: any) => (
                     <div
@@ -126,6 +127,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
                         borderRadius: "1px",
                         marginLeft: "5px",
                         position: "relative",
+                        marginTop:"10px"
                       }}
                     >
                       <HandleCards card={card} />
@@ -136,7 +138,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
               {data?.result?.sid.includes((position.index + 1).toString()) && (
                 <div
                   className="casino-winner-icon"
-                  style={{ }}
+                  
                 >
                   <FaTrophy size={30} color="#169733" />
                 </div>
