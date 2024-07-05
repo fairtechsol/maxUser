@@ -51,7 +51,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
     }
   }, []);
 
-  // console.log('first',date)
+ 
   return (
     <Container style={{ padding: 0 }}>
       <div className="resultModalHeader">
@@ -99,9 +99,9 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Teen1DResultComponent data={data} />
       ) : type === cardGamesType?.dragonTigerOneDay ? (
         <DragonTigerOneDayResultComponent data={data} />
-      ): type === cardGamesType?.tee8? (
+      ): type === cardGamesType?.teenOpen? (
         <TeenOpenResultComponent data={data}/>
-      ):  type === cardGamesType?.teen9 ?(
+      ):  type === cardGamesType?.teenTest ?(
         <TeenTestResultComponent data={data}/>
       ):  type === cardGamesType?.casinoWar ?(
         <CasinoWarResultComponent data={data}/>

@@ -30,7 +30,7 @@ import {
   teenplayer,
   testteen,
 } from "../../assets/images";
-export const ApiConstants = {
+export const ApiConstants = { 
   LOGIN: "auth/login",
   LOGOUT: "auth/logout",
   CHANGEPASSWORD: "user/changePassword",
@@ -98,7 +98,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 

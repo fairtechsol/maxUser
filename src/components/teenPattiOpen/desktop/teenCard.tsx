@@ -15,7 +15,7 @@ interface Props {
 
 const TeenOpenResult: React.FC<Props> = ({ data }:any) => {
 
-  console.log("Video",data)
+
 
   return data?.mid !="0" && (  
     <Container>

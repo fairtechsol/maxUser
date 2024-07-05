@@ -29,8 +29,7 @@ const TeenPattiDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { players, pairsPlus } = dragonTigerDetail;
 
-  console.log("Teen8d", dragonTigerDetail);
-
+  
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -134,9 +133,8 @@ const TeenPattiDesktop = () => {
     pairPlus,
     indx,
     cardsA,
-    playersA,
   }: any) => {
-    console.log("inside", cardsA, indx);
+   
 
     return (
       <div className="teenPatti-table-row" style={{ lineHeight: 1 }} >

@@ -189,10 +189,10 @@ const cardDetail = createSlice({
 
       .addCase(updateTeenPattiOpenMatchRates.fulfilled, (state, action) => {
         const payload = action?.payload;
-        console.log("first", payload);
+      
         if (payload) {
           const { t1, t2 } = payload;
-          console.log("first", payload);
+         
 
           state.loading = false;
 
