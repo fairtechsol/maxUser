@@ -125,8 +125,8 @@ const Abj1Desktop = () => {
                 style={{
                   width: "100%",
                   margin: "5px",
-                  display:"flex",
-                  flexDirection:"column"
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
                 <CardBox
@@ -144,9 +144,13 @@ const Abj1Desktop = () => {
                   cards={dragonTigerDetail?.cardInfo}
                 />
               </div>
-             
+
               <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["R", "R","R"]} type={cardGamesType.andarBahar1}/>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["R", "R", "R"]}
+                  type={cardGamesType.andarBahar1}
+                />
               </div>
             </div>
             <RulesModal show={show} setShow={setShow} rule={abjrules} />

@@ -14,6 +14,7 @@ import TeenOpenResult from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import TeenPattiTableRow from "./tableRow";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -83,48 +84,7 @@ const TeenPattiMobile = () => {
     };
   }, [lastActivityTime, show]);
 
-  const TeenPattiTableRow = ({ player, pairPlus }: any) => (
-    <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
-      <div
-        style={{ width: "40%", padding: "10px", border: "0.1px solid #fff" }}
-      >
-        <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-          {player.nat}
-        </span>
-      </div>
-      <div
-        className={player.gstatus === "0" ? "suspended" : ""}
-        style={{
-          width: "60%",
-          backgroundColor: "#72bbef",
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        <div
-          className="teenPatti-table-item"
-          style={{ width: "50%" }}
-          onClick={() => (player.gstatus === "0" ? null : handleBet(player))}
-        >
-          <span className="f12-b">{player.rate}</span>
-          <span className={`f10-b ${"profit-loss-class"}`}>{0}</span>
-        </div>
-        <div
-          className={`teenPatti-table-item ${
-           // pairPlus.gstatus !== "0" ? "suspended" : 
-            ""
-          }`}
-          style={{ width: "50%" }}
-          onClick={() =>
-            pairPlus.gstatus === "0" ? null : handleBet(pairPlus)
-          }
-        >
-          <span className="f12-b">{pairPlus.nat}</span>
-          <span className={`f10-b ${"profit-loss-class"}`}>{0}</span>
-        </div>
-      </div>
-    </div>
-  );
+ 
 
   return (
     <>
@@ -217,9 +177,7 @@ const TeenPattiMobile = () => {
                         border: "0.1px solid #dee2e6",
                         textAlign: "left",
                       }}
-                    >
-                      
-                    </div>
+                    ></div>
                     <div
                       style={{
                         width: "80%",
@@ -234,15 +192,18 @@ const TeenPattiMobile = () => {
                           border: "0.5px solid #dee2e6",
                         }}
                       >
-                        BACK<span className="f12-b">
-                       ( Min: {dragonTigerDetail?.players?.player1?.min} Max:{" "}
-                        {dragonTigerDetail?.players?.player1?.max})
-                      </span>
+                        BACK
+                        <span className="f12-b">
+                          ( Min: {dragonTigerDetail?.players?.player1?.min} Max:{" "}
+                          {dragonTigerDetail?.players?.player1?.max})
+                        </span>
                       </div>
-                      <div className="teen-back-m"><span className="f12-b">
-                       ( Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min} Max:{" "}
-                        {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
-                      </span></div>
+                      <div className="teen-back-m">
+                        <span className="f12-b">
+                          ( Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min}{" "}
+                          Max: {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -252,6 +213,7 @@ const TeenPattiMobile = () => {
                         key={index}
                         player={players[key]}
                         pairPlus={pairsPlus[`pairPlus${index + 1}`]}
+                        handleBet={handleBet}
                       />
                     ))}
 
