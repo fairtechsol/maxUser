@@ -278,7 +278,6 @@ const DragonTigerDesktop = () => {
         dragonTigerDetail,
       })
     );
-    console.log("team", team);
   };
   return (
     <div>

@@ -26,7 +26,6 @@ const OddBox = ({ odds, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   const handleCardRender = (card: string) => {
     if (card?.includes("spade")) {
@@ -40,7 +39,6 @@ const OddBox = ({ odds, data }: any) => {
     }
   };
   const handleLock = (item: any, type: string) => {
-    // console.log(type, "first", item);
     if (type == "back") {
       if (item?.gstatus != "ACTIVE" || item?.b1 === "0.00") {
         return true;

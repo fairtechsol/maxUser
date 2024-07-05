@@ -41,6 +41,10 @@ const cardGames = [
     label: "Teen Patti One Day",
   },
   {
+    value: "teen8",
+    label: "Open Teen Patti",
+  },
+  {
     value: "card32",
     label: "32 Cards - A",
   },

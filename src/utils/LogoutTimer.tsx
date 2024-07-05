@@ -21,7 +21,6 @@ const LogoutTimer = () => {
 
   const handleOnIdle = (event: any) => {
     const token = sessionStorage.getItem("jwtMaxUser");
-    console.log("user is idle", event);
     if (token) {
       handleScreen();
     }

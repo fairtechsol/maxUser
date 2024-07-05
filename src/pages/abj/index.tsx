@@ -14,7 +14,6 @@ import {
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useSelector } from "react-redux";
-import Loader from "../../components/commonComponent/loader";
 import {
   getPlacedBets,
   updateBetsPlaced,
@@ -22,6 +21,7 @@ import {
 import { cardGamesType } from "../../utils/constants";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Abj1ComponentList from "../../components/abj1";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Abj = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -107,7 +107,7 @@ const Abj = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <Abj1ComponentList />;
+  return loading ? <InnerLoader /> : <Abj1ComponentList />;
 };
 
 export default Abj;

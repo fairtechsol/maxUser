@@ -1,10 +1,9 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
+import { GiSpades } from "react-icons/gi";
+import { ImClubs, ImDiamonds } from "react-icons/im";
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import isMobile from "../../../../utils/screenDimension";
 
 const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
@@ -27,13 +26,11 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   const tigerEvenOdd = tigerData?.slice(0, 2);
   const tigerRedBlack = tigerData?.slice(2, 4);
   const dragonEvenOdd = dragonData?.slice(0, 2);
   const dragonRedBlack = dragonData?.slice(2, 4);
-  // console.log(dragonData, "first", tigerData);
   const handleLock = (status: any, value: any) => {
     if (status != "ACTIVE" || value === "0.00") {
       return true;
@@ -68,7 +65,16 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle" style={{fontWeight:"400"}}>Min: {title1 === "even" ? dragonEvenOdd?.[0]?.min : dragonRedBlack?.[0]?.min} Max: {title1 === "even" ? dragonEvenOdd?.[0]?.max : dragonRedBlack?.[0]?.max}</div>
+          <div className="dtlTitle" style={{ fontWeight: "400" }}>
+            Min:{" "}
+            {title1 === "even"
+              ? dragonEvenOdd?.[0]?.min
+              : dragonRedBlack?.[0]?.min}{" "}
+            Max:{" "}
+            {title1 === "even"
+              ? dragonEvenOdd?.[0]?.max
+              : dragonRedBlack?.[0]?.max}
+          </div>
           <div className="dtlsubTitle back-BackGround">
             <span style={{ fontSize: "14px" }}>
               {title1 === "even" ? (

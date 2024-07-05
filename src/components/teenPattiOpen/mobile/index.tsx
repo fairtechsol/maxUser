@@ -53,7 +53,6 @@ const TeenPattiMobile = () => {
         dragonTigerDetail,
       })
     );
-    // console.log('team',team)
   };
 
   useEffect(() => {
@@ -219,10 +218,7 @@ const TeenPattiMobile = () => {
                         textAlign: "left",
                       }}
                     >
-                      <span className="f12-b">
-                        Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
-                        {dragonTigerDetail?.videoInfo?.max}
-                      </span>
+                      
                     </div>
                     <div
                       style={{
@@ -238,9 +234,15 @@ const TeenPattiMobile = () => {
                           border: "0.5px solid #dee2e6",
                         }}
                       >
-                        BACK
+                        BACK<span className="f12-b">
+                       ( Min: {dragonTigerDetail?.players?.player1?.min} Max:{" "}
+                        {dragonTigerDetail?.players?.player1?.max})
+                      </span>
                       </div>
-                      <div className="teen-back-m">BACK</div>
+                      <div className="teen-back-m"><span className="f12-b">
+                       ( Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min} Max:{" "}
+                        {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
+                      </span></div>
                     </div>
                   </div>
 
