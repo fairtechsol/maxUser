@@ -327,7 +327,6 @@ const cardDetail = createSlice({
         };
       })
       .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
-
         if (action.payload) {
           const { t1, t2 } = action.payload;
           state.loading = false;
@@ -392,7 +391,7 @@ const cardDetail = createSlice({
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;
-        state.resultData = [];
+        state.resultData = null;
       })
       .addCase(resultDragonTiger.fulfilled, (state, action) => {
         state.resultData = action.payload;
