@@ -25,7 +25,7 @@ const Poker1DayDesktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.poker20}`
+    `${cardUrl}${cardGamesId.poker1Day}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playersBonusPair } = dragonTigerDetail;

@@ -22,7 +22,7 @@ const Cricket5Mobile = ({bookmakerData,fancyData}: any) => {
   // );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const [showFancy, setShowFancy] = useState(true);
+  const [showFancy, setShowFancy] = useState(false);
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());

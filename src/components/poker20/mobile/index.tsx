@@ -8,7 +8,7 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "../../horseRacing/mobile/betTable/style.scss";
-import Card32Result from "../desktop/card32Card";
+import Card32Result from "../desktop/poker20";
 import DynamicTable from "./betTable";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
