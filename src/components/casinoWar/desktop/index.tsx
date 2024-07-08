@@ -31,6 +31,8 @@ const TeenPattiDesktop = () => {
   //const { playerA, playerB } = dragonTigerDetail;
   const { players } = dragonTigerDetail;
 
+  
+
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -246,7 +248,7 @@ const TeenPattiDesktop = () => {
                   </div>
                 </div>
 
-                {dragonTigerDetail.players?.map((playerA: any, index: any) => {
+                {dragonTigerDetail?.players?.map((playerA: any, index: any) => {
                   
                   return (
                     <div
@@ -304,7 +306,7 @@ const TeenPattiDesktop = () => {
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["A", "T", "B"]}
+                  name={["R", "R", "R"]}
                   type={"war"}
                 />
               </div>

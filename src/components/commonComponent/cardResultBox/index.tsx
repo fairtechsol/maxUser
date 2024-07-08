@@ -113,7 +113,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Body style={{ padding: 0 }}>
-          <ResultComponent data={resultData} setfalse={setLgShow} type={"teen8"} />
+          <ResultComponent data={resultData} setfalse={setLgShow} type={"war"} />
         </Modal.Body>
       </Modal>
     </div>

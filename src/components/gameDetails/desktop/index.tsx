@@ -88,7 +88,7 @@ const DesktopGameDetail = () => {
                     </span>
                   }
                 />
-                {/* <div style={{width:"100%",height:"auto",backgroundColor:"#000"}} dangerouslySetInnerHTML={{__html: liveScoreBoardData ?liveScoreBoardData:""}}></div> */}
+                <div style={{width:"100%",height:"auto",backgroundColor:"#000"}} dangerouslySetInnerHTML={{__html: liveScoreBoardData ?liveScoreBoardData:""}}></div>
               </Col>
 
               {matchDetails?.matchOdd?.isActive && (
