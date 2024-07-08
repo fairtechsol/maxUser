@@ -30,7 +30,7 @@ import {
   teenplayer,
   testteen,
 } from "../../assets/images";
-export const ApiConstants = { 
+export const ApiConstants = {
   LOGIN: "auth/login",
   LOGOUT: "auth/logout",
   CHANGEPASSWORD: "user/changePassword",
@@ -98,7 +98,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -243,22 +243,22 @@ export const availableGameType: any = {
 };
 
 export const cardGamesType: any = {
-  dragonTiger20: "dt20",
-  andarBahar2: "abj",
-  andarBahar1: "ab20",
-  teen20: "teen20",
-  card32: "card32",
-  card32B: "card32eu",
-  lucky7: "lucky7",
-  dragonTiger202: "dt202",
-  dragonTigerLion: "dtl20",
-  teenOneDay: "teen",
-  teenOpen: "teen8",
-  teenTest: "teen9",
+  dragonTiger20: "dt20", //
+  andarBahar2: "abj", //
+  andarBahar1: "ab20", //
+  teen20: "teen20", //
+  card32: "card32", //
+  card32B: "card32eu", //
+  lucky7: "lucky7", //
+  dragonTiger202: "dt202",//
+  dragonTigerLion: "dtl20",//
+  teenOneDay: "teen",//
+  teenOpen: "teen8",//
+  teenTest: "teen9",//
   dragonTigerOneDay: "dt6",
-  lucky7B: "lucky7eu",
-  casinoWar:"war",
-  race20:"race20",
+  lucky7B: "lucky7eu", //
+  casinoWar: "war",
+  race20: "race20", //
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -275,8 +275,8 @@ export const cardGamesId: any = {
   teenTest: 3048,
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
-  casinoWar:3038,
-  race20:3036
+  casinoWar: 3038,
+  race20: 3036,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -284,16 +284,22 @@ export const navigateToGameDetail = {
   [availableGameType.tennis]: "/other-game-detail/",
   [availableGameType.horseRacing]: "/race/",
   [availableGameType.greyHound]: "/race/",
-  [cardGamesType.teen20]: "teenPatti20",
-  [cardGamesType.card32]: "32cards-A",
+  [cardGamesType.teen20]: "teen20",
+  [cardGamesType.card32]: "card32eu",
   [cardGamesType.card32B]: "32cards-B",
-  [cardGamesType.lucky7]: "lucky7-A",
-  [cardGamesType.lucky7B]: "lucky7-B",
+  [cardGamesType.lucky7]: "lucky7",
+  [cardGamesType.lucky7B]: "lucky7eu",
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",
   [cardGamesType.race20]: "race20",
-}
+  [cardGamesType.dragonTiger202]: "dt202",
+  [cardGamesType.dragonTigerLion]: "dtl20",
+  [cardGamesType.teenOneDay]: "teen",
+  [cardGamesType.teenOpen]: "teen8",
+  [cardGamesType.teenTest]: "teen9",
+  [cardGamesType.dragonTigerOneDay]: "dt6",
+};
 
 export const baseUrls = {
   socket:
@@ -1588,7 +1594,6 @@ export const card3 = {
       url: "/teen8",
       imgSrc: teenplayer,
       name: "OPEN TEENPATTI",
-
     },
   ],
   lucky7: [
