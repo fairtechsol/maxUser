@@ -246,29 +246,17 @@
 .back-BackGround{
   background-color: #72bbef;
 }
+.flex-justify-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .commonButtonBoxContainer{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 3px;
-}
-.tiePairbtn-theme {
-  color: #fff !important;
-  background-image: linear-gradient(to right, #004a25, #ffc742) !important;
-  width: 100% !important;
-  border-radius: 4px !important;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
-  border: 0 !important;
-  padding: 2px 8px !important;
-  cursor: pointer !important;
-  font-size: 16px !important;
-  font-weight: 600;
-  position: relative;
-  text-align: center;
-}
-.tiePairbtn-theme.suspended:after {
-  border-radius: 4px;
 }
 
 .suspended:after {
@@ -288,30 +276,32 @@
   font-size: 18px;
   top: 0;
 }
-.oddEvenContainer{
-  width: 50%;
-  background-color: #eee;
-  padding: 10px;
+.marketHeader{
+  width: 100%;
+  background-color: #ffc742d9;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
 }
-.cardContainer{
-  width: 50%;
-  background-color: #eee;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.commonCardImgContainer{
+.boxContainer{
   width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 5px;
-  margin-top: 5px;
+  justify-content: space-between;
+  background-color: #eee;
+  padding-left: 5px;
+  border-bottom: 0.5px solid #c7c8ca;
+}
+.blboxes{
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+}
+.rateText{
+  font-size: 14px;
+  color: #000;
+  text-align: center;
 }
 .horseRacingTabHeader{
   width: 100%;

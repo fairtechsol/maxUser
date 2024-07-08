@@ -9,23 +9,19 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import OddEven from "./OddEvenBox";
-import BackLay from "./BackLay";
 import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import PairBox from "./PairBox";
-import CardBox from "./cardBox";
-import TotalCards from "./totalCards";
+import Bookmaker from "./bookmaker";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.card32B}`
+    `${cardUrl}${cardGamesId.superover}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -118,55 +114,28 @@ const SuperoverDesktop = () => {
               />
             </div>
           </div>
-          <div style={{ height: "760px" }}>
+          <div style={{ height: "760px", marginLeft: "5px" }}>
             <div
               className="d-sm-flex flex-row justify-content-around align-items-center"
               style={{ width: "100%", marginTop: "4%", gap: "10px" }}
             >
-              <div className="w-50">
-                <BackLay
-                  matchOddsData={dragonTigerDetail?.matchOdd}
+              <div className="w-100">
+                <Bookmaker
+                  title={"Bookmaker"}
+                  min={dragonTigerDetail?.videoInfo?.min}
+                  max={dragonTigerDetail?.videoInfo?.max}
+                  matchOddsData={dragonTigerDetail?.bookmaker}
                   data={dragonTigerDetail}
                 />
               </div>
-              <div className="w-50">
-              <OddEven
-                odds={dragonTigerDetail?.oddEven}
-                data={dragonTigerDetail}
-              />
-              </div>
             </div>
-            <div
-              style={{
-                width: "100%",
-                margin: "5px",
-                display: "flex",
-                flexDirection: "row",
-                gap: "8px",
-              }}
-            >
-               <PairBox
-                  matchOddsData={dragonTigerDetail?.redBlack}
-                  data={dragonTigerDetail}
-                />
-              <TotalCards
-                odds={dragonTigerDetail?.cardtotal}
-                data={dragonTigerDetail}
-              />
-            </div>
-            <div
-              style={{
-                width: "100%",
-                marginLeft: "5px",
-              }}
-            >
-              <CardBox
-                odds={dragonTigerDetail?.singleCard}
-                data={dragonTigerDetail}
-              />
-            </div>
+
             <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["8", "9", "10", "11"]} type={"card32eu"}/>
+              <CardResultBox
+                data={dragonTigerDetail}
+                name={["8", "9", "10", "11"]}
+                type={"card32eu"}
+              />
             </div>
           </div>
 

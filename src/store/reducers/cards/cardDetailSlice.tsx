@@ -393,13 +393,13 @@ const cardDetail = createSlice({
         const { t1, t2,t3,t4 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
-        const superover = { ...t2 };
+        const bookmaker = { ...t2 };
         const fancy = { ...t3 };
         const fancy1 = { ...t4 };
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
-          superover,
+          bookmaker,
           fancy,
           fancy1,
         };

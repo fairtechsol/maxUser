@@ -5,17 +5,13 @@ import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/dragonCard";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import BackLay from "../desktop/BackLay";
-import PairBox from "./PairBox";
+import Bookmaker from "../desktop/bookmaker";
 import MyBet from "./myBet";
-import TotalCards from "./totalCards";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -141,39 +137,20 @@ const SuperoverMobile = () => {
                 </div>
               </div>
             </div>
-            <div style={{ height: "760px" }}>
+            <div style={{ height: "760px", marginLeft: "5px" ,marginTop:"10px" }}>
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
-                  <BackLay
-                    matchOddsData={dragonTigerDetail?.matchOdd}
-                    data={dragonTigerDetail}
+                  <Bookmaker
+                     title={"Bookmaker"}
+                     min={dragonTigerDetail?.videoInfo?.min}
+                     max={dragonTigerDetail?.videoInfo?.max}
+                     matchOddsData={dragonTigerDetail?.bookmaker}
+                     data={dragonTigerDetail}
                   />
                 </div>
-                <div className="w-100">
-                <OddEven
-                odds={dragonTigerDetail?.oddEven}
-                data={dragonTigerDetail}
-              />
-                </div>
+               
               </div>
-              <div style={{ width: "97%", gap: "8px" }}>
-              <PairBox
-                  matchOddsData={dragonTigerDetail?.redBlack}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "97%", gap: "8px" }}>
-              <TotalCards
-                odds={dragonTigerDetail?.cardtotal}
-                data={dragonTigerDetail}
-              />
-              </div>
-              <div style={{ width: "97%", marginLeft: "5px" }}>
-              <CardBox
-                odds={dragonTigerDetail?.singleCard}
-                data={dragonTigerDetail}
-              />
-              </div>
+              
               <div style={{ width: "97%", margin: "5px" }}>
                 <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
               </div>
