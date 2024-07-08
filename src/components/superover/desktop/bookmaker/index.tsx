@@ -69,15 +69,18 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         </div>
       </div>
 
-      <div className="boxContainer">
+      <div
+        className={`boxContainer`}
+      >
         <span className="f400" style={{ fontSize: "14px", color: "#000" }}>
           {team1?.nat}
         </span>
-        <div className="blboxes">
+        <div className={`blboxes  ${
+          handleLock(team1?.status, team1?.b1) ? "suspended-row" : ""
+        }`} 
+        data-title={handleLock(team1?.status, team1?.b1) ? "SUSPENDED" : ""}>
           <div
-            className={`w-50 back-BackGround flex-justify-center ${
-              handleLock(team1?.status, team1?.b1) ? "suspended" : ""
-            }`}
+            className={`w-50 back-BackGround flex-justify-center `}
             style={{ height: "35px", flexDirection: "column" }}
             onClick={() =>
               handleLock(team1?.status, team1?.b1)
@@ -85,15 +88,13 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                 : handleBet(team1, "back")
             }
           >
-            <span className="f600 rateText">{team1?.b1}</span>{" "}
+            <span className="f600 rateText">{team1?.b1 ==="0.00"?'-':team1?.b1}</span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team1?.bs1}
             </span>
           </div>
           <div
-            className={`w-50 lay-BackGround flex-justify-center ${
-              handleLock(team1?.status, team1?.l1) ? "suspended" : ""
-            }`}
+            className={`w-50 lay-BackGround flex-justify-center `}
             style={{ height: "35px", flexDirection: "column" }}
             onClick={() =>
               handleLock(team1?.status, team1?.l1)
@@ -101,7 +102,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                 : handleBet(team1, "lay")
             }
           >
-            <span className="f600 rateText">{team1?.l1}</span>{" "}
+            <span className="f600 rateText">{team1?.l1 ==="0.00"?'-':team1?.l1}</span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team1?.ls1}
             </span>
@@ -109,15 +110,18 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         </div>
       </div>
 
-      <div className="boxContainer">
+      <div
+        className={`boxContainer `}
+      >
         <span className="f400" style={{ fontSize: "14px", color: "#000" }}>
           {team2?.nat}
         </span>
-        <div className="blboxes">
+        <div className={`blboxes ${
+          handleLock(team2?.status, team2?.b1) ? "suspended-row" : ""
+        }`} 
+        data-title={handleLock(team2?.status, team2?.b1) ? "SUSPENDED" : ""}>
           <div
-            className={`w-50 back-BackGround flex-justify-center ${
-              handleLock(team2?.status, team2?.b1) ? "suspended" : ""
-            }`}
+            className={`w-50 back-BackGround flex-justify-center`}
             style={{ height: "35px", flexDirection: "column" }}
             onClick={() =>
               handleLock(team2?.status, team2?.b1)
@@ -125,15 +129,13 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                 : handleBet(team2, "back")
             }
           >
-            <span className="f600 rateText">{team2?.b1}</span>{" "}
+            <span className="f600 rateText">{team2?.b1 ==="0.00"?'-':team2?.b1}</span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team2?.bs1}
             </span>
           </div>
           <div
-            className={`w-50 lay-BackGround flex-justify-center ${
-              handleLock(team2?.status, team2?.l1) ? "suspended" : ""
-            }`}
+            className={`w-50 lay-BackGround flex-justify-center `}
             style={{ height: "35px", flexDirection: "column" }}
             onClick={() =>
               handleLock(team2?.status, team2?.l1)
@@ -141,7 +143,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                 : handleBet(team2, "lay")
             }
           >
-            <span className="f600 rateText">{team2?.l1}</span>{" "}
+            <span className="f600 rateText">{team2?.l1 ==="0.00"?'-':team2?.l1}</span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team2?.ls1}
             </span>
