@@ -419,7 +419,7 @@ const Poker1DayDesktop = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "T", "B"]}
-                  type={"teen20"}
+                  type={"poker"}
                 />
               </div>
             </div>

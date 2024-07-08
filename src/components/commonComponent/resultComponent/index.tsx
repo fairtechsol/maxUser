@@ -14,11 +14,11 @@ import Lucky7ResultComponent from "../../lucky7/desktop/resultModalComponent";
 import Lucky7BResultComponent from "../../lucky7B/desktop/resultModalComponent";
 import Teen1DResultComponent from "../../teenPatti1D/desktop/resultModalComponent";
 import Teen20ResultComponent from "../../teenPatti20/desktop/resultModalComponent";
+import Poker1DayResultComponent from "../../poker1day/desktop/resultModalComponent";
 import TeenOpenResultComponent from "../../teenPattiOpen/desktop/resultModalComponent";
 import TeenTestResultComponent from "../../teenPattiTest/desktop/resultModalComponent";
 import CasinoWarResultComponent from "../../casinoWar/desktop/resultModalComponent";
 import Abj1ResultComponent from "../../abj1/desktop/resultModalComponent";
-import Poker1DayResultComponent from "../../cricket5/desktop/resultModalComponent";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
@@ -108,7 +108,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <CasinoWarResultComponent data={data}/>
       ):  type === cardGamesType?.andarBahar1 ?(
         <Abj1ResultComponent data={data}/>
-      ): type === cardGamesType?.poker1Day ? (
+      ) : type === cardGamesType?.poker1Day ? (
           <Poker1DayResultComponent data={data} />
         ) : (
         <></>

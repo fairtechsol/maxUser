@@ -24,6 +24,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import MarketComponent from "./betTable";
+import ScoreBoard from "../../commonComponent/scoreBoard";
 
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -111,10 +112,19 @@ const Cricket5Desktop = () => {
     },
   ];
 
+  const scorecardData = {
+    teams: [
+      { name: 'AUS', score: '86-2 (5.0)' },
+      { name: 'IND', score: '63-1 (3.2)', crr: '18.90', rr: '14.40' }
+    ],
+    status: 'IND Needed 24 runs from 10 balls',
+    ballByBall: ['4', '0', '6', '1', '3', '6']
+  };
   return (
     <>
       <Row>
         <Col md={8} className="five-cricket">
+       
           <div style={{ height: "400px", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
@@ -143,6 +153,7 @@ const Cricket5Desktop = () => {
                   : ""}
               </span>
             </div>
+            <div><ScoreBoard data={scorecardData}/></div>
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
             >
@@ -154,7 +165,7 @@ const Cricket5Desktop = () => {
             </div>
           </div>
           <div style={{ height: "350px" }}>
-            <div className="px-2 mt-5">
+            <div className="px-2" style={{marginTop: "7rem"}}>
               <MarketComponent
                 odds={dragonTigerDetail?.odds}
                 data={dragonTigerDetail}
