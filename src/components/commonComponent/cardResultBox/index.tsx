@@ -71,11 +71,20 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "3"? "#ffff33": item?.result === "1" ? "#ff4500" :"#fff",
+                    color:
+                      item?.result === "3"
+                        ? "#ffff33"
+                        : item?.result === "1"
+                        ? "#ff4500"
+                        : "#fff",
                   }}
                 >
                   {item?.result === "1"
-                    ? name?.[0] : item?.result === "3" ? name?.[2] : item?.result === "0" ? name?.[1]
+                    ? name?.[0]
+                    : item?.result === "3"
+                    ? name?.[2]
+                    : item?.result === "0"
+                    ? name?.[1]
                     : null}
                 </span>
               ) : (
@@ -83,7 +92,14 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "3" || item?.result === "41" || item?.result === "1" ? "#f5cc03" : item?.result === "2" || item?.result === "21" ? "#ff4500"  : "#ffffff",
+                    color:
+                      item?.result === "3" ||
+                      item?.result === "41" ||
+                      item?.result === "1"
+                        ? "#f5cc03"
+                        : item?.result === "2" || item?.result === "21"
+                        ? "#ff4500"
+                        : "#ffffff",
                   }}
                 >
                   {type === "teen20"
@@ -99,8 +115,6 @@ const CardResultBox = ({ data, name, type }: any) => {
                     : name?.[2]
                     ? name?.[2]
                     : ""}
-
-                 
                 </span>
               )}
             </div>
@@ -113,7 +127,11 @@ const CardResultBox = ({ data, name, type }: any) => {
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Body style={{ padding: 0 }}>
-          <ResultComponent data={resultData} setfalse={setLgShow} type={"teen8"} />
+          <ResultComponent
+            data={resultData}
+            setfalse={setLgShow}
+            type={data?.type}
+          />
         </Modal.Body>
       </Modal>
     </div>
