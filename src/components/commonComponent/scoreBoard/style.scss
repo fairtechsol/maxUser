@@ -37,10 +37,21 @@
     text-align: center;
     margin-right: 4px;
 }
+.item-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .ball-runs.wicket {
-    background-color: #ff0000;
+    background-color: #ff0000 !important;
 }
 .ball-runs.four {
-    background-color: #087f23;
+    background-color: #087f23 !important;
+}
+.ball-runs.six {
+    background-color: #883997 !important;
+}
+.ball-runs.single {
+    background-color: #08c !important;
 }

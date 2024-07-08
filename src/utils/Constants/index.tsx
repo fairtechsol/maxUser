@@ -88,6 +88,9 @@ export const ApiConstants = {
       RESULT: "/card/result/detail",
     },
   },
+  SCOREBOARD :{
+    match : "/api/tunnel/casino/sport-score"
+  }
 };
 export const cardUrl = "https://video.proexch.in/route/?id=";
 

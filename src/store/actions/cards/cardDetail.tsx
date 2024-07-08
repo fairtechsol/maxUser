@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import service from "../../../service";
-import { ApiConstants } from "../../../utils/constants";
+import { ApiConstants, Constants } from "../../../utils/constants";
 
 export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
   "horseRacing/matchDetail",
@@ -223,5 +223,28 @@ export const updateCricket5MatchRates = createAsyncThunk<any, any>(
   "cricket5/matchRatesUpdate",
   async (data) => {
     return data;
+  }
+);
+export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
+  "casinoScoreboard/matchRatesUpdate",
+  async (requestData, thunkApi) => {
+    try {
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+        }
+      };
+      const resp = await axios.get(
+        `${Constants.thirdPartyCard}${ApiConstants.SCOREBOARD.match}/${requestData?.id}?gameName=${requestData?.type}`,
+        config);
+      if (resp?.data) {
+      
+        return resp?.data?.data?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
   }
 );
