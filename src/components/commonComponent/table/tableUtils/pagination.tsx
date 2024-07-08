@@ -55,13 +55,13 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
     <Pagination>
       <div className={`paginationContainer`}>
         <Pagination.First
-          disabled={currentPage === 1}
+          disabled={currentPage <= 1 ? true : false}
           onClick={() => onPageChange(1)}
         >
           First
         </Pagination.First>
         <Pagination.Prev
-          disabled={currentPage === 1}
+          disabled={currentPage <= 1 ? true : false}
           onClick={() => onPageChange(currentPage - 1)}
         >
           Prev
@@ -70,13 +70,13 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
         {pageComp?.map((item) => item)}
 
         <Pagination.Next
-          disabled={currentPage === totalPages}
+          disabled={totalPages === 0 ? true : currentPage === totalPages}
           onClick={() => onPageChange(currentPage + 1)}
         >
           Next
         </Pagination.Next>
         <Pagination.Last
-          disabled={currentPage === totalPages}
+          disabled={totalPages === 0 ? true : currentPage === totalPages}
           onClick={() => onPageChange(totalPages)}
         >
           Last
