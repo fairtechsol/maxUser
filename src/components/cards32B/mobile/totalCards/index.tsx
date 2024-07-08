@@ -26,9 +26,7 @@ const TotalCards = ({ data, odds}: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
-  // console.log(dragonData, "first", tigerData);
   const handleLock = (status: any, value: any) => {
     if (status != "ACTIVE" || value === "0.00") {
       return true;

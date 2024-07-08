@@ -29,7 +29,6 @@ const PairBox = ({ matchOddsData, data }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   const handleLock = (status: any, value: any) => {
     if (status != "ACTIVE" || value === "0.00") {
@@ -64,7 +63,6 @@ const PairBox = ({ matchOddsData, data }: any) => {
         {item?.l1}
       </div>
     );
-  // console.log('first',matchOddsData)
   return (
     <div className="w-100">
       <div
@@ -85,7 +83,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
             {isMobile ? (
               <>
                 <span style={{fontWeight:"400"}}>
-                  Min:{min} Max:{max}
+                 <span className="f600">Min:</span> {min}{" "}<span className="f600">Max:</span> {max}
                 </span>
               </>
             ) : (

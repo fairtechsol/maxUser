@@ -25,6 +25,10 @@ const cardGames = [
     label: "20-20 Dragon Tiger",
   },
   {
+    value: "ab20",
+    label: "Andar Bahar 1",
+  },
+  {
     value: "abj",
     label: "Andar Bahar 2",
   },
@@ -35,6 +39,10 @@ const cardGames = [
   {
     value: "teen",
     label: "Teen Patti One Day",
+  },
+  {
+    value: "teen8",
+    label: "Open Teen Patti",
   },
   {
     value: "card32",
@@ -76,10 +84,12 @@ const CasinoReports = () => {
 
   const { cardReport } = useSelector((state: RootState) => state.user.report);
   const { resultData } = useSelector((state: RootState) => state.card);
+  
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
   };
+
   useEffect(() => {
     if (state?.cardType) {
       let newType = cardGames.filter((item: any) => {
@@ -148,7 +158,7 @@ const CasinoReports = () => {
                   format="yyyy-MM-dd"
                   value={date}
                   closeCalendar={true}
-                  clearIcon={false}
+                  clearIcon={null}
                   className="w-100"
                 />
               </Col>

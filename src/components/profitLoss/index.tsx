@@ -13,6 +13,20 @@ import { getProfitLossReport } from "../../store/actions/match/matchListAction";
 import { useSelector } from "react-redux";
 import moment from "moment";
 
+
+const typeToTitle: { [key: string]: string } = {
+  dt20: "DRAGON TIGER 20-20",
+  teen20: "TEENPATTI 20-20",
+  lucky7: "LUCKY7A",
+  lucky7eu: "LUCKY7B",
+  card32: "CARDS32-A",
+  abj: "ANDAR BAHAR 2",
+  dt202: "20-20DRAGON TIGER 2",
+  dtl20: "DRAGON TIGER LION",
+  dt6: "DRAGON TIGER TEENPATTI",
+  teen: "TEENPATTI TEENPATTI",
+  // Add other mappings as needed
+};
 const ProfitLossComponent = () => {
   const minDate = new Date();
   minDate.setMonth(minDate.getMonth() - 1);
@@ -75,7 +89,7 @@ const ProfitLossComponent = () => {
                     onChange={setFromDate}
                     value={fromDate}
                     closeCalendar={true}
-                    clearIcon={false}
+                    clearIcon={null}
                     className="w-100"
                     minDate={minDate}
                     maxDate={new Date()}
@@ -88,7 +102,7 @@ const ProfitLossComponent = () => {
                     onChange={setToDate}
                     value={toDate}
                     closeCalendar={true}
-                    clearIcon={false}
+                    clearIcon={null}
                     className="w-100"
                     minDate={minDate2}
                     maxDate={new Date()}
@@ -153,7 +167,7 @@ const ProfitLossComponent = () => {
                     onChange={setFromDate}
                     value={fromDate}
                     closeCalendar={true}
-                    clearIcon={false}
+                    clearIcon={null}
                     className="w-100"
                     minDate={minDate}
                     maxDate={new Date()}
@@ -165,7 +179,7 @@ const ProfitLossComponent = () => {
                     onChange={setToDate}
                     value={toDate}
                     closeCalendar={true}
-                    clearIcon={false}
+                    clearIcon={null}
                     className="w-100"
                     minDate={minDate2}
                     maxDate={new Date()}
@@ -208,9 +222,10 @@ const ProfitLossComponent = () => {
               >
                 {profitLossReport &&
                   profitLossReport?.result?.map((item: any, index: number) => {
+                    const title = typeToTitle[item?.eventType] || "Unknown Game";
                     return (
                       <tr className={`${isMobile && "title-12"}`} key={index}>
-                        <td>{item?.eventType}</td>
+                        <td>{title}</td>
                         <td>{item?.marketType}</td>
                         <td>{item?.aggregateAmount}</td>
                       </tr>

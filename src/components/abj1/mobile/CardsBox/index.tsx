@@ -3,13 +3,13 @@ import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const CardBox = ({ cards, data }: any) => {
+const CardBox = ({title, odds, data,cards,bgColor }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet=(item:any)=>{
     let team ={
       "bettingType": "BACK",
       "matchId": data?.id,
-      "odd": item?.b1,
+      "odd": item?.rate,
       "stake": 0,
       "matchBetType": "matchOdd",
       "betOnTeam":item?.nat,
@@ -23,18 +23,19 @@ const CardBox = ({ cards, data }: any) => {
         data,
       })
     );
-    console.log('team',team)
   }
+  const arCards = cards?.ar?.split(",");
+  const brCards = cards?.br?.split(",");
   return (
     <>
-      <div className="cardContainer">
-        <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "16px"}}>
-          {parseFloat(isNaN(cards?.[0]?.b1)?0:cards?.[0]?.b1)}
+      <div className="abjcardContainer" style={{backgroundColor:bgColor,border:"0.5px solid #000"}} >
+        <div style={{width:"20%",display:"flex",justifyContent:"center" ,alignItems: "center",borderRight:"0.5px solid #000" }}>
+          <span style={{ fontSize: "16px",writingMode:"vertical-lr", textOrientation:"upright",fontWeight:"600"}}>
+          {title}
           </span>
         </div>
-        <div>
-          <CommonCardImg cardData={cards} handleBet={handleBet} data={data}/>
+        <div className="p-3">
+          <CommonCardImg cardData={odds} cardInfo={title==="ANDAR"?arCards:brCards} handleBet={handleBet} data={data}/>
         </div>
        
       </div>

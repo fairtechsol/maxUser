@@ -15,6 +15,10 @@ import Lucky7BResultComponent from "../../lucky7B/desktop/resultModalComponent";
 import Teen1DResultComponent from "../../teenPatti1D/desktop/resultModalComponent";
 import Teen20ResultComponent from "../../teenPatti20/desktop/resultModalComponent";
 import Poker1DayResultComponent from "../../poker1day/desktop/resultModalComponent";
+import TeenOpenResultComponent from "../../teenPattiOpen/desktop/resultModalComponent";
+import TeenTestResultComponent from "../../teenPattiTest/desktop/resultModalComponent";
+import CasinoWarResultComponent from "../../casinoWar/desktop/resultModalComponent";
+import Abj1ResultComponent from "../../abj1/desktop/resultModalComponent";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
@@ -24,6 +28,9 @@ const title = {
   card32: "32 Cards A",
   abj: "Andar Bahar 2",
   teen: "1 Day Teen Patti",
+  teen8: "Open Teen Patti",
+  teen9: "Test Teen Patti",
+  ab20: "Andar Bahar 1",
   poker1Day: "Poker 1 Day"
   // Add other mappings as needed
 };
@@ -46,7 +53,6 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
     }
   }, []);
 
-  // console.log('first',date)
   return (
     <Container style={{ padding: 0 }}>
       <div className="resultModalHeader">
@@ -94,6 +100,14 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Teen1DResultComponent data={data} />
       ) : type === cardGamesType?.dragonTigerOneDay ? (
         <DragonTigerOneDayResultComponent data={data} />
+      ): type === cardGamesType?.teenOpen? (
+        <TeenOpenResultComponent data={data}/>
+      ):  type === cardGamesType?.teenTest ?(
+        <TeenTestResultComponent data={data}/>
+      ):  type === cardGamesType?.casinoWar ?(
+        <CasinoWarResultComponent data={data}/>
+      ):  type === cardGamesType?.andarBahar1 ?(
+        <Abj1ResultComponent data={data}/>
       ) : type === cardGamesType?.poker1Day ? (
           <Poker1DayResultComponent data={data} />
         ) : (

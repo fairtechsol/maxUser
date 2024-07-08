@@ -57,7 +57,7 @@ const Card32BMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, show]);
-
+  
   return (
     <>
       <div>
@@ -145,7 +145,7 @@ const Card32BMobile = () => {
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <BackLay
-                    matchOddsData={dragonTigerDetail?.matchOddsData}
+                    matchOddsData={dragonTigerDetail?.matchOdd}
                     data={dragonTigerDetail}
                   />
                 </div>

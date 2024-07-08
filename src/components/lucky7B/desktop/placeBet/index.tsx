@@ -107,7 +107,6 @@ const PlacedBet = () => {
     };
     fetchData();
   }, []);
-  // console.log("selectedBet", selectedBet);
   useEffect(() => {
     if (success) {
       dispatch(selectedBetAction(null));

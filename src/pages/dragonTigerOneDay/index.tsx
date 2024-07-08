@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/commonComponent/loader";
 import DragonTigerOneDayComponentList from "../../components/dragonTigerOneDay";
 import { socket, socketService } from "../../socketManager";
 import {
@@ -21,6 +20,7 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const DragonTigerOneDay = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -109,7 +109,7 @@ const DragonTigerOneDay = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <DragonTigerOneDayComponentList />;
+  return loading ? <InnerLoader /> : <DragonTigerOneDayComponentList />;
 };
 
 export default DragonTigerOneDay;

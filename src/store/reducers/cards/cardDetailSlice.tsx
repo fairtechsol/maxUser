@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import _ from "lodash";
 import {
   getDragonTigerDetailHorseRacing,
   resultDragonTiger,
   update7BCardMatchRates,
   update7CardMatchRates,
   updateCard32BMatchRates,
-  updateCard32MatchRates, updateCardAbj1Rates, updateCardAbjRates,
+  updateCard32MatchRates,
+  updateCardAbj1Rates,
+  updateCardAbjRates,
   updateCardMatchRates,
   updateDragonTigerLionRates,
   updateDragonTigerOneDayRates,
@@ -13,6 +16,11 @@ import {
   updateProfitLossCards,
   updateTeenPattiMatchRates,
   updateTeenPatti1DMatchRates,
+  updateTeenPattiOpenMatchRates,
+  updateTeenPattiTestMatchRates,
+  casinoWarPattiMatchRates,
+  updateCardRace20Rates,
+  updateCardSuperoverRates,
   updateCardPoker6Rates,
   updateCardPoker1DayRates,
   updateCardPoker20Rates,
@@ -162,31 +170,80 @@ const cardDetail = createSlice({
           playerA,
           playerB,
         };
-      })  
+      })
       .addCase(updateTeenPatti1DMatchRates.fulfilled, (state, action) => {
         const { t1 } = action.payload;
         state.loading = false;
-        
-      
-    
+
         const videoInfo = {
           ...t1[0],
           C4: t1[1].C1,
           C5: t1[1].C2,
-          C6: t1[1].C3
-      };
+          C6: t1[1].C3,
+        };
         const playerA = t1.slice(0, 1);
         const playerB = t1.slice(1, 2);
-        
-  
+
         state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          playerA,
+          playerB,
+        };
+      })
+
+      .addCase(updateTeenPattiOpenMatchRates.fulfilled, (state, action) => {
+        const payload = action?.payload;
+        if (payload) {
+          const { t1, t2 } = payload;
+          state.loading = false;
+          const videoInfo = { ...t1[0] };
+          const players = t2
+            .slice(0, 8)
+            .map((player: any, index: any) => ({
+              [`player${index + 1}`]: player,
+            }))
+            .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
+          const pairsPlus = t2
+            .slice(8, 16)
+            .map((pair: any, index: any) => ({
+              [`pairPlus${index + 1}`]: pair,
+            }))
+            .reduce((acc: any, curr: any) => ({ ...acc, ...curr }), {});
+          state.dragonTigerDetail = {
             ...state.dragonTigerDetail,
             videoInfo,
-            playerA,
-            playerB,
+            players,
+            pairsPlus,
+          };
+        } else {
+          console.error("Action payload is undefined");
+          state.loading = false;
+        }
+      })
+
+      .addCase(updateTeenPattiTestMatchRates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+
+        const videoInfo = { ...t1[0] };
+
+        const sections = [
+          t2.slice(0, 1)[0],
+          t2.slice(1, 2)[0],
+          t2.slice(2, 3)[0],
+          t2.slice(3, 4)[0],
+          t2.slice(4, 5)[0],
+          t2.slice(5, 6)[0],
+        ];
+
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          sections,
         };
-    })
-    
+      })
+
       .addCase(updateCard32MatchRates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
         state.loading = false;
@@ -239,29 +296,28 @@ const cardDetail = createSlice({
           pair,
         };
       })
-      
       .addCase(updateCard32BMatchRates.fulfilled, (state, action) => {
-        const {t1,t2}=action.payload
+        const { t1, t2 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const matchOdd = t2.slice(0, 4);
         const oddEven = t2.slice(4, 12);
-        const redBlack =  [t2[12], t2[13], t2[26]];
+        const redBlack = [t2[12], t2[13], t2[26]];
         const singleCard = t2.slice(14, 24);
         const cardtotal = t2.slice(24, 26);
 
         state.dragonTigerDetail = {
-            ...state.dragonTigerDetail,
-            videoInfo,
-            matchOdd,
-            oddEven,
-            redBlack,
-            singleCard,
-            cardtotal,
+          ...state.dragonTigerDetail,
+          videoInfo,
+          matchOdd,
+          oddEven,
+          redBlack,
+          singleCard,
+          cardtotal,
         };
       })
       .addCase(updateCardAbj1Rates.fulfilled, (state, action) => {
-        const { t1, t2,t3 } = action.payload;
+        const { t1, t2, t3 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const cardInfo = { ...t3[0] };
@@ -275,6 +331,83 @@ const cardDetail = createSlice({
           bahar,
         };
       })
+      .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
+        if (action.payload) {
+          const { t1, t2 } = action.payload;
+          state.loading = false;
+
+          // Extract video info if t1 is present and has elements
+          const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
+
+          // Create an array of players from t2 if t2 is present
+          const players = t2
+            ? t2.map(({ sid, nat, b1, gstatus, min, max }: any) => ({
+                sid,
+                nat,
+                b1,
+                gstatus,
+                min,
+                max,
+              }))
+            : [];
+
+          // Categorize players based on their nat value prefix
+          const categorizedPlayers = players.reduce((acc: any, player: any) => {
+            const category = player.nat.split(" ")[0]; // Extract category prefix
+            if (!acc[category]) acc[category] = [];
+            acc[category].push(player);
+            return acc;
+          }, {});
+
+          // Create chunks of 6 players for each category
+          const chunkedPlayers = Object.values(categorizedPlayers)
+            .map((category: any) => _.chunk(category, 6))
+            .flat();
+
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players: chunkedPlayers,
+          };
+        } else {
+          state.loading = false;
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo: "",
+            players: [],
+          };
+        }
+      })
+      .addCase(updateCardRace20Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const cards = t2.slice(0, 4);
+        const total = t2.slice(4, 6);
+        const win = t2.slice(6, 12);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          cards,
+          total,
+          win,
+        };
+      })
+      .addCase(updateCardSuperoverRates.fulfilled, (state, action) => {
+        const { t1, t2,t3,t4 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const bookmaker = { ...t2 };
+        const fancy = { ...t3 };
+        const fancy1 = { ...t4 };
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          bookmaker,
+          fancy,
+          fancy1,
+        };
+        })
       .addCase(updateCardPoker6Rates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
         state.loading = false;
@@ -329,7 +462,7 @@ const cardDetail = createSlice({
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;
-        state.resultData = [];
+        state.resultData = null;
       })
       .addCase(resultDragonTiger.fulfilled, (state, action) => {
         state.resultData = action.payload;

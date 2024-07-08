@@ -15,12 +15,11 @@ const CardResultBox = ({ data, name, type }: any) => {
     (state: RootState) => state.card
   );
 
-  //console.log("typef",type)
-
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
   };
+
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">
@@ -67,6 +66,18 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? name?.[3]
                     : null}
                 </span>
+              ) : type === "teen20" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: item?.result === "3"? "#ffff33": item?.result === "1" ? "#ff4500" :"#fff",
+                  }}
+                >
+                  {item?.result === "1"
+                    ? name?.[0] : item?.result === "3" ? name?.[2] : item?.result === "0" ? name?.[1]
+                    : null}
+                </span>
               ) : (
                 <span
                   style={{
@@ -102,7 +113,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Body style={{ padding: 0 }}>
-          <ResultComponent data={resultData} setfalse={setLgShow} type={type} />
+          <ResultComponent data={resultData} setfalse={setLgShow} type={"war"} />
         </Modal.Body>
       </Modal>
     </div>

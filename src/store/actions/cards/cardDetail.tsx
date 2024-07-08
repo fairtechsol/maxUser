@@ -56,6 +56,7 @@ export const resultDragonTiger = createAsyncThunk<any, any>(
         `${ApiConstants.CARDS.MATCH.RESULT}/${requestData}`
       );
       if (resp?.data) {
+      
         return resp?.data;
       }
     } catch (error) {
@@ -98,8 +99,23 @@ export const updateTeenPattiMatchRates = createAsyncThunk<any, any>(
   }
 );
 
+
 export const updateTeenPatti1DMatchRates = createAsyncThunk<any, any>(
   "teen/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateTeenPattiOpenMatchRates = createAsyncThunk<any, any>(
+  "teen8/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+); 
+
+export const updateTeenPattiTestMatchRates = createAsyncThunk<any, any>(
+  "teen9/matchRatesUpdate",
   async (data) => {
     return data;
   }
@@ -165,8 +181,20 @@ export const updateCardAbj1Rates = createAsyncThunk<any, any>(
   }
 );
 
+export const casinoWarPattiMatchRates = createAsyncThunk<any, any>(
+  "war/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 export const updateCardPoker6Rates = createAsyncThunk<any, any>(
   "poker6/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+export const updateCardRace20Rates = createAsyncThunk<any, any>(
+  "race20/matchRatesUpdate",
   async (data) => {
     return data;
   }
@@ -174,6 +202,12 @@ export const updateCardPoker6Rates = createAsyncThunk<any, any>(
 
 export const updateCardPoker1DayRates = createAsyncThunk<any, any>(
   "poker1day/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+export const updateCardSuperoverRates = createAsyncThunk<any, any>(
+  "superover/matchRatesUpdate",
   async (data) => {
     return data;
   }

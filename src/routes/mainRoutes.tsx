@@ -4,6 +4,7 @@ import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
 import Cards32 from "../pages/cards32";
 import Lucky7B from "../pages/lucky7B";
+import CasinoWar from "../pages/casinoWar";
 import Poker1day from "../pages/poker1day";
 import Poker20 from "../pages/poker20";
 import Cricket5 from "../pages/cricket5";
@@ -38,10 +39,13 @@ const CasinoReports = Loadable(
   lazy(() => import("../pages/reports/casinoReport"))
 );
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
-const RaceDetail = Loadable(lazy(() => import("../pages/HorseRacingDetails")));
+const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
 const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
 const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
+const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
+const TeenPattiOpen = Loadable(lazy(() => import("../pages/teenPattiOpen")));
 const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
+const Superover = Loadable(lazy(() => import("../pages/superover")));
 const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
 const DragonTigerSecond20 = Loadable(
   lazy(() => import("../pages/dragonSecond20"))
@@ -58,6 +62,7 @@ const Poker6 = Loadable(lazy(() => import("../pages/poker")));
 const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
 const Abj1 = Loadable(lazy(() => import("../pages/abj")));
 const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
+const Race20 = Loadable(lazy(() => import("../pages/race20")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -135,6 +140,21 @@ const MainRoutes = {
       path: "teen",
       element: <TeenPatti1D />,
     },
+    
+    {
+      path: "teen8",
+      element: <TeenPattiOpen />,
+    },
+
+    {
+      path: "teen9",
+      element: <TeenPattiTest />,
+    },
+    
+    {
+      path: "war",
+      element: <CasinoWar/>,
+    },
 
     {
       path: "lucky7-A",
@@ -191,6 +211,14 @@ const MainRoutes = {
     {
       path: "ab20",
       element: <Abj1 />,
+    },
+    {
+      path: "race20",
+      element: <Race20 />,
+    },
+    {
+      path: "superover",
+      element: <Superover />,
     },
     {
       path: "poker6",

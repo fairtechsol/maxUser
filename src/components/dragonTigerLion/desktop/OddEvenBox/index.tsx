@@ -1,13 +1,12 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const OddEven = ({ name, data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = odds?.[0]?.min;
   const max = odds?.[0]?.max;
-  // console.log(data,'first',odds)
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -26,7 +25,6 @@ const OddEven = ({ name, data, odds }: any) => {
         data,
       })
     );
-    console.log("team", team);
   };
   return (
     <>

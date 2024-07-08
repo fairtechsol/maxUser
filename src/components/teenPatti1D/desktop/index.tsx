@@ -28,8 +28,7 @@ const TeenPattiDesktop = () => {
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
-
-  console.log(dragonTigerDetail?.videoInfo, "ghvf");
+  
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -62,7 +61,8 @@ const TeenPattiDesktop = () => {
     if (parsedValue !== 0) {
       parsedValue += 1;
     }
-    return parsedValue.toFixed(2);
+    //return parsedValue.toFixed(2);
+    return parsedValue;
   };
 
   const handleBet = (item: any, type: any) => {
@@ -84,7 +84,6 @@ const TeenPattiDesktop = () => {
         dragonTigerDetail,
       })
     );
-    // console.log('team',team)
   };
 
   useEffect(() => {
@@ -202,7 +201,41 @@ const TeenPattiDesktop = () => {
                     <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                       {playerA?.[0]?.nat}
                     </span>
-                    <span>0</span>
+                    <span
+                      className={
+                        dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                            ]
+                            ? JSON.parse(
+                                dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                ]
+                              )["playera"] > 0
+                              ? "color-green"
+                              : JSON.parse(
+                                  dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                  ]
+                                )["playera"] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {dragonTigerDetail?.profitLoss
+                        ? dragonTigerDetail?.profitLoss[
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                          ]
+                          ? JSON.parse(
+                              dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                              ]
+                            )["playera"]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                   <div
                     className={
@@ -258,7 +291,41 @@ const TeenPattiDesktop = () => {
                     <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                       {playerB?.[0]?.nat}
                     </span>
-                    <span>0</span>
+                    <span
+                      className={
+                        dragonTigerDetail?.profitLoss
+                          ? dragonTigerDetail?.profitLoss[
+                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                            ]
+                            ? JSON.parse(
+                                dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                ]
+                              )["playerb"] > 0
+                              ? "color-green"
+                              : JSON.parse(
+                                  dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                  ]
+                                )["playerb"] < 0
+                              ? "color-red"
+                              : ""
+                            : ""
+                          : ""
+                      }
+                    >
+                      {dragonTigerDetail?.profitLoss
+                        ? dragonTigerDetail?.profitLoss[
+                            `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                          ]
+                          ? JSON.parse(
+                              dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                              ]
+                            )["playerb"]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                   <div
                     className={
@@ -294,7 +361,9 @@ const TeenPattiDesktop = () => {
                           : handleBet(playerB?.[0], "LAY")
                       }
                     >
-                      <span className="f12-b">{playerB?.[0]?.l1}</span>
+                      <span className="f12-b">
+                        {updatedValue(playerB?.[0]?.l1)}
+                      </span>
                       {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss
@@ -356,7 +425,7 @@ const TeenPattiDesktop = () => {
                 <MyBet />
               </Col>
               <Col>
-                <div className="casino-title" style={{ position: "relative" }}>
+                {/* <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table">
@@ -377,7 +446,7 @@ const TeenPattiDesktop = () => {
                       ))}
                     </tbody>
                   </Table>
-                </div>
+                </div> */}
                 <RulesModal show={show} setShow={setShow} rule={tprules} />
               </Col>
             </Row>

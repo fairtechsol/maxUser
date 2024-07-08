@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Col, Container, Row, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
@@ -11,6 +11,9 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import ContactAdmin from "../../commonComponent/contactAdmin";
+import BetTableHeader from "../../commonComponent/betTableHeader";
+import { formatDate } from "../../../utils/dateUtils";
+import service from "../../../service";
 
 const markets = [
   {
@@ -54,6 +57,8 @@ const markets = [
 const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
   const [marketActive, setMarketActive] = useState("fancy");
+  const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
+  const [errorCount, setErrorCount] = useState<number>(0);
 
   const { matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
@@ -63,6 +68,38 @@ const MobileGameDetail = () => {
   const handleMarket = (type: string) => {
     setMarketActive(type);
   };
+
+  const getScoreBoard = async (marketId: string) => {
+    try {
+      const response: any = await service.get(
+        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        // `https://scoreboard.fairgame7.com/score/getMatchScore/${marketId}`
+      );
+      if (response) {
+        setLiveScoreBoardData(response);
+        setErrorCount(0);
+      }
+    } catch (e: any) {
+      console.log("Error:", e?.message);
+      setErrorCount((prevCount: number) => prevCount + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (matchDetails?.marketId) {
+      let intervalTime = 500;
+      if (errorCount >= 5 && errorCount < 10) {
+        intervalTime = 60000;
+      } else if (errorCount >= 10) {
+        intervalTime = 600000;
+      }
+      const interval = setInterval(() => {
+        getScoreBoard(matchDetails?.marketId);
+      }, intervalTime);
+
+      return () => clearInterval(interval);
+    }
+  }, [matchDetails?.marketId, errorCount]);
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -88,7 +125,7 @@ const MobileGameDetail = () => {
               {index == 0 ? (
                 <Container fluid>
                   <Row>
-                    {/* <Col className="g-0" md={12}>
+                    <Col className="g-0" md={12}>
                       <BetTableHeader
                         customClass="py-2"
                         customTextClass="title-12"
@@ -99,7 +136,8 @@ const MobileGameDetail = () => {
                           </span>
                         }
                       />
-                    </Col> */}
+                       <div style={{width:"100%",height:"auto",backgroundColor:"#000"}} dangerouslySetInnerHTML={{__html: liveScoreBoardData ?liveScoreBoardData:""}}></div>
+                    </Col>
                     {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable

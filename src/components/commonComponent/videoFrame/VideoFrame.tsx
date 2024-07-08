@@ -1,9 +1,16 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import FlipClock from "./FlipClock";
 import isMobile from "../../../utils/screenDimension";
 
 const VideoFrame = ({ result, time, id }: any) => {
   // const [showModal, setModalOpen] = useState(false);
+  useEffect(() => {
+    const element = document.getElementById("middleView-playerDiv");
+    if (element) {
+      element.style.display = "none !important";
+    }
+  }, []);
+  
 
   return (
     <>
@@ -47,7 +54,7 @@ const VideoFrame = ({ result, time, id }: any) => {
                 // frameborder="0"
                 // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy={"strict-origin-when-cross-origin"}
-                // allowfullscreen
+                allowFullScreen
               ></iframe>
             </div>
             {time && (

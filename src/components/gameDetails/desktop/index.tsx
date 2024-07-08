@@ -11,11 +11,14 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import { IoInformationCircle } from "react-icons/io5";
 import CustomModal from "../../commonComponent/modal";
+import service from "../../../service";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
+  const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
+  const [errorCount, setErrorCount] = useState<number>(0);
 
   const { matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
@@ -35,6 +38,39 @@ const DesktopGameDetail = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const getScoreBoard = async (marketId: string) => {
+    try {
+      const response: any = await service.get(
+        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        // `https://scoreboard.fairgame7.com/score/getMatchScore/${marketId}`
+      );
+      if (response) {
+        setLiveScoreBoardData(response);
+        setErrorCount(0);
+      }
+    } catch (e: any) {
+      console.log("Error:", e?.message);
+      setErrorCount((prevCount: number) => prevCount + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (matchDetails?.marketId) {
+      let intervalTime = 500;
+      if (errorCount >= 5 && errorCount < 10) {
+        intervalTime = 60000;
+      } else if (errorCount >= 10) {
+        intervalTime = 600000;
+      }
+      const interval = setInterval(() => {
+        getScoreBoard(matchDetails?.marketId);
+      }, intervalTime);
+
+      return () => clearInterval(interval);
+    }
+  }, [matchDetails?.marketId, errorCount]);
+
   return (
     <Container fluid>
       <Row>
@@ -52,6 +88,7 @@ const DesktopGameDetail = () => {
                     </span>
                   }
                 />
+                <div style={{width:"100%",height:"auto",backgroundColor:"#000"}} dangerouslySetInnerHTML={{__html: liveScoreBoardData ?liveScoreBoardData:""}}></div>
               </Col>
 
               {matchDetails?.matchOdd?.isActive && (

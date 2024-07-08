@@ -3,13 +3,13 @@ import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const CardBox = ({title, odds, data,bgColor }: any) => {
+const CardBox = ({title, odds, data,cards,bgColor }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet=(item:any)=>{
     let team ={
       "bettingType": "BACK",
       "matchId": data?.id,
-      "odd": item?.b1,
+      "odd": item?.rate,
       "stake": 0,
       "matchBetType": "matchOdd",
       "betOnTeam":item?.nat,
@@ -23,8 +23,9 @@ const CardBox = ({title, odds, data,bgColor }: any) => {
         data,
       })
     );
-    console.log('team',team)
   }
+  const arCards = cards?.ar?.split(",");
+  const brCards = cards?.br?.split(",");
   return (
     <>
       <div className="abjcardContainer" style={{backgroundColor:bgColor,border:"0.5px solid #000"}} >
@@ -34,7 +35,7 @@ const CardBox = ({title, odds, data,bgColor }: any) => {
           </span>
         </div>
         <div className="p-3">
-          <CommonCardImg cardData={odds} cardInfo={data?.cardInfo} handleBet={handleBet} data={data}/>
+          <CommonCardImg cardData={odds} cardInfo={title==="ANDAR"?arCards:brCards} handleBet={handleBet} data={data}/>
         </div>
        
       </div>

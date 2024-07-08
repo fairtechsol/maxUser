@@ -36,7 +36,7 @@ import {
   teenplayer,
   testteen,
 } from "../../assets/images";
-import Poker1day from "../../pages/poker1day";
+
 export const ApiConstants = {
   LOGIN: "auth/login",
   LOGOUT: "auth/logout",
@@ -264,6 +264,9 @@ export const cardGamesType: any = {
   teenTest: "teen9",
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
+  casinoWar:"war",
+  race20:"race20",
+  superover:"superover",
   poker6: "poker6",
   poker1Day: "poker",
   poker20: "poker20",
@@ -285,6 +288,9 @@ export const cardGamesId: any = {
   teenTest: 3048,
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
+  casinoWar:3038,
+  race20:3036,
+  superover:3060,
   poker: 30500,
   poker1Day: 3051,
   poker20: 3052,
@@ -304,6 +310,8 @@ export const navigateToGameDetail = {
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",
+  [cardGamesType.race20]: "race20",
+  [cardGamesType.superover]: "superover",
   [cardGamesType.poker6]: "poker6",
   [cardGamesType.poker1Day]: "poker",
   [cardGamesType.poker20]: "poker20",
@@ -1356,7 +1364,7 @@ export const casinoIcons = [
     name: "Ball By Ball",
   },
   {
-    url: "",
+    url: "/superover",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
     name: "Super Over",
@@ -1446,7 +1454,7 @@ export const casinoIcons = [
     name: "Test Teenpatti",
   },
   {
-    url: "",
+    url: "/teen8",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "Open Teenpatti",
@@ -1482,7 +1490,7 @@ export const casinoIcons = [
     name: "20-20 Poker",
   },
   {
-    url: "",
+    url: "/ab20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
     name: "Andar Bahar",
@@ -1594,14 +1602,15 @@ export const card3 = {
       name: "1 DAY TEENPATTI",
     },
     {
-      url: "/contact-admin",
+      url: "",
       imgSrc: testteen,
       name: "TEST TEENPATTI",
     },
     {
-      url: "/contact-admin",
+      url: "/teen8",
       imgSrc: teenplayer,
       name: "OPEN TEENPATTI",
+
     },
   ],
   lucky7: [
@@ -1623,7 +1632,7 @@ export const card3 = {
       name: "32cards A",
     },
     {
-      url: "/32cards-B",
+      url: "",
       imgSrc: cards32B,
       name: "32cards B",
     },
