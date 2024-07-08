@@ -193,3 +193,9 @@ export const updateCardRace20Rates = createAsyncThunk<any, any>(
     return data;
   }
 );
+export const updateCardSuperoverRates = createAsyncThunk<any, any>(
+  "superover/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);

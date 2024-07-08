@@ -98,7 +98,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -259,6 +259,7 @@ export const cardGamesType: any = {
   lucky7B: "lucky7eu",
   casinoWar:"war",
   race20:"race20",
+  superover:"superover",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -276,7 +277,8 @@ export const cardGamesId: any = {
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
   casinoWar:3038,
-  race20:3036
+  race20:3036,
+  superover:3060,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -293,6 +295,7 @@ export const navigateToGameDetail = {
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",
   [cardGamesType.race20]: "race20",
+  [cardGamesType.superover]: "superover",
 }
 
 export const baseUrls = {
@@ -1342,7 +1345,7 @@ export const casinoIcons = [
     name: "Ball By Ball",
   },
   {
-    url: "",
+    url: "/superover",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
     name: "Super Over",

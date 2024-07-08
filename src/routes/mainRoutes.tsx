@@ -42,6 +42,7 @@ const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
 const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
 const TeenPattiOpen = Loadable(lazy(() => import("../pages/teenPattiOpen")));
 const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
+const Superover = Loadable(lazy(() => import("../pages/superover")));
 const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
 const DragonTigerSecond20 = Loadable(
   lazy(() => import("../pages/dragonSecond20"))
@@ -210,6 +211,10 @@ const MainRoutes = {
     {
       path: "race20",
       element: <Race20 />,
+    },
+    {
+      path: "superover",
+      element: <Superover />,
     },
     {
       path: "*",

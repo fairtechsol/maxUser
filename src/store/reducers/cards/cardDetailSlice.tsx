@@ -20,6 +20,7 @@ import {
   updateTeenPattiTestMatchRates,
   casinoWarPattiMatchRates,
   updateCardRace20Rates,
+  updateCardSuperoverRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -386,6 +387,21 @@ const cardDetail = createSlice({
           cards,
           total,
           win,
+        };
+      })
+      .addCase(updateCardSuperoverRates.fulfilled, (state, action) => {
+        const { t1, t2,t3,t4 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const superover = { ...t2 };
+        const fancy = { ...t3 };
+        const fancy1 = { ...t4 };
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          superover,
+          fancy,
+          fancy1,
         };
       })
       .addCase(resultDragonTiger.pending, (state) => {
