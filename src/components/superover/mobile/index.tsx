@@ -12,6 +12,7 @@ import Dragon20Result from "../desktop/dragonCard";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import Bookmaker from "../desktop/bookmaker";
 import MyBet from "./myBet";
+import ScoreBoard from "../../commonComponent/scoreBoard";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -23,7 +24,7 @@ const SuperoverMobile = () => {
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
 
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,scoreBoardData } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -107,6 +108,7 @@ const SuperoverMobile = () => {
             </span>
           </div>
         </div>
+       
         {!activeTab ? (
           <>
             <div
@@ -120,6 +122,7 @@ const SuperoverMobile = () => {
                     </span>
                   </div>
                 </div>
+                <div>{scoreBoardData?.data && (<ScoreBoard data={scoreBoardData?.data}/>)}</div>
                 <div
                   style={{
                     width: "100%",
@@ -137,7 +140,8 @@ const SuperoverMobile = () => {
                 </div>
               </div>
             </div>
-            <div style={{ height: "760px", marginLeft: "5px" ,marginTop:"10px" }}>
+           
+            <div style={{ height: "760px", marginLeft: "5px" ,marginTop:"8rem" }}>
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <Bookmaker

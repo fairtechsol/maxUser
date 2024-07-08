@@ -20,7 +20,7 @@ const Cricket5Mobile = ({bookmakerData,fancyData}: any) => {
   // const [videoFrameId, setVideoFrameId] = useState(
   //   `${cardUrl}${cardGamesId?.card32}`
   // );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,scoreBoardData } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
   const [showFancy, setShowFancy] = useState(false);
   useEffect(() => {
@@ -124,7 +124,7 @@ const Cricket5Mobile = ({bookmakerData,fancyData}: any) => {
                 </span>
               </div>
             </div>
-            <div><ScoreBoard data={scorecardData}/></div>
+            <div>{scoreBoardData?.data && (<ScoreBoard data={scoreBoardData?.data}/>)}</div>
             <div
               style={{
                 width: "100%",
@@ -141,7 +141,7 @@ const Cricket5Mobile = ({bookmakerData,fancyData}: any) => {
             </div>
           </div>
           <div style={{ height: "600px" }}>
-            <div style={{marginTop: "12rem"}}>
+            <div style={{marginTop: "10rem"}}>
             <MarketComponent 
              bookmakerData={bookmakerData}
               fancyData={fancyData} 

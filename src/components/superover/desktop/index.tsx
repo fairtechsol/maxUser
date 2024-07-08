@@ -174,7 +174,7 @@ const SuperoverDesktop = () => {
           <div style={{ height: "760px", marginLeft: "5px" }}>
             <div
               className="d-sm-flex flex-row justify-content-around align-items-center"
-              style={{ width: "100%", marginTop: "4%", gap: "10px" }}
+              style={{ width: "100%", marginTop: "7rem", gap: "10px" }}
             >
               <div className="w-100">
                 <Bookmaker
