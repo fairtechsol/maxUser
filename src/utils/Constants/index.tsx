@@ -22,6 +22,12 @@ import {
   cards32B,
   abjlist2,
   abjlist,
+  p6,
+  p1d,
+  p20,
+  ballbyball,
+  superover,
+  crick5,
 } from "../../assets/images";
 import {
   dayteen,
@@ -30,7 +36,8 @@ import {
   teenplayer,
   testteen,
 } from "../../assets/images";
-export const ApiConstants = { 
+
+export const ApiConstants = {
   LOGIN: "auth/login",
   LOGOUT: "auth/logout",
   CHANGEPASSWORD: "user/changePassword",
@@ -260,6 +267,11 @@ export const cardGamesType: any = {
   casinoWar:"war",
   race20:"race20",
   superover:"superover",
+  poker6: "poker6",
+  poker1Day: "poker",
+  poker20: "poker20",
+  card3judge: "3cardj",
+  cricketv3:"cricketv3"
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -279,6 +291,10 @@ export const cardGamesId: any = {
   casinoWar:3038,
   race20:3036,
   superover:3060,
+  poker: 30500,
+  poker1Day: 3051,
+  poker20: 3052,
+  cricketv3: 3042,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -296,6 +312,9 @@ export const navigateToGameDetail = {
   [cardGamesType.andarBahar1]: "ab20",
   [cardGamesType.race20]: "race20",
   [cardGamesType.superover]: "superover",
+  [cardGamesType.poker6]: "poker6",
+  [cardGamesType.poker1Day]: "poker",
+  [cardGamesType.poker20]: "poker20",
 }
 
 export const baseUrls = {
@@ -1363,7 +1382,7 @@ export const casinoIcons = [
     name: "Casino Queen",
   },
   {
-    url: "",
+    url: "/cricketv3",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
     name: "5Five Cricket",
@@ -1453,19 +1472,19 @@ export const casinoIcons = [
     name: "20-20 Teenpatti",
   },
   {
-    url: "",
+    url: "/poker6",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "6 Player Poker",
   },
   {
-    url: "",
+    url: "/poker",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "1 Day Poker",
   },
   {
-    url: "",
+    url: "/poker20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "20-20 Poker",
@@ -1501,7 +1520,7 @@ export const casinoIcons = [
     name: "32 Cards A",
   },
   {
-    url: "",
+    url: "/32cards-B",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
     name: "32 Cards B",
@@ -1628,6 +1647,40 @@ export const card3 = {
       url: "/ab20",
       imgSrc: abjlist,
       name: "ANDAR BAHAR",
+    },
+  ],
+  poker: [
+    {
+      url: "/poker6",
+      imgSrc: p6,
+      name: "POKER 6",
+    },
+    {
+      url: "/poker",
+      imgSrc: p1d,
+      name: "POKER 1 DAY",
+    },
+    {
+      url: "/poker20",
+      imgSrc: p20,
+      name: "POKER 20 20",
+    },
+  ],
+  sportCasino: [
+    {
+      url: "/",
+      imgSrc: ballbyball,
+      name: "BALL BY BALL",
+    },
+    {
+      url: "/",
+      imgSrc: superover,
+      name: "SUPER OVER",
+    },
+    {
+      url: "/cricketv3",
+      imgSrc: crick5,
+      name: "5 5 Cricket",
     },
   ],
 };

@@ -21,6 +21,10 @@ import {
   casinoWarPattiMatchRates,
   updateCardRace20Rates,
   updateCardSuperoverRates,
+  updateCardPoker6Rates,
+  updateCardPoker1DayRates,
+  updateCardPoker20Rates,
+  updateCricket5MatchRates
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -402,6 +406,57 @@ const cardDetail = createSlice({
           bookmaker,
           fancy,
           fancy1,
+        };
+        })
+      .addCase(updateCardPoker6Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const handsData = t2.slice(0, 6);
+        const patternData = t2.slice(6, 15);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          handsData,
+          patternData,
+        };
+      })
+      .addCase(updateCardPoker1DayRates.fulfilled, (state, action) => {
+        const { t1, t2, t3} = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const oddsData = {...t2};
+        const playersBonusPair = {...t3};
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          oddsData,
+          playersBonusPair,
+        };
+      })
+      .addCase(updateCardPoker20Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const odds = t2.slice(0, 18);
+
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          odds,
+        };
+      })
+      .addCase(updateCricket5MatchRates.fulfilled, (state, action) => {
+        const { t1, t2, t3 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const odds = {...t2};
+        const fancy = {...t3};
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          odds,
+          fancy
         };
       })
       .addCase(resultDragonTiger.pending, (state) => {

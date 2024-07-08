@@ -5,6 +5,9 @@ import Loadable from "../utils/loadable";
 import Cards32 from "../pages/cards32";
 import Lucky7B from "../pages/lucky7B";
 import CasinoWar from "../pages/casinoWar";
+import Poker1day from "../pages/poker1day";
+import Poker20 from "../pages/poker20";
+import Cricket5 from "../pages/cricket5";
 // import Home from "../pages/home";
 // import GameDetail from "../pages/gameDetails";
 // import FootballGameDetail from "../pages/otherGameDetails";
@@ -55,6 +58,7 @@ const DragonTigerOneDay = Loadable(
 );
 const CardList3 = Loadable(lazy(() => import("../pages/cardList3")));
 const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
+const Poker6 = Loadable(lazy(() => import("../pages/poker")));
 const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
 const Abj1 = Loadable(lazy(() => import("../pages/abj")));
 const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
@@ -215,6 +219,22 @@ const MainRoutes = {
     {
       path: "superover",
       element: <Superover />,
+    },
+    {
+      path: "poker6",
+      element: <Poker6 />,
+    },
+    {
+      path: "poker",
+      element: <Poker1day />,
+    },
+    {
+      path: "poker20",
+      element: <Poker20 />,
+    },
+    {
+      path: "cricketv3",
+      element: <Cricket5 />,
     },
     {
       path: "*",
