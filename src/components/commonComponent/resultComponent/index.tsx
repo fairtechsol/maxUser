@@ -14,7 +14,7 @@ import Lucky7ResultComponent from "../../lucky7/desktop/resultModalComponent";
 import Lucky7BResultComponent from "../../lucky7B/desktop/resultModalComponent";
 import Teen1DResultComponent from "../../teenPatti1D/desktop/resultModalComponent";
 import Teen20ResultComponent from "../../teenPatti20/desktop/resultModalComponent";
-import Poker1DayResultComponent from "../../cricket5/desktop/resultModalComponent";
+import Poker1DayResultComponent from "../../poker1day/desktop/resultModalComponent";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
