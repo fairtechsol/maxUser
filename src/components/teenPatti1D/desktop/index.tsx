@@ -263,12 +263,7 @@ const TeenPattiDesktop = () => {
                       <span className="f10-b">{playerA?.[0]?.bs1}</span>
                     </div>
                     <div
-                      className={`teenPatti-table-item ${
-                        // playerA?.[0]?.gstatus === "SUSPENDED"
-                        //   ? "suspended"
-                        //   : ""
-                        ""
-                      }`}
+                      className={`teenPatti-table-item`}
                       style={{ width: "50%", background: "#f9c9d4" }}
                       onClick={() =>
                         playerA?.[0]?.gstatus === "SUSPENDED"
@@ -358,13 +353,7 @@ const TeenPattiDesktop = () => {
                       <span className="f10-b">{playerB?.[0]?.bs1}</span>
                     </div>
                     <div
-                      className={`teenPatti-table-item ${
-                        // playerB?.[0]?.gstatus != "0" &&
-                        // playerB?.[1]?.gstatus === "0"
-                        //   ? "suspended"
-                        //   : ""
-                        ""
-                      }`}
+                      className={`teenPatti-table-item`}
                       style={{ width: "50%", background: "#f9c9d4" }}
                       onClick={() =>
                         playerB?.[1]?.gstatus === "0"

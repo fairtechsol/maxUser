@@ -1,0 +1,330 @@
+@import "/src/assets/variable.scss";
+
+@keyframes winnerbox {
+  0% {
+      box-shadow: 0 0 0 0 rgba(29, 127, 30, 0.6);
+  }
+
+  70% {
+      box-shadow: 0 0 0 10px rgba(29, 127, 30, 0);
+  }
+
+  100% {
+      box-shadow: 0 0 0 0 rgba(29, 127, 30, 0);
+  }
+}
+.horse-time-detail span {
+  position: relative;
+  background: #ffc742;
+  color: #000;
+  padding: 2px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  margin-right: 5px;
+  cursor: pointer;
+  // position: relative;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.horse-time-detail span.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-right: 10px solid transparent;
+  border-top: 10px solid green;
+}
+.dt20resultModal{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+.dt20resultCardContainer{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.dt20CommonText{
+  font-size: 16px;
+  font-weight: 400;
+  color: #a2a2a2;
+}
+.dt20CommonText-2{
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  margin-left: 10px;
+}
+.casino-winner-icon{
+  // font-size: 26px;
+  box-shadow: 0 0 0 #FFC742;
+  animation: winnerbox 1.5s infinite;;
+  border-radius: 50%;
+  color: #169733;
+}
+// .match-list-tabs {
+//   border-right: 1px solid $secondary !important;
+//   border-radius: 0px !important;
+//   background-color: $gray;
+//   // padding: 2px 10px;
+//   &:hover {
+//     border-right: 1px solid $secondary !important;
+//   }
+//   &.active {
+//     background-color: $secondary !important;
+//     border-color: transparent !important ;
+//   }
+// }
+
+// .navtem {
+//   padding: 0px !important;
+//   margin-top: 10px !important;
+// }
+
+.match-tabs {
+  margin:  0 !important;
+  border-right: 1px solid $secondary !important;
+  border-radius: 0px !important;
+  background-color: $gray;
+  &:hover {
+      border-right: 1px solid $secondary !important;
+  }
+  &.active {
+      background-color: $secondary !important;
+      border-color: transparent !important ;
+  }
+}
+
+.tab-content > .active {
+  display: block;
+}
+.coupon-card {
+  border-radius: 0 0 2px 2px;
+}
+.table {
+  margin-bottom: 0 !important;
+  // background-color: #f7f7f7
+}
+.coupon-table tr {
+  margin: 0 !important;
+}
+.coupon-table tr td {
+  padding: 0;
+  vertical-align: middle;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+.table.coupon-table {
+  margin-bottom: 0;
+  border-collapse: collapse;
+}
+
+.table.coupon-table td {
+  padding: 3px;
+}
+.text-dark {
+  font-size: 12px;
+  padding: 0 2px;
+}
+.table.coupon-table tr {
+  margin-bottom: 0;
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.horse-time-detail {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  // padding: 5px 5px 0 5px;
+}
+.horse-time-detail a {
+  // margin-bottom: 0;
+  display: flex;
+}
+.navi-link {
+  width: 100%;
+}
+.navi-item {
+  max-height: 8%;
+}
+
+.navi-tabs .nav-link.active {
+  flex: 1 0 10%;
+  background-color: #ffc742;
+  color: #000;
+}
+.navi-tabs .navi-item {
+  margin: 0;
+  background-color: #dddddd;
+}
+.navi-tabs .navi-item.active {
+  margin: 0;
+  background-color: #ffc742 !important;
+}
+
+.navi-tabs .navi-link {
+  padding: 0; /* Remove padding from Nav.Link */
+  margin: 0; /* Remove margin from Nav.Link */
+}
+.tiePairContainer{
+  width: 100%;
+  background-color: #eee;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.tiePairRateBoxMain{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+}
+.dtlTitle{
+  width: 60%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom:0.1px solid #c7c8ca;
+  padding: 5px;
+  font-weight: 600;
+  color: #000;
+}
+.dtlsubTitle{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom:0.1px solid #c7c8ca;
+  border-right: 0.1px solid #c7c8ca;
+  font-weight: 600;
+  color: #000;
+}
+.card32bTitle{
+  width: 60%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom:0.1px solid #c7c8ca;
+  padding: 5px;
+  font-weight: 600;
+  color: #000;
+}
+.card32bsubTitle{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom:0.1px solid #c7c8ca;
+  border-right: 0.1px solid #c7c8ca;
+  font-weight: 600;
+  color: #000;
+}
+.cardNumberTitle{
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom:0.1px solid #c7c8ca;
+  padding: 5px;
+  font-weight: 600;
+  color: #000;
+}
+.lay-BackGround{
+  background-color: #faa9ba;
+}
+.back-BackGround{
+  background-color: #72bbef;
+}
+.flex-justify-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.commonButtonBoxContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+.suspended:after {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Font Awesome 5 Free";
+  content: "\f023";
+  font-weight: 900;
+  font-size: 18px;
+  top: 0;
+}
+.marketHeader{
+  width: 100%;
+  background-color: #ffc742d9;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+}
+.boxContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #eee;
+  padding-left: 5px;
+  border-bottom: 0.5px solid #c7c8ca;
+}
+.blboxes{
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+}
+.rateText{
+  font-size: 14px;
+  color: #000;
+  text-align: center;
+}
+.horseRacingTabHeader{
+  width: 100%;
+  height: 10%;
+  background-color: #ffc742;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 8px;
+}
+// .horseRacingTab .nav-link{
+//   margin: 0 !important;
+// }
+.super-over-rule img {
+  height: 40px;
+}
+.super-over-rule .table-over th, .table-over td {
+  padding: 2px 8px;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .tabs-navs .nav-link {
+    flex: 1 0 10%;
+  }
+}

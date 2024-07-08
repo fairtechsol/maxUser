@@ -141,7 +141,7 @@ const Card32BMobile = () => {
                 </div>
               </div>
             </div>
-            <div style={{ height: "760px" }}>
+            <div style={{ height: "840px" }}>
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <BackLay
