@@ -93,7 +93,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         <div className="w-100 d-sm-flex flex-row" style={{ height: "35px" }}>
           <div className="dtlTitle">
             {" "}
-            <div style={{ width: "40%", textAlign: "start", height: "40px" }}>
+            <div style={{ width: "40%" }}>
               <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"

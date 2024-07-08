@@ -89,7 +89,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
           <div className="dtlTitle">
             {" "}
-            <div style={{ width: "30%", textAlign: "start", height: "40px" }}>
+            <div style={{ width: "30%" }}>
               <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
