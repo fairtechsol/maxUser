@@ -108,6 +108,7 @@
 }
 .table {
   margin-bottom: 0 !important;
+  // background-color: #f7f7f7
 }
 .coupon-table tr {
   margin: 0 !important;
@@ -314,6 +315,13 @@
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }
+.super-over-rule img {
+  height: 40px;
+}
+.table th, .table td {
+  padding: 2px 8px;
+  vertical-align: middle;
+}
 
 @media (max-width: 768px) {
   .tabs-navs .nav-link {

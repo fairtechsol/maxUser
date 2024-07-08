@@ -1,8 +1,24 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { card32rules } from "../../../assets/images";
+import {
+  ball0,
+  ball1,
+  ball2,
+  ball3,
+  ball4,
+  ball6,
+  ballW,
+  card32rules,
+  img10,
+  img2,
+  img3,
+  img4,
+  img6,
+  imgA,
+  imgK,
+} from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -73,6 +89,45 @@ const SuperoverDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  const rulesData = [
+    {
+      cardImage: imgA,
+      count: 5,
+      valueImage: ball0,
+    },
+    {
+      cardImage: img2,
+      count: 5,
+      valueImage: ball1,
+    },
+    {
+      cardImage: img3,
+      count: 5,
+      valueImage: ball2,
+    },
+    {
+      cardImage: img4,
+      count: 5,
+      valueImage: ball3,
+    },
+    {
+      cardImage: img6,
+      count: 5,
+      valueImage: ball4,
+    },
+    {
+      cardImage: img10,
+      count: 5,
+      valueImage: ball6,
+    },
+    {
+      cardImage: imgK,
+      count: 5,
+      valueImage: ballW,
+      valueText: "Wicket",
+    },
+  ];
 
   return (
     <div>
@@ -156,6 +211,49 @@ const SuperoverDesktop = () => {
               </Col>
               <Col md={12}>
                 <MyBet />
+              </Col>
+              <Col>
+                <div className="sidebar-box place-bet-container super-over-rule">
+                  <div className="marketHeader">
+                    ENGLAND vs RSA Inning's Card Rules
+                  </div>
+                  <div className="table-responsive">
+                    <Table className="table">
+                      <thead>
+                        <tr>
+                          <th>Cards</th>
+                          <th className="text-center">Count</th>
+                          <th className="text-end">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rulesData.map((rule, index) => (
+                          <tr key={index}>
+                            <td>
+                              <img
+                                src={rule.cardImage}
+                                alt="Card"
+                                className="ms-2"
+                              />
+                              <span className="ms-2">X</span>
+                            </td>
+                            <td className="text-center">{rule.count}</td>
+                            <td className="text-end">
+                              {rule.valueText ? (
+                                <span>
+                                  {rule.valueText}
+                                  <img src={rule.valueImage} alt="Value" />
+                                </span>
+                              ) : (
+                                <img src={rule.valueImage} alt="Value" />
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div>
+                </div>
               </Col>
             </Row>
           </Container>

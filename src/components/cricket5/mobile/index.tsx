@@ -9,6 +9,7 @@ import { handleRoundId } from "../../../utils/formatMinMax";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Crick5Result from "../desktop/cric5Card";
 import MarketComponent from "./betTable";
+import ScoreBoard from "../../commonComponent/scoreBoard";
 
 const Cricket5Mobile = ({bookmakerData,fancyData}: any) => {
 
@@ -49,6 +50,15 @@ const Cricket5Mobile = ({bookmakerData,fancyData}: any) => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  const scorecardData = {
+    teams: [
+      { name: 'AUS', score: '86-2 (5.0)' },
+      { name: 'IND', score: '63-1 (3.2)', crr: '18.90', rr: '14.40' }
+    ],
+    status: 'IND Needed 24 runs from 10 balls',
+    ballByBall: ['4', '0', '6', '1', '3', '6']
+  };
   return (
     <>
     <div>
@@ -101,6 +111,7 @@ const Cricket5Mobile = ({bookmakerData,fancyData}: any) => {
           </span>
         </div>
       </div>
+     
       {!activeTab ? (
         <div
           style={{ width: "100%", display: "flex", flexDirection: "column" }}
@@ -113,6 +124,7 @@ const Cricket5Mobile = ({bookmakerData,fancyData}: any) => {
                 </span>
               </div>
             </div>
+            <div><ScoreBoard data={scorecardData}/></div>
             <div
               style={{
                 width: "100%",
@@ -129,7 +141,7 @@ const Cricket5Mobile = ({bookmakerData,fancyData}: any) => {
             </div>
           </div>
           <div style={{ height: "600px" }}>
-            <div className="mt-5">
+            <div style={{marginTop: "12rem"}}>
             <MarketComponent 
              bookmakerData={bookmakerData}
               fancyData={fancyData} 
