@@ -15,7 +15,7 @@ const typeToTitle: { [key: string]: string } = {
 
 const CardList3 = () => {
   const { type } = useParams<{ type: string }>();
-
+ 
   if (!type || !(type in card3)) {
     return <div>Invalid game</div>;
   }

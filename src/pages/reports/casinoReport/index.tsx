@@ -45,6 +45,10 @@ const cardGames = [
     label: "Open Teen Patti",
   },
   {
+    value: "teen9",
+    label: "Test Teen Patti",
+  },
+  {
     value: "card32",
     label: "32 Cards - A",
   },
@@ -84,6 +88,7 @@ const CasinoReports = () => {
 
   const { cardReport } = useSelector((state: RootState) => state.user.report);
   const { resultData } = useSelector((state: RootState) => state.card);
+  
   
   const handleResult = (id: any) => {
     setLgShow(true);

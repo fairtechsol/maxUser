@@ -12,20 +12,34 @@ interface Props {
 
 const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
-  const playerA = resultCards?.filter(
-    (_: any, index: number) => index % 2 === 0
+  const Tiger = resultCards?.filter(
+    (_: any, index: number) => index % 3 === 0
   );
-  const playerB = resultCards?.filter(
-    (_: any, index: number) => index % 2 !== 0
+  const Lion = resultCards?.filter(
+    (_: any, index: number) => index % 3 === 1
   );
- 
+  
+  const Dragon = resultCards?.filter(
+    (_: any, index: number) => index % 3 === 2
+  );
+
+  console.log("result", data);
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="flex-row justify-content-around" style={{display:"flex"}}>
+      <div
+        className="flex-row justify-content-around"
+        style={{ display: "flex" }}
+      >
         <div className="teen20resultCardContainer mb-3">
-          <span className="fs-5">Player A</span>
-          <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center align-items-center mb-2"}>
-          {data?.result?.win === "1" && (
+          <span className="fs-5">Tiger</span>
+          <div
+            className={
+              isMobile
+                ? "row-flex-mobile"
+                : "d-sm-flex flex-row justify-content-center align-items-center mb-2"
+            }
+          >
+            {data?.result?.win === "11" && (
               <div className="casino-winner-icon">
                 <FaTrophy size={30} color="#169733" />
               </div>
@@ -37,7 +51,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerA?.[0]} />
+              <HandleCards card={Tiger?.[0]} />
             </div>
             <div
               style={{
@@ -46,7 +60,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerA?.[1]} />
+              <HandleCards card={Tiger?.[1]} />
             </div>
             <div
               style={{
@@ -55,18 +69,25 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerA?.[2]} />
+              <HandleCards card={Tiger?.[2]} />
             </div>
           </div>
         </div>
-        {data?.result?.win === "0" && (
-        <div className="d-sm-flex flex-row justify-content-center align-items-center">
-          <span className="fs-5">TIE</span>
-        </div> )}
+        {/* {data?.result?.win === "0" && (
+          <div className="d-sm-flex flex-row justify-content-center align-items-center">
+            <span className="fs-5">TIE</span>
+          </div>
+        )} */}
         <div className="teen20resultCardContainer mb-3">
-          <span className="fs-5">Player B</span>
-          <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center align-items-center mb-2"}>
-            {data?.result?.win === "3" && (
+          <span className="fs-5">Lion</span>
+          <div
+            className={
+              isMobile
+                ? "row-flex-mobile"
+                : "d-sm-flex flex-row justify-content-center align-items-center mb-2"
+            }
+          >
+            {data?.result?.win === "21" && (
               <div className="casino-winner-icon">
                 <FaTrophy size={30} color="#169733" />
               </div>
@@ -78,7 +99,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerB?.[0]} />
+              <HandleCards card={Lion?.[0]} />
             </div>
             <div
               style={{
@@ -87,7 +108,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerB?.[1]} />
+              <HandleCards card={Lion?.[1]} />
             </div>
             <div
               style={{
@@ -96,10 +117,55 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
                 marginLeft: "5px",
               }}
             >
-              <HandleCards card={playerB?.[2]} />
+              <HandleCards card={Lion?.[2]} />
             </div>
           </div>
         </div>
+         
+        <div className="teen20resultCardContainer mb-3">
+          <span className="fs-5">Dragon</span>
+          <div
+            className={
+              isMobile
+                ? "row-flex-mobile"
+                : "d-sm-flex flex-row justify-content-center align-items-center mb-2"
+            }
+          >
+            {data?.result?.win === "31" && (
+              <div className="casino-winner-icon">
+                <FaTrophy size={30} color="#169733" />
+              </div>
+            )}
+            <div
+              style={{
+                border: "1px solid #fdef34",
+                borderRadius: "1px",
+                marginLeft: "5px",
+              }}
+            >
+              <HandleCards card={Dragon?.[0]} />
+            </div>
+            <div
+              style={{
+                border: "1px solid #fdef34",
+                borderRadius: "1px",
+                marginLeft: "5px",
+              }}
+            >
+              <HandleCards card={Dragon?.[1]} />
+            </div>
+            <div
+              style={{
+                border: "1px solid #fdef34",
+                borderRadius: "1px",
+                marginLeft: "5px",
+              }}
+            >
+              <HandleCards card={Dragon?.[2]} />
+            </div>
+          </div>
+        </div>
+
       </div>
     </Container>
   );

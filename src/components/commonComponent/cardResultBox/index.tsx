@@ -71,11 +71,41 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "3"? "#ffff33": item?.result === "1" ? "#ff4500" :"#fff",
+                    color:
+                      item?.result === "3"
+                        ? "#ffff33"
+                        : item?.result === "1"
+                        ? "#ff4500"
+                        : "#fff",
                   }}
                 >
                   {item?.result === "1"
-                    ? name?.[0] : item?.result === "3" ? name?.[2] : item?.result === "0" ? name?.[1]
+                    ? name?.[0]
+                    : item?.result === "3"
+                    ? name?.[2]
+                    : item?.result === "0"
+                    ? name?.[1]
+                    : null}
+                </span>
+              ) : type === "teen9" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color:
+                      item?.result === "31" ||
+                      item?.result === "11" ||
+                      item?.result === "21"
+                        ? "#f5cc03"
+                        : "#ffffff",
+                  }}
+                >
+                  {item?.result === "21"
+                    ? name?.[1]
+                    : item?.result === "11"
+                    ? name?.[0]
+                    : item?.result === "31"
+                    ? name?.[2]
                     : null}
                 </span>
               ) : (
@@ -83,7 +113,14 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color: item?.result === "3" || item?.result === "41" || item?.result === "1" ? "#f5cc03" : item?.result === "2" || item?.result === "21" ? "#ff4500"  : "#ffffff",
+                    color:
+                      item?.result === "3" ||
+                      item?.result === "41" ||
+                      item?.result === "1"
+                        ? "#f5cc03"
+                        : item?.result === "2" || item?.result === "21"
+                        ? "#ff4500"
+                        : "#ffffff",
                   }}
                 >
                   {type === "teen20"
@@ -99,8 +136,6 @@ const CardResultBox = ({ data, name, type }: any) => {
                     : name?.[2]
                     ? name?.[2]
                     : ""}
-
-                 
                 </span>
               )}
             </div>

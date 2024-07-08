@@ -293,6 +293,7 @@ export const navigateToGameDetail = {
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",
   [cardGamesType.race20]: "race20",
+  [cardGamesType.teenTest]: "teen9",
 }
 
 export const baseUrls = {
@@ -1580,7 +1581,7 @@ export const card3 = {
       name: "1 DAY TEENPATTI",
     },
     {
-      url: "",
+      url: "/teen9",
       imgSrc: testteen,
       name: "TEST TEENPATTI",
     },
