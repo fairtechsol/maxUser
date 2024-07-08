@@ -78,7 +78,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
             <span className="fs-5">TIE</span>
           </div>
         )} */}
-        <div className="teen20resultCardContainer mb-3">
+        <div className="teen20resultCardContainer mb-3 border-start border-2 border-primar">
           <span className="fs-5">Lion</span>
           <div
             className={
@@ -122,7 +122,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
          
-        <div className="teen20resultCardContainer mb-3">
+        <div className="teen20resultCardContainer mb-3 border-start border-2 border-primar">
           <span className="fs-5">Dragon</span>
           <div
             className={
