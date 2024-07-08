@@ -35,7 +35,7 @@ const Cricket5Desktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.cricketv3}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,scoreBoardData } = useSelector((state: RootState) => state.card);
   // console.log(dragonTigerDetail, "dtaa")
   const [showFancy, setShowFancy] = useState(false);
   const handleClose = () => {
@@ -111,21 +111,12 @@ const Cricket5Desktop = () => {
       ],
     },
   ];
-
-  const scorecardData = {
-    teams: [
-      { name: 'AUS', score: '86-2 (5.0)' },
-      { name: 'IND', score: '63-1 (3.2)', crr: '18.90', rr: '14.40' }
-    ],
-    status: 'IND Needed 24 runs from 10 balls',
-    ballByBall: ['4', '0', '6', '1', '3', '6']
-  };
   return (
     <>
       <Row>
         <Col md={8} className="five-cricket">
        
-          <div style={{ height: "400px", margin: "5px" }}>
+          <div style={{width: "100%", height: "400px", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -153,7 +144,7 @@ const Cricket5Desktop = () => {
                   : ""}
               </span>
             </div>
-            <div><ScoreBoard data={scorecardData}/></div>
+            <div>{scoreBoardData?.data && (<ScoreBoard data={scoreBoardData?.data}/>)}</div>
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
             >

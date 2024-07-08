@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/commonComponent/loader";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  casinoScoreboardMatchRates,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCricket5MatchRates,
@@ -21,13 +21,33 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 import Cricket5ComponentList from "../../components/cricket5";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Cricket5 = () => {
   const dispatch: AppDispatch = useDispatch();
   const { loading, dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
-// console.log(dragonTigerDetail, "dskj")
+
+  useEffect(() => {
+    const scoreBoard = () => {
+      if (dragonTigerDetail?.videoInfo?.mid) {
+        const Id = dragonTigerDetail.videoInfo?.mid.split(".");
+        dispatch(
+          casinoScoreboardMatchRates({
+            id: Id[1],
+            type: cardGamesType.cricketv3,
+          })
+        );
+      }
+    };
+    const intervalId = setInterval(scoreBoard, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [dispatch, dragonTigerDetail]);
+
+
+
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateCricket5MatchRates(event?.data?.data?.data));
@@ -105,7 +125,7 @@ const Cricket5 = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return  <Cricket5ComponentList />;
+  return loading ? <InnerLoader /> : <Cricket5ComponentList />;
 };
 
 export default Cricket5;
