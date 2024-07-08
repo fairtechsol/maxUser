@@ -108,8 +108,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <CasinoWarResultComponent data={data}/>
       ):  type === cardGamesType?.andarBahar1 ?(
         <Abj1ResultComponent data={data}/>
-      ): (
-      ) : type === cardGamesType?.poker1Day ? (
+      ): type === cardGamesType?.poker1Day ? (
           <Poker1DayResultComponent data={data} />
         ) : (
         <></>
