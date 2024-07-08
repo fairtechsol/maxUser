@@ -4,8 +4,11 @@ import { HandleCards } from "../../commonComponent/cardsComponent";
 
 interface Props {
   data: {
-    C1: string;
-    C2: string;
+    C13: string;
+    C14: string;
+    C15: string;
+    C16: string;
+    C17: string;
   };
 }
 
@@ -15,11 +18,11 @@ const Poker6Result: React.FC<Props> = ({ data }:any) => {
       <Row>
         <Col className="mt-2">
           <div style={{ display: "flex", gap: "10px" }}>
-            <HandleCards card={data?.C1} />
-            <HandleCards card={data?.C2} />
-            <HandleCards card={data?.C3} />
-            <HandleCards card={data?.C4} />
-            <HandleCards card={data?.C5} />
+            <HandleCards card={data?.C13} />
+            <HandleCards card={data?.C14} />
+            <HandleCards card={data?.C15} />
+            <HandleCards card={data?.C16} />
+            <HandleCards card={data?.C17} />
           </div>
         </Col>
       </Row>

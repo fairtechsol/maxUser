@@ -10,10 +10,11 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import DynamicTable from "./betTable";
-import Card32Result from "./card32Card";
+import Card32Result from "./poker20";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import Poker20Result from "./poker20";
 
 const Poker20Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -110,7 +111,7 @@ const Poker20Desktop = () => {
             >
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
-                result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
+                result={<Poker20Result data={dragonTigerDetail?.videoInfo} />}
                 id={videoFrameId}
               />
             </div>

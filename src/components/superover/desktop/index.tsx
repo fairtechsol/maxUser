@@ -218,7 +218,7 @@ const SuperoverDesktop = () => {
                     ENGLAND vs RSA Inning's Card Rules
                   </div>
                   <div className="table-responsive">
-                    <Table className="table">
+                    <Table className="table-over">
                       <thead>
                         <tr>
                           <th>Cards</th>
