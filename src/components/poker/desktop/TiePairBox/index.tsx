@@ -24,7 +24,7 @@ const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
         data,
       })
     );
-    console.log("team", team);
+    // console.log("team", team);
   };
 const handleCard=(data:any,index:number,type:string)=>{
   let card ;

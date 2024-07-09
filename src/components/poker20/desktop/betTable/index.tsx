@@ -5,14 +5,11 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 const DynamicTable = ({ odds, data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
-  const handleBet = (item: any, type: any) => {
-    if(type === "LAY" &&  item?.l1=="0.00"){
-      return;
-    }
+  const handleBet = (item: any) => {
     let team = {
-      bettingType: type,
+      bettingType: "BACK",
       matchId: data?.id,
-      odd: type === "BACK" ? item?.b1 : item?.l1,
+      odd: item?.rate,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -26,12 +23,22 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
         data,
       })
     );
-    // console.log("team", team);
+    console.log("team", item);
   };
+  const array = odds?.slice(playerNum[0], playerNum[1]);
 
-  let player1Key = `player${playerNum[0]}`;
-  let player2Key = `player${playerNum[1]}`;
-// console.log('first',odds)
+  const groupedData = (array || [])?.reduce((acc: any, item: any) => {
+    const { nat, sid, rate, gstatus } = item;
+    if (!acc[nat]) {
+      acc[nat] = { nat, entries: [] };
+    }
+    const suffix = String.fromCharCode(65 + acc[nat].entries.length);
+    acc[nat].entries?.push({ nat: `${nat} ${suffix}`, sid, rate, gstatus });
+    return acc;
+  }, {});
+
+  const result = Object.values(groupedData);
+
   return (
     <div className="card32-table-container">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
@@ -51,170 +58,76 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
           </div>
         </div>
       </div>
-      <div className="card32-table-row" style={{ lineHeight: 1 }}>
-        <div
-          style={{
-            width: "50%",
-            padding: "8px",
-            border: "0.1px solid #fff",
-            display: "flex",
-            flexDirection: "column",
-            cursor: "pointer",
-          }}
-        >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-            {odds?.[0]?.nat}
-          </span>
-          <span
-            className={`${
-              data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                  ? JSON.parse(
-                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                    )[player1Key] > 0
-                    ? "color-green"
-                    : JSON.parse(
-                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )[player1Key] < 0
-                    ? "color-red"
-                    : ""
-                  : ""
-                : ""
-            }`}
-          >
-            {/* {data?.profitLoss
+      {result &&
+        result?.map((item: any, index: number) => {
+          return (
+            <div
+              className="card32-table-row"
+              style={{ lineHeight: 1 }}
+              key={index + playerNum[0]}
+            >
+              <div
+                style={{
+                  width: "50%",
+                  padding: "8px",
+                  border: "0.1px solid #fff",
+                  display: "flex",
+                  flexDirection: "column",
+                  cursor: "pointer",
+                }}
+              >
+                <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+                  {item?.nat}
+                </span>
+                <span>
+                  {/* {data?.profitLoss
               ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                 ? JSON.parse(
                     data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player1Key]
                 : 0
               : 0} */}
-          </span>
-        </div>
-        <div
-          className={
-            odds?.[0]?.gstatus === "SUSPENDED" ||
-            odds?.[0]?.gstatus === "CLOSED"    
-              ? "suspended"
-              : ""
-          }
-          style={{
-            width: "50%",
-            display: "flex",
-            flexDirection: "row",
-            cursor: "pointer",
-          }}
-        >
-          <div
-            className="card32-table-item back"
-            style={{ width: "50%" }}
-            onClick={() =>
-              odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[0]?.gstatus === "CLOSED" 
-                ? null
-                : handleBet(odds?.[0], "BACK")
-            }
-          >
-            <span className="f12-b">{odds?.[0]?.b1}</span>
-            <span className="f10-b">{odds?.[0]?.bs1}</span>
-          </div>
-          <div
-            className="card32-table-item back"
-            style={{ width: "50%" }}
-            onClick={() =>
-              odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[0]?.gstatus === "CLOSED" 
-                ? null
-                : handleBet(odds?.[0], "LAY")
-            }
-          >
-            <span className="f12-b">{odds?.[0]?.l1}</span>
-            <span className="f10-b">{odds?.[0]?.ls1}</span>
-          </div>
-        </div>
-      </div>
-      <div className="card32-table-row" style={{ lineHeight: 1 }}>
-        <div
-          style={{
-            width: "50%",
-            padding: "10px",
-            border: "0.1px solid #fff",
-            display: "flex",
-            flexDirection: "column",
-            cursor: "pointer",
-          }}
-        >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-            {odds?.[1]?.nat}
-          </span>
-          <span
-            className={`${
-              data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                  ? JSON.parse(
-                      data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                    )[player2Key] > 0
-                    ? "color-green"
-                    : JSON.parse(
-                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )[player2Key] < 0
-                    ? "color-red"
+                </span>
+              </div>
+              <div
+                className={
+                  item?.entries?.[0]?.gstatus === "0" 
+                    ? "suspended"
                     : ""
-                  : ""
-                : ""
-            }`}
-          >
-            {/* {data?.profitLoss
-              ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                ? JSON.parse(
-                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                  )[player2Key]
-                : 0
-              : 0} */}
-          </span>
-        </div>
-        <div
-          className={
-            odds?.[1]?.gstatus === "SUSPENDED" ||
-            odds?.[1]?.gstatus === "CLOSED"
-              ? "suspended"
-              : ""
-          }
-          style={{
-            width: "50%",
-            display: "flex",
-            flexDirection: "row",
-            cursor: "pointer",
-          }}
-        >
-          <div
-            className="card32-table-item back"
-            style={{ width: "50%" }}
-            onClick={() =>
-              odds?.[1]?.gstatus === "SUSPENDED" ||
-              odds?.[1]?.gstatus === "CLOSED" 
-                ? null
-                : handleBet(odds?.[1], "BACK")
-            }
-          >
-            <span className="f12-b">{odds?.[1]?.b1}</span>
-            <span className="f10-b">{odds?.[1]?.bs1}</span>
-          </div>
-          <div
-            className="card32-table-item back"
-            style={{ width: "50%" }}
-            onClick={() =>
-              odds?.[1]?.gstatus === "SUSPENDED" ||
-              odds?.[1]?.gstatus === "CLOSED"
-                ? null
-                : handleBet(odds?.[1], "LAY")
-            }
-          >
-            <span className="f12-b">{odds?.[1]?.l1}</span>
-            <span className="f10-b">{odds?.[1]?.ls1}</span>
-          </div>
-        </div>
-      </div>
+                }
+                style={{
+                  width: "50%",
+                  display: "flex",
+                  flexDirection: "row",
+                  cursor: "pointer",
+                }}
+              >
+                <div
+                  className="card32-table-item back"
+                  style={{ width: "50%" }}
+                  onClick={() =>
+                    item?.entries?.[0]?.gstatus === "0" 
+                      ? null
+                      : handleBet(item?.entries?.[0])
+                  }
+                >
+                  <span className="f12-b">{item?.entries?.[0]?.rate}</span>
+                </div>
+                <div
+                  className="card32-table-item back"
+                  style={{ width: "50%" }}
+                  onClick={() =>
+                    item?.entries?.[0]?.gstatus === "0" 
+                      ? null
+                      : handleBet(item?.entries?.[1])
+                  }
+                >
+                  <span className="f12-b">{item?.entries?.[1]?.rate}</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 };

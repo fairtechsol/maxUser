@@ -72,7 +72,7 @@ const Poker20Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-
+// console.log('first',dragonTigerDetail)
   return (
     <>
       <Row>
@@ -123,13 +123,13 @@ const Poker20Desktop = () => {
               <DynamicTable
                 odds={dragonTigerDetail?.odds}
                 data={dragonTigerDetail}
-                playerNum={[8, 9]}
+                playerNum={[0, 10]}
               />
               <div style={{ width: "10px" }}></div>
               <DynamicTable
                 odds={dragonTigerDetail?.odds}
                 data={dragonTigerDetail}
-                playerNum={[10, 11]}
+                playerNum={[10, 18]}
               />
             </div>
             <div className="mt-2">

@@ -19,7 +19,6 @@ const Cricket5ResultComponent: React.FC<Props> = ({ data }: any) => {
       result[targetArray].push(item);
     });
   }
-  console.log('sssss',result)
   const allKeys = Object.keys(data ? data : 0);
   const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
   const numbers = cArray.map((key) => Number(data[key]));
