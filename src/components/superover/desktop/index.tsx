@@ -29,7 +29,7 @@ import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import Bookmaker from "./bookmaker";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 
@@ -91,44 +91,7 @@ const SuperoverDesktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-  const rulesData = [
-    {
-      cardImage: imgA,
-      count: 5,
-      valueImage: ball0,
-    },
-    {
-      cardImage: img2,
-      count: 5,
-      valueImage: ball1,
-    },
-    {
-      cardImage: img3,
-      count: 5,
-      valueImage: ball2,
-    },
-    {
-      cardImage: img4,
-      count: 5,
-      valueImage: ball3,
-    },
-    {
-      cardImage: img6,
-      count: 5,
-      valueImage: ball4,
-    },
-    {
-      cardImage: img10,
-      count: 5,
-      valueImage: ball6,
-    },
-    {
-      cardImage: imgK,
-      count: 5,
-      valueImage: ballW,
-      valueText: "Wicket",
-    },
-  ];
+
 
   return (
     <div>
@@ -174,7 +137,7 @@ const SuperoverDesktop = () => {
           <div style={{ height: "760px", marginLeft: "5px" }}>
             <div
               className="d-sm-flex flex-row justify-content-around align-items-center"
-              style={{ width: "100%", marginTop: "4%", gap: "10px" }}
+              style={{ width: "100%", marginTop: "7rem", gap: "10px" }}
             >
               <div className="w-100">
                 <Bookmaker
@@ -229,7 +192,7 @@ const SuperoverDesktop = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {rulesData.map((rule, index) => (
+                        {rulesData?.map((rule, index) => (
                           <tr key={index}>
                             <td>
                               <img

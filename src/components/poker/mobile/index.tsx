@@ -193,6 +193,7 @@ const Poker6Mobile = () => {
                     data={dragonTigerDetail}
                     width={"49%"}
                     title={"hand"}
+                    cards={dragonTigerDetail?.videoInfo}
                   />
                 </div>
               )}

@@ -453,8 +453,8 @@ const cardDetail = createSlice({
         const { t1, t2, t3 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
-        const odds = {...t2};
-        const fancy = {...t3};
+        const odds = [...t2];
+        const fancy = [...t3];
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,

@@ -1,4 +1,7 @@
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../../store/store";
 import "./style.scss"
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 // const bookmakerData = [
 //   { nation: 'AUS', backOdd: '1.3', backVolume: '300000.00', layOdd: '1.34', layVolume: '300000.00', suspended: true },
 //   { nation: 'IND', backOdd: '-', backVolume: '0.00', layOdd: '-', layVolume: '0.00', suspended: true },
@@ -9,14 +12,39 @@ const fancyData = [
 ];
 
 
-const MarketComponent = ({showFancy, odds }:any) => {
+const MarketComponent = ({showFancy, odds, data, min, max }:any) => {
+
+  const dispatch: AppDispatch = useDispatch();
+const handleBet = (item: any, type: any) => {
+  let team = {
+    bettingType: type === "back" ? "BACK" : "LAY",
+    matchId: data?.id,
+    odd: type === "back" ? item?.b1 : item?.l1,
+    stake: 0,
+    matchBetType: "matchOdd",
+    betOnTeam: item?.nat,
+    name: item?.nat,
+    bettingName: "Match odds",
+    selectionId: "1",
+  };
+  dispatch(
+    selectedBetAction({
+      team,
+      data,
+    })
+  );
+};
+
+const team1 = odds?.[0];
+const team2 = odds?.[1];
+  console.log(min, "odds")
   return (
     <div className="casino-detail detail-page-container-c position-relative">
       <div className="game-market-c market-2">
         <div className="market-title"><span>Bookmaker</span></div>
         <div className="market-header-c">
           <div className="market-nation-detail-b">
-            <span className="market-nation-name-c">Min: 100.00 Max: 3L</span>
+            <span className="market-nation-name-c">Min: {min} Max: {max}</span>
           </div>
           <div className="market-odd-box-c back"><b>Back</b></div>
           <div className="market-odd-box-c lay"><b>Lay</b></div>
@@ -25,35 +53,41 @@ const MarketComponent = ({showFancy, odds }:any) => {
           {/* {odds?.map((row:any, index:any) => ( */}
             <div className={`market-row-c`} >
               <div className="market-nation-detail-b">
-                <span className="market-nation-name-c">{odds?.[0]?.nat}</span>
+                <span className="market-nation-name-c">{team1?.nat}</span>
                 <div className="market-nation-book-c"></div>
+                <span>0</span>
               </div>
-              <div    className={`market-row-c ${odds?.[0]?.status === 'SUSPENDED' ? 'suspended-row' : ''}`}
-                      data-title={odds?.[0]?.status === 'SUSPENDED' ? 'SUSPENDED' : 'ACTIVE'}>
-              <div className="market-odd-box-c back">
-                <span className="market-odd-c">{odds?.[0]?.b1}</span>
-                <span className="market-volume-c">{odds?.[0]?.bs1}</span>
+              <div className={`market-row-c ${team1?.status === 'SUSPENDED' ? 'suspended-row' : ''}`}
+                      data-title={team1?.status === 'SUSPENDED' ? 'SUSPENDED' : 'ACTIVE'}>
+              <div className="market-odd-box-c back lh-1"   onClick={() =>handleBet(team1, "back")
+            }>
+                <span className="market-odd-c">{team1?.b1 ==="0.00"?'-':team1?.b1}</span>
+                <span className="market-volume-c">{team1?.bs1}</span>
               </div>
-              <div className="market-odd-box-c lay">
-                <span className="market-odd-c">{odds?.[0]?.l1}</span>
-                <span className="market-volume">{odds?.[0]?.ls1}</span>
+              <div className="market-odd-box-c lay lh-1" onClick={() =>handleBet(team1, "lay")
+            }>
+                <span className="market-odd-c">{team1?.l1 ==="0.00"?'-':team1?.l1}</span>
+                <span className="market-volume">{team1?.ls1}</span>
               </div>
               </div>
             </div>
             <div className={`market-row-c`} >
               <div className="market-nation-detail-b">
-                <span className="market-nation-name-c">{odds?.[1]?.nat}</span>
+                <span className="market-nation-name-c">{team2?.nat}</span>
                 <div className="market-nation-book-c"></div>
+                <span>0</span>
               </div>
-              <div   className={`market-row-c ${odds?.[1]?.status === 'SUSPENDED' ? 'suspended-row' : ''}`}
-                     data-title={odds?.[1]?.status === 'SUSPENDED' ? 'SUSPENDED' : 'ACTIVE'} >
-              <div className="market-odd-box-c back">
-                <span className="market-odd-c">{odds?.[1]?.b1}</span>
-                <span className="market-volume-c">{odds?.[1]?.bs1}</span>
+              <div   className={`market-row-c ${team2?.status === 'SUSPENDED' ? 'suspended-row' : ''}`}
+                     data-title={team2?.status === 'SUSPENDED' ? 'SUSPENDED' : 'ACTIVE'} >
+              <div className="market-odd-box-c back lh-1" onClick={() =>handleBet(team2, "back")
+            }>
+                <span className="market-odd-c">{team2?.b1 ==="0.00"?'-':team2?.b1}</span>
+                <span className="market-volume-c">{team2?.bs1}</span>
               </div>
-              <div className="market-odd-box-c lay">
-                <span className="market-odd-c">{odds?.[1]?.l1}</span>
-                <span className="market-volume">{odds?.[1]?.ls1}</span>
+              <div className="market-odd-box-c lay lh-1" onClick={() =>handleBet(team2, "lay")
+            }>
+                <span className="market-odd-c">{team2?.l1 ==="0.00"?'-':team2?.l1}</span>
+                <span className="market-volume">{team2?.ls1}</span>
               </div>
               </div>
             </div>
