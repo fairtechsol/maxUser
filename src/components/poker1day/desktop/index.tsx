@@ -1,10 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../store/store";
+import {  RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -19,7 +18,6 @@ import Poker1DayResult from "./poker1DayCard";
 import PairBox from "./pairBox";
 
 const Poker1DayDesktop = () => {
-  const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [show, setShow] = useState(false);
