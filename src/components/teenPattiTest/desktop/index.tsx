@@ -30,6 +30,7 @@ const TeenPattiDesktop = () => {
   const { playerA, playerB } = dragonTigerDetail;
   const { sections, videoInfo } = dragonTigerDetail;
 
+  console.log("result", dragonTigerDetail);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -56,7 +57,7 @@ const TeenPattiDesktop = () => {
     { label: "Trio (Teen)", value: "1 To 35" },
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
-  
+
   const handleBet = (item: any, rateType: string, sectionId: string) => {
     const rate =
       rateType === "drate"

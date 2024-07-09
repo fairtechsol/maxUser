@@ -24,7 +24,8 @@ import {
   updateCardPoker6Rates,
   updateCardPoker1DayRates,
   updateCardPoker20Rates,
-  updateCricket5MatchRates
+  updateCricket5MatchRates,
+  updateAmarAkbarAnthonyCardMatchRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -394,7 +395,7 @@ const cardDetail = createSlice({
         };
       })
       .addCase(updateCardSuperoverRates.fulfilled, (state, action) => {
-        const { t1, t2,t3,t4 } = action.payload;
+        const { t1, t2, t3, t4 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const bookmaker = { ...t2 };
@@ -407,7 +408,7 @@ const cardDetail = createSlice({
           fancy,
           fancy1,
         };
-        })
+      })
       .addCase(updateCardPoker6Rates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
         state.loading = false;
@@ -422,11 +423,11 @@ const cardDetail = createSlice({
         };
       })
       .addCase(updateCardPoker1DayRates.fulfilled, (state, action) => {
-        const { t1, t2, t3} = action.payload;
+        const { t1, t2, t3 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
-        const oddsData = {...t2};
-        const playersBonusPair = {...t3};
+        const oddsData = { ...t2 };
+        const playersBonusPair = { ...t3 };
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
@@ -450,15 +451,41 @@ const cardDetail = createSlice({
         const { t1, t2, t3 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
-        const odds = {...t2};
-        const fancy = {...t3};
+        const odds = { ...t2 };
+        const fancy = { ...t3 };
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
           odds,
-          fancy
+          fancy,
         };
       })
+      .addCase(
+        updateAmarAkbarAnthonyCardMatchRates.fulfilled,
+        (state, action) => {
+          const { t1, t2 } = action.payload;
+          state.loading = false;
+
+          console.log("ggg",action.payload)
+
+          const videoInfo = t1[0];
+
+          const players = t2.slice(0, 3);
+          const redBlack = t2.slice(2, 4);
+          const luckOdds = t2.slice(4, 6);
+          const luckyCards = t2.slice(6, 26);
+
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players,
+            redBlack,
+            luckOdds,
+            luckyCards,
+          };
+        }
+      )
+
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;

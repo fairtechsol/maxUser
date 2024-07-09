@@ -36,6 +36,7 @@ import {
   teenplayer,
   testteen,
 } from "../../assets/images";
+import AmarAkbarAnthony from "../../pages/amarAkbarAnthony";
 
 export const ApiConstants = {
   LOGIN: "auth/login",
@@ -264,14 +265,15 @@ export const cardGamesType: any = {
   teenTest: "teen9",
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
-  casinoWar:"war",
-  race20:"race20",
-  superover:"superover",
+  casinoWar: "war",
+  race20: "race20",
+  superover: "superover",
   poker6: "poker6",
   poker1Day: "poker",
   poker20: "poker20",
   card3judge: "3cardj",
-  cricketv3:"cricketv3"
+  cricketv3: "cricketv3",
+  amarAkbarAnthony:"aaa"
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -288,9 +290,9 @@ export const cardGamesId: any = {
   teenTest: 3048,
   dragonTigerOneDay: 3057,
   lucky7B: 3032,
-  casinoWar:3038,
-  race20:3036,
-  superover:3060,
+  casinoWar: 3038,
+  race20: 3036,
+  superover: 3060,
   poker: 30500,
   poker1Day: 3051,
   poker20: 3052,
@@ -316,7 +318,7 @@ export const navigateToGameDetail = {
   [cardGamesType.poker6]: "poker6",
   [cardGamesType.poker1Day]: "poker",
   [cardGamesType.poker20]: "poker20",
-}
+};
 
 export const baseUrls = {
   socket:
@@ -1527,7 +1529,7 @@ export const casinoIcons = [
     name: "32 Cards B",
   },
   {
-    url: "",
+    url: "/aaa",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
     name: "Amar Akbar Anthony",
@@ -1611,7 +1613,6 @@ export const card3 = {
       url: "/teen8",
       imgSrc: teenplayer,
       name: "OPEN TEENPATTI",
-
     },
   ],
   lucky7: [
@@ -1682,6 +1683,13 @@ export const card3 = {
       url: "/cricketv3",
       imgSrc: crick5,
       name: "5 5 Cricket",
+    },
+  ],
+  bollywoodCasino: [
+    {
+      url: "/aaa",
+      imgSrc:"https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
+      name: "AMAR AKHBAR ANTHONY",
     },
   ],
 };

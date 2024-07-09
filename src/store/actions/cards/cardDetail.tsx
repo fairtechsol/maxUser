@@ -225,3 +225,10 @@ export const updateCricket5MatchRates = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateAmarAkbarAnthonyCardMatchRates = createAsyncThunk<any, any>(
+  "aaa/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
