@@ -12,7 +12,7 @@ const PairBox = ({ odds, data }: any) => {
         let team = {
           bettingType: "BACK",
           matchId: dragonTigerDetail?.id,
-          odd: item?.rate,
+          odd: item?.b1,
           stake: 0,
           matchBetType: "matchOdd",
           betOnTeam: item?.nat,
@@ -65,7 +65,7 @@ const PairBox = ({ odds, data }: any) => {
                   </span>
               </div>
               <div
-                  className={odds?.[0]?.gstatus === "SUSPENDED"
+                  className={odds?.[0]?.gstatus === "SUSPENDED" || odds?.[0]?.gstatus === "CLOSED" || odds?.[0]?.b1 === "0.00"
                       ? "suspended"
                       : ""}
                   style={{
@@ -78,7 +78,7 @@ const PairBox = ({ odds, data }: any) => {
                   <div
                       className="poker-table-item"
                       style={{ width: "50%" }}
-                      onClick={() => odds?.[0]?.gstatus === "0"
+                      onClick={() => odds?.[0]?.gstatus === "SUSPENDED" || odds?.[0]?.gstatus === "CLOSED" || odds?.[0]?.b1 === "0.00"
                           ? null
                           : handleBet(odds?.[0])}
                   >
@@ -104,7 +104,7 @@ const PairBox = ({ odds, data }: any) => {
                   <div
                       className={`poker-table-item`}
                       style={{ width: "50%" }}
-                      onClick={() => odds?.[1]?.gstatus === "0"
+                      onClick={() => odds?.[1]?.gstatus === "SUSPENDED" || odds?.[1]?.gstatus === "CLOSED" || odds?.[1]?.b1 === "0.00"
                           ? null
                           : handleBet(odds?.[1])}
                   >
@@ -141,7 +141,7 @@ const PairBox = ({ odds, data }: any) => {
                   </span>
               </div>
               <div
-                  className={odds?.[2]?.gstatus === "SUSPENDED"
+                  className={odds?.[2]?.gstatus === "SUSPENDED" || odds?.[2]?.gstatus === "CLOSED" || odds?.[2]?.b1 === "0.00"
                       ? "suspended"
                       : ""}
                   style={{
@@ -154,7 +154,7 @@ const PairBox = ({ odds, data }: any) => {
                   <div
                       className="poker-table-item"
                       style={{ width: "50%" }}
-                      onClick={() => odds?.[2]?.gstatus === "0"
+                      onClick={() => odds?.[2]?.gstatus === "SUSPENDED" || odds?.[2]?.gstatus === "CLOSED" || odds?.[2]?.b1 === "0.00"
                           ? null
                           : handleBet(odds?.[2])}
                   >
@@ -180,7 +180,7 @@ const PairBox = ({ odds, data }: any) => {
                   <div
                       className={`poker-table-item `}
                       style={{ width: "50%" }}
-                      onClick={() => odds?.[3]?.gstatus === "0"
+                      onClick={() => odds?.[3]?.gstatus === "SUSPENDED" || odds?.[3]?.gstatus === "CLOSED" || odds?.[3]?.b1 === "0.00"
                           ? null
                           : handleBet(odds?.[3])}
                   >
