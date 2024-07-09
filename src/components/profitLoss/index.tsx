@@ -13,18 +13,40 @@ import { getProfitLossReport } from "../../store/actions/match/matchListAction";
 import { useSelector } from "react-redux";
 import moment from "moment";
 
-
 const typeToTitle: { [key: string]: string } = {
-  dt20: "DRAGON TIGER 20-20",
-  teen20: "TEENPATTI 20-20",
-  lucky7: "LUCKY7A",
-  lucky7eu: "LUCKY7B",
-  card32: "CARDS32-A",
+  dt20: "20-20 DRAGON TIGER",
+  teen20: "20-20 TEENPATTI",
+  card32: "32 CARDS - A",
+  lucky7: "LUCKY 7 - A",
   abj: "ANDAR BAHAR 2",
-  dt202: "20-20DRAGON TIGER 2",
-  dtl20: "DRAGON TIGER LION",
-  dt6: "DRAGON TIGER TEENPATTI",
-  teen: "TEENPATTI TEENPATTI",
+  dt202: "20-20 DRAGON TIGER 2",
+  dtl20: "20-20 D T L",
+  dt6: "1 DAY DRAGON TIGER",
+  lucky7eu: "LUCKY 7 - B",
+  teen: "TEENPATTI 1-DAY",
+  teen9: "TEENPATTI TEST",
+  teen8: "TEENPATTI OPEN",
+  poker: "POKER 1-DAY",
+  poker20: "20-20 POKER",
+  poker6: "POKER 6 PLAYERS",
+  baccarat: "BACCARAT",
+  baccarat2: "BACCARAT 2",
+  card32eu: "32 CARDS - B",
+  ab20: "ANDAR BAHAR 1",
+  "3cardj": "3 CARDS JUDGEMENT",
+  war: "CASINO WAR",
+  worli2: "INSTANT WORLI",
+  superover: "SUPER OVER",
+  cmatch20: "CRICKET MATCH 20-20",
+  aaa: "AMAR AKBAR ANTHONY",
+  btable: "BOLLYWOOD CASINO",
+  race20: "RACE 20",
+  cricketv3: "FIVE FIVE CRICKET",
+  cricket: "Cricket",
+  football: "Football",
+  tennis: "Tennis",
+  horseRacing: "Horse Racing",
+  greyHound: "Grey Hound",
   // Add other mappings as needed
 };
 const ProfitLossComponent = () => {
@@ -222,10 +244,11 @@ const ProfitLossComponent = () => {
               >
                 {profitLossReport &&
                   profitLossReport?.result?.map((item: any, index: number) => {
-                    const title = typeToTitle[item?.eventType] || "Unknown Game";
                     return (
                       <tr className={`${isMobile && "title-12"}`} key={index}>
-                        <td>{title}</td>
+                        <td>
+                          {typeToTitle[item?.eventType] || item?.eventType}
+                        </td>
                         <td>{item?.marketType}</td>
                         <td>{item?.aggregateAmount}</td>
                       </tr>

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import isMobile from "../../../utils/screenDimension";
 import { FaTrophy } from "react-icons/fa";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;

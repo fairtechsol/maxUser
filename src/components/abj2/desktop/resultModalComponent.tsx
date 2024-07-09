@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import isMobile from "../../../utils/screenDimension";
 import { FaTrophy } from "react-icons/fa";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -114,15 +115,15 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div> */}
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{display:"flex",flexDirection:"row"}}>
-              <div style={{width:"70%",marginRight:"5px"}}>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ width: "70%", marginRight: "5px" }}>
                 {data?.result?.win === "1" && (
                   <div className="casino-winner-icon">
                     <FaTrophy size={isMobile ? 18 : 26} color="#169733" />
                   </div>
                 )}
               </div>
-              <div  style={{width:"30%"}}>
+              <div style={{ width: "30%" }}>
                 <span
                   style={{
                     color: "#00000",
@@ -137,15 +138,15 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
                 </span>
               </div>
             </div>
-            <div  style={{display:"flex",flexDirection:"row"}}>
-              <div style={{width:"70%",marginRight:"5px"}}>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ width: "70%", marginRight: "5px" }}>
                 {data?.result?.win === "2" && (
                   <div className="casino-winner-icon">
                     <FaTrophy size={isMobile ? 18 : 26} color="#169733" />
                   </div>
                 )}
               </div>
-              <div style={{width:"30%"}}>
+              <div style={{ width: "30%" }}>
                 {" "}
                 <span
                   style={{
