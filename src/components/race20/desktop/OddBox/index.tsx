@@ -66,7 +66,6 @@ const OddBox = ({ odds, data }: any) => {
     }
   };
 
-  console.log(odds, data, "abc")
   return (
     <>
       <div

@@ -20,7 +20,6 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
     (_: any, index: number) => index % 2 !== 0
   );
 
-  console.log('sssss',result)
   const allKeys = Object.keys(data ? data : 0);
   const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
   const numbers = cArray.map((key) => Number(data[key]));
