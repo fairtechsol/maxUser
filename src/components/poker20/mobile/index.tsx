@@ -131,21 +131,21 @@ const Poker20Mobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "400px" }}>
+            <div style={{ height: "500px" }}>
               <div className="mt-5">
                 <DynamicTable
                   back={true}
                   odds={dragonTigerDetail?.odds}
                   data={dragonTigerDetail}
-                  playerNum={[8, 9]}
+                  playerNum={[0, 10]}
                 />
 
-                {/* <DynamicTable
+                 <DynamicTable
                   back={false}
                   odds={dragonTigerDetail?.odds}
                   data={dragonTigerDetail}
-                  playerNum={[10, 11]}
-                /> */}
+                  playerNum={[10, 18]}
+                /> 
               </div>
               <div style={{ marginTop: "10px" }}>
                 {" "}
