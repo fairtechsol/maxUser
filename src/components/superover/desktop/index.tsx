@@ -40,7 +40,9 @@ const SuperoverDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.superover}`
   );
-  const { dragonTigerDetail,scoreBoardData } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, scoreBoardData } = useSelector(
+    (state: RootState) => state.card
+  );
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -91,8 +93,6 @@ const SuperoverDesktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-
-
   return (
     <div>
       <Row>
@@ -123,7 +123,11 @@ const SuperoverDesktop = () => {
                   : ""}
               </span>
             </div>
-              <div>{scoreBoardData?.data && (<ScoreBoard data={scoreBoardData?.data}/>)}</div>
+            <div>
+              {scoreBoardData?.data && (
+                <ScoreBoard data={scoreBoardData?.data} />
+              )}
+            </div>
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
             >
