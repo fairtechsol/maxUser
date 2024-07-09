@@ -1,9 +1,7 @@
 // import { useDispatch } from "react-redux";
 // import { AppDispatch } from "../../../../store/store";
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
-import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
+
+import { HandleGameCards } from "../card";
 
 const CommonButtonBox = ({
   value1,
@@ -13,12 +11,12 @@ const CommonButtonBox = ({
   handleBet,
   lock,
   data,
-  title,
   min,
-  max
+  max,
+  card1,
+  card2
 }: any) => {
   // const dispatch: AppDispatch = useDispatch();
-
   return (
     <div className="commonButtonBoxContainer" style={{ width: width }}>
       <div>
@@ -29,21 +27,14 @@ const CommonButtonBox = ({
         className={`tiePairbtn-theme d-flex justify-content-between ${lock ? "suspended" : ""}`}
         onClick={() => (!lock ? handleBet(data) : null)}
       >
+        <div className="d-flex flex-row" style={{gap:"2px"}}>
         <span>
-          {value2 === "icon1" ? (
-            <>
-              <ImDiamonds color="#ff0000" />
-              <BiSolidHeart color="#ff0000" />
-            </>
-          ) : value2 === "icon2" ? (
-            <>
-              <ImClubs color="#000000" />
-              <GiSpades color="#000000" />
-            </>
-          ) : (
-            value2
-          )}
+          {value2} 
         </span>
+        {card1 != '1' && (<HandleGameCards card={card1} />)}{" "}
+        {card2 != '1' && (<HandleGameCards card={card2} />)}
+        </div>
+       
         <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
           {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
         </span>
