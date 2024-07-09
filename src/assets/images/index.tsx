@@ -70,3 +70,4 @@ export { default as ball3 } from "./sportCasino/ball3.webp";
 export { default as ball4 } from "./sportCasino/ball4.webp";
 export { default as ball6 } from "./sportCasino/ball6.webp";
 export { default as ballW } from "./sportCasino/wicket.webp";
+export { default as cricketfive } from "./rules/5fivecricktrules.webp";

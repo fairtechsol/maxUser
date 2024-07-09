@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import {
-  card32rules,
   crick5rules,
   img10,
   img2,
@@ -13,7 +12,7 @@ import {
   imgK,
 } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
@@ -85,32 +84,6 @@ const Cricket5Desktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-  const cardData = [
-    {
-      team: "AUS",
-      cards: [
-        { label: "A", imgSrc: imgA, value: "1 Run" },
-        { label: "2", imgSrc: img2, value: "2 Run" },
-        { label: "3", imgSrc: img3, value: "3 Run" },
-        { label: "4", imgSrc: img4, value: "4 Run" },
-        { label: "6", imgSrc: img6, value: "6 Run" },
-        { label: "10", imgSrc: img10, value: "0 Run" },
-        { label: "K", imgSrc: imgK, value: "Wicket" },
-      ],
-    },
-    {
-      team: "IND",
-      cards: [
-        { label: "A", imgSrc: imgA, value: "1 Run" },
-        { label: "2", imgSrc: img2, value: "2 Run" },
-        { label: "3", imgSrc: img3, value: "3 Run" },
-        { label: "4", imgSrc: img4, value: "4 Run" },
-        { label: "6", imgSrc: img6, value: "6 Run" },
-        { label: "10", imgSrc: img10, value: "0 Run" },
-        { label: "K", imgSrc: imgK, value: "Wicket" },
-      ],
-    },
-  ];
   return (
     <>
       <Row>
@@ -150,6 +123,7 @@ const Cricket5Desktop = () => {
             >
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
+             
                 result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
                 id={videoFrameId}
               />
@@ -159,6 +133,8 @@ const Cricket5Desktop = () => {
             <div className="px-2" style={{marginTop: "7rem"}}>
               <MarketComponent
                 odds={dragonTigerDetail?.odds}
+                min={dragonTigerDetail?.videoInfo?.min}
+                max={dragonTigerDetail?.videoInfo?.max}
                 data={dragonTigerDetail}
               />
             </div>
@@ -166,12 +142,10 @@ const Cricket5Desktop = () => {
               <CardResultBox
                 data={dragonTigerDetail}
                 name={["8", "9", "10", "11"]}
-                type={"poker"}
+                type={"cricketv3"}
               />
             </div>
           </div>
-
-          {/* <RulesModal show={show} setShow={setShow} rule={crick5rules} /> */}
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>

@@ -10,7 +10,6 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import DynamicTable from "./betTable";
-import Card32Result from "./poker20";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";

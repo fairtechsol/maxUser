@@ -116,7 +116,7 @@ const Poker6Desktop = () => {
               />
             </div>
           </div>
-          <div style={{ height: "760px" }}>
+          <div style={{ height: "760px",marginLeft: "10px" }}>
           <div className="tab-containerp">
         <div 
           className={`hands ${activeTab === 'tab1' ? 'active' : ''}`} 

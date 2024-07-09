@@ -9,10 +9,11 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/dragonCard";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardData, cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import Bookmaker from "../desktop/bookmaker";
 import MyBet from "./myBet";
 import ScoreBoard from "../../commonComponent/scoreBoard";
+import { Table } from "react-bootstrap";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -54,6 +55,8 @@ const SuperoverMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, show]);
+
+  
   
   return (
     <>
@@ -141,7 +144,7 @@ const SuperoverMobile = () => {
               </div>
             </div>
            
-            <div style={{ height: "760px", marginLeft: "5px" ,marginTop:"8rem" }}>
+            <div style={{ height: "700px", marginLeft: "5px" ,marginTop:"8rem" }}>
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <Bookmaker
@@ -152,12 +155,53 @@ const SuperoverMobile = () => {
                      data={dragonTigerDetail}
                   />
                 </div>
-               
+             
               </div>
               
               <div style={{ width: "97%", margin: "5px" }}>
                 <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
               </div>
+              <div className="sidebar-box place-bet-container super-over-rule">
+                  <div className="marketHeader">
+                    ENGLAND vs RSA Inning's Card Rules
+                  </div>
+                  <div className="table-responsive">
+                    <Table className="table-over">
+                      <thead>
+                        <tr>
+                          <th>Cards</th>
+                          <th className="text-center">Count</th>
+                          <th className="text-end">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rulesData?.map((rule, index) => (
+                          <tr key={index}>
+                            <td>
+                              <img
+                                src={rule.cardImage}
+                                alt="Card"  
+                                className="ms-2"
+                              />
+                              <span className="ms-2">X</span>
+                            </td>
+                            <td className="text-center">{rule.count}</td>
+                            <td className="text-end">
+                              {rule.valueText ? (
+                                <span>
+                                  {rule.valueText}
+                                  <img src={rule.valueImage} alt="Value" />
+                                </span>
+                              ) : (
+                                <img src={rule.valueImage} alt="Value" />
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div>
+                </div>
             </div>
           </>
         ) : (
