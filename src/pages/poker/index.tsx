@@ -28,7 +28,6 @@ const Poker6 = () => {
     (state: RootState) => state.card
   );
  
-  console.log(dragonTigerDetail, "ddd")
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateCardPoker6Rates(event?.data?.data?.data));

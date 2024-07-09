@@ -90,7 +90,35 @@ const TotalsBox = ({ odds, data }: any) => {
             className="justify-content-center align-items-center"
             style={{ width: "65%", display: "flex" }}
           >
-            <span>0</span>
+            <span
+              className={`${
+                data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                    ]
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                      ] > 0
+                      ? "color-green"
+                      : data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                        ] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                    ]
+                  : 0
+                : 0}
+            </span>
           </div>
         </div>
 
@@ -149,7 +177,35 @@ const TotalsBox = ({ odds, data }: any) => {
             className="justify-content-center align-items-center"
             style={{ width: "65%", display: "flex" }}
           >
-            <span>0</span>
+            <span
+              className={`${
+                data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                    ]
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                      ] > 0
+                      ? "color-green"
+                      : data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                        ] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                    ]
+                  : 0
+                : 0}
+            </span>
           </div>
         </div>
         <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
