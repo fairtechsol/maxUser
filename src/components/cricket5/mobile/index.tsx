@@ -11,10 +11,11 @@ import Crick5Result from "../desktop/cric5Card";
 import MarketComponent from "./betTable";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
-import { crick5rules, cricketfive } from "../../../assets/images";
+import { crick5rules } from "../../../assets/images";
 import { Table } from "react-bootstrap";
 
-const Cricket5Mobile = ({ bookmakerData, fancyData }: any) => {
+const Cricket5Mobile = ({fancyData}: any) => {
+
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
@@ -54,14 +55,6 @@ const Cricket5Mobile = ({ bookmakerData, fancyData }: any) => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-  const scorecardData = {
-    teams: [
-      { name: "AUS", score: "86-2 (5.0)" },
-      { name: "IND", score: "63-1 (3.2)", crr: "18.90", rr: "14.40" },
-    ],
-    status: "IND Needed 24 runs from 10 balls",
-    ballByBall: ["4", "0", "6", "1", "3", "6"],
-  };
   return (
     <>
       <div>

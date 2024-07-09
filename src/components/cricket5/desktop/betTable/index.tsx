@@ -33,8 +33,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
     );
   };
 
-const team1 = odds?.[0];
-const team2 = odds?.[1];
+  const team1 = odds?.[0];
+  const team2 = odds?.[1];
   return (
     <div className="casino-detail detail-page-container-c position-relative">
       <div className="game-market-c market-2">
@@ -43,7 +43,10 @@ const team2 = odds?.[1];
         </div>
         <div className="market-header-c">
           <div className="market-nation-detail-b">
-            <span className="market-nation-name-c">
+            <span
+              className="f600"
+              style={{ fontSize: "12px", color: "#097c93" }}
+            >
               Min: {min} Max: {max}
             </span>
           </div>
@@ -106,7 +109,7 @@ const team2 = odds?.[1];
             >
               <div
                 className="market-odd-box-c back lh-1"
-                onClick={() => handleBet(team1, "back")}
+                onClick={() =>team1?.status === "SUSPENDED" ? null : handleBet(team1, "back")}
               >
                 <span className="market-odd-c">
                   {team1?.b1 === "0.00" ? "-" : team1?.b1}
@@ -115,7 +118,7 @@ const team2 = odds?.[1];
               </div>
               <div
                 className="market-odd-box-c lay lh-1"
-                onClick={() => handleBet(team1, "lay")}
+                onClick={() =>team1?.status === "SUSPENDED" ? null : handleBet(team1, "lay")}
               >
                 <span className="market-odd-c">
                   {team1?.l1 === "0.00" ? "-" : team1?.l1}
@@ -174,7 +177,7 @@ const team2 = odds?.[1];
             >
               <div
                 className="market-odd-box-c back lh-1"
-                onClick={() => handleBet(team2, "back")}
+                onClick={() =>team2?.status === "SUSPENDED" ? null : handleBet(team2, "back")}
               >
                 <span className="market-odd-c">
                   {team2?.b1 === "0.00" ? "-" : team2?.b1}
@@ -183,7 +186,7 @@ const team2 = odds?.[1];
               </div>
               <div
                 className="market-odd-box-c lay lh-1"
-                onClick={() => handleBet(team2, "lay")}
+                onClick={() =>team2?.status === "SUSPENDED" ? null : handleBet(team2, "lay")}
               >
                 <span className="market-odd-c">
                   {team2?.l1 === "0.00" ? "-" : team2?.l1}
