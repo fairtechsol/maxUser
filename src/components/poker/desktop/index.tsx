@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { dtrules, p6rules } from "../../../assets/images";
+import {  p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -140,6 +140,7 @@ const Poker6Desktop = () => {
               data={dragonTigerDetail}
               width={"49%"}
               title={"hand"}
+              cards={dragonTigerDetail?.videoInfo}
             />
           </div>
         )}

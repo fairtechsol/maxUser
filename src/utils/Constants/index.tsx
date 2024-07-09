@@ -1373,7 +1373,7 @@ export const casinoIcons = [
     name: "Super Over",
   },
   {
-    url: "",
+    url: "/race20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
     name: "Race 20-20",
