@@ -108,7 +108,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -1373,7 +1373,7 @@ export const casinoIcons = [
     name: "Super Over",
   },
   {
-    url: "",
+    url: "/race20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
     name: "Race 20-20",
@@ -1605,7 +1605,7 @@ export const card3 = {
       name: "1 DAY TEENPATTI",
     },
     {
-      url: "",
+      url: "/teen9",
       imgSrc: testteen,
       name: "TEST TEENPATTI",
     },
@@ -1676,7 +1676,7 @@ export const card3 = {
       name: "BALL BY BALL",
     },
     {
-      url: "/",
+      url: "/superover",
       imgSrc: superover,
       name: "SUPER OVER",
     },

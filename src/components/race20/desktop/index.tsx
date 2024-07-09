@@ -121,12 +121,12 @@ const Race20Desktop = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "460px" }}>
+            <div>
               <div
                 style={{
                   width: "100%",
                   margin: "5px",
-                  marginTop:"35px",
+                  marginTop: "35px",
                   display: "flex",
                   gap: "8px",
                 }}
@@ -149,7 +149,7 @@ const Race20Desktop = () => {
                   odds={dragonTigerDetail?.total}
                   data={dragonTigerDetail}
                 />
-                 <WinBox
+                <WinBox
                   odds={dragonTigerDetail?.win}
                   data={dragonTigerDetail}
                 />
