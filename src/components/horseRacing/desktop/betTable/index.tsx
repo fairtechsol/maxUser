@@ -5,7 +5,7 @@ import "./style.scss";
 import PlacedBet from "../../../gameDetails/desktop/placeBet";
 import MyBet from "../../../gameDetails/desktop/myBet";
 import moment from "moment";
-import MatchOddComponent from "../MatchOddComponent";
+import MatchOddComponent from "../matchOddComponent";
 // import CombinedComponent from "../combinedComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
