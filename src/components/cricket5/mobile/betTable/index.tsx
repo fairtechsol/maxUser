@@ -36,7 +36,7 @@ const MarketComponent = ({showFancy, odds, data, min, max}:any) => {
         <div className="market-title"><span>Bookmaker</span></div>
         <div className="market-header-c">
           <div className="market-nation-detail-b">
-            <span className="market-nation-name-c">Min: {min} Max: {max}</span>
+            <span className="f600" style={{ fontSize: "12px", color: "#097c93" }}>Min: {min} Max: {max}</span>
           </div>
           <div className="market-odd-box-c back "><b>Back</b></div>
           <div className="market-odd-box-c lay"><b>Lay</b></div>

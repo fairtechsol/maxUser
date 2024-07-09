@@ -37,14 +37,13 @@ const handleBet = (item: any, type: any) => {
 
 const team1 = odds?.[0];
 const team2 = odds?.[1];
-  console.log(min, "odds")
   return (
     <div className="casino-detail detail-page-container-c position-relative">
       <div className="game-market-c market-2">
         <div className="market-title"><span>Bookmaker</span></div>
         <div className="market-header-c">
           <div className="market-nation-detail-b">
-            <span className="market-nation-name-c">Min: {min} Max: {max}</span>
+            <span className="f600" style={{ fontSize: "12px", color: "#097c93" }}>Min: {min} Max: {max}</span>
           </div>
           <div className="market-odd-box-c back"><b>Back</b></div>
           <div className="market-odd-box-c lay"><b>Lay</b></div>
