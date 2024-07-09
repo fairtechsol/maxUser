@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const TiePairBox = ({ handsData, data , width,title}: any) => {
+const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
   const dispatch: AppDispatch = useDispatch();
   // console.log(data,'tiePair',tiePair)
   const handleBet = (item: any) => {
@@ -26,7 +26,16 @@ const TiePairBox = ({ handsData, data , width,title}: any) => {
     );
     console.log("team", team);
   };
-
+const handleCard=(data:any,index:number,type:string)=>{
+  let card ;
+if(type==='first'){
+  card = `C${index+1}`
+  return data[card]
+}else{
+  card = `C${index+7}`
+  return data[card]
+}
+}
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainP">
@@ -47,6 +56,8 @@ const TiePairBox = ({ handsData, data , width,title}: any) => {
           lock={hand?.gstatus === "0"}
           data={hand}
           title={title}
+          card1={title ==='hand' ? handleCard(cards,index,'first'):null}
+          card2={title ==='hand' ? handleCard(cards,index,'second'):null}
         />
       ))}
       </div>
