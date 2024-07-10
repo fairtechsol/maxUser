@@ -19,6 +19,7 @@ import TeenOpenResultComponent from "../../teenPattiOpen/desktop/resultModalComp
 import TeenTestResultComponent from "../../teenPattiTest/desktop/resultModalComponent";
 import CasinoWarResultComponent from "../../casinoWar/desktop/resultModalComponent";
 import Abj1ResultComponent from "../../abj1/desktop/resultModalComponent";
+import AmarAkbarAnthonyResultComponent from "../../amarAkbarAnthony/desktop/resultModalComponent";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
@@ -31,7 +32,8 @@ const title = {
   teen8: "Open Teen Patti",
   teen9: "Test Teen Patti",
   ab20: "Andar Bahar 1",
-  poker1Day: "Poker 1 Day"
+  poker1Day: "Poker 1 Day",
+  aaa:"AMAR AKBAR ANTHONY"
   // Add other mappings as needed
 };
 
@@ -47,6 +49,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
   type
 }) => {
   const [date, setDate] = useState<any>();
+
   useEffect(() => {
     if (!date) {
       setDate(Date.now());
@@ -110,7 +113,9 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Abj1ResultComponent data={data}/>
       ) : type === cardGamesType?.poker1Day ? (
           <Poker1DayResultComponent data={data} />
-        ) : (
+        ) : type === cardGamesType?.amarAkbarAnthony ? (
+          <AmarAkbarAnthonyResultComponent data={data} />
+        ): (
         <></>
       )}
     </Container>

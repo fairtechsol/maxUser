@@ -72,6 +72,10 @@ const cardGames = [
     value: "dt6",
     label: "Dragon Tiger 1 Day",
   },
+  {
+    value: "aaa",
+    label: "Amar Akbar Anthony",
+  },
 ];
 
 const CasinoReports = () => {

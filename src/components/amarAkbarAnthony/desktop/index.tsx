@@ -179,7 +179,7 @@ const AmarAkbarAnthonyDesktop = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "B", "C"]}
-                  type={cardGamesType.lucky7}
+                  type={cardGamesType.amarAkbarAnthony}
                 />
               </div>
             </div>

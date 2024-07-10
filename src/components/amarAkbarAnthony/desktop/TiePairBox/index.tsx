@@ -9,10 +9,12 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = lowHigh?.[0]?.min;
   const max = lowHigh?.[0]?.max;
+  
+  
 
   const handleBet = (item: any) => {
     let team = {
-      bettingType: "BACK",
+      bettingType: "BACK",  
       matchId: data?.id,
       odd: item?.b1,
       stake: 0,
@@ -32,6 +34,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
+
         {/* <div className="commonButtonBoxContainer" style={{ width: "30%" }}>
           <div>
             <span style={{ fontSize: "16px", fontWeight: "bolder" }}>

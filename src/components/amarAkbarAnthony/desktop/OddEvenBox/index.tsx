@@ -10,7 +10,7 @@ const OddEven = ({ data, card, odds }: any) => {
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
-      matchId: data?.id,
+      matchId:  data?.id,
       odd: item?.rate,
       stake: 0,
       matchBetType: "matchOdd",

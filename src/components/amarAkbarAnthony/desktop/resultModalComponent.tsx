@@ -1,5 +1,5 @@
 import React from "react";
-import { Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import isMobile from "../../../utils/screenDimension";
 interface Props {
@@ -9,11 +9,12 @@ interface Props {
   };
 }
 
-const Lucky7ResultComponent: React.FC<Props> = ({ data }: any) => {
+const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
+  const resultCards = data?.result?.desc?.split("|");
+  const pair = resultCards?.[0]?.split(" ");
+  const card = resultCards?.[3]?.split(" ");
 
-const resultCards = data?.result?.desc?.split('||')
-const pair = resultCards?.[0]?.split(' ')
-const card = resultCards?.[3]?.split(' ')
+  console.log("winner");
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
@@ -31,28 +32,35 @@ const card = resultCards?.[3]?.split(' ')
             </div>
           </div>
         </div>
-       
       </div>
       <div className="w-100 d-sm-flex justify-content-center align-items-center mt-2">
         <div
-          className={isMobile ? 'w-100 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2' : "w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"}
-          style={{ boxShadow: "0 0 4px -1px" }}
+          className={
+            isMobile
+              ? "w-100 d-sm-flex flex-sm-row justify-content-center align-items-center p-4 mb-2"
+              : "w-80 d-sm-flex flex-sm-row justify-content-center align-items-center p-4 mb-2"
+          }
+          
         >
-          <div className="d-sm-flex flex-sm-row">
-            <span className="lucky7CommonText">Winner</span>
+          <div className="lucky7CommonText-2 d-sm-flex flex-sm-row ">
+            Result:
+          </div>
+          <div className="d-sm-flex flex-sm-row p-1">
             <span className="lucky7CommonText-2">{pair?.[0]}</span>
           </div>
-          <div className="d-sm-flex flex-sm-row">
-            <span className="lucky7CommonText">Odd/Even</span>
-            <span className="lucky7CommonText-2">{resultCards?.[2]}</span>
+
+          <div className="d-sm-flex flex-sm-row border-start border-2 border-primary mr-2 " style={{marginRight:"5px"}}>
+            <span className="lucky7CommonText-2 mr-2">{resultCards?.[2]}</span>
           </div>
-          <div className="d-sm-flex flex-sm-row">
-            <span className="lucky7CommonText">Color</span>
+
+          <div className="d-sm-flex flex-sm-row border-start border-2 border-primary "style={{marginRight:"5px"}} >
             <span className="lucky7CommonText-2">{resultCards?.[1]}</span>
           </div>
-          <div className="d-sm-flex flex-sm-row">
-            <span className="lucky7CommonText">Card</span>
-            <span className="lucky7CommonText-2">{card?.[2]}</span>
+          <div className="d-sm-flex flex-sm-row border-start border-2 border-primary "style={{marginRight:"5px"}}>
+            <span className="lucky7CommonText-2">{resultCards?.[3]}</span>
+          </div>
+          <div className="d-sm-flex flex-sm-row border-start border-2 border-primary "style={{marginRight:"5px"}}>
+            <span className="lucky7CommonText-2">{resultCards?.[4]}</span>
           </div>
         </div>
       </div>
@@ -60,4 +68,4 @@ const card = resultCards?.[3]?.split(' ')
   );
 };
 
-export default Lucky7ResultComponent;
+export default AmarAkbarAnthonyResultComponent;
