@@ -10,13 +10,13 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Abj2Result from "./abj2Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
+import Race20Result from "./race20Card";
 
 const Race20Desktop = () => {
   const [show, setShow] = useState(false);
@@ -116,7 +116,7 @@ const Race20Desktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+                  result={<Race20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>

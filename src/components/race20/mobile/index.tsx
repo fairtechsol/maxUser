@@ -10,7 +10,7 @@ import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Abj2Result from "../desktop/abj2Card";
+import Abj2Result from "../desktop/race20Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import OddBox from "./OddBox";
