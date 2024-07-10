@@ -471,9 +471,10 @@ const cardDetail = createSlice({
           const videoInfo = t1[0];
 
           const players = t2.slice(0, 3);
-          const redBlack = t2.slice(2, 4);
-          const luckOdds = t2.slice(4, 6);
-          const luckyCards = t2.slice(6, 26);
+          const redBlack = t2.slice(5, 7); 
+          const luckOdds = t2.slice(3, 5);
+          const seven = t2.slice(20,22);
+          const luckyCards = t2.slice(7, 20);
 
           state.dragonTigerDetail = {
             ...state.dragonTigerDetail,
@@ -481,6 +482,7 @@ const cardDetail = createSlice({
             players,
             redBlack,
             luckOdds,
+            seven,
             luckyCards,
           };
         }

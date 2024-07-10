@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { dragonTigerCards } from "../../../../utils/constants";
 import "../../desktop/style.scss";
+
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
   useEffect(() => {
@@ -19,7 +20,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
         return (
           <div>
             <div
-              className={item?.gstatus === "0" ? "suspended" : ""}
+              className={item?.gstatus === "SUSPENDED" ? "suspended" : ""}
               style={{
                 display: "flex",
                 flexDirection: "column",

@@ -27,6 +27,7 @@ const OddEven = ({ data, card, odds }: any) => {
     );
   };
 
+  
   return (
     <>
       <div className="oddEvenContainer">
@@ -36,13 +37,14 @@ const OddEven = ({ data, card, odds }: any) => {
             <div
               style={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
                 justifyContent: "space-around",
+                alignItems:"center"
               }}
             >
               <CommonButtonBox
-                value1={odds?.[0]?.rate}
-                value2={"EVEN"}
+                value1={odds?.[0]?.b1}
+                value2={odds?.[0]?.nat}
                 value3={
                   data?.profitLoss
                     ? data?.profitLoss[
@@ -50,14 +52,14 @@ const OddEven = ({ data, card, odds }: any) => {
                       ]
                     : 0
                 }
-                width={"40%"}
+                width={"80%"}
                 handleBet={handleBet}
-                lock={odds?.[0]?.gstatus === "0" ? true : false}
+                lock={odds?.[0]?.gstatus === "SUSPENDED" ? true : false}
                 data={odds?.[0]}
               />
               <CommonButtonBox
-                value1={odds?.[1]?.rate}
-                value2={"ODD"}
+                value1={odds?.[1]?.b1}
+                value2={odds?.[1]?.nat}
                 value3={
                   data?.profitLoss
                     ? data?.profitLoss[
@@ -65,9 +67,9 @@ const OddEven = ({ data, card, odds }: any) => {
                       ]
                     : 0
                 }
-                width={"40%"}
+                width={"80%"}
                 handleBet={handleBet}
-                lock={odds?.[1]?.gstatus === "0" ? true : false}
+                lock={odds?.[1]?.gstatus === "SUSPENDED" ? true : false}
                 data={odds?.[1]}
               />
             </div>
@@ -85,13 +87,14 @@ const OddEven = ({ data, card, odds }: any) => {
             <div
               style={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
                 justifyContent: "space-around",
+                alignItems:"center"
               }}
             >
               <CommonButtonBox
-                value1={odds?.[0]?.rate}
-                value2={"icon1"}
+                value1={odds?.[0]?.b1}
+                value2={odds?.[0]?.nat}
                 value3={
                   data?.profitLoss
                     ? data?.profitLoss[
@@ -99,14 +102,14 @@ const OddEven = ({ data, card, odds }: any) => {
                       ]
                     : 0
                 }
-                width={"40%"}
+                width={"80%"}
                 handleBet={handleBet}
-                lock={odds?.[0]?.gstatus === "0" ? true : false}
+                lock={odds?.[0]?.gstatus === "SUSPENDED" ? true : false}
                 data={odds?.[0]}
               />
               <CommonButtonBox
-                value1={odds?.[1]?.rate}
-                value2={"icon2"}
+                value1={odds?.[1]?.b1}
+                value2={odds?.[1]?.nat}
                 value3={
                   data?.profitLoss
                     ? data?.profitLoss[
@@ -114,9 +117,9 @@ const OddEven = ({ data, card, odds }: any) => {
                       ]
                     : 0
                 }
-                width={"40%"}
+                width={"80%"}
                 handleBet={handleBet}
-                lock={odds?.[1]?.gstatus === "0" ? true : false}
+                lock={odds?.[1]?.gstatus === "SUSPENDED" ? true : false}
                 data={odds?.[1]}
               />
             </div>

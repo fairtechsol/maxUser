@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
+import PlayerButton from "../PlayerButton";
 import { seven } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
@@ -13,7 +14,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd: item?.rate,
+      odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -31,7 +32,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
-        <div className="commonButtonBoxContainer" style={{ width: "30%" }}>
+        {/* <div className="commonButtonBoxContainer" style={{ width: "30%" }}>
           <div>
             <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
               {parseFloat(lowHigh?.[0]?.b1).toFixed(2)}
@@ -61,9 +62,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
               {value3 || 0}
             </span>
           </div>
-        </div>
+        </div> */}
 
-        <CommonButtonBox
+        <PlayerButton
           value1={lowHigh?.[0]?.b1}
           value4={lowHigh?.[0]?.l1}
           value2={"Amar"}
@@ -76,11 +77,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           }
           width={"30%"}
           handleBet={handleBet}
-          lock={lowHigh?.[0]?.gstatus === "0" ? true : false}
+          lock={lowHigh?.[0]?.gstatus === "CLOSED" ? true : false}
           data={lowHigh?.[0]}
         />
 
-        <CommonButtonBox
+        <PlayerButton
           value1={lowHigh?.[1]?.b1}
           value4={lowHigh?.[1]?.l1}
           value2={"Akbar"}
@@ -93,11 +94,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           }
           width={"30%"}
           handleBet={handleBet}
-          lock={lowHigh?.[1]?.gstatus === "0" ? true : false}
+          lock={lowHigh?.[1]?.gstatus === "CLOSED" ? true : false}
           data={lowHigh?.[1]}
         />
 
-        <CommonButtonBox
+        <PlayerButton
           value1={lowHigh?.[2]?.b1}
           value4={lowHigh?.[2]?.l1}
           value2={"Anthony"}
@@ -110,8 +111,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           }
           width={"30%"}
           handleBet={handleBet}
-          lock={lowHigh?.[1]?.gstatus === "0" ? true : false}
-          data={lowHigh?.[1]}
+          lock={lowHigh?.[2]?.gstatus === "CLOSED" ? true : false}
+          data={lowHigh?.[2]}
         />
       </div>
       <div style={{ textAlign: "end", width: "100%" }}>

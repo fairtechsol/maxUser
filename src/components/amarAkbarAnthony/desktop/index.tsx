@@ -28,8 +28,9 @@ const AmarAkbarAnthonyDesktop = () => {
     `${cardUrl}${cardGamesId.lucky7}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  
-  console.log("detail",dragonTigerDetail)
+
+  console.log("data",dragonTigerDetail)
+
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -82,7 +83,7 @@ const AmarAkbarAnthonyDesktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -122,7 +123,7 @@ const AmarAkbarAnthonyDesktop = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "550px" }}>
+            <div >
               <div style={{ width: "100%", margin: "5% 5px" }}>
                 <TiePairBox
                   lowHigh={dragonTigerDetail?.players}
@@ -140,16 +141,23 @@ const AmarAkbarAnthonyDesktop = () => {
               >
                 <OddEven
                   name={"DRAGON"}
-                  odds={dragonTigerDetail?.redBlack}
+                  odds={dragonTigerDetail?.luckOdds}
                   data={dragonTigerDetail}
                   card={true}
                 />
 
                 <OddEven
                   name={"TIGER"}
-                  odds={dragonTigerDetail?.luckOdds}
+                  odds={dragonTigerDetail?.redBlack}
                   card={false}
                   data={dragonTigerDetail}
+                />
+
+                <OddEven
+                  name={"DRAGON"}
+                  odds={dragonTigerDetail?.seven}
+                  data={dragonTigerDetail}
+                  card={true}
                 />
               </div>
               <div
@@ -170,7 +178,7 @@ const AmarAkbarAnthonyDesktop = () => {
               <div style={{ width: "100%", margin: "5px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["L", "H", "T"]}
+                  name={["A", "B", "C"]}
                   type={cardGamesType.lucky7}
                 />
               </div>
