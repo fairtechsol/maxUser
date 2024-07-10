@@ -6,6 +6,10 @@ import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { ResultComponent } from "../resultComponent";
+import { ImClubs } from "react-icons/im";
+import { GiSpades } from "react-icons/gi";
+import { BiSolidHeart } from "react-icons/bi";
+import { ImDiamonds } from "react-icons/im";
 
 const CardResultBox = ({ data, name, type }: any) => {
   const navigate = useNavigate();
@@ -44,7 +48,7 @@ const CardResultBox = ({ data, name, type }: any) => {
               className="cardResultCircle"
               key={item?.mid}
               style={{
-                backgroundColor: "#355e3b",
+                backgroundColor: type==="race20"?"#d5d5d5":"#355e3b",
               }}
               onClick={() => handleResult(item?.mid)}
             >
@@ -87,6 +91,13 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? name?.[1]
                     : null}
                 </span>
+              ) : type === "race20" ? (
+                <>
+                 {item?.result === "1"?
+                  <GiSpades color="#000000" /> : item?.result === "2"? <BiSolidHeart color="#ff0000" /> : item?.result === "3"? <ImClubs color="#000000" />  : <ImDiamonds color="#ff0000" />
+                }
+                </>
+               
               ) : (
                 <span
                   style={{

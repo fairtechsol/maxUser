@@ -145,7 +145,7 @@ const Cricket5Desktop = () => {
             <div className="mt-2">
               <CardResultBox
                 data={dragonTigerDetail}
-                name={["8", "9", "10", "11"]}
+                name={["A", "I", "T"]}
                 type={"cricketv3"}
               />
             </div>

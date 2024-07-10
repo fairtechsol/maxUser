@@ -68,6 +68,18 @@ const cardGames = [
     value: "dt6",
     label: "Dragon Tiger 1 Day",
   },
+  {
+    value: "cricketv3",
+    label: "Fve-Five Cricket",
+  },
+  {
+    value: "superover",
+    label: "Superover",
+  },
+  {
+    value: "race20",
+    label: "Race 20",
+  },
 ];
 
 const CasinoReports = () => {
