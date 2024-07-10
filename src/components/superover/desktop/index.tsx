@@ -3,21 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import {
-  ball0,
-  ball1,
-  ball2,
-  ball3,
-  ball4,
-  ball6,
-  ballW,
   card32rules,
-  img10,
-  img2,
-  img3,
-  img4,
-  img6,
-  imgA,
-  imgK,
 } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -153,7 +139,7 @@ const SuperoverDesktop = () => {
             <div style={{ width: "100%", margin: "5px" }}>
               <CardResultBox
                 data={dragonTigerDetail}
-                name={["8", "9", "10", "11"]}
+                name={["E", "R"]}
                 type={"card32eu"}
               />
             </div>

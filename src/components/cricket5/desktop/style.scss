@@ -24,3 +24,18 @@
   width: 26px;
   height: 30px
 }
+.resultTabHead{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px;
+  background-color: rgba(0, 74, 37, 0.9);
+  align-items: center;
+}
+.resultTeamTab{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f7f7f7;
+}

@@ -158,7 +158,7 @@ const Race20Desktop = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "B"]}
-                  type={cardGamesType.andarBahar2}
+                  type={cardGamesType.race20}
                 />
               </div>
             </div>
