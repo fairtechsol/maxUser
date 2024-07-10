@@ -1,21 +1,21 @@
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { ImCross } from "react-icons/im";
 
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants } from "../../../../utils/constants";
-import CustomButton from "../../../commonComponent/button";
-import RightPanelContainer from "../rightPanelContainer";
-import "./style.scss";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { ApiConstants } from "../../../../utils/constants";
+import CustomButton from "../../../commonComponent/button";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
-import { FaChevronUp, FaChevronDown } from "react-icons/fa";
+import RightPanelContainer from "../rightPanelContainer";
+import "./style.scss";
 
 const placeBetHeader = [
   {},
@@ -59,7 +59,7 @@ const PlacedBet = () => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    let updatedBtnValue = buttonValues[0]?.value;
+    let updatedBtnValue = buttonValues?.value;
 
     // Check if updatedBtnValue is not undefined before parsing
     if (updatedBtnValue) {
@@ -146,7 +146,13 @@ const PlacedBet = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className={selectedBet?.team?.bettingType ==="LAY"?"place-bet-table-red":"place-bet-table-blue"}>
+                <tr
+                  className={
+                    selectedBet?.team?.bettingType === "LAY"
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
+                  }
+                >
                   <td width={"8%"}>
                     <span
                       className=" text-danger title-12 cursor-pointer"
@@ -234,7 +240,13 @@ const PlacedBet = () => {
                     </span>
                   </td>
                 </tr>
-                <tr className={selectedBet?.team?.bettingType ==="LAY"?"place-bet-table-red":"place-bet-table-blue"}>
+                <tr
+                  className={
+                    selectedBet?.team?.bettingType === "LAY"
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
+                  }
+                >
                   <td colSpan={5}>
                     <Container fluid>
                       <Row>
@@ -296,12 +308,12 @@ const PlacedBet = () => {
                                   selectionId: selectedBet?.team?.selectionId,
                                 };
                                 setMatchOddLoading(true);
-                                  dispatch(
-                                    placeBet({
-                                      url: ApiConstants.CARDS.MATCH.PLACE_BET,
-                                      data: JSON.stringify(payload),
-                                    })
-                                  );
+                                dispatch(
+                                  placeBet({
+                                    url: ApiConstants.CARDS.MATCH.PLACE_BET,
+                                    data: JSON.stringify(payload),
+                                  })
+                                );
                                 setStake(0);
                               }
                             }}

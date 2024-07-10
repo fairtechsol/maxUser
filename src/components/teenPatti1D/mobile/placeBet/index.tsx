@@ -39,7 +39,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    let updatedBtnValue = buttonValues[0]?.value;
+    let updatedBtnValue = buttonValues?.value;
 
     // Check if updatedBtnValue is not undefined before parsing
     if (updatedBtnValue) {
