@@ -251,18 +251,18 @@ export const availableGameType: any = {
 };
 
 export const cardGamesType: any = {
-  dragonTiger20: "dt20",
-  andarBahar2: "abj",
-  andarBahar1: "ab20",
-  teen20: "teen20",
-  card32: "card32",
-  card32B: "card32eu",
-  lucky7: "lucky7",
-  dragonTiger202: "dt202",
-  dragonTigerLion: "dtl20",
-  teenOneDay: "teen",
-  teenOpen: "teen8",
-  teenTest: "teen9",
+  dragonTiger20: "dt20", //
+  andarBahar2: "abj", //
+  andarBahar1: "ab20", //
+  teen20: "teen20", //
+  card32: "card32", //
+  card32B: "card32eu", //
+  lucky7: "lucky7", //
+  dragonTiger202: "dt202",//
+  dragonTigerLion: "dtl20",//
+  teenOneDay: "teen",//
+  teenOpen: "teen8",//
+  teenTest: "teen9",//
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
   casinoWar: "war",
@@ -304,11 +304,11 @@ export const navigateToGameDetail = {
   [availableGameType.tennis]: "/other-game-detail/",
   [availableGameType.horseRacing]: "/race/",
   [availableGameType.greyHound]: "/race/",
-  [cardGamesType.teen20]: "teenPatti20",
-  [cardGamesType.card32]: "32cards-A",
+  [cardGamesType.teen20]: "teen20",
+  [cardGamesType.card32]: "card32eu",
   [cardGamesType.card32B]: "32cards-B",
-  [cardGamesType.lucky7]: "lucky7-A",
-  [cardGamesType.lucky7B]: "lucky7-B",
+  [cardGamesType.lucky7]: "lucky7",
+  [cardGamesType.lucky7B]: "lucky7eu",
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",

@@ -3,6 +3,7 @@ import { Container} from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
 import isMobile from "../../../utils/screenDimension";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;

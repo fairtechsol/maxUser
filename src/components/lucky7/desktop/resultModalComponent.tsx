@@ -2,6 +2,7 @@ import React from "react";
 import { Container} from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import isMobile from "../../../utils/screenDimension";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;

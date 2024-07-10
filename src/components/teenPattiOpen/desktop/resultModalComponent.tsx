@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
 import isMobile from "../../../utils/screenDimension";
+import "./style.scss";
 
 interface Props {
   data: {
@@ -29,16 +30,16 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
 
   // Define the layout for rendering
   const layout = [
-    { index: 0, label: "Player1" },
+    { index: 0, label: "Player 1" },
     { index: 8, label: "Dealer" },
-    { index: 7, label: "Player8" },
-    { index: 1, label: "Player2" },
+    { index: 7, label: "Player 8" },
+    { index: 1, label: "Player 2" },
     { index: -1, label: "gap" },
-    { index: 6, label: "Player7" },
-    { index: 2, label: "Player3" },
-    { index: 3, label: "Player4" },
-    { index: 4, label: "Player5" },
-    { index: 5, label: "Player6" },
+    { index: 6, label: "Player 7" },
+    { index: 2, label: "Player 3" },
+    { index: 3, label: "Player 4" },
+    { index: 4, label: "Player 5" },
+    { index: 5, label: "Player 6 " },
   ];
 
   const renderRow = (row: any) => (
@@ -97,7 +98,6 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
           key={posIndex}
           className="teen20resultCardContaine mb-3"
           style={{
-            
             width: "100%",
             display: "flex",
             justifyContent: "center",
@@ -106,35 +106,37 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
           }}
         >
           {position.label !== "gap" && (
-            <div style={{
-              width: "90%",
-              border: "0.5px solid",
-              display: "flex",
-              justifyContent: "start",
-              flexDirection: "row",
-              alignItems: "center",
-              gap:"20px",
-            
-            }}>
-              
-                <span className="fs-5" style={{marginLeft:"10px"}}>{position.label}</span>
-                <div className="d-flex flex-row justify-content-center align-items-center mb-2">
-                  {players[position.index]?.map((card: any, cardIndex: any) => (
-                    <div
-                      key={cardIndex}
-                      style={{
-                        border: "1px solid #fdef34",
-                        borderRadius: "1px",
-                        marginLeft: "5px",
-                        position: "relative",
-                        marginTop:"10px"
-                      }}
-                    >
-                      <HandleCards card={card} />
-                    </div>
-                  ))}
-                </div>
-              
+            <div
+              style={{
+                width: "90%",
+                border: "0.5px solid",
+                display: "flex",
+                justifyContent: "start",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "20px",
+              }}
+            >
+              <span className="fs-5" style={{ marginLeft: "10px" }}>
+                {position.label}
+              </span>
+              <div className="d-flex flex-row justify-content-center align-items-center mb-2">
+                {players[position.index]?.map((card: any, cardIndex: any) => (
+                  <div
+                    key={cardIndex}
+                    style={{
+                      border: "1px solid #fdef34",
+                      borderRadius: "1px",
+                      marginLeft: "5px",
+                      position: "relative",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <HandleCards card={card} />
+                  </div>
+                ))}
+              </div>
+
               {data?.result?.sid.includes((position.index + 1).toString()) && (
                 <div
                   className="casino-winner-icon"
@@ -149,7 +151,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
       ))}
     </div>
   );
- 
+
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       {isMobile ? (
