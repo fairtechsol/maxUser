@@ -13,10 +13,10 @@ const Cricket5ResultComponent: React.FC<Props> = ({ data }: any) => {
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-     <div style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+     <div className="mb-2" style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
       <span>{data?.result?.desc} | Winner :{data?.result?.win ==="1"? " AUS":data?.result?.win ==="0"?" TIE":" IND"}</span>
      </div>
-     <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
+     {/* <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
       <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>FIRST INNINGS</span></div>
       <div className="resultTeamTab">
           {head?.map((item:any,index:number)=>{
@@ -39,7 +39,7 @@ const Cricket5ResultComponent: React.FC<Props> = ({ data }: any) => {
             )
           })}
       </div>
-     </div>
+     </div> */}
     </Container>
   );
 };
