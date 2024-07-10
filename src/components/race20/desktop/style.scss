@@ -373,6 +373,18 @@
 .back-BackGround {
   background-color: #72bbef;
 }
+.result-card-container{
+  display: flex;
+  flex-direction: row;
+  gap:8px
+}
+.casino-winner-icon{
+  // font-size: 26px;
+  box-shadow: 0 0 0 #FFC742;
+  animation: winnerbox 1.5s infinite;;
+  border-radius: 50%;
+  color: #169733;
+}
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }
