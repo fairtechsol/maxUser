@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import {  useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
+import { p6rules, tprules } from "../../../assets/images";
 import {  RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -220,7 +220,7 @@ const Poker1DayDesktop = () => {
                     </tbody>
                   </Table>
                 </div>
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
+                <RulesModal show={show} setShow={setShow} rule={p6rules} />
               </Col>
             </Row>
           </Container>

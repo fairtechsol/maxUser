@@ -16,6 +16,7 @@ import PlacedBet from "./placeBet";
 import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
+import Race20Result from "../desktop/race20Card";
 
 const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -134,13 +135,13 @@ const Race20Mobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+                  result={<Race20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
 
-            <div style={{ height: "800px" }}>
+            <div style={{ height: "880px" }}>
               <div style={{ width: "100%", marginTop: "20%" }}>
               <OddBox
                   odds={dragonTigerDetail?.cards}
@@ -175,7 +176,7 @@ const Race20Mobile = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "B"]}
-                  type={cardGamesType.andarBahar2}
+                  type={cardGamesType.race20}
                 />
               </div>
             </div>
