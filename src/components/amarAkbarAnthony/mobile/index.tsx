@@ -133,7 +133,7 @@ const AmarAkbarAnthonyMobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "550px" }}>
+            <div style={{ }}>
               <div style={{ width: "100%", marginTop: "30px" }}>
                 <TiePairBox
                   lowHigh={dragonTigerDetail?.lowHigh}

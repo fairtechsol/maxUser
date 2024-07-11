@@ -297,6 +297,7 @@ export const cardGamesId: any = {
   poker1Day: 3051,
   poker20: 3052,
   cricketv3: 3042,
+  aaa:3056,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",

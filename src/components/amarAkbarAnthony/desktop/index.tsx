@@ -25,7 +25,7 @@ const AmarAkbarAnthonyDesktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.lucky7}`
+    `${cardUrl}${cardGamesId.aaa}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
