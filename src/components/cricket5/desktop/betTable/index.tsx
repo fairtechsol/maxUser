@@ -35,6 +35,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
 
   const team1 = odds?.[0];
   const team2 = odds?.[1];
+
+  console.log('first',odds)
   return (
     <div className="casino-detail detail-page-container-c position-relative">
       <div className="game-market-c market-2">
@@ -101,21 +103,21 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             </div>
             <div
               className={`market-row-c ${
-                team1?.status === "SUSPENDED" ? "suspended-row" : ""
+                team1?.status === "SUSPENDED" || team1?.status === "CLOSED" ? "suspended-row" : ""
               }`}
               data-title={
-                team1?.status === "SUSPENDED" ? "SUSPENDED" : "ACTIVE"
+                team1?.status === "SUSPENDED" || team1?.status === "CLOSED" ? "SUSPENDED" : "ACTIVE"
               }
             >
               <div
                 className="market-odd-box-c back lh-1"
                 onClick={() =>
-                  team1?.status === "SUSPENDED"
+                  team1?.status === "SUSPENDED" || team1?.status === "CLOSED" || team1?.b1 === "0.00"
                     ? null
                     : handleBet(team1, "back")
                 }
               >
-                <span className="market-odd-c">
+                <span className="market-odd-c f600">
                   {team1?.b1 === "0.00" ? "-" : team1?.b1}
                 </span>
                 <span className="market-volume-c">{team1?.bs1}</span>
@@ -123,10 +125,10 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               <div
                 className="market-odd-box-c lay lh-1"
                 onClick={() =>
-                  team1?.status === "SUSPENDED" ? null : handleBet(team1, "lay")
+                  team1?.status === "SUSPENDED" || team1?.status === "CLOSED" || team1?.l1 === "0.00" ? null : handleBet(team1, "lay")
                 }
               >
-                <span className="market-odd-c">
+                <span className="market-odd-c f600">
                   {team1?.l1 === "0.00" ? "-" : team1?.l1}
                 </span>
                 <span className="market-volume">{team1?.ls1}</span>
@@ -175,21 +177,21 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             </div>
             <div
               className={`market-row-c ${
-                team2?.status === "SUSPENDED" ? "suspended-row" : ""
+                team2?.status === "SUSPENDED" || team2?.status === "CLOSED"? "suspended-row" : ""
               }`}
               data-title={
-                team2?.status === "SUSPENDED" ? "SUSPENDED" : "ACTIVE"
+                team2?.status === "SUSPENDED" || team2?.status === "CLOSED"? "SUSPENDED" : "ACTIVE"
               }
             >
               <div
                 className="market-odd-box-c back lh-1"
                 onClick={() =>
-                  team2?.status === "SUSPENDED"
+                  team2?.status === "SUSPENDED" || team2?.status === "CLOSED" || team2?.b1 === "0.00" 
                     ? null
                     : handleBet(team2, "back")
                 }
               >
-                <span className="market-odd-c">
+                <span className="market-odd-c f600">
                   {team2?.b1 === "0.00" ? "-" : team2?.b1}
                 </span>
                 <span className="market-volume-c">{team2?.bs1}</span>
@@ -197,10 +199,10 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               <div
                 className="market-odd-box-c lay lh-1"
                 onClick={() =>
-                  team2?.status === "SUSPENDED" ? null : handleBet(team2, "lay")
+                  team2?.status === "SUSPENDED" || team2?.status === "CLOSED" || team2?.l1 === "0.00" ? null : handleBet(team2, "lay")
                 }
               >
-                <span className="market-odd-c">
+                <span className="market-odd-c f600">
                   {team2?.l1 === "0.00" ? "-" : team2?.l1}
                 </span>
                 <span className="market-volume">{team2?.ls1}</span>
