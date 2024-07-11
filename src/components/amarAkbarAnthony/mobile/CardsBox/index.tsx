@@ -15,7 +15,7 @@ const CardBox = ({ cardData, data }: any) => {
     let team ={
       "bettingType": "BACK",
       "matchId": data?.id,
-      "odd": item?.rate,
+      "odd": item?.b1,
       "stake": 0,
       "matchBetType": "matchOdd",
       "betOnTeam":item?.nat,
@@ -42,7 +42,9 @@ const CardBox = ({ cardData, data }: any) => {
                 alignSelf: "center",
               }}
             >
-              {parseFloat(isNaN(cardData?.[0]?.rate)?0:cardData?.[0]?.rate).toFixed(2)}
+              {parseFloat(
+              isNaN(cardData?.[0]?.b1) ? 0 : cardData?.[0]?.b1
+            ).toFixed(2)}
             </span>
           </div>
           <div style={{ width: "45%", textAlign: "end" }}>

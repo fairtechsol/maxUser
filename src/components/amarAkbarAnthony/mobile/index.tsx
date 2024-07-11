@@ -136,7 +136,7 @@ const AmarAkbarAnthonyMobile = () => {
             <div style={{}}>
               <div style={{ width: "100%", marginTop: "30px" }}>
                 <TiePairBox
-                  lowHigh={dragonTigerDetail?.lowHigh}
+                  lowHigh={dragonTigerDetail?.players}
                   data={dragonTigerDetail}
                 />
               </div>
@@ -188,8 +188,8 @@ const AmarAkbarAnthonyMobile = () => {
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["L", "H", "T"]}
-                  type={cardGamesType.lucky7}
+                  name={["A", "B", "C"]}
+                  type={cardGamesType.amarAkbarAnthony}
                 />
               </div>
             </div>
