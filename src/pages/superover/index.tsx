@@ -1,0 +1,130 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { socket, socketService } from "../../socketManager";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
+import {
+  casinoScoreboardMatchRates,
+  getDragonTigerDetailHorseRacing,
+  updateBalanceOnBetPlaceCards,
+  updateCardSuperoverRates,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
+} from "../../store/actions/cards/cardDetail";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
+import {
+  getButtonValue,
+  getProfileInMatchDetail,
+} from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
+import { cardGamesType } from "../../utils/constants";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
+import SuperoverComponentList from "../../components/superover";
+
+const Superover = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const { loading, dragonTigerDetail } = useSelector(
+    (state: RootState) => state.card
+  );
+  useEffect(() => {
+    const scoreBoard = () => {
+      if (dragonTigerDetail?.videoInfo?.mid) {
+        const Id = dragonTigerDetail.videoInfo?.mid.split(".");
+        dispatch(
+          casinoScoreboardMatchRates({
+            id: Id[1],
+            type: cardGamesType.cricketv3,
+          })
+        );
+      }
+    };
+    const intervalId = setInterval(scoreBoard, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [dispatch, dragonTigerDetail]);
+
+  const setMatchRatesInRedux = (event: any) => {
+    try {
+      dispatch(updateCardSuperoverRates(event?.data?.data?.data));
+      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+        dispatch(selectedBetAction(null));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const handleBetPlacedOnDT20 = (event: any) => {
+    if (event?.jobData?.matchType === cardGamesType.superover) {
+      dispatch(updateBetsPlaced(event?.jobData?.newBet));
+      dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
+      dispatch(updateProfitLossCards(event?.userRedisObj));
+    }
+  };
+
+  const handleLiveGameResultTop10 = (event: any) => {
+    dispatch(updateLiveGameResultTop10(event?.data));
+  };
+  const handleCardResult = (event: any) => {
+    if (event?.matchId === dragonTigerDetail?.id) {
+      dispatch(getPlacedBets(dragonTigerDetail?.id));
+      dispatch(getProfileInMatchDetail());
+    }
+  };
+
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.superover));
+      if (dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, [dragonTigerDetail?.id]);
+
+  useEffect(() => {
+    try {
+      if (socket && dragonTigerDetail?.id) {
+        socketService.card.getCardRatesOff(cardGamesType.superover);
+        socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
+        socketService.card.joinMatchRoom(cardGamesType.superover);
+        socketService.card.getCardRates(
+          cardGamesType.superover,
+          setMatchRatesInRedux
+        );
+        socketService.card.getLiveGameResultTop10(
+          cardGamesType.superover,
+          handleLiveGameResultTop10
+        );
+        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+        socketService.card.cardResult(handleCardResult);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [socket, dragonTigerDetail?.id]);
+
+  useEffect(() => {
+    try {
+      if (dragonTigerDetail?.id) {
+        return () => {
+          socketService.card.leaveMatchRoom(cardGamesType.superover);
+          socketService.card.getCardRatesOff(cardGamesType.superover);
+          socketService.card.userCardBetPlacedOff();
+          socketService.card.cardResultOff();
+          dispatch(selectedBetAction(null));
+        };
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }, [dragonTigerDetail?.id]);
+
+  return loading ? <InnerLoader /> : <SuperoverComponentList />;
+};
+
+export default Superover;

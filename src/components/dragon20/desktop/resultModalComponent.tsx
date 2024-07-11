@@ -20,6 +20,13 @@ const Dragon20ResultComponent: React.FC<Props> = ({ data }: any) => {
   const dragonCard = dragonData?.[2];
   const tigerCard = tigerData?.[2];
 
+  function splitCard(cardString: string) {
+    const parts = cardString?.split("Card");
+    return parts.length > 1 ? parts[1].trim() : cardString;
+  }
+
+  console.log(tigerCard, dragonCard, "hanvi");
+
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="dt20resultModal">
@@ -106,8 +113,8 @@ const Dragon20ResultComponent: React.FC<Props> = ({ data }: any) => {
           <div className="d-sm-flex flex-sm-row">
             <span className="dt20CommonText">Card</span>
             <span className="dt20CommonText-2">
-              D : {dragonCard?.[dragonCard?.length - 1]} | T :{" "}
-              {tigerCard?.[tigerCard?.length - 1]}
+              D : {dragonCard && splitCard(dragonCard)} | T :{" "}
+              {tigerCard && splitCard(tigerCard)}
             </span>
           </div>
         </div>
