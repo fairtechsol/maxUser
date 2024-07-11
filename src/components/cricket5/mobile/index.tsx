@@ -155,7 +155,7 @@ const Cricket5Mobile = ({fancyData}: any) => {
                 {" "}
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["8", "9", "10", "11"]}
+                  name={["A", "I", "T"]}
                   type={"cricketv3"}
                 />
               </div>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { card32rules } from "../../../assets/images";
+import { card32rules, p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -141,7 +141,7 @@ const Poker20Desktop = () => {
             </div>
           </div>
 
-          <RulesModal show={show} setShow={setShow} rule={card32rules} />
+          <RulesModal show={show} setShow={setShow} rule={p6rules} />
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>

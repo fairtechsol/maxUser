@@ -115,15 +115,15 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
           data-title={handleLock(team1?.status, team1?.b1) ? "SUSPENDED" : ""}
         >
           <div
-            className={`w-50 back-BackGround flex-justify-center `}
-            style={{ flexDirection: "column" }}
+            className={`w-50 back-BackGround flex-justify-center cursor-pointer`}
+            style={{ height: "42px", flexDirection: "column" }}
             onClick={() =>
               handleLock(team1?.status, team1?.b1)
                 ? null
                 : handleBet(team1, "back")
             }
           >
-            <span className="f600 rateText">
+            <span className="f600 rateText lh-1">
               {team1?.b1 === "0.00" ? "-" : team1?.b1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
@@ -131,15 +131,15 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             </span>
           </div>
           <div
-            className={`w-50 lay-BackGround flex-justify-center `}
-            style={{ flexDirection: "column" }}
+            className={`w-50 lay-BackGround flex-justify-center cursor-pointer`}
+            style={{ height: "42px", flexDirection: "column" }}
             onClick={() =>
               handleLock(team1?.status, team1?.l1)
                 ? null
                 : handleBet(team1, "lay")
             }
           >
-            <span className="f600 rateText">
+            <span className="f600 rateText lh-1">
               {team1?.l1 === "0.00" ? "-" : team1?.l1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
@@ -195,8 +195,8 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
           data-title={handleLock(team2?.status, team2?.b1) ? "SUSPENDED" : ""}
         >
           <div
-            className={`w-50 back-BackGround flex-justify-center`}
-            style={{ flexDirection: "column" }}
+            className={`w-50 back-BackGround flex-justify-center cursor-pointer`}
+            style={{ height: "42px", flexDirection: "column" }}
             onClick={() =>
               handleLock(team2?.status, team2?.b1)
                 ? null
@@ -211,8 +211,8 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             </span>
           </div>
           <div
-            className={`w-50 lay-BackGround flex-justify-center `}
-            style={{ flexDirection: "column" }}
+            className={`w-50 lay-BackGround flex-justify-center cursor-pointer`}
+            style={{ height: "42px", flexDirection: "column" }}
             onClick={() =>
               handleLock(team2?.status, team2?.l1)
                 ? null

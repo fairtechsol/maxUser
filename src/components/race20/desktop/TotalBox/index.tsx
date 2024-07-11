@@ -57,7 +57,7 @@ const TotalsBox = ({ odds, data }: any) => {
             <span className="f600">Total points</span>
           </div>
           <div
-            className={`total-rateBox lay-BackGround flex-column ${
+            className={`total-rateBox lay-BackGround cursor-pointer flex-column ${
               handleLock(odds?.[0], "lay") ? "suspended" : ""
             }`}
             onClick={() =>
@@ -65,10 +65,10 @@ const TotalsBox = ({ odds, data }: any) => {
             }
           >
             <span className="rate-box">{odds?.[0]?.l1}</span>{" "}
-            <span className="casino-volume">{odds?.[0]?.ls1}</span>
+            <span className="casino-volume f400">{odds?.[0]?.ls1}</span>
           </div>
           <div
-            className={`total-rateBox back-BackGround flex-column ${
+            className={`total-rateBox back-BackGround cursor-pointer flex-column ${
               handleLock(odds?.[0], "back") ? "suspended" : ""
             }`}
             onClick={() =>
@@ -78,7 +78,7 @@ const TotalsBox = ({ odds, data }: any) => {
             }
           >
             <span className="rate-box">{odds?.[0]?.b1}</span>{" "}
-            <span className="casino-volume">{odds?.[0]?.bs1}</span>
+            <span className="casino-volume f400">{odds?.[0]?.bs1}</span>
           </div>
         </div>
 
@@ -145,7 +145,7 @@ const TotalsBox = ({ odds, data }: any) => {
             <span className="f600">Total cards</span>
           </div>
           <div
-            className={`total-rateBox lay-BackGround flex-column ${
+            className={`total-rateBox lay-BackGround cursor-pointer flex-column ${
               handleLock(odds?.[1], "lay") ? "suspended" : ""
             }`}
             onClick={() =>
@@ -153,10 +153,10 @@ const TotalsBox = ({ odds, data }: any) => {
             }
           >
             <span className="rate-box">{odds?.[1]?.l1}</span>{" "}
-            <span className="casino-volume">{odds?.[1]?.ls1}</span>
+            <span className="casino-volume f400">{odds?.[1]?.ls1}</span>
           </div>
           <div
-            className={`total-rateBox back-BackGround flex-column ${
+            className={`total-rateBox back-BackGround cursor-pointer flex-column ${
               handleLock(odds?.[1], "back") ? "suspended" : ""
             }`}
             onClick={() =>
@@ -166,7 +166,7 @@ const TotalsBox = ({ odds, data }: any) => {
             }
           >
             <span className="rate-box">{odds?.[1]?.b1}</span>{" "}
-            <span className="casino-volume">{odds?.[1]?.bs1}</span>
+            <span className="casino-volume f400">{odds?.[1]?.bs1}</span>
           </div>
         </div>
         <div className="total-mainRateBox">

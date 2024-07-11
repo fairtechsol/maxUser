@@ -44,7 +44,7 @@ const WinBox = ({ odds, data }: any) => {
                     <span className="f600">{item?.nat}</span>
                   </div>
                   <div
-                    className={`win-rateBox back-BackGround flex-column ${
+                    className={`win-rateBox back-BackGround cursor-pointer flex-column ${
                       handleLock(item) ? "suspended" : ""
                     }`}
                     onClick={() => (handleLock(item) ? null : handleBet(item))}

@@ -159,9 +159,9 @@ const SuperoverMobile = () => {
             </div>
 
             <div
-              style={{ height: "700px", marginLeft: "5px", marginTop: "8rem" }}
+              style={{ height: "700px", marginTop: "9rem" }}
             >
-              <div className="" style={{ width: "97%", gap: "10px" }}>
+              <div className="" style={{ width: "100%", gap: "10px" }}>
                 <div className="w-100">
                   <Bookmaker
                     title={"Bookmaker"}
@@ -173,7 +173,7 @@ const SuperoverMobile = () => {
                 </div>
               </div>
 
-              <div style={{ width: "97%", margin: "5px" }}>
+              <div style={{ width: "100%", marginTop: "5px" }}>
                 <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
               </div>
               <div className="sidebar-box place-bet-container super-over-rule">

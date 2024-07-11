@@ -3,13 +3,6 @@ import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import {
   crick5rules,
-  img10,
-  img2,
-  img3,
-  img4,
-  img6,
-  imgA,
-  imgK,
 } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
@@ -24,6 +17,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import MarketComponent from "./betTable";
 import ScoreBoard from "../../commonComponent/scoreBoard";
+import Crick5Result from "./cric5Card";
 
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -38,7 +32,7 @@ const Cricket5Desktop = () => {
     (state: RootState) => state.card
   );
   // console.log(dragonTigerDetail, "dtaa")
-  const [showFancy, setShowFancy] = useState(false);
+  // const [showFancy, setShowFancy] = useState(false);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -128,13 +122,13 @@ const Cricket5Desktop = () => {
             >
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
-                result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
+                result={<Crick5Result data={dragonTigerDetail?.videoInfo} />}
                 id={videoFrameId}
               />
             </div>
           </div>
           <div style={{ height: "350px" }}>
-            <div className="px-2" style={{ marginTop: "7rem" }}>
+            <div style={{ marginTop: "7rem" }}>
               <MarketComponent
                 odds={dragonTigerDetail?.odds}
                 min={dragonTigerDetail?.videoInfo?.min}
