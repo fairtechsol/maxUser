@@ -116,7 +116,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         >
           <div
             className={`w-50 back-BackGround flex-justify-center `}
-            style={{ height: "35px", flexDirection: "column" }}
+            style={{ flexDirection: "column" }}
             onClick={() =>
               handleLock(team1?.status, team1?.b1)
                 ? null
@@ -132,7 +132,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
           </div>
           <div
             className={`w-50 lay-BackGround flex-justify-center `}
-            style={{ height: "35px", flexDirection: "column" }}
+            style={{ flexDirection: "column" }}
             onClick={() =>
               handleLock(team1?.status, team1?.l1)
                 ? null
@@ -196,7 +196,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         >
           <div
             className={`w-50 back-BackGround flex-justify-center`}
-            style={{ height: "35px", flexDirection: "column" }}
+            style={{ flexDirection: "column" }}
             onClick={() =>
               handleLock(team2?.status, team2?.b1)
                 ? null
@@ -212,7 +212,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
           </div>
           <div
             className={`w-50 lay-BackGround flex-justify-center `}
-            style={{ height: "35px", flexDirection: "column" }}
+            style={{ flexDirection: "column" }}
             onClick={() =>
               handleLock(team2?.status, team2?.l1)
                 ? null
