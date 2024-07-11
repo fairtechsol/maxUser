@@ -133,7 +133,7 @@ const AmarAkbarAnthonyMobile = () => {
               </div>
             </div>
 
-            <div style={{ }}>
+            <div style={{}}>
               <div style={{ width: "100%", marginTop: "30px" }}>
                 <TiePairBox
                   lowHigh={dragonTigerDetail?.lowHigh}
@@ -150,16 +150,24 @@ const AmarAkbarAnthonyMobile = () => {
                 }}
               >
                 <OddEven
-                  odds={dragonTigerDetail?.redBlack}
-                  data={dragonTigerDetail}
                   name={"DRAGON"}
+                  odds={dragonTigerDetail?.luckOdds}
+                  data={dragonTigerDetail}
                   card={true}
                 />
+
                 <OddEven
                   name={"TIGER"}
-                  odds={dragonTigerDetail?.luckOdds}
+                  odds={dragonTigerDetail?.redBlack}
                   card={false}
                   data={dragonTigerDetail}
+                />
+
+                <OddEven
+                  name={"DRAGON"}
+                  odds={dragonTigerDetail?.seven}
+                  data={dragonTigerDetail}
+                  card={true}
                 />
               </div>
               <div
