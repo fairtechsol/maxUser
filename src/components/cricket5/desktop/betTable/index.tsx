@@ -36,7 +36,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
   const team1 = odds?.[0];
   const team2 = odds?.[1];
 
-  console.log('first',odds)
+  // console.log('first',odds)
   return (
     <div className="casino-detail detail-page-container-c position-relative">
       <div className="game-market-c market-2">
