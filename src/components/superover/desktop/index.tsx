@@ -11,13 +11,13 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import Bookmaker from "./bookmaker";
 import ScoreBoard from "../../commonComponent/scoreBoard";
+import SuperoverResult from "./superOver";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -119,7 +119,7 @@ const SuperoverDesktop = () => {
             >
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
-                result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}
+                result={<SuperoverResult data={dragonTigerDetail?.videoInfo} />}
                 id={videoFrameId}
               />
             </div>
@@ -143,8 +143,8 @@ const SuperoverDesktop = () => {
             <div style={{ width: "100%", margin: "5px" }}>
               <CardResultBox
                 data={dragonTigerDetail}
-                name={["E", "R"]}
-                type={"card32eu"}
+                name={["E", "R","T"]}
+                type={"superover"}
               />
             </div>
           </div>
