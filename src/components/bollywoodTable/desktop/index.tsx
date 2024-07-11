@@ -14,22 +14,24 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
+import TiePairBox2 from "./TiePairBox2";
 import Lucky7Result from "./lucky7Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 
-const AmarAkbarAnthonyDesktop = () => {
+const BollywoodTableDesktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.aaa}`
+    `${cardUrl}${cardGamesId.btable}`
   );
+
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
-  console.log("data",dragonTigerDetail)
+  console.log("data", dragonTigerDetail);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -123,7 +125,7 @@ const AmarAkbarAnthonyDesktop = () => {
                 />
               </div>
             </div>
-            <div >
+            <div>
               <div style={{ width: "100%", margin: "5% 5px" }}>
                 <TiePairBox
                   lowHigh={dragonTigerDetail?.players}
@@ -139,11 +141,9 @@ const AmarAkbarAnthonyDesktop = () => {
                   gap: "8px",
                 }}
               >
-                <OddEven
-                  name={"DRAGON"}
-                  odds={dragonTigerDetail?.luckOdds}
+                <TiePairBox2
+                  lowHigh={dragonTigerDetail?.luckOdds}
                   data={dragonTigerDetail}
-                  card={true}
                 />
 
                 <OddEven
@@ -212,4 +212,4 @@ const AmarAkbarAnthonyDesktop = () => {
   );
 };
 
-export default AmarAkbarAnthonyDesktop;
+export default BollywoodTableDesktop;

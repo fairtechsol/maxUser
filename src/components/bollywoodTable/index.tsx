@@ -1,9 +1,8 @@
 import isMobile from "../../utils/screenDimension";
-import AmarAkbarAnthonyDesktop from "./desktop";
-import AmarAkbarAnthonyMobile from "./mobile";
-
-const AmarAkbarAnthonyComponentList = () => {
-  return isMobile ? <AmarAkbarAnthonyMobile /> : <AmarAkbarAnthonyDesktop />;
+import BollywoodTableDesktop from "./desktop";
+import BollywoodTableMobile from "./mobile";
+const BollywoodTableComponentList = () => {
+  return isMobile ? <BollywoodTableMobile /> : <BollywoodTableDesktop />;
 };
 
-export default AmarAkbarAnthonyComponentList;
+export default BollywoodTableComponentList;

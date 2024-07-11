@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AmarAkbarAnthonyComponentList from "../../components/amarAkbarAnthony";
+import BollywoodTableComponentList from "../../components/bollywoodTable";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -8,7 +8,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   getDragonTigerDetailHorseRacing,
-  updateAmarAkbarAnthonyCardMatchRates,
+  updateBollywoodTableCardMatchRates,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
@@ -30,7 +30,7 @@ const BollywoodTable = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateAmarAkbarAnthonyCardMatchRates(event?.data?.data?.data));
+      dispatch(updateBollywoodTableCardMatchRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
@@ -105,7 +105,7 @@ const BollywoodTable = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <AmarAkbarAnthonyComponentList />;
+  return loading ? <InnerLoader /> : <BollywoodTableComponentList />;
 };
 
 export default BollywoodTable;

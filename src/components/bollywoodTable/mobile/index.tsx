@@ -15,7 +15,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 
-const AmarAkbarAnthonyMobile = () => {
+const BollywoodTableMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   // const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
@@ -205,4 +205,4 @@ const AmarAkbarAnthonyMobile = () => {
   );
 };
 
-export default AmarAkbarAnthonyMobile;
+export default BollywoodTableMobile;

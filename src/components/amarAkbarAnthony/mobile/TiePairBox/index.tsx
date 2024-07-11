@@ -10,11 +10,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   const min = lowHigh?.[0]?.min;
   const max = lowHigh?.[0]?.max;
 
-  const handleBet = (item: any) => {
+  const handleBet = (item: any,type:any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd: item?.b1,
+      odd:type==="BACK"? item?.b1:item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,

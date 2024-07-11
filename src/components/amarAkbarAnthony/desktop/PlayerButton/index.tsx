@@ -41,7 +41,7 @@ const PlayerButton = ({
           <div
             className="teenPatti-table-item"
             style={{ width: "50%" }}
-            onClick={() => handleBet(data)}
+            onClick={() => handleBet(data,"BACK")}
           >
             <span className="f18-b my-2 fw-bold">{parseFloat(value1).toFixed(2)}</span>
             <span className="f10-b">{}</span>
@@ -49,7 +49,7 @@ const PlayerButton = ({
           <div
             className={`teenPatti-table-item`}
             style={{ width: "50%", background: "#f9c9d4" }}
-            onClick={() => handleBet(data)}
+            onClick={() => handleBet(data,"LAY")}
           >
             <span className="f18-b my-2 fw-bold">{parseFloat(value4).toFixed(2)}</span> 
             <span className="f10-b">{}</span>

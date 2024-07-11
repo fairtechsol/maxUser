@@ -26,6 +26,7 @@ import {
   updateCardPoker20Rates,
   updateCricket5MatchRates,
   updateAmarAkbarAnthonyCardMatchRates,
+  updateBollywoodTableCardMatchRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -466,14 +467,13 @@ const cardDetail = createSlice({
           const { t1, t2 } = action.payload;
           state.loading = false;
 
-          console.log("ggg",action.payload)
 
           const videoInfo = t1[0];
 
           const players = t2.slice(0, 3);
-          const redBlack = t2.slice(5, 7); 
+          const redBlack = t2.slice(5, 7);
           const luckOdds = t2.slice(3, 5);
-          const seven = t2.slice(20,22);
+          const seven = t2.slice(20, 22);
           const luckyCards = t2.slice(7, 20);
 
           state.dragonTigerDetail = {
@@ -487,7 +487,33 @@ const cardDetail = createSlice({
           };
         }
       )
+      .addCase(
+        updateBollywoodTableCardMatchRates.fulfilled,
+        (state, action) => {
+          const { t1, t2 } = action.payload;
+          state.loading = false;
 
+          console.log("ggg", action.payload);
+
+          const videoInfo = t1[0];
+
+          const players = t2.slice(0, 6);
+          const redBlack = t2.slice(7, 9);
+          const luckOdds = t2?.[6];
+          const seven = t2.slice(13, 15);
+          const luckyCards = t2.slice(9, 13);
+
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players,
+            redBlack,
+            luckOdds,
+            seven,
+            luckyCards,
+          };
+        }
+      )
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;

@@ -14,7 +14,7 @@ const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
   const pair = resultCards?.[0]?.split(" ");
   const card = resultCards?.[3]?.split(" ");
 
-  console.log("winner");
+
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
