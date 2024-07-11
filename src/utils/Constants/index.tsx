@@ -273,7 +273,8 @@ export const cardGamesType: any = {
   poker20: "poker20",
   card3judge: "3cardj",
   cricketv3: "cricketv3",
-  amarAkbarAnthony:"aaa"
+  amarAkbarAnthony:"aaa",
+  btable: "btable",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -298,6 +299,7 @@ export const cardGamesId: any = {
   poker20: 3052,
   cricketv3: 3042,
   aaa:3056,
+  btable:3041,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -312,7 +314,7 @@ export const navigateToGameDetail = {
   [cardGamesType.lucky7B]: "lucky7eu",
   [cardGamesType.abj]: "abj2",
   [cardGamesType.dt20]: "dt20",
-  [cardGamesType.andarBahar1]: "ab20",
+  [cardGamesType.andarBahar1]: "ab20", 
   [cardGamesType.race20]: "race20",
   [cardGamesType.teenTest]: "teen9",
   [cardGamesType.superover]: "superover",
@@ -1689,7 +1691,12 @@ export const card3 = {
   bollywoodCasino: [
     {
       url: "/aaa",
-      imgSrc:"https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
+      imgSrc:"https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1016.webp",
+      name: "AMAR AKHBAR ANTHONY",
+    },
+    {
+      url: "/btable",
+      imgSrc:"https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1015.webp",
       name: "AMAR AKHBAR ANTHONY",
     },
   ],
