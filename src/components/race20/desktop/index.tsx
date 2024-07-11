@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { abjrules } from "../../../assets/images";
+import { abjrules, race20rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -162,7 +162,7 @@ const Race20Desktop = () => {
                 />
               </div>
             </div>
-            <RulesModal show={show} setShow={setShow} rule={abjrules} />
+            <RulesModal show={show} setShow={setShow} rule={race20rules} />
           </div>
         </Col>
         <Col md={4}>
