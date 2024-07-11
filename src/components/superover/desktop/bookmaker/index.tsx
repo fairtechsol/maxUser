@@ -83,13 +83,13 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                         data?.profitLoss[
                           `${data?.videoInfo?.mid}_${team1?.sid}_card`
                         ]
-                      )["1"] > 0
+                      )["eng"] > 0
                       ? "color-green"
                       : JSON.parse(
                           data?.profitLoss[
                             `${data?.videoInfo?.mid}_${team1?.sid}_card`
                           ]
-                        )["1"] < 0
+                        )["eng"] < 0
                       ? "color-red"
                       : ""
                     : ""
@@ -102,7 +102,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                       data?.profitLoss[
                         `${data?.videoInfo?.mid}_${team1?.sid}_card`
                       ]
-                    )["1"]
+                    )["eng"]
                   : 0
                 : 0}
             </span>
@@ -163,13 +163,13 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                         data?.profitLoss[
                           `${data?.videoInfo?.mid}_${team1?.sid}_card`
                         ]
-                      )["2"] > 0
+                      )["rsa"] > 0
                       ? "color-green"
                       : JSON.parse(
                           data?.profitLoss[
                             `${data?.videoInfo?.mid}_${team1?.sid}_card`
                           ]
-                        )["2"] < 0
+                        )["rsa"] < 0
                       ? "color-red"
                       : ""
                     : ""
@@ -182,7 +182,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                       data?.profitLoss[
                         `${data?.videoInfo?.mid}_${team1?.sid}_card`
                       ]
-                    )["2"]
+                    )["rsa"]
                   : 0
                 : 0}
             </span>

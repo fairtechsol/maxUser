@@ -73,13 +73,13 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                           data?.profitLoss[
                             `${data?.videoInfo?.mid}_${team1?.sid}_card`
                           ]
-                        )["1"] > 0
+                        )["aus"] > 0
                         ? "color-green"
                         : JSON.parse(
                             data?.profitLoss[
                               `${data?.videoInfo?.mid}_${team1?.sid}_card`
                             ]
-                          )["1"] < 0
+                          )["aus"] < 0
                         ? "color-red"
                         : ""
                       : ""
@@ -94,7 +94,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                         data?.profitLoss[
                           `${data?.videoInfo?.mid}_${team1?.sid}_card`
                         ]
-                      )["1"]
+                      )["aus"]
                     : 0
                   : 0}
               </span>
@@ -109,7 +109,11 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             >
               <div
                 className="market-odd-box-c back lh-1"
-                onClick={() =>team1?.status === "SUSPENDED" ? null : handleBet(team1, "back")}
+                onClick={() =>
+                  team1?.status === "SUSPENDED"
+                    ? null
+                    : handleBet(team1, "back")
+                }
               >
                 <span className="market-odd-c">
                   {team1?.b1 === "0.00" ? "-" : team1?.b1}
@@ -118,7 +122,9 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               </div>
               <div
                 className="market-odd-box-c lay lh-1"
-                onClick={() =>team1?.status === "SUSPENDED" ? null : handleBet(team1, "lay")}
+                onClick={() =>
+                  team1?.status === "SUSPENDED" ? null : handleBet(team1, "lay")
+                }
               >
                 <span className="market-odd-c">
                   {team1?.l1 === "0.00" ? "-" : team1?.l1}
@@ -141,13 +147,13 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                           data?.profitLoss[
                             `${data?.videoInfo?.mid}_${team1?.sid}_card`
                           ]
-                        )["2"] > 0
+                        )["ind"] > 0
                         ? "color-green"
                         : JSON.parse(
                             data?.profitLoss[
                               `${data?.videoInfo?.mid}_${team1?.sid}_card`
                             ]
-                          )["2"] < 0
+                          )["ind"] < 0
                         ? "color-red"
                         : ""
                       : ""
@@ -162,7 +168,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                         data?.profitLoss[
                           `${data?.videoInfo?.mid}_${team1?.sid}_card`
                         ]
-                      )["2"]
+                      )["ind"]
                     : 0
                   : 0}
               </span>
@@ -177,7 +183,11 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             >
               <div
                 className="market-odd-box-c back lh-1"
-                onClick={() =>team2?.status === "SUSPENDED" ? null : handleBet(team2, "back")}
+                onClick={() =>
+                  team2?.status === "SUSPENDED"
+                    ? null
+                    : handleBet(team2, "back")
+                }
               >
                 <span className="market-odd-c">
                   {team2?.b1 === "0.00" ? "-" : team2?.b1}
@@ -186,7 +196,9 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               </div>
               <div
                 className="market-odd-box-c lay lh-1"
-                onClick={() =>team2?.status === "SUSPENDED" ? null : handleBet(team2, "lay")}
+                onClick={() =>
+                  team2?.status === "SUSPENDED" ? null : handleBet(team2, "lay")
+                }
               >
                 <span className="market-odd-c">
                   {team2?.l1 === "0.00" ? "-" : team2?.l1}
