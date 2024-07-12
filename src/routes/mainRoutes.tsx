@@ -132,15 +132,31 @@ const MainRoutes = {
       element: <Mobile />,
     },
     {
+      path: "game-list/:type",
+      element: <GameList />,
+    },
+    {
+      path: "card3-list/:type",
+      element: <CardList3 />,
+    },
+    {
+      path: "card4-list/:type",
+      element: <CardList4 />,
+    },
+    {
+      path: "contact-admin",
+      element: <ContactAdmin />,
+    },
+    {
       path: "teenPatti20",
       element: <TeenPatti20 />,
     },
-    
+
     {
       path: "teen",
       element: <TeenPatti1D />,
     },
-    
+
     {
       path: "teen8",
       element: <TeenPattiOpen />,
@@ -150,10 +166,10 @@ const MainRoutes = {
       path: "teen9",
       element: <TeenPattiTest />,
     },
-    
+
     {
       path: "war",
-      element: <CasinoWar/>,
+      element: <CasinoWar />,
     },
 
     {
@@ -188,22 +204,7 @@ const MainRoutes = {
       path: "dt6",
       element: <DragonTigerOneDay />,
     },
-    {
-      path: "game-list/:type",
-      element: <GameList />,
-    },
-    {
-      path: "card3-list/:type",
-      element: <CardList3 />,
-    },
-    {
-      path: "card4-list/:type",
-      element: <CardList4 />,
-    },
-    {
-      path: "contact-admin",
-      element: <ContactAdmin />,
-    },
+
     {
       path: "32cards-B",
       element: <Cards32B />,
