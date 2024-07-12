@@ -380,125 +380,130 @@ const TeenPattiMobile = () => {
                     </div>
                   </div>
 
-                  {dragonTigerDetail.players?.map(
-                    (playerA: any, index: any) => {
-                      return (
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            width: "100%",
-                            justifyContent:"center",
-                            alignContent:"center"
-                          }}
-                        >
-                          <div style={{ width: "50%" }}>
-                            {index < 5 && (
-                              <div
-                                key={index}
-                                className="teenPatti-table-row"
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      width: "100%",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <div style={{ width: "50%" }}>
+                      {dragonTigerDetail.players
+                        ?.slice(0, 5)
+                        .map((playerA: any, index: any) => (
+                          <div
+                            key={index}
+                            className="teenPatti-table-row"
+                            style={{
+                              lineHeight: 1,
+                              display: "flex",
+                              flexDirection: "row",
+                              width: "100%",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "70%",
+                                padding: "10px",
+                                border: "0.1px solid #fff",
+                              }}
+                            >
+                              <span
                                 style={{
-                                  lineHeight: 1,
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  width: "100%",
-                                  marginBottom: "10px", // Added to separate the rows
+                                  fontSize: "14px",
+                                  fontWeight: "bolder",
                                 }}
                               >
-                                <div
-                                  style={{
-                                    width: "70%",
-                                    padding: "10px",
-                                    border: "0.1px solid #fff",
-                                  }}
-                                >
-                                  <span
-                                    style={{
-                                      fontSize: "14px",
-                                      fontWeight: "bolder",
-                                    }}
-                                  >
-                                    {playerA[bettingOptions]?.nat.split(" ")[0]}
-                                  </span>
-                                </div>
+                                {playerA[bettingOptions]?.nat.split(" ")[0]}
+                              </span>
+                            </div>
 
-                                <div
-                                  key={playerA[bettingOptions].sid}
-                                  className={`teenPatti-table-item ${
-                                    playerA[bettingOptions].gstatus === "0" ? "suspended" : ""
-                                  }`}
-                                  style={{
-                                    width: "30%",
-                                    background: "#a7d8fd",
-                                  }}
-                                  onClick={() =>
-                                    playerA[bettingOptions].gstatus === "0"
-                                      ? null
-                                      : handleBet(playerA)
-                                  }
-                                >
-                                  <span className="f12-b">{playerA[bettingOptions].b1}</span>
-                                  <span className="f10-b">0</span>
-                                </div>
-                              </div>
-                            )}
+                            <div
+                              key={playerA[bettingOptions].sid}
+                              className={`teenPatti-table-item ${
+                                playerA[bettingOptions].gstatus === "0"
+                                  ? "suspended"
+                                  : ""
+                              }`}
+                              style={{
+                                width: "30%",
+                                background: "#a7d8fd",
+                              }}
+                              onClick={() =>
+                                playerA[bettingOptions].gstatus === "0"
+                                  ? null
+                                  : handleBet(playerA)
+                              }
+                            >
+                              <span className="f12-b">
+                                {playerA[bettingOptions].b1}
+                              </span>
+                              <span className="f10-b">0</span>
+                            </div>
                           </div>
-                          
-                          <div style={{ width: "50%" }}>
-                            {index >= 5 && (
-                              <div
-                                key={index}
-                                className="teenPatti-table-row"
+                        ))}
+                    </div>
+
+                    <div style={{ width: "50%" }}>
+                      {dragonTigerDetail.players
+                        ?.slice(5)
+                        .map((playerA: any, index: any) => (
+                          <div
+                            key={index + 5} // Offset the index to avoid key duplication
+                            className="teenPatti-table-row"
+                            style={{
+                              lineHeight: 1,
+                              display: "flex",
+                              flexDirection: "row",
+                              width: "100%",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "70%",
+                                padding: "10px",
+                                border: "0.1px solid #fff",
+                              }}
+                            >
+                              <span
                                 style={{
-                                  lineHeight: 1,
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  width: "100%",
-                                  marginBottom: "10px", // Added to separate the rows
+                                  fontSize: "14px",
+                                  fontWeight: "bolder",
                                 }}
                               >
-                                <div
-                                  style={{
-                                    width: "70%",
-                                    padding: "10px",
-                                    border: "0.1px solid #fff",
-                                  }}
-                                >
-                                  <span
-                                    style={{
-                                      fontSize: "14px",
-                                      fontWeight: "bolder",
-                                    }}
-                                  >
-                                    {playerA[bettingOptions]?.nat.split(" ")[0]}
-                                  </span>
-                                </div>
+                                {playerA[bettingOptions]?.nat.split(" ")[0]}
+                              </span>
+                            </div>
 
-                                <div
-                                  key={playerA[bettingOptions].sid}
-                                  className={`teenPatti-table-item ${
-                                    playerA[bettingOptions].gstatus === "0" ? "suspended" : ""
-                                  }`}
-                                  style={{
-                                    width: "30%",
-                                    background: "#a7d8fd",
-                                  }}
-                                  onClick={() =>
-                                    playerA[bettingOptions].gstatus === "0"
-                                      ? null
-                                      : handleBet(playerA)
-                                  }
-                                >
-                                  <span className="f12-b">{playerA[bettingOptions].b1}</span>
-                                  <span className="f10-b">0</span>
-                                </div>
-                              </div>
-                            )}
+                            <div
+                              key={playerA[bettingOptions].sid}
+                              className={`teenPatti-table-item ${
+                                playerA[bettingOptions].gstatus === "0"
+                                  ? "suspended"
+                                  : ""
+                              }`}
+                              style={{
+                                width: "30%",
+                                background: "#a7d8fd",
+                              }}
+                              onClick={() =>
+                                playerA[bettingOptions].gstatus === "0"
+                                  ? null
+                                  : handleBet(playerA)
+                              }
+                            >
+                              <span className="f12-b">
+                                {playerA[bettingOptions].b1}
+                              </span>
+                              <span className="f10-b">0</span>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    }
-                  )}
+                        ))}
+                    </div>
+                  </div>
                 </div>
               </div>
 
