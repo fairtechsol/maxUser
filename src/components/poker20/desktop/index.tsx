@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { card32rules, p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
@@ -135,8 +135,8 @@ const Poker20Desktop = () => {
             <div className="mt-2">
               <CardResultBox
                 data={dragonTigerDetail}
-                name={["8", "9", "10", "11"]}
-                type={"card32"}
+                name={["A", "B", "T"]}
+                type={ cardGamesType.poker20}
               />
             </div>
           </div>

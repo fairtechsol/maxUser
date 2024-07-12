@@ -4,7 +4,7 @@ import { Col, Container, Row, Table } from "react-bootstrap";
 import {  useSelector } from "react-redux";
 import { p6rules, tprules } from "../../../assets/images";
 import {  RootState } from "../../../store/store";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
@@ -163,8 +163,8 @@ const Poker1DayDesktop = () => {
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["A", "T", "B"]}
-                  type={"poker"}
+                  name={["A", "B", "T"]}
+                  type={ cardGamesType.poker1Day}
                 />
               </div>
             </div>
