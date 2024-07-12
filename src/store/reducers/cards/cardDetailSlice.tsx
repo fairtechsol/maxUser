@@ -20,6 +20,12 @@ import {
   updateTeenPattiTestMatchRates,
   casinoWarPattiMatchRates,
   updateCardRace20Rates,
+  updateCardSuperoverRates,
+  updateCardPoker6Rates,
+  updateCardPoker1DayRates,
+  updateCardPoker20Rates,
+  updateCricket5MatchRates,
+  casinoScoreboardMatchRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -32,6 +38,7 @@ interface InitialState {
   liveGameResultTop10: any;
   cards32Detail: any;
   resultData: any;
+  scoreBoardData: any;
 }
 
 const initialState: InitialState = {
@@ -44,6 +51,7 @@ const initialState: InitialState = {
   liveGameResultTop10: [],
   cards32Detail: [],
   resultData: null,
+  scoreBoardData: [],
 };
 
 const cardDetail = createSlice({
@@ -388,6 +396,72 @@ const cardDetail = createSlice({
           win,
         };
       })
+      .addCase(updateCardSuperoverRates.fulfilled, (state, action) => {
+        const { t1, t2, t3, t4 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const bookmaker = { ...t2 };
+        const fancy = { ...t3 };
+        const fancy1 = { ...t4 };
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          bookmaker,
+          fancy,
+          fancy1,
+        };
+      })
+      .addCase(updateCardPoker6Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const handsData = t2.slice(0, 6);
+        const patternData = t2.slice(6, 15);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          handsData,
+          patternData,
+        };
+      })
+      .addCase(updateCardPoker1DayRates.fulfilled, (state, action) => {
+        const { t1, t2, t3 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const oddsData = { ...t2 };
+        const playersBonusPair = { ...t3 };
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          oddsData,
+          playersBonusPair,
+        };
+      })
+      .addCase(updateCardPoker20Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const odds = t2.slice(0, 18);
+
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          odds,
+        };
+      })
+      .addCase(updateCricket5MatchRates.fulfilled, (state, action) => {
+        const { t1, t2, t3 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const odds = [...t2];
+        const fancy = [...t3];
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          odds,
+          fancy,
+        };
+      })
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;
@@ -397,6 +471,18 @@ const cardDetail = createSlice({
         state.resultData = action.payload;
       })
       .addCase(resultDragonTiger.rejected, (state, action) => {
+        // state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(casinoScoreboardMatchRates.pending, (state) => {
+        // state.loading = true;
+        state.error = null;
+        // state.scoreBoardData = null;
+      })
+      .addCase(casinoScoreboardMatchRates.fulfilled, (state, action) => {
+        state.scoreBoardData = action.payload;
+      })
+      .addCase(casinoScoreboardMatchRates.rejected, (state, action) => {
         // state.loading = false;
         state.error = action?.error?.message;
       });

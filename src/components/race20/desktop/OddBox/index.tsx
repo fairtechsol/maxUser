@@ -8,9 +8,9 @@ const OddBox = ({ odds, data }: any) => {
   const min = odds?.[0]?.min;
   const max = odds?.[0]?.max;
 
-  const handleBet = (item: any,type:string) => {
+  const handleBet = (item: any, type: string) => {
     let team = {
-      bettingType:type === "back" ? "BACK" : "LAY",
+      bettingType: type === "back" ? "BACK" : "LAY",
       matchId: data?.id,
       odd: type === "back" ? item?.b1 : item?.l1,
       stake: 0,
@@ -53,6 +53,19 @@ const OddBox = ({ odds, data }: any) => {
       }
     }
   };
+
+  const hanleProfitLossForK = (name: any) => {
+    if (name.includes("spade")) {
+      return "kofspade";
+    } else if (name.includes("heart")) {
+      return "kofheart";
+    } else if (name.includes("diamond")) {
+      return "kofdiamond";
+    } else {
+      return "kofclub";
+    }
+  };
+
   return (
     <>
       <div
@@ -96,7 +109,7 @@ const OddBox = ({ odds, data }: any) => {
                     }}
                   >
                     <div
-                      className={`back-BackGround ${
+                      className={`back-BackGround cursor-pointer ${
                         handleLock(item, "back") ? "suspended" : ""
                       }`}
                       style={{
@@ -108,14 +121,16 @@ const OddBox = ({ odds, data }: any) => {
                         paddingTop: "7px",
                       }}
                       onClick={() =>
-                        handleLock(item, "back") ? null : handleBet(odds?.[0], "back")
+                        handleLock(item, "back")
+                          ? null
+                          : handleBet(odds?.[index], "back")
                       }
                     >
                       <span className="rate-box">{item?.b1}</span>
-                      <span className="casino-volume">{item?.bs1}</span>
+                      <span className="casino-volume f400">{item?.bs1}</span>
                     </div>
                     <div
-                      className={`lay-BackGround ${
+                      className={`lay-BackGround cursor-pointer ${
                         handleLock(item, "lay") ? "suspended" : ""
                       }`}
                       style={{
@@ -127,13 +142,50 @@ const OddBox = ({ odds, data }: any) => {
                         paddingTop: "7px",
                       }}
                       onClick={() =>
-                        handleLock(item, "lay") ? null : handleBet(odds?.[0], "lay")
+                        handleLock(item, "lay")
+                          ? null
+                          : handleBet(odds?.[index], "lay")
                       }
                     >
                       <span className="rate-box">{item?.l1}</span>
-                      <span className="casino-volume">{item?.ls1}</span>
+                      <span className="casino-volume f400">{item?.ls1}</span>
                     </div>
                   </div>
+                  <span
+                    className={`oddsBoxProfitLoss ${
+                      data?.profitLoss
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
+                          ]
+                          ? JSON.parse(
+                              data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
+                              ]
+                            )[hanleProfitLossForK(item?.nat)] > 0
+                            ? "color-green"
+                            : JSON.parse(
+                                data?.profitLoss[
+                                  `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
+                                ]
+                              )[hanleProfitLossForK(item?.nat)] < 0
+                            ? "color-red"
+                            : ""
+                          : ""
+                        : ""
+                    }`}
+                  >
+                    {data?.profitLoss
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
+                        ]
+                        ? JSON.parse(
+                            data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
+                            ]
+                          )[hanleProfitLossForK(item?.nat)]
+                        : 0
+                      : 0}
+                  </span>
                 </div>
               </>
             );

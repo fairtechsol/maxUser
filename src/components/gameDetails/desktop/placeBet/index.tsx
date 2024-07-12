@@ -59,6 +59,129 @@ const PlacedBet = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
+  const handleSubmit = () => {
+    if (
+      selectedBet?.team?.stake <
+      (selectedBet?.data?.minBet || selectedBet?.data?.min)
+    ) {
+      toast.error("Stake value must be greater or equal to min bet");
+      return;
+    } else if (
+      selectedBet?.team?.stake >
+      (selectedBet?.data?.maxBet || selectedBet?.data?.max)
+    ) {
+      toast.error("Stake value must be smaller or equal to max bet");
+      return;
+    }
+    if (loading || matchOddLoading) {
+      return;
+    } else {
+      let payloadForSession: any = {
+        betId: selectedBet?.team?.betId,
+        betType: selectedBet?.team?.type.toUpperCase(),
+        browserDetail: browserInfo?.userAgent,
+        eventName: selectedBet?.team?.name,
+        eventType: selectedBet?.team?.eventType,
+        matchId: selectedBet?.team?.matchId,
+        ipAddress:
+          ipAddress === "Not found" || !ipAddress ? "192.168.1.100" : ipAddress,
+        odds: selectedBet?.team?.rate,
+        ratePercent: selectedBet?.team?.percent,
+        stake: selectedBet?.team?.stake,
+      };
+      let payloadForBettings: any = {
+        betId: selectedBet?.team?.betId,
+        teamA: selectedBet?.team?.teamA,
+        teamB: selectedBet?.team?.teamB,
+        teamC: selectedBet?.team?.teamC,
+        bettingType: selectedBet?.team?.type.toUpperCase(),
+        browserDetail: browserInfo?.userAgent,
+        matchId: selectedBet?.team?.matchId,
+        ipAddress:
+          ipAddress === "Not found" || !ipAddress ? "192.168.1.100" : ipAddress,
+        odd: matchOddRate,
+        stake: selectedBet?.team?.stake,
+        matchBetType: selectedBet?.team?.matchBetType,
+        betOnTeam: selectedBet?.team?.betOnTeam,
+        placeIndex: selectedBet?.team?.placeIndex,
+        bettingName: selectedBet?.data?.name,
+        gameType: selectedBet?.team?.eventType,
+      };
+      let payloadForRace: any = {
+        betId: selectedBet?.team?.betId,
+        bettingType: selectedBet?.team?.type.toUpperCase(),
+        browserDetail: browserInfo?.userAgent,
+        matchId: selectedBet?.team?.matchId,
+        ipAddress:
+          ipAddress === "Not found" || !ipAddress ? "192.168.1.100" : ipAddress,
+        odd: matchOddRate,
+        stake: selectedBet?.team?.stake,
+        matchBetType: selectedBet?.team?.matchBetType,
+        betOnTeam: selectedBet?.team?.betOnTeam,
+        placeIndex: selectedBet?.team?.placeIndex,
+        bettingName: selectedBet?.team?.bettingName,
+        selectionId: selectedBet?.team?.selectionId,
+        runnerId: selectedBet?.team?.runnerId,
+      };
+      if (
+        selectedBet?.data?.type === "matchOdd" ||
+        selectedBet?.team?.matchBetType === "matchOdd"
+      ) {
+        setMatchOddLoading(true);
+        if (
+          selectedBet?.team?.eventType === "horseRacing" ||
+          selectedBet?.team?.eventType === "greyHound"
+        ) {
+          setTimeout(() => {
+            dispatch(
+              placeBet({
+                url: ApiConstants.BET.PLACEBETRACEBETTING,
+                data: JSON.stringify(payloadForRace),
+              })
+            );
+          }, getProfile?.delayTime * 1000);
+        } else {
+          setTimeout(() => {
+            dispatch(
+              placeBet({
+                url:
+                  selectedBet?.data?.type === "session" ||
+                  selectedBet?.data?.SelectionId
+                    ? ApiConstants.BET.PLACEBETSESSION
+                    : selectedBet?.team?.gameType === "other"
+                    ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
+                    : ApiConstants.BET.PLACEBETMATCHBETTING,
+                data:
+                  selectedBet?.data?.type === "session" ||
+                  selectedBet?.data?.SelectionId
+                    ? JSON.stringify(payloadForSession)
+                    : JSON.stringify(payloadForBettings),
+              })
+            );
+          }, getProfile?.delayTime * 1000);
+        }
+      } else {
+        dispatch(
+          placeBet({
+            url:
+              selectedBet?.data?.type === "session" ||
+              selectedBet?.data?.SelectionId
+                ? ApiConstants.BET.PLACEBETSESSION
+                : selectedBet?.team?.gameType === "other"
+                ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
+                : ApiConstants.BET.PLACEBETMATCHBETTING,
+            data:
+              selectedBet?.data?.type === "session" ||
+              selectedBet?.data?.SelectionId
+                ? JSON.stringify(payloadForSession)
+                : JSON.stringify(payloadForBettings),
+          })
+        );
+      }
+      setStake(0);
+    }
+  };
+
   useEffect(() => {
     let updatedBtnValue = buttonValues?.value;
 
@@ -338,157 +461,7 @@ const PlacedBet = () => {
                           <CustomButton
                             className="bg-success border-0 py-2"
                             size="sm"
-                            onClick={() => {
-                              if (
-                                selectedBet?.team?.stake <
-                                (selectedBet?.data?.minBet ||
-                                  selectedBet?.data?.min)
-                              ) {
-                                toast.error(
-                                  "Stake value must be greater or equal to min bet"
-                                );
-                                return;
-                              } else if (
-                                selectedBet?.team?.stake >
-                                (selectedBet?.data?.maxBet ||
-                                  selectedBet?.data?.max)
-                              ) {
-                                toast.error(
-                                  "Stake value must be smaller or equal to max bet"
-                                );
-                                return;
-                              }
-                              if (loading || matchOddLoading) {
-                                return;
-                              } else {
-                                let payloadForSession: any = {
-                                  betId: selectedBet?.team?.betId,
-                                  betType:
-                                    selectedBet?.team?.type.toUpperCase(),
-                                  browserDetail: browserInfo?.userAgent,
-                                  eventName: selectedBet?.team?.name,
-                                  eventType: selectedBet?.team?.eventType,
-                                  matchId: selectedBet?.team?.matchId,
-                                  ipAddress:
-                                    ipAddress === "Not found" || !ipAddress
-                                      ? "192.168.1.100"
-                                      : ipAddress,
-                                  odds: selectedBet?.team?.rate,
-                                  ratePercent: selectedBet?.team?.percent,
-                                  stake: selectedBet?.team?.stake,
-                                };
-                                let payloadForBettings: any = {
-                                  betId: selectedBet?.team?.betId,
-                                  teamA: selectedBet?.team?.teamA,
-                                  teamB: selectedBet?.team?.teamB,
-                                  teamC: selectedBet?.team?.teamC,
-                                  bettingType:
-                                    selectedBet?.team?.type.toUpperCase(),
-                                  browserDetail: browserInfo?.userAgent,
-                                  matchId: selectedBet?.team?.matchId,
-                                  ipAddress:
-                                    ipAddress === "Not found" || !ipAddress
-                                      ? "192.168.1.100"
-                                      : ipAddress,
-                                  odd: matchOddRate,
-                                  stake: selectedBet?.team?.stake,
-                                  matchBetType: selectedBet?.team?.matchBetType,
-                                  betOnTeam: selectedBet?.team?.betOnTeam,
-                                  placeIndex: selectedBet?.team?.placeIndex,
-                                  bettingName: selectedBet?.data?.name,
-                                  gameType: selectedBet?.team?.eventType,
-                                };
-                                let payloadForRace: any = {
-                                  betId: selectedBet?.team?.betId,
-                                  bettingType:
-                                    selectedBet?.team?.type.toUpperCase(),
-                                  browserDetail: browserInfo?.userAgent,
-                                  matchId: selectedBet?.team?.matchId,
-                                  ipAddress:
-                                    ipAddress === "Not found" || !ipAddress
-                                      ? "192.168.1.100"
-                                      : ipAddress,
-                                  odd: matchOddRate,
-                                  stake: selectedBet?.team?.stake,
-                                  matchBetType: selectedBet?.team?.matchBetType,
-                                  betOnTeam: selectedBet?.team?.betOnTeam,
-                                  placeIndex: selectedBet?.team?.placeIndex,
-                                  bettingName: selectedBet?.team?.bettingName,
-                                  selectionId: selectedBet?.team?.selectionId,
-                                  runnerId: selectedBet?.team?.runnerId,
-                                };
-                                if (
-                                  selectedBet?.data?.type === "matchOdd" ||
-                                  selectedBet?.team?.matchBetType === "matchOdd"
-                                ) {
-                                  setMatchOddLoading(true);
-                                  if (
-                                    selectedBet?.team?.eventType ===
-                                      "horseRacing" ||
-                                    selectedBet?.team?.eventType === "greyHound"
-                                  ) {
-                                    setTimeout(() => {
-                                      dispatch(
-                                        placeBet({
-                                          url: ApiConstants.BET
-                                            .PLACEBETRACEBETTING,
-                                          data: JSON.stringify(payloadForRace),
-                                        })
-                                      );
-                                    }, getProfile?.delayTime * 1000);
-                                  } else {
-                                    setTimeout(() => {
-                                      dispatch(
-                                        placeBet({
-                                          url:
-                                            selectedBet?.data?.type ===
-                                              "session" ||
-                                            selectedBet?.data?.SelectionId
-                                              ? ApiConstants.BET.PLACEBETSESSION
-                                              : selectedBet?.team?.gameType ===
-                                                "other"
-                                              ? ApiConstants.BET
-                                                  .PLACEBETMATCHBETTINGOTHER
-                                              : ApiConstants.BET
-                                                  .PLACEBETMATCHBETTING,
-                                          data:
-                                            selectedBet?.data?.type ===
-                                              "session" ||
-                                            selectedBet?.data?.SelectionId
-                                              ? JSON.stringify(
-                                                  payloadForSession
-                                                )
-                                              : JSON.stringify(
-                                                  payloadForBettings
-                                                ),
-                                        })
-                                      );
-                                    }, getProfile?.delayTime * 1000);
-                                  }
-                                } else {
-                                  dispatch(
-                                    placeBet({
-                                      url:
-                                        selectedBet?.data?.type === "session" ||
-                                        selectedBet?.data?.SelectionId
-                                          ? ApiConstants.BET.PLACEBETSESSION
-                                          : selectedBet?.team?.gameType ===
-                                            "other"
-                                          ? ApiConstants.BET
-                                              .PLACEBETMATCHBETTINGOTHER
-                                          : ApiConstants.BET
-                                              .PLACEBETMATCHBETTING,
-                                      data:
-                                        selectedBet?.data?.type === "session" ||
-                                        selectedBet?.data?.SelectionId
-                                          ? JSON.stringify(payloadForSession)
-                                          : JSON.stringify(payloadForBettings),
-                                    })
-                                  );
-                                }
-                                setStake(0);
-                              }
-                            }}
+                            onClick={handleSubmit}
                           >
                             Submit
                           </CustomButton>

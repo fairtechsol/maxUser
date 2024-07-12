@@ -137,7 +137,7 @@ const DragonTigerMobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "820px" }}>
+            <div style={{ height: "840px" }}>
               <div style={{ width: "100%" }}>
                 <TiePairBox
                   tiePair={dragonTigerDetail?.tiePair}

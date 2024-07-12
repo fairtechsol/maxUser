@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import service from "../../../service";
-import { ApiConstants } from "../../../utils/constants";
+import { ApiConstants, Constants } from "../../../utils/constants";
 
 export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
   "horseRacing/matchDetail",
@@ -187,9 +187,64 @@ export const casinoWarPattiMatchRates = createAsyncThunk<any, any>(
     return data;
   }
 );
+export const updateCardPoker6Rates = createAsyncThunk<any, any>(
+  "poker6/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 export const updateCardRace20Rates = createAsyncThunk<any, any>(
   "race20/matchRatesUpdate",
   async (data) => {
     return data;
+  }
+);
+
+export const updateCardPoker1DayRates = createAsyncThunk<any, any>(
+  "poker1day/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+export const updateCardSuperoverRates = createAsyncThunk<any, any>(
+  "superover/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+export const updateCardPoker20Rates = createAsyncThunk<any, any>(
+  "poker20/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateCricket5MatchRates = createAsyncThunk<any, any>(
+  "cricket5/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
+  "casinoScoreboard/matchRatesUpdate",
+  async (requestData, thunkApi) => {
+    try {
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+        }
+      };
+      const resp = await axios.get(
+        `${Constants.thirdPartyCard}${ApiConstants.SCOREBOARD.match}/${requestData?.id}?gameName=${requestData?.type}`,
+        config);
+      if (resp?.data) {
+      
+        return resp?.data?.data?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
   }
 );
