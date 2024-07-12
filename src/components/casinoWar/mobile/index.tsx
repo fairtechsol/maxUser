@@ -14,6 +14,7 @@ import CasinoWarResult from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import { HandleCards } from "../../commonComponent/cardsComponent";
+import { HandleCards3 } from "./cardComponent2";
 import "./style.scss";
 
 const TeenPattiMobile = () => {
@@ -385,10 +386,12 @@ const TeenPattiMobile = () => {
                       display: "flex",
                       flexDirection: "row",
                       width: "100%",
+                      justifyContent:"center",
                       flexWrap: "wrap",
+                      gap:"15px"
                     }}
                   >
-                    <div style={{ width: "50%" }}>
+                    <div style={{ width: "47%" }}>
                       {dragonTigerDetail.players
                         ?.slice(0, 5)
                         .map((playerA: any, index: any) => (
@@ -446,7 +449,7 @@ const TeenPattiMobile = () => {
                         ))}
                     </div>
 
-                    <div style={{ width: "50%" }}>
+                    <div style={{ width: "47%" }}>
                       {dragonTigerDetail.players
                         ?.slice(5)
                         .map((playerA: any, index: any) => (
@@ -464,17 +467,27 @@ const TeenPattiMobile = () => {
                             <div
                               style={{
                                 width: "70%",
-                                padding: "10px",
+                                padding: "6px",
                                 border: "0.1px solid #fff",
+                                display:"flex",
+                                flexDirection:"row",
+                                alignItems:"center"
                               }}
                             >
-                              <span
+                              {/* <span
                                 style={{
                                   fontSize: "14px",
                                   fontWeight: "bolder",
                                 }}
                               >
                                 {playerA[bettingOptions]?.nat.split(" ")[0]}
+                              </span> */}
+                              <span style={{marginLeft:"5px"}}>
+                                <HandleCards3
+                                  card={
+                                    playerA[bettingOptions]?.nat
+                                  }
+                                />
                               </span>
                             </div>
 
