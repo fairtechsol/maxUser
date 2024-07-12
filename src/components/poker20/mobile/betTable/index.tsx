@@ -101,6 +101,7 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
                   display: "flex",
                   flexDirection: "row",
                   cursor: "pointer",
+                  height: "40px"
                 }}
               >
                 <div
@@ -113,6 +114,7 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
                   }
                 >
                   <span className="f12-b">{item?.entries?.[0]?.rate}</span>
+                  <span className="f400 title-14">0</span>
                 </div>
                 <div
                   className="card32-table-item back"
@@ -124,6 +126,7 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
                   }
                 >
                   <span className="f12-b">{item?.entries?.[1]?.rate}</span>
+                  <span className="f400 title-14">0</span>
                 </div>
               </div>
             </div>
