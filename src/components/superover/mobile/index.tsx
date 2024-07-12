@@ -26,7 +26,7 @@ const SuperoverMobile = () => {
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.card32B}`
+    `${cardUrl}${cardGamesId.superover}`
   );
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);

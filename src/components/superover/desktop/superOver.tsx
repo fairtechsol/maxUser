@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { s1 ,s2,s3,s4,s6,s0,ballW} from "../../../assets/images";
+import isMobile from "../../../utils/screenDimension";
 
 interface Props {
   data: {
@@ -32,7 +33,7 @@ const SuperoverResult: React.FC<Props> = ({ data }:any) => {
     <Container>
       <Row>
         <Col className="mt-2">
-          <div style={{ display: "flex",flexDirection:"column", gap: "10px" }}>
+          <div style={{ display: "flex",flexDirection:"column", gap: "10px", width: isMobile ? "22px" : "32px" }}>
            {data?.C1!="1" ?<img src={handleBall(data?.C1)} />:null}
            {data?.C2!="1" ? <img src={handleBall(data?.C2)} /> :null}
            {data?.C3!="1" ? <img src={handleBall(data?.C3)} /> :null}

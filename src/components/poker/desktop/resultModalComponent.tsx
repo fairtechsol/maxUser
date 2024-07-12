@@ -10,7 +10,7 @@ interface Props {
   };
 }
 
-const Dragon20ResultComponent: React.FC<Props> = ({ data }: any) => {
+const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const desc = data?.result?.desc?.split("*");
   const resultData = desc?.[0]?.split("|");
@@ -115,4 +115,4 @@ const Dragon20ResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 };
 
-export default Dragon20ResultComponent;
+export default Poker6ResultComponent;
