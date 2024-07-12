@@ -1,4 +1,17 @@
 
+@keyframes winnerbox {
+  0% {
+      box-shadow: 0 0 0 0 rgba(29, 127, 30, 0.6);
+  }
+
+  70% {
+      box-shadow: 0 0 0 10px rgba(29, 127, 30, 0);
+  }
+
+  100% {
+      box-shadow: 0 0 0 0 rgba(29, 127, 30, 0);
+  }
+}
   .bet-table-container {
     display: flex;
     justify-content: space-between;
@@ -19,4 +32,11 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+.casino-winner-icon{
+  // font-size: 26px;
+  box-shadow: 0 0 0 #FFC742;
+  animation: winnerbox 1.5s infinite;;
+  border-radius: 50%;
+  color: #169733;
 }

@@ -23,6 +23,7 @@ import SuperOverResultComponent from "../../superover/desktop/resultModalCompone
 import Race20ResultComponent from "../../race20/desktop/resultModalComponent";
 import Cricket5ResultComponent from "../../cricket5/desktop/resultModalComponent";
 import Poker6ResultComponent from "../../poker/desktop/resultModalComponent";
+import Poker20ResultComponent from "../../poker20/desktop/resultModalComponent";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
@@ -120,6 +121,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Race20ResultComponent data={data} />
       ): type === cardGamesType?.poker6 ? (
         <Poker6ResultComponent data={data} />
+      ): type === cardGamesType?.poker20 ? (
+        <Poker20ResultComponent data={data} />
       ): type === cardGamesType?.cricketv3 ? (
         <Cricket5ResultComponent data={data} />
       ): (
