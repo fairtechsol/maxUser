@@ -12,103 +12,121 @@ interface Props {
 
 const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
-  const desc = data?.result?.desc?.split("*");
-  const resultData = desc?.[0]?.split("|");
-  const dragonData = desc?.[1]?.split("|");
-  const tigerData = desc?.[2]?.split("|");
-  const dragonCard = dragonData?.[2];
-  const tigerCard = tigerData?.[2];
-
+  const lastCards = resultCards?.slice(12,17)
+ console.log(data,'first',resultCards)
   return (
-    <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="dt20resultModal">
-        <div className="dt20resultCardContainer">
-          <span className="fs-5">Dragon</span>
-          <div
-            className={
-              isMobile
-                ? "row-flex-mobile"
-                : "d-sm-flex flex-row justify-content-center align-items-center"
-            }
-          >
-            {data?.result?.win === "1" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={isMobile ? 20 : 30} color="#169733" />
+    <Container style={{ display: "flex", flexDirection: "column",justifyContent:"center",alignItems:"center" }}>
+       <div style={{width:"80%",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:"5px",marginBottom:"10px"}}>
+        <span className="title-18 f500">Board</span>
+        <div style={{width:"100%",display:"flex",flexDirection:"row",gap:"5px",justifyContent:"center",alignItems:"center"}} >
+        {
+          lastCards?.map((item:any,index:number)=>{
+            return(
+              <div key={index}>
+                <HandleCards card={item} />
               </div>
-            )}
-            <div
-              style={{
-                border: "1px solid #fdef34",
-                borderRadius: "1px",
-                marginLeft: "5px",
-              }}
-            >
-              <HandleCards card={resultCards?.[0]} />
-            </div>
-          </div>
+            )
+          })
+        }
         </div>
-        <div className="dt20resultCardContainer">
-          <span className="fs-5">Tiger</span>
-          <div
-            className={
-              isMobile
-                ? "row-flex-mobile"
-                : "d-sm-flex flex-row justify-content-center align-items-center"
-            }
-          >
-            {data?.result?.win === "2" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={isMobile ? 20 : 30} color="#169733" />
+        
+      </div>
+      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"space-around",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        {data?.result?.win === "11" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
               </div>
             )}
-            <div
-              style={{
-                border: "1px solid #fdef34",
-                borderRadius: "1px",
-                marginLeft: "5px",
-              }}
-            >
-              <HandleCards card={resultCards?.[1]} />
-            </div>
+          <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player 1</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[0]} />
+            <HandleCards card={resultCards?.[6]} />
           </div>
+          </div>
+          
+        </div>
+        
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player 6</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[5]} />
+            <HandleCards card={resultCards?.[11]} />
+          </div>
+          </div>
+          {data?.result?.win === "16" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
+              </div>
+            )}
         </div>
       </div>
-      <div className="w-100 d-sm-flex justify-content-center align-items-center mt-2">
-        <div
-          className={
-            isMobile
-              ? "w-100 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
-              : "w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
-          }
-          style={{ boxShadow: "0 0 4px -1px" }}
-        >
-          <div className="d-sm-flex flex-sm-row">
-            <span className="dt20CommonText">Winner</span>
-            <span className="dt20CommonText-2">{resultData?.[0]}</span>
+      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        {data?.result?.win === "12" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
+              </div>
+            )}
+          <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player 2</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[1]} />
+            <HandleCards card={resultCards?.[7]} />
           </div>
-          <div className="d-sm-flex flex-sm-row">
-            <span className="dt20CommonText">Pair</span>
-            <span className="dt20CommonText-2">{resultData?.[1]}</span>
           </div>
-          <div className="d-sm-flex flex-sm-row">
-            <span className="dt20CommonText">Odd/Even</span>
-            <span className="dt20CommonText-2">
-              D : {dragonData?.[1]} | T : {tigerData?.[1]}
-            </span>
+          
+        </div>
+        {data?.result?.win === "0" && ( <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <span className="title-18 f500">Tie</span>
+        </div>)}
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player 5</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[4]} />
+            <HandleCards card={resultCards?.[10]} />
           </div>
-          <div className="d-sm-flex flex-sm-row">
-            <span className="dt20CommonText">Color</span>
-            <span className="dt20CommonText-2">
-              D : {dragonData?.[0]} | T : {tigerData?.[0]}
-            </span>
           </div>
-          <div className="d-sm-flex flex-sm-row">
-            <span className="dt20CommonText">Card</span>
-            <span className="dt20CommonText-2">
-              D : {dragonCard?.[dragonCard?.length - 1]} | T :{" "}
-              {tigerCard?.[tigerCard?.length - 1]}
-            </span>
+          {data?.result?.win === "15" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
+              </div>
+            )}
+        </div>
+      </div>
+      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"space-around",alignItems:"center",marginBottom:"10px"}}>
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        {data?.result?.win === "13" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
+              </div>
+            )}
+          <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player 3</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[2]} />
+            <HandleCards card={resultCards?.[8]} />
           </div>
+          </div>
+          
+        </div>
+        
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player 4</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[3]} />
+            <HandleCards card={resultCards?.[9]} />
+          </div>
+          </div>
+          {data?.result?.win === "14" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
+              </div>
+            )}
         </div>
       </div>
     </Container>
