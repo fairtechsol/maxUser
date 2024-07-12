@@ -160,7 +160,7 @@ const Poker6Desktop = () => {
               <CardResultBox
                 data={dragonTigerDetail}
                 name={["D", "T"]}
-                type={cardGamesType.dragonTiger20}
+                type={cardGamesType.poker6}
               />
             </div>
           </div>
