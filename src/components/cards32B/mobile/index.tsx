@@ -10,7 +10,7 @@ import OddEven from "./OddEvenBox";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/dragonCard";
+import Dragon20Result from "../desktop/card32B";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import BackLay from "../desktop/BackLay";
 import PairBox from "./PairBox";
