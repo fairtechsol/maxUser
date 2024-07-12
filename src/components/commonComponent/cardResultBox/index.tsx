@@ -91,11 +91,43 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? name?.[1]
                     : null}
                 </span>
+              ) : type === "poker" || type ==="poker20" ? (
+                <>
+                 
+                 <span
+                 style={{
+                   fontSize: "16px",
+                   fontWeight: "600",
+                   color:
+                     item?.result === "11" 
+                       ? "#f5cc03"
+                       : item?.result === "21"
+                       ? "#ff4500"
+                       : "#ffffff",
+                 }}
+               >{item?.result === "11"? name?.[0] : item?.result === "21"? name?.[1] : name?.[2]} </span>
+                
+                </>
+               
               ) : type === "race20" ? (
                 <>
                  {item?.result === "1"?
                   <GiSpades color="#000000" /> : item?.result === "2"? <BiSolidHeart color="#ff0000" /> : item?.result === "3"? <ImClubs color="#000000" />  : <ImDiamonds color="#ff0000" />
                 }
+                </>
+               
+              ): type === "poker6" ? (
+                <>
+                  <span
+                 style={{
+                   fontSize: "16px",
+                   fontWeight: "600",
+                   color:
+                     item?.result === "0" 
+                       ? "#ffffff"
+                       : "#f5cc03",
+                 }}
+               >{item?.result === "0"? name?.[0] : item?.result?.[1] } </span>
                 </>
                
               ) : (
