@@ -33,7 +33,8 @@ const title = {
   teen9: "Test Teen Patti",
   ab20: "Andar Bahar 1",
   poker1Day: "Poker 1 Day",
-  aaa:"AMAR AKBAR ANTHONY"
+  aaa:"AMAR AKBAR ANTHONY",
+  war:"Casino War"
   // Add other mappings as needed
 };
 

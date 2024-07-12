@@ -73,6 +73,10 @@ const cardGames = [
     label: "Dragon Tiger 1 Day",
   },
   {
+    value: "war",
+    label: "CASINO WAR",
+  },
+  {
     value: "aaa",
     label: "Amar Akbar Anthony",
   },

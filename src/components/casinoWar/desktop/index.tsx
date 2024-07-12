@@ -107,6 +107,9 @@ const TeenPattiDesktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
+
+  console.log("data",dragonTigerDetail)
+  
   return (
     <>
       <Row>
@@ -134,8 +137,8 @@ const TeenPattiDesktop = () => {
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                        dragonTigerDetail?.videoInfo?.max
+                      )}|Min: ${dragonTigerDetail?.players[0][0]?.min}|Max: ${
+                        dragonTigerDetail?.players[0][0]?.max
                       }`
                     : ""}
                 </span>
@@ -282,7 +285,7 @@ const TeenPattiDesktop = () => {
                           flexDirection: "row",
                         }}
                       >
-                        {playerA.map((player: any, idx: any) => (
+                        {playerA?.map((player: any, idx: any) => (
                           <div
                             key={player.sid}
                             className={`teenPatti-table-item ${

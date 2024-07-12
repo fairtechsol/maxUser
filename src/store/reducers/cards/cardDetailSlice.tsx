@@ -337,7 +337,8 @@ const cardDetail = createSlice({
         if (action.payload) {
           const { t1, t2 } = action.payload;
           state.loading = false;
-
+             
+          console.log("ffri",action.payload)
           // Extract video info if t1 is present and has elements
           const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
 
