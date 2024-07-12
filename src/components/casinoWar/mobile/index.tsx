@@ -83,6 +83,9 @@ const TeenPattiMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, show]);
+
+  console.log("data", dragonTigerDetail.players);
+
   return (
     <>
       <div>
@@ -249,7 +252,6 @@ const TeenPattiMobile = () => {
                         <div
                           className="teenPatti-table-ite f12-b"
                           style={{
-                          
                             color: "#fff",
                             textAlign: "center",
                             marginTop: "15px",
@@ -382,53 +384,116 @@ const TeenPattiMobile = () => {
                     (playerA: any, index: any) => {
                       return (
                         <div
-                          key={index}
-                          className="teenPatti-table-row"
-                          style={{ lineHeight: 1 }}
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            width: "100%",
+                            justifyContent:"center",
+                            alignContent:"center"
+                          }}
                         >
-                          <div
-                            style={{
-                              width: "40%",
-                              padding: "10px",
-                              border: "0.1px solid #fff",
-                            }}
-                          >
-                            <span
-                              style={{ fontSize: "14px", fontWeight: "bolder" }}
-                            >
-                              {playerA[0]?.nat.split(" ")[0]}{" "}
-                              {/* Display category */}
-                            </span>
-                          </div>
-                          <div
-                            className={
-                              //playerA[0]?.gstatus === "0" ? "suspended" :
-                              ""
-                            }
-                            style={{
-                              width: "60%",
-                              backgroundColor: "#72bbef",
-                              display: "flex",
-                              flexDirection: "row",
-                            }}
-                          >
-                            {playerA.map((player: any, idx: any) => (
+                          <div style={{ width: "50%" }}>
+                            {index < 5 && (
                               <div
-                                key={player.sid}
-                                className={`teenPatti-table-item ${
-                                  player.gstatus === "0" ? "suspended" : ""
-                                }`}
-                                style={{ width: "16.7%" }}
-                                onClick={() =>
-                                  player.gstatus === "0"
-                                    ? null
-                                    : handleBet(player)
-                                }
+                                key={index}
+                                className="teenPatti-table-row"
+                                style={{
+                                  lineHeight: 1,
+                                  display: "flex",
+                                  flexDirection: "row",
+                                  width: "100%",
+                                  marginBottom: "10px", // Added to separate the rows
+                                }}
                               >
-                                <span className="f12-b">{player.b1}</span>
-                                <span className="f10-b">0</span>
+                                <div
+                                  style={{
+                                    width: "70%",
+                                    padding: "10px",
+                                    border: "0.1px solid #fff",
+                                  }}
+                                >
+                                  <span
+                                    style={{
+                                      fontSize: "14px",
+                                      fontWeight: "bolder",
+                                    }}
+                                  >
+                                    {playerA[bettingOptions]?.nat.split(" ")[0]}
+                                  </span>
+                                </div>
+
+                                <div
+                                  key={playerA[bettingOptions].sid}
+                                  className={`teenPatti-table-item ${
+                                    playerA[bettingOptions].gstatus === "0" ? "suspended" : ""
+                                  }`}
+                                  style={{
+                                    width: "30%",
+                                    background: "#a7d8fd",
+                                  }}
+                                  onClick={() =>
+                                    playerA[bettingOptions].gstatus === "0"
+                                      ? null
+                                      : handleBet(playerA)
+                                  }
+                                >
+                                  <span className="f12-b">{playerA[bettingOptions].b1}</span>
+                                  <span className="f10-b">0</span>
+                                </div>
                               </div>
-                            ))}
+                            )}
+                          </div>
+                          
+                          <div style={{ width: "50%" }}>
+                            {index >= 5 && (
+                              <div
+                                key={index}
+                                className="teenPatti-table-row"
+                                style={{
+                                  lineHeight: 1,
+                                  display: "flex",
+                                  flexDirection: "row",
+                                  width: "100%",
+                                  marginBottom: "10px", // Added to separate the rows
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    width: "70%",
+                                    padding: "10px",
+                                    border: "0.1px solid #fff",
+                                  }}
+                                >
+                                  <span
+                                    style={{
+                                      fontSize: "14px",
+                                      fontWeight: "bolder",
+                                    }}
+                                  >
+                                    {playerA[bettingOptions]?.nat.split(" ")[0]}
+                                  </span>
+                                </div>
+
+                                <div
+                                  key={playerA[bettingOptions].sid}
+                                  className={`teenPatti-table-item ${
+                                    playerA[bettingOptions].gstatus === "0" ? "suspended" : ""
+                                  }`}
+                                  style={{
+                                    width: "30%",
+                                    background: "#a7d8fd",
+                                  }}
+                                  onClick={() =>
+                                    playerA[bettingOptions].gstatus === "0"
+                                      ? null
+                                      : handleBet(playerA)
+                                  }
+                                >
+                                  <span className="f12-b">{playerA[bettingOptions].b1}</span>
+                                  <span className="f10-b">0</span>
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </div>
                       );
