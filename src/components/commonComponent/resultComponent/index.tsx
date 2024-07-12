@@ -24,6 +24,7 @@ import Race20ResultComponent from "../../race20/desktop/resultModalComponent";
 import Cricket5ResultComponent from "../../cricket5/desktop/resultModalComponent";
 import Poker6ResultComponent from "../../poker/desktop/resultModalComponent";
 import Poker20ResultComponent from "../../poker20/desktop/resultModalComponent";
+import Card32BResultComponent from "../../cards32B/desktop/resultModalComponent";
 
 const title = {
   dt20: "20-20 Dragon Tiger",
@@ -125,6 +126,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Poker20ResultComponent data={data} />
       ): type === cardGamesType?.cricketv3 ? (
         <Cricket5ResultComponent data={data} />
+      ): type === cardGamesType?.card32B ? (
+        <Card32BResultComponent data={data} />
       ): (
         <></>
       )}

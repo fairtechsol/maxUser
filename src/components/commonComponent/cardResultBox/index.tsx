@@ -109,6 +109,19 @@ const CardResultBox = ({ data, name, type }: any) => {
                 
                 </>
                
+              ) : type === "card32eu" ? (
+                <>
+                 
+                 <span
+                 style={{
+                   fontSize: "16px",
+                   fontWeight: "600",
+                   color:"#f5cc03",
+                 }}
+               >{item?.result === "1"? name?.[0] : item?.result === "2"? name?.[1] : item?.result === "3"? name?.[2] : name?.[3]} </span>
+                
+                </>
+               
               ) : type === "race20" ? (
                 <>
                  {item?.result === "1"?
