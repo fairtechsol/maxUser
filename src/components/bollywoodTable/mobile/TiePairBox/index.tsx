@@ -36,6 +36,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
 
   return (
     <div className="tiePairContaine">
+      
       <div
         style={{
           width: "100%",
