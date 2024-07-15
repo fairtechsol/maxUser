@@ -12,6 +12,7 @@ import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCa
 import { socket, socketService } from "../../socketManager";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Card32BComponentList from "../../components/cards32B";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Cards32B = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -95,7 +96,7 @@ const Cards32B = () => {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
-  return loading ? <Loader /> :<Card32BComponentList/>;
+  return loading ? <InnerLoader /> :<Card32BComponentList/>;
 };
 
 export default Cards32B;

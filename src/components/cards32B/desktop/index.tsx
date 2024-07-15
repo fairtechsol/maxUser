@@ -11,14 +11,14 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import OddEven from "./OddEvenBox";
 import BackLay from "./BackLay";
-import Dragon20Result from "./dragonCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import PairBox from "./PairBox";
 import CardBox from "./cardBox";
 import TotalCards from "./totalCards";
+import Card32BResult from "./card32B";
 
 const Card32BDesktop = () => {
   const [show, setShow] = useState(false);
@@ -113,7 +113,7 @@ const Card32BDesktop = () => {
             >
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
-                result={<Dragon20Result data={dragonTigerDetail?.videoInfo} />}
+                result={<Card32BResult data={dragonTigerDetail?.videoInfo} />}
                 id={videoFrameId}
               />
             </div>
@@ -166,7 +166,7 @@ const Card32BDesktop = () => {
               />
             </div>
             <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox data={dragonTigerDetail} name={["8", "9", "10", "11"]} type={"card32eu"}/>
+              <CardResultBox data={dragonTigerDetail} name={["8", "9", "10", "11"]} type={cardGamesType.card32B}/>
             </div>
           </div>
 

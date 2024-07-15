@@ -12,81 +12,55 @@ interface Props {
 
 const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
-  let result: string[][] = [[], [], [], []];
-  const playerA = resultCards?.filter(
-    (_: any, index: number) => index % 2 === 0
-  );
-  const playerB = resultCards?.filter(
-    (_: any, index: number) => index % 2 !== 0
-  );
-
-  const allKeys = Object.keys(data ? data : 0);
-  const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
-  const numbers = cArray.map((key) => Number(data[key]));
-  // const max = Math.max(...numbers);
+  const lastCards = resultCards?.slice(4,9)
+//  console.log(data,'first',resultCards)
   return (
-    <Container style={{ display: "flex", flexDirection: "column" }}>
-       <div className="teen20resultModal d-flex flex-column flex-md-row " style={{display:"flex",justifyContent:"space-between",padding:"5px"}}>
-      <div className="teen20resultCardContainer w-100 w-md-50 border-all border-md-right d-flex flex-row flex-md-column p-2 " style={{ borderRight: '1px solid #bfbfbf' }}>
-        <span className="fs-5">Player A</span>
-        <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center align-items-center mb-2 gap-2"}>
-       
-          <div
-            style={{
-              border: "1px solid #fdef34",
-              borderRadius: "1px",
-              marginLeft: "5px",
-            }}
-          >
-            <HandleCards card={playerA?.[0]} />
+    <Container style={{ display: "flex", flexDirection: "column",justifyContent:"center",alignItems:"center" }}>
+      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        {data?.result?.win === "11" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
+              </div>
+            )}
+          <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player A</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[0]} />
+            <HandleCards card={resultCards?.[1]} />
           </div>
-          <div
-            style={{
-              border: "1px solid #fdef34",
-              borderRadius: "1px",
-              marginLeft: "5px",
-            }}
-          >
-            <HandleCards card={playerA?.[1]} />
           </div>
-          {data?.result?.win === "1" && (
-            <div className="casino-winner-icon ml-5" style={{marginLeft:"5px"}}>
-              <FaTrophy size={30} color="#169733" />
-            </div>
-          )}
+          
+        </div>
+        {data?.result?.win === "0" && ( <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <span className="title-18 f500">Tie</span>
+        </div>)}
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player B</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[2]} />
+            <HandleCards card={resultCards?.[3]} />
+          </div>
+          </div>
+          {data?.result?.win === "21" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
+              </div>
+            )}
         </div>
       </div>
-
-      <div className="teen20resultCardContainer w-100 w-md-50 border-all border-md-none mt-2 mt-md-0 d-flex flex-row flex-md-column p-2 ">
-        <span className="fs-5">Player B</span>
-        <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center gap-2 align-items-center mb-2"}>
-         
-          <div
-            style={{
-              border: "1px solid #fdef34",
-              borderRadius: "1px",
-              marginLeft: "5px",
-            }}
-          >
-            <HandleCards card={playerB?.[0]} />
-          </div>
-          <div
-            style={{
-              border: "1px solid #fdef34",
-              borderRadius: "1px",
-              marginLeft: "5px",
-            }}
-          >
-            <HandleCards card={playerB?.[1]} />
-          </div>
-          {data?.result?.win === "2" && (
-            <div className="casino-winner-icon ml-2 ml-md-5" style={{marginLeft:"5px"}}>
-              <FaTrophy size={30} color="#169733" />
-            </div>
-          )}
-        </div>
+      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",gap:"5px",marginBottom:"10px"}}>
+        {
+          lastCards?.map((item:any,index:number)=>{
+            return(
+              <div key={index}>
+                <HandleCards card={item} />
+              </div>
+            )
+          })
+        }
       </div>
-    </div>
     </Container>
   );
 };

@@ -407,32 +407,32 @@ export const rulesData = [
   {
     cardImage: imgA,
     count: 5,
-    valueImage: ball0,
+    valueImage: ball1,
   },
   {
     cardImage: img2,
     count: 5,
-    valueImage: ball1,
+    valueImage: ball2,
   },
   {
     cardImage: img3,
     count: 5,
-    valueImage: ball2,
+    valueImage: ball3,
   },
   {
     cardImage: img4,
     count: 5,
-    valueImage: ball3,
+    valueImage: ball4,
   },
   {
     cardImage: img6,
     count: 5,
-    valueImage: ball4,
+    valueImage: ball6,
   },
   {
     cardImage: img10,
     count: 5,
-    valueImage: ball6,
+    valueImage: ball0,
   },
   {
     cardImage: imgK,

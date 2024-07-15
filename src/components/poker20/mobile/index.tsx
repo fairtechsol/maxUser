@@ -131,7 +131,7 @@ const Poker20Mobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "500px" }}>
+            <div style={{ height: "550px" }}>
               <div className="mt-5">
                 <DynamicTable
                   back={true}

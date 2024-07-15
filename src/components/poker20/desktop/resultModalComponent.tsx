@@ -10,119 +10,59 @@ interface Props {
   };
 }
 
-const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
+const Poker20ResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
-  let result: string[][] = [[], [], [], []];
-  if (resultCards) {
-    resultCards?.forEach((item: any, index: any) => {
-      const targetArray = index % 4;
-      result[targetArray].push(item);
-    });
-  }
-// console.log('sssss',result)
-  const allKeys = Object.keys(data ? data : 0);
-  const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
-  const numbers = cArray.map((key) => Number(data[key]));
-  // const max = Math.max(...numbers);
+  const lastCards = resultCards?.slice(4,9)
+//  console.log(data,'first',resultCards)
   return (
-    <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="card32resultModal">
-        <div className="card32resultCardContainer mb-3">
-          <span style={{fontSize:isMobile?'14px':'20px'}}>Player 8</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "1" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
+    <Container style={{ display: "flex", flexDirection: "column",justifyContent:"center",alignItems:"center" }}>
+      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        {data?.result?.win === "11" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
               </div>
             )}
-            {result?.[0]?.map((item: any) => {
-              return item != "1" && (
-                <div
-                  style={{
-                    border: "1px solid #fdef34",
-                    borderRadius: "1px",
-                    marginLeft: "5px",
-                  }}
-                >
-                  <HandleCards card={item} />
-                </div>
-              );
-            })}
-           
+          <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player A</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[0]} />
+            <HandleCards card={resultCards?.[1]} />
           </div>
+          </div>
+          
         </div>
-        <div className="card32resultCardContainer mb-3">
-          <span style={{fontSize:isMobile?'14px':'20px'}}>Player 9</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "2" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
+        {data?.result?.win === "0" && ( <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <span className="title-18 f500">Tie</span>
+        </div>)}
+        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"column"}}>
+          <span className="title-18 f500">Player B</span>
+          <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+            <HandleCards card={resultCards?.[2]} />
+            <HandleCards card={resultCards?.[3]} />
+          </div>
+          </div>
+          {data?.result?.win === "21" && (
+              <div className="casino-winner-icon mt-3 p-2" >
+                <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
               </div>
             )}
-           {result?.[1]?.map((item: any) => {
-              return item != "1" && (
-                <div
-                  style={{
-                    border: "1px solid #fdef34",
-                    borderRadius: "1px",
-                    marginLeft: "5px",
-                  }}
-                >
-                  <HandleCards card={item} />
-                </div>
-              );
-            })}
-          </div>
         </div>
-        <div className="card32resultCardContainer mb-3">
-          <span style={{fontSize:isMobile?'14px':'20px'}}>Player 10</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "3" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
+      </div>
+      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",gap:"5px",marginBottom:"10px"}}>
+        {
+          lastCards?.map((item:any,index:number)=>{
+            return(
+              <div key={index}>
+                <HandleCards card={item} />
               </div>
-            )}
-            {result?.[2]?.map((item: any) => {
-              return item != "1" && (
-                <div
-                  style={{
-                    border: "1px solid #fdef34",
-                    borderRadius: "1px",
-                    marginLeft: "5px",
-                  }}
-                >
-                  <HandleCards card={item} />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className="card32resultCardContainer mb-3">
-          <span style={{fontSize:isMobile?'14px':'20px'}}>Player 11</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "4" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
-            {result?.[3]?.map((item: any) => {
-              return item != "1" && (
-                <div
-                  style={{
-                    border: "1px solid #fdef34",
-                    borderRadius: "1px",
-                    marginLeft: "5px",
-                  }}
-                >
-                  <HandleCards card={item} />
-                </div>
-              );
-            })}
-          </div>
-        </div>
+            )
+          })
+        }
       </div>
     </Container>
   );
 };
 
-export default Card32ResultComponent;
+export default Poker20ResultComponent;
