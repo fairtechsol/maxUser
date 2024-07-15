@@ -8,7 +8,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/dragonCard";
+import Dragon20Result from "../desktop/superOver";
 import {
   cardData,
   cardGamesId,
@@ -19,13 +19,14 @@ import Bookmaker from "../desktop/bookmaker";
 import MyBet from "./myBet";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import { Table } from "react-bootstrap";
+import SuperoverResult from "../desktop/superOver";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.card32B}`
+    `${cardUrl}${cardGamesId.superover}`
   );
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
@@ -150,7 +151,7 @@ const SuperoverMobile = () => {
                   <VideoFrame
                     time={dragonTigerDetail?.videoInfo?.autotime}
                     result={
-                      <Dragon20Result data={dragonTigerDetail?.videoInfo} />
+                      <SuperoverResult data={dragonTigerDetail?.videoInfo} />
                     }
                     id={videoFrameId}
                   />
@@ -174,7 +175,10 @@ const SuperoverMobile = () => {
               </div>
 
               <div style={{ width: "100%", marginTop: "5px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+                <CardResultBox
+                data={dragonTigerDetail}
+                name={["E", "R","T"]}
+                type={"superover"} />
               </div>
               <div className="sidebar-box place-bet-container super-over-rule">
                 <div className="marketHeader">

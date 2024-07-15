@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/commonComponent/loader";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -21,6 +20,7 @@ import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Poker1DayComponentList from "../../components/poker1day";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Poker1day = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -105,7 +105,7 @@ const Poker1day = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <Poker1DayComponentList />;
+  return loading ? <InnerLoader /> : <Poker1DayComponentList />;
 };
 
 export default Poker1day;

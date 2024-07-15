@@ -166,7 +166,7 @@ const TeenPattiDesktop = () => {
               <div className="teenPatti-table-container">
                 <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
                   <div
-                    style={{ width: "40%", border: "0.1px solid #fff" }}
+                    style={{ width: "40%" }}
                   ></div>
                   <div
                     style={{

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { card32rules, p6rules } from "../../../assets/images";
 import { AppDispatch, RootState } from "../../../store/store";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
@@ -206,8 +206,8 @@ const Poker1dayMobile = () => {
                 {" "}
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["8", "9", "10", "11"]}
-                  type={"card32"}
+                  name={["A", "B", "T"]}
+                  type={ cardGamesType.poker1Day}
                 />
               </div>
               <div>

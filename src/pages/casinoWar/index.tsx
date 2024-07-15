@@ -22,6 +22,7 @@ import { cardGamesType } from "../../utils/constants";
 
 import CasinoWarComponentList from "../../components/casinoWar";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const CasinoWar = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -106,7 +107,7 @@ const CasinoWar = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <CasinoWarComponentList />;
+  return loading ? <InnerLoader /> : <CasinoWarComponentList />;
 };
 
 export default CasinoWar;
