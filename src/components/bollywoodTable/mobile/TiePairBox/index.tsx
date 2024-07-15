@@ -1,20 +1,23 @@
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
 import PlayerButton from "../PlayerButton";
 import { seven } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { IoInformationCircle } from "react-icons/io5";
+import SmoothDropdownModal from "../../mobile/minMaxModal";
 
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = lowHigh?.[0]?.min;
   const max = lowHigh?.[0]?.max;
-
-  const handleBet = (item: any) => {
+  const [modelOpen, setModelOpen] = useState(false);
+  const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd: item?.b1,
+      odd: type === "BACK" ? item?.b1 : item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -29,52 +32,29 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       })
     );
   };
+
   return (
-    <div className="">
-      <div className="tiePairRateBoxMainlucky" style={{display:"flex",flexDirection:"column",justifyContent:"start", alignItems:"start"}}>
-        {/* <div className="commonButtonBoxContainer" style={{ width: "30%" }}>
-          <div>
-            <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
-              {parseFloat(lowHigh?.[0]?.b1).toFixed(2)}
-            </span>
-          </div>
-          <div  //lowHigh?.[0]?.gstatus === "0" ? true : false
-            className={`tiePairbtn-theme ${lowHigh?.[0]?.gstatus === "0" ? "suspended" : ""}`}
-            onClick={() => (!(lowHigh?.[0]?.gstatus === "0") ? handleBet(data) : null)}
-          >
-            <span>
-              {
-                "Amar"
-              }
-            </span>
-          </div>
-          <div>
-            <span
-              style={{ fontSize: "16px" }}
-              className={`${
-                value3 && value3 > 0
-                  ? "color-green"
-                  : value3 < 0
-                  ? " color-red"
-                  : ""
-              }`}
-            >
-              {value3 || 0}
-            </span>
-          </div>
-        </div> */}
+    <div className="tiePairContaine">
+      <div style={{ width: "100%", textAlign: "end" }}>
+        <span className="minmaxi">
+          <IoInformationCircle
+            color="#ffc742"
+            onClick={() => setModelOpen(!modelOpen)}
+          />
+          <SmoothDropdownModal
+            min={min}
+            max={max}
+            show={modelOpen}
+            setShow={() => setModelOpen(false)}
+          />
+        </span>
+      </div>
 
-        <div style={{ textAlign: "start", width: "100%",alignItems:"center", borderBottom: "1px solid #aaa",display:"flex",paddingTop:"2px"  }}>
-          <span style={{ fontWeight: "bolder" }}>Min:</span>
-          <span>{min}</span>
-          <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-          <span>{max}</span>
-        </div>
-
+      
         <PlayerButton
           value1={lowHigh?.[0]?.b1}
           value4={lowHigh?.[0]?.l1}
-          value2={"Amar"}
+          value2={lowHigh?.[0]?.nat}
           value3={
             data?.profitLoss
               ? data?.profitLoss[
@@ -91,7 +71,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         <PlayerButton
           value1={lowHigh?.[1]?.b1}
           value4={lowHigh?.[1]?.l1}
-          value2={"Akbar"}
+          value2={lowHigh?.[1]?.nat}
           value3={
             data?.profitLoss
               ? data?.profitLoss[
@@ -108,7 +88,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         <PlayerButton
           value1={lowHigh?.[2]?.b1}
           value4={lowHigh?.[2]?.l1}
-          value2={"Anthony"}
+          value2={lowHigh?.[2]?.nat}
           value3={
             data?.profitLoss
               ? data?.profitLoss[
@@ -121,7 +101,65 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           lock={lowHigh?.[2]?.gstatus === "CLOSED" ? true : false}
           data={lowHigh?.[2]}
         />
-      </div>
+      
+      
+        <PlayerButton
+          value1={lowHigh?.[3]?.b1}
+          value4={lowHigh?.[3]?.l1}
+          value2={lowHigh?.[3]?.nat}
+          value3={
+            data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${lowHigh?.[3]?.sid}_card`
+                ]
+              : 0
+          }
+          width={"100%"}
+          handleBet={handleBet}
+          lock={lowHigh?.[3]?.gstatus === "CLOSED" ? true : false}
+          data={lowHigh?.[3]}
+        />
+
+        <PlayerButton
+          value1={lowHigh?.[4]?.b1}
+          value4={lowHigh?.[4]?.l1}
+          value2={lowHigh?.[4]?.nat}
+          value3={
+            data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${lowHigh?.[4]?.sid}_card`
+                ]
+              : 0
+          }
+          width={"100%"}
+          handleBet={handleBet}
+          lock={lowHigh?.[4]?.gstatus === "CLOSED" ? true : false}
+          data={lowHigh?.[4]}
+        />
+
+        <PlayerButton
+          value1={lowHigh?.[5]?.b1}
+          value4={lowHigh?.[5]?.l1}
+          value2={lowHigh?.[5]?.nat}
+          value3={
+            data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${lowHigh?.[5]?.sid}_card`
+                ]
+              : 0
+          }
+          width={"100%"}
+          handleBet={handleBet}
+          lock={lowHigh?.[5]?.gstatus === "CLOSED" ? true : false}
+          data={lowHigh?.[5]}
+        />
+  
+      {/* <div style={{ textAlign: "end", width: "100%" }}>
+        <span style={{ fontWeight: "bolder" }}>Min:</span>
+        <span>{min}</span>
+        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
+        <span>{max}</span>
+      </div> */}
     </div>
   );
 };

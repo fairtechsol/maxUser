@@ -33,7 +33,7 @@ const PlayerButton = ({
         <div  >
           {value2 && value2 === "Amar" ? (
             <span
-              style={{ fontSize: "16px", fontWeight: "bolder", color: "red",paddingLeft:"4px" }}
+              style={{ fontSize: "16px", fontWeight: "bolder", color: "red",paddingLeft:"1px" }}
             >
               A.
             </span>

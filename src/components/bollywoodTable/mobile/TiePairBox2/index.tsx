@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { useState } from "react";
-import CommonButtonBox from "../CommonButtonBox";
-import PlayerButton from "../PlayerButton";
+import CommonButtonBox from "../../desktop/CommonButtonBox";
+import PlayerButton from "../../desktop/PlayerButton";
 import { seven } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { IoInformationCircle } from "react-icons/io5";
-import SmoothDropdownModal from "../../mobile/minMaxModal";
+import SmoothDropdownModal from "../minMaxModal";
 
 const 
 TiePairBox = ({ lowHigh, data }: any) => {

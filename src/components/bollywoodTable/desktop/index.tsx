@@ -14,7 +14,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
-import TiePairBox2 from "./TiePairBox2";
+import TiePairBox2 from "../mobile/TiePairBox2";
 import Lucky7Result from "./lucky7Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
@@ -212,7 +212,7 @@ const BollywoodTableDesktop = () => {
               <div style={{ width: "100%", margin: "5px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["C", "E", "F"]}
+                  name={["A", "B", "C","D","E","F"]}
                   type={cardGamesType.btable}
                 />
               </div>

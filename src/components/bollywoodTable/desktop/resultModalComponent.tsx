@@ -11,8 +11,8 @@ interface Props {
 
 const BollywoodTableResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.desc?.split("|");
-  const pair = resultCards?.[0]?.split(" ");
-  const card = resultCards?.[3]?.split(" ");
+  const pair = resultCards?.[0];
+  //const card = resultCards?.[3]?.split(" ");
 
   console.log("winner");
 
@@ -38,41 +38,46 @@ const BollywoodTableResultComponent: React.FC<Props> = ({ data }: any) => {
           className={
             isMobile
               ? "w-100 d-sm-flex flex-sm-row justify-content-center align-items-center p-4 mb-2"
-              : "w-80 d-sm-flex flex-sm-row justify-content-center align-items-center p-4 mb-2"
+              : "w-80 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
           }
         >
-          <div>
-            <div className="lucky7CommonText-2 d-sm-flex flex-sm-row ">
+          <div className="d-sm-flex flex-sm-row justify-content-center align-items-center">
+            <div className="lucky7CommonText- d-sm-flex flex-sm-row ">
               Result:
             </div>
             <div className="d-sm-flex flex-sm-row p-1">
-              <span className="lucky7CommonText-2">{pair?.[0]}</span>
+              <span className="lucky7CommonText-">{pair}</span>
             </div>
           </div>
-          <div
-            className="d-sm-flex flex-sm-row border-start border-2 border-primary mr-2 "
-            style={{ marginRight: "5px" }}
-          >
-            <span className="lucky7CommonText-2 mr-2">{resultCards?.[2]}</span>
-          </div>
 
-          <div
-            className="d-sm-flex flex-sm-row border-start border-2 border-primary "
-            style={{ marginRight: "5px" }}
-          >
-            <span className="lucky7CommonText-2">{resultCards?.[1]}</span>
-          </div>
-          <div
-            className="d-sm-flex flex-sm-row border-start border-2 border-primary "
-            style={{ marginRight: "5px" }}
-          >
-            <span className="lucky7CommonText-2">{resultCards?.[3]}</span>
-          </div>
-          <div
-            className="d-sm-flex flex-sm-row border-start border-2 border-primary "
-            style={{ marginRight: "5px" }}
-          >
-            <span className="lucky7CommonText-2">{resultCards?.[4]}</span>
+          <div className="d-sm-flex flex-sm-row justify-content-center align-items-center">
+            <div
+              className="d-sm-flex flex-sm-row border-star border- border-primary mr-2 "
+              style={{ marginRight: "7px" }}
+            >
+              <span className="lucky7CommonText-2 mr-2">
+                {resultCards?.[2]}
+              </span>
+            </div>
+
+            <div
+              className="d-sm-flex flex-sm-row border-start border-2 border-primary "
+              style={{ marginRight: "7px" }}
+            >
+              <span className="lucky7CommonText-2">{resultCards?.[1]}</span>
+            </div>
+            <div
+              className="d-sm-flex flex-sm-row border-start border-2 border-primary "
+              style={{ marginRight: "7px" }}
+            >
+              <span className="lucky7CommonText-2">{resultCards?.[3]}</span>
+            </div>
+            <div
+              className="d-sm-flex flex-sm-row border-start border-2 border-primary "
+              style={{ marginRight: "5px" }}
+            >
+              <span className="lucky7CommonText-2">{resultCards?.[4]}</span>
+            </div>
           </div>
         </div>
       </div>

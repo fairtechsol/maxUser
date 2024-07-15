@@ -24,9 +24,10 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
   // Create a mapping of player IDs to their respective cards
   const players = resultCards?.map((card, index) => ({
     card,
-    id: playerIds[index], // Distribute player IDs cyclically
+    id: playerIds[index],  // Distribute player IDs cyclically
   }));
-
+     
+  console.log("ids",data?.result)
   const renderColumn = () => (
     <div
       className="d-flex flex-column align-items-center"
@@ -76,7 +77,7 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
                 >
                   <HandleCards card={player.card} />
                 </div>
-                {data?.result?.sid.includes(player.id) && (
+                {data?.result?.sid.includes(`${index+1}` ) && (
                   <div
                     className="casino-winner-icon"
                     style={{ marginLeft: "5px" }}
@@ -120,7 +121,7 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
                 >
                   <HandleCards card={player.card} />
                 </div>
-                {data?.result?.sid.includes(player.id) && (
+                {data?.result?.sid.includes(`${index +1}`) && (
                   <div
                     className="casino-winner-icon"
                     style={{ marginLeft: "5px" }}
