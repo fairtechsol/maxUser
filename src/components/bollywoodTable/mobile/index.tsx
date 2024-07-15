@@ -30,7 +30,7 @@ const BollywoodTableDesktop = () => {
   );
 
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-
+  const [show1, setShow1] = useState(false);
   console.log("data", dragonTigerDetail);
 
   const handleClose = () => {
@@ -82,10 +82,11 @@ const BollywoodTableDesktop = () => {
 
   return (
     <>
+     <PlacedBet show={show1} setShow={setShow1} />
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -126,45 +127,22 @@ const BollywoodTableDesktop = () => {
               </div>
             </div>
             <div>
-              <div style={{ width: "100%", margin: "5% 5px" }}>
+              <div style={{ width: "100%", margin: "" }}>
                 <TiePairBox
                   lowHigh={dragonTigerDetail?.players}
                   data={dragonTigerDetail}
                 />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "30%",
-                  }}
-                >
-                  <TiePairBox2
-                    lowHigh={dragonTigerDetail?.luckOdds}
-                    data={dragonTigerDetail}
-                  />
-                </div>
 
                 <div
                   style={{
-                    width: "70%",
-                    background: "#EEEEEE",
-                    paddingLeft: "4px",
-                    paddingRight: "4px",
+                    width: "100%",
+                    marginTop: "20px",
+                    borderTop: "1px solid #aaa",
                   }}
                 >
-                  <OddEven
-                    name={"DRAGON"}
-                    odds={dragonTigerDetail?.seven}
+                  <TiePairBox
+                    lowHigh={[dragonTigerDetail?.luckOdds]}
                     data={dragonTigerDetail}
-                    card={true} 
                   />
                 </div>
               </div>
@@ -172,47 +150,57 @@ const BollywoodTableDesktop = () => {
               <div
                 style={{
                   width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
+                  background: "#EEEEEE",
+                  paddingLeft: "4px",
+                  paddingRight: "4px",
+                  marginTop: "10px",
                 }}
               >
-                <div
-                  style={{
-                    width: "50%",
-                    background: "#EEEEEE",
-                    paddingLeft: "4px",
-                    paddingRight: "4px",
-                  }}
-                >
-                  <OddEven
-                    name={"TIGER"}
-                    odds={dragonTigerDetail?.redBlack}
-                    card={false}
-                    data={dragonTigerDetail}
-                  />
-                </div>
-
-                <div
-                  style={{
-                    width: "50%",
-                    background: "#EEEEEE",
-                    paddingLeft: "4px",
-                    paddingRight: "4px",
-                  }}
-                >
-                  <CardBox
-                    cardData={dragonTigerDetail?.luckyCards}
-                    data={dragonTigerDetail}
-                    rate={dragonTigerDetail?.luckyCards?.rate}
-                  />
-                </div>
+                <OddEven
+                  name={"DRAGON"}
+                  odds={dragonTigerDetail?.seven}
+                  data={dragonTigerDetail}
+                  card={true}
+                />
               </div>
-              <div style={{ width: "100%", margin: "5px" }}>
+
+              <div
+                style={{
+                  width: "100%",
+                  background: "#EEEEEE",
+                  paddingLeft: "4px",
+                  paddingRight: "4px",
+                  marginTop: "10px",
+                }}
+              >
+                <OddEven
+                  name={"TIGER"}
+                  odds={dragonTigerDetail?.redBlack}
+                  card={false}
+                  data={dragonTigerDetail}
+                />
+              </div>
+
+              <div
+                style={{
+                  width: "100%",
+                  background: "#EEEEEE",
+                  paddingLeft: "4px",
+                  paddingRight: "4px",
+                  marginTop:"10px"
+                }}
+              >
+                <CardBox
+                  cardData={dragonTigerDetail?.luckyCards}
+                  data={dragonTigerDetail}
+                  rate={dragonTigerDetail?.luckyCards?.rate}
+                />
+              </div>
+
+              <div style={{ width: "100%", margin: "" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["A", "B", "C","D","E","F"]}
+                  name={["A", "B", "C", "D", "E", "F"]}
                   type={cardGamesType.btable}
                 />
               </div>
@@ -221,25 +209,7 @@ const BollywoodTableDesktop = () => {
             <RulesModal show={show} setShow={setShow} rule={luckyrules} />
           </div>
         </Col>
-        <Col md={4}>
-          <Container className="p-0" fluid ref={placeBetRef}>
-            <Row
-              className={` ${isSticky ? "position-fixed top-0" : ""}`}
-              style={{
-                width: isSticky
-                  ? placeBetRef.current?.offsetWidth + "px"
-                  : "100%",
-              }}
-            >
-              <Col md={12}>
-                <PlacedBet />
-              </Col>
-              <Col md={12}>
-                <MyBet />
-              </Col>
-            </Row>
-          </Container>
-        </Col>
+        
       </Row>
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>

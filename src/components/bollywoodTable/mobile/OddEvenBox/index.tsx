@@ -28,16 +28,17 @@ const OddEven = ({ data, card, odds }: any) => {
   };
 
   return (
-    <div className="oddEvenContaine" style={{background:"#EEEEEE",width:"32%"}}>
+    <div className="oddEvenContaine" style={{background:"#EEEEEE",width:"100%"}}>
       {card ? (
         <>
           
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
+              gap:"5px",
               justifyContent: "center",
               alignItems: "center",
+              
             }}
           >
             <CommonButtonBox
@@ -50,7 +51,7 @@ const OddEven = ({ data, card, odds }: any) => {
                     ]
                   : 0
               }
-              width={"80%"}
+              width={"45%"}
               handleBet={handleBet}
               lock={odds?.[0]?.gstatus === "SUSPENDED" ? true : false}
               data={odds?.[0]}
@@ -65,7 +66,7 @@ const OddEven = ({ data, card, odds }: any) => {
                     ]
                   : 0
               }
-              width={"80%"}
+              width={"45%"}
               handleBet={handleBet}
               lock={odds?.[1]?.gstatus === "SUSPENDED" ? true : false}
               data={odds?.[1]}
@@ -85,8 +86,8 @@ const OddEven = ({ data, card, odds }: any) => {
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
+              gap:"5px",
+              justifyContent: "center",
               alignItems: "center",
             }}
           >
@@ -100,7 +101,7 @@ const OddEven = ({ data, card, odds }: any) => {
                     ]
                   : 0
               }
-              width={"80%"}
+              width={"45%"}
               handleBet={handleBet}
               lock={odds?.[0]?.gstatus === "SUSPENDED" ? true : false}
               data={odds?.[0]}
@@ -115,7 +116,7 @@ const OddEven = ({ data, card, odds }: any) => {
                     ]
                   : 0
               }
-              width={"80%"}
+              width={"45%"}
               handleBet={handleBet}
               lock={odds?.[1]?.gstatus === "SUSPENDED" ? true : false}
               data={odds?.[1]}

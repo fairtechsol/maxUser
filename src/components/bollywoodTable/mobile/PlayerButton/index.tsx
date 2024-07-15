@@ -26,45 +26,114 @@ const PlayerButton = ({
         alignItems: "center",
         borderBottom: "1px solid #aaa",
         borderLeft: "1px solid #aaa",
-        borderRight: "1px solid #aaa"
+        borderRight: "1px solid #aaa",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", width: "70%" }}>
-        <div  >
-          {value2 && value2 === "Amar" ? (
+        <div>
+          {value2 && value2 === "DON" ? (
             <span
-              style={{ fontSize: "16px", fontWeight: "bolder", color: "red",paddingLeft:"1px" }}
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                color: "red",
+                paddingLeft: "4px",
+              }}
             >
               A.
             </span>
           ) : (
             ""
           )}
-           {value2 && value2 === "Akbar" ? (
+
+          {value2 && value2 === "Amar Akbar Anthony" ? (
             <span
-              style={{ fontSize: "16px", fontWeight: "bolder", color: "red",paddingLeft:"4px" }}
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                color: "red",
+                paddingLeft: "4px",
+              }}
             >
               B.
             </span>
           ) : (
             ""
           )}
-           {value2 && value2 === "Anthony" ? (
+
+          {value2 && value2 === "Sahib Bibi Aur Ghulam" ? (
             <span
-              style={{ fontSize: "16px", fontWeight: "bolder", color: "red",paddingLeft:"4px" }}
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                color: "red",
+                paddingLeft: "4px",
+              }}
             >
               C.
             </span>
           ) : (
             ""
           )}
-          <span style={{ fontSize: "16px", fontWeight: "bolder",paddingLeft:"4px" }}>
+
+          {value2 && value2 === "Dharam Veer" ? (
+            <span
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                color: "red",
+                paddingLeft: "4px",
+              }}
+            >
+              D.
+            </span>
+          ) : (
+            ""
+          )}
+
+          {value2 && value2 === "Kis KisKo Pyaar Karoon" ? (
+            <span
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                color: "red",
+                paddingLeft: "4px",
+              }}
+            >
+              E.
+            </span>
+          ) : (
+            ""
+          )}
+
+          {value2 && value2 === "Ghulam" ? (
+            <span
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                color: "red",
+                paddingLeft: "4px",
+              }}
+            >
+              F.
+            </span>
+          ) : (
+            ""
+          )}
+
+          <span
+            style={{
+              fontSize: "16px",
+              fontWeight: "bolder",
+              paddingLeft: "4px",
+            }}
+          >
             {value2 && value2}
           </span>
         </div>
         <div>
           <span
-            style={{ fontSize: "16px" ,paddingLeft:"4px"}}
+            style={{ fontSize: "16px", paddingLeft: "4px" }}
             className={`${
               value3 && value3 > 0
                 ? "color-green"
