@@ -411,6 +411,8 @@ const TeenPattiMobile = () => {
                                 width: "70%",
                                 padding: "10px",
                                 border: "0.1px solid #fff",
+                                display: "flex",
+                                alignItems: "center",
                               }}
                             >
                               <span
@@ -421,6 +423,32 @@ const TeenPattiMobile = () => {
                               >
                                 {playerA[bettingOptions]?.nat.split(" ")[0]}
                               </span>
+
+                              {playerA[bettingOptions]?.nat.split(" ")[0] ===
+                                "Red" && (
+                                <span style={{ marginLeft: "5px" }}>
+                                  <HandleCards3 card={"Diamond 1"} />
+                                </span>
+                              )}
+                              {playerA[bettingOptions]?.nat.split(" ")[0] ===
+                                "Red" && (
+                                <span style={{ marginLeft: "5px" }}>
+                                  <HandleCards3 card={"Heart 1"} />
+                                </span>
+                              )}
+
+                              {playerA[bettingOptions]?.nat.split(" ")[0] ===
+                                "Black" && (
+                                <span style={{ marginLeft: "5px" }}>
+                                  <HandleCards3 card={"Spade 1"} />
+                                </span>
+                              )}
+                              {playerA[bettingOptions]?.nat.split(" ")[0] ===
+                                "Black" && (
+                                <span style={{ marginLeft: "5px" }}>
+                                  <HandleCards3 card={"Club 1"} />
+                                </span>
+                              )}
                             </div>
 
                             <div
