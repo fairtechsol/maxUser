@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { card32rules } from "../../../assets/images";
+import { card32rules, p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import DynamicTable from "./betTable";
-import Card32Result from "./poker20";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
@@ -73,7 +72,7 @@ const Poker20Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-
+// console.log('first',dragonTigerDetail)
   return (
     <>
       <Row>
@@ -124,25 +123,25 @@ const Poker20Desktop = () => {
               <DynamicTable
                 odds={dragonTigerDetail?.odds}
                 data={dragonTigerDetail}
-                playerNum={[8, 9]}
+                playerNum={[0, 10]}
               />
               <div style={{ width: "10px" }}></div>
               <DynamicTable
                 odds={dragonTigerDetail?.odds}
                 data={dragonTigerDetail}
-                playerNum={[10, 11]}
+                playerNum={[10, 18]}
               />
             </div>
             <div className="mt-2">
               <CardResultBox
                 data={dragonTigerDetail}
-                name={["8", "9", "10", "11"]}
-                type={"card32"}
+                name={["A", "B", "T"]}
+                type={ cardGamesType.poker20}
               />
             </div>
           </div>
 
-          <RulesModal show={show} setShow={setShow} rule={card32rules} />
+          <RulesModal show={show} setShow={setShow} rule={p6rules} />
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>

@@ -1,11 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../store/store";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import {  useSelector } from "react-redux";
+import { p6rules, tprules } from "../../../assets/images";
+import {  RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
@@ -16,9 +15,9 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import DynamicTable from "./betTable";
 import Poker1DayResult from "./poker1DayCard";
+import PairBox from "./pairBox";
 
 const Poker1DayDesktop = () => {
-  const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [show, setShow] = useState(false);
@@ -28,7 +27,6 @@ const Poker1DayDesktop = () => {
     `${cardUrl}${cardGamesId.poker1Day}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  const { playersBonusPair } = dragonTigerDetail;
 // console.log(dragonTigerDetail, "data")
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -68,26 +66,7 @@ const Poker1DayDesktop = () => {
     { label: "Straight Flush", value: "1 TO 50" },
     { label: "Royal Flush", value: "1 TO 100" },
   ];
-  const handleBet = (item: any) => {
-    let team = {
-      bettingType: "BACK",
-      matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
-      bettingName: "Match odds",
-      selectionId: item?.sid,
-    };
-    dispatch(
-      selectedBetAction({
-        team,
-        dragonTigerDetail,
-      })
-    );
-    // console.log('team',team)
-  };
+ 
 
   useEffect(() => {
     const resetTimer = () => {
@@ -174,252 +153,18 @@ const Poker1DayDesktop = () => {
                   />
                 </div>
                 <div style={{width: "60%"}}>
-                <div className="poker-table-row" style={{ lineHeight: 2 }}>
-                  <div
-                    style={{ width: "50%", border: "0.1px solid #fff" }}
-                  ></div>
-                  <div
-                    style={{
-                      width: "50%",
-                      backgroundColor: "#a7d8fd",
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
-                  >
-                    <div
-                      className="poker-table-item f12-b"
-                      style={{ width: "50%" }}
-                    >
-                      BACK
-                    </div>
-                    <div
-                      className="poker-table-item f12-b"
-                      style={{ width: "50%" }}
-                    >BACK</div>
-                  </div>
-                </div>
-                <div className="poker-table-row" style={{ lineHeight: 1 }}>
-                  <div
-                    style={{
-                      width: "50%",
-                      padding: "16px",
-                      border: "0.1px solid #fff",
-                    }}
-                  >
-                    <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                      Player A
-                    </span>
-                  </div>
-                  <div
-                    className={
-                      playersBonusPair?.[0]?.gstatus === "SUSPENDED" 
-                        ? "suspended"
-                        : ""
-                    }
-                    style={{
-                      width: "50%",
-                      backgroundColor: "#a7d8fd",
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
-                  >
-                    <div
-                      className="poker-table-item"
-                      style={{ width: "50%" }}
-                      onClick={() =>
-                        playersBonusPair?.[0]?.gstatus === "0"
-                          ? null
-                          : handleBet(playersBonusPair?.[0])
-                      }
-                    >
-                      <span className="f12-b">{playersBonusPair?.[0]?.nat}</span>
-                      <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[0]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[0]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[0]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[0]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[0]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span>
-                    </div>
-                    <div
-                      className={`poker-table-item`}
-                      style={{ width: "50%" }}
-                      onClick={() =>
-                        playersBonusPair?.[1]?.gstatus === "0"
-                          ? null
-                          : handleBet(playersBonusPair?.[1])
-                      }
-                    >
-                      <span className="f12-b">{playersBonusPair?.[1]?.nat}</span>
-                      <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[1]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[1]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[1]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[1]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[1]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="poker-table-row" style={{ lineHeight: 1 }}>
-                  <div
-                    style={{
-                      width: "50%",
-                      padding: "18px",
-                      border: "0.1px solid #fff",
-                    }}
-                  >
-                    <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                      Player B
-                    </span>
-                  </div>
-                  <div
-                    className={
-                      playersBonusPair?.[2]?.gstatus === "SUSPENDED" 
-                        ? "suspended"
-                        : ""
-                    }
-                    style={{
-                      width: "50%",
-                      backgroundColor: "#a7d8fd",
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
-                  >
-                    <div
-                      className="poker-table-item"
-                      style={{ width: "50%" }}
-                      onClick={() =>
-                        playersBonusPair?.[2]?.gstatus === "0"
-                          ? null
-                          : handleBet(playersBonusPair?.[2])
-                      }
-                    >
-                      <span className="f12-b">{playersBonusPair?.[2]?.nat}</span>
-                      <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[2]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[2]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[2]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[2]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[2]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span>
-                    </div>
-                    <div
-                      className={`poker-table-item `}
-                      style={{ width: "50%" }}
-                      onClick={() =>
-                        playersBonusPair?.[3]?.gstatus === "0"
-                          ? null
-                          : handleBet(playersBonusPair?.[3])
-                      }
-                    >
-                      <span className="f12-b">{playersBonusPair?.[3]?.nat}</span>
-                      <span
-                        className={`f10-b ${
-                          dragonTigerDetail?.profitLoss
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[3]?.sid}_card`
-                              ]
-                              ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[3]?.sid}_card`
-                                ] > 0
-                                ? "color-green"
-                                : dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[3]?.sid}_card`
-                                  ] < 0
-                                ? "color-red"
-                                : ""
-                              : ""
-                            : ""
-                        }`}
-                      >
-                        {dragonTigerDetail?.profitLoss
-                          ? dragonTigerDetail?.profitLoss[
-                              `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[3]?.sid}_card`
-                            ]
-                            ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playersBonusPair?.[3]?.sid}_card`
-                              ]
-                            : 0
-                          : 0}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+               <PairBox 
+                odds={dragonTigerDetail?.playersBonusPair}
+                data={dragonTigerDetail}
+               />
               </div>
             
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["A", "T", "B"]}
-                  type={"poker"}
+                  name={["A", "B", "T"]}
+                  type={ cardGamesType.poker1Day}
                 />
               </div>
             </div>
@@ -475,7 +220,7 @@ const Poker1DayDesktop = () => {
                     </tbody>
                   </Table>
                 </div>
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
+                <RulesModal show={show} setShow={setShow} rule={p6rules} />
               </Col>
             </Row>
           </Container>

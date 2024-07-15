@@ -2,18 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import {
-  card32rules,
   crick5rules,
-  img10,
-  img2,
-  img3,
-  img4,
-  img6,
-  imgA,
-  imgK,
 } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
@@ -25,6 +17,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import MarketComponent from "./betTable";
 import ScoreBoard from "../../commonComponent/scoreBoard";
+import Crick5Result from "./cric5Card";
 
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -35,9 +28,11 @@ const Cricket5Desktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.cricketv3}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, scoreBoardData } = useSelector(
+    (state: RootState) => state.card
+  );
   // console.log(dragonTigerDetail, "dtaa")
-  const [showFancy, setShowFancy] = useState(false);
+  // const [showFancy, setShowFancy] = useState(false);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -85,47 +80,11 @@ const Cricket5Desktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-  const cardData = [
-    {
-      team: "AUS",
-      cards: [
-        { label: "A", imgSrc: imgA, value: "1 Run" },
-        { label: "2", imgSrc: img2, value: "2 Run" },
-        { label: "3", imgSrc: img3, value: "3 Run" },
-        { label: "4", imgSrc: img4, value: "4 Run" },
-        { label: "6", imgSrc: img6, value: "6 Run" },
-        { label: "10", imgSrc: img10, value: "0 Run" },
-        { label: "K", imgSrc: imgK, value: "Wicket" },
-      ],
-    },
-    {
-      team: "IND",
-      cards: [
-        { label: "A", imgSrc: imgA, value: "1 Run" },
-        { label: "2", imgSrc: img2, value: "2 Run" },
-        { label: "3", imgSrc: img3, value: "3 Run" },
-        { label: "4", imgSrc: img4, value: "4 Run" },
-        { label: "6", imgSrc: img6, value: "6 Run" },
-        { label: "10", imgSrc: img10, value: "0 Run" },
-        { label: "K", imgSrc: imgK, value: "Wicket" },
-      ],
-    },
-  ];
-
-  const scorecardData = {
-    teams: [
-      { name: 'AUS', score: '86-2 (5.0)' },
-      { name: 'IND', score: '63-1 (3.2)', crr: '18.90', rr: '14.40' }
-    ],
-    status: 'IND Needed 24 runs from 10 balls',
-    ballByBall: ['4', '0', '6', '1', '3', '6']
-  };
   return (
     <>
       <Row>
         <Col md={8} className="five-cricket">
-       
-          <div style={{ height: "400px", margin: "5px" }}>
+          <div style={{ width: "100%", height: "400px", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -153,34 +112,38 @@ const Cricket5Desktop = () => {
                   : ""}
               </span>
             </div>
-            <div><ScoreBoard data={scorecardData}/></div>
+            <div>
+              {scoreBoardData?.data && (
+                <ScoreBoard data={scoreBoardData?.data} />
+              )}
+            </div>
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
             >
               <VideoFrame
                 time={dragonTigerDetail?.videoInfo?.autotime}
-                result={<Card32Result data={dragonTigerDetail?.videoInfo} />}
+                result={<Crick5Result data={dragonTigerDetail?.videoInfo} />}
                 id={videoFrameId}
               />
             </div>
           </div>
           <div style={{ height: "350px" }}>
-            <div className="px-2" style={{marginTop: "7rem"}}>
+            <div style={{ marginTop: "7rem" }}>
               <MarketComponent
                 odds={dragonTigerDetail?.odds}
+                min={dragonTigerDetail?.videoInfo?.min}
+                max={dragonTigerDetail?.videoInfo?.max}
                 data={dragonTigerDetail}
               />
             </div>
             <div className="mt-2">
               <CardResultBox
                 data={dragonTigerDetail}
-                name={["8", "9", "10", "11"]}
-                type={"poker"}
+                name={["A", "I", "T"]}
+                type={"cricketv3"}
               />
             </div>
           </div>
-
-          {/* <RulesModal show={show} setShow={setShow} rule={crick5rules} /> */}
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
@@ -229,10 +192,20 @@ const Cricket5Desktop = () => {
                                   }
                                   alt="s"
                                   className="img-cards"
-                                />X 10
+                                />
+                                X 10
                               </div>
                             </td>
-                            <td><div style={{display: "flex", justifyContent: "flex-end"}}>{card.value}</div></td>
+                            <td>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "flex-end",
+                                }}
+                              >
+                                {card.value}
+                              </div>
+                            </td>
                           </tr>
                         ))}
                       </tbody>

@@ -27,6 +27,7 @@ import {
   updateCricket5MatchRates,
   updateAmarAkbarAnthonyCardMatchRates,
   updateBollywoodTableCardMatchRates,
+  casinoScoreboardMatchRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -39,6 +40,7 @@ interface InitialState {
   liveGameResultTop10: any;
   cards32Detail: any;
   resultData: any;
+  scoreBoardData: any;
 }
 
 const initialState: InitialState = {
@@ -51,6 +53,7 @@ const initialState: InitialState = {
   liveGameResultTop10: [],
   cards32Detail: [],
   resultData: null,
+  scoreBoardData: [],
 };
 
 const cardDetail = createSlice({
@@ -453,8 +456,8 @@ const cardDetail = createSlice({
         const { t1, t2, t3 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
-        const odds = { ...t2 };
-        const fancy = { ...t3 };
+        const odds = [...t2];
+        const fancy = [...t3];
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
@@ -524,6 +527,18 @@ const cardDetail = createSlice({
         state.resultData = action.payload;
       })
       .addCase(resultDragonTiger.rejected, (state, action) => {
+        // state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(casinoScoreboardMatchRates.pending, (state) => {
+        // state.loading = true;
+        state.error = null;
+        // state.scoreBoardData = null;
+      })
+      .addCase(casinoScoreboardMatchRates.fulfilled, (state, action) => {
+        state.scoreBoardData = action.payload;
+      })
+      .addCase(casinoScoreboardMatchRates.rejected, (state, action) => {
         // state.loading = false;
         state.error = action?.error?.message;
       });

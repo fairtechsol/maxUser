@@ -1,32 +1,45 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
-import { FaTrophy } from "react-icons/fa";
-import isMobile from "../../../utils/screenDimension";
+import { Container} from "react-bootstrap";
 interface Props {
   data: {
     C1: string;
     C2: string;
   };
 }
+const head=["team1","1","2","3","4","5","6","Run/Over","Score"]
 
 const Cricket5ResultComponent: React.FC<Props> = ({ data }: any) => {
-  const resultCards = data?.result?.cards?.split(",");
-  let result: string[][] = [[], [], [], []];
-  if (resultCards) {
-    resultCards?.forEach((item: any, index: any) => {
-      const targetArray = index % 4;
-      result[targetArray].push(item);
-    });
-  }
-  console.log('sssss',result)
-  const allKeys = Object.keys(data ? data : 0);
-  const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
-  const numbers = cArray.map((key) => Number(data[key]));
-  // const max = Math.max(...numbers);
+// console.log('first',data)
+
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-hbdgf
+     <div className="mb-2" style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+      <span>{data?.result?.desc} | Winner :{data?.result?.win ==="1"? " AUS":data?.result?.win ==="0"?" TIE":" IND"}</span>
+     </div>
+     {/* <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
+      <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>FIRST INNINGS</span></div>
+      <div className="resultTeamTab">
+          {head?.map((item:any,index:number)=>{
+            return(
+              <div style={{width:index===0?"20%":"10%",padding:"3px"}}>
+              <span className="f600" key={index} >{item==="team1"?"AUS":item}</span>
+              </div>
+            )
+          })}
+      </div>
+     </div>
+     <div className="mt-2 mb-2" style={{width:"100%",display:"flex",flexDirection:"column"}}>
+      <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>SECOND INNINGS</span></div>
+      <div className="resultTeamTab">
+          {head?.map((item:any,index:number)=>{
+            return(
+              <div style={{width:index===0?"20%":"10%",padding:"3px"}}>
+              <span className="f600" key={index} >{item==="team1"?"IND":item}</span>
+              </div>
+            )
+          })}
+      </div>
+     </div> */}
     </Container>
   );
 };

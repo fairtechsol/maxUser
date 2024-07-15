@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import service from "../../../service";
-import { ApiConstants } from "../../../utils/constants";
+import { ApiConstants, Constants } from "../../../utils/constants";
 
 export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
   "horseRacing/matchDetail",
@@ -56,7 +56,6 @@ export const resultDragonTiger = createAsyncThunk<any, any>(
         `${ApiConstants.CARDS.MATCH.RESULT}/${requestData}`
       );
       if (resp?.data) {
-      
         return resp?.data;
       }
     } catch (error) {
@@ -99,7 +98,6 @@ export const updateTeenPattiMatchRates = createAsyncThunk<any, any>(
   }
 );
 
-
 export const updateTeenPatti1DMatchRates = createAsyncThunk<any, any>(
   "teen/matchRatesUpdate",
   async (data) => {
@@ -112,7 +110,7 @@ export const updateTeenPattiOpenMatchRates = createAsyncThunk<any, any>(
   async (data) => {
     return data;
   }
-); 
+);
 
 export const updateTeenPattiTestMatchRates = createAsyncThunk<any, any>(
   "teen9/matchRatesUpdate",
@@ -237,5 +235,28 @@ export const updateBollywoodTableCardMatchRates = createAsyncThunk<any, any>(
   "btable/matchRatesUpdate",
   async (data) => {
     return data;
+  }
+);
+export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
+  "casinoScoreboard/matchRatesUpdate",
+  async (requestData, thunkApi) => {
+    try {
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        },
+      };
+      const resp = await axios.get(
+        `${Constants.thirdPartyCard}${ApiConstants.SCOREBOARD.match}/${requestData?.id}?gameName=${requestData?.type}`,
+        config
+      );
+      if (resp?.data) {
+        return resp?.data?.data?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
   }
 );

@@ -2,15 +2,15 @@
 
 @keyframes winnerbox {
   0% {
-      box-shadow: 0 0 0 0 rgba(29, 127, 30, 0.6);
+    box-shadow: 0 0 0 0 rgba(29, 127, 30, 0.6);
   }
 
   70% {
-      box-shadow: 0 0 0 10px rgba(29, 127, 30, 0);
+    box-shadow: 0 0 0 10px rgba(29, 127, 30, 0);
   }
 
   100% {
-      box-shadow: 0 0 0 0 rgba(29, 127, 30, 0);
+    box-shadow: 0 0 0 0 rgba(29, 127, 30, 0);
   }
 }
 .horse-time-detail span {
@@ -205,7 +205,7 @@
   flex-direction: column;
   justify-content: space-around;
 }
-.winContainer{
+.winContainer {
   width: 60%;
   background-color: #eee;
   padding: 10px;
@@ -222,7 +222,7 @@
   flex-direction: column;
   justify-content: space-around;
 }
-.winContainer-m{
+.winContainer-m {
   width: 100%;
   background-color: #eee;
   padding: 10px;
@@ -230,7 +230,7 @@
   flex-direction: column;
   justify-content: space-around;
 }
-.subwinContainer{
+.subwinContainer {
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -238,14 +238,14 @@
   flex-wrap: wrap;
   gap: 5px;
 }
-.total-mainRateBox{
+.total-mainRateBox {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   width: 100%;
 }
-.win-mainRateBox{
+.win-mainRateBox {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -254,7 +254,7 @@
   margin-bottom: 12px;
   gap: 10px;
 }
-.win-rateBox{
+.win-rateBox {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -262,7 +262,7 @@
   padding: 5px;
   line-height: 1;
 }
-.total-rateBox{
+.total-rateBox {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -330,24 +330,53 @@
   top: 0;
   z-index: 10;
 }
-.abjresultModal{
+.abjresultModal {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
-.abjresultCardContainer{
+.abjresultCardContainer {
   width: 40%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
-.abjresultCardContainer2{
+.abjresultCardContainer2 {
   width: 60%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+.casino-winner-icon {
+  // font-size: 26px;
+  box-shadow: 0 0 0 #ffc742;
+  animation: winnerbox 1.5s infinite;
+  border-radius: 50%;
+  color: #169733;
+}
+.rate-box {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+}
+.casino-volume {
+  font-size: 12px;
+  font-weight: 100;
+  line-height: 1;
+  margin-top: 5px;
+}
+.lay-BackGround {
+  background-color: #faa9ba;
+}
+.back-BackGround {
+  background-color: #72bbef;
+}
+.result-card-container{
+  display: flex;
+  flex-direction: row;
+  gap:8px
 }
 .casino-winner-icon{
   // font-size: 26px;
@@ -356,30 +385,17 @@
   border-radius: 50%;
   color: #169733;
 }
-.rate-box{
-  font-size: 16px;
-    font-weight: bold;
-    line-height: 1;
-}
-.casino-volume {
-  font-size: 12px;
-  font-weight: 100;
-  line-height: 1;
-  margin-top: 5px;
-}
-.lay-BackGround{
-  background-color: #faa9ba;
-}
-.back-BackGround{
-  background-color: #72bbef;
-}
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }
+.oddsBoxProfitLoss {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (max-width: 768px) {
   .tabs-navs .nav-link {
     flex: 1 0 10%;
   }
 }
-

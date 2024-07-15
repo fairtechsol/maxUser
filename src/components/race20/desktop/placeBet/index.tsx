@@ -59,7 +59,7 @@ const PlacedBet = () => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    let updatedBtnValue = buttonValues[0]?.value;
+    let updatedBtnValue = buttonValues?.value;
 
     // Check if updatedBtnValue is not undefined before parsing
     if (updatedBtnValue) {
@@ -146,7 +146,11 @@ const PlacedBet = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className={"place-bet-table-blue"}>
+                <tr   className={
+                    selectedBet?.team?.bettingType === "LAY"
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
+                  }>
                   <td width={"8%"}>
                     <span
                       className=" text-danger title-12 cursor-pointer"
@@ -234,7 +238,11 @@ const PlacedBet = () => {
                     </span>
                   </td>
                 </tr>
-                <tr className={"place-bet-table-blue"}>
+                <tr   className={
+                    selectedBet?.team?.bettingType === "LAY"
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
+                  }>
                   <td colSpan={5}>
                     <Container fluid>
                       <Row>

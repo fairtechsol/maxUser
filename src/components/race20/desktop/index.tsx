@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { abjrules } from "../../../assets/images";
+import { abjrules, race20rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -10,13 +10,13 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Abj2Result from "./abj2Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
+import Race20Result from "./race20Card";
 
 const Race20Desktop = () => {
   const [show, setShow] = useState(false);
@@ -116,17 +116,17 @@ const Race20Desktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+                  result={<Race20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
-            <div style={{ height: "460px" }}>
+            <div>
               <div
                 style={{
                   width: "100%",
                   margin: "5px",
-                  marginTop:"35px",
+                  marginTop: "35px",
                   display: "flex",
                   gap: "8px",
                 }}
@@ -149,7 +149,7 @@ const Race20Desktop = () => {
                   odds={dragonTigerDetail?.total}
                   data={dragonTigerDetail}
                 />
-                 <WinBox
+                <WinBox
                   odds={dragonTigerDetail?.win}
                   data={dragonTigerDetail}
                 />
@@ -158,11 +158,11 @@ const Race20Desktop = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "B"]}
-                  type={cardGamesType.andarBahar2}
+                  type={cardGamesType.race20}
                 />
               </div>
             </div>
-            <RulesModal show={show} setShow={setShow} rule={abjrules} />
+            <RulesModal show={show} setShow={setShow} rule={race20rules} />
           </div>
         </Col>
         <Col md={4}>

@@ -2,7 +2,8 @@ import "./style.scss";
 import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-const DynamicTable = ({ odds, data, playerNum }: any) => {
+import isMobile from "../../../../utils/screenDimension";
+const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any, type: any) => {
@@ -35,7 +36,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
   return (
     <div className="card32-table-container">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
-        <div className="title-12 f600 p-1" style={{ width: "50%" }}>Min: {} Max: {}</div>
+       {isMobile ? <div className="title-12 f600 p-1" style={{ width: "50%" }}>Min: {min} Max: {max}</div> : <div className="title-12 f600 p-1" style={{ width: "50%" }}></div>}
         <div
           style={{
             width: "50%",
@@ -43,10 +44,10 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             flexDirection: "row",
           }}
         >
-          <div className="card32-table-item back" style={{ width: "50%" }}>
+          <div className="card32-table-item f12-b back" style={{ width: "50%" }}>
             BACK
           </div>
-          <div className="card32-table-item lay" style={{ width: "50%" }}>
+          <div className="card32-table-item f12-b lay" style={{ width: "50%" }}>
             LAY
           </div>
         </div>

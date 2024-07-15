@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { dtrules, p6rules } from "../../../assets/images";
+import {  p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -116,7 +116,7 @@ const Poker6Desktop = () => {
               />
             </div>
           </div>
-          <div style={{ height: "760px" }}>
+          <div style={{ height: "760px",marginLeft: "10px" }}>
           <div className="tab-containerp">
         <div 
           className={`hands ${activeTab === 'tab1' ? 'active' : ''}`} 
@@ -140,6 +140,7 @@ const Poker6Desktop = () => {
               data={dragonTigerDetail}
               width={"49%"}
               title={"hand"}
+              cards={dragonTigerDetail?.videoInfo}
             />
           </div>
         )}
@@ -158,8 +159,8 @@ const Poker6Desktop = () => {
             <div style={{ width: "100%", margin: "5px" }}>
               <CardResultBox
                 data={dragonTigerDetail}
-                name={["D", "T"]}
-                type={cardGamesType.dragonTiger20}
+                name={["T", "1"]}
+                type={cardGamesType.poker6}
               />
             </div>
           </div>

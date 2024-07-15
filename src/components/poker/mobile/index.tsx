@@ -193,14 +193,15 @@ const Poker6Mobile = () => {
                     data={dragonTigerDetail}
                     width={"49%"}
                     title={"hand"}
+                    cards={dragonTigerDetail?.videoInfo}
                   />
                 </div>
               )}
               <div style={{ width: "100%", marginTop: "15px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["D", "T"]}
-                  type={cardGamesType.dragonTiger20}
+                  name={["T", "1"]}
+                  type={cardGamesType.poker6}
                 />
               </div>
             </div>

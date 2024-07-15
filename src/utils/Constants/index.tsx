@@ -28,6 +28,20 @@ import {
   ballbyball,
   superover,
   crick5,
+  imgA,
+  img2,
+  img3,
+  img4,
+  img6,
+  img10,
+  imgK,
+  ball0,
+  ball1,
+  ball2,
+  ball3,
+  ball4,
+  ball6,
+  ballW,
 } from "../../assets/images";
 import {
   dayteen,
@@ -89,6 +103,9 @@ export const ApiConstants = {
       RESULT: "/card/result/detail",
     },
   },
+  SCOREBOARD :{
+    match : "/api/tunnel/casino/sport-score"
+  }
 };
 export const cardUrl = "https://video.proexch.in/route/?id=";
 
@@ -358,6 +375,74 @@ export const baseUrls = {
 //       ? Constants.expertPathLive
 //       : Constants.localPathExpert,
 // };
+
+
+//Rules casino 
+ export const cardData = [
+  {
+    team: "AUS",
+    cards: [
+      { label: "A", imgSrc: imgA, value: "1 Run" },
+      { label: "2", imgSrc: img2, value: "2 Run" },
+      { label: "3", imgSrc: img3, value: "3 Run" },
+      { label: "4", imgSrc: img4, value: "4 Run" },
+      { label: "6", imgSrc: img6, value: "6 Run" },
+      { label: "10", imgSrc: img10, value: "0 Run" },
+      { label: "K", imgSrc: imgK, value: "Wicket" },
+    ],
+  },
+  {
+    team: "IND",
+    cards: [
+      { label: "A", imgSrc: imgA, value: "1 Run" },
+      { label: "2", imgSrc: img2, value: "2 Run" },
+      { label: "3", imgSrc: img3, value: "3 Run" },
+      { label: "4", imgSrc: img4, value: "4 Run" },
+      { label: "6", imgSrc: img6, value: "6 Run" },
+      { label: "10", imgSrc: img10, value: "0 Run" },
+      { label: "K", imgSrc: imgK, value: "Wicket" },
+    ],
+  },
+];
+
+export   const rulesData = [
+  {
+    cardImage: imgA,
+    count: 5,
+    valueImage: ball1,
+  },
+  {
+    cardImage: img2,
+    count: 5,
+    valueImage: ball2,
+  },
+  {
+    cardImage: img3,
+    count: 5,
+    valueImage: ball3,
+  },
+  {
+    cardImage: img4,
+    count: 5,
+    valueImage: ball4,
+  },
+  {
+    cardImage: img6,
+    count: 5,
+    valueImage: ball6,
+  },
+  {
+    cardImage: img10,
+    count: 5,
+    valueImage: ball0,
+  },
+  {
+    cardImage: imgK,
+    count: 5,
+    valueImage: ballW,
+    valueText: "Wicket",
+  },
+];
 
 export const sportsRules = [
   {
@@ -1376,7 +1461,7 @@ export const casinoIcons = [
     name: "Super Over",
   },
   {
-    url: "",
+    url: "/race20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
     name: "Race 20-20",
@@ -1678,7 +1763,7 @@ export const card3 = {
       name: "BALL BY BALL",
     },
     {
-      url: "/",
+      url: "/superover",
       imgSrc: superover,
       name: "SUPER OVER",
     },

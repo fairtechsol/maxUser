@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { card32rules } from "../../../assets/images";
+import { card32rules, p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -131,21 +131,21 @@ const Poker20Mobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "400px" }}>
+            <div style={{ height: "550px" }}>
               <div className="mt-5">
                 <DynamicTable
                   back={true}
                   odds={dragonTigerDetail?.odds}
                   data={dragonTigerDetail}
-                  playerNum={[8, 9]}
+                  playerNum={[0, 10]}
                 />
 
-                {/* <DynamicTable
+                 <DynamicTable
                   back={false}
                   odds={dragonTigerDetail?.odds}
                   data={dragonTigerDetail}
-                  playerNum={[10, 11]}
-                /> */}
+                  playerNum={[10, 18]}
+                /> 
               </div>
               <div style={{ marginTop: "10px" }}>
                 {" "}
@@ -166,7 +166,7 @@ const Poker20Mobile = () => {
       <RulesModal
         show={showInactivityModal}
         setShow={setShowInactivityModal}
-        rule={card32rules}
+        rule={p6rules}
       />
     </>
   );

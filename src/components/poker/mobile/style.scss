@@ -165,19 +165,21 @@
     margin-top: 8px;
   }
   .tiePairbtnMob-theme {
+    display: flex;
     color: #fff !important;
     background-image: linear-gradient(to right, #004a25, #ffc742) !important;
     width: 100% !important;
+    height: 100%;
     // border-radius: 4px !important;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
     border: 0 !important;
-    padding: 2px 8px !important;
+    padding: 2px 8px 0px 0px !important;
     cursor: pointer !important;
     font-size: 16px !important;
     font-weight: 600;
-    position: relative;
-    text-align: center;
-    // justify-content: flex-start;
+    // position: relative;
+    text-align: start;
+    justify-content: flex-start;
   }
 
   @media (max-width: 768px) {

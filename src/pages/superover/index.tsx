@@ -6,6 +6,7 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  casinoScoreboardMatchRates,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCardSuperoverRates,
@@ -27,6 +28,22 @@ const Superover = () => {
   const { loading, dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
+  useEffect(() => {
+    const scoreBoard = () => {
+      if (dragonTigerDetail?.videoInfo?.mid) {
+        const Id = dragonTigerDetail.videoInfo?.mid.split(".");
+        dispatch(
+          casinoScoreboardMatchRates({
+            id: Id[1],
+            type: cardGamesType.cricketv3,
+          })
+        );
+      }
+    };
+    const intervalId = setInterval(scoreBoard, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [dispatch, dragonTigerDetail]);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
