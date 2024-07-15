@@ -218,7 +218,7 @@ const CardResultBox = ({ data, name, type }: any) => {
           <ResultComponent
             data={resultData}
             setfalse={setLgShow}
-            type={data?.type}
+            type={type}
           />
         </Modal.Body>
       </Modal>

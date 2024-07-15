@@ -164,7 +164,7 @@ const BollywoodTableDesktop = () => {
                     name={"DRAGON"}
                     odds={dragonTigerDetail?.seven}
                     data={dragonTigerDetail}
-                    card={true}
+                    card={true} 
                   />
                 </div>
               </div>
@@ -179,12 +179,12 @@ const BollywoodTableDesktop = () => {
                 }}
               >
                 <div
-                 style={{
-                  width: "50%",
-                  background: "#EEEEEE",
-                  paddingLeft: "4px",
-                  paddingRight: "4px",
-                }}
+                  style={{
+                    width: "50%",
+                    background: "#EEEEEE",
+                    paddingLeft: "4px",
+                    paddingRight: "4px",
+                  }}
                 >
                   <OddEven
                     name={"TIGER"}
@@ -195,12 +195,12 @@ const BollywoodTableDesktop = () => {
                 </div>
 
                 <div
-                 style={{
-                  width: "50%",
-                  background: "#EEEEEE",
-                  paddingLeft: "4px",
-                  paddingRight: "4px",
-                }}
+                  style={{
+                    width: "50%",
+                    background: "#EEEEEE",
+                    paddingLeft: "4px",
+                    paddingRight: "4px",
+                  }}
                 >
                   <CardBox
                     cardData={dragonTigerDetail?.luckyCards}
@@ -212,8 +212,8 @@ const BollywoodTableDesktop = () => {
               <div style={{ width: "100%", margin: "5px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["A", "B", "C"]}
-                  type={cardGamesType.amarAkbarAnthony}
+                  name={["C", "E", "F"]}
+                  type={cardGamesType.btable}
                 />
               </div>
             </div>

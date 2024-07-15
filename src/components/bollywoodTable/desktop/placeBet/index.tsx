@@ -276,7 +276,7 @@ const PlacedBet = () => {
                           <CustomButton
                             className="bg-success border-0 py-2"
                             size="sm"
-                            onClick={() => {
+                            onClick={() => { 
                               if (loading) {
                                 return;
                               } else {

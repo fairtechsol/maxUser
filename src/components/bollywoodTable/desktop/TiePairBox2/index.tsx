@@ -11,10 +11,10 @@ import SmoothDropdownModal from "../../mobile/minMaxModal";
 const 
 TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = lowHigh?.[0]?.min;
-  const max = lowHigh?.[0]?.max;
+  const min = lowHigh?.min;
+  const max = lowHigh?.max;
   const [modelOpen, setModelOpen] = useState(false);
-
+  
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: "BACK",
