@@ -8,17 +8,18 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { IoInformationCircle } from "react-icons/io5";
 import SmoothDropdownModal from "../../mobile/minMaxModal";
 
-const TiePairBox = ({ lowHigh, data }: any) => {
+const 
+TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = lowHigh?.[0]?.min;
   const max = lowHigh?.[0]?.max;
   const [modelOpen, setModelOpen] = useState(false);
 
-  const handleBet = (item: any,type:any) => {
+  const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd:type==="BACK"? item?.b1:item?.l1,
+      odd: type === "BACK" ? item?.b1 : item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -35,8 +36,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   };
   return (
     <div className="tiePairContainer">
-
-<div style={{ width: "98%", textAlign: "end" }}>
+      <div style={{ width: "98%", textAlign: "end" }}>
         <span className="minmaxi">
           <IoInformationCircle
             color="#ffc742"
@@ -58,11 +58,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value2={lowHigh?.nat}
           value3={
             data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.sid}_card`
-                ]
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${lowHigh?.sid}_card`]
               : 0
-          } 
+          }
           width={"100%"}
           handleBet={handleBet}
           lock={lowHigh?.gstatus === "CLOSED" ? true : false}
