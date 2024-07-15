@@ -41,7 +41,7 @@ const TeenPattiMobile = () => {
     let team = {
       bettingType: "BACK",
       matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
+      odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -386,9 +386,9 @@ const TeenPattiMobile = () => {
                       display: "flex",
                       flexDirection: "row",
                       width: "100%",
-                      justifyContent:"center",
+                      justifyContent: "center",
                       flexWrap: "wrap",
-                      gap:"15px"
+                      gap: "15px",
                     }}
                   >
                     <div style={{ width: "47%" }}>
@@ -437,7 +437,7 @@ const TeenPattiMobile = () => {
                               onClick={() =>
                                 playerA[bettingOptions].gstatus === "0"
                                   ? null
-                                  : handleBet(playerA)
+                                  : handleBet(playerA[bettingOptions])
                               }
                             >
                               <span className="f12-b">
@@ -469,9 +469,9 @@ const TeenPattiMobile = () => {
                                 width: "70%",
                                 padding: "6px",
                                 border: "0.1px solid #fff",
-                                display:"flex",
-                                flexDirection:"row",
-                                alignItems:"center"
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
                               }}
                             >
                               {/* <span
@@ -482,11 +482,9 @@ const TeenPattiMobile = () => {
                               >
                                 {playerA[bettingOptions]?.nat.split(" ")[0]}
                               </span> */}
-                              <span style={{marginLeft:"5px"}}>
+                              <span style={{ marginLeft: "5px" }}>
                                 <HandleCards3
-                                  card={
-                                    playerA[bettingOptions]?.nat
-                                  }
+                                  card={playerA[bettingOptions]?.nat}
                                 />
                               </span>
                             </div>
@@ -505,7 +503,7 @@ const TeenPattiMobile = () => {
                               onClick={() =>
                                 playerA[bettingOptions].gstatus === "0"
                                   ? null
-                                  : handleBet(playerA)
+                                  : handleBet(playerA[bettingOptions])
                               }
                             >
                               <span className="f12-b">
