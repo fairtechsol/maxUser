@@ -8,13 +8,12 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { IoInformationCircle } from "react-icons/io5";
 import SmoothDropdownModal from "../minMaxModal";
 
-const 
-TiePairBox = ({ lowHigh, data }: any) => {
+const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = lowHigh?.min;
   const max = lowHigh?.max;
   const [modelOpen, setModelOpen] = useState(false);
-  
+
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: "BACK",

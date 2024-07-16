@@ -31,7 +31,7 @@ const BollywoodTableDesktop = () => {
 
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const [show1, setShow1] = useState(false);
-  console.log("data", dragonTigerDetail);
+  
 
   const handleClose = () => {
     setShowInactivityModal(false);

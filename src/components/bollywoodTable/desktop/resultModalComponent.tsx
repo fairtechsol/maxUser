@@ -37,11 +37,11 @@ const BollywoodTableResultComponent: React.FC<Props> = ({ data }: any) => {
         <div
           className={
             isMobile
-              ? "w-100 d-sm-flex flex-sm-row justify-content-center align-items-center p-4 mb-2"
+              ? "w-100 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
               : "w-80 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
           }
         >
-          <div className="d-sm-flex flex-sm-row justify-content-center align-items-center">
+          <div className="d-sm-flex d-flex flex-row flex-sm-row justify-content-center align-items-center">
             <div className="lucky7CommonText- d-sm-flex flex-sm-row ">
               Result:
             </div>
@@ -50,7 +50,7 @@ const BollywoodTableResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div>
 
-          <div className="d-sm-flex flex-sm-row justify-content-center align-items-center">
+          <div className="d-sm-flex d-flex flex-row flex-sm-row justify-content-center align-items-center">
             <div
               className="d-sm-flex flex-sm-row border-star border- border-primary mr-2 "
               style={{ marginRight: "7px" }}

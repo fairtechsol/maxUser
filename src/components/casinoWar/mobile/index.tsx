@@ -85,7 +85,7 @@ const TeenPattiMobile = () => {
     };
   }, [lastActivityTime, show]);
 
-  console.log("data", dragonTigerDetail.players);
+  
 
   return (
     <>

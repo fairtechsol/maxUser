@@ -108,7 +108,7 @@ const TeenPattiDesktop = () => {
   }, [lastActivityTime, showInactivityModal]);
 
 
-  console.log("data",dragonTigerDetail)
+  
   
   return (
     <>

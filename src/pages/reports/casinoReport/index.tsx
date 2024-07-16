@@ -104,6 +104,10 @@ const cardGames = [
     value: "poker6",
     label: "Poker 6",
   },
+  {
+    value: "btable",
+    label: "Bollywood Table",
+  },
 ];
 
 const CasinoReports = () => {
