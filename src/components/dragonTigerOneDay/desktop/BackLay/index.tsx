@@ -21,7 +21,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: "1",
+      selectionId: item?.sid,
     };
     dispatch(
       selectedBetAction({

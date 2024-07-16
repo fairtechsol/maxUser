@@ -1,14 +1,23 @@
-
-
 import { useDispatch } from "react-redux";
-import Loader from "../../components/commonComponent/loader";
 import { AppDispatch, RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import { cardGamesType } from "../../utils/constants";
-import {  getPlacedBets, updateBetsPlaced } from "../../store/actions/betPlace/betPlaceActions";
+import {
+  getPlacedBets,
+  updateBetsPlaced,
+} from "../../store/actions/betPlace/betPlaceActions";
 import { useEffect } from "react";
-import { getButtonValue, getProfileInMatchDetail } from "../../store/actions/user/userAction";
-import { getDragonTigerDetailHorseRacing, updateBalanceOnBetPlaceCards, updateCard32BMatchRates, updateLiveGameResultTop10, updateProfitLossCards } from "../../store/actions/cards/cardDetail";
+import {
+  getButtonValue,
+  getProfileInMatchDetail,
+} from "../../store/actions/user/userAction";
+import {
+  getDragonTigerDetailHorseRacing,
+  updateBalanceOnBetPlaceCards,
+  updateCard32BMatchRates,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
+} from "../../store/actions/cards/cardDetail";
 import { socket, socketService } from "../../socketManager";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Card32BComponentList from "../../components/cards32B";
@@ -50,8 +59,8 @@ const Cards32B = () => {
   };
   useEffect(() => {
     try {
-        dispatch(getButtonValue());
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32B));
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32B));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
@@ -96,7 +105,7 @@ const Cards32B = () => {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
-  return loading ? <InnerLoader /> :<Card32BComponentList/>;
+  return loading ? <InnerLoader /> : <Card32BComponentList />;
 };
 
 export default Cards32B;

@@ -5,7 +5,7 @@ import SmoothDropdownModal from "../minMaxModal";
 import { useState } from "react";
 import { IoInformationCircle } from "react-icons/io5";
 
-const OddEven = ({ data, odds}: any) => {
+const OddEven = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
@@ -27,7 +27,7 @@ const OddEven = ({ data, odds}: any) => {
       })
     );
   };
-  
+
   const player8 = odds?.slice(0, 2);
   const player9 = odds?.slice(2, 4);
   const player10 = odds?.slice(4, 6);
@@ -45,11 +45,34 @@ const OddEven = ({ data, odds}: any) => {
       className={`dtlsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
       }`}
-      onClick={() =>  !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
+      onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}
+      <span
+        className={`title-14 f400 ${
+          data?.profitLoss
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] >
+                0
+                ? "color-green"
+                : data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] < 0
+                ? "color-red"
+                : ""
+              : ""
+            : ""
+        }`}
+      >
+        {data?.profitLoss
+          ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            : 0
+          : 0}
+      </span>
     </div>
   );
+
   return (
     <div className="w-100">
       <div
@@ -81,35 +104,47 @@ const OddEven = ({ data, odds}: any) => {
             </div>
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>
-            Even
-            </span>
+            <span style={{ fontSize: "14px" }}>Even</span>
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>
-            Odd
-            </span>
+            <span style={{ fontSize: "14px" }}>Odd</span>
           </div>
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Player 8 </div>
+        <div className="w-100 d-sm-flex flex-row">
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>Player 8</span>
+            </div>
+          </span>
           {renderItem(player8?.[1], 0)}
           {renderItem(player8?.[0], 1)}
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Player 9</div>
-         {renderItem(player9?.[1], 2)}
-         {renderItem(player9?.[0], 3)}
+        <div className="w-100 d-sm-flex flex-row">
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>Player 9</span>
+            </div>
+          </span>
+          {renderItem(player9?.[1], 2)}
+          {renderItem(player9?.[0], 3)}
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Player 10</div>
-         {renderItem(player10?.[1], 4)}
-         {renderItem(player10?.[0], 5)}
+        <div className="w-100 d-sm-flex flex-row">
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>Player 10</span>
+            </div>
+          </span>
+          {renderItem(player10?.[1], 4)}
+          {renderItem(player10?.[0], 5)}
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">Player 11</div>
-         {renderItem(player11?.[1], 6)}
-         {renderItem(player11?.[0], 7)}
+        <div className="w-100 d-sm-flex flex-row">
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>Player 11</span>
+            </div>
+          </span>
+          {renderItem(player11?.[1], 6)}
+          {renderItem(player11?.[0], 7)}
         </div>
       </div>
     </div>

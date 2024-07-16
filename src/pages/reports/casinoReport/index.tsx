@@ -49,6 +49,10 @@ const cardGames = [
     label: "32 Cards - A",
   },
   {
+    value: "card32eu",
+    label: "32 Cards - B",
+  },
+  {
     value: "lucky7",
     label: "Lucky 7 - A",
   },
