@@ -21,7 +21,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: "1",
+      selectionId: item?.sid,
     };
     dispatch(
       selectedBetAction({
@@ -82,7 +82,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           <div className="dtlTitle">
             {isMobile ? (
               <>
-                <span style={{fontWeight:"400"}}>
+                <span style={{ fontWeight: "400" }}>
                   Min:{min} Max:{max}
                 </span>
               </>

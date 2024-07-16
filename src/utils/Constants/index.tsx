@@ -1720,7 +1720,7 @@ export const card3 = {
       name: "32cards A",
     },
     {
-      url: "",
+      url: "/32cards-B",
       imgSrc: cards32B,
       name: "32cards B",
     },
