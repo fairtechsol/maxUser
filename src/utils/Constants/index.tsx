@@ -42,6 +42,8 @@ import {
   ball4,
   ball6,
   ballW,
+  bac1,
+  bac2,
 } from "../../assets/images";
 import {
   dayteen,
@@ -288,7 +290,9 @@ export const cardGamesType: any = {
   poker1Day: "poker",
   poker20: "poker20",
   card3judge: "3cardj",
-  cricketv3:"cricketv3"
+  cricketv3:"cricketv3",
+  baccarat:"baccarat",
+  baccarat2:"baccarat2",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -312,6 +316,7 @@ export const cardGamesId: any = {
   poker1Day: 3051,
   poker20: 3052,
   cricketv3: 3042,
+  baccarat: 3044
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -1766,6 +1771,18 @@ export const card3 = {
       url: "/cricketv3",
       imgSrc: crick5,
       name: "5 5 Cricket",
+    },
+  ],
+  baccarat: [
+    {
+      url: "/",
+      imgSrc: bac1,
+      name: "BACCARAT",
+    },
+    {
+      url: "/baccarat",
+      imgSrc: bac2,
+      name: "BACCARAT2",
     },
   ],
 };

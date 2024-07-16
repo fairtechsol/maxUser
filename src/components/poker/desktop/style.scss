@@ -13,6 +13,28 @@
       box-shadow: 0 0 0 0 rgba(29, 127, 30, 0);
   }
 }
+.casino-result-desc {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  padding: 6px;
+  box-shadow: 0 0 4px -1px;
+  margin-top: 10px;
+}
+.casino-result-desc-item {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+.casino-result-desc-item div:first-child {
+  margin-right: 2%;
+  opacity: 0.6;
+}
+.casino-result-desc-item div:last-child {
+  word-break: break-all;
+}
 .horse-time-detail span {
   position: relative;
   background: #ffc742;

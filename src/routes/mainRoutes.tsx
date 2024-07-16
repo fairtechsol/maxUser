@@ -39,7 +39,7 @@ const CasinoReports = Loadable(
   lazy(() => import("../pages/reports/casinoReport"))
 );
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
-const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
+const RaceDetail = Loadable(lazy(() => import("../pages/HorseRacingDetails")));
 const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
 const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
 const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
@@ -63,6 +63,7 @@ const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
 const Abj1 = Loadable(lazy(() => import("../pages/abj")));
 const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
 const Race20 = Loadable(lazy(() => import("../pages/race20")));
+const Baccarat1 = Loadable(lazy(() => import("../pages/baccarat1")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -235,6 +236,10 @@ const MainRoutes = {
     {
       path: "cricketv3",
       element: <Cricket5 />,
+    },
+    {
+      path: "baccarat",
+      element: <Baccarat1 />,
     },
     {
       path: "*",

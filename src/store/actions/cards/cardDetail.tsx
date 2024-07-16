@@ -225,6 +225,12 @@ export const updateCricket5MatchRates = createAsyncThunk<any, any>(
     return data;
   }
 );
+export const updateBaccarat1Rates = createAsyncThunk<any, any>(
+  "baccarat/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
   "casinoScoreboard/matchRatesUpdate",
   async (requestData, thunkApi) => {

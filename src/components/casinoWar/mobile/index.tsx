@@ -161,7 +161,7 @@ const TeenPattiMobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "480px" }}>
+            <div style={{ height: "780px" }}>
               <div className="mt-2" style={{ width: "100%" }}>
                 <div className="teenPatti-table-container-m">
                 <div className="teenPatti-table-row" style={{ lineHeight: 2 ,marginTop:"2px" ,background:"#ffffff"}}>
@@ -314,48 +314,8 @@ const TeenPattiMobile = () => {
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "T", "B"]}
-                  type={"teen20"}
+                  type={"war"}
                 />
-              </div>
-              <div>
-                <div className="casino-title" style={{ position: "relative" }}>
-                  <span>Rules</span>
-                </div>
-                <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                          Pair Plus
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rules.map((item, index) => (
-                        <tr key={index} style={{ lineHeight: 1 }}>
-                          <td
-                            className="box-7"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.label}
-                          </td>
-                          <td
-                            className="box-3"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.value}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </div>
               </div>
             </div>
           </div>
