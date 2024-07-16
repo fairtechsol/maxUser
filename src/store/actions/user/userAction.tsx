@@ -75,10 +75,10 @@ export const getButtonValue = createAsyncThunk<any>(
   "user/getButtonValue",
   async () => {
     try {
-      const resp = await service.get(`${ApiConstants.USER.GET_BTN_VALUE}`);
-      if (resp) {
-        return resp?.data?.find((item: any) => item?.type === "Match");
-      }
+      const { data } = await service.get(
+        `${ApiConstants.USER.GET_BTN_VALUE}?type=Match`
+      );
+      return data[0];
     } catch (error: any) {
       const err = error as AxiosError;
       throw err;

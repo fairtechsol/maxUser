@@ -103,9 +103,9 @@ export const ApiConstants = {
       RESULT: "/card/result/detail",
     },
   },
-  SCOREBOARD :{
-    match : "/api/tunnel/casino/sport-score"
-  }
+  SCOREBOARD: {
+    match: "/api/tunnel/casino/sport-score",
+  },
 };
 export const cardUrl = "https://video.proexch.in/route/?id=";
 
@@ -275,11 +275,11 @@ export const cardGamesType: any = {
   card32: "card32", //
   card32B: "card32eu", //
   lucky7: "lucky7", //
-  dragonTiger202: "dt202",//
-  dragonTigerLion: "dtl20",//
-  teenOneDay: "teen",//
-  teenOpen: "teen8",//
-  teenTest: "teen9",//
+  dragonTiger202: "dt202", //
+  dragonTigerLion: "dtl20", //
+  teenOneDay: "teen", //
+  teenOpen: "teen8", //
+  teenTest: "teen9", //
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
   casinoWar: "war",
@@ -333,7 +333,12 @@ export const navigateToGameDetail = {
   [cardGamesType.dt20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20", 
   [cardGamesType.race20]: "race20",
+  [cardGamesType.dragonTiger202]: "dt202",
+  [cardGamesType.dragonTigerLion]: "dtl20",
+  [cardGamesType.teenOneDay]: "teen",
+  [cardGamesType.teenOpen]: "teen8",
   [cardGamesType.teenTest]: "teen9",
+  [cardGamesType.dragonTigerOneDay]: "dt6",
   [cardGamesType.superover]: "superover",
   [cardGamesType.poker6]: "poker6",
   [cardGamesType.poker1Day]: "poker",
@@ -376,9 +381,8 @@ export const baseUrls = {
 //       : Constants.localPathExpert,
 // };
 
-
-//Rules casino 
- export const cardData = [
+//Rules casino
+export const cardData = [
   {
     team: "AUS",
     cards: [
@@ -405,7 +409,7 @@ export const baseUrls = {
   },
 ];
 
-export   const rulesData = [
+export const rulesData = [
   {
     cardImage: imgA,
     count: 5,
