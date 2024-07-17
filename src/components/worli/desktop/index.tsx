@@ -127,7 +127,7 @@ const WorliDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<WorliResult data={dragonTigerDetail?.cardInfo} />}
+                  result={<WorliResult data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
