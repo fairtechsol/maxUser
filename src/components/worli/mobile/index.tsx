@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import CardBox from "./CardsBox";
+import CardBox2 from "./CardsBox2";
 import OddEven from "./OddEvenBox";
 import SBetBox from "./Sbox";
 import "./style.scss";
@@ -55,30 +56,49 @@ const WorliMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  const handlock = (item: any) => {
+    if (item?.gstatus === "0") {
+      return "suspended";
+    } else {
+      return "";
+    }
+  };
+
   return (
     <>
       <div>
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
-          <div style={{height: "100%",borderTop: !activeTab ? "2px solid white" : "none",  padding: "5px"}}>
-
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(false)}
+            <div
+              style={{
+                height: "100%",
+                borderTop: !activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              GAME
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(false)}
+              >
+                GAME
+              </span>
             </div>
             <span style={{ fontSize: "18px" }}> | </span>
-            <div style={{height: "100%",borderTop: activeTab ? "2px solid white" : "none", padding: "5px"}}>
-
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(true)}
+            <div
+              style={{
+                height: "100%",
+                borderTop: activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              PLACED BET({placedBets?.length || 0})
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(true)}
+              >
+                PLACED BET({placedBets?.length || 0})
+              </span>
             </div>
           </div>
           <div className="dt20subheader2">
@@ -127,36 +147,64 @@ const WorliMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
+                  result={<Abj1Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
 
-            <div style={{ height: "450px",marginTop:"70px" }}>
-             
-              <div
-                style={{
-                  width: "100%",
-                }}
-              >
-               <CardBox
-                  title={"ANDAR"}
-                  bgColor={"#ffa07a"}
-                  odds={dragonTigerDetail?.ander}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-                <CardBox
-                  title={"BAHAR"}
-                  bgColor={"#90ee90"}
-                  odds={dragonTigerDetail?.bahar}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-              </div>
-              <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["R", "R","R"]} type={cardGamesType.andarBahar1}/>
+            <div style={{ height: "450px", marginTop: "70px" }}>
+              <div style={{}}>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <div className="d-flex flex-row">
+                    <div style={{ width: "100%", textAlign: "center" }}>
+                      {dragonTigerDetail?.worli?.gstatus === "0" ? 0 : 9}
+                    </div>
+                   
+                  </div>
+                  <div className={handlock(dragonTigerDetail.worli)}>
+                    <CardBox
+                      odds={"L1"}
+                      data={dragonTigerDetail}
+                      cards={dragonTigerDetail?.cardInfo}
+                    />
+                    <CardBox
+                      odds={"L2"}
+                      data={dragonTigerDetail}
+                      cards={dragonTigerDetail?.cardInfo}
+                    />
+                  </div>
+                  
+                  <div
+                    style={{
+                      color: "#BD1828",
+                      textAlign: "start",
+                      fontSize: "16px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    welcome single
+                  </div>
+
+                  <div>
+                    <CardBox2/>
+                  </div>
+                </div>
+
+                <div style={{ width: "100%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["R", "R", "R"]}
+                    type={cardGamesType.worli}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -166,7 +214,11 @@ const WorliMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={showInactivityModal} setShow={setShowInactivityModal} rule={abjrules} />
+      <RulesModal
+        show={showInactivityModal}
+        setShow={setShowInactivityModal}
+        rule={abjrules}
+      />
     </>
   );
 };
