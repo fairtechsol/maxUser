@@ -157,6 +157,9 @@ const WorliDesktop = () => {
                     cards={dragonTigerDetail?.cardInfo}
                   />
                 </div>
+                <div style={{color:"#00b4d8",textAlign:"end",fontSize:"16px" ,fontWeight:"bold"}}>
+                welcome single
+                </div>
               </div>
 
               <div style={{ width: "100%", margin: "5px" }}>
