@@ -26,11 +26,12 @@ const WorliDesktop = () => {
     `${cardUrl}${cardGamesId?.worli}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+
   const handleClose = () => {
     setShowInactivityModal(false);
   };
 
-  console.log("worlicomponent",dragonTigerDetail)
+  console.log("worlicomponent", dragonTigerDetail);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,6 +75,15 @@ const WorliDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  const handlock = (item: any) => {
+    if (item?.gstatus === "0" ) {
+      return "suspended";
+    } else {
+      return "";
+    }
+  };
+
   return (
     <>
       <Row>
@@ -119,10 +129,10 @@ const WorliDesktop = () => {
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<WorliResult data={dragonTigerDetail?.cardInfo} />}
                   id={videoFrameId}
-                /> 
+                />
               </div>
             </div>
-            <div style={{ height: "460px" }}>
+            <div style={{}}>
               <div
                 style={{
                   width: "100%",
@@ -131,18 +141,22 @@ const WorliDesktop = () => {
                   flexDirection: "column",
                 }}
               >
-                <CardBox
-                 
-                  odds={"L1"}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-                <CardBox
-                  
-                  odds={"L2"}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
+                <div className="d-flex flex-row">
+                  <div style={{ width: "70%", textAlign: "center" }}>{dragonTigerDetail.worli.gstatus==="0"?0:9}</div>
+                  <div style={{ width: "30%", textAlign: "center" }}>{dragonTigerDetail.worli.gstatus==="0"?0:9}</div>
+                </div>
+                <div className={handlock(dragonTigerDetail.worli)}>
+                  <CardBox
+                    odds={"L1"}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
+                  <CardBox
+                    odds={"L2"}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
+                </div>
               </div>
 
               <div style={{ width: "100%", margin: "5px" }}>

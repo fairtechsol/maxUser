@@ -520,22 +520,20 @@ const cardDetail = createSlice({
       )
 
       .addCase(updateCardWorliRates.fulfilled, (state, action) => {
-        const { t1, t2, } = action.payload;
-        console.log("worli",action.payload)
+        const { t1, t2 } = action.payload;
+        console.log("worli", action.payload);
         state.loading = false;
         const videoInfo = { ...t1[0] };
-        //const cardInfo = { ...t3[0] };
-        const ander = t2.slice(0, 13);
-        const bahar = t2.slice(13, 26);
+
+        const worli = t2[0];
+
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
-          //cardInfo,
-          ander,
-          bahar,
+          worli,
         };
       })
-      
+
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;
