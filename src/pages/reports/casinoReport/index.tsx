@@ -112,6 +112,10 @@ const cardGames = [
     value: "btable",
     label: "Bollywood Table",
   },
+  {
+    value: "worli2",
+    label: "Instant Worli",
+  },
 ];
 
 const CasinoReports = () => {

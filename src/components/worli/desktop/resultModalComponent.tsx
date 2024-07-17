@@ -13,8 +13,8 @@ interface Props {
   };
 }
 
-const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
-  const result = data?.result?.cards?.split('*')
+const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
+  const result = data?.result?.cards?.split("*");
   const elementsAndar = result?.[0]?.split(",");
   const elementsBahar = result?.[1]?.split(",");
 
@@ -98,49 +98,21 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
               margin: "8px 9px 10px 11px",
             }}
           >
-            <div style={{width:"100%",textAlign:"center"}}>ANDAR</div>
-            <div>
-              {elementsAndar?.length > minLength ? (
-                <Slider
-                  {...sliderSettings(elementsAndar.length, elementsAndar.length > minLength)}
-                >
-                  {elementsAndar?.map((item: any, index: any) => (
-                    <div key={index}>
-                      <HandleCards card={item} />
-                    </div>
-                  ))}
-                </Slider>
-              ) : (
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" ,justifyContent:"space-around",alignItems:"center"}}>
-                  {elementsAndar?.map((item: any, index: any) => (
-                    <HandleCards key={index} card={item} />
-                  ))}
-                </div>
-              )}
-            </div>
-            <div style={{width:"100%",textAlign:"center"}}>BAHAR</div>
-            <div>
-              {elementsBahar?.length > minLength ? (
-                <Slider
-                  {...sliderSettings(elementsBahar.length, elementsBahar.length > minLength)}
-                >
-                  {elementsBahar?.map((item: any, index: any) => {
-                    return item!='' && (
-                      <div key={index}>
-                      <HandleCards card={item} />
-                    </div>
-                    )
-                  }
-                  
-                  )}
-                </Slider>
-              ) : (
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" ,justifyContent:"space-around",alignItems:"center"}}>
-                  {elementsBahar?.map((item: any, index: any) => (
-                    <HandleCards key={index} card={item} />
-                  ))}
-                </div>
-              )}
+            <div className="d-flex flex-column gap-4 align-items-center justify-content-center">
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  flexWrap: "wrap",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
+              >
+                {elementsAndar?.map((item: any, index: any) => (
+                  <HandleCards key={index} card={item} />
+                ))}
+              </div>
+              <span style={{ background: "#28a745", color: "#fff",paddingLeft:"30px",paddingRight:"30px" }}>0-0</span>
             </div>
           </div>
         </div>
@@ -149,4 +121,4 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 };
 
-export default Abj1ResultComponent;
+export default WorliResultComponent;

@@ -27,6 +27,7 @@ import Poker6ResultComponent from "../../poker/desktop/resultModalComponent";
 import Poker20ResultComponent from "../../poker20/desktop/resultModalComponent";
 import Card32BResultComponent from "../../cards32B/desktop/resultModalComponent";
 import BollywoodTableResultComponent from "../../bollywoodTable/desktop/resultModalComponent";
+import WorliResultComponent from "../../worli/desktop/resultModalComponent";
 const title = {
   dt20: "20-20 Dragon Tiger",
   teen20: "20-20 Teenpatti",
@@ -42,6 +43,7 @@ const title = {
   aaa: "AMAR AKBAR ANTHONY",
   war: "Casino War",
   btable: "Bollywood Table",
+  worli2:"Instant Worli"
   // Add other mappings as needed
 };
 
@@ -137,6 +139,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Card32BResultComponent data={data} />
       ) : type === cardGamesType?.btable ? (
         <BollywoodTableResultComponent data={data} />
+      ): type === cardGamesType?.worli ? (
+        <WorliResultComponent data={data} />
       ) : (
         <></>
       )}

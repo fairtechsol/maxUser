@@ -142,8 +142,8 @@ const WorliDesktop = () => {
                 }}
               >
                 <div className="d-flex flex-row">
-                  <div style={{ width: "70%", textAlign: "center" }}>{dragonTigerDetail.worli.gstatus==="0"?0:9}</div>
-                  <div style={{ width: "30%", textAlign: "center" }}>{dragonTigerDetail.worli.gstatus==="0"?0:9}</div>
+                  <div style={{ width: "70%", textAlign: "center" }}>{dragonTigerDetail?.worli?.gstatus==="0"?0:9}</div>
+                  <div style={{ width: "30%", textAlign: "center" }}>{dragonTigerDetail?.worli?.gstatus==="0"?0:9}</div>
                 </div>
                 <div className={handlock(dragonTigerDetail.worli)}>
                   <CardBox
