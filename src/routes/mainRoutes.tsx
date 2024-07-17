@@ -63,6 +63,7 @@ const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
 const Poker6 = Loadable(lazy(() => import("../pages/poker")));
 const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
 const Abj1 = Loadable(lazy(() => import("../pages/abj")));
+const Worli = Loadable(lazy(() => import("../pages/worli")));
 const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
 const Race20 = Loadable(lazy(() => import("../pages/race20")));
 const ChangeButtonValue = Loadable(
@@ -250,6 +251,11 @@ const MainRoutes = {
     {
       path: "btable",
       element: <BollywoodTable/>,
+    },
+
+    {
+      path: "worli2",
+      element: <Worli/>,
     },
   ],
 };

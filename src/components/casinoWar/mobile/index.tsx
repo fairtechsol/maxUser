@@ -388,10 +388,10 @@ const TeenPattiMobile = () => {
                       width: "100%",
                       justifyContent: "center",
                       flexWrap: "wrap",
-                      gap: "15px",
+                      gap: "0px",
                     }}
                   >
-                    <div style={{ width: "47%" }}>
+                    <div style={{ width: "50%" }}>
                       {dragonTigerDetail.players
                         ?.slice(0, 5)
                         .map((playerA: any, index: any) => (
@@ -403,7 +403,7 @@ const TeenPattiMobile = () => {
                               display: "flex",
                               flexDirection: "row",
                               width: "100%",
-                              marginBottom: "10px",
+                              marginBottom: "0px",
                             }}
                           >
                             <div
@@ -413,6 +413,7 @@ const TeenPattiMobile = () => {
                                 border: "0.1px solid #fff",
                                 display: "flex",
                                 alignItems: "center",
+                                height:"45px"
                               }}
                             >
                               <span
@@ -477,7 +478,7 @@ const TeenPattiMobile = () => {
                         ))}
                     </div>
 
-                    <div style={{ width: "47%" }}>
+                    <div style={{ width: "50%" }}>
                       {dragonTigerDetail.players
                         ?.slice(5)
                         .map((playerA: any, index: any) => (
@@ -489,7 +490,7 @@ const TeenPattiMobile = () => {
                               display: "flex",
                               flexDirection: "row",
                               width: "100%",
-                              marginBottom: "10px",
+                              marginBottom: "0px",
                             }}
                           >
                             <div
@@ -500,6 +501,7 @@ const TeenPattiMobile = () => {
                                 display: "flex",
                                 flexDirection: "row",
                                 alignItems: "center",
+                                height:"45px"
                               }}
                             >
                               {/* <span

@@ -28,6 +28,7 @@ import {
   updateAmarAkbarAnthonyCardMatchRates,
   updateBollywoodTableCardMatchRates,
   casinoScoreboardMatchRates,
+  updateCardWorliRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -340,8 +341,8 @@ const cardDetail = createSlice({
         if (action.payload) {
           const { t1, t2 } = action.payload;
           state.loading = false;
-             
-          console.log("ffri",action.payload)
+
+          console.log("ffri", action.payload);
           // Extract video info if t1 is present and has elements
           const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
 
@@ -471,7 +472,6 @@ const cardDetail = createSlice({
           const { t1, t2 } = action.payload;
           state.loading = false;
 
-
           const videoInfo = t1[0];
 
           const players = t2.slice(0, 3);
@@ -518,6 +518,24 @@ const cardDetail = createSlice({
           };
         }
       )
+
+      .addCase(updateCardWorliRates.fulfilled, (state, action) => {
+        const { t1, t2, } = action.payload;
+        console.log("worli",action.payload)
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        //const cardInfo = { ...t3[0] };
+        const ander = t2.slice(0, 13);
+        const bahar = t2.slice(13, 26);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          //cardInfo,
+          ander,
+          bahar,
+        };
+      })
+      
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;
