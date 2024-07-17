@@ -105,9 +105,6 @@ const TeenPattiDesktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-
-  
-  
   return (
     <>
       <Row>
@@ -307,7 +304,35 @@ const TeenPattiDesktop = () => {
                             }
                           >
                             <span className="f12-b">{player.b1}</span>
-                            <span className="f10-b">0</span>
+                            <span
+                              className={`f400 title-14 ${
+                                dragonTigerDetail?.profitLoss
+                                  ? dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                    ]
+                                    ? dragonTigerDetail?.profitLoss[
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                      ] > 0
+                                      ? "color-green"
+                                      : dragonTigerDetail?.profitLoss[
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                        ] < 0
+                                      ? "color-red"
+                                      : ""
+                                    : ""
+                                  : ""
+                              }`}
+                            >
+                              {dragonTigerDetail?.profitLoss
+                                ? dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                  ]
+                                  ? dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                    ]
+                                  : 0
+                                : 0}
+                            </span>
                           </div>
                         ))}
                       </div>
