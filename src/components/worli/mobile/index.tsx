@@ -154,20 +154,26 @@ const WorliMobile = () => {
             </div>
 
             <div style={{ height: "450px", marginTop: "70px" }}>
-              <div style={{}}>
+              <div >
                 <div
                   style={{
                     width: "100%",
-                    margin: "5px",
+                    margin: "px",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
                   <div className="d-flex flex-row">
-                    <div style={{ width: "100%", textAlign: "center" }}>
+                    <div
+                      style={{
+                        width: "100%",
+                        textAlign: "center",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                      }}
+                    >
                       {dragonTigerDetail?.worli?.gstatus === "0" ? 0 : 9}
                     </div>
-                   
                   </div>
                   <div className={handlock(dragonTigerDetail.worli)}>
                     <CardBox
@@ -181,7 +187,20 @@ const WorliMobile = () => {
                       cards={dragonTigerDetail?.cardInfo}
                     />
                   </div>
-                  
+
+                  <div
+                    style={{
+                      textAlign: "center",
+                      fontSize: "16px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    9
+                  </div>
+
+                  <div className={handlock(dragonTigerDetail.worli)}>
+                    <CardBox2 />
+                  </div>
                   <div
                     style={{
                       color: "#BD1828",
@@ -192,13 +211,9 @@ const WorliMobile = () => {
                   >
                     welcome single
                   </div>
-
-                  <div>
-                    <CardBox2/>
-                  </div>
                 </div>
 
-                <div style={{ width: "100%", margin: "5px" }}>
+                <div style={{ width: "100%"}}>
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["R", "R", "R"]}
