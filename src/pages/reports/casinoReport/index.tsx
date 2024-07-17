@@ -85,17 +85,21 @@ const cardGames = [
     label: "Race 20",
   },
   {
-    value: "poker",
-    label: "Poker 1-day",
+    value: "war",
+    label: "Casino War",
   },
-  {
-    value: "poker20",
-    label: "Poker 20",
-  },
-  {
-    value: "poker6",
-    label: "Poker 6",
-  },
+  // {
+  //   value: "poker",
+  //   label: "Poker 1-day",
+  // },
+  // {
+  //   value: "poker20",
+  //   label: "Poker 20",
+  // },
+  // {
+  //   value: "poker6",
+  //   label: "Poker 6",
+  // },
 ];
 
 const CasinoReports = () => {

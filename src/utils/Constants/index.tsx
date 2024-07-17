@@ -1525,7 +1525,7 @@ export const casinoIcons = [
     name: "Casino Meter",
   },
   {
-    url: "",
+    url: "/war",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
     name: "Casino War",
@@ -1561,19 +1561,19 @@ export const casinoIcons = [
     name: "20-20 Teenpatti",
   },
   {
-    url: "/poker6",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "6 Player Poker",
   },
   {
-    url: "/poker",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "1 Day Poker",
   },
   {
-    url: "/poker20",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "20-20 Poker",
@@ -1739,17 +1739,17 @@ export const card3 = {
   ],
   poker: [
     {
-      url: "/poker6",
+      url: "",
       imgSrc: p6,
       name: "POKER 6",
     },
     {
-      url: "/poker",
+      url: "",
       imgSrc: p1d,
       name: "POKER 1 DAY",
     },
     {
-      url: "/poker20",
+      url: "",
       imgSrc: p20,
       name: "POKER 20 20",
     },
