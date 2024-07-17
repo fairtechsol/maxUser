@@ -8,6 +8,7 @@ import CasinoWar from "../pages/casinoWar";
 import Poker1day from "../pages/poker1day";
 import Poker20 from "../pages/poker20";
 import Cricket5 from "../pages/cricket5";
+import Home from "../pages/home";
 // import Home from "../pages/home";
 // import GameDetail from "../pages/gameDetails";
 // import FootballGameDetail from "../pages/otherGameDetails";
@@ -23,7 +24,7 @@ import Cricket5 from "../pages/cricket5";
 // import GameList from "../pages/gameList";
 
 // ==============================|| Main ROUTING ||============================== //
-const Home = Loadable(lazy(() => import("../pages/home")));
+// const Home = Loadable(lazy(() => import("../pages/home")));
 const GameDetail = Loadable(lazy(() => import("../pages/gameDetails")));
 const FootballGameDetail = Loadable(
   lazy(() => import("../pages/otherGameDetails"))

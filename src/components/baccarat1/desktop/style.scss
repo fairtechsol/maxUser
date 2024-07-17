@@ -13,18 +13,28 @@
     width: 24%;
 }
 
+.baccarat .baccarat-graph {
+    width: 18%;
+}
+
 .baccarat-other-odd-box {
     background-color: #ffc742;
     color: #fff;
     text-align: center;
-    padding: 5px;
+    // padding: 5px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
+.baccarat .baccarat-main-odds {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
 @media only screen and (max-width: 1199px) {
     .baccarat .baccarat-other-odd-box {
         font-size: 11px;
@@ -54,18 +64,18 @@
 }
 
 .suspended-box::after {
-    content: "";
-    background-color: #373636d6;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    cursor: not-allowed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
+    // content: "";
+    // background-color: #373636d6;
+    // position: absolute;
+    // height: 100%;
+    // width: 100%;
+    // left: 0;
+    // top: 0;
+    // cursor: not-allowed;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // pointer-events: none;
 }
 
 .player-pair-box-container {
