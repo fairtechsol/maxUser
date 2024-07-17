@@ -99,7 +99,7 @@ const TeenPattiDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-console.log(dragonTigerDetail, "data")
+  
   return (
     <>
       <Row>
