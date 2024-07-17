@@ -11,13 +11,16 @@ const typeToTitle: { [key: string]: string } = {
   cards32: "CARDS32",
   abj: "ANDAR BAHAR",
   poker: "LIVE POKER",
-  sportCasino : "SPORT CASINO"
+  sportCasino : "SPORT CASINO",
+  bollywoodCasino : "BOLLYWOOD CASINO",
+  worli:"Worli"
+
   // Add other mappings as needed
 };
 
 const CardList3 = () => {
   const { type } = useParams<{ type: string }>();
-
+ 
   if (!type || !(type in card3)) {
     return <div>Invalid game</div>;
   }

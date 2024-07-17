@@ -25,7 +25,10 @@ import {
   updateCardPoker1DayRates,
   updateCardPoker20Rates,
   updateCricket5MatchRates,
+  updateAmarAkbarAnthonyCardMatchRates,
+  updateBollywoodTableCardMatchRates,
   casinoScoreboardMatchRates,
+  updateCardWorliRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -339,6 +342,7 @@ const cardDetail = createSlice({
           const { t1, t2 } = action.payload;
           state.loading = false;
 
+          console.log("ffri", action.payload);
           // Extract video info if t1 is present and has elements
           const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
 
@@ -462,6 +466,76 @@ const cardDetail = createSlice({
           fancy,
         };
       })
+      .addCase(
+        updateAmarAkbarAnthonyCardMatchRates.fulfilled,
+        (state, action) => {
+          const { t1, t2 } = action.payload;
+          state.loading = false;
+
+          const videoInfo = t1[0];
+
+          const players = t2.slice(0, 3);
+          const redBlack = t2.slice(5, 7);
+          const luckOdds = t2.slice(3, 5);
+          const seven = t2.slice(20, 22);
+          const luckyCards = t2.slice(7, 20);
+
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players,
+            redBlack,
+            luckOdds,
+            seven,
+            luckyCards,
+          };
+        }
+      )
+      .addCase(
+        updateBollywoodTableCardMatchRates.fulfilled,
+        (state, action) => {
+          const { t1, t2 } = action.payload;
+          state.loading = false;
+
+          console.log("ggg", action.payload);
+
+          const videoInfo = t1[0];
+
+          const players = t2.slice(0, 6);
+          const redBlack = t2.slice(7, 9);
+          const luckOdds = t2?.[6];
+          const seven = t2.slice(13, 15);
+          const luckyCards = t2.slice(9, 13);
+
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            players,
+            redBlack,
+            luckOdds,
+            seven,
+            luckyCards,
+          };
+        }
+      )
+
+      .addCase(updateCardWorliRates.fulfilled, (state, action) => {
+        const { t1, t2, } = action.payload;
+        console.log("worli",action.payload)
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        //const cardInfo = { ...t3[0] };
+        const ander = t2.slice(0, 13);
+        const bahar = t2.slice(13, 26);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          //cardInfo,
+          ander,
+          bahar,
+        };
+      })
+      
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;

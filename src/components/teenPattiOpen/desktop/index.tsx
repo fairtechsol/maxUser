@@ -251,7 +251,7 @@ const TeenPattiDesktop = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {rules.map((item, index) => (
+                      {rules?.map((item, index) => (
                         <tr key={index}>
                           <td className="box-7">{item.label}</td>
                           <td className="box-3">{item.value}</td>

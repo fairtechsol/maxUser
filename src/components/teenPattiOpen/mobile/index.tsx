@@ -167,7 +167,7 @@ const TeenPattiMobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "480px" }}>
+            <div style={{ }}>
               <div className="mt-2" style={{ width: "100%" }}>
                 <div className="teenPatti-table-container-m">
                   <div className="teenPatti-table-row">

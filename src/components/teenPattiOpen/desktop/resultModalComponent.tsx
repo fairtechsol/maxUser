@@ -138,8 +138,11 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
               </div>
 
               {data?.result?.sid.includes((position.index + 1).toString()) && (
-                <div className="casino-winner-icon">
-                  <FaTrophy size={30} color="#169733" />
+                <div
+                  className="casino-winner-icon"
+                  
+                >
+                  <FaTrophy className="casino-winner-icon" size={30} color="#169733" />
                 </div>
               )}
             </div>

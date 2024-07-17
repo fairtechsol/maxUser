@@ -43,12 +43,12 @@ const CardResultBox = ({ data, name, type }: any) => {
       </div>
       <div className="cardResultBoxRound">
         {liveGameResultTop10?.length > 0 &&
-          liveGameResultTop10.map((item: any) => (
+          liveGameResultTop10?.map((item: any) => (
             <div
               className="cardResultCircle"
               key={item?.mid}
               style={{
-                backgroundColor: type==="race20"?"#d5d5d5":"#355e3b",
+                backgroundColor: type === "race20" ? "#d5d5d5" : "#355e3b",
               }}
               onClick={() => handleResult(item?.mid)}
             >
@@ -91,58 +91,90 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? name?.[1]
                     : null}
                 </span>
-              ) : type === "poker" || type ==="poker20" ? (
-                <>
-                 
-                 <span
-                 style={{
-                   fontSize: "16px",
-                   fontWeight: "600",
-                   color:
-                     item?.result === "11" 
-                       ? "#f5cc03"
-                       : item?.result === "21"
-                       ? "#ff4500"
-                       : "#ffffff",
-                 }}
-               >{item?.result === "11"? name?.[0] : item?.result === "21"? name?.[1] : name?.[2]} </span>
-                
-                </>
-               
-              ) : type === "card32eu" ? (
-                <>
-                 
-                 <span
-                 style={{
-                   fontSize: "16px",
-                   fontWeight: "600",
-                   color:"#f5cc03",
-                 }}
-               >{item?.result === "1"? name?.[0] : item?.result === "2"? name?.[1] : item?.result === "3"? name?.[2] : name?.[3]} </span>
-                
-                </>
-               
-              ) : type === "race20" ? (
-                <>
-                 {item?.result === "1"?
-                  <GiSpades color="#000000" /> : item?.result === "2"? <BiSolidHeart color="#ff0000" /> : item?.result === "3"? <ImClubs color="#000000" />  : <ImDiamonds color="#ff0000" />
-                }
-                </>
-               
-              ): type === "poker6" ? (
+              ) : type === "teen9" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color:
+                      item?.result === "31" ||
+                      item?.result === "11" ||
+                      item?.result === "21"
+                        ? "#f5cc03"
+                        : "#ffffff",
+                  }}
+                >
+                  {item?.result === "21"
+                    ? name?.[1]
+                    : item?.result === "11"
+                    ? name?.[0]
+                    : item?.result === "31"
+                    ? name?.[2]
+                    : null}
+                </span>
+              ) : type === "poker" || type === "poker20" ? (
                 <>
                   <span
-                 style={{
-                   fontSize: "16px",
-                   fontWeight: "600",
-                   color:
-                     item?.result === "0" 
-                       ? "#ffffff"
-                       : "#f5cc03",
-                 }}
-               >{item?.result === "0"? name?.[0] : item?.result?.[1] } </span>
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      color:
+                        item?.result === "11"
+                          ? "#f5cc03"
+                          : item?.result === "21"
+                          ? "#ff4500"
+                          : "#ffffff",
+                    }}
+                  >
+                    {item?.result === "11"
+                      ? name?.[0]
+                      : item?.result === "21"
+                      ? name?.[1]
+                      : name?.[2]}{" "}
+                  </span>
                 </>
-               
+              ) : type === "card32eu" ? (
+                <>
+                  <span
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      color: "#f5cc03",
+                    }}
+                  >
+                    {item?.result === "1"
+                      ? name?.[0]
+                      : item?.result === "2"
+                      ? name?.[1]
+                      : item?.result === "3"
+                      ? name?.[2]
+                      : name?.[3]}{" "}
+                  </span>
+                </>
+              ) : type === "race20" ? (
+                <>
+                  {item?.result === "1" ? (
+                    <GiSpades color="#000000" />
+                  ) : item?.result === "2" ? (
+                    <BiSolidHeart color="#ff0000" />
+                  ) : item?.result === "3" ? (
+                    <ImClubs color="#000000" />
+                  ) : (
+                    <ImDiamonds color="#ff0000" />
+                  )}
+                </>
+              ) : type === "poker6" ? (
+                <>
+                  <span
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      color: item?.result === "0" ? "#ffffff" : "#f5cc03",
+                    }}
+                  >
+                    {item?.result === "0" ? name?.[0] : item?.result?.[1]}{" "}
+                  </span>
+                </>
               ) : (
                 <span
                   style={{
@@ -186,7 +218,7 @@ const CardResultBox = ({ data, name, type }: any) => {
           <ResultComponent
             data={resultData}
             setfalse={setLgShow}
-            type={data?.type}
+            type={type}
           />
         </Modal.Body>
       </Modal>
