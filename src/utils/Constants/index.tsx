@@ -1691,7 +1691,7 @@ export const card3 = {
       name: "1 DAY TEENPATTI",
     },
     {
-      url: "/teen9",
+      url: "",
       imgSrc: testteen,
       name: "TEST TEENPATTI",
     },
