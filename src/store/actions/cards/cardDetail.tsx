@@ -56,7 +56,6 @@ export const resultDragonTiger = createAsyncThunk<any, any>(
         `${ApiConstants.CARDS.MATCH.RESULT}/${requestData}`
       );
       if (resp?.data) {
-      
         return resp?.data;
       }
     } catch (error) {
@@ -99,7 +98,6 @@ export const updateTeenPattiMatchRates = createAsyncThunk<any, any>(
   }
 );
 
-
 export const updateTeenPatti1DMatchRates = createAsyncThunk<any, any>(
   "teen/matchRatesUpdate",
   async (data) => {
@@ -112,7 +110,7 @@ export const updateTeenPattiOpenMatchRates = createAsyncThunk<any, any>(
   async (data) => {
     return data;
   }
-); 
+);
 
 export const updateTeenPattiTestMatchRates = createAsyncThunk<any, any>(
   "teen9/matchRatesUpdate",
@@ -225,6 +223,27 @@ export const updateCricket5MatchRates = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateAmarAkbarAnthonyCardMatchRates = createAsyncThunk<any, any>(
+  "aaa/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateBollywoodTableCardMatchRates = createAsyncThunk<any, any>(
+  "btable/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
+
+export const updateCardWorliRates = createAsyncThunk<any, any>(
+  "worli2/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
   "casinoScoreboard/matchRatesUpdate",
   async (requestData, thunkApi) => {
@@ -232,14 +251,14 @@ export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
       const config = {
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-        }
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        },
       };
       const resp = await axios.get(
         `${Constants.thirdPartyCard}${ApiConstants.SCOREBOARD.match}/${requestData?.id}?gameName=${requestData?.type}`,
-        config);
+        config
+      );
       if (resp?.data) {
-      
         return resp?.data?.data?.data;
       }
     } catch (error) {

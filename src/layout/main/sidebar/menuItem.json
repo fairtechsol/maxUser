@@ -57,7 +57,7 @@
         "id": "bollywoodcasino",
         "name": "Bollywood Casino",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/card3-list/bollywoodCasino"
       },
       {
         "id": "casinowar",
@@ -69,7 +69,7 @@
         "id": "worli",
         "name": "Worli",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/card3-list/worli"
       },
       {
         "id": "lottery",
