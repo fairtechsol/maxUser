@@ -42,6 +42,8 @@ import {
   ball4,
   ball6,
   ballW,
+  bac1,
+  bac2,
 } from "../../assets/images";
 import {
   dayteen,
@@ -293,6 +295,8 @@ export const cardGamesType: any = {
   poker1Day: "poker",
   poker20: "poker20",
   card3judge: "3cardj",
+  baccarat:"baccarat",
+  baccarat2:"baccarat2",
   cricketv3: "cricketv3",
   amarAkbarAnthony: "aaa",
   btable: "btable",
@@ -320,6 +324,7 @@ export const cardGamesId: any = {
   poker1Day: 3051,
   poker20: 3052,
   cricketv3: 3042,
+  baccarat: 3044,
   aaa: 3056,
   btable: 3041,
   worli: 3040,
@@ -1704,6 +1709,17 @@ export const card3 = {
     { id: 20, url: "/superover", imgSrc: superover, name: "SUPER OVER" },
     { id: 21, url: "/cricketv3", imgSrc: crick5, name: "5 5 Cricket" },
   ],
+  baccarat: [
+    {
+      url: "/",
+      imgSrc: bac1,
+      name: "BACCARAT",
+    },
+    {
+      url: "/baccarat",
+      imgSrc: bac2,
+      name: "BACCARAT2",
+    }],
   bollywoodCasino: [
     {
       id: 22,

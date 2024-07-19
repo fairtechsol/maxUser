@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import "./style.scss";
+// import "./style.scss";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 import { abjrules } from "../../../assets/images";
@@ -10,20 +10,16 @@ import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Abj2Result from "../desktop/race20Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
-import OddBox from "./OddBox";
-import TotalsBox from "./TotalBox";
-import WinBox from "./win";
-import Race20Result from "../desktop/race20Card";
+import BaccaratStatistics from "../desktop/betTable";
 
-const Race20Mobile = () => {
+const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.race20}`
+    `${cardUrl}${cardGamesId?.baccarat}`
   );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
@@ -123,7 +119,10 @@ const Race20Mobile = () => {
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
-                 
+                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
+                    Min:{dragonTigerDetail?.videoInfo?.min} Max:
+                    {dragonTigerDetail?.videoInfo?.max}
+                  </span>
                 </div>
               </div>
               <div
@@ -135,48 +134,25 @@ const Race20Mobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Race20Result data={dragonTigerDetail?.videoInfo} />}
+                //   result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
 
-            <div style={{ height: "880px" }}>
-              <div style={{ width: "100%", marginTop: "20%" }}>
-              <OddBox
-                  odds={dragonTigerDetail?.cards}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  padding: "5px 0px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "8px",
-                }}
+            <div style={{ height: "700px" }}>
+            <div
+                className="row-flex"
+                style={{ width: "100%", margin: "22% 2% 5px 5px" }}
               >
-                <TotalsBox
-                  odds={dragonTigerDetail?.total}
-                  data={dragonTigerDetail}
-                />
+               <BaccaratStatistics odds={dragonTigerDetail?.odds} />
               </div>
-              <div
-                style={{
-                  width: "100%",
-                }}
-              >
-                 <WinBox
-                  odds={dragonTigerDetail?.win}
-                  data={dragonTigerDetail}
-                />
-              </div>
+             
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "B"]}
-                  type={cardGamesType.race20}
+                  type={cardGamesType.andarBahar2}
                 />
               </div>
             </div>
@@ -196,4 +172,4 @@ const Race20Mobile = () => {
   );
 };
 
-export default Race20Mobile;
+export default Baccarat1Mobile;

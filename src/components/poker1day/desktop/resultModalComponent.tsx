@@ -16,7 +16,7 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
 //  console.log(data,'first',resultCards)
   return (
     <Container style={{ display: "flex", flexDirection: "column",justifyContent:"center",alignItems:"center" }}>
-      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+      <div style={{width:"80%",display:"flex",flexDirection: isMobile ? "column" :"row",justifyContent:"space-between",alignItems:"center"}}>
         <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
         {data?.result?.win === "11" && (
               <div className="casino-winner-icon mt-3 p-2" >
@@ -50,17 +50,20 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
             )}
         </div>
       </div>
-      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",gap:"5px",marginBottom:"10px"}}>
+      <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}} >
+      <div style={{display:"flex",flexWrap: "wrap"}}>
+      <span className="title-18 f500">Board</span>
         {
           lastCards?.map((item:any,index:number)=>{
             return(
-              <div key={index}>
+              <div style={{display:"flex",flexWrap: "wrap",gap:"5px"}}  key={index}>
                 <HandleCards card={item} />
               </div>
             )
           })
         }
-      </div>
+           </div>      
+           </div>
     </Container>
   );
 };

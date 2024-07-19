@@ -28,6 +28,7 @@ import {
   updateAmarAkbarAnthonyCardMatchRates,
   updateBollywoodTableCardMatchRates,
   casinoScoreboardMatchRates,
+  updateBaccarat1Rates,
   updateCardWorliRates,
 } from "../../actions/cards/cardDetail";
 
@@ -446,6 +447,18 @@ const cardDetail = createSlice({
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const odds = t2.slice(0, 18);
+
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          odds,
+        };
+      })
+      .addCase(updateBaccarat1Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const odds = t2.slice(0, 9);
 
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
