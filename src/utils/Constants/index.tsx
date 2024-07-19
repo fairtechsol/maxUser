@@ -292,8 +292,7 @@ export const cardGamesType: any = {
   cricketv3: "cricketv3",
   amarAkbarAnthony: "aaa",
   btable: "btable",
-  worli:"worli2"
-
+  worli: "worli2",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -1534,7 +1533,7 @@ export const casinoIcons = [
     name: "Casino Meter",
   },
   {
-    url: "",
+    url: "/war",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
     name: "Casino War",
@@ -1570,19 +1569,19 @@ export const casinoIcons = [
     name: "20-20 Teenpatti",
   },
   {
-    url: "/poker6",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "6 Player Poker",
   },
   {
-    url: "/poker",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "1 Day Poker",
   },
   {
-    url: "/poker20",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "20-20 Poker",
@@ -1663,140 +1662,63 @@ export const casinoIcons = [
 export const card3 = {
   dragonTiger: [
     {
+      id: 1,
       url: "/dt202",
       imgSrc: dt2020,
       name: "20-20 DRAGON TIGER 2",
     },
-    {
-      url: "/dtl20",
-      imgSrc: dtl20,
-      name: "20-20 DRAGON TIGER LION",
-    },
-    {
-      url: "/dt6",
-      imgSrc: dt6,
-      name: "1 DAY DRAGON TIGER",
-    },
-    {
-      url: "/dt20",
-      imgSrc: dt20,
-      name: "20-20 DRAGON TIGER",
-    },
+    { id: 2, url: "/dtl20", imgSrc: dtl20, name: "20-20 DRAGON TIGER LION" },
+    { id: 3, url: "/dt6", imgSrc: dt6, name: "1 DAY DRAGON TIGER" },
+    { id: 4, url: "/dt20", imgSrc: dt20, name: "20-20 DRAGON TIGER" },
   ],
   teenPatti: [
-    {
-      url: "/contact-admin",
-      imgSrc: teencasino,
-      name: "TEENPATTI 2.0",
-    },
-    {
-      url: "/teenPatti20",
-      imgSrc: twentyteen,
-      name: "20-20 TEENPATTI",
-    },
-    {
-      url: "/teen",
-      imgSrc: dayteen,
-      name: "1 DAY TEENPATTI",
-    },
-    {
-      url: "/teen9",
-      imgSrc: testteen,
-      name: "TEST TEENPATTI",
-    },
-    {
-      url: "/teen8",
-      imgSrc: teenplayer,
-      name: "OPEN TEENPATTI",
-    },
+    { id: 5, url: "/contact-admin", imgSrc: teencasino, name: "TEENPATTI 2.0" },
+    { id: 6, url: "/teenPatti20", imgSrc: twentyteen, name: "20-20 TEENPATTI" },
+    { id: 7, url: "/teen", imgSrc: dayteen, name: "1 DAY TEENPATTI" },
+    { id: 8, url: "", imgSrc: testteen, name: "TEST TEENPATTI" },
+    { id: 9, url: "/teen8", imgSrc: teenplayer, name: "OPEN TEENPATTI" },
   ],
   lucky7: [
-    {
-      url: "/lucky7-A",
-      imgSrc: lucky7A,
-      name: "Lucky 7 A",
-    },
-    {
-      url: "/lucky7eu",
-      imgSrc: luck7B,
-      name: "Lucky 7 B",
-    },
+    { id: 10, url: "/lucky7-A", imgSrc: lucky7A, name: "Lucky 7 A" },
+    { id: 11, url: "/lucky7eu", imgSrc: luck7B, name: "Lucky 7 B" },
   ],
   cards32: [
-    {
-      url: "/32cards-A",
-      imgSrc: cards32A,
-      name: "32cards A",
-    },
-    {
-      url: "/32cards-B",
-      imgSrc: cards32B,
-      name: "32cards B",
-    },
+    { id: 12, url: "/32cards-A", imgSrc: cards32A, name: "32cards A" },
+    { id: 13, url: "/32cards-B", imgSrc: cards32B, name: "32cards B" },
   ],
   abj: [
-    {
-      url: "/abj2",
-      imgSrc: abjlist2,
-      name: "ANDAR BAHAR 2",
-    },
-    {
-      url: "/ab20",
-      imgSrc: abjlist,
-      name: "ANDAR BAHAR",
-    },
+    { id: 14, url: "/abj2", imgSrc: abjlist2, name: "ANDAR BAHAR 2" },
+    { id: 15, url: "/ab20", imgSrc: abjlist, name: "ANDAR BAHAR" },
   ],
   poker: [
-    {
-      url: "/poker6",
-      imgSrc: p6,
-      name: "POKER 6",
-    },
-    {
-      url: "/poker",
-      imgSrc: p1d,
-      name: "POKER 1 DAY",
-    },
-    {
-      url: "/poker20",
-      imgSrc: p20,
-      name: "POKER 20 20",
-    },
+    { id: 16, url: "", imgSrc: p6, name: "POKER 6" },
+    { id: 17, url: "", imgSrc: p1d, name: "POKER 1 DAY" },
+    { id: 18, url: "", imgSrc: p20, name: "POKER 20 20" },
   ],
   sportCasino: [
-    {
-      url: "/",
-      imgSrc: ballbyball,
-      name: "BALL BY BALL",
-    },
-    {
-      url: "/superover",
-      imgSrc: superover,
-      name: "SUPER OVER",
-    },
-    {
-      url: "/cricketv3",
-      imgSrc: crick5,
-      name: "5 5 Cricket",
-    },
+    { id: 19, url: "/", imgSrc: ballbyball, name: "BALL BY BALL" },
+    { id: 20, url: "/superover", imgSrc: superover, name: "SUPER OVER" },
+    { id: 21, url: "/cricketv3", imgSrc: crick5, name: "5 5 Cricket" },
   ],
   bollywoodCasino: [
     {
+      id: 22,
       url: "/aaa",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1016.webp",
       name: "AMAR AKHBAR ANTHONY",
     },
     {
+      id: 23,
       url: "/btable",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1015.webp",
       name: "AMAR AKHBAR ANTHONY",
     },
   ],
-
   worli: [
     {
+      id: 24,
       url: "/worli2",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1013.webp",

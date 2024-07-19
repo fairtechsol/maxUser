@@ -80,7 +80,17 @@ const CustomTable: React.FC<CustomTableProps> = ({
       };
     });
     // alert(tHeadTheme);
-  }, [currentPage, sortConfig, rowPerPage]);
+  }, [currentPage, sortConfig]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    setTableConfig((prev: any) => {
+      return {
+        ...prev,
+        page: 1,
+      };
+    });
+  }, [rowPerPage]);
   return (
     <div className={`${customClass ?? ""}`}>
       <TableHeader
@@ -94,49 +104,49 @@ const CustomTable: React.FC<CustomTableProps> = ({
       />
       {/* Table for displaying data */}
       <div className="w-100">
-      <Table {...props} responsive style={width ? { width: width } : {}}>
-        <thead>
-          <tr>
-            {/* Table header with sorting icons */}
-            {columns.map((column, index) => (
-              <th
-                className={`${tHeadTheme} text-center ${
-                  isMobile ? "bg-secondary title-12 f800 p-1" : "f600"
-                }`}
-                key={index}
-              >
-                {column.label}
-                {/* Display sorting icons based on the sorting configuration */}
-                {isSort && (
-                  <SortIcon
-                    isActive={sortConfig.key === column.id}
-                    isAscending={sortConfig.direction === "asc"}
-                    clickHandler={handleSort}
-                    id={column.id}
-                  />
-                )}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="text-center">
-          {/* Table body with sorted data */}
-          {itemCount === 0 ? (
-            <tr className="text-center">
-              <td
-                className={`${tBodyTheme ?? ""} ${isMobile && "bg-white"}`}
-                colSpan={columns?.length}
-              >
-                <p className={`${isMobile ? "title-12 f500" : "title-14"}`}>
-                  No data available in table
-                </p>
-              </td>
+        <Table {...props} responsive style={width ? { width: width } : {}}>
+          <thead>
+            <tr>
+              {/* Table header with sorting icons */}
+              {columns.map((column, index) => (
+                <th
+                  className={`${tHeadTheme} text-center ${
+                    isMobile ? "bg-secondary title-12 f800 p-1" : "f600"
+                  }`}
+                  key={index}
+                >
+                  {column.label}
+                  {/* Display sorting icons based on the sorting configuration */}
+                  {isSort && (
+                    <SortIcon
+                      isActive={sortConfig.key === column.id}
+                      isAscending={sortConfig.direction === "asc"}
+                      clickHandler={handleSort}
+                      id={column.id}
+                    />
+                  )}
+                </th>
+              ))}
             </tr>
-          ) : (
-            children
-          )}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody className="text-center">
+            {/* Table body with sorted data */}
+            {itemCount === 0 ? (
+              <tr className="text-center">
+                <td
+                  className={`${tBodyTheme ?? ""} ${isMobile && "bg-white"}`}
+                  colSpan={columns?.length}
+                >
+                  <p className={`${isMobile ? "title-12 f500" : "title-14"}`}>
+                    No data available in table
+                  </p>
+                </td>
+              </tr>
+            ) : (
+              children
+            )}
+          </tbody>
+        </Table>
       </div>
       {/* Pagination component for navigating through pages */}
       {isPagination && (

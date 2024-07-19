@@ -22,6 +22,7 @@ import "./style.scss";
 import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import Loader from "../../../components/commonComponent/loader";
+import { maxbetLogo } from "../../../assets/images";
 
 const Login = () => {
   // const [loginState, setLoginState] = useState({
@@ -78,10 +79,13 @@ const Login = () => {
       {loading && <Loader />}
       <div className="auth-box ">
         <img
-          src="/maxbetLogo.png"
-          alt="fairGame"
+          src={maxbetLogo}
+          alt="MAXBET07"
           className="img-fluid"
-          style={{ width: isMobile ? "90%" : "100%", height: isMobile ? "42px" : "50px" }}
+          style={{
+            width: isMobile ? "90%" : "100%",
+            height: isMobile ? "42px" : "50px",
+          }}
         />
         <div className="auth-box-form rounded-2 bg-light mt-3">
           <h4 className="auth-title title-24 fw-normal text-center mb-2">
@@ -140,7 +144,8 @@ const Login = () => {
             </div>
           </CustomButton>
           <p className="auth-box-descrip mt-1">
-            This site is protected by reCAPTCHA and the Google<br/>
+            This site is protected by reCAPTCHA and the Google
+            <br />
             <a
               href="https://policies.google.com/privacy"
               className="text-primaryBlue text-decoration-none ps-1 pe-1"

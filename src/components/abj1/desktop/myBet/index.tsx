@@ -49,23 +49,14 @@ const MyBet = () => {
             {placedBets &&
               Array.from(new Set(placedBets))?.map((bet: any) => {
                 return (
-                  <tr
-                    key={bet?.id}
-                    className={`position-relative bg-blue3`}
-                  >
-                    <th
-                      className={`title-12 text-start f500 bg-blue3 `}
-                    >
+                  <tr key={bet?.id} className={`position-relative bg-blue3`}>
+                    <th className={`title-12 text-start f500 bg-blue3`}>
                       {bet?.teamName}
                     </th>
-                    <th
-                      className={`title-12 text-start f500 bg-blue3`}
-                    >
+                    <th className={`title-12 text-start f500 bg-blue3`}>
                       {bet?.odds}
                     </th>
-                    <th
-                      className={`title-12 text-start f500 bg-blue3 `}
-                    >
+                    <th className={`title-12 text-start f500 bg-blue3`}>
                       {bet?.amount}
                     </th>
                     <DeleteBetOverlay title={bet?.deleteReason} />
