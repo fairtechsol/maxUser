@@ -12,6 +12,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
+import BaccaratStatistics from "../desktop/betTable";
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -140,7 +141,12 @@ const Baccarat1Mobile = () => {
             </div>
 
             <div style={{ height: "700px" }}>
-            
+            <div
+                className="row-flex"
+                style={{ width: "100%", margin: "22% 2% 5px 5px" }}
+              >
+               <BaccaratStatistics odds={dragonTigerDetail?.odds} />
+              </div>
              
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox

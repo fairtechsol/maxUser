@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Chart } from 'react-google-charts';
+import isMobile from '../../../../utils/screenDimension';
 
 const BaccaratStatistics = ({ odds }:any) => {
   // Extract relevant data for the pie chart
@@ -22,7 +23,7 @@ const BaccaratStatistics = ({ odds }:any) => {
   };
 // console.log(odds, "odds")
   return (
-    <Container className='baccarat'>
+    <Container className={isMobile ? "d-flex flex-column" : 'baccarat'}>
       <div style={{width: "18%"}}>
       <Row className="mt-2 justify-content-center baccarat-graph">
         <Col md={3} className="text-center">
@@ -39,7 +40,7 @@ const BaccaratStatistics = ({ odds }:any) => {
       </div>
       <div style={{width: "82%"}}>
       <Row>
-        <div className='baccarat-other-odds '>
+        <div className='baccarat-other-odds'>
         {/* {odds?.slice(5, 9).map((odd:any, index:any) => ( */}
           <Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
             <div>{"odd.nat"}</div>

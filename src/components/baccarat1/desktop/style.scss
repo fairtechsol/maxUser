@@ -6,6 +6,8 @@
     display: flex;
     flex-direction: row;
     width: 100vw;
+    background-color: #f7f7f7;
+    padding: 20px;
 }
 .baccarat-other-odds {
     display: flex;
@@ -17,6 +19,7 @@
 
 .baccarat-other-odd-box-container {
     width: 24%;
+    
 }
 
 .baccarat-graph {
@@ -67,7 +70,7 @@
 }
 
 .suspended-box::before {
-    background-image: url(../img/icons/lock.svg);
+    background-image: url(../../../assets/images/baccarat/lock.svg);
     background-size: 17px 17px;
     filter: invert(1);
     -webkit-filter: invert(1);
@@ -84,18 +87,18 @@
 }
 
 .suspended-box::after {
-    // content: "";
-    // background-color: #373636d6;
-    // position: absolute;
-    // height: 100%;
-    // width: 100%;
-    // left: 0;
-    // top: 0;
-    // cursor: not-allowed;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // pointer-events: none;
+    content: "";
+    background-color: #373636d6;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    cursor: not-allowed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
 }
 
 .player-pair-box-container {
@@ -172,6 +175,20 @@
     line-height: 1;
     display: flex;
     flex-wrap: wrap;
+}
+.player-pair-box.suspended-box:after {
+    border-radius: 30px 0 0 30px;
+    -webkit-border-radius: 30px 0 0 30px;
+    -moz-border-radius: 30px 0 0 30px;
+    -ms-border-radius: 30px 0 0 30px;
+    -o-border-radius: 30px 0 0 30px;
+}
+.banker-pair-box.suspended-box:after {
+    border-radius: 0 30px 30px 0;
+    -webkit-border-radius: 0 30px 30px 0;
+    -moz-border-radius: 0 30px 30px 0;
+    -ms-border-radius: 0 30px 30px 0;
+    -o-border-radius: 0 30px 30px 0;
 }
 @media only screen and (max-width: 767px) {
     .player-box img, .banker-box img {
