@@ -14,6 +14,9 @@ import ContactAdmin from "../../commonComponent/contactAdmin";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import { formatDate } from "../../../utils/dateUtils";
 import service from "../../../service";
+import { ApiConstants } from "../../../utils/constants";
+import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
+import { getChannelId } from "../../../helpers";
 
 const markets = [
   {
@@ -59,6 +62,7 @@ const MobileGameDetail = () => {
   const [marketActive, setMarketActive] = useState("fancy");
   const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   const [errorCount, setErrorCount] = useState<number>(0);
+  const [channelId, setChannelId] = useState<string>("");
 
   const { matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
@@ -100,6 +104,23 @@ const MobileGameDetail = () => {
       return () => clearInterval(interval);
     }
   }, [matchDetails?.marketId, errorCount]);
+
+  useEffect(() => {
+    try {
+      if (matchDetails?.eventId) {
+        const callApiForLiveStream = async () => {
+          let result = await getChannelId(matchDetails?.eventId);
+          if (result) {
+            setChannelId(result?.channelNo);
+          }
+        };
+        callApiForLiveStream();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [matchDetails?.id]);
+
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -132,12 +153,27 @@ const MobileGameDetail = () => {
                         title={matchDetails?.title}
                         rightComponent={
                           <span className="title-14 f400">
-                            {matchDetails?.startAt && ( formatDate(matchDetails?.startAt))}
+                            {matchDetails?.startAt &&
+                              formatDate(matchDetails?.startAt)}
                           </span>
                         }
                       />
-                       <div style={{width:"100%",height:"auto",backgroundColor:"#000"}} dangerouslySetInnerHTML={{__html: liveScoreBoardData ?liveScoreBoardData:""}}></div>
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          backgroundColor: "#000",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: liveScoreBoardData ? liveScoreBoardData : "",
+                        }}
+                      ></div>
                     </Col>
+                    {channelId !== "0" && channelId !== "" && (
+                      <Col className="g-0" md={12}>
+                        <LiveStreamComponent channelId={channelId} />
+                      </Col>
+                    )}
                     {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
@@ -255,7 +291,7 @@ const MobileGameDetail = () => {
                                   className={`matchListTab ${
                                     item?.id === marketActive ? "active" : ""
                                   }`}
-                                  style={{ width: index==8?"34%":"22%" }}
+                                  style={{ width: index == 8 ? "34%" : "22%" }}
                                   onClick={() => handleMarket(item?.id)}
                                 >
                                   <span className="title-12 text-uppercase f500">

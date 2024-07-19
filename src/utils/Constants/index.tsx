@@ -108,6 +108,10 @@ export const ApiConstants = {
   SCOREBOARD: {
     match: "/api/tunnel/casino/sport-score",
   },
+  LIVESTREAM: {
+    GET_CHANNEL_ID: "https://scoreapi.365cric.com/api/match/getStream",
+    GET_VIDEO: "https://video.proexch.in/tv/static",
+  },
 };
 export const cardUrl = "https://video.proexch.in/route/?id=";
 

@@ -12,6 +12,9 @@ import "./style.scss";
 import { IoInformationCircle } from "react-icons/io5";
 import CustomModal from "../../commonComponent/modal";
 import service from "../../../service";
+import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
+import { ApiConstants } from "../../../utils/constants";
+import { getChannelId } from "../../../helpers";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -19,6 +22,7 @@ const DesktopGameDetail = () => {
   const [showContactAdmin, setShowContactAdmin] = useState(false);
   const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   const [errorCount, setErrorCount] = useState<number>(0);
+  const [channelId, setChannelId] = useState<string>("");
 
   const { matchDetails } = useSelector(
     (state: RootState) => state.match.matchList
@@ -71,6 +75,22 @@ const DesktopGameDetail = () => {
     }
   }, [matchDetails?.marketId, errorCount]);
 
+  useEffect(() => {
+    try {
+      if (matchDetails?.eventId) {
+        const callApiForLiveStream = async () => {
+          let result = await getChannelId(matchDetails?.eventId);
+          if (result) {
+            setChannelId(result?.channelNo);
+          }
+        };
+        callApiForLiveStream();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [matchDetails?.id]);
+
   return (
     <Container fluid>
       <Row>
@@ -88,7 +108,16 @@ const DesktopGameDetail = () => {
                     </span>
                   }
                 />
-                <div style={{width:"100%",height:"auto",backgroundColor:"#000"}} dangerouslySetInnerHTML={{__html: liveScoreBoardData ?liveScoreBoardData:""}}></div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    backgroundColor: "#000",
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: liveScoreBoardData ? liveScoreBoardData : "",
+                  }}
+                ></div>
               </Col>
 
               {matchDetails?.matchOdd?.isActive && (
@@ -301,6 +330,11 @@ const DesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
+              {channelId !== "0" && channelId !== "" && (
+                <Col md={12}>
+                  <LiveStreamComponent channelId={channelId} />
+                </Col>
+              )}
               <Col md={12}>
                 <PlacedBet />
               </Col>

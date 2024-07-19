@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Col, Container, Row, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
@@ -10,6 +10,10 @@ import BetTable from "../betTable";
 import MyBet from "./myBet";
 import "../../gameDetails/mobile/style.scss";
 import FootballPlaceBet from "./placeBet";
+import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
+import { ApiConstants } from "../../../utils/constants";
+import service from "../../../service";
+import { getChannelId } from "../../../helpers";
 
 // import "./style.scss";
 // import BetTable from "../../gameDetails/betTable";
@@ -18,12 +22,29 @@ import FootballPlaceBet from "./placeBet";
 
 const FootballMobileGameDetail = () => {
   const [show, setShow] = useState(true);
+  const [channelId, setChannelId] = useState<string>("");
 
   const { otherMatchDetails } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
   );
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  useEffect(() => {
+    try {
+      if (otherMatchDetails?.eventId) {
+        const callApiForLiveStream = async () => {
+          let result = await getChannelId(otherMatchDetails?.eventId);
+          if (result) {
+            setChannelId(result?.channelNo);
+          }
+        };
+        callApiForLiveStream();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [otherMatchDetails?.id]);
 
   return (
     <div>
@@ -63,6 +84,11 @@ const FootballMobileGameDetail = () => {
                         }
                       />
                     </Col>
+                    {channelId !== "0" && channelId !== "" && (
+                      <Col className="g-0" md={12}>
+                        <LiveStreamComponent channelId={channelId} />
+                      </Col>
+                    )}
                     {otherMatchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
