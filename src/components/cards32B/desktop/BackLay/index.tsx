@@ -5,6 +5,7 @@ import isMobile from "../../../../utils/screenDimension";
 import SmoothDropdownModal from "../minMaxModal";
 import { IoInformationCircle } from "react-icons/io5";
 import { useState } from "react";
+import "../../desktop/style.scss";
 
 const BackLay = ({ matchOddsData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -21,7 +22,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: "1",
+      selectionId: item?.sid,
     };
     dispatch(
       selectedBetAction({
@@ -82,7 +83,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           <div className="dtlTitle">
             {isMobile ? (
               <>
-                <span style={{fontWeight:"400"}}>
+                <span style={{ fontWeight: "400" }}>
                   Min:{min} Max:{max}
                 </span>
               </>
@@ -107,34 +108,151 @@ const BackLay = ({ matchOddsData, data }: any) => {
           <div className="dtlsubTitle lay-BackGround">Lay</div>
         </div>
         <div
-          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex"}
+          // style={{ height: "30px" }}
         >
-          <div className="dtlTitle">Player 8 </div>
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>Player 8</span>
+              <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player8"] > 0
+                        ? "color-green"
+                        : JSON.parse(
+                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                          )["player8"] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player8"]
+                    : 0
+                  : 0}
+              </span>
+            </div>
+          </span>
+
           {renderItem(matchOddsData?.[0], 0, "back")}
           {renderItem(matchOddsData?.[0], 1, "lay")}
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          // style={{ height: "30px" }}
         >
-          <div className="dtlTitle"> Player 9</div>
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>Player 9</span>
+              <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player9"] > 0
+                        ? "color-green"
+                        : JSON.parse(
+                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                          )["player9"] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player9"]
+                    : 0
+                  : 0}
+              </span>
+            </div>
+          </span>
           {renderItem(matchOddsData?.[1], 2, "back")}
           {renderItem(matchOddsData?.[1], 3, "lay")}
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          // style={{ height: "30px" }}
         >
-          <div className="dtlTitle"> Player 10</div>
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>Player 10</span>
+              <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player10"] > 0
+                        ? "color-green"
+                        : JSON.parse(
+                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                          )["player10"] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player10"]
+                    : 0
+                  : 0}
+              </span>
+            </div>
+          </span>
           {renderItem(matchOddsData?.[2], 2, "back")}
           {renderItem(matchOddsData?.[2], 3, "lay")}
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          // style={{ height: "30px" }}
         >
-          <div className="dtlTitle"> Player 11</div>
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>Player 11</span>
+              <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player11"] > 0
+                        ? "color-green"
+                        : JSON.parse(
+                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                          )["player11"] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player11"]
+                    : 0
+                  : 0}
+              </span>
+            </div>
+          </span>
           {renderItem(matchOddsData?.[3], 2, "back")}
           {renderItem(matchOddsData?.[3], 3, "lay")}
         </div>

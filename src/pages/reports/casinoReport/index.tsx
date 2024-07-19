@@ -45,8 +45,16 @@ const cardGames = [
     label: "Open Teen Patti",
   },
   {
+    value: "teen9",
+    label: "Test Teen Patti",
+  },
+  {
     value: "card32",
     label: "32 Cards - A",
+  },
+  {
+    value: "card32eu",
+    label: "32 Cards - B",
   },
   {
     value: "lucky7",
@@ -67,6 +75,14 @@ const cardGames = [
   {
     value: "dt6",
     label: "Dragon Tiger 1 Day",
+  },
+  {
+    value: "war",
+    label: "CASINO WAR",
+  },
+  {
+    value: "aaa",
+    label: "Amar Akbar Anthony",
   },
   {
     value: "cricketv3",
@@ -92,6 +108,10 @@ const cardGames = [
     value: "poker6",
     label: "Poker 6",
   },
+  {
+    value: "btable",
+    label: "Bollywood Table",
+  },
 ];
 
 const CasinoReports = () => {
@@ -108,7 +128,7 @@ const CasinoReports = () => {
 
   const { cardReport } = useSelector((state: RootState) => state.user.report);
   const { resultData } = useSelector((state: RootState) => state.card);
-  
+
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));

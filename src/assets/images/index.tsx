@@ -77,6 +77,7 @@ export { default as s2 } from "./superOver/2.webp";
 export { default as s3 } from "./superOver/3.webp";
 export { default as s4 } from "./superOver/4.webp";
 export { default as s6 } from "./superOver/6.webp";
+export { default as maxbetLogo } from "./MAXBET07LOGO.png";
 export { default as s0 } from "./superOver/10.webp";
 export { default as bac1 } from "./baccarat/baccarat1.webp";
 export { default as bac2 } from "./baccarat/baccarat2.webp";

@@ -13,7 +13,6 @@ interface Props {
 const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const lastCards = resultCards?.slice(12,17)
-//  console.log(data,'first',resultCards)
   return (
     <Container style={{ display: "flex", flexDirection: "column",justifyContent:"center",alignItems:"center" }}>
        <div style={{width:"80%",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:"5px",marginBottom:"10px"}}>

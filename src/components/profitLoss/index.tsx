@@ -168,7 +168,7 @@ const ProfitLossComponent = () => {
                   profitLossReport?.result?.map((item: any, index: number) => {
                     return (
                       <tr className={`${isMobile && "title-12"}`} key={index}>
-                        <td>{item?.eventType}</td>
+                        <td> {typeToTitle[item?.eventType] || item?.eventType}</td>
                         <td>{item?.marketType}</td>
                         <td>{item?.aggregateAmount}</td>
                       </tr>

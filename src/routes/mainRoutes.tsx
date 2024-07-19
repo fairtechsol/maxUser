@@ -46,6 +46,8 @@ const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
 const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
 const TeenPattiOpen = Loadable(lazy(() => import("../pages/teenPattiOpen")));
 const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
+const AmarAkbarAnthony = Loadable(lazy(() => import("../pages/amarAkbarAnthony")));
+const BollywoodTable = Loadable(lazy(() => import("../pages/bollywoodTable")));
 const Superover = Loadable(lazy(() => import("../pages/superover")));
 const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
 const DragonTigerSecond20 = Loadable(
@@ -62,6 +64,7 @@ const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
 const Poker6 = Loadable(lazy(() => import("../pages/poker")));
 const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
 const Abj1 = Loadable(lazy(() => import("../pages/abj")));
+const Worli = Loadable(lazy(() => import("../pages/worli")));
 const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
 const Race20 = Loadable(lazy(() => import("../pages/race20")));
 const Baccarat1 = Loadable(lazy(() => import("../pages/baccarat1")));
@@ -134,15 +137,31 @@ const MainRoutes = {
       element: <Mobile />,
     },
     {
+      path: "game-list/:type",
+      element: <GameList />,
+    },
+    {
+      path: "card3-list/:type",
+      element: <CardList3 />,
+    },
+    {
+      path: "card4-list/:type",
+      element: <CardList4 />,
+    },
+    {
+      path: "contact-admin",
+      element: <ContactAdmin />,
+    },
+    {
       path: "teenPatti20",
       element: <TeenPatti20 />,
     },
-    
+
     {
       path: "teen",
       element: <TeenPatti1D />,
     },
-    
+
     {
       path: "teen8",
       element: <TeenPattiOpen />,
@@ -152,10 +171,10 @@ const MainRoutes = {
       path: "teen9",
       element: <TeenPattiTest />,
     },
-    
+
     {
       path: "war",
-      element: <CasinoWar/>,
+      element: <CasinoWar />,
     },
 
     {
@@ -190,22 +209,7 @@ const MainRoutes = {
       path: "dt6",
       element: <DragonTigerOneDay />,
     },
-    {
-      path: "game-list/:type",
-      element: <GameList />,
-    },
-    {
-      path: "card3-list/:type",
-      element: <CardList3 />,
-    },
-    {
-      path: "card4-list/:type",
-      element: <CardList4 />,
-    },
-    {
-      path: "contact-admin",
-      element: <ContactAdmin />,
-    },
+
     {
       path: "32cards-B",
       element: <Cards32B />,
@@ -245,6 +249,19 @@ const MainRoutes = {
     {
       path: "*",
       element: <Navigate to={"/home"} replace />,
+    },
+    {
+      path: "aaa",
+      element: <AmarAkbarAnthony/>,
+    },
+    {
+      path: "btable",
+      element: <BollywoodTable/>,
+    },
+
+    {
+      path: "worli2",
+      element: <Worli/>,
     },
   ],
 };

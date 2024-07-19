@@ -48,13 +48,6 @@ const TeenPattiDesktop = () => {
     };
   }, []);
 
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
 
 
 
@@ -106,7 +99,7 @@ const TeenPattiDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-console.log(dragonTigerDetail, "data")
+  
   return (
     <>
       <Row>
@@ -394,7 +387,7 @@ console.log(dragonTigerDetail, "data")
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
-                  name={["A", "B", "T"]}
+                  name={["A", "T", "B"]}
                   type={"teen"}
                 />
               </div>
