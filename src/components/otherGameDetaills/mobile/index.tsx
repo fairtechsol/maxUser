@@ -11,8 +11,6 @@ import MyBet from "./myBet";
 import "../../gameDetails/mobile/style.scss";
 import FootballPlaceBet from "./placeBet";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
-import { ApiConstants } from "../../../utils/constants";
-import service from "../../../service";
 import { getChannelId } from "../../../helpers";
 
 // import "./style.scss";

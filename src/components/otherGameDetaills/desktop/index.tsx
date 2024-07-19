@@ -11,8 +11,6 @@ import { MatchType } from "../../../utils/enum";
 import { formatDate } from "../../../utils/dateUtils";
 import MyBet from "../../gameDetails/desktop/myBet";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
-import service from "../../../service";
-import { ApiConstants } from "../../../utils/constants";
 import { getChannelId } from "../../../helpers";
 
 const FootballDesktopGameDetail = () => {

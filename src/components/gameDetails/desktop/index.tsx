@@ -13,7 +13,6 @@ import { IoInformationCircle } from "react-icons/io5";
 import CustomModal from "../../commonComponent/modal";
 import service from "../../../service";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
-import { ApiConstants } from "../../../utils/constants";
 import { getChannelId } from "../../../helpers";
 
 const DesktopGameDetail = () => {
