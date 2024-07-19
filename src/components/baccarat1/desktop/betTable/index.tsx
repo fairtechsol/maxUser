@@ -4,11 +4,11 @@ import { Chart } from 'react-google-charts';
 
 const BaccaratStatistics = ({ odds }:any) => {
   // Extract relevant data for the pie chart
-//   const pieData = odds
-//     .filter(od => ['Player', 'Banker', 'Tie'].includes(od.nat))
-//     .map(od => [od.nat, parseFloat(od.b1)]);
+  // const pieData = odds
+  //   .filter((od: { nat: string; }) => ['Player', 'Banker', 'Tie'].includes(od.nat))
+  //   .map((od: { nat: any; b1: string; }) => [od.nat, parseFloat(od.b1)]);
 
-//   const chartData = [['Result', 'Percentage'], ...pieData];
+  // const chartData = [['Result', 'Percentage'], ...pieData];
 
   const options = {
     title: 'Baccarat Statistics',
@@ -20,11 +20,12 @@ const BaccaratStatistics = ({ odds }:any) => {
       2: { color: '#279532' },
     },
   };
-console.log(odds, "odds")
+// console.log(odds, "odds")
   return (
     <Container className='baccarat'>
+      <div style={{width: "18%"}}>
       <Row className="mt-2 justify-content-center baccarat-graph">
-        <Col md={6} className="text-center">
+        <Col md={3} className="text-center">
           <h4>Statistics</h4>
           <Chart
             chartType="PieChart"
@@ -35,14 +36,28 @@ console.log(odds, "odds")
           />
         </Col>
       </Row>
-      <Row className="baccarat-odds-container">
-        <div className='baccarat-other-odds'>
-        {odds?.slice(5, 9).map((odd:any, index:any) => (
-          <Col key={index} md={3} className="baccarat-other-odd-box suspended-box">
-            <div>{odd.nat}</div>
-            <div>{odd.b1}:1</div>
+      </div>
+      <div style={{width: "82%"}}>
+      <Row>
+        <div className='baccarat-other-odds '>
+        {/* {odds?.slice(5, 9).map((odd:any, index:any) => ( */}
+          <Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
+            <div>{"odd.nat"}</div>
+            <div>{"odd.b1"}:1</div>
           </Col>
-        ))}
+          <Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
+            <div>{"odd.nat"}</div>
+            <div>{"odd.b1"}:1</div>
+          </Col>
+          <Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
+            <div>{"odd.nat"}</div>
+            <div>{"odd.b1"}:1</div>
+          </Col>
+          <Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
+            <div>{"odd.nat"}</div>
+            <div>{"odd.b1"}:1</div>
+          </Col>
+        {/* ))} */}
         </div>
       </Row>
       <Row className="baccarat-main-odds mt-3">
@@ -85,6 +100,7 @@ console.log(odds, "odds")
           </div>
         </Col>
       </Row>
+      </div>
     </Container>
   );
 };

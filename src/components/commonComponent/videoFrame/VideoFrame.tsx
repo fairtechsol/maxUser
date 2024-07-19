@@ -45,11 +45,12 @@ const VideoFrame = ({ result, time, id }: any) => {
               <iframe
                 width="100%"
                 height={isMobile ? "250px" : "380px"}
+                // height="100%"  
                 src={id}
                 // transform={}
-                style={isMobile ?
-                  {transform :"scaleY(1.25)"} :{}
-                }
+                // style={isMobile ?
+                //   {transform :"scaleX(1.20)"} :{}
+                // }
                 // title="YouTube video player"
                 // frameborder="0"
                 // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

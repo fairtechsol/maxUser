@@ -1,11 +1,17 @@
 .baccarat-odds-container {
-    width: 80%;
+    // width: 80%;
+}
+
+.baccarat {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
 }
 .baccarat-other-odds {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-wrap: nowrap;
+    
+    gap: 10px;
     width: 100%;
 }
 
@@ -13,7 +19,7 @@
     width: 24%;
 }
 
-.baccarat .baccarat-graph {
+.baccarat-graph {
     width: 18%;
 }
 
@@ -21,19 +27,33 @@
     background-color: #ffc742;
     color: #fff;
     text-align: center;
-    // padding: 5px;
+    padding: 5px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex: 1;
 }
 .baccarat .baccarat-main-odds {
-    width: 100%;
+    // width: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
+}
+
+.baccarat-main-odds .player-box-container,
+.baccarat-main-odds .tie-box-container,
+.baccarat-main-odds .banker-box-container {
+  margin-left: -15px; 
+  margin-right: -15px; 
+}
+
+.baccarat-main-odds .player-pair-box-container,
+.baccarat-main-odds .banker-pair-box-container {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 @media only screen and (max-width: 1199px) {
     .baccarat .baccarat-other-odd-box {
