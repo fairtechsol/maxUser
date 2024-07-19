@@ -35,7 +35,7 @@ const Superover = () => {
         dispatch(
           casinoScoreboardMatchRates({
             id: Id[1],
-            type: cardGamesType.cricketv3,
+            type: cardGamesType.superover,
           })
         );
       }

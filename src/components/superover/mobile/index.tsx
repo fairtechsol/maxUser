@@ -20,6 +20,7 @@ import MyBet from "./myBet";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import { Table } from "react-bootstrap";
 import SuperoverResult from "../desktop/superOver";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -35,6 +36,10 @@ const SuperoverMobile = () => {
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -159,9 +164,7 @@ const SuperoverMobile = () => {
               </div>
             </div>
 
-            <div
-              style={{ height: "700px", marginTop: "9rem" }}
-            >
+            <div style={{ height: "700px", marginTop: "9rem" }}>
               <div className="" style={{ width: "100%", gap: "10px" }}>
                 <div className="w-100">
                   <Bookmaker
@@ -176,9 +179,10 @@ const SuperoverMobile = () => {
 
               <div style={{ width: "100%", marginTop: "5px" }}>
                 <CardResultBox
-                data={dragonTigerDetail}
-                name={["E", "R","T"]}
-                type={"superover"} />
+                  data={dragonTigerDetail}
+                  name={["E", "R", "T"]}
+                  type={"superover"}
+                />
               </div>
               <div className="sidebar-box place-bet-container super-over-rule">
                 <div className="marketHeader">
@@ -231,6 +235,7 @@ const SuperoverMobile = () => {
       </div>
 
       <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };
