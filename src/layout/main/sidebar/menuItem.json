@@ -81,7 +81,7 @@
         "id": "3cardsjudgement",
         "name": "3 Cards Judgement",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/card3-list/3cardj"
       },
       {
         "id": "binary",

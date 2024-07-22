@@ -68,6 +68,7 @@ const Worli = Loadable(lazy(() => import("../pages/worli")));
 const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
 const Race20 = Loadable(lazy(() => import("../pages/race20")));
 const Baccarat1 = Loadable(lazy(() => import("../pages/baccarat1")));
+const CardJ = Loadable(lazy(() => import("../pages/3cardJ")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -262,6 +263,11 @@ const MainRoutes = {
     {
       path: "worli2",
       element: <Worli/>,
+    },
+
+    {
+      path: "3cardj", 
+      element: <CardJ/>,
     },
   ],
 };

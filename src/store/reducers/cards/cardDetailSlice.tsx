@@ -30,6 +30,7 @@ import {
   casinoScoreboardMatchRates,
   updateBaccarat1Rates,
   updateCardWorliRates,
+  update3CardJRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -543,6 +544,24 @@ const cardDetail = createSlice({
           ...state.dragonTigerDetail,
           videoInfo,
           worli,
+        };
+      })
+      .addCase(update3CardJRates.fulfilled, (state, action) => {
+
+        console.log("3carj",action.payload)
+
+        const { t1, t2, t3 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        //const cardInfo = { ...t3[0] };
+        const yes = t2[0];
+        const no = t2[1];
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+         // cardInfo,
+          yes,
+          no,
         };
       })
       .addCase(resultDragonTiger.pending, (state) => {

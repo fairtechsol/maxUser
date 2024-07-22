@@ -301,6 +301,7 @@ export const cardGamesType: any = {
   amarAkbarAnthony: "aaa",
   btable: "btable",
   worli: "worli2",
+  cardj:"3cardj"
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -328,6 +329,7 @@ export const cardGamesId: any = {
   aaa: 3056,
   btable: 3041,
   worli: 3040,
+  cardj:3040,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -1745,6 +1747,16 @@ export const card3 = {
       name: "Worli",
     },
   ],
+
+  "3cardj":[
+    {
+      id: 25,
+      url: "/3cardj",
+      imgSrc:
+        "https://dataobj.ecoassetsservice.com/casino-icons/lc/3cardj.jpg",
+      name: "3 Cards Judgement",
+    },
+  ]
 };
 export const dragonTigerCards = [
   {
