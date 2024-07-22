@@ -267,6 +267,13 @@
   text-align: center;
   // line-height: 1;
 }
+
+.casino-volume {
+  font-size: 12px;
+  font-weight: 100;
+  line-height: 1;
+  margin-top: 5px;
+}
 @media (max-width: 768px) {
   .tabs-navs .nav-link {
     flex: 1 0 10%;
