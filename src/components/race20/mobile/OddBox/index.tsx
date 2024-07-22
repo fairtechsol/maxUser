@@ -127,7 +127,7 @@ const OddBox = ({ odds, data }: any) => {
                       }
                     >
                       <span className="rate-box">{item?.b1}</span>
-                      <span className="casino-volume">{item?.bs1}</span>
+                      <span className="casino-volume f400">{item?.bs1}</span>
                     </div>
                     <div
                       className={`lay-BackGround ${
@@ -148,7 +148,7 @@ const OddBox = ({ odds, data }: any) => {
                       }
                     >
                       <span className="rate-box">{item?.l1}</span>
-                      <span className="casino-volume">{item?.ls1}</span>
+                      <span className="casino-volume f400">{item?.ls1}</span>
                     </div>
                   </div>
                   <span
