@@ -80,7 +80,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
       };
     });
     // alert(tHeadTheme);
-  }, [currentPage, sortConfig]);
+  }, [currentPage, sortConfig, rowPerPage]);
 
   useEffect(() => {
     setCurrentPage(1);
