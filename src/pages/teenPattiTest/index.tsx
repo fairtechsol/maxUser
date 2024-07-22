@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/commonComponent/loader";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -22,6 +21,7 @@ import { cardGamesType } from "../../utils/constants";
 
 import TeentPattiComponentList from "../../components/teenPattiTest";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const TeenPattiTest = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -106,7 +106,7 @@ const TeenPattiTest = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Loader /> : <TeentPattiComponentList />;
+  return loading ? <InnerLoader /> : <TeentPattiComponentList />;
 };
 
 export default TeenPattiTest;

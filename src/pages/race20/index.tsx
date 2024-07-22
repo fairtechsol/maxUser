@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/commonComponent/loader";
 import { socket, socketService } from "../../socketManager";
 import {
   getPlacedBets,
@@ -21,6 +20,7 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 import Race20ComponentList from "../../components/race20";
+import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Race20 = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -108,7 +108,7 @@ const Race20 = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <Race20ComponentList /> : <Race20ComponentList />;
+  return loading ? <InnerLoader /> : <Race20ComponentList />;
 };
 
 export default Race20;
