@@ -10,11 +10,14 @@ import PlacedBet from "../../gameDetails/desktop/placeBet";
 import { MatchType } from "../../../utils/enum";
 import { formatDate } from "../../../utils/dateUtils";
 import MyBet from "../../gameDetails/desktop/myBet";
+import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
+import { getChannelId } from "../../../helpers";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
+  const [channelId, setChannelId] = useState<string>("");
 
   const { otherMatchDetails } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
@@ -34,6 +37,22 @@ const FootballDesktopGameDetail = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    try {
+      if (otherMatchDetails?.eventId) {
+        const callApiForLiveStream = async () => {
+          let result = await getChannelId(otherMatchDetails?.eventId);
+          if (result) {
+            setChannelId(result?.channelNo);
+          }
+        };
+        callApiForLiveStream();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [otherMatchDetails?.id]);
 
   return (
     <Container fluid>
@@ -64,12 +83,6 @@ const FootballDesktopGameDetail = () => {
                   />
                 </Col>
               )}
-
-              <Col md={12}>{/* <BetTable /> */}</Col>
-              <Col md={12}>{/* <BetTable /> */}</Col>
-              <Col md={6}>{/* <BetTable /> */}</Col>
-              <Col md={6}>{/* <BetTable /> */}</Col>
-              <Col md={4}>{/* <BetTable /> */}</Col>
 
               {/* {otherMatchDetails?.bookmaker?.isActive && (
                 <Col md={12}>
@@ -149,87 +162,6 @@ const FootballDesktopGameDetail = () => {
                       </Col>
                     </div>
                   ))}
-
-              {/* <Col md={12}>
-                <BetTable />
-              </Col>
-              <Col md={12}>
-                <BetTable />
-              </Col>
-              <Col md={6}>
-                <BetTable />
-              </Col>
-              <Col md={6}>
-                <BetTable />
-              </Col>
-              <Col md={4}>
-                {/* <BetTable /> */}
-              {/* </Col> */}
-              {/* <Col md={4}> */}
-              {/* <BetTable /> */}
-              {/* </Col> */}
-              {/* <Col md={12}> */}
-              {/* <BetTable /> */}
-              {/* </Col> */}
-              {/* )} */}
-              {/* {otherMatchDetails?.manualSessionActive && ( */}
-              {/* <Col md={4}>
-                  <BetTable
-                  />
-                </Col> */}
-
-              {/* )} */}
-
-              {/* <Col md={12}>
-                <CommonTabs
-                  customClass="overflow-x-auto overflow-y-hidden no-wrap"
-                  defaultActive="fancy"
-                >
-                  {[
-                    {
-                      id: "fancy",
-                      name: "Fancy 1",
-                    },
-                    {
-                      id: "meter",
-                      name: "Meter",
-                    },
-                    {
-                      id: "khado",
-                      name: "Khado",
-                    },
-                    {
-                      id: "oddEven",
-                      name: "OdeEven",
-                    },
-                  ]?.map((item) => {
-                    return (
-                      <Tab
-                        key={item?.id}
-                        eventKey={item?.id}
-                        tabClassName="m-match-list-tabs"
-                        title={
-                          <div className="title-12 text-uppercase f600">
-                            <span>{item?.name}</span>
-                          </div>
-                        }
-                      >
-                        <Row>
-                          {data?.session?.map((item: any, index: number) => (
-                            <Col md={6} key={index}>
-                              <BetTable
-                                title={item?.title}
-                                type={MatchType.SESSION_MARKET}
-                                data={item?.data}
-                              />
-                            </Col>
-                          ))}
-                        </Row>
-                      </Tab>
-                    );
-                  })}
-                </CommonTabs>
-              </Col> */}
             </Row>
           </Container>
         </Col>
@@ -243,6 +175,11 @@ const FootballDesktopGameDetail = () => {
                   : "100%",
               }}
             >
+              {channelId !== "0" && channelId !== "" && (
+                <Col md={12}>
+                  <LiveStreamComponent channelId={channelId} />
+                </Col>
+              )}
               <Col md={12}>
                 <PlacedBet />
               </Col>

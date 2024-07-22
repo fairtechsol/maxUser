@@ -572,7 +572,14 @@ img {
 .teenpatti-20 .suspended:after {
   width: 50%;
 }
+.no-scrollbar {
+  height: 400px;
+  overflow: auto;
+}
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 .suspended:after {
   position: absolute;
   display: flex;

@@ -28,6 +28,7 @@ import {
   updateAmarAkbarAnthonyCardMatchRates,
   updateBollywoodTableCardMatchRates,
   casinoScoreboardMatchRates,
+  updateBaccarat1Rates,
   updateCardWorliRates,
 } from "../../actions/cards/cardDetail";
 
@@ -453,6 +454,18 @@ const cardDetail = createSlice({
           odds,
         };
       })
+      .addCase(updateBaccarat1Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const odds = t2.slice(0, 9);
+
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          odds,
+        };
+      })
       .addCase(updateCricket5MatchRates.fulfilled, (state, action) => {
         const { t1, t2, t3 } = action.payload;
         state.loading = false;
@@ -521,7 +534,6 @@ const cardDetail = createSlice({
 
       .addCase(updateCardWorliRates.fulfilled, (state, action) => {
         const { t1, t2 } = action.payload;
-        console.log("worli", action.payload);
         state.loading = false;
         const videoInfo = { ...t1[0] };
 
@@ -533,7 +545,6 @@ const cardDetail = createSlice({
           worli,
         };
       })
-
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;

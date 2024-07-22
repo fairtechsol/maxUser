@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
 import isMobile from "../../../utils/screenDimension";
@@ -30,15 +30,15 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
         </div>
         
       </div>
-      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"space-around",alignItems:"center"}}>
-        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
+      <div style={{width:"80%",display:"flex",flexDirection: isMobile ? "column" : "row",justifyContent:"space-around",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection: "row",justifyContent:"center",alignItems:"center"}}>
         {data?.result?.win === "11" && (
               <div className="casino-winner-icon mt-3 p-2" >
                 <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
               </div>
             )}
-          <div style={{display:"flex",flexDirection:"column"}}>
-          <span className="title-18 f500">Player 1</span>
+          <div style={{display:"flex",flexDirection:"column", textAlign: "center"}}>
+          <span className="title-18 f500"> 1</span>
           <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
             <HandleCards card={resultCards?.[0]} />
             <HandleCards card={resultCards?.[6]} />
@@ -47,9 +47,9 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
           
         </div>
         
-        <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
-        <div style={{display:"flex",flexDirection:"column"}}>
-          <span className="title-18 f500">Player 6</span>
+        <div style={{display:"flex",flexDirection: "row",justifyContent:"center",alignItems:"center"}}>
+        <div style={{display:"flex",flexDirection:"column", textAlign: "center"}}>
+          <span className="title-18 f500"> 6</span>
           <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
             <HandleCards card={resultCards?.[5]} />
             <HandleCards card={resultCards?.[11]} />
@@ -62,15 +62,15 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
             )}
         </div>
       </div>
-      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+      <div style={{width:"80%",display:"flex",flexDirection:  isMobile ? "column" : "row",justifyContent:"space-between",alignItems:"center"}}>
         <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
         {data?.result?.win === "12" && (
               <div className="casino-winner-icon mt-3 p-2" >
                 <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
               </div>
             )}
-          <div style={{display:"flex",flexDirection:"column"}}>
-          <span className="title-18 f500">Player 2</span>
+          <div style={{display:"flex",flexDirection:"column", textAlign: "center"}}>
+          <span className="title-18 f500"> 2</span>
           <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
             <HandleCards card={resultCards?.[1]} />
             <HandleCards card={resultCards?.[7]} />
@@ -82,8 +82,8 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
           <span className="title-18 f500">Tie</span>
         </div>)}
         <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
-        <div style={{display:"flex",flexDirection:"column"}}>
-          <span className="title-18 f500">Player 5</span>
+        <div style={{display:"flex",flexDirection:"column", textAlign: "center"}}>
+          <span className="title-18 f500"> 5</span>
           <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
             <HandleCards card={resultCards?.[4]} />
             <HandleCards card={resultCards?.[10]} />
@@ -96,15 +96,15 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
             )}
         </div>
       </div>
-      <div style={{width:"80%",display:"flex",flexDirection:"row",justifyContent:"space-around",alignItems:"center",marginBottom:"10px"}}>
+      <div style={{width:"80%",display:"flex",flexDirection:  isMobile ? "column" : "row",justifyContent:"space-around",alignItems:"center",marginBottom:"10px"}}>
         <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
         {data?.result?.win === "13" && (
               <div className="casino-winner-icon mt-3 p-2" >
                 <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
               </div>
             )}
-          <div style={{display:"flex",flexDirection:"column"}}>
-          <span className="title-18 f500">Player 3</span>
+          <div style={{display:"flex",flexDirection:"column", textAlign: "center"}}>
+          <span className="title-18 f500"> 3</span>
           <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
             <HandleCards card={resultCards?.[2]} />
             <HandleCards card={resultCards?.[8]} />
@@ -114,8 +114,8 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
         </div>
         
         <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
-        <div style={{display:"flex",flexDirection:"column"}}>
-          <span className="title-18 f500">Player 4</span>
+        <div style={{display:"flex",flexDirection:"column", textAlign: "center"}}>
+          <span className="title-18 f500"> 4</span>
           <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
             <HandleCards card={resultCards?.[3]} />
             <HandleCards card={resultCards?.[9]} />
@@ -128,6 +128,22 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
             )}
         </div>
       </div>
+      {/* <Col xs={6} className=" justify-content-center">
+      <Row className="mt-2 justify-content-center">
+   
+          <div className="casino-result-desc">
+            <div className="casino-result-desc-item">
+              <div>Winner</div>
+              <div>Player 2</div>
+            </div>
+            <div className="casino-result-desc-item">
+              <div>Pattern</div>
+              <div>Pair</div>
+            </div>
+          </div>
+    
+      </Row>
+      </Col> */}
     </Container>
   );
 };

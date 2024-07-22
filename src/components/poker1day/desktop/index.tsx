@@ -143,7 +143,7 @@ const Poker1DayDesktop = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "350px" }}>
+            <div>
               <div className="poker-table-container ">
                 <div style={{width: "40%"}}>
                   <DynamicTable
@@ -186,7 +186,7 @@ const Poker1DayDesktop = () => {
               <Col md={12}>
                 <MyBet />
               </Col>
-              <Col>
+              <Col xs={12} className="no-scrollbar" style={{height: "400px", overflow: "auto"}}>
                 <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>

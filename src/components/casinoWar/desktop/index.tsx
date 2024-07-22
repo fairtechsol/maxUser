@@ -31,8 +31,6 @@ const TeenPattiDesktop = () => {
   //const { playerA, playerB } = dragonTigerDetail;
   const { players } = dragonTigerDetail;
 
-  
-
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -107,9 +105,6 @@ const TeenPattiDesktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-
-  
-  
   return (
     <>
       <Row>
@@ -137,9 +132,9 @@ const TeenPattiDesktop = () => {
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.players[0][0]?.min}|Max: ${
-                        dragonTigerDetail?.players[0][0]?.max
-                      }`
+                      )}|Min: ${
+                        dragonTigerDetail?.players?.[0]?.[0]?.min ?? 0
+                      }|Max: ${dragonTigerDetail?.players?.[0]?.[0]?.max ?? 0}`
                     : ""}
                 </span>
               </div>
@@ -161,42 +156,55 @@ const TeenPattiDesktop = () => {
             </div>
             <div style={{}}>
               <div className="teenPatti-table-container">
-                <div className="teenPatti-table-row" style={{ lineHeight: 2 ,marginTop:"2px" ,background:"fff"}}>
-                  <div
-                    style={{ width: "40%",  }}
-                  ></div>
+                <div
+                  className="teenPatti-table-row"
+                  style={{ lineHeight: 2, marginTop: "2px", background: "fff" }}
+                >
+                  <div style={{ width: "40%" }}></div>
                   <div
                     style={{
                       width: "60%",
-                      
+
                       display: "flex",
                       flexDirection: "row",
                     }}
                   >
                     <div
                       className="teenPatti-table-item f12-b"
-                      style={{ width: "16.7%",padding:"2px" }}
-                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C1} /></div>
+                      style={{ width: "16.7%", padding: "2px" }}
+                    >
+                      <HandleCards card={dragonTigerDetail?.videoInfo?.C1} />
+                    </div>
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "16.7%",padding:"2px"  }}
-                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C2} /></div>
+                      style={{ width: "16.7%", padding: "2px" }}
+                    >
+                      <HandleCards card={dragonTigerDetail?.videoInfo?.C2} />
+                    </div>
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "16.7%",padding:"2px"  }}
-                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C3} /></div>
+                      style={{ width: "16.7%", padding: "2px" }}
+                    >
+                      <HandleCards card={dragonTigerDetail?.videoInfo?.C3} />
+                    </div>
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "16.7%",padding:"2px"  }}
-                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C4} /></div>
+                      style={{ width: "16.7%", padding: "2px" }}
+                    >
+                      <HandleCards card={dragonTigerDetail?.videoInfo?.C4} />
+                    </div>
                     <div
                       className="teenPatti-table-item"
                       style={{ width: "16.7%" }}
-                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C5} /></div>
+                    >
+                      <HandleCards card={dragonTigerDetail?.videoInfo?.C5} />
+                    </div>
                     <div
                       className="teenPatti-table-item"
-                      style={{ width: "16.7%",padding:"2px"  }}
-                    ><HandleCards card={dragonTigerDetail?.videoInfo?.C6} /></div>
+                      style={{ width: "16.7%", padding: "2px" }}
+                    >
+                      <HandleCards card={dragonTigerDetail?.videoInfo?.C6} />
+                    </div>
                   </div>
                 </div>
 
@@ -252,7 +260,6 @@ const TeenPattiDesktop = () => {
                 </div>
 
                 {dragonTigerDetail?.players?.map((playerA: any, index: any) => {
-                  
                   return (
                     <div
                       key={index}
@@ -275,7 +282,7 @@ const TeenPattiDesktop = () => {
                       </div>
                       <div
                         className={
-                          //playerA[0]?.gstatus === "0" ? "suspended" : 
+                          //playerA[0]?.gstatus === "0" ? "suspended" :
                           ""
                         }
                         style={{
@@ -297,7 +304,35 @@ const TeenPattiDesktop = () => {
                             }
                           >
                             <span className="f12-b">{player.b1}</span>
-                            <span className="f10-b">0</span>
+                            <span
+                              className={`f400 title-14 ${
+                                dragonTigerDetail?.profitLoss
+                                  ? dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                    ]
+                                    ? dragonTigerDetail?.profitLoss[
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                      ] > 0
+                                      ? "color-green"
+                                      : dragonTigerDetail?.profitLoss[
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                        ] < 0
+                                      ? "color-red"
+                                      : ""
+                                    : ""
+                                  : ""
+                              }`}
+                            >
+                              {dragonTigerDetail?.profitLoss
+                                ? dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                  ]
+                                  ? dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                    ]
+                                  : 0
+                                : 0}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -333,28 +368,7 @@ const TeenPattiDesktop = () => {
                 <MyBet />
               </Col>
               <Col>
-                <div className="casino-title" style={{ position: "relative" }}>
-                  <span>Rules</span>
-                </div>
-                <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                          Pair Plus
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rules.map((item, index) => (
-                        <tr key={index}>
-                          <td className="box-7">{item.label}</td>
-                          <td className="box-3">{item.value}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </div>
+             
                 <RulesModal show={show} setShow={setShow} rule={tprules} />
               </Col>
             </Row>

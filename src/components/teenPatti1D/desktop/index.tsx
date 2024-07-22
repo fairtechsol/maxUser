@@ -28,9 +28,17 @@ const TeenPattiDesktop = () => {
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
-  
+
   const handleClose = () => {
     setShowInactivityModal(false);
+  };
+
+  const updatedValue = (value: any) => {
+    let parsedValue = parseFloat(value) * 0.01;
+    if (parsedValue !== 0) {
+      parsedValue += 1;
+    }
+    return parsedValue.toFixed(2);
   };
 
   useEffect(() => {
@@ -48,14 +56,11 @@ const TeenPattiDesktop = () => {
     };
   }, []);
 
-
-
-
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
-      odd: type === "BACK" ? item.b1 : item?.l1,
+      odd: type === "BACK" ? updatedValue(item.b1) : updatedValue(item?.l1),
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -99,7 +104,7 @@ const TeenPattiDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-  
+
   return (
     <>
       <Row>
@@ -244,7 +249,7 @@ const TeenPattiDesktop = () => {
                       }
                     >
                       <span className="f12-b">
-                        {playerA?.[0]?.b1}
+                        {updatedValue(playerA?.[0]?.b1)}
                       </span>
                       <span className="f10-b">{playerA?.[0]?.bs1}</span>
                     </div>
@@ -258,7 +263,7 @@ const TeenPattiDesktop = () => {
                       }
                     >
                       <span className="f12-b">
-                        {playerA?.[0]?.l1}
+                        {updatedValue(playerA?.[0]?.l1)}
                       </span>
                       <span className="f10-b">{playerA?.[0]?.ls1}</span>
                     </div>
@@ -334,7 +339,7 @@ const TeenPattiDesktop = () => {
                       }
                     >
                       <span className="f12-b">
-                        {playerB?.[0]?.b1}
+                        {updatedValue(playerB?.[0]?.b1)}
                       </span>
                       <span className="f10-b">{playerB?.[0]?.bs1}</span>
                     </div>
@@ -348,7 +353,7 @@ const TeenPattiDesktop = () => {
                       }
                     >
                       <span className="f12-b">
-                        {playerB?.[0]?.l1}
+                        {updatedValue(playerB?.[0]?.l1)}
                       </span>
                       {/* <span
                         className={`f10-b ${
