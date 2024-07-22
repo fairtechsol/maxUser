@@ -33,6 +33,14 @@ const TeenPattiDesktop = () => {
     setShowInactivityModal(false);
   };
 
+  const updatedValue = (value: any) => {
+    let parsedValue = parseFloat(value) * 0.01;
+    if (parsedValue !== 0) {
+      parsedValue += 1;
+    }
+    return parsedValue.toFixed(2);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
@@ -52,7 +60,7 @@ const TeenPattiDesktop = () => {
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
-      odd: type === "BACK" ? item.b1 : item?.l1,
+      odd: type === "BACK" ? updatedValue(item.b1) : updatedValue(item?.l1),
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -240,7 +248,9 @@ const TeenPattiDesktop = () => {
                           : handleBet(playerA?.[0], "BACK")
                       }
                     >
-                      <span className="f12-b">{playerA?.[0]?.b1}</span>
+                      <span className="f12-b">
+                        {updatedValue(playerA?.[0]?.b1)}
+                      </span>
                       <span className="f10-b">{playerA?.[0]?.bs1}</span>
                     </div>
                     <div
@@ -252,7 +262,9 @@ const TeenPattiDesktop = () => {
                           : handleBet(playerA?.[0], "LAY")
                       }
                     >
-                      <span className="f12-b">{playerA?.[0]?.l1}</span>
+                      <span className="f12-b">
+                        {updatedValue(playerA?.[0]?.l1)}
+                      </span>
                       <span className="f10-b">{playerA?.[0]?.ls1}</span>
                     </div>
                   </div>
@@ -326,7 +338,9 @@ const TeenPattiDesktop = () => {
                           : handleBet(playerB?.[0], "BACK")
                       }
                     >
-                      <span className="f12-b">{playerB?.[0]?.b1}</span>
+                      <span className="f12-b">
+                        {updatedValue(playerB?.[0]?.b1)}
+                      </span>
                       <span className="f10-b">{playerB?.[0]?.bs1}</span>
                     </div>
                     <div
@@ -338,7 +352,9 @@ const TeenPattiDesktop = () => {
                           : handleBet(playerB?.[0], "LAY")
                       }
                     >
-                      <span className="f12-b">{playerB?.[0]?.l1}</span>
+                      <span className="f12-b">
+                        {updatedValue(playerB?.[0]?.l1)}
+                      </span>
                       {/* <span
                         className={`f10-b ${
                           dragonTigerDetail?.profitLoss

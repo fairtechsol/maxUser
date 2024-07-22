@@ -24,8 +24,6 @@ const TeenPattiMobile = () => {
   const { playerA, playerB } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
-
-
   const updatedValue = (value: any) => {
     let parsedValue = parseFloat(value) * 0.01;
     if (parsedValue !== 0) {
@@ -386,7 +384,6 @@ const TeenPattiMobile = () => {
                   type={"teen"}
                 />
               </div>
-             
             </div>
           </div>
         ) : (
