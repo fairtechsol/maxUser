@@ -2,21 +2,19 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import "./style.scss";
-// import CardResultBox from "../../commonComponent/cardResultBox";
-// import CardResultBox from "../../commonComponent/cardResultBox";
 import { abjrules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Abj2Result from "../desktop/race20Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
 import Race20Result from "../desktop/race20Card";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -25,9 +23,14 @@ const Race20Mobile = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.andarBahar2}`
   );
+  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -95,7 +98,7 @@ const Race20Mobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -123,7 +126,6 @@ const Race20Mobile = () => {
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
-                 
                 </div>
               </div>
               <div
@@ -143,7 +145,7 @@ const Race20Mobile = () => {
 
             <div style={{ height: "880px" }}>
               <div style={{ width: "100%", marginTop: "20%" }}>
-              <OddBox
+                <OddBox
                   odds={dragonTigerDetail?.cards}
                   data={dragonTigerDetail}
                 />
@@ -167,7 +169,7 @@ const Race20Mobile = () => {
                   width: "100%",
                 }}
               >
-                 <WinBox
+                <WinBox
                   odds={dragonTigerDetail?.win}
                   data={dragonTigerDetail}
                 />
@@ -187,11 +189,8 @@ const Race20Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal
-        show={showInactivityModal}
-        setShow={setShowInactivityModal}
-        rule={abjrules}
-      />
+      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };
