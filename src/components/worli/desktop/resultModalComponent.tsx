@@ -88,6 +88,31 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
       },
     ],
   });
+
+  let a: any[] = [];
+
+  a = elementsAndar?.map((item: any) => {
+    if (item?.substring(0, item.length - 2) === "J") return 11;
+    if (item?.substring(0, item.length - 2) === "Q") return 12;
+    if (item?.substring(0, item.length - 2) === "K") return 13;
+    if (item?.substring(0, item.length - 2) === "A") return 1;
+    return Number(item?.substring(0, item.length - 2) || "");
+  });
+
+  console.log("cards", a, elementsAndar);
+
+  let sortString = 0,
+    sum = 0;
+
+  a?.sort()?.map((item) => {
+    if (item < 10) {
+      sortString = sortString * 10 + item;
+    } else {
+      sortString = sortString * 10 + (item % 10);
+    }
+    sum = (sum + item) % 10;
+  });
+
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="abjresultModal mb-2">
@@ -108,11 +133,20 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
                   alignItems: "center",
                 }}
               >
-                {elementsAndar?.map((item: any, index: any) => (
-                  <HandleCards key={index} card={item} />
-                ))}
+                {elementsAndar?.map((item: any, index: any) => {
+                  return <HandleCards key={index} card={item} />;
+                })}
               </div>
-              <span style={{ background: "#28a745", color: "#fff",paddingLeft:"30px",paddingRight:"30px" }}>0-0</span>
+              <span
+                style={{
+                  background: "#28a745",
+                  color: "#fff",
+                  paddingLeft: "30px",
+                  paddingRight: "30px",
+                }}
+              >
+                {sortString} -{sum}
+              </span>
             </div>
           </div>
         </div>
