@@ -48,7 +48,7 @@ const SuperoverMobile = () => {
 
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -108,7 +108,7 @@ const SuperoverMobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
