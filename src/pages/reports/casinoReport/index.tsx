@@ -100,6 +100,10 @@ const cardGames = [
     value: "war",
     label: "Casino War",
   },
+  {
+    value: "3cardj",
+    label: "3 Card Judgement",
+  },
   // {
   //   value: "worli2",
   //   label: "Instant Worli",

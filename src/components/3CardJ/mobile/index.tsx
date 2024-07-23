@@ -133,30 +133,46 @@ const CardJMobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "450px",marginTop:"70px" }}>
+            <div style={{marginTop:"70px" }}>
              
-              <div
+               <div
                 style={{
                   width: "100%",
+                  margin: "0px",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-               <CardBox
-                  title={"ANDAR"}
-                  bgColor={"#ffa07a"}
-                  odds={dragonTigerDetail?.ander}
+                <CardBox
+                  title={"Yes"}
+                  bgColor={"#03b2cb"}
+                  odds={dragonTigerDetail?.yes}
                   data={dragonTigerDetail}
                   cards={dragonTigerDetail?.cardInfo}
                 />
                 <CardBox
-                  title={"BAHAR"}
-                  bgColor={"#90ee90"}
-                  odds={dragonTigerDetail?.bahar}
+                  title={"No"}
+                  bgColor={"#FAA9BA"}
+                  odds={dragonTigerDetail?.no}
                   data={dragonTigerDetail}
                   cards={dragonTigerDetail?.cardInfo}
                 />
+               
+
+                <div className="ticker-container">
+                  <div className="ticker-wrap">
+                    <div
+                      className="ticker-move"
+                      style={{ color: "#8b0000", fontWeight: "700" }}
+                    >
+                      {dragonTigerDetail?.videoInfo?.remark}
+                    </div>
+                  </div>
+                </div>
+
               </div>
               <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["R", "R","R"]} type={cardGamesType.andarBahar1}/>
+                <CardResultBox data={dragonTigerDetail} name={["R", "R","R"]} type={cardGamesType.cardj}/>
               </div>
             </div>
           </div>

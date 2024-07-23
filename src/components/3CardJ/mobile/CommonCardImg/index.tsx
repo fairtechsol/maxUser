@@ -1,8 +1,8 @@
-import { back } from "../../../../assets/images";
 import { dragonTigerCards } from "../../../../utils/constants";
+import { back } from "../../../../assets/images";
 import { useEffect, useState } from "react";
 
-const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
+const CommonCardImg = ({ cardData, handleBet, data, cardInfo,setNat,nat }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
@@ -15,21 +15,25 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
     setCardImg(mergedArray);
   }, [cardData]);
 
-
   const handlock = (item: any) => {
-    if (item?.gstatus === "0" && cardInfo?.[0] === "" ) {
-      return 'suspended';
-    }else if(item?.gstatus === "0" && cardInfo?.[0] != "" ){
-      return "stop"
-    }else{
-      return ""
+    if (item?.gstatus === "0" && cardInfo?.[0] === "") {
+      return "suspended";
+    } else if (item?.gstatus === "0" && cardInfo?.[0] != "") {
+      return "stop";
+    } else {
+      return "";
     }
   };
+   
+  useEffect(()=>{
+    handleBet()
+  },[nat])
   return (
     <div className="commonCardImgContainer">
-      {cardImg?.map((item: any) => {
+      {cardImg?.map((item: any, index: number) => {
+        
         return (
-          <div>
+          <div key={index} style={{marginLeft:"5px"}}>
             <div
               key={item?.code}
               className={handlock(item)}
@@ -39,11 +43,17 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-              onClick={() => (handlock(item) !="" ? null : handleBet(item))}
+              onClick={() => handlock(item) !== "" ? null : setNat((p:any)=>{
+                return p.length<3? p+item[0]:p
+              }
+              ) }
+
             >
-              {
-              item?.show ? <img src={item?.imgSrc} width={"30px"} /> : <img src={back} width={"30px"} />
-            } 
+              {item?.show ? (
+                <img src={item?.imgSrc} width={"30px"} />
+              ) : (
+                <img src={back} width={"30px"} />
+              )}
             </div>
             <span
               style={{
@@ -69,6 +79,7 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                   : ""
               }`}
             >
+              {" "}
               {data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                   ? data?.profitLoss[
