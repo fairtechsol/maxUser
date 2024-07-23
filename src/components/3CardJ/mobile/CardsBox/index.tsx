@@ -8,7 +8,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const [nat, setNat] = useState("");
-  const handleBet = () => {
+  const handleBet = () => { 
     let team = {
       bettingType: "BACK",
       matchId: data?.id,

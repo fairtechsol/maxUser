@@ -98,11 +98,28 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     }
   };
 
+  const showBet = () => {
+    if (
+      selectedBet?.team?.name.charAt(0) == "Y" &&
+      selectedBet?.team?.name?.length === 7
+    ) {
+      return true;
+    }
+
+    if (
+      selectedBet?.team?.name.charAt(0) == "N" &&
+      selectedBet?.team?.name?.length === 6
+    ) {
+      return true;
+    }
+
+    return false;
+  };
   return (
     <>
       <CustomModal
         title={"Place Bet"}
-        show={show || selectedBet}
+        show={showBet() && (show || selectedBet)}
         setShow={() => {
           dispatch(selectedBetAction(null));
         }}
