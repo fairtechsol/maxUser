@@ -19,7 +19,7 @@ const LogoutTimer = () => {
     }
   }, [time]);
 
-  const handleOnIdle = (event: any) => {
+  const handleOnIdle = () => {
     const token = sessionStorage.getItem("jwtMaxUser");
     if (token) {
       handleScreen();

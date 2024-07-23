@@ -21,7 +21,7 @@ const reportSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(getCardReport.pending, (state, action) => {
+      .addCase(getCardReport.pending, (state) => {
         state.loading = true;
         state.error = null;
       })

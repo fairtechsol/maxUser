@@ -41,7 +41,6 @@ import {
 
 const GameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const { success } = useSelector((state: RootState) => state.match.matchList);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -204,7 +203,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     try {
-      if (id && getProfile?.roleName) {
+      if (id) {
         dispatch(selectedBetAction(null));
         dispatch(matchDetailAction(id));
         dispatch(getPlacedBets(id));
@@ -212,7 +211,7 @@ const GameDetails = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [id, getProfile?.roleName]);
+  }, [id]);
 
   useEffect(() => {
     try {
@@ -227,7 +226,7 @@ const GameDetails = () => {
         socketService.userBalance.sessionResultOff();
         socketService.userBalance.sessionNoResultOff();
         socketService.userBalance.sessionResultUnDeclareOff();
-        expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
+        expertSocketService.match.joinMatchRoom(id, "user");
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userSessionBetPlaced(setSessionBetsPlaced);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);

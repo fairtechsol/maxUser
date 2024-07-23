@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
 import isMobile from "../../../utils/screenDimension";

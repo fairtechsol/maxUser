@@ -22,7 +22,6 @@ import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 import Cricket5ComponentList from "../../components/cricket5";
 import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
-import service from "../../service";
 
 const Cricket5 = () => {
   const dispatch: AppDispatch = useDispatch();

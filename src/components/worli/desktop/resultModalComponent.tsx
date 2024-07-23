@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
-  const result = data?.result?.cards?.split('*')
+  const result = data?.result?.cards?.split("*");
   const elementsAndar = result?.[0]?.split(",");
   const elementsBahar = result?.[1]?.split(",");
 
@@ -58,7 +58,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
     );
   }
 
-  const sliderSettings = (length: any, arrow: any) => ({
+  const sliderSettings = (_: any, __: any) => ({
     infinite: false,
     // arrows: false,
     speed: 500,
@@ -98,11 +98,14 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
               margin: "8px 9px 10px 11px",
             }}
           >
-            <div style={{width:"100%",textAlign:"center"}}>ANDAR</div>
+            <div style={{ width: "100%", textAlign: "center" }}>ANDAR</div>
             <div>
               {elementsAndar?.length > minLength ? (
                 <Slider
-                  {...sliderSettings(elementsAndar.length, elementsAndar.length > minLength)}
+                  {...sliderSettings(
+                    elementsAndar.length,
+                    elementsAndar.length > minLength
+                  )}
                 >
                   {elementsAndar?.map((item: any, index: any) => (
                     <div key={index}>
@@ -111,31 +114,50 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
                   ))}
                 </Slider>
               ) : (
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" ,justifyContent:"space-around",alignItems:"center"}}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    flexWrap: "wrap",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                  }}
+                >
                   {elementsAndar?.map((item: any, index: any) => (
                     <HandleCards key={index} card={item} />
                   ))}
                 </div>
               )}
             </div>
-            <div style={{width:"100%",textAlign:"center"}}>BAHAR</div>
+            <div style={{ width: "100%", textAlign: "center" }}>BAHAR</div>
             <div>
               {elementsBahar?.length > minLength ? (
                 <Slider
-                  {...sliderSettings(elementsBahar.length, elementsBahar.length > minLength)}
+                  {...sliderSettings(
+                    elementsBahar.length,
+                    elementsBahar.length > minLength
+                  )}
                 >
                   {elementsBahar?.map((item: any, index: any) => {
-                    return item!='' && (
-                      <div key={index}>
-                      <HandleCards card={item} />
-                    </div>
-                    )
-                  }
-                  
-                  )}
+                    return (
+                      item != "" && (
+                        <div key={index}>
+                          <HandleCards card={item} />
+                        </div>
+                      )
+                    );
+                  })}
                 </Slider>
               ) : (
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" ,justifyContent:"space-around",alignItems:"center"}}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    flexWrap: "wrap",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                  }}
+                >
                   {elementsBahar?.map((item: any, index: any) => (
                     <HandleCards key={index} card={item} />
                   ))}

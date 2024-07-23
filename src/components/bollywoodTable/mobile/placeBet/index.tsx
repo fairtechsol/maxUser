@@ -25,7 +25,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
-  const { buttonValues, getProfile } = useSelector(
+  const { buttonValues } = useSelector(
     (state: RootState) => state.user.profile
   );
 
