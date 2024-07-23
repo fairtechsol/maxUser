@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { socket, socketService } from "../../socketManager";
 import {
@@ -22,31 +22,72 @@ import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 import Cricket5ComponentList from "../../components/cricket5";
 import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
+import service from "../../service";
 
 const Cricket5 = () => {
   const dispatch: AppDispatch = useDispatch();
+  const [errorCount, setErrorCount] = useState<number>(0);
   const { loading, dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
+  // useEffect(() => {
+  //   console.log('scoreboard')
+  //   const scoreBoard = () => {
+  //     if (dragonTigerDetail?.videoInfo?.mid) {
+  //       const Id = dragonTigerDetail.videoInfo?.mid.split(".");
+  //       dispatch(
+  //         casinoScoreboardMatchRates({
+  //           id: Id[1],
+  //           type: cardGamesType.cricketv3,
+  //         })
+  //       );
+  //       setCount(count+1)
+  //     }
+  //   };
+  //   const intervalId = setInterval(scoreBoard, 1000);
+
+  //   return () => clearInterval(intervalId);
+  // }, [count, dragonTigerDetail]);
+
+  const getScoreBoard = async (marketId: string) => {
+    try {
+      dispatch(
+        casinoScoreboardMatchRates({
+          id: marketId,
+          type: cardGamesType.cricketv3,
+        })
+      );
+      // const response: any = await service.get(
+      //   `https://casinoserviceapi.fairgame.club/api/tunnel/casino/sport-score/${marketId}?gameName=${cardGamesType.cricketv3}`
+      //   // `https://scoreboard.fairgame7.com/score/getMatchScore/${marketId}`
+      // );
+      setErrorCount(0);
+      // if (response) {
+      //   setLiveScoreBoardData(response);
+      // }
+    } catch (e: any) {
+      console.log("Error:", e?.message);
+      setErrorCount((prevCount: number) => prevCount + 1);
+    }
+  };
+
   useEffect(() => {
-    const scoreBoard = () => {
-      if (dragonTigerDetail?.videoInfo?.mid) {
-        const Id = dragonTigerDetail.videoInfo?.mid.split(".");
-        dispatch(
-          casinoScoreboardMatchRates({
-            id: Id[1],
-            type: cardGamesType.cricketv3,
-          })
-        );
+    if (dragonTigerDetail?.videoInfo?.mid) {
+      const Id = dragonTigerDetail.videoInfo?.mid.split(".");
+      let intervalTime = 1000;
+      if (errorCount >= 5 && errorCount < 10) {
+        intervalTime = 60000;
+      } else if (errorCount >= 10) {
+        intervalTime = 600000;
       }
-    };
-    const intervalId = setInterval(scoreBoard, 1000);
+      const interval = setInterval(() => {
+        getScoreBoard(Id[1]);
+      }, intervalTime);
 
-    return () => clearInterval(intervalId);
-  }, [dispatch, dragonTigerDetail]);
-
-
+      return () => clearInterval(interval);
+    }
+  }, [dragonTigerDetail?.videoInfo?.mid, errorCount]);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
