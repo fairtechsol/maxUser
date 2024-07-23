@@ -49,22 +49,25 @@ const MyBet = () => {
             {placedBets &&
               Array.from(new Set(placedBets))?.map((bet: any) => {
                 return (
-                  <tr
-                    key={bet?.id}
-                    className={`position-relative bg-blue3`}
-                  >
+                  <tr key={bet?.id}>
                     <th
-                      className={`title-12 text-start f500 bg-blue3 `}
+                      className={`title-12 text-start f500 ${
+                        bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                      }`}
                     >
                       {bet?.teamName}
                     </th>
                     <th
-                      className={`title-12 text-start f500 bg-blue3`}
+                      className={`title-12 text-start f500 ${
+                        bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                      }`}
                     >
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-12 text-start f500 bg-blue3 `}
+                      className={`title-12 text-start f500 ${
+                        bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
+                      }`}
                     >
                       {bet?.amount}
                     </th>
