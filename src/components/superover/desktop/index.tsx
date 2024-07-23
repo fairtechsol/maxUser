@@ -83,7 +83,7 @@ const SuperoverDesktop = () => {
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+          <div style={{ width: "100%",height:scoreBoardData?.data? "400px":"310px", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>

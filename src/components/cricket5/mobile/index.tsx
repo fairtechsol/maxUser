@@ -112,7 +112,7 @@ const Cricket5Mobile = ({fancyData}: any) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "240px" }}>
+            <div style={{ width: "100%", height:scoreBoardData?.data?"225px":"150px" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
