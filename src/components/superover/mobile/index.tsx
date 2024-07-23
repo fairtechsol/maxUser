@@ -130,10 +130,9 @@ const SuperoverMobile = () => {
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
-                backgroundColor: "#000",
               }}
             >
-              <div style={{ width: "100%", height: "275px" }}>
+              <div style={{ width: "100%", height: scoreBoardData?.data?"255px":"150px" }}>
                 <div className="horseRacingTabHeader-m">
                   <div>
                     <span style={{ fontSize: "14px", fontWeight: "600" }}>
