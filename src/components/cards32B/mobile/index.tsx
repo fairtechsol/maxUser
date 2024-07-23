@@ -11,7 +11,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/card32B";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import BackLay from "../desktop/BackLay";
 import PairBox from "./PairBox";
 import MyBet from "./myBet";
@@ -141,7 +141,7 @@ const Card32BMobile = () => {
                 </div>
               </div>
             </div>
-            <div style={{ height: "840px" }}>
+            <div style={{ height: "860px" }}>
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <BackLay
@@ -175,7 +175,7 @@ const Card32BMobile = () => {
               />
               </div>
               <div style={{ width: "97%", margin: "5px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["D", "T"]} />
+                <CardResultBox data={dragonTigerDetail} name={["8", "9", "10", "11"]} type={cardGamesType.card32B} />
               </div>
             </div>
           </>
