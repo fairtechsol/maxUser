@@ -50,36 +50,36 @@ const WinBox = ({ odds, data }: any) => {
                     onClick={() => (handleLock(item) ? null : handleBet(item))}
                   >
                     <span className="rate-box">{item?.b1}</span>{" "}
-                    <span
-                      className={`casino-volume f400 ${
-                        data?.profitLoss
-                          ? data?.profitLoss[
-                              `${data?.videoInfo?.mid}_${item?.sid}_card`
-                            ]
-                            ? data?.profitLoss[
-                                `${data?.videoInfo?.mid}_${item?.sid}_card`
-                              ] > 0
-                              ? "color-green"
-                              : data?.profitLoss[
-                                  `${data?.videoInfo?.mid}_${item?.sid}_card`
-                                ] < 0
-                              ? "color-red"
-                              : ""
-                            : ""
-                          : ""
-                      }`}
-                    >
-                      {data?.profitLoss
+                  </div>
+                  <span
+                    className={`casino-volume mt-0 f600 ${
+                      data?.profitLoss
                         ? data?.profitLoss[
                             `${data?.videoInfo?.mid}_${item?.sid}_card`
                           ]
                           ? data?.profitLoss[
                               `${data?.videoInfo?.mid}_${item?.sid}_card`
-                            ]
-                          : 0
-                        : 0}
-                    </span>
-                  </div>
+                            ] > 0
+                            ? "color-green"
+                            : data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.sid}_card`
+                              ] < 0
+                            ? "color-red"
+                            : ""
+                          : ""
+                        : ""
+                    }`}
+                  >
+                    {data?.profitLoss
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${item?.sid}_card`
+                        ]
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.sid}_card`
+                          ]
+                        : 0
+                      : 0}
+                  </span>
                 </div>
               </>
             );

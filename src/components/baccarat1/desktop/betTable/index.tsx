@@ -23,7 +23,7 @@ const BaccaratStatistics = ({ odds }:any) => {
   };
 // console.log(odds, "odds")
   return (
-    <Container className={isMobile ? "d-flex flex-column" : 'baccarat'}>
+    <div className={isMobile ? "d-flex flex-column" : 'd-flex flex-column baccarat'}>
       <div style={{width: "18%"}}>
       <Row className="mt-2 justify-content-center baccarat-graph">
         <Col md={3} className="text-center">
@@ -38,37 +38,35 @@ const BaccaratStatistics = ({ odds }:any) => {
         </Col>
       </Row>
       </div>
-      <div style={{width: "82%"}}>
+      <div style={{width: isMobile ? "100%" :"82%"}}>
       <Row>
-        <div className='baccarat-other-odds'>
-        {/* {odds?.slice(5, 9).map((odd:any, index:any) => ( */}
-          <Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
-            <div>{"odd.nat"}</div>
-            <div>{"odd.b1"}:1</div>
-          </Col>
-          <Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
-            <div>{"odd.nat"}</div>
-            <div>{"odd.b1"}:1</div>
-          </Col>
-          <Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
-            <div>{"odd.nat"}</div>
-            <div>{"odd.b1"}:1</div>
-          </Col>
-          <Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
-            <div>{"odd.nat"}</div>
-            <div>{"odd.b1"}:1</div>
-          </Col>
-        {/* ))} */}
+        <div className={isMobile ? "baccarat-other-odds-m" : 'baccarat-other-odds'}>
+         {/* {odds?.slice(5, 9).map((odd:any, index:any) => (  */}
+          <><Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
+        <div>{"odd.nat"}</div>
+        <div>{"odd.b1"}:1</div>
+      </Col><Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
+          <div>{"odd.nat"}</div>
+          <div>{"odd.b1"}:1</div>
+        </Col><Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
+          <div>{"odd.nat"}</div>
+          <div>{"odd.b1"}:1</div>
+        </Col><Col key={"index"} md={3} className="baccarat-other-odd-box suspended-box">
+          <div>{"odd.nat"}</div>
+          <div>{"odd.b1"}:1</div>
+        </Col></>
+         {/* ))}  */}
         </div>
       </Row>
-      <Row className="baccarat-main-odds mt-3">
-        <Col md={3} className="player-pair-box-container">
+      <div className='m-0 p-0'>
+      <Row className={isMobile ? "baccarat-main-odds-m mt-3 p-0" : "baccarat-main-odds mt-3"}>
+        <Col md={3} className={isMobile ? "player-pair-box-container-m" : "player-pair-box-container"}>
           <div className="player-pair-box suspended-box">
             <div>{"odds[3].nat"}</div>
             <div>{"odds[3].b1"}:1</div>
           </div>
         </Col>
-        <Col md={3} className="player-box-container">
+        <Col md={3} className={isMobile ? "player-box-m" :"player-box-container"}>
           <div className="player-box suspended-box">
             <div>{"odds[0].nat"}</div>
             <div>{"odds[0].b1"}:1</div>
@@ -78,13 +76,13 @@ const BaccaratStatistics = ({ odds }:any) => {
             </div>
           </div>
         </Col>
-        <Col md={3} className="tie-box-container">
+        <Col md={3} className={isMobile ? "player-box-m" :"tie-box-container"}>
           <div className="tie-box suspended-box">
             <div>{"odds[2].nat"}</div>
             <div>{"odds[2].b1"}:1</div>
           </div>
         </Col>
-        <Col md={3} className="banker-box-container">
+        <Col md={3} className={isMobile ? "player-box-m" :"banker-box-container"}>
           <div className="banker-box suspended-box">
             <div>{"odds[1].nat"}</div>
             <div>{"odds[1].b1"}:1</div>
@@ -94,7 +92,7 @@ const BaccaratStatistics = ({ odds }:any) => {
             </div>
           </div>
         </Col>
-        <Col md={3} className="banker-pair-box-container">
+        <Col md={3} className={isMobile ? "banker-pair-box-container-m" : "banker-pair-box-container"}>
           <div className="banker-pair-box suspended-box">
             <div>{"odds[4].nat"}</div>
             <div>{"odds[4].b1"}:1</div>
@@ -102,7 +100,8 @@ const BaccaratStatistics = ({ odds }:any) => {
         </Col>
       </Row>
       </div>
-    </Container>
+      </div>
+    </div>
   );
 };
 

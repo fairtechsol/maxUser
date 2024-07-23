@@ -142,7 +142,7 @@ const Baccarat1Mobile = () => {
 
             <div style={{ height: "700px" }}>
             <div
-                className="row-flex"
+                // className="row-flex"
                 style={{ width: "100%", margin: "22% 2% 5px 5px" }}
               >
                <BaccaratStatistics odds={dragonTigerDetail?.odds} />
