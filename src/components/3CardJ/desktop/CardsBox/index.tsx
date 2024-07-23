@@ -6,27 +6,28 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  
-   const [nat ,setNat] = useState("")
-  const handleBet = (name:any) => {
-  
+
+  const [nat, setNat] = useState("");
+  const handleBet = () => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
       odd: odds?.rate,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: nat,
-      name: nat,
+      betOnTeam: title + " " + nat,
+      name: title + " " + nat,
       bettingName: "Match odds",
       selectionId: odds?.sid,
     };
-    dispatch(
-      selectedBetAction({
-        team,
-        data,
-      })
-    );
+    if (nat !== "") {
+      dispatch(
+        selectedBetAction({
+          team,
+          data,
+        })
+      );
+    }
   };
 
   const arCards = cards?.ar?.split(",");
@@ -34,6 +35,10 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
 
   const handlock = () => {
     if (odds?.gstatus === "0") {
+      if (nat !== "") {
+        setNat("");
+      }
+
       return "suspended";
     } else {
       return "";
@@ -69,11 +74,26 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
         >
           <div>{odds?.rate}</div>
           <CommonCardImg
-            cardData={["A", "2", "3","4","5","6","7","8","9","10","J","Q","K"]}
+            cardData={[
+              "A",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "J",
+              "Q",
+              "K",
+            ]}
             cardInfo={title === "Yes" ? arCards : brCards}
             handleBet={handleBet}
             data={data}
             setNat={setNat}
+            nat={nat}
           />
         </div>
       </div>

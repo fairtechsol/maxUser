@@ -341,7 +341,7 @@ const cardDetail = createSlice({
       })
       .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
         if (action.payload) {
-          const { t1, t2 } = action.payload;
+          const { t1, t2 } = action?.payload;
           state.loading = false;
 
           console.log("ffri", action.payload);
@@ -350,7 +350,7 @@ const cardDetail = createSlice({
 
           // Create an array of players from t2 if t2 is present
           const players = t2
-            ? t2.map(({ sid, nat, b1, gstatus, min, max }: any) => ({
+            ? t2?.map(({ sid, nat, b1, gstatus, min, max }: any) => ({
                 sid,
                 nat,
                 b1,

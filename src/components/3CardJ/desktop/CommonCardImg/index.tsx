@@ -2,7 +2,7 @@ import { dragonTigerCards } from "../../../../utils/constants";
 import { back } from "../../../../assets/images";
 import { useEffect, useState } from "react";
 
-const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
+const CommonCardImg = ({ cardData, handleBet, data, cardInfo,setNat,nat }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
@@ -24,12 +24,16 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
       return "";
     }
   };
+   
+  useEffect(()=>{
+    handleBet()
+  },[nat])
   return (
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any, index: number) => {
-        console.log("item",item)
+        
         return (
-          <div key={index}>
+          <div key={index} style={{marginLeft:"5px"}}>
             <div
               key={item?.code}
               className={handlock(item)}
@@ -39,7 +43,11 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-              onClick={() =>{ handlock(item) != "" ? null : handleBet(item[0])}}
+              onClick={() => handlock(item) !== "" ? null : setNat((p:any)=>{
+                return p.length<3? p+item[0]:p
+              }
+              ) }
+
             >
               {item?.show ? (
                 <img src={item?.imgSrc} width={"30px"} />

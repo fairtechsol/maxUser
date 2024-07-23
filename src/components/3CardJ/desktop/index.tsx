@@ -72,6 +72,8 @@ const CardJDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  console.log("detail",dragonTigerDetail)
   return (
     <>
       <Row>
@@ -131,18 +133,31 @@ const CardJDesktop = () => {
               >
                 <CardBox
                   title={"Yes"}
-                  bgColor={"#ffa07a"}
+                  bgColor={"#03b2cb"}
                   odds={dragonTigerDetail?.yes}
                   data={dragonTigerDetail}
                   cards={dragonTigerDetail?.cardInfo}
                 />
                 <CardBox
                   title={"No"}
-                  bgColor={"#90ee90"}
+                  bgColor={"#FAA9BA"}
                   odds={dragonTigerDetail?.no}
                   data={dragonTigerDetail}
                   cards={dragonTigerDetail?.cardInfo}
                 />
+               
+
+                <div className="ticker-container">
+                  <div className="ticker-wrap">
+                    <div
+                      className="ticker-move"
+                      style={{ color: "#8b0000", fontWeight: "700" }}
+                    >
+                      {dragonTigerDetail?.videoInfo?.remark}
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
               <div style={{ width: "100%", margin: "5px" }}>
