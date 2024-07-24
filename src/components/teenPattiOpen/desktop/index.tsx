@@ -24,10 +24,10 @@ const TeenPattiDesktop = () => {
   const [show, setShow] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.teenOpen}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { players, pairsPlus } = dragonTigerDetail;
 
   const handleClose = () => {
@@ -75,7 +75,7 @@ const TeenPattiDesktop = () => {
       })
     );
   };
-  
+
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
@@ -127,6 +127,10 @@ const TeenPattiDesktop = () => {
   const { cardsArray: cardsArray1, playersArray: playersArray1 } =
     extractCardAndPlayerInfo(dragonTigerDetail?.videoInfo?.cards);
 
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.teenOpen}`);
+  }, []);
+
   return (
     <>
       <Row>
@@ -172,54 +176,65 @@ const TeenPattiDesktop = () => {
                 />
               </div>
             </div>
-            {loading ? <InnerLoader /> : <div>
-              <div className="teenPatti-table-container">
-                <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div>
+                <div className="teenPatti-table-container">
                   <div
-                    style={{ width: "40%", border: "0.1px solid #fff" }}
-                  ></div>
-                  <div
-                    style={{
-                      width: "60%",
-                      backgroundColor: "#72bbef",
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
+                    className="teenPatti-table-row"
+                    style={{ lineHeight: 2 }}
                   >
                     <div
-                      className="teenPatti-table-item f12-b"
-                      style={{ width: "50%" }}
-                    >
-                      BACK(Min: {dragonTigerDetail?.players?.player1?.min} Max: {dragonTigerDetail?.players?.player1?.max})
-                    </div>
+                      style={{ width: "40%", border: "0.1px solid #fff" }}
+                    ></div>
                     <div
-                      className="teenPatti-table-item f12-b"
-                      style={{ width: "50%" }}
-                    >(Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min} Max: {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})</div>
+                      style={{
+                        width: "60%",
+                        backgroundColor: "#72bbef",
+                        display: "flex",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <div
+                        className="teenPatti-table-item f12-b"
+                        style={{ width: "50%" }}
+                      >
+                        BACK(Min: {dragonTigerDetail?.players?.player1?.min}{" "}
+                        Max: {dragonTigerDetail?.players?.player1?.max})
+                      </div>
+                      <div
+                        className="teenPatti-table-item f12-b"
+                        style={{ width: "50%" }}
+                      >
+                        (Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min}{" "}
+                        Max: {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                {players &&
-                  Object.keys(players).map((key, index) => (
-                    <TeenPattiTableRow
-                      key={key}
-                      indx={index}
-                      player={players[key]}
-                      pairPlus={pairsPlus[`pairPlus${index + 1}`]}
-                      cardsA={cardsArray1}
-                      playersA={playersArray1}
-                      handleBet={handleBet}
-                    />
-                  ))}
+                  {players &&
+                    Object.keys(players).map((key, index) => (
+                      <TeenPattiTableRow
+                        key={key}
+                        indx={index}
+                        player={players[key]}
+                        pairPlus={pairsPlus[`pairPlus${index + 1}`]}
+                        cardsA={cardsArray1}
+                        playersA={playersArray1}
+                        handleBet={handleBet}
+                      />
+                    ))}
+                </div>
+                <div style={{ width: "100%", marginTop: "10px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["R", "R", "R"]}
+                    type={"teen8"}
+                  />
+                </div>
               </div>
-              <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["R", "R", "R"]}
-                  type={"teen8"}
-                />
-              </div>
-            </div>}
+            )}
           </div>
         </Col>
         <Col md={4} className="ps-0">

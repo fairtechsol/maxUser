@@ -21,12 +21,12 @@ const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.race20}`
-  );
+  const [videoFrameId, setVideoFrameId] = useState("");
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
@@ -60,6 +60,11 @@ const Race20Mobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.race20}`);
+  }, []);
+
   return (
     <>
       <div>
@@ -144,45 +149,49 @@ const Race20Mobile = () => {
               </div>
             </div>
 
-            {loading ? <InnerLoader /> :<div style={{ height: "880px" }}>
-              <div style={{ width: "100%", marginTop: "20%" }}>
-                <OddBox
-                  odds={dragonTigerDetail?.cards}
-                  data={dragonTigerDetail}
-                />
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "880px" }}>
+                <div style={{ width: "100%", marginTop: "20%" }}>
+                  <OddBox
+                    odds={dragonTigerDetail?.cards}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    padding: "5px 0px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                  }}
+                >
+                  <TotalsBox
+                    odds={dragonTigerDetail?.total}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  <WinBox
+                    odds={dragonTigerDetail?.win}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div style={{ width: "100%", marginTop: "10px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "B"]}
+                    type={cardGamesType.race20}
+                  />
+                </div>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  padding: "5px 0px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "8px",
-                }}
-              >
-                <TotalsBox
-                  odds={dragonTigerDetail?.total}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                }}
-              >
-                <WinBox
-                  odds={dragonTigerDetail?.win}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "B"]}
-                  type={cardGamesType.race20}
-                />
-              </div>
-            </div>}
+            )}
           </div>
         ) : (
           <>

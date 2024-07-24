@@ -17,17 +17,23 @@ import Abj2Result from "../desktop/abj2Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.andarBahar2}`
-  );
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -56,6 +62,11 @@ const Abj2Mobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.andarBahar2}`);
+  }, []);
+
   return (
     <>
       <div>
@@ -95,7 +106,7 @@ const Abj2Mobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -144,58 +155,62 @@ const Abj2Mobile = () => {
               </div>
             </div>
 
-            {loading ? <InnerLoader /> :<div style={{ height: "700px" }}>
-              <div style={{ width: "100%", marginTop: "20%" }}>
-                <SBetBox
-                  type={"A"}
-                  odds={dragonTigerDetail?.abjSa}
-                  data={dragonTigerDetail}
-                />
-                <SBetBox
-                  type={"B"}
-                  odds={dragonTigerDetail?.abjSb}
-                  data={dragonTigerDetail}
-                />
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "700px" }}>
+                <div style={{ width: "100%", marginTop: "20%" }}>
+                  <SBetBox
+                    type={"A"}
+                    odds={dragonTigerDetail?.abjSa}
+                    data={dragonTigerDetail}
+                  />
+                  <SBetBox
+                    type={"B"}
+                    odds={dragonTigerDetail?.abjSb}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    padding: "5px 0px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                  }}
+                >
+                  <OddEven
+                    card={true}
+                    odds={dragonTigerDetail?.oddEven}
+                    data={dragonTigerDetail}
+                  />
+                  <OddEven
+                    card={false}
+                    odds={dragonTigerDetail?.abjCards}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  <CardBox
+                    rate={12}
+                    cards={dragonTigerDetail?.cards}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div style={{ width: "100%", marginTop: "10px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "B"]}
+                    type={cardGamesType.andarBahar2}
+                  />
+                </div>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  padding: "5px 0px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "8px",
-                }}
-              >
-                <OddEven
-                  card={true}
-                  odds={dragonTigerDetail?.oddEven}
-                  data={dragonTigerDetail}
-                />
-                <OddEven
-                  card={false}
-                  odds={dragonTigerDetail?.abjCards}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                }}
-              >
-                <CardBox
-                  rate={12}
-                  cards={dragonTigerDetail?.cards}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "B"]}
-                  type={cardGamesType.andarBahar2}
-                />
-              </div>
-            </div>}
+            )}
           </div>
         ) : (
           <>
@@ -203,11 +218,8 @@ const Abj2Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal
-        show={showInactivityModal}
-        setShow={setShowInactivityModal}
-        rule={abjrules}
-      />
+      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

@@ -23,15 +23,13 @@ const WorliDesktop = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.worli}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
-
-  console.log("worlicomponent",dragonTigerDetail)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,6 +73,11 @@ const WorliDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
+  }, []);
+
   return (
     <>
       <Row>
@@ -120,40 +123,42 @@ const WorliDesktop = () => {
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<WorliResult data={dragonTigerDetail?.cardInfo} />}
                   id={videoFrameId}
-                /> 
+                />
               </div>
             </div>
-            {loading ? <InnerLoader /> :<div style={{ height: "460px" }}>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <CardBox
-                 
-                  odds={"L1"}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-                <CardBox
-                  
-                  odds={"L2"}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-              </div>
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "460px" }}>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <CardBox
+                    odds={"L1"}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
+                  <CardBox
+                    odds={"L2"}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
+                </div>
 
-              <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["R", "R", "R"]}
-                  type={cardGamesType.worli}
-                />
+                <div style={{ width: "100%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["R", "R", "R"]}
+                    type={cardGamesType.worli}
+                  />
+                </div>
               </div>
-            </div>}
+            )}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
