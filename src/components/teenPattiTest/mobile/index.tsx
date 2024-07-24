@@ -26,7 +26,7 @@ const TeenPattiMobile = () => {
   );
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
-  const { playerA, playerB } = dragonTigerDetail;
+  const { playerA } = dragonTigerDetail;
   const { sections, videoInfo } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
   const rules = [

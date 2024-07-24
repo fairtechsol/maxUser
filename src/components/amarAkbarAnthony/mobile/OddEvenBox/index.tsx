@@ -5,8 +5,6 @@ import CommonButtonBox from "../CommonButtonBox";
 
 const OddEven = ({ data, card, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -28,10 +26,12 @@ const OddEven = ({ data, card, odds }: any) => {
   };
 
   return (
-    <div className="oddEvenContaine" style={{background:"#EEEEEE",width:"32%"}}>
+    <div
+      className="oddEvenContaine"
+      style={{ background: "#EEEEEE", width: "32%" }}
+    >
       {card ? (
         <>
-          
           <div
             style={{
               display: "flex",

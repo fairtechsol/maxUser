@@ -15,8 +15,7 @@ import { crick5rules } from "../../../assets/images";
 import { Table } from "react-bootstrap";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
-const Cricket5Mobile = ({fancyData}: any) => {
-
+const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
@@ -28,7 +27,7 @@ const Cricket5Mobile = ({fancyData}: any) => {
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const [showFancy, setShowFancy] = useState(false);
+  const [showFancy] = useState(false);
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
@@ -113,7 +112,12 @@ const Cricket5Mobile = ({fancyData}: any) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height:scoreBoardData?.data?"225px":"150px" }}>
+            <div
+              style={{
+                width: "100%",
+                height: scoreBoardData?.data ? "225px" : "150px",
+              }}
+            >
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>

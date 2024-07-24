@@ -1,5 +1,3 @@
-import { Table } from "react-bootstrap";
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";

@@ -8,9 +8,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/superOver";
 import {
-  cardData,
   cardGamesId,
   cardUrl,
   rulesData,

@@ -6,7 +6,7 @@ interface Props {
     C2: string;
   };
 }
-const head=["team1","1","2","3","4","5","6","Run/Over","Score"]
+// const head=["team1","1","2","3","4","5","6","Run/Over","Score"]
 
 const Cricket5ResultComponent: React.FC<Props> = ({ data }: any) => {
 // console.log('first',data)

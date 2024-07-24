@@ -1,8 +1,3 @@
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
-import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
-
 const PlayerButton = ({
   value1,
   value2,
@@ -26,45 +21,66 @@ const PlayerButton = ({
         alignItems: "center",
         borderBottom: "1px solid #aaa",
         borderLeft: "1px solid #aaa",
-        borderRight: "1px solid #aaa"
+        borderRight: "1px solid #aaa",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", width: "70%" }}>
-        <div  >
+        <div>
           {value2 && value2 === "Amar" ? (
             <span
-              style={{ fontSize: "16px", fontWeight: "bolder", color: "red",paddingLeft:"4px" }}
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                color: "red",
+                paddingLeft: "4px",
+              }}
             >
               A.
             </span>
           ) : (
             ""
           )}
-           {value2 && value2 === "Akbar" ? (
+          {value2 && value2 === "Akbar" ? (
             <span
-              style={{ fontSize: "16px", fontWeight: "bolder", color: "red",paddingLeft:"4px" }}
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                color: "red",
+                paddingLeft: "4px",
+              }}
             >
               B.
             </span>
           ) : (
             ""
           )}
-           {value2 && value2 === "Anthony" ? (
+          {value2 && value2 === "Anthony" ? (
             <span
-              style={{ fontSize: "16px", fontWeight: "bolder", color: "red",paddingLeft:"4px" }}
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                color: "red",
+                paddingLeft: "4px",
+              }}
             >
               C.
             </span>
           ) : (
             ""
           )}
-          <span style={{ fontSize: "16px", fontWeight: "bolder",paddingLeft:"4px" }}>
+          <span
+            style={{
+              fontSize: "16px",
+              fontWeight: "bolder",
+              paddingLeft: "4px",
+            }}
+          >
             {value2 && value2}
           </span>
         </div>
         <div>
           <span
-            style={{ fontSize: "16px" ,paddingLeft:"4px"}}
+            style={{ fontSize: "16px", paddingLeft: "4px" }}
             className={`${
               value3 && value3 > 0
                 ? "color-green"
@@ -99,7 +115,7 @@ const PlayerButton = ({
           <div
             className="teenPatti-table-item"
             style={{ width: "50%" }}
-            onClick={() => handleBet(data,"BACK")}
+            onClick={() => handleBet(data, "BACK")}
           >
             <span className="f18-b my-2 fw-bold">
               {parseFloat(value1).toFixed(2)}
@@ -109,7 +125,7 @@ const PlayerButton = ({
           <div
             className={`teenPatti-table-item`}
             style={{ width: "50%", background: "#f9c9d4" }}
-            onClick={() => handleBet(data,"LAY")}
+            onClick={() => handleBet(data, "LAY")}
           >
             <span className="f18-b my-2 fw-bold">
               {parseFloat(value4).toFixed(2)}

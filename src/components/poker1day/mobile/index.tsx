@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { card32rules, p6rules } from "../../../assets/images";
-import { AppDispatch, RootState } from "../../../store/store";
+import { p6rules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -12,14 +12,11 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import DynamicTable from "../desktop/betTable";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { useDispatch } from "react-redux";
 import { Table } from "react-bootstrap";
 import Poker1DayResult from "../desktop/poker1DayCard";
 import PairBox from "../desktop/pairBox";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 const Poker1dayMobile = () => {
-  const dispatch: AppDispatch = useDispatch();
 
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -30,7 +27,6 @@ const Poker1dayMobile = () => {
   );
   const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const { playersBonusPair,  } = dragonTigerDetail;
 
   const bonus1 = [
     { label: "Pair (2-10)", value: "1 To 3" },
@@ -80,26 +76,26 @@ const Poker1dayMobile = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-  const handleBet = (item: any) => {
-    let team = {
-      bettingType: "BACK",
-      matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
-      bettingName: "Match odds",
-      selectionId: item?.sid,
-    };
-    dispatch(
-      selectedBetAction({
-        team,
-        dragonTigerDetail,
-      })
-    );
-    // console.log('team',team)
-  };
+  // const handleBet = (item: any) => {
+  //   let team = {
+  //     bettingType: "BACK",
+  //     matchId: dragonTigerDetail?.id,
+  //     odd: item?.rate,
+  //     stake: 0,
+  //     matchBetType: "matchOdd",
+  //     betOnTeam: item?.nat,
+  //     name: item?.nat,
+  //     bettingName: "Match odds",
+  //     selectionId: item?.sid,
+  //   };
+  //   dispatch(
+  //     selectedBetAction({
+  //       team,
+  //       dragonTigerDetail,
+  //     })
+  //   );
+  //   // console.log('team',team)
+  // };
   return (
     <>
       <div>

@@ -10,7 +10,6 @@ import {
   getDragonTigerDetailHorseRacing,
   updateBaccarat1Rates,
   updateBalanceOnBetPlaceCards,
-  updateCardAbjRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";

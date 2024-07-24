@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
@@ -30,7 +30,6 @@ const TeenPattiDesktop = () => {
   );
   const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   //const { playerA, playerB } = dragonTigerDetail;
-  const { players } = dragonTigerDetail;
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -51,13 +50,13 @@ const TeenPattiDesktop = () => {
     };
   }, []);
 
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
+  // const rules = [
+  //   { label: "Pair (Double)", value: "1 To 1" },
+  //   { label: "Flush (Color)", value: "1 To 4" },
+  //   { label: "Straight (Rown)", value: "1 To 6" },
+  //   { label: "Trio (Teen)", value: "1 To 35" },
+  //   { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
+  // ];
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -293,7 +292,7 @@ const TeenPattiDesktop = () => {
                           flexDirection: "row",
                         }}
                       >
-                        {playerA?.map((player: any, idx: any) => (
+                        {playerA?.map((player: any) => (
                           <div
                             key={player.sid}
                             className={`teenPatti-table-item ${
@@ -369,7 +368,6 @@ const TeenPattiDesktop = () => {
                 <MyBet />
               </Col>
               <Col>
-             
                 <RulesModal show={show} setShow={setShow} rule={tprules} />
               </Col>
             </Row>
