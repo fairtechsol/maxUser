@@ -115,7 +115,7 @@ const ChangeButtonValueComponent = () => {
               Price Value
             </span>
           </Col>
-          {values?.map((_: any, index: number) => {
+          {initialValues?.map((_: any, index: number) => {
             return (
               <React.Fragment key={index}>
                 <Col md={6} xs={6}>
