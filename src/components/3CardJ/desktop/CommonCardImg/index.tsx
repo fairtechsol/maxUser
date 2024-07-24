@@ -37,7 +37,7 @@ const CommonCardImg = ({
     }
   }, [data?.no?.gstatus]);
 
-  console.log("lock", data);
+  
   useEffect(() => {
     handleBet();
   }, [nat]);

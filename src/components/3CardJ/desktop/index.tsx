@@ -73,7 +73,7 @@ const CardJDesktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-  console.log("detail",dragonTigerDetail)
+  
   return (
     <>
       <Row>
