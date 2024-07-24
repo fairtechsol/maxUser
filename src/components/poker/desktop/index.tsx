@@ -23,10 +23,10 @@ const Poker6Desktop = () => {
 
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.poker}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -77,6 +77,10 @@ const Poker6Desktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.poker}`);
+  }, []);
+
   return (
     <div>
       <Row>
@@ -117,54 +121,58 @@ const Poker6Desktop = () => {
               />
             </div>
           </div>
-          {loading ? <InnerLoader /> :<div style={{ height: "760px", marginLeft: "10px" }}>
-            <div className="tab-containerp">
-              <div
-                className={`hands ${activeTab === "tab1" ? "active" : ""}`}
-                onClick={() => setActiveTab("tab1")}
-              >
-                Hands
-              </div>
-              <div
-                className={`hands ${activeTab === "tab2" ? "active" : ""}`}
-                onClick={() => setActiveTab("tab2")}
-              >
-                Pattern
-              </div>
-            </div>
-
-            <div className="tab-contentp">
-              {activeTab === "tab1" && (
-                <div style={{ width: "100%" }}>
-                  <TiePairBox
-                    handsData={dragonTigerDetail?.handsData}
-                    data={dragonTigerDetail}
-                    width={"49%"}
-                    title={"hand"}
-                    cards={dragonTigerDetail?.videoInfo}
-                  />
+          {loading ? (
+            <InnerLoader />
+          ) : (
+            <div style={{ height: "760px", marginLeft: "10px" }}>
+              <div className="tab-containerp">
+                <div
+                  className={`hands ${activeTab === "tab1" ? "active" : ""}`}
+                  onClick={() => setActiveTab("tab1")}
+                >
+                  Hands
                 </div>
-              )}
-              {activeTab === "tab2" && (
-                <div style={{ width: "100%" }}>
-                  <TiePairBox
-                    handsData={dragonTigerDetail?.patternData}
-                    data={dragonTigerDetail}
-                    width={"30%"}
-                    title={"pattern"}
-                  />
+                <div
+                  className={`hands ${activeTab === "tab2" ? "active" : ""}`}
+                  onClick={() => setActiveTab("tab2")}
+                >
+                  Pattern
                 </div>
-              )}
-            </div>
+              </div>
 
-            <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox
-                data={dragonTigerDetail}
-                name={["T", "1"]}
-                type={cardGamesType.poker6}
-              />
+              <div className="tab-contentp">
+                {activeTab === "tab1" && (
+                  <div style={{ width: "100%" }}>
+                    <TiePairBox
+                      handsData={dragonTigerDetail?.handsData}
+                      data={dragonTigerDetail}
+                      width={"49%"}
+                      title={"hand"}
+                      cards={dragonTigerDetail?.videoInfo}
+                    />
+                  </div>
+                )}
+                {activeTab === "tab2" && (
+                  <div style={{ width: "100%" }}>
+                    <TiePairBox
+                      handsData={dragonTigerDetail?.patternData}
+                      data={dragonTigerDetail}
+                      width={"30%"}
+                      title={"pattern"}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div style={{ width: "100%", margin: "5px" }}>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["T", "1"]}
+                  type={cardGamesType.poker6}
+                />
+              </div>
             </div>
-          </div>}
+          )}
 
           <RulesModal show={show} setShow={setShow} rule={p6rules} />
         </Col>

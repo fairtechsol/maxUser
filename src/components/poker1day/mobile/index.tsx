@@ -16,16 +16,17 @@ import { Table } from "react-bootstrap";
 import Poker1DayResult from "../desktop/poker1DayCard";
 import PairBox from "../desktop/pairBox";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 const Poker1dayMobile = () => {
-
   const [activeTab, setActiveTab] = useState(false);
+  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.poker1Day}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const bonus1 = [
@@ -47,6 +48,10 @@ const Poker1dayMobile = () => {
     { label: "Straight Flush", value: "1 TO 50" },
     { label: "Royal Flush", value: "1 TO 100" },
   ];
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -96,6 +101,11 @@ const Poker1dayMobile = () => {
   //   );
   //   // console.log('team',team)
   // };
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.poker1Day}`);
+  }, []);
+  
   return (
     <>
       <div>
@@ -135,7 +145,7 @@ const Poker1dayMobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -170,111 +180,120 @@ const Poker1dayMobile = () => {
                 {" "}
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Poker1DayResult data={dragonTigerDetail?.videoInfo} />}
+                  result={
+                    <Poker1DayResult data={dragonTigerDetail?.videoInfo} />
+                  }
                   id={videoFrameId}
                 />
               </div>
             </div>
-            {loading ? <InnerLoader /> : <div style={{ height: "920px" }}>
-              <div className="mt-5">
-                <DynamicTable
-                  back={true}
-                  odds={dragonTigerDetail?.oddsData}
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "920px" }}>
+                <div className="mt-5">
+                  <DynamicTable
+                    back={true}
+                    odds={dragonTigerDetail?.oddsData}
+                    data={dragonTigerDetail}
+                    min={dragonTigerDetail?.videoInfo?.min}
+                    max={dragonTigerDetail?.videoInfo?.max}
+                    playerNum={[8, 9]}
+                  />
+                </div>
+                <div className="horseRacingTabHeader-m mt-1">
+                  <div>
+                    <span style={{ fontSize: "14px", fontWeight: "600" }}>
+                      Bonus Bet
+                    </span>
+                  </div>
+                </div>
+                <PairBox
+                  odds={dragonTigerDetail?.playersBonusPair}
                   data={dragonTigerDetail}
                   min={dragonTigerDetail?.videoInfo?.min}
                   max={dragonTigerDetail?.videoInfo?.max}
-                  playerNum={[8, 9]}
                 />
-              </div>
-              <div className="horseRacingTabHeader-m mt-1">
+                <div style={{ marginTop: "10px" }}>
+                  {" "}
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "B", "T"]}
+                    type={cardGamesType.poker1Day}
+                  />
+                </div>
                 <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                   Bonus Bet
-                  </span>
-                </div>
-              </div>
-              <PairBox 
-                odds={dragonTigerDetail?.playersBonusPair}
-                data={dragonTigerDetail}
-                min={dragonTigerDetail?.videoInfo?.min}
-                max={dragonTigerDetail?.videoInfo?.max}
-               />
-              <div style={{ marginTop: "10px" }}>
-                {" "}
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "B", "T"]}
-                  type={ cardGamesType.poker1Day}
-                />
-              </div>
-              <div>
-                <div className="casino-title" style={{ position: "relative" }}>
-                  <span>Rules</span>
-                </div>
-                <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                        Bonus 1 (2 Cards Bonus)
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {bonus1.map((item, index) => (
-                        <tr key={index} style={{ lineHeight: 1 }}>
-                          <td
-                            className="box-7"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.label}
-                          </td>
-                          <td
-                            className="box-3"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.value}
-                          </td>
+                  <div
+                    className="casino-title"
+                    style={{ position: "relative" }}
+                  >
+                    <span>Rules</span>
+                  </div>
+                  <div className="table-responsive rules-table">
+                    <Table bordered>
+                      <thead>
+                        <tr>
+                          <th colSpan={2} className="box-10 text-center">
+                            Bonus 1 (2 Cards Bonus)
+                          </th>
                         </tr>
-                      ))}
-                       <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                        Bonus 2 (7 Cards Bonus)
-                        </th>
-                      </tr>
-                      {bonus2.map((item, index) => (
-                        <tr key={index} style={{ lineHeight: 1 }}>
-                          <td
-                            className="box-7"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.label}
-                          </td>
-                          <td
-                            className="box-3"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.value}
-                          </td>
+                      </thead>
+                      <tbody>
+                        {bonus1.map((item, index) => (
+                          <tr key={index} style={{ lineHeight: 1 }}>
+                            <td
+                              className="box-7"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.label}
+                            </td>
+                            <td
+                              className="box-3"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.value}
+                            </td>
+                          </tr>
+                        ))}
+                        <tr>
+                          <th colSpan={2} className="box-10 text-center">
+                            Bonus 2 (7 Cards Bonus)
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </Table>
+                        {bonus2.map((item, index) => (
+                          <tr key={index} style={{ lineHeight: 1 }}>
+                            <td
+                              className="box-7"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.label}
+                            </td>
+                            <td
+                              className="box-3"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.value}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div>
                 </div>
               </div>
-            </div>}
+            )}
           </div>
         ) : (
           <>
@@ -282,11 +301,8 @@ const Poker1dayMobile = () => {
           </>
         )}
       </div>
-      <RulesModal
-        show={showInactivityModal}
-        setShow={setShowInactivityModal}
-        rule={p6rules}
-      />
+      <RulesModal show={show} setShow={setShow} rule={p6rules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

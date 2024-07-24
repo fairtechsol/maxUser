@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 // import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
-// import BetTableHeader from "../../commonComponent/betTableHeader";
 import CommonTabs from "../../commonComponent/tabs";
 import BetTable from "../betTable";
 import MyBet from "./myBet";

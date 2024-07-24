@@ -23,13 +23,13 @@ const Card32BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.card32B}`
-  );
+  const [videoFrameId, setVideoFrameId] = useState("");
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
 
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
@@ -62,7 +62,11 @@ const Card32BMobile = () => {
       });
       clearInterval(intervalId);
     };
-  }, [lastActivityTime, show]);
+  }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.card32B}`);
+  }, []);
 
   return (
     <>
@@ -152,43 +156,51 @@ const Card32BMobile = () => {
                 </div>
               </div>
             </div>
-            {loading ? <InnerLoader /> :<div style={{ height: "860px" }}>
-              <div className="" style={{ width: "97%", gap: "10px" }}>
-                <div className="w-100">
-                  <BackLay
-                    matchOddsData={dragonTigerDetail?.matchOdd}
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "860px" }}>
+                <div className="" style={{ width: "97%", gap: "10px" }}>
+                  <div className="w-100">
+                    <BackLay
+                      matchOddsData={dragonTigerDetail?.matchOdd}
+                      data={dragonTigerDetail}
+                    />
+                  </div>
+                  <div className="w-100">
+                    <OddEven
+                      odds={dragonTigerDetail?.oddEven}
+                      data={dragonTigerDetail}
+                    />
+                  </div>
+                </div>
+                <div style={{ width: "97%", gap: "8px" }}>
+                  <PairBox
+                    matchOddsData={dragonTigerDetail?.redBlack}
                     data={dragonTigerDetail}
                   />
                 </div>
-                <div className="w-100">
-                  <OddEven
-                    odds={dragonTigerDetail?.oddEven}
+                <div style={{ width: "97%", gap: "8px" }}>
+                  <TotalCards
+                    odds={dragonTigerDetail?.cardtotal}
                     data={dragonTigerDetail}
                   />
                 </div>
+                <div style={{ width: "97%", marginLeft: "5px" }}>
+                  <CardBox
+                    odds={dragonTigerDetail?.singleCard}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div style={{ width: "97%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["8", "9", "10", "11"]}
+                    type={cardGamesType.card32B}
+                  />
+                </div>
               </div>
-              <div style={{ width: "97%", gap: "8px" }}>
-                <PairBox
-                  matchOddsData={dragonTigerDetail?.redBlack}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "97%", gap: "8px" }}>
-                <TotalCards
-                  odds={dragonTigerDetail?.cardtotal}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "97%", marginLeft: "5px" }}>
-                <CardBox
-                  odds={dragonTigerDetail?.singleCard}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "97%", margin: "5px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["8", "9", "10", "11"]} type={cardGamesType.card32B} />
-              </div>
-            </div>}
+            )}
           </>
         ) : (
           <>

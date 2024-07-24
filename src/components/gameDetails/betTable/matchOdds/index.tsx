@@ -514,10 +514,6 @@ function MatchOdds({
                         ))}
                     </BetStatusOverlay>
                   </td>
-                  {data?.activeStatus !== "live" ? (
-                    <div className="overlay"></div>
-                  ) : null}
-                  {/* {!isMobile && <td></td>} */}
                 </tr>
               );
             })}

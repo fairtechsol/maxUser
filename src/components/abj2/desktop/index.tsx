@@ -25,10 +25,10 @@ const Abj2Desktop = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.andarBahar2}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -76,6 +76,10 @@ const Abj2Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.andarBahar2}`);
+  }, []);
 
   return (
     <>
@@ -125,65 +129,69 @@ const Abj2Desktop = () => {
                 />
               </div>
             </div>
-            {loading ? <InnerLoader /> : <div style={{ height: "460px" }}>
-              <div
-                className="row-flex"
-                style={{ width: "100%", margin: "5% 2% 5px 5px" }}
-              >
-                <SBetBox
-                  type={"A"}
-                  odds={dragonTigerDetail?.abjSa}
-                  data={dragonTigerDetail}
-                />
-                <SBetBox
-                  type={"B"}
-                  odds={dragonTigerDetail?.abjSb}
-                  data={dragonTigerDetail}
-                />
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "460px" }}>
+                <div
+                  className="row-flex"
+                  style={{ width: "100%", margin: "5% 2% 5px 5px" }}
+                >
+                  <SBetBox
+                    type={"A"}
+                    odds={dragonTigerDetail?.abjSa}
+                    data={dragonTigerDetail}
+                  />
+                  <SBetBox
+                    type={"B"}
+                    odds={dragonTigerDetail?.abjSb}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                  }}
+                >
+                  <OddEven
+                    card={true}
+                    odds={dragonTigerDetail?.oddEven}
+                    data={dragonTigerDetail}
+                  />
+                  <OddEven
+                    card={false}
+                    odds={dragonTigerDetail?.abjCards}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                  }}
+                >
+                  <CardBox
+                    rate={12}
+                    cards={dragonTigerDetail?.cards}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div style={{ width: "100%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "B"]}
+                    type={cardGamesType.andarBahar2}
+                  />
+                </div>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <OddEven
-                  card={true}
-                  odds={dragonTigerDetail?.oddEven}
-                  data={dragonTigerDetail}
-                />
-                <OddEven
-                  card={false}
-                  odds={dragonTigerDetail?.abjCards}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <CardBox
-                  rate={12}
-                  cards={dragonTigerDetail?.cards}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "B"]}
-                  type={cardGamesType.andarBahar2}
-                />
-              </div>
-            </div>}
+            )}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>

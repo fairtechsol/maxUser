@@ -2,9 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import {
-  card32rules,
-} from "../../../assets/images";
+import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -24,10 +22,8 @@ const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.superover}`
-  );
-  const { dragonTigerDetail, scoreBoardData,loading } = useSelector(
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, scoreBoardData, loading } = useSelector(
     (state: RootState) => state.card
   );
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -79,11 +75,22 @@ const SuperoverDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.superover}`);
+  }, []);
+
   return (
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ width: "100%",height:scoreBoardData?.data? "400px":"310px", margin: "5px" }}>
+          <div
+            style={{
+              width: "100%",
+              height: scoreBoardData?.data ? "400px" : "310px",
+              margin: "5px",
+            }}
+          >
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -124,30 +131,34 @@ const SuperoverDesktop = () => {
               />
             </div>
           </div>
-          {loading ? <InnerLoader /> :  <div style={{ height: "760px", marginLeft: "5px" }}>
-            <div
-              className="d-sm-flex flex-row justify-content-around align-items-center"
-              style={{ width: "100%", marginTop: "7rem", gap: "10px" }}
-            >
-              <div className="w-100">
-                <Bookmaker
-                  title={"Bookmaker"}
-                  min={dragonTigerDetail?.videoInfo?.min}
-                  max={dragonTigerDetail?.videoInfo?.max}
-                  matchOddsData={dragonTigerDetail?.bookmaker}
+          {loading ? (
+            <InnerLoader />
+          ) : (
+            <div style={{ height: "760px", marginLeft: "5px" }}>
+              <div
+                className="d-sm-flex flex-row justify-content-around align-items-center"
+                style={{ width: "100%", marginTop: "7rem", gap: "10px" }}
+              >
+                <div className="w-100">
+                  <Bookmaker
+                    title={"Bookmaker"}
+                    min={dragonTigerDetail?.videoInfo?.min}
+                    max={dragonTigerDetail?.videoInfo?.max}
+                    matchOddsData={dragonTigerDetail?.bookmaker}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+              </div>
+
+              <div style={{ width: "100%", margin: "5px" }}>
+                <CardResultBox
                   data={dragonTigerDetail}
+                  name={["E", "R", "T"]}
+                  type={"superover"}
                 />
               </div>
             </div>
-
-            <div style={{ width: "100%", margin: "5px" }}>
-              <CardResultBox
-                data={dragonTigerDetail}
-                name={["E", "R","T"]}
-                type={"superover"}
-              />
-            </div>
-          </div>}
+          )}
 
           <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>

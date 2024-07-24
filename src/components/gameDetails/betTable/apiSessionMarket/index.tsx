@@ -272,10 +272,6 @@ function ApiSessionMarketTable({
                     )}
                   </BetStatusOverlay>
                 </td>
-
-                {item.activeStatus !== "live" ? (
-                  <div className="overlay"></div>
-                ) : null}
               </tr>
             );
           })}

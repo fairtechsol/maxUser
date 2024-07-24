@@ -13,18 +13,24 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import Poker6Result from "../desktop/poker6Card";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Poker6Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [activeCardTab, setActiveCardTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.poker}`
-  );
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -53,6 +59,10 @@ const Poker6Mobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.poker}`);
+  }, []);
 
   return (
     <>
@@ -93,7 +103,7 @@ const Poker6Mobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -128,83 +138,85 @@ const Poker6Mobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={
-                    <Poker6Result data={dragonTigerDetail?.videoInfo} />
-                  }
+                  result={<Poker6Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
 
-            {loading ? <InnerLoader /> :<div style={{ height: "820px" }}>
-              <div className="dt20TabBox mt-2">
-                <div className="dt20tabheaderp mt-4 ">
-                  <div
-                    style={{
-                      height: "100%",
-                      borderTop: !activeCardTab ? "2px solid white" : "none",
-                      padding: "5px",
-                      width: "100%"
-                    }}
-                  >
-                    <span
-                      style={{ fontSize: "12px", fontWeight: "bold" }}
-                      onClick={() => setActiveCardTab(false)}
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "820px" }}>
+                <div className="dt20TabBox mt-2">
+                  <div className="dt20tabheaderp mt-4 ">
+                    <div
+                      style={{
+                        height: "100%",
+                        borderTop: !activeCardTab ? "2px solid white" : "none",
+                        padding: "5px",
+                        width: "100%",
+                      }}
                     >
-                      HANDS
-                    </span>
-                  </div>
-                  <span
-                    style={{ fontSize: "18px", padding: "5px 0px 0px 0px" }}
-                  >
-                    {" "}
-                    |{" "}
-                  </span>
-                  <div
-                    style={{
-                      height: "100%",
-                      borderTop: activeCardTab ? "2px solid white" : "none",
-                      padding: "5px",
-                      width: "100%"
-                    }}
-                  >
+                      <span
+                        style={{ fontSize: "12px", fontWeight: "bold" }}
+                        onClick={() => setActiveCardTab(false)}
+                      >
+                        HANDS
+                      </span>
+                    </div>
                     <span
-                      style={{ fontSize: "12px", fontWeight: "bold" }}
-                      onClick={() => setActiveCardTab(true)}
+                      style={{ fontSize: "18px", padding: "5px 0px 0px 0px" }}
                     >
-                      PATTERN
+                      {" "}
+                      |{" "}
                     </span>
+                    <div
+                      style={{
+                        height: "100%",
+                        borderTop: activeCardTab ? "2px solid white" : "none",
+                        padding: "5px",
+                        width: "100%",
+                      }}
+                    >
+                      <span
+                        style={{ fontSize: "12px", fontWeight: "bold" }}
+                        onClick={() => setActiveCardTab(true)}
+                      >
+                        PATTERN
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {activeCardTab ? (
-                <div>
-                  <TiePairBox
-                    handsData={dragonTigerDetail?.patternData}
+                {activeCardTab ? (
+                  <div>
+                    <TiePairBox
+                      handsData={dragonTigerDetail?.patternData}
+                      data={dragonTigerDetail}
+                      width={"30%"}
+                      title={"pattern"}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <TiePairBox
+                      handsData={dragonTigerDetail?.handsData}
+                      data={dragonTigerDetail}
+                      width={"49%"}
+                      title={"hand"}
+                      cards={dragonTigerDetail?.videoInfo}
+                    />
+                  </div>
+                )}
+                <div style={{ width: "100%", marginTop: "15px" }}>
+                  <CardResultBox
                     data={dragonTigerDetail}
-                    width={"30%"}
-                    title={"pattern"}
+                    name={["T", "1"]}
+                    type={cardGamesType.poker6}
                   />
                 </div>
-              ) : (
-                <div>
-                  <TiePairBox
-                    handsData={dragonTigerDetail?.handsData}
-                    data={dragonTigerDetail}
-                    width={"49%"}
-                    title={"hand"}
-                    cards={dragonTigerDetail?.videoInfo}
-                  />
-                </div>
-              )}
-              <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["T", "1"]}
-                  type={cardGamesType.poker6}
-                />
               </div>
-            </div>}
+            )}
           </div>
         ) : (
           <>
@@ -212,11 +224,8 @@ const Poker6Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal
-        show={showInactivityModal}
-        setShow={setShowInactivityModal}
-        rule={p6rules}
-      />
+      <RulesModal show={show} setShow={setShow} rule={p6rules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

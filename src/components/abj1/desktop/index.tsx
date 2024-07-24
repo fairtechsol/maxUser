@@ -23,10 +23,10 @@ const Abj1Desktop = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.andarBahar1}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -73,6 +73,11 @@ const Abj1Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.andarBahar1}`);
+  }, []);
+
   return (
     <>
       <Row>
@@ -121,39 +126,43 @@ const Abj1Desktop = () => {
                 />
               </div>
             </div>
-           {loading ? <InnerLoader /> : <div style={{ height: "460px" }}>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <CardBox
-                  title={"ANDAR"}
-                  bgColor={"#ffa07a"}
-                  odds={dragonTigerDetail?.ander}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-                <CardBox
-                  title={"BAHAR"}
-                  bgColor={"#90ee90"}
-                  odds={dragonTigerDetail?.bahar}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-              </div>
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "460px" }}>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <CardBox
+                    title={"ANDAR"}
+                    bgColor={"#ffa07a"}
+                    odds={dragonTigerDetail?.ander}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
+                  <CardBox
+                    title={"BAHAR"}
+                    bgColor={"#90ee90"}
+                    odds={dragonTigerDetail?.bahar}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
+                </div>
 
-              <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["R", "R", "R"]}
-                  type={cardGamesType.andarBahar1}
-                />
+                <div style={{ width: "100%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["R", "R", "R"]}
+                    type={cardGamesType.andarBahar1}
+                  />
+                </div>
               </div>
-            </div>}
+            )}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>

@@ -14,17 +14,22 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 const Cards32Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
+  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.card32}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
@@ -52,6 +57,10 @@ const Cards32Mobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.card32}`);
+  }, []);
 
   return (
     <>
@@ -92,7 +101,7 @@ const Cards32Mobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -132,31 +141,35 @@ const Cards32Mobile = () => {
                 />
               </div>
             </div>
-            {loading ? <InnerLoader /> : <div style={{ height: "400px" }}>
-              <div className="mt-5">
-                <DynamicTable
-                  back={true}
-                  odds={dragonTigerDetail?.set1}
-                  data={dragonTigerDetail}
-                  playerNum={[8, 9]}
-                />
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "400px" }}>
+                <div className="mt-5">
+                  <DynamicTable
+                    back={true}
+                    odds={dragonTigerDetail?.set1}
+                    data={dragonTigerDetail}
+                    playerNum={[8, 9]}
+                  />
 
-                <DynamicTable
-                  back={false}
-                  odds={dragonTigerDetail?.set2}
-                  data={dragonTigerDetail}
-                  playerNum={[10, 11]}
-                />
+                  <DynamicTable
+                    back={false}
+                    odds={dragonTigerDetail?.set2}
+                    data={dragonTigerDetail}
+                    playerNum={[10, 11]}
+                  />
+                </div>
+                <div style={{ marginTop: "10px" }}>
+                  {" "}
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["8", "9", "10", "11"]}
+                    type={"card32"}
+                  />
+                </div>
               </div>
-              <div style={{ marginTop: "10px" }}>
-                {" "}
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["8", "9", "10", "11"]}
-                  type={"card32"}
-                />
-              </div>
-            </div>}
+            )}
           </div>
         ) : (
           <>
@@ -164,11 +177,8 @@ const Cards32Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal
-        show={showInactivityModal}
-        setShow={setShowInactivityModal}
-        rule={card32rules}
-      />
+      <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

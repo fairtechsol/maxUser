@@ -22,10 +22,10 @@ const Baccarat1Desktop = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.baccarat}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -74,6 +74,10 @@ const Baccarat1Desktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.baccarat}`);
+  }, []);
+
   return (
     <>
       <Row>
@@ -117,27 +121,31 @@ const Baccarat1Desktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                //   result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+                  //   result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
-            {loading ? <InnerLoader /> :<div style={{ height: "1060px" }}>
-              <div
-                className="row-flex"
-                style={{ width: "100%", margin: "5% 2% 5px 5px" }}
-              >
-               <BaccaratStatistics odds={dragonTigerDetail?.odds} />
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "1060px" }}>
+                <div
+                  className="row-flex"
+                  style={{ width: "100%", margin: "5% 2% 5px 5px" }}
+                >
+                  <BaccaratStatistics odds={dragonTigerDetail?.odds} />
+                </div>
+
+                <div style={{ width: "100%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "B"]}
+                    type={cardGamesType.andarBahar2}
+                  />
+                </div>
               </div>
-             
-              <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "B"]}
-                  type={cardGamesType.andarBahar2}
-                />
-              </div>
-            </div>}
+            )}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
