@@ -35,6 +35,7 @@ import SmoothDropdownModal from "./minMaxModal";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
@@ -159,7 +160,7 @@ const DragonTigerDesktop = () => {
   );
   const [firstArr, setFirstArr] = useState(data1);
   const [secondArr, setSecondArr] = useState(data2);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [activeCardTab, setActiveCardTab] = useState(false);
@@ -327,7 +328,7 @@ const DragonTigerDesktop = () => {
               />
             </div>
           </div>
-          <div style={{ height: "660px" }}>
+          {loading ? <InnerLoader /> :<div style={{ height: "660px" }}>
             <div
               style={{
                 width: "100%",
@@ -692,7 +693,7 @@ const DragonTigerDesktop = () => {
                 type={cardGamesType.dragonTigerLion}
               />
             </div>
-          </div>
+          </div>}
 
           <RulesModal show={show} setShow={setShow} rule={dtrules} />
         </Col>

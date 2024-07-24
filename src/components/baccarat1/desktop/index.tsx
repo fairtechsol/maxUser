@@ -14,6 +14,7 @@ import "./style.scss";
 import PlacedBet from "./placeBet";
 import MyBet from "./myBet";
 import BaccaratStatistics from "./betTable";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Baccarat1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -24,7 +25,7 @@ const Baccarat1Desktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.baccarat}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -121,7 +122,7 @@ const Baccarat1Desktop = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "1060px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "1060px" }}>
               <div
                 className="row-flex"
                 style={{ width: "100%", margin: "5% 2% 5px 5px" }}
@@ -136,7 +137,7 @@ const Baccarat1Desktop = () => {
                   type={cardGamesType.andarBahar2}
                 />
               </div>
-            </div>
+            </div>}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>

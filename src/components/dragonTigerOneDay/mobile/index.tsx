@@ -15,6 +15,7 @@ import PairBox from "./PairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -27,7 +28,7 @@ const DragonTigerMobile = () => {
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
 
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -146,7 +147,7 @@ const DragonTigerMobile = () => {
                 </div>
               </div>
             </div>
-            <div style={{ height: "760px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "760px" }}>
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <BackLay
@@ -191,7 +192,7 @@ const DragonTigerMobile = () => {
                   type={cardGamesType.dragonTigerOneDay}
                 />
               </div>
-            </div>
+            </div>}
           </>
         ) : (
           <>

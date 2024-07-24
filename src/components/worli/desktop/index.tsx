@@ -15,6 +15,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import WorliResult from "./abj1Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const WorliDesktop = () => {
   const [show, setShow] = useState(false);
@@ -25,7 +26,7 @@ const WorliDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.worli}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -122,7 +123,7 @@ const WorliDesktop = () => {
                 /> 
               </div>
             </div>
-            <div style={{ height: "460px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "460px" }}>
               <div
                 style={{
                   width: "100%",
@@ -152,7 +153,7 @@ const WorliDesktop = () => {
                   type={cardGamesType.worli}
                 />
               </div>
-            </div>
+            </div>}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>

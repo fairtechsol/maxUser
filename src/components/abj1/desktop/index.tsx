@@ -15,6 +15,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import Abj1Result from "./abj1Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Abj1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -25,7 +26,7 @@ const Abj1Desktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.andarBahar1}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -120,7 +121,7 @@ const Abj1Desktop = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "460px" }}>
+           {loading ? <InnerLoader /> : <div style={{ height: "460px" }}>
               <div
                 style={{
                   width: "100%",
@@ -152,7 +153,7 @@ const Abj1Desktop = () => {
                   type={cardGamesType.andarBahar1}
                 />
               </div>
-            </div>
+            </div>}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>

@@ -13,6 +13,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Poker6Result from "../desktop/poker6Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Poker6Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -23,7 +24,7 @@ const Poker6Mobile = () => {
     `${cardUrl}${cardGamesId.poker}`
   );
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -136,7 +137,7 @@ const Poker6Mobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "820px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "820px" }}>
               <div className="dt20TabBox mt-2">
                 <div className="dt20tabheaderp mt-4 ">
                   <div
@@ -204,7 +205,7 @@ const Poker6Mobile = () => {
                   type={cardGamesType.poker6}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

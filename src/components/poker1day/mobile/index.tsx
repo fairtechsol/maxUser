@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { Table } from "react-bootstrap";
 import Poker1DayResult from "../desktop/poker1DayCard";
 import PairBox from "../desktop/pairBox";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 const Poker1dayMobile = () => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -27,7 +28,7 @@ const Poker1dayMobile = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.poker1Day}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
   const { playersBonusPair,  } = dragonTigerDetail;
 
@@ -178,7 +179,7 @@ const Poker1dayMobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "920px" }}>
+            {loading ? <InnerLoader /> : <div style={{ height: "920px" }}>
               <div className="mt-5">
                 <DynamicTable
                   back={true}
@@ -277,7 +278,7 @@ const Poker1dayMobile = () => {
                   </Table>
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>
