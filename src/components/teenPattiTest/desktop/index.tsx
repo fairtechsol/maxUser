@@ -27,7 +27,7 @@ const TeenPattiDesktop = () => {
     `${cardUrl}${cardGamesId.teenTest}`
   );
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  const { playerA, playerB } = dragonTigerDetail;
+  const { playerA } = dragonTigerDetail;
   const { sections, videoInfo } = dragonTigerDetail;
 
   console.log("result", dragonTigerDetail);

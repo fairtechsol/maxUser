@@ -162,11 +162,11 @@ const DragonTigerDesktop = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const [activeCardTab, setActiveCardTab] = useState(false);
+  const [openModalIndex, setOpenModalIndex] = useState(null);
+
   const handleClose = () => {
     setShowInactivityModal(false);
   };
-  const [openModalIndex, setOpenModalIndex] = useState(null);
   const handleModalOpen = (index: any) => {
     setOpenModalIndex(openModalIndex === index ? null : index);
   };

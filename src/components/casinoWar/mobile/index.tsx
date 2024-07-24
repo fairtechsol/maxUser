@@ -1,5 +1,3 @@
-import { Table } from "react-bootstrap";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
@@ -30,13 +28,13 @@ const TeenPattiMobile = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
+  // const rules = [
+  //   { label: "Pair (Double)", value: "1 To 1" },
+  //   { label: "Flush (Color)", value: "1 To 4" },
+  //   { label: "Straight (Rown)", value: "1 To 6" },
+  //   { label: "Trio (Teen)", value: "1 To 35" },
+  //   { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
+  // ];
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",

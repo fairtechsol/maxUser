@@ -8,9 +8,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/superOver";
 import {
-  cardData,
   cardGamesId,
   cardUrl,
   rulesData,
@@ -48,7 +46,7 @@ const SuperoverMobile = () => {
 
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -108,7 +106,7 @@ const SuperoverMobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -130,10 +128,9 @@ const SuperoverMobile = () => {
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
-                backgroundColor: "#000",
               }}
             >
-              <div style={{ width: "100%", height: "275px" }}>
+              <div style={{ width: "100%", height: scoreBoardData?.data?"255px":"150px" }}>
                 <div className="horseRacingTabHeader-m">
                   <div>
                     <span style={{ fontSize: "14px", fontWeight: "600" }}>

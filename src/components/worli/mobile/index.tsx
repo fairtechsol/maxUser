@@ -6,8 +6,6 @@ import CardBox2 from "./CardsBox2";
 import OddEven from "./OddEvenBox";
 import SBetBox from "./Sbox";
 import "./style.scss";
-// import CardResultBox from "../../commonComponent/cardResultBox";
-// import CardResultBox from "../../commonComponent/cardResultBox";
 import { abjrules } from "../../../assets/images";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";

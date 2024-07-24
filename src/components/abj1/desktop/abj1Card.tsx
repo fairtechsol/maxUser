@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import React from "react";
+import { Row, Col } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import "./style.scss";
 import Slider from "react-slick";
@@ -59,36 +59,41 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
           left: "0",
           background: "rgba(0, 0, 0, 0.4)",
           height: "auto",
-          padding: isMobile ? "0px" :  "5px",
+          padding: isMobile ? "0px" : "5px",
         }}
       >
         <Row>
-         
-         
-
           <Col xs={2} style={{ margin: "0px 0px 0px 10px" }}>
             <div
               style={{
                 width: isMobile ? "70px" : "110px",
                 // margin: "0px 10px 0px 10px",
               }}
-            >{elementsAndar?.length>0 && (<span
-              style={{
-                color: "#fff",
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                justifyContent: "start",
-                marginLeft:"-12px",
-                fontWeight:"600"
-              }}
             >
-              ANDAR
-            </span>)}
-              
+              {elementsAndar?.length > 0 && (
+                <span
+                  style={{
+                    color: "#fff",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "start",
+                    marginLeft: "-12px",
+                    fontWeight: "600",
+                  }}
+                >
+                  ANDAR
+                </span>
+              )}
+
               <div>
                 {elementsAndar?.length > 3 ? (
-                  <Slider {...sliderSettings(elementsAndar?.length, elementsAndar?.length > 3)}>
+                  <Slider
+                    {...sliderSettings(
+                      elementsAndar?.length,
+                      elementsAndar?.length > 3
+                    )}
+                  >
                     {elementsAndar &&
                       elementsAndar?.map((item: any, index: any) => (
                         <div key={index}>
@@ -97,7 +102,12 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
                       ))}
                   </Slider>
                 ) : (
-                  <Row style={{ gap: "10px", marginTop: isMobile ? "10px" : "0px"}}>
+                  <Row
+                    style={{
+                      gap: "10px",
+                      marginTop: isMobile ? "10px" : "0px",
+                    }}
+                  >
                     {elementsAndar &&
                       elementsAndar?.map((item: any, index: any) => {
                         return (
@@ -109,22 +119,29 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
                   </Row>
                 )}
               </div>
-              {elementsBahar?.length>0 && (<span
-              style={{
-                color: "#fff",
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                justifyContent: "start",
-                marginLeft:"-12px",
-                fontWeight:"600"
-              }}
-            >
-              BAHAR
-            </span>)}
+              {elementsBahar?.length > 0 && (
+                <span
+                  style={{
+                    color: "#fff",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "start",
+                    marginLeft: "-12px",
+                    fontWeight: "600",
+                  }}
+                >
+                  BAHAR
+                </span>
+              )}
               <div className={isMobile ? "mt-1" : "mt-2"}>
-              {elementsBahar?.length > 3 ? (
-                  <Slider {...sliderSettings(elementsBahar?.length, elementsBahar?.length > 3)}>
+                {elementsBahar?.length > 3 ? (
+                  <Slider
+                    {...sliderSettings(
+                      elementsBahar?.length,
+                      elementsBahar?.length > 3
+                    )}
+                  >
                     {elementsBahar &&
                       elementsBahar?.map((item: any, index: any) => (
                         <div key={index}>
@@ -133,7 +150,12 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
                       ))}
                   </Slider>
                 ) : (
-                  <Row style={{ gap: "10px", marginTop: isMobile ? "10px" : "5px"}}>
+                  <Row
+                    style={{
+                      gap: "10px",
+                      marginTop: isMobile ? "10px" : "5px",
+                    }}
+                  >
                     {elementsBahar &&
                       elementsBahar?.map((item: any, index: any) => {
                         return (

@@ -1,12 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
-import MyBet from "../../abj2/desktop/myBet";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
@@ -14,7 +13,6 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
-import TiePairBox2 from "./TiePairBox2";
 import Lucky7Result from "../desktop/lucky7Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
@@ -22,7 +20,7 @@ import "./style.scss";
 const BollywoodTableDesktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
+  const [_, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
@@ -31,7 +29,6 @@ const BollywoodTableDesktop = () => {
 
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const [show1, setShow1] = useState(false);
-  
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -82,7 +79,7 @@ const BollywoodTableDesktop = () => {
 
   return (
     <>
-     <PlacedBet show={show1} setShow={setShow1} />
+      <PlacedBet show={show1} setShow={setShow1} />
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
@@ -187,7 +184,7 @@ const BollywoodTableDesktop = () => {
                   background: "#EEEEEE",
                   paddingLeft: "4px",
                   paddingRight: "4px",
-                  marginTop:"10px"
+                  marginTop: "10px",
                 }}
               >
                 <CardBox
@@ -209,7 +206,6 @@ const BollywoodTableDesktop = () => {
             <RulesModal show={show} setShow={setShow} rule={luckyrules} />
           </div>
         </Col>
-        
       </Row>
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>

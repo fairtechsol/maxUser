@@ -38,7 +38,6 @@ import {
 
 const FootballGameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const { success } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
   );
@@ -111,9 +110,7 @@ const FootballGameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
-        if (
-          event?.betType === "quickbookmaker1"
-        ) {
+        if (event?.betType === "quickbookmaker1") {
           navigate(`${isMobile ? `/sports` : `/game-list/${event?.gameType}`}`);
         } else {
           dispatch(getPlacedBets(id));
@@ -156,7 +153,7 @@ const FootballGameDetails = () => {
 
   useEffect(() => {
     try {
-      if (id && getProfile?.roleName) {
+      if (id) {
         dispatch(selectedBetAction(null));
         dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
         dispatch(getPlacedBets(id));
@@ -164,12 +161,12 @@ const FootballGameDetails = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [id, getProfile?.roleName]);
+  }, [id]);
 
   useEffect(() => {
     try {
       if (success && socket) {
-        expertSocketService.match.joinMatchRoom(id, getProfile?.roleName);
+        expertSocketService.match.joinMatchRoom(id, "user");
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);

@@ -24,10 +24,6 @@ const Crick5Result: React.FC<Props> = ({ data }: any) => {
     });
   }
   // console.log(result,"sjhn")
-  const allKeys = Object.keys(data ? data : 0);
-  const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
-  const numbers = cArray.map((key) => Number(data[key]));
-  const max = Math.max(...numbers);
   return (
     data?.mid != "0" && (
       <Container>
@@ -40,28 +36,28 @@ const Crick5Result: React.FC<Props> = ({ data }: any) => {
         </Row>
         <Row>
           <Col>
-            <div style={{ display: "flex", gap: "10px", marginTop: "10px"  }}>
+            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
               <HandleCards card={data?.C2} />
             </div>
           </Col>
         </Row>
         <Row>
           <Col>
-            <div style={{ display: "flex", gap: "10px", marginTop: "10px"  }}>
+            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
               <HandleCards card={data?.C3} />
             </div>
           </Col>
         </Row>
         <Row>
           <Col>
-            <div style={{ display: "flex", gap: "10px", marginTop: "10px"  }}>
+            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
               <HandleCards card={data?.C4} />
             </div>
           </Col>
         </Row>
         <Row>
           <Col>
-            <div style={{ display: "flex", gap: "10px", marginTop: "10px"  }}>
+            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
               <HandleCards card={data?.C5} />
             </div>
           </Col>

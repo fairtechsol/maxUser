@@ -15,10 +15,10 @@ import PairBox from "./PairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
-  const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
@@ -30,6 +30,10 @@ const DragonTigerMobile = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
@@ -37,7 +41,7 @@ const DragonTigerMobile = () => {
 
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -97,7 +101,7 @@ const DragonTigerMobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -199,8 +203,8 @@ const DragonTigerMobile = () => {
           </>
         )}
       </div>
-
       <RulesModal show={show} setShow={setShow} rule={dtrules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

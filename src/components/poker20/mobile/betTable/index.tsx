@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const DynamicTable = ({ odds, data, back, playerNum }: any) => {
+const DynamicTable = ({ odds, data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any) => {
@@ -42,22 +42,24 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
   const result = Object.values(groupedData);
   return (
     <div className="card32-table-container-m">
-        <div className="card32-table-row" style={{ lineHeight: 2 }}>
+      <div className="card32-table-row" style={{ lineHeight: 2 }}>
         <div style={{ width: "50%" }}></div>
-      {playerNum[0] === 0 &&  ( <div
-          style={{
-            width: "50%",
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <div className="card32-table-item back" style={{ width: "50%" }}>
-            PLAYER A
+        {playerNum[0] === 0 && (
+          <div
+            style={{
+              width: "50%",
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <div className="card32-table-item back" style={{ width: "50%" }}>
+              PLAYER A
+            </div>
+            <div className="card32-table-item back" style={{ width: "50%" }}>
+              PLAYER B
+            </div>
           </div>
-          <div className="card32-table-item back" style={{ width: "50%" }}>
-            PLAYER B
-          </div>
-        </div>)}
+        )}
       </div>
       {result &&
         result?.map((item: any, index: number) => {
@@ -92,23 +94,21 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
               </div>
               <div
                 className={
-                  item?.entries?.[0]?.gstatus === "0" 
-                    ? "suspended"
-                    : ""
+                  item?.entries?.[0]?.gstatus === "0" ? "suspended" : ""
                 }
                 style={{
                   width: "50%",
                   display: "flex",
                   flexDirection: "row",
                   cursor: "pointer",
-                  height: "40px"
+                  height: "40px",
                 }}
               >
                 <div
                   className="card32-table-item back"
                   style={{ width: "50%" }}
                   onClick={() =>
-                    item?.entries?.[0]?.gstatus === "0" 
+                    item?.entries?.[0]?.gstatus === "0"
                       ? null
                       : handleBet(item?.entries?.[0])
                   }
@@ -120,7 +120,7 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
                   className="card32-table-item back"
                   style={{ width: "50%" }}
                   onClick={() =>
-                    item?.entries?.[0]?.gstatus === "0" 
+                    item?.entries?.[0]?.gstatus === "0"
                       ? null
                       : handleBet(item?.entries?.[1])
                   }
