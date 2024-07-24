@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { abjrules, race20rules } from "../../../assets/images";
+import { race20rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";

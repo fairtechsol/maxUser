@@ -6,7 +6,7 @@ import "react-date-picker/dist/DatePicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import isMobile from "../../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../../store/store";
-import { getCardReport } from "../../../store/actions/user/userAction";
+import { getCardReport, resetCardReport } from "../../../store/actions/user/userAction";
 import ReportContainer from "../../../components/containers/reportContainer";
 import SelectSearch from "../../../components/commonComponent/SelectSearch";
 import CustomButton from "../../../components/commonComponent/button";
@@ -175,6 +175,10 @@ const CasinoReports = () => {
       }
     }
   }, [tableConfig, typeFromState]);
+
+  useEffect(()=> {
+    dispatch(resetCardReport())
+  },[])
 
   return (
     <>

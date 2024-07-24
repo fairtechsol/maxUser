@@ -1,8 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
-import CommonButtonBox from "../CommonButtonBox";
 import PlayerButton from "../PlayerButton";
-import { seven } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const TiePairBox = ({ lowHigh, data }: any) => {
@@ -10,11 +8,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   const min = lowHigh?.[0]?.min;
   const max = lowHigh?.[0]?.max;
 
-  const handleBet = (item: any,type:any) => {
+  const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd:type==="BACK"? item?.b1:item?.l1,
+      odd: type === "BACK" ? item?.b1 : item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -31,7 +29,15 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   };
   return (
     <div className="">
-      <div className="tiePairRateBoxMainlucky" style={{display:"flex",flexDirection:"column",justifyContent:"start", alignItems:"start"}}>
+      <div
+        className="tiePairRateBoxMainlucky"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "start",
+          alignItems: "start",
+        }}
+      >
         {/* <div className="commonButtonBoxContainer" style={{ width: "30%" }}>
           <div>
             <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
@@ -64,7 +70,16 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           </div>
         </div> */}
 
-        <div style={{ textAlign: "start", width: "100%",alignItems:"center", borderBottom: "1px solid #aaa",display:"flex",paddingTop:"2px"  }}>
+        <div
+          style={{
+            textAlign: "start",
+            width: "100%",
+            alignItems: "center",
+            borderBottom: "1px solid #aaa",
+            display: "flex",
+            paddingTop: "2px",
+          }}
+        >
           <span style={{ fontWeight: "bolder" }}>Min:</span>
           <span>{min}</span>
           <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>

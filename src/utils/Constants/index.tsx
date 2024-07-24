@@ -52,7 +52,7 @@ import {
   teenplayer,
   testteen,
 } from "../../assets/images";
-import AmarAkbarAnthony from "../../pages/amarAkbarAnthony";
+// import AmarAkbarAnthony from "../../pages/amarAkbarAnthony";
 
 export const ApiConstants = {
   LOGIN: "auth/login",

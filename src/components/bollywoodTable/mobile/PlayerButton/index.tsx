@@ -1,8 +1,3 @@
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
-import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
-
 const PlayerButton = ({
   value1,
   value2,

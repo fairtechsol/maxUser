@@ -1,9 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { AppDispatch } from "../../../../store/store";
-import CommonButtonBox from "../CommonButtonBox";
 import PlayerButton from "../PlayerButton";
-import { seven } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { IoInformationCircle } from "react-icons/io5";
 import SmoothDropdownModal from "../../mobile/minMaxModal";

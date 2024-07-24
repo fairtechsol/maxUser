@@ -44,7 +44,7 @@ const PlacedBet = () => {
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
   const [matchOddRate, setMatchOddRate] = useState<any>(null);
-  const { buttonValues, getProfile } = useSelector(
+  const { buttonValues } = useSelector(
     (state: RootState) => state.user.profile
   );
 
@@ -276,7 +276,7 @@ const PlacedBet = () => {
                           <CustomButton
                             className="bg-success border-0 py-2"
                             size="sm"
-                            onClick={() => { 
+                            onClick={() => {
                               if (loading) {
                                 return;
                               } else {

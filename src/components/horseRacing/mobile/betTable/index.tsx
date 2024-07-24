@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tab, Card, Row, Col } from "react-bootstrap";
+import { Tab, Card, Row } from "react-bootstrap";
 import "./style.scss";
 // import { useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from "../../../../store/store";
