@@ -16,6 +16,7 @@ import "./style.scss";
 import DynamicTable from "./betTable";
 import Poker1DayResult from "./poker1DayCard";
 import PairBox from "./pairBox";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Poker1DayDesktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -26,7 +27,7 @@ const Poker1DayDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.poker1Day}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 // console.log(dragonTigerDetail, "data")
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -143,7 +144,7 @@ const Poker1DayDesktop = () => {
                 />
               </div>
             </div>
-            <div>
+            {loading ? <InnerLoader /> : <div>
               <div className="poker-table-container ">
                 <div style={{width: "40%"}}>
                   <DynamicTable
@@ -167,7 +168,7 @@ const Poker1DayDesktop = () => {
                   type={ cardGamesType.poker1Day}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         </Col>
         <Col md={4} className="ps-0">

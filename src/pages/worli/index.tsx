@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { socket, socketService } from "../../socketManager";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCardWorliRates,
@@ -21,11 +22,10 @@ import {
 import { cardGamesType } from "../../utils/constants";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import WorliComponentList from "../../components/worli";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Worli = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail, loading } = useSelector(
+  const { dragonTigerDetail} = useSelector(
     (state: RootState) => state.card
   );
   const setMatchRatesInRedux = (event: any) => {
@@ -100,13 +100,14 @@ const Worli = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <WorliComponentList />;
+  return <WorliComponentList />;
 };
 
 export default Worli;

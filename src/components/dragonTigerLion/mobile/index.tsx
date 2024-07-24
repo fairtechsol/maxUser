@@ -12,6 +12,7 @@ import OddEven from "./OddEvenBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [activeCardTab, setActiveCardTab] = useState("dragon");
@@ -21,7 +22,7 @@ const DragonTigerMobile = () => {
     `${cardUrl}${cardGamesId.dragonTigerLion}`
   );
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
   useEffect(() => {
     const resetTimer = () => {
@@ -132,7 +133,7 @@ const DragonTigerMobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "820px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "820px" }}>
               <div className="dt20TabBox">
                 <div className="dtltabheader">
                   <span
@@ -213,7 +214,7 @@ const DragonTigerMobile = () => {
                   type={cardGamesType.dragonTigerLion}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

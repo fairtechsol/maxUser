@@ -15,6 +15,7 @@ import TotalsBox from "./TotalBox";
 import WinBox from "./win";
 import Race20Result from "../desktop/race20Card";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -25,7 +26,7 @@ const Race20Mobile = () => {
   );
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
@@ -143,7 +144,7 @@ const Race20Mobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "880px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "880px" }}>
               <div style={{ width: "100%", marginTop: "20%" }}>
                 <OddBox
                   odds={dragonTigerDetail?.cards}
@@ -181,7 +182,7 @@ const Race20Mobile = () => {
                   type={cardGamesType.race20}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

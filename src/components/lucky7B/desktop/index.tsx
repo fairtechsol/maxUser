@@ -17,6 +17,7 @@ import TiePairBox from "./TiePairBox";
 import Lucky7BResult from "./lucky7Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Lucky7BDesktop = () => {
   const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ const Lucky7BDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.lucky7B}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -121,7 +122,7 @@ const Lucky7BDesktop = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "550px" }}>
+            {loading ? <InnerLoader /> : <div style={{ height: "550px" }}>
               <div style={{ width: "100%", margin: "5% 5px" }}>
                 <TiePairBox
                   lowHigh={dragonTigerDetail?.lowHigh}
@@ -173,7 +174,7 @@ const Lucky7BDesktop = () => {
                   type={cardGamesType.lucky7B}
                 />
               </div>
-            </div>
+            </div>}
 
             <RulesModal show={show} setShow={setShow} rule={luckyrules} />
           </div>

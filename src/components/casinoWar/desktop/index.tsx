@@ -16,6 +16,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import CasinoWarResult from "./teenCard";
 import { HandleCards } from "../../commonComponent/cardsComponent";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -27,7 +28,7 @@ const TeenPattiDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.casinoWar}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   //const { playerA, playerB } = dragonTigerDetail;
 
   const handleClose = () => {
@@ -153,7 +154,7 @@ const TeenPattiDesktop = () => {
                 />
               </div>
             </div>
-            <div style={{}}>
+            {loading ? <InnerLoader /> : <div>
               <div className="teenPatti-table-container">
                 <div
                   className="teenPatti-table-row"
@@ -347,7 +348,7 @@ const TeenPattiDesktop = () => {
                   type={"war"}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         </Col>
         <Col md={4} className="ps-0">

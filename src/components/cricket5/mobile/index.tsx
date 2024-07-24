@@ -13,6 +13,7 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
 import { crick5rules } from "../../../assets/images";
 import { Table } from "react-bootstrap";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
@@ -22,7 +23,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.cricketv3}`
   );
-  const { dragonTigerDetail, scoreBoardData } = useSelector(
+  const { dragonTigerDetail, scoreBoardData ,loading} = useSelector(
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
@@ -144,7 +145,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                 />
               </div>
             </div>
-            <div style={{ height: "900px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "900px" }}>
               <div style={{ marginTop: "10.5rem" }}>
                 <MarketComponent
                   odds={dragonTigerDetail?.odds}
@@ -213,7 +214,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                   </Table>
                 ))}
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

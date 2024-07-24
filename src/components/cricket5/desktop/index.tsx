@@ -17,6 +17,7 @@ import "./style.scss";
 import MarketComponent from "./betTable";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import Crick5Result from "./cric5Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -27,7 +28,7 @@ const Cricket5Desktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.cricketv3}`
   );
-  const { dragonTigerDetail, scoreBoardData } = useSelector(
+  const { dragonTigerDetail, scoreBoardData,loading } = useSelector(
     (state: RootState) => state.card
   );
   // console.log(dragonTigerDetail, "dtaa")
@@ -126,7 +127,7 @@ const Cricket5Desktop = () => {
               />
             </div>
           </div>
-          <div style={{ height: "350px" }}>
+          {loading ? <InnerLoader /> :<div style={{ height: "350px" }}>
             <div style={{ marginTop: "7rem" }}>
               <MarketComponent
                 odds={dragonTigerDetail?.odds}
@@ -142,7 +143,7 @@ const Cricket5Desktop = () => {
                 type={"cricketv3"}
               />
             </div>
-          </div>
+          </div>}
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
