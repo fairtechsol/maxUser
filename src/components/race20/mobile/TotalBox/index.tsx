@@ -155,7 +155,7 @@ const TotalsBox = ({ odds, data }: any) => {
             }
           >
             <span className="rate-box">{odds?.[1]?.l1}</span>{" "}
-            <span className="casino-volume">{odds?.[1]?.ls1}</span>
+            <span className="casino-volume f400">{odds?.[1]?.ls1}</span>
           </div>
           <div
             className={`total-rateBox back-BackGround flex-column ${
@@ -168,7 +168,7 @@ const TotalsBox = ({ odds, data }: any) => {
             }
           >
             <span className="rate-box">{odds?.[1]?.b1}</span>{" "}
-            <span className="casino-volume">{odds?.[1]?.bs1}</span>
+            <span className="casino-volume f400">{odds?.[1]?.bs1}</span>
           </div>
         </div>
         <div className="total-mainRateBox">
