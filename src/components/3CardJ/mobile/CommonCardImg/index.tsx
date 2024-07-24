@@ -2,7 +2,14 @@ import { dragonTigerCards } from "../../../../utils/constants";
 import { back } from "../../../../assets/images";
 import { useEffect, useState } from "react";
 
-const CommonCardImg = ({ cardData, handleBet, data, cardInfo,setNat,nat }: any) => {
+const CommonCardImg = ({
+  cardData,
+  handleBet,
+  data,
+  cardInfo,
+  setNat,
+  nat,
+}: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
@@ -16,24 +23,42 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo,setNat,nat }: any) 
   }, [cardData]);
 
   const handlock = (item: any) => {
-    if (item?.gstatus === "0" && cardInfo?.[0] === "") {
+    if (item?.gstatus === "0") {
       return "suspended";
-    } else if (item?.gstatus === "0" && cardInfo?.[0] != "") {
-      return "stop";
     } else {
       return "";
     }
   };
-   
-  useEffect(()=>{
-    handleBet()
-  },[nat])
+
+  useEffect(() => {
+    if (data.no.gstatus === "0") {
+      setClickedItems({});
+      setClickedCards(0);
+    }
+  }, [data.no.gstatus]);
+
+  console.log("lock", data);
+  useEffect(() => {
+    handleBet();
+  }, [nat]);
+
+  const [clickedItems, setClickedItems] = useState<Record<string, boolean>>({});
+  const [clickedCards, setClickedCards] = useState<number>(0);
+
+  const handleItemClick = (item: any) => {
+    setClickedCards((p) => p + 1);
+    const itemCode = item.code;
+    setClickedItems((prev) => ({
+      ...prev,
+      [itemCode]: !prev[itemCode],
+    }));
+  };
+
   return (
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any, index: number) => {
-        
         return (
-          <div key={index} style={{marginLeft:"5px"}}>
+          <div key={index} style={{ marginLeft: "5px" }}>
             <div
               key={item?.code}
               className={handlock(item)}
@@ -42,12 +67,18 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo,setNat,nat }: any) 
                 flexDirection: "column",
                 justifyContent: "space-around",
                 alignItems: "center",
+                border: clickedItems[item.code] ? "solid #086f3f 2px" : "none",
               }}
-              onClick={() => handlock(item) !== "" ? null : setNat((p:any)=>{
-                return p.length<3? p+item[0]:p
+              onClick={() =>
+                handlock(item) !== ""
+                  ? null
+                  : (() => {
+                      clickedCards < 3 ? handleItemClick(item) : "";
+                      setNat((p: any) => {
+                        return p.length < 3 ? p + item[0] : p;
+                      });
+                    })()
               }
-              ) }
-
             >
               {item?.show ? (
                 <img src={item?.imgSrc} width={"30px"} />
