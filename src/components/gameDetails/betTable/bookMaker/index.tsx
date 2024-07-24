@@ -370,9 +370,6 @@ function BookmakerTable({
                 {(!isMobile || backLayCount === 2) && (
                   <td colSpan={2} style={{ borderLeft: 0 }}></td>
                 )}
-                {data?.activeStatus !== "live" ? (
-                  <div className="overlay"></div>
-                ) : null}
               </tr>
             ))}
         </tbody>
