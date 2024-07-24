@@ -31,11 +31,11 @@ const CommonCardImg = ({
   };
 
   useEffect(() => {
-    if (data.no.gstatus === "0") {
+    if (data?.no?.gstatus === "0") {
       setClickedItems({});
       setClickedCards(0);
     }
-  }, [data.no.gstatus]);
+  }, [data?.no?.gstatus]);
 
   
   useEffect(() => {

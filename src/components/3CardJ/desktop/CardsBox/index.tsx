@@ -60,7 +60,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
             borderRight: "0.5px solid #000",
           }}
         >
-          <span style={{ fontSize: "16px" }}>{title}</span>
+          <span style={{ fontSize: "16px",fontWeight:"bold" }}>{title}</span>
         </div>
         <div
           className="p-3  "
@@ -72,7 +72,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
             alignItems: "center",
           }}
         >
-          <div>{odds?.rate}</div>
+          <div style={{ fontSize: "16px",fontWeight:"bold" }}>{odds?.rate}</div>
           <CommonCardImg
             cardData={[
               "A",
