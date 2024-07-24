@@ -16,6 +16,7 @@ import BackLay from "../desktop/BackLay";
 import PairBox from "./PairBox";
 import MyBet from "./myBet";
 import TotalCards from "./totalCards";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Card32BMobile = () => {
@@ -28,7 +29,7 @@ const Card32BMobile = () => {
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
 
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
@@ -151,7 +152,7 @@ const Card32BMobile = () => {
                 </div>
               </div>
             </div>
-            <div style={{ height: "860px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "860px" }}>
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <BackLay
@@ -187,7 +188,7 @@ const Card32BMobile = () => {
               <div style={{ width: "97%", margin: "5px" }}>
                 <CardResultBox data={dragonTigerDetail} name={["8", "9", "10", "11"]} type={cardGamesType.card32B} />
               </div>
-            </div>
+            </div>}
           </>
         ) : (
           <>

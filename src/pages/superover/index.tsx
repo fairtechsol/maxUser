@@ -7,7 +7,9 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   casinoScoreboardMatchRates,
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
+  scoreBoardReset,
   updateBalanceOnBetPlaceCards,
   updateCardSuperoverRates,
   updateLiveGameResultTop10,
@@ -20,13 +22,12 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 import SuperoverComponentList from "../../components/superover";
 
 const Superover = () => {
   const dispatch: AppDispatch = useDispatch();
   const [errorCount, setErrorCount] = useState<number>(0);
-  const { loading, dragonTigerDetail } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
   // useEffect(() => {
@@ -157,6 +158,8 @@ const Superover = () => {
           socketService.card.userCardBetPlacedOff();
           socketService.card.cardResultOff();
           dispatch(selectedBetAction(null));
+          dispatch(dragonTigerReset());
+          dispatch(scoreBoardReset());
         };
       }
     } catch (e) {
@@ -164,7 +167,7 @@ const Superover = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <SuperoverComponentList />;
+  return  <SuperoverComponentList />;
 };
 
 export default Superover;

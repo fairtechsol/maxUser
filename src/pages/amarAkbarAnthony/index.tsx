@@ -7,6 +7,7 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateAmarAkbarAnthonyCardMatchRates,
   updateBalanceOnBetPlaceCards,
@@ -20,11 +21,10 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const AmarAkbarAnthony = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, dragonTigerDetail } = useSelector(
+  const {  dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -99,13 +99,14 @@ const AmarAkbarAnthony = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <AmarAkbarAnthonyComponentList />;
+  return  <AmarAkbarAnthonyComponentList />;
 };
 
 export default AmarAkbarAnthony;

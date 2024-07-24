@@ -7,7 +7,9 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   casinoScoreboardMatchRates,
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
+  scoreBoardReset,
   updateBalanceOnBetPlaceCards,
   updateCricket5MatchRates,
   updateLiveGameResultTop10,
@@ -21,33 +23,14 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 import Cricket5ComponentList from "../../components/cricket5";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Cricket5 = () => {
   const dispatch: AppDispatch = useDispatch();
   const [errorCount, setErrorCount] = useState<number>(0);
-  const { loading, dragonTigerDetail } = useSelector(
+  const {  dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
-  // useEffect(() => {
-  //   console.log('scoreboard')
-  //   const scoreBoard = () => {
-  //     if (dragonTigerDetail?.videoInfo?.mid) {
-  //       const Id = dragonTigerDetail.videoInfo?.mid.split(".");
-  //       dispatch(
-  //         casinoScoreboardMatchRates({
-  //           id: Id[1],
-  //           type: cardGamesType.cricketv3,
-  //         })
-  //       );
-  //       setCount(count+1)
-  //     }
-  //   };
-  //   const intervalId = setInterval(scoreBoard, 1000);
-
-  //   return () => clearInterval(intervalId);
-  // }, [count, dragonTigerDetail]);
 
   const getScoreBoard = async (marketId: string) => {
     try {
@@ -159,13 +142,15 @@ const Cricket5 = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
+        dispatch(scoreBoardReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <Cricket5ComponentList />;
+  return <Cricket5ComponentList />;
 };
 
 export default Cricket5;

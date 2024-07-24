@@ -11,6 +11,7 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
   casinoWarPattiMatchRates,
+  dragonTigerReset,
 } from "../../store/actions/cards/cardDetail";
 import {
   getButtonValue,
@@ -21,11 +22,10 @@ import { cardGamesType } from "../../utils/constants";
 
 import CasinoWarComponentList from "../../components/casinoWar";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const CasinoWar = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, dragonTigerDetail } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -100,13 +100,14 @@ const CasinoWar = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <CasinoWarComponentList />;
+  return  <CasinoWarComponentList />;
 };
 
 export default CasinoWar;

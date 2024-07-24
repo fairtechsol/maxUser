@@ -36,52 +36,50 @@ const WinBox = ({ odds, data }: any) => {
     <>
       <div className="winContainer-m">
         <div className="subwinContainer">
-          {odds?.map((item: any, index: number) => {
+          {odds?.map((item: any) => {
             return (
-              <>
-                <div className="win-mainRateBox" key={index}>
-                  <div>
-                    <span className="f600">{item?.nat}</span>
-                  </div>
-                  <div
-                    className={`win-rateBox back-BackGround flex-column ${
-                      handleLock(item) ? "suspended" : ""
-                    }`}
-                    onClick={() => (handleLock(item) ? null : handleBet(item))}
-                  >
-                    <span className="rate-box">{item?.b1}</span>{" "}
-                    <span
-                      className={`casino-volume f400 ${
-                        data?.profitLoss
-                          ? data?.profitLoss[
-                              `${data?.videoInfo?.mid}_${item?.sid}_card`
-                            ]
-                            ? data?.profitLoss[
-                                `${data?.videoInfo?.mid}_${item?.sid}_card`
-                              ] > 0
-                              ? "color-green"
-                              : data?.profitLoss[
-                                  `${data?.videoInfo?.mid}_${item?.sid}_card`
-                                ] < 0
-                              ? "color-red"
-                              : ""
-                            : ""
-                          : ""
-                      }`}
-                    >
-                      {data?.profitLoss
+              <div className="win-mainRateBox" key={item?.sid}>
+                <div>
+                  <span className="f600">{item?.nat}</span>
+                </div>
+                <div
+                  className={`win-rateBox back-BackGround flex-column ${
+                    handleLock(item) ? "suspended" : ""
+                  }`}
+                  onClick={() => (handleLock(item) ? null : handleBet(item))}
+                >
+                  <span className="rate-box">{item?.b1}</span>{" "}
+                </div>
+                <span
+                  className={`casino-volume f500 mt-0 ${
+                    data?.profitLoss
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${item?.sid}_card`
+                        ]
                         ? data?.profitLoss[
                             `${data?.videoInfo?.mid}_${item?.sid}_card`
-                          ]
-                          ? data?.profitLoss[
+                          ] > 0
+                          ? "color-green"
+                          : data?.profitLoss[
                               `${data?.videoInfo?.mid}_${item?.sid}_card`
-                            ]
-                          : 0
-                        : 0}
-                    </span>
-                  </div>
-                </div>
-              </>
+                            ] < 0
+                          ? "color-red"
+                          : ""
+                        : ""
+                      : ""
+                  }`}
+                >
+                  {data?.profitLoss
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${item?.sid}_card`
+                      ]
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${item?.sid}_card`
+                        ]
+                      : 0
+                    : 0}
+                </span>
+              </div>
             );
           })}
         </div>

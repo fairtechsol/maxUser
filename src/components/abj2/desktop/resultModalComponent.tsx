@@ -192,7 +192,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
         <div className="abjresultCardContainer2">
           <div
             style={{
-              width: isMobile ? "70px" : "85%",
+              width: isMobile ? "80px" : "85%",
               margin: "8px 9px 10px 11px",
             }}
           >

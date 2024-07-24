@@ -7,6 +7,7 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateDragonTigerLionRates,
@@ -20,11 +21,10 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const DragonTigerLion = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, dragonTigerDetail } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -101,6 +101,7 @@ const DragonTigerLion = () => {
           socketService.card.userCardBetPlacedOff();
           socketService.card.cardResultOff();
           dispatch(selectedBetAction(null));
+          dispatch(dragonTigerReset());
         };
       }
     } catch (e) {
@@ -108,7 +109,7 @@ const DragonTigerLion = () => {
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <DragonTigerLionComponentList />;
+  return  <DragonTigerLionComponentList />;
 };
 
 export default DragonTigerLion;

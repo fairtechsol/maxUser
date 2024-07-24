@@ -17,6 +17,7 @@ import Abj2Result from "./abj2Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ const Abj2Desktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.andarBahar2}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -124,7 +125,7 @@ const Abj2Desktop = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "460px" }}>
+            {loading ? <InnerLoader /> : <div style={{ height: "460px" }}>
               <div
                 className="row-flex"
                 style={{ width: "100%", margin: "5% 2% 5px 5px" }}
@@ -182,7 +183,7 @@ const Abj2Desktop = () => {
                   type={cardGamesType.andarBahar2}
                 />
               </div>
-            </div>
+            </div>}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>

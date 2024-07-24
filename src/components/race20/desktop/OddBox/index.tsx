@@ -126,8 +126,8 @@ const OddBox = ({ odds, data }: any) => {
                           : handleBet(odds?.[index], "back")
                       }
                     >
-                      <span className="rate-box">{item?.b1}</span>
-                      <span className="casino-volume f400">{item?.bs1}</span>
+                      <span className="rate-box">{item?.b1 || 0}</span>
+                      <span className="casino-volume f400">{item?.bs1 || 0}</span>
                     </div>
                     <div
                       className={`lay-BackGround cursor-pointer ${
@@ -147,8 +147,8 @@ const OddBox = ({ odds, data }: any) => {
                           : handleBet(odds?.[index], "lay")
                       }
                     >
-                      <span className="rate-box">{item?.l1}</span>
-                      <span className="casino-volume f400">{item?.ls1}</span>
+                      <span className="rate-box">{item?.l1 || 0}</span>
+                      <span className="casino-volume f400">{item?.ls1 || 0}</span>
                     </div>
                   </div>
                   <span

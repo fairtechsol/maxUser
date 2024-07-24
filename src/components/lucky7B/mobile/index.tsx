@@ -14,6 +14,7 @@ import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Lucky7BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -24,7 +25,7 @@ const Lucky7BMobile = () => {
     `${cardUrl}${cardGamesId.lucky7B}`
   );
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail ,loading} = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -133,7 +134,7 @@ const Lucky7BMobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "550px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "550px" }}>
               <div style={{ width: "100%", marginTop: "30px" }}>
                 <TiePairBox
                   lowHigh={dragonTigerDetail?.lowHigh}
@@ -184,7 +185,7 @@ const Lucky7BMobile = () => {
                   type={cardGamesType.lucky7B}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

@@ -6,6 +6,7 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
@@ -21,11 +22,10 @@ import { cardGamesType } from "../../utils/constants";
 
 import TeentPattiComponentList from "../../components/teenPattiOpen";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const TeenPattiOpen = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, dragonTigerDetail } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -100,13 +100,14 @@ const TeenPattiOpen = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <TeentPattiComponentList />;
+  return <TeentPattiComponentList />;
 };
 
 export default TeenPattiOpen;

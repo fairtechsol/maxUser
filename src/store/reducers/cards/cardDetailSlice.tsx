@@ -30,6 +30,8 @@ import {
   casinoScoreboardMatchRates,
   updateBaccarat1Rates,
   updateCardWorliRates,
+  dragonTigerReset,
+  scoreBoardReset,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -570,6 +572,12 @@ const cardDetail = createSlice({
       .addCase(casinoScoreboardMatchRates.rejected, (state, action) => {
         // state.loading = false;
         state.error = action?.error?.message;
+      })
+      .addCase(dragonTigerReset, (state) => {
+        state.dragonTigerDetail = [];
+      })
+      .addCase(scoreBoardReset, (state) => {
+        state.scoreBoardData = [];
       });
   },
 });
