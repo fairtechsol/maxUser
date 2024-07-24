@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getAccountStatement,
   getButtonValue,
-  getCardReport,
   getProfile,
   getProfileInMatchDetail,
   marqueeNotification,

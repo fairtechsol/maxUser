@@ -8,7 +8,11 @@ interface PlayingCardProps {
   lock?: boolean;
 }
 
-export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) => {
+export const PlayingCard: React.FC<PlayingCardProps> = ({
+  number,
+  type,
+  lock,
+}) => {
   return (
     <div
       style={{
@@ -42,7 +46,11 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         </>
       ) : (
         <>
-          <img src={back} width={isMobile ? 16 : 30} height={isMobile ? 20 : 40} />
+          <img
+            src={back}
+            width={isMobile ? 16 : 30}
+            height={isMobile ? 20 : 40}
+          />
         </>
       )}
     </div>
@@ -82,13 +90,12 @@ export const HandleCards3: React.FC<HandleCardsProps3> = ({ card }) => {
 
   useEffect(() => {
     if (card === "1") {
-     // setNumber("0");
+      // setNumber("0");
       setType("");
     } else {
       const cardParts = card.split(" ");
       if (cardParts.length === 2) {
         const cardType = cardParts[0].toLowerCase();
-        const cardNumber = cardParts[1];
 
         switch (cardType) {
           case "spade":

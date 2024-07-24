@@ -1,5 +1,3 @@
-import { Table } from "react-bootstrap";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
@@ -16,6 +14,7 @@ import PlacedBet from "./placeBet";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { HandleCards3 } from "./cardComponent2";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -27,16 +26,16 @@ const TeenPattiMobile = () => {
     `${cardUrl}${cardGamesId.casinoWar}`
   );
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
+  // const rules = [
+  //   { label: "Pair (Double)", value: "1 To 1" },
+  //   { label: "Flush (Color)", value: "1 To 4" },
+  //   { label: "Straight (Rown)", value: "1 To 6" },
+  //   { label: "Trio (Teen)", value: "1 To 35" },
+  //   { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
+  // ];
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -166,7 +165,7 @@ const TeenPattiMobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "780px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "780px" }}>
               <div className="mt-2" style={{ width: "100%" }}>
                 <div className="teenPatti-table-container-m">
                   <div
@@ -649,7 +648,7 @@ const TeenPattiMobile = () => {
                   </Table>
                 </div>
               </div> */}
-            </div>
+            </div>}
           </div>
         ) : (
           <>

@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { dtrules, p6rules } from "../../../assets/images";
+import { p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Dragon20Result from "../desktop/poker6Card";
 import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Poker6Result from "../desktop/poker6Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Poker6Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -23,7 +23,7 @@ const Poker6Mobile = () => {
     `${cardUrl}${cardGamesId.poker}`
   );
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -136,7 +136,7 @@ const Poker6Mobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "820px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "820px" }}>
               <div className="dt20TabBox mt-2">
                 <div className="dt20tabheaderp mt-4 ">
                   <div
@@ -204,7 +204,7 @@ const Poker6Mobile = () => {
                   type={cardGamesType.poker6}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

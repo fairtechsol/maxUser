@@ -15,10 +15,11 @@ import PairBox from "./PairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
-  const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
@@ -27,8 +28,12 @@ const DragonTigerMobile = () => {
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
 
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -37,7 +42,7 @@ const DragonTigerMobile = () => {
 
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -97,7 +102,7 @@ const DragonTigerMobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -146,7 +151,7 @@ const DragonTigerMobile = () => {
                 </div>
               </div>
             </div>
-            <div style={{ height: "760px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "760px" }}>
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <BackLay
@@ -191,7 +196,7 @@ const DragonTigerMobile = () => {
                   type={cardGamesType.dragonTigerOneDay}
                 />
               </div>
-            </div>
+            </div>}
           </>
         ) : (
           <>
@@ -199,8 +204,8 @@ const DragonTigerMobile = () => {
           </>
         )}
       </div>
-
       <RulesModal show={show} setShow={setShow} rule={dtrules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

@@ -6,6 +6,7 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCardPoker1DayRates,
@@ -20,11 +21,10 @@ import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Poker1DayComponentList from "../../components/poker1day";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Poker1day = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, dragonTigerDetail } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -99,13 +99,14 @@ const Poker1day = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <Poker1DayComponentList />;
+  return <Poker1DayComponentList />;
 };
 
 export default Poker1day;

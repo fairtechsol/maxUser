@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { card32rules, p6rules } from "../../../assets/images";
+import { p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -14,6 +14,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Poker20Result from "./poker20";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Poker20Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ const Poker20Desktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.poker20}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -118,7 +119,7 @@ const Poker20Desktop = () => {
 
             {/* </Row> */}
           </div>
-          <div style={{ height: "350px" }}>
+          {loading ? <InnerLoader /> :<div style={{ height: "350px" }}>
             <div className="d-flex px-2 mt-5">
               <DynamicTable
                 odds={dragonTigerDetail?.odds}
@@ -139,7 +140,7 @@ const Poker20Desktop = () => {
                 type={ cardGamesType.poker20}
               />
             </div>
-          </div>
+          </div>}
 
           <RulesModal show={show} setShow={setShow} rule={p6rules} />
         </Col>

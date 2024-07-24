@@ -6,10 +6,10 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateBaccarat1Rates,
   updateBalanceOnBetPlaceCards,
-  updateCardAbjRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
@@ -20,12 +20,11 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 import BaccaratComponentList from "../../components/baccarat1";
 
 const Bacarrat1 = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail, loading } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
   const setMatchRatesInRedux = (event: any) => {
@@ -99,13 +98,14 @@ const Bacarrat1 = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <BaccaratComponentList />;
+  return  <BaccaratComponentList />;
 };
 
 export default Bacarrat1;

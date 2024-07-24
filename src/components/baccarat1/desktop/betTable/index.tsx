@@ -1,9 +1,8 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Chart } from 'react-google-charts';
-import isMobile from '../../../../utils/screenDimension';
+import { Container, Row, Col } from "react-bootstrap";
+import { Chart } from "react-google-charts";
+import isMobile from "../../../../utils/screenDimension";
 
-const BaccaratStatistics = ({ odds }:any) => {
+const BaccaratStatistics = ({}: any) => {
   // Extract relevant data for the pie chart
   // const pieData = odds
   //   .filter((od: { nat: string; }) => ['Player', 'Banker', 'Tie'].includes(od.nat))
@@ -12,16 +11,16 @@ const BaccaratStatistics = ({ odds }:any) => {
   // const chartData = [['Result', 'Percentage'], ...pieData];
 
   const options = {
-    title: 'Baccarat Statistics',
+    title: "Baccarat Statistics",
     pieHole: 0.4,
     is3D: false,
     slices: {
-      0: { color: '#086cb8' },
-      1: { color: '#ae2130' },
-      2: { color: '#279532' },
+      0: { color: "#086cb8" },
+      1: { color: "#ae2130" },
+      2: { color: "#279532" },
     },
   };
-// console.log(odds, "odds")
+  // console.log(odds, "odds")
   return (
     <div className={isMobile ? "d-flex flex-column" : 'd-flex flex-column baccarat'}>
       <div style={{width: "18%"}}>

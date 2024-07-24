@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCardReport } from "../../actions/user/userAction";
+import { getCardReport, resetCardReport } from "../../actions/user/userAction";
 
 interface INITIALSTATE {
   cardReport: any;
@@ -21,7 +21,7 @@ const reportSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(getCardReport.pending, (state, action) => {
+      .addCase(getCardReport.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
@@ -33,6 +33,9 @@ const reportSlice = createSlice({
       .addCase(getCardReport.rejected, (state, action) => {
         state.loading = false;
         state.error == action?.error?.message;
+      })
+      .addCase(resetCardReport, (state) => {
+        state.cardReport = null;
       });
   },
 });

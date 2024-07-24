@@ -13,6 +13,7 @@ import DynamicTable from "./betTable";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 const Cards32Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -21,7 +22,7 @@ const Cards32Mobile = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.card32}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -131,7 +132,7 @@ const Cards32Mobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "400px" }}>
+            {loading ? <InnerLoader /> : <div style={{ height: "400px" }}>
               <div className="mt-5">
                 <DynamicTable
                   back={true}
@@ -155,7 +156,7 @@ const Cards32Mobile = () => {
                   type={"card32"}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

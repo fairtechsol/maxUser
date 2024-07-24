@@ -19,6 +19,7 @@ import PairBox from "./PairBox";
 import CardBox from "./cardBox";
 import TotalCards from "./totalCards";
 import Card32BResult from "./card32B";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Card32BDesktop = () => {
   const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ const Card32BDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.card32B}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -118,7 +119,7 @@ const Card32BDesktop = () => {
               />
             </div>
           </div>
-          <div style={{ height: "760px" }}>
+          {loading ? <InnerLoader /> :<div style={{ height: "760px" }}>
             <div
               className="d-sm-flex flex-row justify-content-around align-items-center"
               style={{ width: "100%", marginTop: "4%", gap: "10px" }}
@@ -168,7 +169,7 @@ const Card32BDesktop = () => {
             <div style={{ width: "100%", margin: "5px" }}>
               <CardResultBox data={dragonTigerDetail} name={["8", "9", "10", "11"]} type={cardGamesType.card32B}/>
             </div>
-          </div>
+          </div>}
 
           <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>

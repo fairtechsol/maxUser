@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import React from "react";
+import { Row, Col } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import "./style.scss";
 import Slider from "react-slick";
@@ -66,12 +66,19 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
           left: "0",
           background: "rgba(0, 0, 0, 0.4)",
           height: "auto",
-          padding: isMobile ? "0px" :  "5px",
+          padding: isMobile ? "0px" : "5px",
         }}
       >
         <Row>
           {primaryCards?.[0] !== "1" && (
-            <Col xs={1} style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
+            <Col
+              xs={1}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginTop: "10px",
+              }}
+            >
               <span
                 style={{
                   color: "#fff",
@@ -114,8 +121,7 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
               />
             </div>
           </Col>
-          <Col xs={2}
-          style={isMobile ? {marginTop: "10px"} : {}}>
+          <Col xs={2} style={isMobile ? { marginTop: "10px" } : {}}>
             <div>
               <HandleCards
                 card={primaryCards?.[0] !== "1" ? primaryCards?.[2] : ""}
@@ -146,7 +152,12 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
                       ))}
                   </Slider>
                 ) : (
-                  <Row style={{ gap: "10px", marginTop: isMobile ? "10px" : "0px"}}>
+                  <Row
+                    style={{
+                      gap: "10px",
+                      marginTop: isMobile ? "10px" : "0px",
+                    }}
+                  >
                     {teamB &&
                       teamB?.map((item: any, index: any) => {
                         return (
@@ -159,7 +170,7 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
                 )}
               </div>
               <div className={isMobile ? "mt-1" : "mt-2"}>
-              {teamA?.length > 3 ? (
+                {teamA?.length > 3 ? (
                   <Slider {...sliderSettings(teamA?.length, teamA?.length > 3)}>
                     {teamA &&
                       teamA?.map((item: any, index: any) => (
@@ -169,7 +180,12 @@ const Abj2Result: React.FC<Props> = ({ data }: any) => {
                       ))}
                   </Slider>
                 ) : (
-                  <Row style={{ gap: "10px", marginTop: isMobile ? "10px" : "5px"}}>
+                  <Row
+                    style={{
+                      gap: "10px",
+                      marginTop: isMobile ? "10px" : "5px",
+                    }}
+                  >
                     {teamA &&
                       teamA?.map((item: any, index: any) => {
                         return (

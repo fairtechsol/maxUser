@@ -14,6 +14,7 @@ import Card32Result from "./card32Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ const Cards32Desktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.card32}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -118,7 +119,7 @@ const Cards32Desktop = () => {
 
             {/* </Row> */}
           </div>
-          <div style={{ height: "350px" }}>
+          {loading ? <InnerLoader /> :<div style={{ height: "350px" }}>
             <div className="d-flex px-2 mt-5">
               <DynamicTable
                 odds={dragonTigerDetail?.set1}
@@ -139,7 +140,7 @@ const Cards32Desktop = () => {
                 type={"card32"}
               />
             </div>
-          </div>
+          </div>}
 
           <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>

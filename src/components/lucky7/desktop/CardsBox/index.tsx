@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const CardBox = ({ name, rate, cardData, data }: any) => {
+const CardBox = ({ cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = cardData?.[0]?.min;
   const max = cardData?.[0]?.max;

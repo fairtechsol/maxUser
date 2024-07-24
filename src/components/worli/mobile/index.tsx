@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import SBetBox from "./Sbox";
 import "./style.scss";
-// import CardResultBox from "../../commonComponent/cardResultBox";
-// import CardResultBox from "../../commonComponent/cardResultBox";
 import { abjrules } from "../../../assets/images";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -16,6 +12,7 @@ import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import Abj1Result from "../desktop/abj1Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const WorliMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -25,7 +22,7 @@ const WorliMobile = () => {
     `${cardUrl}${cardGamesId?.andarBahar1}`
   );
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -133,7 +130,7 @@ const WorliMobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "450px",marginTop:"70px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "450px",marginTop:"70px" }}>
              
               <div
                 style={{
@@ -158,7 +155,7 @@ const WorliMobile = () => {
               <div style={{ width: "100%", marginTop: "10px" }}>
                 <CardResultBox data={dragonTigerDetail} name={["R", "R","R"]} type={cardGamesType.andarBahar1}/>
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

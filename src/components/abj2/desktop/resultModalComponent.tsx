@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -64,7 +64,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
     );
   }
 
-  const sliderSettings = (length: any, arrow: any) => ({
+  const sliderSettings = (_: any, __: any) => ({
     infinite: false,
     // arrows: false,
     speed: 500,

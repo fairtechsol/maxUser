@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { socket, socketService } from "../../socketManager";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCardAbj1Rates,
@@ -21,11 +22,10 @@ import {
 import { cardGamesType } from "../../utils/constants";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Abj1ComponentList from "../../components/abj1";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Abj = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail, loading } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
   const setMatchRatesInRedux = (event: any) => {
@@ -100,13 +100,14 @@ const Abj = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
-  return loading ? <InnerLoader /> : <Abj1ComponentList />;
+  return <Abj1ComponentList />;
 };
 
 export default Abj;

@@ -17,6 +17,7 @@ import TiePairBox from "./TiePairBox";
 import Lucky7Result from "./lucky7Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const AmarAkbarAnthonyDesktop = () => {
   const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ const AmarAkbarAnthonyDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.aaa}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   
 
@@ -123,7 +124,7 @@ const AmarAkbarAnthonyDesktop = () => {
                 />
               </div>
             </div>
-            <div >
+            {loading ? <InnerLoader /> :<div >
               <div style={{ width: "100%", margin: "5% 5px" }}>
                 <TiePairBox
                   lowHigh={dragonTigerDetail?.players}
@@ -182,7 +183,7 @@ const AmarAkbarAnthonyDesktop = () => {
                   type={cardGamesType.amarAkbarAnthony}
                 />
               </div>
-            </div>
+            </div>}
 
             <RulesModal show={show} setShow={setShow} rule={luckyrules} />
           </div>

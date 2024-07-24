@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { card32rules, p6rules } from "../../../assets/images";
+import { p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -13,6 +13,7 @@ import DynamicTable from "./betTable";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 const Poker20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -21,7 +22,7 @@ const Poker20Mobile = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.poker20}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -131,7 +132,7 @@ const Poker20Mobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "550px" }}>
+            {loading ? <InnerLoader /> : <div style={{ height: "550px" }}>
               <div className="mt-5">
                 <DynamicTable
                   back={true}
@@ -155,7 +156,7 @@ const Poker20Mobile = () => {
                   type={"card32"}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

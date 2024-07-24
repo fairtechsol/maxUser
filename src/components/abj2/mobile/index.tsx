@@ -16,6 +16,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Abj2Result from "../desktop/abj2Card";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -25,7 +26,7 @@ const Abj2Mobile = () => {
     `${cardUrl}${cardGamesId?.andarBahar2}`
   );
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -143,7 +144,7 @@ const Abj2Mobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "700px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "700px" }}>
               <div style={{ width: "100%", marginTop: "20%" }}>
                 <SBetBox
                   type={"A"}
@@ -194,7 +195,7 @@ const Abj2Mobile = () => {
                   type={cardGamesType.andarBahar2}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

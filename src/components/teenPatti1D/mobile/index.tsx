@@ -1,5 +1,3 @@
-import { Table } from "react-bootstrap";
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
@@ -14,13 +12,14 @@ import Teen1DResult from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { playerA, playerB } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
@@ -115,7 +114,7 @@ const TeenPattiMobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "480px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "480px" }}>
               <div className="mt-2" style={{ width: "100%" }}>
                 <div className="teenPatti-table-container-m">
                   <div
@@ -384,7 +383,7 @@ const TeenPattiMobile = () => {
                   type={"teen"}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

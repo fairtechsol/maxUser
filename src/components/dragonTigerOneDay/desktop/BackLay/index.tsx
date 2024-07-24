@@ -37,7 +37,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number, type: any) =>
+  const renderItem = (item: any, _: number, type: any) =>
     type === "back" ? (
       <div
         // key={index}

@@ -13,9 +13,9 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
 import { crick5rules } from "../../../assets/images";
 import { Table } from "react-bootstrap";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
-const Cricket5Mobile = ({fancyData}: any) => {
-
+const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
@@ -23,11 +23,11 @@ const Cricket5Mobile = ({fancyData}: any) => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.cricketv3}`
   );
-  const { dragonTigerDetail, scoreBoardData } = useSelector(
+  const { dragonTigerDetail, scoreBoardData ,loading} = useSelector(
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const [showFancy, setShowFancy] = useState(false);
+  const [showFancy] = useState(false);
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
@@ -112,7 +112,12 @@ const Cricket5Mobile = ({fancyData}: any) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height:scoreBoardData?.data?"225px":"150px" }}>
+            <div
+              style={{
+                width: "100%",
+                height: scoreBoardData?.data ? "225px" : "150px",
+              }}
+            >
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -140,7 +145,7 @@ const Cricket5Mobile = ({fancyData}: any) => {
                 />
               </div>
             </div>
-            <div style={{ height: "900px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "900px" }}>
               <div style={{ marginTop: "10.5rem" }}>
                 <MarketComponent
                   odds={dragonTigerDetail?.odds}
@@ -209,7 +214,7 @@ const Cricket5Mobile = ({fancyData}: any) => {
                   </Table>
                 ))}
               </div>
-            </div>
+            </div>}
           </div>
         ) : (
           <>

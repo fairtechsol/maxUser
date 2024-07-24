@@ -16,6 +16,8 @@ import BackLay from "../desktop/BackLay";
 import PairBox from "./PairBox";
 import MyBet from "./myBet";
 import TotalCards from "./totalCards";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Card32BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -27,8 +29,12 @@ const Card32BMobile = () => {
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
 
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -57,14 +63,14 @@ const Card32BMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, show]);
-  
+
   return (
     <>
       <div>
         <div className="dt20header">
           <PlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
-          <div
+            <div
               style={{
                 height: "100%",
                 borderTop: !activeTab ? "2px solid white" : "none",
@@ -97,7 +103,7 @@ const Card32BMobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -114,7 +120,12 @@ const Card32BMobile = () => {
         {!activeTab ? (
           <>
             <div
-              style={{ width: "100%",display: "flex", flexDirection: "column", backgroundColor: "#000" }}
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                backgroundColor: "#000",
+              }}
             >
               <div style={{ width: "100%", height: "275px" }}>
                 <div className="horseRacingTabHeader-m">
@@ -141,7 +152,7 @@ const Card32BMobile = () => {
                 </div>
               </div>
             </div>
-            <div style={{ height: "860px" }}>
+            {loading ? <InnerLoader /> :<div style={{ height: "860px" }}>
               <div className="" style={{ width: "97%", gap: "10px" }}>
                 <div className="w-100">
                   <BackLay
@@ -150,34 +161,34 @@ const Card32BMobile = () => {
                   />
                 </div>
                 <div className="w-100">
-                <OddEven
-                odds={dragonTigerDetail?.oddEven}
-                data={dragonTigerDetail}
-              />
+                  <OddEven
+                    odds={dragonTigerDetail?.oddEven}
+                    data={dragonTigerDetail}
+                  />
                 </div>
               </div>
               <div style={{ width: "97%", gap: "8px" }}>
-              <PairBox
+                <PairBox
                   matchOddsData={dragonTigerDetail?.redBlack}
                   data={dragonTigerDetail}
                 />
               </div>
               <div style={{ width: "97%", gap: "8px" }}>
-              <TotalCards
-                odds={dragonTigerDetail?.cardtotal}
-                data={dragonTigerDetail}
-              />
+                <TotalCards
+                  odds={dragonTigerDetail?.cardtotal}
+                  data={dragonTigerDetail}
+                />
               </div>
               <div style={{ width: "97%", marginLeft: "5px" }}>
-              <CardBox
-                odds={dragonTigerDetail?.singleCard}
-                data={dragonTigerDetail}
-              />
+                <CardBox
+                  odds={dragonTigerDetail?.singleCard}
+                  data={dragonTigerDetail}
+                />
               </div>
               <div style={{ width: "97%", margin: "5px" }}>
                 <CardResultBox data={dragonTigerDetail} name={["8", "9", "10", "11"]} type={cardGamesType.card32B} />
               </div>
-            </div>
+            </div>}
           </>
         ) : (
           <>
@@ -187,6 +198,7 @@ const Card32BMobile = () => {
       </div>
 
       <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

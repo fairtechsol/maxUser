@@ -1,14 +1,5 @@
-import {
-  Nav,
-  NavItem,
-  NavLink,
-  Tab,
-  TabContainer,
-  TabContent,
-  TabPane,
-} from "react-bootstrap";
+import { Tab } from "react-bootstrap";
 import CommonTabs from "../tabs";
-import React from "react";
 
 const RulesHead = () => {
   return (
@@ -24,7 +15,7 @@ const RulesHead = () => {
               id: "matchedBet",
               name: `MATCHED BET()`,
             },
-          ]?.map((item, index) => {
+          ]?.map((item) => {
             return (
               <Tab
                 key={item?.id}

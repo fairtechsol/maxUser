@@ -18,6 +18,7 @@ import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import Bookmaker from "./bookmaker";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import SuperoverResult from "./superOver";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -26,7 +27,7 @@ const SuperoverDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.superover}`
   );
-  const { dragonTigerDetail, scoreBoardData } = useSelector(
+  const { dragonTigerDetail, scoreBoardData,loading } = useSelector(
     (state: RootState) => state.card
   );
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -78,7 +79,6 @@ const SuperoverDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-
   return (
     <div>
       <Row>
@@ -124,7 +124,7 @@ const SuperoverDesktop = () => {
               />
             </div>
           </div>
-          <div style={{ height: "880px", marginLeft: "5px" }}>
+          {loading ? <InnerLoader /> :  <div style={{ height: "760px", marginLeft: "5px" }}>
             <div
               className="d-sm-flex flex-row justify-content-around align-items-center"
               style={{ width: "100%", marginTop: "7rem", gap: "10px" }}
@@ -147,7 +147,7 @@ const SuperoverDesktop = () => {
                 type={"superover"}
               />
             </div>
-          </div>
+          </div>}
 
           <RulesModal show={show} setShow={setShow} rule={card32rules} />
         </Col>

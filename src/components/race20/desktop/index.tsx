@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { abjrules, race20rules } from "../../../assets/images";
+import { race20rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -17,6 +17,7 @@ import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
 import Race20Result from "./race20Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Race20Desktop = () => {
   const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ const Race20Desktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.race20}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail,loading } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -121,7 +122,7 @@ const Race20Desktop = () => {
                 />
               </div>
             </div>
-            <div>
+            {loading ? <InnerLoader /> :<div>
               <div
                 style={{
                   width: "100%",
@@ -161,7 +162,7 @@ const Race20Desktop = () => {
                   type={cardGamesType.race20}
                 />
               </div>
-            </div>
+            </div>}
             <RulesModal show={show} setShow={setShow} rule={race20rules} />
           </div>
         </Col>
