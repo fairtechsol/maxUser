@@ -148,6 +148,7 @@ const Superover = () => {
           socketService.card.cardResultOff();
           dispatch(selectedBetAction(null));
           dispatch(dragonTigerReset());
+          dispatch(scoreBoardReset());
         };
       }
     } catch (e) {
