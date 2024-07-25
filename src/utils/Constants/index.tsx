@@ -1704,9 +1704,9 @@ export const card3 = {
     { id: 15, url: "/ab20", imgSrc: abjlist, name: "ANDAR BAHAR" },
   ],
   poker: [
-    { id: 16, url: "", imgSrc: p6, name: "POKER 6" },
-    { id: 17, url: "", imgSrc: p1d, name: "POKER 1 DAY" },
-    { id: 18, url: "", imgSrc: p20, name: "POKER 20 20" },
+    { id: 16, url: "/poker6", imgSrc: p6, name: "POKER 6" },
+    { id: 17, url: "/poker", imgSrc: p1d, name: "POKER 1 DAY" },
+    { id: 18, url: "/poker20", imgSrc: p20, name: "POKER 20 20" },
   ],
   sportCasino: [
     { id: 19, url: "", imgSrc: ballbyball, name: "BALL BY BALL" },
