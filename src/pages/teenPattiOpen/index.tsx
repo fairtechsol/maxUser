@@ -59,19 +59,8 @@ const TeenPattiOpen = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenOpen));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
-
-  useEffect(() => {
-    try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.teenOpen);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -90,7 +79,7 @@ const TeenPattiOpen = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -104,7 +93,16 @@ const TeenPattiOpen = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
+
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenOpen));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
 
   useEffect(() => {
     try {

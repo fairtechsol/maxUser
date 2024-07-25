@@ -56,19 +56,8 @@ const Poker20 = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker20));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
-
-  useEffect(() => {
-    try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.poker20);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -87,7 +76,7 @@ const Poker20 = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -101,7 +90,16 @@ const Poker20 = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
+
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker20));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
 
   useEffect(() => {
     try {
