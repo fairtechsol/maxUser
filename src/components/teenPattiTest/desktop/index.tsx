@@ -58,7 +58,7 @@ const TeenPattiDesktop = () => {
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
 
-  console.log("test", dragonTigerDetail);
+  
 
   const handleBet = (item: any, rateType: string, sectionId: string) => {
     const rate =

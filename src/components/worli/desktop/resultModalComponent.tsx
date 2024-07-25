@@ -99,7 +99,7 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
     return Number(item?.substring(0, item.length - 2) || "");
   });
 
-  console.log("cards", a, elementsAndar);
+  
 
   let sortString = 0,
     sum = 0;
