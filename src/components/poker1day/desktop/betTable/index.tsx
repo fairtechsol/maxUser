@@ -7,7 +7,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any, type: any) => {
-    if(type === "LAY" &&  item?.l1=="0.00"){
+    if (type === "LAY" && item?.l1 == "0.00") {
       return;
     }
     let team = {
@@ -30,13 +30,19 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
     // console.log("team", team);
   };
 
-  let player1Key = `player${playerNum[0]}`;
-  let player2Key = `player${playerNum[1]}`;
-// console.log('first',odds)
+  let player1Key = `playera`;
+  let player2Key = `playerb`;
+  // console.log('first',odds)
   return (
     <div className="card32-table-container">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
-       {isMobile ? <div className="title-12 f600 p-1" style={{ width: "50%" }}>Min: {min} Max: {max}</div> : <div className="title-12 f600 p-1" style={{ width: "50%" }}></div>}
+        {isMobile ? (
+          <div className="title-12 f600 p-1" style={{ width: "50%" }}>
+            Min: {min} Max: {max}
+          </div>
+        ) : (
+          <div className="title-12 f600 p-1" style={{ width: "50%" }}></div>
+        )}
         <div
           style={{
             width: "50%",
@@ -44,7 +50,10 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             flexDirection: "row",
           }}
         >
-          <div className="card32-table-item f12-b back" style={{ width: "50%" }}>
+          <div
+            className="card32-table-item f12-b back"
+            style={{ width: "50%" }}
+          >
             BACK
           </div>
           <div className="card32-table-item f12-b lay" style={{ width: "50%" }}>
@@ -95,7 +104,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
         <div
           className={
             odds?.[0]?.gstatus === "SUSPENDED" ||
-            odds?.[0]?.gstatus === "CLOSED"    
+            odds?.[0]?.gstatus === "CLOSED"
               ? "suspended"
               : ""
           }
@@ -111,7 +120,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[0]?.gstatus === "CLOSED" 
+              odds?.[0]?.gstatus === "CLOSED"
                 ? null
                 : handleBet(odds?.[0], "BACK")
             }
@@ -124,7 +133,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
-              odds?.[0]?.gstatus === "CLOSED" 
+              odds?.[0]?.gstatus === "CLOSED"
                 ? null
                 : handleBet(odds?.[0], "LAY")
             }
@@ -193,7 +202,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[1]?.gstatus === "SUSPENDED" ||
-              odds?.[1]?.gstatus === "CLOSED" 
+              odds?.[1]?.gstatus === "CLOSED"
                 ? null
                 : handleBet(odds?.[1], "BACK")
             }
