@@ -6,6 +6,7 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
@@ -21,13 +22,10 @@ import { cardGamesType } from "../../utils/constants";
 
 import TeentPattiComponentList from "../../components/teenPattiTest";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const TeenPattiTest = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -59,19 +57,8 @@ const TeenPattiTest = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenTest));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
-
-  useEffect(() => {
-    try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.teenTest);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -90,7 +77,7 @@ const TeenPattiTest = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -104,9 +91,28 @@ const TeenPattiTest = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
 
-  return loading ? <InnerLoader /> : <TeentPattiComponentList />;
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenTest));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  return <TeentPattiComponentList />;
 };
 
 export default TeenPattiTest;

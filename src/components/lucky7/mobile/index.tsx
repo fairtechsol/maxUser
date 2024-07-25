@@ -14,18 +14,25 @@ import TiePairBox from "./TiePairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Lucky7Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   // const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.lucky7}`
-  );
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -34,7 +41,7 @@ const Lucky7Mobile = () => {
 
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -53,7 +60,11 @@ const Lucky7Mobile = () => {
       });
       clearInterval(intervalId);
     };
-  }, [lastActivityTime, show]);
+  }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.lucky7}`);
+  }, []);
 
   return (
     <>
@@ -133,58 +144,62 @@ const Lucky7Mobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "550px" }}>
-              <div style={{ width: "100%", marginTop: "30px" }}>
-                <TiePairBox
-                  lowHigh={dragonTigerDetail?.lowHigh}
-                  data={dragonTigerDetail}
-                />
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "550px" }}>
+                <div style={{ width: "100%", marginTop: "30px" }}>
+                  <TiePairBox
+                    lowHigh={dragonTigerDetail?.lowHigh}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    padding: "10px 5px",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                  }}
+                >
+                  <OddEven
+                    odds={dragonTigerDetail?.redBlack}
+                    data={dragonTigerDetail}
+                    name={"DRAGON"}
+                    card={true}
+                  />
+                  <OddEven
+                    name={"TIGER"}
+                    odds={dragonTigerDetail?.luckOdds}
+                    card={false}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                  }}
+                >
+                  <CardBox
+                    name={"DRAGON"}
+                    cardData={dragonTigerDetail?.luckyCards}
+                    data={dragonTigerDetail}
+                    rate={dragonTigerDetail?.luckyCards?.rate}
+                  />
+                </div>
+                <div style={{ width: "100%", marginTop: "10px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["L", "H", "T"]}
+                    type={cardGamesType.lucky7}
+                  />
+                </div>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  padding: "10px 5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <OddEven
-                  odds={dragonTigerDetail?.redBlack}
-                  data={dragonTigerDetail}
-                  name={"DRAGON"}
-                  card={true}
-                />
-                <OddEven
-                  name={"TIGER"}
-                  odds={dragonTigerDetail?.luckOdds}
-                  card={false}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <CardBox
-                  name={"DRAGON"}
-                  cardData={dragonTigerDetail?.luckyCards}
-                  data={dragonTigerDetail}
-                  rate={dragonTigerDetail?.luckyCards?.rate}
-                />
-              </div>
-              <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["L", "H", "T"]}
-                  type={cardGamesType.lucky7}
-                />
-              </div>
-            </div>
+            )}
           </div>
         ) : (
           <>
@@ -193,6 +208,7 @@ const Lucky7Mobile = () => {
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={luckyrules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

@@ -15,17 +15,20 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import TeenPattiTableRow from "./tableRow";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [show, setShow] = useState(false);
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.teenOpen}`
-  );
+  const [videoFrameId, setVideoFrameId] = useState("");
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   //const { playerA, playerB } = dragonTigerDetail;
   const { players, pairsPlus } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
@@ -56,6 +59,10 @@ const TeenPattiMobile = () => {
     );
   };
 
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
@@ -63,7 +70,7 @@ const TeenPattiMobile = () => {
 
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -82,9 +89,11 @@ const TeenPattiMobile = () => {
       });
       clearInterval(intervalId);
     };
-  }, [lastActivityTime, show]);
+  }, [lastActivityTime, showInactivityModal]);
 
- 
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.teenOpen}`);
+  }, []);
 
   return (
     <>
@@ -167,57 +176,61 @@ const TeenPattiMobile = () => {
                 />
               </div>
             </div>
-            <div style={{ }}>
-              <div className="mt-2" style={{ width: "100%" }}>
-                <div className="teenPatti-table-container-m">
-                  <div className="teenPatti-table-row">
-                    <div
-                      style={{
-                        width: "20%",
-                        border: "0.1px solid #dee2e6",
-                        textAlign: "left",
-                      }}
-                    ></div>
-                    <div
-                      style={{
-                        width: "80%",
-                        border: "0.1px solid #dee2e6",
-                        textAlign: "left",
-                        display: "flex",
-                      }}
-                    >
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div>
+                <div className="mt-2" style={{ width: "100%" }}>
+                  <div className="teenPatti-table-container-m">
+                    <div className="teenPatti-table-row">
                       <div
-                        className="teen-back-m"
                         style={{
-                          border: "0.5px solid #dee2e6",
+                          width: "20%",
+                          border: "0.1px solid #dee2e6",
+                          textAlign: "left",
+                        }}
+                      ></div>
+                      <div
+                        style={{
+                          width: "80%",
+                          border: "0.1px solid #dee2e6",
+                          textAlign: "left",
+                          display: "flex",
                         }}
                       >
-                        BACK
-                        <span className="f12-b">
-                          ( Min: {dragonTigerDetail?.players?.player1?.min} Max:{" "}
-                          {dragonTigerDetail?.players?.player1?.max})
-                        </span>
-                      </div>
-                      <div className="teen-back-m">
-                        <span className="f12-b">
-                          ( Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min}{" "}
-                          Max: {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
-                        </span>
+                        <div
+                          className="teen-back-m"
+                          style={{
+                            border: "0.5px solid #dee2e6",
+                          }}
+                        >
+                          BACK
+                          <span className="f12-b">
+                            ( Min: {dragonTigerDetail?.players?.player1?.min}{" "}
+                            Max: {dragonTigerDetail?.players?.player1?.max})
+                          </span>
+                        </div>
+                        <div className="teen-back-m">
+                          <span className="f12-b">
+                            ( Min:{" "}
+                            {dragonTigerDetail?.pairsPlus?.pairPlus1?.min} Max:{" "}
+                            {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {players &&
-                    Object?.keys(players)?.map((key, index) => (
-                      <TeenPattiTableRow
-                        key={index}
-                        player={players[key]}
-                        pairPlus={pairsPlus[`pairPlus${index + 1}`]}
-                        handleBet={handleBet}
-                      />
-                    ))}
+                    {players &&
+                      Object?.keys(players)?.map((key, index) => (
+                        <TeenPattiTableRow
+                          key={index}
+                          player={players[key]}
+                          pairPlus={pairsPlus[`pairPlus${index + 1}`]}
+                          handleBet={handleBet}
+                        />
+                      ))}
 
-                  {/* <div className="teenPatti-table-row">
+                    {/* <div className="teenPatti-table-row">
                     <div
                       style={{
                         width: "50%",
@@ -444,57 +457,61 @@ const TeenPattiMobile = () => {
                       </div>
                     </div>
                   </div> */}
+                  </div>
                 </div>
-              </div>
 
-              <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["R", "R", "R"]}
-                  type={"teen8"}
-                />
-              </div>
-              <div>
-                <div className="casino-title" style={{ position: "relative" }}>
-                  <span>Rules</span>
+                <div style={{ width: "100%", marginTop: "15px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["R", "R", "R"]}
+                    type={"teen8"}
+                  />
                 </div>
-                <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                          Pair Plus
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rules.map((item, index) => (
-                        <tr key={index} style={{ lineHeight: 1 }}>
-                          <td
-                            className="box-7"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.label}
-                          </td>
-                          <td
-                            className="box-3"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.value}
-                          </td>
+                <div>
+                  <div
+                    className="casino-title"
+                    style={{ position: "relative" }}
+                  >
+                    <span>Rules</span>
+                  </div>
+                  <div className="table-responsive rules-table">
+                    <Table bordered>
+                      <thead>
+                        <tr>
+                          <th colSpan={2} className="box-10 text-center">
+                            Pair Plus
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </Table>
+                      </thead>
+                      <tbody>
+                        {rules.map((item, index) => (
+                          <tr key={index} style={{ lineHeight: 1 }}>
+                            <td
+                              className="box-7"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.label}
+                            </td>
+                            <td
+                              className="box-3"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.value}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         ) : (
           <>
@@ -503,6 +520,7 @@ const TeenPattiMobile = () => {
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

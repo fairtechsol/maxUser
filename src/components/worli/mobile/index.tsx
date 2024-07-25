@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import CardBox from "./CardsBox";
-import CardBox2 from "./CardsBox2";
-import OddEven from "./OddEvenBox";
-import SBetBox from "./Sbox";
 import "./style.scss";
 import { abjrules } from "../../../assets/images";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -15,6 +12,8 @@ import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import Abj1Result from "../desktop/abj1Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const WorliMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -23,9 +22,16 @@ const WorliMobile = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.andarBahar1}`
   );
+  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -54,14 +60,10 @@ const WorliMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-
-  const handlock = (item: any) => {
-    if (item?.gstatus === "0") {
-      return "suspended";
-    } else {
-      return "";
-    }
-  };
+  
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
+  }, []);
 
   return (
     <>
@@ -102,7 +104,7 @@ const WorliMobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -151,75 +153,39 @@ const WorliMobile = () => {
               </div>
             </div>
 
-            <div style={{ height: "450px", marginTop: "70px" }}>
-              <div >
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "450px", marginTop: "70px" }}>
                 <div
                   style={{
                     width: "100%",
-                    margin: "px",
-                    display: "flex",
-                    flexDirection: "column",
                   }}
                 >
-                  <div className="d-flex flex-row">
-                    <div
-                      style={{
-                        width: "100%",
-                        textAlign: "center",
-                        fontSize: "16px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {dragonTigerDetail?.worli?.gstatus === "0" ? 0 : 9}
-                    </div>
-                  </div>
-                  <div className={handlock(dragonTigerDetail.worli)}>
-                    <CardBox
-                      odds={"L1"}
-                      data={dragonTigerDetail}
-                      cards={dragonTigerDetail?.cardInfo}
-                    />
-                    <CardBox
-                      odds={"L2"}
-                      data={dragonTigerDetail}
-                      cards={dragonTigerDetail?.cardInfo}
-                    />
-                  </div>
-
-                  <div
-                    style={{
-                      textAlign: "center",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    9
-                  </div>
-
-                  <div className={handlock(dragonTigerDetail.worli)}>
-                    <CardBox2 />
-                  </div>
-                  <div
-                    style={{
-                      color: "#BD1828",
-                      textAlign: "start",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    welcome single
-                  </div>
+                  <CardBox
+                    title={"ANDAR"}
+                    bgColor={"#ffa07a"}
+                    odds={dragonTigerDetail?.ander}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
+                  <CardBox
+                    title={"BAHAR"}
+                    bgColor={"#90ee90"}
+                    odds={dragonTigerDetail?.bahar}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
                 </div>
-
-                <div style={{ width: "100%"}}>
+                <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["R", "R", "R"]}
-                    type={cardGamesType.worli}
+                    type={cardGamesType.andarBahar1}
                   />
                 </div>
               </div>
-            </div>
+            )}
           </div>
         ) : (
           <>
@@ -227,11 +193,8 @@ const WorliMobile = () => {
           </>
         )}
       </div>
-      <RulesModal
-        show={showInactivityModal}
-        setShow={setShowInactivityModal}
-        rule={abjrules}
-      />
+      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

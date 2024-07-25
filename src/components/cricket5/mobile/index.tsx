@@ -13,20 +13,26 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
 import { crick5rules } from "../../../assets/images";
 import { Table } from "react-bootstrap";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
+  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.cricketv3}`
-  );
-  const { dragonTigerDetail, scoreBoardData } = useSelector(
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, scoreBoardData, loading } = useSelector(
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
   const [showFancy] = useState(false);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
@@ -54,6 +60,11 @@ const Cricket5Mobile = ({ fancyData }: any) => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.cricketv3}`);
+  }, []);
+
   return (
     <>
       <div>
@@ -93,7 +104,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
@@ -144,76 +155,80 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                 />
               </div>
             </div>
-            <div style={{ height: "900px" }}>
-              <div style={{ marginTop: "10.5rem" }}>
-                <MarketComponent
-                  odds={dragonTigerDetail?.odds}
-                  fancyData={fancyData}
-                  data={dragonTigerDetail}
-                  min={dragonTigerDetail?.videoInfo?.min}
-                  max={dragonTigerDetail?.videoInfo?.max}
-                  showFancy={showFancy}
-                />
-              </div>
-              <div style={{ marginTop: "10px" }}>
-                {" "}
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "I", "T"]}
-                  type={"cricketv3"}
-                />
-              </div>
-              <div className="casino-title" style={{ position: "relative" }}>
-                <span>Rules</span>
-              </div>
-              <div className="table-responsive rules-table d-flex">
-                {cardData?.map((teamData, index) => (
-                  <Table bordered key={index} className="mb-4">
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="text-center">
-                          {teamData.team}
-                        </th>
-                      </tr>
-                      <tr>
-                        <th>Cards</th>
-                        <th>Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {teamData.cards.map((card, cardIndex) => (
-                        <tr key={cardIndex}>
-                          <td className=" d-flex text-start">
-                            <div className="d-flex justify-content-center align-items-center gap-2">
-                              <img
-                                src={
-                                  typeof card.imgSrc === "string"
-                                    ? card.imgSrc
-                                    : ""
-                                }
-                                alt="s"
-                                className="img-cards"
-                              />
-                              X 10
-                            </div>
-                          </td>
-                          <td>
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "flex-end",
-                              }}
-                            >
-                              {card.value}
-                            </div>
-                          </td>
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "900px" }}>
+                <div style={{ marginTop: "10.5rem" }}>
+                  <MarketComponent
+                    odds={dragonTigerDetail?.odds}
+                    fancyData={fancyData}
+                    data={dragonTigerDetail}
+                    min={dragonTigerDetail?.videoInfo?.min}
+                    max={dragonTigerDetail?.videoInfo?.max}
+                    showFancy={showFancy}
+                  />
+                </div>
+                <div style={{ marginTop: "10px" }}>
+                  {" "}
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "I", "T"]}
+                    type={"cricketv3"}
+                  />
+                </div>
+                <div className="casino-title" style={{ position: "relative" }}>
+                  <span>Rules</span>
+                </div>
+                <div className="table-responsive rules-table d-flex">
+                  {cardData?.map((teamData, index) => (
+                    <Table bordered key={index} className="mb-4">
+                      <thead>
+                        <tr>
+                          <th colSpan={2} className="text-center">
+                            {teamData.team}
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                ))}
+                        <tr>
+                          <th>Cards</th>
+                          <th>Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {teamData.cards.map((card, cardIndex) => (
+                          <tr key={cardIndex}>
+                            <td className=" d-flex text-start">
+                              <div className="d-flex justify-content-center align-items-center gap-2">
+                                <img
+                                  src={
+                                    typeof card.imgSrc === "string"
+                                      ? card.imgSrc
+                                      : ""
+                                  }
+                                  alt="s"
+                                  className="img-cards"
+                                />
+                                X 10
+                              </div>
+                            </td>
+                            <td>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "flex-end",
+                                }}
+                              >
+                                {card.value}
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         ) : (
           <>
@@ -221,11 +236,8 @@ const Cricket5Mobile = ({ fancyData }: any) => {
           </>
         )}
       </div>
-      <RulesModal
-        show={showInactivityModal}
-        setShow={setShowInactivityModal}
-        rule={crick5rules}
-      />
+      <RulesModal show={show} setShow={setShow} rule={crick5rules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

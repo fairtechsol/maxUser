@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { FaLock } from "react-icons/fa";
 import "./style.scss";
 import { useParams } from "react-router-dom";
+import isMobile from "../../../../utils/screenDimension";
 
 interface Props {
   children?: ReactNode;
@@ -16,7 +17,7 @@ const BetStatusOverlay = ({ title, children, active }: Props) => {
       {
         <div className={`box-height d-flex position-relative ${id ? "bet-overlay" : "bet-overlay-matchlist"}`}>
           {active && (
-            <div className="betStatusOverlay">
+            <div className={isMobile ? "betStatusOverlay-mobile ms-3" :"betStatusOverlay"}>
               {title && title !== "Lock" && (
                 <h5 className="text-uppercase">
                   {title === "active" ? "" : title}

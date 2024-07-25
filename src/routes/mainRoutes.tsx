@@ -40,14 +40,16 @@ const CasinoReports = Loadable(
   lazy(() => import("../pages/reports/casinoReport"))
 );
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
-const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
+const RaceDetail = Loadable(lazy(() => import("../pages/HorseRacingDetails")));
 const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
 const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
 const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
 const TeenPattiOpen = Loadable(lazy(() => import("../pages/teenPattiOpen")));
 const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
-const AmarAkbarAnthony = Loadable(lazy(() => import("../pages/amarAkbarAnthony")));
-const BollywoodTable = Loadable(lazy(() => import("../pages/bollywoodTable")));
+// const AmarAkbarAnthony = Loadable(
+//   lazy(() => import("../pages/amarAkbarAnthony"))
+// );
+// const BollywoodTable = Loadable(lazy(() => import("../pages/bollywoodTable")));
 const Superover = Loadable(lazy(() => import("../pages/superover")));
 const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
 const DragonTigerSecond20 = Loadable(
@@ -64,11 +66,11 @@ const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
 const Poker6 = Loadable(lazy(() => import("../pages/poker")));
 const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
 const Abj1 = Loadable(lazy(() => import("../pages/abj")));
-const Worli = Loadable(lazy(() => import("../pages/worli")));
+// const Worli = Loadable(lazy(() => import("../pages/worli")));
 const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
 const Race20 = Loadable(lazy(() => import("../pages/race20")));
-const Baccarat1 = Loadable(lazy(() => import("../pages/baccarat1")));
-const CardJ = Loadable(lazy(() => import("../pages/3cardJ")));
+// const Baccarat1 = Loadable(lazy(() => import("../pages/baccarat1")));
+// const CardJ = Loadable(lazy(() => import("../pages/3cardJ")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -155,12 +157,12 @@ const MainRoutes = {
     },
     {
       path: "teenPatti20",
-      element: <TeenPatti20 />,
+      element: <TeenPatti20 />, //
     },
 
     {
       path: "teen",
-      element: <TeenPatti1D />,
+      element: <TeenPatti1D />, //
     },
 
     {
@@ -180,35 +182,35 @@ const MainRoutes = {
 
     {
       path: "lucky7-A",
-      element: <Lucky7 />,
+      element: <Lucky7 />, //
     },
     {
       path: "lucky7eu",
-      element: <Lucky7B />,
+      element: <Lucky7B />, //
     },
     {
       path: "32cards-A",
-      element: <Cards32 />,
+      element: <Cards32 />, //
     },
     {
       path: "abj2",
-      element: <Abj2 />,
+      element: <Abj2 />, //
     },
     {
       path: "dt20",
-      element: <DragonTiger20 />,
+      element: <DragonTiger20 />, //
     },
     {
       path: "dt202",
-      element: <DragonTigerSecond20 />,
+      element: <DragonTigerSecond20 />, //
     },
     {
       path: "dtl20",
-      element: <DragonTigerLion />,
+      element: <DragonTigerLion />, //
     },
     {
       path: "dt6",
-      element: <DragonTigerOneDay />,
+      element: <DragonTigerOneDay />, //
     },
 
     {
@@ -243,31 +245,31 @@ const MainRoutes = {
       path: "cricketv3",
       element: <Cricket5 />,
     },
-    {
-      path: "baccarat",
-      element: <Baccarat1 />,
-    },
+    // {
+    //   path: "baccarat",
+    //   element: <Baccarat1 />,
+    // },
+
+    // {
+    //   path: "aaa",
+    //   element: <AmarAkbarAnthony />,
+    // },
+    // {
+    //   path: "btable",
+    //   element: <BollywoodTable />,
+    // },
+
+    // {
+    //   path: "worli2",
+    //   element: <Worli />,
+    // },
+    // {
+    //   path: "3cardj", 
+    //   element: <CardJ/>,
+    // },
     {
       path: "*",
       element: <Navigate to={"/home"} replace />,
-    },
-    {
-      path: "aaa",
-      element: <AmarAkbarAnthony/>,
-    },
-    {
-      path: "btable",
-      element: <BollywoodTable/>,
-    },
-
-    {
-      path: "worli2",
-      element: <Worli/>,
-    },
-
-    {
-      path: "3cardj", 
-      element: <CardJ/>,
     },
   ],
 };

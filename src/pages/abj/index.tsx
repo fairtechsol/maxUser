@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { socket, socketService } from "../../socketManager";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCardAbj1Rates,
@@ -21,13 +22,10 @@ import {
 import { cardGamesType } from "../../utils/constants";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Abj1ComponentList from "../../components/abj1";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Abj = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail, loading } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateCardAbj1Rates(event?.data?.data?.data));
@@ -39,18 +37,6 @@ const Abj = () => {
       console.log(e);
     }
   };
-
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar1));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
 
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.andarBahar1) {
@@ -72,6 +58,7 @@ const Abj = () => {
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.andarBahar1);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -90,7 +77,7 @@ const Abj = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket,dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -104,9 +91,28 @@ const Abj = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
 
-  return loading ? <InnerLoader /> : <Abj1ComponentList />;
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar1));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+  
+  return <Abj1ComponentList />;
 };
 
 export default Abj;

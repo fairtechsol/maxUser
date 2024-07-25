@@ -14,6 +14,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Poker20Result from "./poker20";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Poker20Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -21,10 +22,10 @@ const Poker20Desktop = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.poker20}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -72,7 +73,11 @@ const Poker20Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-// console.log('first',dragonTigerDetail)
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.poker20}`);
+  }, []);
+
   return (
     <>
       <Row>
@@ -118,28 +123,32 @@ const Poker20Desktop = () => {
 
             {/* </Row> */}
           </div>
-          <div style={{ height: "350px" }}>
-            <div className="d-flex px-2 mt-5">
-              <DynamicTable
-                odds={dragonTigerDetail?.odds}
-                data={dragonTigerDetail}
-                playerNum={[0, 10]}
-              />
-              <div style={{ width: "10px" }}></div>
-              <DynamicTable
-                odds={dragonTigerDetail?.odds}
-                data={dragonTigerDetail}
-                playerNum={[10, 18]}
-              />
+          {loading ? (
+            <InnerLoader />
+          ) : (
+            <div style={{ height: "350px" }}>
+              <div className="d-flex px-2 mt-5">
+                <DynamicTable
+                  odds={dragonTigerDetail?.odds}
+                  data={dragonTigerDetail}
+                  playerNum={[0, 10]}
+                />
+                <div style={{ width: "10px" }}></div>
+                <DynamicTable
+                  odds={dragonTigerDetail?.odds}
+                  data={dragonTigerDetail}
+                  playerNum={[10, 18]}
+                />
+              </div>
+              <div className="mt-2">
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "B", "T"]}
+                  type={cardGamesType.poker20}
+                />
+              </div>
             </div>
-            <div className="mt-2">
-              <CardResultBox
-                data={dragonTigerDetail}
-                name={["A", "B", "T"]}
-                type={ cardGamesType.poker20}
-              />
-            </div>
-          </div>
+          )}
 
           <RulesModal show={show} setShow={setShow} rule={p6rules} />
         </Col>

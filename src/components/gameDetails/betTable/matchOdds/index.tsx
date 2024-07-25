@@ -76,7 +76,7 @@ function MatchOdds({
     <div
       className={`gameTable table-responsive sessionFancyTable borderTable border`}
     >
-      <Table className="mb-0">
+      <Table className="mb-0" style={{ position: "relative" }}>
         <thead>
           <tr>
             {data?.type === "bookmaker" ? (
@@ -160,25 +160,36 @@ function MatchOdds({
         <tbody>
           {isMobile && data?.type === "bookmaker" && (
             <tr>
-              <td colSpan={2} style={{ backgroundColor: "#fff" }}>
+              <td colSpan={7} style={{ backgroundColor: "#fff" }}>
                 {minMax && isMobile && (
                   <span className="f700 title-14 px-2">{minMax}</span>
                 )}
               </td>
               {/* <td style={{width:'11.5%'}}></td> */}
-              <td
-                className="bg-blue1 text-center   match-odd-bet-placem f400 w-20 title-14"
-                style={{ width: "4%" }}
+              <div
+                style={{
+                  position: "absolute",
+                  right: "88px",
+                  top: "1px",
+                  padding: "0px",
+                  height: "20px",
+                }}
               >
-                BACK
-              </td>
-              <td
-                className="bg-red1 text-center match-odd-bet-placem f400 w-20 title-14"
-                style={{ width: "5%" }}
-              >
-                LAY
-              </td>
-              <td style={{ width: "13%", backgroundColor: "#fff" }}></td>
+                <div style={{ width: "88px", display: "flex", height: "118%" }}>
+                  <div
+                    className="bg-blue1 text-center   match-odd-bet-placem f400 w-20 title-14"
+                    style={{ width: "44px" }}
+                  >
+                    BACK
+                  </div>
+                  <div
+                    className="bg-red1 text-center   match-odd-bet-placem f400 w-20 title-14"
+                    style={{ width: "44px" }}
+                  >
+                    LAY
+                  </div>
+                </div>
+              </div>
             </tr>
           )}
           {arr
@@ -514,10 +525,6 @@ function MatchOdds({
                         ))}
                     </BetStatusOverlay>
                   </td>
-                  {data?.activeStatus !== "live" ? (
-                    <div className="overlay"></div>
-                  ) : null}
-                  {/* {!isMobile && <td></td>} */}
                 </tr>
               );
             })}

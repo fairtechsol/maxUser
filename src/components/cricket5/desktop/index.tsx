@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import {
-  crick5rules,
-} from "../../../assets/images";
+import { crick5rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -17,6 +15,7 @@ import "./style.scss";
 import MarketComponent from "./betTable";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import Crick5Result from "./cric5Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -24,10 +23,8 @@ const Cricket5Desktop = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.cricketv3}`
-  );
-  const { dragonTigerDetail, scoreBoardData } = useSelector(
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, scoreBoardData, loading } = useSelector(
     (state: RootState) => state.card
   );
   // console.log(dragonTigerDetail, "dtaa")
@@ -79,11 +76,21 @@ const Cricket5Desktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.cricketv3}`);
+  }, []);
+
   return (
     <>
       <Row>
         <Col md={8} className="five-cricket">
-          <div style={{ width: "100%", height:scoreBoardData?.data? "400px":"310px", margin: "5px" }}>
+          <div
+            style={{
+              width: "100%",
+              height: scoreBoardData?.data ? "400px" : "310px",
+              margin: "5px",
+            }}
+          >
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -126,23 +133,27 @@ const Cricket5Desktop = () => {
               />
             </div>
           </div>
-          <div style={{ height: "350px" }}>
-            <div style={{ marginTop: "7rem" }}>
-              <MarketComponent
-                odds={dragonTigerDetail?.odds}
-                min={dragonTigerDetail?.videoInfo?.min}
-                max={dragonTigerDetail?.videoInfo?.max}
-                data={dragonTigerDetail}
-              />
+          {loading ? (
+            <InnerLoader />
+          ) : (
+            <div style={{ height: "350px" }}>
+              <div style={{ marginTop: "7rem" }}>
+                <MarketComponent
+                  odds={dragonTigerDetail?.odds}
+                  min={dragonTigerDetail?.videoInfo?.min}
+                  max={dragonTigerDetail?.videoInfo?.max}
+                  data={dragonTigerDetail}
+                />
+              </div>
+              <div className="mt-2">
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["A", "I", "T"]}
+                  type={"cricketv3"}
+                />
+              </div>
             </div>
-            <div className="mt-2">
-              <CardResultBox
-                data={dragonTigerDetail}
-                name={["A", "I", "T"]}
-                type={"cricketv3"}
-              />
-            </div>
-          </div>
+          )}
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>

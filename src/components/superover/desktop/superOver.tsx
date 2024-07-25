@@ -32,7 +32,7 @@ const SuperoverResult: React.FC<Props> = ({ data }:any) => {
   return data?.mid !="0" && (  
     <Container>
       <Row>
-        <Col className="mt-2">
+        <Col className="mt-3">
           <div style={{ display: "flex",flexDirection:"column", gap: "10px", width: isMobile ? "22px" : "32px" }}>
            {data?.C1!="1" ?<img src={handleBall(data?.C1)} />:null}
            {data?.C2!="1" ? <img src={handleBall(data?.C2)} /> :null}

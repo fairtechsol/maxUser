@@ -12,24 +12,32 @@ import OddEven from "./OddEvenBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [activeCardTab, setActiveCardTab] = useState("dragon");
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.dragonTigerLion}`
-  );
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [videoFrameId, setVideoFrameId] = useState("");
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
     };
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -44,7 +52,12 @@ const DragonTigerMobile = () => {
       });
       clearInterval(intervalId);
     };
-  }, [lastActivityTime, show]);
+  }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.dragonTigerLion}`);
+  }, []);
+
   return (
     <>
       <div>
@@ -132,88 +145,96 @@ const DragonTigerMobile = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "820px" }}>
-              <div className="dt20TabBox">
-                <div className="dtltabheader">
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      padding: "6px",
-                      width: "100%",
-                      textAlign: "center",
-                      borderTop:
-                        activeCardTab === "dragon" ? "2px solid white" : "none",
-                    }}
-                    onClick={() => setActiveCardTab("dragon")}
-                  >
-                    DRAGON
-                  </span>
-                  <span style={{ fontSize: "18px" }}> | </span>
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      padding: "5px",
-                      width: "100%",
-                      textAlign: "center",
-                      borderTop:
-                        activeCardTab === "tiger" ? "2px solid white" : "none",
-                    }}
-                    onClick={() => setActiveCardTab("tiger")}
-                  >
-                    TIGER
-                  </span>
-                  <span style={{ fontSize: "18px" }}> | </span>
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      padding: "5px",
-                      width: "100%",
-                      textAlign: "center",
-                      borderTop:
-                        activeCardTab === "lion" ? "2px solid white" : "none",
-                    }}
-                    onClick={() => setActiveCardTab("lion")}
-                  >
-                    LION
-                  </span>
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "820px" }}>
+                <div className="dt20TabBox">
+                  <div className="dtltabheader">
+                    <span
+                      style={{
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        padding: "6px",
+                        width: "100%",
+                        textAlign: "center",
+                        borderTop:
+                          activeCardTab === "dragon"
+                            ? "2px solid white"
+                            : "none",
+                      }}
+                      onClick={() => setActiveCardTab("dragon")}
+                    >
+                      DRAGON
+                    </span>
+                    <span style={{ fontSize: "18px" }}> | </span>
+                    <span
+                      style={{
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        padding: "5px",
+                        width: "100%",
+                        textAlign: "center",
+                        borderTop:
+                          activeCardTab === "tiger"
+                            ? "2px solid white"
+                            : "none",
+                      }}
+                      onClick={() => setActiveCardTab("tiger")}
+                    >
+                      TIGER
+                    </span>
+                    <span style={{ fontSize: "18px" }}> | </span>
+                    <span
+                      style={{
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        padding: "5px",
+                        width: "100%",
+                        textAlign: "center",
+                        borderTop:
+                          activeCardTab === "lion" ? "2px solid white" : "none",
+                      }}
+                      onClick={() => setActiveCardTab("lion")}
+                    >
+                      LION
+                    </span>
+                  </div>
+                </div>
+                {activeCardTab === "dragon" ? (
+                  <div>
+                    <OddEven
+                      name={"DRAGON"}
+                      odds={dragonTigerDetail?.dragonData}
+                      data={dragonTigerDetail}
+                    />
+                  </div>
+                ) : activeCardTab === "tiger" ? (
+                  <div>
+                    <OddEven
+                      name={"TIGER"}
+                      odds={dragonTigerDetail?.tigerData}
+                      data={dragonTigerDetail}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <OddEven
+                      name={"LION"}
+                      odds={dragonTigerDetail?.lionData}
+                      data={dragonTigerDetail}
+                    />
+                  </div>
+                )}
+                <div style={{ width: "100%", marginTop: "15px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["D", "T", "L"]}
+                    type={cardGamesType.dragonTigerLion}
+                  />
                 </div>
               </div>
-              {activeCardTab === "dragon" ? (
-                <div>
-                  <OddEven
-                    name={"DRAGON"}
-                    odds={dragonTigerDetail?.dragonData}
-                    data={dragonTigerDetail}
-                  />
-                </div>
-              ) : activeCardTab === "tiger" ? (
-                <div>
-                  <OddEven
-                    name={"TIGER"}
-                    odds={dragonTigerDetail?.tigerData}
-                    data={dragonTigerDetail}
-                  />
-                </div>
-              ) : (
-                <div>
-                  <OddEven
-                    name={"LION"}
-                    odds={dragonTigerDetail?.lionData}
-                    data={dragonTigerDetail}
-                  />
-                </div>
-              )}
-              <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["D", "T", "L"]}
-                  type={cardGamesType.dragonTigerLion}
-                />
-              </div>
-            </div>
+            )}
           </div>
         ) : (
           <>
@@ -222,6 +243,7 @@ const DragonTigerMobile = () => {
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={dtrules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

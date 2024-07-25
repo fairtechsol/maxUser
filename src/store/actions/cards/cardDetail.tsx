@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import service from "../../../service";
 import { ApiConstants, Constants } from "../../../utils/constants";
@@ -280,3 +280,5 @@ export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
     }
   }
 );
+export const dragonTigerReset = createAction("dragonTiger/reset");
+export const scoreBoardReset = createAction("scoreBoard/reset");

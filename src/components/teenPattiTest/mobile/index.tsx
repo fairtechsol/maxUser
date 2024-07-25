@@ -14,17 +14,22 @@ import TeenTestResult from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.teenTest}`
   );
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { playerA } = dragonTigerDetail;
   const { sections, videoInfo } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
@@ -35,7 +40,11 @@ const TeenPattiMobile = () => {
     { label: "Trio (Teen)", value: "1 To 35" },
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
-  
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
   const handleBet = (item: any, rateType: string, sectionId: string) => {
     const rate =
       rateType === "drate"
@@ -63,7 +72,6 @@ const TeenPattiMobile = () => {
       })
     );
   };
-  
 
   useEffect(() => {
     const resetTimer = () => {
@@ -72,7 +80,7 @@ const TeenPattiMobile = () => {
 
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -91,7 +99,12 @@ const TeenPattiMobile = () => {
       });
       clearInterval(intervalId);
     };
-  }, [lastActivityTime, show]);
+  }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.teenTest}`);
+  }, []);
+
   return (
     <>
       <div>
@@ -166,83 +179,45 @@ const TeenPattiMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<TeenTestResult data={dragonTigerDetail?.videoInfo} />}
+                  result={
+                    <TeenTestResult data={dragonTigerDetail?.videoInfo} />
+                  }
                   id={videoFrameId}
                 />
               </div>
             </div>
-            <div style={{  }}>
-              <div className="mt-2" style={{ width: "100%" }}>
-                <div className="teenPatti-table-container-m">
-                  <div className="teenPatti-table-row">
-                    <div
-                      style={{
-                        width: "40%",
-                        border: "0.1px solid #dee2e6",
-                        textAlign: "left",
-                      }}
-                    >
-                      <span className="f12-b">
-                        Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
-                        {dragonTigerDetail?.videoInfo?.max}
-                      </span>
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div>
+                <div className="mt-2" style={{ width: "100%" }}>
+                  <div className="teenPatti-table-container-m">
+                    <div className="teenPatti-table-row">
+                      <div
+                        style={{
+                          width: "40%",
+                          border: "0.1px solid #dee2e6",
+                          textAlign: "left",
+                        }}
+                      >
+                        <span className="f12-b">
+                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
+                          {dragonTigerDetail?.videoInfo?.max}
+                        </span>
+                      </div>
+                      <div
+                        className="teen-back-m"
+                        style={{
+                          width: "60%",
+                        }}
+                      >
+                        BACK
+                      </div>
                     </div>
-                    <div className="teen-back-m"  style={{
-                        width: "60%",}}>BACK</div>
-                  </div>
-                 
-                  <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
-                  <div
-                    style={{
-                      width: "40%",
-                      padding: "10px",
-                      border: "0.1px solid #fff",
-                    }}
-                  >
-                    <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                      {playerA?.[0]?.nat}
-                    </span>
-                  </div>
 
-                  <div
-                    className="teenPatti-table-item"
-                    style={{ width: "20%", backgroundColor: "#72bbef" }}
-                   
-                  >
-                    <span className="f12-b">{"LION"}</span>
-                  </div>
-                  <div
-                    className={`teenPatti-table-item ${
-                      playerA?.[0]?.gstatus != "0" &&
-                      playerA?.[1]?.gstatus === "0"
-                        ? "suspended"
-                        : ""
-                    }`}
-                    style={{ width: "20%", backgroundColor: "#72bbef" }}
-                   
-                  >
-                    <span className="f12-b">{"TIGER"}</span>
-                  </div>
-                  <div
-                    className={`teenPatti-table-item ${
-                      playerA?.[0]?.gstatus != "0" &&
-                      playerA?.[1]?.gstatus === "0"
-                        ? "suspended"
-                        : ""
-                    }`}
-                    style={{ width: "20%", backgroundColor: "#72bbef" }}
-                   
-                  >
-                    <span className="f12-b">{"DRAGON"}</span>
-                  </div>
-                </div>
-
-                {sections &&
-                  sections.map((section: any, index: any) => (
                     <div
                       className="teenPatti-table-row"
                       style={{ lineHeight: 1 }}
-                      key={index}
                     >
                       <div
                         style={{
@@ -254,125 +229,199 @@ const TeenPattiMobile = () => {
                         <span
                           style={{ fontSize: "14px", fontWeight: "bolder" }}
                         >
-                          {section.nat}
+                          {playerA?.[0]?.nat}
                         </span>
                       </div>
 
                       <div
-                        className={`${
-                          section.dstatus !== true ? "suspended" : ""
-                        }`}
-                        style={{
-                          width: "60%",
-                          display: "flex",
-                          flexDirection: "row",
-                        }}
+                        className="teenPatti-table-item"
+                        style={{ width: "20%", backgroundColor: "#72bbef" }}
                       >
-                        <div
-                          className={`teenPatti-table-item`}
-                          style={{ width: "33.3%", backgroundColor: "#72bbef" }}
-                          onClick={() =>
-                            section.dstatus === false
-                              ? null
-                              : handleBet(section, "drate", section.dsectionid)
-                          }
-                        >
-                          <span className="f12-b">{section.drate}</span>
-                          <span className="f10-b">0</span>
-                        </div>
-
-                        <div
-                          className={`teenPatti-table-item`}
-                          style={{ width: "33.3%", backgroundColor: "#72bbef" }}
-                          onClick={() =>
-                            section.lstatus === false
-                              ? null
-                              : handleBet(section, "lrate", section.lsection)
-                          }
-                        >
-                          <span className="f12-b">{section.lrate}</span>
-                          <span className="f10-b">0</span>
-                        </div>
-
-                        <div
-                          className={`teenPatti-table-item`}
-                          style={{ width: "33.3%", backgroundColor: "#72bbef" }}
-                          onClick={() =>
-                            section.tstatus === false
-                              ? null
-                              : handleBet(section, "trate", section.tsection)
-                          }
-                        >
-                          <span className="f12-b">{section.trate}</span>
-                          <span className="f10-b">0</span>
-                        </div>
+                        <span className="f12-b">{"LION"}</span>
+                      </div>
+                      <div
+                        className={`teenPatti-table-item ${
+                          playerA?.[0]?.gstatus != "0" &&
+                          playerA?.[1]?.gstatus === "0"
+                            ? "suspended"
+                            : ""
+                        }`}
+                        style={{ width: "20%", backgroundColor: "#72bbef" }}
+                      >
+                        <span className="f12-b">{"TIGER"}</span>
+                      </div>
+                      <div
+                        className={`teenPatti-table-item ${
+                          playerA?.[0]?.gstatus != "0" &&
+                          playerA?.[1]?.gstatus === "0"
+                            ? "suspended"
+                            : ""
+                        }`}
+                        style={{ width: "20%", backgroundColor: "#72bbef" }}
+                      >
+                        <span className="f12-b">{"DRAGON"}</span>
                       </div>
                     </div>
-                  ))}
 
-                <div className="ticker-container">
-                  <div className="ticker-wrap">
-                    <div
-                      className="ticker-move"
-                      style={{ color: "#8b0000", fontWeight: "700" }}
-                    >
-                      {videoInfo && videoInfo.remark}
+                    {sections &&
+                      sections.map((section: any, index: any) => (
+                        <div
+                          className="teenPatti-table-row"
+                          style={{ lineHeight: 1 }}
+                          key={index}
+                        >
+                          <div
+                            style={{
+                              width: "40%",
+                              padding: "10px",
+                              border: "0.1px solid #fff",
+                            }}
+                          >
+                            <span
+                              style={{ fontSize: "14px", fontWeight: "bolder" }}
+                            >
+                              {section.nat}
+                            </span>
+                          </div>
+
+                          <div
+                            className={`${
+                              section.dstatus !== true ? "suspended" : ""
+                            }`}
+                            style={{
+                              width: "60%",
+                              display: "flex",
+                              flexDirection: "row",
+                            }}
+                          >
+                            <div
+                              className={`teenPatti-table-item`}
+                              style={{
+                                width: "33.3%",
+                                backgroundColor: "#72bbef",
+                              }}
+                              onClick={() =>
+                                section.dstatus === false
+                                  ? null
+                                  : handleBet(
+                                      section,
+                                      "drate",
+                                      section.dsectionid
+                                    )
+                              }
+                            >
+                              <span className="f12-b">{section.drate}</span>
+                              <span className="f10-b">0</span>
+                            </div>
+
+                            <div
+                              className={`teenPatti-table-item`}
+                              style={{
+                                width: "33.3%",
+                                backgroundColor: "#72bbef",
+                              }}
+                              onClick={() =>
+                                section.lstatus === false
+                                  ? null
+                                  : handleBet(
+                                      section,
+                                      "lrate",
+                                      section.lsection
+                                    )
+                              }
+                            >
+                              <span className="f12-b">{section.lrate}</span>
+                              <span className="f10-b">0</span>
+                            </div>
+
+                            <div
+                              className={`teenPatti-table-item`}
+                              style={{
+                                width: "33.3%",
+                                backgroundColor: "#72bbef",
+                              }}
+                              onClick={() =>
+                                section.tstatus === false
+                                  ? null
+                                  : handleBet(
+                                      section,
+                                      "trate",
+                                      section.tsection
+                                    )
+                              }
+                            >
+                              <span className="f12-b">{section.trate}</span>
+                              <span className="f10-b">0</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+
+                    <div className="ticker-container">
+                      <div className="ticker-wrap">
+                        <div
+                          className="ticker-move"
+                          style={{ color: "#8b0000", fontWeight: "700" }}
+                        >
+                          {videoInfo && videoInfo.remark}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                 
+                <div style={{ width: "100%", marginTop: "15px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "T", "B"]}
+                    type={"teen9"}
+                  />
                 </div>
-              </div>
-
-              <div style={{ width: "100%", marginTop: "15px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "T", "B"]}
-                  type={"teen9"}
-                />
-              </div>
-              <div>
-                <div className="casino-title" style={{ position: "relative" }}>
-                  <span>Rules</span>
-                </div>
-                <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                          Pair Plus
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rules.map((item, index) => (
-                        <tr key={index} style={{ lineHeight: 1 }}>
-                          <td
-                            className="box-7"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.label}
-                          </td>
-                          <td
-                            className="box-3"
-                            style={{
-                              backgroundColor: "#eee",
-                              border: "1px solid #dee2e6",
-                            }}
-                          >
-                            {item.value}
-                          </td>
+                <div>
+                  <div
+                    className="casino-title"
+                    style={{ position: "relative" }}
+                  >
+                    <span>Rules</span>
+                  </div>
+                  <div className="table-responsive rules-table">
+                    <Table bordered>
+                      <thead>
+                        <tr>
+                          <th colSpan={2} className="box-10 text-center">
+                            Pair Plus
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </Table>
+                      </thead>
+                      <tbody>
+                        {rules.map((item, index) => (
+                          <tr key={index} style={{ lineHeight: 1 }}>
+                            <td
+                              className="box-7"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.label}
+                            </td>
+                            <td
+                              className="box-3"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.value}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         ) : (
           <>
@@ -381,6 +430,7 @@ const TeenPattiMobile = () => {
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

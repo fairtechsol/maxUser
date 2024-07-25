@@ -7,6 +7,7 @@ import {
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateAmarAkbarAnthonyCardMatchRates,
   updateBalanceOnBetPlaceCards,
@@ -20,11 +21,10 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const AmarAkbarAnthony = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, dragonTigerDetail } = useSelector(
+  const {  dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -56,21 +56,11 @@ const AmarAkbarAnthony = () => {
     }
   };
 
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.amarAkbarAnthony);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -89,7 +79,7 @@ const AmarAkbarAnthony = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket,dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -99,13 +89,22 @@ const AmarAkbarAnthony = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
 
-  return loading ? <InnerLoader /> : <AmarAkbarAnthonyComponentList />;
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+  return  <AmarAkbarAnthonyComponentList />;
 };
 
 export default AmarAkbarAnthony;

@@ -11,6 +11,7 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
   casinoWarPattiMatchRates,
+  dragonTigerReset,
 } from "../../store/actions/cards/cardDetail";
 import {
   getButtonValue,
@@ -21,11 +22,10 @@ import { cardGamesType } from "../../utils/constants";
 
 import CasinoWarComponentList from "../../components/casinoWar";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const CasinoWar = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, dragonTigerDetail } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -56,22 +56,10 @@ const CasinoWar = () => {
       dispatch(getProfileInMatchDetail());
     }
   };
-
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.casinoWar));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
-
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.casinoWar);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -90,7 +78,7 @@ const CasinoWar = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -104,9 +92,29 @@ const CasinoWar = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
 
-  return loading ? <InnerLoader /> : <CasinoWarComponentList />;
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.casinoWar));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  return  <CasinoWarComponentList />;
 };
 
 export default CasinoWar;

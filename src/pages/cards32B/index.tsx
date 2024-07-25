@@ -12,6 +12,7 @@ import {
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import {
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCard32BMatchRates,
@@ -21,11 +22,10 @@ import {
 import { socket, socketService } from "../../socketManager";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Card32BComponentList from "../../components/cards32B";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Cards32B = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, dragonTigerDetail } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -59,19 +59,8 @@ const Cards32B = () => {
   };
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32B));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
-
-  useEffect(() => {
-    try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.card32B);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -90,7 +79,7 @@ const Cards32B = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -100,12 +89,23 @@ const Cards32B = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
-  return loading ? <InnerLoader /> : <Card32BComponentList />;
+  }, []);
+
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32B));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  return <Card32BComponentList />;
 };
 
 export default Cards32B;

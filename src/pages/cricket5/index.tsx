@@ -7,7 +7,9 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   casinoScoreboardMatchRates,
+  dragonTigerReset,
   getDragonTigerDetailHorseRacing,
+  scoreBoardReset,
   updateBalanceOnBetPlaceCards,
   updateCricket5MatchRates,
   updateLiveGameResultTop10,
@@ -21,33 +23,11 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
 import Cricket5ComponentList from "../../components/cricket5";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const Cricket5 = () => {
   const dispatch: AppDispatch = useDispatch();
   const [errorCount, setErrorCount] = useState<number>(0);
-  const { loading, dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
-
-  // useEffect(() => {
-  //   console.log('scoreboard')
-  //   const scoreBoard = () => {
-  //     if (dragonTigerDetail?.videoInfo?.mid) {
-  //       const Id = dragonTigerDetail.videoInfo?.mid.split(".");
-  //       dispatch(
-  //         casinoScoreboardMatchRates({
-  //           id: Id[1],
-  //           type: cardGamesType.cricketv3,
-  //         })
-  //       );
-  //       setCount(count+1)
-  //     }
-  //   };
-  //   const intervalId = setInterval(scoreBoard, 1000);
-
-  //   return () => clearInterval(intervalId);
-  // }, [count, dragonTigerDetail]);
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const getScoreBoard = async (marketId: string) => {
     try {
@@ -116,21 +96,11 @@ const Cricket5 = () => {
     }
   };
 
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.cricketv3);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -149,7 +119,7 @@ const Cricket5 = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -163,9 +133,29 @@ const Cricket5 = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
 
-  return loading ? <InnerLoader /> : <Cricket5ComponentList />;
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+        dispatch(scoreBoardReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  return <Cricket5ComponentList />;
 };
 
 export default Cricket5;

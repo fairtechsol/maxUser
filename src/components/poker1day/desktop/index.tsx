@@ -1,9 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { p6rules } from "../../../assets/images";
-import {  RootState } from "../../../store/store";
+import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -16,6 +16,7 @@ import "./style.scss";
 import DynamicTable from "./betTable";
 import Poker1DayResult from "./poker1DayCard";
 import PairBox from "./pairBox";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Poker1DayDesktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -23,11 +24,11 @@ const Poker1DayDesktop = () => {
   const [show, setShow] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.poker1Day}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-// console.log(dragonTigerDetail, "data")
+  // console.log(dragonTigerDetail, "data")
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -66,7 +67,6 @@ const Poker1DayDesktop = () => {
     { label: "Straight Flush", value: "1 TO 50" },
     { label: "Royal Flush", value: "1 TO 100" },
   ];
- 
 
   useEffect(() => {
     const resetTimer = () => {
@@ -95,6 +95,10 @@ const Poker1DayDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.poker1Day}`);
+  }, []);
 
   return (
     <>
@@ -138,36 +142,41 @@ const Poker1DayDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Poker1DayResult data={dragonTigerDetail?.videoInfo} />}
+                  result={
+                    <Poker1DayResult data={dragonTigerDetail?.videoInfo} />
+                  }
                   id={videoFrameId}
                 />
               </div>
             </div>
-            <div>
-              <div className="poker-table-container ">
-                <div style={{width: "40%"}}>
-                  <DynamicTable
-                   odds={dragonTigerDetail?.oddsData}
-                   data={dragonTigerDetail}
-                   playerNum={[8, 9]}
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div>
+                <div className="poker-table-container ">
+                  <div style={{ width: "40%" }}>
+                    <DynamicTable
+                      odds={dragonTigerDetail?.oddsData}
+                      data={dragonTigerDetail}
+                      playerNum={[8, 9]}
+                    />
+                  </div>
+                  <div style={{ width: "60%" }}>
+                    <PairBox
+                      odds={dragonTigerDetail?.playersBonusPair}
+                      data={dragonTigerDetail}
+                    />
+                  </div>
+                </div>
+                <div style={{ width: "100%", marginTop: "10px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "B", "T"]}
+                    type={cardGamesType.poker1Day}
                   />
                 </div>
-                <div style={{width: "60%"}}>
-               <PairBox 
-                odds={dragonTigerDetail?.playersBonusPair}
-                data={dragonTigerDetail}
-               />
               </div>
-            
-              </div>
-              <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "B", "T"]}
-                  type={ cardGamesType.poker1Day}
-                />
-              </div>
-            </div>
+            )}
           </div>
         </Col>
         <Col md={4} className="ps-0">
@@ -186,7 +195,11 @@ const Poker1DayDesktop = () => {
               <Col md={12}>
                 <MyBet />
               </Col>
-              <Col xs={12} className="no-scrollbar" style={{height: "400px", overflow: "auto"}}>
+              <Col
+                xs={12}
+                className="no-scrollbar"
+                style={{ height: "400px", overflow: "auto" }}
+              >
                 <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>
@@ -195,7 +208,7 @@ const Poker1DayDesktop = () => {
                     <thead>
                       <tr>
                         <th colSpan={2} className="box-10 text-center title-14">
-                        Bonus 1 (2 Cards Bonus)
+                          Bonus 1 (2 Cards Bonus)
                         </th>
                       </tr>
                     </thead>
@@ -206,12 +219,12 @@ const Poker1DayDesktop = () => {
                           <td className="box-3">{item.value}</td>
                         </tr>
                       ))}
-                       <tr>
+                      <tr>
                         <th colSpan={2} className="box-10 text-center">
-                        Bonus 2 (7 Cards Bonus)
+                          Bonus 2 (7 Cards Bonus)
                         </th>
                       </tr>
-                       {bonus2.map((item, index) => (
+                      {bonus2.map((item, index) => (
                         <tr key={index}>
                           <td className="box-7">{item.label}</td>
                           <td className="box-3">{item.value}</td>

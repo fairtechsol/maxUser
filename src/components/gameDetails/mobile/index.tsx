@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 // import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
-// import BetTableHeader from "../../commonComponent/betTableHeader";
 import CommonTabs from "../../commonComponent/tabs";
 import BetTable from "../betTable";
 import MyBet from "./myBet";
@@ -76,7 +75,7 @@ const MobileGameDetail = () => {
     try {
       const response: any = await service.get(
         `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        // `https://scoreboard.fairgame7.com/score/getMatchScore/${marketId}`
+        // `https://fairscore7.com/score/getMatchScore/${marketId}`
       );
       if (response) {
         setLiveScoreBoardData(response);

@@ -15,6 +15,7 @@ import PairBox from "./PairBox";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const DragonTigerMobile = () => {
@@ -27,7 +28,9 @@ const DragonTigerMobile = () => {
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
 
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
@@ -60,7 +63,11 @@ const DragonTigerMobile = () => {
       });
       clearInterval(intervalId);
     };
-  }, [lastActivityTime, show]);
+  }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.dragonTigerOneDay}`);
+  }, []);
 
   return (
     <>
@@ -150,52 +157,56 @@ const DragonTigerMobile = () => {
                 </div>
               </div>
             </div>
-            <div style={{ height: "760px" }}>
-              <div className="" style={{ width: "97%", gap: "10px" }}>
-                <div className="w-100">
-                  <BackLay
-                    matchOddsData={dragonTigerDetail?.matchOddsData}
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "760px" }}>
+                <div className="" style={{ width: "97%", gap: "10px" }}>
+                  <div className="w-100">
+                    <BackLay
+                      matchOddsData={dragonTigerDetail?.matchOddsData}
+                      data={dragonTigerDetail}
+                    />
+                  </div>
+                  <div className="w-100">
+                    <PairBox
+                      odds={dragonTigerDetail?.pair}
+                      data={dragonTigerDetail}
+                    />
+                  </div>
+                </div>
+                <div style={{ width: "97%", gap: "8px" }}>
+                  <OddEven
+                    title1={"even"}
+                    title2={"odd"}
+                    dragonData={dragonTigerDetail?.dragonData}
+                    tigerData={dragonTigerDetail?.tigerData}
+                    data={dragonTigerDetail}
+                  />
+                  <OddEven
+                    title1={"red"}
+                    title2={"black"}
+                    dragonData={dragonTigerDetail?.dragonData}
+                    tigerData={dragonTigerDetail?.tigerData}
                     data={dragonTigerDetail}
                   />
                 </div>
-                <div className="w-100">
-                  <PairBox
-                    odds={dragonTigerDetail?.pair}
+                <div style={{ width: "97%", marginLeft: "5px" }}>
+                  <CardBox
+                    dragonData={dragonTigerDetail?.dragonData}
+                    tigerData={dragonTigerDetail?.tigerData}
                     data={dragonTigerDetail}
                   />
                 </div>
+                <div style={{ width: "97%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["D", "T"]}
+                    type={cardGamesType.dragonTigerOneDay}
+                  />
+                </div>
               </div>
-              <div style={{ width: "97%", gap: "8px" }}>
-                <OddEven
-                  title1={"even"}
-                  title2={"odd"}
-                  dragonData={dragonTigerDetail?.dragonData}
-                  tigerData={dragonTigerDetail?.tigerData}
-                  data={dragonTigerDetail}
-                />
-                <OddEven
-                  title1={"red"}
-                  title2={"black"}
-                  dragonData={dragonTigerDetail?.dragonData}
-                  tigerData={dragonTigerDetail?.tigerData}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "97%", marginLeft: "5px" }}>
-                <CardBox
-                  dragonData={dragonTigerDetail?.dragonData}
-                  tigerData={dragonTigerDetail?.tigerData}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "97%", margin: "5px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["D", "T"]}
-                  type={cardGamesType.dragonTigerOneDay}
-                />
-              </div>
-            </div>
+            )}
           </>
         ) : (
           <>

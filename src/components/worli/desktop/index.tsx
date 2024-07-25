@@ -15,6 +15,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import WorliResult from "./abj1Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const WorliDesktop = () => {
   const [show, setShow] = useState(false);
@@ -22,16 +23,13 @@ const WorliDesktop = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.worli}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-
   const handleClose = () => {
     setShowInactivityModal(false);
   };
-
-  console.log("worlicomponent", dragonTigerDetail);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,13 +74,9 @@ const WorliDesktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-  const handlock = (item: any) => {
-    if (item?.gstatus === "0" ) {
-      return "suspended";
-    } else {
-      return "";
-    }
-  };
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
+  }, []);
 
   return (
     <>
@@ -132,20 +126,18 @@ const WorliDesktop = () => {
                 />
               </div>
             </div>
-            <div style={{}}>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <div className="d-flex flex-row">
-                  <div style={{ width: "70%", textAlign: "center" }}>{dragonTigerDetail?.worli?.gstatus==="0"?0:9}</div>
-                  <div style={{ width: "30%", textAlign: "center" }}>{dragonTigerDetail?.worli?.gstatus==="0"?0:9}</div>
-                </div>
-                <div className={handlock(dragonTigerDetail.worli)}>
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "460px" }}>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
                   <CardBox
                     odds={"L1"}
                     data={dragonTigerDetail}
@@ -157,19 +149,16 @@ const WorliDesktop = () => {
                     cards={dragonTigerDetail?.cardInfo}
                   />
                 </div>
-                <div style={{color:"#00b4d8",textAlign:"end",fontSize:"16px" ,fontWeight:"bold"}}>
-                welcome single
+
+                <div style={{ width: "100%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["R", "R", "R"]}
+                    type={cardGamesType.worli}
+                  />
                 </div>
               </div>
-
-              <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["R", "R", "R"]}
-                  type={cardGamesType.worli}
-                />
-              </div>
-            </div>
+            )}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>

@@ -17,6 +17,7 @@ import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
 import Race20Result from "./race20Card";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Race20Desktop = () => {
   const [show, setShow] = useState(false);
@@ -24,10 +25,10 @@ const Race20Desktop = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.race20}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -75,6 +76,11 @@ const Race20Desktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.race20}`);
+  }, []);
+
   return (
     <>
       <Row>
@@ -121,47 +127,51 @@ const Race20Desktop = () => {
                 />
               </div>
             </div>
-            <div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  marginTop: "35px",
-                  display: "flex",
-                  gap: "8px",
-                }}
-              >
-                <OddBox
-                  odds={dragonTigerDetail?.cards}
-                  data={dragonTigerDetail}
-                />
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    marginTop: "35px",
+                    display: "flex",
+                    gap: "8px",
+                  }}
+                >
+                  <OddBox
+                    odds={dragonTigerDetail?.cards}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                  }}
+                >
+                  <TotalsBox
+                    odds={dragonTigerDetail?.total}
+                    data={dragonTigerDetail}
+                  />
+                  <WinBox
+                    odds={dragonTigerDetail?.win}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div style={{ width: "100%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "B"]}
+                    type={cardGamesType.race20}
+                  />
+                </div>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <TotalsBox
-                  odds={dragonTigerDetail?.total}
-                  data={dragonTigerDetail}
-                />
-                <WinBox
-                  odds={dragonTigerDetail?.win}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "B"]}
-                  type={cardGamesType.race20}
-                />
-              </div>
-            </div>
+            )}
             <RulesModal show={show} setShow={setShow} rule={race20rules} />
           </div>
         </Col>

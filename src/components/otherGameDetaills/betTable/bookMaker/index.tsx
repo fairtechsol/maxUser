@@ -244,7 +244,11 @@ function FootballBookmakerTable({
                 >
                   <BetStatusOverlay
                     title={data?.[`statusTeam${item}`]}
-                    active={data?.[`statusTeam${item}`] != teamStatus.active}
+                    active={
+                      data?.activeStatus !== "live"
+                        ? true
+                        : data?.[`statusTeam${item}`] != teamStatus.active
+                    }
                   >
                     {new Array(backLayCount == 2 ? 1 : 3)
                       .fill(0)

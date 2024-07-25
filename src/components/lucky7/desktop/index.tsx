@@ -17,6 +17,7 @@ import TiePairBox from "./TiePairBox";
 import Lucky7Result from "./lucky7Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 
 const Lucky7Desktop = () => {
   const [show, setShow] = useState(false);
@@ -24,10 +25,10 @@ const Lucky7Desktop = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.lucky7}`
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -76,6 +77,10 @@ const Lucky7Desktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.lucky7}`);
+  }, []);
+
   return (
     <>
       <Row>
@@ -121,59 +126,63 @@ const Lucky7Desktop = () => {
                 />
               </div>
             </div>
-            <div style={{ height: "550px" }}>
-              <div style={{ width: "100%", margin: "5% 5px" }}>
-                <TiePairBox
-                  lowHigh={dragonTigerDetail?.lowHigh}
-                  data={dragonTigerDetail}
-                />
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <OddEven
-                  name={"DRAGON"}
-                  odds={dragonTigerDetail?.redBlack}
-                  data={dragonTigerDetail}
-                  card={true}
-                />
+            {loading ? (
+              <InnerLoader />
+            ) : (
+              <div style={{ height: "550px" }}>
+                <div style={{ width: "100%", margin: "5% 5px" }}>
+                  <TiePairBox
+                    lowHigh={dragonTigerDetail?.lowHigh}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                  }}
+                >
+                  <OddEven
+                    name={"DRAGON"}
+                    odds={dragonTigerDetail?.redBlack}
+                    data={dragonTigerDetail}
+                    card={true}
+                  />
 
-                <OddEven
-                  name={"TIGER"}
-                  odds={dragonTigerDetail?.luckOdds}
-                  card={false}
-                  data={dragonTigerDetail}
-                />
+                  <OddEven
+                    name={"TIGER"}
+                    odds={dragonTigerDetail?.luckOdds}
+                    card={false}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                  }}
+                >
+                  <CardBox
+                    cardData={dragonTigerDetail?.luckyCards}
+                    data={dragonTigerDetail}
+                    rate={dragonTigerDetail?.luckyCards?.rate}
+                  />
+                </div>
+                <div style={{ width: "100%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["L", "H", "T"]}
+                    type={cardGamesType.lucky7}
+                  />
+                </div>
               </div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                }}
-              >
-                <CardBox
-                  cardData={dragonTigerDetail?.luckyCards}
-                  data={dragonTigerDetail}
-                  rate={dragonTigerDetail?.luckyCards?.rate}
-                />
-              </div>
-              <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["L", "H", "T"]}
-                  type={cardGamesType.lucky7}
-                />
-              </div>
-            </div>
+            )}
 
             <RulesModal show={show} setShow={setShow} rule={luckyrules} />
           </div>

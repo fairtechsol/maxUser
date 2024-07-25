@@ -24,7 +24,7 @@ const MyBet = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
   return (
     <RightPanelContainer title={"My Bet"}>
-      <div className="betList" style={{ maxHeight: "70vh", overflow: "auto" }}>
+      <div className="betList" style={{ maxHeight: "50vh", overflow: "auto" }}>
         <Table className="w-full">
           <thead>
             <tr className="bg-darkGrey">

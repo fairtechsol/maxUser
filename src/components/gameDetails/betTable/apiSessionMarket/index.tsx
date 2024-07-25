@@ -67,7 +67,7 @@ function ApiSessionMarketTable({
     dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
   };
   return (
-    <div className={`gameTable sessionFancyTable borderTable border`}>
+    <div className={`gameTable table-responsive sessionFancyTable borderTable border`}>
       <Table className="mb-0">
         <thead>
           <tr>
@@ -272,10 +272,6 @@ function ApiSessionMarketTable({
                     )}
                   </BetStatusOverlay>
                 </td>
-
-                {item.activeStatus !== "live" ? (
-                  <div className="overlay"></div>
-                ) : null}
               </tr>
             );
           })}
