@@ -116,19 +116,8 @@ const Superover = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.superover));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
-
-  useEffect(() => {
-    try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.superover);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -147,7 +136,7 @@ const Superover = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -158,21 +147,21 @@ const Superover = () => {
           socketService.card.userCardBetPlacedOff();
           socketService.card.cardResultOff();
           dispatch(selectedBetAction(null));
+          dispatch(dragonTigerReset());
+          dispatch(scoreBoardReset());
         };
       }
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
-  
+  }, []);
+
   useEffect(() => {
     try {
-      return () => {
-        dispatch(dragonTigerReset());
-        dispatch(scoreBoardReset());
-      };
-    } catch (error) {
-      console.log(error);
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.superover));
+    } catch (e) {
+      console.error(e);
     }
   }, []);
 

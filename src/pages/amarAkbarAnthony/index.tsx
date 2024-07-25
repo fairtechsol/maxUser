@@ -56,21 +56,11 @@ const AmarAkbarAnthony = () => {
     }
   };
 
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.amarAkbarAnthony);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -89,7 +79,7 @@ const AmarAkbarAnthony = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket,dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -104,8 +94,16 @@ const AmarAkbarAnthony = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
 
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
   return  <AmarAkbarAnthonyComponentList />;
 };
 
