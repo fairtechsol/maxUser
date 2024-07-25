@@ -4,10 +4,10 @@ import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
 import Cards32 from "../pages/cards32";
 import Lucky7B from "../pages/lucky7B";
-import CasinoWar from "../pages/casinoWar";
-import Poker1day from "../pages/poker1day";
-import Poker20 from "../pages/poker20";
-import Cricket5 from "../pages/cricket5";
+// import CasinoWar from "../pages/casinoWar";
+// import Poker1day from "../pages/poker1day";
+// import Poker20 from "../pages/poker20";
+// import Cricket5 from "../pages/cricket5";
 // import Home from "../pages/home";
 // import Home from "../pages/home";
 // import GameDetail from "../pages/gameDetails";
@@ -43,12 +43,14 @@ const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
 const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
 const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
 const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
-const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
-const TeenPattiOpen = Loadable(lazy(() => import("../pages/teenPattiOpen")));
+// const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
+// const TeenPattiOpen = Loadable(lazy(() => import("../pages/teenPattiOpen")));
 const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
-const AmarAkbarAnthony = Loadable(lazy(() => import("../pages/amarAkbarAnthony")));
-const BollywoodTable = Loadable(lazy(() => import("../pages/bollywoodTable")));
-const Superover = Loadable(lazy(() => import("../pages/superover")));
+// const AmarAkbarAnthony = Loadable(
+//   lazy(() => import("../pages/amarAkbarAnthony"))
+// );
+// const BollywoodTable = Loadable(lazy(() => import("../pages/bollywoodTable")));
+// const Superover = Loadable(lazy(() => import("../pages/superover")));
 const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
 const DragonTigerSecond20 = Loadable(
   lazy(() => import("../pages/dragonSecond20"))
@@ -61,13 +63,13 @@ const DragonTigerOneDay = Loadable(
 );
 const CardList3 = Loadable(lazy(() => import("../pages/cardList3")));
 const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
-const Poker6 = Loadable(lazy(() => import("../pages/poker")));
+// const Poker6 = Loadable(lazy(() => import("../pages/poker")));
 const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
-const Abj1 = Loadable(lazy(() => import("../pages/abj")));
-const Worli = Loadable(lazy(() => import("../pages/worli")));
-const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
-const Race20 = Loadable(lazy(() => import("../pages/race20")));
-const Baccarat1 = Loadable(lazy(() => import("../pages/baccarat1")));
+// const Abj1 = Loadable(lazy(() => import("../pages/abj")));
+// const Worli = Loadable(lazy(() => import("../pages/worli")));
+// const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
+// const Race20 = Loadable(lazy(() => import("../pages/race20")));
+// const Baccarat1 = Loadable(lazy(() => import("../pages/baccarat1")));
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -154,114 +156,115 @@ const MainRoutes = {
     },
     {
       path: "teenPatti20",
-      element: <TeenPatti20 />,
+      element: <TeenPatti20 />, //
     },
 
     {
       path: "teen",
-      element: <TeenPatti1D />,
+      element: <TeenPatti1D />, //
     },
 
-    {
-      path: "teen8",
-      element: <TeenPattiOpen />,
-    },
+    // {
+    //   path: "teen8",
+    //   element: <TeenPattiOpen />,
+    // },
 
-    {
-      path: "teen9",
-      element: <TeenPattiTest />,
-    },
+    // {
+    //   path: "teen9",
+    //   element: <TeenPattiTest />,
+    // },
 
-    {
-      path: "war",
-      element: <CasinoWar />,
-    },
+    // {
+    //   path: "war",
+    //   element: <CasinoWar />,
+    // },
 
     {
       path: "lucky7-A",
-      element: <Lucky7 />,
+      element: <Lucky7 />, //
     },
     {
       path: "lucky7eu",
-      element: <Lucky7B />,
+      element: <Lucky7B />, //
     },
     {
       path: "32cards-A",
-      element: <Cards32 />,
+      element: <Cards32 />, //
     },
     {
       path: "abj2",
-      element: <Abj2 />,
+      element: <Abj2 />, //
     },
     {
       path: "dt20",
-      element: <DragonTiger20 />,
+      element: <DragonTiger20 />, //
     },
     {
       path: "dt202",
-      element: <DragonTigerSecond20 />,
+      element: <DragonTigerSecond20 />, //
     },
     {
       path: "dtl20",
-      element: <DragonTigerLion />,
+      element: <DragonTigerLion />, //
     },
     {
       path: "dt6",
-      element: <DragonTigerOneDay />,
+      element: <DragonTigerOneDay />, //
     },
 
-    {
-      path: "32cards-B",
-      element: <Cards32B />,
-    },
-    {
-      path: "ab20",
-      element: <Abj1 />,
-    },
-    {
-      path: "race20",
-      element: <Race20 />,
-    },
-    {
-      path: "superover",
-      element: <Superover />,
-    },
-    {
-      path: "poker6",
-      element: <Poker6 />,
-    },
-    {
-      path: "poker",
-      element: <Poker1day />,
-    },
-    {
-      path: "poker20",
-      element: <Poker20 />,
-    },
-    {
-      path: "cricketv3",
-      element: <Cricket5 />,
-    },
-    {
-      path: "baccarat",
-      element: <Baccarat1 />,
-    },
+    // {
+    //   path: "32cards-B",
+    //   element: <Cards32B />,
+    // },
+    // {
+    //   path: "ab20",
+    //   element: <Abj1 />,
+    // },
+    // {
+    //   path: "race20",
+    //   element: <Race20 />,
+    // },
+    // {
+    //   path: "superover",
+    //   element: <Superover />,
+    // },
+    // {
+    //   path: "poker6",
+    //   element: <Poker6 />,
+    // },
+    // {
+    //   path: "poker",
+    //   element: <Poker1day />,
+    // },
+    // {
+    //   path: "poker20",
+    //   element: <Poker20 />,
+    // },
+    // {
+    //   path: "cricketv3",
+    //   element: <Cricket5 />,
+    // },
+    // {
+    //   path: "baccarat",
+    //   element: <Baccarat1 />,
+    // },
+
+    // {
+    //   path: "aaa",
+    //   element: <AmarAkbarAnthony />,
+    // },
+    // {
+    //   path: "btable",
+    //   element: <BollywoodTable />,
+    // },
+
+    // {
+    //   path: "worli2",
+    //   element: <Worli />,
+    // },
     {
       path: "*",
       element: <Navigate to={"/home"} replace />,
-    },
-    {
-      path: "aaa",
-      element: <AmarAkbarAnthony/>,
-    },
-    {
-      path: "btable",
-      element: <BollywoodTable/>,
-    },
-
-    {
-      path: "worli2",
-      element: <Worli/>,
     },
   ],
 };

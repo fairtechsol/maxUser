@@ -22,84 +22,84 @@ const cardGames = [
   { value: "", label: "Select Casino Type", disabled: true },
   {
     value: "dt20",
-    label: "20-20 Dragon Tiger",
+    label: "20-20 Dragon Tiger",//
   },
-  {
-    value: "ab20",
-    label: "Andar Bahar 1",
-  },
+  // {
+  //   value: "ab20",
+  //   label: "Andar Bahar 1",
+  // },
   {
     value: "abj",
-    label: "Andar Bahar 2",
+    label: "Andar Bahar 2",//
   },
   {
     value: "teen20",
-    label: "20-20 Teen Patti",
+    label: "20-20 Teen Patti",//
   },
   {
     value: "teen",
-    label: "Teen Patti One Day",
+    label: "Teen Patti One Day",//
   },
-  {
-    value: "teen8",
-    label: "Open Teen Patti",
-  },
-  {
-    value: "teen9",
-    label: "Test Teen Patti",
-  },
+  // {
+  //   value: "teen8",
+  //   label: "Open Teen Patti",
+  // },
+  // {
+  //   value: "teen9",
+  //   label: "Test Teen Patti",
+  // },
   {
     value: "card32",
-    label: "32 Cards - A",
+    label: "32 Cards - A",//
   },
-  {
-    value: "card32eu",
-    label: "32 Cards - B",
-  },
+  // {
+  //   value: "card32eu",
+  //   label: "32 Cards - B",
+  // },
   {
     value: "lucky7",
-    label: "Lucky 7 - A",
+    label: "Lucky 7 - A",//
   },
   {
     value: "lucky7eu",
-    label: "Lucky 7 - B",
+    label: "Lucky 7 - B",//
   },
   {
     value: "dt202",
-    label: "20-20 Dragon Tiger 2",
+    label: "20-20 Dragon Tiger 2",//
   },
   {
     value: "dtl20",
-    label: "Dragon Tiger Lion",
+    label: "Dragon Tiger Lion",//
   },
   {
     value: "dt6",
-    label: "Dragon Tiger 1 Day",
+    label: "Dragon Tiger 1 Day",//
   },
-  {
-    value: "war",
-    label: "CASINO WAR",
-  },
-  {
-    value: "aaa",
-    label: "Amar Akbar Anthony",
-  },
-  {
-    value: "cricketv3",
-    label: "Fve-Five Cricket",
-  },
-  {
-    value: "superover",
-    label: "Superover",
-  },
-  {
-    value: "race20",
-    label: "Race 20",
-  },
-  {
-    value: "war",
-    label: "Casino War",
-  },
+  // {
+  //   value: "war",
+  //   label: "CASINO WAR",
+  // },
+  // {
+  //   value: "aaa",
+  //   label: "Amar Akbar Anthony",
+  // },
+  // {
+  //   value: "cricketv3",
+  //   label: "Fve-Five Cricket",
+  // },
+  // {
+  //   value: "superover",
+  //   label: "Superover",
+  // },
+  // {
+  //   value: "race20",
+  //   label: "Race 20",
+  // },
+  // {
+  //   value: "war",
+  //   label: "Casino War",
+  // },
   // {
   //   value: "poker",
   //   label: "Poker 1-day",
