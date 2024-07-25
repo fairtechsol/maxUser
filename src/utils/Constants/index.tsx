@@ -126,7 +126,7 @@ export const Constants = {
   localThirdCard: "http://localhost:3201",
   WEBSOCKET: "websocket",
   POLLING: "polling",
-  apiBasePathLive: "https://betfairapi.fairgame7.com",
+  apiBasePathLive: "https://api.maxbet07.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
