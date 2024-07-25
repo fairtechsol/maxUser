@@ -87,7 +87,6 @@ const Lucky7 = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
@@ -103,6 +102,16 @@ const Lucky7 = () => {
     }
   }, []);
 
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return <Lucky7ComponentList />;
 };

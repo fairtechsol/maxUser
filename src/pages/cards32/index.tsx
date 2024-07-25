@@ -89,7 +89,6 @@ const Cards32 = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
@@ -102,6 +101,16 @@ const Cards32 = () => {
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32));
     } catch (e) {
       console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 

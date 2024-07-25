@@ -48,7 +48,7 @@ import {
 import {
   dayteen,
   twentyteen,
-  teencasino,
+  // teencasino,
   teenplayer,
   testteen,
 } from "../../assets/images";
@@ -126,9 +126,10 @@ export const Constants = {
   localThirdCard: "http://localhost:3201",
   WEBSOCKET: "websocket",
   POLLING: "polling",
-  apiBasePathLive: "https://betfairapi.fairgame7.com",
+  apiBasePathLive: "https://api.maxbet07.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
+  thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
   localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
@@ -385,11 +386,15 @@ export const baseUrls = {
 //   matchSocket:
 //     process.env.NODE_ENV === "production"
 //       ? Constants.thirdPartyLive
-//       : Constants.localPathThird,
+//       : Constants.localThird,
 //   expertSocket:
 //     process.env.NODE_ENV === "production"
 //       ? Constants.expertPathLive
 //       : Constants.localPathExpert,
+//   cardSocket:
+//     process.env.NODE_ENV === "production"
+//       ? Constants.thirdPartyCardLive
+//       : Constants.localThirdCard,
 // };
 
 //Rules casino
@@ -1494,13 +1499,13 @@ export const casinoIcons = [
     name: "5Five Cricket",
   },
   {
-    url: "/abj2",
+    url: "/abj2", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
     name: "Andar Bahar 2",
   },
   {
-    url: "/dt202",
+    url: "/dt202", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
     name: "20-20 Dragon Tiger 2",
@@ -1518,7 +1523,7 @@ export const casinoIcons = [
     name: "Baccarat",
   },
   {
-    url: "/lucky7eu",
+    url: "/lucky7eu", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
     name: "Lucky 7 - B",
@@ -1548,7 +1553,7 @@ export const casinoIcons = [
     name: "Casino War",
   },
   {
-    url: "/dtl20",
+    url: "/dtl20", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
     name: "20-20 DTL",
@@ -1566,13 +1571,13 @@ export const casinoIcons = [
     name: "Open Teenpatti",
   },
   {
-    url: "/teen",
+    url: "/teen", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "1 Day Teenpatti",
   },
   {
-    url: "/teenPatti20",
+    url: "/teenPatti20", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "20-20 Teenpatti",
@@ -1620,7 +1625,7 @@ export const casinoIcons = [
     name: "3 Cards Judgement",
   },
   {
-    url: "/32cards-A",
+    url: "/32cards-A", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
     name: "32 Cards A",
@@ -1632,7 +1637,7 @@ export const casinoIcons = [
     name: "32 Cards B",
   },
   {
-    url: "/aaa",
+    url: "",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
     name: "Amar Akbar Anthony",
@@ -1644,13 +1649,13 @@ export const casinoIcons = [
     name: "Bollywood Casino",
   },
   {
-    url: "/dt20",
+    url: "/dt20", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "20-20 Dragon Tiger",
   },
   {
-    url: "/dt6",
+    url: "/dt6", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "1 Day Dragon Tiger",
@@ -1662,7 +1667,7 @@ export const casinoIcons = [
     name: "Lottery",
   },
   {
-    url: "/lucky7-A",
+    url: "/lucky7-A", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
     name: "Lucky 7 - A",
@@ -1681,7 +1686,6 @@ export const card3 = {
     { id: 4, url: "/dt20", imgSrc: dt20, name: "20-20 DRAGON TIGER" },
   ],
   teenPatti: [
-    { id: 5, url: "/contact-admin", imgSrc: teencasino, name: "TEENPATTI 2.0" },
     { id: 6, url: "/teenPatti20", imgSrc: twentyteen, name: "20-20 TEENPATTI" },
     { id: 7, url: "/teen", imgSrc: dayteen, name: "1 DAY TEENPATTI" },
     { id: 8, url: "", imgSrc: testteen, name: "TEST TEENPATTI" },
@@ -1700,23 +1704,23 @@ export const card3 = {
     { id: 15, url: "/ab20", imgSrc: abjlist, name: "ANDAR BAHAR" },
   ],
   poker: [
-    { id: 16, url: "", imgSrc: p6, name: "POKER 6" },
-    { id: 17, url: "", imgSrc: p1d, name: "POKER 1 DAY" },
-    { id: 18, url: "", imgSrc: p20, name: "POKER 20 20" },
+    { id: 16, url: "/poker6", imgSrc: p6, name: "POKER 6" },
+    { id: 17, url: "/poker", imgSrc: p1d, name: "POKER 1 DAY" },
+    { id: 18, url: "/poker20", imgSrc: p20, name: "POKER 20 20" },
   ],
   sportCasino: [
-    { id: 19, url: "/", imgSrc: ballbyball, name: "BALL BY BALL" },
+    { id: 19, url: "", imgSrc: ballbyball, name: "BALL BY BALL" },
     { id: 20, url: "/superover", imgSrc: superover, name: "SUPER OVER" },
     { id: 21, url: "/cricketv3", imgSrc: crick5, name: "5 5 Cricket" },
   ],
   baccarat: [
     {
-      url: "/",
+      url: "",
       imgSrc: bac1,
       name: "BACCARAT",
     },
     {
-      url: "/baccarat",
+      url: "",
       imgSrc: bac2,
       name: "BACCARAT2",
     },
@@ -1724,14 +1728,14 @@ export const card3 = {
   bollywoodCasino: [
     {
       id: 22,
-      url: "/aaa",
+      url: "",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1016.webp",
       name: "AMAR AKHBAR ANTHONY",
     },
     {
       id: 23,
-      url: "/btable",
+      url: "",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1015.webp",
       name: "AMAR AKHBAR ANTHONY",
@@ -1740,7 +1744,7 @@ export const card3 = {
   worli: [
     {
       id: 24,
-      url: "/worli2",
+      url: "",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1013.webp",
       name: "Worli",

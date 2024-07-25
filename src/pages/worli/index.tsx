@@ -25,9 +25,7 @@ import WorliComponentList from "../../components/worli";
 
 const Worli = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail} = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateCardWorliRates(event?.data?.data?.data));
@@ -89,7 +87,6 @@ const Worli = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
@@ -102,6 +99,16 @@ const Worli = () => {
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.worli));
     } catch (e) {
       console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 

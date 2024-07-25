@@ -89,7 +89,6 @@ const DragonTiger20 = () => {
           socketService.card.userCardBetPlacedOff();
           socketService.card.cardResultOff();
           dispatch(selectedBetAction(null));
-          dispatch(dragonTigerReset());
         };
       }
     } catch (e) {
@@ -108,6 +107,17 @@ const DragonTiger20 = () => {
       console.error(e);
     }
   }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
 
   return <DragonTigerComponentList />;
 };

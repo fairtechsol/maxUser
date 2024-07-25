@@ -88,7 +88,7 @@ const TeenPattiMobile = () => {
       });
       clearInterval(intervalId);
     };
-  }, [lastActivityTime, show]);
+  }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.casinoWar}`);
@@ -683,7 +683,7 @@ const TeenPattiMobile = () => {
         )}
       </div>
       <RulesModal show={show} setShow={setShow} rule={tprules} />
-      <InactivityModal show={show} handleClose={handleClose} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };

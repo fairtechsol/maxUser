@@ -24,9 +24,7 @@ import { cardGamesType } from "../../utils/constants";
 
 const DragonTigerLion = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -90,7 +88,6 @@ const DragonTigerLion = () => {
           socketService.card.userCardBetPlacedOff();
           socketService.card.cardResultOff();
           dispatch(selectedBetAction(null));
-          dispatch(dragonTigerReset());
         };
       }
     } catch (e) {
@@ -108,7 +105,17 @@ const DragonTigerLion = () => {
   }, []);
 
 
-  return  <DragonTigerLionComponentList />;
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  return <DragonTigerLionComponentList />;
 };
 
 export default DragonTigerLion;

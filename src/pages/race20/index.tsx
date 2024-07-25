@@ -90,7 +90,6 @@ const Race20 = () => {
           socketService.card.userCardBetPlacedOff();
           socketService.card.cardResultOff();
           dispatch(selectedBetAction(null));
-          dispatch(dragonTigerReset());
         };
       }
     } catch (e) {
@@ -104,6 +103,16 @@ const Race20 = () => {
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.race20));
     } catch (e) {
       console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 

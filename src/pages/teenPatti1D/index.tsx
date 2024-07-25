@@ -89,7 +89,6 @@ const TeenPatti1D = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
@@ -102,6 +101,16 @@ const TeenPatti1D = () => {
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenOneDay));
     } catch (e) {
       console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 

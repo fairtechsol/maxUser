@@ -25,9 +25,7 @@ import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const TeenPattiTest = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -89,7 +87,6 @@ const TeenPattiTest = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
@@ -102,6 +99,16 @@ const TeenPattiTest = () => {
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenTest));
     } catch (e) {
       console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 

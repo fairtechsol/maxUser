@@ -24,9 +24,7 @@ import Poker20ComponentList from "../../components/poker20";
 
 const Poker20 = () => {
   const dispatch: AppDispatch = useDispatch();
-  const {  dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -88,7 +86,6 @@ const Poker20 = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
@@ -101,6 +98,16 @@ const Poker20 = () => {
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker20));
     } catch (e) {
       console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 

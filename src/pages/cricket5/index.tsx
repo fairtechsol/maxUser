@@ -27,10 +27,7 @@ import Cricket5ComponentList from "../../components/cricket5";
 const Cricket5 = () => {
   const dispatch: AppDispatch = useDispatch();
   const [errorCount, setErrorCount] = useState<number>(0);
-  const {  dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
-
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const getScoreBoard = async (marketId: string) => {
     try {
@@ -132,8 +129,6 @@ const Cricket5 = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
-        dispatch(scoreBoardReset());
       };
     } catch (e) {
       console.log(e);
@@ -146,6 +141,17 @@ const Cricket5 = () => {
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
     } catch (e) {
       console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+        dispatch(scoreBoardReset());
+      };
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 

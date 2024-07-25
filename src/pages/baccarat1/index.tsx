@@ -24,9 +24,7 @@ import BaccaratComponentList from "../../components/baccarat1";
 
 const Bacarrat1 = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateBaccarat1Rates(event?.data?.data?.data));
@@ -87,7 +85,6 @@ const Bacarrat1 = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
@@ -103,7 +100,17 @@ const Bacarrat1 = () => {
     }
   }, []);
 
-  return  <BaccaratComponentList />;
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  return <BaccaratComponentList />;
 };
 
 export default Bacarrat1;

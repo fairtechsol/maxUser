@@ -88,7 +88,6 @@ const CasinoWar = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
@@ -104,6 +103,16 @@ const CasinoWar = () => {
     }
   }, []);
 
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return  <CasinoWarComponentList />;
 };

@@ -23,10 +23,8 @@ import { cardGamesType } from "../../utils/constants";
 import PokerComponentList from "../../components/poker";
 const Poker6 = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
- 
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateCardPoker6Rates(event?.data?.data?.data));
@@ -87,7 +85,6 @@ const Poker6 = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
@@ -100,6 +97,16 @@ const Poker6 = () => {
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker6));
     } catch (e) {
       console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
