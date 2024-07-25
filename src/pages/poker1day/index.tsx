@@ -55,22 +55,10 @@ const Poker1day = () => {
       dispatch(getProfileInMatchDetail());
     }
   };
-
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker1Day));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
-
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.poker1Day);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -89,7 +77,7 @@ const Poker1day = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -104,7 +92,17 @@ const Poker1day = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
+
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker1Day));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
 
   return <Poker1DayComponentList />;
 };

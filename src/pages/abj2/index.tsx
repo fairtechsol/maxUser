@@ -24,9 +24,7 @@ import { cardGamesType } from "../../utils/constants";
 
 const Abj2 = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateCardAbjRates(event?.data?.data?.data));
@@ -37,18 +35,6 @@ const Abj2 = () => {
       console.log(e);
     }
   };
-
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar2));
-      if (dragonTigerDetail?.id) {
-        dispatch(getPlacedBets(dragonTigerDetail?.id));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [dragonTigerDetail?.id]);
 
   const handleBetPlacedOnDT20 = (event: any) => {
     if (event?.jobData?.matchType === cardGamesType.andarBahar2) {
@@ -70,6 +56,8 @@ const Abj2 = () => {
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
+
         socketService.card.getCardRatesOff(cardGamesType.andarBahar2);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
@@ -88,7 +76,7 @@ const Abj2 = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail?.id]);
+  }, [socket, dragonTigerDetail]);
 
   useEffect(() => {
     try {
@@ -103,9 +91,18 @@ const Abj2 = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
 
-  return  <Abj2ComponentList />;
+  useEffect(() => {
+    try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar2));
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  return <Abj2ComponentList />;
 };
 
 export default Abj2;
