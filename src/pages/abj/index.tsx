@@ -25,9 +25,7 @@ import Abj1ComponentList from "../../components/abj1";
 
 const Abj = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(updateCardAbj1Rates(event?.data?.data?.data));
@@ -100,13 +98,22 @@ const Abj = () => {
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, [dragonTigerDetail?.id]);
 
+  useEffect(() => {
+    try {
+      return () => {
+        dispatch(dragonTigerReset());
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+  
   return <Abj1ComponentList />;
 };
 

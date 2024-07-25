@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { Chart } from "react-google-charts";
 import isMobile from "../../../../utils/screenDimension";
 
