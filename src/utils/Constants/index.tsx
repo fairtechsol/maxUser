@@ -129,7 +129,7 @@ export const Constants = {
   apiBasePathLive: "https://betfairapi.fairgame7.com",
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -1670,6 +1670,7 @@ export const casinoIcons = [
     name: "Lucky 7 - A",
   },
 ];
+
 export const card3 = {
   dragonTiger: [
     {
@@ -1686,7 +1687,7 @@ export const card3 = {
     { id: 5, url: "/contact-admin", imgSrc: teencasino, name: "TEENPATTI 2.0" },
     { id: 6, url: "/teenPatti20", imgSrc: twentyteen, name: "20-20 TEENPATTI" },
     { id: 7, url: "/teen", imgSrc: dayteen, name: "1 DAY TEENPATTI" },
-    { id: 8, url: "", imgSrc: testteen, name: "TEST TEENPATTI" },
+    { id: 8, url: "/teen9", imgSrc: testteen, name: "TEST TEENPATTI" },
     { id: 9, url: "/teen8", imgSrc: teenplayer, name: "OPEN TEENPATTI" },
   ],
   lucky7: [
