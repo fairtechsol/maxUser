@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import CardBox from "./CardsBox";
+import OddEven from "./OddEvenBox";
+import SBetBox from "./Sbox";
 import "./style.scss";
+// import CardResultBox from "../../commonComponent/cardResultBox";
+// import CardResultBox from "../../commonComponent/cardResultBox";
 import { abjrules } from "../../../assets/images";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -12,26 +16,17 @@ import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import Abj1Result from "../desktop/abj1Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
-const WorliMobile = () => {
+const CardJMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.andarBahar1}`
   );
-  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail, loading } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
-  const handleClose = () => {
-    setShowInactivityModal(false);
-  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -60,51 +55,36 @@ const WorliMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-  
-  useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
-  }, []);
-
   return (
     <>
       <div>
         <div className="dt20header">
-          <PlacedBet show={show1} setShow={setShow1} />
+          {<PlacedBet show={show1} setShow={setShow1} />}
           <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
+          <div style={{height: "100%",borderTop: !activeTab ? "2px solid white" : "none",  padding: "5px"}}>
+
+            <span
+              style={{ fontSize: "12px", fontWeight: "bold" }}
+              onClick={() => setActiveTab(false)}
             >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
+              GAME
+            </span>
             </div>
             <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
+            <div style={{height: "100%",borderTop: activeTab ? "2px solid white" : "none", padding: "5px"}}>
+
+            <span
+              style={{ fontSize: "12px", fontWeight: "bold" }}
+              onClick={() => setActiveTab(true)}
             >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
+              PLACED BET({placedBets?.length || 0})
+            </span>
             </div>
           </div>
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
+              onClick={() => setShowInactivityModal(true)}
             >
               Rules
             </span>
@@ -147,45 +127,54 @@ const WorliMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj1Result data={dragonTigerDetail?.videoInfo} />}
+                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
 
-            {loading ? (
-              <InnerLoader />
-            ) : (
-              <div style={{ height: "450px", marginTop: "70px" }}>
-                <div
-                  style={{
-                    width: "100%",
-                  }}
-                >
-                  <CardBox
-                    title={"ANDAR"}
-                    bgColor={"#ffa07a"}
-                    odds={dragonTigerDetail?.ander}
-                    data={dragonTigerDetail}
-                    cards={dragonTigerDetail?.cardInfo}
-                  />
-                  <CardBox
-                    title={"BAHAR"}
-                    bgColor={"#90ee90"}
-                    odds={dragonTigerDetail?.bahar}
-                    data={dragonTigerDetail}
-                    cards={dragonTigerDetail?.cardInfo}
-                  />
+            <div style={{marginTop:"70px" }}>
+             
+               <div
+                style={{
+                  width: "100%",
+                  margin: "0px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <CardBox
+                  title={"Yes"}
+                  bgColor={"#03b2cb"}
+                  odds={dragonTigerDetail?.yes}
+                  data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
+                />
+                <CardBox
+                  title={"No"}
+                  bgColor={"#FAA9BA"}
+                  odds={dragonTigerDetail?.no}
+                  data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
+                />
+               
+
+                <div className="ticker-container">
+                  <div className="ticker-wrap">
+                    <div
+                      className="ticker-move"
+                      style={{ color: "#8b0000", fontWeight: "700" }}
+                    >
+                      {dragonTigerDetail?.videoInfo?.remark}
+                    </div>
+                  </div>
                 </div>
-                <div style={{ width: "100%", marginTop: "10px" }}>
-                  <CardResultBox
-                    data={dragonTigerDetail}
-                    name={["R", "R", "R"]}
-                    type={cardGamesType.andarBahar1}
-                  />
-                </div>
+
               </div>
-            )}
+              <div style={{ width: "100%", marginTop: "10px" }}>
+                <CardResultBox data={dragonTigerDetail} name={["R", "R","R"]} type={cardGamesType.cardj}/>
+              </div>
+            </div>
           </div>
         ) : (
           <>
@@ -193,10 +182,9 @@ const WorliMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={abjrules} />
-      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
+      <RulesModal show={showInactivityModal} setShow={setShowInactivityModal} rule={abjrules} />
     </>
   );
 };
 
-export default WorliMobile;
+export default CardJMobile;

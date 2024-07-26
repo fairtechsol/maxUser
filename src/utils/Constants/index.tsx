@@ -130,7 +130,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -302,6 +302,7 @@ export const cardGamesType: any = {
   amarAkbarAnthony: "aaa",
   btable: "btable",
   worli: "worli2",
+  cardj:"3cardj"
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -329,6 +330,7 @@ export const cardGamesId: any = {
   aaa: 3056,
   btable: 3041,
   worli: 3040,
+  cardj:3040,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -1673,6 +1675,7 @@ export const casinoIcons = [
     name: "Lucky 7 - A",
   },
 ];
+
 export const card3 = {
   dragonTiger: [
     {
@@ -1688,7 +1691,7 @@ export const card3 = {
   teenPatti: [
     { id: 6, url: "/teenPatti20", imgSrc: twentyteen, name: "20-20 TEENPATTI" },
     { id: 7, url: "/teen", imgSrc: dayteen, name: "1 DAY TEENPATTI" },
-    { id: 8, url: "", imgSrc: testteen, name: "TEST TEENPATTI" },
+    { id: 8, url: "/teen9", imgSrc: testteen, name: "TEST TEENPATTI" },
     { id: 9, url: "/teen8", imgSrc: teenplayer, name: "OPEN TEENPATTI" },
   ],
   lucky7: [
@@ -1750,6 +1753,16 @@ export const card3 = {
       name: "Worli",
     },
   ],
+
+  "3cardj":[
+    {
+      id: 25,
+      url: "/3cardj",
+      imgSrc:
+        "https://dataobj.ecoassetsservice.com/casino-icons/lc/3cardj.jpg",
+      name: "3 Cards Judgement",
+    },
+  ]
 };
 export const dragonTigerCards = [
   {

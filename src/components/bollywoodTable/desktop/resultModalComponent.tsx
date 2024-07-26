@@ -14,7 +14,7 @@ const BollywoodTableResultComponent: React.FC<Props> = ({ data }: any) => {
   const pair = resultCards?.[0];
   //const card = resultCards?.[3]?.split(" ");
 
-  console.log("winner");
+  
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>

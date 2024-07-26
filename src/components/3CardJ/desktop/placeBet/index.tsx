@@ -295,7 +295,6 @@ const PlacedBet = () => {
                                   bettingName: selectedBet?.team?.bettingName,
                                   selectionId: selectedBet?.team?.selectionId,
                                 };
-                                
                                 setMatchOddLoading(true);
                                 dispatch(
                                   placeBet({

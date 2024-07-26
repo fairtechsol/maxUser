@@ -97,17 +97,25 @@ const cardGames = [
     label: "Casino War",
   },
   {
-    value: "poker",
-    label: "Poker 1-day",
+    value: "3cardj",
+    label: "3 Card Judgement",
   },
-  {
-    value: "poker20",
-    label: "Poker 20",
-  },
-  {
-    value: "poker6",
-    label: "Poker 6",
-  },
+  // {
+  //   value: "worli2",
+  //   label: "Instant Worli",
+  // },
+  // {
+  //   value: "poker",
+  //   label: "Poker 1-day",
+  // },
+  // {
+  //   value: "poker20",
+  //   label: "Poker 20",
+  // },
+  // {
+  //   value: "poker6",
+  //   label: "Poker 6",
+  // },
   // {
   //   value: "btable",
   //   label: "Bollywood Table",

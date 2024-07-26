@@ -30,6 +30,7 @@ import {
   casinoScoreboardMatchRates,
   updateBaccarat1Rates,
   updateCardWorliRates,
+  update3CardJRates,
   dragonTigerReset,
   scoreBoardReset,
 } from "../../actions/cards/cardDetail";
@@ -342,7 +343,7 @@ const cardDetail = createSlice({
       })
       .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
         if (action.payload) {
-          const { t1, t2 } = action.payload;
+          const { t1, t2 } = action?.payload;
           state.loading = false;
 
           console.log("ffri", action.payload);
@@ -351,7 +352,7 @@ const cardDetail = createSlice({
 
           // Create an array of players from t2 if t2 is present
           const players = t2
-            ? t2.map(({ sid, nat, b1, gstatus, min, max }: any) => ({
+            ? t2?.map(({ sid, nat, b1, gstatus, min, max }: any) => ({
                 sid,
                 nat,
                 b1,
@@ -538,15 +539,31 @@ const cardDetail = createSlice({
         const { t1, t2 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
-        //const cardInfo = { ...t3[0] };
-        const ander = t2.slice(0, 13);
-        const bahar = t2.slice(13, 26);
+
+        const worli = t2[0];
+
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
-          //cardInfo,
-          ander,
-          bahar,
+          worli,
+        };
+      })
+      .addCase(update3CardJRates.fulfilled, (state, action) => {
+
+        console.log("3carj",action.payload)
+
+        const { t1, t2, t3 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        //const cardInfo = { ...t3[0] };
+        const yes = t2[0];
+        const no = t2[1];
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+         // cardInfo,
+          yes,
+          no,
         };
       })
       .addCase(resultDragonTiger.pending, (state) => {
