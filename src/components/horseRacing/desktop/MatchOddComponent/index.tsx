@@ -16,6 +16,7 @@ const MatchOddComponent = ({ data }: any) => {
     );
   };
 
+  
   return (
     <div className="game-market market-12">
       <div className="market-title mt-1">
