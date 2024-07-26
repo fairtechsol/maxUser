@@ -40,7 +40,7 @@ const CasinoReports = Loadable(
   lazy(() => import("../pages/reports/casinoReport"))
 );
 const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
-const RaceDetail = Loadable(lazy(() => import("../pages/HorseRacingDetails")));
+const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
 const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
 const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
 const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
@@ -264,7 +264,7 @@ const MainRoutes = {
     //   element: <Worli />,
     // },
     // {
-    //   path: "3cardj", 
+    //   path: "3cardj",
     //   element: <CardJ/>,
     // },
     {
