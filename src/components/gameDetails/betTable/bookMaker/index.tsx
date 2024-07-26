@@ -93,12 +93,12 @@ function BookmakerTable({
             ) : (
               <>
                 <th
-                  className={`text-center bg-blue1 bookmaker-bet-place f400 title-15`}
+                  className={`text-center bg-blue1 match-odd-bet-place f700 title-15`}
                 >
                   BACK
                 </th>
                 <th
-                  className={`text-center bg-red1 bookmaker-bet-place f400 title-15`}
+                  className={`text-center bg-red1 match-odd-bet-place f700 title-15`}
                 >
                   LAY
                 </th>
@@ -225,7 +225,7 @@ function BookmakerTable({
                           indexs={index}
                           type={data.type}
                           box={"back"}
-                          customClass={`bookmaker-bet-place ${
+                          customClass={`match-odd-bet-place ${
                             isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""
@@ -302,7 +302,7 @@ function BookmakerTable({
                           indexs={index}
                           type={data.type}
                           box={"lay"}
-                          customClass={`bookmaker-bet-place ${
+                          customClass={`match-odd-bet-place ${
                             isMobile && backLayCount != 2
                               ? "bookmaker-width-26"
                               : ""

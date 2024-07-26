@@ -17,9 +17,10 @@ function CustomModal({
   footer,
   ...props
 }: any) {
-
   const dispatch: AppDispatch = useDispatch();
-  const { loading } = useSelector((state: RootState) => state.bets)
+  const { loading, loadingMyMarket } = useSelector(
+    (state: RootState) => state.bets
+  );
   return (
     <>
       <Modal
@@ -28,10 +29,27 @@ function CustomModal({
         onHide={() => setShow(false)}
         className={`customModal ${customClass}`}
       >
-        {loading && <Loader/> }
-        <Modal.Header closeButton className="bg-primary" style={{zIndex:'999'}}>
-          <Modal.Title className={isMobile ? "f400 text-white" : "title-12 f-600 text-white"}>{title} {title === "My Market" && <FaSync onClick={() => dispatch(getMyMarket())} style={{ cursor: 'pointer' }} />}</Modal.Title>
-
+        {title === "My Market"
+          ? loadingMyMarket && <Loader />
+          : loading && <Loader />}
+        <Modal.Header
+          closeButton
+          className="bg-primary"
+          style={{ zIndex: "999" }}
+        >
+          <Modal.Title
+            className={
+              isMobile ? "f400 text-white" : "title-12 f-600 text-white"
+            }
+          >
+            {title}{" "}
+            {title === "My Market" && (
+              <FaSync
+                onClick={() => dispatch(getMyMarket())}
+                style={{ cursor: "pointer" }}
+              />
+            )}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0 mt-2">{children}</Modal.Body>
         {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""}

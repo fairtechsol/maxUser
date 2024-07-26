@@ -25,9 +25,7 @@ import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const CasinoWar = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -78,43 +76,26 @@ const CasinoWar = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.casinoWar));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.casinoWar);
         socketService.card.getCardRatesOff(cardGamesType.casinoWar);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, []);
 
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.casinoWar));
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-
-  useEffect(() => {
-    try {
-      return () => {
-        dispatch(dragonTigerReset());
-      };
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  return  <CasinoWarComponentList />;
+  return <CasinoWarComponentList />;
 };
 
 export default CasinoWar;
