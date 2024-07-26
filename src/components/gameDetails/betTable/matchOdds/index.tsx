@@ -139,10 +139,10 @@ function MatchOdds({
                   </>
                 ) : (
                   <>
-                    <th className="bg-blue1 text-center match-odd-bet-place f400 title-14">
+                    <th className="bg-blue1 text-center match-odd-bet-place f700 title-14">
                       BACK
                     </th>
-                    <th className="bg-red1 text-center match-odd-bet-place f400 title-14">
+                    <th className="bg-red1 text-center match-odd-bet-place f700 title-14">
                       LAY
                     </th>
                   </>
@@ -177,13 +177,13 @@ function MatchOdds({
               >
                 <div style={{ width: "88px", display: "flex", height: "118%" }}>
                   <div
-                    className="bg-blue1 text-center   match-odd-bet-placem f400 w-20 title-14"
+                    className="bg-blue1 text-center   match-odd-bet-placem f700 w-20 title-14"
                     style={{ width: "44px" }}
                   >
                     BACK
                   </div>
                   <div
-                    className="bg-red1 text-center   match-odd-bet-placem f400 w-20 title-14"
+                    className="bg-red1 text-center   match-odd-bet-placem f700 w-20 title-14"
                     style={{ width: "44px" }}
                   >
                     LAY

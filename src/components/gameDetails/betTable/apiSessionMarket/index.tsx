@@ -103,8 +103,8 @@ function ApiSessionMarketTable({
               )}
             </th>
 
-            <th className="text-center bg-red1 bet-place-box50 f400">No</th>
-            <th className="text-center bg-blue3 bet-place-box50 f400">Yes</th>
+            <th className="text-center bg-red1 bet-place-box50 f700">No</th>
+            <th className="text-center bg-blue3 bet-place-box50 f700">Yes</th>
             {!isMobile && <th className="border-0"></th>}
           </tr>
         </thead>
