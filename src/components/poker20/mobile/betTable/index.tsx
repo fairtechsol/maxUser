@@ -114,7 +114,35 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
                   }
                 >
                   <span className="f12-b">{item?.entries?.[0]?.rate}</span>
-                  <span className="f400 title-14">0</span>
+                  <span
+                    className={`f400 title-14 ${
+                      data?.profitLoss
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.entries?.[0]?.sid}_card`
+                          ]
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.entries?.[0]?.sid}_card`
+                            ] > 0
+                            ? "color-green"
+                            : data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.entries?.[0]?.sid}_card`
+                              ] < 0
+                            ? "color-red"
+                            : ""
+                          : ""
+                        : ""
+                    }`}
+                  >
+                    {data?.profitLoss
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${item?.entries?.[0]?.sid}_card`
+                        ]
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.entries?.[0]?.sid}_card`
+                          ]
+                        : 0
+                      : 0}
+                  </span>
                 </div>
                 <div
                   className="card32-table-item back"
@@ -126,7 +154,35 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
                   }
                 >
                   <span className="f12-b">{item?.entries?.[1]?.rate}</span>
-                  <span className="f400 title-14">0</span>
+                  <span
+                    className={`f400 title-14 ${
+                      data?.profitLoss
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
+                          ]
+                          ? data?.profitLoss[
+                              `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
+                            ] > 0
+                            ? "color-green"
+                            : data?.profitLoss[
+                                `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
+                              ] < 0
+                            ? "color-red"
+                            : ""
+                          : ""
+                        : ""
+                    }`}
+                  >
+                    {data?.profitLoss
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
+                        ]
+                        ? data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
+                          ]
+                        : 0
+                      : 0}
+                  </span>
                 </div>
               </div>
             </div>

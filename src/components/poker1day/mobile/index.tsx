@@ -105,7 +105,7 @@ const Poker1dayMobile = () => {
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.poker1Day}`);
   }, []);
-  
+
   return (
     <>
       <div>
