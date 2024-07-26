@@ -74,8 +74,9 @@ const MobileGameDetail = () => {
   const getScoreBoard = async (marketId: string) => {
     try {
       const response: any = await service.get(
-        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        // `https://fairscore7.com/score/getMatchScore/${marketId}`
+        process.env.NODE_ENV === "production"
+          ? `https://fairscore7.com/score/getMatchScore/${marketId}`
+          : `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
       );
       if (response) {
         setLiveScoreBoardData(response);
