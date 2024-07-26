@@ -24,9 +24,7 @@ import { cardGamesType } from "../../utils/constants";
 
 const DragonTigerOneDay = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -78,23 +76,7 @@ const DragonTigerOneDay = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
-
-  useEffect(() => {
-    try {
-      if (dragonTigerDetail?.id) {
-        return () => {
-          socketService.card.leaveMatchRoom(cardGamesType.dragonTigerOneDay);
-          socketService.card.getCardRatesOff(cardGamesType.dragonTigerOneDay);
-          socketService.card.userCardBetPlacedOff();
-          socketService.card.cardResultOff();
-          dispatch(selectedBetAction(null));
-        };
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
@@ -102,19 +84,16 @@ const DragonTigerOneDay = () => {
       dispatch(
         getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay)
       );
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-
-  useEffect(() => {
-    try {
       return () => {
+        socketService.card.leaveMatchRoom(cardGamesType.dragonTigerOneDay);
+        socketService.card.getCardRatesOff(cardGamesType.dragonTigerOneDay);
+        socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
+        dispatch(selectedBetAction(null));
         dispatch(dragonTigerReset());
       };
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
     }
   }, []);
 

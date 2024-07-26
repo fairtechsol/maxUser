@@ -24,9 +24,7 @@ import { cardGamesType } from "../../utils/constants";
 
 const AmarAkbarAnthony = () => {
   const dispatch: AppDispatch = useDispatch();
-  const {  dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -56,7 +54,6 @@ const AmarAkbarAnthony = () => {
     }
   };
 
-
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
@@ -79,10 +76,12 @@ const AmarAkbarAnthony = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket,dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.amarAkbarAnthony);
         socketService.card.getCardRatesOff(cardGamesType.amarAkbarAnthony);
@@ -96,15 +95,7 @@ const AmarAkbarAnthony = () => {
     }
   }, []);
 
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony));
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-  return  <AmarAkbarAnthonyComponentList />;
+  return <AmarAkbarAnthonyComponentList />;
 };
 
 export default AmarAkbarAnthony;

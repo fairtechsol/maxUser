@@ -24,9 +24,7 @@ import { cardGamesType } from "../../utils/constants";
 
 const Lucky7B = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -78,10 +76,12 @@ const Lucky7B = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7B));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.lucky7B);
         socketService.card.getCardRatesOff(cardGamesType.lucky7B);
@@ -95,16 +95,7 @@ const Lucky7B = () => {
     }
   }, []);
 
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7B));
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-  return  <Lucky7BComponentList />;
+  return <Lucky7BComponentList />;
 };
 
 export default Lucky7B;

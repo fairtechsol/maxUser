@@ -77,41 +77,22 @@ const DragonTigerLion = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
-
-  useEffect(() => {
-    try {
-      if (dragonTigerDetail?.id) {
-        return () => {
-          socketService.card.leaveMatchRoom(cardGamesType.dragonTigerLion);
-          socketService.card.getCardRatesOff(cardGamesType.dragonTigerLion);
-          socketService.card.userCardBetPlacedOff();
-          socketService.card.cardResultOff();
-          dispatch(selectedBetAction(null));
-        };
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
       dispatch(getButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerLion));
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-
-  useEffect(() => {
-    try {
       return () => {
+        socketService.card.leaveMatchRoom(cardGamesType.dragonTigerLion);
+        socketService.card.getCardRatesOff(cardGamesType.dragonTigerLion);
+        socketService.card.userCardBetPlacedOff();
+        socketService.card.cardResultOff();
+        dispatch(selectedBetAction(null));
         dispatch(dragonTigerReset());
       };
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
     }
   }, []);
 
