@@ -14,19 +14,18 @@ import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import WorliResult from "./abj1Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import Abj1Result from "./abj1Card";
 
-const WorliDesktop = () => {
+const CardJDesktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
-  const [videoFrameId, setVideoFrameId] = useState("");
-  const { dragonTigerDetail, loading } = useSelector(
-    (state: RootState) => state.card
+  const [videoFrameId, setVideoFrameId] = useState(
+    `${cardUrl}${cardGamesId?.cardj}`
   );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -74,10 +73,7 @@ const WorliDesktop = () => {
     };
   }, [lastActivityTime, showInactivityModal]);
 
-  useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
-  }, []);
-
+  
   return (
     <>
       <Row>
@@ -121,44 +117,57 @@ const WorliDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<WorliResult data={dragonTigerDetail?.videoInfo} />}
+                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
-            {loading ? (
-              <InnerLoader />
-            ) : (
-              <div style={{ height: "460px" }}>
-                <div
-                  style={{
-                    width: "100%",
-                    margin: "5px",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <CardBox
-                    odds={"L1"}
-                    data={dragonTigerDetail}
-                    cards={dragonTigerDetail?.cardInfo}
-                  />
-                  <CardBox
-                    odds={"L2"}
-                    data={dragonTigerDetail}
-                    cards={dragonTigerDetail?.cardInfo}
-                  />
+            <div style={{ height: "460px" }}>
+              <div
+                style={{
+                  width: "100%",
+                  margin: "5px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <CardBox
+                  title={"Yes"}
+                  bgColor={"#03b2cb"}
+                  odds={dragonTigerDetail?.yes}
+                  data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
+                />
+                <CardBox
+                  title={"No"}
+                  bgColor={"#FAA9BA"}
+                  odds={dragonTigerDetail?.no}
+                  data={dragonTigerDetail}
+                  cards={dragonTigerDetail?.cardInfo}
+                />
+               
+
+                <div className="ticker-container">
+                  <div className="ticker-wrap">
+                    <div
+                      className="ticker-move"
+                      style={{ color: "#8b0000", fontWeight: "700" }}
+                    >
+                      {dragonTigerDetail?.videoInfo?.remark}
+                    </div>
+                  </div>
                 </div>
 
-                <div style={{ width: "100%", margin: "5px" }}>
-                  <CardResultBox
-                    data={dragonTigerDetail}
-                    name={["R", "R", "R"]}
-                    type={cardGamesType.worli}
-                  />
-                </div>
               </div>
-            )}
+
+              <div style={{ width: "100%", margin: "5px" }}>
+                <CardResultBox
+                  data={dragonTigerDetail}
+                  name={["R", "R", "R"]}
+                  type={cardGamesType.cardj}
+                />
+              </div>
+            </div>
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
@@ -187,4 +196,4 @@ const WorliDesktop = () => {
   );
 };
 
-export default WorliDesktop;
+export default CardJDesktop;

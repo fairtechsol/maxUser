@@ -59,8 +59,22 @@ const TeenPattiMobile = () => {
       odd: rate,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam:
+        (rateType == "drate"
+          ? "Dragon"
+          : rateType == "lrate"
+          ? "Lion"
+          : "Tiger") +
+        " " +
+        item?.nat,
+      name:
+        (rateType == "drate"
+          ? "Dragon"
+          : rateType == "lrate"
+          ? "Lion"
+          : "Tiger") +
+        " " +
+        item?.nat,
       bettingName: "Match odds",
       selectionId: sectionId,
     };
@@ -237,6 +251,17 @@ const TeenPattiMobile = () => {
                         className="teenPatti-table-item"
                         style={{ width: "20%", backgroundColor: "#72bbef" }}
                       >
+                        <span className="f12-b">{"DRAGON"}</span>
+                      </div>
+                      <div
+                        className={`teenPatti-table-item ${
+                          playerA?.[0]?.gstatus != "0" &&
+                          playerA?.[1]?.gstatus === "0"
+                            ? "suspended"
+                            : ""
+                        }`}
+                        style={{ width: "20%", backgroundColor: "#72bbef" }}
+                      >
                         <span className="f12-b">{"LION"}</span>
                       </div>
                       <div
@@ -249,17 +274,6 @@ const TeenPattiMobile = () => {
                         style={{ width: "20%", backgroundColor: "#72bbef" }}
                       >
                         <span className="f12-b">{"TIGER"}</span>
-                      </div>
-                      <div
-                        className={`teenPatti-table-item ${
-                          playerA?.[0]?.gstatus != "0" &&
-                          playerA?.[1]?.gstatus === "0"
-                            ? "suspended"
-                            : ""
-                        }`}
-                        style={{ width: "20%", backgroundColor: "#72bbef" }}
-                      >
-                        <span className="f12-b">{"DRAGON"}</span>
                       </div>
                     </div>
 

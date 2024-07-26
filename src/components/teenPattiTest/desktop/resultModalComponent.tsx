@@ -24,7 +24,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
     (_: any, index: number) => index % 3 === 2
   );
 
-  console.log("result", data);
+
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div

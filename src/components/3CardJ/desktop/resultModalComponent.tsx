@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -13,7 +13,7 @@ interface Props {
   };
 }
 
-const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
+const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
   const result = data?.result?.cards?.split("*");
   const elementsAndar = result?.[0]?.split(",");
   const elementsBahar = result?.[1]?.split(",");
@@ -58,7 +58,7 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
     );
   }
 
-  const sliderSettings = (_: any, __: any) => ({
+  const sliderSettings = (length: any, arrow: any) => ({
     infinite: false,
     // arrows: false,
     speed: 500,
@@ -88,31 +88,6 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
       },
     ],
   });
-
-  let a: any[] = [];
-
-  a = elementsAndar?.map((item: any) => {
-    if (item?.substring(0, item.length - 2) === "J") return 11;
-    if (item?.substring(0, item.length - 2) === "Q") return 12;
-    if (item?.substring(0, item.length - 2) === "K") return 13;
-    if (item?.substring(0, item.length - 2) === "A") return 1;
-    return Number(item?.substring(0, item.length - 2) || "");
-  });
-
-  
-
-  let sortString = 0,
-    sum = 0;
-
-  a?.sort()?.map((item) => {
-    if (item < 10) {
-      sortString = sortString * 10 + item;
-    } else {
-      sortString = sortString * 10 + (item % 10);
-    }
-    sum = (sum + item) % 10;
-  });
-
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="abjresultModal mb-2">
@@ -123,30 +98,52 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
               margin: "8px 9px 10px 11px",
             }}
           >
-            <div className="d-flex flex-column gap-4 align-items-center justify-content-center">
+            <div>
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
+                  gap: "5px",
                   flexWrap: "wrap",
-                  justifyContent: "space-around",
+                  flexDirection: "column",
+                  justifyContent: "center",
                   alignItems: "center",
                 }}
               >
-                {elementsAndar?.map((item: any, index: any) => {
-                  return <HandleCards key={index} card={item} />;
-                })}
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    flexWrap: "wrap",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {elementsAndar?.map((item: any, index: any) => (
+                    <HandleCards key={index} card={item} />
+                  ))}
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    flexWrap: "wrap",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: '6px',
+                    boxShadow: '0 0 4px -1px rgba(0, 0, 0, 0.5)',
+                    marginTop: '10px',
+                    color:"#9e9e9e",
+                    paddingRight:"30px",
+                    paddingLeft:"30px"
+                  }}
+                > Result
+                  {elementsAndar?.map((item: any, index: any) => (
+                    <div style={{color:"#000"}}>{item}</div>
+                  ))}
+                </div>
               </div>
-              <span
-                style={{
-                  background: "#28a745",
-                  color: "#fff",
-                  paddingLeft: "30px",
-                  paddingRight: "30px",
-                }}
-              >
-                {sortString} -{sum}
-              </span>
             </div>
           </div>
         </div>
@@ -155,4 +152,4 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 };
 
-export default WorliResultComponent;
+export default CardJResultComponent;
