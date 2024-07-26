@@ -96,7 +96,6 @@ const Cricket5 = () => {
     }
   };
 
-
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
@@ -119,39 +118,23 @@ const Cricket5 = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cricketv3);
         socketService.card.getCardRatesOff(cardGamesType.cricketv3);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
-      };
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      return () => {
         dispatch(dragonTigerReset());
         dispatch(scoreBoardReset());
       };
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
     }
   }, []);
 

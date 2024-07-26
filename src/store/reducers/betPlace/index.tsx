@@ -20,6 +20,7 @@ interface InitialState {
   myMarketList: any;
   success: boolean;
   loading: boolean;
+  loadingMyMarket: boolean;
   error: any;
   runAmountModal: boolean;
 }
@@ -29,6 +30,7 @@ const initialState: InitialState = {
   runAmount: {},
   myMarketList: [],
   loading: false,
+  loadingMyMarket: false,
   success: false,
   error: null,
   runAmountModal: false,
@@ -89,18 +91,18 @@ const placedBet = createSlice({
         state.error = action?.error?.message;
       })
       .addCase(getMyMarket.pending, (state) => {
-        state.loading = true;
+        state.loadingMyMarket = true;
         state.success = false;
         state.error = null;
         state.myMarketList = [];
       })
       .addCase(getMyMarket.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingMyMarket = false;
         state.success = true;
         state.myMarketList = action.payload;
       })
       .addCase(getMyMarket.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingMyMarket = false;
         state.error = action?.error?.message;
       })
       .addCase(updateBetsPlaced.fulfilled, (state, action) => {

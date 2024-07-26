@@ -76,38 +76,22 @@ const Poker20 = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker20));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.poker20);
         socketService.card.getCardRatesOff(cardGamesType.poker20);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker20));
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      return () => {
-        dispatch(dragonTigerReset());
-      };
-    } catch (error) {
-      console.log(error);
     }
   }, []);
 

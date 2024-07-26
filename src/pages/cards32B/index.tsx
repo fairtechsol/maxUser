@@ -25,9 +25,7 @@ import Card32BComponentList from "../../components/cards32B";
 
 const Cards32B = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -79,10 +77,12 @@ const Cards32B = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32B));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.card32B);
         socketService.card.getCardRatesOff(cardGamesType.card32B);
@@ -93,15 +93,6 @@ const Cards32B = () => {
       };
     } catch (e) {
       console.log(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32B));
-    } catch (e) {
-      console.error(e);
     }
   }, []);
 

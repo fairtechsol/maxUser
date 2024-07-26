@@ -77,41 +77,25 @@ const Abj = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket,dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar1));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.andarBahar1);
         socketService.card.getCardRatesOff(cardGamesType.andarBahar1);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, []);
 
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar1));
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      return () => {
-        dispatch(dragonTigerReset());
-      };
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-  
   return <Abj1ComponentList />;
 };
 

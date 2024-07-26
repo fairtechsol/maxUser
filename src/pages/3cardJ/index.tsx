@@ -6,6 +6,7 @@ import {
   update3CardJRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
+  dragonTigerReset,
 } from "../../store/actions/cards/cardDetail";
 import {
   getButtonValue,
@@ -42,8 +43,6 @@ const CardJ = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cardj));
       if (dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
       }
@@ -94,17 +93,20 @@ const CardJ = () => {
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cardj));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cardj);
         socketService.card.getCardRatesOff(cardGamesType.cardj);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
-  }, [dragonTigerDetail?.id]);
+  }, []);
 
   return loading ? <InnerLoader /> : <CardJComponentList />;
 };
