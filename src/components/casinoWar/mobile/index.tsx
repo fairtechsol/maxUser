@@ -494,35 +494,54 @@ const TeenPattiMobile = () => {
                                 <span className="f12-b">
                                   {playerA[bettingOptions].b1}
                                 </span>
-                                <span
-                                  className={`f400 title-14 ${
-                                    dragonTigerDetail?.profitLoss
-                                      ? dragonTigerDetail?.profitLoss[
-                                          `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                        ]
+                                {dragonTigerDetail?.profitLoss &&
+                                  dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                  ] && (
+                                    <span
+                                      style={{
+                                        marginTop:
+                                          playerA[bettingOptions]?.gstatus ===
+                                          "0"
+                                            ? "15px"
+                                            : "",
+                                        zIndex: "100",
+                                      }}
+                                      className={`f400 title-14 ${
+                                        dragonTigerDetail?.profitLoss
+                                          ? dragonTigerDetail?.profitLoss[
+                                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                            ]
+                                            ? dragonTigerDetail?.profitLoss[
+                                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                              ] > 0
+                                              ? "color-green"
+                                              : dragonTigerDetail?.profitLoss[
+                                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                                ] < 0
+                                              ? "color-red"
+                                              : ""
+                                            : ""
+                                          : ""
+                                      }`}
+                                    >
+                                      {dragonTigerDetail?.profitLoss
                                         ? dragonTigerDetail?.profitLoss[
                                             `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                          ] > 0
-                                          ? "color-green"
-                                          : dragonTigerDetail?.profitLoss[
+                                          ]
+                                          ? dragonTigerDetail?.profitLoss[
                                               `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                            ] < 0
-                                          ? "color-red"
-                                          : ""
-                                        : ""
-                                      : ""
-                                  }`}
-                                >
-                                  {dragonTigerDetail?.profitLoss
-                                    ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                      ]
-                                      ? dragonTigerDetail?.profitLoss[
-                                          `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                        ]
-                                      : 0
-                                    : 0}
-                                </span>
+                                            ]
+                                          : 0
+                                        : 0}
+                                    </span>
+                                  )}
+                                {(!dragonTigerDetail.profitLoss ||
+                                  !dragonTigerDetail.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                  ]) && (
+                                  <span className="f400 title-14">0</span>
+                                )}
                               </div>
                             </div>
                           ))}
@@ -589,35 +608,54 @@ const TeenPattiMobile = () => {
                                 <span className="f12-b">
                                   {playerA[bettingOptions].b1}
                                 </span>
-                                <span
-                                  className={`f400 title-14 ${
-                                    dragonTigerDetail?.profitLoss
-                                      ? dragonTigerDetail?.profitLoss[
-                                          `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                        ]
+                                {dragonTigerDetail?.profitLoss &&
+                                  dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                  ] && (
+                                    <span
+                                      style={{
+                                        marginTop:
+                                          playerA[bettingOptions]?.gstatus ===
+                                          "0"
+                                            ? "15px"
+                                            : "",
+                                        zIndex: "100",
+                                      }}
+                                      className={`f400 title-14 ${
+                                        dragonTigerDetail?.profitLoss
+                                          ? dragonTigerDetail?.profitLoss[
+                                              `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                            ]
+                                            ? dragonTigerDetail?.profitLoss[
+                                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                              ] > 0
+                                              ? "color-green"
+                                              : dragonTigerDetail?.profitLoss[
+                                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                                ] < 0
+                                              ? "color-red"
+                                              : ""
+                                            : ""
+                                          : ""
+                                      }`}
+                                    >
+                                      {dragonTigerDetail?.profitLoss
                                         ? dragonTigerDetail?.profitLoss[
                                             `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                          ] > 0
-                                          ? "color-green"
-                                          : dragonTigerDetail?.profitLoss[
+                                          ]
+                                          ? dragonTigerDetail?.profitLoss[
                                               `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                            ] < 0
-                                          ? "color-red"
-                                          : ""
-                                        : ""
-                                      : ""
-                                  }`}
-                                >
-                                  {dragonTigerDetail?.profitLoss
-                                    ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                      ]
-                                      ? dragonTigerDetail?.profitLoss[
-                                          `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                        ]
-                                      : 0
-                                    : 0}
-                                </span>
+                                            ]
+                                          : 0
+                                        : 0}
+                                    </span>
+                                  )}
+                                {(!dragonTigerDetail.profitLoss ||
+                                  !dragonTigerDetail.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
+                                  ]) && (
+                                  <span className="f400 title-14">0</span>
+                                )}
                               </div>
                             </div>
                           ))}
