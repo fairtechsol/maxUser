@@ -24,9 +24,7 @@ import { cardGamesType } from "../../utils/constants";
 
 const Cards32 = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -79,42 +77,26 @@ const Cards32 = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.card32);
         socketService.card.getCardRatesOff(cardGamesType.card32);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
     }
   }, []);
 
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32));
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      return () => {
-        dispatch(dragonTigerReset());
-      };
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  return  <Cards32ComponentList />;
+  return <Cards32ComponentList />;
 };
 
 export default Cards32;

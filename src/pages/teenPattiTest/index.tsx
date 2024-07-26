@@ -77,38 +77,22 @@ const TeenPattiTest = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenTest));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.teenTest);
         socketService.card.getCardRatesOff(cardGamesType.teenTest);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
+        dispatch(dragonTigerReset());
       };
     } catch (e) {
       console.log(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenTest));
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      return () => {
-        dispatch(dragonTigerReset());
-      };
-    } catch (error) {
-      console.log(error);
     }
   }, []);
 

@@ -76,10 +76,12 @@ const Abj2 = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar2));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.andarBahar2);
         socketService.card.getCardRatesOff(cardGamesType.andarBahar2);
@@ -90,15 +92,6 @@ const Abj2 = () => {
       };
     } catch (e) {
       console.log(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar2));
-    } catch (e) {
-      console.error(e);
     }
   }, []);
 
