@@ -58,8 +58,6 @@ const TeenPattiDesktop = () => {
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
 
-  
-
   const handleBet = (item: any, rateType: string, sectionId: string) => {
     const rate =
       rateType === "drate"
@@ -133,6 +131,8 @@ const TeenPattiDesktop = () => {
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenTest}`);
   }, []);
+
+  console.log("testdragon", dragonTigerDetail);
 
   return (
     <>
@@ -303,7 +303,41 @@ const TeenPattiDesktop = () => {
                             }
                           >
                             <span className="f12-b">{section.drate}</span>
-                            <span className="f10-b">0</span>
+                            <span
+                              className={
+                                dragonTigerDetail?.profitLoss
+                                  ? dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                    ]
+                                    ? JSON.parse(
+                                        dragonTigerDetail?.profitLoss[
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                        ]
+                                      )["playera"] > 0
+                                      ? "color-green"
+                                      : JSON.parse(
+                                          dragonTigerDetail?.profitLoss[
+                                            `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                          ]
+                                        )["playera"] < 0
+                                      ? "color-red"
+                                      : ""
+                                    : ""
+                                  : ""
+                              }
+                            >
+                              {dragonTigerDetail?.profitLoss
+                                ? dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                  ]
+                                  ? JSON.parse(
+                                      dragonTigerDetail?.profitLoss[
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                      ]
+                                    )
+                                  : 0
+                                : 0}
+                            </span>
                           </div>
 
                           <div
@@ -319,7 +353,41 @@ const TeenPattiDesktop = () => {
                             }
                           >
                             <span className="f12-b">{section.lrate}</span>
-                            <span className="f10-b">0</span>
+                            <span
+                              className={
+                                dragonTigerDetail?.profitLoss
+                                  ? dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                    ]
+                                    ? JSON.parse(
+                                        dragonTigerDetail?.profitLoss[
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                        ]
+                                      )["playerb"] > 0
+                                      ? "color-green"
+                                      : JSON.parse(
+                                          dragonTigerDetail?.profitLoss[
+                                            `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                          ]
+                                        )["playerb"] < 0
+                                      ? "color-red"
+                                      : ""
+                                    : ""
+                                  : ""
+                              }
+                            >
+                              {dragonTigerDetail?.profitLoss
+                                ? dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                  ]
+                                  ? JSON.parse(
+                                      dragonTigerDetail?.profitLoss[
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
+                                      ]
+                                    )
+                                  : 0
+                                : 0}
+                            </span>
                           </div>
 
                           <div
@@ -335,7 +403,41 @@ const TeenPattiDesktop = () => {
                             }
                           >
                             <span className="f12-b">{section.trate}</span>
-                            <span className="f10-b">0</span>
+                            <span
+                              className={
+                                dragonTigerDetail?.profitLoss
+                                  ? dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                    ]
+                                    ? JSON.parse(
+                                        dragonTigerDetail?.profitLoss[
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                        ]
+                                      )["playerb"] > 0
+                                      ? "color-green"
+                                      : JSON.parse(
+                                          dragonTigerDetail?.profitLoss[
+                                            `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                          ]
+                                        )["playerb"] < 0
+                                      ? "color-red"
+                                      : ""
+                                    : ""
+                                  : ""
+                              }
+                            >
+                              {dragonTigerDetail?.profitLoss
+                                ? dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                  ]
+                                  ? JSON.parse(
+                                      dragonTigerDetail?.profitLoss[
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                      ]
+                                    )
+                                  : 0
+                                : 0}
+                            </span>
                           </div>
                         </div>
                       </div>
