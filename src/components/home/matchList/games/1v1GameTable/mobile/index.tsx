@@ -48,10 +48,10 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
 
   useEffect(() => {
     if (isAtBottom) {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth",
-      });
+      // window.scrollTo({
+      //   top: document.body.scrollHeight/100,
+      //   behavior: "smooth",
+      // });
     }
   }, [isAtBottom]);
 
