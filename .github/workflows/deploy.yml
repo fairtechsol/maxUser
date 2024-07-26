@@ -27,7 +27,7 @@ jobs:
         key: ${{ secrets.SERVER_KEY }}
         port: ${{ secrets.SERVER_PORT }}
         script: |
-          sudo rm -r /var/www/frontend/maxbet9/maxbetuser/dist
+          sudo rm -r /var/www/frontend/maxbet9/maxbetuser
     - name: Deploy Frontend to Ubuntu Server
       uses: appleboy/scp-action@master
       with:
@@ -36,5 +36,5 @@ jobs:
         key: ${{ secrets.SERVER_KEY }}
         port: ${{ secrets.SERVER_PORT }}
         strip_components: 1
-        source: "maxbetuser/dist"
+        source: "maxbetuser"
         target: "/var/www/frontend/maxbet9"
