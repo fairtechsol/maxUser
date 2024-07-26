@@ -501,10 +501,12 @@ const TeenPattiMobile = () => {
                                     <span
                                       style={{
                                         marginTop:
-                                          playerA[bettingOptions]?.gstatus === "0" ? "15px" : "",
+                                          playerA[bettingOptions]?.gstatus ===
+                                          "0"
+                                            ? "15px"
+                                            : "",
                                         zIndex: "100",
                                       }}
-                                      
                                       className={`f400 title-14 ${
                                         dragonTigerDetail?.profitLoss
                                           ? dragonTigerDetail?.profitLoss[
@@ -613,10 +615,12 @@ const TeenPattiMobile = () => {
                                     <span
                                       style={{
                                         marginTop:
-                                          playerA[bettingOptions]?.gstatus === "0" ? "15px" : "",
+                                          playerA[bettingOptions]?.gstatus ===
+                                          "0"
+                                            ? "15px"
+                                            : "",
                                         zIndex: "100",
                                       }}
-
                                       className={`f400 title-14 ${
                                         dragonTigerDetail?.profitLoss
                                           ? dragonTigerDetail?.profitLoss[
