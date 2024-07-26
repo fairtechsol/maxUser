@@ -30,13 +30,18 @@ const PairBox = ({ odds, data, min, max }: any) => {
   };
   return (
     <>
-      <div className="poker-table-row" >
-        {isMobile ? <div className="title-12 f600 p-1" style={{ width: "50%", border: "0.1px solid #fff" }}>
-          {" "}
-          Min: {min} Max: {max}
-        </div> : <div
-              style={{ width: "50%", border: "0.1px solid #fff" }}
-          ></div>}
+      <div className="poker-table-row">
+        {isMobile ? (
+          <div
+            className="title-12 f600 p-1"
+            style={{ width: "50%", border: "0.1px solid #fff" }}
+          >
+            {" "}
+            Min: {min} Max: {max}
+          </div>
+        ) : (
+          <div style={{ width: "50%", border: "0.1px solid #fff" }}></div>
+        )}
         <div
           style={{
             width: "50%",
@@ -93,7 +98,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
           >
             <span className="f12-b">{odds?.[0]?.nat}</span>
             <span
-              className={`f10-b ${
+              className={`f10-b f400 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
@@ -135,7 +140,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
           >
             <span className="f12-b">{odds?.[1]?.nat}</span>
             <span
-              className={`f10-b ${
+              className={`f10-b f400 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
@@ -206,7 +211,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
           >
             <span className="f12-b">{odds?.[2]?.nat}</span>
             <span
-              className={`f10-b ${
+              className={`f10-b f400 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
@@ -248,7 +253,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
           >
             <span className="f12-b">{odds?.[3]?.nat}</span>
             <span
-              className={`f10-b ${
+              className={`f10-b f400 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`

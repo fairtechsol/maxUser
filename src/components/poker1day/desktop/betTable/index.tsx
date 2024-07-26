@@ -76,7 +76,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             {odds?.[0]?.nat}
           </span>
           <span
-            className={`${
+            className={`f400 ${
               data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   ? JSON.parse(
@@ -158,7 +158,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             {odds?.[1]?.nat}
           </span>
           <span
-            className={`${
+            className={`f400 ${
               data?.profitLoss
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   ? JSON.parse(
