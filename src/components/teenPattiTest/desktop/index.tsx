@@ -132,8 +132,6 @@ const TeenPattiDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenTest}`);
   }, []);
 
-  console.log("testdragon", dragonTigerDetail);
-
   return (
     <>
       <Row>
