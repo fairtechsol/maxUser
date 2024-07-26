@@ -35,6 +35,5 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SERVER_KEY }}
         port: ${{ secrets.SERVER_PORT }}
-        strip_components: 1
-        source: "maxbet9/maxbetuser"
+        source: "maxbetuser/"
         target: "/var/www/frontend/maxbet9"
