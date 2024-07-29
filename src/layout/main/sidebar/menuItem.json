@@ -27,7 +27,7 @@
         "id": "race2020",
         "name": "Race 20-20",
         "type": "liveItem",
-        "path": "/race20"
+        "path": "/contact-admin"
       },
       {
         "id": "casinoqueen",
@@ -45,7 +45,7 @@
         "id": "sportscasino",
         "name": "Sports Casino",
         "type": "liveItem",
-        "path": "/card3-list/sportCasino"
+        "path": "/contact-admin"
       },
       {
         "id": "andarbahar",
@@ -57,19 +57,19 @@
         "id": "bollywoodcasino",
         "name": "Bollywood Casino",
         "type": "liveItem",
-        "path": "/card3-list/bollywoodCasino"
+        "path": "/contact-admin"
       },
       {
         "id": "casinowar",
         "name": "Casino War",
         "type": "liveItem",
-        "path": "/war"
+        "path": "/contact-admin"
       },
       {
         "id": "worli",
         "name": "Worli",
         "type": "liveItem",
-        "path": "/card3-list/worli"
+        "path": "/contact-admin"
       },
       {
         "id": "lottery",
@@ -81,7 +81,7 @@
         "id": "3cardsjudgement",
         "name": "3 Cards Judgement",
         "type": "liveItem",
-        "path": "/card3-list/3cardj"
+        "path": "/contact-admin"
       },
       {
         "id": "binary",
