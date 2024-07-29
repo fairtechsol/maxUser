@@ -131,7 +131,7 @@ const Card32BMobile = () => {
                 backgroundColor: "#000",
               }}
             >
-              <div style={{ width: "100%", height: "275px" }}>
+              <div style={{ width: "100%"}}>
                 <div className="horseRacingTabHeader-m">
                   <div>
                     <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -159,8 +159,8 @@ const Card32BMobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "860px" }}>
-                <div className="" style={{ width: "97%", gap: "10px" }}>
+              <div>
+                <div className="" style={{ width: "97%", gap: "10px", marginTop: "0.5rem" }}>
                   <div className="w-100">
                     <BackLay
                       matchOddsData={dragonTigerDetail?.matchOdd}

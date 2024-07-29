@@ -116,7 +116,7 @@ const DragonTigerMobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "250px" }}>
+            <div style={{ width: "100%"}}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span
@@ -149,7 +149,7 @@ const DragonTigerMobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "820px" }}>
+              <div style={{ marginTop: "-2rem" }}>
                 <div className="dt20TabBox">
                   <div className="dtltabheader">
                     <span

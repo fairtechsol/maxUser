@@ -122,7 +122,7 @@ const Abj2Mobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "210px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div
                   style={{
@@ -158,8 +158,8 @@ const Abj2Mobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "700px" }}>
-                <div style={{ width: "100%", marginTop: "20%" }}>
+              <div>
+                <div style={{ width: "100%", marginTop: "0.5rem" }}>
                   <SBetBox
                     type={"A"}
                     odds={dragonTigerDetail?.abjSa}

@@ -123,7 +123,7 @@ const DragonTigerMobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "250px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -151,8 +151,8 @@ const DragonTigerMobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "830px" }}>
-                <div style={{ width: "100%" }}>
+              <div>
+                <div style={{ width: "100%", marginTop: "-2rem" }}>
                   <TiePairBox
                     tiePair={dragonTigerDetail?.tiePair}
                     data={dragonTigerDetail}

@@ -136,7 +136,7 @@ const Cricket5Desktop = () => {
           {loading ? (
             <InnerLoader />
           ) : (
-            <div style={{ height: "350px" }}>
+            <div style={{ height: "900px" }}>
               <div style={{ marginTop: "7rem" }}>
                 <MarketComponent
                   odds={dragonTigerDetail?.odds}
@@ -171,7 +171,10 @@ const Cricket5Desktop = () => {
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
+              <Col 
+              className="no-scrollbar"
+                style={{ height: "350px", overflow: "auto" }}
+              >
                 <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>

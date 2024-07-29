@@ -125,7 +125,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
             <div
               style={{
                 width: "100%",
-                height: scoreBoardData?.data ? "225px" : "150px",
+                // height: scoreBoardData?.data ? "225px" : "150px",
               }}
             >
               <div className="horseRacingTabHeader-m">
@@ -158,8 +158,8 @@ const Cricket5Mobile = ({ fancyData }: any) => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "900px" }}>
-                <div style={{ marginTop: "10.5rem" }}>
+              <div>
+                <div style={{ marginTop: "0.5rem" }}>
                   <MarketComponent
                     odds={dragonTigerDetail?.odds}
                     fancyData={fancyData}

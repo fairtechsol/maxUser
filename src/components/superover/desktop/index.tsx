@@ -134,7 +134,7 @@ const SuperoverDesktop = () => {
           {loading ? (
             <InnerLoader />
           ) : (
-            <div style={{ height: "760px", marginLeft: "5px" }}>
+            <div style={{ height: "900px", marginLeft: "5px" }}>
               <div
                 className="d-sm-flex flex-row justify-content-around align-items-center"
                 style={{ width: "100%", marginTop: "7rem", gap: "10px" }}

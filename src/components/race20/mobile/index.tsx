@@ -120,7 +120,7 @@ const Race20Mobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "210px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div
                   style={{
@@ -152,8 +152,8 @@ const Race20Mobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "880px" }}>
-                <div style={{ width: "100%", marginTop: "20%" }}>
+              <div>
+                <div style={{ width: "100%", marginTop: "0.5rem" }}>
                   <OddBox
                     odds={dragonTigerDetail?.cards}
                     data={dragonTigerDetail}

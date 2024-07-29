@@ -208,7 +208,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
                   ))}
                 </Slider>
               ) : (
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "10px" }}>
                   {teamB?.map((item: any, index: any) => (
                     <HandleCards key={index} card={item} />
                   ))}

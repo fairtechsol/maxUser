@@ -123,7 +123,7 @@ const Lucky7BMobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "250px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -149,8 +149,8 @@ const Lucky7BMobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "550px" }}>
-                <div style={{ width: "100%", marginTop: "30px" }}>
+              <div>
+                <div style={{ width: "100%", marginTop: "-3rem" }}>
                   <TiePairBox
                     lowHigh={dragonTigerDetail?.lowHigh}
                     data={dragonTigerDetail}

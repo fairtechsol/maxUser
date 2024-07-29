@@ -132,7 +132,7 @@ const SuperoverMobile = () => {
               <div
                 style={{
                   width: "100%",
-                  height: scoreBoardData?.data ? "255px" : "150px",
+                  // height: scoreBoardData?.data ? "280px" : "250px",
                 }}
               >
                 <div className="horseRacingTabHeader-m">
@@ -168,7 +168,7 @@ const SuperoverMobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "700px", marginTop: "9rem" }}>
+              <div style={{ marginTop: "0.5rem" }}>
                 <div className="" style={{ width: "100%", gap: "10px" }}>
                   <div className="w-100">
                     <Bookmaker

@@ -147,9 +147,9 @@ const Poker6Mobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "820px" }}>
-                <div className="dt20TabBox mt-2">
-                  <div className="dt20tabheaderp mt-4 ">
+              <div>
+                <div className="dt20TabBox-poker mt-5">
+                  <div className="dt20tabheaderp">
                     <div
                       style={{
                         height: "100%",

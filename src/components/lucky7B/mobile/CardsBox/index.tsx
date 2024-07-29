@@ -46,7 +46,7 @@ const CardBox = ({ cardData, data }: any) => {
               {parseFloat(isNaN(cardData?.[0]?.rate)?0:cardData?.[0]?.rate).toFixed(2)}
             </span>
           </div>
-          <div style={{ width: "45%", textAlign: "end" }}>
+          {/* <div style={{ width: "45%", textAlign: "end" }}>
              <span className="minmaxi">
              <IoInformationCircle
               color="#ffc742"
@@ -59,11 +59,17 @@ const CardBox = ({ cardData, data }: any) => {
               setShow={() => setModelOpen(false)}
             />
                       </span>
-          </div>
+          </div> */}
         </div>
         <div>
           <CommonCardImg cardData={cardData} handleBet={handleBet} data={data}/>
         </div>
+        <div style={{ textAlign: "end" }}>
+        <span style={{ fontWeight: "bolder" }}>Min:</span>
+        <span>{min}</span>
+        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
+        <span>{max}</span>
+      </div>
       </div>
     </>
   );

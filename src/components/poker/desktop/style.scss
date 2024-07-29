@@ -295,6 +295,7 @@
   display: flex;
   justify-content: flex-start;
   margin-top: 3%;
+  padding: 5px 0px 0px 0px;
   // margin-bottom: 20px;
 }
 .hands {
@@ -312,7 +313,7 @@
   color: #fff;
 }
 .hands:hover {
-  background-color: #e0e0e0;
+  background-color: none;
 }
 .tab-contentp {
   border: 1px solid #ddd;

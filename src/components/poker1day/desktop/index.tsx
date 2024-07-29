@@ -198,7 +198,7 @@ const Poker1DayDesktop = () => {
               <Col
                 xs={12}
                 className="no-scrollbar"
-                style={{ height: "400px", overflow: "auto" }}
+                // style={{ height: "400px", overflow: "auto" }}
               >
                 <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>
