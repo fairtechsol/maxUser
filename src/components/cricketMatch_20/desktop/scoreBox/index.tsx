@@ -47,7 +47,7 @@ const ScoreBox = ({
         </div>
       </div>
       <div className="ball-icon">
-        <img src={ballIconUrl} alt="Ball Icon" />
+        <img src={ballIconUrl} alt="Ball Icon" style={{height:"60px"}}/>
       </div>
       <div className="blbox">
         <div className="casino-odds-box back">
