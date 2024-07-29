@@ -18,9 +18,7 @@ function CustomModal({
   ...props
 }: any) {
   const dispatch: AppDispatch = useDispatch();
-  const { loading, loadingMyMarket } = useSelector(
-    (state: RootState) => state.bets
-  );
+  const { loading } = useSelector((state: RootState) => state.bets);
   return (
     <>
       <Modal
@@ -29,9 +27,7 @@ function CustomModal({
         onHide={() => setShow(false)}
         className={`customModal ${customClass}`}
       >
-        {title === "My Market"
-          ? loadingMyMarket && <Loader />
-          : loading && <Loader />}
+        {title === "My Market" ? <></> : loading && <Loader />}
         <Modal.Header
           closeButton
           className="bg-primary"
