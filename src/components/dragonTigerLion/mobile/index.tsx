@@ -9,11 +9,12 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/dragonCard";
 import OddEven from "./OddEvenBox";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [activeCardTab, setActiveCardTab] = useState("dragon");
@@ -115,7 +116,7 @@ const DragonTigerMobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "250px" }}>
+            <div style={{ width: "100%"}}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span
@@ -148,7 +149,7 @@ const DragonTigerMobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "820px" }}>
+              <div style={{ marginTop: "-2rem" }}>
                 <div className="dt20TabBox">
                   <div className="dtltabheader">
                     <span
@@ -238,7 +239,7 @@ const DragonTigerMobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

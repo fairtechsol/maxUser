@@ -11,11 +11,11 @@ import Lucky7Result from "../desktop/lucky7Card";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const Lucky7Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -147,7 +147,7 @@ const Lucky7Mobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "550px" }}>
+              <div>
                 <div style={{ width: "100%", marginTop: "30px" }}>
                   <TiePairBox
                     lowHigh={dragonTigerDetail?.lowHigh}
@@ -203,7 +203,7 @@ const Lucky7Mobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

@@ -9,13 +9,13 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import MarketComponent from "./betTable";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import Crick5Result from "./cric5Card";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -136,7 +136,7 @@ const Cricket5Desktop = () => {
           {loading ? (
             <InnerLoader />
           ) : (
-            <div style={{ height: "350px" }}>
+            <div style={{ height: "900px" }}>
               <div style={{ marginTop: "7rem" }}>
                 <MarketComponent
                   odds={dragonTigerDetail?.odds}
@@ -169,9 +169,12 @@ const Cricket5Desktop = () => {
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBet />
+                <DesktopMyBet />
               </Col>
-              <Col>
+              <Col 
+              className="no-scrollbar"
+                style={{ height: "350px", overflow: "auto" }}
+              >
                 <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>

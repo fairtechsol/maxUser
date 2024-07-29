@@ -4,10 +4,13 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import SmoothDropdownModal from "../minMaxModal";
 import { useState } from "react";
 import { IoInformationCircle } from "react-icons/io5";
+import isMobile from "../../../../utils/screenDimension";
 
 const TotalCards = ({ data, odds}: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
+  const min = odds?.[0]?.min;
+  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -59,21 +62,28 @@ const TotalCards = ({ data, odds}: any) => {
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px",display:"flex" }}>
           <div className="dtlTitle">
-            {" "}
-            <div style={{ width: "40%", textAlign: "start" }}>
-              <span className="minmaxi">
-                <IoInformationCircle
-                  color="#ffc742"
-                  onClick={() => setModelOpen(!modelOpen)}
-                />
-                <SmoothDropdownModal
-                  min={odds?.[0]?.max}
-                  max={odds?.[0]?.min}
-                  show={modelOpen}
-                  setShow={() => setModelOpen(false)}
-                />
-              </span>
-            </div>
+          {isMobile ? (
+              <>
+                <span style={{ fontWeight: "400" }}>
+                  Min:{min} Max:{max}
+                </span>
+              </>
+            ) : (
+              <div style={{ width: "45%", textAlign: "start" }}>
+                <span className="minmaxi">
+                  <IoInformationCircle
+                    color="#ffc742"
+                    onClick={() => setModelOpen(!modelOpen)}
+                  />
+                  <SmoothDropdownModal
+                    min={min}
+                    max={max}
+                    show={modelOpen}
+                    setShow={() => setModelOpen(false)}
+                  />
+                </span>
+              </div>
+            )}
           </div>
           <div className="card32bsubTitle back-BackGround">
             <span style={{ fontSize: "14px" }}>

@@ -10,13 +10,13 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import DynamicTable from "./betTable";
 import Poker1DayResult from "./poker1DayCard";
 import PairBox from "./pairBox";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 
 const Poker1DayDesktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -193,12 +193,12 @@ const Poker1DayDesktop = () => {
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBet />
+                <DesktopMyBet />
               </Col>
               <Col
                 xs={12}
                 className="no-scrollbar"
-                style={{ height: "400px", overflow: "auto" }}
+                // style={{ height: "400px", overflow: "auto" }}
               >
                 <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>

@@ -8,7 +8,6 @@ import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
@@ -16,6 +15,7 @@ import WinBox from "./win";
 import Race20Result from "../desktop/race20Card";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -120,7 +120,7 @@ const Race20Mobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "210px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div
                   style={{
@@ -152,8 +152,8 @@ const Race20Mobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "880px" }}>
-                <div style={{ width: "100%", marginTop: "20%" }}>
+              <div>
+                <div style={{ width: "100%", marginTop: "0.5rem" }}>
                   <OddBox
                     odds={dragonTigerDetail?.cards}
                     data={dragonTigerDetail}
@@ -195,7 +195,7 @@ const Race20Mobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

@@ -4,10 +4,13 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import SmoothDropdownModal from "../minMaxModal";
 import { IoInformationCircle } from "react-icons/io5";
 import { useState } from "react";
+import isMobile from "../../../../utils/screenDimension";
 
 const CardBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
+  const min = odds?.[0]?.min;
+  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -60,21 +63,29 @@ const CardBox = ({ odds, data }: any) => {
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="cardNumberTitle">
-            {" "}
-            <div style={{ width: "47%", textAlign: "start" }}>
-              <span className="minmaxi">
-                <IoInformationCircle
-                  color="#ffc742"
-                  onClick={() => setModelOpen(!modelOpen)}
-                />
-                <SmoothDropdownModal
-                  min={odds?.[0]?.max}
-                  max={odds?.[0]?.min}
-                  show={modelOpen}
-                  setShow={() => setModelOpen(false)}
-                />
-              </span>
+          <div className="dtlTitle">
+          {isMobile ? (
+              <>
+                <span style={{ fontWeight: "400" }}>
+                  Min:{min} Max:{max}
+                </span>
+              </>
+            ) : (
+              <div style={{ width: "45%", textAlign: "start" }}>
+                <span className="minmaxi">
+                  <IoInformationCircle
+                    color="#ffc742"
+                    onClick={() => setModelOpen(!modelOpen)}
+                  />
+                  <SmoothDropdownModal
+                    min={min}
+                    max={max}
+                    show={modelOpen}
+                    setShow={() => setModelOpen(false)}
+                  />
+                </span>
+              </div>
+            )}
             </div>
             <div style={{ width: "53%", textAlign: "start"}}>{odds?.[0]?.b1}</div>
           </div>
@@ -98,7 +109,7 @@ const CardBox = ({ odds, data }: any) => {
           })}
         </div>
       </div>
-    </div>
+
   );
 };
 

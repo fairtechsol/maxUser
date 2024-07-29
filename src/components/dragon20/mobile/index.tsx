@@ -11,11 +11,11 @@ import Dragon20Result from "../desktop/dragonCard";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -123,7 +123,7 @@ const DragonTigerMobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "250px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -151,8 +151,8 @@ const DragonTigerMobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "830px" }}>
-                <div style={{ width: "100%" }}>
+              <div>
+                <div style={{ width: "100%", marginTop: "-2rem" }}>
                   <TiePairBox
                     tiePair={dragonTigerDetail?.tiePair}
                     data={dragonTigerDetail}
@@ -235,7 +235,7 @@ const DragonTigerMobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

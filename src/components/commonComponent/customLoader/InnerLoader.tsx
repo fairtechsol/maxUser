@@ -1,9 +1,10 @@
-import loader from "../../../assets/images/gameicons/loader.gif";
+
+import isMobile from "../../../utils/screenDimension";
 
 const InnerLoader = () => {
   return (
-    <div className="loader-inner">
-      <img src={loader} alt="loader"/>
+    <div className={isMobile ? "loader-mobile" : "loader-inner"} >
+      {/* <img src={loader} alt="loader"/> */}
     </div>
   );
 };
