@@ -147,7 +147,7 @@ const Lucky7Mobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "550px" }}>
+              <div>
                 <div style={{ width: "100%", marginTop: "30px" }}>
                   <TiePairBox
                     lowHigh={dragonTigerDetail?.lowHigh}
