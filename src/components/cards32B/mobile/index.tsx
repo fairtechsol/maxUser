@@ -14,10 +14,10 @@ import Dragon20Result from "../desktop/card32B";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import BackLay from "../desktop/BackLay";
 import PairBox from "./PairBox";
-import MyBet from "./myBet";
 import TotalCards from "./totalCards";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const Card32BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -204,7 +204,7 @@ const Card32BMobile = () => {
           </>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

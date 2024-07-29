@@ -12,9 +12,9 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import PlacedBet from "./placeBet";
-import MyBet from "./myBet";
 import BaccaratStatistics from "./betTable";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 
 const Baccarat1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -163,7 +163,7 @@ const Baccarat1Desktop = () => {
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBet />
+                <DesktopMyBet />
               </Col>
             </Row>
           </Container>

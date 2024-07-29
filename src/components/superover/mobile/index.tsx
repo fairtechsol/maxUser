@@ -10,12 +10,12 @@ import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import Bookmaker from "../desktop/bookmaker";
-import MyBet from "./myBet";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import { Table } from "react-bootstrap";
 import SuperoverResult from "../desktop/superOver";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -234,7 +234,7 @@ const SuperoverMobile = () => {
           </>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

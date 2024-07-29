@@ -10,11 +10,12 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "../../horseRacing/mobile/betTable/style.scss";
 import Card32Result from "../desktop/poker20";
 import DynamicTable from "./betTable";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+
 const Poker20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
@@ -174,7 +175,7 @@ const Poker20Mobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

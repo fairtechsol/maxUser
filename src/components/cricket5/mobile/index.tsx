@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
@@ -15,6 +14,7 @@ import { crick5rules } from "../../../assets/images";
 import { Table } from "react-bootstrap";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
@@ -232,7 +232,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

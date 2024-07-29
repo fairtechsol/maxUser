@@ -11,11 +11,11 @@ import Lucky7Result from "../desktop/lucky7Card";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const AmarAkbarAnthonyMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -211,7 +211,7 @@ const AmarAkbarAnthonyMobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>
