@@ -74,9 +74,8 @@ const MobileGameDetail = () => {
   const getScoreBoard = async (marketId: string) => {
     try {
       const response: any = await service.get(
-        process.env.NODE_ENV === "production"
-          ? `https://fairscore7.com/score/getMatchScore/${marketId}`
-          : `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        // `https://fairscore7.com/score/getMatchScore/${marketId}`
+        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
       );
       if (response) {
         setLiveScoreBoardData(response);
@@ -290,7 +289,7 @@ const MobileGameDetail = () => {
                                   className={`matchListTab ${
                                     item?.id === marketActive ? "active" : ""
                                   }`}
-                                  style={{ width: index == 8 ? "34%" : "22%" }}
+                                  style={{ width: index == 8 ? "40%" : "20%" }}
                                   onClick={() => handleMarket(item?.id)}
                                 >
                                   <span className="title-12 text-uppercase f500">
