@@ -10,11 +10,11 @@ import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import BaccaratStatistics from "../desktop/betTable";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -175,7 +175,7 @@ const Baccarat1Mobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>
