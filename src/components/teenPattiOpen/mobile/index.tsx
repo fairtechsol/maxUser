@@ -185,33 +185,42 @@ const TeenPattiMobile = () => {
                     <div className="teenPatti-table-row">
                       <div
                         style={{
-                          width: "20%",
+                          width: "40%",
                           border: "0.1px solid #dee2e6",
                           textAlign: "left",
                         }}
                       ></div>
                       <div
                         style={{
-                          width: "80%",
-                          border: "0.1px solid #dee2e6",
+                          width: "60%",
+                         
                           textAlign: "left",
                           display: "flex",
                         }}
+                        className=""
                       >
                         <div
                           className="teen-back-m"
                           style={{
                             border: "0.5px solid #dee2e6",
+                            width:"50%",
+                            padding:"2px",
+                            display:"flex",
+                            flexDirection:"column"
                           }}
                         >
-                          BACK
-                          <span className="f12-b">
+                          
+                          <span>BACK</span>
+                          <span className="f5-b" style={{fontSize:"10px"}}>
                             ( Min: {dragonTigerDetail?.players?.player1?.min}{" "}
                             Max: {dragonTigerDetail?.players?.player1?.max})
                           </span>
                         </div>
-                        <div className="teen-back-m">
-                          <span className="f12-b">
+                        <div className="teen-back-m" style={{
+                          width:"50%",
+                          border: "0.5px solid #dee2e6",
+                        }}>
+                          <span className="f5-b" style={{padding:"2px",marginTop:"20px",fontSize:"10px"}}>
                             ( Min:{" "}
                             {dragonTigerDetail?.pairsPlus?.pairPlus1?.min} Max:{" "}
                             {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
