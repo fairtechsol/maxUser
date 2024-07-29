@@ -39,17 +39,29 @@ const MyBet = () => {
             return (
               <tr key={bet?.id} className={`position-relative bg-`}>
                 <th
-                  className={`title-12 text-start bg-blue3`}
+                  className={`title-12 text-start ${
+                    bet?.betType === "NO" || bet?.betType === "LAY"
+                      ? "bg-red1"
+                      : "bg-blue3"
+                  }`}
                 >
                   {bet?.teamName}
                 </th>
                 <th
-                  className={`title-12 text-start bg-blue3`}
+                  className={`title-12 text-start ${
+                    bet?.betType === "NO" || bet?.betType === "LAY"
+                      ? "bg-red1"
+                      : "bg-blue3"
+                  }`}
                 >
                   {bet?.odds}
                 </th>
                 <th
-                  className={`title-12 text-start bg-blue3`}
+                  className={`title-12 text-start ${
+                    bet?.betType === "NO" || bet?.betType === "LAY"
+                      ? "bg-red1"
+                      : "bg-blue3"
+                  }`}
                 >
                   {bet?.amount}
                 </th>
