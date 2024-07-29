@@ -137,7 +137,7 @@ const Cricket5Desktop = () => {
             <InnerLoader />
           ) : (
             <div style={{ height: "900px" }}>
-              <div style={{ marginTop: "7rem" }}>
+              <div style={{ marginTop: "6.5rem" }}>
                 <MarketComponent
                   odds={dragonTigerDetail?.odds}
                   min={dragonTigerDetail?.videoInfo?.min}

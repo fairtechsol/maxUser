@@ -5,6 +5,8 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const DynamicTable = ({ odds, data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
+  const min = data?.videoInfo?.min;
+  const max = data?.videoInfo?.max;
 
   const handleBet = (item: any) => {
     let team = {
@@ -43,7 +45,10 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
   return (
     <div className="card32-table-container-m">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
-        <div style={{ width: "50%" }}></div>
+        <div style={{ width: "50%" }}>  
+           <span className="ms-1">
+                  Min:{min} Max:{max}
+                </span></div>
         {playerNum[0] === 0 && (
           <div
             style={{
