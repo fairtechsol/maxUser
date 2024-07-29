@@ -156,14 +156,14 @@ const PairBox = ({ matchOddsData, data }: any) => {
                 className={`title-14 f400 ${
                   data?.profitLoss
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                        `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
                       ]
                       ? data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                          `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
                         ] > 0
                         ? "color-green"
                         : data?.profitLoss[
-                            `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                            `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
                           ] < 0
                         ? "color-red"
                         : ""
@@ -173,10 +173,10 @@ const PairBox = ({ matchOddsData, data }: any) => {
               >
                 {data?.profitLoss
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                      `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
                     ]
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                        `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
                       ]
                     : 0
                   : 0}
@@ -196,14 +196,14 @@ const PairBox = ({ matchOddsData, data }: any) => {
                 className={`title-14 f400 ${
                   data?.profitLoss
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                        `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
                       ]
                       ? data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                          `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
                         ] > 0
                         ? "color-green"
                         : data?.profitLoss[
-                            `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                            `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
                           ] < 0
                         ? "color-red"
                         : ""
@@ -213,10 +213,10 @@ const PairBox = ({ matchOddsData, data }: any) => {
               >
                 {data?.profitLoss
                   ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                      `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
                     ]
                     ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                        `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
                       ]
                     : 0
                   : 0}
