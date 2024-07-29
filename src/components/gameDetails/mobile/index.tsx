@@ -290,7 +290,7 @@ const MobileGameDetail = () => {
                                   className={`matchListTab ${
                                     item?.id === marketActive ? "active" : ""
                                   }`}
-                                  style={{ width: index == 8 ? "34%" : "22%" }}
+                                  style={{ width: index == 8 ? "40%" : "20%" }}
                                   onClick={() => handleMarket(item?.id)}
                                 >
                                   <span className="title-12 text-uppercase f500">
