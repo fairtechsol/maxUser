@@ -1585,19 +1585,19 @@ export const casinoIcons = [
     name: "20-20 Teenpatti",
   },
   {
-    url: "",
+    url: "/poker6",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "6 Player Poker",
   },
   {
-    url: "",
+    url: "/poker",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "1 Day Poker",
   },
   {
-    url: "",
+    url: "/poker20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "20-20 Poker",
