@@ -313,14 +313,14 @@ const TeenPattiDesktop = () => {
                                 className={`teenPatti-table-item ${
                                   player.gstatus === "0" ? "suspended" : ""
                                 }`}
-                                style={{ width: "16.7%" ,}}
+                                style={{ width: "16.7%" }}
                                 onClick={() =>
                                   player.gstatus === "0"
                                     ? null
                                     : handleBet(player)
                                 }
                               >
-                                <span className="f12-b" >{player.b1}</span>
+                                <span className="f12-b">{player.b1}</span>
                                 {dragonTigerDetail?.profitLoss &&
                                   dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
@@ -343,7 +343,11 @@ const TeenPattiDesktop = () => {
                                             : ""
                                           : ""
                                       }`}
-                                      style={{marginTop: player.gstatus === "0"?"15px":"",zIndex:"100"}}
+                                      style={{
+                                        marginTop:
+                                          player.gstatus === "0" ? "15px" : "",
+                                        zIndex: "100",
+                                      }}
                                     >
                                       {dragonTigerDetail?.profitLoss
                                         ? dragonTigerDetail?.profitLoss[
@@ -359,7 +363,9 @@ const TeenPattiDesktop = () => {
                                 {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                  ]) && <span className="f400 title-14">0</span>}
+                                  ]) && (
+                                  <span className="f400 title-14">0</span>
+                                )}
                               </div>
                             ))}
                           </div>
