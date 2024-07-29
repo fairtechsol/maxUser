@@ -6,7 +6,7 @@ import { useState } from "react";
 import { IoInformationCircle } from "react-icons/io5";
 import isMobile from "../../../../utils/screenDimension";
 
-const TotalCards = ({ data, odds}: any) => {
+const TotalCards = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
   const min = odds?.[0]?.min;
@@ -60,9 +60,12 @@ const TotalCards = ({ data, odds}: any) => {
           marginLeft: "5px",
         }}
       >
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "30px",display:"flex" }}>
+        <div
+          className="w-100 d-sm-flex flex-row"
+          style={{ height: "30px", display: "flex" }}
+        >
           <div className="dtlTitle">
-          {isMobile ? (
+            {isMobile ? (
               <>
                 <span style={{ fontWeight: "400" }}>
                   Min:{min} Max:{max}
@@ -86,18 +89,88 @@ const TotalCards = ({ data, odds}: any) => {
             )}
           </div>
           <div className="card32bsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>
-            Back
-            </span>
+            <span style={{ fontSize: "14px" }}>Back</span>
           </div>
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "45px",display:"flex" }}>
-          <div className="card32bTitle">8 & 9 Total</div>
+        <div
+          className="w-100 d-sm-flex flex-row"
+          style={{ height: "45px", display: "flex" }}
+        >
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>8 & 9 Total</span>
+              <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                      ]
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                        ] > 0
+                        ? "color-green"
+                        : data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                          ] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                    ]
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                      ]
+                    : 0
+                  : 0}
+              </span>
+            </div>
+          </span>
           {renderItem(odds?.[0], 0)}
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "45px",display:"flex" }}>
-          <div className="card32bTitle">10 & 11 Total</div>
-         {renderItem(odds?.[1], 1)}
+        <div
+          className="w-100 d-sm-flex flex-row"
+          style={{ height: "45px", display: "flex" }}
+        >
+          <span className="dtlTitle lh-1">
+            <div className="profitLoss-Text">
+              <span>10 & 11 Total</span>
+              <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                      ]
+                      ? data?.profitLoss[
+                          `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                        ] > 0
+                        ? "color-green"
+                        : data?.profitLoss[
+                            `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                          ] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                    ]
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                      ]
+                    : 0
+                  : 0}
+              </span>
+            </div>
+          </span>
+          {renderItem(odds?.[1], 1)}
         </div>
       </div>
     </div>

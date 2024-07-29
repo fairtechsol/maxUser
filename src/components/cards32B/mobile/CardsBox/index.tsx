@@ -45,9 +45,32 @@ const CardBox = ({ odds, data }: any) => {
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
-      <span style={{fontFamily:"auto",fontSize:"30px"}}>{index+1===10?"0":index+1}</span>
-      {/* <span style={{fontSize:"16px"}}>{index===1?"0":''}</span> */}
-      
+      <span style={{ fontFamily: "auto", fontSize: "30px" }}>
+        {index + 1 === 10 ? "0" : index + 1}
+      </span>
+      <span
+        style={{ fontSize: "14px", fontWeight: "400" }}
+        className={`title-14 f400 ${
+          data?.profitLoss
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] >
+                0
+                ? "color-green"
+                : data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] < 0
+                ? "color-red"
+                : ""
+              : ""
+            : ""
+        }`}
+      >
+        {data?.profitLoss
+          ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            : 0
+          : 0}
+      </span>
     </div>
   );
   return (
@@ -64,7 +87,7 @@ const CardBox = ({ odds, data }: any) => {
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
           <div className="dtlTitle">
-          {isMobile ? (
+            {isMobile ? (
               <>
                 <span style={{ fontWeight: "400" }}>
                   Min:{min} Max:{max}
@@ -86,30 +109,29 @@ const CardBox = ({ odds, data }: any) => {
                 </span>
               </div>
             )}
-            </div>
-            <div style={{ width: "53%", textAlign: "start"}}>{odds?.[0]?.b1}</div>
+          </div>
+          <div style={{ width: "53%", textAlign: "start" }}>
+            {odds?.[0]?.b1}
           </div>
         </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "auto",display:"flex" }}>
-          {odds?.slice(0,5)?.map((item:any,index:number)=>{
-            return(
-              <>
-              {renderItem(item, index)}
-              </>
-            )
-          })}
-        </div>
-        <div className="w-100 d-sm-flex flex-row" style={{ height: "auto",display:"flex" }}>
-        {odds?.slice(5,10)?.map((item:any,index:number)=>{
-            return(
-              <>
-              {renderItem(item, index+5)}
-              </>
-            )
-          })}
-        </div>
       </div>
-
+      <div
+        className="w-100 d-sm-flex flex-row"
+        style={{ height: "auto", display: "flex" }}
+      >
+        {odds?.slice(0, 5)?.map((item: any, index: number) => {
+          return <>{renderItem(item, index)}</>;
+        })}
+      </div>
+      <div
+        className="w-100 d-sm-flex flex-row"
+        style={{ height: "auto", display: "flex" }}
+      >
+        {odds?.slice(5, 10)?.map((item: any, index: number) => {
+          return <>{renderItem(item, index + 5)}</>;
+        })}
+      </div>
+    </div>
   );
 };
 
