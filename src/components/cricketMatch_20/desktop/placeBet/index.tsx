@@ -123,6 +123,7 @@ const PlacedBet = () => {
       e.preventDefault();
     }
   };
+  console.log("hgjhg",selectedBet?.team?.bettingType)
   return (
     <>
       <div className="loader-container">
@@ -146,7 +147,8 @@ const PlacedBet = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className={"place-bet-table-blue"}>
+                {/* <tr className={selectedBet?.team?.bettingType =="BACK"?"place-bet-table-blue":"#FAA9BA"}> */}
+                <tr className={selectedBet?.team?.bettingType =="BACK"?"place-bet-table-blue":"place-bet-table-pink"}>
                   <td width={"8%"}>
                     <span
                       className=" text-danger title-12 cursor-pointer"

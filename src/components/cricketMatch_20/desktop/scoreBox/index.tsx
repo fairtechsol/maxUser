@@ -11,6 +11,8 @@ const ScoreBox = ({
   ballIconUrl,
   backOdds,
   layOdds,
+  handleBet,
+  item
 }) => {
   return (
     <div
@@ -50,10 +52,10 @@ const ScoreBox = ({
         <img src={ballIconUrl} alt="Ball Icon" style={{height:"60px"}}/>
       </div>
       <div className="blbox">
-        <div className="casino-odds-box back">
+        <div className="casino-odds-box back" onClick={()=>handleBet(item,"BACK")}>
           <span className="casino-odds">{backOdds}</span>
         </div>
-        <div className="casino-odds-box lay">
+        <div className="casino-odds-box lay" onClick={()=>handleBet(item,"LAY")}>
           <span className="casino-odds">{layOdds}</span>
         </div>
       </div>
