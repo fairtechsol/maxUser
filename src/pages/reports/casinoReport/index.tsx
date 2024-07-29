@@ -27,10 +27,10 @@ const cardGames = [
     value: "dt20",
     label: "20-20 Dragon Tiger", //
   },
-  // {
-  //   value: "ab20",
-  //   label: "Andar Bahar 1",
-  // },
+  {
+    value: "ab20",
+    label: "Andar Bahar 1",
+  },
   {
     value: "abj",
     label: "Andar Bahar 2", //
@@ -43,14 +43,14 @@ const cardGames = [
     value: "teen",
     label: "Teen Patti One Day", //
   },
-  // {
-  //   value: "teen8",
-  //   label: "Open Teen Patti",
-  // },
-  // {
-  //   value: "teen9",
-  //   label: "Test Teen Patti",
-  // },
+  {
+    value: "teen8",
+    label: "Open Teen Patti",
+  },
+  {
+    value: "teen9",
+    label: "Test Teen Patti",
+  },
   {
     value: "card32",
     label: "32 Cards - A", //
@@ -83,22 +83,22 @@ const cardGames = [
   //   value: "aaa",
   //   label: "Amar Akbar Anthony",
   // },
-  // {
-  //   value: "cricketv3",
-  //   label: "Fve-Five Cricket",
-  // },
-  // {
-  //   value: "superover",
-  //   label: "Superover",
-  // },
-  // {
-  //   value: "race20",
-  //   label: "Race 20",
-  // },
-  // {
-  //   value: "war",
-  //   label: "Casino War",
-  // },
+  {
+    value: "cricketv3",
+    label: "Fve-Five Cricket",
+  },
+  {
+    value: "superover",
+    label: "Superover",
+  },
+  {
+    value: "race20",
+    label: "Race 20",
+  },
+  {
+    value: "war",
+    label: "Casino War",
+  },
   // {
   //   value: "3cardj",
   //   label: "3 Card Judgement",
@@ -107,18 +107,18 @@ const cardGames = [
   //   value: "worli2",
   //   label: "Instant Worli",
   // },
-  // {
-  //   value: "poker",
-  //   label: "Poker 1-day",
-  // },
-  // {
-  //   value: "poker20",
-  //   label: "Poker 20",
-  // },
-  // {
-  //   value: "poker6",
-  //   label: "Poker 6",
-  // },
+  {
+    value: "poker",
+    label: "Poker 1-day",
+  },
+  {
+    value: "poker20",
+    label: "Poker 20",
+  },
+  {
+    value: "poker6",
+    label: "Poker 6",
+  },
   // {
   //   value: "btable",
   //   label: "Bollywood Table",
