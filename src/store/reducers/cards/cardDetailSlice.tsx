@@ -33,6 +33,7 @@ import {
   update3CardJRates,
   dragonTigerReset,
   scoreBoardReset,
+  updateCricketMatch20MatchRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -565,6 +566,25 @@ const cardDetail = createSlice({
           no,
         };
       })
+
+      .addCase(updateCricketMatch20MatchRates.fulfilled, (state, action) => {
+        console.log("cm2020", action.payload);
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const leftBoard = t2.slice(0, 5);
+        const rightBoard = t2.slice(5, 9);
+
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          profitLoss:
+            t1[0]?.mid === 0 ? {} : { ...state.dragonTigerDetail.profitLoss },
+          videoInfo,
+          leftBoard,
+          rightBoard,
+        };
+      })
+
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;
