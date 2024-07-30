@@ -49,6 +49,11 @@ const CardResultBox = ({ data, name, type }: any) => {
               key={item?.mid}
               style={{
                 backgroundColor: type === "race20" ? "#d5d5d5" : "#355e3b",
+                backgroundImage: type === "cmatch20"
+                ? `url(https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${item?.result}.png)`
+                : "",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }}
               onClick={() => handleResult(item?.mid)}
             >
@@ -183,7 +188,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                     color: "#ffff33",
                   }}
                 >
-                  {item?.result === "1"
+                  {/* {item?.result === "1"
                     ? name?.[0]
                     : item?.result === "2"
                     ? name?.[1]
@@ -203,7 +208,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? name?.[8]
                     : item?.result === "10"
                     ? name?.[9]
-                    : null}
+                    : null} */}
                 </span>
               ) : (
                 <span
