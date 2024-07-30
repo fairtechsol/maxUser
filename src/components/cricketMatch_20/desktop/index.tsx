@@ -16,7 +16,7 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
-import ScoreBox from "./scoreBox";
+import ScoreBox from "../mobile/scoreBox";
 const CricketMatch20Desktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
