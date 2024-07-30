@@ -15,8 +15,8 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import CasinoWarResult from "./teenCard";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -159,7 +159,7 @@ const TeenPattiDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div className="teenPatti-table-container-c">

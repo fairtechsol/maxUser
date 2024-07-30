@@ -34,8 +34,8 @@ import Dragon20Result from "./dragonCard";
 import SmoothDropdownModal from "./minMaxModal";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
@@ -333,7 +333,7 @@ const DragonTigerDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
             <div>
               <div

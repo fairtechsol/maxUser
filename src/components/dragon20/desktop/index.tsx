@@ -16,8 +16,8 @@ import TiePairBox from "./TiePairBox";
 import Dragon20Result from "./dragonCard";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -122,7 +122,7 @@ const DragonTigerDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
             <div>
               <div style={{ width: "100%", marginLeft: "5px" }}>

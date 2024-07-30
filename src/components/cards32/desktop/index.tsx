@@ -13,8 +13,8 @@ import DynamicTable from "./betTable";
 import Card32Result from "./card32Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -124,7 +124,7 @@ const Cards32Desktop = () => {
             {/* </Row> */}
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
             <div>
               <div className="d-flex px-2">

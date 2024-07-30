@@ -14,8 +14,8 @@ import TiePairBox from "./TiePairBox";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Poker6Result from "./poker6Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Poker6Desktop = () => {
   const [show, setShow] = useState(false);
@@ -122,7 +122,7 @@ const Poker6Desktop = () => {
             </div>
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
             <div style={{ marginLeft: "10px" }}>
               <div className="tab-containerp">

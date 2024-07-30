@@ -18,8 +18,8 @@ import PairBox from "./PairBox";
 import CardBox from "./cardBox";
 import TotalCards from "./totalCards";
 import Card32BResult from "./card32B";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Card32BDesktop = () => {
   const [show, setShow] = useState(false);
@@ -124,7 +124,7 @@ const Card32BDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
             <div>
               <div

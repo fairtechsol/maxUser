@@ -15,8 +15,8 @@ import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import Bookmaker from "./bookmaker";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import SuperoverResult from "./superOver";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -132,7 +132,7 @@ const SuperoverDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
             <div style={{ marginLeft: "5px" }}>
               <div

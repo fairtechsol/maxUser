@@ -13,8 +13,8 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import PlacedBet from "./placeBet";
 import BaccaratStatistics from "./betTable";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Baccarat1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -127,7 +127,7 @@ const Baccarat1Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div

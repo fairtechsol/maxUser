@@ -16,8 +16,8 @@ import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
 import Race20Result from "./race20Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Race20Desktop = () => {
   const [show, setShow] = useState(false);
@@ -128,7 +128,7 @@ const Race20Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div

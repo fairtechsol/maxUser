@@ -14,8 +14,8 @@ import "./style.scss";
 import MarketComponent from "./betTable";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import Crick5Result from "./cric5Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -134,7 +134,8 @@ const Cricket5Desktop = () => {
             </div>
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
+
           ) : (
             <div>
               <div>
