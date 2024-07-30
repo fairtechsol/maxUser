@@ -85,7 +85,7 @@ const DragonTigerDesktop = () => {
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+          <div style={{ width: "100%", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -124,8 +124,8 @@ const DragonTigerDesktop = () => {
           {loading ? (
             <InnerLoader />
           ) : (
-            <div style={{ height: "760px" }}>
-              <div style={{ width: "100%", margin: "4% 5px" }}>
+            <div>
+              <div style={{ width: "100%", marginLeft: "5px" }}>
                 <TiePairBox
                   tiePair={dragonTigerDetail?.tiePair}
                   data={dragonTigerDetail}

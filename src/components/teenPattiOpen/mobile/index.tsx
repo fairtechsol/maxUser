@@ -152,7 +152,7 @@ const TeenPattiMobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "250px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -180,8 +180,8 @@ const TeenPattiMobile = () => {
               <InnerLoader />
             ) : (
               <div>
-                <div className="mt-2" style={{ width: "100%" }}>
-                  <div className="teenPatti-table-container-m">
+                <div style={{ width: "100%" }}>
+                  <div className="teenPatti-table-container-open">
                     <div className="teenPatti-table-row">
                       <div
                         style={{

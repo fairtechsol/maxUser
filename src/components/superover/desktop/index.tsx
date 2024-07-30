@@ -87,7 +87,7 @@ const SuperoverDesktop = () => {
           <div
             style={{
               width: "100%",
-              height: scoreBoardData?.data ? "400px" : "310px",
+              // height: scoreBoardData?.data ? "400px" : "310px",
               margin: "5px",
             }}
           >
@@ -116,11 +116,11 @@ const SuperoverDesktop = () => {
                   : ""}
               </span>
             </div>
-            <div>
               {scoreBoardData?.data && (
+            <div>
                 <ScoreBoard data={scoreBoardData?.data} />
-              )}
             </div>
+              )}
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
             >
@@ -134,10 +134,10 @@ const SuperoverDesktop = () => {
           {loading ? (
             <InnerLoader />
           ) : (
-            <div style={{ height: "900px", marginLeft: "5px" }}>
+            <div style={{ marginLeft: "5px" }}>
               <div
                 className="d-sm-flex flex-row justify-content-around align-items-center"
-                style={{ width: "100%", marginTop: "7rem", gap: "10px" }}
+                style={{ width: "100%", marginTop: "0.5rem", gap: "10px" }}
               >
                 <div className="w-100">
                   <Bookmaker

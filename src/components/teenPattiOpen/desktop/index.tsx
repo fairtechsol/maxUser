@@ -136,7 +136,7 @@ const TeenPattiDesktop = () => {
       <Row>
         <Col md={8}>
           <div style={{ margin: "5px" }}>
-            <div style={{ height: "400px", marginBottom: ".30px" }}>
+            <div style={{ marginBottom: ".30px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -180,7 +180,7 @@ const TeenPattiDesktop = () => {
               <InnerLoader />
             ) : (
               <div>
-                <div className="teenPatti-table-container">
+                <div className="teenPatti-table-container-open">
                   <div
                     className="teenPatti-table-row"
                     style={{ lineHeight: 2 }}

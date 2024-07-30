@@ -86,7 +86,7 @@ const Abj2Desktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -132,10 +132,10 @@ const Abj2Desktop = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "460px" }}>
+              <div>
                 <div
                   className="row-flex"
-                  style={{ width: "100%", margin: "5% 2% 5px 5px" }}
+                  style={{ width: "100%", marginLeft: "5px"}}
                 >
                   <SBetBox
                     type={"A"}

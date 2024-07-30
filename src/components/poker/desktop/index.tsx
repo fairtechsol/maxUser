@@ -85,7 +85,7 @@ const Poker6Desktop = () => {
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+          <div style={{ width: "100%", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -124,7 +124,7 @@ const Poker6Desktop = () => {
           {loading ? (
             <InnerLoader />
           ) : (
-            <div style={{ height: "760px", marginLeft: "10px" }}>
+            <div style={{ marginLeft: "10px" }}>
               <div className="tab-containerp">
                 <div
                   className={`hands ${activeTab === "tab1" ? "active" : ""}`}
@@ -164,7 +164,7 @@ const Poker6Desktop = () => {
                 )}
               </div>
 
-              <div style={{ width: "100%", margin: "5px" }}>
+              <div style={{ width: "100%", marginTop: "5px"}}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["T", "1"]}

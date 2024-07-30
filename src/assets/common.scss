@@ -628,43 +628,18 @@ img {
   flex-direction: row
 }
 .loader-inner {
-  display: block;
-  position: fixed;
-  // z-index: 9999;
-  background-image: url(../assets/images/loader.gif);
-  // background-color: #666;
-  opacity: 1;
-  background-repeat: no-repeat;
-  background-position: center;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  margin-top: 30%;
-  margin-right: 29%;
-  margin-left: auto;
-  background-size: 100px 100px;
-  width: 56%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   }
 
   .loader-mobile {
-    display: block;
-    position: fixed;
-    // z-index: 9999;
-    background-image: url(../assets/images/loader.gif);
-    // background-color: #666;
-    opacity: 1;
-    background-repeat: no-repeat;
-    background-position: center;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    top: 0;
-    margin-top: 28rem;
-    margin-right: 24%;
-    margin-left: auto;
-    background-size: 100px 100px;
-    width: 56%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
     }
   
 /* ===== for title ====  */

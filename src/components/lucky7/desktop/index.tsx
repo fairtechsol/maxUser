@@ -86,7 +86,7 @@ const Lucky7Desktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -129,8 +129,8 @@ const Lucky7Desktop = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "550px" }}>
-                <div style={{ width: "100%", margin: "5% 5px" }}>
+              <div>
+                <div style={{ width: "100%", marginLeft: "5px" }}>
                   <TiePairBox
                     lowHigh={dragonTigerDetail?.lowHigh}
                     data={dragonTigerDetail}

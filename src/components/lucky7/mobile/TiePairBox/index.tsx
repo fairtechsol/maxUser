@@ -30,7 +30,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   };
 
   return (
-    <div className="tiePairContainer-m">
+    <div className="tiePairContainer-l7a">
       <div className="tiePairRateBoxMainlucky">
         <CommonButtonBox
           value1={lowHigh?.[0]?.rate}

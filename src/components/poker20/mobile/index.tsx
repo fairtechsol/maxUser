@@ -120,7 +120,7 @@ const Poker20Mobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "240px" }}>
+            <div style={{ width: "100%"}}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -146,8 +146,8 @@ const Poker20Mobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "550px" }}>
-                <div className="mt-5">
+              <div>
+                <div>
                   <DynamicTable
                     back={true}
                     odds={dragonTigerDetail?.odds}

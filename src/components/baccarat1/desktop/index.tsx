@@ -83,7 +83,7 @@ const Baccarat1Desktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -129,7 +129,7 @@ const Baccarat1Desktop = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "1060px" }}>
+              <div>
                 <div
                   className="row-flex"
                   style={{ width: "100%", margin: "5% 2% 5px 5px" }}

@@ -87,7 +87,7 @@ const Cricket5Desktop = () => {
           <div
             style={{
               width: "100%",
-              height: scoreBoardData?.data ? "400px" : "310px",
+              // height: scoreBoardData?.data ? "400px" : "310px",
               margin: "5px",
             }}
           >
@@ -118,11 +118,11 @@ const Cricket5Desktop = () => {
                   : ""}
               </span>
             </div>
-            <div>
               {scoreBoardData?.data && (
+            <div>
                 <ScoreBoard data={scoreBoardData?.data} />
-              )}
             </div>
+              )}
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
             >
@@ -136,8 +136,8 @@ const Cricket5Desktop = () => {
           {loading ? (
             <InnerLoader />
           ) : (
-            <div style={{ height: "900px" }}>
-              <div style={{ marginTop: "6.5rem" }}>
+            <div>
+              <div>
                 <MarketComponent
                   odds={dragonTigerDetail?.odds}
                   min={dragonTigerDetail?.videoInfo?.min}
