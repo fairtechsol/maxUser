@@ -14,8 +14,9 @@ import TotalsBox from "./TotalBox";
 import WinBox from "./win";
 import Race20Result from "../desktop/race20Card";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -150,7 +151,7 @@ const Race20Mobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div style={{ width: "100%", marginTop: "0.5rem" }}>

@@ -12,9 +12,10 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
 import { crick5rules } from "../../../assets/images";
 import { Table } from "react-bootstrap";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
@@ -154,7 +155,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div>
