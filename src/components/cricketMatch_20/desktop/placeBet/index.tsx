@@ -148,7 +148,7 @@ const PlacedBet = () => {
               </thead>
               <tbody>
                 {/* <tr className={selectedBet?.team?.bettingType =="BACK"?"place-bet-table-blue":"#FAA9BA"}> */}
-                <tr className={selectedBet?.team?.bettingType =="BACK"?"place-bet-table-blue":"place-bet-table-pink"}>
+                <tr className={selectedBet?.team?.bettingType =="BACK"?"place-bet-table-blue":"place-bet-table-red"}>
                   <td width={"8%"}>
                     <span
                       className=" text-danger title-12 cursor-pointer"
@@ -236,7 +236,7 @@ const PlacedBet = () => {
                     </span>
                   </td>
                 </tr>
-                <tr className={"place-bet-table-blue"}>
+                <tr className={selectedBet?.team?.bettingType =="BACK"?"place-bet-table-blue":"place-bet-table-red"}>
                   <td colSpan={5}>
                     <Container fluid>
                       <Row>
