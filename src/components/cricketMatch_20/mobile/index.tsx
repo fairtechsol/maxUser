@@ -176,6 +176,8 @@ const CricketMatch20Mobile = () => {
               <InnerLoader />
             ) : (
               <div style={{}}>
+
+
                 <div className="mt-2" style={{ width: "100%" }}>
                   <div className="teenPatti-table-container-m">
                     <div
@@ -187,12 +189,12 @@ const CricketMatch20Mobile = () => {
                     >
                       <div
                         style={{
-                          width: "99%",
+                          width: "100%",
                           background: "#F2F2F2",
-                          padding: "3px",
+                          padding: "5px",
                         }}
                       >
-                        {[...leftBoard, ...rightBoard]?.map(
+                        {leftBoard && rightBoard &&[...leftBoard, ...rightBoard]?.map(
                           (item: any, index: any) => (
                             <div>
                               <ScoreBox
