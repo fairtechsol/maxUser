@@ -37,11 +37,11 @@ const CricketMatch20Mobile = () => {
     { label: "Trio (Teen)", value: "1 To 35" },
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
-  const handleBet = (item: any) => {
+  const handleBet = (item: any,type:any) => {
     let team = {
-      bettingType: "BACK",
+      bettingType: type,
       matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
+      odd: type === "BACK"?item?.b1:item.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
