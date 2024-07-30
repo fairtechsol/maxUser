@@ -16,6 +16,7 @@ import "../layout.scss";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import TopBar from "./topbar";
+import ScrollToTop from "../../components/commonComponent/ScrollToTop";
 
 const MainLayout = () => {
   const navigate = useNavigate();
@@ -88,6 +89,7 @@ const MainLayout = () => {
 
   return (
     <>
+      <ScrollToTop />
       <Header />
       <TopBar />
       <div className="d-flex">
