@@ -285,6 +285,40 @@
   box-sizing: border-box;
 }
 
+.ticker-container {
+  width: 100%;
+  overflow: hidden;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+}
+
+.ticker-wrap {
+  display: flex;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.ticker-move {
+  display: flex;
+  animation: ticker 40s linear infinite;
+}
+
+.ticker-item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 12px;
+  line-height: 2rem;
+  white-space: nowrap;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 
 @media (max-width: 768px) {
   .tabs-navs .nav-link {
