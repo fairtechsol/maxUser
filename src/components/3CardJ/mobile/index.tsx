@@ -11,11 +11,11 @@ import { abjrules } from "../../../assets/images";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import Abj1Result from "../desktop/abj1Card";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const CardJMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -178,7 +178,7 @@ const CardJMobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

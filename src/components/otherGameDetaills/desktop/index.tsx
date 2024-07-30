@@ -11,7 +11,7 @@ import { MatchType } from "../../../utils/enum";
 import { formatDate } from "../../../utils/dateUtils";
 import MyBet from "../../gameDetails/desktop/myBet";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
-import { getChannelId } from "../../../helpers";
+import { customSortOnName, getChannelId } from "../../../helpers";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -112,6 +112,8 @@ const FootballDesktopGameDetail = () => {
               {otherMatchDetails?.setWinner?.length > 0 &&
                 otherMatchDetails?.setWinner
                   ?.filter((item: any) => item?.isActive)
+                  ?.slice()
+                  ?.sort(customSortOnName)
                   ?.map((item: any) => (
                     <div key={item?.id}>
                       <Col md={12}>
@@ -126,6 +128,8 @@ const FootballDesktopGameDetail = () => {
               {otherMatchDetails?.firstHalfGoal?.length > 0 &&
                 otherMatchDetails?.firstHalfGoal
                   ?.filter((item: any) => item?.isActive)
+                  ?.slice()
+                  ?.sort(customSortOnName)
                   ?.map((item: any) => (
                     <div key={item?.id}>
                       <Col md={12}>
@@ -151,6 +155,8 @@ const FootballDesktopGameDetail = () => {
               {otherMatchDetails?.overUnder?.length > 0 &&
                 otherMatchDetails?.overUnder
                   ?.filter((item: any) => item?.isActive)
+                  ?.slice()
+                  ?.sort(customSortOnName)
                   ?.map((item: any) => (
                     <div key={item?.id}>
                       <Col md={12}>

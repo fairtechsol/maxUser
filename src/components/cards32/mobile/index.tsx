@@ -10,11 +10,11 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "../../horseRacing/mobile/betTable/style.scss";
 import Card32Result from "../desktop/card32Card";
 import DynamicTable from "./betTable";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 const Cards32Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
@@ -173,7 +173,7 @@ const Cards32Mobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

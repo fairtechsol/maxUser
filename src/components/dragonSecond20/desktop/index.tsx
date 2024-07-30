@@ -14,10 +14,10 @@ import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import Dragon20Result from "./dragonCard";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -197,7 +197,7 @@ const DragonTigerDesktop = () => {
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBet />
+                <DesktopMyBet />
               </Col>
             </Row>
           </Container>

@@ -11,7 +11,6 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import OddEven from "./OddEvenBox";
 import BackLay from "./BackLay";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
@@ -20,6 +19,7 @@ import CardBox from "./cardBox";
 import TotalCards from "./totalCards";
 import Card32BResult from "./card32B";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 
 const Card32BDesktop = () => {
   const [show, setShow] = useState(false);
@@ -199,7 +199,7 @@ const Card32BDesktop = () => {
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBet />
+                <DesktopMyBet />
               </Col>
             </Row>
           </Container>

@@ -9,7 +9,6 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
@@ -17,6 +16,7 @@ import Bookmaker from "./bookmaker";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import SuperoverResult from "./superOver";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -176,7 +176,7 @@ const SuperoverDesktop = () => {
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBet />
+                <DesktopMyBet />
               </Col>
               <Col>
                 <div className="sidebar-box place-bet-container super-over-rule">

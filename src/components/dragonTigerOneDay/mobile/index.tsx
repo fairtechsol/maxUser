@@ -12,11 +12,11 @@ import Dragon20Result from "../desktop/dragonCard";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import PairBox from "./PairBox";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -210,7 +210,7 @@ const DragonTigerMobile = () => {
           </>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>

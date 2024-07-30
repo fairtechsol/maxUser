@@ -6,7 +6,6 @@ import { luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
-import MyBet from "../../abj2/desktop/myBet";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
@@ -18,6 +17,7 @@ import TiePairBox2 from "../mobile/TiePairBox2";
 import Lucky7Result from "./lucky7Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 
 const BollywoodTableDesktop = () => {
   const [show, setShow] = useState(false);
@@ -235,7 +235,7 @@ const BollywoodTableDesktop = () => {
                 <PlacedBet />
               </Col>
               <Col md={12}>
-                <MyBet />
+                <DesktopMyBet />
               </Col>
             </Row>
           </Container>

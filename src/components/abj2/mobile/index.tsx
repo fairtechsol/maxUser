@@ -14,10 +14,10 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Abj2Result from "../desktop/abj2Card";
-import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -214,7 +214,7 @@ const Abj2Mobile = () => {
           </div>
         ) : (
           <>
-            <MyBet />
+            <MobileMyBet />
           </>
         )}
       </div>
