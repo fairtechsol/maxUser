@@ -189,6 +189,7 @@ const Poker6Mobile = () => {
                     </div>
                   </div>
                 </div>
+                
                 {activeCardTab ? (
                   <div>
                     <TiePairBox
@@ -209,7 +210,7 @@ const Poker6Mobile = () => {
                     />
                   </div>
                 )}
-                <div style={{ width: "100%", marginTop: "15px" }}>
+                <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["T", "1"]}

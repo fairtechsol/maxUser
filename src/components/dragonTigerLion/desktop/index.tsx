@@ -293,7 +293,6 @@ const DragonTigerDesktop = () => {
               width: "100%",
               // height: "400px",
               margin: "5px",
-              wordSpacing: "-4px",
             }}
           >
             <div className="horseRacingTabHeader">

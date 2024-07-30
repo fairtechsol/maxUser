@@ -135,7 +135,6 @@ const Cricket5Desktop = () => {
           </div>
           {loading ? (
             <LoaderOnRefresh />
-
           ) : (
             <div>
               <div>
@@ -146,7 +145,7 @@ const Cricket5Desktop = () => {
                   data={dragonTigerDetail}
                 />
               </div>
-              <div className="mt-2">
+              <div className="mt-2 ms-2">
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "I", "T"]}
