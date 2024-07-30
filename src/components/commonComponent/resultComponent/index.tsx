@@ -29,6 +29,7 @@ import Card32BResultComponent from "../../cards32B/desktop/resultModalComponent"
 import BollywoodTableResultComponent from "../../bollywoodTable/desktop/resultModalComponent";
 import WorliResultComponent from "../../worli/desktop/resultModalComponent";
 import CardJResultComponent from "../../3CardJ/desktop/resultModalComponent";
+import CricketMatch20ResultComponent from "../../cricketMatch_20/desktop/resultModalComponent";
 const title = {
   dt20: "20-20 Dragon Tiger",
   teen20: "20-20 Teenpatti",
@@ -44,7 +45,8 @@ const title = {
   aaa: "AMAR AKBAR ANTHONY",
   war: "Casino War",
   btable: "Bollywood Table",
-  worli2:"Instant Worli"
+  worli2:"Instant Worli",
+  cmatch20:"CRICKET MATCH 20-20",
   // Add other mappings as needed
 };
 
@@ -60,13 +62,13 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
   type,
 }) => {
   const [date, setDate] = useState<any>();
-
+ 
   useEffect(() => {
     if (!date) {
       setDate(Date.now());
     }
   }, []);
-
+ 
   return (
     <Container style={{ padding: 0 }}>
       <div className="resultModalHeader">
@@ -144,6 +146,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <WorliResultComponent data={data} />
       ): type === cardGamesType?.cardj ? (
         <CardJResultComponent data={data} />
+      ): type === cardGamesType?.cmatch20 ? (
+        <CricketMatch20ResultComponent data={data} />
       ) : (
         <></>
       )}

@@ -215,7 +215,7 @@ const CricketMatch20Desktop = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "T", "B"]}
+                    name={["1","2", "3", "4","5","6","7","8","9","10"]}
                     type={"cmatch20"}
                   />
                 </div>
