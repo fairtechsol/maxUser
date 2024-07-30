@@ -135,11 +135,6 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                   </span>
                 </div>
               </div>
-              <div>
-                {scoreBoardData?.data && (
-                  <ScoreBoard data={scoreBoardData?.data} />
-                )}
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -147,6 +142,9 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                   backgroundColor: "#000",
                 }}
               >
+                 {scoreBoardData?.data && (
+                  <ScoreBoard data={scoreBoardData?.data} />
+                )}
                 {" "}
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
@@ -159,7 +157,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
               <InnerLoader />
             ) : (
               <div>
-                <div style={{ marginTop: "0.5rem" }}>
+                <div>
                   <MarketComponent
                     odds={dragonTigerDetail?.odds}
                     fancyData={fancyData}

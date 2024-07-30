@@ -27,7 +27,7 @@ const CommonButtonBox = ({
         className={`tiePairbtn-theme d-flex justify-content-between ${lock ? "suspended" : ""}`}
         onClick={() => (!lock ? handleBet(data) : null)}
       >
-        <div className="d-flex flex-row" style={{gap:"2px"}}>
+        <div className="d-flex flex-row" style={{gap:"6px"}}>
         <span>
           {value2} 
         </span>

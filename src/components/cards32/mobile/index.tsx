@@ -118,7 +118,7 @@ const Cards32Mobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "240px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -144,8 +144,8 @@ const Cards32Mobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ height: "400px" }}>
-                <div className="mt-5">
+              <div>
+                <div>
                   <DynamicTable
                     back={true}
                     odds={dragonTigerDetail?.set1}

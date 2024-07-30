@@ -15,8 +15,8 @@ import "./style.scss";
 import DynamicTable from "./betTable";
 import Poker1DayResult from "./poker1DayCard";
 import PairBox from "./pairBox";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Poker1DayDesktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -105,7 +105,7 @@ const Poker1DayDesktop = () => {
       <Row>
         <Col md={8}>
           <div style={{ margin: "5px" }}>
-            <div style={{ height: "400px", marginBottom: ".30px" }}>
+            <div style={{ marginBottom: ".30px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -150,7 +150,7 @@ const Poker1DayDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div className="poker-table-container ">

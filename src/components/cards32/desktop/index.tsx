@@ -13,8 +13,8 @@ import DynamicTable from "./betTable";
 import Card32Result from "./card32Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -82,7 +82,7 @@ const Cards32Desktop = () => {
     <>
       <Row>
         <Col md={8}>
-          <div style={{ height: "400px", margin: "5px" }}>
+          <div style={{ margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -124,10 +124,10 @@ const Cards32Desktop = () => {
             {/* </Row> */}
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
-            <div style={{ height: "350px" }}>
-              <div className="d-flex px-2 mt-5">
+            <div>
+              <div className="d-flex px-2">
                 <DynamicTable
                   odds={dragonTigerDetail?.set1}
                   data={dragonTigerDetail}
@@ -140,7 +140,7 @@ const Cards32Desktop = () => {
                   playerNum={[10, 11]}
                 />
               </div>
-              <div className="mt-2">
+              <div className="m-2">
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["8", "9", "10", "11"]}

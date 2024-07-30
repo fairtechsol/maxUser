@@ -142,11 +142,6 @@ const SuperoverMobile = () => {
                     </span>
                   </div>
                 </div>
-                <div>
-                  {scoreBoardData?.data && (
-                    <ScoreBoard data={scoreBoardData?.data} />
-                  )}
-                </div>
                 <div
                   style={{
                     width: "100%",
@@ -154,6 +149,9 @@ const SuperoverMobile = () => {
                     backgroundColor: "#000",
                   }}
                 >
+                   {scoreBoardData?.data && (
+                    <ScoreBoard data={scoreBoardData?.data} />
+                  )}
                   <VideoFrame
                     time={dragonTigerDetail?.videoInfo?.autotime}
                     result={
@@ -168,7 +166,7 @@ const SuperoverMobile = () => {
             {loading ? (
               <InnerLoader />
             ) : (
-              <div style={{ marginTop: "0.5rem" }}>
+              <div>
                 <div className="" style={{ width: "100%", gap: "10px" }}>
                   <div className="w-100">
                     <Bookmaker

@@ -81,9 +81,8 @@ const PairBox = ({ matchOddsData, data }: any) => {
           <div className="dtlTitle">
             {isMobile ? (
               <>
-                <span style={{ fontWeight: "400" }}>
-                  <span className="f600">Min:</span> {min}{" "}
-                  <span className="f600">Max:</span> {max}
+                <span style={{fontWeight:"400"}}>
+                 <span>Min:</span> {min}{" "}<span>Max:</span> {max}
                 </span>
               </>
             ) : (

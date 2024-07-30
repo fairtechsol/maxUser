@@ -121,7 +121,7 @@ const Poker6Mobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "250px" }}>
+            <div style={{ width: "100%"}}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -148,7 +148,7 @@ const Poker6Mobile = () => {
               <InnerLoader />
             ) : (
               <div>
-                <div className="dt20TabBox-poker mt-5">
+                <div className="dt20TabBox-poker">
                   <div className="dt20tabheaderp">
                     <div
                       style={{
