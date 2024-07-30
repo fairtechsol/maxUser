@@ -13,9 +13,10 @@ import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Lucky7BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -147,7 +148,7 @@ const Lucky7BMobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div style={{ width: "100%", marginTop: "-3rem" }}>

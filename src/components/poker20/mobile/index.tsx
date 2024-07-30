@@ -12,9 +12,10 @@ import Card32Result from "../desktop/poker20";
 import DynamicTable from "./betTable";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Poker20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -144,7 +145,7 @@ const Poker20Mobile = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div>

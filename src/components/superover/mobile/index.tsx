@@ -14,8 +14,9 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 import { Table } from "react-bootstrap";
 import SuperoverResult from "../desktop/superOver";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -164,7 +165,7 @@ const SuperoverMobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div className="" style={{ width: "100%", gap: "10px" }}>

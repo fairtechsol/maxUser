@@ -11,9 +11,10 @@ import TiePairBox from "./TiePairBox";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Poker6Result from "../desktop/poker6Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Poker6Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -145,7 +146,7 @@ const Poker6Mobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div className="dt20TabBox-poker">

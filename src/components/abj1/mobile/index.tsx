@@ -11,9 +11,10 @@ import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import Abj1Result from "../desktop/abj1Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Abj1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -152,7 +153,7 @@ const Abj1Mobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div style={{ height: "auto", marginTop: "0.5rem" }}>
                 <div

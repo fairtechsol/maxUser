@@ -11,9 +11,10 @@ import PlacedBet from "./placeBet";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import Abj1Result from "../desktop/abj1Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const WorliMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -154,7 +155,7 @@ const WorliMobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div style={{ height: "450px", marginTop: "70px" }}>
                 <div

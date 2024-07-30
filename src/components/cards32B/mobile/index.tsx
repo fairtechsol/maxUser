@@ -15,9 +15,10 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import BackLay from "../desktop/BackLay";
 import PairBox from "./PairBox";
 import TotalCards from "./totalCards";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Card32BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -157,7 +158,7 @@ const Card32BMobile = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div className="" style={{ width: "97%", gap: "10px", marginTop: "0.5rem" }}>

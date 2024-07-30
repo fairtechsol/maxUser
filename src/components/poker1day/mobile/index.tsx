@@ -14,9 +14,10 @@ import DynamicTable from "../desktop/betTable";
 import { Table } from "react-bootstrap";
 import Poker1DayResult from "../desktop/poker1DayCard";
 import PairBox from "../desktop/pairBox";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 const Poker1dayMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
@@ -188,7 +189,7 @@ const Poker1dayMobile = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div>
