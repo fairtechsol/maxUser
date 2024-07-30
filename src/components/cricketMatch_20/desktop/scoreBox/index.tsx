@@ -14,6 +14,8 @@ const ScoreBox = ({
   handleBet,
   item
 }) => {
+
+  console.log("item",item)
   return (
     <div
       className="score-box cricket20"
@@ -52,10 +54,10 @@ const ScoreBox = ({
         <img src={ballIconUrl} alt="Ball Icon" style={{height:"60px"}}/>
       </div>
       <div className="blbox">
-        <div className="casino-odds-box back" onClick={()=>handleBet(item,"BACK")}>
+        <div className={item?.gstatus ==="SUSPENDED"? "suspended casino-odds-box back":"casino-odds-box back "} onClick={()=>handleBet(item,"BACK")}>
           <span className="casino-odds">{backOdds}</span>
         </div>
-        <div className="casino-odds-box lay" onClick={()=>handleBet(item,"LAY")}>
+        <div className={item?.gstatus ==="SUSPENDED"? "suspended casino-odds-box lay":"casino-odds-box lay "} onClick={()=>handleBet(item,"LAY")}>
           <span className="casino-odds">{layOdds}</span>
         </div>
       </div>

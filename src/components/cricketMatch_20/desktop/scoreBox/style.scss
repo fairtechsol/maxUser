@@ -5,9 +5,9 @@
     padding: 10px 20px;
     color: #fff;
     font-size: 14px;
-    background-color: #F2F2F2; /* Add a background color for better visibility */
+    background-color: #F2F2F2; 
     
-    position: relative; /* Ensure that the ball icon's absolute positioning works relative to this container */
+    position: relative; 
   }
   
   .team-score {
@@ -78,4 +78,22 @@
   *, ::after, ::before {
     box-sizing: border-box;
   }
-  
+
+  .suspended:after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: "Font Awesome 5 Free";
+    content: "\f023";
+    font-weight: 900;
+    font-size: 18px;
+    top: 0;
+    z-index: 10;
+  }
