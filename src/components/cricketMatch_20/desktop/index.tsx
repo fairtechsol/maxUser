@@ -108,7 +108,7 @@ const CricketMatch20Desktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.cmatch20}`);
   }, []);
 
-  console.log("dragontigercm20", dragonTigerDetail);
+  
   return (
     <>
       <Row>

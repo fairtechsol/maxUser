@@ -568,7 +568,6 @@ const cardDetail = createSlice({
       })
 
       .addCase(updateCricketMatch20MatchRates.fulfilled, (state, action) => {
-        console.log("cm2020", action.payload);
         const { t1, t2 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
