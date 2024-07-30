@@ -289,7 +289,12 @@
   width: 100%;
   overflow: hidden;
   background: #f7f7f7;
-  border: 1px solid #ddd;
+  border-top: 0px;
+  
+  border-bottom: 2px solid #ddd;
+ 
+  margin-top: 1px;
+  box-shadow:0 0 3px #aaa
 }
 
 .ticker-wrap {

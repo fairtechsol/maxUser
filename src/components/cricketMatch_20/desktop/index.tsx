@@ -166,9 +166,10 @@ const CricketMatch20Desktop = () => {
                       width: "100%",
                       display: "flex",
                       justifyContent: "space-between",
+                      background:"#f7f7f7"
                     }}
                   >
-                    <div style={{ width: "49%",background:"#F2F2F2" ,padding:"3px" }}>
+                    <div style={{ width: "49%",background:"#F2F2F2" ,padding:"5px",boxShadow:"0 0 3px #aaa" }}>
                       {leftBoard?.map((item: any, index: any) => (
                         <div>
                           <ScoreBox
@@ -189,7 +190,7 @@ const CricketMatch20Desktop = () => {
                         </div>
                       ))}
                     </div>
-                    <div style={{ width: "49%",background:"#F2F2F2",padding:"3px" }}>
+                    <div style={{ width: "49%",background:"#F2F2F2",padding:"5px",boxShadow:"0 0 3px #aaa" }}>
                       {rightBoard?.map((item: any, index: any) => (
                         <div>
                           <ScoreBox
