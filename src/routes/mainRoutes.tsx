@@ -71,6 +71,11 @@ const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
 const Race20 = Loadable(lazy(() => import("../pages/race20")));
 // const Baccarat1 = Loadable(lazy(() => import("../pages/baccarat1")));
 // const CardJ = Loadable(lazy(() => import("../pages/3cardJ")));
+
+const CricketMatch20 = Loadable(
+  lazy(() => import("../pages/cricketMatch_20"))
+);
+
 const ChangeButtonValue = Loadable(
   lazy(() => import("../pages/changeButtonValues"))
 );
@@ -267,6 +272,11 @@ const MainRoutes = {
     //   path: "3cardj",
     //   element: <CardJ/>,
     // },
+    {
+      path: "cmatch20",
+      element: <CricketMatch20/>,
+    },
+
     {
       path: "*",
       element: <Navigate to={"/home"} replace />,
