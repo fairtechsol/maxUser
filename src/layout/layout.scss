@@ -1,14 +1,13 @@
 @import "/src/assets/variable.scss";
 
-
 .page-content {
-    background-color: $light;
-    height: calc(100vh - 52px);
-    margin: 12px;
-    padding: 10px 0;
+  background-color: $light;
+  height: calc(100vh - 52px);
+  margin: 12px;
+  padding: 10px 0;
 }
 
-.market{
+.market {
   margin: 0 20px 20px 20px;
   font-size: 10px;
 }

@@ -1,5 +1,5 @@
 // import { GiHamburgerMenu } from 'react-icons/gi';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { socketService } from "../../socketManager";
@@ -16,11 +16,13 @@ import "../layout.scss";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import TopBar from "./topbar";
+import ScrollToTop from "../../components/commonComponent/ScrollToTop";
 
 const MainLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   useEffect(() => {
     if (!sessionStorage.getItem("jwtMaxUser")) {
@@ -86,8 +88,51 @@ const MainLayout = () => {
     };
   }, [sessionStorage.getItem("jwtMaxUser")]);
 
+  useEffect(() => {
+    function onlineHandler() {
+      setIsOnline(true);
+      window.location.reload();
+    }
+
+    function offlineHandler() {
+      setIsOnline(false);
+    }
+
+    window.addEventListener("online", onlineHandler);
+    window.addEventListener("offline", offlineHandler);
+
+    return () => {
+      window.removeEventListener("online", onlineHandler);
+      window.removeEventListener("offline", offlineHandler);
+    };
+  }, []);
+
   return (
     <>
+      <ScrollToTop />
+      {!isOnline && (
+        <div
+          style={{
+            height: "32px",
+            display: "flex",
+            background: !isOnline && "red",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h6
+            style={{
+              color: "#fff",
+              fontSize: "13px",
+              fontWeight: "bold",
+              textAlign: "center",
+              margin: "0",
+            }}
+          >
+            You are currently offline
+          </h6>
+        </div>
+      )}
       <Header />
       <TopBar />
       <div className="d-flex">
