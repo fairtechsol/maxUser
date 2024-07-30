@@ -1,0 +1,99 @@
+.score-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 14px;
+    background-color: #F2F2F2; 
+    
+    position: relative; 
+  }
+  
+  .team-score {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .cricket20 .ball-icon {
+    position: absolute;
+    left: 50%;
+    top: -25px;
+    height: 50px;
+    transform: translateX(-50%);
+  }
+  
+  .cricket20 .blbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    width: 170px;
+    height: 40px;
+    transform: translateX(-50%);
+    bottom: -15px;
+  }
+  
+  .cricket20 .blbox div {
+    width: 35%;
+    text-align: center;
+    color: #000;
+    height: 40px;
+    line-height: 40px;
+    border: 0;
+  }
+  
+  .casino-odds-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+    font-weight: bold;
+    border-left: 1px solid var(--table-border);
+    cursor: pointer;
+    min-height: 46px;
+  }
+  
+  .suspended-box {
+    position: relative;
+    pointer-events: none;
+    cursor: none;
+  }
+  
+  .back {
+    background-color: #72bbef !important;
+  }
+  
+  .lay {
+    background-color: #faa9ba !important;
+  }
+  
+  *, ::after, ::before {
+    box-sizing: border-box;
+  }
+
+  .suspended:after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: "Font Awesome 5 Free";
+    content: "\f023";
+    font-weight: 900;
+    font-size: 18px;
+    top: 0;
+    z-index: 10;
+  }

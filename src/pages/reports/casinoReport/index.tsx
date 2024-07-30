@@ -123,6 +123,10 @@ const cardGames = [
   //   value: "btable",
   //   label: "Bollywood Table",
   // },
+  {
+    value: "cmatch20",
+    label: "CRICKET MATCH 20-20",
+  },
 ];
 
 const CasinoReports = () => {
