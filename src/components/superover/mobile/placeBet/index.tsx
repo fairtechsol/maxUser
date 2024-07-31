@@ -108,8 +108,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       >
         <Container
           className={`${
-            selectedBet?.team?.type === "lay" ||
-            selectedBet?.team?.type === "no"
+            selectedBet?.team?.bettingType === "LAY"
               ? "bg-red1"
               : "bg-blue1"
           }`}

@@ -37,7 +37,7 @@ const Card32BResultComponent: React.FC<Props> = ({ data }: any) => {
                 item != "1" && (
                   <div
                     style={{
-                      border: "1px solid #fdef34",
+                      // border: "1px solid #fdef34",
                       borderRadius: "1px",
                       marginLeft: "5px",
                     }}
@@ -62,7 +62,7 @@ const Card32BResultComponent: React.FC<Props> = ({ data }: any) => {
                 item != "1" && (
                   <div
                     style={{
-                      border: "1px solid #fdef34",
+                      // border: "1px solid #fdef34",
                       borderRadius: "1px",
                       marginLeft: "5px",
                     }}
@@ -89,7 +89,7 @@ const Card32BResultComponent: React.FC<Props> = ({ data }: any) => {
                 item != "1" && (
                   <div
                     style={{
-                      border: "1px solid #fdef34",
+                      // border: "1px solid #fdef34",
                       borderRadius: "1px",
                       marginLeft: "5px",
                     }}
@@ -116,7 +116,7 @@ const Card32BResultComponent: React.FC<Props> = ({ data }: any) => {
                 item != "1" && (
                   <div
                     style={{
-                      border: "1px solid #fdef34",
+                      // border: "1px solid #fdef34",
                       borderRadius: "1px",
                       marginLeft: "5px",
                     }}

@@ -215,7 +215,7 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
                 </div>
               )}
             </div>
-            <div className="">
+            <div className="mt-2">
               {teamA?.length > minLength ? (
                 <Slider
                   {...sliderSettings(teamA.length, teamA.length > minLength)}
