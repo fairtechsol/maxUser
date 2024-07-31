@@ -196,6 +196,18 @@
   font-weight: 600;
   color: #000;
 }
+.dtlTitleo {
+  width: 60%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.1px solid #c7c8ca;
+  padding: 5px;
+  font-weight: 600;
+  color: #000;
+  line-height: 1.9;
+}
 .dtlsubTitle {
   width: 20%;
   display: flex;
@@ -289,6 +301,24 @@
   font-weight: 900;
   font-size: 18px;
   top: 0;
+}
+.lock:after {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Font Awesome 5 Free";
+  content: "\f023";
+  font-weight: 900;
+  font-size: 18px;
+  top: 0;
+  padding-top: 2px;
 }
 .oddEvenContainer {
   width: 50%;
