@@ -330,6 +330,11 @@
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }
+.super-over-rule{
+  overflow: auto;
+  min-height: 200px;
+  max-height: 300px;
+}
 .super-over-rule img {
   height: 40px;
 }
