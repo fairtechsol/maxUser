@@ -124,7 +124,7 @@ const DragonTigerMobile = () => {
                     style={{
                       fontSize: "14px",
                       fontWeight: "600",
-                      wordSpacing: "-3px",
+                      // wordSpacing: "-3px",
                     }}
                   >
                     {dragonTigerDetail?.name}
