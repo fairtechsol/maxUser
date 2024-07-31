@@ -59,7 +59,7 @@ const CardBox = ({ odds, data }: any) => {
                 : ""
               : ""
             : ""
-        }`}
+        }`} style={{zIndex:'100'}}
       >
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
