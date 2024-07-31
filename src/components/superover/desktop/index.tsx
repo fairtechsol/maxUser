@@ -88,7 +88,7 @@ const SuperoverDesktop = () => {
             style={{
               width: "100%",
               // height: scoreBoardData?.data ? "400px" : "310px",
-              margin: "5px",
+              margin: "5px 0px 0px 3px",
             }}
           >
             <div className="horseRacingTabHeader">
@@ -116,11 +116,11 @@ const SuperoverDesktop = () => {
                   : ""}
               </span>
             </div>
-              {scoreBoardData?.data && (
-            <div>
+            {scoreBoardData?.data && (
+              <div>
                 <ScoreBoard data={scoreBoardData?.data} />
-            </div>
-              )}
+              </div>
+            )}
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
             >
@@ -134,30 +134,29 @@ const SuperoverDesktop = () => {
           {loading ? (
             <LoaderOnRefresh />
           ) : (
-            <div style={{ marginLeft: "5px" }}>
+            <>
               <div
                 className="d-sm-flex flex-row justify-content-around align-items-center"
-                style={{ width: "100%", marginTop: "0.5rem", gap: "10px" }}
+                style={{ margin: "5px 0px 0px 5px", }}
               >
                 <div className="w-100">
-                  <Bookmaker
-                    title={"Bookmaker"}
-                    min={dragonTigerDetail?.videoInfo?.min}
-                    max={dragonTigerDetail?.videoInfo?.max}
-                    matchOddsData={dragonTigerDetail?.bookmaker}
-                    data={dragonTigerDetail}
-                  />
+                <Bookmaker
+                  title={"Bookmaker"}
+                  min={dragonTigerDetail?.videoInfo?.min}
+                  max={dragonTigerDetail?.videoInfo?.max}
+                  matchOddsData={dragonTigerDetail?.bookmaker}
+                  data={dragonTigerDetail}
+                />
                 </div>
               </div>
-
-              <div style={{ width: "100%", margin: "5px" }}>
+              <div style={{ margin: "5px 0px 0px 6px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["E", "R", "T"]}
                   type={"superover"}
                 />
               </div>
-            </div>
+            </>
           )}
 
           <RulesModal show={show} setShow={setShow} rule={card32rules} />
