@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import "./style.scss";
-import { abjrules } from "../../../assets/images";
+import { race20rules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -200,7 +200,7 @@ const Race20Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <RulesModal show={show} setShow={setShow} rule={race20rules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
