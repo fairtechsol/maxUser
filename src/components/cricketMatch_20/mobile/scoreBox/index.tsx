@@ -13,10 +13,9 @@ const ScoreBox = ({
   layOdds,
   handleBet,
   item,
-  runs
+  runs,
 }) => {
 
-console.log("19run",runs,Number(teamBScore.split('/')[0]) , Number(runs))
   return (
     <div
       className="score-box cricket20"
@@ -24,7 +23,7 @@ console.log("19run",runs,Number(teamBScore.split('/')[0]) , Number(runs))
         backgroundImage: `url(${bg})`,
         backgroundSize: "fit",
         backgroundPosition: "center",
-       
+
         color: "white", // Example text color
         display: "flex",
         alignItems: "center",
@@ -37,8 +36,12 @@ console.log("19run",runs,Number(teamBScore.split('/')[0]) , Number(runs))
             <b>{teamA}</b>
           </div>
           <div className="text-center">
-            <span className="ml-1" style={{fontSize:"12px"}}>{teamAScore} </span>
-            <span className="ml-2" style={{fontSize:"12px"}}>{teamAOver} Over</span>
+            <span className="ml-1" style={{ fontSize: "12px" }}>
+              {teamAScore}{" "}
+            </span>
+            <span className="ml-2" style={{ fontSize: "12px" }}>
+              {teamAOver} Over
+            </span>
           </div>
         </div>
         <div>
@@ -46,19 +49,38 @@ console.log("19run",runs,Number(teamBScore.split('/')[0]) , Number(runs))
             <b>{teamB}</b>
           </div>
           <div className="text-center">
-            <span className="ml-1" style={{fontSize:"12px"}}>{Number(Number(teamBScore.split('/')[0]) + Number(runs))}/{teamBScore.split('/')[1]} </span>
-            <span className="ml-1" style={{fontSize:"12px"}}>{teamBOver} Overs</span>
+            <span className="ml-1" style={{ fontSize: "12px" }}>
+              {Number(Number(teamBScore.split("/")[0]) + Number(runs))}/
+              {teamBScore.split("/")[1]}{" "}
+            </span>
+            <span className="ml-1" style={{ fontSize: "12px" }}>
+              {teamBOver} Overs
+            </span>
           </div>
         </div>
       </div>
       <div className="ball-icon">
-        <img src={ballIconUrl} alt="Ball Icon" style={{height:"60px"}}/>
+        <img src={ballIconUrl} alt="Ball Icon" style={{ height: "60px" }} />
       </div>
       <div className="blbox">
-        <div className={item?.gstatus ==="SUSPENDED"? "suspended casino-odds-box back":"casino-odds-box back "} onClick={()=>handleBet(item,"BACK")}>
+        <div
+          className={
+            item?.gstatus === "SUSPENDED" || backOdds === "0.00"
+              ? "suspended casino-odds-box back"
+              : "casino-odds-box back "
+          }
+          onClick={() => handleBet(item, "BACK")}
+        >
           <span className="casino-odds">{backOdds}</span>
         </div>
-        <div className={item?.gstatus ==="SUSPENDED"? "suspended casino-odds-box lay":"casino-odds-box lay "} onClick={()=>handleBet(item,"LAY")}>
+        <div
+          className={
+            item?.gstatus === "SUSPENDED" || layOdds === "0.00"
+              ? "suspended casino-odds-box lay"
+              : "casino-odds-box lay "
+          }
+          onClick={() => handleBet(item, "LAY")}
+        >
           <span className="casino-odds">{layOdds}</span>
         </div>
       </div>

@@ -8,7 +8,6 @@ const OddEven = ({ data, card, odds }: any) => {
   const min = odds?.[0]?.min;
   const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
-    console.log("item",item)
     let team = {
       bettingType: "BACK",
       matchId:  data?.id,

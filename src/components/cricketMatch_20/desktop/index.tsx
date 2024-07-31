@@ -131,7 +131,7 @@ const CricketMatch20Desktop = () => {
     }
   }, [dragonTigerDetail]);
 
-  console.log("video", profitLossData);
+  
 
   return (
     <>
