@@ -110,6 +110,21 @@ const CricketMatch20Desktop = () => {
 
   console.log("data", dragonTigerDetail);
 
+  type ProfitLoss = {
+    pl: number;
+    run: number | string;
+  };
+
+  const profitLossData: Record<string, ProfitLoss> =
+    dragonTigerDetail?.profitLoss?.[
+      `${dragonTigerDetail?.videoInfo?.mid}_1_card`
+    ] &&
+    JSON.parse(
+      dragonTigerDetail?.profitLoss?.[
+        `${dragonTigerDetail?.videoInfo?.mid}_1_card`
+      ]
+    );
+
   return (
     <>
       <Row>
@@ -155,9 +170,7 @@ const CricketMatch20Desktop = () => {
                   result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                   profitLoss={
-                    dragonTigerDetail?.profitLoss?.[
-                      `${dragonTigerDetail?.videoInfo?.mid}_1_card`
-                    ]
+                    profitLossData
                   }
                 />
               </div>

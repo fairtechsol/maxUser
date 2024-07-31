@@ -11,14 +11,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
     }
   }, []);
 
-  type ProfitLoss = {
-    pl: number;
-    run: number | string;
-  };
-
-  const profitLossData: Record<string, ProfitLoss> =
-    profitLoss && JSON.parse(profitLoss);
-  console.log("video", profitLoss, profitLossData);
+ 
   return (
     <>
       <div
@@ -79,17 +72,17 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                   position: "absolute",
                   top: "20px",
                   right: "45px",
-                  padding:profitLossData?"10px":"0px"
+                  padding:profitLoss?"10px":"0px"
                 }}
               >
                 {profitLoss &&
-                  Object.entries(profitLossData)?.map(([key, value]) => (
+                  Object.entries(profitLoss)?.map(([key, value]:any) => (
                     <li key={key} style={{color:"#fff",display:"flex",justifyContent:"space-between"}}>
                       {key}{"->"}{" "}
                       <span
                         style={{
                           color:
-                            value.pl > 0
+                            value.pl >= 0
                               ? "green"
                               : value.pl < 0
                               ? "red"
