@@ -311,7 +311,7 @@ const TeenPattiDesktop = () => {
                               <div
                                 key={player.sid}
                                 className={`teenPatti-table-item ${
-                                  player.gstatus === "0" ? "suspended" : ""
+                                  player.gstatus === "0" ? "locked" : ""
                                 }`}
                                 style={{ width: "16.7%" }}
                                 onClick={() =>
@@ -321,10 +321,7 @@ const TeenPattiDesktop = () => {
                                 }
                               >
                                 <span className="f12-b">{player.b1}</span>
-                                {dragonTigerDetail?.profitLoss &&
-                                  dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                  ] && (
+                               
                                     <span
                                       className={`f400 title-14 ${
                                         dragonTigerDetail?.profitLoss
@@ -359,13 +356,13 @@ const TeenPattiDesktop = () => {
                                           : 0
                                         : 0}
                                     </span>
-                                  )}
-                                {(!dragonTigerDetail.profitLoss ||
+                                  
+                                {/* {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
                                   ]) && (
                                   <span className="f400 title-14">0</span>
-                                )}
+                                )} */}
                               </div>
                             ))}
                           </div>

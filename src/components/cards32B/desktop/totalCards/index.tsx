@@ -80,7 +80,7 @@ const TotalCards = ({ data, odds }: any) => {
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row">
-          <span className="card32bTitle lh-1">
+          <span className="card32bTitle" style={{lineHeight:"1.7"}}>
             <div className="profitLoss-Text">
               <span>8 & 9 Total</span>
               <span
@@ -117,7 +117,7 @@ const TotalCards = ({ data, odds }: any) => {
           {renderItem(odds?.[0], 0)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
-          <span className="card32bTitle lh-1">
+          <span className="card32bTitle" style={{lineHeight:"1.7"}}>
             <div className="profitLoss-Text">
               <span>10 & 11 Total</span>
               <span
