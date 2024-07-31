@@ -12,10 +12,11 @@ const ScoreBox = ({
   backOdds,
   layOdds,
   handleBet,
-  item
+  item,
+  runs
 }) => {
 
-
+console.log("19run",runs,Number(teamBScore.split('/')[0]) , Number(runs))
   return (
     <div
       className="score-box cricket20"
@@ -45,7 +46,7 @@ const ScoreBox = ({
             <b>{teamB}</b>
           </div>
           <div className="text-center">
-            <span className="ml-1" style={{fontSize:"12px"}}>{teamBScore} </span>
+            <span className="ml-1" style={{fontSize:"12px"}}>{Number(Number(teamBScore.split('/')[0]) + Number(runs))}/{teamBScore.split('/')[1]} </span>
             <span className="ml-1" style={{fontSize:"12px"}}>{teamBOver} Overs</span>
           </div>
         </div>

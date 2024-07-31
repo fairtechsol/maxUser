@@ -28,6 +28,9 @@ const CricketMatch20Desktop = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
+  const [profitLossData, setProfitLossData] = useState<
+    Record<string, ProfitLoss>
+  >({});
   const { leftBoard, rightBoard } = dragonTigerDetail;
 
   const handleClose = () => {
@@ -108,22 +111,27 @@ const CricketMatch20Desktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.cmatch20}`);
   }, []);
 
-  console.log("data", dragonTigerDetail);
-
   type ProfitLoss = {
     pl: number;
     run: number | string;
   };
 
-  const profitLossData: Record<string, ProfitLoss> =
-    dragonTigerDetail?.profitLoss?.[
-      `${dragonTigerDetail?.videoInfo?.mid}_1_card`
-    ] &&
-    JSON.parse(
+  useEffect(() => {
+    if (
       dragonTigerDetail?.profitLoss?.[
         `${dragonTigerDetail?.videoInfo?.mid}_1_card`
       ]
-    );
+    ) {
+      const parsedData = JSON.parse(
+        dragonTigerDetail.profitLoss[
+          `${dragonTigerDetail.videoInfo.mid}_1_card`
+        ]
+      );
+      setProfitLossData(parsedData);
+    }
+  }, [dragonTigerDetail]);
+
+  console.log("video", profitLossData);
 
   return (
     <>
@@ -169,9 +177,7 @@ const CricketMatch20Desktop = () => {
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
-                  profitLoss={
-                    profitLossData
-                  }
+                  profitLoss={profitLossData}
                 />
               </div>
             </div>
@@ -212,6 +218,11 @@ const CricketMatch20Desktop = () => {
                             layOdds={item.l1}
                             handleBet={handleBet}
                             item={item}
+                            runs={
+                              Object.keys(profitLossData).length > 0
+                                ? profitLossData[String(1 + index)]?.run ?? 0
+                                : 0
+                            }
                           />
                         </div>
                       ))}
@@ -240,6 +251,11 @@ const CricketMatch20Desktop = () => {
                             layOdds={item.l1}
                             handleBet={handleBet}
                             item={item}
+                            runs={
+                              Object.keys(profitLossData).length > 0
+                                ? profitLossData[String(6 + index)]?.run ?? 0
+                                : 0
+                            }
                           />
                         </div>
                       ))}
