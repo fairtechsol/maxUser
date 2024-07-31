@@ -46,9 +46,9 @@ const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
 const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
 const TeenPattiOpen = Loadable(lazy(() => import("../pages/teenPattiOpen")));
 const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
-// const AmarAkbarAnthony = Loadable(
-//   lazy(() => import("../pages/amarAkbarAnthony"))
-// );
+const AmarAkbarAnthony = Loadable(
+  lazy(() => import("../pages/amarAkbarAnthony"))
+);
 // const BollywoodTable = Loadable(lazy(() => import("../pages/bollywoodTable")));
 const Superover = Loadable(lazy(() => import("../pages/superover")));
 const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
@@ -255,10 +255,10 @@ const MainRoutes = {
     //   element: <Baccarat1 />,
     // },
 
-    // {
-    //   path: "aaa",
-    //   element: <AmarAkbarAnthony />,
-    // },
+    {
+      path: "aaa",
+      element: <AmarAkbarAnthony />,
+    },
     // {
     //   path: "btable",
     //   element: <BollywoodTable />,
