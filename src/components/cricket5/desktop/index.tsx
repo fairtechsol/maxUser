@@ -88,7 +88,7 @@ const Cricket5Desktop = () => {
             style={{
               width: "100%",
               // height: scoreBoardData?.data ? "400px" : "310px",
-              margin: "5px",
+              margin: "5px 0px 0px 3px",
             }}
           >
             <div className="horseRacingTabHeader">
@@ -137,7 +137,7 @@ const Cricket5Desktop = () => {
             <LoaderOnRefresh />
           ) : (
             <div>
-              <div>
+              <div className="ms-1 w-100">
                 <MarketComponent
                   odds={dragonTigerDetail?.odds}
                   min={dragonTigerDetail?.videoInfo?.min}
@@ -151,7 +151,7 @@ const Cricket5Desktop = () => {
                   name={["A", "I", "T"]}
                   type={"cricketv3"}
                 />
-              </div>
+              </div> 
             </div>
           )}
         </Col>

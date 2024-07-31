@@ -33,7 +33,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const team1 = matchOddsData?.[0];
   const team2 = matchOddsData?.[1];
   return (
-    <div className="w-100" style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: "flex", flexDirection: "column"}}>
       <div className="marketHeader">
         <span className="f400" style={{ color: "#000" }}>
           {title}
