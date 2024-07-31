@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { card32rules } from "../../../assets/images";
+import { card32rules, supoerrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -159,7 +159,7 @@ const SuperoverDesktop = () => {
             </>
           )}
 
-          <RulesModal show={show} setShow={setShow} rule={card32rules} />
+          <RulesModal show={show} setShow={setShow} rule={supoerrules} />
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>

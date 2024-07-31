@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { card32rules } from "../../../assets/images";
+import { card32rules, supoerrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -238,7 +238,7 @@ const SuperoverMobile = () => {
         )}
       </div>
 
-      <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <RulesModal show={show} setShow={setShow} rule={supoerrules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
