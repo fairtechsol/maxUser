@@ -183,31 +183,49 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
           }}
         >
           {players && (
-            <div
-              className="d-flex flex-row justify-content-center align-items-center mb-2 "
-              style={{ gap: "140px" }}
-            >
-              <span className="fs-6" style={{ marginLeft: "10px" }}>
-                Dealer
-              </span>
-              <div className="d-flex flex-row justify-content-center align-items-center mb-2" style={{
+            // <div
+            //   className="d-flex flex-row justify-content-between align-items-center mb-2 "
+            //   style={{ width: "50%" }}
+            // >
+            //   <span className="fs-6" style={{ marginLeft: "10px" }}>
+            //     Dealer
+            //   </span>
+            //   <div className="d-flex flex-row justify-content-center align-items-center mb-2" style={{
               
-              }}>
-                <div
-                  style={{
-                    border: "1px solid #fdef34",
-                    borderRadius: "1px",
-                    marginLeft: "5px",
-                    marginTop:"15px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "5px",
-                  }}
-                >
-                  <HandleCards card={players[6]?.card} />
-                </div>
-                {data?.result?.sid.includes(players[6]?.id) && (
+            //   }}>
+            //     <div
+            //       style={{
+            //         border: "1px solid #fdef34",
+            //         borderRadius: "1px",
+            //         marginLeft: "5px",
+            //         marginTop:"15px",
+            //         display: "flex",
+            //         justifyContent: "center",
+            //         alignItems: "center",
+            //         gap: "5px",
+            //       }}
+            //     >
+            //       <HandleCards card={players[6]?.card} />
+            //     </div>
+            //     {data?.result?.sid.includes(players[6]?.id) && (
+            //       <div
+            //         className="casino-winner-icon"
+            //         style={{ marginLeft: "5px" }}
+            //       >
+            //         <FaTrophy size={30} color="#169733" />
+            //       </div>
+            //     )}
+            //   </div>
+            // </div>
+            <div style={{width:"100%",display:"flex",flexDirection:"row",padding:"10px",border: "0.5px solid",borderRadius: "1px"}}>
+            <div style={{width:"50%",textAlign:"start"}}>
+            <span className="fs-6" style={{ marginLeft: "10px" }}>
+            Dealer
+            </span>
+            </div>
+            <div style={{width:"50%",display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+            <HandleCards card={players[6]?.card} />
+            {data?.result?.sid.includes(players[6]?.id) && (
                   <div
                     className="casino-winner-icon"
                     style={{ marginLeft: "5px" }}
@@ -215,8 +233,8 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
                     <FaTrophy size={30} color="#169733" />
                   </div>
                 )}
-              </div>
             </div>
+          </div>
           )}
         </div>
       ) : (
