@@ -43,13 +43,13 @@ const OddEven = ({ data, odds }: any) => {
     <div
       key={index}
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}
       <span
-        className={`title-14 f400 ${
+        className={`title-14 f500 ${
           data?.profitLoss
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
               ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] >
@@ -63,6 +63,7 @@ const OddEven = ({ data, odds }: any) => {
               : ""
             : ""
         }`}
+        style={{zIndex:"999"}}
       >
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
@@ -110,7 +111,7 @@ const OddEven = ({ data, odds }: any) => {
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row">
-          <span className="dtlTitle lh-1">
+          <span className="dtlTitleo ">
             <div className="profitLoss-Text">
               <span>Player 8</span>
             </div>
@@ -119,7 +120,7 @@ const OddEven = ({ data, odds }: any) => {
           {renderItem(player8?.[0], 1)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
-          <span className="dtlTitle lh-1">
+          <span className="dtlTitleo ">
             <div className="profitLoss-Text">
               <span>Player 9</span>
             </div>
@@ -128,7 +129,7 @@ const OddEven = ({ data, odds }: any) => {
           {renderItem(player9?.[0], 3)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
-          <span className="dtlTitle lh-1">
+          <span className="dtlTitleo ">
             <div className="profitLoss-Text">
               <span>Player 10</span>
             </div>
@@ -137,7 +138,7 @@ const OddEven = ({ data, odds }: any) => {
           {renderItem(player10?.[0], 5)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
-          <span className="dtlTitle lh-1">
+          <span className="dtlTitleo ">
             <div className="profitLoss-Text">
               <span>Player 11</span>
             </div>
