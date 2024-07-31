@@ -41,6 +41,7 @@ const TotalCards = ({ data, odds }: any) => {
         handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
+      style={{cursor:"pointer"}}
     >
       {item?.b1}
     </div>
