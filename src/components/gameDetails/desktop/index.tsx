@@ -23,7 +23,7 @@ const DesktopGameDetail = () => {
   const [errorCount, setErrorCount] = useState<number>(0);
   const [channelId, setChannelId] = useState<string>("");
 
-  const { matchDetails } = useSelector(
+  const { matchDetails, marketId } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -54,12 +54,13 @@ const DesktopGameDetail = () => {
       }
     } catch (e: any) {
       console.log("Error:", e?.message);
+      setLiveScoreBoardData(null);
       setErrorCount((prevCount: number) => prevCount + 1);
     }
   };
 
   useEffect(() => {
-    if (matchDetails?.marketId) {
+    if (matchDetails?.marketId === marketId) {
       let intervalTime = 500;
       if (errorCount >= 5 && errorCount < 10) {
         intervalTime = 60000;
@@ -70,9 +71,12 @@ const DesktopGameDetail = () => {
         getScoreBoard(matchDetails?.marketId);
       }, intervalTime);
 
-      return () => clearInterval(interval);
+      return () => {
+        clearInterval(interval);
+        setLiveScoreBoardData(null);
+      };
     }
-  }, [matchDetails?.marketId, errorCount]);
+  }, [matchDetails?.id, errorCount, marketId]);
 
   useEffect(() => {
     try {

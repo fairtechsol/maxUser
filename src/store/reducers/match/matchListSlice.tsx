@@ -7,6 +7,7 @@ import {
   getMatchListSearch,
   matchDetailAction,
   matchListReset,
+  resetMarketId,
   searchListReset,
   selectedBetAction,
   updateMatchOddRates,
@@ -30,6 +31,7 @@ interface InitialState {
   matchDetails: any;
   selectedBet: any;
   searchedMatchList: any;
+  marketId: string;
 }
 
 const initialState: InitialState = {
@@ -41,6 +43,7 @@ const initialState: InitialState = {
   matchDetails: null,
   selectedBet: null,
   searchedMatchList: null,
+  marketId: "",
 };
 
 const matchListSlice = createSlice({
@@ -90,11 +93,13 @@ const matchListSlice = createSlice({
         state.loading = true;
         state.success = false;
         state.error = null;
+        state.marketId = "";
       })
       .addCase(matchDetailAction.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
         state.matchDetails = action.payload;
+        state.marketId = action.payload.marketId;
       })
       .addCase(updateMatchRates.fulfilled, (state, action) => {
         const {
@@ -424,6 +429,9 @@ const matchListSlice = createSlice({
       .addCase(getMatchListSearch.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
+      })
+      .addCase(resetMarketId, (state) => {
+        state.marketId = "";
       });
   },
 });

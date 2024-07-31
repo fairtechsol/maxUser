@@ -104,8 +104,6 @@ export const setButtonValue = createAsyncThunk<any, any>(
     } catch (error: any) {
       const err = error as AxiosError;
       return thunkApi.rejectWithValue(err.response?.status);
-
-      
     }
   }
 );
@@ -253,3 +251,4 @@ export const updateMatchOddRates = createAsyncThunk<any, any>(
 export const searchListReset = createAction("search/list");
 export const matchListReset = createAction("matchList/reset");
 export const resetDataUnsettledMatch = createAction("dataUnsettledMatch/reset");
+export const resetMarketId = createAction("marketId/reset");
