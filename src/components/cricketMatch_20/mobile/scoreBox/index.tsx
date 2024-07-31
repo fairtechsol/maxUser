@@ -36,8 +36,8 @@ const ScoreBox = ({
             <b>{teamA}</b>
           </div>
           <div className="text-center">
-            <span className="ml-1">{teamAScore} </span>
-            <span className="ml-2">{teamAOver} Over</span>
+            <span className="ml-1" style={{fontSize:"12px"}}>{teamAScore} </span>
+            <span className="ml-2" style={{fontSize:"12px"}}>{teamAOver} Over</span>
           </div>
         </div>
         <div>
@@ -45,8 +45,8 @@ const ScoreBox = ({
             <b>{teamB}</b>
           </div>
           <div className="text-center">
-            <span className="ml-1">{teamBScore} </span>
-            <span className="ml-1">{teamBOver} Overs</span>
+            <span className="ml-1" style={{fontSize:"12px"}}>{teamBScore} </span>
+            <span className="ml-1" style={{fontSize:"12px"}}>{teamBOver} Overs</span>
           </div>
         </div>
       </div>
