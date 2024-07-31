@@ -83,3 +83,4 @@ export { default as bac1 } from "./baccarat/baccarat1.webp";
 export { default as bac2 } from "./baccarat/baccarat2.webp";
 export { default as loadernew } from "./loader.gif";
 export { default as warrules } from "./casinowar/war.jpg";
+export { default as supoerrules } from "./superOver/superoverRules.webp";
