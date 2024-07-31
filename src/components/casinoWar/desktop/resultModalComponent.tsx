@@ -47,37 +47,55 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
           }}
         >
           {index !== 6 && (
-            <div
-              style={{
-                width: "90%",
-                border: "0.5px solid",
-                display: "flex",
-                justifyContent: "start",
-                flexDirection: "row",
-                alignItems: "center",
+            // <div
+            //   style={{
+            //     width: "90%",
+            //     border: "0.5px solid",
+            //     display: "flex",
+            //     justifyContent: "start",
+            //     flexDirection: "row",
+            //     alignItems: "center",
                 
-                gap: "20px",
-              }}
-            >
-              <span className="fs-6" style={{ marginLeft: "10px" }}>
-                Player {index + 1}
-              </span>
-              <div className="d-flex flex-row justify-content-center align-items-center mb-2" style={{marginTop:"15px",marginLeft:"100px"}}>
-                <div
-                  style={{
-                    border: "1px solid #fdef34",
-                    borderRadius: "1px",
-                    marginLeft: "15px",
-                    position: "relative",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: "5px",
+            //     gap: "20px",
+            //   }}
+            // >
+            //   <span className="fs-6" style={{ marginLeft: "10px" }}>
+            //     Player {index + 1}
+            //   </span>
+            //   <div className="d-flex flex-row align-items-center mb-2" style={{marginTop:"15px",marginLeft:"100px",justifyContent:"space-between"}}>
+            //     <div
+            //       style={{
+            //         border: "1px solid #fdef34",
+            //         borderRadius: "1px",
+            //         marginLeft: "15px",
+            //         position: "relative",
+            //         display: "flex",
+            //         justifyContent: "space-between",
+            //         gap: "5px",
                   
-                  }}
-                >
-                  <HandleCards card={player.card} />
-                </div>
-                {data?.result?.sid.includes(`${index+1}` ) && (
+            //       }}
+            //     >
+            //       <HandleCards card={player.card} />
+            //     </div>
+            //     {data?.result?.sid.includes(`${index+1}` ) && (
+            //       <div
+            //         className="casino-winner-icon"
+            //         style={{ marginLeft: "5px" }}
+            //       >
+            //         <FaTrophy size={30} color="#169733" />
+            //       </div>
+            //     )}
+            //   </div>
+            // </div>
+            <div style={{width:"100%",display:"flex",flexDirection:"row",padding:"10px",border: "0.5px solid",borderRadius: "1px"}}>
+              <div style={{width:"50%",textAlign:"start"}}>
+              <span className="fs-6" style={{ marginLeft: "10px" }}>
+                 Player {index + 1}
+              </span>
+              </div>
+              <div style={{width:"50%",display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+              <HandleCards card={player.card} />
+              {data?.result?.sid.includes(`${index+1}` ) && (
                   <div
                     className="casino-winner-icon"
                     style={{ marginLeft: "5px" }}
@@ -154,7 +172,7 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
       {isMobile ? (
         <div
           style={{
-            width: "90%",
+            width: "100%",
             border: "0.5px solid",
             display: "flex",
             justifyContent: "start",
