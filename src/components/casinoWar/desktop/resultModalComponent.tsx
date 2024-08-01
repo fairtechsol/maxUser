@@ -24,10 +24,9 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
   // Create a mapping of player IDs to their respective cards
   const players = resultCards?.map((card, index) => ({
     card,
-    id: playerIds[index],  // Distribute player IDs cyclically
+    id: playerIds[index], // Distribute player IDs cyclically
   }));
-     
-  
+
   const renderColumn = () => (
     <div
       className="d-flex flex-column align-items-center"
@@ -43,7 +42,6 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
             justifyContent: "center",
             flexDirection: "row",
             alignItems: "center",
-            
           }}
         >
           {index !== 6 && (
@@ -55,14 +53,17 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
                 justifyContent: "start",
                 flexDirection: "row",
                 alignItems: "center",
-                
+
                 gap: "20px",
               }}
             >
               <span className="fs-6" style={{ marginLeft: "10px" }}>
                 Player {index + 1}
               </span>
-              <div className="d-flex flex-row justify-content-center align-items-center mb-2" style={{marginTop:"15px",marginLeft:"100px"}}>
+              <div
+                className="d-flex flex-row justify-content-center align-items-center mb-2"
+                style={{ marginTop: "15px", marginLeft: "100px" }}
+              >
                 <div
                   style={{
                     border: "1px solid #fdef34",
@@ -72,12 +73,11 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
                     display: "flex",
                     justifyContent: "space-between",
                     gap: "5px",
-                  
                   }}
                 >
                   <HandleCards card={player.card} />
                 </div>
-                {data?.result?.sid.includes(`${index+1}` ) && (
+                {data?.result?.sid.includes(`${index + 1}`) && (
                   <div
                     className="casino-winner-icon"
                     style={{ marginLeft: "5px" }}
@@ -96,7 +96,11 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
   const renderRow = () => (
     <div
       className="flex-row justify-content-around"
-      style={{ display: "flex" }}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        width: "100%",
+      }}
     >
       {players?.map((player, index) => {
         if (index !== 6) {
@@ -121,7 +125,7 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
                 >
                   <HandleCards card={player.card} />
                 </div>
-                {data?.result?.sid.includes(`${index +1}`) && (
+                {data?.result?.sid.includes(`${index + 1}`) && (
                   <div
                     className="casino-winner-icon"
                     style={{ marginLeft: "5px" }}
@@ -172,15 +176,16 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
               <span className="fs-6" style={{ marginLeft: "10px" }}>
                 Dealer
               </span>
-              <div className="d-flex flex-row justify-content-center align-items-center mb-2" style={{
-              
-              }}>
+              <div
+                className="d-flex flex-row justify-content-center align-items-center mb-2"
+                style={{}}
+              >
                 <div
                   style={{
                     border: "1px solid #fdef34",
                     borderRadius: "1px",
                     marginLeft: "5px",
-                    marginTop:"15px",
+                    marginTop: "15px",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
