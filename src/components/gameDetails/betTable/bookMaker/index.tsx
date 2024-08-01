@@ -93,12 +93,12 @@ function BookmakerTable({
             ) : (
               <>
                 <th
-                  className={`text-center bg-blue1 match-odd-bet-place f700 title-15`}
+                  className={`text-center bg-blue1 bookmaker-bet-place f700 title-15`}
                 >
                   BACK
                 </th>
                 <th
-                  className={`text-center bg-red1 match-odd-bet-place f700 title-15`}
+                  className={`text-center bg-red1 bookmaker-bet-place f700 title-15`}
                 >
                   LAY
                 </th>
