@@ -2,7 +2,7 @@ import { memo, useEffect } from "react";
 import FlipClock from "./FlipClock";
 import isMobile from "../../../utils/screenDimension";
 
-const VideoFrame = ({ result, time, id }: any) => {
+const VideoFrame = ({ result, time, id, profitLoss }: any) => {
   // const [showModal, setModalOpen] = useState(false);
   useEffect(() => {
     const element = document.getElementById("middleView-playerDiv");
@@ -10,8 +10,9 @@ const VideoFrame = ({ result, time, id }: any) => {
       element.style.display = "none !important";
     }
   }, []);
-  
 
+  console.log("ismobile",isMobile)
+ 
   return (
     <>
       <div
@@ -39,13 +40,21 @@ const VideoFrame = ({ result, time, id }: any) => {
             }}
           >
             {result && (
-              <div style={{ position: "absolute", zIndex: "999" }}>{result}</div>
+              <div style={{ position: "absolute", zIndex: "999" }}>
+                {result}
+              </div>
             )}
-            <div style={isMobile ? {display: "flex", overflow: "hidden"} : {}}>
+            <div
+              style={
+                isMobile
+                  ? { display: "flex", overflow: "hidden" }
+                  : { position: "relative", width: "100%" }
+              }
+            >
               <iframe
                 width="100%"
                 height={isMobile ? "250px" : "380px"}
-                // height="100%"  
+                // height="100%"
                 src={id}
                 // transform={}
                 // style={isMobile ?
@@ -57,6 +66,37 @@ const VideoFrame = ({ result, time, id }: any) => {
                 referrerPolicy={"strict-origin-when-cross-origin"}
                 allowFullScreen
               ></iframe>
+              <ol
+                style={{
+                  background: "black",
+                  opacity: "60%",
+                  position: "absolute",
+                  top:isMobile? "10px":"20px",
+                  right:isMobile? "30px":"45px",
+                  padding:profitLoss?"10px":"0px"
+                }}
+              >
+                {profitLoss &&
+                  Object.entries(profitLoss)?.map(([key, value]:any) => (
+                    <li key={key} style={{color:"#fff",display:"flex",justifyContent:"space-between",fontSize:isMobile?"10px":"16px"}}>
+                      {key}{"->"}{" "}
+                      <span
+                        style={{
+                          color:
+                            value.pl >= 0
+                              ? "green"
+                              : value.pl < 0
+                              ? "red"
+                              : "white",
+                              textAlign:"end",
+                              fontSize:isMobile?"10px":"16px"
+                        }}
+                      >
+                        {value.pl}
+                      </span>
+                    </li>
+                  ))}
+              </ol>
             </div>
             {time && (
               <div

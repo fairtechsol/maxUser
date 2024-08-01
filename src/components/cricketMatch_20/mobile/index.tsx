@@ -30,6 +30,9 @@ const CricketMatch20Mobile = () => {
   );
   const { leftBoard, rightBoard } = dragonTigerDetail;
   const { placedBets } = useSelector((state: RootState) => state.bets);
+  const [profitLossData, setProfitLossData] = useState<
+    Record<string, ProfitLoss>
+  >({});
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
     { label: "Flush (Color)", value: "1 To 4" },
@@ -37,11 +40,11 @@ const CricketMatch20Mobile = () => {
     { label: "Trio (Teen)", value: "1 To 35" },
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
-  const handleBet = (item: any,type:any) => {
+  const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
-      odd: type === "BACK"?item?.b1:item.l1,
+      odd: type === "BACK" ? item?.b1 : item.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -92,6 +95,26 @@ const CricketMatch20Mobile = () => {
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teen20}`);
   }, []);
+
+  type ProfitLoss = {
+    pl: number;
+    run: number | string;
+  };
+
+  useEffect(() => {
+    if (
+      dragonTigerDetail?.profitLoss?.[
+        `${dragonTigerDetail?.videoInfo?.mid}_1_card`
+      ]
+    ) {
+      const parsedData = JSON.parse(
+        dragonTigerDetail.profitLoss[
+          `${dragonTigerDetail.videoInfo.mid}_1_card`
+        ]
+      );
+      setProfitLossData(parsedData);
+    }
+  }, [dragonTigerDetail]);
 
   return (
     <>
@@ -169,6 +192,7 @@ const CricketMatch20Mobile = () => {
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
+                  profitLoss={profitLossData}
                 />
               </div>
             </div>
@@ -187,32 +211,40 @@ const CricketMatch20Mobile = () => {
                     >
                       <div
                         style={{
-                          width: "99%",
+                          width: "100%",
                           background: "#F2F2F2",
-                          padding: "3px",
+                          padding: "5px",
                         }}
                       >
-                        {[...leftBoard, ...rightBoard]?.map(
-                          (item: any, index: any) => (
-                            <div>
-                              <ScoreBox
-                                teamA="Team A"
-                                teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}
-                                teamAOver={dragonTigerDetail?.videoInfo?.C4}
-                                teamB="Team B"
-                                teamBScore={`${dragonTigerDetail?.videoInfo?.C5}/${dragonTigerDetail?.videoInfo?.C6}`}
-                                teamBOver={dragonTigerDetail?.videoInfo?.C7}
-                                ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                                  2 + index
-                                }.png`}
-                                backOdds={item.b1}
-                                layOdds={item.l1}
-                                handleBet={handleBet}
-                                item={item}
-                              />
-                            </div>
-                          )
-                        )}
+                        {leftBoard &&
+                          rightBoard &&
+                          [...leftBoard, ...rightBoard]?.map(
+                            (item: any, index: any) => (
+                              <div>
+                                <ScoreBox
+                                  teamA="Team A"
+                                  teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}
+                                  teamAOver={dragonTigerDetail?.videoInfo?.C4}
+                                  teamB="Team B"
+                                  teamBScore={`${dragonTigerDetail?.videoInfo?.C5}/${dragonTigerDetail?.videoInfo?.C6}`}
+                                  teamBOver={dragonTigerDetail?.videoInfo?.C7}
+                                  ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
+                                    2 + index
+                                  }.png`}
+                                  backOdds={item.b1}
+                                  layOdds={item.l1}
+                                  handleBet={handleBet}
+                                  item={item}
+                                  runs={
+                                    Object.keys(profitLossData).length > 0
+                                      ? profitLossData[String(1 + index)]
+                                          ?.run ?? 0
+                                      : 0
+                                  }
+                                />
+                              </div>
+                            )
+                          )}
                       </div>
                     </div>
                     <div className="ticker-container">
