@@ -91,6 +91,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
                   : ""
                 : ""
             }`}
+            style={{zIndex:"111"}}
           >
             {data?.profitLoss
               ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
