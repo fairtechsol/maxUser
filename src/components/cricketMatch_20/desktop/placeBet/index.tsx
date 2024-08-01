@@ -123,7 +123,7 @@ const PlacedBet = () => {
       e.preventDefault();
     }
   };
-  console.log("hgjhg",selectedBet?.team?.bettingType)
+  
   return (
     <>
       <div className="loader-container">

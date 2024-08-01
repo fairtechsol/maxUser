@@ -23,7 +23,7 @@ const CommonButtonBox = ({
       </div>
       <div
         className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
-        onClick={() => (!lock ? handleBet(data) : null)}
+        onClick={() => !lock ? handleBet(data) : null}
       >
         <span>
           {value2 === "icon1" ? (
