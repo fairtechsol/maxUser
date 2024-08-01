@@ -134,7 +134,7 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
                   BAHAR
                 </span>
               )}
-              <div className={isMobile ? "mt-1 ms-2" : "mt-2"}>
+              <div className={isMobile ? "mt-1 ms-2" : "ms-2"}>
                 {elementsBahar?.length > 3 ? (
                   <Slider
                     {...sliderSettings(
