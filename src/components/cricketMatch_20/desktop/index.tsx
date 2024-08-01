@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
+import { crick20rules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
@@ -15,7 +15,6 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import ScoreBox from "../mobile/scoreBox";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 const CricketMatch20Desktop = () => {
@@ -328,7 +327,7 @@ const CricketMatch20Desktop = () => {
                     </tbody>
                   </Table>
                 </div> */}
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
+                <RulesModal show={show} setShow={setShow} rule={crick20rules} />
               </Col>
             </Row>
           </Container>
