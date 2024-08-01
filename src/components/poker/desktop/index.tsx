@@ -11,11 +11,11 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import TiePairBox from "./TiePairBox";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import Poker6Result from "./poker6Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const Poker6Desktop = () => {
   const [show, setShow] = useState(false);
@@ -187,7 +187,7 @@ const Poker6Desktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />

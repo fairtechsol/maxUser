@@ -12,10 +12,10 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import MyBet from "./myBet";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
 import ScoreBox from "../mobile/scoreBox";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 const CricketMatch20Desktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -299,7 +299,7 @@ const CricketMatch20Desktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <MyBet />
