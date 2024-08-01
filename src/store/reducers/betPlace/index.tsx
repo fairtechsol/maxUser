@@ -16,6 +16,7 @@ import {
 
 interface InitialState {
   placedBets: any;
+  placedBetsAccountStatement: any;
   runAmount: any;
   myMarketList: any;
   success: boolean;
@@ -27,6 +28,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   placedBets: [],
+  placedBetsAccountStatement: [],
   runAmount: {},
   myMarketList: [],
   loading: false,
@@ -60,11 +62,12 @@ const placedBet = createSlice({
         state.loading = true;
         state.success = false;
         state.error = null;
+        state.placedBetsAccountStatement = [];
       })
       .addCase(getPlacedBetsForAccountStatement.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.placedBets = action.payload;
+        state.placedBetsAccountStatement = action.payload;
       })
       .addCase(getPlacedBetsForAccountStatement.rejected, (state, action) => {
         state.loading = false;
