@@ -11,10 +11,10 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import DynamicTable from "./betTable";
 import Card32Result from "./card32Card";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -163,7 +163,7 @@ const Cards32Desktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />
