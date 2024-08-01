@@ -75,7 +75,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <span style={{ fontSize: "20px", fontWeight: "bold" }}>
           {title[type]} Result
         </span>
-        <RxCross2 size={25} onClick={() => setfalse(false)} />
+        <RxCross2 className="cursor-pointer" size={25} onClick={() => setfalse(false)} />
       </div>
       <div
         className="resultModalSubHea"
