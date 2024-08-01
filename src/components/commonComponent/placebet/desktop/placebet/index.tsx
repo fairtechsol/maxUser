@@ -16,13 +16,15 @@ import { useDispatch, useSelector } from "react-redux";
 // import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
 import CustomLoader from "../../../customLoader/CustomLoader";
 import CustomButton from "../../../button";
-import { betPlaceSuccessReset,placeBet } from "../../../../../store/actions/betPlace/betPlaceActions";
+import {
+  betPlaceSuccessReset,
+  placeBet,
+} from "../../../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../../../store/actions/match/matchListAction";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
 import { AppDispatch, RootState } from "../../../../../store/store";
 import { ApiConstants } from "../../../../../utils/constants";
-
 
 const placeBetHeader = [
   {},
@@ -220,31 +222,33 @@ const DesktopPlacedBet = () => {
                     </div>
                   </td>
                   <td width={"25%"}>
-                    <div style={{
+                    <div
+                      style={{
                         display: "flex",
                         flexDirection: "row",
                         height: "24px",
-                      }}>
-                    <input
-                      value={stake}
-                      min={0}
-                      onChange={(e) => {
-                        dispatch(
-                          selectedBetAction({
-                            ...selectedBet,
-                            team: {
-                              ...selectedBet?.team,
-                              stake: +e.target.value,
-                            },
-                          })
-                        );
                       }}
-                      type="number"
-                      onKeyDown={handleKeyDown}
-                      placeholder=""
-                      className="p-0 w-100 br-0 title-13"
-                      style={{ border: "2px solid #f0f0f0" }}
-                    />
+                    >
+                      <input
+                        value={stake}
+                        min={0}
+                        onChange={(e) => {
+                          dispatch(
+                            selectedBetAction({
+                              ...selectedBet,
+                              team: {
+                                ...selectedBet?.team,
+                                stake: +e.target.value,
+                              },
+                            })
+                          );
+                        }}
+                        type="number"
+                        onKeyDown={handleKeyDown}
+                        placeholder=""
+                        className="p-0 w-100 br-0 title-13"
+                        style={{ border: "2px solid #f0f0f0" }}
+                      />
                     </div>
                   </td>
                   <td width={"18%"} style={{ textAlign: "end" }}>
