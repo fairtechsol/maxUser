@@ -1,4 +1,4 @@
-import { lazy } from "react";
+// import { } from "react";
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
@@ -24,73 +24,73 @@ import Cricket5 from "../pages/cricket5";
 // import GameList from "../pages/gameList";
 
 // ==============================|| Main ROUTING ||============================== //
-const Home = Loadable(lazy(() => import("../pages/home")));
-const GameDetail = Loadable(lazy(() => import("../pages/gameDetails")));
+const Home = Loadable(() => import("../pages/home"));
+const GameDetail = Loadable(() => import("../pages/gameDetails"));
 const FootballGameDetail = Loadable(
-  lazy(() => import("../pages/otherGameDetails"))
+  () => import("../pages/otherGameDetails")
 );
 
 const AccountStatement = Loadable(
-  lazy(() => import("../pages/accountStatement"))
+  () => import("../pages/accountStatement")
 );
-const ProfitLoss = Loadable(lazy(() => import("../pages/profitLoss")));
-const BetHistory = Loadable(lazy(() => import("../pages/betHistory")));
-const UnsettledBet = Loadable(lazy(() => import("../pages/unsettledBet")));
+const ProfitLoss = Loadable(() => import("../pages/profitLoss"));
+const BetHistory = Loadable(() => import("../pages/betHistory"));
+const UnsettledBet = Loadable(() => import("../pages/unsettledBet"));
 const CasinoReports = Loadable(
-  lazy(() => import("../pages/reports/casinoReport"))
+  () => import("../pages/reports/casinoReport")
 );
-const Mobile = Loadable(lazy(() => import("../components/rules/mobile")));
-const RaceDetail = Loadable(lazy(() => import("../pages/horseRacingDetails")));
-const TeenPatti20 = Loadable(lazy(() => import("../pages/teenPatti20")));
-const TeenPatti1D = Loadable(lazy(() => import("../pages/teenPatti1D")));
-const TeenPattiTest = Loadable(lazy(() => import("../pages/teenPattiTest")));
-const TeenPattiOpen = Loadable(lazy(() => import("../pages/teenPattiOpen")));
-const Lucky7 = Loadable(lazy(() => import("../pages/lucky7")));
+const Mobile = Loadable(() => import("../components/rules/mobile"));
+const RaceDetail = Loadable(() => import("../pages/horseRacingDetails"));
+const TeenPatti20 = Loadable(() => import("../pages/teenPatti20"));
+const TeenPatti1D = Loadable(() => import("../pages/teenPatti1D"));
+const TeenPattiTest = Loadable(() => import("../pages/teenPattiTest"));
+const TeenPattiOpen = Loadable(() => import("../pages/teenPattiOpen"));
+const Lucky7 = Loadable(() => import("../pages/lucky7"));
 // const AmarAkbarAnthony = Loadable(
-//   lazy(() => import("../pages/amarAkbarAnthony"))
+//   () => import("../pages/amarAkbarAnthony")
 // );
-// const BollywoodTable = Loadable(lazy(() => import("../pages/bollywoodTable")));
-const Superover = Loadable(lazy(() => import("../pages/superover")));
-const DragonTiger20 = Loadable(lazy(() => import("../pages/dragon20")));
+// const BollywoodTable = Loadable(() => import("../pages/bollywoodTable"));
+const Superover = Loadable(() => import("../pages/superover"));
+const DragonTiger20 = Loadable(() => import("../pages/dragon20"));
 const DragonTigerSecond20 = Loadable(
-  lazy(() => import("../pages/dragonSecond20"))
+  () => import("../pages/dragonSecond20")
 );
 const DragonTigerLion = Loadable(
-  lazy(() => import("../pages/dragonTigerLion"))
+  () => import("../pages/dragonTigerLion")
 );
 const DragonTigerOneDay = Loadable(
-  lazy(() => import("../pages/dragonTigerOneDay"))
+  () => import("../pages/dragonTigerOneDay")
 );
-const CardList3 = Loadable(lazy(() => import("../pages/cardList3")));
-const CardList4 = Loadable(lazy(() => import("../pages/cardList4")));
-const Poker6 = Loadable(lazy(() => import("../pages/poker")));
-const Abj2 = Loadable(lazy(() => import("../pages/abj2")));
-const Abj1 = Loadable(lazy(() => import("../pages/abj")));
-// const Worli = Loadable(lazy(() => import("../pages/worli")));
-const Cards32B = Loadable(lazy(() => import("../pages/cards32B")));
-const Race20 = Loadable(lazy(() => import("../pages/race20")));
-// const Baccarat1 = Loadable(lazy(() => import("../pages/baccarat1")));
-// const CardJ = Loadable(lazy(() => import("../pages/3cardJ")));
+const CardList3 = Loadable(() => import("../pages/cardList3"));
+const CardList4 = Loadable(() => import("../pages/cardList4"));
+const Poker6 = Loadable(() => import("../pages/poker"));
+const Abj2 = Loadable(() => import("../pages/abj2"));
+const Abj1 = Loadable(() => import("../pages/abj"));
+// const Worli = Loadable(() => import("../pages/worli"));
+const Cards32B = Loadable(() => import("../pages/cards32B"));
+const Race20 = Loadable(() => import("../pages/race20"));
+// const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
+// const CardJ = Loadable(() => import("../pages/3cardJ"));
 
 const CricketMatch20 = Loadable(
-  lazy(() => import("../pages/cricketMatch_20"))
+  () => import("../pages/cricketMatch_20")
 );
 
 const ChangeButtonValue = Loadable(
-  lazy(() => import("../pages/changeButtonValues"))
+  () => import("../pages/changeButtonValues")
 );
 
 const SecureAuthVerification = Loadable(
-  lazy(() => import("../pages/auth/secureAuthVerification"))
+  () => import("../pages/auth/secureAuthVerification")
 );
 const ChangePassword = Loadable(
-  lazy(() => import("../pages/auth/changePassword"))
+  () => import("../pages/auth/changePassword")
 );
 const ContactAdmin = Loadable(
-  lazy(() => import("../components/commonComponent/contactAdmin"))
+  () => import("../components/commonComponent/contactAdmin")
 );
 
-const GameList = Loadable(lazy(() => import("../pages/gameList/index")));
+const GameList = Loadable(() => import("../pages/gameList/index"));
 
 const MainRoutes = {
   path: "/",
