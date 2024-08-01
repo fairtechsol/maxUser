@@ -42,7 +42,13 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
           }}
         >
           {data?.result?.win === "11" && (
-            <div className="casino-winner-icon mt-3 p-2">
+            <div className="casino-winner-icon mt-3 p-2"
+            style={{
+              position: "absolute",
+              // left: "100",
+              transform: "translateX(-100%)",
+            }}
+            >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
           )}
@@ -81,7 +87,13 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div>
           {data?.result?.win === "21" && (
-            <div className="casino-winner-icon mt-3 p-2">
+            <div className="casino-winner-icon mt-3 p-2"
+            style={{
+              position: "absolute",
+              // left: "100",
+              transform: "translateX(-100%)",
+            }}
+            >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
           )}

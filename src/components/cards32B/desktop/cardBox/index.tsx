@@ -85,6 +85,7 @@ const CardBox = ({ odds, data }: any) => {
           <div className="cardNumberTitle">
             {" "}
             <div style={{ width: "47%", textAlign: "start" }}>
+              <div style={{ width: "20%", textAlign: "start" }}>
               <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
@@ -97,6 +98,8 @@ const CardBox = ({ odds, data }: any) => {
                   setShow={() => setModelOpen(false)}
                 />
               </span>
+              </div>
+              
             </div>
             <div style={{ width: "53%", textAlign: "start" }}>
               {odds?.[0]?.b1}

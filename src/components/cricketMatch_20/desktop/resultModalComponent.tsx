@@ -19,7 +19,7 @@ const CricketMatch20ResultComponent: React.FC<Props> = ({ data }: any) => {
   const playerB = resultCards?.filter(
     (_: any, index: number) => index % 2 !== 0
   );
-  console.log("data",data)
+  
   return (
     <Container style={{ display: "flex", flexDirection: "column",alignItems:"center", justifyContent:"center" }}>
       <div
