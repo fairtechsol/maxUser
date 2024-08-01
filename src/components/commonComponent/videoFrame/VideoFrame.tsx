@@ -11,6 +11,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
     }
   }, []);
 
+  console.log("ismobile",isMobile)
  
   return (
     <>
@@ -70,14 +71,14 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                   background: "black",
                   opacity: "60%",
                   position: "absolute",
-                  top: "20px",
-                  right: "45px",
+                  top:isMobile? "10px":"20px",
+                  right:isMobile? "30px":"45px",
                   padding:profitLoss?"10px":"0px"
                 }}
               >
                 {profitLoss &&
                   Object.entries(profitLoss)?.map(([key, value]:any) => (
-                    <li key={key} style={{color:"#fff",display:"flex",justifyContent:"space-between"}}>
+                    <li key={key} style={{color:"#fff",display:"flex",justifyContent:"space-between",fontSize:isMobile?"10px":"16px"}}>
                       {key}{"->"}{" "}
                       <span
                         style={{
@@ -87,7 +88,8 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                               : value.pl < 0
                               ? "red"
                               : "white",
-                              textAlign:"end"
+                              textAlign:"end",
+                              fontSize:isMobile?"10px":"16px"
                         }}
                       >
                         {value.pl}
