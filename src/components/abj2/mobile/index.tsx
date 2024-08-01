@@ -15,9 +15,10 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Abj2Result from "../desktop/abj2Card";
 import PlacedBet from "./placeBet";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -122,7 +123,7 @@ const Abj2Mobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "210px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div
                   style={{
@@ -156,10 +157,10 @@ const Abj2Mobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "700px" }}>
-                <div style={{ width: "100%", marginTop: "20%" }}>
+              <div>
+                <div style={{ width: "100%", marginTop: "0.5rem" }}>
                   <SBetBox
                     type={"A"}
                     odds={dragonTigerDetail?.abjSa}

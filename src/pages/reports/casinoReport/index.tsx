@@ -6,7 +6,10 @@ import "react-date-picker/dist/DatePicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import isMobile from "../../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../../store/store";
-import { getCardReport, resetCardReport } from "../../../store/actions/user/userAction";
+import {
+  getCardReport,
+  resetCardReport,
+} from "../../../store/actions/user/userAction";
 import ReportContainer from "../../../components/containers/reportContainer";
 import SelectSearch from "../../../components/commonComponent/SelectSearch";
 import CustomButton from "../../../components/commonComponent/button";
@@ -22,7 +25,7 @@ const cardGames = [
   { value: "", label: "Select Casino Type", disabled: true },
   {
     value: "dt20",
-    label: "20-20 Dragon Tiger",//
+    label: "20-20 Dragon Tiger", //
   },
   {
     value: "ab20",
@@ -30,15 +33,15 @@ const cardGames = [
   },
   {
     value: "abj",
-    label: "Andar Bahar 2",//
+    label: "Andar Bahar 2", //
   },
   {
     value: "teen20",
-    label: "20-20 Teen Patti",//
+    label: "20-20 Teen Patti", //
   },
   {
     value: "teen",
-    label: "Teen Patti One Day",//
+    label: "Teen Patti One Day", //
   },
   {
     value: "teen8",
@@ -50,7 +53,7 @@ const cardGames = [
   },
   {
     value: "card32",
-    label: "32 Cards - A",//
+    label: "32 Cards - A", //
   },
   {
     value: "card32eu",
@@ -58,23 +61,23 @@ const cardGames = [
   },
   {
     value: "lucky7",
-    label: "Lucky 7 - A",//
+    label: "Lucky 7 - A", //
   },
   {
     value: "lucky7eu",
-    label: "Lucky 7 - B",//
+    label: "Lucky 7 - B", //
   },
   {
     value: "dt202",
-    label: "20-20 Dragon Tiger 2",//
+    label: "20-20 Dragon Tiger 2", //
   },
   {
     value: "dtl20",
-    label: "Dragon Tiger Lion",//
+    label: "Dragon Tiger Lion", //
   },
   {
     value: "dt6",
-    label: "Dragon Tiger 1 Day",//
+    label: "Dragon Tiger 1 Day", //
   },
   // {
   //   value: "aaa",
@@ -96,10 +99,10 @@ const cardGames = [
     value: "war",
     label: "Casino War",
   },
-  {
-    value: "3cardj",
-    label: "3 Card Judgement",
-  },
+  // {
+  //   value: "3cardj",
+  //   label: "3 Card Judgement",
+  // },
   // {
   //   value: "worli2",
   //   label: "Instant Worli",
@@ -184,9 +187,9 @@ const CasinoReports = () => {
     }
   }, [tableConfig, typeFromState]);
 
-  useEffect(()=> {
-    dispatch(resetCardReport())
-  },[])
+  useEffect(() => {
+    dispatch(resetCardReport());
+  }, []);
 
   return (
     <>

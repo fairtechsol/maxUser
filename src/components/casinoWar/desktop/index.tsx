@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
+import { tprules, warrules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
@@ -15,8 +15,8 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import CasinoWarResult from "./teenCard";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -114,7 +114,7 @@ const TeenPattiDesktop = () => {
       <Row>
         <Col md={8}>
           <div style={{ margin: "5px" }}>
-            <div style={{ height: "400px", marginBottom: ".30px" }}>
+            <div style={{ marginBottom: ".30px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -159,10 +159,10 @@ const TeenPattiDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
-                <div className="teenPatti-table-container">
+                <div className="teenPatti-table-container-c">
                   <div
                     className="teenPatti-table-row"
                     style={{
@@ -311,7 +311,7 @@ const TeenPattiDesktop = () => {
                               <div
                                 key={player.sid}
                                 className={`teenPatti-table-item ${
-                                  player.gstatus === "0" ? "suspended" : ""
+                                  player.gstatus === "0" ? "locked" : ""
                                 }`}
                                 style={{ width: "16.7%" }}
                                 onClick={() =>
@@ -321,10 +321,7 @@ const TeenPattiDesktop = () => {
                                 }
                               >
                                 <span className="f12-b">{player.b1}</span>
-                                {dragonTigerDetail?.profitLoss &&
-                                  dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                  ] && (
+                               
                                     <span
                                       className={`f400 title-14 ${
                                         dragonTigerDetail?.profitLoss
@@ -359,13 +356,13 @@ const TeenPattiDesktop = () => {
                                           : 0
                                         : 0}
                                     </span>
-                                  )}
-                                {(!dragonTigerDetail.profitLoss ||
+                                  
+                                {/* {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
                                   ]) && (
                                   <span className="f400 title-14">0</span>
-                                )}
+                                )} */}
                               </div>
                             ))}
                           </div>
@@ -403,7 +400,7 @@ const TeenPattiDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
+                <RulesModal  show={show} setShow={setShow} rule={warrules} />
               </Col>
             </Row>
           </Container>

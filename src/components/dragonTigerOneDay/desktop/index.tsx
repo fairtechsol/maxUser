@@ -17,8 +17,8 @@ import CardBox from "./cardBox";
 import Dragon20Result from "./dragonCard";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -86,7 +86,7 @@ const DragonTigerDesktop = () => {
     <div>
       <Row>
         <Col md={8}>
-          <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+          <div style={{ width: "100%", margin: "5px" }}>
             <div className="horseRacingTabHeader">
               <div>
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -123,12 +123,12 @@ const DragonTigerDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
-            <div style={{ height: "760px" }}>
+            <div>
               <div
                 className="d-sm-flex flex-row justify-content-around align-items-center"
-                style={{ width: "100%", marginTop: "4%", gap: "10px" }}
+                style={{ width: "100%",gap: "10px" }}
               >
                 <div className="w-50">
                   <BackLay
@@ -179,7 +179,7 @@ const DragonTigerDesktop = () => {
                   data={dragonTigerDetail}
                 />
               </div>
-              <div style={{ width: "100%", margin: "5px" }}>
+              <div style={{ width: "100%", margin: "5px 0px 0px 10px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["D", "T"]}

@@ -13,8 +13,8 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import PlacedBet from "./placeBet";
 import BaccaratStatistics from "./betTable";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Baccarat1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -83,7 +83,7 @@ const Baccarat1Desktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -127,9 +127,9 @@ const Baccarat1Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "1060px" }}>
+              <div>
                 <div
                   className="row-flex"
                   style={{ width: "100%", margin: "5% 2% 5px 5px" }}

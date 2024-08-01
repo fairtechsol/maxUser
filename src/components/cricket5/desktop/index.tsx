@@ -14,8 +14,8 @@ import "./style.scss";
 import MarketComponent from "./betTable";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import Crick5Result from "./cric5Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -87,8 +87,8 @@ const Cricket5Desktop = () => {
           <div
             style={{
               width: "100%",
-              height: scoreBoardData?.data ? "400px" : "310px",
-              margin: "5px",
+              // height: scoreBoardData?.data ? "400px" : "310px",
+              margin: "5px 0px 0px 3px",
             }}
           >
             <div className="horseRacingTabHeader">
@@ -118,11 +118,11 @@ const Cricket5Desktop = () => {
                   : ""}
               </span>
             </div>
-            <div>
               {scoreBoardData?.data && (
+            <div>
                 <ScoreBoard data={scoreBoardData?.data} />
-              )}
             </div>
+              )}
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
             >
@@ -134,10 +134,10 @@ const Cricket5Desktop = () => {
             </div>
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
-            <div style={{ height: "350px" }}>
-              <div style={{ marginTop: "7rem" }}>
+            <div>
+              <div className="ms-1 w-100">
                 <MarketComponent
                   odds={dragonTigerDetail?.odds}
                   min={dragonTigerDetail?.videoInfo?.min}
@@ -145,13 +145,13 @@ const Cricket5Desktop = () => {
                   data={dragonTigerDetail}
                 />
               </div>
-              <div className="mt-2">
+              <div className="mt-2 ms-2">
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["A", "I", "T"]}
                   type={"cricketv3"}
                 />
-              </div>
+              </div> 
             </div>
           )}
         </Col>
@@ -171,7 +171,10 @@ const Cricket5Desktop = () => {
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
+              <Col 
+              className="no-scrollbar"
+                style={{ height: "350px", overflow: "auto" }}
+              >
                 <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>

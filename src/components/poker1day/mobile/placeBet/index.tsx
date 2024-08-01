@@ -97,7 +97,6 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       e.preventDefault();
     }
   };
-  // console.log('selectedBet',selectedBet)
   return (
     <>
       <CustomModal
@@ -109,8 +108,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       >
         <Container
           className={`${
-            selectedBet?.team?.type === "lay" ||
-            selectedBet?.team?.type === "no"
+            selectedBet?.team?.bettingType === "LAY" ||
+            selectedBet?.team?.bettingType === "NO"
               ? "bg-red1"
               : "bg-blue1"
           }`}

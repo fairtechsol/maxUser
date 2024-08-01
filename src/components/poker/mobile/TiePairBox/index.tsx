@@ -37,7 +37,7 @@ const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
   }
   }
   return (
-    <div className="tiePairContainer">
+    <div className="tiePairContainer-poker6">
       <div className="tiePairRateBoxMainP">
       {handsData?.map((hand:any, index:any) => (
         <CommonButtonBox
@@ -58,6 +58,8 @@ const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
           title={title}
           card1={title ==='hand' ? handleCard(cards,index,'first'):null}
           card2={title ==='hand' ? handleCard(cards,index,'second'):null}
+          min={hand?.min}
+          max={hand?.max}
         />
       ))}
       </div>

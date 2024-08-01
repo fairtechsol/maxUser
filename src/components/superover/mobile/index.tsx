@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { card32rules } from "../../../assets/images";
+import { card32rules, supoerrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -14,8 +14,9 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 import { Table } from "react-bootstrap";
 import SuperoverResult from "../desktop/superOver";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -132,7 +133,7 @@ const SuperoverMobile = () => {
               <div
                 style={{
                   width: "100%",
-                  height: scoreBoardData?.data ? "255px" : "150px",
+                  // height: scoreBoardData?.data ? "280px" : "250px",
                 }}
               >
                 <div className="horseRacingTabHeader-m">
@@ -142,11 +143,6 @@ const SuperoverMobile = () => {
                     </span>
                   </div>
                 </div>
-                <div>
-                  {scoreBoardData?.data && (
-                    <ScoreBoard data={scoreBoardData?.data} />
-                  )}
-                </div>
                 <div
                   style={{
                     width: "100%",
@@ -154,6 +150,9 @@ const SuperoverMobile = () => {
                     backgroundColor: "#000",
                   }}
                 >
+                   {scoreBoardData?.data && (
+                    <ScoreBoard data={scoreBoardData?.data} />
+                  )}
                   <VideoFrame
                     time={dragonTigerDetail?.videoInfo?.autotime}
                     result={
@@ -166,9 +165,9 @@ const SuperoverMobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "700px", marginTop: "9rem" }}>
+              <div>
                 <div className="" style={{ width: "100%", gap: "10px" }}>
                   <div className="w-100">
                     <Bookmaker
@@ -239,7 +238,7 @@ const SuperoverMobile = () => {
         )}
       </div>
 
-      <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <RulesModal show={show} setShow={setShow} rule={supoerrules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

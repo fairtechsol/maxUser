@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
+import { tprules, warrules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
@@ -13,9 +13,10 @@ import PlacedBet from "./placeBet";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { HandleCards3 } from "./cardComponent2";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -176,7 +177,7 @@ const TeenPattiMobile = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div style={{ height: "780px" }}>
                 <div className="mt-2" style={{ width: "100%" }}>
@@ -720,7 +721,7 @@ const TeenPattiMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <RulesModal show={show} setShow={setShow} rule={warrules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

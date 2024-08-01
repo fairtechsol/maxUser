@@ -3,8 +3,10 @@ import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const DynamicTable = ({ odds, data, playerNum }: any) => {
+const DynamicTable = ({ odds, data, playerNum, back }: any) => {
   const dispatch: AppDispatch = useDispatch();
+  const min = data?.videoInfo?.min;
+  const max = data?.videoInfo?.max;
 
   const handleBet = (item: any) => {
     let team = {
@@ -43,7 +45,10 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
   return (
     <div className="card32-table-container-m">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>
-        <div style={{ width: "50%" }}></div>
+        <div style={{ width: "50%" }}>  
+          {back && <span className="ms-1">
+                  Min:{min} Max:{max}
+                </span>}</div>
         {playerNum[0] === 0 && (
           <div
             style={{
