@@ -84,3 +84,4 @@ export { default as bac2 } from "./baccarat/baccarat2.webp";
 export { default as loadernew } from "./loader.gif";
 export { default as warrules } from "./casinowar/war.jpg";
 export { default as supoerrules } from "./superOver/superoverRules.webp";
+export { default as crick20rules } from "./cricketMatch_20-20/20-20cricketrules.webp";
