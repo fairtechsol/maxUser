@@ -176,7 +176,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                     type={"cricketv3"}
                   />
                 </div>
-                <div className="casino-title" style={{ position: "relative" }}>
+                <div className="casino-title mt-2" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table d-flex">

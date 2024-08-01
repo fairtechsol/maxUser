@@ -178,7 +178,7 @@ const SuperoverDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <div className="sidebar-box place-bet-container super-over-rule">
+                <div className="sidebar-box place-bet-container super-over-rule mt-2">
                   <div className="marketHeader">
                     ENGLAND vs RSA Inning's Card Rules
                   </div>

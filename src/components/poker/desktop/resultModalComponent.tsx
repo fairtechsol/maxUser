@@ -72,7 +72,14 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
           }}
         >
           {data?.result?.win === "11" && (
-            <div className="casino-winner-icon mt-3 p-2">
+            <div
+              className="casino-winner-icon mt-3 p-2"
+              style={{
+                position: "absolute",
+                // left: "100",
+                transform: "translateX(-100%)",
+              }}
+            >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
           )}
@@ -113,7 +120,14 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div>
           {data?.result?.win === "16" && (
-            <div className="casino-winner-icon mt-3 p-2">
+            <div
+              className="casino-winner-icon mt-3 p-2"
+              style={{
+                position: "absolute",
+                // left: "100",
+                transform: "translateX(-100%)",
+              }}
+            >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
           )}
@@ -137,7 +151,14 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
           }}
         >
           {data?.result?.win === "12" && (
-            <div className="casino-winner-icon mt-3 p-2">
+            <div
+              className="casino-winner-icon mt-3 p-2"
+              style={{
+                position: "absolute",
+                // left: "100",
+                transform: "translateX(-100%)",
+              }}
+            >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
           )}
@@ -188,7 +209,14 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div>
           {data?.result?.win === "15" && (
-            <div className="casino-winner-icon mt-3 p-2">
+            <div
+              className="casino-winner-icon mt-3 p-2"
+              style={{
+                position: "absolute",
+                // left: "100",
+                transform: "translateX(-100%)",
+              }}
+            >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
           )}
@@ -206,6 +234,7 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
       >
         <div
           style={{
+            position: "relative",
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
@@ -213,7 +242,14 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
           }}
         >
           {data?.result?.win === "13" && (
-            <div className="casino-winner-icon mt-3 p-2">
+            <div
+              className="casino-winner-icon mt-3 p-2"
+              style={{
+                position: "absolute",
+                // left: "100",
+                transform: "translateX(-100%)",
+              }}
+            >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
           )}
@@ -222,9 +258,10 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
               display: "flex",
               flexDirection: "column",
               textAlign: "center",
+              alignItems: "center",
             }}
           >
-            <span className="title-18 f500"> 3</span>
+            <span className="title-18 f500">3</span>
             <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>
               <HandleCards card={resultCards?.[2]} />
               <HandleCards card={resultCards?.[8]} />
@@ -254,7 +291,14 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div>
           {data?.result?.win === "14" && (
-            <div className="casino-winner-icon mt-3 p-2">
+            <div
+              className="casino-winner-icon mt-3 p-2"
+              style={{
+                position: "absolute",
+                // left: "100",
+                transform: "translateX(-100%)",
+              }}
+            >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
           )}
