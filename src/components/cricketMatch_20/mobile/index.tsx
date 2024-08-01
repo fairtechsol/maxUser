@@ -14,9 +14,9 @@ import Teen20Result from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import ScoreBox from "./scoreBox";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 const CricketMatch20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -197,7 +197,7 @@ const CricketMatch20Mobile = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div style={{}}>
                 <div className="mt-2" style={{ width: "100%" }}>

@@ -17,6 +17,7 @@ import "./style.scss";
 import Teen20Result from "./teenCard";
 import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import ScoreBox from "../mobile/scoreBox";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 const CricketMatch20Desktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -182,7 +183,7 @@ const CricketMatch20Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div style={{}}>
                 <div className="teenPatti-table-container">
