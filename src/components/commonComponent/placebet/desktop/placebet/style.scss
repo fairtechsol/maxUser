@@ -1,13 +1,13 @@
 @import "/src/assets/variable.scss";
 .place-bet-table-red {
   td {
-    background-color: $red1;
+    background-color: $red1 !important;
   }
 }
 
 .place-bet-table-blue {
   td {
-    background-color: $blue3;
+    background-color: $blue3 !important;
   }
 }
 
