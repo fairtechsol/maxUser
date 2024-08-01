@@ -10,7 +10,6 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
@@ -18,6 +17,7 @@ import WinBox from "./win";
 import Race20Result from "./race20Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const Race20Desktop = () => {
   const [show, setShow] = useState(false);
@@ -185,7 +185,7 @@ const Race20Desktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />
