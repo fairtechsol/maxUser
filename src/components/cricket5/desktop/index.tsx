@@ -175,7 +175,7 @@ const Cricket5Desktop = () => {
               className="no-scrollbar"
                 style={{ height: "350px", overflow: "auto" }}
               >
-                <div className="casino-title" style={{ position: "relative" }}>
+                <div className="casino-title mt-2" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table d-flex">

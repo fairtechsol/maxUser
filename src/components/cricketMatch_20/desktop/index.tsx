@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
+import { crick20rules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
@@ -14,9 +14,9 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import MyBet from "./myBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import ScoreBox from "../mobile/scoreBox";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 const CricketMatch20Desktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -28,6 +28,9 @@ const CricketMatch20Desktop = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
+  const [profitLossData, setProfitLossData] = useState<
+    Record<string, ProfitLoss>
+  >({});
   const { leftBoard, rightBoard } = dragonTigerDetail;
 
   const handleClose = () => {
@@ -56,11 +59,11 @@ const CricketMatch20Desktop = () => {
     { label: "Trio (Teen)", value: "1 To 35" },
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
-  const handleBet = (item: any,type:any) => {
+  const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type,
       matchId: dragonTigerDetail?.id,
-      odd: type === "BACK"?item?.b1:item.l1,
+      odd: type === "BACK" ? item?.b1 : item.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -108,7 +111,28 @@ const CricketMatch20Desktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.cmatch20}`);
   }, []);
 
+  type ProfitLoss = {
+    pl: number;
+    run: number | string;
+  };
+
+  useEffect(() => {
+    if (
+      dragonTigerDetail?.profitLoss?.[
+        `${dragonTigerDetail?.videoInfo?.mid}_1_card`
+      ]
+    ) {
+      const parsedData = JSON.parse(
+        dragonTigerDetail.profitLoss[
+          `${dragonTigerDetail.videoInfo.mid}_1_card`
+        ]
+      );
+      setProfitLossData(parsedData);
+    }
+  }, [dragonTigerDetail]);
+
   
+
   return (
     <>
       <Row>
@@ -153,11 +177,12 @@ const CricketMatch20Desktop = () => {
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
+                  profitLoss={profitLossData}
                 />
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div style={{}}>
                 <div className="teenPatti-table-container">
@@ -166,9 +191,17 @@ const CricketMatch20Desktop = () => {
                       width: "100%",
                       display: "flex",
                       justifyContent: "space-between",
+                      background: "#f7f7f7",
                     }}
                   >
-                    <div style={{ width: "49%",background:"#F2F2F2" ,padding:"3px" }}>
+                    <div
+                      style={{
+                        width: "49%",
+                        background: "#F2F2F2",
+                        padding: "5px",
+                        boxShadow: "0 0 3px #aaa",
+                      }}
+                    >
                       {leftBoard?.map((item: any, index: any) => (
                         <div>
                           <ScoreBox
@@ -185,11 +218,23 @@ const CricketMatch20Desktop = () => {
                             layOdds={item.l1}
                             handleBet={handleBet}
                             item={item}
+                            runs={
+                              Object.keys(profitLossData).length > 0
+                                ? profitLossData[String(1 + index)]?.run ?? 0
+                                : 0
+                            }
                           />
                         </div>
                       ))}
                     </div>
-                    <div style={{ width: "49%",background:"#F2F2F2",padding:"3px" }}>
+                    <div
+                      style={{
+                        width: "49%",
+                        background: "#F2F2F2",
+                        padding: "5px",
+                        boxShadow: "0 0 3px #aaa",
+                      }}
+                    >
                       {rightBoard?.map((item: any, index: any) => (
                         <div>
                           <ScoreBox
@@ -206,6 +251,11 @@ const CricketMatch20Desktop = () => {
                             layOdds={item.l1}
                             handleBet={handleBet}
                             item={item}
+                            runs={
+                              Object.keys(profitLossData).length > 0
+                                ? profitLossData[String(6 + index)]?.run ?? 0
+                                : 0
+                            }
                           />
                         </div>
                       ))}
@@ -215,9 +265,14 @@ const CricketMatch20Desktop = () => {
                     <div className="ticker-wrap">
                       <div
                         className="ticker-move"
-                        style={{ color: "#097c93", fontWeight: "700",fontSize:"12px" }}
+                        style={{
+                          color: "#097c93",
+                          fontWeight: "700",
+                          fontSize: "12px",
+                        }}
                       >
-                        {dragonTigerDetail?.videoInfo && dragonTigerDetail?.videoInfo.remark}
+                        {dragonTigerDetail?.videoInfo &&
+                          dragonTigerDetail?.videoInfo.remark}
                       </div>
                     </div>
                   </div>
@@ -225,7 +280,7 @@ const CricketMatch20Desktop = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["1","2", "3", "4","5","6","7","8","9","10"]}
+                    name={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
                     type={"cmatch20"}
                   />
                 </div>
@@ -253,7 +308,7 @@ const CricketMatch20Desktop = () => {
                 <div className="casino-title" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>
-                <div className="table-responsive rules-table">
+                {/* <div className="table-responsive rules-table">
                   <Table bordered>
                     <thead>
                       <tr>
@@ -271,8 +326,8 @@ const CricketMatch20Desktop = () => {
                       ))}
                     </tbody>
                   </Table>
-                </div>
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
+                </div> */}
+                <RulesModal show={show} setShow={setShow} rule={crick20rules} />
               </Col>
             </Row>
           </Container>
