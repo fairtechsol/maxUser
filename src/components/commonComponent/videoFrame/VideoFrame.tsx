@@ -11,7 +11,6 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
     }
   }, []);
 
-  console.log("ismobile",isMobile)
  
   return (
     <>
