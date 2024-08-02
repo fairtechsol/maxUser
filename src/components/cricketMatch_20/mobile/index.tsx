@@ -237,7 +237,7 @@ const CricketMatch20Mobile = () => {
                                   item={item}
                                   runs={
                                     Object.keys(profitLossData).length > 0
-                                      ? profitLossData[String(1 + index)]
+                                      ? profitLossData[String(2 + index)]
                                           ?.run ?? 0
                                       : 0
                                   }

@@ -218,7 +218,7 @@ const CricketMatch20Desktop = () => {
                             item={item}
                             runs={
                               Object.keys(profitLossData).length > 0
-                                ? profitLossData[String(1 + index)]?.run ?? 0
+                                ? profitLossData[String(2 + index)]?.run ?? 0
                                 : 0
                             }
                           />
@@ -251,7 +251,7 @@ const CricketMatch20Desktop = () => {
                             item={item}
                             runs={
                               Object.keys(profitLossData).length > 0
-                                ? profitLossData[String(6 + index)]?.run ?? 0
+                                ? profitLossData[String(7 + index)]?.run ?? 0
                                 : 0
                             }
                           />
