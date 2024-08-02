@@ -9,7 +9,6 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CasinoWarResult from "../desktop/teenCard";
-import PlacedBet from "./placeBet";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { HandleCards3 } from "./cardComponent2";
 import "./style.scss";
@@ -17,6 +16,7 @@ import "./style.scss";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -99,7 +99,7 @@ const TeenPattiMobile = () => {
     <>
       <div>
         <div className="dt20header">
-          <PlacedBet show={show1} setShow={setShow1} />
+          <MobilePlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
             <div
               style={{

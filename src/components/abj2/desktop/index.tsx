@@ -14,10 +14,10 @@ import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import SBetBox from "./Sbox";
 import Abj2Result from "./abj2Card";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -135,7 +135,7 @@ const Abj2Desktop = () => {
               <div>
                 <div
                   className="row-flex"
-                  style={{ width: "100%", marginLeft: "5px"}}
+                  style={{ width: "100%", marginLeft: "5px" }}
                 >
                   <SBetBox
                     type={"A"}
@@ -206,7 +206,7 @@ const Abj2Desktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />

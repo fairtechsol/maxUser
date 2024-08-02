@@ -11,12 +11,12 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import MyBet from "./myBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
 import ScoreBox from "../mobile/scoreBox";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 const CricketMatch20Desktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -128,7 +128,7 @@ const CricketMatch20Desktop = () => {
         ]
       );
       setProfitLossData(parsedData);
-    }
+    } else setProfitLossData({});
   }, [dragonTigerDetail]);
 
   return (
@@ -300,7 +300,7 @@ const CricketMatch20Desktop = () => {
                 <DesktopPlacedBet />
               </Col>
               <Col md={12}>
-                <MyBet />
+                <DesktopMyBet />
               </Col>
               <Col>
                 <div className="casino-title" style={{ position: "relative" }}>

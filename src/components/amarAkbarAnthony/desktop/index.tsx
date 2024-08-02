@@ -14,10 +14,10 @@ import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import Lucky7Result from "./lucky7Card";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const AmarAkbarAnthonyDesktop = () => {
   const [show, setShow] = useState(false);
@@ -205,7 +205,7 @@ const AmarAkbarAnthonyDesktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />

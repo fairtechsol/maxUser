@@ -11,7 +11,7 @@ import MyBet from "./myBet";
 import "../../gameDetails/mobile/style.scss";
 import FootballPlaceBet from "./placeBet";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
-import { getChannelId } from "../../../helpers";
+import { customSortOnName, getChannelId } from "../../../helpers";
 
 // import "./style.scss";
 // import BetTable from "../../gameDetails/betTable";
@@ -97,9 +97,26 @@ const FootballMobileGameDetail = () => {
                         />
                       </Col>
                     )}
+                    {otherMatchDetails?.quickBookmaker?.length > 0 &&
+                      otherMatchDetails?.quickBookmaker
+                        ?.filter((item: any) => item?.isActive)
+                        ?.map((item: any) => (
+                          <div key={item?.id} className="p-0">
+                            <Col className="g-0" md={12}>
+                              <BetTable
+                                title={item?.name}
+                                type={MatchType.BOOKMAKER}
+                                data={item}
+                                backLayCount={2}
+                              />
+                            </Col>
+                          </div>
+                        ))}
                     {otherMatchDetails?.setWinner?.length > 0 &&
                       otherMatchDetails?.setWinner
                         ?.filter((item: any) => item?.isActive)
+                        ?.slice()
+                        ?.sort(customSortOnName)
                         ?.map((item: any) => (
                           <div key={item?.id} className="p-0">
                             <Col className="g-0" md={12}>
@@ -123,24 +140,11 @@ const FootballMobileGameDetail = () => {
                       </Col>
                     )} */}
 
-                    {otherMatchDetails?.quickBookmaker?.length > 0 &&
-                      otherMatchDetails?.quickBookmaker
-                        ?.filter((item: any) => item?.isActive)
-                        ?.map((item: any) => (
-                          <div key={item?.id} className="p-0">
-                            <Col className="g-0" md={12}>
-                              <BetTable
-                                title={item?.name}
-                                type={MatchType.BOOKMAKER}
-                                data={item}
-                                backLayCount={2}
-                              />
-                            </Col>
-                          </div>
-                        ))}
                     {otherMatchDetails?.firstHalfGoal?.length > 0 &&
                       otherMatchDetails?.firstHalfGoal
                         ?.filter((item: any) => item?.isActive)
+                        ?.slice()
+                        ?.sort(customSortOnName)
                         ?.map((item: any) => (
                           <div key={item?.id} className="p-0">
                             <Col className="g-0" md={12}>
@@ -166,6 +170,8 @@ const FootballMobileGameDetail = () => {
                     {otherMatchDetails?.overUnder?.length > 0 &&
                       otherMatchDetails?.overUnder
                         ?.filter((item: any) => item?.isActive)
+                        ?.slice()
+                        ?.sort(customSortOnName)
                         ?.map((item: any) => (
                           <div key={item?.id} className="p-0">
                             <Col className="g-0" md={12}>

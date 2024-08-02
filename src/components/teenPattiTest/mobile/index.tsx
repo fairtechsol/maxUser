@@ -11,12 +11,12 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import TeenTestResult from "../desktop/teenCard";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -24,9 +24,7 @@ const TeenPattiMobile = () => {
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [showInactivityModal, setShowInactivityModal] = useState(false);
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.teenTest}`
-  );
+  const [videoFrameId, setVideoFrameId] = useState("");
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
@@ -124,7 +122,7 @@ const TeenPattiMobile = () => {
     <>
       <div>
         <div className="dt20header">
-          <PlacedBet show={show1} setShow={setShow1} />
+          <MobilePlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
             <div
               style={{
