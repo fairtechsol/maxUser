@@ -364,8 +364,8 @@ const cardDetail = createSlice({
             : [];
 
           // Categorize players based on their nat value prefix
-          const categorizedPlayers = players.reduce((acc: any, player: any) => {
-            const category = player.nat.split(" ")[0]; // Extract category prefix
+          const categorizedPlayers = players?.reduce((acc: any, player: any) => {
+            const category = player?.nat?.split(" ")[0]; // Extract category prefix
             if (!acc[category]) acc[category] = [];
             acc[category].push(player);
             return acc;
@@ -377,14 +377,14 @@ const cardDetail = createSlice({
             .flat();
 
           state.dragonTigerDetail = {
-            ...state.dragonTigerDetail,
+            ...state?.dragonTigerDetail,
             videoInfo,
             players: chunkedPlayers,
           };
         } else {
           state.loading = false;
           state.dragonTigerDetail = {
-            ...state.dragonTigerDetail,
+            ...state?.dragonTigerDetail,
             videoInfo: "",
             players: [],
           };
