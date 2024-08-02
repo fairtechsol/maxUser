@@ -13,6 +13,7 @@ interface Props {
 
 const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
+  console.log("result",resultCards,data?.result)
   const Tiger = resultCards?.filter(
     (_: any, index: number) => index % 3 === 0
   );
@@ -32,7 +33,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
         style={{ display: "flex" }}
       >
         <div className="teen20resultCardContainer mb-3">
-          <span className="fs-5">Tiger</span>
+          <span className="fs-5">Dragon</span>
           <div
             className={
               isMobile
@@ -80,7 +81,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         )} */}
         <div className="teen20resultCardContainer mb-3 border-start border-2 border-primar">
-          <span className="fs-5">Lion</span>
+          <span className="fs-5">Tiger</span>
           <div
             className={
               isMobile
@@ -124,7 +125,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
         </div>
          
         <div className="teen20resultCardContainer mb-3 border-start border-2 border-primar">
-          <span className="fs-5">Dragon</span>
+          <span className="fs-5">Lion</span>
           <div
             className={
               isMobile

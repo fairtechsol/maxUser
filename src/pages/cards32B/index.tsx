@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+
 import { AppDispatch, RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import { cardGamesType } from "../../utils/constants";
@@ -94,6 +95,24 @@ const Cards32B = () => {
     } catch (e) {
       console.log(e);
     }
+  }, []);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32B));
+      } else if (document.visibilityState === "hidden") {
+        dispatch(dragonTigerReset());
+        socketService.card.leaveMatchRoom(cardGamesType.card32B);
+        socketService.card.getCardRatesOff(cardGamesType.card32B);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, []);
 
   return <Card32BComponentList />;
