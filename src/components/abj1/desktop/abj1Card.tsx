@@ -63,7 +63,7 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
         }}
       >
         <Row>
-          <Col xs={2} style={{ margin: "0px 0px 0px 10px" }}>
+          <Col xs={2} style={{ margin: "0px 0px 0px 15px" }}>
             <div
               style={{
                 width: isMobile ? "70px" : "110px",
@@ -86,7 +86,7 @@ const Abj1Result: React.FC<Props> = ({ data }: any) => {
                 </span>
               )}
 
-              <div className="ms-2">
+              <div className={isMobile ? "mt-1 ms-2" : "ms-2"}>
                 {elementsAndar?.length > 3 ? (
                   <Slider
                     {...sliderSettings(
