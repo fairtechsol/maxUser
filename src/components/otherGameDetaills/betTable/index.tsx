@@ -15,6 +15,7 @@ import { MatchType } from "../../../utils/enum";
 import { formattedMinMax } from "../../../utils/formatMinMax";
 import OverUnderMarket from "./overUnder";
 import SetWinner from "./setWinner";
+import OverUnderMarket2 from "./overunder2";
 interface BetTableProps {
   title: string;
   type: string;
@@ -95,12 +96,12 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           matchDetails={otherMatchDetails}
         />
       ) : type === MatchType.UNDER_OVER ? (
-        <OverUnderMarket
+        <OverUnderMarket2
           minMax={formattedMinMax(data?.minBet, data?.maxBet)}
           data={data}
           backLayCount={backLayCount}
           matchDetails={otherMatchDetails}
-          title={title}
+        //   title={title}
         />
       ) : type === MatchType.SET_WINNER ? (
         <SetWinner

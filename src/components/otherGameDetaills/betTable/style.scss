@@ -37,10 +37,209 @@
 .htfttable{
     background-color: $lightGray;
 }
+.market-4-o, .market-13-o {
+    min-width: calc(100% - 8px);
+    // margin-left: 4px;
+    // margin-right: 4px;
+    flex: 1;
+    max-width: calc(100% - 0px);
+}
+
+.game-market-o {
+    background: #f7f7f7;
+    color: #333;
+}
+
+.market-header, .market-row {
+    border-bottom: 0.01em solid #c7c8ca;
+}
+.market-body-o{
+    width: 100%;
+}
+.market-nation-detail-o {
+    width: calc(100% - 200px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 5px;
+    font-size: 14px;
+}
+.market-odd-box-o {
+    width: 80px;
+    padding: 2px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-left: 1px solid #c7c8ca;
+    cursor: pointer;
+    min-height: 44px;
+}
+.market-odd-box-o .market-odd-o {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    line-height: 1;
+}
+.market-odd-box-o .market-volume-o {
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1;
+}
+.market-row-o {
+    background-color: #f2f2f2;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.market-header-o, .market-row-o {
+    border-bottom: 0.01em solid #c7c8ca;
+}
+.lay1 {
+    background-color: #faa9babf !important;
+}
+.lay2 {
+    background-color: #faa9babf !important;
+}
+.back2 {
+    background-color: #72bbefbf !important;
+}
+.back1 {
+    background-color: #72bbefbf !important;
+}
+.market-title-o {
+    background-color: #ffc742d9;
+    color: #ffffff;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.market-nation-detail-o {
+    width: calc(100% - 480px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 5px;
+    font-size: 14px;
+}
+.market-4-o .market-nation-detail-o .market-nation-name-o, .market-13 .market-nation-detail-o .market-nation-name-o {
+    font-weight: bold;
+}
+.market-nation-detai-ol .market-nation-name-o {
+    font-weight: 400;
+    max-width: 100%;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+.market-nation-book-o {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+.market-header-o .market-odd-box-o {
+    min-height: 28px;
+}
+
+.market-header-o .market-nation-detail-o .market-nation-name-o {
+    font-size: 12px;
+    color: #097c93;
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .market-4-o .market-odd-box-o, .market-13-o .market-odd-box-o {
+        width: 12%;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .market-odd-box-o {
+        width: 20%;
+        padding: 2px 0;
+    }
+}
+// @media only screen and (min-width: 320px) and (max-width: 767px) {
+//     .market-nation-detail-o {
+//         width: calc(100% - 280px);
+//     }
+// }
+@media only screen and (min-width: 1400px) and (max-width: 1599px) {
+    .market-nation-detail-o {
+        width: calc(100% - 480px);
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .market-nation-detail-o {
+        width: calc(100% - 360px);
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .market-nation-detail-o {
+        width: calc(100% - 480px);
+    }
+}
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+    .market-nation-detail-o {
+        width: 28%;
+    }
+    
+  }
+
+
+  @media (min-width: 320px) and (max-width: 480px) {
+  
+    .market-nation-detail-o {
+        width: 28%;
+    }
+    
+  }
+
 
 @media screen and (max-width: 768px) {
     .gameTable table th,
     .gameTable table td {
         border: 1px solid $gray500 !important;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .market-odd-box-o {
+        width: 60px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .market-4-o .market-header-o .market-nation-detail-o {
+        width: calc(100% - 48%);
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .market-4-o .market-nation-detail-o {
+        width: calc(100% - 72%);
+    }
+}
+@media only screen and (max-width: 767px) {
+    .market-nation-detail-o {
+        width: calc(100% - 210px);
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .market-nation-detail-o {
+        font-size: 13px;
     }
 }
