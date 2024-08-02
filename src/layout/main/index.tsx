@@ -17,6 +17,7 @@ import Header from "./header";
 import Sidebar from "./sidebar";
 import TopBar from "./topbar";
 import ScrollToTop from "../../components/commonComponent/ScrollToTop";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const MainLayout = () => {
   const navigate = useNavigate();
@@ -107,6 +108,10 @@ const MainLayout = () => {
     };
   }, []);
 
+  useEffect(() => {
+    dispatch(selectedBetAction(null));
+  }, [location]);
+  
   return (
     <>
       <ScrollToTop />
