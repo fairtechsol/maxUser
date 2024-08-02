@@ -68,7 +68,11 @@ const ScoreBox = ({
               ? "suspended casino-odds-box back"
               : "casino-odds-box back "
           }
-          onClick={() => handleBet(item, "BACK")}
+          onClick={() =>
+            item?.gstatus !== "SUSPENDED" && layOdds !== "0.00"
+              ? handleBet(item, "BACK")
+              : null
+          }
         >
           <span className="casino-odds">{backOdds}</span>
         </div>
@@ -78,7 +82,11 @@ const ScoreBox = ({
               ? "suspended casino-odds-box lay"
               : "casino-odds-box lay "
           }
-          onClick={() => handleBet(item, "LAY")}
+          onClick={() =>
+            item?.gstatus !== "SUSPENDED" && layOdds !== "0.00"
+              ? handleBet(item, "LAY")
+              : null
+          }
         >
           <span className="casino-odds">{layOdds}</span>
         </div>
