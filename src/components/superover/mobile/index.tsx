@@ -5,7 +5,6 @@ import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
@@ -17,6 +16,7 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -71,7 +71,7 @@ const SuperoverMobile = () => {
     <>
       <div>
         <div className="dt20header">
-          <PlacedBet show={show1} setShow={setShow1} />
+          <MobilePlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
             <div
               style={{

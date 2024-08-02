@@ -12,11 +12,11 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Teen20Result from "../desktop/teenCard";
 import MyBet from "./myBet";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import ScoreBox from "./scoreBox";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 const CricketMatch20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -120,7 +120,7 @@ const CricketMatch20Mobile = () => {
     <>
       <div>
         <div className="dt20header">
-          <PlacedBet show={show1} setShow={setShow1} />
+          <MobilePlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
             <div
               style={{
