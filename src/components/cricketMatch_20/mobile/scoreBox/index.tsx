@@ -15,7 +15,6 @@ const ScoreBox = ({
   item,
   runs,
 }) => {
-
   return (
     <div
       className="score-box cricket20"
