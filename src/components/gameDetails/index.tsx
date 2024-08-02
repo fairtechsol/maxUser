@@ -9,6 +9,7 @@ import {
 import {
   // getMatchList,
   matchDetailAction,
+  resetMarketId,
   selectedBetAction,
   updateMatchRates,
 } from "../../store/actions/match/matchListAction";
@@ -270,6 +271,7 @@ const GameDetails = () => {
         );
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
+        dispatch(resetMarketId());
       };
     } catch (e) {
       console.log(e);

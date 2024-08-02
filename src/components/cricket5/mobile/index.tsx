@@ -12,9 +12,10 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
 import { crick5rules } from "../../../assets/images";
 import { Table } from "react-bootstrap";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
@@ -125,7 +126,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
             <div
               style={{
                 width: "100%",
-                height: scoreBoardData?.data ? "225px" : "150px",
+                // height: scoreBoardData?.data ? "225px" : "150px",
               }}
             >
               <div className="horseRacingTabHeader-m">
@@ -135,11 +136,6 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                   </span>
                 </div>
               </div>
-              <div>
-                {scoreBoardData?.data && (
-                  <ScoreBoard data={scoreBoardData?.data} />
-                )}
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -147,6 +143,9 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                   backgroundColor: "#000",
                 }}
               >
+                 {scoreBoardData?.data && (
+                  <ScoreBoard data={scoreBoardData?.data} />
+                )}
                 {" "}
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
@@ -156,10 +155,10 @@ const Cricket5Mobile = ({ fancyData }: any) => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "900px" }}>
-                <div style={{ marginTop: "10.5rem" }}>
+              <div>
+                <div>
                   <MarketComponent
                     odds={dragonTigerDetail?.odds}
                     fancyData={fancyData}

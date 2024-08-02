@@ -14,8 +14,8 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import Abj1Result from "./abj1Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Abj1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -83,7 +83,7 @@ const Abj1Desktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "440px", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -127,9 +127,9 @@ const Abj1Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "460px" }}>
+              <div>
                 <div
                   style={{
                     width: "100%",

@@ -15,8 +15,8 @@ import PlacedBet from "./placeBet";
 import "./style.scss";
 import TeenOpenResult from "./teenCard";
 import TeenPattiTableRow from "./tableRow";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -136,7 +136,7 @@ const TeenPattiDesktop = () => {
       <Row>
         <Col md={8}>
           <div style={{ margin: "5px" }}>
-            <div style={{ height: "400px", marginBottom: ".30px" }}>
+            <div style={{ marginBottom: ".30px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -177,10 +177,10 @@ const TeenPattiDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
-                <div className="teenPatti-table-container">
+                <div className="teenPatti-table-container-open">
                   <div
                     className="teenPatti-table-row"
                     style={{ lineHeight: 2 }}

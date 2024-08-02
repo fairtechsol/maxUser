@@ -16,8 +16,8 @@ import SBetBox from "./Sbox";
 import Abj2Result from "./abj2Card";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -86,7 +86,7 @@ const Abj2Desktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -130,12 +130,12 @@ const Abj2Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "460px" }}>
+              <div>
                 <div
                   className="row-flex"
-                  style={{ width: "100%", margin: "5% 2% 5px 5px" }}
+                  style={{ width: "100%", marginLeft: "5px"}}
                 >
                   <SBetBox
                     type={"A"}

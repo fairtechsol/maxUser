@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { card32rules } from "../../../assets/images";
+import { card32rules, supoerrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -15,8 +15,8 @@ import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import Bookmaker from "./bookmaker";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import SuperoverResult from "./superOver";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -87,8 +87,8 @@ const SuperoverDesktop = () => {
           <div
             style={{
               width: "100%",
-              height: scoreBoardData?.data ? "400px" : "310px",
-              margin: "5px",
+              // height: scoreBoardData?.data ? "400px" : "310px",
+              margin: "5px 0px 0px 3px",
             }}
           >
             <div className="horseRacingTabHeader">
@@ -116,11 +116,11 @@ const SuperoverDesktop = () => {
                   : ""}
               </span>
             </div>
-            <div>
-              {scoreBoardData?.data && (
+            {scoreBoardData?.data && (
+              <div>
                 <ScoreBoard data={scoreBoardData?.data} />
-              )}
-            </div>
+              </div>
+            )}
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
             >
@@ -132,35 +132,34 @@ const SuperoverDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <InnerLoader />
+            <LoaderOnRefresh />
           ) : (
-            <div style={{ height: "760px", marginLeft: "5px" }}>
+            <>
               <div
                 className="d-sm-flex flex-row justify-content-around align-items-center"
-                style={{ width: "100%", marginTop: "7rem", gap: "10px" }}
+                style={{ margin: "5px 0px 0px 5px", }}
               >
                 <div className="w-100">
-                  <Bookmaker
-                    title={"Bookmaker"}
-                    min={dragonTigerDetail?.videoInfo?.min}
-                    max={dragonTigerDetail?.videoInfo?.max}
-                    matchOddsData={dragonTigerDetail?.bookmaker}
-                    data={dragonTigerDetail}
-                  />
+                <Bookmaker
+                  title={"Bookmaker"}
+                  min={dragonTigerDetail?.videoInfo?.min}
+                  max={dragonTigerDetail?.videoInfo?.max}
+                  matchOddsData={dragonTigerDetail?.bookmaker}
+                  data={dragonTigerDetail}
+                />
                 </div>
               </div>
-
-              <div style={{ width: "100%", margin: "5px" }}>
+              <div style={{ margin: "5px 0px 0px 6px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["E", "R", "T"]}
                   type={"superover"}
                 />
               </div>
-            </div>
+            </>
           )}
 
-          <RulesModal show={show} setShow={setShow} rule={card32rules} />
+          <RulesModal show={show} setShow={setShow} rule={supoerrules} />
         </Col>
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>

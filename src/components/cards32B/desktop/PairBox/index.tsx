@@ -72,7 +72,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
           display: "flex",
           flexDirection: "column",
           border: "0.3px solid #c7c8ca",
-          marginLeft: "5px",
+          // marginLeft: "5px",
         }}
       >
         <div

@@ -14,9 +14,10 @@ import DynamicTable from "../desktop/betTable";
 import { Table } from "react-bootstrap";
 import Poker1DayResult from "../desktop/poker1DayCard";
 import PairBox from "../desktop/pairBox";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 const Poker1dayMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
@@ -162,7 +163,7 @@ const Poker1dayMobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "240px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -188,10 +189,10 @@ const Poker1dayMobile = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "920px" }}>
-                <div className="mt-5">
+              <div>
+                <div>
                   <DynamicTable
                     back={true}
                     odds={dragonTigerDetail?.oddsData}

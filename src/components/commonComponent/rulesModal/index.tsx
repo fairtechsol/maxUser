@@ -12,7 +12,7 @@ const RulesModal = ({ show, setShow, rule }: any) => {
           <Modal.Title>Rules</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{padding:"0px", cursor: "pointer"}}>
-          <img src={rule} width={"100%"} height={isMobile ? "550" : "750px"} />
+          <img src={rule} width={"100%"} height={isMobile ? "550" : "650px"} />
         </Modal.Body>
       </Modal>
     </div>

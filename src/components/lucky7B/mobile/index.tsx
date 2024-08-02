@@ -13,9 +13,10 @@ import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Lucky7BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -123,7 +124,7 @@ const Lucky7BMobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "250px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -147,10 +148,10 @@ const Lucky7BMobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "550px" }}>
-                <div style={{ width: "100%", marginTop: "30px" }}>
+              <div>
+                <div style={{ width: "100%", marginTop: "-3rem" }}>
                   <TiePairBox
                     lowHigh={dragonTigerDetail?.lowHigh}
                     data={dragonTigerDetail}

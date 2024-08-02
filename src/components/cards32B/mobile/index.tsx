@@ -15,9 +15,10 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import BackLay from "../desktop/BackLay";
 import PairBox from "./PairBox";
 import TotalCards from "./totalCards";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Card32BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -131,7 +132,7 @@ const Card32BMobile = () => {
                 backgroundColor: "#000",
               }}
             >
-              <div style={{ width: "100%", height: "275px" }}>
+              <div style={{ width: "100%"}}>
                 <div className="horseRacingTabHeader-m">
                   <div>
                     <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -157,10 +158,10 @@ const Card32BMobile = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "860px" }}>
-                <div className="" style={{ width: "97%", gap: "10px" }}>
+              <div>
+                <div className="" style={{ width: "97%", gap: "10px", marginTop: "0.5rem" }}>
                   <div className="w-100">
                     <BackLay
                       matchOddsData={dragonTigerDetail?.matchOdd}

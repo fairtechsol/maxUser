@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import "./style.scss";
-import { abjrules } from "../../../assets/images";
+import { race20rules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -14,8 +14,9 @@ import TotalsBox from "./TotalBox";
 import WinBox from "./win";
 import Race20Result from "../desktop/race20Card";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -120,7 +121,7 @@ const Race20Mobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "210px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div
                   style={{
@@ -150,10 +151,10 @@ const Race20Mobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "880px" }}>
-                <div style={{ width: "100%", marginTop: "20%" }}>
+              <div>
+                <div style={{ width: "100%", marginTop: "0.5rem" }}>
                   <OddBox
                     odds={dragonTigerDetail?.cards}
                     data={dragonTigerDetail}
@@ -199,7 +200,7 @@ const Race20Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <RulesModal show={show} setShow={setShow} rule={race20rules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

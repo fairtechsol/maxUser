@@ -26,7 +26,7 @@ const Crick5Result: React.FC<Props> = ({ data }: any) => {
   // console.log(result,"sjhn")
   return (
     data?.mid != "0" && (
-      <Container>
+      <Container className="mt-2">
         <Row>
           <Col>
             <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>

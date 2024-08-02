@@ -12,9 +12,10 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import PlacedBet from "./placeBet";
 import BaccaratStatistics from "../desktop/betTable";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -153,7 +154,7 @@ const Baccarat1Mobile = () => {
             </div>
 
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div style={{ height: "700px" }}>
                 <div

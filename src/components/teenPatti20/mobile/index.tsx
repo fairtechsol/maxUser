@@ -13,9 +13,10 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Teen20Result from "../desktop/teenCard";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -150,7 +151,7 @@ const TeenPattiMobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "250px" }}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -173,11 +174,11 @@ const TeenPattiMobile = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
-              <div style={{ height: "480px" }}>
-                <div className="mt-2" style={{ width: "100%" }}>
-                  <div className="teenPatti-table-container-m">
+              <div>
+                <div style={{ width: "100%" }}>
+                  <div className="teenPatti-table-container-20">
                     <div className="teenPatti-table-row">
                       <div
                         style={{

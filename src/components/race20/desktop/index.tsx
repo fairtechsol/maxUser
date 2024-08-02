@@ -16,8 +16,8 @@ import OddBox from "./OddBox";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
 import Race20Result from "./race20Card";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const Race20Desktop = () => {
   const [show, setShow] = useState(false);
@@ -86,7 +86,7 @@ const Race20Desktop = () => {
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "400px", margin: "5px" }}>
+            <div style={{ width: "100%", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
@@ -128,14 +128,13 @@ const Race20Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div>
                 <div
                   style={{
                     width: "100%",
                     margin: "5px",
-                    marginTop: "35px",
                     display: "flex",
                     gap: "8px",
                   }}
