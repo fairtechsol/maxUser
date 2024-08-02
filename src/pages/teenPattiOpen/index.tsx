@@ -96,6 +96,24 @@ const TeenPattiOpen = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenOpen));
+      } else if (document.visibilityState === "hidden") {
+        dispatch(dragonTigerReset());
+        socketService.card.leaveMatchRoom(cardGamesType.teenOpen);
+        socketService.card.getCardRatesOff(cardGamesType.teenOpen);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return <TeentPattiComponentList />;
 };
 

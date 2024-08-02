@@ -145,8 +145,8 @@ const Cricket5 = () => {
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
-        socketService.card.leaveMatchRoom(cardGamesType.casinoWar);
-        socketService.card.getCardRatesOff(cardGamesType.casinoWar);
+        socketService.card.leaveMatchRoom(cardGamesType.cricketv3);
+        socketService.card.getCardRatesOff(cardGamesType.cricketv3);
       }
     };
 

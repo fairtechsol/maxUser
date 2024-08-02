@@ -96,6 +96,24 @@ const Worli = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.worli));
+      } else if (document.visibilityState === "hidden") {
+        dispatch(dragonTigerReset());
+        socketService.card.leaveMatchRoom(cardGamesType.worli);
+        socketService.card.getCardRatesOff(cardGamesType.worli);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return <WorliComponentList />;
 };
 

@@ -96,6 +96,24 @@ const DragonTigerLion = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerLion));
+      } else if (document.visibilityState === "hidden") {
+        dispatch(dragonTigerReset());
+        socketService.card.leaveMatchRoom(cardGamesType.dragonTigerLion);
+        socketService.card.getCardRatesOff(cardGamesType.dragonTigerLion);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return <DragonTigerLionComponentList />;
 };
 
