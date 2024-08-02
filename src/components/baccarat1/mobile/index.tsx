@@ -10,12 +10,12 @@ import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import PlacedBet from "./placeBet";
 import BaccaratStatistics from "../desktop/betTable";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -69,7 +69,7 @@ const Baccarat1Mobile = () => {
     <>
       <div>
         <div className="dt20header">
-          <PlacedBet show={show1} setShow={setShow1} />
+          <MobilePlacedBet show={show1} setShow={setShow1} />
           <div className="dt20subheader1">
             <div
               style={{

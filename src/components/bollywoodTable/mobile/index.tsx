@@ -14,8 +14,8 @@ import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import Lucky7Result from "../desktop/lucky7Card";
-import PlacedBet from "./placeBet";
 import "./style.scss";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const BollywoodTableDesktop = () => {
   const [show, setShow] = useState(false);
@@ -79,7 +79,7 @@ const BollywoodTableDesktop = () => {
 
   return (
     <>
-      <PlacedBet show={show1} setShow={setShow1} />
+      <MobilePlacedBet show={show1} setShow={setShow1} />
       <Row>
         <Col md={8}>
           <div className="horseRacingTab">
