@@ -32,7 +32,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
           <div
             className={
               isMobile
-                ? "row-flex-mobile"
+                ? "row-flex-mobile p-2"
                 : "d-sm-flex flex-row justify-content-center align-items-center mb-2"
             }
           >
@@ -80,12 +80,12 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
           <div
             className={
               isMobile
-                ? "row-flex-mobile"
+                ? "row-flex-mobile p-2"
                 : "d-sm-flex flex-row justify-content-center align-items-center mb-2"
             }
           >
             {data?.result?.win === "21" && (
-              <div className="casino-winner-icon">
+              <div className="casino-winner-icon" style={{marginLeft:"9px"}}>
                 <FaTrophy size={30} color="#169733" />
               </div>
             )}
@@ -124,12 +124,12 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
           <div
             className={
               isMobile
-                ? "row-flex-mobile"
-                : "d-sm-flex flex-row justify-content-center align-items-center mb-2"
+                ? "row-flex-mobile p-2"
+                : "d-sm-flex flex-row justify-content-center align-items-center mb-2 "
             }
           >
             {data?.result?.win === "31" && (
-              <div className="casino-winner-icon">
+              <div className="casino-winner-icon" style={{marginLeft:"9px"}}>
                 <FaTrophy size={30} color="#169733" />
               </div>
             )}
