@@ -93,7 +93,7 @@ const CricketMatch20Mobile = () => {
   }, [lastActivityTime, show]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.teen20}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.cmatch20}`);
   }, []);
 
   type ProfitLoss = {
