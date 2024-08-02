@@ -130,7 +130,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -302,8 +302,8 @@ export const cardGamesType: any = {
   amarAkbarAnthony: "aaa",
   btable: "btable",
   worli: "worli2",
-  cardj:"3cardj",
-  cmatch20:"cmatch20",
+  cardj: "3cardj",
+  cmatch20: "cmatch20",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -331,8 +331,8 @@ export const cardGamesId: any = {
   aaa: 3056,
   btable: 3041,
   worli: 3040,
-  cardj:3040,
-  cmatch20:3045,
+  cardj: 3040,
+  cmatch20: 3045,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -1563,7 +1563,7 @@ export const casinoIcons = [
     name: "20-20 DTL",
   },
   {
-    url: "",
+    url: "/teen9",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "Test Teenpatti",
@@ -1717,7 +1717,13 @@ export const card3 = {
     { id: 19, url: "", imgSrc: ballbyball, name: "BALL BY BALL" },
     { id: 20, url: "/superover", imgSrc: superover, name: "SUPER OVER" },
     { id: 21, url: "/cricketv3", imgSrc: crick5, name: "5 5 Cricket" },
-    { id: 22, url: "/cmatch20", imgSrc: "https://dataobj.ecoassetsservice.com/casino-icons/lc/cmatch20.jpg", name: "Cricket Match 20-20" },
+    {
+      id: 22,
+      url: "/cmatch20",
+      imgSrc:
+        "https://dataobj.ecoassetsservice.com/casino-icons/lc/cmatch20.jpg",
+      name: "Cricket Match 20-20",
+    },
   ],
   baccarat: [
     {
@@ -1757,15 +1763,14 @@ export const card3 = {
     },
   ],
 
-  "3cardj":[
+  "3cardj": [
     {
       id: 26,
       url: "/3cardj",
-      imgSrc:
-        "https://dataobj.ecoassetsservice.com/casino-icons/lc/3cardj.jpg",
+      imgSrc: "https://dataobj.ecoassetsservice.com/casino-icons/lc/3cardj.jpg",
       name: "3 Cards Judgement",
     },
-  ]
+  ],
 };
 export const dragonTigerCards = [
   {

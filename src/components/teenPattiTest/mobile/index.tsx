@@ -24,9 +24,7 @@ const TeenPattiMobile = () => {
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [showInactivityModal, setShowInactivityModal] = useState(false);
-  const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId.teenTest}`
-  );
+  const [videoFrameId, setVideoFrameId] = useState("");
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
