@@ -1,10 +1,31 @@
-import { Suspense } from "react";
+// import { Suspense } from "react";
+// import { LoaderOnRefresh } from "../components/commonComponent/loader";
+// // ==============================|| LOADABLE - LAZY LOADING ||============================== //
+// const Loadable = (Component: any) => (props: any) =>
+//   (
+//     <Suspense fallback={<LoaderOnRefresh />}>
+//       <Component {...props} />
+//     </Suspense>
+//   );
+// export default Loadable;
+import  { lazy, Suspense } from "react";
 import { LoaderOnRefresh } from "../components/commonComponent/loader";
-// ==============================|| LOADABLE - LAZY LOADING ||============================== //
-const Loadable = (Component: any) => (props: any) =>
-  (
-    <Suspense fallback={<LoaderOnRefresh />}>
-      <Component {...props} />
-    </Suspense>
+
+const Loadable = (importFunc: any) => {
+  const LazyComponent = lazy(() =>
+    importFunc().catch((error: any) => {
+      console.error("Failed to fetch dynamically imported module", error);
+      // Handle the error, e.g., show an error message
+      window.location.reload();
+      throw error;
+    })
   );
+
+  return (props: any) => (
+    <Suspense fallback={<LoaderOnRefresh />}>
+          <LazyComponent {...props} />
+         </Suspense>
+  );
+};
+
 export default Loadable;

@@ -9,7 +9,6 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import Bookmaker from "./bookmaker";
@@ -17,6 +16,7 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 import SuperoverResult from "./superOver";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -172,13 +172,13 @@ const SuperoverDesktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
               <Col>
-                <div className="sidebar-box place-bet-container super-over-rule">
+                <div className="sidebar-box place-bet-container super-over-rule mt-2">
                   <div className="marketHeader">
                     ENGLAND vs RSA Inning's Card Rules
                   </div>

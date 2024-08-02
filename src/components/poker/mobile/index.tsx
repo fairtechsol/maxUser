@@ -152,6 +152,7 @@ const Poker6Mobile = () => {
                 <div className="dt20TabBox-poker">
                   <div className="dt20tabheaderp">
                     <div
+                    onClick={() => setActiveCardTab(false)}
                       style={{
                         height: "100%",
                         borderTop: !activeCardTab ? "2px solid white" : "none",
@@ -161,7 +162,7 @@ const Poker6Mobile = () => {
                     >
                       <span
                         style={{ fontSize: "12px", fontWeight: "bold" }}
-                        onClick={() => setActiveCardTab(false)}
+                        
                       >
                         HANDS
                       </span>
@@ -173,6 +174,7 @@ const Poker6Mobile = () => {
                       |{" "}
                     </span>
                     <div
+                     onClick={() => setActiveCardTab(true)}
                       style={{
                         height: "100%",
                         borderTop: activeCardTab ? "2px solid white" : "none",
@@ -182,7 +184,7 @@ const Poker6Mobile = () => {
                     >
                       <span
                         style={{ fontSize: "12px", fontWeight: "bold" }}
-                        onClick={() => setActiveCardTab(true)}
+                       
                       >
                         PATTERN
                       </span>
@@ -210,7 +212,7 @@ const Poker6Mobile = () => {
                     />
                   </div>
                 )}
-                <div style={{ width: "100%", marginTop: "10px" }}>
+                <div style={{ width: "100%"}}>
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["T", "1"]}

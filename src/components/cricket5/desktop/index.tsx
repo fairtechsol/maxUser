@@ -9,13 +9,13 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import MarketComponent from "./betTable";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import Crick5Result from "./cric5Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -166,7 +166,7 @@ const Cricket5Desktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />
@@ -175,7 +175,7 @@ const Cricket5Desktop = () => {
               className="no-scrollbar"
                 style={{ height: "350px", overflow: "auto" }}
               >
-                <div className="casino-title" style={{ position: "relative" }}>
+                <div className="casino-title mt-2" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table d-flex">

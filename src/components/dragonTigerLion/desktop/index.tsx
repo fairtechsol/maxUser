@@ -32,10 +32,10 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "./dragonCard";
 import SmoothDropdownModal from "./minMaxModal";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
@@ -713,7 +713,7 @@ const DragonTigerDesktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />

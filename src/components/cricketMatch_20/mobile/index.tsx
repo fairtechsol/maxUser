@@ -2,7 +2,7 @@ import { Table } from "react-bootstrap";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
+import { crick20rules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
@@ -14,9 +14,9 @@ import Teen20Result from "../desktop/teenCard";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import ScoreBox from "./scoreBox";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 const CricketMatch20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -197,7 +197,7 @@ const CricketMatch20Mobile = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div style={{}}>
                 <div className="mt-2" style={{ width: "100%" }}>
@@ -324,7 +324,7 @@ const CricketMatch20Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <RulesModal show={show} setShow={setShow} rule={crick20rules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

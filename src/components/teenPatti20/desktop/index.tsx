@@ -11,11 +11,11 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -442,13 +442,13 @@ const TeenPattiDesktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
               <Col>
-                <div className="casino-title" style={{ position: "relative" }}>
+                <div className="casino-title mt-2" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table">

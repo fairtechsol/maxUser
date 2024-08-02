@@ -10,11 +10,11 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import DynamicTable from "./betTable";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import Poker20Result from "./poker20";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const Poker20Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -163,7 +163,7 @@ const Poker20Desktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />

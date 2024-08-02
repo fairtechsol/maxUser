@@ -356,7 +356,7 @@ const PlacedBet = () => {
                       <input
                         // disabled
                         placeholder=""
-                        className="p-0 w-75 br-0"
+                        className="p-0 w-75 br-0 title-13"
                         style={{ border: "2px solid #f0f0f0" }}
                         value={matchOddRate}
                       />
@@ -381,7 +381,12 @@ const PlacedBet = () => {
                       </div>
                     </div>
                   </td>
-                  <td width={"20%"}>
+                  <td width={"25%"}>
+                  <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        height: "24px",
+                      }}>
                     <input
                       value={stake}
                       min={0}
@@ -399,9 +404,10 @@ const PlacedBet = () => {
                       type="number"
                       onKeyDown={handleKeyDown}
                       placeholder=""
-                      className="p-0 h-25 w-100 br-0"
+                      className="p-0 w-100 br-0 title-13"
                       style={{ border: "2px solid #f0f0f0" }}
                     />
+                    </div>
                   </td>
                   <td width={"18%"} style={{ textAlign: "end" }}>
                     <span className="f500" style={{ textAlign: "end" }}>

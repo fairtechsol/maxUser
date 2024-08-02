@@ -436,7 +436,7 @@ const TeenPattiMobile = () => {
                 </div>
                 <div>
                   <div
-                    className="casino-title"
+                    className="casino-title mt-2"
                     style={{ position: "relative" }}
                   >
                     <span>Rules</span>

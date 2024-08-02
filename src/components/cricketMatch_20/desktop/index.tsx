@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
+import { crick20rules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
@@ -12,11 +12,11 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import MyBet from "./myBet";
-import PlacedBet from "./placeBet";
 import "./style.scss";
 import Teen20Result from "./teenCard";
-import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import ScoreBox from "../mobile/scoreBox";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 const CricketMatch20Desktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -182,7 +182,7 @@ const CricketMatch20Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <InnerLoader />
+              <LoaderOnRefresh />
             ) : (
               <div style={{}}>
                 <div className="teenPatti-table-container">
@@ -299,7 +299,7 @@ const CricketMatch20Desktop = () => {
               }}
             >
               <Col md={12}>
-                <PlacedBet />
+                <DesktopPlacedBet />
               </Col>
               <Col md={12}>
                 <MyBet />
@@ -327,7 +327,7 @@ const CricketMatch20Desktop = () => {
                     </tbody>
                   </Table>
                 </div> */}
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
+                <RulesModal show={show} setShow={setShow} rule={crick20rules} />
               </Col>
             </Row>
           </Container>

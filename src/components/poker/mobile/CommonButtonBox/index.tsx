@@ -41,17 +41,12 @@ const CommonButtonBox = ({
           <span style={{ fontSize: "10px", fontWeight: "bolder" }}>
             {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
           </span>
-          <div className="title-10">
-            <span>Min:</span>
-            <span>{min}</span>
-            <span>Max:</span>
-            <span>{max}</span>
-          </div>
+          
           <div></div>
         </div>
       </div>
 
-      <div className="d-flex justify-content-start w-100">
+      <div className="d-flex justify-content-between w-100">
         <span
           style={{ fontSize: "12px", justifyContent: "flex-start" }}
           className={`${
@@ -66,6 +61,12 @@ const CommonButtonBox = ({
         >
           {isNaN(value3) ? 0 : value3}
         </span>
+        <div className="title-10">
+            <span>Min:</span>
+            <span>{min}</span>
+            <span>Max:</span>
+            <span>{max}</span>
+          </div>
       </div>
     </div>
   );
