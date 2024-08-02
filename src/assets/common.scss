@@ -25,7 +25,12 @@ html {
 }
 
 .bg-orange-400 {
-  background-color: rgba(245, 198, 203, 0.85); /* Example hexadecimal color code for orange */
+  background-color: rgba(
+    245,
+    198,
+    203,
+    0.85
+  ); /* Example hexadecimal color code for orange */
 }
 
 .bg-indigo-600 {
@@ -47,7 +52,7 @@ body {
 body table.table {
   margin-bottom: 0;
 }
-.whitespace{
+.whitespace {
   // background-color: black;
   position: absolute;
   width: 100vw;
@@ -75,10 +80,10 @@ body table.table {
   background-color: $green;
   border-radius: 50%;
 }
-.react-date-picker{
+.react-date-picker {
   border: 0;
 }
-.react-date-picker__wrapper{
+.react-date-picker__wrapper {
   height: 38px;
   border-radius: 5px !important;
   border: 1px solid $gray !important;
@@ -109,7 +114,7 @@ body table.table {
   height: auto !important;
 }
 .modalFull-90.customModal .modal-dialog {
-  width: 90vw;
+  width: 96%;
   max-width: none;
 }
 
@@ -132,10 +137,10 @@ body table.table {
 .blinking-text {
   animation: blink 1s infinite;
 }
-.color{
+.color {
   background-color: $primary !important;
 }
-.font{
+.font {
   font-size: 12px;
 }
 // mobile tabs
@@ -149,7 +154,7 @@ body table.table {
   color: $white !important;
   border-right: 1px solid $white !important;
   width: 100% !important;
-  div{
+  div {
     width: 100% !important;
   }
 }
@@ -230,9 +235,9 @@ body select {
   font-size: 14px !important;
 }
 
-.top-tab{
+.top-tab {
   font-size: 14px;
- }
+}
 
 // mobile and desktop tab bar
 .m-match-list-tabs {
@@ -249,7 +254,7 @@ body select {
   // overflow-y: hidden;
   color: $black;
   width: 90%;
-  white-space: nowrap;  
+  white-space: nowrap;
   &.active {
     background-color: $primary !important;
     color: $white !important;
@@ -265,7 +270,7 @@ body select {
   padding: 10px;
   border: 0.5px $white solid;
 }
-.matchListTab.active{
+.matchListTab.active {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -274,18 +279,18 @@ body select {
   padding: 10px;
   border: 0.5px $white solid;
 }
-.nav-tab{
+.nav-tab {
   padding-left: 0px;
   padding-right: 0px;
-margin-left: 0%;
-margin-right: 0%;
+  margin-left: 0%;
+  margin-right: 0%;
 }
-.navtab-name{
+.navtab-name {
   font-weight: 410;
 }
-.tab-img{
+.tab-img {
   display: block;
-  margin: 0 auto; 
+  margin: 0 auto;
   height: 24px;
   width: 28px;
 }
@@ -300,11 +305,11 @@ margin-right: 0%;
   text-align: start;
   font-size: 11px;
 }
-.reportBody{
+.reportBody {
   font-size: 12px;
 }
 
-.reportBody-a{
+.reportBody-a {
   font-size: 0.6rem;
 }
 
@@ -384,21 +389,21 @@ img {
   vertical-align: middle;
   border-style: none;
 }
-.cardResultBoxContainer{
+.cardResultBoxContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
 }
-.cardResultBoxHeader{
+.cardResultBoxHeader {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 6px 8px;
-  background-color: #ffc742D9;
+  background-color: #ffc742d9;
 }
-.cardResultBoxRound{
+.cardResultBoxRound {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -409,7 +414,7 @@ img {
   margin-bottom: 10px;
   padding-right: 5px;
 }
-.cardResultCircle{
+.cardResultCircle {
   cursor: pointer;
   width: 30px;
   height: 30px;
@@ -431,7 +436,7 @@ img {
 .casino-header .round a {
   color: #000000;
   text-decoration: underline;
- font-size: 12px;
+  font-size: 12px;
 }
 
 .casino-title {
@@ -446,12 +451,16 @@ img {
   // height: 100%;
 }
 
-.casino-container table tbody, .casino-container table thead, .casino-container table tbody tr, .casino-container table thead tr {
+.casino-container table tbody,
+.casino-container table thead,
+.casino-container table tbody tr,
+.casino-container table thead tr {
   position: relative;
   width: 100%;
 }
 
-.table-bordered td, .table-bordered th {
+.table-bordered td,
+.table-bordered th {
   border: 1px solid #aaa;
 }
 .back {
@@ -479,7 +488,8 @@ img {
   font-size: 14px;
 }
 
-.table-bordered thead td, .table-bordered thead th {
+.table-bordered thead td,
+.table-bordered thead th {
   border-bottom-width: 1px;
 }
 .table thead th {
@@ -492,27 +502,30 @@ img {
   font-size: 14px;
 }
 
-.table td, .table th {
+.table td,
+.table th {
   padding: 2px;
   vertical-align: middle;
 }
 
-.table thead th tr b{
+.table thead th tr b {
   padding-left: 2px;
 }
-.b-table-sticky-header, .table-responsive, [class*=table-responsive-] {
+.b-table-sticky-header,
+.table-responsive,
+[class*="table-responsive-"] {
   margin-bottom: 0.5rem;
 }
 .rules-table .table {
   background-color: rgb(241 245 248);
 }
-.box-7{
+.box-7 {
   font-size: 12px;
 }
-.box-3{
+.box-3 {
   font-size: 12px;
 }
-.coupon-table .tablebg{
+.coupon-table .tablebg {
   background-color: rgb(241 245 248);
 }
 
@@ -525,11 +538,11 @@ img {
   color: #303030;
   line-height: 1;
 }
-.coupon-table thead td tr{
+.coupon-table thead td tr {
   padding: 4px 0;
-
 }
-.back, .back-color {
+.back,
+.back-color {
   background-color: #72bbef !important;
 }
 .box-2 {
@@ -548,13 +561,13 @@ img {
   vertical-align: middle;
   padding-right: 15px;
 }
-.fontb{
+.fontb {
   font-size: 9px;
   padding: 0px;
   line-height: 0.8;
 }
 
-.horseRacingTabHeader{
+.horseRacingTabHeader {
   width: 100%;
   height: 12%;
   background-color: #ffc742;
@@ -562,7 +575,7 @@ img {
   justify-content: space-between;
   padding: 6px 8px;
 }
-.horseRacingTabHeader-m{
+.horseRacingTabHeader-m {
   width: 100%;
   // height: 12%;
   background-color: #ffc742;
@@ -598,7 +611,7 @@ img {
   font-size: 18px;
   top: 0;
 }
-.resultModalHeader{
+.resultModalHeader {
   width: 100%;
   height: 70px;
   padding: 10px;
@@ -609,7 +622,7 @@ img {
   align-items: center;
   color: #ffffff;
 }
-.resultModalSubHead{
+.resultModalSubHead {
   width: 100%;
   height: 50px;
   padding: 8px;
@@ -629,25 +642,25 @@ img {
 .locked {
   position: relative;
 }
-.row-flex-mobile{
+.row-flex-mobile {
   display: flex;
-  flex-direction: row
+  flex-direction: row;
 }
 .loader-inner {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  }
+}
 
-  .loader-mobile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 2rem;
-    }
-  
+.loader-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
 /* ===== for title ====  */
 .title-46 {
   font-size: 46px !important;
@@ -734,7 +747,7 @@ img {
 .w-35 {
   width: 35% !important;
 }
-.form-check-input[type=radio] {
+.form-check-input[type="radio"] {
   border-radius: 50% !important;
 }
 // #middleView-playerDiv {
