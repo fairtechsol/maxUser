@@ -131,8 +131,6 @@ const CricketMatch20Desktop = () => {
     }
   }, [dragonTigerDetail]);
 
-  
-
   return (
     <>
       <Row>
