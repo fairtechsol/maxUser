@@ -128,7 +128,7 @@ const CricketMatch20Desktop = () => {
         ]
       );
       setProfitLossData(parsedData);
-    }
+    } else setProfitLossData({});
   }, [dragonTigerDetail]);
 
   return (

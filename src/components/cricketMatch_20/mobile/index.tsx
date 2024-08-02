@@ -113,7 +113,7 @@ const CricketMatch20Mobile = () => {
         ]
       );
       setProfitLossData(parsedData);
-    }
+    } else setProfitLossData({});
   }, [dragonTigerDetail]);
 
   return (
