@@ -28,6 +28,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       })
     );
   }
+
+  
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
