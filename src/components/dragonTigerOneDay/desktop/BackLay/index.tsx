@@ -121,7 +121,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           >
             <span>Dragon</span>
             <span
-              className={
+              className={`f400 title-14 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
@@ -141,7 +141,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                       : ""
                     : ""
                   : ""
-              }
+              }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[
@@ -174,7 +174,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           >
             <span>Tiger</span>
             <span
-              className={
+              className={`f400 title-14 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
@@ -194,7 +194,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                       : ""
                     : ""
                   : ""
-              }
+              }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[

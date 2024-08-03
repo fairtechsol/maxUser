@@ -101,7 +101,9 @@ const DragonTigerOneDay = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay));
+        dispatch(
+          getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay)
+        );
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
         socketService.card.leaveMatchRoom(cardGamesType.dragonTigerOneDay);
