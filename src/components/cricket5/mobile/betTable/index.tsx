@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { useEffect } from "react";
 const fancyData = [
   { nation: "Ind Over 3", backOdd: "-", layOdd: "-", suspended: true },
 ];
@@ -29,6 +29,15 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
       })
     );
   };
+
+  
+  useEffect(() => {
+    if (
+      odds?.[0]?.status === "SUSPENDED" || odds?.[0]?.status === "CLOSED" || odds?.[0]?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [odds?.[0]?.status,odds?.[0]?.team1?.b1]);
 
   return (
     <div className="casino-detail detail-page-container-c position-relative">

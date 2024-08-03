@@ -193,6 +193,19 @@ const OddEven = ({ data, odds }: any) => {
     setFirstArr(mergedArray);
     setSecondArr(mergedArray2);
   }, [data]);
+
+  useEffect(() => {
+    if (
+      data?.dragonData?.[0].gstatus === "0" ||
+      data?.dragonData?.[0]?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [
+    data?.dragonData?.[0].gstatus,
+    data?.dragonData?.[0]?.b1,
+  ]);
+
   return (
     <>
       <div
