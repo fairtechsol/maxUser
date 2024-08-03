@@ -120,6 +120,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
                           : ""
                         : ""
                     }`}
+                    style={{zIndex:"111"}}
                   >
                     {data?.profitLoss
                       ? data?.profitLoss[
@@ -160,6 +161,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
                           : ""
                         : ""
                     }`}
+                    style={{zIndex:"111"}}
                   >
                     {data?.profitLoss
                       ? data?.profitLoss[
