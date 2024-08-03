@@ -388,7 +388,7 @@ const DragonTigerDesktop = () => {
                       </div>
                       <div
                         className={`dtlsubTitle ${
-                          item?.dragon?.gstatus === "0" ? "suspended" : ""
+                          item?.dragon?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
                           item?.dragon?.gstatus === "1"
@@ -398,7 +398,7 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.dragon?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px" }}
+                          style={{ fontSize: "12px",zIndex:"100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -430,7 +430,7 @@ const DragonTigerDesktop = () => {
                       </div>
                       <div
                         className={`dtlsubTitle ${
-                          item?.tiger?.gstatus === "0" ? "suspended" : ""
+                          item?.tiger?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
                           item?.tiger?.gstatus === "1"
@@ -440,7 +440,7 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.tiger?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px" }}
+                          style={{ fontSize: "12px",zIndex:"100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -472,7 +472,7 @@ const DragonTigerDesktop = () => {
                       </div>
                       <div
                         className={`dtlsubTitle ${
-                          item?.lion?.gstatus === "0" ? "suspended" : ""
+                          item?.lion?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
                           item?.lion?.gstatus === "1"
@@ -482,7 +482,7 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.lion?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px" }}
+                          style={{ fontSize: "12px",zIndex:"100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -559,7 +559,7 @@ const DragonTigerDesktop = () => {
                       </div>
                       <div
                         className={`dtlsubTitle ${
-                          item?.dragon?.gstatus === "0" ? "suspended" : ""
+                          item?.dragon?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
                           item?.dragon?.gstatus === "1"
@@ -569,7 +569,7 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.dragon?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px" }}
+                          style={{ fontSize: "12px",zIndex:"100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -601,7 +601,7 @@ const DragonTigerDesktop = () => {
                       </div>
                       <div
                         className={`dtlsubTitle ${
-                          item?.tiger?.gstatus === "0" ? "suspended" : ""
+                          item?.tiger?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
                           item?.tiger?.gstatus === "1"
@@ -611,7 +611,7 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.tiger?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px" }}
+                          style={{ fontSize: "12px",zIndex:"100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -644,7 +644,7 @@ const DragonTigerDesktop = () => {
                       </div>
                       <div
                         className={`dtlsubTitle ${
-                          item?.lion?.gstatus === "0" ? "suspended" : ""
+                          item?.lion?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
                           item?.lion?.gstatus === "1"
@@ -654,7 +654,7 @@ const DragonTigerDesktop = () => {
                       >
                         {item?.lion?.b1 || 0}
                         <span
-                          style={{ fontSize: "12px" }}
+                          style={{ fontSize: "12px",zIndex:"100" }}
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[

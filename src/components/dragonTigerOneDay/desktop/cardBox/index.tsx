@@ -41,13 +41,13 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
     <div
       key={index}
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}{" "}
-      {data?.profitLoss &&
-        data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] && (
+      {/* {data?.profitLoss &&
+        data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] && ( */}
           <span
             className={
               data?.profitLoss
@@ -64,6 +64,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
                   : ""
                 : ""
             }
+            style={{zIndex:"100"}}
           >
             {data?.profitLoss
               ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
@@ -71,7 +72,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
                 : 0
               : 0}
           </span>
-        )}
+        {/* )} */}
     </div>
   );
   return (

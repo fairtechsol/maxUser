@@ -42,7 +42,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
     <div
       key={index}
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -62,6 +62,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
               : ""
             : ""
         }`}
+        style={{zIndex:"111"}}
       >
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]

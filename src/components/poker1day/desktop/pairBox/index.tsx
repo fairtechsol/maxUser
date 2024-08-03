@@ -158,6 +158,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
                     : ""
                   : ""
               }`}
+              style={{zIndex:"111"}}
             >
               {data?.profitLoss
                 ? data?.profitLoss[
@@ -229,6 +230,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
                     : ""
                   : ""
               }`}
+              style={{zIndex:"111"}}
             >
               {data?.profitLoss
                 ? data?.profitLoss[
@@ -271,6 +273,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
                     : ""
                   : ""
               }`}
+              style={{zIndex:"111"}}
             >
               {data?.profitLoss
                 ? data?.profitLoss[

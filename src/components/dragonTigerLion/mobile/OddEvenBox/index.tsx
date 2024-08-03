@@ -238,7 +238,7 @@ const OddEven = ({ data, odds }: any) => {
                   </div>
                   <div
                     className={`dtlsubTitle-m ${
-                      item?.data?.gstatus === "0" ? "suspended" : ""
+                      item?.data?.gstatus === "0" ? "lock" : ""
                     }`}
                     onClick={() =>
                       item?.data?.gstatus === "1" ? handleBet(item?.data) : null
@@ -246,7 +246,7 @@ const OddEven = ({ data, odds }: any) => {
                   >
                     {item?.data?.b1 || 0}
                     <span
-                      style={{ fontSize: "12px" }}
+                      style={{ fontSize: "12px",zIndex:"100" }}
                       className={
                         data?.profitLoss
                           ? data?.profitLoss[
@@ -315,7 +315,7 @@ const OddEven = ({ data, odds }: any) => {
                   </div>
                   <div
                     className={`dtlsubTitle-m ${
-                      item?.data?.gstatus === "0" ? "suspended" : ""
+                      item?.data?.gstatus === "0" ? "lock" : ""
                     }`}
                     onClick={() =>
                       item?.data?.gstatus === "1" ? handleBet(item?.data) : null
@@ -323,7 +323,7 @@ const OddEven = ({ data, odds }: any) => {
                   >
                     {item?.data?.b1 || 0}
                     <span
-                      style={{ fontSize: "12px" }}
+                      style={{ fontSize: "12px",zIndex:"100" }}
                       className={
                         data?.profitLoss
                           ? data?.profitLoss[
