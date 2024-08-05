@@ -16,6 +16,7 @@ import TeenTestResult from "./teenCard";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import RulesComponent from "../../commonComponent/rulesComponent";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -319,6 +320,7 @@ const TeenPattiDesktop = () => {
                                     : ""
                                   : ""
                               }
+                              style={{zIndex:"100"}}
                             >
                               {dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
@@ -363,6 +365,7 @@ const TeenPattiDesktop = () => {
                                     : ""
                                   : ""
                               }
+                              // style={{zIndex:"100"}}
                             >
                               {dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
@@ -407,6 +410,7 @@ const TeenPattiDesktop = () => {
                                     : ""
                                   : ""
                               }
+                              style={{zIndex:"100"}}
                             >
                               {dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
@@ -462,28 +466,27 @@ const TeenPattiDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <div className="casino-title mt-2" style={{ position: "relative" }}>
-                  <span>Rules</span>
-                </div>
-                <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                          Pair Plus
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rules.map((item, index) => (
-                        <tr key={index}>
-                          <td className="box-7">{item.label}</td>
-                          <td className="box-3">{item.value}</td>
+                <RulesComponent>
+                  <div className="table-responsive rules-table">
+                    <Table bordered>
+                      <thead>
+                        <tr>
+                          <th colSpan={2} className="box-10 text-center">
+                            Pair Plus
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </div>
+                      </thead>
+                      <tbody>
+                        {rules.map((item, index) => (
+                          <tr key={index}>
+                            <td className="box-7">{item.label}</td>
+                            <td className="box-3">{item.value}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div>
+                </RulesComponent>
                 <RulesModal show={show} setShow={setShow} rule={tprules} />
               </Col>
             </Row>

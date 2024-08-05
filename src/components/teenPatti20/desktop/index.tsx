@@ -244,6 +244,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
+                          style={{zIndex:"100"}}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -289,6 +290,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
+                          style={{zIndex:"100"}}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[

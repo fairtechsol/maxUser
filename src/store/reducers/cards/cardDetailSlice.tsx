@@ -364,12 +364,15 @@ const cardDetail = createSlice({
             : [];
 
           // Categorize players based on their nat value prefix
-          const categorizedPlayers = players?.reduce((acc: any, player: any) => {
-            const category = player?.nat?.split(" ")[0]; // Extract category prefix
-            if (!acc[category]) acc[category] = [];
-            acc[category].push(player);
-            return acc;
-          }, {});
+          const categorizedPlayers = players?.reduce(
+            (acc: any, player: any) => {
+              const category = player?.nat?.split(" ")[0]; // Extract category prefix
+              if (!acc[category]) acc[category] = [];
+              acc[category].push(player);
+              return acc;
+            },
+            {}
+          );
 
           // Create chunks of 6 players for each category
           const chunkedPlayers = Object.values(categorizedPlayers)
@@ -574,10 +577,16 @@ const cardDetail = createSlice({
         const leftBoard = t2.slice(0, 5);
         const rightBoard = t2.slice(5, 9);
 
+        let newProfitLoss =
+          t1[0]?.mid === 0 ||
+          (t1[0]?.mid !== state.dragonTigerDetail?.videoInfo?.mid &&
+            state.dragonTigerDetail?.videoInfo?.mid !== undefined)
+            ? {}
+            : { ...state.dragonTigerDetail.profitLoss };
+
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
-          profitLoss:
-            t1[0]?.mid === 0 ? {} : { ...state.dragonTigerDetail.profitLoss },
+          profitLoss: newProfitLoss,
           videoInfo,
           leftBoard,
           rightBoard,

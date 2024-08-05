@@ -46,6 +46,7 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
                   : ""
                 : ""
             }`}
+            style={{zIndex:"100"}}
           >
             {" "}
             {dragonTigerDetail?.profitLoss
@@ -88,6 +89,7 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
                   : ""
                 : ""
             }`}
+            style={{zIndex:"100"}}
           >
             {" "}
             {dragonTigerDetail?.profitLoss

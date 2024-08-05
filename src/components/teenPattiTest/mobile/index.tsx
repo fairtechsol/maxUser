@@ -342,6 +342,7 @@ const TeenPattiMobile = () => {
                                       : ""
                                     : ""
                                 }
+                                style={{zIndex:"100"}}
                               >
                                 {dragonTigerDetail?.profitLoss
                                   ? dragonTigerDetail?.profitLoss[
@@ -438,6 +439,7 @@ const TeenPattiMobile = () => {
                                       : ""
                                     : ""
                                 }
+                                style={{zIndex:"100"}}
                               >
                                 {dragonTigerDetail?.profitLoss
                                   ? dragonTigerDetail?.profitLoss[

@@ -42,11 +42,34 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
     <div
       key={index}
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}
+      <span
+        className={`f400 title-14${
+          data?.profitLoss
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] >
+                0
+                ? "color-green"
+                : data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] < 0
+                ? "color-red"
+                : ""
+              : ""
+            : ""
+        }`}
+        style={{zIndex:"111"}}
+      >
+        {data?.profitLoss
+          ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            : 0
+          : 0}
+      </span>
     </div>
   );
   return (
@@ -63,7 +86,6 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
       >
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
         >
           <div className="dtlTitle" style={{ fontWeight: "400" }}>
             Min:{" "}
@@ -104,39 +126,8 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
         >
           <div className="dtlTitle">Dragon </div>
-          {/* <div
-            className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
-              dragonEvenOdd?.[0]?.gstatus === "CLOSED" ||
-              dragonEvenOdd?.[0]?.b1 === "0.00"
-                ? "suspended"
-                : ""
-                :  dragonRedBlack?.[0]?.gstatus === "CLOSED" ||
-                dragonRedBlack?.[0]?.b1 === "0.00"
-                  ? "suspended"
-                  : ""
-            }`}
-          >
-            {title1 === "even"
-              ? dragonEvenOdd?.[0]?.b1
-              : dragonRedBlack?.[0]?.b1}
-          </div>
-          <div className={`dtlsubTitle back-BackGround ${ title2 === "odd" ?
-              dragonEvenOdd?.[0]?.gstatus === "CLOSED" ||
-              dragonEvenOdd?.[0]?.b1 === "0.00"
-                ? "suspended"
-                : ""
-                :  dragonRedBlack?.[0]?.gstatus === "CLOSED" ||
-                dragonRedBlack?.[0]?.b1 === "0.00"
-                  ? "suspended"
-                  : ""
-            }`}>
-            {title2 === "odd"
-              ? dragonEvenOdd?.[1]?.b1
-              : dragonRedBlack?.[1]?.b1}
-          </div> */}
           {renderItem(
             title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0],
             0
@@ -148,33 +139,8 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
         >
           <div className="dtlTitle"> Tiger</div>
-          {/* <div className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
-              tigerEvenOdd?.[0]?.gstatus === "CLOSED" ||
-              tigerEvenOdd?.[0]?.b1 === "0.00"
-                ? "suspended"
-                : ""
-                :  tigerRedBlack?.[0]?.gstatus === "CLOSED" ||
-                tigerRedBlack?.[0]?.b1 === "0.00"
-                  ? "suspended"
-                  : ""
-            }`}>
-            {title1 === "even" ? tigerEvenOdd?.[0]?.b1 : tigerRedBlack?.[0]?.b1}
-          </div>
-          <div className={`dtlsubTitle back-BackGround ${ title2 === "odd" ?
-              tigerEvenOdd?.[0]?.gstatus === "CLOSED" ||
-              tigerEvenOdd?.[0]?.b1 === "0.00"
-                ? "suspended"
-                : ""
-                :  tigerRedBlack?.[0]?.gstatus === "CLOSED" ||
-                tigerRedBlack?.[0]?.b1 === "0.00"
-                  ? "suspended"
-                  : ""
-            }`}>
-            {title2 === "odd" ? tigerEvenOdd?.[1]?.b1 : tigerRedBlack?.[1]?.b1}
-          </div> */}
           {renderItem(
             title1 === "even" ? tigerEvenOdd?.[0] : tigerRedBlack?.[0],
             0

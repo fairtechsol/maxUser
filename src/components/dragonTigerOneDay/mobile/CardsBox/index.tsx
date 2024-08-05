@@ -42,11 +42,34 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
     <div
       key={index}
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}
+      <span
+        className={`f400 title-14${
+          data?.profitLoss
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] >
+                0
+                ? "color-green"
+                : data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] < 0
+                ? "color-red"
+                : ""
+              : ""
+            : ""
+        }`}
+        style={{zIndex:"111"}}
+      >
+        {data?.profitLoss
+          ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            : 0
+          : 0}
+      </span>
     </div>
   );
   return (
@@ -63,7 +86,6 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
       >
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
         >
           <div className="dtlTitle">
             {" "}
@@ -97,7 +119,6 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
         >
           <div className="dtlTitle">Dragon </div>
           {renderItem(dragonData?.[4], 4)}
@@ -107,7 +128,6 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
         >
           <div className="dtlTitle"> Tiger</div>
           {renderItem(tigerData?.[4], 4)}
