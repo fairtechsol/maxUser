@@ -96,6 +96,13 @@ const TeenPattiMobile = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenOpen}`);
   }, []);
 
+  useEffect(() => {
+    if (players?.player1?.gstatus === "0" || players?.player1?.rate === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [players?.player1?.gstatus,players?.player1?.rate]);
+  
   return (
     <>
       <div>

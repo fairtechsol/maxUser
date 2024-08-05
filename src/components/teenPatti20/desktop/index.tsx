@@ -109,7 +109,7 @@ const TeenPattiDesktop = () => {
   }, []);
 
   useEffect(() => {
-    if (playerA?.[0]?.gstatus === "SUSPENDED" || playerA?.[0]?.b1 === "0.00") {
+    if (playerA?.[0]?.gstatus === "0" || playerA?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
     } 
     

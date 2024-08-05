@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
+import { useEffect } from "react";
 // import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import "./style.scss";
@@ -28,6 +29,14 @@ const CardBox = ({ title, data, cards, odds }: any) => {
   };
   // const arCards = cards?.ar?.split(",");
   // const brCards = cards?.br?.split(",");
+
+  useEffect(() => {
+    if (odds?.gstatus === "0" || odds?.rate === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [odds?.gstatus,odds?.rate]);
+
   return (
     <>
        
