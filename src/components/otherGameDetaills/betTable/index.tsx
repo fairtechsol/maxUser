@@ -101,7 +101,15 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           data={data}
           backLayCount={backLayCount}
           matchDetails={otherMatchDetails}
-        //   title={title}
+          //   title={title}
+        />
+      ) : type === MatchType.FIRST_HALF_GOAL ? (
+        <OverUnderMarket
+          minMax={formattedMinMax(data?.minBet, data?.maxBet)}
+          data={data}
+          backLayCount={backLayCount}
+          matchDetails={otherMatchDetails}
+          title={title}
         />
       ) : type === MatchType.SET_WINNER ? (
         <SetWinner
@@ -110,7 +118,7 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           backLayCount={backLayCount}
           matchDetails={otherMatchDetails}
         />
-      ) :  (
+      ) : (
         <HTFTMarketTable
         //   data={data}
         //   title={title}
