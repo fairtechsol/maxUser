@@ -19,6 +19,16 @@ const MarketRow = ({ title, odds, data, matchDetails, team }: any) => {
       })
     );
   };
+
+  const profitLoss =
+    team === "teamA"
+      ? matchDetails?.profitLossDataMatch?.[
+          profitLossDataForMatchConstants[data.type]?.A
+        ]
+      : matchDetails?.profitLossDataMatch?.[
+          profitLossDataForMatchConstants[data.type]?.B
+        ];
+
   return (
     <div className="market-row-o" data-title="ACTIVE">
       <div className="market-nation-detail-o">
@@ -26,25 +36,15 @@ const MarketRow = ({ title, odds, data, matchDetails, team }: any) => {
         <div
           className={`market-nation-book-o ${
             team === "teamA"
-              ? matchDetails?.profitLossDataMatch[
-                  profitLossDataForMatchConstants[data?.type]?.A
-                ] < 0
+              ? profitLoss < 0
                 ? "color-red"
                 : "color-green"
-              : matchDetails?.profitLossDataMatch[
-                  profitLossDataForMatchConstants[data?.type]?.B
-                ] < 0
+              : profitLoss < 0
               ? "color-red"
               : "color-green"
           }`}
         >
-          {team === "teamA"
-            ? matchDetails?.profitLossDataMatch[
-                profitLossDataForMatchConstants[data?.type]?.A
-              ] ?? 0
-            : matchDetails?.profitLossDataMatch[
-                profitLossDataForMatchConstants[data?.type]?.B
-              ] ?? 0}
+          {profitLoss}
         </div>
       </div>
       {odds?.map((odd: any) => (
@@ -87,6 +87,56 @@ const MarketRow = ({ title, odds, data, matchDetails, team }: any) => {
 };
 
 const OverUnderMarket2 = ({ minMax, data, matchDetails }: any) => {
+  const getOdds = (teamIndex: number) => [
+    {
+      id: 1,
+      className: "back2",
+      value: data?.runners?.[teamIndex]?.ex?.availableToBack?.[2]?.price,
+      volume: data?.runners?.[teamIndex]?.ex?.availableToBack?.[2]?.size,
+      pI: 2,
+      type: "back",
+    },
+    {
+      id: 2,
+      className: "back1",
+      value: data?.runners?.[teamIndex]?.ex?.availableToBack?.[1]?.price,
+      volume: data?.runners?.[teamIndex]?.ex?.availableToBack?.[1]?.size,
+      pI: 1,
+      type: "back",
+    },
+    {
+      id: 3,
+      className: "back",
+      value: data?.runners?.[teamIndex]?.ex?.availableToBack?.[0]?.price,
+      volume: data?.runners?.[teamIndex]?.ex?.availableToBack?.[0]?.size,
+      pI: 0,
+      type: "back",
+    },
+    {
+      id: 4,
+      className: "lay",
+      value: data?.runners?.[teamIndex]?.ex?.availableToLay?.[0]?.price,
+      volume: data?.runners?.[teamIndex]?.ex?.availableToLay?.[0]?.size,
+      pI: 0,
+      type: "lay",
+    },
+    {
+      id: 5,
+      className: "lay1",
+      value: data?.runners?.[teamIndex]?.ex?.availableToLay?.[1]?.price,
+      volume: data?.runners?.[teamIndex]?.ex?.availableToLay?.[1]?.size,
+      pI: 1,
+      type: "lay",
+    },
+    {
+      id: 6,
+      className: "lay2",
+      value: data?.runners?.[teamIndex]?.ex?.availableToLay?.[2]?.price,
+      volume: data?.runners?.[teamIndex]?.ex?.availableToLay?.[2]?.size,
+      pI: 2,
+      type: "lay",
+    },
+  ];
   return (
     <div className="game-market-o market-4-o">
       <div className="market-header-o d-flex">
@@ -116,112 +166,14 @@ const OverUnderMarket2 = ({ minMax, data, matchDetails }: any) => {
           data={data}
           matchDetails={matchDetails}
           team="teamA"
-          odds={[
-            {
-              id: 1,
-              className: "back2",
-              value: data?.runners?.[0]?.ex?.availableToBack?.[2]?.price,
-              volume: data?.runners?.[0]?.ex?.availableToBack?.[2]?.size,
-              pI: 2,
-              type: "back",
-            },
-            {
-              id: 2,
-              className: "back1",
-              value: data?.runners?.[0]?.ex?.availableToBack?.[1]?.price,
-              volume: data?.runners?.[0]?.ex?.availableToBack?.[1]?.size,
-              pI: 1,
-              type: "back",
-            },
-            {
-              id: 3,
-              className: "back",
-              value: data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,
-              volume: data?.runners?.[0]?.ex?.availableToBack?.[0]?.size,
-              pI: 0,
-              type: "back",
-            },
-            {
-              id: 4,
-              className: "lay",
-              value: data?.runners?.[0]?.ex?.availableToLay?.[0]?.price,
-              volume: data?.runners?.[0]?.ex?.availableToLay?.[0]?.size,
-              pI: 0,
-              type: "lay",
-            },
-            {
-              id: 5,
-              className: "lay1",
-              value: data?.runners?.[0]?.ex?.availableToLay?.[1]?.price,
-              volume: data?.runners?.[0]?.ex?.availableToLay?.[1]?.size,
-              pI: 1,
-              type: "lay",
-            },
-            {
-              id: 6,
-              className: "lay2",
-              value: data?.runners?.[0]?.ex?.availableToLay?.[2]?.price,
-              volume: data?.runners?.[0]?.ex?.availableToLay?.[2]?.size,
-              pI: 2,
-              type: "lay",
-            },
-          ]}
+          odds={getOdds(0)}
         />
         <MarketRow
           title="Over"
           data={data}
           matchDetails={matchDetails}
           team="teamB"
-          odds={[
-            {
-              id: 1,
-              className: "back2",
-              value: data?.runners?.[1]?.ex?.availableToBack?.[2]?.price,
-              volume: data?.runners?.[1]?.ex?.availableToBack?.[2]?.size,
-              pI: 2,
-              type: "back",
-            },
-            {
-              id: 2,
-              className: "back1",
-              value: data?.runners?.[1]?.ex?.availableToBack?.[1]?.price,
-              volume: data?.runners?.[1]?.ex?.availableToBack?.[1]?.size,
-              pI: 1,
-              type: "back",
-            },
-            {
-              id: 3,
-              className: "back",
-              value: data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,
-              volume: data?.runners?.[1]?.ex?.availableToBack?.[0]?.size,
-              pI: 0,
-              type: "back",
-            },
-            {
-              id: 4,
-              className: "lay",
-              value: data?.runners?.[1]?.ex?.availableToLay?.[0]?.price,
-              volume: data?.runners?.[1]?.ex?.availableToLay?.[0]?.size,
-              pI: 0,
-              type: "lay",
-            },
-            {
-              id: 5,
-              className: "lay1",
-              value: data?.runners?.[1]?.ex?.availableToLay?.[1]?.price,
-              volume: data?.runners?.[1]?.ex?.availableToLay?.[1]?.size,
-              pI: 1,
-              type: "lay",
-            },
-            {
-              id: 6,
-              className: "lay2",
-              value: data?.runners?.[1]?.ex?.availableToLay?.[2]?.price,
-              volume: data?.runners?.[1]?.ex?.availableToLay?.[2]?.size,
-              pI: 2,
-              type: "lay",
-            },
-          ]}
+          odds={getOdds(1)}
         />
       </div>
     </div>
