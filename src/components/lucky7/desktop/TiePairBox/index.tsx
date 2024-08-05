@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
 import { seven } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min =lowHigh?.[0]?.min;
@@ -29,7 +29,13 @@ const TiePairBox = ({ lowHigh, data }: any) => {
     );
   }
 
-  
+  useEffect(() => {
+    if (lowHigh?.[0]?.gstatus === "0" ||lowHigh?.[0]?.rate === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.rate]);
+
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
