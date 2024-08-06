@@ -10,7 +10,7 @@ const OddEven = ({ data, card, odds }: any) => {
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
-      matchId:  data?.id,
+      matchId: data?.id,
       odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
@@ -27,7 +27,6 @@ const OddEven = ({ data, card, odds }: any) => {
     );
   };
 
-  
   return (
     <>
       <div className="oddEvenContainer">
@@ -39,7 +38,7 @@ const OddEven = ({ data, card, odds }: any) => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-around",
-                alignItems:"center"
+                alignItems: "center",
               }}
             >
               <CommonButtonBox
@@ -84,12 +83,13 @@ const OddEven = ({ data, card, odds }: any) => {
           </>
         ) : (
           <>
+            {" "}
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-around",
-                alignItems:"center"
+                alignItems: "center",
               }}
             >
               <CommonButtonBox

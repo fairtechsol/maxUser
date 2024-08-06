@@ -26,12 +26,12 @@ const CommonButtonBox = ({
         onClick={() => !lock ? handleBet(data) : null}
       >
         <span>
-          {value2 === "icon1" ? (
+          {value2 === "Red" ? (
             <>
               <ImDiamonds color="#ff0000" />
               <BiSolidHeart color="#ff0000" />
             </>
-          ) : value2 === "icon2" ? (
+          ) : value2 === "Black" ? (
             <>
               <ImClubs color="#000000" />
               <GiSpades color="#000000" />
