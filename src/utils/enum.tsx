@@ -11,4 +11,5 @@ export const MatchType = {
   SESSION_MARKET: "sessionMarket",
   API_SESSION_MARKET: "apiSessionMarket",
   SET_WINNER: "setWinner",
+  HALF_TIME: "halfTime",
 };
