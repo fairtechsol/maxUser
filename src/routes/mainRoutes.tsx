@@ -46,10 +46,10 @@ const TeenPatti1D = Loadable(() => import("../pages/teenPatti1D"));
 const TeenPattiTest = Loadable(() => import("../pages/teenPattiTest"));
 const TeenPattiOpen = Loadable(() => import("../pages/teenPattiOpen"));
 const Lucky7 = Loadable(() => import("../pages/lucky7"));
-// const AmarAkbarAnthony = Loadable(
-//   () => import("../pages/amarAkbarAnthony")
-// );
-// const BollywoodTable = Loadable(() => import("../pages/bollywoodTable"));
+const AmarAkbarAnthony = Loadable(
+  () => import("../pages/amarAkbarAnthony")
+);
+const BollywoodTable = Loadable(() => import("../pages/bollywoodTable"));
 const Superover = Loadable(() => import("../pages/superover"));
 const DragonTiger20 = Loadable(() => import("../pages/dragon20"));
 const DragonTigerSecond20 = Loadable(
@@ -70,7 +70,7 @@ const Abj1 = Loadable(() => import("../pages/abj"));
 const Cards32B = Loadable(() => import("../pages/cards32B"));
 const Race20 = Loadable(() => import("../pages/race20"));
 // const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
-// const CardJ = Loadable(() => import("../pages/3cardJ"));
+const CardJ = Loadable(() => import("../pages/3cardJ"));
 
 const CricketMatch20 = Loadable(
   () => import("../pages/cricketMatch_20")
@@ -255,23 +255,23 @@ const MainRoutes = {
     //   element: <Baccarat1 />,
     // },
 
-    // {
-    //   path: "aaa",
-    //   element: <AmarAkbarAnthony />,
-    // },
-    // {
-    //   path: "btable",
-    //   element: <BollywoodTable />,
-    // },
+    {
+      path: "aaa",
+      element: <AmarAkbarAnthony />,
+    },
+    {
+      path: "btable",
+      element: <BollywoodTable />,
+    },
 
     // {
     //   path: "worli2",
     //   element: <Worli />,
     // },
-    // {
-    //   path: "3cardj",
-    //   element: <CardJ/>,
-    // },
+    {
+      path: "3cardj",
+      element: <CardJ/>,
+    },
     {
       path: "cmatch20",
       element: <CricketMatch20/>,

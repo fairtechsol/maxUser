@@ -16,6 +16,8 @@ import TiePairBox from "./TiePairBox";
 import Lucky7Result from "../desktop/lucky7Card";
 import "./style.scss";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
+import TiePairBox2 from "./TiePairBox2";
 
 const BollywoodTableDesktop = () => {
   const [show, setShow] = useState(false);
@@ -27,7 +29,9 @@ const BollywoodTableDesktop = () => {
     `${cardUrl}${cardGamesId.btable}`
   );
 
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const [show1, setShow1] = useState(false);
 
   const handleClose = () => {
@@ -123,86 +127,88 @@ const BollywoodTableDesktop = () => {
                 />
               </div>
             </div>
-            <div>
-              <div style={{ width: "100%", margin: "" }}>
-                <TiePairBox
-                  lowHigh={dragonTigerDetail?.players}
-                  data={dragonTigerDetail}
-                />
+            {loading ? (
+              <LoaderOnRefresh />
+            ) : (
+              <div>
+                <div style={{ width: "100%", margin: "" }}>
+                  <TiePairBox
+                    lowHigh={dragonTigerDetail?.players}
+                    data={dragonTigerDetail}
+                  />
+                  <div
+                    style={{
+                      width: "100%",
+                      marginTop: "20px",
+                      borderTop: "1px solid #aaa",
+                    }}
+                  >
+                    <TiePairBox2
+                      lowHigh={[dragonTigerDetail?.luckOdds]}
+                      data={dragonTigerDetail}
+                    />
+                  </div>
+                </div>
 
                 <div
                   style={{
                     width: "100%",
-                    marginTop: "20px",
-                    borderTop: "1px solid #aaa",
+                    background: "#EEEEEE",
+                    paddingLeft: "4px",
+                    paddingRight: "4px",
+                    marginTop: "10px",
                   }}
                 >
-                  <TiePairBox
-                    lowHigh={[dragonTigerDetail?.luckOdds]}
+                  <OddEven
+                    name={"DRAGON"}
+                    odds={dragonTigerDetail?.seven}
+                    data={dragonTigerDetail}
+                    card={true}
+                  />
+                </div>
+
+                <div
+                  style={{
+                    width: "100%",
+                    background: "#EEEEEE",
+                    paddingLeft: "4px",
+                    paddingRight: "4px",
+                    marginTop: "10px",
+                  }}
+                >
+                  <OddEven
+                    name={"TIGER"}
+                    odds={dragonTigerDetail?.redBlack}
+                    card={false}
                     data={dragonTigerDetail}
                   />
                 </div>
-              </div>
 
-              <div
-                style={{
-                  width: "100%",
-                  background: "#EEEEEE",
-                  paddingLeft: "4px",
-                  paddingRight: "4px",
-                  marginTop: "10px",
-                }}
-              >
-                <OddEven
-                  name={"DRAGON"}
-                  odds={dragonTigerDetail?.seven}
-                  data={dragonTigerDetail}
-                  card={true}
-                />
-              </div>
+                <div
+                  style={{
+                    width: "100%",
+                    background: "#EEEEEE",
+                    paddingLeft: "4px",
+                    paddingRight: "4px",
+                    marginTop: "10px",
+                  }}
+                >
+                  <CardBox
+                    cardData={dragonTigerDetail?.luckyCards}
+                    data={dragonTigerDetail}
+                    rate={dragonTigerDetail?.luckyCards?.rate}
+                  />
+                </div>
 
-              <div
-                style={{
-                  width: "100%",
-                  background: "#EEEEEE",
-                  paddingLeft: "4px",
-                  paddingRight: "4px",
-                  marginTop: "10px",
-                }}
-              >
-                <OddEven
-                  name={"TIGER"}
-                  odds={dragonTigerDetail?.redBlack}
-                  card={false}
-                  data={dragonTigerDetail}
-                />
+                <div style={{ width: "100%", margin: "" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "B", "C", "D", "E", "F"]}
+                    type={cardGamesType.btable}
+                  />
+                </div>
               </div>
-
-              <div
-                style={{
-                  width: "100%",
-                  background: "#EEEEEE",
-                  paddingLeft: "4px",
-                  paddingRight: "4px",
-                  marginTop: "10px",
-                }}
-              >
-                <CardBox
-                  cardData={dragonTigerDetail?.luckyCards}
-                  data={dragonTigerDetail}
-                  rate={dragonTigerDetail?.luckyCards?.rate}
-                />
-              </div>
-
-              <div style={{ width: "100%", margin: "" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["A", "B", "C", "D", "E", "F"]}
-                  type={cardGamesType.btable}
-                />
-              </div>
-            </div>
-
+            )}
             <RulesModal show={show} setShow={setShow} rule={luckyrules} />
           </div>
         </Col>

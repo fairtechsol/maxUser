@@ -24,9 +24,7 @@ import { cardGamesType } from "../../utils/constants";
 
 const BollywoodTable = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   const setMatchRatesInRedux = (event: any) => {
     try {
@@ -56,7 +54,6 @@ const BollywoodTable = () => {
     }
   };
 
-
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
@@ -79,10 +76,12 @@ const BollywoodTable = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [socket, dragonTigerDetail]);
+  }, [socket, dragonTigerDetail?.id]);
 
   useEffect(() => {
     try {
+      dispatch(getButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.btable));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.btable);
         socketService.card.getCardRatesOff(cardGamesType.btable);
@@ -98,13 +97,11 @@ const BollywoodTable = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.btable));
     } catch (e) {
       console.error(e);
     }
   }, []);
-  
+
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
@@ -123,7 +120,7 @@ const BollywoodTable = () => {
     };
   }, []);
 
-  return  <BollywoodTableComponentList />;
+  return <BollywoodTableComponentList />;
 };
 
 export default BollywoodTable;

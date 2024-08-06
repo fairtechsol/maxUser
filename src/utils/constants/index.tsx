@@ -130,7 +130,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -1740,17 +1740,17 @@ export const card3 = {
   bollywoodCasino: [
     {
       id: 23,
-      url: "",
+      url: "/aaa",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1016.webp",
       name: "AMAR AKHBAR ANTHONY",
     },
     {
       id: 24,
-      url: "",
+      url: "/btable",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1015.webp",
-      name: "AMAR AKHBAR ANTHONY",
+      name: "BOLLYWOOD TABLE",
     },
   ],
   worli: [

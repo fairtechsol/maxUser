@@ -10,7 +10,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
 
   const handleBet = (item: any, type: any) => {
     let team = {
-      bettingType: "BACK",
+      bettingType: type,
       matchId: data?.id,
       odd: type === "BACK" ? item?.b1 : item?.l1,
       stake: 0,
@@ -92,9 +92,13 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value2={"Amar"}
           value3={
             data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
+              ? JSON.parse(data?.profitLoss[`${data?.videoInfo?.mid}_1_card`])[
+                  "amar"
                 ]
+                ? JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["amar"]
+                : 0
               : 0
           }
           width={"100%"}
@@ -109,9 +113,13 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value2={"Akbar"}
           value3={
             data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
+              ? JSON.parse(data?.profitLoss[`${data?.videoInfo?.mid}_1_card`])[
+                  "akbar"
                 ]
+                ? JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["akbar"]
+                : 0
               : 0
           }
           width={"100%"}
@@ -126,9 +134,13 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value2={"Anthony"}
           value3={
             data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
+              ? JSON.parse(data?.profitLoss[`${data?.videoInfo?.mid}_1_card`])[
+                  "anthony"
                 ]
+                ? JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["anthony"]
+                : 0
               : 0
           }
           width={"100%"}
