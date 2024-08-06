@@ -16,6 +16,7 @@ import { formattedMinMax } from "../../../utils/formatMinMax";
 import OverUnderMarket from "./overUnder";
 import SetWinner from "./setWinner";
 import OverUnderMarket2 from "./overunder2";
+import FootballMatchOdds2 from "./matchOdds2";
 interface BetTableProps {
   title: string;
   type: string;
@@ -89,6 +90,13 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           matchDetails={otherMatchDetails}
         />
       ) : type === MatchType.MATCH_ODDS ? (
+        <FootballMatchOdds2
+          minMax={formattedMinMax(data?.minBet, data?.maxBet)}
+          data={data}
+          backLayCount={backLayCount}
+          matchDetails={otherMatchDetails}
+        />
+      ) : type === MatchType.HALF_TIME ? (
         <FootballMatchOdds
           minMax={formattedMinMax(data?.minBet, data?.maxBet)}
           data={data}

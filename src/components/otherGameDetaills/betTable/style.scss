@@ -90,7 +90,7 @@
 .market-row-o {
     background-color: #f2f2f2;
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
 }
 
 .market-header-o, .market-row-o {
@@ -153,6 +153,83 @@
     color: #097c93;
     font-weight: bold;
 }
+.suspended-table-o{
+    position: relative;
+}
+.suspended-table-o::after {
+    content: attr(data-title);
+    background-color: #373636d6;
+    color: #ff0000;
+    font-weight: bolder;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    cursor: not-allowed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none !important;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+  .suspended-o {
+    position: relative;
+  }
+  .suspended-o::after {
+    content: attr(data-title);
+    background-color: #373636d6;
+    color: #ff0000;
+    font-weight: bolder;
+    font-size: 16px;
+    text-transform: uppercase;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    cursor: not-allowed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none !important;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .market-4-o .market-odd-box-o {
+      display: flex;
+      width: 72%;
+    }
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .market-odd-box-o {
+      display: flex;
+      width: 40%;
+    }
+  }
+
+@media only screen and (max-width: 991px) {
+    .market-4-o .suspended-row-o::after, .market-4-o .suspended-table-o::after {
+        width: 100%;
+    }
+}
+.market-4-o .suspended-row-o:after, .market-4-o .suspended-table-o:after {
+    width: 100%;
+}
+@media only screen and (max-width: 991px) {
+    .suspended-row-o::after, .suspended-table-o::after {
+        font-weight: 600;
+        font-family: roboto condensed, sans-serif;
+        font-size: 16px;
+        color: #ff3c3c;
+    }
+}
+
 
 
 @media only screen and (max-width: 767px) {
@@ -217,7 +294,7 @@
 }
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
     .market-odd-box-o {
-        width: 60px;
+        width: 80px;
     }
 }
 
