@@ -41,7 +41,6 @@ const OddEven = ({ data, odds }: any) => {
   };
   const renderItem = (item: any, index: number) => (
     <div
-      key={index}
       className={`dtlsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
@@ -63,7 +62,7 @@ const OddEven = ({ data, odds }: any) => {
               : ""
             : ""
         }`}
-        style={{zIndex:"999"}}
+        style={{ zIndex: "999" }}
       >
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]

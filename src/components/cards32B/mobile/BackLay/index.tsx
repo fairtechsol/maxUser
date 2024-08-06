@@ -40,7 +40,6 @@ const BackLay = ({ matchOddsData, data }: any) => {
   const renderItem = (item: any, index: number, type: any) =>
     type === "back" ? (
       <div
-        key={index}
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
         }`}
@@ -52,7 +51,6 @@ const BackLay = ({ matchOddsData, data }: any) => {
       </div>
     ) : (
       <div
-        key={index}
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
         }`}
@@ -82,7 +80,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           <div className="dtlTitle">
             {isMobile ? (
               <>
-                <span style={{fontWeight:"400"}}>
+                <span style={{ fontWeight: "400" }}>
                   Min:{min} Max:{max}
                 </span>
               </>
