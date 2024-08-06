@@ -61,7 +61,7 @@ const WorliMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-  
+
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
   }, []);
@@ -181,7 +181,7 @@ const WorliMobile = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R", "R", "R"]}
+                    name={["R"]}
                     type={cardGamesType.andarBahar1}
                   />
                 </div>

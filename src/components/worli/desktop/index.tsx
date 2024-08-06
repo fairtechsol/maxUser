@@ -156,7 +156,7 @@ const WorliDesktop = () => {
                 <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R", "R", "R"]}
+                    name={["R"]}
                     type={cardGamesType.worli}
                   />
                 </div>

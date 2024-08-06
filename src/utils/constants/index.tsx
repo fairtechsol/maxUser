@@ -1756,7 +1756,7 @@ export const card3 = {
   worli: [
     {
       id: 25,
-      url: "",
+      url: "/worli2",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1013.webp",
       name: "Worli",

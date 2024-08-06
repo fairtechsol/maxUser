@@ -103,10 +103,10 @@ const cardGames = [
     value: "3cardj",
     label: "3 Card Judgement",
   },
-  // {
-  //   value: "worli2",
-  //   label: "Instant Worli",
-  // },
+  {
+    value: "worli2",
+    label: "Instant Worli",
+  },
   {
     value: "poker",
     label: "Poker 1-day",

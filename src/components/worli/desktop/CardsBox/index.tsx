@@ -30,7 +30,6 @@ const CardBox = ({ title, data, cards, odds }: any) => {
   // const brCards = cards?.br?.split(",");
   return (
     <>
-       
       <div
         className="abjcardContainer"
         style={{ backgroundColor: "#72bbef", border: "0.5px solid #fff" }}
@@ -45,7 +44,13 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             paddingTop: "17px",
             paddingBottom: "17px",
           }}
-          onClick={()=>handleBet({sid:data.worli.sid,rate:"9",nat:odds === "L1" ? "1 Single" : "6 Single"})}
+          onClick={() =>
+            handleBet({
+              sid: data.worli.sid,
+              rate: "9",
+              nat: odds === "L1" ? "1 Single" : "6 Single",
+            })
+          }
         >
           <span className="style">{odds === "L1" ? 1 : 6}</span>
         </div>
@@ -57,7 +62,13 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             alignItems: "center",
             borderRight: "0.5px solid #fff",
           }}
-          onClick={()=>handleBet({sid:data.worli.sid,rate:"9",nat:odds === "L1" ? "2 Single" : "7 Single"})}
+          onClick={() =>
+            handleBet({
+              sid: data.worli.sid,
+              rate: "9",
+              nat: odds === "L1" ? "2 Single" : "7 Single",
+            })
+          }
         >
           <span className="style">{odds === "L1" ? 2 : 7}</span>
         </div>
@@ -69,7 +80,13 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             alignItems: "center",
             borderRight: "0.5px solid #fff",
           }}
-          onClick={()=>handleBet({sid:data.worli.sid,rate:"9",nat:odds === "L1" ? "3 Single" : "8 Single"})}
+          onClick={() =>
+            handleBet({
+              sid: data.worli.sid,
+              rate: "9",
+              nat: odds === "L1" ? "3 Single" : "8 Single",
+            })
+          }
         >
           <span className="style">{odds === "L1" ? 3 : 8}</span>
         </div>
@@ -81,7 +98,13 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             alignItems: "center",
             borderRight: "0.5px solid #fff",
           }}
-          onClick={()=>handleBet({sid:data.worli.sid,rate:"9",nat:odds === "L1" ? "4 Single" : "9 Single"})}
+          onClick={() =>
+            handleBet({
+              sid: data.worli.sid,
+              rate: "9",
+              nat: odds === "L1" ? "4 Single" : "9 Single",
+            })
+          }
         >
           <span className="style">{odds === "L1" ? 4 : 9}</span>
         </div>
@@ -93,7 +116,13 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             alignItems: "center",
             borderRight: "0.5px solid #fff",
           }}
-          onClick={()=>handleBet({sid:data.worli.sid,rate:"9",nat:odds === "L1" ? "5 Single" : "0 Single"})}
+          onClick={() =>
+            handleBet({
+              sid: data.worli.sid,
+              rate: "9",
+              nat: odds === "L1" ? "5 Single" : "0 Single",
+            })
+          }
         >
           <span className="style">{odds === "L1" ? 5 : 0}</span>
         </div>
@@ -106,7 +135,13 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             borderRight: "0.5px solid #fff",
             flexDirection: "column",
           }}
-          onClick={()=>handleBet({sid:data.worli.sid,rate:"9",nat:odds === "L1" ? "Line1 Single" : "Line2 Single"})}
+          onClick={() =>
+            handleBet({
+              sid: data.worli.sid,
+              rate: "9",
+              nat: odds === "L1" ? "Line1 Single" : "Line2 Single",
+            })
+          }
         >
           <span className="fs-6 fw-bold ">
             {odds === "L1" ? "Line1" : "Line2"}
@@ -122,7 +157,13 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             borderRight: "0.5px solid #fff",
             flexDirection: "column",
           }}
-          onClick={()=>handleBet({sid:data.worli.sid,rate:"9",nat:odds === "L1" ? "ODD Single" : "EVEN Single"})}
+          onClick={() =>
+            handleBet({
+              sid: data.worli.sid,
+              rate: "9",
+              nat: odds === "L1" ? "ODD Single" : "EVEN Single",
+            })
+          }
         >
           <span className="fs-6 fw-bold">{odds === "L1" ? "ODD" : "EVEN"}</span>
           {odds === "L1" ? <div>1|3|5|7|9</div> : <div>2|4|6|8|0</div>}
