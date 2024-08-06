@@ -149,7 +149,7 @@ const AmarAkbarAnthonyMobile = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
-                <div style={{ width: "100%", marginTop: "30px" }}>
+                <div style={{ width: "100%", marginTop: "35px" }}>
                   <TiePairBox
                     lowHigh={dragonTigerDetail?.players}
                     data={dragonTigerDetail}

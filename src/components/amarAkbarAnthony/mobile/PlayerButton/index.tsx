@@ -31,7 +31,6 @@ const PlayerButton = ({
               style={{
                 fontSize: "16px",
                 fontWeight: "bolder",
-                color: "red",
                 paddingLeft: "4px",
               }}
             >
@@ -45,7 +44,6 @@ const PlayerButton = ({
               style={{
                 fontSize: "16px",
                 fontWeight: "bolder",
-                color: "red",
                 paddingLeft: "4px",
               }}
             >
@@ -59,7 +57,6 @@ const PlayerButton = ({
               style={{
                 fontSize: "16px",
                 fontWeight: "bolder",
-                color: "red",
                 paddingLeft: "4px",
               }}
             >
