@@ -95,6 +95,18 @@ const TeenPattiMobile = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.casinoWar}`);
   }, []);
 
+  useEffect(() => {
+    if (
+      dragonTigerDetail?.players?.[0]?.[0]?.gstatus === "0" ||
+      dragonTigerDetail?.players?.[0]?.[0]?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [
+    dragonTigerDetail?.players?.[0]?.[0]?.gstatus,
+    dragonTigerDetail?.players?.[0]?.[0]?.b1,
+  ]);
+
   return (
     <>
       <div>

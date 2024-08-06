@@ -137,6 +137,7 @@ const WorliDesktop = () => {
                     display: "flex",
                     flexDirection: "column",
                   }}
+                  
                 >
                   <CardBox
                     odds={"L1"}

@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import PlayerButton from "../PlayerButton";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = lowHigh?.[0]?.min;
@@ -29,6 +29,14 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       })
     );
   };
+
+  useEffect(() => {
+    if (lowHigh?.[0]?.gstatus === "CLOSED" ||lowHigh?.[0]?.b1 === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.b1]);
+
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">

@@ -72,7 +72,7 @@ const OddEven = ({ data, card, odds }: any) => {
                 }
                 width={"80%"}
                 handleBet={handleBet}
-                lock={odds?.[0]?.gstatus === "CLOSED" ? true : false}
+                lock={odds?.[0]?.gstatus === "CLOSED" ||odds?.[0]?.b1 === "0.00" ? true : false}
                 data={odds?.[0]}
               />
               <CommonButtonBox
@@ -87,7 +87,7 @@ const OddEven = ({ data, card, odds }: any) => {
                 }
                 width={"80%"}
                 handleBet={handleBet}
-                lock={odds?.[1]?.gstatus === "CLOSED" ? true : false}
+                lock={odds?.[1]?.gstatus === "CLOSED" ||odds?.[1]?.b1 === "0.00"? true : false}
                 data={odds?.[1]}
               />
             </div>
@@ -137,7 +137,7 @@ const OddEven = ({ data, card, odds }: any) => {
                 }
                 width={"80%"}
                 handleBet={handleBet}
-                lock={odds?.[0]?.gstatus === "CLOSED" ? true : false}
+                lock={odds?.[0]?.gstatus === "CLOSED" ||odds?.[0]?.b1 === "0.00" ? true : false}
                 data={odds?.[0]}
               />
               <CommonButtonBox
@@ -152,7 +152,7 @@ const OddEven = ({ data, card, odds }: any) => {
                 }
                 width={"80%"}
                 handleBet={handleBet}
-                lock={odds?.[1]?.gstatus === "CLOSED" ? true : false}
+                lock={odds?.[1]?.gstatus === "CLOSED" ||odds?.[1]?.b1 === "0.00" ? true : false}
                 data={odds?.[1]}
               />
             </div>

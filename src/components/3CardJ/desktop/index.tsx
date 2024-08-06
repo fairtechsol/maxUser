@@ -72,6 +72,9 @@ const CardJDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+  
+  
+ 
 
   return (
     <>

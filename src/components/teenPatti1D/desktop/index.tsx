@@ -110,6 +110,13 @@ const TeenPattiDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenOneDay}`);
   }, []);
 
+  useEffect(() => {
+    if (playerA?.[0]?.gstatus === "SUSPENDED" || playerA?.[0]?.b1 === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [playerA?.[0]?.gstatus,playerA?.[0]?.b1]);
+
   return (
     <>
       <Row>

@@ -3,7 +3,7 @@ import { AppDispatch, RootState } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useDispatch } from "react-redux";
 import isMobile from "../../../../utils/screenDimension";
-
+import { useEffect } from "react";
 const PairBox = ({ odds, data, min, max }: any) => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const dispatch: AppDispatch = useDispatch();
@@ -28,6 +28,14 @@ const PairBox = ({ odds, data, min, max }: any) => {
     );
     // console.log('team',team)
   };
+
+  useEffect(() => {
+    if (odds?.[0]?.gstatus === "CLOSED" ||odds?.[0]?.b1 === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [odds?.[0]?.gstatus,odds?.[0]?.b1]);
+
   return (
     <>
       <div className="poker-table-row">

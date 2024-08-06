@@ -31,6 +31,7 @@ const CricketMatch20Desktop = () => {
   const [profitLossData, setProfitLossData] = useState<
     Record<string, ProfitLoss>
   >({});
+
   const { leftBoard, rightBoard } = dragonTigerDetail;
 
   const handleClose = () => {
@@ -130,6 +131,13 @@ const CricketMatch20Desktop = () => {
       setProfitLossData(parsedData);
     } else setProfitLossData({});
   }, [dragonTigerDetail]);
+
+  useEffect(() => {
+    if (leftBoard?.[0]?.gstatus === "SUSPENDED" || leftBoard?.[0]?.b1 ==="0.00") {
+      dispatch(selectedBetAction(""));
+    } else {
+    }
+  }, [leftBoard?.[0]?.gstatus,leftBoard?.[0]?.b1]);
 
   return (
     <>
@@ -233,30 +241,32 @@ const CricketMatch20Desktop = () => {
                         boxShadow: "0 0 3px #aaa",
                       }}
                     >
-                      {rightBoard?.map((item: any, index: any) => (
-                        <div>
-                          <ScoreBox
-                            teamA="Team A"
-                            teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}
-                            teamAOver={dragonTigerDetail?.videoInfo?.C4}
-                            teamB="Team B"
-                            teamBScore={`${dragonTigerDetail?.videoInfo?.C5}/${dragonTigerDetail?.videoInfo?.C6}`}
-                            teamBOver={dragonTigerDetail?.videoInfo?.C7}
-                            ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                              7 + index
-                            }.png`}
-                            backOdds={item.b1}
-                            layOdds={item.l1}
-                            handleBet={handleBet}
-                            item={item}
-                            runs={
-                              Object.keys(profitLossData).length > 0
-                                ? profitLossData[String(7 + index)]?.run ?? 0
-                                : 0
-                            }
-                          />
-                        </div>
-                      ))}
+                      {rightBoard?.map((item: any, index: any) => {
+                        return (
+                          <div>
+                            <ScoreBox
+                              teamA="Team A"
+                              teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}
+                              teamAOver={dragonTigerDetail?.videoInfo?.C4}
+                              teamB="Team B"
+                              teamBScore={`${dragonTigerDetail?.videoInfo?.C5}/${dragonTigerDetail?.videoInfo?.C6}`}
+                              teamBOver={dragonTigerDetail?.videoInfo?.C7}
+                              ballIconUrl={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
+                                7 + index
+                              }.png`}
+                              backOdds={item.b1}
+                              layOdds={item.l1}
+                              handleBet={handleBet}
+                              item={item}
+                              runs={
+                                Object.keys(profitLossData).length > 0
+                                  ? profitLossData[String(7 + index)]?.run ?? 0
+                                  : 0
+                              }
+                            />
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                   <div className="ticker-container">
@@ -299,6 +309,7 @@ const CricketMatch20Desktop = () => {
               <Col md={12}>
                 <DesktopPlacedBet />
               </Col>
+
               <Col md={12}>
                 <DesktopMyBet />
               </Col>

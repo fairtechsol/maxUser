@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import SmoothDropdownModal from "../minMaxModal";
-
+import { useEffect } from "react";
 const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
@@ -78,6 +78,19 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         )}
     </div>
   );
+
+  useEffect(() => {
+    if (
+      data?.dragonData?.[0]?.gstatus === "SUSPENDED" ||
+      data?.dragonData?.[0]?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [
+    data?.dragonData?.[0].gstatus,
+    data?.dragonData?.[0]?.b1,
+  ]);
+
   return (
     <div className="w-100">
       <div

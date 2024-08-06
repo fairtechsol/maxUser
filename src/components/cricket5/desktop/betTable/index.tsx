@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { useEffect } from "react";
 // const bookmakerData = [
 //   { nation: 'AUS', backOdd: '1.3', backVolume: '300000.00', layOdd: '1.34', layVolume: '300000.00', suspended: true },
 //   { nation: 'IND', backOdd: '-', backVolume: '0.00', layOdd: '-', layVolume: '0.00', suspended: true },
@@ -36,7 +37,14 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
   const team1 = odds?.[0];
   const team2 = odds?.[1];
 
-  // console.log('first',odds)
+  useEffect(() => {
+    if (
+      team1?.status === "SUSPENDED" || team1?.status === "CLOSED" || team1?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [team1?.status,team1?.b1]);
+
   return (
     <div className="casino-detail detail-page-container-c position-relative w-100">
       <div className="game-market-c market-2">

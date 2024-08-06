@@ -67,7 +67,8 @@ const SuperoverDesktop = () => {
     });
 
     const intervalId = setInterval(checkInactivity, 1000);
-
+    
+    
     return () => {
       activityEvents.forEach((event) => {
         window.removeEventListener(event, resetTimer);

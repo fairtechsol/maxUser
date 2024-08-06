@@ -132,6 +132,12 @@ const TeenPattiDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenTest}`);
   }, []);
 
+  useEffect(() => {
+    if (!sections?.[0]?.dstatus || sections?.[0]?.drate === "0.00") {
+      dispatch(selectedBetAction(""));
+    }
+  }, [sections?.[0]?.dstatus, sections?.[0]?.drate]);
+
   return (
     <>
       <Row>
@@ -462,7 +468,10 @@ const TeenPattiDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <div className="casino-title mt-2" style={{ position: "relative" }}>
+                <div
+                  className="casino-title mt-2"
+                  style={{ position: "relative" }}
+                >
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table">
