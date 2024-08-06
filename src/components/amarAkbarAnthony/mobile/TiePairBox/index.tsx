@@ -27,6 +27,24 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       })
     );
   };
+
+  const getProfitLoss = (gameName: string) => {
+    try {
+      let result = 0;
+      if (data?.profitLoss && Object.keys(data.profitLoss).length > 0) {
+        const key = `${data.videoInfo.mid}_1_card`;
+        if (key in data.profitLoss) {
+          const jsonString = data.profitLoss[key];
+          const parsedData = JSON.parse(jsonString);
+          result = parsedData[gameName] ? parsedData[gameName] : 0;
+        } else return result;
+      }
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="">
       <div
@@ -90,17 +108,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value1={lowHigh?.[0]?.b1}
           value4={lowHigh?.[0]?.l1}
           value2={"Amar"}
-          value3={
-            data?.profitLoss
-              ? JSON.parse(data?.profitLoss[`${data?.videoInfo?.mid}_1_card`])[
-                  "amar"
-                ]
-                ? JSON.parse(
-                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                  )["amar"]
-                : 0
-              : 0
-          }
+          value3={getProfitLoss("amar")}
           width={"100%"}
           handleBet={handleBet}
           lock={lowHigh?.[0]?.gstatus === "CLOSED" ? true : false}
@@ -111,17 +119,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value1={lowHigh?.[1]?.b1}
           value4={lowHigh?.[1]?.l1}
           value2={"Akbar"}
-          value3={
-            data?.profitLoss
-              ? JSON.parse(data?.profitLoss[`${data?.videoInfo?.mid}_1_card`])[
-                  "akbar"
-                ]
-                ? JSON.parse(
-                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                  )["akbar"]
-                : 0
-              : 0
-          }
+          value3={getProfitLoss("akbar")}
           width={"100%"}
           handleBet={handleBet}
           lock={lowHigh?.[1]?.gstatus === "CLOSED" ? true : false}
@@ -132,17 +130,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value1={lowHigh?.[2]?.b1}
           value4={lowHigh?.[2]?.l1}
           value2={"Anthony"}
-          value3={
-            data?.profitLoss
-              ? JSON.parse(data?.profitLoss[`${data?.videoInfo?.mid}_1_card`])[
-                  "anthony"
-                ]
-                ? JSON.parse(
-                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                  )["anthony"]
-                : 0
-              : 0
-          }
+          value3={getProfitLoss("anthony")}
           width={"100%"}
           handleBet={handleBet}
           lock={lowHigh?.[2]?.gstatus === "CLOSED" ? true : false}
