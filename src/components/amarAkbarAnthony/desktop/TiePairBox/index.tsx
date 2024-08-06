@@ -33,7 +33,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         <PlayerButton
           value1={lowHigh?.[0]?.b1}
           value4={lowHigh?.[0]?.l1}
-          value2={"Amar"}
+          value2="A. Amar"
           value3={
             data?.profitLoss
               ? JSON.parse(data?.profitLoss[`${data?.videoInfo?.mid}_1_card`])[
@@ -58,7 +58,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         <PlayerButton
           value1={lowHigh?.[1]?.b1}
           value4={lowHigh?.[1]?.l1}
-          value2={"Akbar"}
+          value2="B. Akbar"
           value3={
             data?.profitLoss
               ? JSON.parse(data?.profitLoss[`${data?.videoInfo?.mid}_1_card`])[
@@ -83,7 +83,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         <PlayerButton
           value1={lowHigh?.[2]?.b1}
           value4={lowHigh?.[2]?.l1}
-          value2={"Anthony"}
+          value2="C. Anthony"
           value3={
             data?.profitLoss
               ? JSON.parse(data?.profitLoss[`${data?.videoInfo?.mid}_1_card`])[

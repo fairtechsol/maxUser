@@ -221,6 +221,16 @@ const CardResultBox = ({ data, name, type }: any) => {
                 >
                   {name?.[item?.result - 1]}
                 </span>
+              ) : type === "aaa" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "#ffff33",
+                  }}
+                >
+                  {name?.[item?.result - 1]}
+                </span>
               ) : (
                 <span
                   style={{
