@@ -1617,13 +1617,13 @@ export const casinoIcons = [
     name: "Worli Matka",
   },
   {
-    url: "",
+    url: "/worli2",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
     name: "Instant Worli",
   },
   {
-    url: "",
+    url: "/3cardj",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
     name: "3 Cards Judgement",
@@ -1641,13 +1641,13 @@ export const casinoIcons = [
     name: "32 Cards B",
   },
   {
-    url: "",
+    url: "/aaa",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
     name: "Amar Akbar Anthony",
   },
   {
-    url: "",
+    url: "/btable",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
     name: "Bollywood Casino",
