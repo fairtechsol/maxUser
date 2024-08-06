@@ -44,7 +44,8 @@ const PairBox = ({ odds, data }: any) => {
           value3={
             data?.profitLoss
               ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                  // `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card` old response
+                  `${data?.videoInfo?.mid}_${odds?.sid}_card`
                 ]
               : 0
           }
