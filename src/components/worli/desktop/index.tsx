@@ -97,7 +97,6 @@ const WorliDesktop = () => {
                     }}
                     onClick={() => setShow(true)}
                   >
-                    {" "}
                     RULES
                   </a>
                 </div>
@@ -138,6 +137,10 @@ const WorliDesktop = () => {
                     flexDirection: "column",
                   }}
                 >
+                  <div className="parent-rate">
+                    <div className="child-rate1">9</div>
+                    <div className="child-rate2">9</div>
+                  </div>
                   <CardBox
                     odds={"L1"}
                     data={dragonTigerDetail}
