@@ -11,7 +11,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
 
   const handleBet = (item: any, type: any) => {
     let team = {
-      bettingType: "BACK",
+      bettingType: type,
       matchId: data?.id,
       odd: type === "BACK" ? item?.b1 : item?.l1,
       stake: 0,
@@ -27,6 +27,23 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         data,
       })
     );
+  };
+
+  const getProfitLoss = (gameName: string) => {
+    try {
+      let result = 0;
+      if (data?.profitLoss && Object.keys(data.profitLoss).length > 0) {
+        const key = `${data.videoInfo.mid}_1_card`;
+        if (key in data.profitLoss) {
+          const jsonString = data.profitLoss[key];
+          const parsedData = JSON.parse(jsonString);
+          result = parsedData[gameName] ? parsedData[gameName] : 0;
+        } else return result;
+      }
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -57,11 +74,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
             value1={item?.b1}
             value4={item?.l1}
             value2={item?.nat}
-            value3={
-              data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                : 0
-            }
+            value3={getProfitLoss(item?.nat?.replace(/\s+/g, "").toLowerCase())}
             width={"100%"}
             handleBet={handleBet}
             lock={item?.gstatus === "CLOSED"}
