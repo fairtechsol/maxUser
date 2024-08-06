@@ -37,10 +37,9 @@ const PairBox = ({ matchOddsData, data }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number, type: any) =>
+  const renderItem = (item: any, _: number, type: any) =>
     type === "back" ? (
       <div
-        key={index}
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
         }`}
@@ -52,7 +51,6 @@ const PairBox = ({ matchOddsData, data }: any) => {
       </div>
     ) : (
       <div
-        key={index}
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
         }`}
@@ -81,8 +79,8 @@ const PairBox = ({ matchOddsData, data }: any) => {
           <div className="dtlTitle">
             {isMobile ? (
               <>
-                <span style={{fontWeight:"400"}}>
-                 <span>Min:</span> {min}{" "}<span>Max:</span> {max}
+                <span style={{ fontWeight: "400" }}>
+                  <span>Min:</span> {min} <span>Max:</span> {max}
                 </span>
               </>
             ) : (

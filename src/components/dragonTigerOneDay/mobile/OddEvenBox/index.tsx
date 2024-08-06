@@ -38,9 +38,8 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number) => (
+  const renderItem = (item: any) => (
     <div
-      key={index}
       className={`dtlsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
@@ -48,7 +47,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
     >
       {item?.b1}
       <span
-        className={`f400 title-14${
+        className={`f400 title-14 ${
           data?.profitLoss
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
               ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] >
@@ -62,7 +61,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               : ""
             : ""
         }`}
-        style={{zIndex:"111"}}
+        style={{ zIndex: "111" }}
       >
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
@@ -129,12 +128,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         >
           <div className="dtlTitle">Dragon </div>
           {renderItem(
-            title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0],
-            0
+            title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0]
           )}
           {renderItem(
-            title2 === "odd" ? dragonEvenOdd?.[1] : dragonRedBlack?.[1],
-            0
+            title2 === "odd" ? dragonEvenOdd?.[1] : dragonRedBlack?.[1]
           )}
         </div>
         <div
@@ -142,12 +139,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         >
           <div className="dtlTitle"> Tiger</div>
           {renderItem(
-            title1 === "even" ? tigerEvenOdd?.[0] : tigerRedBlack?.[0],
-            0
+            title1 === "even" ? tigerEvenOdd?.[0] : tigerRedBlack?.[0]
           )}
           {renderItem(
-            title2 === "odd" ? tigerEvenOdd?.[1] : tigerRedBlack?.[1],
-            0
+            title2 === "odd" ? tigerEvenOdd?.[1] : tigerRedBlack?.[1]
           )}
         </div>
       </div>

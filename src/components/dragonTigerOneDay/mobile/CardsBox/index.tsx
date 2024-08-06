@@ -38,9 +38,8 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number) => (
+  const renderItem = (item: any) => (
     <div
-      key={index}
       className={`dtlsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
@@ -48,7 +47,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
     >
       {item?.b1}
       <span
-        className={`f400 title-14${
+        className={`f400 title-14 ${
           data?.profitLoss
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
               ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] >
@@ -62,7 +61,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
               : ""
             : ""
         }`}
-        style={{zIndex:"111"}}
+        style={{ zIndex: "111" }}
       >
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
@@ -121,19 +120,19 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitle">Dragon </div>
-          {renderItem(dragonData?.[4], 4)}
-          {renderItem(dragonData?.[5], 5)}
-          {renderItem(dragonData?.[7], 7)}
-          {renderItem(dragonData?.[6], 6)}
+          {renderItem(dragonData?.[4])}
+          {renderItem(dragonData?.[5])}
+          {renderItem(dragonData?.[7])}
+          {renderItem(dragonData?.[6])}
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitle"> Tiger</div>
-          {renderItem(tigerData?.[4], 4)}
-          {renderItem(tigerData?.[5], 5)}
-          {renderItem(tigerData?.[7], 7)}
-          {renderItem(tigerData?.[6], 6)}
+          {renderItem(tigerData?.[4])}
+          {renderItem(tigerData?.[5])}
+          {renderItem(tigerData?.[7])}
+          {renderItem(tigerData?.[6])}
         </div>
       </div>
     </div>

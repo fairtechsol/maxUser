@@ -39,40 +39,35 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
   };
   const renderItem = (item: any, index: number) => (
     <div
-      key={index}
       className={`dtlsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
-      {item?.b1}{" "}
-      {/* {data?.profitLoss &&
-        data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] && ( */}
-          <span
-            className={
-              data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ] > 0
-                    ? "color-green"
-                    : data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] < 0
-                    ? "color-red"
-                    : ""
-                  : ""
+      {item?.b1}
+      <span
+        className={
+          data?.profitLoss
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] >
+                0
+                ? "color-green"
+                : data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${item?.sid}_card`
+                  ] < 0
+                ? "color-red"
                 : ""
-            }
-            style={{zIndex:"100"}}
-          >
-            {data?.profitLoss
-              ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                : 0
-              : 0}
-          </span>
-        {/* )} */}
+              : ""
+            : ""
+        }
+        style={{ zIndex: "100" }}
+      >
+        {data?.profitLoss
+          ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+            : 0
+          : 0}
+      </span>
     </div>
   );
   return (
