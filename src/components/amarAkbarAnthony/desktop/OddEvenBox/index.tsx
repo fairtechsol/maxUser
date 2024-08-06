@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-
+import CommonCardImg from "../../mobile/CommonCardImg";
 const OddEven = ({ data, card, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = odds?.[0]?.min;
@@ -84,54 +84,55 @@ const OddEven = ({ data, card, odds }: any) => {
           </>
         ) : (
           <>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around",
-                alignItems:"center"
-              }}
-            >
-              <CommonButtonBox
-                value1={odds?.[0]?.b1}
-                value2={odds?.[0]?.nat}
-                value3={
-                  data?.profitLoss
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                      ]
-                    : 0
-                }
-                width={"80%"}
-                handleBet={handleBet}
-                lock={odds?.[0]?.gstatus === "SUSPENDED" ? true : false}
-                data={odds?.[0]}
-              />
-              <CommonButtonBox
-                value1={odds?.[1]?.b1}
-                value2={odds?.[1]?.nat}
-                value3={
-                  data?.profitLoss
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                      ]
-                    : 0
-                }
-                width={"80%"}
-                handleBet={handleBet}
-                lock={odds?.[1]?.gstatus === "SUSPENDED" ? true : false}
-                data={odds?.[1]}
-              />
-            </div>
-            <div style={{ textAlign: "end" }}>
-              <span style={{ fontWeight: "bolder" }}>Min:</span>
-              <span>{min}</span>
-              <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>
-                Max:
-              </span>
-              <span>{max}</span>
-            </div>
-          </>
+          {" "}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems:"center"
+            }}
+          >
+            <CommonButtonBox
+              value1={odds?.[0]?.b1}
+              value2={odds?.[0]?.nat}
+              value3={
+                data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                    ]
+                  : 0
+              }
+              width={"80%"}
+              handleBet={handleBet}
+              lock={odds?.[0]?.gstatus === "SUSPENDED" ? true : false}
+              data={odds?.[0]}
+            />
+            <CommonButtonBox
+              value1={odds?.[1]?.b1}
+              value2={odds?.[1]?.nat}
+              value3={
+                data?.profitLoss
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                    ]
+                  : 0
+              }
+              width={"80%"}
+              handleBet={handleBet}
+              lock={odds?.[1]?.gstatus === "SUSPENDED" ? true : false}
+              data={odds?.[1]}
+            />
+          </div>
+          <div style={{ textAlign: "end" }}>
+            <span style={{ fontWeight: "bolder" }}>Min:</span>
+            <span>{min}</span>
+            <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>
+              Max:
+            </span>
+            <span>{max}</span>
+          </div>
+        </>
         )}
       </div>
     </>
