@@ -2,6 +2,12 @@
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
+import Cards32 from "../pages/cards32";
+import Lucky7B from "../pages/lucky7B";
+import CasinoWar from "../pages/casinoWar";
+import Poker1day from "../pages/poker1day";
+import Poker20 from "../pages/poker20";
+import Cricket5 from "../pages/cricket5";
 
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(() => import("../pages/home"));
@@ -49,13 +55,6 @@ const ChangePassword = Loadable(() => import("../pages/auth/changePassword"));
 const ContactAdmin = Loadable(
   () => import("../components/commonComponent/contactAdmin")
 );
-const Cards32 = Loadable(() => import("../pages/cards32"));
-const Lucky7B = Loadable(() => import("../pages/lucky7B"));
-const CasinoWar = Loadable(() => import("../pages/casinoWar"));
-const Poker1day = Loadable(() => import("../pages/poker1day"));
-const Poker20 = Loadable(() => import("../pages/poker20"));
-const Cricket5 = Loadable(() => import("../pages/cricket5"));
-
 const GameList = Loadable(() => import("../pages/gameList/index"));
 
 const MainRoutes = {
