@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
+import { useEffect } from "react";
 // import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import "./style.scss";
@@ -28,10 +29,19 @@ const CardBox = ({ title, data, cards, odds }: any) => {
   };
   // const arCards = cards?.ar?.split(",");
   // const brCards = cards?.br?.split(",");
+
+  useEffect(() => {
+    if (data?.worli?.gstatus === "0") {
+      dispatch(selectedBetAction(""));
+    }
+  }, [data?.worli?.gstatus]);
+
   return (
     <>
       <div
-        className="abjcardContainer"
+        className={ 
+          data?.worli?.gstatus == 0 ? "suspended abjcardContainer" : " abjcardContainer"
+        }
         style={{ backgroundColor: "#72bbef", border: "0.5px solid #fff" }}
       >
         <div

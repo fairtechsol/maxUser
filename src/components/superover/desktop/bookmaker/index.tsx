@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { useEffect } from "react";
 const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any, type: any) => {
@@ -32,6 +32,15 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   };
   const team1 = matchOddsData?.[0];
   const team2 = matchOddsData?.[1];
+
+  useEffect(() => {
+    if (team1?.gstatus !== "ACTIVE" ||team1?.b1 === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [team1?.gstatus,team1?.b1]);
+
+  
   return (
     <div style={{ display: "flex", flexDirection: "column"}}>
       <div className="marketHeader">

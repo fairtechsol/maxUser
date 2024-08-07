@@ -4,7 +4,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import isMobile from "../../../../utils/screenDimension";
 import SmoothDropdownModal from "../minMaxModal";
 import { IoInformationCircle } from "react-icons/io5";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const BackLay = ({ matchOddsData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -61,6 +61,16 @@ const BackLay = ({ matchOddsData, data }: any) => {
         {item?.l1}
       </div>
     );
+
+  useEffect(() => {
+    if (
+      matchOddsData?.[0]?.gstatus !== "ACTIVE" ||
+      matchOddsData?.[0]?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [matchOddsData?.[0]?.gstatus, matchOddsData?.[0]?.b1]);
+
   return (
     <div className="w-100">
       <div

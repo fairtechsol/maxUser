@@ -15,6 +15,8 @@ import { MatchType } from "../../../utils/enum";
 import { formattedMinMax } from "../../../utils/formatMinMax";
 import OverUnderMarket from "./overUnder";
 import SetWinner from "./setWinner";
+import OverUnderMarket2 from "./overunder2";
+import FootballMatchOdds2 from "./matchOdds2";
 interface BetTableProps {
   title: string;
   type: string;
@@ -87,14 +89,44 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           backLayCount={backLayCount}
           matchDetails={otherMatchDetails}
         />
-      ) : type === MatchType.MATCH_ODDS ? (
+      ) : type === MatchType.MATCH_ODDS && !isMobile ? (
         <FootballMatchOdds
           minMax={formattedMinMax(data?.minBet, data?.maxBet)}
           data={data}
           backLayCount={backLayCount}
           matchDetails={otherMatchDetails}
         />
+      ) : type === MatchType.MATCH_ODDS  && isMobile ? (
+        <FootballMatchOdds2
+          minMax={formattedMinMax(data?.minBet, data?.maxBet)}
+          data={data}
+          backLayCount={backLayCount}
+          matchDetails={otherMatchDetails}
+        />
+      ) : type === MatchType.HALF_TIME ? (
+        <FootballMatchOdds
+          minMax={formattedMinMax(data?.minBet, data?.maxBet)}
+          data={data}
+          backLayCount={backLayCount}
+          matchDetails={otherMatchDetails}
+        />
+      ) : type === MatchType.UNDER_OVER && !isMobile  ? (
+        <OverUnderMarket
+          minMax={formattedMinMax(data?.minBet, data?.maxBet)}
+          data={data}
+          backLayCount={backLayCount}
+          matchDetails={otherMatchDetails}
+          title={title}
+        />
       ) : type === MatchType.UNDER_OVER ? (
+        <OverUnderMarket2
+          minMax={formattedMinMax(data?.minBet, data?.maxBet)}
+          data={data}
+          backLayCount={backLayCount}
+          matchDetails={otherMatchDetails}
+          //   title={title}
+        />
+      ) : type === MatchType.FIRST_HALF_GOAL ? (
         <OverUnderMarket
           minMax={formattedMinMax(data?.minBet, data?.maxBet)}
           data={data}
@@ -109,7 +141,7 @@ const BetTable = ({ title, type, data, backLayCount }: BetTableProps) => {
           backLayCount={backLayCount}
           matchDetails={otherMatchDetails}
         />
-      ) :  (
+      ) : (
         <HTFTMarketTable
         //   data={data}
         //   title={title}

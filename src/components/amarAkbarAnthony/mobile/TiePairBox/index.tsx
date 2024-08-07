@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import PlayerButton from "../PlayerButton";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = lowHigh?.[0]?.min;
@@ -111,7 +111,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value3={getProfitLoss("amar")}
           width={"100%"}
           handleBet={handleBet}
-          lock={lowHigh?.[0]?.gstatus === "CLOSED" ? true : false}
+          lock={
+            lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
+              ? true
+              : false
+          }
           data={lowHigh?.[0]}
         />
 
@@ -122,7 +126,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value3={getProfitLoss("akbar")}
           width={"100%"}
           handleBet={handleBet}
-          lock={lowHigh?.[1]?.gstatus === "CLOSED" ? true : false}
+          lock={
+            lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
+              ? true
+              : false
+          }
           data={lowHigh?.[1]}
         />
 
@@ -133,7 +141,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           value3={getProfitLoss("anthony")}
           width={"100%"}
           handleBet={handleBet}
-          lock={lowHigh?.[2]?.gstatus === "CLOSED" ? true : false}
+          lock={
+            lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
+              ? true
+              : false
+          }
           data={lowHigh?.[2]}
         />
       </div>

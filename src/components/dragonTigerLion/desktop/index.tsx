@@ -284,6 +284,19 @@ const DragonTigerDesktop = () => {
       })
     );
   };
+
+  useEffect(() => {
+    if (
+      dragonTigerDetail?.dragonData?.[0].gstatus === "0" ||
+      dragonTigerDetail?.dragonData?.[0]?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [
+    dragonTigerDetail?.dragonData?.[0].gstatus,
+    dragonTigerDetail?.dragonData?.[0]?.b1,
+  ]);
+
   return (
     <div>
       <Row>
@@ -690,7 +703,7 @@ const DragonTigerDesktop = () => {
                 </div>
               </div>
 
-              <div style={{ width: "100%", margin: "5px" }}>
+              <div style={{ width: "100%", margin: "5px 0px 0px 2px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["D", "T", "L"]}

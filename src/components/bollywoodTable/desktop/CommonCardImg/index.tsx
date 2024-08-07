@@ -20,7 +20,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
         return (
           <div>
             <div
-              className={item?.gstatus === "CLOSED" ? "suspended" : ""}
+              className={item?.gstatus === "CLOSED" ||item?.b1 === "0.00" ? "suspended" : ""}
               style={{
                 display: "flex",
                 flexDirection: "column",

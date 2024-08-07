@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-
+import CommonCardImg from "../../mobile/CommonCardImg";
 const OddEven = ({ data, card, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = odds?.[0]?.min;
@@ -83,7 +83,6 @@ const OddEven = ({ data, card, odds }: any) => {
           </>
         ) : (
           <>
-            {" "}
             <div
               style={{
                 display: "flex",

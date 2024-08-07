@@ -59,9 +59,7 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
             value2={item?.nat}
             value3={
               data?.profitLoss
-                ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${item?.sid}_card`
-                  ]
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
                 : 0
             }
             width={"100%"}
