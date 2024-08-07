@@ -284,6 +284,19 @@ const DragonTigerDesktop = () => {
       })
     );
   };
+
+  useEffect(() => {
+    if (
+      dragonTigerDetail?.dragonData?.[0].gstatus === "0" ||
+      dragonTigerDetail?.dragonData?.[0]?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [
+    dragonTigerDetail?.dragonData?.[0].gstatus,
+    dragonTigerDetail?.dragonData?.[0]?.b1,
+  ]);
+
   return (
     <div>
       <Row>

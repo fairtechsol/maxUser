@@ -294,6 +294,21 @@
 //   margin: 0 !important;
 // }
 
+.parent-rate{
+  display: flex;
+  width: 100%;
+}
+.child-rate1{
+ width: 70%;
+ font-weight: 600;
+ text-align: center;
+}
+.child-rate2{
+width: 30%;
+font-weight: 600;
+text-align: center;
+}
+
 @media (max-width: 768px) {
   .tabs-navs .nav-link {
     flex: 1 0 10%;

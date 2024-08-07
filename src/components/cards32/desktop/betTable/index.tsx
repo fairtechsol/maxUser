@@ -2,6 +2,7 @@ import "./style.scss";
 import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { useEffect } from "react";
 const DynamicTable = ({ odds, data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -30,6 +31,14 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
 
   let player1Key = `player${playerNum[0]}`;
   let player2Key = `player${playerNum[1]}`;
+
+  useEffect(() => {
+    if (odds?.[0]?.gstatus === "CLOSED" || odds?.[0]?.b1 === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [odds?.[0]?.gstatus,odds?.[0]?.b1]);
+
   return (
     <div className="card32-table-container">
       <div className="card32-table-row" style={{ lineHeight: 2 }}>

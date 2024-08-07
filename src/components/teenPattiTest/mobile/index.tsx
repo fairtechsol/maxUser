@@ -118,6 +118,12 @@ const TeenPattiMobile = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenTest}`);
   }, []);
 
+  useEffect(() => {
+    if (!sections?.[0]?.dstatus || sections?.[0]?.drate === "0.00") {
+      dispatch(selectedBetAction(""));
+    }
+  }, [sections?.[0]?.dstatus, sections?.[0]?.drate]);
+  
   return (
     <>
       <div>

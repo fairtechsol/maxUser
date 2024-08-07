@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { useEffect } from "react";
 const CardBox = ({title, odds, data,cards,bgColor }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet=(item:any)=>{
@@ -26,6 +26,9 @@ const CardBox = ({title, odds, data,cards,bgColor }: any) => {
   }
   const arCards = cards?.ar?.split(",");
   const brCards = cards?.br?.split(",");
+
+ 
+
   return (
     <>
       <div className="abjcardContainer" style={{backgroundColor:bgColor,border:"0.5px solid #000"}} >

@@ -116,6 +116,13 @@ const CricketMatch20Mobile = () => {
     } else setProfitLossData({});
   }, [dragonTigerDetail]);
 
+  useEffect(() => {
+    if (leftBoard?.[0]?.gstatus === "SUSPENDED" || leftBoard?.[0]?.b1 ==="0.00") {
+      dispatch(selectedBetAction(""));
+    } else {
+    }
+  }, [leftBoard?.[0]?.gstatus,leftBoard?.[0]?.b1]);
+
   return (
     <>
       <div>

@@ -149,13 +149,13 @@ const AmarAkbarAnthonyDesktop = () => {
                     name={"DRAGON"}
                     odds={dragonTigerDetail?.luckOdds}
                     data={dragonTigerDetail}
-                    card={true}
+                    card={false}
                   />
 
                   <OddEven
                     name={"TIGER"}
                     odds={dragonTigerDetail?.redBlack}
-                    card={false}
+                    card={true}
                     data={dragonTigerDetail}
                   />
 
@@ -163,7 +163,7 @@ const AmarAkbarAnthonyDesktop = () => {
                     name={"DRAGON"}
                     odds={dragonTigerDetail?.seven}
                     data={dragonTigerDetail}
-                    card={true}
+                    card={false}
                   />
                 </div>
                 <div

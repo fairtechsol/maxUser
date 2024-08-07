@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { useEffect } from "react";
 const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
   const dispatch: AppDispatch = useDispatch();
   // console.log(data,'tiePair',tiePair)
@@ -36,6 +36,14 @@ const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
     return data[card]
   }
   }
+
+  useEffect(() => {
+    if (handsData?.[0]?.gstatus === "0" ||handsData?.[0]?.rate === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [handsData?.[0]?.gstatus,handsData?.[0]?.rate]);
+  
   return (
     <div className="tiePairContainer-poker6">
       <div className="tiePairRateBoxMainP">

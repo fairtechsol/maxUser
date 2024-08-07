@@ -1,9 +1,13 @@
 import { dragonTigerCards } from "../../../../utils/constants";
 import { back } from "../../../../assets/images";
 import { useEffect, useState } from "react";
+import { AppDispatch } from "../../../../store/store";
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
+  const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
       return {
@@ -25,6 +29,16 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
       return ""
     }
   };
+
+  console.log("check",cardData)
+
+  useEffect(() => {
+    if (cardData?.[0]?.gstatus === "0") {
+      dispatch(selectedBetAction(""));
+    } else {
+    }
+  }, [cardData?.[0]?.gstatus]);
+
   return (
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any,index:number) => {
