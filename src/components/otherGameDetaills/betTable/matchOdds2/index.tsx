@@ -17,7 +17,7 @@ const MatchMarketRow = ({
   data,
   matchDetails,
   team,
-  indexForOverlay,
+  indexForOverlay
 }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handlePlaceBet = (team: any, data: any) => {
@@ -56,7 +56,10 @@ const MatchMarketRow = ({
           {profitLoss}
         </div>
       </div>
-      <Overlay>
+      <Overlay
+       title={data?.runners?.[indexForOverlay]?.status.toLowerCase()}
+        active={data?.activeStatus == "live" ? false : true}
+        >
         {odds?.map((odd: any) => (
           <div
             key={odd?.id}
