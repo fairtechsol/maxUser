@@ -9,8 +9,6 @@ import Poker1day from "../pages/poker1day";
 import Poker20 from "../pages/poker20";
 import Cricket5 from "../pages/cricket5";
 
-import GameList from "../pages/gameList/index";
-
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(() => import("../pages/home"));
 const GameDetail = Loadable(() => import("../pages/gameDetails"));
@@ -57,6 +55,7 @@ const ChangePassword = Loadable(() => import("../pages/auth/changePassword"));
 const ContactAdmin = Loadable(
   () => import("../components/commonComponent/contactAdmin")
 );
+const GameList = Loadable(() => import("../pages/gameList/index"));
 
 const MainRoutes = {
   path: "/",
