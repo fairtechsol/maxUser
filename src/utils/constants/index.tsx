@@ -1778,27 +1778,9 @@ export const card3 = {
 export const dragonTigerCards = [
   {
     code: 0,
-    imgSrc: J,
-    value: 0,
-  },
-  {
-    code: 0,
-    imgSrc: Q,
-    value: 0,
-  },
-  {
-    code: 0,
-    imgSrc: K,
-    value: 0,
-  },
- 
-  {
-    code: 0,
     imgSrc: A,
     value: 0,
   },
- 
- 
   {
     code: 1,
     imgSrc: two,
