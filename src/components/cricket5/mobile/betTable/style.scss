@@ -16,7 +16,14 @@
     flex-direction: column;
     border: 0.2px solid #fff;
   }
-
+  .marketHeader{
+    width: 100%;
+    background-color: #ffc742d9;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+  }
 .card32-table-row .suspended:after {
   position: absolute;
   display: flex;
