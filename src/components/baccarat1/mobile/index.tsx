@@ -167,7 +167,7 @@ const Baccarat1Mobile = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "B"]}
+                    name={["P", "B","T"]}
                     type={cardGamesType.andarBahar2}
                   />
                 </div>
