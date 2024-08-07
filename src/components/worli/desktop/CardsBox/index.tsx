@@ -39,9 +39,9 @@ const CardBox = ({ title, data, cards, odds }: any) => {
   return (
     <>
       <div
-        className={ 
-          data?.worli?.gstatus == 0 ? "suspended abjcardContainer" : " abjcardContainer"
-        }
+        className={`${
+          data?.worli?.gstatus == 0 ? "suspended" : ""
+        } abjcardContainer`}
         style={{ backgroundColor: "#72bbef", border: "0.5px solid #fff" }}
       >
         <div
