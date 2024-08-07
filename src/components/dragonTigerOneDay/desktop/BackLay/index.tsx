@@ -40,7 +40,6 @@ const BackLay = ({ matchOddsData, data }: any) => {
   const renderItem = (item: any, _: number, type: any) =>
     type === "back" ? (
       <div
-        // key={index}
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
         }`}
@@ -52,7 +51,6 @@ const BackLay = ({ matchOddsData, data }: any) => {
       </div>
     ) : (
       <div
-        // key={index}
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
         }`}
@@ -121,7 +119,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           >
             <span>Dragon</span>
             <span
-              className={
+              className={`f400 title-14 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
@@ -141,7 +139,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                       : ""
                     : ""
                   : ""
-              }
+              }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[
@@ -174,7 +172,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           >
             <span>Tiger</span>
             <span
-              className={
+              className={`f400 title-14 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
@@ -194,7 +192,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                       : ""
                     : ""
                   : ""
-              }
+              }`}
             >
               {data?.profitLoss
                 ? data?.profitLoss[

@@ -43,15 +43,12 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   };
   const renderItem = (item: any, index: number) => (
     <div
-      key={index}
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}
-      {data?.profitLoss &&
-        data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] && (
           <span
             className={
               data?.profitLoss
@@ -68,6 +65,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
                   : ""
                 : ""
             }
+            style={{zIndex:"100"}}
           >
             {data?.profitLoss
               ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
@@ -75,7 +73,6 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
                 : 0
               : 0}
           </span>
-        )}
     </div>
   );
 

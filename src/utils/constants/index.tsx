@@ -1620,13 +1620,13 @@ export const casinoIcons = [
     name: "Worli Matka",
   },
   {
-    url: "",
+    url: "/worli2",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
     name: "Instant Worli",
   },
   {
-    url: "",
+    url: "/3cardj",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
     name: "3 Cards Judgement",
@@ -1644,13 +1644,13 @@ export const casinoIcons = [
     name: "32 Cards B",
   },
   {
-    url: "",
+    url: "/aaa",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
     name: "Amar Akbar Anthony",
   },
   {
-    url: "",
+    url: "/btable",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
     name: "Bollywood Casino",
@@ -1743,23 +1743,23 @@ export const card3 = {
   bollywoodCasino: [
     {
       id: 23,
-      url: "",
+      url: "/aaa",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1016.webp",
       name: "AMAR AKHBAR ANTHONY",
     },
     {
       id: 24,
-      url: "",
+      url: "/btable",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1015.webp",
-      name: "AMAR AKHBAR ANTHONY",
+      name: "BOLLYWOOD TABLE",
     },
   ],
   worli: [
     {
       id: 25,
-      url: "",
+      url: "/worli2",
       imgSrc:
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1013.webp",
       name: "Worli",

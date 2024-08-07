@@ -10,8 +10,23 @@ import {
 } from "../../../../utils/constants";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import Overlay from "../overlay";
-
-const MarketRow = ({ title, odds, data, matchDetails, team, indexForOverlay }: any) => {
+interface MarketTableProps {
+  data: any;
+  title?: any;
+  matchDetails: any;
+  minMax?: any;
+  odds?: any;
+  team?: any;
+  indexForOverlay?: any;
+}
+const MarketRow = ({
+  title,
+  odds,
+  data,
+  matchDetails,
+  team,
+  indexForOverlay,
+}: MarketTableProps) => {
   const dispatch: AppDispatch = useDispatch();
   const handlePlaceBet = (team: any, data: any) => {
     dispatch(
@@ -21,7 +36,6 @@ const MarketRow = ({ title, odds, data, matchDetails, team, indexForOverlay }: a
       })
     );
   };
-
   const profitLoss =
     team === "teamA"
       ? matchDetails?.profitLossDataMatch?.[
@@ -49,44 +63,48 @@ const MarketRow = ({ title, odds, data, matchDetails, team, indexForOverlay }: a
           {profitLoss}
         </div>
       </div>
-      <Overlay>
-      {odds?.map((odd: any) => (
-        <div
-          key={odd?.id}
-          className={`market-odd-box-o ${odd.className} `}
-          style={{width: "100%"}}
-          onClick={() => {
-            if (
-              odd.value > 0 &&
-              data?.runners?.[
-                team === "teamA" ? 0 : 1
-              ]?.status?.toLowerCase() == teamStatus.active?.toLowerCase()
-            ) {
-              handlePlaceBet(
-                {
-                  betOnTeam: team === "teamA" ? "UNDER" : "OVER",
-                  rate: odd.value,
-                  type: odd.type,
-                  stake: 0,
-                  teamA: "UNDER",
-                  teamB: "OVER",
-                  betId: data?.id,
-                  eventType: matchDetails?.matchType,
-                  matchId: matchDetails?.id,
-                  placeIndex: odd.pI,
-                  matchBetType: data?.type,
-                  gameType: "other",
-                },
-                data
-              );
-            }
-          }}
-        >
-          <span className="market-odd-o">{odd.value ?? "-"}</span>
-          <span className="market-volume-o">{odd.volume}</span>
-        </div>
-      ))}
-       </Overlay>
+
+      <Overlay
+        title={data?.runners?.[indexForOverlay]?.status.toLowerCase()}
+        active={data?.activeStatus == "live" ? false : true}
+      >
+        {odds?.map((odd: any) => (
+          <div
+            key={odd?.id}
+            className={`market-odd-box-o ${odd.className} `}
+            style={{ width: "100%" }}
+            onClick={() => {
+              if (
+                odd.value > 0 &&
+                data?.runners?.[
+                  team === "teamA" ? 0 : 1
+                ]?.status?.toLowerCase() == teamStatus.active?.toLowerCase()
+              ) {
+                handlePlaceBet(
+                  {
+                    betOnTeam: team === "teamA" ? "UNDER" : "OVER",
+                    rate: odd.value,
+                    type: odd.type,
+                    stake: 0,
+                    teamA: "UNDER",
+                    teamB: "OVER",
+                    betId: data?.id,
+                    eventType: matchDetails?.matchType,
+                    matchId: matchDetails?.id,
+                    placeIndex: odd.pI,
+                    matchBetType: data?.type,
+                    gameType: "other",
+                  },
+                  data
+                );
+              }
+            }}
+          >
+            <span className="market-odd-o">{odd.value ?? "-"}</span>
+            <span className="market-volume-o">{odd.volume}</span>
+          </div>
+        ))}
+      </Overlay>
     </div>
   );
 };
@@ -146,7 +164,7 @@ const OverUnderMarket2 = ({ minMax, data, matchDetails }: any) => {
     <div className="game-market-o market-4-o">
       <div className="market-header-o d-flex">
         <div className="market-nation-detail-o">
-        <span className="market-nation-name-o mt-1">{minMax}</span>
+          <span className="market-nation-name-o mt-1">{minMax}</span>
         </div>
         {!isMobile && (
           <>
@@ -178,7 +196,7 @@ const OverUnderMarket2 = ({ minMax, data, matchDetails }: any) => {
           matchDetails={matchDetails}
           team="teamB"
           odds={getOdds(1)}
-          indexForOverlay={0}
+          indexForOverlay={1}
         />
       </div>
     </div>

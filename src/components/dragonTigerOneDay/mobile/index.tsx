@@ -192,7 +192,7 @@ const DragonTigerMobile = () => {
                     data={dragonTigerDetail}
                   />
                 </div>
-                <div style={{ width: "97%", marginLeft: "5px" }}>
+                <div style={{ width: "97%" }}>
                   <CardBox
                     dragonData={dragonTigerDetail?.dragonData}
                     tigerData={dragonTigerDetail?.tigerData}
