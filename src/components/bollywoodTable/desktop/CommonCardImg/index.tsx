@@ -7,8 +7,8 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
       return {
-        ...item,
         ...dragonTigerCards[index],
+        ...item,
       };
     });
     setCardImg(mergedArray);
@@ -20,7 +20,11 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
         return (
           <div>
             <div
-              className={item?.gstatus === "CLOSED" ||item?.b1 === "0.00" ? "suspended" : ""}
+              className={
+                item?.gstatus === "CLOSED" || item?.b1 === "0.00"
+                  ? "suspended"
+                  : ""
+              }
               style={{
                 display: "flex",
                 flexDirection: "column",

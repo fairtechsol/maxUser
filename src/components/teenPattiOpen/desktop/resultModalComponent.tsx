@@ -43,7 +43,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   ];
 
   const renderRow = (row: any) => (
-    <div className="d-flex justify-content-between mb-3">
+    <div  style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
       {row?.map((position: any, posIndex: any) => (
         <div key={posIndex} className="teen20resultCardContainer mx-">
           {position.label !== "gap" && (
