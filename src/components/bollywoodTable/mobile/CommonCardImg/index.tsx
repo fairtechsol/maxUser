@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { dragonTigerCards } from "../../../../utils/constants";
+import { bollywoodTableCards } from "../../../../utils/constants";
 
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
-  const [cardImg, setCardImg] = useState(dragonTigerCards);
+  const [cardImg, setCardImg] = useState(bollywoodTableCards);
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
       return {
         ...item,
-        ...dragonTigerCards[index],
+        ...bollywoodTableCards[index],
       };
     });
     setCardImg(mergedArray);
