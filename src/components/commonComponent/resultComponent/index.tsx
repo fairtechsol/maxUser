@@ -70,7 +70,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
   }, []);
  
   return (
-    <Container style={{ padding: 0 }}>
+    <Container style={{ padding: 0 ,width:"100%"}}>
       <div className="resultModalHeader">
         <span style={{ fontSize: "20px", fontWeight: "bold" }}>
           {title[type]} Result
