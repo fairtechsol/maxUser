@@ -43,13 +43,13 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   ];
 
   const renderRow = (row: any) => (
-    <div  style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
+    <div className="row-render">
       {row?.map((position: any, posIndex: any) => (
-        <div key={posIndex} className="teen20resultCardContainer mx-">
+        <div key={posIndex} className="teen20resultCardContainer2 mx-">
           {position.label !== "gap" && (
             <>
               <div>
-                <span className="fs-5">{position.label}</span>
+                <div className="fs-5" style={{textAlign:"center"}}>{position.label}</div>
                 <div
                   className={
                     isMobile
@@ -74,12 +74,8 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
               </div>
               {data?.result?.sid.includes((position.index + 1).toString()) && (
                 <div
-                  className="casino-winner-ico"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                  className=" winner-icon casino-winner-ico "
+                  
                 >
                   <FaTrophy size={30} color="#169733" />
                 </div>
@@ -92,7 +88,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 
   const renderColumn = () => (
-    <div className="d-flex flex-column align-items-center">
+    <div className="d-flex flex-column align-items-center pl-" >
       {layout.map((position: any, posIndex: any) => (
         <div
           key={posIndex}
@@ -111,7 +107,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
                 width: "90%",
                 border: "0.5px solid",
                 display: "flex",
-                justifyContent: "start",
+                justifyContent: "center",
                 flexDirection: "row",
                 alignItems: "center",
                 gap: "20px",
@@ -140,7 +136,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
               {data?.result?.sid.includes((position.index + 1).toString()) && (
                 <div
                   className="casino-winner-icon"
-                  
+                 
                 >
                   <FaTrophy className="casino-winner-icon" size={30} color="#169733" />
                 </div>
@@ -153,15 +149,15 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 
   return (
-    <Container style={{ display: "flex", flexDirection: "column" }}>
+    <Container style={{ display: "flex", flexDirection: "column",width:"100%",paddingTop:"20px" }}>
       {isMobile ? (
         renderColumn()
       ) : (
-        <>
+        <div style={{width:"100%"}}>
           {renderRow(layout.slice(0, 3))} {/* Players 1, Dealer, Player 8 */}
           {renderRow(layout.slice(3, 6))} {/* Player 2, gap, Player 7 */}
           {renderRow(layout.slice(6, 10))} {/* Players 3, 4, 5, 6 */}
-        </>
+        </div>
       )}
     </Container>
   );
