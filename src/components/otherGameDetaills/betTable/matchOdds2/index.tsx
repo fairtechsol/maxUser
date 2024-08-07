@@ -106,7 +106,7 @@ const FootballMatchOdds2 = ({ minMax, data, matchDetails }: any) => {
   const getOdds = (teamIndex: number) => [
     {
       id: 1,
-      className: "back2",
+      className: "bg-blue1",
       value: data?.runners?.[teamIndex]?.ex?.availableToBack?.[2]?.price,
       volume: data?.runners?.[teamIndex]?.ex?.availableToBack?.[2]?.size,
       pI: 2,
@@ -114,7 +114,7 @@ const FootballMatchOdds2 = ({ minMax, data, matchDetails }: any) => {
     },
     {
       id: 2,
-      className: "back1",
+      className: "bg-blue2",
       value: data?.runners?.[teamIndex]?.ex?.availableToBack?.[1]?.price,
       volume: data?.runners?.[teamIndex]?.ex?.availableToBack?.[1]?.size,
       pI: 1,
@@ -122,7 +122,7 @@ const FootballMatchOdds2 = ({ minMax, data, matchDetails }: any) => {
     },
     {
       id: 3,
-      className: "back",
+      className: "bg-blue3",
       value: data?.runners?.[teamIndex]?.ex?.availableToBack?.[0]?.price,
       volume: data?.runners?.[teamIndex]?.ex?.availableToBack?.[0]?.size,
       pI: 0,
@@ -130,7 +130,7 @@ const FootballMatchOdds2 = ({ minMax, data, matchDetails }: any) => {
     },
     {
       id: 4,
-      className: "lay",
+      className: "bg-red1",
       value: data?.runners?.[teamIndex]?.ex?.availableToLay?.[0]?.price,
       volume: data?.runners?.[teamIndex]?.ex?.availableToLay?.[0]?.size,
       pI: 0,
@@ -138,7 +138,7 @@ const FootballMatchOdds2 = ({ minMax, data, matchDetails }: any) => {
     },
     {
       id: 5,
-      className: "lay1",
+      className: "bg-red2",
       value: data?.runners?.[teamIndex]?.ex?.availableToLay?.[1]?.price,
       volume: data?.runners?.[teamIndex]?.ex?.availableToLay?.[1]?.size,
       pI: 1,
@@ -146,7 +146,7 @@ const FootballMatchOdds2 = ({ minMax, data, matchDetails }: any) => {
     },
     {
       id: 6,
-      className: "lay2",
+      className: "bg-red3",
       value: data?.runners?.[teamIndex]?.ex?.availableToLay?.[2]?.price,
       volume: data?.runners?.[teamIndex]?.ex?.availableToLay?.[2]?.size,
       pI: 2,
@@ -165,10 +165,10 @@ const FootballMatchOdds2 = ({ minMax, data, matchDetails }: any) => {
             <div className="market-odd-box-o"></div>
           </>
         )}
-        <div className="market-odd-box-o back">
+        <div className="market-odd-box-o bg-blue3">
           <b>BACK</b>
         </div>
-        <div className="market-odd-box-o lay">
+        <div className="market-odd-box-o bg-red1">
           <b>LAY</b>
         </div>
         <div className="market-odd-box-o"></div>
