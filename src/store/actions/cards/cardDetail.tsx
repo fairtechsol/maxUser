@@ -138,6 +138,12 @@ export const updateLiveGameResultTop10 = createAsyncThunk<any, any>(
     return data;
   }
 );
+export const graphData = createAsyncThunk<any, any>(
+  "update/graphData",
+  async (data) => {
+    return data;
+  }
+);
 export const updateBalanceOnBetPlaceCards = createAsyncThunk<any, any>(
   "update/balanceOnBetPlaceCards",
   async (data) => {
