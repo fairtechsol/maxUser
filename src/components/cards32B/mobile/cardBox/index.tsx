@@ -36,15 +36,14 @@ const CardBox = ({ odds, data }: any) => {
   };
   const renderItem = (item: any, index: number) => (
     <div
-      key={index}
       className={`dtlsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
-      <span style={{fontFamily:"auto",fontSize:"30px"}}>{index+1===10?"0":index+1}</span>
-      {/* <span style={{fontSize:"16px"}}>{index===1?"0":''}</span> */}
-      
+      <span style={{ fontFamily: "auto", fontSize: "30px" }}>
+        {index + 1 === 10 ? "0" : index + 1}
+      </span>
     </div>
   );
   return (
@@ -76,25 +75,17 @@ const CardBox = ({ odds, data }: any) => {
                 />
               </span>
             </div>
-            <div style={{ width: "53%", textAlign: "start"}}>11.2</div>
+            <div style={{ width: "53%", textAlign: "start" }}>11.2</div>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
-          {odds?.slice(0,5)?.map((item:any,index:number)=>{
-            return(
-              <>
-              {renderItem(item, index)}
-              </>
-            )
+          {odds?.slice(0, 5)?.map((item: any, index: number) => {
+            return <>{renderItem(item, index)}</>;
           })}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "auto" }}>
-        {odds?.slice(5,10)?.map((item:any,index:number)=>{
-            return(
-              <>
-              {renderItem(item, index+5)}
-              </>
-            )
+          {odds?.slice(5, 10)?.map((item: any, index: number) => {
+            return <>{renderItem(item, index + 5)}</>;
           })}
         </div>
       </div>

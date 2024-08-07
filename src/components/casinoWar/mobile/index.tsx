@@ -491,7 +491,7 @@ const TeenPattiMobile = () => {
                                 key={playerA[bettingOptions].sid}
                                 className={`teenPatti-table-item ${
                                   playerA[bettingOptions].gstatus === "0"
-                                    ? "suspended"
+                                    ? "lock"
                                     : ""
                                 }`}
                                 style={{
@@ -605,7 +605,7 @@ const TeenPattiMobile = () => {
                                 key={playerA[bettingOptions].sid}
                                 className={`teenPatti-table-item ${
                                   playerA[bettingOptions].gstatus === "0"
-                                    ? "suspended"
+                                    ? "lock"
                                     : ""
                                 }`}
                                 style={{

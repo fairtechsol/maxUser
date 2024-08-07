@@ -347,11 +347,8 @@ const cardDetail = createSlice({
           const { t1, t2 } = action?.payload;
           state.loading = false;
 
-          console.log("ffri", action.payload);
-          // Extract video info if t1 is present and has elements
           const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
 
-          // Create an array of players from t2 if t2 is present
           const players = t2
             ? t2?.map(({ sid, nat, b1, gstatus, min, max }: any) => ({
                 sid,
@@ -363,15 +360,16 @@ const cardDetail = createSlice({
               }))
             : [];
 
-          // Categorize players based on their nat value prefix
-          const categorizedPlayers = players?.reduce((acc: any, player: any) => {
-            const category = player?.nat?.split(" ")[0]; // Extract category prefix
-            if (!acc[category]) acc[category] = [];
-            acc[category].push(player);
-            return acc;
-          }, {});
+          const categorizedPlayers = players?.reduce(
+            (acc: any, player: any) => {
+              const category = player?.nat?.split(" ")[0];
+              if (!acc[category]) acc[category] = [];
+              acc[category].push(player);
+              return acc;
+            },
+            {}
+          );
 
-          // Create chunks of 6 players for each category
           const chunkedPlayers = Object.values(categorizedPlayers)
             .map((category: any) => _.chunk(category, 6))
             .flat();
@@ -514,8 +512,6 @@ const cardDetail = createSlice({
           const { t1, t2 } = action.payload;
           state.loading = false;
 
-          console.log("ggg", action.payload);
-
           const videoInfo = t1[0];
 
           const players = t2.slice(0, 6);
@@ -524,8 +520,16 @@ const cardDetail = createSlice({
           const seven = t2.slice(13, 15);
           const luckyCards = t2.slice(9, 13);
 
+          let newProfitLoss =
+            t1[0]?.mid === 0 ||
+            (t1[0]?.mid !== state.dragonTigerDetail?.videoInfo?.mid &&
+              state.dragonTigerDetail?.videoInfo?.mid !== undefined)
+              ? {}
+              : { ...state.dragonTigerDetail.profitLoss };
+
           state.dragonTigerDetail = {
             ...state.dragonTigerDetail,
+            profitLoss: newProfitLoss,
             videoInfo,
             players,
             redBlack,
@@ -574,10 +578,16 @@ const cardDetail = createSlice({
         const leftBoard = t2.slice(0, 5);
         const rightBoard = t2.slice(5, 9);
 
+        let newProfitLoss =
+          t1[0]?.mid === 0 ||
+          (t1[0]?.mid !== state.dragonTigerDetail?.videoInfo?.mid &&
+            state.dragonTigerDetail?.videoInfo?.mid !== undefined)
+            ? {}
+            : { ...state.dragonTigerDetail.profitLoss };
+
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
-          profitLoss:
-            t1[0]?.mid === 0 ? {} : { ...state.dragonTigerDetail.profitLoss },
+          profitLoss: newProfitLoss,
           videoInfo,
           leftBoard,
           rightBoard,

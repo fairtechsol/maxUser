@@ -49,9 +49,10 @@ const CardResultBox = ({ data, name, type }: any) => {
               key={item?.mid}
               style={{
                 backgroundColor: type === "race20" ? "#d5d5d5" : "#355e3b",
-                backgroundImage: type === "cmatch20"
-                ? `url(https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${item?.result}.png)`
-                : "",
+                backgroundImage:
+                  type === "cmatch20"
+                    ? `url(https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${item?.result}.png)`
+                    : "",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -177,7 +178,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                       color: item?.result === "0" ? "#ffffff" : "#f5cc03",
                     }}
                   >
-                    {item?.result === "0" ? name?.[0] : item?.result?.[1]}{" "}
+                    {item?.result === "0" ? name?.[0] : item?.result?.[1]}
                   </span>
                 </>
               ) : type === "cmatch20" ? (
@@ -209,6 +210,36 @@ const CardResultBox = ({ data, name, type }: any) => {
                     : item?.result === "10"
                     ? name?.[9]
                     : null} */}
+                </span>
+              ) : type === "btable" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "#ffff33",
+                  }}
+                >
+                  {name?.[item?.result - 1]}
+                </span>
+              ) : type === "aaa" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "#ffff33",
+                  }}
+                >
+                  {name?.[item?.result - 1]}
+                </span>
+              ) : type === "worli2" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "#ffff33",
+                  }}
+                >
+                  {name?.[0]}
                 </span>
               ) : (
                 <span

@@ -35,7 +35,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
             </div>
             <span
               style={{
-                fontSize: "12px",
+                fontSize: "16px",
                 display: "flex",
                 justifyContent: "center",
               }}

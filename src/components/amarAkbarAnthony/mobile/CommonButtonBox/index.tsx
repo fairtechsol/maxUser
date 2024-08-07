@@ -37,7 +37,7 @@ const CommonButtonBox = ({
       </div>
       <div>
         <span
-          style={{ fontSize: "12px" }}
+          style={{ fontSize: "14px" }}
           className={`${
             value3 && value3 > 0 ? "color-green" : value3 < 0 ? "color-red" : ""
           }`}

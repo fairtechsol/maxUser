@@ -44,15 +44,14 @@ const OddEven = ({ data, odds }: any) => {
   };
   const renderItem = (item: any, index: number) => (
     <div
-      key={index}
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
       {item?.b1}
       <span
-        className={`title-14 f400 ${
+        className={`title-12 f400 ${
           data?.profitLoss
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
               ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] >
@@ -66,6 +65,7 @@ const OddEven = ({ data, odds }: any) => {
               : ""
             : ""
         }`}
+        style={{ zIndex: "100" }}
       >
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]

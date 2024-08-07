@@ -17,6 +17,7 @@ import ScoreBox from "../mobile/scoreBox";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import RulesComponent from "../../commonComponent/rulesComponent";
 const CricketMatch20Desktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -314,28 +315,7 @@ const CricketMatch20Desktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <div className="casino-title" style={{ position: "relative" }}>
-                  <span>Rules</span>
-                </div>
-                {/* <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                          Pair Plus
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rules.map((item, index) => (
-                        <tr key={index}>
-                          <td className="box-7">{item.label}</td>
-                          <td className="box-3">{item.value}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </div> */}
+                <RulesComponent />
                 <RulesModal show={show} setShow={setShow} rule={crick20rules} />
               </Col>
             </Row>

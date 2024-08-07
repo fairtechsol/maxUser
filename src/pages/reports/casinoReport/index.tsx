@@ -79,10 +79,10 @@ const cardGames = [
     value: "dt6",
     label: "Dragon Tiger 1 Day", //
   },
-  // {
-  //   value: "aaa",
-  //   label: "Amar Akbar Anthony",
-  // },
+  {
+    value: "aaa",
+    label: "Amar Akbar Anthony",
+  },
   {
     value: "cricketv3",
     label: "Fve-Five Cricket",
@@ -99,14 +99,14 @@ const cardGames = [
     value: "war",
     label: "Casino War",
   },
-  // {
-  //   value: "3cardj",
-  //   label: "3 Card Judgement",
-  // },
-  // {
-  //   value: "worli2",
-  //   label: "Instant Worli",
-  // },
+  {
+    value: "3cardj",
+    label: "3 Card Judgement",
+  },
+  {
+    value: "worli2",
+    label: "Instant Worli",
+  },
   {
     value: "poker",
     label: "Poker 1-day",
@@ -119,10 +119,10 @@ const cardGames = [
     value: "poker6",
     label: "Poker 6",
   },
-  // {
-  //   value: "btable",
-  //   label: "Bollywood Table",
-  // },
+  {
+    value: "btable",
+    label: "Bollywood Table",
+  },
   {
     value: "cmatch20",
     label: "CRICKET MATCH 20-20",

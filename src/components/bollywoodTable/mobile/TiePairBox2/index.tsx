@@ -1,20 +1,17 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
-import { useState } from "react";
-import PlayerButton from "../../desktop/PlayerButton";
+import PlayerButton from "../PlayerButton";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { IoInformationCircle } from "react-icons/io5";
-import SmoothDropdownModal from "../minMaxModal";
 
-const TiePairBox = ({ lowHigh, data }: any) => {
+const TiePairBox2 = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = lowHigh?.min;
-  const max = lowHigh?.max;
-  const [modelOpen, setModelOpen] = useState(false);
+  const min = lowHigh?.[0]?.min;
+  const max = lowHigh?.[0]?.max;
+  // const [modelOpen, setModelOpen] = useState(false);
 
   const handleBet = (item: any, type: any) => {
     let team = {
-      bettingType: "BACK",
+      bettingType: type,
       matchId: data?.id,
       odd: type === "BACK" ? item?.b1 : item?.l1,
       stake: 0,
@@ -31,47 +28,48 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       })
     );
   };
+
   return (
-    <div className="tiePairContainer">
-      <div style={{ width: "98%", textAlign: "end" }}>
-        <span className="minmaxi">
-          <IoInformationCircle
-            color="#ffc742"
-            onClick={() => setModelOpen(!modelOpen)}
-          />
-          <SmoothDropdownModal
-            min={min}
-            max={max}
-            show={modelOpen}
-            setShow={() => setModelOpen(false)}
-          />
-        </span>
+    <div className="tiePairContaine">
+      <div
+        style={{
+          width: "100%",
+          textAlign: "end",
+          borderBottom: "1px solid #aaa",
+          borderLeft: "1px solid #aaa",
+          borderRight: "1px solid #aaa",
+          display: "flex",
+          alignItems: "start",
+          justifyContent: "left",
+          gap: "2px",
+          fontWeight: "600",
+          paddingLeft: "4px",
+        }}
+      >
+        <span>Min: {min}</span>
+        <span>Max: {max}</span>
       </div>
 
-      <div className="tiePairRateBoxMainlucky">
-        <PlayerButton
-          value1={lowHigh?.b1}
-          value4={lowHigh?.l1}
-          value2={lowHigh?.nat}
-          value3={
-            data?.profitLoss
-              ? data?.profitLoss[`${data?.videoInfo?.mid}_${lowHigh?.sid}_card`]
-              : 0
-          }
-          width={"100%"}
-          handleBet={handleBet}
-          lock={lowHigh?.gstatus === "CLOSED" ||lowHigh?.b1 === "0.00" ? true : false}
-          data={lowHigh}
-        />
-      </div>
-      {/* <div style={{ textAlign: "end", width: "100%" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div> */}
+      {lowHigh &&
+        lowHigh?.map((item: any, index: number) => (
+          <PlayerButton
+            key={index}
+            value1={item?.b1}
+            value4={item?.l1}
+            value2={item?.nat}
+            value3={
+              data?.profitLoss
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+                : 0
+            }
+            width={"100%"}
+            handleBet={handleBet}
+            lock={item?.gstatus === "CLOSED"}
+            data={item}
+          />
+        ))}
     </div>
   );
 };
 
-export default TiePairBox;
+export default TiePairBox2;

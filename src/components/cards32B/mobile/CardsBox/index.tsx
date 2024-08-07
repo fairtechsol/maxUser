@@ -49,7 +49,7 @@ const CardBox = ({ odds, data }: any) => {
         {index + 1 === 10 ? "0" : index + 1}
       </span>
       <span
-        style={{ fontSize: "14px", fontWeight: "400" }}
+        style={{ fontSize: "14px", fontWeight: "400",zIndex:"100" }}
         className={`title-14 f400 ${
           data?.profitLoss
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
