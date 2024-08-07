@@ -7,14 +7,12 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = lowHigh?.[0]?.min;
   const max = lowHigh?.[0]?.max;
-  
-  
 
-  const handleBet = (item: any,type:any) => {
+  const handleBet = (item: any, type: any) => {
     let team = {
-      bettingType: "BACK",  
+      bettingType: type,
       matchId: data?.id,
-      odd:type==="BACK"? item?.b1:item?.l1,
+      odd: type === "BACK" ? item?.b1 : item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
@@ -30,97 +28,68 @@ const TiePairBox = ({ lowHigh, data }: any) => {
     );
   };
 
-  useEffect(() => {
-    if (lowHigh?.[0]?.gstatus === "CLOSED" ||lowHigh?.[0]?.b1 === "0.00") {
-      dispatch(selectedBetAction(""));
-    } 
-    
-  }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.b1]);
+  const getProfitLoss = (gameName: string) => {
+    try {
+      let result = 0;
+      if (data?.profitLoss && Object.keys(data.profitLoss).length > 0) {
+        const key = `${data.videoInfo.mid}_1_card`;
+        if (key in data.profitLoss) {
+          const jsonString = data.profitLoss[key];
+          const parsedData = JSON.parse(jsonString);
+          result = parsedData[gameName] ? parsedData[gameName] : 0;
+        } else return result;
+      }
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
-
-        {/* <div className="commonButtonBoxContainer" style={{ width: "30%" }}>
-          <div>
-            <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
-              {parseFloat(lowHigh?.[0]?.b1).toFixed(2)}
-            </span>
-          </div>
-          <div  //lowHigh?.[0]?.gstatus === "0" ? true : false
-            className={`tiePairbtn-theme ${lowHigh?.[0]?.gstatus === "0" ? "suspended" : ""}`}
-            onClick={() => (!(lowHigh?.[0]?.gstatus === "0") ? handleBet(data) : null)}
-          >
-            <span>
-              {
-                "Amar"
-              }
-            </span>
-          </div>
-          <div>
-            <span
-              style={{ fontSize: "16px" }}
-              className={`${
-                value3 && value3 > 0
-                  ? "color-green"
-                  : value3 < 0
-                  ? " color-red"
-                  : ""
-              }`}
-            >
-              {value3 || 0}
-            </span>
-          </div>
-        </div> */}
-
         <PlayerButton
           value1={lowHigh?.[0]?.b1}
           value4={lowHigh?.[0]?.l1}
-          value2={"Amar"}
-          value3={
-            data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
-                ]
-              : 0
-          }
+          value2="A. Amar"
+          value3={getProfitLoss("amar")}
           width={"30%"}
           handleBet={handleBet}
-          lock={lowHigh?.[0]?.gstatus === "CLOSED" ||lowHigh?.[0]?.b1 === "0.00" ? true : false}
+          lock={
+            lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
+              ? true
+              : false
+          }
           data={lowHigh?.[0]}
         />
 
         <PlayerButton
           value1={lowHigh?.[1]?.b1}
           value4={lowHigh?.[1]?.l1}
-          value2={"Akbar"}
-          value3={
-            data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
-                ]
-              : 0
-          }
+          value2="B. Akbar"
+          value3={getProfitLoss("akbar")}
           width={"30%"}
           handleBet={handleBet}
-          lock={lowHigh?.[1]?.gstatus === "CLOSED" ||lowHigh?.[1]?.b1 === "0.00" ? true : false}
+          lock={
+            lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
+              ? true
+              : false
+          }
           data={lowHigh?.[1]}
         />
 
         <PlayerButton
           value1={lowHigh?.[2]?.b1}
           value4={lowHigh?.[2]?.l1}
-          value2={"Anthony"}
-          value3={
-            data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
-                ]
-              : 0
-          }
+          value2="C. Anthony"
+          value3={getProfitLoss("anthony")}
           width={"30%"}
           handleBet={handleBet}
-          lock={lowHigh?.[2]?.gstatus === "CLOSED" ||lowHigh?.[2]?.b1 === "0.00" ? true : false}
+          lock={
+            lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
+              ? true
+              : false
+          }
           data={lowHigh?.[2]}
         />
       </div>

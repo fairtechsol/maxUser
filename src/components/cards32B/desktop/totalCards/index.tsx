@@ -36,7 +36,6 @@ const TotalCards = ({ data, odds }: any) => {
   };
   const renderItem = (item: any, index: number) => (
     <div
-      key={index}
       className={`card32bsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
       }`}

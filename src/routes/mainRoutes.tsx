@@ -2,43 +2,17 @@
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layout/main";
 import Loadable from "../utils/loadable";
-import Cards32 from "../pages/cards32";
-import Lucky7B from "../pages/lucky7B";
-import CasinoWar from "../pages/casinoWar";
-import Poker1day from "../pages/poker1day";
-import Poker20 from "../pages/poker20";
-import Cricket5 from "../pages/cricket5";
-// import Home from "../pages/home";
-// import Home from "../pages/home";
-// import GameDetail from "../pages/gameDetails";
-// import FootballGameDetail from "../pages/otherGameDetails";
-// import AccountStatement from "../pages/accountStatement";
-// import ProfitLoss from "../pages/profitLoss";
-// import BetHistory from "../pages/betHistory";
-// import UnsettledBet from "../pages/unsettledBet";
-// import Mobile from "../components/rules/mobile";
-// import ChangeButtonValue from "../pages/changeButtonValues";
-// import SecureAuthVerification from "../pages/auth/secureAuthVerification";
-// import ChangePassword from "../pages/auth/changePassword";
-// import ContactAdmin from "../components/commonComponent/contactAdmin";
-// import GameList from "../pages/gameList";
 
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(() => import("../pages/home"));
 const GameDetail = Loadable(() => import("../pages/gameDetails"));
-const FootballGameDetail = Loadable(
-  () => import("../pages/otherGameDetails")
-);
+const FootballGameDetail = Loadable(() => import("../pages/otherGameDetails"));
 
-const AccountStatement = Loadable(
-  () => import("../pages/accountStatement")
-);
+const AccountStatement = Loadable(() => import("../pages/accountStatement"));
 const ProfitLoss = Loadable(() => import("../pages/profitLoss"));
 const BetHistory = Loadable(() => import("../pages/betHistory"));
 const UnsettledBet = Loadable(() => import("../pages/unsettledBet"));
-const CasinoReports = Loadable(
-  () => import("../pages/reports/casinoReport")
-);
+const CasinoReports = Loadable(() => import("../pages/reports/casinoReport"));
 const Mobile = Loadable(() => import("../components/rules/mobile"));
 const RaceDetail = Loadable(() => import("../pages/horseRacingDetails"));
 const TeenPatti20 = Loadable(() => import("../pages/teenPatti20"));
@@ -46,49 +20,41 @@ const TeenPatti1D = Loadable(() => import("../pages/teenPatti1D"));
 const TeenPattiTest = Loadable(() => import("../pages/teenPattiTest"));
 const TeenPattiOpen = Loadable(() => import("../pages/teenPattiOpen"));
 const Lucky7 = Loadable(() => import("../pages/lucky7"));
- const AmarAkbarAnthony = Loadable(
-   () => import("../pages/amarAkbarAnthony")
- );
- const BollywoodTable = Loadable(() => import("../pages/bollywoodTable"));
+const AmarAkbarAnthony = Loadable(() => import("../pages/amarAkbarAnthony"));
+const BollywoodTable = Loadable(() => import("../pages/bollywoodTable"));
 const Superover = Loadable(() => import("../pages/superover"));
 const DragonTiger20 = Loadable(() => import("../pages/dragon20"));
-const DragonTigerSecond20 = Loadable(
-  () => import("../pages/dragonSecond20")
-);
-const DragonTigerLion = Loadable(
-  () => import("../pages/dragonTigerLion")
-);
-const DragonTigerOneDay = Loadable(
-  () => import("../pages/dragonTigerOneDay")
-);
+const DragonTigerSecond20 = Loadable(() => import("../pages/dragonSecond20"));
+const DragonTigerLion = Loadable(() => import("../pages/dragonTigerLion"));
+const DragonTigerOneDay = Loadable(() => import("../pages/dragonTigerOneDay"));
 const CardList3 = Loadable(() => import("../pages/cardList3"));
 const CardList4 = Loadable(() => import("../pages/cardList4"));
 const Poker6 = Loadable(() => import("../pages/poker"));
 const Abj2 = Loadable(() => import("../pages/abj2"));
 const Abj1 = Loadable(() => import("../pages/abj"));
- const Worli = Loadable(() => import("../pages/worli"));
+const Worli = Loadable(() => import("../pages/worli"));
 const Cards32B = Loadable(() => import("../pages/cards32B"));
 const Race20 = Loadable(() => import("../pages/race20"));
- const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
- const CardJ = Loadable(() => import("../pages/3cardJ"));
+// const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
+const CardJ = Loadable(() => import("../pages/3cardJ"));
 
-const CricketMatch20 = Loadable(
-  () => import("../pages/cricketMatch_20")
-);
+const CricketMatch20 = Loadable(() => import("../pages/cricketMatch_20"));
 
-const ChangeButtonValue = Loadable(
-  () => import("../pages/changeButtonValues")
-);
+const ChangeButtonValue = Loadable(() => import("../pages/changeButtonValues"));
 
 const SecureAuthVerification = Loadable(
   () => import("../pages/auth/secureAuthVerification")
 );
-const ChangePassword = Loadable(
-  () => import("../pages/auth/changePassword")
-);
+const ChangePassword = Loadable(() => import("../pages/auth/changePassword"));
 const ContactAdmin = Loadable(
   () => import("../components/commonComponent/contactAdmin")
 );
+const Cards32 = Loadable(() => import("../pages/cards32"));
+const Lucky7B = Loadable(() => import("../pages/lucky7B"));
+const CasinoWar = Loadable(() => import("../pages/casinoWar"));
+const Poker1day = Loadable(() => import("../pages/poker1day"));
+const Poker20 = Loadable(() => import("../pages/poker20"));
+const Cricket5 = Loadable(() => import("../pages/cricket5"));
 
 const GameList = Loadable(() => import("../pages/gameList/index"));
 
@@ -250,10 +216,10 @@ const MainRoutes = {
       path: "cricketv3",
       element: <Cricket5 />,
     },
-    {
-      path: "baccarat",
-      element: <Baccarat1 />,
-    },
+    // {
+    //   path: "baccarat",
+    //   element: <Baccarat1 />,
+    // },
 
     {
       path: "aaa",
@@ -268,13 +234,13 @@ const MainRoutes = {
       path: "worli2",
       element: <Worli />,
     },
-     {
+    {
       path: "3cardj",
-      element: <CardJ/>,
+      element: <CardJ />,
     },
     {
       path: "cmatch20",
-      element: <CricketMatch20/>,
+      element: <CricketMatch20 />,
     },
 
     {

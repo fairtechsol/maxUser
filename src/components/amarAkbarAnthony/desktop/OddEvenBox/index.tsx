@@ -10,7 +10,7 @@ const OddEven = ({ data, card, odds }: any) => {
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
-      matchId:  data?.id,
+      matchId: data?.id,
       odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
@@ -27,7 +27,6 @@ const OddEven = ({ data, card, odds }: any) => {
     );
   };
 
-  
   return (
     <>
       <div className="oddEvenContainer">
@@ -39,7 +38,7 @@ const OddEven = ({ data, card, odds }: any) => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-around",
-                alignItems:"center"
+                alignItems: "center",
               }}
             >
               <CommonButtonBox
@@ -84,55 +83,54 @@ const OddEven = ({ data, card, odds }: any) => {
           </>
         ) : (
           <>
-          {" "}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
-              alignItems:"center"
-            }}
-          >
-            <CommonButtonBox
-              value1={odds?.[0]?.b1}
-              value2={odds?.[0]?.nat}
-              value3={
-                data?.profitLoss
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
-                    ]
-                  : 0
-              }
-              width={"80%"}
-              handleBet={handleBet}
-              lock={odds?.[0]?.gstatus === "SUSPENDED" ? true : false}
-              data={odds?.[0]}
-            />
-            <CommonButtonBox
-              value1={odds?.[1]?.b1}
-              value2={odds?.[1]?.nat}
-              value3={
-                data?.profitLoss
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
-                    ]
-                  : 0
-              }
-              width={"80%"}
-              handleBet={handleBet}
-              lock={odds?.[1]?.gstatus === "SUSPENDED" ? true : false}
-              data={odds?.[1]}
-            />
-          </div>
-          <div style={{ textAlign: "end" }}>
-            <span style={{ fontWeight: "bolder" }}>Min:</span>
-            <span>{min}</span>
-            <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>
-              Max:
-            </span>
-            <span>{max}</span>
-          </div>
-        </>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <CommonButtonBox
+                value1={odds?.[0]?.b1}
+                value2={odds?.[0]?.nat}
+                value3={
+                  data?.profitLoss
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                      ]
+                    : 0
+                }
+                width={"80%"}
+                handleBet={handleBet}
+                lock={odds?.[0]?.gstatus === "SUSPENDED" ? true : false}
+                data={odds?.[0]}
+              />
+              <CommonButtonBox
+                value1={odds?.[1]?.b1}
+                value2={odds?.[1]?.nat}
+                value3={
+                  data?.profitLoss
+                    ? data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                      ]
+                    : 0
+                }
+                width={"80%"}
+                handleBet={handleBet}
+                lock={odds?.[1]?.gstatus === "SUSPENDED" ? true : false}
+                data={odds?.[1]}
+              />
+            </div>
+            <div style={{ textAlign: "end" }}>
+              <span style={{ fontWeight: "bolder" }}>Min:</span>
+              <span>{min}</span>
+              <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>
+                Max:
+              </span>
+              <span>{max}</span>
+            </div>
+          </>
         )}
       </div>
     </>

@@ -31,7 +31,6 @@ const PlayerButton = ({
               style={{
                 fontSize: "16px",
                 fontWeight: "bolder",
-                color: "red",
                 paddingLeft: "4px",
               }}
             >
@@ -45,7 +44,6 @@ const PlayerButton = ({
               style={{
                 fontSize: "16px",
                 fontWeight: "bolder",
-                color: "red",
                 paddingLeft: "4px",
               }}
             >
@@ -59,7 +57,6 @@ const PlayerButton = ({
               style={{
                 fontSize: "16px",
                 fontWeight: "bolder",
-                color: "red",
                 paddingLeft: "4px",
               }}
             >
@@ -80,7 +77,7 @@ const PlayerButton = ({
         </div>
         <div>
           <span
-            style={{ fontSize: "16px", paddingLeft: "4px" }}
+            style={{ fontSize: "14px", paddingLeft: "4px" }}
             className={`${
               value3 && value3 > 0
                 ? "color-green"
