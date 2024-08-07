@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.scss";
-import bg from "../../../../assets/images/cricketMatch_20-20/score-bg.png";
+import bg from "../../../../assets/images/cricketMatch_20-20/score-bgnew.webp";
 const ScoreBox = ({
   teamA,
   teamAScore,
