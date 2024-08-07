@@ -8,7 +8,7 @@ return (
     chartType="PieChart"
     data={data}
     options={options}
-    width={"100%"}
+    width={"170px"}
     height={"120px"}
   />
     // </div>
