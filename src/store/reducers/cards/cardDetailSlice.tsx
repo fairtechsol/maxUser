@@ -34,6 +34,7 @@ import {
   dragonTigerReset,
   scoreBoardReset,
   updateCricketMatch20MatchRates,
+  graphData,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -44,6 +45,7 @@ interface InitialState {
   lucky7Detail: any;
   lucky7BDetail: any;
   liveGameResultTop10: any;
+  graphsData: any;
   cards32Detail: any;
   resultData: any;
   scoreBoardData: any;
@@ -57,6 +59,7 @@ const initialState: InitialState = {
   lucky7Detail: [],
   lucky7BDetail: [],
   liveGameResultTop10: [],
+  graphsData: [],
   cards32Detail: [],
   resultData: null,
   scoreBoardData: [],
@@ -159,6 +162,9 @@ const cardDetail = createSlice({
       })
       .addCase(updateLiveGameResultTop10.fulfilled, (state, action) => {
         state.liveGameResultTop10 = action.payload;
+      })
+      .addCase(graphData.fulfilled, (state, action) => {
+        state.graphsData = action.payload;
       })
       .addCase(updateProfitLossCards.fulfilled, (state, action) => {
         state.dragonTigerDetail = {

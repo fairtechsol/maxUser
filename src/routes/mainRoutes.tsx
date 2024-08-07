@@ -35,7 +35,7 @@ const Abj1 = Loadable(() => import("../pages/abj"));
 const Worli = Loadable(() => import("../pages/worli"));
 const Cards32B = Loadable(() => import("../pages/cards32B"));
 const Race20 = Loadable(() => import("../pages/race20"));
-// const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
+const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
 const CardJ = Loadable(() => import("../pages/3cardJ"));
 
 const CricketMatch20 = Loadable(() => import("../pages/cricketMatch_20"));
@@ -216,10 +216,10 @@ const MainRoutes = {
       path: "cricketv3",
       element: <Cricket5 />,
     },
-    // {
-    //   path: "baccarat",
-    //   element: <Baccarat1 />,
-    // },
+    {
+      path: "baccarat",
+      element: <Baccarat1 />,
+    },
 
     {
       path: "aaa",
