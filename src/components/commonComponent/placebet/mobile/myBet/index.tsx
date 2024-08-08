@@ -2,7 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { betPlaceSuccessReset ,placeBet } from "../../../../../store/actions/betPlace/betPlaceActions";
+import {
+  betPlaceSuccessReset,
+  placeBet,
+} from "../../../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../../../store/actions/match/matchListAction";
 import "./style.scss";
 import { AppDispatch, RootState } from "../../../../../store/store";
@@ -174,7 +177,14 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                           ? "192.168.1.100"
                           : ipAddress,
                       odd: parseFloat(selectedBet?.team?.odd),
-                      stake: parseFloat(selectedBet?.team?.stake),
+                      stake: [
+                        "Line1 Single",
+                        "Line2 Single",
+                        "ODD Single",
+                        "EVEN Single",
+                      ].includes(selectedBet?.team?.betOnTeam)
+                        ? selectedBet?.team?.stake * 5
+                        : parseFloat(selectedBet?.team?.stake),
                       matchBetType: selectedBet?.team?.matchBetType,
                       betOnTeam: selectedBet?.team?.betOnTeam,
                       bettingName: selectedBet?.team?.bettingName,
@@ -206,9 +216,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                 </span>
               </CustomButton>
             </Col>
-            <Col xs={4} className="title-12 text-center">
-              
-            </Col>
+            <Col xs={4} className="title-12 text-center"></Col>
             {valueLabel?.map((item: any, index: number) => (
               <Col key={index} xs={4}>
                 <CustomButton
