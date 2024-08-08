@@ -92,8 +92,8 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
                   onClick={() => setModelOpen(!modelOpen)}
                 />
                 <SmoothDropdownModal
-                  min={dragonData?.[0]?.max}
-                  max={dragonData?.[0]?.min}
+                  min={dragonData?.[0]?.min}
+                  max={dragonData?.[0]?.max}
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
