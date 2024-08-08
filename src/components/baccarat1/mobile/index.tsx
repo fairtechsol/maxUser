@@ -16,6 +16,20 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import PieChart from "../desktop/chart";
+
+
+export const data = [
+  ["Task", "Hours per Day"],
+  ["Work", 15],
+  ["Eat", 20],
+];
+
+export const options = {
+  title: "My Daily Activities",
+  is3D: true,
+};
+
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -154,7 +168,13 @@ const Baccarat1Mobile = () => {
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+             <>
+             <LoaderOnRefresh />
+             <PieChart
+             data={data}
+             options={options}
+           />
+             </>
             ) : (
               <div style={{ height: "700px" }}>
                 <div
@@ -167,7 +187,7 @@ const Baccarat1Mobile = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "B"]}
+                    name={["P", "B","T"]}
                     type={cardGamesType.andarBahar2}
                   />
                 </div>

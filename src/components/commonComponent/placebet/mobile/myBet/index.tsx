@@ -207,7 +207,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
               </CustomButton>
             </Col>
             <Col xs={4} className="title-12 text-center">
-              0
+              
             </Col>
             {valueLabel?.map((item: any, index: number) => (
               <Col key={index} xs={4}>
