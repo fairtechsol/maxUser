@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { abjrules } from "../../../assets/images";
+import { baccarat1rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -15,6 +15,17 @@ import BaccaratStatistics from "./betTable";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import PieChart from "./chart";
+export const data = [
+  ["Task", "Hours per Day"],
+  ["Work", 15],
+  ["Eat", 20],
+];
+
+export const options = {
+  title: "My Daily Activities",
+  is3D: true,
+};
 
 const Baccarat1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -23,7 +34,7 @@ const Baccarat1Desktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
-  const { dragonTigerDetail, loading } = useSelector(
+  const { dragonTigerDetail, loading,graphsData } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -77,7 +88,7 @@ const Baccarat1Desktop = () => {
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.baccarat}`);
   }, []);
-
+// console.log('liveGameResultTop10',resultData)
   return (
     <>
       <Row>
@@ -127,26 +138,33 @@ const Baccarat1Desktop = () => {
               </div>
             </div>
             {loading ? (
+              <>
               <LoaderOnRefresh />
+              <PieChart
+              data={data}
+              options={options}
+            />
+              </>
+              
             ) : (
               <div>
                 <div
                   className="row-flex"
-                  style={{ width: "100%", margin: "5% 2% 5px 5px" }}
+                  style={{ width: "100%", margin: "5px" }}
                 >
-                  <BaccaratStatistics odds={dragonTigerDetail?.odds} />
+                  <BaccaratStatistics data={dragonTigerDetail} odds={dragonTigerDetail?.odds} graphsData={graphsData} cardData={dragonTigerDetail?.videoInfo}/>
                 </div>
 
                 <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "B"]}
+                    name={["P", "B","T"]}
                     type={cardGamesType.andarBahar2}
                   />
                 </div>
               </div>
             )}
-            <RulesModal show={show} setShow={setShow} rule={abjrules} />
+            <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
           </div>
         </Col>
         <Col md={4}>

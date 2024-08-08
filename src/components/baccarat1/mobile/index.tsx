@@ -4,18 +4,32 @@ import { RootState } from "../../../store/store";
 // import "./style.scss";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 // import CardResultBox from "../../commonComponent/cardResultBox";
-import { abjrules } from "../../../assets/images";
+import { baccarat1rules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import BaccaratStatistics from "../desktop/betTable";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import PieChart from "../desktop/chart";
+import BaccaratStatistics from "./betTable";
+
+
+export const data = [
+  ["Task", "Hours per Day"],
+  ["Work", 15],
+  ["Eat", 20],
+];
+
+export const options = {
+  title: "My Daily Activities",
+  is3D: true,
+};
+
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -24,7 +38,7 @@ const Baccarat1Mobile = () => {
   const [videoFrameId, setVideoFrameId] = useState("");
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail, loading } = useSelector(
+  const { dragonTigerDetail, loading,graphsData} = useSelector(
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
@@ -120,7 +134,7 @@ const Baccarat1Mobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "210px" }}>
+            <div style={{ width: "100%"}}>
               <div className="horseRacingTabHeader-m">
                 <div
                   style={{
@@ -154,20 +168,26 @@ const Baccarat1Mobile = () => {
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+             <>
+             <LoaderOnRefresh />
+             <PieChart
+             data={data}
+             options={options}
+           />
+             </>
             ) : (
-              <div style={{ height: "700px" }}>
+              <div >
                 <div
                   className="row-flex"
-                  style={{ width: "100%", margin: "22% 2% 5px 5px" }}
+                  style={{ width: "100%"}}
                 >
-                  <BaccaratStatistics odds={dragonTigerDetail?.odds} />
+                  <BaccaratStatistics data={dragonTigerDetail} odds={dragonTigerDetail?.odds} graphsData={graphsData} cardData={dragonTigerDetail?.videoInfo}/>
                 </div>
 
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "B"]}
+                    name={["P", "B","T"]}
                     type={cardGamesType.andarBahar2}
                   />
                 </div>
@@ -180,7 +200,7 @@ const Baccarat1Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

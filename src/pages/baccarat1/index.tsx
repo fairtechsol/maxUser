@@ -8,6 +8,7 @@ import {
 import {
   dragonTigerReset,
   getDragonTigerDetailHorseRacing,
+  graphData,
   updateBaccarat1Rates,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
@@ -45,6 +46,7 @@ const Bacarrat1 = () => {
   };
   const handleLiveGameResultTop10 = (event: any) => {
     dispatch(updateLiveGameResultTop10(event?.data));
+    dispatch(graphData(event?.graphdata));
   };
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {

@@ -64,7 +64,7 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
             }
             width={"100%"}
             handleBet={handleBet}
-            lock={item?.gstatus === "CLOSED"}
+            lock={item?.gstatus === "CLOSED" || item?.gstatus ==="SUSPENDED"}
             data={item}
           />
         ))}
