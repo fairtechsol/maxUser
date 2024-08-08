@@ -42,7 +42,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
         className={ 
           data?.worli?.gstatus == 0 ? "suspended abjcardContainer" : " abjcardContainer"
         }
-        style={{ backgroundColor: "#72bbef", border: "0.5px solid #fff" }}
+        style={{ backgroundColor: "#72bbef", border: "0.5px solid #9e9e9e" }}
       >
         <div
           style={{
@@ -50,7 +50,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
             paddingTop: "17px",
             paddingBottom: "17px",
           }}
@@ -70,7 +70,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
           }}
           onClick={() =>
             handleBet({
@@ -88,7 +88,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
           }}
           onClick={() =>
             handleBet({
@@ -106,7 +106,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
           }}
           onClick={() =>
             handleBet({
@@ -124,7 +124,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
           }}
           onClick={() =>
             handleBet({
@@ -142,7 +142,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
             flexDirection: "column",
           }}
           onClick={() =>
@@ -164,7 +164,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
             flexDirection: "column",
           }}
           onClick={() =>
