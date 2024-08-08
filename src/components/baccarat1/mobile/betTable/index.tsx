@@ -1,7 +1,7 @@
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import { HandleGameCards } from "../card";
-import PieChart from "../chart";
+import { HandleGameCards } from "../../desktop/card";
+import PieChart from "../../desktop/chart";
 import { useDispatch } from "react-redux";
 
 export const options = {
@@ -38,12 +38,12 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
   }
   // console.log(odds, "odds");
   return (
-    <div className="baccarateContainer">
-      <div className="baccarateChartContainer">
+    <div className="baccarateContainer-m">
+      <div className="baccarateChartContainer-m">
         <h4>Statistics</h4>
         <PieChart data={dataa} options={options} />
       </div>
-      <div className="baccarateRateContainer">
+      <div className="baccarateRateContainer-m">
         <div className="baccarateRateContainer1">
           <div
             className={`perfectpairBox ${
