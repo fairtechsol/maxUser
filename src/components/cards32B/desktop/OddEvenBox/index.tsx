@@ -94,8 +94,8 @@ const OddEven = ({ data, odds }: any) => {
                   onClick={() => setModelOpen(!modelOpen)}
                 />
                 <SmoothDropdownModal
-                  min={player8?.[0]?.max}
-                  max={player8?.[0]?.min}
+                  min={player8?.[0]?.min}
+                  max={player8?.[0]?.max}
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />

@@ -4,7 +4,7 @@ import { RootState } from "../../../store/store";
 // import "./style.scss";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 // import CardResultBox from "../../commonComponent/cardResultBox";
-import { abjrules } from "../../../assets/images";
+import { baccarat1rules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -16,6 +16,20 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import PieChart from "../desktop/chart";
+
+
+export const data = [
+  ["Task", "Hours per Day"],
+  ["Work", 15],
+  ["Eat", 20],
+];
+
+export const options = {
+  title: "My Daily Activities",
+  is3D: true,
+};
+
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -154,7 +168,13 @@ const Baccarat1Mobile = () => {
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+             <>
+             <LoaderOnRefresh />
+             <PieChart
+             data={data}
+             options={options}
+           />
+             </>
             ) : (
               <div style={{ height: "700px" }}>
                 <div
@@ -167,7 +187,7 @@ const Baccarat1Mobile = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "B"]}
+                    name={["P", "B","T"]}
                     type={cardGamesType.andarBahar2}
                   />
                 </div>
@@ -180,7 +200,7 @@ const Baccarat1Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

@@ -133,7 +133,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -362,6 +362,8 @@ export const navigateToGameDetail = {
   [cardGamesType.poker6]: "poker6",
   [cardGamesType.poker1Day]: "poker",
   [cardGamesType.poker20]: "poker20",
+  [cardGamesType.baccarat]: "baccarat",
+  [cardGamesType.baccarat2]: "baccarat2",
 };
 
 export const baseUrls = {
@@ -1518,13 +1520,13 @@ export const casinoIcons = [
     name: "20-20 Dragon Tiger 2",
   },
   {
-    url: "",
+    url: "/baccarat2",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
     name: "Baccarat 2",
   },
   {
-    url: "",
+    url: "/baccarat",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
     name: "Baccarat",
@@ -1730,14 +1732,14 @@ export const card3 = {
   ],
   baccarat: [
     {
-      url: "",
+      url: "/baccarat2",
       imgSrc: bac1,
-      name: "BACCARAT",
+      name: "BACCARAT2",
     },
     {
-      url: "",
+      url: "/baccarat",
       imgSrc: bac2,
-      name: "BACCARAT2",
+      name: "BACCARAT",
     },
   ],
   bollywoodCasino: [

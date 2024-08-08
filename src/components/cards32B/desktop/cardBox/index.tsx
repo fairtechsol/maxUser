@@ -92,8 +92,8 @@ const CardBox = ({ odds, data }: any) => {
                   onClick={() => setModelOpen(!modelOpen)}
                 />
                 <SmoothDropdownModal
-                  min={odds?.[0]?.max}
-                  max={odds?.[0]?.min}
+                  min={odds?.[0]?.min}
+                  max={odds?.[0]?.max}
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
