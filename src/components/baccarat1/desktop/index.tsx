@@ -150,9 +150,9 @@ const Baccarat1Desktop = () => {
               <div>
                 <div
                   className="row-flex"
-                  style={{ width: "100%", margin: "5% 2% 5px 5px" }}
+                  style={{ width: "100%", margin: "5px" }}
                 >
-                  <BaccaratStatistics odds={dragonTigerDetail?.odds} graphsData={graphsData}/>
+                  <BaccaratStatistics data={dragonTigerDetail} odds={dragonTigerDetail?.odds} graphsData={graphsData} cardData={dragonTigerDetail?.videoInfo}/>
                 </div>
 
                 <div style={{ width: "100%", margin: "5px" }}>
