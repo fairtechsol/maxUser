@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { useEffect } from "react";
 const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -44,6 +44,13 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
       return "";
     }
   };
+
+  useEffect(() => {
+    if (odds?.gstatus === "0") {
+      dispatch(selectedBetAction(""));
+    } else {
+    }
+  }, [odds?.gstatus === "0"]);
 
   return (
     <div className={handlock()}>

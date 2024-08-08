@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { dragonTigerCards } from "../../../../utils/constants";
+import { bollywoodTableCards } from "../../../../utils/constants";
 
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
-  const [cardImg, setCardImg] = useState(dragonTigerCards);
+  const [cardImg, setCardImg] = useState(bollywoodTableCards);
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
       return {
         ...item,
-        ...dragonTigerCards[index],
+        ...bollywoodTableCards[index],
       };
     });
     setCardImg(mergedArray);
@@ -20,7 +20,9 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
           <div>
             <div
               key={item?.code}
-              className={item?.gstatus === "0" ? "suspended" : ""}
+              className={
+                item?.gstatus === "0" || item?.b1 === "0.00" ? "suspended" : ""
+              }
               style={{
                 display: "flex",
                 flexDirection: "column",

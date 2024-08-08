@@ -1841,3 +1841,26 @@ export const dragonTigerCards = [
     value: 0,
   },
 ];
+
+export const bollywoodTableCards = [
+  {
+    code: 10,
+    imgSrc: eleven,
+    value: 0,
+  },
+  {
+    code: 11,
+    imgSrc: twelve,
+    value: 0,
+  },
+  {
+    code: 12,
+    imgSrc: thirteen,
+    value: 0,
+  },
+  {
+    code: 0,
+    imgSrc: A,
+    value: 0,
+  },
+];

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import isMobile from "../../../../utils/screenDimension";
-
+import { useEffect } from "react";
 const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any) => {
@@ -71,6 +71,20 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
       </span>
     </div>
   );
+
+  useEffect(() => {
+    if (
+      data?.dragonData?.[0]?.gstatus === "SUSPENDED" ||
+      data?.dragonData?.[0]?.b1 === "0.00"
+    ) {
+      dispatch(selectedBetAction(""));
+    }
+  }, [
+    data?.dragonData?.[0].gstatus,
+    data?.dragonData?.[0]?.b1,
+  ]);
+
+
   return (
     <div className="w-100">
       <div

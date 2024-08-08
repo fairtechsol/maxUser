@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { HandleCards } from "../../../commonComponent/cardsComponent";
-
+import { useEffect } from "react";
 const OddBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = odds?.[0]?.min;
@@ -65,6 +65,14 @@ const OddBox = ({ odds, data }: any) => {
       return "kofclub";
     }
   };
+
+  
+  useEffect(() => {
+    if (odds?.[0]?.gstatus !== "ACTIVE" ||odds?.[0]?.b1 === "0.00") {
+      dispatch(selectedBetAction(""));
+    } 
+    
+  }, [odds?.[0]?.gstatus,odds?.[0]?.b1]);
 
   return (
     <>

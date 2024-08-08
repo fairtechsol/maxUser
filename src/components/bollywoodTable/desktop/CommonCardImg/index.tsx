@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { dragonTigerCards } from "../../../../utils/constants";
+import { bollywoodTableCards } from "../../../../utils/constants";
 import "../../desktop/style.scss";
 
 const CommonCardImg = ({ cardData, handleBet, data }: any) => {
-  const [cardImg, setCardImg] = useState(dragonTigerCards);
+  const [cardImg, setCardImg] = useState(bollywoodTableCards);
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
       return {
         ...item,
-        ...dragonTigerCards[index],
+        ...bollywoodTableCards[index],
       };
     });
     setCardImg(mergedArray);
@@ -20,7 +20,11 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
         return (
           <div>
             <div
-              className={item?.gstatus === "CLOSED" ? "suspended" : ""}
+              className={
+                item?.gstatus === "CLOSED" || item?.b1 === "0.00"
+                  ? "suspended"
+                  : ""
+              }
               style={{
                 display: "flex",
                 flexDirection: "column",

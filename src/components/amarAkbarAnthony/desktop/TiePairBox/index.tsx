@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import PlayerButton from "../PlayerButton";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-
+import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = lowHigh?.[0]?.min;

@@ -86,10 +86,10 @@ function FootballBookmakerTable({
               className="border-0 px-2"
               colSpan={isMobile && backLayCount === 6 ? 3 : 0}
             >
-              <div className="px-2 text-info">
+              <div className="text-info">
                 {minMax &&
                   (isMobile ? (
-                    <span className="f900 title-12 px-2 text-black">
+                    <span className="f900 title-12 text-black">
                       {minMax}
                     </span>
                   ) : (

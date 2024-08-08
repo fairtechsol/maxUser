@@ -150,7 +150,7 @@ const FootballMobileGameDetail = () => {
                             <Col className="g-0" md={12}>
                               <BetTable
                                 title={item?.name}
-                                type={MatchType.UNDER_OVER}
+                                type={MatchType.FIRST_HALF_GOAL}
                                 data={item}
                                 backLayCount={2}
                               />
@@ -161,7 +161,7 @@ const FootballMobileGameDetail = () => {
                       <Col className="g-0" md={12}>
                         <BetTable
                           title={otherMatchDetails?.halfTime?.name}
-                          type={MatchType.MATCH_ODDS}
+                          type={MatchType.HALF_TIME}
                           data={otherMatchDetails?.halfTime}
                           backLayCount={2}
                         />

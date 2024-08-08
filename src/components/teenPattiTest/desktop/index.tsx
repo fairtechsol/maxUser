@@ -133,6 +133,12 @@ const TeenPattiDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenTest}`);
   }, []);
 
+  useEffect(() => {
+    if (!sections?.[0]?.dstatus || sections?.[0]?.drate === "0.00") {
+      dispatch(selectedBetAction(""));
+    }
+  }, [sections?.[0]?.dstatus, sections?.[0]?.drate]);
+
   return (
     <>
       <Row>
@@ -320,7 +326,7 @@ const TeenPattiDesktop = () => {
                                     : ""
                                   : ""
                               }
-                              style={{zIndex:"100"}}
+                              style={{ zIndex: "100" }}
                             >
                               {dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
@@ -410,7 +416,7 @@ const TeenPattiDesktop = () => {
                                     : ""
                                   : ""
                               }
-                              style={{zIndex:"100"}}
+                              style={{ zIndex: "100" }}
                             >
                               {dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
