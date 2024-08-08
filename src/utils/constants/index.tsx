@@ -4,9 +4,6 @@ import {
   dt2020,
   dtl20,
   A,
-  K,
-  Q,
-  J,
   two,
   three,
   four,
@@ -133,7 +130,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
