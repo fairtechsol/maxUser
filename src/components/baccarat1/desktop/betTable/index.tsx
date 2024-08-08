@@ -1,4 +1,4 @@
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { Chart } from "react-google-charts";
 import isMobile from "../../../../utils/screenDimension";
 import PieChart from "../chart";
@@ -21,10 +21,10 @@ const BaccaratStatistics = ({ odds,graphsData }: any) => {
   return (
     <div
       className={
-        isMobile ? "d-flex flex-column" : "d-flex flex-row baccarat"
+        isMobile ? "d-flex flex-column w-100" : "d-flex flex-row baccarat"
       }
     >
-      <div style={{ width: "18%"}}>
+      <div style={{ width: "25%"}}>
         <Row className="mt-2 justify-content-center baccarat-graph">
           <Col md={3} className="text-center">
             <h4>Statistics</h4>
@@ -35,7 +35,7 @@ const BaccaratStatistics = ({ odds,graphsData }: any) => {
           </Col>
         </Row>
       </div>
-      <div style={{ width: isMobile ? "100%" : "82%"}}>
+      <div style={{ width: isMobile ? "100%" : "82%"}} className={isMobile ? "title-12": ""}>
         <Row>
           <div
             className={
@@ -87,7 +87,7 @@ const BaccaratStatistics = ({ odds,graphsData }: any) => {
             {/* ))}  */}
           </div>
         </Row>
-        <div className="m-0 p-0">
+        <div style={{ width: isMobile ? "100%" : "82%"}}>
           <Row
             className={
               isMobile
@@ -172,7 +172,7 @@ const BaccaratStatistics = ({ odds,graphsData }: any) => {
               </div>
             </Col>
             <Col
-              md={3}
+              md={4}
               className={
                 isMobile
                   ? "banker-pair-box-container-m"

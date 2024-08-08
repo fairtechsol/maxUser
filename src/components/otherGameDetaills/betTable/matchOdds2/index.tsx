@@ -17,7 +17,7 @@ const MatchMarketRow = ({
   data,
   matchDetails,
   team,
-  indexForOverlay
+  indexForOverlay,
 }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handlePlaceBet = (team: any, data: any) => {
@@ -28,14 +28,17 @@ const MatchMarketRow = ({
       })
     );
   };
-  console.log(matchDetails, "sbdvg");
   const profitLoss =
     team === "teamA"
       ? matchDetails?.profitLossDataMatch?.[
           profitLossDataForMatchConstants[data.type]?.A
         ]
-      : matchDetails?.profitLossDataMatch?.[
+      : team === "teamB"
+      ? matchDetails?.profitLossDataMatch?.[
           profitLossDataForMatchConstants[data.type]?.B
+        ]
+      : matchDetails?.profitLossDataMatch?.[
+          profitLossDataForMatchConstants[data.type]?.C
         ];
 
   return (
@@ -57,13 +60,13 @@ const MatchMarketRow = ({
         </div>
       </div>
       <Overlay
-       title={data?.runners?.[indexForOverlay]?.status.toLowerCase()}
+        title={data?.runners?.[indexForOverlay]?.status.toLowerCase()}
         active={data?.activeStatus == "live" ? false : true}
-        >
+      >
         {odds?.map((odd: any) => (
           <div
             key={odd?.id}
-            style={{width: "100%"}}
+            style={{ width: "100%" }}
             className={`market-odd-box-o ${odd.className} `}
             onClick={() => {
               if (
