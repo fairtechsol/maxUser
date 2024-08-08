@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import CardBox from "./CardsBox";
+import CardBox2 from "./CardsBox2";
 import "./style.scss";
 import { abjrules } from "../../../assets/images";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -21,7 +22,7 @@ const WorliMobile = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.andarBahar1}`
+    `${cardUrl}${cardGamesId?.worli}`
   );
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -158,22 +159,25 @@ const WorliMobile = () => {
               <LoaderOnRefresh />
             ) : (
               <div style={{ height: "450px", marginTop: "70px" }}>
-                <div
+               <div
                   style={{
                     width: "100%",
+                    margin: "0px",
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                 >
+                  <div className="parent-rate">
+                    <div className="child-rate1">9</div>
+                    <div className="child-rate2">9</div>
+                  </div>
                   <CardBox
-                    title={"ANDAR"}
-                    bgColor={"#ffa07a"}
-                    odds={dragonTigerDetail?.ander}
+                    odds={"L1"}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
                   />
                   <CardBox
-                    title={"BAHAR"}
-                    bgColor={"#90ee90"}
-                    odds={dragonTigerDetail?.bahar}
+                    odds={"L2"}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
                   />
@@ -181,8 +185,8 @@ const WorliMobile = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R"]}
-                    type={cardGamesType.andarBahar1}
+                    name={["R","R","R"]}
+                    type={cardGamesType.worli}
                   />
                 </div>
               </div>
