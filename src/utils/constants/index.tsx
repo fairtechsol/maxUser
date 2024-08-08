@@ -275,18 +275,18 @@ export const availableGameType: any = {
 };
 
 export const cardGamesType: any = {
-  dragonTiger20: "dt20", //
-  andarBahar2: "abj", //
-  andarBahar1: "ab20", //
-  teen20: "teen20", //
-  card32: "card32", //
-  card32B: "card32eu", //
-  lucky7: "lucky7", //
-  dragonTiger202: "dt202", //
-  dragonTigerLion: "dtl20", //
-  teenOneDay: "teen", //
-  teenOpen: "teen8", //
-  teenTest: "teen9", //
+  dragonTiger20: "dt20",
+  andarBahar2: "abj",
+  andarBahar1: "ab20",
+  teen20: "teen20",
+  card32: "card32",
+  card32B: "card32eu",
+  lucky7: "lucky7",
+  dragonTiger202: "dt202",
+  dragonTigerLion: "dtl20",
+  teenOneDay: "teen",
+  teenOpen: "teen8",
+  teenTest: "teen9",
   dragonTigerOneDay: "dt6",
   lucky7B: "lucky7eu",
   casinoWar: "war",
@@ -345,7 +345,7 @@ export const navigateToGameDetail = {
   [cardGamesType.card32B]: "32cards-B",
   [cardGamesType.lucky7]: "lucky7-A",
   [cardGamesType.lucky7B]: "lucky7eu",
-  [cardGamesType.abj]: "abj2",
+  [cardGamesType.andarBahar2]: "abj2",
   [cardGamesType.dragonTiger20]: "dt20",
   [cardGamesType.andarBahar1]: "ab20",
   [cardGamesType.race20]: "race20",
@@ -361,6 +361,12 @@ export const navigateToGameDetail = {
   [cardGamesType.poker20]: "poker20",
   [cardGamesType.baccarat]: "baccarat",
   [cardGamesType.baccarat2]: "baccarat2",
+  [cardGamesType.cricketv3]: "cricketv3",
+  [cardGamesType.amarAkbarAnthony]: "aaa",
+  [cardGamesType.btable]: "btable",
+  [cardGamesType.worli]: "worli2",
+  [cardGamesType.cardj]: "3cardj",
+  [cardGamesType.cmatch20]: "cmatch20",
 };
 
 export const baseUrls = {

@@ -252,9 +252,7 @@ const DesktopPlacedBet = () => {
                     </div>
                   </td>
                   <td width={"18%"} style={{ textAlign: "end" }}>
-                    <span className="f500" style={{ textAlign: "end" }}>
-                      
-                    </span>
+                    <span className="f500" style={{ textAlign: "end" }}></span>
                   </td>
                 </tr>
                 <tr
