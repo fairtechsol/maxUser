@@ -112,13 +112,13 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
                 <SmoothDropdownModal
                   min={
                     title1 === "even"
-                      ? dragonEvenOdd?.[0]?.max
-                      : dragonRedBlack?.[0]?.max
+                      ? dragonEvenOdd?.[0]?.min
+                      : dragonRedBlack?.[0]?.min
                   }
                   max={
                     title1 === "even"
-                      ? dragonEvenOdd?.[0]?.min
-                      : dragonRedBlack?.[0]?.min
+                      ? dragonEvenOdd?.[0]?.max
+                      : dragonRedBlack?.[0]?.max
                   }
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
