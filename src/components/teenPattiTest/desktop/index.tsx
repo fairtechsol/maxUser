@@ -234,7 +234,7 @@ const TeenPattiDesktop = () => {
                       className="teenPatti-table-item"
                       style={{ width: "20%", backgroundColor: "#72bbef" }}
                     >
-                      <span className="f12-b">{"DRAGON"}</span>
+                      <span className="f12-b">{"TIGER"}</span>
                     </div>
                     <div
                       className={`teenPatti-table-item ${
@@ -256,7 +256,7 @@ const TeenPattiDesktop = () => {
                       }`}
                       style={{ width: "20%", backgroundColor: "#72bbef" }}
                     >
-                      <span className="f12-b">{"TIGER"}</span>
+                      <span className="f12-b">{"DRAGON"}</span>
                     </div>
                   </div>
 
@@ -291,35 +291,31 @@ const TeenPattiDesktop = () => {
                             flexDirection: "row",
                           }}
                         >
-                          <div
+                           <div
                             className={`teenPatti-table-item`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
                             }}
                             onClick={() =>
-                              section.dstatus === false
+                              section.tstatus === false
                                 ? null
-                                : handleBet(
-                                    section,
-                                    "drate",
-                                    section.dsectionid
-                                  )
+                                : handleBet(section, "trate", section.tsection)
                             }
                           >
-                            <span className="f12-b">{section.drate}</span>
+                            <span className="f12-b">{section.trate}</span>
                             <span
                               className={
                                 dragonTigerDetail?.profitLoss
                                   ? dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                     ]
                                     ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                       ] > 0
                                       ? "color-green"
                                       : dragonTigerDetail?.profitLoss[
-                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                         ] < 0
                                       ? "color-red"
                                       : ""
@@ -330,15 +326,17 @@ const TeenPattiDesktop = () => {
                             >
                               {dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                   ]
                                   ? dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                     ]
                                   : 0
                                 : 0}
                             </span>
                           </div>
+
+                         
 
                           <div
                             className={`teenPatti-table-item`}
@@ -392,24 +390,28 @@ const TeenPattiDesktop = () => {
                               backgroundColor: "#72bbef",
                             }}
                             onClick={() =>
-                              section.tstatus === false
+                              section.dstatus === false
                                 ? null
-                                : handleBet(section, "trate", section.tsection)
+                                : handleBet(
+                                    section,
+                                    "drate",
+                                    section.dsectionid
+                                  )
                             }
                           >
-                            <span className="f12-b">{section.trate}</span>
+                            <span className="f12-b">{section.drate}</span>
                             <span
                               className={
                                 dragonTigerDetail?.profitLoss
                                   ? dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                     ]
                                     ? dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                       ] > 0
                                       ? "color-green"
                                       : dragonTigerDetail?.profitLoss[
-                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                         ] < 0
                                       ? "color-red"
                                       : ""
@@ -420,10 +422,10 @@ const TeenPattiDesktop = () => {
                             >
                               {dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                   ]
                                   ? dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                     ]
                                   : 0
                                 : 0}
