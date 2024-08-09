@@ -116,8 +116,8 @@ const Baccarat1Desktop = () => {
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                        dragonTigerDetail?.videoInfo?.max
+                      )}|Min: ${dragonTigerDetail?.odds?.[3]?.min}|Max: ${
+                        dragonTigerDetail?.odds?.[3]?.max
                       }`
                     : ""}
                 </span>
