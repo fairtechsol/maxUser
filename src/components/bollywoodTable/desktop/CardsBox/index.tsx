@@ -11,25 +11,25 @@ const CardBox = ({ cardData, data }: any) => {
   const [modelOpen, setModelOpen] = useState(false);
   const min = cardData?.[0]?.min;
   const max = cardData?.[0]?.max;
-  const handleBet=(item:any)=>{
-    let team ={
-      "bettingType": "BACK",
-      "matchId": data?.id,
-      "odd": item?.b1,
-      "stake": 0,
-      "matchBetType": "matchOdd",
-      "betOnTeam":item?.nat,
-      "name":item?.nat,
-      "bettingName": "Match odds",
-      "selectionId": item?.sid
-    }
+  const handleBet = (item: any) => {
+    let team = {
+      bettingType: "BACK",
+      matchId: data?.id,
+      odd: item?.b1,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.nat,
+      name: item?.nat,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+    };
     dispatch(
       selectedBetAction({
         team,
         data,
       })
     );
-  }
+  };
   return (
     <>
       <div className="cardContainerMob">
@@ -43,27 +43,31 @@ const CardBox = ({ cardData, data }: any) => {
               }}
             >
               {parseFloat(
-              isNaN(cardData?.[0]?.b1) ? 0 : cardData?.[0]?.b1
-            ).toFixed(2)}
+                isNaN(cardData?.[0]?.b1) ? 0 : cardData?.[0]?.b1
+              ).toFixed(2)}
             </span>
           </div>
           <div style={{ width: "45%", textAlign: "end" }}>
-             <span className="minmaxi">
-             <IoInformationCircle
-              color="#ffc742"
-              onClick={() => setModelOpen(!modelOpen)}
-            />
-            <SmoothDropdownModal
-              min={min}
-              max={max}
-              show={modelOpen}
-              setShow={() => setModelOpen(false)}
-            />
-                      </span>
+            <span className="minmaxi">
+              <IoInformationCircle
+                color="#ffc742"
+                onClick={() => setModelOpen(!modelOpen)}
+              />
+              <SmoothDropdownModal
+                min={min}
+                max={max}
+                show={modelOpen}
+                setShow={() => setModelOpen(false)}
+              />
+            </span>
           </div>
         </div>
         <div>
-          <CommonCardImg cardData={cardData} handleBet={handleBet} data={data}/>
+          <CommonCardImg
+            cardData={cardData}
+            handleBet={handleBet}
+            data={data}
+          />
         </div>
       </div>
     </>

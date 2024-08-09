@@ -177,11 +177,12 @@
     font-family: Arial, Verdana, Helvetica, sans-serif;
 }
 
-  .suspended-o {
+.suspended-o {
     position: relative;
   }
+  
   .suspended-o::after {
-    content: attr(data-title);
+    content: "";
     background-color: #373636d6;
     color: #ff0000;
     font-weight: bolder;
@@ -198,7 +199,20 @@
     align-items: center;
     pointer-events: none !important;
     font-family: Arial, Verdana, Helvetica, sans-serif;
+    z-index: 1; /* Make sure overlay is beneath the title */
   }
+  
+  .overlay-title {
+    color: #ff0000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    z-index: 2; /* Ensure title is above the overlay */
+    pointer-events: none;
+  }
+  
   
   @media only screen and (max-width: 991px) {
     .market-4-o .market-odd-box-o {

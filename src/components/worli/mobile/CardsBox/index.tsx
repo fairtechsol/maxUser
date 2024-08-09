@@ -39,20 +39,18 @@ const CardBox = ({ title, data, cards, odds }: any) => {
   return (
     <>
       <div
-        className={
-          data?.worli?.gstatus == 0
-            ? "suspended abjcardContainer"
-            : " abjcardContainer"
+        className={ 
+          data?.worli?.gstatus == 0 ? "suspended abjcardContainer" : " abjcardContainer"
         }
-        style={{ backgroundColor: "#72bbef", border: "0.5px solid #fff" }}
+        style={{ backgroundColor: "#72bbef", border: "0.5px solid #9e9e9e" }}
       >
         <div
           style={{
-            width: "20%",
+            width: "14%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
             paddingTop: "17px",
             paddingBottom: "17px",
           }}
@@ -68,11 +66,11 @@ const CardBox = ({ title, data, cards, odds }: any) => {
         </div>
         <div
           style={{
-            width: "20%",
+            width: "14%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
           }}
           onClick={() =>
             handleBet({
@@ -86,11 +84,11 @@ const CardBox = ({ title, data, cards, odds }: any) => {
         </div>
         <div
           style={{
-            width: "20%",
+            width: "14%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
           }}
           onClick={() =>
             handleBet({
@@ -104,11 +102,11 @@ const CardBox = ({ title, data, cards, odds }: any) => {
         </div>
         <div
           style={{
-            width: "20%",
+            width: "14%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
           }}
           onClick={() =>
             handleBet({
@@ -122,11 +120,11 @@ const CardBox = ({ title, data, cards, odds }: any) => {
         </div>
         <div
           style={{
-            width: "20%",
+            width: "14%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "0.5px solid #9e9e9e",
           }}
           onClick={() =>
             handleBet({
@@ -137,6 +135,48 @@ const CardBox = ({ title, data, cards, odds }: any) => {
           }
         >
           <span className="style">{odds === "L1" ? 5 : 0}</span>
+        </div>
+        <div
+          style={{
+            width: "15%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRight: "0.5px solid #9e9e9e",
+            flexDirection: "column",
+          }}
+          onClick={() =>
+            handleBet({
+              sid: data.worli.sid,
+              rate: "9",
+              nat: odds === "L1" ? "Line1 Single" : "Line2 Single",
+            })
+          }
+        >
+          <span className="fs-6 fw-bold ">
+            {odds === "L1" ? "Line1" : "Line2"}
+          </span>
+          {odds === "L1" ? <div>1|2|3|4|5</div> : <div>6|7|8|9|0</div>}
+        </div>
+        <div
+          style={{
+            width: "15%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRight: "0.5px solid #9e9e9e",
+            flexDirection: "column",
+          }}
+          onClick={() =>
+            handleBet({
+              sid: data.worli.sid,
+              rate: "9",
+              nat: odds === "L1" ? "ODD Single" : "EVEN Single",
+            })
+          }
+        >
+          <span className="fs-6 fw-bold">{odds === "L1" ? "ODD" : "EVEN"}</span>
+          {odds === "L1" ? <div>1|3|5|7|9</div> : <div>2|4|6|8|0</div>}
         </div>
       </div>
     </>

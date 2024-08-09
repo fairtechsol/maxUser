@@ -280,7 +280,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         onHide={() => setLgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Body style={{ padding: 0 }}>
+        <Modal.Body style={{ padding: 0,width:"100%" }}>
           <ResultComponent data={resultData} setfalse={setLgShow} type={type} />
         </Modal.Body>
       </Modal>

@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { luckyrules } from "../../../assets/images";
+import { aaarules, luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -191,7 +191,7 @@ const AmarAkbarAnthonyDesktop = () => {
               </div>
             )}
 
-            <RulesModal show={show} setShow={setShow} rule={luckyrules} />
+            <RulesModal show={show} setShow={setShow} rule={aaarules} />
           </div>
         </Col>
         <Col md={4}>

@@ -40,7 +40,7 @@ const Race20Result: React.FC<Props> = ({ data }: any) => {
     (ss?.length > 0 || hh?.length > 0 || cc?.length > 0 || dd?.length > 0)  && (
       <Container style={{ display: "flex", flexDirection: "column" }}>
         <div
-        className="mt-2"
+        className="mt-2 p-1"
           style={{
             width: "100%",
             display: "flex",

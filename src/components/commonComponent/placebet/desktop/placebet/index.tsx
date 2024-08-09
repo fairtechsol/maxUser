@@ -252,9 +252,7 @@ const DesktopPlacedBet = () => {
                     </div>
                   </td>
                   <td width={"18%"} style={{ textAlign: "end" }}>
-                    <span className="f500" style={{ textAlign: "end" }}>
-                      
-                    </span>
+                    <span className="f500" style={{ textAlign: "end" }}></span>
                   </td>
                 </tr>
                 <tr
@@ -318,7 +316,14 @@ const DesktopPlacedBet = () => {
                                       ? "192.168.1.100"
                                       : ipAddress,
                                   odd: parseFloat(selectedBet?.team?.odd),
-                                  stake: selectedBet?.team?.stake,
+                                  stake: [
+                                    "Line1 Single",
+                                    "Line2 Single",
+                                    "ODD Single",
+                                    "EVEN Single",
+                                  ].includes(selectedBet?.team?.betOnTeam)
+                                    ? selectedBet?.team?.stake * 5
+                                    : selectedBet?.team?.stake,
                                   matchBetType: selectedBet?.team?.matchBetType,
                                   betOnTeam: selectedBet?.team?.betOnTeam,
                                   bettingName: selectedBet?.team?.bettingName,
