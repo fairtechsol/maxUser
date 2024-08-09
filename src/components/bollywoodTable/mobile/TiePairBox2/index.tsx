@@ -29,6 +29,23 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
     );
   };
 
+  const getProfitLoss = (gameName: string, sid: any) => {
+    try {
+      let result = 0;
+      if (data?.profitLoss && Object.keys(data.profitLoss).length > 0) {
+        const key = `${data.videoInfo.mid}_${sid}_card`;
+        if (key in data.profitLoss) {
+          const jsonString = data.profitLoss[key];
+          const parsedData = JSON.parse(jsonString);
+          result = parsedData[gameName] ? parsedData[gameName] : 0;
+        } else return result;
+      }
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="tiePairContaine">
       <div
@@ -57,14 +74,10 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
             value1={item?.b1}
             value4={item?.l1}
             value2={item?.nat}
-            value3={
-              data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                : 0
-            }
+            value3={getProfitLoss("odd", item?.sid)}
             width={"100%"}
             handleBet={handleBet}
-            lock={item?.gstatus === "CLOSED" || item?.gstatus ==="SUSPENDED"}
+            lock={item?.gstatus === "CLOSED" || item?.gstatus === "SUSPENDED"}
             data={item}
           />
         ))}
