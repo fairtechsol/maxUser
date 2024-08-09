@@ -247,13 +247,13 @@ const CardResultBox = ({ data, name, type }: any) => {
                     fontSize: "16px",
                     fontWeight: "600",
                     color:
-                      item?.result === "3" ||
-                      item?.result === "41" ||
-                      item?.result === "1"
+                      item?.result === "41" || item?.result === "1"
                         ? "#f5cc03"
                         : item?.result === "2" || item?.result === "21"
                         ? "#ff4500"
-                        : "#ffffff",
+                        : item?.result === "3"
+                        ? "#ffffff"
+                        : "#f5cc03",
                   }}
                 >
                   {type === "teen20"
@@ -280,7 +280,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         onHide={() => setLgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Body style={{ padding: 0,width:"100%" }}>
+        <Modal.Body style={{ padding: 0, width: "100%" }}>
           <ResultComponent data={resultData} setfalse={setLgShow} type={type} />
         </Modal.Body>
       </Modal>
