@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { luckyrules } from "../../../assets/images";
+import { brules, luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -144,25 +144,7 @@ const BollywoodTableDesktop = () => {
                     <span style={{ fontSize: "16px", fontWeight: "600" }}>
                       {dragonTigerDetail?.name}
                     </span>
-                    <a
-                      style={{
-                        fontSize: "14px",
-                        textDecoration: "underline",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => setShow(true)}
-                    >
-                      {" "}
-                      RULES
-                    </a>
                   </div>
-                  <span>
-                    {dragonTigerDetail?.videoInfo
-                      ? `Round ID:  ${handleRoundId(
-                          dragonTigerDetail?.videoInfo?.mid
-                        )}`
-                      : ""}
-                  </span>
                 </div>
                 <div
                   style={{
@@ -184,7 +166,7 @@ const BollywoodTableDesktop = () => {
                 <LoaderOnRefresh />
               ) : (
                 <div>
-                  <div style={{ width: "100%", margin: "" }}>
+                  <div style={{ width: "100%" }}>
                     <TiePairBox
                       lowHigh={dragonTigerDetail?.players}
                       data={dragonTigerDetail}
@@ -268,7 +250,7 @@ const BollywoodTableDesktop = () => {
       ) : (
         <MobileMyBet />
       )}
-      <RulesModal show={show} setShow={setShow} rule={luckyrules} />
+      <RulesModal show={show} setShow={setShow} rule={brules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

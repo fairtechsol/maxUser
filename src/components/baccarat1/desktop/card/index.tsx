@@ -49,7 +49,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
           <Icons type={type} />
         </>
       ):<>
-      <img src={back} width={ isMobile ?12:20} height={ isMobile ?10:20} /></>}
+      <img src={back} width={ isMobile ? 12 : 20} height={ isMobile ? 16 : 26} /></>}
     </div>
   );
 };
