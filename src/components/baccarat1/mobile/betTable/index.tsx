@@ -170,6 +170,10 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
           <div className="perfectpairBoxpl">0</div>
           <div className="perfectpairBoxpl">0</div>
         </div>
+        <div className="baccarateMinMax">
+         <span className="f600">Min:</span>{odds?.[0]?.min}{" "}
+         <span className="f600">Max:</span>{odds?.[0]?.max}
+        </div>
       </div>
     </div>
   );

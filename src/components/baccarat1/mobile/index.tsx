@@ -147,8 +147,8 @@ const Baccarat1Mobile = () => {
                     {dragonTigerDetail?.name}
                   </span>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    Min:{dragonTigerDetail?.videoInfo?.min} Max:
-                    {dragonTigerDetail?.videoInfo?.max}
+                    Min:{dragonTigerDetail?.odds?.[3]?.min} Max:
+                    {dragonTigerDetail?.odds?.[3]?.max}
                   </span>
                 </div>
               </div>
