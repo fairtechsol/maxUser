@@ -328,6 +328,7 @@ export const cardGamesId: any = {
   poker20: 3052,
   cricketv3: 3042,
   baccarat: 3044,
+  baccarat2: 3033,
   aaa: 3056,
   btable: 3041,
   worli: 3040,

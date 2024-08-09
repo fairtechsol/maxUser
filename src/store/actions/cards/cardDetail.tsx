@@ -235,6 +235,12 @@ export const updateBaccarat1Rates = createAsyncThunk<any, any>(
     return data;
   }
 );
+export const updateBaccarat2Rates = createAsyncThunk<any, any>(
+  "baccarat2/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 
 export const updateAmarAkbarAnthonyCardMatchRates = createAsyncThunk<any, any>(
   "aaa/matchRatesUpdate",
