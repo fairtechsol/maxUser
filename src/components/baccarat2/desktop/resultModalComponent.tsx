@@ -16,7 +16,6 @@ interface Props {
 
 const Bacarrate2ResultComponent: React.FC<Props> = ({ data }: any) => {
   const elements = data?.result?.cards?.split(",");
-  console.log('first',data)
   
 
  
