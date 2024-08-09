@@ -158,8 +158,8 @@ const Baccarat1Desktop = () => {
                 <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["P", "B", "T"]}
-                    type={cardGamesType.andarBahar2}
+                    name={["P", "B","T"]}
+                    type={cardGamesType.baccarat}
                   />
                 </div>
               </div>

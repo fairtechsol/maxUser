@@ -90,7 +90,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
             <span>{parseFloat(odds?.[8]?.b1)}:1</span>
           </div>
           <div
-            className={`perfectpairBox ${
+            className={`perfectpairBox ${ 
               odds?.[9]?.gstatus == "0" ? "suspended-box" : ""
             }`}
             onClick={() =>
