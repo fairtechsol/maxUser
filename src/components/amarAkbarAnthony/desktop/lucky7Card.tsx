@@ -13,7 +13,7 @@ const Lucky7Result: React.FC<Props> = ({ data }:any) => {
   return data?.mid !="0" && (  
     <Container>
       <Row>
-        <Col className="mt-2" style={{backgroundColor: "rgb(0 0 0 / 8%)"}}>
+        <Col className="mt-4" style={{backgroundColor: "rgb(0 0 0 / 8%)"}}>
         {/* <h6 style={{ color: "white", fontSize: isMobile ? "10px" : "16px" }}>CARD</h6> */}
           <div >
             <HandleCards card={data?.C1} />
