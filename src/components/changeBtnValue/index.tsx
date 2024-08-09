@@ -71,7 +71,9 @@ const ChangeButtonValueComponent = () => {
     onSubmit: (value: any) => {
       let result = {};
       value.forEach((item: ButtonProps) => {
-        result = { ...result, [item?.label]: item?.value };
+        if (item?.label !== "" && item?.value !== "") {
+          result = { ...result, [item?.label]: item?.value };
+        }
       });
       const payload = {
         id: buttonValues?.id,
