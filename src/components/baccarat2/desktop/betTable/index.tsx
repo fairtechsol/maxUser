@@ -9,7 +9,7 @@ export const options = {
   backgroundColor: "none",
   chartArea: { left: 0, top: 0, width: "180", height: "200" },
 };
-const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
+const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const dataa = [
     ["Task", "Hours per Day"],
@@ -17,25 +17,25 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
     ["Banker", graphsData ? graphsData?.B : 45],
     ["Tie", graphsData ? graphsData?.T : 10],
   ];
-  const handleBet=(item:any)=>{
-    let team ={
-      "bettingType": "BACK",
-      "matchId": data?.id,
-      "odd": item?.b1,
-      "stake": 0,
-      "matchBetType": "matchOdd",
-      "betOnTeam":item?.nat,
-      "name":item?.nat,
-      "bettingName": "Match odds",
-      "selectionId": item?.sid
-    }
+  const handleBet = (item: any) => {
+    let team = {
+      bettingType: "BACK",
+      matchId: data?.id,
+      odd: item?.b1,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.nat,
+      name: item?.nat,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+    };
     dispatch(
       selectedBetAction({
         team,
         data,
       })
     );
-  }
+  };
   // console.log(odds, "odds");
   return (
     <div className="baccarateContainer">
@@ -49,7 +49,9 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
             className={`perfectpairBox ${
               odds?.[5]?.gstatus == "0" ? "suspended-box" : ""
             }`}
-            onClick={() => (odds?.[5]?.gstatus != "0" ? handleBet(odds?.[5]) : null)}
+            onClick={() =>
+              odds?.[5]?.gstatus != "0" ? handleBet(odds?.[5]) : null
+            }
           >
             <span>Score 1-4</span>
             <span>{parseFloat(odds?.[5]?.b1)}:1</span>
@@ -58,7 +60,9 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
             className={`perfectpairBox ${
               odds?.[6]?.gstatus == "0" ? "suspended-box" : ""
             }`}
-            onClick={() => (odds?.[6]?.gstatus != "0" ? handleBet(odds?.[6]) : null)}
+            onClick={() =>
+              odds?.[6]?.gstatus != "0" ? handleBet(odds?.[6]) : null
+            }
           >
             <span>Score 5-6</span>
             <span>{parseFloat(odds?.[6]?.b1)}:1</span>
@@ -67,7 +71,9 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
             className={`perfectpairBox ${
               odds?.[7]?.gstatus == "0" ? "suspended-box" : ""
             }`}
-            onClick={() => (odds?.[7]?.gstatus != "0" ? handleBet(odds?.[7]) : null)}
+            onClick={() =>
+              odds?.[7]?.gstatus != "0" ? handleBet(odds?.[7]) : null
+            }
           >
             <span>Score 7</span>
             <span>{parseFloat(odds?.[7]?.b1)}:1</span>
@@ -76,7 +82,9 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
             className={`perfectpairBox ${
               odds?.[8]?.gstatus == "0" ? "suspended-box" : ""
             }`}
-            onClick={() => (odds?.[8]?.gstatus != "0" ? handleBet(odds?.[8]) : null)}
+            onClick={() =>
+              odds?.[8]?.gstatus != "0" ? handleBet(odds?.[8]) : null
+            }
           >
             <span>Score 8</span>
             <span>{parseFloat(odds?.[8]?.b1)}:1</span>
@@ -85,19 +93,141 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
             className={`perfectpairBox ${
               odds?.[9]?.gstatus == "0" ? "suspended-box" : ""
             }`}
-            onClick={() => (odds?.[9]?.gstatus != "0" ? handleBet(odds?.[9]) : null)}
+            onClick={() =>
+              odds?.[9]?.gstatus != "0" ? handleBet(odds?.[9]) : null
+            }
           >
             <span>Score 9</span>
             <span>{parseFloat(odds?.[9]?.b1)}:1</span>
           </div>
         </div>
 
-        <div  className="baccarateRateContainer1">
-          <div className="perfectpairBoxpl">0</div>
-          <div className="perfectpairBoxpl">0</div>
-          <div className="perfectpairBoxpl">0</div>
-          <div className="perfectpairBoxpl">0</div>
-          <div className="perfectpairBoxpl">0</div>
+        <div className="baccarateRateContainer1">
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[5]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[5]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[5]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[5]?.sid}_card`
+                ]
+              : ""}
+          </div>
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[6]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[6]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[6]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[6]?.sid}_card`
+                ]
+              : ""}
+          </div>
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[7]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[7]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[7]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[7]?.sid}_card`
+                ]
+              : ""}
+          </div>
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[8]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[8]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[8]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[8]?.sid}_card`
+                ]
+              : ""}
+          </div>
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[9]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[9]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[9]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[9]?.sid}_card`
+                ]
+              : ""}
+          </div>
         </div>
 
         <div className="baccarateRateContainer1">
@@ -105,7 +235,9 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
             className={`baccaratePlayerBox ${
               odds?.[3]?.gstatus == "0" ? "suspended-box" : ""
             }`}
-            onClick={() => (odds?.[3]?.gstatus != "0" ? handleBet(odds?.[3]) : null)}
+            onClick={() =>
+              odds?.[3]?.gstatus != "0" ? handleBet(odds?.[3]) : null
+            }
           >
             <span>Player Pair</span>
             <span>{parseFloat(odds?.[3]?.b1)}:1</span>
@@ -115,7 +247,9 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
               className={`baccarateTieBox1 ${
                 odds?.[0]?.gstatus == "0" ? "suspended-box" : ""
               }`}
-              onClick={() => (odds?.[0]?.gstatus != "0" ? handleBet(odds?.[0]) : null)}
+              onClick={() =>
+                odds?.[0]?.gstatus != "0" ? handleBet(odds?.[0]) : null
+              }
             >
               <span>Player</span>
               <span>{parseFloat(odds?.[0]?.b1)}:1</span>
@@ -136,7 +270,9 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
               className={`baccarateTieBox2 ${
                 odds?.[2]?.gstatus == "0" ? "suspended-box" : ""
               }`}
-              onClick={() => (odds?.[2]?.gstatus != "0" ? handleBet(odds?.[2]) : null)}
+              onClick={() =>
+                odds?.[2]?.gstatus != "0" ? handleBet(odds?.[2]) : null
+              }
             >
               <span>Tie</span>
               <span>{parseFloat(odds?.[2]?.b1)}:1</span>
@@ -145,7 +281,9 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
               className={`baccarateTieBox3 ${
                 odds?.[1]?.gstatus == "0" ? "suspended-box" : ""
               }`}
-              onClick={() => (odds?.[1]?.gstatus != "0" ? handleBet(odds?.[1]) : null)}
+              onClick={() =>
+                odds?.[1]?.gstatus != "0" ? handleBet(odds?.[1]) : null
+              }
             >
               <span>Banker</span>
               <span>{parseFloat(odds?.[1]?.b1)}:1</span>
@@ -167,22 +305,145 @@ const BaccaratStatistics = ({ odds, graphsData, cardData,data }: any) => {
             className={`baccarateBankerBox ${
               odds?.[4]?.gstatus == "0" ? "suspended-box" : ""
             }`}
-            onClick={() => (odds?.[4]?.gstatus != "0" ? handleBet(odds?.[4]) : null)}
+            onClick={() =>
+              odds?.[4]?.gstatus != "0" ? handleBet(odds?.[4]) : null
+            }
           >
             <span>Banker Pair</span>
             <span>{parseFloat(odds?.[4]?.b1)}:1</span>
           </div>
         </div>
-        <div  className="baccarateRateContainer1">
-          <div className="perfectpairBoxpl">0</div>
-          <div className="perfectpairBoxpl">0</div>
-          <div className="perfectpairBoxpl">0</div>
-          <div className="perfectpairBoxpl">0</div>
-          <div className="perfectpairBoxpl">0</div>
+        <div className="baccarateRateContainer1">
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
+                ]
+              : ""}
+          </div>
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
+                ]
+              : ""}
+          </div>
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
+                ]
+              : ""}
+          </div>
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
+                ]
+              : ""}
+          </div>
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[4]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[4]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[4]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[4]?.sid}_card`
+                ]
+              : ""}
+          </div>
         </div>
         <div className="baccarateMinMax">
-         <span className="f600">Min:</span>{odds?.[0]?.min}{" "}
-         <span className="f600">Max:</span>{odds?.[0]?.max}
+          <span className="f600">Min:</span>
+          {odds?.[0]?.min} <span className="f600">Max:</span>
+          {odds?.[0]?.max}
         </div>
       </div>
     </div>
