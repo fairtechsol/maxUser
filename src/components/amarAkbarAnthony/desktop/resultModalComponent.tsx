@@ -33,11 +33,11 @@ const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
-      <div className="w-100 d-sm-flex justify-content-center align-items-center mt-2">
+      {/* <div className="w-100 d-sm-flex justify-content-center align-items-center mt-2"> */}
         <div
           className={
             isMobile
-              ? "w-100 d-sm-flex flex-sm-row justify-content-center align-items-center p-4 mb-2"
+              ? "w-100 d-flex flex-row justify-content-center align-items-center"
               : "w-80 d-sm-flex flex-sm-row justify-content-center align-items-center p-4 mb-2"
           }
           
@@ -63,7 +63,7 @@ const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
             <span className="lucky7CommonText-2">{resultCards?.[4]}</span>
           </div>
         </div>
-      </div>
+      
     </Container>
   );
 };
