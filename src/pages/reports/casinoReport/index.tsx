@@ -127,6 +127,14 @@ const cardGames = [
     value: "cmatch20",
     label: "CRICKET MATCH 20-20",
   },
+  {
+    value: "baccarat",
+    label: "BACCARAT",
+  },
+  {
+    value: "baccarat2",
+    label: "BACCARAT2",
+  },
 ];
 
 const CasinoReports = () => {
