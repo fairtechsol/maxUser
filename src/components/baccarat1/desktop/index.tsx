@@ -34,7 +34,7 @@ const Baccarat1Desktop = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
-  const { dragonTigerDetail, loading,graphsData } = useSelector(
+  const { dragonTigerDetail, loading, graphsData } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -88,7 +88,6 @@ const Baccarat1Desktop = () => {
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.baccarat}`);
   }, []);
-// console.log('liveGameResultTop10',resultData)
   return (
     <>
       <Row>
@@ -139,26 +138,27 @@ const Baccarat1Desktop = () => {
             </div>
             {loading ? (
               <>
-              <LoaderOnRefresh />
-              <PieChart
-              data={data}
-              options={options}
-            />
+                <LoaderOnRefresh />
+                <PieChart data={data} options={options} />
               </>
-              
             ) : (
               <div>
                 <div
                   className="row-flex"
                   style={{ width: "100%", margin: "5px" }}
                 >
-                  <BaccaratStatistics data={dragonTigerDetail} odds={dragonTigerDetail?.odds} graphsData={graphsData} cardData={dragonTigerDetail?.videoInfo}/>
+                  <BaccaratStatistics
+                    data={dragonTigerDetail}
+                    odds={dragonTigerDetail?.odds}
+                    graphsData={graphsData}
+                    cardData={dragonTigerDetail?.videoInfo}
+                  />
                 </div>
 
                 <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["P", "B","T"]}
+                    name={["P", "B", "T"]}
                     type={cardGamesType.andarBahar2}
                   />
                 </div>

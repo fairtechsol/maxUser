@@ -18,7 +18,6 @@ import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import PieChart from "../desktop/chart";
 import BaccaratStatistics from "./betTable";
 
-
 export const data = [
   ["Task", "Hours per Day"],
   ["Work", 15],
@@ -30,7 +29,6 @@ export const options = {
   is3D: true,
 };
 
-
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
@@ -38,7 +36,7 @@ const Baccarat1Mobile = () => {
   const [videoFrameId, setVideoFrameId] = useState("");
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail, loading,graphsData} = useSelector(
+  const { dragonTigerDetail, loading, graphsData } = useSelector(
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
@@ -134,7 +132,7 @@ const Baccarat1Mobile = () => {
         </div>
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%"}}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div
                   style={{
@@ -168,26 +166,25 @@ const Baccarat1Mobile = () => {
             </div>
 
             {loading ? (
-             <>
-             <LoaderOnRefresh />
-             <PieChart
-             data={data}
-             options={options}
-           />
-             </>
+              <>
+                <LoaderOnRefresh />
+                <PieChart data={data} options={options} />
+              </>
             ) : (
-              <div >
-                <div
-                  className="row-flex"
-                  style={{ width: "100%"}}
-                >
-                  <BaccaratStatistics data={dragonTigerDetail} odds={dragonTigerDetail?.odds} graphsData={graphsData} cardData={dragonTigerDetail?.videoInfo}/>
+              <div>
+                <div className="row-flex" style={{ width: "100%" }}>
+                  <BaccaratStatistics
+                    data={dragonTigerDetail}
+                    odds={dragonTigerDetail?.odds}
+                    graphsData={graphsData}
+                    cardData={dragonTigerDetail?.videoInfo}
+                  />
                 </div>
 
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["P", "B","T"]}
+                    name={["P", "B", "T"]}
                     type={cardGamesType.andarBahar2}
                   />
                 </div>
