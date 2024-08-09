@@ -1,0 +1,209 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+// import "./style.scss";
+// import CardResultBox from "../../commonComponent/cardResultBox";
+// import CardResultBox from "../../commonComponent/cardResultBox";
+import { baccarat1rules } from "../../../assets/images";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
+import { handleRoundId } from "../../../utils/formatMinMax";
+import CardResultBox from "../../commonComponent/cardResultBox";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import PieChart from "../desktop/chart";
+import BaccaratStatistics from "./betTable";
+
+
+export const data = [
+  ["Task", "Hours per Day"],
+  ["Work", 15],
+  ["Eat", 20],
+];
+
+export const options = {
+  title: "My Daily Activities",
+  is3D: true,
+};
+
+
+const Baccarat2Mobile = () => {
+  const [activeTab, setActiveTab] = useState(false);
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
+  const { dragonTigerDetail, loading,graphsData} = useSelector(
+    (state: RootState) => state.card
+  );
+  const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShowInactivityModal(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, showInactivityModal]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.baccarat2}`);
+  }, []);
+
+  return (
+    <>
+      <div>
+        <div className="dt20header">
+          <MobilePlacedBet show={show1} setShow={setShow1} />
+          <div className="dt20subheader1">
+            <div
+              style={{
+                height: "100%",
+                borderTop: !activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
+            >
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(false)}
+              >
+                GAME
+              </span>
+            </div>
+            <span style={{ fontSize: "18px" }}> | </span>
+            <div
+              style={{
+                height: "100%",
+                borderTop: activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
+            >
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(true)}
+              >
+                PLACED BET({placedBets?.length || 0})
+              </span>
+            </div>
+          </div>
+          <div className="dt20subheader2">
+            <span
+              style={{ textDecoration: "underline" }}
+              onClick={() => setShow(true)}
+            >
+              Rules
+            </span>
+            <span>
+              {" "}
+              {dragonTigerDetail?.videoInfo
+                ? `Round ID:  ${handleRoundId(
+                    dragonTigerDetail?.videoInfo?.mid
+                  )}`
+                : ""}{" "}
+            </span>
+          </div>
+        </div>
+        {!activeTab ? (
+          <div className="horseRacingTab">
+            <div style={{ width: "100%"}}>
+              <div className="horseRacingTabHeader-m">
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
+                    {dragonTigerDetail?.name}
+                  </span>
+                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
+                    Min:{dragonTigerDetail?.odds?.[3]?.min} Max:
+                    {dragonTigerDetail?.odds?.[3]?.max}
+                  </span>
+                </div>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  height: "92%",
+                  backgroundColor: "#000",
+                }}
+              >
+                <VideoFrame
+                  time={dragonTigerDetail?.videoInfo?.autotime}
+                  //   result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
+                  id={videoFrameId}
+                />
+              </div>
+            </div>
+
+            {loading ? (
+             <>
+             <LoaderOnRefresh />
+             <PieChart
+             data={data}
+             options={options}
+           />
+             </>
+            ) : (
+              <div >
+                <div
+                  className="row-flex"
+                  style={{ width: "100%"}}
+                >
+                  <BaccaratStatistics data={dragonTigerDetail} odds={dragonTigerDetail?.odds} graphsData={graphsData} cardData={dragonTigerDetail?.videoInfo}/>
+                </div>
+
+                <div style={{ width: "100%", marginTop: "10px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["P", "B","T"]}
+                    type={cardGamesType.andarBahar2}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            <MobileMyBet />
+          </>
+        )}
+      </div>
+      <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
+    </>
+  );
+};
+
+export default Baccarat2Mobile;

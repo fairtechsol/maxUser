@@ -35,6 +35,7 @@ import {
   scoreBoardReset,
   updateCricketMatch20MatchRates,
   graphData,
+  updateBaccarat2Rates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -467,6 +468,18 @@ const cardDetail = createSlice({
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const odds = t2.slice(0, 9);
+
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          odds,
+        };
+      })
+      .addCase(updateBaccarat2Rates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const odds = t2.slice(0, 10);
 
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
