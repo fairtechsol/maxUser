@@ -86,3 +86,5 @@ export { default as loadernew } from "./loader.gif";
 export { default as warrules } from "./casinowar/war.jpg";
 export { default as supoerrules } from "./superOver/superoverRules.webp";
 export { default as crick20rules } from "./cricketMatch_20-20/20-20cricketrules.webp";
+export { default as brules } from "./rules/bollywoodtable-rules.webp";
+export { default as aaarules } from "./rules/aaaRules.webp";
