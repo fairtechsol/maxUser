@@ -49,6 +49,12 @@ const TiePairBox = ({ lowHigh, data }: any) => {
     }
   };
 
+  useEffect(() => {
+    if ( lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00") {
+      dispatch(selectedBetAction(""));
+    }
+  }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.b1]);
+
   return (
     <div className="tiePairContainer">
       <div style={{ width: "98%", textAlign: "end" }}>
