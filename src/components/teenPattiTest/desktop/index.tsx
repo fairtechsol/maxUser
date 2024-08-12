@@ -240,7 +240,7 @@ const TeenPattiDesktop = () => {
                       className={`teenPatti-table-item ${
                         playerA?.[0]?.gstatus != "0" &&
                         playerA?.[1]?.gstatus === "0"
-                          ? "suspended"
+                          ? "lock"
                           : ""
                       }`}
                       style={{ width: "20%", backgroundColor: "#72bbef" }}
@@ -251,7 +251,7 @@ const TeenPattiDesktop = () => {
                       className={`teenPatti-table-item ${
                         playerA?.[0]?.gstatus != "0" &&
                         playerA?.[1]?.gstatus === "0"
-                          ? "suspended"
+                          ? "lock"
                           : ""
                       }`}
                       style={{ width: "20%", backgroundColor: "#72bbef" }}
@@ -283,7 +283,7 @@ const TeenPattiDesktop = () => {
 
                         <div
                           className={`${
-                            section.dstatus !== true ? "suspended" : ""
+                            section.dstatus !== true ? "lock" : ""
                           }`}
                           style={{
                             width: "60%",
@@ -313,11 +313,11 @@ const TeenPattiDesktop = () => {
                                     ? dragonTigerDetail?.profitLoss[
                                         `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                       ] > 0
-                                      ? "color-green"
+                                      ? "color-green f12-b"
                                       : dragonTigerDetail?.profitLoss[
                                           `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                         ] < 0
-                                      ? "color-red"
+                                      ? "color-red f12-b"
                                       : ""
                                     : ""
                                   : ""
@@ -360,16 +360,16 @@ const TeenPattiDesktop = () => {
                                     ? dragonTigerDetail?.profitLoss[
                                         `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
                                       ] > 0
-                                      ? "color-green"
+                                      ? "color-green f12-b"
                                       : dragonTigerDetail?.profitLoss[
                                           `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
                                         ] < 0
-                                      ? "color-red"
+                                      ? "color-red f12-b"
                                       : ""
                                     : ""
                                   : ""
                               }
-                              // style={{zIndex:"100"}}
+                              style={{zIndex:"100"}}
                             >
                               {dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
@@ -409,11 +409,11 @@ const TeenPattiDesktop = () => {
                                     ? dragonTigerDetail?.profitLoss[
                                         `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                       ] > 0
-                                      ? "color-green"
+                                      ? "color-green f12-b"
                                       : dragonTigerDetail?.profitLoss[
                                           `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                         ] < 0
-                                      ? "color-red"
+                                      ? "color-red f12-b"
                                       : ""
                                     : ""
                                   : ""
