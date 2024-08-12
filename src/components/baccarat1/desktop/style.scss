@@ -405,9 +405,10 @@
     align-items: center;
 }
 .bacarrate-player-card{
-    width: 30%;
+    width: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    gap: 7px;
 }
