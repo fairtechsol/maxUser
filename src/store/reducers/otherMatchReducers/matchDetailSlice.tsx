@@ -145,7 +145,7 @@ const otherMatchDetail = createSlice({
       })
       .addCase(updateTeamRatesOnPlaceBet.fulfilled, (state, action) => {
         const { matchBetType, newTeamRateData } = action.payload;
-        if (newTeamRateData.teamC) {
+        if ("teamC" in newTeamRateData) {
           state.otherMatchDetails = {
             ...state.otherMatchDetails,
             profitLossDataMatch: {

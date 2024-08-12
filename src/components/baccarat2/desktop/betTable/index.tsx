@@ -1,7 +1,7 @@
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import { HandleGameCards } from "../../desktop/card";
-import PieChart from "../../desktop/chart";
+import { HandleGameCards } from "../card";
+import PieChart from "../chart";
 import { useDispatch } from "react-redux";
 
 export const options = {
@@ -38,12 +38,12 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
   };
   // console.log(odds, "odds");
   return (
-    <div className="baccarateContainer-m">
-      <div className="baccarateChartContainer-m">
+    <div className="baccarateContainer">
+      <div className="baccarateChartContainer">
         <h4>Statistics</h4>
         <PieChart data={dataa} options={options} />
       </div>
-      <div className="baccarateRateContainer-m">
+      <div className="baccarateRateContainer">
         <div className="baccarateRateContainer1">
           <div
             className={`perfectpairBox ${
@@ -53,7 +53,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               odds?.[5]?.gstatus != "0" ? handleBet(odds?.[5]) : null
             }
           >
-            <span>Perfect Pair</span>
+            <span>Score 1-4</span>
             <span>{parseFloat(odds?.[5]?.b1)}:1</span>
           </div>
           <div
@@ -64,7 +64,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               odds?.[6]?.gstatus != "0" ? handleBet(odds?.[6]) : null
             }
           >
-            <span>Big</span>
+            <span>Score 5-6</span>
             <span>{parseFloat(odds?.[6]?.b1)}:1</span>
           </div>
           <div
@@ -75,7 +75,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               odds?.[7]?.gstatus != "0" ? handleBet(odds?.[7]) : null
             }
           >
-            <span>Small</span>
+            <span>Score 7</span>
             <span>{parseFloat(odds?.[7]?.b1)}:1</span>
           </div>
           <div
@@ -86,8 +86,19 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               odds?.[8]?.gstatus != "0" ? handleBet(odds?.[8]) : null
             }
           >
-            <span>Either Pair</span>
+            <span>Score 8</span>
             <span>{parseFloat(odds?.[8]?.b1)}:1</span>
+          </div>
+          <div
+            className={`perfectpairBox ${ 
+              odds?.[9]?.gstatus == "0" ? "suspended-box" : ""
+            }`}
+            onClick={() =>
+              odds?.[9]?.gstatus != "0" ? handleBet(odds?.[9]) : null
+            }
+          >
+            <span>Score 9</span>
+            <span>{parseFloat(odds?.[9]?.b1)}:1</span>
           </div>
         </div>
 
@@ -192,6 +203,31 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
                 ]
               : ""}
           </div>
+          <div
+            className={`perfectpairBoxpl ${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${odds?.[9]?.sid}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${odds?.[9]?.sid}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${odds?.[9]?.sid}_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${odds?.[9]?.sid}_card`
+                ]
+              : ""}
+          </div>
         </div>
 
         <div className="baccarateRateContainer1">
@@ -203,7 +239,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               odds?.[3]?.gstatus != "0" ? handleBet(odds?.[3]) : null
             }
           >
-            <span className="ms-3">Player Pair</span>
+            <span>Player Pair</span>
             <span>{parseFloat(odds?.[3]?.b1)}:1</span>
           </div>
           <div className="baccarateTieBox">
@@ -219,7 +255,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               <span>{parseFloat(odds?.[0]?.b1)}:1</span>
               <div
                 className="bacarrateCards"
-                style={{ width: cardData?.C5 != "1" ? "55px" : "35px" }}
+                style={{ width: cardData?.C5 != "1" ? "75px" : "45px" }}
               >
                 {cardData?.C5 != "1" && (
                   <div style={{ transform: "rotate(270deg)", zIndex: "999" }}>
@@ -253,7 +289,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               <span>{parseFloat(odds?.[1]?.b1)}:1</span>
               <div
                 className="bacarrateCards"
-                style={{ width: cardData?.C6 != "1" ? "55px" : "35px" }}
+                style={{ width: cardData?.C6 != "1" ? "75px" : "45px" }}
               >
                 <HandleGameCards card={cardData?.C2} />
                 <HandleGameCards card={cardData?.C4} />

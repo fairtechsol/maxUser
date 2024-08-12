@@ -29,7 +29,7 @@ export const options = {
   is3D: true,
 };
 
-const Baccarat1Mobile = () => {
+const Baccarat2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
@@ -74,7 +74,7 @@ const Baccarat1Mobile = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.baccarat}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.baccarat2}`);
   }, []);
 
   return (
@@ -185,7 +185,7 @@ const Baccarat1Mobile = () => {
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["P", "B","T"]}
-                    type={cardGamesType.baccarat}
+                    type={cardGamesType.baccarat2}
                   />
                 </div>
               </div>
@@ -203,4 +203,4 @@ const Baccarat1Mobile = () => {
   );
 };
 
-export default Baccarat1Mobile;
+export default Baccarat2Mobile;

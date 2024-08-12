@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { aaarules, luckyrules } from "../../../assets/images";
+import { baccarat1rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -10,23 +10,31 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import TiePairBox from "./TiePairBox";
-import Lucky7Result from "./lucky7Card";
 import "./style.scss";
+import BaccaratStatistics from "./betTable";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import PieChart from "./chart";
+export const data = [
+  ["Task", "Hours per Day"],
+  ["Work", 15],
+  ["Eat", 20],
+];
 
-const AmarAkbarAnthonyDesktop = () => {
+export const options = {
+  title: "My Daily Activities",
+  is3D: true,
+};
+
+const Baccarat2Desktop = () => {
   const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
-  const { dragonTigerDetail, loading } = useSelector(
+  const { dragonTigerDetail, loading, graphsData } = useSelector(
     (state: RootState) => state.card
   );
 
@@ -78,9 +86,8 @@ const AmarAkbarAnthonyDesktop = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.aaa}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.baccarat2}`);
   }, []);
-
   return (
     <>
       <Row>
@@ -108,90 +115,56 @@ const AmarAkbarAnthonyDesktop = () => {
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}`
+                      )}|Min: ${dragonTigerDetail?.odds?.[3]?.min}|Max: ${
+                        dragonTigerDetail?.odds?.[3]?.max
+                      }`
                     : ""}
                 </span>
               </div>
               <div
                 style={{
+                  // flex: '1 0 auto',
                   width: "100%",
-                  height: "92%",
+                  // height: "92%",
                   backgroundColor: "#000",
                 }}
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Lucky7Result data={dragonTigerDetail?.videoInfo} />}
+                  //   result={<Abj2Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <>
+                <LoaderOnRefresh />
+                <PieChart data={data} options={options} />
+              </>
             ) : (
               <div>
-                <div style={{ width: "100%", margin: "5px" }}>
-                  <TiePairBox
-                    lowHigh={dragonTigerDetail?.players}
-                    data={dragonTigerDetail}
-                  />
-                </div>
                 <div
-                  style={{
-                    width: "100%",
-                    margin: "5px",
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "8px",
-                  }}
+                  className="row-flex"
+                  style={{ width: "100%", margin: "5px" }}
                 >
-                  <OddEven
-                    name={"DRAGON"}
-                    odds={dragonTigerDetail?.luckOdds}
+                  <BaccaratStatistics
                     data={dragonTigerDetail}
-                    card={false}
-                  />
-
-                  <OddEven
-                    name={"TIGER"}
-                    odds={dragonTigerDetail?.redBlack}
-                    card={true}
-                    data={dragonTigerDetail}
-                  />
-
-                  <OddEven
-                    name={"DRAGON"}
-                    odds={dragonTigerDetail?.seven}
-                    data={dragonTigerDetail}
-                    card={false}
+                    odds={dragonTigerDetail?.odds}
+                    graphsData={graphsData}
+                    cardData={dragonTigerDetail?.videoInfo}
                   />
                 </div>
-                <div
-                  style={{
-                    width: "100%",
-                    margin: "5px",
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "8px",
-                  }}
-                >
-                  <CardBox
-                    cardData={dragonTigerDetail?.luckyCards}
-                    data={dragonTigerDetail}
-                    rate={dragonTigerDetail?.luckyCards?.rate}
-                  />
-                </div>
+
                 <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "B", "C"]}
-                    type={cardGamesType.amarAkbarAnthony}
+                    name={["P", "B","T"]}
+                    type={cardGamesType.baccarat2}
                   />
                 </div>
               </div>
             )}
-
-            <RulesModal show={show} setShow={setShow} rule={aaarules} />
+            <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
           </div>
         </Col>
         <Col md={4}>
@@ -219,4 +192,4 @@ const AmarAkbarAnthonyDesktop = () => {
   );
 };
 
-export default AmarAkbarAnthonyDesktop;
+export default Baccarat2Desktop;

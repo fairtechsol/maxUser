@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { luckyrules } from "../../../assets/images";
+import { aaarules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -216,7 +216,7 @@ const AmarAkbarAnthonyMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={luckyrules} />
+      <RulesModal show={show} setShow={setShow} rule={aaarules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

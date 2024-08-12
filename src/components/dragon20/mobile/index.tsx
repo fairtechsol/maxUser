@@ -153,7 +153,7 @@ const DragonTigerMobile = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
-                <div style={{ width: "100%", marginTop: "-2rem" }}>
+                <div style={{ width: "100%", marginTop: "-3rem" }}>
                   <TiePairBox
                     tiePair={dragonTigerDetail?.tiePair}
                     data={dragonTigerDetail}
