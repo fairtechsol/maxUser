@@ -27,7 +27,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-              onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
+              onClick={() => (item?.gstatus != "SUSPENDED" ? handleBet(item) : null)}
               key={item?.code}
             >
               {" "}
