@@ -129,7 +129,7 @@ const TeenPattiDesktop = () => {
                     1 DAY TEEN PATTI
                   </span>
                   <span
-                    style={{ fontSize: "14px", textDecoration: "underline" }}
+                    style={{ fontSize: "14px", textDecoration: "underline",cursor:"pointer" }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
