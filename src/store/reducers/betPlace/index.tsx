@@ -11,6 +11,7 @@ import {
 } from "../../actions/betPlace/betPlaceActions";
 import {
   updateDeleteReasonBet,
+  updatePlacedbetsDeleteReason,
   updateRunAmountOnDeleteBet,
 } from "../../actions/user/userAction";
 
@@ -125,6 +126,20 @@ const placedBet = createSlice({
         const { betPlacedId, deleteReason } = action.payload;
         const updateDeleteReason = (bet: any) => {
           if (betPlacedId?.includes(bet?.id)) {
+            bet.deleteReason = deleteReason;
+          }
+
+          return bet;
+        };
+
+        const updatedBetPlaced = state.placedBets?.map(updateDeleteReason);
+
+        state.placedBets = Array.from(new Set(updatedBetPlaced));
+      })
+      .addCase(updatePlacedbetsDeleteReason.fulfilled, (state, action) => {
+        const { betIds, deleteReason } = action.payload;
+        const updateDeleteReason = (bet: any) => {
+          if (betIds?.includes(bet?.id)) {
             bet.deleteReason = deleteReason;
           }
 

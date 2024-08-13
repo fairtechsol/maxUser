@@ -37,6 +37,9 @@ export const userBalanceSocketService = {
   sessionResultUnDeclare: (callback: any) => {
     socket?.on("sessionResultUnDeclare", callback);
   },
+  updateDeleteReason: (callback: any) => {
+    socket?.on("updateDeleteReason", callback);
+  },
   updateUserBalanceOff: () => {
     socket?.off("updateUserBalance");
   },
@@ -72,5 +75,8 @@ export const userBalanceSocketService = {
   },
   sessionResultUnDeclareOff: () => {
     socket?.off("sessionResultUnDeclare");
+  },
+  updateDeleteReasonOff: () => {
+    socket?.off("updateDeleteReason");
   },
 };
