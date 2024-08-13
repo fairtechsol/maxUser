@@ -4,7 +4,7 @@ import { RootState } from "../../../store/store";
 // import "./style.scss";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 // import CardResultBox from "../../commonComponent/cardResultBox";
-import { baccarat1rules } from "../../../assets/images";
+import { b2rules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
@@ -197,7 +197,7 @@ const Baccarat2Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
+      <RulesModal show={show} setShow={setShow} rule={b2rules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

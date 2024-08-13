@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { baccarat1rules } from "../../../assets/images";
+import { b2rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -164,7 +164,7 @@ const Baccarat2Desktop = () => {
                 </div>
               </div>
             )}
-            <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
+            <RulesModal show={show} setShow={setShow} rule={b2rules} />
           </div>
         </Col>
         <Col md={4}>
