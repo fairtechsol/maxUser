@@ -105,6 +105,7 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
+            marginBottom:"10px"
           }}
         >
         <div style={{ display: "flex",  flexDirection: "column", alignItems: "center"}}>

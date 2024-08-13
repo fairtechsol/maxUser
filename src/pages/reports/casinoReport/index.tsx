@@ -289,12 +289,12 @@ const CasinoReports = () => {
                 return (
                   <tr className={`${isMobile && "title-12"}`} key={index}>
                     <td
-                      style={{ color: "#0d6efd", cursor: "pointer" }}
+                      style={{ color: "#0d6efd", cursor: "pointer",textAlign:"left",width:"20%" }}
                       onClick={() => handleResult(item?.mid)}
                     >
                       <NotSet item={item?.mid} />
                     </td>
-                    <td>
+                    <td style={{textAlign:"left"}}>
                       <NotSet item={item?.result} />
                     </td>
                   </tr>
