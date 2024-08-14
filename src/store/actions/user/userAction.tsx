@@ -192,6 +192,12 @@ export const updateDeleteReasonBet = createAsyncThunk<any, any>(
     return placedBets;
   }
 );
+export const updatePlacedbetsDeleteReason = createAsyncThunk<any, any>(
+  "/updatePlacedbetsDeleteReason/bets",
+  async (data) => {
+    return data;
+  }
+);
 
 export const updateProfitLossOnDeleteSession = createAsyncThunk<any, any>(
   "/user/profitLoss/deleteSession",

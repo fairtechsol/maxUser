@@ -237,7 +237,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
         </div>
         <div className="baccarateRateContainer1">
           <div
-            className={`baccaratePlayerBox ${
+            className={`baccaratePlayerBox ps-3 ${
               odds?.[3]?.gstatus == "0" ? "suspended-box" : ""
             }`}
             onClick={() =>
@@ -307,7 +307,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
             </div>
           </div>
           <div
-            className={`baccarateBankerBox ${
+            className={`baccarateBankerBox ps-2 ${
               odds?.[4]?.gstatus == "0" ? "suspended-box" : ""
             }`}
             onClick={() =>

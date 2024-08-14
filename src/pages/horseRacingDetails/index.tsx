@@ -21,6 +21,7 @@ import {
   getProfileInMatchDetail,
   updateBalanceOnBetDelete,
   updateDeleteReasonBet,
+  updatePlacedbetsDeleteReason,
 } from "../../store/actions/user/userAction";
 import {
   getPlacedBets,
@@ -99,6 +100,16 @@ const RaceDetail = () => {
     }
   };
 
+  const handleDeleteReasonUpdate = (event: any) => {
+    try {
+      if (event?.matchId === id) {
+        dispatch(updatePlacedbetsDeleteReason(event));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     try {
       if (success && socket) {
@@ -107,12 +118,14 @@ const RaceDetail = () => {
         socketService.userBalance.matchResultDeclaredOff();
         socketService.userBalance.declaredMatchResultAllUserOff();
         socketService.userBalance.matchDeleteBetOff();
+        socketService.userBalance.updateDeleteReasonOff();
         expertSocketService.match.joinMatchRoom(id, "user");
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
         socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
         socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
+        socketService.userBalance.updateDeleteReason(handleDeleteReasonUpdate);
       }
     } catch (error) {
       console.log(error);
@@ -128,6 +141,7 @@ const RaceDetail = () => {
         socketService.userBalance.matchResultDeclaredOff();
         socketService.userBalance.declaredMatchResultAllUserOff();
         socketService.userBalance.matchDeleteBetOff();
+        socketService.userBalance.updateDeleteReasonOff();
         socketService.userBalance.matchResultDeclared(getUserProfile);
         socketService.userBalance.declaredMatchResultAllUser(getUserProfile);
         socketService.userBalance.matchResultUnDeclared(getUserProfile);

@@ -13,6 +13,7 @@ import {
   updateBalanceOnSessionResult,
   updateDeleteReasonBet,
   updateMatchRatesOnMarketUndeclare,
+  updatePlacedbetsDeleteReason,
   updateTeamRatesOnDeleteMatchOther,
   // updateBalance,
 } from "../../store/actions/user/userAction";
@@ -151,6 +152,16 @@ const FootballGameDetails = () => {
     }
   };
 
+  const handleDeleteReasonUpdate = (event: any) => {
+    try {
+      if (event?.matchId === id) {
+        dispatch(updatePlacedbetsDeleteReason(event));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     try {
       if (id) {
@@ -166,6 +177,12 @@ const FootballGameDetails = () => {
   useEffect(() => {
     try {
       if (success && socket) {
+        socketService.userBalance.userMatchBetPlacedOff();
+        socketService.userBalance.matchResultDeclaredOff();
+        socketService.userBalance.declaredMatchResultAllUserOff();
+        socketService.userBalance.matchDeleteBetOff();
+        socketService.userBalance.matchResultUnDeclaredOff();
+        socketService.userBalance.updateDeleteReasonOff();
         expertSocketService.match.joinMatchRoom(id, "user");
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
@@ -175,6 +192,7 @@ const FootballGameDetails = () => {
         socketService.userBalance.matchResultUnDeclared(
           handleMatchMarketResult
         );
+        socketService.userBalance.updateDeleteReason(handleDeleteReasonUpdate);
       }
     } catch (error) {
       console.log(error);
@@ -189,6 +207,9 @@ const FootballGameDetails = () => {
         socketService.userBalance.userMatchBetPlacedOff();
         socketService.userBalance.matchResultDeclaredOff();
         socketService.userBalance.matchDeleteBetOff();
+        socketService.userBalance.declaredMatchResultAllUserOff();
+        socketService.userBalance.matchResultUnDeclaredOff();
+        socketService.userBalance.updateDeleteReasonOff();
         socketService.userBalance.sessionResult(sessionResultDeclared);
         socketService.userBalance.sessionResultUnDeclare(sessionResultDeclared);
         socketService.userBalance.matchResultDeclared(handleMatchResult);
