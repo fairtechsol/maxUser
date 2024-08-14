@@ -18,6 +18,7 @@ import {
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getButtonValue,
+  getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
@@ -111,7 +112,9 @@ const Superover = () => {
       dispatch(getProfileInMatchDetail());
     }
   };
-
+  const handleMatchResult = () => {
+    dispatch(getProfile());
+  };
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
@@ -148,6 +151,7 @@ const Superover = () => {
         dispatch(selectedBetAction(null));
         dispatch(dragonTigerReset());
         dispatch(scoreBoardReset());
+        socketService.card.cardResult(handleMatchResult);
       };
     } catch (e) {
       console.log(e);

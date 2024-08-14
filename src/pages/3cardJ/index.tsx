@@ -10,6 +10,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import {
   getButtonValue,
+  getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import { useDispatch } from "react-redux";
@@ -58,14 +59,20 @@ const CardJ = () => {
       dispatch(updateProfitLossCards(event?.userRedisObj));
     }
   };
+  
   const handleLiveGameResultTop10 = (event: any) => {
     dispatch(updateLiveGameResultTop10(event?.data));
   };
+
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
       dispatch(getProfileInMatchDetail());
     }
+  };
+
+  const handleMatchResult = () => {
+    dispatch(getProfile());
   };
 
   useEffect(() => {
@@ -102,6 +109,7 @@ const CardJ = () => {
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
         dispatch(dragonTigerReset());
+        socketService.card.cardResult(handleMatchResult);
       };
     } catch (e) {
       console.log(e);

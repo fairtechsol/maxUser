@@ -81,6 +81,8 @@ const MainLayout = () => {
       socketService.userBalance.unDeclaredMatchResultAllUser(handleMatchResult);
       socketService.userBalance.matchDeleteBet(getUserProfile);
       socketService.userBalance.sessionDeleteBet(getUserProfile);
+      socketService.userBalance.sessionDeleteBet(getUserProfile);
+      socketService.card.cardResult(handleMatchResult);
     } else {
       socketService.disconnect();
     }
@@ -111,7 +113,7 @@ const MainLayout = () => {
   useEffect(() => {
     dispatch(selectedBetAction(null));
   }, [location]);
-  
+
   return (
     <>
       <ScrollToTop />

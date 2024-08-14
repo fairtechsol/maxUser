@@ -15,6 +15,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import {
   getButtonValue,
+  getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
@@ -53,6 +54,9 @@ const Poker1day = () => {
       dispatch(getProfileInMatchDetail());
     }
   };
+  const handleMatchResult = () => {
+    dispatch(getProfile());
+  };
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
@@ -88,6 +92,7 @@ const Poker1day = () => {
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
         dispatch(dragonTigerReset());
+        socketService.card.cardResult(handleMatchResult);
       };
     } catch (e) {
       console.log(e);
