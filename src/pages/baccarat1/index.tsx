@@ -17,6 +17,7 @@ import {
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getButtonValue,
+  getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
@@ -54,7 +55,9 @@ const Bacarrat1 = () => {
       dispatch(getProfileInMatchDetail());
     }
   };
-
+  const handleMatchResult = () => {
+    dispatch(getProfile());
+  };
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
@@ -90,12 +93,13 @@ const Bacarrat1 = () => {
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
         dispatch(dragonTigerReset());
+        socketService.card.cardResult(handleMatchResult);
       };
     } catch (e) {
       console.log(e);
     }
   }, []);
- 
+
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {

@@ -17,6 +17,7 @@ import {
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getButtonValue,
+  getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
@@ -54,7 +55,9 @@ const DragonTigerLion = () => {
       dispatch(getProfileInMatchDetail());
     }
   };
-
+  const handleMatchResult = () => {
+    dispatch(getProfile());
+  };
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
@@ -90,6 +93,7 @@ const DragonTigerLion = () => {
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
         dispatch(dragonTigerReset());
+        socketService.card.cardResult(handleMatchResult);
       };
     } catch (e) {
       console.log(e);
@@ -100,7 +104,9 @@ const DragonTigerLion = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerLion));
+        dispatch(
+          getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerLion)
+        );
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
         socketService.card.leaveMatchRoom(cardGamesType.dragonTigerLion);
