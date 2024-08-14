@@ -357,8 +357,8 @@ const TeenPattiMobile = () => {
                                     ? dragonTigerDetail?.profitLoss[
                                         `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                       ]
-                                    : 0
-                                  : 0}
+                                    : ''
+                                  : ''}
                               </span>
                             </div>
                            
@@ -406,8 +406,8 @@ const TeenPattiMobile = () => {
                                     ? dragonTigerDetail?.profitLoss[
                                         `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
                                       ]
-                                    : 0
-                                  : 0}
+                                    : ''
+                                  : ''}
                               </span>
                             </div>
 
@@ -455,8 +455,8 @@ const TeenPattiMobile = () => {
                                     ? dragonTigerDetail?.profitLoss[
                                         `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                       ]
-                                    : 0
-                                  : 0}
+                                    : ''
+                                  : ''}
                               </span>
                             </div>
                            

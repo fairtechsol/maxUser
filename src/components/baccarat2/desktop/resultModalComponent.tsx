@@ -48,7 +48,7 @@ const Bacarrate2ResultComponent: React.FC<Props> = ({ data }: any) => {
           <HandleCards card={elements?.[1]} />
           <HandleCards card={elements?.[3]} />
           {elements?.[5] != "1" && <div style={{transform:"rotate(90deg)"}}><HandleCards card={elements?.[5]} /></div>}
-          {data?.result?.win === "2" && (
+          {(data?.result?.win === "2" || data?.result?.win === "4") && (
                   <div className="casino-winner-icon">
                     <FaTrophy size={isMobile ? 18 : 26} color="#169733" />
                   </div>

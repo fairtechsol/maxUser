@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import { HandleGameCards } from "../../desktop/card";
 import PieChart from "../../desktop/chart";
 import { useDispatch } from "react-redux";
-
+import { useEffect } from "react";
 export const options = {
   is3D: true,
   backgroundColor: "none",
@@ -37,6 +37,13 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
     );
   };
   // console.log(odds, "odds");
+
+  useEffect(() => {
+    if ( odds?.[0]?.gstatus === "0" || odds?.[0]?.b1 === "0.00") {
+      dispatch(selectedBetAction(""));
+    }
+  }, [odds?.[0]?.gstatus,odds?.[0]?.b1]);
+
   return (
     <div className="baccarateContainer-m">
       <div className="baccarateChartContainer-m">
