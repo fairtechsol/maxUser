@@ -245,7 +245,16 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-
+                    {matchDetails?.manualCompleteMatch?.isActive && (
+                      <Col className="g-0" md={12}>
+                        <BetTable
+                          title={matchDetails?.manualCompleteMatch?.name}
+                          type={MatchType.BOOKMAKER}
+                          data={matchDetails?.manualCompleteMatch}
+                          backLayCount={2}
+                        />
+                      </Col>
+                    )}
                     <Col className="g-0" md={12}>
                       <div
                         style={{

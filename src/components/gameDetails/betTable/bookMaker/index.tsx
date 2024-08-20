@@ -38,7 +38,7 @@ function BookmakerTable({
   );
 
   let arr = [];
-  if (data?.type === "tiedMatch2") {
+  if (data?.type === "tiedMatch2" || data?.type === "completeManual") {
     arr = ["A", "B"];
   } else {
     arr = ["A", "B", "C"];
@@ -128,7 +128,8 @@ function BookmakerTable({
                         isMobile ? "f700" : "f500"
                       } `}
                     >
-                      {data?.type === "tiedMatch2"
+                      {data?.type === "tiedMatch2" ||
+                      data?.type === "completeManual"
                         ? i === 0
                           ? "YES"
                           : "NO"
@@ -146,6 +147,16 @@ function BookmakerTable({
                               : matchDetails?.profitLossDataMatch?.noRateTie < 0
                               ? "color-red"
                               : "color-green"
+                            : data?.type === "completeManual"
+                            ? i === 0
+                              ? matchDetails?.profitLossDataMatch
+                                  ?.yesRateComplete < 0
+                                ? "color-red"
+                                : "color-green"
+                              : matchDetails?.profitLossDataMatch
+                                  ?.noRateComplete < 0
+                              ? "color-red"
+                              : "color-green"
                             : matchDetails?.profitLossDataMatch?.[
                                 `team${item}Rate`
                               ] < 0
@@ -157,6 +168,12 @@ function BookmakerTable({
                           ? i === 0
                             ? matchDetails?.profitLossDataMatch?.yesRateTie ?? 0
                             : matchDetails?.profitLossDataMatch?.noRateTie ?? 0
+                          : data?.type === "completeManual"
+                          ? i === 0
+                            ? matchDetails?.profitLossDataMatch
+                                ?.yesRateComplete ?? 0
+                            : matchDetails?.profitLossDataMatch
+                                ?.noRateComplete ?? 0
                           : matchDetails?.profitLossDataMatch?.[
                               `team${item}Rate`
                             ] ?? 0}
@@ -167,7 +184,8 @@ function BookmakerTable({
                             calculateProfitLoss(
                               data,
                               selectedBet,
-                              data?.type === "tiedMatch2"
+                              data?.type === "tiedMatch2" ||
+                                data?.type === "completeManual"
                                 ? i === 0
                                   ? "YES"
                                   : "NO"
@@ -179,7 +197,8 @@ function BookmakerTable({
                                 calculateProfitLoss(
                                   data,
                                   selectedBet,
-                                  data?.type === "tiedMatch2"
+                                  data?.type === "tiedMatch2" ||
+                                    data?.type === "completeManual"
                                     ? i === 0
                                       ? "YES"
                                       : "NO"
@@ -193,7 +212,8 @@ function BookmakerTable({
                         {calculateProfitLoss(
                           data,
                           selectedBet,
-                          data?.type === "tiedMatch2"
+                          data?.type === "tiedMatch2" ||
+                            data?.type === "completeManual"
                             ? i === 0
                               ? "YES"
                               : "NO"
@@ -246,7 +266,8 @@ function BookmakerTable({
                               (data.type === "quickbookmaker1" ||
                                 data.type === "quickbookmaker2" ||
                                 data.type === "quickbookmaker3" ||
-                                data.type === "tiedMatch2") &&
+                                data.type === "tiedMatch2" ||
+                                data?.type === "completeManual") &&
                               !isMobile
                             ) {
                               rateValue = index < 2 ? Math.trunc(rate) : rate;
@@ -260,7 +281,8 @@ function BookmakerTable({
                               handleClick(
                                 {
                                   betOnTeam:
-                                    data?.type === "tiedMatch2"
+                                    data?.type === "tiedMatch2" ||
+                                    data?.type === "completeManual"
                                       ? i === 0
                                         ? "YES"
                                         : "NO"
@@ -269,11 +291,13 @@ function BookmakerTable({
                                   type: "back",
                                   stake: 0,
                                   teamA:
-                                    data?.type === "tiedMatch2"
+                                    data?.type === "tiedMatch2" ||
+                                    data?.type === "completeManual"
                                       ? "YES"
                                       : matchDetails?.teamA,
                                   teamB:
-                                    data?.type === "tiedMatch2"
+                                    data?.type === "tiedMatch2" ||
+                                    data?.type === "completeManual"
                                       ? "NO"
                                       : matchDetails?.teamB,
                                   teamC: matchDetails?.teamC
@@ -320,7 +344,8 @@ function BookmakerTable({
                               (data.type === "quickbookmaker1" ||
                                 data.type === "quickbookmaker2" ||
                                 data.type === "quickbookmaker3" ||
-                                data.type === "tiedMatch2") &&
+                                data.type === "tiedMatch2" ||
+                                data?.type === "completeManual") &&
                               !isMobile
                             ) {
                               rateValue = index > 0 ? Math.trunc(rate) : rate;
@@ -334,7 +359,8 @@ function BookmakerTable({
                               handleClick(
                                 {
                                   betOnTeam:
-                                    data?.type === "tiedMatch2"
+                                    data?.type === "tiedMatch2" ||
+                                    data?.type === "completeManual"
                                       ? i === 0
                                         ? "YES"
                                         : "NO"
@@ -343,11 +369,13 @@ function BookmakerTable({
                                   type: "lay",
                                   stake: 0,
                                   teamA:
-                                    data?.type === "tiedMatch2"
+                                    data?.type === "tiedMatch2" ||
+                                    data?.type === "completeManual"
                                       ? "YES"
                                       : matchDetails?.teamA,
                                   teamB:
-                                    data?.type === "tiedMatch2"
+                                    data?.type === "tiedMatch2" ||
+                                    data?.type === "completeManual"
                                       ? "NO"
                                       : matchDetails?.teamB,
                                   teamC: matchDetails?.teamC
