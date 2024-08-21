@@ -15,19 +15,7 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-import PieChart from "../desktop/chart";
 import BaccaratStatistics from "./betTable";
-
-export const data = [
-  ["Task", "Hours per Day"],
-  ["Work", 15],
-  ["Eat", 20],
-];
-
-export const options = {
-  title: "My Daily Activities",
-  is3D: true,
-};
 
 const Baccarat2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -168,7 +156,6 @@ const Baccarat2Mobile = () => {
             {loading ? (
               <>
                 <LoaderOnRefresh />
-                <PieChart data={data} options={options} />
               </>
             ) : (
               <div>
