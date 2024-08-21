@@ -113,7 +113,8 @@ export const ApiConstants = {
     GET_VIDEO: "https://video.proexch.in/tv/static",
   },
 };
-export const cardUrl = "https://jmdapi.com/tablevideo/?id=";
+// export const cardUrl = "https://jmdapi.com/tablevideo/?id=";
+export const cardUrl = "https://video.proexch.in/route/?id=";
 
 export const Constants = {
   pageLimit: 15,
