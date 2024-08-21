@@ -200,7 +200,7 @@ const CasinoReports = () => {
   }, []);
 
   return (
-    <>
+    <div className="vh-100">
       <ReportContainer title="Casino Result">
         <div>
           <Stack gap={2}>
@@ -326,7 +326,7 @@ const CasinoReports = () => {
           />
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   );
 };
 

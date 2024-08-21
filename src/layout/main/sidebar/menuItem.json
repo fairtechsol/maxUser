@@ -84,10 +84,10 @@
         "path": "/card3-list/3cardj"
       },
       {
-        "id": "binary",
-        "name": "Binary",
+        "id": "queen",
+        "name": "Queen",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/queen"
       },
       {
         "id": "virtual_sport",

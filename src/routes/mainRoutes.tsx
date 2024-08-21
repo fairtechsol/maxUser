@@ -47,7 +47,7 @@ const CasinoMeter = Loadable(() => import("../pages/casinoMeter"));
 const CardJ = Loadable(() => import("../pages/3cardJ"));
 
 const CricketMatch20 = Loadable(() => import("../pages/cricketMatch_20"));
-
+const Queen = Loadable(() => import("../pages/queen"));
 const ChangeButtonValue = Loadable(() => import("../pages/changeButtonValues"));
 
 const SecureAuthVerification = Loadable(
@@ -250,6 +250,8 @@ const MainRoutes = {
       path: "cmeter",
       element: <CasinoMeter />,
     },
+    { path: "queen", element: <Queen /> },
+
     {
       path: "*",
       element: <Navigate to={"/home"} replace />,
