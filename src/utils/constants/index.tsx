@@ -44,6 +44,7 @@ import {
   ballW,
   bac1,
   bac2,
+  cmeter
 } from "../../assets/images";
 import {
   dayteen,
@@ -130,7 +131,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -1726,6 +1727,7 @@ export const card3 = {
     { id: 19, url: "", imgSrc: ballbyball, name: "BALL BY BALL" },
     { id: 20, url: "/superover", imgSrc: superover, name: "SUPER OVER" },
     { id: 21, url: "/cricketv3", imgSrc: crick5, name: "5 5 Cricket" },
+    { id: 21, url: "/cmeter", imgSrc: cmeter, name: "CASINO METER" },
     {
       id: 22,
       url: "/cmatch20",
