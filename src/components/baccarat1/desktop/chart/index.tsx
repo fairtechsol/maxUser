@@ -47,7 +47,7 @@ const PieChart = ({ data, options }: any) => {
             className="legend-circle"
             style={{ backgroundColor: "#ae2130" }}
           ></div>
-          <span style={{ fontSize: "12px", textAlign: "left" }}>Bankergg</span>
+          <span style={{ fontSize: "12px", textAlign: "left" }}>Banker</span>
         </div>
         <div className="d-flex flex-row gap-1 align-items-center">
           <div
