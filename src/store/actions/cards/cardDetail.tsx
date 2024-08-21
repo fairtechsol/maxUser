@@ -276,6 +276,12 @@ export const updateCricketMatch20MatchRates = createAsyncThunk<any, any>(
     return data;
   }
 );
+export const casinoMeterPattiMatchRates = createAsyncThunk<any, any>(
+  "casinometer/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
   "casinoScoreboard/matchRatesUpdate",
   async (requestData, thunkApi) => {

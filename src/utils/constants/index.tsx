@@ -44,6 +44,7 @@ import {
   ballW,
   bac1,
   bac2,
+  cmeter
 } from "../../assets/images";
 import {
   dayteen,
@@ -130,7 +131,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -304,6 +305,7 @@ export const cardGamesType: any = {
   worli: "worli2",
   cardj: "3cardj",
   cmatch20: "cmatch20",
+  cmeter: "cmeter",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -334,6 +336,7 @@ export const cardGamesId: any = {
   worli: 3040,
   cardj: 3040,
   cmatch20: 3045,
+  // cmeter:
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -368,6 +371,7 @@ export const navigateToGameDetail = {
   [cardGamesType.worli]: "worli2",
   [cardGamesType.cardj]: "3cardj",
   [cardGamesType.cmatch20]: "cmatch20",
+  [cardGamesType.cmeter]: "cmeter",
 };
 
 export const baseUrls = {
@@ -1554,7 +1558,7 @@ export const casinoIcons = [
     name: "20-20 Cricket Match",
   },
   {
-    url: "",
+    url: "/cmeter",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
     name: "Casino Meter",
@@ -1726,6 +1730,7 @@ export const card3 = {
     { id: 19, url: "", imgSrc: ballbyball, name: "BALL BY BALL" },
     { id: 20, url: "/superover", imgSrc: superover, name: "SUPER OVER" },
     { id: 21, url: "/cricketv3", imgSrc: crick5, name: "5 5 Cricket" },
+    { id: 21, url: "/cmeter", imgSrc: cmeter, name: "CASINO METER" },
     {
       id: 22,
       url: "/cmatch20",
