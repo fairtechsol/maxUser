@@ -1504,7 +1504,7 @@ export const casinoIcons = [
     name: "Race 20-20",
   },
   {
-    url: "",
+    url: "/queen",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
     name: "Casino Queen",
