@@ -1,0 +1,346 @@
+import { Table } from "react-bootstrap";
+
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { tprules } from "../../../assets/images";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { handleRoundId } from "../../../utils/formatMinMax";
+import CardResultBox from "../../commonComponent/cardResultBox";
+import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Teen20Result from "../desktop/teenCard";
+import "./style.scss";
+// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+
+const TeenPattiMobile = () => {
+  const [activeTab, setActiveTab] = useState(false);
+  const dispatch: AppDispatch = useDispatch();
+  const [show, setShow] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
+  const [videoFrameId, setVideoFrameId] = useState("");
+  const [show1, setShow1] = useState(false);
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
+  const { playerA, playerB } = dragonTigerDetail;
+  const { placedBets } = useSelector((state: RootState) => state.bets);
+  const rules = [
+    { label: "Pair (Double)", value: "1 To 1" },
+    { label: "Flush (Color)", value: "1 To 4" },
+    { label: "Straight (Rown)", value: "1 To 6" },
+    { label: "Trio (Teen)", value: "1 To 35" },
+    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
+  ];
+  const handleBet = (item: any) => {
+    let team = {
+      bettingType: "BACK",
+      matchId: dragonTigerDetail?.id,
+      odd: item?.rate,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.nat,
+      name: item?.nat,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+    };
+    dispatch(
+      selectedBetAction({
+        team,
+        dragonTigerDetail,
+      })
+    );
+  };
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
+
+  useEffect(() => {
+    const resetTimer = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const checkInactivity = () => {
+      if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
+        setShowInactivityModal(true);
+        setVideoFrameId("");
+      }
+    };
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "click"];
+
+    activityEvents.forEach((event) => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    const intervalId = setInterval(checkInactivity, 1000);
+
+    return () => {
+      activityEvents.forEach((event) => {
+        window.removeEventListener(event, resetTimer);
+      });
+      clearInterval(intervalId);
+    };
+  }, [lastActivityTime, show]);
+
+  useEffect(() => {
+    setVideoFrameId(`${cardUrl}${cardGamesId?.teen20}`);
+  }, []);
+
+  useEffect(() => {
+    if (playerA?.[0]?.gstatus === "0" || playerA?.[0]?.rate === "0.00") {
+      dispatch(selectedBetAction(""));
+    }
+  }, [playerA?.[0]?.gstatus, playerA?.[0]?.b1]);
+
+  return (
+    <>
+      <div>
+        <div className="dt20header">
+          <MobilePlacedBet show={show1} setShow={setShow1} />
+          <div className="dt20subheader1">
+            <div
+              style={{
+                height: "100%",
+                borderTop: !activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
+            >
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(false)}
+              >
+                GAME
+              </span>
+            </div>
+            <span style={{ fontSize: "18px" }}> | </span>
+            <div
+              style={{
+                height: "100%",
+                borderTop: activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
+            >
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(true)}
+              >
+                PLACED BET({placedBets?.length || 0})
+              </span>
+            </div>
+          </div>
+          <div className="dt20subheader2">
+            <span
+              style={{ textDecoration: "underline" }}
+              onClick={() => setShow(true)}
+            >
+              Rules
+            </span>
+            <span>
+              {" "}
+              {dragonTigerDetail?.videoInfo
+                ? `Round ID:  ${handleRoundId(
+                    dragonTigerDetail?.videoInfo?.mid
+                  )}`
+                : ""}{" "}
+            </span>
+          </div>
+        </div>
+        {!activeTab ? (
+          <div
+            style={{ width: "100%", display: "flex", flexDirection: "column" }}
+          >
+            <div style={{ width: "100%" }}>
+              <div className="horseRacingTabHeader-m">
+                <div>
+                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
+                    {dragonTigerDetail?.name}
+                  </span>
+                </div>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  height: "20%",
+                  backgroundColor: "#000",
+                }}
+              >
+                <VideoFrame
+                  time={dragonTigerDetail?.videoInfo?.autotime}
+                  result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                  id={videoFrameId}
+                />
+              </div>
+            </div>
+            {loading ? (
+              <LoaderOnRefresh />
+            ) : (
+              <div>
+                <div style={{ width: "100%" }}>
+                  <div className="teenPatti-table-container-20">
+                    <div className="teenPatti-table-row">
+                      <div
+                        style={{
+                          width: "60%",
+                          border: "0.1px solid #dee2e6",
+                          textAlign: "left",
+                        }}
+                      >
+                        <span className="f12-b">
+                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
+                          {dragonTigerDetail?.videoInfo?.max}
+                        </span>
+                      </div>
+                      <div
+                        className="teen-back-m"
+                        style={{
+                          width: "20%",
+                        }}
+                      >
+                        BACK
+                      </div>
+                      <div
+                        className="teen-back"
+                        style={{
+                          width: "20%",
+                        }}
+                      >
+                        BACK
+                      </div>
+                    </div>
+                    <div className="teenPatti-table-row">
+                      <div
+                        style={{
+                          width: "60%",
+                          border: "0.1px solid #dee2e6",
+                          textAlign: "left",
+                        }}
+                      >
+                        <span className="f12-b">
+                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
+                          {dragonTigerDetail?.videoInfo?.max}
+                        </span>
+                      </div>
+                      <div
+                        className="teen-back-m"
+                        style={{
+                          width: "20%",
+                        }}
+                      >
+                        BACK
+                      </div>
+                      <div
+                        className="teen-back"
+                        style={{
+                          width: "20%",
+                        }}
+                      >
+                        0
+                      </div>
+                    </div>
+                    <div className="teenPatti-table-row">
+                      <div
+                        style={{
+                          width: "60%",
+                          border: "0.1px solid #dee2e6",
+                          textAlign: "left",
+                        }}
+                      >
+                        <span className="f12-b">
+                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
+                          {dragonTigerDetail?.videoInfo?.max}
+                        </span>
+                      </div>
+                      <div
+                        className="teen-back-m"
+                        style={{
+                          width: "20%",
+                        }}
+                      >
+                        BACK
+                      </div>
+                      <div
+                        className="teen-back"
+                        style={{
+                          width: "20%",
+                        }}
+                      >
+                        0
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ width: "100%", marginTop: "15px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["A", "T", "B"]}
+                    type={"teen20"}
+                  />
+                </div>
+                <div>
+                  <div
+                    className="casino-title mt-2"
+                    style={{ position: "relative" }}
+                  >
+                    <span>Rules</span>
+                  </div>
+                  <div className="table-responsive rules-table">
+                    <Table bordered>
+                      <thead>
+                        <tr>
+                          <th colSpan={2} className="box-10 text-center">
+                            Pair Plus
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rules.map((item, index) => (
+                          <tr key={index} style={{ lineHeight: 1 }}>
+                            <td
+                              className="box-7"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.label}
+                            </td>
+                            <td
+                              className="box-3"
+                              style={{
+                                backgroundColor: "#eee",
+                                border: "1px solid #dee2e6",
+                              }}
+                            >
+                              {item.value}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            <MobileMyBet />
+          </>
+        )}
+      </div>
+      <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
+    </>
+  );
+};
+
+export default TeenPattiMobile;

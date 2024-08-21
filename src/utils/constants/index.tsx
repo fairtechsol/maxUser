@@ -305,6 +305,7 @@ export const cardGamesType: any = {
   worli: "worli2",
   cardj: "3cardj",
   cmatch20: "cmatch20",
+  ballbyball:"ballbyball",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -1724,7 +1725,7 @@ export const card3 = {
     { id: 18, url: "/poker20", imgSrc: p20, name: "POKER 20 20" },
   ],
   sportCasino: [
-    { id: 19, url: "", imgSrc: ballbyball, name: "BALL BY BALL" },
+    { id: 19, url: "/ballbyball", imgSrc: ballbyball, name: "BALL BY BALL" },
     { id: 20, url: "/superover", imgSrc: superover, name: "SUPER OVER" },
     { id: 21, url: "/cricketv3", imgSrc: crick5, name: "5 5 Cricket" },
     {
