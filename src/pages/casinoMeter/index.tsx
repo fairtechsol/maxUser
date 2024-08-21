@@ -10,8 +10,8 @@ import {
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
-  casinoWarPattiMatchRates,
   dragonTigerReset,
+  casinoMeterPattiMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import {
   getButtonValue,
@@ -30,7 +30,7 @@ const CasinoMeter = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(casinoWarPattiMatchRates(event?.data?.data?.data));
+      dispatch(casinoMeterPattiMatchRates(event?.data?.data?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
