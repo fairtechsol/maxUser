@@ -115,6 +115,7 @@ const matchListSlice = createSlice({
           halfTime,
           overUnder,
           setWinner,
+          completeManual,
         } = action.payload;
 
         let removedsessionBettings =
@@ -178,6 +179,7 @@ const matchListSlice = createSlice({
           bookmaker: bookmaker,
           manualTiedMatch: manualTideMatch,
           marketCompleteMatch: marketCompleteMatch,
+          manualCompleteMatch: completeManual,
           matchOdd: matchOdd,
           quickBookmaker: quickbookmaker,
           firstHalfGoal,
@@ -273,7 +275,7 @@ const matchListSlice = createSlice({
               noRateTie: newTeamRateData?.teamB,
             },
           };
-        } else if (["completeMatch"].includes(matchBetType)) {
+        } else if (["completeMatch", "completeManual"].includes(matchBetType)) {
           state.matchDetails = {
             ...state.matchDetails,
             profitLossDataMatch: {

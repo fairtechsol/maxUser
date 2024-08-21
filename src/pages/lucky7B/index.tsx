@@ -29,9 +29,9 @@ const Lucky7B = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(update7BCardMatchRates(event?.data?.data?.data));
+      dispatch(update7BCardMatchRates(event?.data));
 
-      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+      if (event?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
     } catch (e) {

@@ -28,8 +28,8 @@ const Abj2 = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateCardAbjRates(event?.data?.data?.data));
-      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+      dispatch(updateCardAbjRates(event?.data));
+      if (event?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
     } catch (e) {

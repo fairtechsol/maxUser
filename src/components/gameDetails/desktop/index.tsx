@@ -225,6 +225,15 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
+              {matchDetails?.manualCompleteMatch?.isActive && (
+                <Col md={12}>
+                  <BetTable
+                    title={matchDetails?.manualCompleteMatch?.name}
+                    type={MatchType.BOOKMAKER}
+                    data={matchDetails?.manualCompleteMatch}
+                  />
+                </Col>
+              )}
               {matchDetails?.apiSessionActive && (
                 <Col
                   md={

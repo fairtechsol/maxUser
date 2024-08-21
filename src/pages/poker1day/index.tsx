@@ -29,8 +29,8 @@ const Poker1day = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateCardPoker1DayRates(event?.data?.data?.data));
-      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+      dispatch(updateCardPoker1DayRates(event?.data));
+      if (event?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
     } catch (e) {
