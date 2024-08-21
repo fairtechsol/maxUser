@@ -29,8 +29,8 @@ const Race20 = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateCardRace20Rates(event?.data?.data?.data));
-      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+      dispatch(updateCardRace20Rates(event?.data));
+      if (event?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
     } catch (e) {

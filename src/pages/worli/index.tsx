@@ -29,9 +29,9 @@ const Worli = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateCardWorliRates(event?.data?.data?.data));
+      dispatch(updateCardWorliRates(event?.data));
 
-      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+      if (event?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
     } catch (e) {

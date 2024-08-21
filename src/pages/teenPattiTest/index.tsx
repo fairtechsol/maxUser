@@ -30,8 +30,8 @@ const TeenPattiTest = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateTeenPattiTestMatchRates(event?.data?.data?.data));
-      if (event?.data?.data?.data?.t1[0]?.mid === "0") {
+      dispatch(updateTeenPattiTestMatchRates(event?.data));
+      if (event?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
     } catch (e) {
