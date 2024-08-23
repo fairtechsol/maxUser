@@ -114,10 +114,6 @@ export const ApiConstants = {
     GET_VIDEO: "https://video.proexch.in/tv/static",
   },
 };
-export const cardUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://jmdapi.com/tablevideo/?id="
-    : "https://video.proexch.in/route/?id=";
 
 export const Constants = {
   pageLimit: 15,
@@ -377,6 +373,11 @@ export const navigateToGameDetail = {
   [cardGamesType.cmeter]: "cmeter",
 };
 
+export const cardUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://jmdapi.com/tablevideo/?id="
+    : "https://video.proexch.in/route/?id=";
+
 export const baseUrls = {
   socket:
     process.env.NODE_ENV === "production"
@@ -397,6 +398,8 @@ export const baseUrls = {
 };
 
 // use below baseUrl for live build
+
+// export const cardUrl = "https://video.proexch.in/route/?id=";
 
 // export const baseUrls = {
 //   socket:
