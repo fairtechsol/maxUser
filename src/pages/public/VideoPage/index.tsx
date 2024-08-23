@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { cardUrl } from "../../../utils/constants";
+import { cardUrlMain } from "../../../utils/constants";
 
 const VideoPage = () => {
   const { vidId } = useParams();
@@ -8,14 +8,14 @@ const VideoPage = () => {
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          height: "99.312vh",
           backgroundColor: "#000",
         }}
       >
         <iframe
           width="100%"
           height="100%"
-          src={`${cardUrl}${vidId}`}
+          src={`${cardUrlMain}${vidId}`}
           // transform={}
           // style={isMobile ?
           //   {transform :"scaleX(1.20)"} :{}

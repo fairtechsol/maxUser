@@ -1,57 +1,55 @@
 import {
-  dt6,
-  dt20,
-  dt2020,
-  dtl20,
   A,
-  two,
-  three,
-  four,
-  five,
-  six,
-  seven,
-  eight,
-  nine,
-  ten,
-  eleven,
-  twelve,
-  thirteen,
-  lucky7A,
-  luck7B,
-  cards32A,
-  cards32B,
-  abjlist2,
   abjlist,
-  p6,
-  p1d,
-  p20,
-  ballbyball,
-  superover,
-  crick5,
-  imgA,
-  img2,
-  img3,
-  img4,
-  img6,
-  img10,
-  imgK,
+  abjlist2,
+  bac1,
+  bac2,
   ball0,
   ball1,
   ball2,
   ball3,
   ball4,
   ball6,
+  ballbyball,
   ballW,
-  bac1,
-  bac2,
+  cards32A,
+  cards32B,
   cmeter,
-} from "../../assets/images";
-import {
+  crick5,
   dayteen,
-  twentyteen,
+  dt20,
+  dt2020,
+  dt6,
+  dtl20,
+  eight,
+  eleven,
+  five,
+  four,
+  img10,
+  img2,
+  img3,
+  img4,
+  img6,
+  imgA,
+  imgK,
+  luck7B,
+  lucky7A,
+  nine,
+  p1d,
+  p20,
+  p6,
+  seven,
+  six,
+  superover,
   // teencasino,
   teenplayer,
+  ten,
   testteen,
+  thirteen,
+  three,
+  twelve,
+  twentyteen,
+  two,
 } from "../../assets/images";
 // import AmarAkbarAnthony from "../../pages/amarAkbarAnthony";
 
@@ -376,7 +374,9 @@ export const navigateToGameDetail = {
 export const cardUrl =
   process.env.NODE_ENV === "production"
     ? "https://jmdapi.com/tablevideo/?id="
-    : "https://video.proexch.in/route/?id=";
+    : "https://maxbet9.fairgame.club/videoPage/";
+
+export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
 
 export const baseUrls = {
   socket:
@@ -400,6 +400,7 @@ export const baseUrls = {
 // use below baseUrl for live build
 
 // export const cardUrl = "https://video.proexch.in/route/?id=";
+// export const cardUrl = "https://maxbet9.fairgame.club/videoPage/";
 
 // export const baseUrls = {
 //   socket:
