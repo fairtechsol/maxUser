@@ -15,6 +15,7 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import Abj1Result from "./abj1Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const CardJDesktop = () => {
   const [show, setShow] = useState(false);
@@ -25,7 +26,9 @@ const CardJDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.cardj}`
   );
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -72,9 +75,6 @@ const CardJDesktop = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
-  
-  
- 
 
   return (
     <>
@@ -124,50 +124,54 @@ const CardJDesktop = () => {
                 />
               </div>
             </div>
-            <div>
-              <div
-                style={{
-                  width: "100%",
-                  margin: "5px",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <CardBox
-                  title={"Yes"}
-                  bgColor={"#03b2cb"}
-                  odds={dragonTigerDetail?.yes}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-                <CardBox
-                  title={"No"}
-                  bgColor={"#FAA9BA"}
-                  odds={dragonTigerDetail?.no}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
+            {loading ? (
+              <LoaderOnRefresh />
+            ) : (
+              <div>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <CardBox
+                    title={"Yes"}
+                    bgColor={"#03b2cb"}
+                    odds={dragonTigerDetail?.yes}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
+                  <CardBox
+                    title={"No"}
+                    bgColor={"#FAA9BA"}
+                    odds={dragonTigerDetail?.no}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
 
-                <div className="ticker-container">
-                  <div className="ticker-wrap">
-                    <div
-                      className="ticker-move"
-                      style={{ color: "#8b0000", fontWeight: "700" }}
-                    >
-                      {dragonTigerDetail?.videoInfo?.remark}
+                  <div className="ticker-container">
+                    <div className="ticker-wrap">
+                      <div
+                        className="ticker-move"
+                        style={{ color: "#8b0000", fontWeight: "700" }}
+                      >
+                        {dragonTigerDetail?.videoInfo?.remark}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div style={{ width: "100%", margin: "5px" }}>
-                <CardResultBox
-                  data={dragonTigerDetail}
-                  name={["R", "R", "R"]}
-                  type={cardGamesType.cardj}
-                />
+                <div style={{ width: "100%", margin: "5px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["R", "R", "R"]}
+                    type={cardGamesType.cardj}
+                  />
+                </div>
               </div>
-            </div>
+            )}
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
