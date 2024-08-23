@@ -43,6 +43,7 @@ const Cards32B = Loadable(() => import("../pages/cards32B"));
 const Race20 = Loadable(() => import("../pages/race20"));
 const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
 const Baccarat2 = Loadable(() => import("../pages/baccarat2"));
+const CasinoMeter = Loadable(() => import("../pages/casinoMeter"));
 const CardJ = Loadable(() => import("../pages/3cardJ"));
 
 const CricketMatch20 = Loadable(() => import("../pages/cricketMatch_20"));
@@ -248,6 +249,10 @@ const MainRoutes = {
     {
       path: "ballbyball",
       element: <BallByBall/>,
+    },
+    {
+      path: "cmeter",
+      element: <CasinoMeter />,
     },
     {
       path: "*",

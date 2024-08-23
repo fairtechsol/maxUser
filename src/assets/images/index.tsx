@@ -63,6 +63,7 @@ export { default as img6 } from "./cards/card6.webp";
 export { default as img10 } from "./cards/card10.webp";
 export { default as imgK } from "./cards/cardK.webp";
 export { default as ballByBall } from "./ballbyball/ballbyball.jpg";
+export { default as cmeter } from "./ballbyball/cmeter.webp";
 export { default as ball0 } from "./sportCasino/ball0.webp";
 export { default as ball1 } from "./sportCasino/ball1.webp";
 export { default as ball2 } from "./sportCasino/ball2.webp";

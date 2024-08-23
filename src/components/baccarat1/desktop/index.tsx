@@ -15,7 +15,6 @@ import BaccaratStatistics from "./betTable";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import PieChart from "./chart";
 export const data = [
   ["Task", "Hours per Day"],
   ["Work", 15],
@@ -137,10 +136,7 @@ const Baccarat1Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <>
                 <LoaderOnRefresh />
-                <PieChart data={data} options={options} />
-              </>
             ) : (
               <div>
                 <div

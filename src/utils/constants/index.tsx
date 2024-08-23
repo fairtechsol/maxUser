@@ -44,6 +44,7 @@ import {
   ballW,
   bac1,
   bac2,
+  cmeter,
 } from "../../assets/images";
 import {
   dayteen,
@@ -113,8 +114,10 @@ export const ApiConstants = {
     GET_VIDEO: "https://video.proexch.in/tv/static",
   },
 };
-// export const cardUrl = "https://jmdapi.com/tablevideo/?id=";
-export const cardUrl = "https://video.proexch.in/route/?id=";
+export const cardUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://jmdapi.com/tablevideo/?id="
+    : "https://video.proexch.in/route/?id=";
 
 export const Constants = {
   pageLimit: 15,
@@ -306,6 +309,7 @@ export const cardGamesType: any = {
   cardj: "3cardj",
   cmatch20: "cmatch20",
   ballbyball:"ballbyball",
+  cmeter: "cmeter",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -334,8 +338,9 @@ export const cardGamesId: any = {
   aaa: 3056,
   btable: 3041,
   worli: 3040,
-  cardj: 3040,
+  cardj: 3039,
   cmatch20: 3045,
+  // cmeter:
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -370,6 +375,7 @@ export const navigateToGameDetail = {
   [cardGamesType.worli]: "worli2",
   [cardGamesType.cardj]: "3cardj",
   [cardGamesType.cmatch20]: "cmatch20",
+  [cardGamesType.cmeter]: "cmeter",
 };
 
 export const baseUrls = {
@@ -1556,7 +1562,7 @@ export const casinoIcons = [
     name: "20-20 Cricket Match",
   },
   {
-    url: "",
+    url: "/cmeter",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
     name: "Casino Meter",
@@ -1728,6 +1734,7 @@ export const card3 = {
     { id: 19, url: "/ballbyball", imgSrc: ballbyball, name: "BALL BY BALL" },
     { id: 20, url: "/superover", imgSrc: superover, name: "SUPER OVER" },
     { id: 21, url: "/cricketv3", imgSrc: crick5, name: "5 5 Cricket" },
+    { id: 21, url: "/cmeter", imgSrc: cmeter, name: "CASINO METER" },
     {
       id: 22,
       url: "/cmatch20",

@@ -1,9 +1,9 @@
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import { HandleGameCards } from "../card";
-import PieChart from "../chart";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import PieChart from "../../../baccarat1/desktop/chart";
 export const options = {
   is3D: true,
   backgroundColor: "none",
@@ -12,10 +12,9 @@ export const options = {
 const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const dataa = [
-    ["Task", "Hours per Day"],
-    ["Player", graphsData ? graphsData?.P : 45],
-    ["Banker", graphsData ? graphsData?.B : 45],
-    ["Tie", graphsData ? graphsData?.T : 10],
+    graphsData ? graphsData?.P : 45,
+    graphsData ? graphsData?.B : 45,
+    graphsData ? graphsData?.T : 10,
   ];
   const handleBet = (item: any) => {
     let team = {
