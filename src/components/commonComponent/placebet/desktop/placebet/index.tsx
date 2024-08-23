@@ -64,7 +64,7 @@ const DesktopPlacedBet = () => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-
+  
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
@@ -294,6 +294,9 @@ const DesktopPlacedBet = () => {
                             size="sm"
                             onClick={() => {
                               setStake(0);
+                              selectedBet?.data?.type === "3cardj"
+                                ? dispatch(selectedBetAction(null))
+                                : "";
                             }}
                           >
                             Reset

@@ -1,7 +1,8 @@
 import { dragonTigerCards } from "../../../../utils/constants";
 import { back } from "../../../../assets/images";
 import { useEffect, useState } from "react";
-
+import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../store/store";
 const CommonCardImg = ({
   cardData,
   handleBet,
@@ -9,8 +10,13 @@ const CommonCardImg = ({
   cardInfo,
   setNat,
   nat,
+  title,
 }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
+
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
       return {
@@ -54,12 +60,22 @@ const CommonCardImg = ({
     }));
   };
 
+  useEffect(() => {
+    if(selectedBet === null){
+      setClickedItems({})
+      setClickedCards(0)
+    }
+    
+  }, [selectedBet]);
+
+  
   return (
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any, index: number) => {
         return (
           <div key={index} style={{ marginLeft: "5px" }}>
             <div
+             
               key={item?.code}
               className={handlock(item)}
               style={{
@@ -69,14 +85,15 @@ const CommonCardImg = ({
                 alignItems: "center",
                 border: clickedItems[item.code] ? "solid #086f3f 2px" : "none",
               }}
-              onClick={() =>
+              onClick={
+                () =>
                 handlock(item) !== ""
                   ? null
                   : (() => {
-                      clickedCards < 3 ? handleItemClick(item) : "";
-                      setNat((p: any) => {
+                      clickedCards < 3 && selectedBet?.team?.name?.[0]==title?.[0]||selectedBet==null ? handleItemClick(item) : "";
+                      selectedBet?.team?.name?.[0]==title?.[0]||selectedBet==null?setNat((p: any) => {
                         return p.length < 3 ? p + item[0] : p;
-                      });
+                      }):"";
                     })()
               }
             >

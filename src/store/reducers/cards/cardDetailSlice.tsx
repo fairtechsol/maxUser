@@ -574,7 +574,7 @@ const cardDetail = createSlice({
         };
       })
       .addCase(update3CardJRates.fulfilled, (state, action) => {
-        console.log("3carj", action.payload);
+        
 
         const { t1, t2, t3 } = action.payload;
         state.loading = false;
