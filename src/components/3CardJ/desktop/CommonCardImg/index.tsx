@@ -68,7 +68,7 @@ const CommonCardImg = ({
     
   }, [selectedBet]);
 
-  console.log("selbt", selectedBet,selectedBet?.team?.name?.[0],title?.[0]);
+  
   return (
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any, index: number) => {
