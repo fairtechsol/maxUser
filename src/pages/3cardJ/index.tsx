@@ -27,9 +27,7 @@ import InnerLoader from "../../components/commonComponent/customLoader/InnerLoad
 
 const CardJ = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { dragonTigerDetail, loading } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const setMatchRatesInRedux = (event: any) => {
     try {
       dispatch(update3CardJRates(event?.data));
@@ -134,7 +132,7 @@ const CardJ = () => {
     };
   }, []);
 
-  return loading ? <InnerLoader /> : <CardJComponentList />;
+  return <CardJComponentList />;
 };
 
 export default CardJ;

@@ -16,6 +16,7 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import Abj1Result from "../desktop/abj1Card";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const CardJMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -25,7 +26,9 @@ const CardJMobile = () => {
     `${cardUrl}${cardGamesId?.andarBahar1}`
   );
   const [show1, setShow1] = useState(false);
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const { dragonTigerDetail, loading } = useSelector(
+    (state: RootState) => state.card
+  );
   const { placedBets } = useSelector((state: RootState) => state.bets);
 
   useEffect(() => {
@@ -61,24 +64,34 @@ const CardJMobile = () => {
         <div className="dt20header">
           {<MobilePlacedBet show={show1} setShow={setShow1} />}
           <div className="dt20subheader1">
-          <div style={{height: "100%",borderTop: !activeTab ? "2px solid white" : "none",  padding: "5px"}}>
-
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(false)}
+            <div
+              style={{
+                height: "100%",
+                borderTop: !activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              GAME
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(false)}
+              >
+                GAME
+              </span>
             </div>
             <span style={{ fontSize: "18px" }}> | </span>
-            <div style={{height: "100%",borderTop: activeTab ? "2px solid white" : "none", padding: "5px"}}>
-
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(true)}
+            <div
+              style={{
+                height: "100%",
+                borderTop: activeTab ? "2px solid white" : "none",
+                padding: "5px",
+              }}
             >
-              PLACED BET({placedBets?.length || 0})
-            </span>
+              <span
+                style={{ fontSize: "12px", fontWeight: "bold" }}
+                onClick={() => setActiveTab(true)}
+              >
+                PLACED BET({placedBets?.length || 0})
+              </span>
             </div>
           </div>
           <div className="dt20subheader2">
@@ -132,49 +145,53 @@ const CardJMobile = () => {
                 />
               </div>
             </div>
+            {loading ? (
+              <LoaderOnRefresh />
+            ) : (
+              <div style={{ marginTop: "70px" }}>
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "0px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <CardBox
+                    title={"Yes"}
+                    bgColor={"#03b2cb"}
+                    odds={dragonTigerDetail?.yes}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
+                  <CardBox
+                    title={"No"}
+                    bgColor={"#FAA9BA"}
+                    odds={dragonTigerDetail?.no}
+                    data={dragonTigerDetail}
+                    cards={dragonTigerDetail?.cardInfo}
+                  />
 
-            <div style={{marginTop:"70px" }}>
-             
-               <div
-                style={{
-                  width: "100%",
-                  margin: "0px",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <CardBox
-                  title={"Yes"}
-                  bgColor={"#03b2cb"}
-                  odds={dragonTigerDetail?.yes}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-                <CardBox
-                  title={"No"}
-                  bgColor={"#FAA9BA"}
-                  odds={dragonTigerDetail?.no}
-                  data={dragonTigerDetail}
-                  cards={dragonTigerDetail?.cardInfo}
-                />
-               
-
-                <div className="ticker-container">
-                  <div className="ticker-wrap">
-                    <div
-                      className="ticker-move"
-                      style={{ color: "#8b0000", fontWeight: "700" }}
-                    >
-                      {dragonTigerDetail?.videoInfo?.remark}
+                  <div className="ticker-container">
+                    <div className="ticker-wrap">
+                      <div
+                        className="ticker-move"
+                        style={{ color: "#8b0000", fontWeight: "700" }}
+                      >
+                        {dragonTigerDetail?.videoInfo?.remark}
+                      </div>
                     </div>
                   </div>
                 </div>
-
+                <div style={{ width: "100%", marginTop: "10px" }}>
+                  <CardResultBox
+                    data={dragonTigerDetail}
+                    name={["R", "R", "R"]}
+                    type={cardGamesType.cardj}
+                  />
+                </div>
               </div>
-              <div style={{ width: "100%", marginTop: "10px" }}>
-                <CardResultBox data={dragonTigerDetail} name={["R", "R","R"]} type={cardGamesType.cardj}/>
-              </div>
-            </div>
+            )}
           </div>
         ) : (
           <>
@@ -182,7 +199,11 @@ const CardJMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={showInactivityModal} setShow={setShowInactivityModal} rule={abjrules} />
+      <RulesModal
+        show={showInactivityModal}
+        setShow={setShowInactivityModal}
+        rule={abjrules}
+      />
     </>
   );
 };
