@@ -1,12 +1,15 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { AppDispatch } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
+
 const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
   const dispatch: AppDispatch = useDispatch();
-
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   const [nat, setNat] = useState("");
   const handleBet = () => {
     let team = {
@@ -32,7 +35,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
 
   const arCards = cards?.ar?.split(",");
   const brCards = cards?.br?.split(",");
-
+ 
   const handlock = () => {
     if (odds?.gstatus === "0") {
       if (nat !== "") {
@@ -46,8 +49,16 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
   };
 
   useEffect(() => {
+    if(selectedBet === null){
+      setNat("");
+    }
+    
+  }, [selectedBet]);
+
+  useEffect(() => {
     if (odds?.gstatus === "0") {
-      dispatch(selectedBetAction(""));
+      dispatch(selectedBetAction(null));
+      setNat("");
     } else {
     }
   }, [odds?.gstatus === "0"]);
@@ -67,7 +78,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
             borderRight: "0.5px solid #000",
           }}
         >
-          <span style={{ fontSize: "16px",fontWeight:"bold" }}>{title}</span>
+          <span style={{ fontSize: "16px", fontWeight: "bold" }}>{title}</span>
         </div>
         <div
           className="p-3  "
@@ -79,7 +90,9 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
             alignItems: "center",
           }}
         >
-          <div style={{ fontSize: "16px",fontWeight:"bold" }}>{odds?.rate}</div>
+          <div style={{ fontSize: "16px", fontWeight: "bold" }}>
+            {odds?.rate}
+          </div>
           <CommonCardImg
             cardData={[
               "A",
@@ -101,6 +114,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
             data={data}
             setNat={setNat}
             nat={nat}
+            title={title}
           />
         </div>
       </div>
