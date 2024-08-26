@@ -260,6 +260,8 @@ const TeenPattiDesktop = () => {
                         style={{
                           width: "20%",
                           backgroundColor: "#72bbef",
+
+                          
                           display: "flex",
                           flexDirection: "row",
                         }}

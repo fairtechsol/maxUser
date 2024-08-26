@@ -16,8 +16,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       "odd": item?.rate,
       "stake": 0,
       "matchBetType": "matchOdd",
-      "betOnTeam":item?.nat,
-      "name":item?.nat,
+      "betOnTeam":item?.nation,
+      "name":item?.nation,
       "bettingName": "Match odds",
       "selectionId": item?.sid
     }
