@@ -3,31 +3,36 @@ import { cardUrlMain } from "../../../utils/constants";
 
 const VideoPage = () => {
   const { vidId } = useParams();
+  const iframeStyles: any = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    border: "none",
+    zIndex: -1,
+  };
+
+  const containerStyles: any = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+    zIndex: -1,
+  };
+
   return (
-    <>
-      <div
-        style={{
-          width: "100%",
-          height: "99.312vh",
-          backgroundColor: "#000",
-        }}
-      >
-        <iframe
-          width="100%"
-          height="100%"
-          src={`${cardUrlMain}${vidId}`}
-          // transform={}
-          // style={isMobile ?
-          //   {transform :"scaleX(1.20)"} :{}
-          // }
-          // title="YouTube video player"
-          // frameborder="0"
-          // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy={"strict-origin-when-cross-origin"}
-          allowFullScreen
-        ></iframe>
-      </div>
-    </>
+    <div style={containerStyles}>
+      <iframe
+        style={iframeStyles}
+        src={`${cardUrlMain}${vidId}`}
+        frameBorder="0"
+        allow="autoplay; fullscreen"
+        allowFullScreen
+      />
+    </div>
   );
 };
 
