@@ -128,7 +128,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -334,7 +334,7 @@ export const cardGamesId: any = {
   worli: 3040,
   cardj: 3039,
   cmatch20: 3045,
-  // cmeter:
+  cmeter:3046,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",

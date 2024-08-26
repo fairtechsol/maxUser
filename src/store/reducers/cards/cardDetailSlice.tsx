@@ -614,18 +614,16 @@ const cardDetail = createSlice({
         };
       })
       .addCase(casinoMeterPattiMatchRates.fulfilled, (state, action) => {
-        const { t1, t2 } = action.payload;
         state.loading = false;
+        const { t1, t2 } = action.payload;
         const videoInfo = { ...t1[0] };
-        const cards = t2.slice(0, 4);
-        const total = t2.slice(4, 6);
-        const win = t2.slice(6, 12);
+        const low = { ...t2[0] };
+        const high = { ...t2[1] };
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
-          cards,
-          total,
-          win,
+          low,
+          high
         };
       })
 

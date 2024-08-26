@@ -30,7 +30,7 @@ const CasinoMeter = () => {
 
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(casinoMeterPattiMatchRates(event?.data?.data?.data));
+      dispatch(casinoMeterPattiMatchRates(event?.data));
       if (event?.data?.data?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
