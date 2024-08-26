@@ -37,6 +37,7 @@ import {
   graphData,
   updateBaccarat2Rates,
   casinoMeterPattiMatchRates,
+  ballbyballMatchRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -614,6 +615,21 @@ const cardDetail = createSlice({
         };
       })
       .addCase(casinoMeterPattiMatchRates.fulfilled, (state, action) => {
+        state.loading = false;
+        const { t1, t2 } = action.payload;
+        const videoInfo = { ...t1[0] };
+        const low = { ...t2[0] };
+        const high = { ...t2[1] };
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          low,
+          high
+        };
+      })
+      
+      .addCase(ballbyballMatchRates.fulfilled, (state, action) => {
+        console.log("ballbyballMatchRates",action?.payload)
         state.loading = false;
         const { t1, t2 } = action.payload;
         const videoInfo = { ...t1[0] };

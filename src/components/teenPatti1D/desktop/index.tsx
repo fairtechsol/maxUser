@@ -64,8 +64,8 @@ const TeenPattiDesktop = () => {
       odd: type === "BACK" ? updatedValue(item.b1) : updatedValue(item?.l1),
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam: item?.nation,
+      name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
     };
@@ -117,6 +117,7 @@ const TeenPattiDesktop = () => {
     
   }, [playerA?.[0]?.gstatus,playerA?.[0]?.b1]);
 
+  
   return (
     <>
       <Row>
@@ -211,7 +212,7 @@ const TeenPattiDesktop = () => {
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                        {playerA?.[0]?.nat}
+                        {playerA?.[0]?.nation}
                       </span>
                       <span
                         className={
@@ -304,7 +305,7 @@ const TeenPattiDesktop = () => {
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                        {playerB?.[0]?.nat}
+                        {playerB?.[0]?.nation}
                       </span>
                       <span
                         className={
