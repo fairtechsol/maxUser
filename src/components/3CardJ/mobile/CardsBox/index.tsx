@@ -8,7 +8,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const [nat, setNat] = useState("");
-  const handleBet = () => { 
+  const handleBet = () => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
@@ -56,18 +56,69 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
     <div className={handlock()}>
       <div
         className={`abjcardContainer`}
-        style={{ backgroundColor: bgColor, border: "0.5px solid #000" , display: "flex",flexDirection:"column"}}
+        style={{
+          backgroundColor: bgColor,
+          border: "0.5px solid #000",
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
         <div
           style={{
             width: "100%",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             borderBottom: "0.5px solid #000",
           }}
         >
-          <span style={{ fontSize: "16px",fontWeight:"bold" }}>{title}</span>
+          <span
+            style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            {title}
+          </span>{" "}
+          <span
+            style={{
+              fontSize: "12px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+            className={`${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${
+                          title === "Yes" ? 1 : 2
+                        }_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
+                ]
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
+                  ]
+                : 0
+              : 0}
+          </span>
         </div>
         <div
           className="p-3  "
@@ -79,7 +130,9 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
             alignItems: "center",
           }}
         >
-          <div style={{ fontSize: "16px",fontWeight:"bold" }}>{odds?.rate}</div>
+          <div style={{ fontSize: "16px", fontWeight: "bold" }}>
+            {odds?.rate}
+          </div>
           <CommonCardImg
             cardData={[
               "A",
