@@ -323,7 +323,7 @@ export const cardGamesId: any = {
   casinoWar: 3038,
   race20: 3036,
   superover: 3060,
-  poker: 30500,
+  poker: 3050,
   poker1Day: 3051,
   poker20: 3052,
   cricketv3: 3042,
