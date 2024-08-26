@@ -205,6 +205,22 @@
   justify-content: space-between;
   align-items: center;
 }
+.LowCommonCardImgContainer{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+.lowCardContainer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }
