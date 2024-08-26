@@ -43,7 +43,6 @@ const CommonCardImg = ({
     }
   }, [data?.no?.gstatus]);
 
-  
   useEffect(() => {
     handleBet();
   }, [nat]);
@@ -61,21 +60,18 @@ const CommonCardImg = ({
   };
 
   useEffect(() => {
-    if(selectedBet === null){
-      setClickedItems({})
-      setClickedCards(0)
+    if (selectedBet === null) {
+      setClickedItems({});
+      setClickedCards(0);
     }
-    
   }, [selectedBet]);
 
-  
   return (
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any, index: number) => {
         return (
           <div key={index} style={{ marginLeft: "5px" }}>
             <div
-             
               key={item?.code}
               className={handlock(item)}
               style={{
@@ -85,15 +81,21 @@ const CommonCardImg = ({
                 alignItems: "center",
                 border: clickedItems[item.code] ? "solid #086f3f 2px" : "none",
               }}
-              onClick={
-                () =>
+              onClick={() =>
                 handlock(item) !== ""
                   ? null
                   : (() => {
-                      clickedCards < 3 && selectedBet?.team?.name?.[0]==title?.[0]||selectedBet==null ? handleItemClick(item) : "";
-                      selectedBet?.team?.name?.[0]==title?.[0]||selectedBet==null?setNat((p: any) => {
-                        return p.length < 3 ? p + item[0] : p;
-                      }):"";
+                      (clickedCards < 3 &&
+                        selectedBet?.team?.name?.[0] == title?.[0]) ||
+                      selectedBet == null
+                        ? handleItemClick(item)
+                        : "";
+                      selectedBet?.team?.name?.[0] == title?.[0] ||
+                      selectedBet == null
+                        ? setNat((p: any) => {
+                            return p.length < 3 ? p + item[0] : p;
+                          })
+                        : "";
                     })()
               }
             >
@@ -103,39 +105,6 @@ const CommonCardImg = ({
                 <img src={back} width={"30px"} />
               )}
             </div>
-            <span
-              style={{
-                fontSize: "12px",
-                display: "flex",
-                justifyContent: "center",
-              }}
-              className={`${
-                data?.profitLoss
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${item?.sid}_card`
-                      ] > 0
-                      ? "color-green"
-                      : data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.sid}_card`
-                        ] < 0
-                      ? "color-red"
-                      : ""
-                    : ""
-                  : ""
-              }`}
-            >
-              {" "}
-              {data?.profitLoss
-                ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${item?.sid}_card`
-                    ]
-                  : 0
-                : 0}
-            </span>
           </div>
         );
       })}

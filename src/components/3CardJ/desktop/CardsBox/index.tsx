@@ -35,7 +35,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
 
   const arCards = cards?.ar?.split(",");
   const brCards = cards?.br?.split(",");
- 
+
   const handlock = () => {
     if (odds?.gstatus === "0") {
       if (nat !== "") {
@@ -49,10 +49,9 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
   };
 
   useEffect(() => {
-    if(selectedBet === null){
+    if (selectedBet === null) {
       setNat("");
     }
-    
   }, [selectedBet]);
 
   useEffect(() => {
@@ -73,12 +72,58 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
           style={{
             width: "20%",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             borderRight: "0.5px solid #000",
           }}
         >
-          <span style={{ fontSize: "16px", fontWeight: "bold" }}>{title}</span>
+          <span
+            style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            {title}
+          </span>
+          <span
+            style={{
+              fontSize: "12px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+            className={`${
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
+                  ]
+                  ? data?.profitLoss[
+                      `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
+                    ] > 0
+                    ? "color-green"
+                    : data?.profitLoss[
+                        `${data?.videoInfo?.mid}_${
+                          title === "Yes" ? 1 : 2
+                        }_card`
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                  : ""
+                : ""
+            }`}
+          >
+            {data?.profitLoss
+              ? data?.profitLoss[
+                  `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
+                ]
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
+                  ]
+                : 0
+              : 0}
+          </span>
         </div>
         <div
           className="p-3  "
