@@ -13,13 +13,13 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-
+import BetBox from "../desktop/betBox/index";
 const QueenMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.worli}`
+    `${cardUrl}${cardGamesId?.queen}`
   );
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -164,20 +164,9 @@ const QueenMobile = () => {
                     flexDirection: "column",
                   }}
                 >
-                  <div className="parent-rate">
-                    <div className="child-rate1">9</div>
-                    <div className="child-rate2">9</div>
-                  </div>
-                  {/* <CardBox
-                    odds={"L1"}
-                    data={dragonTigerDetail}
-                    cards={dragonTigerDetail?.cardInfo}
-                  />
-                  <CardBox
-                    odds={"L2"}
-                    data={dragonTigerDetail}
-                    cards={dragonTigerDetail?.cardInfo}
-                  /> */}
+                   <BetBox
+                         cards={dragonTigerDetail?.cards} 
+                           />
                 </div>
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox

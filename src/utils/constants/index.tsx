@@ -304,6 +304,7 @@ export const cardGamesType: any = {
   cmatch20: "cmatch20",
   ballbyball:"ballbyball",
   cmeter: "cmeter",
+  queen: "queen",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,

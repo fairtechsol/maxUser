@@ -32,6 +32,7 @@ import CardJResultComponent from "../../3CardJ/desktop/resultModalComponent";
 import CricketMatch20ResultComponent from "../../cricketMatch_20/desktop/resultModalComponent";
 import Bacarrate1ResultComponent from "../../baccarat1/desktop/resultModalComponent";
 import Bacarrate2ResultComponent from "../../baccarat2/desktop/resultModalComponent";
+import QueenResultComponent from "../../queen/desktop/resultModalComponent";
 const title = {
   dt20: "20-20 Dragon Tiger",
   teen20: "20-20 Teenpatti",
@@ -152,6 +153,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <CricketMatch20ResultComponent data={data} />
       ) : type === cardGamesType?.baccarat ? (
         <Bacarrate1ResultComponent data={data} />
+      ) : type === cardGamesType?.queen ? (
+        <QueenResultComponent data={data} />
       ): type === cardGamesType?.baccarat2 ? (
         <Bacarrate2ResultComponent data={data} />
       ): (

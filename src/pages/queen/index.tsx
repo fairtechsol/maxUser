@@ -7,6 +7,7 @@ import {
   updateCardWorliRates,
   updateLiveGameResultTop10,
   updateProfitLossCards,
+  updateQueenRates,
 } from "../../store/actions/cards/cardDetail";
 import {
   getButtonValue,
@@ -29,7 +30,7 @@ const Queen = () => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateCardWorliRates(event?.data));
+      dispatch(updateQueenRates(event?.data));
 
       if (event?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
@@ -40,7 +41,7 @@ const Queen = () => {
   };
 
   const handleBetPlacedOnDT20 = (event: any) => {
-    if (event?.jobData?.matchType === cardGamesType.worli) {
+    if (event?.jobData?.matchType === cardGamesType.queen) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
       dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
       dispatch(updateProfitLossCards(event?.userRedisObj));
@@ -62,17 +63,17 @@ const Queen = () => {
     try {
       if (socket && dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
-        socketService.card.getCardRatesOff(cardGamesType.worli);
+        socketService.card.getCardRatesOff(cardGamesType.queen);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.worli);
+        socketService.card.joinMatchRoom(cardGamesType.queen);
         socketService.card.getCardRates(
-          cardGamesType.worli,
+          cardGamesType.queen,
           setMatchRatesInRedux
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
-          cardGamesType.worli,
+          cardGamesType.queen,
           handleLiveGameResultTop10
         );
         socketService.card.cardResult(handleCardResult);
@@ -85,10 +86,10 @@ const Queen = () => {
   useEffect(() => {
     try {
       dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.worli));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
       return () => {
-        socketService.card.leaveMatchRoom(cardGamesType.worli);
-        socketService.card.getCardRatesOff(cardGamesType.worli);
+        socketService.card.leaveMatchRoom(cardGamesType.queen);
+        socketService.card.getCardRatesOff(cardGamesType.queen);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
@@ -104,11 +105,11 @@ const Queen = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.worli));
+        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
-        socketService.card.leaveMatchRoom(cardGamesType.worli);
-        socketService.card.getCardRatesOff(cardGamesType.worli);
+        socketService.card.leaveMatchRoom(cardGamesType.queen);
+        socketService.card.getCardRatesOff(cardGamesType.queen);
       }
     };
 

@@ -119,7 +119,7 @@ const QueenDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                //   result={<WorliResult data={dragonTigerDetail?.videoInfo} />}
+                  // result={<WorliResult data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
@@ -136,7 +136,20 @@ const QueenDesktop = () => {
                     flexDirection: "column",
                   }}
                 >
-                 <BetBox/>
+                 <BetBox 
+                  cards={dragonTigerDetail?.cards} 
+                  // data={dragonTigerDetail}
+                 />
+                    <div className="ticker-container">
+                    <div className="ticker-wrap">
+                      <div
+                        className="ticker-move"
+                        style={{ color: "#8b0000", fontWeight: "700" }}
+                      >
+                        {dragonTigerDetail?.videoInfo?.ramark}
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div style={{ width: "100%", margin: "5px" }}>
