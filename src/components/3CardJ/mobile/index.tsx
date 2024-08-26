@@ -17,6 +17,7 @@ import Abj1Result from "../desktop/abj1Card";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 
 const CardJMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -25,11 +26,16 @@ const CardJMobile = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.andarBahar1}`
   );
+  const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
+
+  const handleClose = () => {
+    setShowInactivityModal(false);
+  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -97,17 +103,16 @@ const CardJMobile = () => {
           <div className="dt20subheader2">
             <span
               style={{ textDecoration: "underline" }}
-              onClick={() => setShowInactivityModal(true)}
+              onClick={() => setShow(true)}
             >
               Rules
             </span>
             <span>
-              {" "}
               {dragonTigerDetail?.videoInfo
                 ? `Round ID:  ${handleRoundId(
                     dragonTigerDetail?.videoInfo?.mid
                   )}`
-                : ""}{" "}
+                : ""}
             </span>
           </div>
         </div>
@@ -199,11 +204,8 @@ const CardJMobile = () => {
           </>
         )}
       </div>
-      <RulesModal
-        show={showInactivityModal}
-        setShow={setShowInactivityModal}
-        rule={abjrules}
-      />
+      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
 };
