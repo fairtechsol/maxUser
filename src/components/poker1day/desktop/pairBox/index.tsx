@@ -15,8 +15,8 @@ const PairBox = ({ odds, data, min, max }: any) => {
       odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam: item?.nation,
+      name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
     };
@@ -104,7 +104,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
                 : handleBet(odds?.[0])
             }
           >
-            <span className="f12-b">{odds?.[0]?.nat}</span>
+            <span className="f12-b">{odds?.[0]?.nation}</span>
             <span
               className={`f10-b f400 ${
                 data?.profitLoss
@@ -147,7 +147,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
                 : handleBet(odds?.[1])
             }
           >
-            <span className="f12-b">{odds?.[1]?.nat}</span>
+            <span className="f12-b">{odds?.[1]?.nation}</span>
             <span
               className={`f10-b f400 ${
                 data?.profitLoss
@@ -219,7 +219,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
                 : handleBet(odds?.[2])
             }
           >
-            <span className="f12-b">{odds?.[2]?.nat}</span>
+            <span className="f12-b">{odds?.[2]?.nation}</span>
             <span
               className={`f10-b f400 ${
                 data?.profitLoss
@@ -262,7 +262,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
                 : handleBet(odds?.[3])
             }
           >
-            <span className="f12-b">{odds?.[3]?.nat}</span>
+            <span className="f12-b">{odds?.[3]?.nation}</span>
             <span
               className={`f10-b f400 ${
                 data?.profitLoss

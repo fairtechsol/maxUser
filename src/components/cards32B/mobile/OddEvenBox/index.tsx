@@ -18,8 +18,8 @@ const OddEven = ({ data, odds }: any) => {
       odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam: item?.nation,
+      name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
     };
