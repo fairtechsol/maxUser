@@ -17,8 +17,8 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
       odd: type === "BACK" ? item?.b1 : item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam: item?.nation,
+      name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
     };
@@ -83,7 +83,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
           }}
         >
           <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-            {odds?.[0]?.nat}
+            {odds?.[0]?.nation}
           </span>
           <span
             className={`f400 ${
@@ -166,7 +166,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
           }}
         >
           <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-            {odds?.[1]?.nat}
+            {odds?.[1]?.nation}
           </span>
           <span
             className={`f400 ${
