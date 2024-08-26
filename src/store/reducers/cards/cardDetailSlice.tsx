@@ -412,7 +412,7 @@ const cardDetail = createSlice({
         };
       })
       .addCase(updateCardSuperoverRates.fulfilled, (state, action) => {
-        const { t1, t2, t3, t4 } = action.payload;
+        const { t1, t2, t3, t4 } = action?.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const bookmaker = { ...t2 };
@@ -489,7 +489,7 @@ const cardDetail = createSlice({
         };
       })
       .addCase(updateCricket5MatchRates.fulfilled, (state, action) => {
-        const { t1, t2, t3 } = action.payload;
+        const { t1, t2, t3 } = action?.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
         const odds = [...t2];
