@@ -1,57 +1,55 @@
 import {
-  dt6,
-  dt20,
-  dt2020,
-  dtl20,
   A,
-  two,
-  three,
-  four,
-  five,
-  six,
-  seven,
-  eight,
-  nine,
-  ten,
-  eleven,
-  twelve,
-  thirteen,
-  lucky7A,
-  luck7B,
-  cards32A,
-  cards32B,
-  abjlist2,
   abjlist,
-  p6,
-  p1d,
-  p20,
-  ballbyball,
-  superover,
-  crick5,
-  imgA,
-  img2,
-  img3,
-  img4,
-  img6,
-  img10,
-  imgK,
+  abjlist2,
+  bac1,
+  bac2,
   ball0,
   ball1,
   ball2,
   ball3,
   ball4,
   ball6,
+  ballbyball,
   ballW,
-  bac1,
-  bac2,
+  cards32A,
+  cards32B,
   cmeter,
-} from "../../assets/images";
-import {
+  crick5,
   dayteen,
-  twentyteen,
+  dt20,
+  dt2020,
+  dt6,
+  dtl20,
+  eight,
+  eleven,
+  five,
+  four,
+  img10,
+  img2,
+  img3,
+  img4,
+  img6,
+  imgA,
+  imgK,
+  luck7B,
+  lucky7A,
+  nine,
+  p1d,
+  p20,
+  p6,
+  seven,
+  six,
+  superover,
   // teencasino,
   teenplayer,
+  ten,
   testteen,
+  thirteen,
+  three,
+  twelve,
+  twentyteen,
+  two,
 } from "../../assets/images";
 // import AmarAkbarAnthony from "../../pages/amarAkbarAnthony";
 
@@ -130,7 +128,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -304,6 +302,7 @@ export const cardGamesType: any = {
   worli: "worli2",
   cardj: "3cardj",
   cmatch20: "cmatch20",
+  ballbyball:"ballbyball",
   cmeter: "cmeter",
 };
 export const cardGamesId: any = {
@@ -333,9 +332,9 @@ export const cardGamesId: any = {
   aaa: 3056,
   btable: 3041,
   worli: 3040,
-  cardj: 3040,
+  cardj: 3039,
   cmatch20: 3045,
-  // cmeter:
+  cmeter:3046,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -376,7 +375,9 @@ export const navigateToGameDetail = {
 export const cardUrl =
   process.env.NODE_ENV === "production"
     ? "https://jmdapi.com/tablevideo/?id="
-    : "https://video.proexch.in/route/?id=";
+    : "https://maxbet9.fairgame.club/videoPage/";
+
+export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
 
 export const baseUrls = {
   socket:
@@ -400,6 +401,7 @@ export const baseUrls = {
 // use below baseUrl for live build
 
 // export const cardUrl = "https://video.proexch.in/route/?id=";
+// export const cardUrl = "https://maxbet9.fairgame.club/videoPage/";
 
 // export const baseUrls = {
 //   socket:
@@ -1733,7 +1735,7 @@ export const card3 = {
     { id: 18, url: "/poker20", imgSrc: p20, name: "POKER 20 20" },
   ],
   sportCasino: [
-    { id: 19, url: "", imgSrc: ballbyball, name: "BALL BY BALL" },
+    { id: 19, url: "/ballbyball", imgSrc: ballbyball, name: "BALL BY BALL" },
     { id: 20, url: "/superover", imgSrc: superover, name: "SUPER OVER" },
     { id: 21, url: "/cricketv3", imgSrc: crick5, name: "5 5 Cricket" },
     { id: 21, url: "/cmeter", imgSrc: cmeter, name: "CASINO METER" },

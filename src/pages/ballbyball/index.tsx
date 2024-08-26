@@ -1,4 +1,4 @@
- import { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { socket, socketService } from "../../socketManager";
 import {
@@ -8,13 +8,11 @@ import {
 import {
   dragonTigerReset,
   getDragonTigerDetailHorseRacing,
-  graphData,
-  updateBaccarat2Rates,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
   updateProfitLossCards,
+  ballbyballMatchRates,
 } from "../../store/actions/cards/cardDetail";
-import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getButtonValue,
   getProfile,
@@ -22,14 +20,18 @@ import {
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-import Baccarat2ComponentList from "../../components/baccarat2";
 
-const Bacarrat2 = () => {
+
+import BallbyballComponentList from "../../components/ballbyball";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
+
+const BallByBall = () => {
   const dispatch: AppDispatch = useDispatch();
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+
   const setMatchRatesInRedux = (event: any) => {
     try {
-      dispatch(updateBaccarat2Rates(event?.data));
+      dispatch(ballbyballMatchRates(event?.data));
       if (event?.data?.t1[0]?.mid === "0") {
         dispatch(selectedBetAction(null));
       }
@@ -39,7 +41,7 @@ const Bacarrat2 = () => {
   };
 
   const handleBetPlacedOnDT20 = (event: any) => {
-    if (event?.jobData?.matchType === cardGamesType.baccarat2) {
+    if (event?.jobData?.matchType === cardGamesType.ballbyball) {
       dispatch(updateBetsPlaced(event?.jobData?.newBet));
       dispatch(updateBalanceOnBetPlaceCards(event?.jobData));
       dispatch(updateProfitLossCards(event?.userRedisObj));
@@ -47,7 +49,6 @@ const Bacarrat2 = () => {
   };
   const handleLiveGameResultTop10 = (event: any) => {
     dispatch(updateLiveGameResultTop10(event?.data));
-    dispatch(graphData(event?.graphdata));
   };
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
@@ -62,17 +63,17 @@ const Bacarrat2 = () => {
     try {
       if (socket && dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
-        socketService.card.getCardRatesOff(cardGamesType.baccarat2);
+        socketService.card.getCardRatesOff(cardGamesType.ballbyball);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.baccarat2);
+        socketService.card.joinMatchRoom(cardGamesType.ballbyball);
         socketService.card.getCardRates(
-          cardGamesType.baccarat2,
+          cardGamesType.ballbyball,
           setMatchRatesInRedux
         );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
-          cardGamesType.baccarat2,
+          cardGamesType.ballbyball,
           handleLiveGameResultTop10
         );
         socketService.card.cardResult(handleCardResult);
@@ -85,10 +86,10 @@ const Bacarrat2 = () => {
   useEffect(() => {
     try {
       dispatch(getButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.baccarat2));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
       return () => {
-        socketService.card.leaveMatchRoom(cardGamesType.baccarat2);
-        socketService.card.getCardRatesOff(cardGamesType.baccarat2);
+        socketService.card.leaveMatchRoom(cardGamesType.ballbyball);
+        socketService.card.getCardRatesOff(cardGamesType.ballbyball);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
@@ -104,11 +105,11 @@ const Bacarrat2 = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.baccarat2));
+        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
-        socketService.card.leaveMatchRoom(cardGamesType.baccarat2);
-        socketService.card.getCardRatesOff(cardGamesType.baccarat2);
+        socketService.card.leaveMatchRoom(cardGamesType.ballbyball);
+        socketService.card.getCardRatesOff(cardGamesType.ballbyball);
       }
     };
 
@@ -118,7 +119,7 @@ const Bacarrat2 = () => {
     };
   }, []);
 
-  return <Baccarat2ComponentList />;
+  return <BallbyballComponentList />;
 };
 
-export default Bacarrat2;
+export default BallByBall;

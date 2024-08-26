@@ -48,6 +48,7 @@ const CardJ = Loadable(() => import("../pages/3cardJ"));
 
 const CricketMatch20 = Loadable(() => import("../pages/cricketMatch_20"));
 const Queen = Loadable(() => import("../pages/queen"));
+const BallByBall = Loadable(() => import("../pages/ballbyball"));
 const ChangeButtonValue = Loadable(() => import("../pages/changeButtonValues"));
 
 const SecureAuthVerification = Loadable(
@@ -245,6 +246,10 @@ const MainRoutes = {
     {
       path: "cmatch20",
       element: <CricketMatch20 />,
+    },
+    {
+      path: "ballbyball",
+      element: <BallByBall/>,
     },
     {
       path: "cmeter",

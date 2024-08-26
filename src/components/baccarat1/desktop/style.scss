@@ -416,7 +416,7 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    position: fixed;
+    position: absolute;
     margin-bottom: 20px;
     z-index: 999;
     // background: conic-gradient(
@@ -440,12 +440,12 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  position: relative;
-  background: conic-gradient(
-    #06518a 0% 44%,
-    #831924 44% 90%,
-    #279532 90% 100%
-  );
+  position: absolute;
+//   background: conic-gradient(
+//     #06518a 0% 44%,
+//     #831924 44% 90%,
+//     #279532 90% 100%
+//   );
   /* bottom: 320px; */
   /* left: 100px; */
 }

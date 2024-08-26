@@ -128,10 +128,11 @@
   padding: 0; /* Remove padding from Nav.Link */
   margin: 0; /* Remove margin from Nav.Link */
 }
-.teenPatti-table-container-c{
+.teenPatti-table-container-20{
   width: 100%;
   display: flex;
   flex-direction: column;
+  // margin-top: 5%;
 }
 .teenPatti-table-row{
   background-color: #dee2e6;
@@ -174,24 +175,6 @@
   top: 0;
   z-index: 10;
 }
-.locked:after {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  text-transform: uppercase;
-  font-family: "Font Awesome 5 Free";
-  content: "\f023";
-  font-weight: 900;
-  font-size: 18px;
-  top: 0;
-  padding-top: 6px !important;
-}
 .teen20resultModal{
   display: flex;
   flex-direction: row;
@@ -203,22 +186,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-}
-.LowCommonCardImgContainer{
-  width: 100%;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f2f2f2;
-}
-.lowCardContainer{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   align-items: center;
 }
 // .horseRacingTab .nav-link{
