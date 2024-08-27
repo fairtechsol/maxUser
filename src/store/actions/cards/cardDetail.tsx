@@ -262,7 +262,6 @@ export const updateCardWorliRates = createAsyncThunk<any, any>(
     return data;
   }
 );
-
 export const update3CardJRates = createAsyncThunk<any, any>(
   "3cardj/matchRatesUpdate",
   async (data) => {
@@ -289,7 +288,12 @@ export const casinoMeterPattiMatchRates = createAsyncThunk<any, any>(
     return data;
   }
 );
-
+export const updateQueenRates = createAsyncThunk<any, any>(
+  "queen/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
   "casinoScoreboard/matchRatesUpdate",
   async (requestData, thunkApi) => {

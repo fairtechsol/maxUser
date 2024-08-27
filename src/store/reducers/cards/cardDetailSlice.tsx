@@ -38,6 +38,7 @@ import {
   updateBaccarat2Rates,
   casinoMeterPattiMatchRates,
   ballbyballMatchRates,
+  updateQueenRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -643,6 +644,17 @@ const cardDetail = createSlice({
         };
       })
 
+      .addCase(updateQueenRates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+        const cards = t2.slice(0, 4);
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          cards,
+        };
+      })
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;

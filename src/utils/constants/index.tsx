@@ -128,7 +128,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -304,6 +304,7 @@ export const cardGamesType: any = {
   cmatch20: "cmatch20",
   ballbyball:"ballbyball",
   cmeter: "cmeter",
+  queen: "queen",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -1512,7 +1513,7 @@ export const casinoIcons = [
     name: "Race 20-20",
   },
   {
-    url: "",
+    url: "/queen",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
     name: "Casino Queen",
