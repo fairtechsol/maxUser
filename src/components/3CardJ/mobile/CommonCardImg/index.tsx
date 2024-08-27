@@ -63,7 +63,7 @@ const CommonCardImg = ({
       setClickedCards(0);
     }
   }, [selectedBet]);
-  
+
   return (
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any, index: number) => {
@@ -80,7 +80,7 @@ const CommonCardImg = ({
                 border: clickedItems[item.code] ? "solid #086f3f 2px" : "none",
               }}
               onClick={() =>
-                handlock(item) !== ""
+                handlock(item) !== "" || clickedItems[item.code]
                   ? null
                   : (() => {
                       clickedCards < 3 ? handleItemClick(item) : "";
