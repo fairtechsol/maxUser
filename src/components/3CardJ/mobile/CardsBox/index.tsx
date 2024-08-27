@@ -1,13 +1,15 @@
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useState } from "react";
-import { AppDispatch } from "../../../../store/store";
+import { AppDispatch,RootState } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
-const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
+const CardBox = ({ title, odds, data, cards, bgColor,setNat,nat }: any) => {
   const dispatch: AppDispatch = useDispatch();
-
-  const [nat, setNat] = useState("");
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+ // const [nat, setNat] = useState("");
   const handleBet = () => {
     let team = {
       bettingType: "BACK",
@@ -52,6 +54,12 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
     }
   }, [odds?.gstatus === "0"]);
 
+  useEffect(() => {
+    if (selectedBet === null) {
+      setNat("");
+    }
+  }, [selectedBet]);
+  
   return (
     <div className={handlock()}>
       <div

@@ -64,7 +64,7 @@ const DesktopPlacedBet = () => {
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  
+
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
@@ -332,6 +332,15 @@ const DesktopPlacedBet = () => {
                                   bettingName: selectedBet?.team?.bettingName,
                                   selectionId: selectedBet?.team?.selectionId,
                                 };
+
+                                if (
+                                  selectedBet?.data?.type === "3cardj" &&
+                                  selectedBet?.team?.betOnTeam.split(" ")[1]
+                                    .length < 3
+                                ) {
+                                  return;
+                                }
+                                
                                 setMatchOddLoading(true);
                                 dispatch(
                                   placeBet({

@@ -32,7 +32,7 @@ const CardJMobile = () => {
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
+  const [nat, setNat] = useState("");
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -68,7 +68,7 @@ const CardJMobile = () => {
     <>
       <div>
         <div className="dt20header">
-          {<MobilePlacedBet show={show1} setShow={setShow1} />}
+          {nat.length == 3 && <MobilePlacedBet show={show1} setShow={setShow1} />}
           <div className="dt20subheader1">
             <div
               style={{
@@ -168,6 +168,8 @@ const CardJMobile = () => {
                     odds={dragonTigerDetail?.yes}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
+                    setNat={setNat}
+                    nat={nat}
                   />
                   <CardBox
                     title={"No"}
@@ -175,6 +177,8 @@ const CardJMobile = () => {
                     odds={dragonTigerDetail?.no}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
+                    setNat={setNat}
+                    nat={nat}
                   />
 
                   <div className="ticker-container">
