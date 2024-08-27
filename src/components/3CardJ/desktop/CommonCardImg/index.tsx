@@ -39,7 +39,6 @@ const CommonCardImg = ({
       return "";
     }
   };
- 
 
   useEffect(() => {
     if (data?.no?.gstatus === "0") {
@@ -51,8 +50,6 @@ const CommonCardImg = ({
   useEffect(() => {
     handleBet();
   }, [nat]);
-
- 
 
   const handleItemClick = (item: any) => {
     setClickedCards((p) => p + 1);
@@ -86,7 +83,6 @@ const CommonCardImg = ({
                 border: clickedItems[item.code] ? "solid #086f3f 2px" : "none",
               }}
               onClick={() =>
-
                 handlock(item) !== "" || clickedItems[item.code]
                   ? null
                   : (() => {

@@ -4,33 +4,34 @@ import { AppDispatch,RootState } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
-const CardBox = ({ title, odds, data, cards, bgColor,setNat,nat }: any) => {
+const CardBox = ({ title, odds, data, cards, bgColor, }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
- // const [nat, setNat] = useState("");
-  const handleBet = () => {
-    let team = {
-      bettingType: "BACK",
-      matchId: data?.id,
-      odd: odds?.rate,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: title + " " + nat,
-      name: title + " " + nat,
-      bettingName: "Match odds",
-      selectionId: odds?.sid,
-    };
-    if (nat !== "") {
-      dispatch(
-        selectedBetAction({
-          team,
-          data,
-        })
-      );
-    }
+  
+ const [nat, setNat] = useState("");
+ const handleBet = () => {
+  let team = {
+    bettingType: "BACK",
+    matchId: data?.id,
+    odd: odds?.rate,
+    stake: 0,
+    matchBetType: "matchOdd",
+    betOnTeam: title + " " + nat,
+    name: title + " " + nat,
+    bettingName: "Match odds",
+    selectionId: odds?.sid,
   };
+  if (nat !== "") {
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+  }
+};
 
   const arCards = cards?.ar?.split(",");
   const brCards = cards?.br?.split(",");
@@ -49,7 +50,7 @@ const CardBox = ({ title, odds, data, cards, bgColor,setNat,nat }: any) => {
 
   useEffect(() => {
     if (odds?.gstatus === "0") {
-      dispatch(selectedBetAction(""));
+      dispatch(selectedBetAction(null));
     } else {
     }
   }, [odds?.gstatus === "0"]);
@@ -59,7 +60,7 @@ const CardBox = ({ title, odds, data, cards, bgColor,setNat,nat }: any) => {
       setNat("");
     }
   }, [selectedBet]);
-  
+
   return (
     <div className={handlock()}>
       <div
@@ -162,6 +163,7 @@ const CardBox = ({ title, odds, data, cards, bgColor,setNat,nat }: any) => {
             data={data}
             setNat={setNat}
             nat={nat}
+            title={title}
           />
         </div>
       </div>

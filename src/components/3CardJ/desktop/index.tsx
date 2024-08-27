@@ -185,8 +185,6 @@ const CardJDesktop = () => {
                   : "100%",
               }}
             >
-              
-
               <Col md={12}>
                 <DesktopPlacedBet />
               </Col>

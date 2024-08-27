@@ -37,6 +37,10 @@ const CardJMobile = () => {
     setShowInactivityModal(false);
   };
 
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+
   useEffect(() => {
     const resetTimer = () => {
       setLastActivityTime(Date.now());
@@ -68,7 +72,9 @@ const CardJMobile = () => {
     <>
       <div>
         <div className="dt20header">
-          {nat.length == 3 && <MobilePlacedBet show={show1} setShow={setShow1} />}
+          {selectedBet?.team?.betOnTeam.split(" ")[1].length === 3 && (
+            <MobilePlacedBet show={show1} setShow={setShow1} />
+          )}
           <div className="dt20subheader1">
             <div
               style={{
@@ -168,8 +174,6 @@ const CardJMobile = () => {
                     odds={dragonTigerDetail?.yes}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
-                    setNat={setNat}
-                    nat={nat}
                   />
                   <CardBox
                     title={"No"}
@@ -177,8 +181,6 @@ const CardJMobile = () => {
                     odds={dragonTigerDetail?.no}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
-                    setNat={setNat}
-                    nat={nat}
                   />
 
                   <div className="ticker-container">

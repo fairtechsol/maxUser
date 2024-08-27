@@ -10,6 +10,7 @@ const CommonCardImg = ({
   cardInfo,
   setNat,
   nat,
+  title,
 }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
   const { selectedBet } = useSelector(
@@ -80,13 +81,21 @@ const CommonCardImg = ({
                 border: clickedItems[item.code] ? "solid #086f3f 2px" : "none",
               }}
               onClick={() =>
+                
                 handlock(item) !== "" || clickedItems[item.code]
                   ? null
                   : (() => {
-                      clickedCards < 3 ? handleItemClick(item) : "";
-                      setNat((p: any) => {
-                        return p.length < 3 ? p + item[0] : p;
-                      });
+                      (clickedCards < 3 &&
+                        selectedBet?.team?.name?.[0] == title?.[0]) ||
+                      selectedBet == null
+                        ? handleItemClick(item)
+                        : "";
+                      selectedBet?.team?.name?.[0] == title?.[0] ||
+                      selectedBet == null
+                        ? setNat((p: any) => {
+                            return p.length < 3 ? p + item[0] : p;
+                          })
+                        : "";
                     })()
               }
             >
