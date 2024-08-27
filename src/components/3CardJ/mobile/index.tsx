@@ -32,10 +32,14 @@ const CardJMobile = () => {
     (state: RootState) => state.card
   );
   const { placedBets } = useSelector((state: RootState) => state.bets);
-
+  const [nat, setNat] = useState("");
   const handleClose = () => {
     setShowInactivityModal(false);
   };
+
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
   useEffect(() => {
     const resetTimer = () => {
@@ -68,7 +72,9 @@ const CardJMobile = () => {
     <>
       <div>
         <div className="dt20header">
-          {<MobilePlacedBet show={show1} setShow={setShow1} />}
+          {selectedBet?.team?.betOnTeam.split(" ")[1].length === 3 && (
+            <MobilePlacedBet show={show1} setShow={setShow1} />
+          )}
           <div className="dt20subheader1">
             <div
               style={{

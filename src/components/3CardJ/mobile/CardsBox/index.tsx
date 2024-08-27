@@ -1,34 +1,37 @@
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useState } from "react";
-import { AppDispatch } from "../../../../store/store";
+import { AppDispatch,RootState } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
-const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
+const CardBox = ({ title, odds, data, cards, bgColor, }: any) => {
   const dispatch: AppDispatch = useDispatch();
-
-  const [nat, setNat] = useState("");
-  const handleBet = () => {
-    let team = {
-      bettingType: "BACK",
-      matchId: data?.id,
-      odd: odds?.rate,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: title + " " + nat,
-      name: title + " " + nat,
-      bettingName: "Match odds",
-      selectionId: odds?.sid,
-    };
-    if (nat !== "") {
-      dispatch(
-        selectedBetAction({
-          team,
-          data,
-        })
-      );
-    }
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+  
+ const [nat, setNat] = useState("");
+ const handleBet = () => {
+  let team = {
+    bettingType: "BACK",
+    matchId: data?.id,
+    odd: odds?.rate,
+    stake: 0,
+    matchBetType: "matchOdd",
+    betOnTeam: title + " " + nat,
+    name: title + " " + nat,
+    bettingName: "Match odds",
+    selectionId: odds?.sid,
   };
+  if (nat !== "") {
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+  }
+};
 
   const arCards = cards?.ar?.split(",");
   const brCards = cards?.br?.split(",");
@@ -47,10 +50,16 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
 
   useEffect(() => {
     if (odds?.gstatus === "0") {
-      dispatch(selectedBetAction(""));
+      dispatch(selectedBetAction(null));
     } else {
     }
   }, [odds?.gstatus === "0"]);
+
+  useEffect(() => {
+    if (selectedBet === null) {
+      setNat("");
+    }
+  }, [selectedBet]);
 
   return (
     <div className={handlock()}>
@@ -154,6 +163,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
             data={data}
             setNat={setNat}
             nat={nat}
+            title={title}
           />
         </div>
       </div>

@@ -10,7 +10,7 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
         style={{ width: "40%", padding: "10px", border: "0.1px solid #fff" }}
       >
         <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-          {player.nat}
+          {player.nation}
         </span>
       </div>
       <div
@@ -70,7 +70,7 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
             pairPlus.gstatus === "0" ? null : handleBet(pairPlus)
           }
         >
-          <span className="f12-b">{pairPlus.nat}</span>
+          <span className="f12-b">{pairPlus.nation}</span>
           <span
             className={`f10-b ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss

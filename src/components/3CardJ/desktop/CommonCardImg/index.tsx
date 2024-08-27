@@ -17,6 +17,10 @@ const CommonCardImg = ({
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
+
+  const [clickedItems, setClickedItems] = useState<Record<string, boolean>>({});
+  const [clickedCards, setClickedCards] = useState<number>(0);
+
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
       return {
@@ -46,9 +50,6 @@ const CommonCardImg = ({
   useEffect(() => {
     handleBet();
   }, [nat]);
-
-  const [clickedItems, setClickedItems] = useState<Record<string, boolean>>({});
-  const [clickedCards, setClickedCards] = useState<number>(0);
 
   const handleItemClick = (item: any) => {
     setClickedCards((p) => p + 1);
@@ -82,7 +83,7 @@ const CommonCardImg = ({
                 border: clickedItems[item.code] ? "solid #086f3f 2px" : "none",
               }}
               onClick={() =>
-                handlock(item) !== ""
+                handlock(item) !== "" || clickedItems[item.code]
                   ? null
                   : (() => {
                       (clickedCards < 3 &&

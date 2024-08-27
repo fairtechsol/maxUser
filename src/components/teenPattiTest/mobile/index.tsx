@@ -65,7 +65,7 @@ const TeenPattiMobile = () => {
           ? "Lion"
           : "Tiger") +
         " " +
-        item?.nat,
+        item?.nation,
       name:
         (rateType == "drate"
           ? "Dragon"
@@ -73,7 +73,7 @@ const TeenPattiMobile = () => {
           ? "Lion"
           : "Tiger") +
         " " +
-        item?.nat,
+        item?.nation,
       bettingName: "Match odds",
       selectionId: sectionId,
     };
@@ -248,7 +248,7 @@ const TeenPattiMobile = () => {
                         <span
                           style={{ fontSize: "14px", fontWeight: "bolder" }}
                         >
-                          {playerA?.[0]?.nat}
+                          {playerA?.[0]?.nation}
                         </span>
                       </div>
 
@@ -299,7 +299,7 @@ const TeenPattiMobile = () => {
                             <span
                               style={{ fontSize: "14px", fontWeight: "bolder" }}
                             >
-                              {section.nat}
+                              {section.nation}
                             </span>
                           </div>
 

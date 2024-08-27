@@ -63,8 +63,8 @@ const TeenPattiDesktop = () => {
       odd: item?.rate,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam: item?.nation,
+      name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
     };
@@ -114,6 +114,7 @@ const TeenPattiDesktop = () => {
     } 
     
   }, [playerA?.[0]?.gstatus,playerA?.[0]?.b1]);
+  
   
   return (
     <>
@@ -206,7 +207,7 @@ const TeenPattiDesktop = () => {
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                        {playerA?.[0]?.nat}
+                        {playerA?.[0]?.nation}
                       </span>
                     </div>
                     <div
@@ -278,7 +279,7 @@ const TeenPattiDesktop = () => {
                             : handleBet(playerA?.[1])
                         }
                       >
-                        <span className="f12-b">{playerA?.[1]?.nat}</span>
+                        <span className="f12-b">{playerA?.[1]?.nation}</span>
                         <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
@@ -324,7 +325,7 @@ const TeenPattiDesktop = () => {
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                        {playerB?.[0]?.nat}
+                        {playerB?.[0]?.nation}
                       </span>
                     </div>
                     <div
@@ -395,7 +396,7 @@ const TeenPattiDesktop = () => {
                             : handleBet(playerB?.[1])
                         }
                       >
-                        <span className="f12-b">{playerB?.[1]?.nat}</span>
+                        <span className="f12-b">{playerB?.[1]?.nation}</span>
                         <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
