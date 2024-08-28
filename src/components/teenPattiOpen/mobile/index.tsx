@@ -47,8 +47,8 @@ const TeenPattiMobile = () => {
       odd: item?.rate,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam: item?.nation,
+      name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
     };
@@ -256,7 +256,7 @@ const TeenPattiMobile = () => {
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                        {playerA?.[0]?.nat}
+                        {playerA?.[0]?.nation}
                       </span>
                     </div>
                     <div
@@ -327,7 +327,7 @@ const TeenPattiMobile = () => {
                             : handleBet(playerA?.[1])
                         }
                       >
-                        <span className="f12-b">{playerA?.[1]?.nat}</span>
+                        <span className="f12-b">{playerA?.[1]?.nation}</span>
                         <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
@@ -370,7 +370,7 @@ const TeenPattiMobile = () => {
                       }}
                     >
                       <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-                        {playerB?.[0]?.nat}
+                        {playerB?.[0]?.nation}
                       </span>
                     </div>
                     <div
@@ -441,7 +441,7 @@ const TeenPattiMobile = () => {
                             : handleBet(playerB?.[1])
                         }
                       >
-                        <span className="f12-b">{playerB?.[1]?.nat}</span>
+                        <span className="f12-b">{playerB?.[1]?.nation}</span>
                         <span
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss

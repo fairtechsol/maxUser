@@ -48,8 +48,8 @@ const title = {
   aaa: "Amar Akbar Anthony",
   war: "Casino War",
   btable: "Bollywood Table",
-  worli2:"Instant Worli",
-  cmatch20:"Cricket Match 20-20",
+  worli2: "Instant Worli",
+  cmatch20: "Cricket Match 20-20",
   // Add other mappings as needed
 };
 
@@ -65,20 +65,24 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
   type,
 }) => {
   const [date, setDate] = useState<any>();
- 
+
   useEffect(() => {
     if (!date) {
       setDate(Date.now());
     }
   }, []);
- 
+
   return (
-    <Container style={{ padding: 0 ,width:"100%"}}>
+    <Container style={{ padding: 0, width: "100%" }}>
       <div className="resultModalHeader">
         <span style={{ fontSize: "20px", fontWeight: "bold" }}>
           {title[type]} Result
         </span>
-        <RxCross2 className="cursor-pointer" size={25} onClick={() => setfalse(false)} />
+        <RxCross2
+          className="cursor-pointer"
+          size={25}
+          onClick={() => setfalse(false)}
+        />
       </div>
       <div
         className="resultModalSubHea"
@@ -145,19 +149,19 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Card32BResultComponent data={data} />
       ) : type === cardGamesType?.btable ? (
         <BollywoodTableResultComponent data={data} />
-      ): type === cardGamesType?.worli ? (
+      ) : type === cardGamesType?.worli ? (
         <WorliResultComponent data={data} />
-      ): type === cardGamesType?.cardj ? (
+      ) : type === cardGamesType?.cardj ? (
         <CardJResultComponent data={data} />
-      ): type === cardGamesType?.cmatch20 ? (
+      ) : type === cardGamesType?.cmatch20 ? (
         <CricketMatch20ResultComponent data={data} />
       ) : type === cardGamesType?.baccarat ? (
         <Bacarrate1ResultComponent data={data} />
       ) : type === cardGamesType?.queen ? (
         <QueenResultComponent data={data} />
-      ): type === cardGamesType?.baccarat2 ? (
+      ) : type === cardGamesType?.baccarat2 ? (
         <Bacarrate2ResultComponent data={data} />
-      ): (
+      ) : (
         <></>
       )}
     </Container>
