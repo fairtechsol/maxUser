@@ -119,11 +119,14 @@ const TeenPattiMobile = () => {
   }, []);
 
   useEffect(() => {
-    if (!sections?.[0]?.dstatus || sections?.[0]?.drate === "0.00") {
+    if (
+      !(sections?.[0]?.dstatus === "True") ||
+      sections?.[0]?.drate === "0.00"
+    ) {
       dispatch(selectedBetAction(""));
     }
   }, [sections?.[0]?.dstatus, sections?.[0]?.drate]);
-  
+
   return (
     <>
       <div>
@@ -305,7 +308,7 @@ const TeenPattiMobile = () => {
 
                           <div
                             className={`${
-                              section.dstatus !== true ? "suspended" : ""
+                              section.dstatus !== "True" ? "suspended" : ""
                             }`}
                             style={{
                               width: "60%",
@@ -313,14 +316,14 @@ const TeenPattiMobile = () => {
                               flexDirection: "row",
                             }}
                           >
-                             <div
+                            <div
                               className={`teenPatti-table-item`}
                               style={{
                                 width: "33.3%",
                                 backgroundColor: "#72bbef",
                               }}
                               onClick={() =>
-                                section.tstatus === false
+                                section.tstatus === "False"
                                   ? null
                                   : handleBet(
                                       section,
@@ -348,7 +351,7 @@ const TeenPattiMobile = () => {
                                       : ""
                                     : ""
                                 }
-                                style={{zIndex:"100"}}
+                                style={{ zIndex: "100" }}
                               >
                                 {dragonTigerDetail?.profitLoss
                                   ? dragonTigerDetail?.profitLoss[
@@ -357,11 +360,10 @@ const TeenPattiMobile = () => {
                                     ? dragonTigerDetail?.profitLoss[
                                         `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                       ]
-                                    : ''
-                                  : ''}
+                                    : ""
+                                  : ""}
                               </span>
                             </div>
-                           
 
                             <div
                               className={`teenPatti-table-item`}
@@ -370,7 +372,7 @@ const TeenPattiMobile = () => {
                                 backgroundColor: "#72bbef",
                               }}
                               onClick={() =>
-                                section.lstatus === false
+                                section.lstatus === "False"
                                   ? null
                                   : handleBet(
                                       section,
@@ -406,8 +408,8 @@ const TeenPattiMobile = () => {
                                     ? dragonTigerDetail?.profitLoss[
                                         `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
                                       ]
-                                    : ''
-                                  : ''}
+                                    : ""
+                                  : ""}
                               </span>
                             </div>
 
@@ -418,7 +420,7 @@ const TeenPattiMobile = () => {
                                 backgroundColor: "#72bbef",
                               }}
                               onClick={() =>
-                                section.dstatus === false
+                                section.dstatus === "False"
                                   ? null
                                   : handleBet(
                                       section,
@@ -446,7 +448,7 @@ const TeenPattiMobile = () => {
                                       : ""
                                     : ""
                                 }
-                                style={{zIndex:"100"}}
+                                style={{ zIndex: "100" }}
                               >
                                 {dragonTigerDetail?.profitLoss
                                   ? dragonTigerDetail?.profitLoss[
@@ -455,11 +457,10 @@ const TeenPattiMobile = () => {
                                     ? dragonTigerDetail?.profitLoss[
                                         `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                       ]
-                                    : ''
-                                  : ''}
+                                    : ""
+                                  : ""}
                               </span>
                             </div>
-                           
                           </div>
                         </div>
                       ))}

@@ -134,7 +134,10 @@ const TeenPattiDesktop = () => {
   }, []);
 
   useEffect(() => {
-    if (!sections?.[0]?.dstatus || sections?.[0]?.drate === "0.00") {
+    if (
+      !(sections?.[0]?.dstatus === "True") ||
+      sections?.[0]?.drate === "0.00"
+    ) {
       dispatch(selectedBetAction(""));
     }
   }, [sections?.[0]?.dstatus, sections?.[0]?.drate]);
@@ -283,7 +286,7 @@ const TeenPattiDesktop = () => {
 
                         <div
                           className={`${
-                            section.dstatus !== true ? "lock" : ""
+                            section.dstatus !== "True" ? "lock" : ""
                           }`}
                           style={{
                             width: "60%",
@@ -291,14 +294,14 @@ const TeenPattiDesktop = () => {
                             flexDirection: "row",
                           }}
                         >
-                           <div
+                          <div
                             className={`teenPatti-table-item`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
                             }}
                             onClick={() =>
-                              section.tstatus === false
+                              section.tstatus === "False"
                                 ? null
                                 : handleBet(section, "trate", section.tsection)
                             }
@@ -331,12 +334,10 @@ const TeenPattiDesktop = () => {
                                   ? dragonTigerDetail?.profitLoss[
                                       `${dragonTigerDetail?.videoInfo?.mid}_${section?.tsection}_card`
                                     ]
-                                  : ''
-                                : ''}
+                                  : ""
+                                : ""}
                             </span>
                           </div>
-
-                         
 
                           <div
                             className={`teenPatti-table-item`}
@@ -369,7 +370,7 @@ const TeenPattiDesktop = () => {
                                     : ""
                                   : ""
                               }
-                              style={{zIndex:"100"}}
+                              style={{ zIndex: "100" }}
                             >
                               {dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
@@ -378,8 +379,8 @@ const TeenPattiDesktop = () => {
                                   ? dragonTigerDetail?.profitLoss[
                                       `${dragonTigerDetail?.videoInfo?.mid}_${section?.lsection}_card`
                                     ]
-                                  : ''
-                                : ''}
+                                  : ""
+                                : ""}
                             </span>
                           </div>
 
@@ -390,7 +391,7 @@ const TeenPattiDesktop = () => {
                               backgroundColor: "#72bbef",
                             }}
                             onClick={() =>
-                              section.dstatus === false
+                              section.dstatus === "False"
                                 ? null
                                 : handleBet(
                                     section,
@@ -427,8 +428,8 @@ const TeenPattiDesktop = () => {
                                   ? dragonTigerDetail?.profitLoss[
                                       `${dragonTigerDetail?.videoInfo?.mid}_${section?.dsectionid}_card`
                                     ]
-                                  : ''
-                                : ''}
+                                  : ""
+                                : ""}
                             </span>
                           </div>
                         </div>

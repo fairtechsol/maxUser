@@ -112,11 +112,14 @@ const TeenPattiDesktop = () => {
   useEffect(() => {
     if (
       dragonTigerDetail?.players?.[0]?.[0]?.gstatus === "0" ||
-      dragonTigerDetail?.players?.[0]?.[0]?.b1 ==="0.00"
+      dragonTigerDetail?.players?.[0]?.[0]?.b1 === "0.00"
     ) {
       dispatch(selectedBetAction(""));
     }
-  }, [dragonTigerDetail?.players?.[0]?.[0]?.gstatus, dragonTigerDetail?.players?.[0]?.[0]?.b1]);
+  }, [
+    dragonTigerDetail?.players?.[0]?.[0]?.gstatus,
+    dragonTigerDetail?.players?.[0]?.[0]?.b1,
+  ]);
 
   return (
     <>
@@ -316,64 +319,65 @@ const TeenPattiDesktop = () => {
                               flexDirection: "row",
                             }}
                           >
-                            {playerA?.map((player: any) => (
-                              <div
-                                key={player.sid}
-                                className={`teenPatti-table-item ${
-                                  player.gstatus === "0" ? "locked" : ""
-                                }`}
-                                style={{ width: "16.7%" }}
-                                onClick={() =>
-                                  player.gstatus === "0"
-                                    ? null
-                                    : handleBet(player)
-                                }
-                              >
-                                <span className="f12-b">{player.b1}</span>
-                               
-                                    <span
-                                      className={`f400 title-14 ${
-                                        dragonTigerDetail?.profitLoss
-                                          ? dragonTigerDetail?.profitLoss[
-                                              `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                            ]
-                                            ? dragonTigerDetail?.profitLoss[
-                                                `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                              ] > 0
-                                              ? "color-green"
-                                              : dragonTigerDetail?.profitLoss[
-                                                  `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                                ] < 0
-                                              ? "color-red"
-                                              : ""
-                                            : ""
-                                          : ""
-                                      }`}
-                                      style={{
-                                        marginTop:
-                                          player.gstatus === "0" ? "15px" : "",
-                                        zIndex: "100",
-                                      }}
-                                    >
-                                      {dragonTigerDetail?.profitLoss
+                            {Array.isArray(playerA) &&
+                              playerA?.map((player: any) => (
+                                <div
+                                  key={player.sid}
+                                  className={`teenPatti-table-item ${
+                                    player.gstatus === "0" ? "locked" : ""
+                                  }`}
+                                  style={{ width: "16.7%" }}
+                                  onClick={() =>
+                                    player.gstatus === "0"
+                                      ? null
+                                      : handleBet(player)
+                                  }
+                                >
+                                  <span className="f12-b">{player.b1}</span>
+
+                                  <span
+                                    className={`f400 title-14 ${
+                                      dragonTigerDetail?.profitLoss
                                         ? dragonTigerDetail?.profitLoss[
                                             `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
                                           ]
                                           ? dragonTigerDetail?.profitLoss[
                                               `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                            ]
-                                          : 0
-                                        : 0}
-                                    </span>
-                                  
-                                {/* {(!dragonTigerDetail.profitLoss ||
+                                            ] > 0
+                                            ? "color-green"
+                                            : dragonTigerDetail?.profitLoss[
+                                                `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                              ] < 0
+                                            ? "color-red"
+                                            : ""
+                                          : ""
+                                        : ""
+                                    }`}
+                                    style={{
+                                      marginTop:
+                                        player.gstatus === "0" ? "15px" : "",
+                                      zIndex: "100",
+                                    }}
+                                  >
+                                    {dragonTigerDetail?.profitLoss
+                                      ? dragonTigerDetail?.profitLoss[
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                        ]
+                                        ? dragonTigerDetail?.profitLoss[
+                                            `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                          ]
+                                        : 0
+                                      : 0}
+                                  </span>
+
+                                  {/* {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
                                   ]) && (
                                   <span className="f400 title-14">0</span>
                                 )} */}
-                              </div>
-                            ))}
+                                </div>
+                              ))}
                           </div>
                         </div>
                       );
@@ -409,7 +413,7 @@ const TeenPattiDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <RulesModal  show={show} setShow={setShow} rule={warrules} />
+                <RulesModal show={show} setShow={setShow} rule={warrules} />
               </Col>
             </Row>
           </Container>
