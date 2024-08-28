@@ -278,7 +278,7 @@ const TeenPattiDesktop = () => {
                       key={item.sid}
                     >
                       <div
-                        style={{ width: "40%", border: "0.1px solid #fff",fontSize:"14px" }}
+                        style={{ width: "40%", border: "0.1px solid #fff",fontSize:"14px",marginLeft:"3px" }}
                       >{item.nat}</div>
                       <div
                         style={{
@@ -290,6 +290,9 @@ const TeenPattiDesktop = () => {
                           alignItems: "center",
                           fontSize:"12px"
                         }}
+                        className={  runs?.[0]?.gstatus === "SUSPENDED" && runs?.[0]?.b === 0
+                          ? "suspended"
+                          : ""}
                       >
                         <span style={{ fontSize:"18px",
                           fontWeight:"bold"}}>{item.b}</span ><span>{item.bs}</span>
