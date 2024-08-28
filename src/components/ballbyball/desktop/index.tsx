@@ -166,94 +166,147 @@ const TeenPattiDesktop = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
+                <div style={{background:"rgb(255 199 66 / 85%)" ,color:"#fff",fontWeight:"bold", lineHeight: 2,}}>
+                  <span style={{marginLeft:"10px"}}> Runs</span>
+                </div>
                 <div
                   style={{
                     display: "flex",
-                    gap: "5%",
+                    flexWrap: "wrap",
+                    width: "100%",
+                    justifyContent: "space-between",
                     borderBottom: "0.01em solid #c7c8ca",
+                    lineHeight: 2,
                   }}
                 >
                   <div
                     style={{
-                      lineHeight: 2,
-                      width: "100%",
-                      background: "#f2f2f2",
-                      borderBottom: "0.01em solid #c7c8ca",
-                    }}
-                  >
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          display: "flex",
+                      display: "flex",
+                      width: "30%",
 
-                          fontWeight: "bold",
-                          fontSize: "16px",
-                          justifyContent: "center",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div style={{ width: "40%" }}></div>
+                      borderBottom: "0.01em solid #c7c8ca",
+                      background: "#f2f2f2",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "40%",
+                        border: "0.1px solid #fff",
+                        fontSize: "14px",
+                        marginLeft: "3px",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        width: "20%",
+                        backgroundColor: "#72bbef",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      BACK
                     </div>
+                    <div
+                      style={{
+                        width: "40%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        color: "#097c93",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                      }}
+                    ></div>
                   </div>
                   <div
                     style={{
-                      lineHeight: 2,
-                      width: "100%",
-                      background: "#f2f2f2",
+                      display: "flex",
+                      width: "30%",
+
                       borderBottom: "0.01em solid #c7c8ca",
+                      background: "#f2f2f2",
                     }}
                   >
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          display: "flex",
-                          justifyContent: "center",
-                          fontWeight: "bold",
-                          fontSize: "16px",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div style={{ width: "40%" }}></div>
+                    <div
+                      style={{
+                        width: "40%",
+                        border: "0.1px solid #fff",
+                        fontSize: "14px",
+                        marginLeft: "3px",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        width: "20%",
+                        backgroundColor: "#72bbef",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      BACK
                     </div>
+                    <div
+                      style={{
+                        width: "40%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        color: "#097c93",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                      }}
+                    ></div>
                   </div>
                   <div
                     style={{
-                      lineHeight: 2,
-                      width: "100%",
-                      background: "#f2f2f2",
+                      display: "flex",
+                      width: "30%",
+
                       borderBottom: "0.01em solid #c7c8ca",
+                      background: "#f2f2f2",
                     }}
                   >
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          fontWeight: "bold",
-                          fontSize: "16px",
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div style={{ width: "40%" }}></div>
+                    <div
+                      style={{
+                        width: "40%",
+                        border: "0.1px solid #fff",
+                        fontSize: "14px",
+                        marginLeft: "3px",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        width: "20%",
+                        backgroundColor: "#72bbef",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      BACK
                     </div>
+                    <div
+                      style={{
+                        width: "40%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        color: "#097c93",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                      }}
+                    ></div>
                   </div>
                 </div>
 
@@ -271,15 +324,22 @@ const TeenPattiDesktop = () => {
                       style={{
                         display: "flex",
                         width: "30%",
-                        marginBottom: "0px",
+
                         borderBottom: "0.01em solid #c7c8ca",
                         background: "#f2f2f2",
                       }}
                       key={item.sid}
                     >
                       <div
-                        style={{ width: "40%", border: "0.1px solid #fff",fontSize:"14px",marginLeft:"3px" }}
-                      >{item.nat}</div>
+                        style={{
+                          width: "40%",
+                          border: "0.1px solid #fff",
+                          fontSize: "14px",
+                          marginLeft: "3px",
+                        }}
+                      >
+                        {item.nat}
+                      </div>
                       <div
                         style={{
                           width: "20%",
@@ -288,22 +348,34 @@ const TeenPattiDesktop = () => {
                           flexDirection: "column",
                           justifyContent: "center",
                           alignItems: "center",
-                          fontSize:"12px"
+                          fontSize: "12px",
                         }}
-                        className={  runs?.[0]?.gstatus === "SUSPENDED" && runs?.[0]?.b === 0
-                          ? "suspended"
-                          : ""}
+                        className={
+                          runs?.[0]?.gstatus === "SUSPENDED" &&
+                          runs?.[0]?.b === 0
+                            ? "suspended"
+                            : ""
+                        }
                       >
-                        <span style={{ fontSize:"18px",
-                          fontWeight:"bold"}}>{item.b}</span ><span>{item.bs}</span>
+                        <span style={{ fontSize: "18px", fontWeight: "bold" }}>
+                          {item.b}
+                        </span>
+                        <span>{item.bs}</span>
                       </div>
-                      <div style={{ width: "40%",display: "flex",
+                      <div
+                        style={{
+                          width: "40%",
+                          display: "flex",
                           flexDirection: "column",
-                          alignItems:"center",
-                          color:"#097c93",fontSize:"12px",fontWeight:"bold" }}>
-                      <span>Min:{item.min}</span><span>Max:{item.max}</span>
-                         
-                        </div>
+                          alignItems: "center",
+                          color: "#097c93",
+                          fontSize: "12px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        <span>Min:{item.min}</span>
+                        <span>Max:{item.max}</span>
+                      </div>
                     </div>
                   ))}
                 </div>
