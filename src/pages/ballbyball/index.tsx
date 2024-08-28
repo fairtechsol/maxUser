@@ -101,23 +101,23 @@ const BallByBall = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        dispatch(selectedBetAction(null));
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
-      } else if (document.visibilityState === "hidden") {
-        dispatch(dragonTigerReset());
-        socketService.card.leaveMatchRoom(cardGamesType.ballbyball);
-        socketService.card.getCardRatesOff(cardGamesType.ballbyball);
-      }
-    };
+  // useEffect(() => {
+  //   const handleVisibilityChange = () => {
+  //     if (document.visibilityState === "visible") {
+  //       dispatch(selectedBetAction(null));
+  //       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
+  //     } else if (document.visibilityState === "hidden") {
+  //       dispatch(dragonTigerReset());
+  //       socketService.card.leaveMatchRoom(cardGamesType.ballbyball);
+  //       socketService.card.getCardRatesOff(cardGamesType.ballbyball);
+  //     }
+  //   };
 
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, []);
+  //   document.addEventListener("visibilitychange", handleVisibilityChange);
+  //   return () => {
+  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
+  //   };
+  // }, []);
 
   return <BallbyballComponentList />;
 };

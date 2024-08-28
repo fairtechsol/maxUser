@@ -302,7 +302,7 @@ export const cardGamesType: any = {
   worli: "worli2",
   cardj: "3cardj",
   cmatch20: "cmatch20",
-  ballbyball:"ballbyball",
+  ballbyball: "ballbyball",
   cmeter: "cmeter",
   queen: "queen",
 };
@@ -312,7 +312,7 @@ export const cardGamesId: any = {
   andarBahar1: 3053,
   teen20: 3030,
   card32: 3055,
-  card32B: 3034, 
+  card32B: 3034,
   lucky7: 3058,
   dragonTiger202: 3059,
   dragonTigerLion: 3047,
@@ -335,7 +335,8 @@ export const cardGamesId: any = {
   worli: 3040,
   cardj: 3039,
   cmatch20: 3045,
-  cmeter:3046,
+  cmeter: 3046,
+  ballbyball: 3061,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",

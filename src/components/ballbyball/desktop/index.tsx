@@ -28,7 +28,7 @@ const TeenPattiDesktop = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { playerA, playerB } = dragonTigerDetail;
+  const { runs } = dragonTigerDetail;
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -105,15 +105,16 @@ const TeenPattiDesktop = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.teen20}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.ballbyball}`);
   }, []);
 
   useEffect(() => {
-    if (playerA?.[0]?.gstatus === "0" || playerA?.[0]?.rate === "0.00") {
+    if (runs?.[0]?.gstatus === "SUSPENDED" || runs?.[0]?.b === "0.00") {
       dispatch(selectedBetAction(""));
     }
-  }, [playerA?.[0]?.gstatus, playerA?.[0]?.b1]);
+  }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
 
+  console.log("dddd", dragonTigerDetail);
   return (
     <>
       <Row>
@@ -155,8 +156,8 @@ const TeenPattiDesktop = () => {
                 }}
               >
                 <VideoFrame
-                  time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                  time={dragonTigerDetail?.videoInfo?.lt}
+                  //result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
@@ -165,10 +166,20 @@ const TeenPattiDesktop = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
-                <div style={{ display: "flex" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5%",
+                    borderBottom: "0.01em solid #c7c8ca",
+                  }}
+                >
                   <div
-                    
-                    style={{ lineHeight: 2, width: "100%" }}
+                    style={{
+                      lineHeight: 2,
+                      width: "100%",
+                      background: "#f2f2f2",
+                      borderBottom: "0.01em solid #c7c8ca",
+                    }}
                   >
                     <div style={{ display: "flex", width: "100%" }}>
                       <div
@@ -179,99 +190,25 @@ const TeenPattiDesktop = () => {
                           width: "20%",
                           backgroundColor: "#72bbef",
                           display: "flex",
-                          flexDirection: "row",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
-                    </div>
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          display: "flex",
-                          flexDirection: "row",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
-                    </div>
-                  </div>
-                  <div
-                    
-                    style={{ lineHeight: 2, width: "100%" }}
-                  >
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          display: "flex",
-                          flexDirection: "row",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
-                    </div>
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          display: "flex",
-                          flexDirection: "row",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
-                    </div>
-                  </div>
-                  <div
-                    
-                    style={{ lineHeight: 2, width: "100%" }}
-                  >
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
 
-                          
-                          display: "flex",
-                          flexDirection: "row",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                          justifyContent: "center",
                         }}
                       >
                         BACK
                       </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
+                      <div style={{ width: "40%" }}></div>
                     </div>
+                  </div>
+                  <div
+                    style={{
+                      lineHeight: 2,
+                      width: "100%",
+                      background: "#f2f2f2",
+                      borderBottom: "0.01em solid #c7c8ca",
+                    }}
+                  >
                     <div style={{ display: "flex", width: "100%" }}>
                       <div
                         style={{ width: "40%", border: "0.1px solid #fff" }}
@@ -281,22 +218,98 @@ const TeenPattiDesktop = () => {
                           width: "20%",
                           backgroundColor: "#72bbef",
                           display: "flex",
-                          flexDirection: "row",
+                          justifyContent: "center",
+                          fontWeight: "bold",
+                          fontSize: "16px",
                         }}
                       >
                         BACK
                       </div>
+                      <div style={{ width: "40%" }}></div>
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      lineHeight: 2,
+                      width: "100%",
+                      background: "#f2f2f2",
+                      borderBottom: "0.01em solid #c7c8ca",
+                    }}
+                  >
+                    <div style={{ display: "flex", width: "100%" }}>
                       <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
+                        style={{ width: "40%", border: "0.1px solid #fff" }}
                       ></div>
+                      <div
+                        style={{
+                          width: "20%",
+                          backgroundColor: "#72bbef",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        BACK
+                      </div>
+                      <div style={{ width: "40%" }}></div>
                     </div>
                   </div>
                 </div>
+
+                <div
+                  style={{
+                    lineHeight: 2,
+                    width: "100%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  {runs?.map((item: any, index: any) => (
+                    <div
+                      style={{
+                        display: "flex",
+                        width: "30%",
+                        marginBottom: "0px",
+                        borderBottom: "0.01em solid #c7c8ca",
+                        background: "#f2f2f2",
+                      }}
+                      key={item.sid}
+                    >
+                      <div
+                        style={{ width: "40%", border: "0.1px solid #fff",fontSize:"14px" }}
+                      >{item.nat}</div>
+                      <div
+                        style={{
+                          width: "20%",
+                          backgroundColor: "#72bbef",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontSize:"12px"
+                        }}
+                      >
+                        <span style={{ fontSize:"18px",
+                          fontWeight:"bold"}}>{item.b}</span ><span>{item.bs}</span>
+                      </div>
+                      <div style={{ width: "40%",display: "flex",
+                          flexDirection: "column",
+                          alignItems:"center",
+                          color:"#097c93",fontSize:"12px",fontWeight:"bold" }}>
+                      <span>Min:{item.min}</span><span>Max:{item.max}</span>
+                         
+                        </div>
+                    </div>
+                  ))}
+                </div>
+
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["A", "T", "B"]}
-                    type={"teen20"}
+                    type={"ballbyball"}
                   />
                 </div>
               </div>
