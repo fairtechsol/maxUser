@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { card32rules, supoerrules } from "../../../assets/images";
+import { supoerrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import "./style.scss";

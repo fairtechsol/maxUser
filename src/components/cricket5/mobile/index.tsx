@@ -3,7 +3,6 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Crick5Result from "../desktop/cric5Card";
 import MarketComponent from "./betTable";

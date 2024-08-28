@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { crick5rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
