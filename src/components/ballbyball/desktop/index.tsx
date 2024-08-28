@@ -166,8 +166,15 @@ const TeenPattiDesktop = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
-                <div style={{background:"rgb(255 199 66 / 85%)" ,color:"#fff",fontWeight:"bold", lineHeight: 2,}}>
-                  <span style={{marginLeft:"10px"}}> Runs</span>
+                <div
+                  style={{
+                    background: "rgb(255 199 66 / 85%)",
+                    color: "#fff",
+                    fontWeight: "bold",
+                    lineHeight: 2,
+                  }}
+                >
+                  <span style={{ marginLeft: "10px" }}> Runs</span>
                 </div>
                 <div
                   style={{
@@ -378,6 +385,45 @@ const TeenPattiDesktop = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+                <div
+                  style={{
+                    background: "#086f3f",
+                   
+                    fontWeight: "bold",
+                    lineHeight: 2,
+                    display: "flex",
+                    justifyContent:"space-between",
+                    alignItems:"center"
+                  }}
+                >
+                  <img
+                    src="https://versionobj.ecoassetsservice.com/v15/static/front/img/icons/remark.png"
+                    style={{
+                      marginLeft: "20px",
+                      height: "20px",
+                      
+                      background: "#086f3f",
+                    }}
+                  ></img>
+
+                  <div className="ticker-container" style={{ width: "90%",height:"100%" ,background: "#086f3f",border:"#086f3f" }}>
+                    <div className="ticker-wrap" style={{border:"#086f3f",height:"100%"}}>
+                      <div
+                        className="ticker-move"
+                        style={{
+                          color: "#fff",
+                          fontWeight: "bold",
+                          width: "100%",
+                          fontSize: "12px",
+                          border:"#086f3f",
+                          height:"100%"
+                        }}
+                      >
+                        {dragonTigerDetail?.videoInfo?.remark}
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div style={{ width: "100%", marginTop: "10px" }}>
