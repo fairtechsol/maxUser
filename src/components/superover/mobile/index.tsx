@@ -67,8 +67,6 @@ const SuperoverMobile = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.superover}`);
   }, []);
 
-  
-
   return (
     <>
       <div>
@@ -115,10 +113,8 @@ const SuperoverMobile = () => {
             <span>
               {" "}
               {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
+                ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
+                : ""}
             </span>
           </div>
         </div>
@@ -152,7 +148,7 @@ const SuperoverMobile = () => {
                     backgroundColor: "#000",
                   }}
                 >
-                   {scoreBoardData?.data && (
+                  {scoreBoardData?.data && (
                     <ScoreBoard data={scoreBoardData?.data} />
                   )}
                   <VideoFrame

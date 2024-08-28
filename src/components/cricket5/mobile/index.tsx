@@ -111,9 +111,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
             </span>
             <span>
               {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
+                ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
                 : ""}{" "}
             </span>
           </div>
@@ -143,10 +141,9 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                   backgroundColor: "#000",
                 }}
               >
-                 {scoreBoardData?.data && (
+                {scoreBoardData?.data && (
                   <ScoreBoard data={scoreBoardData?.data} />
-                )}
-                {" "}
+                )}{" "}
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Crick5Result data={dragonTigerDetail?.videoInfo} />}
@@ -176,7 +173,10 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                     type={"cricketv3"}
                   />
                 </div>
-                <div className="casino-title mt-2" style={{ position: "relative" }}>
+                <div
+                  className="casino-title mt-2"
+                  style={{ position: "relative" }}
+                >
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table d-flex">

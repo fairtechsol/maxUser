@@ -67,8 +67,7 @@ const SuperoverDesktop = () => {
     });
 
     const intervalId = setInterval(checkInactivity, 1000);
-    
-    
+
     return () => {
       activityEvents.forEach((event) => {
         window.removeEventListener(event, resetTimer);
@@ -111,9 +110,7 @@ const SuperoverDesktop = () => {
               </div>
               <span>
                 {dragonTigerDetail?.videoInfo
-                  ? `Round ID:  ${handleRoundId(
-                      dragonTigerDetail?.videoInfo?.mid
-                    )}`
+                  ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
                   : ""}
               </span>
             </div>
@@ -138,16 +135,16 @@ const SuperoverDesktop = () => {
             <>
               <div
                 className="d-sm-flex flex-row justify-content-around align-items-center"
-                style={{ margin: "5px 0px 0px 5px", }}
+                style={{ margin: "5px 0px 0px 5px" }}
               >
                 <div className="w-100">
-                <Bookmaker
-                  title={"Bookmaker"}
-                  min={dragonTigerDetail?.videoInfo?.min}
-                  max={dragonTigerDetail?.videoInfo?.max}
-                  matchOddsData={dragonTigerDetail?.bookmaker}
-                  data={dragonTigerDetail}
-                />
+                  <Bookmaker
+                    title={"Bookmaker"}
+                    min={dragonTigerDetail?.videoInfo?.min}
+                    max={dragonTigerDetail?.videoInfo?.max}
+                    matchOddsData={dragonTigerDetail?.bookmaker}
+                    data={dragonTigerDetail}
+                  />
                 </div>
               </div>
               <div style={{ margin: "5px 0px 0px 6px" }}>
