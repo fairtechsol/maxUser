@@ -20,7 +20,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: item?.sid,
+      selectionId: (item?.sid).toString(),
     };
     dispatch(
       selectedBetAction({
@@ -30,14 +30,15 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
     );
   };
 
-  
   useEffect(() => {
     if (
-      odds?.[0]?.status === "SUSPENDED" || odds?.[0]?.status === "CLOSED" || odds?.[0]?.b1 === "0.00"
+      odds?.[0]?.status === "SUSPENDED" ||
+      odds?.[0]?.status === "CLOSED" ||
+      odds?.[0]?.b1 === "0.00"
     ) {
       dispatch(selectedBetAction(""));
     }
-  }, [odds?.[0]?.status,odds?.[0]?.team1?.b1]);
+  }, [odds?.[0]?.status, odds?.[0]?.team1?.b1]);
 
   return (
     <div className="casino-detail detail-page-container-c position-relative">

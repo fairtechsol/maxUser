@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { crick5rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
@@ -110,19 +109,15 @@ const Cricket5Desktop = () => {
               </div>
               <span>
                 {dragonTigerDetail?.videoInfo
-                  ? `Round ID:  ${handleRoundId(
-                      dragonTigerDetail?.videoInfo?.mid
-                    )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                      dragonTigerDetail?.videoInfo?.max
-                    }`
+                  ? `Round ID:  ${dragonTigerDetail.videoInfo?.mid}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${dragonTigerDetail?.videoInfo?.max}`
                   : ""}
               </span>
             </div>
-              {scoreBoardData?.data && (
-            <div>
+            {scoreBoardData?.data && (
+              <div>
                 <ScoreBoard data={scoreBoardData?.data} />
-            </div>
-              )}
+              </div>
+            )}
             <div
               style={{ width: "100%", height: "90%", backgroundColor: "#000" }}
             >
@@ -151,7 +146,7 @@ const Cricket5Desktop = () => {
                   name={["A", "I", "T"]}
                   type={"cricketv3"}
                 />
-              </div> 
+              </div>
             </div>
           )}
         </Col>
@@ -171,11 +166,14 @@ const Cricket5Desktop = () => {
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col 
-              className="no-scrollbar"
+              <Col
+                className="no-scrollbar"
                 style={{ height: "350px", overflow: "auto" }}
               >
-                <div className="casino-title mt-2" style={{ position: "relative" }}>
+                <div
+                  className="casino-title mt-2"
+                  style={{ position: "relative" }}
+                >
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table d-flex">

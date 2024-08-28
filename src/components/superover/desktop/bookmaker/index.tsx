@@ -14,7 +14,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: item?.sid,
+      selectionId: (item?.sid).toString(),
     };
     dispatch(
       selectedBetAction({
@@ -34,15 +34,13 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const team2 = matchOddsData?.[1];
 
   useEffect(() => {
-    if (team1?.gstatus !== "ACTIVE" ||team1?.b1 === "0.00") {
+    if (team1?.gstatus !== "ACTIVE" || team1?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [team1?.gstatus,team1?.b1]);
+    }
+  }, [team1?.gstatus, team1?.b1]);
 
-  
   return (
-    <div style={{ display: "flex", flexDirection: "column"}}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <div className="marketHeader">
         <span className="f400" style={{ color: "#000" }}>
           {title}
