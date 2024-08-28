@@ -138,13 +138,16 @@ const TeenPattiDesktop = () => {
                     RULES
                   </span>
                 </div>
-                <span>
+                {/* <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                        dragonTigerDetail?.videoInfo?.max
-                      }`
+                      )}`: ""}
+                    
+                </span> */}
+                <span>
+                  {dragonTigerDetail?.videoInfo
+                    ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
                     : ""}
                 </span>
               </div>
@@ -388,27 +391,45 @@ const TeenPattiDesktop = () => {
                 </div>
                 <div
                   style={{
-                    background: "#086f3f",
-                   
                     fontWeight: "bold",
-                    lineHeight: 2,
+                    width:"100%",
                     display: "flex",
-                    justifyContent:"space-between",
-                    alignItems:"center"
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <img
-                    src="https://versionobj.ecoassetsservice.com/v15/static/front/img/icons/remark.png"
+                  <div
                     style={{
-                      marginLeft: "20px",
-                      height: "20px",
-                      
+                      width: "10%",
                       background: "#086f3f",
+                      lineHeight: 2,
                     }}
-                  ></img>
+                  >
+                    <img
+                      src="https://versionobj.ecoassetsservice.com/v15/static/front/img/icons/remark.png"
+                      style={{
+                        marginLeft: "20px",
+                        height: "20px",
+                         boxShadow:"none",
+                        background: "#086f3f",
+                      }}
+                    ></img>
+                  </div>
 
-                  <div className="ticker-container" style={{ width: "90%",height:"100%" ,background: "#086f3f",border:"#086f3f" }}>
-                    <div className="ticker-wrap" style={{border:"#086f3f",height:"100%"}}>
+                  <div
+                    className="ticker-container"
+                    style={{
+                      width: "90%",
+                  
+                      background: "#086f3f",
+                      border: "#086f3f",
+                      lineHeight: 2.7,
+                    }}
+                  >
+                    <div
+                      className="ticker-wrap"
+                      style={{ border: "#086f3f", height: "100%" }}
+                    >
                       <div
                         className="ticker-move"
                         style={{
@@ -416,8 +437,8 @@ const TeenPattiDesktop = () => {
                           fontWeight: "bold",
                           width: "100%",
                           fontSize: "12px",
-                          border:"#086f3f",
-                          height:"100%"
+                          border: "#086f3f",
+                          height: "100%",
                         }}
                       >
                         {dragonTigerDetail?.videoInfo?.remark}
@@ -429,7 +450,7 @@ const TeenPattiDesktop = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "T", "B"]}
+                    name={["R", "R", "R"]}
                     type={"ballbyball"}
                   />
                 </div>

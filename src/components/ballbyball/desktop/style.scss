@@ -43,16 +43,16 @@
 // }
 
 .match-tabs {
-  margin:  0 !important;
+  margin: 0 !important;
   border-right: 1px solid $secondary !important;
   border-radius: 0px !important;
   background-color: $gray;
   &:hover {
-      border-right: 1px solid $secondary !important;
+    border-right: 1px solid $secondary !important;
   }
   &.active {
-      background-color: $secondary !important;
-      border-color: transparent !important ;
+    background-color: $secondary !important;
+    border-color: transparent !important ;
   }
 }
 
@@ -128,19 +128,19 @@
   padding: 0; /* Remove padding from Nav.Link */
   margin: 0; /* Remove margin from Nav.Link */
 }
-.teenPatti-table-container-20{
+.teenPatti-table-container-20 {
   width: 100%;
   display: flex;
   flex-direction: column;
   // margin-top: 5%;
 }
-.teenPatti-table-row{
+.teenPatti-table-row {
   background-color: #dee2e6;
   width: 100%;
   display: flex;
-  flex-direction: row
+  flex-direction: row;
 }
-.teenPatti-table-item{
+.teenPatti-table-item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,11 +148,11 @@
   border: 0.2px solid #fff;
   cursor: pointer;
 }
-.f12-b{
+.f12-b {
   font-size: 12px;
   font-weight: bolder;
 }
-.f10-b{
+.f10-b {
   font-size: 10px;
   font-weight: bolder;
 }
@@ -175,13 +175,13 @@
   top: 0;
   z-index: 10;
 }
-.teen20resultModal{
+.teen20resultModal {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
 }
-.teen20resultCardContainer{
+.teen20resultCardContainer {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -193,30 +193,27 @@
 // }
 
 .ticker-container {
-  width: 100%;
+  margin-top: 0%;
   overflow: hidden;
-  background: #f7f7f7;
- 
 }
 
 .ticker-wrap {
   display: flex;
   width: 100%;
-  white-space: nowrap;
 }
 
 .ticker-move {
   display: flex;
   animation: ticker 40s linear infinite;
-  color: "#097c93";
+  
 }
 
 .ticker-item {
   display: inline-block;
-  padding: 0 2rem;
+  
   font-size: 1.2rem;
   line-height: 2rem;
-  white-space: nowrap;
+
 }
 
 @media (max-width: 768px) {
