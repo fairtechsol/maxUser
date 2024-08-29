@@ -175,6 +175,21 @@ const Abj1Mobile = () => {
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
                   />
+
+                  <div className="ticker-container">
+                    <div className="ticker-wrap">
+                      <div
+                        className="ticker-move"
+                        style={{
+                          color: "#097c93",
+                          fontWeight: "700",
+                          fontSize: "12px",
+                        }}
+                      >
+                        {dragonTigerDetail?.videoInfo?.remark}
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
