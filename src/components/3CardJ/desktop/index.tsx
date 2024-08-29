@@ -138,14 +138,14 @@ const CardJDesktop = () => {
                 >
                   <CardBox
                     title={"Yes"}
-                    bgColor={"#03b2cb"}
+                    bgColor={"#72bbef"}
                     odds={dragonTigerDetail?.yes}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
                   />
                   <CardBox
                     title={"No"}
-                    bgColor={"#FAA9BA"}
+                    bgColor={"#faa9ba"}
                     odds={dragonTigerDetail?.no}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
@@ -155,7 +155,7 @@ const CardJDesktop = () => {
                     <div className="ticker-wrap">
                       <div
                         className="ticker-move"
-                        style={{ color: "#8b0000", fontWeight: "700" }}
+                        style={{ color: "#097c93", fontWeight: "700",fontSize:"12px" }}
                       >
                         {dragonTigerDetail?.videoInfo?.remark}
                       </div>
