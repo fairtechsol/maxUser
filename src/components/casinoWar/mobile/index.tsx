@@ -192,7 +192,7 @@ const TeenPattiMobile = () => {
               <LoaderOnRefresh />
             ) : (
               <div style={{ height: "780px" }}>
-                <div className="mt-2" style={{ width: "100%" }}>
+                <div className="mt-2" style={{ width: "100%",background:"#f2f2f2" }}>
                   <div className="teenPatti-table-container-m">
                     <div
                       className="teenPatti-table-row"
@@ -270,7 +270,7 @@ const TeenPattiMobile = () => {
                       <div
                         style={{
                           width: "100%",
-                          backgroundColor: "#08c",
+                          backgroundColor: "#004a25",
                           display: "flex",
                           flexDirection: "row",
                         }}
@@ -424,6 +424,7 @@ const TeenPattiMobile = () => {
                         justifyContent: "center",
                         flexWrap: "wrap",
                         gap: "0px",
+                         background:"#f2f2f2"
                       }}
                     >
                       <div style={{ width: "50%" }}>
@@ -439,6 +440,7 @@ const TeenPattiMobile = () => {
                                 flexDirection: "row",
                                 width: "100%",
                                 marginBottom: "0px",
+                                background:"#f2f2f2"
                               }}
                             >
                               <div
@@ -573,6 +575,7 @@ const TeenPattiMobile = () => {
                                 flexDirection: "row",
                                 width: "100%",
                                 marginBottom: "0px",
+                                 background:"#f2f2f2"
                               }}
                             >
                               <div
