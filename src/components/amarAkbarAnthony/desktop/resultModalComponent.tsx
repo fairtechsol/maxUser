@@ -15,7 +15,6 @@ const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
   // const card = resultCards?.[3]?.split(" ");
 
 
- console.log("data",resultCards)
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="lucky7resultModal">
