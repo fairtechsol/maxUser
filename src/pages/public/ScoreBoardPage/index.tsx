@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { cardUrlMain } from "../../../utils/constants";
+import { scoreBoardUrlMain } from "../../../utils/constants";
 
 const ScoreBoardPage = () => {
   const { vidId } = useParams();
@@ -27,7 +27,7 @@ const ScoreBoardPage = () => {
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
-        src={`${cardUrlMain}${vidId}`}
+        src={`${scoreBoardUrlMain}${vidId}`}
         frameBorder="0"
         allow="autoplay; fullscreen"
         allowFullScreen
