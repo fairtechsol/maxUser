@@ -15,7 +15,7 @@ const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
   // const card = resultCards?.[3]?.split(" ");
 
 
-
+ console.log("data",resultCards)
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="lucky7resultModal">
@@ -37,30 +37,28 @@ const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
         <div
           className={
             isMobile
-              ? "w-100 d-flex flex-row justify-content-center align-items-center"
-              : "w-80 d-sm-flex flex-sm-row justify-content-center align-items-center p-4 mb-2"
+              ? "w-100 d-flex flex-column justify-content-center align-items-center"
+              : "w-80 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
           }
           
         >
           <div className="lucky7CommonText-2 d-sm-flex flex-sm-row ">
-            Result:
+           <span className="opacity-50">Winner </span>  <span className="lucky7CommonText-2 mr-2">{pair?.[0]}</span>
           </div>
-          <div className="d-sm-flex flex-sm-row p-1">
-            <span className="lucky7CommonText-2">{pair?.[0]}</span>
+          
+
+          <div className="d-sm-flex flex-sm-row border-star border-2 border-primary mr-2 " style={{marginRight:"5px"}}>
+             <span className="opacity-50">Odd/Even </span> <span className="lucky7CommonText-2 mr-2">{resultCards?.[2]}</span>
           </div>
 
-          <div className="d-sm-flex flex-sm-row border-start border-2 border-primary mr-2 " style={{marginRight:"5px"}}>
-            <span className="lucky7CommonText-2 mr-2">{resultCards?.[2]}</span>
+          <div className="d-sm-flex flex-sm-row border-star border-2 border-primary "style={{marginRight:"5px"}} >
+          <span className="opacity-50">Color </span> <span className="lucky7CommonText-2">{resultCards?.[1]}</span>
           </div>
-
-          <div className="d-sm-flex flex-sm-row border-start border-2 border-primary "style={{marginRight:"5px"}} >
-            <span className="lucky7CommonText-2">{resultCards?.[1]}</span>
+          <div className="d-sm-flex flex-sm-row border-star border-2 border-primary "style={{marginRight:"5px"}}>
+          <span className="opacity-50">Under/Over </span> <span className="lucky7CommonText-2">{resultCards?.[3]}</span>
           </div>
-          <div className="d-sm-flex flex-sm-row border-start border-2 border-primary "style={{marginRight:"5px"}}>
-            <span className="lucky7CommonText-2">{resultCards?.[3]}</span>
-          </div>
-          <div className="d-sm-flex flex-sm-row border-start border-2 border-primary "style={{marginRight:"5px"}}>
-            <span className="lucky7CommonText-2">{resultCards?.[4]}</span>
+          <div className="d-sm-flex flex-sm-row border-star border-2 border-primary "style={{marginRight:"5px"}}>
+          <span className="opacity-50">Card </span> <span className="lucky7CommonText-2">{resultCards?.[4]}</span>
           </div>
         </div>
       
