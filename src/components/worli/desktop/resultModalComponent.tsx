@@ -99,8 +99,6 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
     return Number(item?.substring(0, item.length - 2) || "");
   });
 
-  
-
   let sortString = 0,
     sum = 0;
 
@@ -137,16 +135,18 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
                   return <HandleCards key={index} card={item} />;
                 })}
               </div>
-              <span
+              <div
                 style={{
-                  background: "#28a745",
-                  color: "#fff",
-                  paddingLeft: "30px",
-                  paddingRight: "30px",
+                  boxShadow: "0 0 4px -1px",
+                  padding: "6px",
+                  width:"90%",
+                   textAlign:"center"
                 }}
               >
-                {sortString} -{sum}
-              </span>
+                <span style={{ opacity: "0.6" }}>Pana</span> {sortString}
+                <br />
+                <span style={{ opacity: "0.6" }}>Ocada</span> {sum}
+              </div>
             </div>
           </div>
         </div>
