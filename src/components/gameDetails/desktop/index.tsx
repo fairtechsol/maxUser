@@ -14,6 +14,8 @@ import CustomModal from "../../commonComponent/modal";
 import service from "../../../service";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import { getChannelId } from "../../../helpers";
+import MatchOdd from "../matchOdd";
+import Bookmaker from "../bookmaker";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -122,7 +124,28 @@ const DesktopGameDetail = () => {
                   }}
                 ></div>
               </Col>
-
+              <Col md={12} style={{marginTop:"10px"}}>
+                  <MatchOdd
+                    title={"Match_odd"}
+                    // type={MatchType.MATCH_ODDS}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+                <Col md={12} style={{marginTop:"10px"}}>
+                  <Bookmaker
+                    title={"Bookmaker1"}
+                    box={6}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+                <Col md={12} style={{marginTop:"10px"}}>
+                  <Bookmaker
+                    title={"Bookmaker2"}
+                    box={2}
+                    // type={MatchType.MATCH_ODDS}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
               {matchDetails?.matchOdd?.isActive && (
                 <Col md={12}>
                   <BetTable
