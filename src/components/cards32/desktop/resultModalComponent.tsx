@@ -21,7 +21,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
     });
   }
   // const max = Math.max(...numbers);
-  console.log("32",data)
+  
   return (
     <Container style={{ display: "flex", flexDirection: "column",alignItems:"center" }}>
       <div className="card32resultModal">
