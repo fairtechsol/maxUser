@@ -46,7 +46,7 @@ const SearchBox = () => {
       )}
 
       <div className="search-icon" onClick={searchIcoHandle}>
-        {searchIco ? <IoClose /> : <FaSearch />}
+        {searchIco ? <IoClose /> : <i className="fas fa-search-plus"></i>}
       </div>
       {/* </div> */}
 

@@ -48,7 +48,7 @@ const CommonTabs = ({
         // }
       }}
       id="uncontrolled-tab-example"
-      className={`w-100 ${customClass}`}
+      className={`w-100 flex-nowrap ${customClass}`}
       {...props}
     >
       {children}

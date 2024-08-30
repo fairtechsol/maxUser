@@ -17,6 +17,7 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
 import Mobile from "../../components/rules/mobile";
+import ImageModal from "../../components/commonComponent/loginModal";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -30,7 +31,12 @@ const Home = () => {
   const setMatchOddRatesInRedux = (event: any) => {
     dispatch(updateMatchOddRates(event));
   };
+  const [showModal, setShowModal] = useState(true);
+  const imageUrl = "https://sitethemedata.com/common/wel-banner/wel-1724829277174.png"; // Replace this with the dynamic URL
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
   const getMatchListService = () => {
     try {
       dispatch(
@@ -165,14 +171,7 @@ const Home = () => {
   return (
     <div>
       <MatchList setMatchType={setMatchType} matchType={matchType} />
-      <CustomModal
-        customClass="modalFull-90 rule-popup"
-        show={show}
-        setShow={popUpClose}
-        title={"Rules"}
-      >
-       {isMobile ? <Mobile /> : <Desktop />}
-      </CustomModal>
+      {showModal && <ImageModal imageUrl={imageUrl} onClose={handleClose} />}
     </div>
   );
 };

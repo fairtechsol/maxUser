@@ -155,10 +155,10 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
           )}
         </tbody>
       </Table>
-      <div className="col-md-12 mt-4">
+      <div className=" mt-2 casino-list">
         {["/home"].includes(location.pathname) &&
           casinoIcons.map((item) => (
-            <Link to={item.url} key={item?.name} className="">
+            <Link to={item.url} key={item?.name} className="casino-list-item">
               <div className="d-inline-block casinoicons">
                 <Img src={item.imgSrc} className="img-fluid" alt={item.name} />
                 <div className="casino-name">{item.name}</div>

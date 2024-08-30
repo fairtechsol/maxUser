@@ -1,5 +1,24 @@
 [
   {
+    "id": "racing",
+    "name": "Racing Sports",
+    "type": "group",
+    "children": [
+      {
+        "id": "horseRacing",
+        "name": "Horse Racing",
+        "type": "liveItem",
+        "path": "/contact-admin"
+      },
+      {
+        "id": "grehoundRacing",
+        "name": "GreyHound Racing",
+        "type": "liveItem",
+        "path": "/contact-admin"
+      }
+    ]
+  },
+  {
     "id": "others",
     "name": "Others",
     "type": "group",
