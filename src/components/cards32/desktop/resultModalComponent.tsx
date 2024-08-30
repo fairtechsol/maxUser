@@ -21,8 +21,9 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
     });
   }
   // const max = Math.max(...numbers);
+  console.log("32",data)
   return (
-    <Container style={{ display: "flex", flexDirection: "column" }}>
+    <Container style={{ display: "flex", flexDirection: "column",alignItems:"center" }}>
       <div className="card32resultModal">
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Player 8</span>
@@ -129,6 +130,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
+      <div style={{width:"50%",textAlign:"center",boxShadow:"0 0 4px -1px",marginBottom:"10px"}}><span style={{opacity:"0.6"}}>Winner</span> {" "} Player {" "}{7+Number(data?.result?.win)}</div>
     </Container>
   );
 };
