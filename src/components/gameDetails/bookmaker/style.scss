@@ -43,12 +43,12 @@
     color: #097c93;
 }
 .bookmaker1BackLayBoxContainer{
-    width: 36%;
+    width: 48%;
     display: flex;
     flex-direction: row;
 }
 .bookmaker2BackLayBoxContainer{
-    width: 18%;
+    width: 24%;
     display: flex;
     flex-direction: row;
 }
@@ -89,6 +89,7 @@
     font-weight: 500;
 }
 .bookmakerTeamTab{
+    position: relative;
     width: 100%;
     height: 50px;
     display: flex;
@@ -117,12 +118,14 @@
     color: #000;
 }
 .bookmaker1RateBox{
-    width: 54%;
+    position: relative;
+    width: 72%;
     display: flex;
     flex-direction: row;
 }
 .bookmaker2RateBox{
-    width: 18%;
+    position: relative;
+    width: 24%;
     display: flex;
     flex-direction: row;
 }
@@ -132,6 +135,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .bookmakerRate1Box{
     font-size: 18px;
@@ -144,22 +148,22 @@
     font-weight: 300;
 }
 .back3Background{
-    background-color: #b2d6f0;
+    background-color: #b2d6f0 !important;
 }
 .back2Background{
-    background-color: #92c9f0;
+    background-color: #92c9f0 !important;
 }
 .back1Background{
-    background-color: #72bbef;
+    background-color: #72bbef !important;
 }
 .lay3Background{
-    background-color: #f6cdd6;
+    background-color: #f6cdd6 !important;
 }
 .lay2Background{
-    background-color: #f8bcc8;
+    background-color: #f8bcc8 !important;
 }
 .lay1Background{
-    background-color: #faa9ba;
+    background-color: #faa9ba !important;
 }
 .remark-content {
     font-size: 12px;
@@ -168,4 +172,33 @@
     display: inline-block;
     padding-left: 38%;
     animation: marquee 20s linear infinite;
+}
+.suspended-overlayRatesBookmaker{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000099;
+    height: 100%;
+    z-index: 999;
+}
+.suspendedTxtBookmaker {
+    font-weight: 500;
+    color: #df0e00;
+}
+.f-size10 {
+    font-size: 10px !important;
+}
+.f-size12 {
+    font-size: 12px !important;
+}
+.f-size14 {
+    font-size: 14px !important;
+}
+.f-size16 {
+    font-size: 16px !important;
+}
+.f-size18 {
+    font-size: 18px !important;
 }

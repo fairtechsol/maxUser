@@ -15,6 +15,8 @@ import { formatDate } from "../../../utils/dateUtils";
 import service from "../../../service";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import { getChannelId } from "../../../helpers";
+import MatchOdd from "../matchOdd";
+import Bookmaker from "../bookmaker";
 
 const markets = [
   {
@@ -176,6 +178,31 @@ const MobileGameDetail = () => {
                         <LiveStreamComponent channelId={channelId} />
                       </Col>
                     )}
+                     <Col className="g-0" md={12}>
+                    <MatchOdd
+                    title={"Match_odd"}
+                    type={MatchType.MATCH_ODDS}
+                    data={matchDetails?.matchOdd}
+                    detail={matchDetails}
+                  /></Col>
+                  <Col className="g-0" md={12}>
+                   <Bookmaker
+                    title={matchDetails?.bookmaker?.name}
+                    box={6}
+                    data={matchDetails?.bookmaker}
+                    detail={matchDetails}
+                    // data={matchDetails?.matchOdd}
+                  /></Col>
+                  <Col className="g-0" md={12}>
+                  <Bookmaker
+                    title={matchDetails?.bookmaker2?.name}
+                    box={2}
+                    data={matchDetails?.bookmaker2}
+                    detail={matchDetails}
+                    // type={MatchType.MATCH_ODDS}
+                    // data={matchDetails?.matchOdd}
+                  />
+                  </Col>
                     {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable

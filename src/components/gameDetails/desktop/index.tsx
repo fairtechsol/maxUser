@@ -127,21 +127,26 @@ const DesktopGameDetail = () => {
               <Col md={12} style={{marginTop:"10px"}}>
                   <MatchOdd
                     title={"Match_odd"}
-                    // type={MatchType.MATCH_ODDS}
-                    // data={matchDetails?.matchOdd}
+                    type={MatchType.MATCH_ODDS}
+                    data={matchDetails?.matchOdd}
+                    detail={matchDetails}
                   />
                 </Col>
                 <Col md={12} style={{marginTop:"10px"}}>
                   <Bookmaker
-                    title={"Bookmaker1"}
+                    title={matchDetails?.bookmaker?.name}
                     box={6}
+                    data={matchDetails?.bookmaker}
+                    detail={matchDetails}
                     // data={matchDetails?.matchOdd}
                   />
                 </Col>
                 <Col md={12} style={{marginTop:"10px"}}>
                   <Bookmaker
-                    title={"Bookmaker2"}
+                    title={matchDetails?.bookmaker2?.name}
                     box={2}
+                    data={matchDetails?.bookmaker2}
+                    detail={matchDetails}
                     // type={MatchType.MATCH_ODDS}
                     // data={matchDetails?.matchOdd}
                   />
