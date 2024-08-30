@@ -1,10 +1,11 @@
-.matchOddContainer{
+.manualContainer{
     width: 100%;
     display: flex;
     flex-direction: column;
     background-color: #f2f2f2;
+    margin-top: 10px;
 }
-.matchOddTitle{
+.manualTitle{
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -12,56 +13,56 @@
     padding: 5px;
     background-color: #fece5d;
 }
-.matchOddTitleTxt{
+.manualTitleTxt{
     color: #ffffff;
     font-size: 1rem;
     font-weight: 600;
 }
-.matchOddBackLayTab{
+.manualBackLayTab{
     width: 100%;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #c7c8ca;
 }
-.matchOddMinMaxBox{
+.manualMinMaxBox{
     padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.matchOddMinMax{
+.manualMinMax{
     font-size: 12px;
     font-weight: 500;
     color: #097c93;
 }
-.matchOddBackLayBoxContainer{
+.manualBackLayBoxContainer{
     width: 48%;
     display: flex;
     flex-direction: row;
 }
-.matchOddBackBoxTab{
+.manualBackBoxTab{
     width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #72bbef;
 }
-.matchOddLayBoxTab{
+.manualLayBoxTab{
     width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #faa9ba;
 }
-.matchOddEmptyBox{
+.manualEmptyBox{
     width: 50%;
 }
-.matchOddBackTxt{
+.manualBackTxt{
     font-size: 1rem;
     color: #000;
     font-weight: 500;
 }
-.matchOddTeamTab{
+.manualTeamTab{
     position: relative;
     width: 100%;
     height: 50px;
@@ -69,24 +70,24 @@
     justify-content: space-between;
     border-bottom: 1px solid #c7c8ca;
 }
-.matchOddTeam{
+.manualTeam{
     padding: 5px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
-.matchOddTeamTxt{
+.manualTeamTxt{
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: #000;
 }
-.matchOddRateBox{
+.manualRateBox{
     position: relative;
     width: 72%;
     display: flex;
     flex-direction: row;
 }
-.matchOddBackBox{
+.manualBackBox{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -94,12 +95,12 @@
     align-items: center;
     cursor: pointer;
 }
-.matchOddRate1Box{
+.manualRate1Box{
     font-size: 18px;
     color: #000;
     font-weight: 600;
 }
-.matchOddRate2Box{
+.manualRate2Box{
     font-size: 12px;
     color: #000;
     font-weight: 300;
@@ -122,7 +123,7 @@
 .lay1Background{
     background-color: #faa9ba !important;
 }
-.suspended-overlayRatesMatchOdd{
+.suspended-overlayRatesmanual{
     position: absolute;
     width: 100%;
     display: flex;
@@ -132,7 +133,7 @@
     height: 100%;
     z-index: 999;
 }
-.suspendedTxtMatchOdd {
+.suspendedTxtmanual {
     font-weight: 500;
     color: #df0e00;
 }

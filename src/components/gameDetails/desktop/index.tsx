@@ -16,6 +16,8 @@ import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import { getChannelId } from "../../../helpers";
 import MatchOdd from "../matchOdd";
 import Bookmaker from "../bookmaker";
+import ManualMarket from "../manulMarkets";
+import DynamicMarket from "../dynamicMarkets";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -124,15 +126,15 @@ const DesktopGameDetail = () => {
                   }}
                 ></div>
               </Col>
-              <Col md={12} style={{marginTop:"10px"}}>
+              {matchDetails?.matchOdd?.isActive && ( <Col md={12} style={{marginTop:"10px"}}>
                   <MatchOdd
                     title={"Match_odd"}
-                    type={MatchType.MATCH_ODDS}
                     data={matchDetails?.matchOdd}
                     detail={matchDetails}
                   />
-                </Col>
-                <Col md={12} style={{marginTop:"10px"}}>
+                </Col> )}
+
+               {matchDetails?.bookmaker?.isActive && ( <Col md={12} style={{marginTop:"10px"}}>
                   <Bookmaker
                     title={matchDetails?.bookmaker?.name}
                     box={6}
@@ -140,8 +142,9 @@ const DesktopGameDetail = () => {
                     detail={matchDetails}
                     // data={matchDetails?.matchOdd}
                   />
-                </Col>
-                <Col md={12} style={{marginTop:"10px"}}>
+                </Col> )}
+
+               {matchDetails?.bookmaker2?.isActive && ( <Col md={12} style={{marginTop:"10px"}}>
                   <Bookmaker
                     title={matchDetails?.bookmaker2?.name}
                     box={2}
@@ -150,8 +153,67 @@ const DesktopGameDetail = () => {
                     // type={MatchType.MATCH_ODDS}
                     // data={matchDetails?.matchOdd}
                   />
+                </Col>)}
+                {matchDetails?.quickBookmaker?.length > 0 &&
+                matchDetails?.quickBookmaker?.map(
+                  (item: any, index: number) => (
+                    <div key={index}>
+                      {item?.isActive && (
+                        <Col md={12}>
+                          <ManualMarket
+                          title={item?.name}
+                          data={item}
+                          detail={matchDetails}
+                          // data={matchDetails?.matchOdd}
+                        />
+                        </Col>
+                      )}
+                    </div>
+                  )
+                )}
+              {matchDetails?.apiTideMatch?.isActive && (
+                <Col md={12}>
+                         <DynamicMarket
+                    title={matchDetails?.apiTideMatch?.name}
+                    data={matchDetails?.apiTideMatch}
+                    detail={matchDetails}
+                  />
                 </Col>
-              {matchDetails?.matchOdd?.isActive && (
+              )}
+              {matchDetails?.manualTiedMatch?.isActive && (
+                <Col md={12}>
+                   <ManualMarket
+                          title={matchDetails?.manualTiedMatch?.name}
+                          data={matchDetails?.manualTiedMatch}
+                          detail={matchDetails}
+                          // data={matchDetails?.matchOdd}
+                        />
+                </Col>
+              )}
+              {matchDetails?.marketCompleteMatch?.isActive && (
+                <Col md={12}>
+                         <DynamicMarket
+                    title={matchDetails?.marketCompleteMatch?.name}
+                    data={matchDetails?.marketCompleteMatch}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+              {matchDetails?.manualCompleteMatch?.isActive && (
+                <Col md={12}>
+                   <ManualMarket
+                          title={matchDetails?.manualCompleteMatch?.name}
+                          data={matchDetails?.manualCompleteMatch}
+                          detail={matchDetails}
+                          // data={matchDetails?.matchOdd}
+                        />
+                </Col>
+              )}
+
+
+
+
+              {/* {matchDetails?.matchOdd?.isActive && (
                 <Col md={12}>
                   <BetTable
                     title={matchDetails?.matchOdd?.name}
@@ -186,7 +248,7 @@ const DesktopGameDetail = () => {
                       )}
                     </div>
                   )
-                )}
+                )} */}
               {matchDetails?.firstHalfGoal?.length > 0 &&
                 matchDetails?.firstHalfGoal?.map((item: any, index: number) => (
                   <div key={index}>
@@ -226,7 +288,7 @@ const DesktopGameDetail = () => {
                     )}
                   </div>
                 ))}
-              {matchDetails?.apiTideMatch?.isActive && (
+              {/* {matchDetails?.apiTideMatch?.isActive && (
                 <Col md={12}>
                   <BetTable
                     title={matchDetails?.apiTideMatch?.name}
@@ -261,7 +323,7 @@ const DesktopGameDetail = () => {
                     data={matchDetails?.manualCompleteMatch}
                   />
                 </Col>
-              )}
+              )} */}
               {matchDetails?.apiSessionActive && (
                 <Col
                   md={
