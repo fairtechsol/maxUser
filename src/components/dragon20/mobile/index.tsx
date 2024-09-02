@@ -202,7 +202,7 @@ const DragonTigerMobile = () => {
                 <div
                   style={{
                     width: "100%",
-                    margin: "5px",
+                    margin: "px",
                     display: "flex",
                     flexDirection: "column",
                     gap: "8px",
@@ -227,7 +227,7 @@ const DragonTigerMobile = () => {
                     data={dragonTigerDetail}
                   />
                 </div>
-                
+
                 <div>
                   <CardBox
                     name={"TIGER"}

@@ -156,7 +156,7 @@ const DragonTigerDesktop = () => {
                   width: "100%",
                   margin: "5px",
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: "column",
                   gap: "8px",
                 }}
               >
