@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const OddEven = ({ data, odds }: any) => {
+const OddEven = ({ name, data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = odds?.[0]?.min;
   const max = odds?.[0]?.max;
@@ -29,6 +29,10 @@ const OddEven = ({ data, odds }: any) => {
   return (
     <>
       <div className="oddEvenContainerMob">
+        <div style={{ textAlign: "center" }}>
+          <span style={{ fontSize: "16px", fontWeight: "bold" }}>{name}</span>
+        </div>
+
         <div
           style={{
             display: "flex",

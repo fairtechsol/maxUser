@@ -50,10 +50,10 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             flexDirection: "row",
           }}
         >
-          <div className="card32-table-item back" style={{ width: "50%" }}>
+          <div className="card32-table-item back" style={{ width: "50%",fontWeight:"bold" }}>
             BACK
           </div>
-          <div className="card32-table-item lay" style={{ width: "50%" }}>
+          <div className="card32-table-item lay" style={{ width: "50%", fontWeight:"bold" }}>
             LAY
           </div>
         </div>

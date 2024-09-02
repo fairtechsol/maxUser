@@ -180,7 +180,7 @@ const TeenPattiDesktop = () => {
                     style={{
                       lineHeight: 2,
                       marginTop: "2px",
-                      background: "fff",
+                      background: "#f2f2f2",
                     }}
                   >
                     <div style={{ width: "40%" }}></div>
@@ -233,7 +233,7 @@ const TeenPattiDesktop = () => {
 
                   <div
                     className="teenPatti-table-row"
-                    style={{ lineHeight: 2 }}
+                    style={{ lineHeight: 2,background:"#f2f2f2" }}
                   >
                     <div
                       style={{ width: "40%", border: "0.1px solid #fff" }}
@@ -241,7 +241,7 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "60%",
-                        backgroundColor: "#72bbef",
+                        backgroundColor: "#f2f2f2",
                         display: "flex",
                         flexDirection: "row",
                       }}
@@ -291,7 +291,7 @@ const TeenPattiDesktop = () => {
                         <div
                           key={index}
                           className="teenPatti-table-row"
-                          style={{ lineHeight: 1 }}
+                          style={{ lineHeight: 1,background:"#f2f2f2" }}
                         >
                           <div
                             style={{
