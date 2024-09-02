@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const CardBox = ({ cardData, data }: any) => {
+const CardBox = ({ name, cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = cardData?.[0]?.min;
   const max = cardData?.[0]?.max;
@@ -29,20 +29,23 @@ const CardBox = ({ cardData, data }: any) => {
   return (
     <>
       <div className="cardContainerMob">
-        <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "12px", fontWeight: "bolder" }}>
+        <div style={{ textAlign: "center",display:"flex",alignItems:"center",justifyContent:"center" }}>
+          <div style={{ textAlign: "center" }}>
+            <span style={{ fontSize: "16px", fontWeight: "bold" }}>{name}</span>
+          </div>
+          <span style={{ fontSize: "16px", fontWeight: "bolder",marginLeft:"4px" }}>
             {parseFloat(
               isNaN(cardData?.[0]?.rate) ? 0 : cardData?.[0]?.rate
             ).toFixed(2)}
           </span>
         </div>
-        <div>
+        
           <CommonCardImg
             cardData={cardData}
             handleBet={handleBet}
             data={data}
           />
-        </div>
+        
         <div style={{ textAlign: "end" }}>
           <span style={{ fontSize: "12px" }}>Min:</span>
           <span style={{ fontSize: "12px" }}>{min}</span>

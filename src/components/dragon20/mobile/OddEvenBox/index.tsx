@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const OddEven = ({ data, odds }: any) => {
+const OddEven = ({ name, data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = odds?.[0]?.min;
   const max = odds?.[0]?.max;
@@ -29,6 +29,10 @@ const OddEven = ({ data, odds }: any) => {
   return (
     <>
       <div className="oddEvenContainerMob">
+        <div style={{ textAlign: "center" }}>
+          <span style={{ fontSize: "16px", fontWeight: "bold" }}>{name}</span>
+        </div>
+
         <div
           style={{
             display: "flex",
@@ -46,7 +50,7 @@ const OddEven = ({ data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[0]?.gstatus === "0" ? true : false}
             data={odds?.[0]}
@@ -61,7 +65,7 @@ const OddEven = ({ data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[1]?.gstatus === "0" ? true : false}
             data={odds?.[1]}
@@ -90,7 +94,7 @@ const OddEven = ({ data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[2]?.gstatus === "0" ? true : false}
             data={odds?.[2]}
@@ -105,7 +109,7 @@ const OddEven = ({ data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[3]?.gstatus === "0" ? true : false}
             data={odds?.[3]}
