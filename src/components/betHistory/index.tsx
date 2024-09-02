@@ -159,7 +159,7 @@ const BetHistoryComponent = () => {
                 onClick={(e: any) => handleLoad(e)}
                 size={isMobile ? "sm" : "lg"}
                 className={`${
-                  isMobile ? "w-100" : " bg-primaryBlue"
+                  isMobile ? "w-100" : " bg-primary"
                 } border-0 `}
                 style={{ height: "35px" }}
               >

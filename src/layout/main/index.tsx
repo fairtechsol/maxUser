@@ -154,7 +154,7 @@ const MainLayout = () => {
           <Outlet />
         </main>
       </div>
-      <div style={{position: "relative" , bottom: -60}}>
+      <div style={{position: "relative" ,top: 100}}>
       <Footer/>
       <FooterBottom/>
       </div>
