@@ -16,7 +16,7 @@ interface Props {
 
 const Bacarrate2ResultComponent: React.FC<Props> = ({ data }: any) => {
   const elements = data?.result?.cards?.split(",");
-  console.log(data)
+  
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="bacarrate-result d-flex flex-column flex-md-row">
