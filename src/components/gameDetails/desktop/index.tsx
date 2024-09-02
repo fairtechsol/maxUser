@@ -19,7 +19,8 @@ import Bookmaker from "../bookmaker";
 import ManualMarket from "../manulMarkets";
 import DynamicMarket from "../dynamicMarkets";
 import SessionNormal from "../sessionNormal";
-import SessionOddEven from "../sessionOddEven";
+import SessionOddEven from "../sessionFancy";
+import SessionFancy from "../sessionFancy";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -228,6 +229,27 @@ console.log('first',matchDetails)
                           />
                         </Col>
                      }
+             {matchDetails?.apiSession?.overByover?.section?.length>0  &&
+               
+               <Col md={12}>
+                 <SessionNormal
+                   title={"overByover"}
+                   // type={"normal"}
+                   data={matchDetails?.apiSession?.overByover}
+                   detail={matchDetails}
+                 />
+               </Col>
+            } {matchDetails?.apiSession?.ballByBall?.section?.length>0  &&
+               
+              <Col md={12}>
+                <SessionNormal
+                  title={"Ballbyball"}
+                  // type={"normal"}
+                  data={matchDetails?.apiSession?.ballByBall}
+                  detail={matchDetails}
+                />
+              </Col>
+           }
                {matchDetails?.apiSession?.oddEven?.section?.length>0  &&
               <Col md={12}>
                 <SessionNormal
@@ -238,16 +260,16 @@ console.log('first',matchDetails)
                   // data={matchDetails?.matchOdd}
                 />
               </Col> }
+              {matchDetails?.apiSession?.fancy1?.section?.length>0  &&
               <Col md={12}>
-                <SessionOddEven
-                type={"OddEven"}
-                  title={"Odd even"}
-                  data={matchDetails?.manualCompleteMatch}
+                <SessionFancy
+                  title={"fancy1"}
+                  data={matchDetails?.apiSession?.fancy1}
                   detail={matchDetails}
                   // data={matchDetails?.matchOdd}
                 />
               </Col>
-             
+              }
 
               {/* {matchDetails?.matchOdd?.isActive && (
                 <Col md={12}>

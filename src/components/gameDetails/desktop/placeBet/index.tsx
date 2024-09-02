@@ -88,6 +88,9 @@ console.log('selectedBet',selectedBet)
         odds: selectedBet?.team?.rate,
         ratePercent: selectedBet?.team?.percent,
         stake: selectedBet?.team?.stake,
+        betPlaceIndex:selectedBet?.team?.betPlaceIndex,
+        mid:selectedBet?.team?.mid,
+        teamName:selectedBet?.team?.teamName
       };
       let payloadForBettings: any = {
         betId: selectedBet?.team?.betId,
