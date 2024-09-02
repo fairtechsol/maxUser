@@ -128,7 +128,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -302,7 +302,7 @@ export const cardGamesType: any = {
   worli: "worli2",
   cardj: "3cardj",
   cmatch20: "cmatch20",
-  ballbyball:"ballbyball",
+  ballbyball: "ballbyball",
   cmeter: "cmeter",
   queen: "queen",
 };
@@ -312,7 +312,7 @@ export const cardGamesId: any = {
   andarBahar1: 3053,
   teen20: 3030,
   card32: 3055,
-  card32B: 3034, 
+  card32B: 3034,
   lucky7: 3058,
   dragonTiger202: 3059,
   dragonTigerLion: 3047,
@@ -335,7 +335,7 @@ export const cardGamesId: any = {
   worli: 3040,
   cardj: 3039,
   cmatch20: 3045,
-  cmeter:3046,
+  cmeter: 3046,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -379,6 +379,7 @@ export const cardUrl =
     : "https://maxbet9.fairgame.club/videoPage/";
 
 export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
+export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventid=";
 
 export const baseUrls = {
   socket:

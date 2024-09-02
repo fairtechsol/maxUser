@@ -18,6 +18,8 @@ import Sidebar from "./sidebar";
 import TopBar from "./topbar";
 import ScrollToTop from "../../components/commonComponent/ScrollToTop";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
+import Footer from "./footer";
+import FooterBottom from "./footerBottom";
 
 const MainLayout = () => {
   const navigate = useNavigate();
@@ -115,7 +117,7 @@ const MainLayout = () => {
   }, [location]);
 
   return (
-    <>
+    <div>
       <ScrollToTop />
       {!isOnline && (
         <div
@@ -144,7 +146,7 @@ const MainLayout = () => {
       <TopBar />
       <div className="d-flex">
         {!isMobile && (
-          <div className={`sidebar sidebarActive`}>
+          <div className={`sidebar sidebarActive mt-2`}>
             <Sidebar />
           </div>
         )}
@@ -152,7 +154,11 @@ const MainLayout = () => {
           <Outlet />
         </main>
       </div>
-    </>
+      <div style={{position: "relative" ,top: 100}}>
+      <Footer/>
+      <FooterBottom/>
+      </div>
+    </div>
   );
 };
 

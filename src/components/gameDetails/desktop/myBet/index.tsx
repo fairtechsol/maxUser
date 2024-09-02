@@ -27,11 +27,11 @@ const MyBet = () => {
       <div className="betList" style={{ maxHeight: "27vh", overflow: "auto" }}>
         <Table className="w-full">
           <thead>
-            <tr className="bg-darkGrey">
+            <tr className="bg-secondary">
               {placeBetHeader?.map((item) => (
                 <th
                   key={item?.id}
-                  className="title-12 text-start f500 bg-darkGrey"
+                  className="title-12 text-start f500 bg-light"
                 >
                   {item?.name}
                 </th>

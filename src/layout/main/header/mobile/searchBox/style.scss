@@ -26,6 +26,23 @@
       cursor: pointer;
     }
   }
+
+  @media only screen and (max-width: 1199px) {
+    .search-box i {
+        margin-left: 16px;
+    }
+}
+
+.fa-search-plus:before {
+  content: "\f00e" !important;
+}
+.search-box i {
+    font-size: 4px;
+    cursor: pointer;
+    color: var(--text-primary);
+    margin-left: 10px;
+    // background-color: beige;
+}
   input {
     position: absolute;
     top: 20%;

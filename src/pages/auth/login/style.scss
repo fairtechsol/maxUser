@@ -6,27 +6,51 @@
   background-image: linear-gradient($primary, $secondary);
 
 }
-
+.login-form{
+  margin-bottom: 15rem !important;
+}
+.auth-box-mobile{
+  width: 100% !important;
+}
 .auth-box {
-  margin: 0 auto;
-  height: -moz-max-content;
   height: max-content;
+  width: 350px;
+  max-width: 90%;
+  text-align: center;
   margin: 55px 0 0 0;
 
   .auth-box-descrip {
-    font-size: 12px;
-    line-height: 14px;
-    text-align: start;
-
+    font-size: 10px;
+    display: inline-block;
   }
-
+}
+/* Main container to ensure footer stays at the bottom */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* Wrapper for content to take available space */
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ensure the footer stays at the bottom */
+// footer {
+//   background: #f8f9fa; /* or your footer background color */
+//   padding: 1rem 0;
+//   text-align: center;
+//   position: absolute;
+// }
+
 .auth-box-form {
-  padding: 25px 20px 15px;
+  padding: 25px 10px 15px;
   background-color: $white;
   width: 100%;
-  max-width: 300px;
   margin: 15% auto;
 }
 
@@ -98,6 +122,8 @@
   display: flex;
   align-items: center;
 }
+
+
 
 @keyframes rotate {
   100% {

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CustomModal from "../../components/commonComponent/modal";
 import MatchList from "../../components/home";
-import Desktop from "../../components/rules/desktop";
 import {
   expertSocketService,
   socket,
@@ -16,7 +14,7 @@ import {
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
-import Mobile from "../../components/rules/mobile";
+import ImageModal from "../../components/commonComponent/loginModal";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -30,7 +28,12 @@ const Home = () => {
   const setMatchOddRatesInRedux = (event: any) => {
     dispatch(updateMatchOddRates(event));
   };
+  const [showModal, setShowModal] = useState(true);
+  const imageUrl = "https://sitethemedata.com/common/wel-banner/wel-1724829277174.png"; // Replace this with the dynamic URL
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
   const getMatchListService = () => {
     try {
       dispatch(
@@ -165,14 +168,8 @@ const Home = () => {
   return (
     <div>
       <MatchList setMatchType={setMatchType} matchType={matchType} />
-      <CustomModal
-        customClass="modalFull-90 rule-popup"
-        show={show}
-        setShow={popUpClose}
-        title={"Rules"}
-      >
-       {isMobile ? <Mobile /> : <Desktop />}
-      </CustomModal>
+      <ImageModal customClass={isMobile ? "" : "modalFull-56 rule-popup"}  show={show}
+        setShow={popUpClose}  imageUrl={imageUrl}  />
     </div>
   );
 };

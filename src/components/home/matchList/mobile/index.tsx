@@ -75,7 +75,7 @@ const MobileMatchList = ({ setMatchType, type }: any) => {
                             {item?.icon}
                           </div>
                         )}
-                        <span className="navtab-name">{item?.name}</span>
+                        <span className="navtab-name text-white">{item?.name}</span>
                       </div>
                     }
                   ></Tab>

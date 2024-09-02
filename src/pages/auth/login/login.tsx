@@ -23,6 +23,7 @@ import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import Loader from "../../../components/commonComponent/loader";
 import { maxbetLogo } from "../../../assets/images";
+import Footer from "../../../layout/main/footer";
 
 const Login = () => {
   // const [loginState, setLoginState] = useState({
@@ -72,102 +73,98 @@ const Login = () => {
   }, [success]);
 
   return (
-    <Form
-      className="auth-main text-center d-flex justify-content-center"
-      onSubmit={handleSubmit}
-    >
-      {loading && <Loader />}
-      <div className="auth-box ">
-        <img
-          src={maxbetLogo}
-          alt="MAXBET07"
-          className="img-fluid"
-          style={{
-            width: isMobile ? "90%" : "100%",
-            height: isMobile ? "42px" : "50px",
-          }}
-        />
-        <div className="auth-box-form rounded-2 bg-light mt-3">
-          <h4 className="auth-title title-24 fw-normal text-center mb-2">
-            {!isMobile ? "Login" : ""}
-            {!isMobile && <FaHandPointDown />}
-          </h4>
+      <Form
+        className="auth-main text-center d-flex justify-content-center"
+        onSubmit={handleSubmit}
+      >
+        {loading && <Loader />}
+        <div className={isMobile ? "login-form" : "auth-box"}>
+          <img
+            src={maxbetLogo}
+            alt="MAXBET07"
+            className="img-fluid"
+            style={{
+              width: isMobile ? "100%" : "100%",
+              height: "70px",
+            }}
+          />
+          <div className="auth-box-form rounded-2 bg-light mt-2">
+            <h4 className="auth-title title-24 fw-normal text-center mb-2">
+              Login
+             <FaHandPointDown />
+            </h4>
 
-          <CustomInput
-            type="text"
-            placeholder="User Name"
-            name="userName"
-            id="userName"
-            value={formik.values.userName}
-            onChange={formik.handleChange}
-            inputIcon={<IoPerson />}
-            customStyle="mb-3"
-            isUnderlinedInput={isMobile}
-          />
-          <ValidationError
-            touched={touched.userName}
-            errors={errors.userName}
-          />
+            <CustomInput
+              type="text"
+              placeholder="User Name"
+              name="userName"
+              id="userName"
+              value={formik.values.userName}
+              onChange={formik.handleChange}
+              inputIcon={<IoPerson style={{ fontWeight: "normal", color: '#333', fontSize: isMobile ? '18' : '20px' }} />}
+              customStyle="mb-4"
+              isUnderlinedInput={isMobile}
+            />
+            <ValidationError
+              touched={touched.userName}
+              errors={errors.userName}
+            />
 
-          <CustomInput
-            type="password"
-            placeholder="Password"
-            customStyle="mb-3"
-            name="password"
-            id="password"
-            inputIcon={<FaKey />}
-            isUnderlinedInput={isMobile}
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            // onChange={(e: any) => {
-            //   setLoginState({ ...loginState, password: e.target.value });
-            // }}
-          />
-          <ValidationError
-            touched={touched.password}
-            errors={errors.password}
-          />
-          <CustomButton
-            className="w-100 ml-6"
-            variant="primary"
-            type="submit"
-            // loading={loading}
-          >
-            <div className="button-container">
-              <span className="login-text">Login</span>
-              {loading ? (
-                <AiOutlineLoading className="spinner-icon" />
-              ) : (
-                <MdOutlineLogin className="login-icon" />
-              )}
-              {/* {!isMobile ? <span className="login-text">Login </span> : <span><span className="mlogintext">Login {loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}</span></span>} */}
-            </div>
-          </CustomButton>
-          <p className="auth-box-descrip mt-1">
-            This site is protected by reCAPTCHA and the Google
-            <br />
-            <a
-              href="https://policies.google.com/privacy"
-              className="text-primaryBlue text-decoration-none ps-1 pe-1"
-              target="_blank" // Opens link in a new tab
-              rel="noopener noreferrer"
+            <CustomInput
+              type="password"
+              placeholder="Password"
+              customStyle="mb-3"
+              name="password"
+              id="password"
+              inputIcon={<FaKey style={{ fontWeight: "normal", color: '#333', fontSize: isMobile ? '18' : '20px' }} />}
+              isUnderlinedInput={isMobile}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+            />
+            <ValidationError
+              touched={touched.password}
+              errors={errors.password}
+            />
+            <CustomButton
+              className="w-100"
+              variant="primary"
+              type="submit"
             >
-              Privacy Policy
-            </a>
-            and
-            <a
-              href="https://policies.google.com/terms"
-              className="text-primaryBlue text-decoration-none ps-1 pe-1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Terms of Service
-            </a>
-            apply.
-          </p>
+              <div className="button-container">
+                <span className="login-text">Login</span>
+                {loading ? (
+                  <AiOutlineLoading className="spinner-icon" />
+                ) : (
+                  <i className="fas fa-sign-in-alt float-end mt-1 f600"></i>
+                )}
+              </div>
+            </CustomButton>
+            
+            <p className={isMobile ? "title-10 d-inline-block mb-2" :"auth-box-descrip mt-1"}>
+              This site is protected by reCAPTCHA and the Google
+              <br />
+              <a
+                href="https://policies.google.com/privacy"
+                className="text-primaryBlue text-decoration-none "
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Privacy Policy
+              </a>
+              and
+              <a
+                href="https://policies.google.com/terms"
+                className="text-primaryBlue text-decoration-none "
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Terms of Service
+              </a>
+              apply.
+            </p>
+          </div>
         </div>
-      </div>
-    </Form>
+      </Form>
   );
 };
 
