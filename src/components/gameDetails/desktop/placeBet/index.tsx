@@ -58,7 +58,7 @@ const PlacedBet = () => {
   );
 
   const dispatch: AppDispatch = useDispatch();
-
+console.log('selectedBet',selectedBet)
   const handleSubmit = () => {
     if (
       selectedBet?.team?.stake <
@@ -255,9 +255,9 @@ const PlacedBet = () => {
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
       selectedBet?.data?.type === matchBettingType.completeMatch ||
       selectedBet?.data?.type === matchBettingType.halfTime ||
-      selectedBet?.data?.type.includes("overUnder") ||
-      selectedBet?.data?.type.includes("firstHalfGoal") ||
-      selectedBet?.data?.type.includes("setWinner")
+      selectedBet?.data?.type?.includes("overUnder") ||
+      selectedBet?.data?.type?.includes("firstHalfGoal") ||
+      selectedBet?.data?.type?.includes("setWinner")
     ) {
       profit =
         selectedBet?.team?.type === "back"
@@ -342,7 +342,7 @@ const PlacedBet = () => {
                       {selectedBet?.team?.eventType === "horseRacing"
                         ? "MATCH_ODDS"
                         : handleName(selectedBet)}
-                      {/* {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam} */}
+                      {/* {selectedBet?.team?.name ?? selectedgBet?.team?.betOnTeam} */}
                     </span>
                   </td>
                   <td width={"20%"}>

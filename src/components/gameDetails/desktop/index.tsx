@@ -18,6 +18,8 @@ import MatchOdd from "../matchOdd";
 import Bookmaker from "../bookmaker";
 import ManualMarket from "../manulMarkets";
 import DynamicMarket from "../dynamicMarkets";
+import SessionNormal from "../sessionNormal";
+import SessionOddEven from "../sessionOddEven";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -97,7 +99,7 @@ const DesktopGameDetail = () => {
       console.log(error);
     }
   }, [matchDetails?.id]);
-
+console.log('first',matchDetails)
   return (
     <Container fluid>
       <Row>
@@ -126,15 +128,18 @@ const DesktopGameDetail = () => {
                   }}
                 ></div>
               </Col>
-              {matchDetails?.matchOdd?.isActive && ( <Col md={12} style={{marginTop:"10px"}}>
+              {matchDetails?.matchOdd?.isActive && (
+                <Col md={12} style={{ marginTop: "10px" }}>
                   <MatchOdd
                     title={"Match_odd"}
                     data={matchDetails?.matchOdd}
                     detail={matchDetails}
                   />
-                </Col> )}
+                </Col>
+              )}
 
-               {matchDetails?.bookmaker?.isActive && ( <Col md={12} style={{marginTop:"10px"}}>
+              {matchDetails?.bookmaker?.isActive && (
+                <Col md={12} style={{ marginTop: "10px" }}>
                   <Bookmaker
                     title={matchDetails?.bookmaker?.name}
                     box={6}
@@ -142,9 +147,11 @@ const DesktopGameDetail = () => {
                     detail={matchDetails}
                     // data={matchDetails?.matchOdd}
                   />
-                </Col> )}
+                </Col>
+              )}
 
-               {matchDetails?.bookmaker2?.isActive && ( <Col md={12} style={{marginTop:"10px"}}>
+              {matchDetails?.bookmaker2?.isActive && (
+                <Col md={12} style={{ marginTop: "10px" }}>
                   <Bookmaker
                     title={matchDetails?.bookmaker2?.name}
                     box={2}
@@ -153,19 +160,20 @@ const DesktopGameDetail = () => {
                     // type={MatchType.MATCH_ODDS}
                     // data={matchDetails?.matchOdd}
                   />
-                </Col>)}
-                {matchDetails?.quickBookmaker?.length > 0 &&
+                </Col>
+              )}
+              {matchDetails?.quickBookmaker?.length > 0 &&
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
                     <div key={index}>
                       {item?.isActive && (
                         <Col md={12}>
                           <ManualMarket
-                          title={item?.name}
-                          data={item}
-                          detail={matchDetails}
-                          // data={matchDetails?.matchOdd}
-                        />
+                            title={item?.name}
+                            data={item}
+                            detail={matchDetails}
+                            // data={matchDetails?.matchOdd}
+                          />
                         </Col>
                       )}
                     </div>
@@ -173,7 +181,7 @@ const DesktopGameDetail = () => {
                 )}
               {matchDetails?.apiTideMatch?.isActive && (
                 <Col md={12}>
-                         <DynamicMarket
+                  <DynamicMarket
                     title={matchDetails?.apiTideMatch?.name}
                     data={matchDetails?.apiTideMatch}
                     detail={matchDetails}
@@ -182,17 +190,17 @@ const DesktopGameDetail = () => {
               )}
               {matchDetails?.manualTiedMatch?.isActive && (
                 <Col md={12}>
-                   <ManualMarket
-                          title={matchDetails?.manualTiedMatch?.name}
-                          data={matchDetails?.manualTiedMatch}
-                          detail={matchDetails}
-                          // data={matchDetails?.matchOdd}
-                        />
+                  <ManualMarket
+                    title={matchDetails?.manualTiedMatch?.name}
+                    data={matchDetails?.manualTiedMatch}
+                    detail={matchDetails}
+                    // data={matchDetails?.matchOdd}
+                  />
                 </Col>
               )}
               {matchDetails?.marketCompleteMatch?.isActive && (
                 <Col md={12}>
-                         <DynamicMarket
+                  <DynamicMarket
                     title={matchDetails?.marketCompleteMatch?.name}
                     data={matchDetails?.marketCompleteMatch}
                     detail={matchDetails}
@@ -201,17 +209,45 @@ const DesktopGameDetail = () => {
               )}
               {matchDetails?.manualCompleteMatch?.isActive && (
                 <Col md={12}>
-                   <ManualMarket
-                          title={matchDetails?.manualCompleteMatch?.name}
-                          data={matchDetails?.manualCompleteMatch}
-                          detail={matchDetails}
-                          // data={matchDetails?.matchOdd}
-                        />
+                  <ManualMarket
+                    title={matchDetails?.manualCompleteMatch?.name}
+                    data={matchDetails?.manualCompleteMatch}
+                    detail={matchDetails}
+                    // data={matchDetails?.matchOdd}
+                  />
                 </Col>
               )}
-
-
-
+              {matchDetails?.apiSession?.session?.section?.length>0  &&
+               
+                        <Col md={12}>
+                          <SessionNormal
+                            title={"Normal"}
+                            // type={"normal"}
+                            data={matchDetails?.apiSession?.session}
+                            detail={matchDetails}
+                          />
+                        </Col>
+                     }
+               {matchDetails?.apiSession?.oddEven?.section?.length>0  &&
+              <Col md={12}>
+                <SessionNormal
+                  title={"oddeven"}
+                  // type={"fancy"}
+                  data={matchDetails?.apiSession?.oddEven}
+                  detail={matchDetails}
+                  // data={matchDetails?.matchOdd}
+                />
+              </Col> }
+              <Col md={12}>
+                <SessionOddEven
+                type={"OddEven"}
+                  title={"Odd even"}
+                  data={matchDetails?.manualCompleteMatch}
+                  detail={matchDetails}
+                  // data={matchDetails?.matchOdd}
+                />
+              </Col>
+             
 
               {/* {matchDetails?.matchOdd?.isActive && (
                 <Col md={12}>

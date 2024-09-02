@@ -1,0 +1,124 @@
+.sessionNormalContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f2f2f2;
+    margin-top: 10px;
+}
+.sessionNormalTitle{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    background-color: #fece5d;
+}
+.sessionNormalTitleTxt{
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.sessionYesNoBoxContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    border-bottom: 1px solid #c7c8ca;
+}
+.sessionYesNoBox{
+    width: 46%;
+    display: flex;
+    flex-direction: row;
+}
+.sessionYesBox{
+    width: 33.33%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sessionEmptyBox{
+    width: 33.33%;
+    height: 30px;
+}
+.sessionBackTxt{
+    font-size: 1rem;
+    color: #000;
+    font-weight: 500;
+}
+.sessionRateContainer{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #c7c8ca;
+}
+.sessionRateName{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin: 5px;
+}
+.sessionRateBoxContainer{
+    width:46%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.sessionRateBox{
+    width: 33.33%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.sessionRate1Box{
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+}
+.sessionRate2Box{
+    font-size: 18px;
+    color: #000;
+    font-weight: 300;
+}
+.sessionMinBox{
+    font-size: 12px;
+    font-weight: 600;
+    color: #097c93;
+}
+.suspended-overlayRates{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000099;
+    height: 100%;
+    z-index: 999;
+}
+.back1Background{
+    background-color: #72bbef !important;
+}
+.lay1Background{
+    background-color: #faa9ba !important;
+}
+.f-size10 {
+    font-size: 10px !important;
+}
+.f-size12 {
+    font-size: 12px !important;
+}
+.f-size14 {
+    font-size: 14px !important;
+}
+.f-size16 {
+    font-size: 16px !important;
+}
+.f-size18 {
+    font-size: 18px !important;
+}
