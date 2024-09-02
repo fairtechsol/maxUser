@@ -171,7 +171,8 @@ const Home = () => {
   return (
     <div>
       <MatchList setMatchType={setMatchType} matchType={matchType} />
-      {showModal && <ImageModal imageUrl={imageUrl} onClose={handleClose} />}
+      <ImageModal customClass="modalFull-56 rule-popup"  show={show}
+        setShow={popUpClose}  imageUrl={imageUrl}  />
     </div>
   );
 };

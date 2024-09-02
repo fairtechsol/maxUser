@@ -117,7 +117,10 @@ body table.table {
   width: 96%;
   max-width: none;
 }
-
+.modalFull-56.customModal .modal-dialog {
+  width: 56%;
+  max-width: none;
+}
 // cursor pointer
 .cursor-pointer {
   cursor: pointer;

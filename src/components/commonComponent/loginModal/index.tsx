@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal } from 'react-bootstrap';
 
-const ImageModal = ({ imageUrl, onClose }) => {
+const ImageModal = ({ imageUrl, customClass,show,
+  setShow, }) => {
   return (
-    <Modal className="modal show d-block mt-5"  >
-      <div className="modal-dialog modal-lg">
-        <div className="modal-content">
-          <div className="modal-header bg-primary">
+    <div className=''>
+    <Modal  show={show}  onHide={() => setShow(false)} className={`customModal ${customClass}`}  >
+          <div className="modal-header bg-primary" onClick={() => setShow(false)}>
             <button 
               type="button" 
-              className="btn-close bg-white" 
+              className="btn-close text-white " 
               aria-label="Close" 
-              onClick={onClose}
+              
             ></button>
           </div>
           <div className="p-0 modal-body">
@@ -23,9 +23,8 @@ const ImageModal = ({ imageUrl, onClose }) => {
               className="img-fluid"
             />
           </div>
-        </div>
-      </div>
     </Modal>
+    </div>
   );
 };
 
