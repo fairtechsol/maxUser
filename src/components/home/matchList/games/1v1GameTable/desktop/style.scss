@@ -23,9 +23,10 @@
 }
 
 .casino-list-item {
-    width: calc(10% - 30px);
+    width: calc(10% - 10px);
     cursor: pointer;
     position: relative;
+    margin-left: 5px;
     margin-right: 5px;
 }
 a {
@@ -36,7 +37,7 @@ a {
 
 
 .casinoicons img{
-    width: 6rem;
+    // width: calc(10% - 0px);
     height: auto;
 }
 

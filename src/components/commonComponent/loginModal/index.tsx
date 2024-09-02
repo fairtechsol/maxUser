@@ -6,7 +6,6 @@ import { Modal } from 'react-bootstrap';
 const ImageModal = ({ imageUrl, customClass,show,
   setShow, }) => {
   return (
-    <div className=''>
     <Modal  show={show}  onHide={() => setShow(false)} className={`customModal ${customClass}`}  >
           <div className="modal-header bg-primary" onClick={() => setShow(false)}>
             <button 
@@ -24,7 +23,6 @@ const ImageModal = ({ imageUrl, customClass,show,
             />
           </div>
     </Modal>
-    </div>
   );
 };
 

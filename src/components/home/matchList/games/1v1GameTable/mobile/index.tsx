@@ -107,9 +107,9 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                     ) : (
                       <>
                         {mTypeid === "cricket" && (
-                          <div className="px-1 m-game-one-v-one">
+                          <div className="px-1 lh-1 m-game-one-v-one">
                             <Link
-                              className="text-decoration-none text-black f600"
+                              className="text-decoration-none text-black f600 title-12 lh-1"
                               to={"/contact-admin"}
                             >
                               Ball By ball
@@ -150,7 +150,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                 <div className="d-flex justify-content-between">
                                   <div className="d-flex flex-column">
                                     <Link
-                                      className="text-decoration-none text-black"
+                                      className="text-decoration-none text-black lh-1"
                                       to={`/${
                                         mTypeid === "cricket"
                                           ? "game-detail/cricket"

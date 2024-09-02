@@ -22,7 +22,7 @@ const Footer = () => {
             </ul>
           </nav>
         </div>
-        <div className="support-detail mt-2">
+        <div className="support-detail mt-3">
           <h2>24X7 Support</h2>
           <p></p>
         </div>

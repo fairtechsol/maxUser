@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CustomModal from "../../components/commonComponent/modal";
 import MatchList from "../../components/home";
-import Desktop from "../../components/rules/desktop";
 import {
   expertSocketService,
   socket,
@@ -16,7 +14,6 @@ import {
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import isMobile from "../../utils/screenDimension";
-import Mobile from "../../components/rules/mobile";
 import ImageModal from "../../components/commonComponent/loginModal";
 
 const Home = () => {
@@ -171,7 +168,7 @@ const Home = () => {
   return (
     <div>
       <MatchList setMatchType={setMatchType} matchType={matchType} />
-      <ImageModal customClass="modalFull-56 rule-popup"  show={show}
+      <ImageModal customClass={isMobile ? "" : "modalFull-56 rule-popup"}  show={show}
         setShow={popUpClose}  imageUrl={imageUrl}  />
     </div>
   );
