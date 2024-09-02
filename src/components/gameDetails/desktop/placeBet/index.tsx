@@ -145,14 +145,14 @@ console.log('selectedBet',selectedBet)
             dispatch(
               placeBet({
                 url:
-                  selectedBet?.data?.type === "session" ||
+                  selectedBet?.team?.matchBetType=== "session" ||
                   selectedBet?.data?.SelectionId
                     ? ApiConstants.BET.PLACEBETSESSION
                     : selectedBet?.team?.gameType === "other"
                     ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
                     : ApiConstants.BET.PLACEBETMATCHBETTING,
                 data:
-                  selectedBet?.data?.type === "session" ||
+                  selectedBet?.team?.matchBetType=== "session" ||
                   selectedBet?.data?.SelectionId
                     ? JSON.stringify(payloadForSession)
                     : JSON.stringify(payloadForBettings),
@@ -164,14 +164,14 @@ console.log('selectedBet',selectedBet)
         dispatch(
           placeBet({
             url:
-              selectedBet?.data?.type === "session" ||
+              selectedBet?.team?.matchBetType=== "session" ||
               selectedBet?.data?.SelectionId
                 ? ApiConstants.BET.PLACEBETSESSION
                 : selectedBet?.team?.gameType === "other"
                 ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
                 : ApiConstants.BET.PLACEBETMATCHBETTING,
             data:
-              selectedBet?.data?.type === "session" ||
+              selectedBet?.team?.matchBetType=== "session" ||
               selectedBet?.data?.SelectionId
                 ? JSON.stringify(payloadForSession)
                 : JSON.stringify(payloadForBettings),
@@ -245,7 +245,7 @@ console.log('selectedBet',selectedBet)
 
   const handleProfit = (value: any) => {
     let profit;
-    if (selectedBet?.data?.type === "session") {
+    if (selectedBet?.team?.matchBetType=== "session") {
       profit =
         selectedBet?.team?.type === "no"
           ? value

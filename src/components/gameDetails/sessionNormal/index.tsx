@@ -32,6 +32,7 @@ const SessionNormal = ({ title, data, detail }) => {
       eventType: detail?.matchType,
       matchId: detail?.id,
       percent: value,
+      matchBetType:"session"
     };
     console.log('team',team)
     dispatch(
@@ -69,7 +70,7 @@ console.log(data,'first',evenIndexArray)
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div className="sessionYesNoBoxContainer">
+           {title !=="oddeven" && <div className="sessionYesNoBoxContainer">
               <div className="sessionYesNoBox">
                 <div className="sessionYesBox lay1Background">
                   <span
@@ -91,17 +92,17 @@ console.log(data,'first',evenIndexArray)
                 </div>
                 <div className="sessionEmptyBox"></div>
               </div>
-            </div>
-            {oddIndexArray?.map((item: any, index: any) => {
+            </div>}
+            {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
                     <span className="f-size16">{item?.RunnerName}</span>
                   </div>
                   <div className="sessionRateBoxContainer">
-                  {data?.status != "OPEN" && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
-                  SUSPENDED</span></div>}
-                    <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"BACK","Yes",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item)}>
+                  {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
+                  {item?.GameStatus ?? "SUSPENDED"}</span></div>}
+                    <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"No","No",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -117,7 +118,7 @@ console.log(data,'first',evenIndexArray)
                         {item?.ex?.availableToLay?.[0]?.size}
                       </span>
                     </div>
-                    <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"BACK","Yes",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item)}>
+                    <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"Yes","Yes",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -146,7 +147,7 @@ console.log(data,'first',evenIndexArray)
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div className="sessionYesNoBoxContainer">
+           {title !=="oddeven" && <div className="sessionYesNoBoxContainer">
               <div className="sessionYesNoBox">
                 <div className="sessionYesBox lay1Background">
                   <span
@@ -168,18 +169,18 @@ console.log(data,'first',evenIndexArray)
                 </div>
                 <div className="sessionEmptyBox"></div>
               </div>
-            </div>
+            </div>}
 
-            {evenIndexArray?.map((item: any, index: any) => {
+            {oddIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
                     <span className="f-size16">{item?.RunnerName}</span>
                   </div>
                   <div className="sessionRateBoxContainer">
-                  {data?.activeStatus != "live" && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
-                  SUSPENDED</span></div>}
-                    <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"BACK","Yes",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item)}>
+                  {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
+                  {item?.GameStatus ?? "SUSPENDED"}</span></div>}
+                    <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"No","No",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -195,7 +196,7 @@ console.log(data,'first',evenIndexArray)
                         {item?.ex?.availableToLay?.[0]?.size}
                       </span>
                     </div>
-                    <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"BACK","Yes",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item)}>
+                    <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"Yes","Yes",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
