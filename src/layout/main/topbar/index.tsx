@@ -5,7 +5,7 @@ import "./style.scss";
 
 const TopBar = () => {
   return (
-    <div className="text-uppercase">
+    <div className="text-uppercase ">
       {isMobile ? <MobileTopBar /> : <DesktopTopBar />}
     </div>
   );

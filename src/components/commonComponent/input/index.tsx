@@ -66,7 +66,7 @@ const CustomInput = (props: any) => {
             {...prop}
           />
         )}
-        {inputIcon && <div className="input-icon">{inputIcon}</div>}
+        {inputIcon && <div className="input-group-text-custom p-2">{inputIcon}</div>}
         <CustomErrorMessage touched={touched} errors={errors} />
       </Form.Group>
     </>
