@@ -27,8 +27,7 @@ const ImageModal = ({ imageUrl, customClass,show,
 };
 
 ImageModal.propTypes = {
-  imageUrl: PropTypes.string.isRequired,
-  onClose: PropTypes.func.isRequired,
+  imageUrl: PropTypes.string.isRequired
 };
 
 export default ImageModal;
