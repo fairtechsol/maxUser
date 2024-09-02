@@ -145,7 +145,7 @@ const ChangeButtonValueComponent = () => {
         <CustomButton
           type={"submit"}
           size={isMobile ? "sm" : "lg"}
-          className={`${isMobile ? "w-100" : " bg-primaryBlue"} border-0 mt-2`}
+          className={`${isMobile ? "w-100" : " bg-primary"} border-0 mt-2`}
         >
           Update
         </CustomButton>

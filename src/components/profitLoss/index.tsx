@@ -101,7 +101,7 @@ const ProfitLossComponent = () => {
   return (
     <>
       {isMobile && (
-        <div className="whitespace">
+        <div className="vh-100">
           <ReportContainer title="Profit Loss">
             <Stack gap={2}>
               <Row className="g-2 mt-1">
@@ -137,7 +137,7 @@ const ProfitLossComponent = () => {
                     onClick={handleSubmit}
                     size={isMobile ? "sm" : "lg"}
                     className={`${
-                      isMobile ? "w-100" : " bg-primaryBlue"
+                      isMobile ? "w-100" : " bg-primary"
                     } border-0 `}
                   >
                     Submit
@@ -214,7 +214,7 @@ const ProfitLossComponent = () => {
                     onClick={handleSubmit}
                     size={isMobile ? "sm" : "lg"}
                     className={`${
-                      isMobile ? "w-100" : " bg-primaryBlue"
+                      isMobile ? "w-100" : " bg-primary"
                     } border-0 `}
                   >
                     Submit

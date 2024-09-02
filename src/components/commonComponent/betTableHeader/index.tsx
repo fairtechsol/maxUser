@@ -27,7 +27,7 @@ function BetTableHeader({
       `}
       style={{ ...inlineStyle }}
     >
-      <span className={`text-black ${customTextClass??"title-15 f700"}`}>{title}</span>
+      <span className={`text-white ${customTextClass??"title-15 f700"}`}>{title}</span>
       
       {rightComponent}
     </div>

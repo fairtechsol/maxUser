@@ -126,7 +126,7 @@ const SecureAuthVerificationComponent = () => {
                       />
                       <CustomButton
                         className={`ms-2 ${
-                          !isMobile && "bg-primaryBlue"
+                          !isMobile && "bg-primary"
                         } border-0`}
                       >
                         Get Connection Id
