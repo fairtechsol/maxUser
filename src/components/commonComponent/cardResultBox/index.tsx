@@ -18,7 +18,6 @@ const CardResultBox = ({ data, name, type }: any) => {
   const { liveGameResultTop10, resultData } = useSelector(
     (state: RootState) => state.card
   );
-
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
@@ -36,14 +35,14 @@ const CardResultBox = ({ data, name, type }: any) => {
         } else {
           return "#355E3B";
         }
-        case "baccarat":
-          if (item.result === "1") {
-            return "#086CB8";
-          } else if (item?.result === "2") {
-            return "#AE2130";
-          } else {
-            return "#355E3B";
-          }
+      case "baccarat":
+        if (item.result === "1") {
+          return "#086CB8";
+        } else if (item?.result === "2") {
+          return "#AE2130";
+        } else {
+          return "#355E3B";
+        }
       default:
         return "#355e3b";
     }
@@ -284,6 +283,27 @@ const CardResultBox = ({ data, name, type }: any) => {
                   {item?.result === "1"
                     ? name?.[0]
                     : item?.result === "2"
+                    ? name?.[1]
+                    : name?.[2]}
+                </span>
+              ) : type === "dtl20" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color:
+                      item?.result === "1"
+                        ? "#ff4500"
+                        : item?.result === "21"
+                        ? "#ffff33"
+                        : item?.result === "41"
+                        ? "#33C6FF"
+                        : "#ffffff",
+                  }}
+                >
+                  {item?.result === "1"
+                    ? name?.[0]
+                    : item?.result === "21"
                     ? name?.[1]
                     : name?.[2]}
                 </span>
