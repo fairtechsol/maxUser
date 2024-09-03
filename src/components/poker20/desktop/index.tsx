@@ -79,7 +79,6 @@ const Poker20Desktop = () => {
   }, []);
 
   
-console.log(dragonTigerDetail)
 
   return (
     <>
