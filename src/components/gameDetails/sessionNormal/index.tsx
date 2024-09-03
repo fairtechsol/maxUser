@@ -36,7 +36,6 @@ const SessionNormal = ({ title, data, detail }) => {
       matchBetType:"session",
       betPlaceIndex:tno,
       mid:data?.mid?.toString(),
-      teamName: title==="oddeven"?teamName:undefined
     };
     dispatch(
       selectedBetAction({
@@ -72,7 +71,7 @@ const SessionNormal = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-           {title !=="oddeven" && <div className="sessionYesNoBoxContainer">
+            <div className="sessionYesNoBoxContainer">
               <div className="sessionYesNoBox">
                 <div className="sessionYesBox lay1Background">
                   <span
@@ -94,7 +93,7 @@ const SessionNormal = ({ title, data, detail }) => {
                 </div>
                 <div className="sessionEmptyBox"></div>
               </div>
-            </div>}
+            </div>
             {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
@@ -105,7 +104,7 @@ const SessionNormal = ({ title, data, detail }) => {
                   {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
                   {item?.GameStatus ?? "SUSPENDED"}</span></div>}
                   <div style={{width:"100%",display:"flex",flexDirection:"column",borderRight:"1px solid #c7c8ca"}}>
-                    <div className={`sessionRateBox ${title ==="oddeven" ?"back1Background":"lay1Background"}`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToLay?.[0]?.price :item?.ex?.availableToLay?.[0]?.size,item,item?.ex?.availableToLay?.[0]?.tno,"odd")}>
+                    <div className={`sessionRateBox lay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item,item?.ex?.availableToLay?.[0]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -121,7 +120,7 @@ const SessionNormal = ({ title, data, detail }) => {
                         {item?.ex?.availableToLay?.[0]?.size}
                       </span>
                     </div>
-                   {item?.ex?.availableToLay?.length > 1 && <div className={`sessionRateBox ${title ==="oddeven" ?"back1Background":"lay1Background"}`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[1]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToLay?.[1]?.price :item?.ex?.availableToLay?.[1]?.size,item,item?.ex?.availableToLay?.[1]?.tno)}>
+                   {item?.ex?.availableToLay?.length > 1 && <div className={`sessionRateBox lay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[1]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[1]?.size,item,item?.ex?.availableToLay?.[1]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -137,7 +136,7 @@ const SessionNormal = ({ title, data, detail }) => {
                         {item?.ex?.availableToLay?.[1]?.size}
                       </span>
                     </div>}
-                    {item?.ex?.availableToLay?.length > 2 &&  <div className={`sessionRateBox ${title ==="oddeven" ?"back1Background":"lay1Background"}`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[2]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToLay?.[2]?.price :item?.ex?.availableToLay?.[2]?.size,item,item?.ex?.availableToLay?.[2]?.tno)}>
+                    {item?.ex?.availableToLay?.length > 2 &&  <div className={`sessionRateBoxlay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[2]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[2]?.size,item,item?.ex?.availableToLay?.[2]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -155,7 +154,7 @@ const SessionNormal = ({ title, data, detail }) => {
                     </div>}
                     </div>
                     <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
-                    <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToBack?.[0]?.price :item?.ex?.availableToBack?.[0]?.size,item,item?.ex?.availableToBack?.[0]?.tno,"even")}>
+                    <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[0]?.size,item,item?.ex?.availableToBack?.[0]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -171,7 +170,7 @@ const SessionNormal = ({ title, data, detail }) => {
                         {item?.ex?.availableToBack?.[0]?.size}
                       </span>
                     </div>
-                    {item?.ex?.availableToBack?.length > 1 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[1]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToBack?.[1]?.price :item?.ex?.availableToBack?.[1]?.size,item,item?.ex?.availableToBack?.[1]?.tno)}>
+                    {item?.ex?.availableToBack?.length > 1 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[1]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[1]?.size,item,item?.ex?.availableToBack?.[1]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -187,7 +186,7 @@ const SessionNormal = ({ title, data, detail }) => {
                         {item?.ex?.availableToBack?.[1]?.size}
                       </span>
                     </div>}
-                    {item?.ex?.availableToBack?.length > 2 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[2]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToBack?.[2]?.price :item?.ex?.availableToBack?.[2]?.size,item,item?.ex?.availableToBack?.[2]?.tno)}>
+                    {item?.ex?.availableToBack?.length > 2 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[2]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[2]?.size,item,item?.ex?.availableToBack?.[2]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -253,7 +252,7 @@ const SessionNormal = ({ title, data, detail }) => {
                   {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
                   {item?.GameStatus ?? "SUSPENDED"}</span></div>}
                   <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
-                    <div className={`sessionRateBox ${title ==="oddeven" ?"back1Background":"lay1Background"}`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToLay?.[0]?.price :item?.ex?.availableToLay?.[0]?.size,item,item?.ex?.availableToLay?.[0]?.tno)}>
+                    <div className={`sessionRateBox lay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item,item?.ex?.availableToLay?.[0]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -269,7 +268,7 @@ const SessionNormal = ({ title, data, detail }) => {
                         {item?.ex?.availableToLay?.[0]?.size}
                       </span>
                     </div>
-                   {item?.ex?.availableToLay?.length > 1 && <div className={`sessionRateBox ${title ==="oddeven" ?"back1Background":"lay1Background"}`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[1]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToLay?.[1]?.price :item?.ex?.availableToLay?.[1]?.size,item,item?.ex?.availableToLay?.[1]?.tno)}>
+                   {item?.ex?.availableToLay?.length > 1 && <div className={`sessionRateBox lay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[1]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[1]?.size,item,item?.ex?.availableToLay?.[1]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -285,7 +284,7 @@ const SessionNormal = ({ title, data, detail }) => {
                         {item?.ex?.availableToLay?.[1]?.size}
                       </span>
                     </div>}
-                    {item?.ex?.availableToLay?.length > 2 &&  <div className={`sessionRateBox ${title ==="oddeven" ?"back1Background":"lay1Background"}`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[2]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToLay?.[2]?.price :item?.ex?.availableToLay?.[2]?.size,item,item?.ex?.availableToLay?.[2]?.tno)}>
+                    {item?.ex?.availableToLay?.length > 2 &&  <div className={`sessionRateBox lay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[2]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[2]?.size,item,item?.ex?.availableToLay?.[2]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -303,7 +302,7 @@ const SessionNormal = ({ title, data, detail }) => {
                     </div>}
                     </div>
                     <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
-                    <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToBack?.[0]?.price :item?.ex?.availableToBack?.[0]?.size,item,item?.ex?.availableToBack?.[0]?.tno)}>
+                    <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[0]?.size,item,item?.ex?.availableToBack?.[0]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -319,7 +318,7 @@ const SessionNormal = ({ title, data, detail }) => {
                         {item?.ex?.availableToBack?.[0]?.size}
                       </span>
                     </div>
-                    {item?.ex?.availableToBack?.length > 1 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[1]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToBack?.[1]?.price :item?.ex?.availableToBack?.[1]?.size,item,item?.ex?.availableToBack?.[1]?.tno)}>
+                    {item?.ex?.availableToBack?.length > 1 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[1]?.price,"Yes","YES",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToBack?.[1]?.price :item?.ex?.availableToBack?.[1]?.size,item,item?.ex?.availableToBack?.[1]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"
@@ -335,7 +334,7 @@ const SessionNormal = ({ title, data, detail }) => {
                         {item?.ex?.availableToBack?.[1]?.size}
                       </span>
                     </div>}
-                    {item?.ex?.availableToBack?.length > 2 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[2]?.price,"Back","Back",item?.activeStatus,title ==="oddeven" ?item?.ex?.availableToBack?.[2]?.price :item?.ex?.availableToBack?.[2]?.size,item,item?.ex?.availableToBack?.[2]?.tno)}>
+                    {item?.ex?.availableToBack?.length > 2 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[2]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[2]?.size,item,item?.ex?.availableToBack?.[2]?.tno)}>
                       <span
                         className={`${
                           !isMobile ? "f-size18" : "f-size12"

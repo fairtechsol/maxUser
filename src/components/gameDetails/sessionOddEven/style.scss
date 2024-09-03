@@ -46,10 +46,9 @@
     color: #000;
     font-weight: 500;
 }
-.sessionRateContainer{
+.sessionOddEvenRateContainer{
     width: 100%;
-    // height: "auto";
-    min-height: 50px;
+    height: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
