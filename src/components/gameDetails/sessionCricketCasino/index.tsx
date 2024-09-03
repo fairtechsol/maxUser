@@ -17,6 +17,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
     value: any,
     item: any,
     tno: any,
+    index:any
   ) => {
     if (status != "") {
       return false;
@@ -37,6 +38,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       matchBetType: "session",
       betPlaceIndex: tno,
       mid: item?.mid?.toString(),
+      teamName:  index + " Number" ,
     };
     dispatch(
       selectedBetAction({
@@ -108,9 +110,10 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                             "Back",
                             "Back",
                             item?.gstatus,
-                            item?.odds?.[0]?.size,
+                            item?.odds?.[0]?.odds,
                             item,
-                            item?.odds?.[0]?.tno
+                            item?.odds?.[0]?.tno,
+                            index
                           )
                         }
                       >
