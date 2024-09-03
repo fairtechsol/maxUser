@@ -263,7 +263,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             </div>
           </div>
           <div className="market-body-c" data-title="OPEN">
-            {fancyData?.map((row: any, index: any) => (
+            {showFancy?.length>0 && showFancy?.map((row: any, index: any) => (
               <div className={`fancy-market`}>
                 <div className="market-row-" style={{display:"flex",}}>
                   <div className="market-nation-detail-c" style={{width:"55%"}}>
@@ -278,18 +278,20 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                     }`}
                     data-title={row.suspended ? "SUSPENDED" : "ACTIVE"}
                     key={index}
-                    style={{display:"flex",width:"45%"}}
+                    style={{display:"flex",width:"45%",}}
                   >
-                    <div className="market-odd-box-c lay">
-                      <span className="market-odd-c">{row.layOdd}</span>
+                    <div className="market-odd-box-c lay" >
+                      <span className="market-odd-c" style={{fontWeight:"bold"}}>{row?.b1}</span>
+                      <span className="market-volume">{row?.bs1}</span>
                     </div>
                     <div className="market-odd-box-c back">
-                      <span className="market-odd-c">{row.backOdd}</span>
+                      <span className="market-odd-c" style={{fontWeight:"bold"}}>{row.l1}</span>
+                      <span className="market-volume">{row?.ls1}</span>
                     </div>
                     <div className="fancy-min-max-box">
                       <div className="fancy-min-max">
-                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93"}}>Min: 100.00</span>
-                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93"}}>Max: 1L</span>
+                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Min: 100.00</span>
+                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Max: 1L</span>
                       </div>
                     </div>
                   </div>
