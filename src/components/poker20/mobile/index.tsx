@@ -16,7 +16,7 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-
+import PlayerTable from "./playerBox";
 const Poker20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [show, setShow] = useState(false);
@@ -121,7 +121,7 @@ const Poker20Mobile = () => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%"}}>
+            <div style={{ width: "100%" }}>
               <div className="horseRacingTabHeader-m">
                 <div>
                   <span style={{ fontSize: "14px", fontWeight: "600" }}>
@@ -148,19 +148,19 @@ const Poker20Mobile = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
-                <div>
-                  <DynamicTable
-                    back={true}
-                    odds={dragonTigerDetail?.odds}
+                <div style={{display:"flex",flexDirection:"column"}}>
+                  <PlayerTable
+                    title={"PlayerA"}
+                    odds={dragonTigerDetail?.PlayerA}
                     data={dragonTigerDetail}
                     playerNum={[0, 10]}
                   />
-
-                  <DynamicTable
-                    back={false}
-                    odds={dragonTigerDetail?.odds}
+                  <div style={{ width: "10px" }}></div>
+                  <PlayerTable
+                    title={"PlayerB"}
+                    odds={dragonTigerDetail?.PlayerB}
                     data={dragonTigerDetail}
-                    playerNum={[10, 18]}
+                    playerNum={[0, 10]}
                   />
                 </div>
                 <div style={{ marginTop: "10px" }}>

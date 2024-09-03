@@ -134,11 +134,13 @@ const Cricket5Desktop = () => {
             <div>
               <div className="ms-1 w-100">
                 <MarketComponent
+                  showFancy={dragonTigerDetail?.fancy}
                   odds={dragonTigerDetail?.odds}
                   min={dragonTigerDetail?.videoInfo?.min}
                   max={dragonTigerDetail?.videoInfo?.max}
                   data={dragonTigerDetail}
                 />
+              
               </div>
               <div className="mt-2 ms-2">
                 <CardResultBox
