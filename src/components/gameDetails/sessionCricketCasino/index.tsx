@@ -110,7 +110,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                             "Back",
                             "Back",
                             item?.gstatus,
-                            item?.odds?.[0]?.size,
+                            item?.odds?.[0]?.odds,
                             item,
                             item?.odds?.[0]?.tno,
                             index
