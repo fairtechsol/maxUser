@@ -155,13 +155,15 @@ const Poker6Mobile = () => {
                     onClick={() => setActiveCardTab(false)}
                       style={{
                         height: "100%",
-                        borderTop: !activeCardTab ? "2px solid white" : "none",
-                        padding: "5px",
+                        borderTop: !activeCardTab ? "1px solid white" : "none",
+                        padding: "3px",
                         width: "100%",
+                        backgroundColor: !activeCardTab ? "#ffc742d9" : "",
+                        color: !activeCardTab ? "#ffffff" : "#000000",
                       }}
                     >
                       <span
-                        style={{ fontSize: "12px", fontWeight: "bold" }}
+                        style={{ fontSize: "14px", fontWeight: "normal" }}
                         
                       >
                         HANDS
@@ -170,20 +172,22 @@ const Poker6Mobile = () => {
                     <span
                       style={{ fontSize: "18px", padding: "5px 0px 0px 0px" }}
                     >
-                      {" "}
-                      |{" "}
+                      {/* {" "}
+                      |{" "} */}
                     </span>
                     <div
                      onClick={() => setActiveCardTab(true)}
                       style={{
                         height: "100%",
-                        borderTop: activeCardTab ? "2px solid white" : "none",
-                        padding: "5px",
+                        borderTop: activeCardTab ? "1px solid white" : "none",
+                        padding: "3px",
                         width: "100%",
+                        backgroundColor: activeCardTab ? "#ffc742d9" : "",
+                        color: activeCardTab ? "#ffffff" : "#000000",
                       }}
                     >
                       <span
-                        style={{ fontSize: "12px", fontWeight: "bold" }}
+                        style={{ fontSize: "14px", fontWeight: "normal" }}
                        
                       >
                         PATTERN
@@ -197,7 +201,7 @@ const Poker6Mobile = () => {
                     <TiePairBox
                       handsData={dragonTigerDetail?.patternData}
                       data={dragonTigerDetail}
-                      width={"30%"}
+                      width={"50%"}
                       title={"pattern"}
                     />
                   </div>
@@ -206,7 +210,7 @@ const Poker6Mobile = () => {
                     <TiePairBox
                       handsData={dragonTigerDetail?.handsData}
                       data={dragonTigerDetail}
-                      width={"49%"}
+                      width={"100%"}
                       title={"hand"}
                       cards={dragonTigerDetail?.videoInfo}
                     />

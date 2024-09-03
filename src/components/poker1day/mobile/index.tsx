@@ -199,22 +199,32 @@ const Poker1dayMobile = () => {
                     data={dragonTigerDetail}
                     min={dragonTigerDetail?.videoInfo?.min}
                     max={dragonTigerDetail?.videoInfo?.max}
-                    playerNum={[8, 9]}
+                    playerNum={dragonTigerDetail?.oddsData?.[0]}
+                  />
+                  <DynamicTable
+                    back={true}
+                    odds={dragonTigerDetail?.oddsData}
+                    data={dragonTigerDetail}
+                    min={dragonTigerDetail?.videoInfo?.min}
+                    max={dragonTigerDetail?.videoInfo?.max}
+                    playerNum={dragonTigerDetail?.oddsData?.[1]}
                   />
                 </div>
-                <div className="horseRacingTabHeader-m mt-1">
+                {/* <div className="horseRacingTabHeader-m mt-1">
                   <div>
                     <span style={{ fontSize: "14px", fontWeight: "600" }}>
                       Bonus Bet
                     </span>
                   </div>
-                </div>
+                </div> */}
+                    <div className="mt-2" style={{ width: "100%" }}>
                 <PairBox
                   odds={dragonTigerDetail?.playersBonusPair}
                   data={dragonTigerDetail}
                   min={dragonTigerDetail?.videoInfo?.min}
                   max={dragonTigerDetail?.videoInfo?.max}
                 />
+                </div>
                 <div style={{ marginTop: "10px" }}>
                   {" "}
                   <CardResultBox

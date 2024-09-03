@@ -2,9 +2,9 @@
 import "../../layout.scss";
 
 
-const Footer = () => {
+const FooterMain = () => {
   return (
-    <section className="footer-login w-100">
+    <section className="footer ">
       <div className="footer-top">
         <div className="footer-links">
           <nav className="navbar">
@@ -32,5 +32,5 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterMain;
 

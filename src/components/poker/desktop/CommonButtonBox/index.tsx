@@ -18,15 +18,13 @@ const CommonButtonBox = ({
 }: any) => {
   // const dispatch: AppDispatch = useDispatch();
   return (
-    <div className="commonButtonBoxContainer" style={{ width: width }}>
-      <div>
-        
-      </div>
-      {/* <div className="tiePairbtn-theme suspended" onClick={handleBet}> */}
+    <div className="poker6player" style={{ width: width }}>
       <div
-        className={`tiePairbtn-theme d-flex justify-content-between ${lock ? "suspended" : ""}`}
+        className={`casino-odds-box-poker back ${lock ? "suspended" : ""}`}
         onClick={() => (!lock ? handleBet(data) : null)}
       >
+        <div className="d-flex">
+         <span className="text-black ps-2" >{data?.nation}</span>
         <div className="d-flex flex-row" style={{gap:"6px"}}>
         <span>
           {value2} 
@@ -34,13 +32,13 @@ const CommonButtonBox = ({
         {card1 != '1' && (<HandleGameCards card={card1} />)}{" "}
         {card2 != '1' && (<HandleGameCards card={card2} />)}
         </div>
-       
-        <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
+        </div>
+        <span className="pe-2" style={{ fontSize: "16px", fontWeight: "bolder" }}>
           {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
         </span>
       </div>
       <div className="d-flex justify-content-between w-100">
-        <div
+        {/* <div
           style={{ fontSize: "16px" }}
           className={` ${
             isNaN(value3)
@@ -53,13 +51,13 @@ const CommonButtonBox = ({
           }`}
         >
           {isNaN(value3) ? 0 : value3}
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
         <span style={{ fontWeight: "bolder" }}>Min:</span>
         <span>{min}</span>
         <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
         <span>{max}</span>
-      </div>
+      </div> */}
       </div>
     </div>
   );
