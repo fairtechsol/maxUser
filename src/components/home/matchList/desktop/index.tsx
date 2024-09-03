@@ -100,7 +100,7 @@ const DesktopMatchList = ({
               <Tab
                 key={item?.id}
                 eventKey={type ?? item?.id}
-                tabClassName="match-list-tabs title-12 text-nowrap"
+                tabClassName="match-list-tabs title-15 text-nowrap"
                 title={item?.name}
               ></Tab>
             );

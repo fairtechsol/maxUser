@@ -157,7 +157,7 @@ const Poker6Desktop = () => {
                     <TiePairBox
                       handsData={dragonTigerDetail?.patternData}
                       data={dragonTigerDetail}
-                      width={"30%"}
+                      width={"32%"}
                       title={"pattern"}
                     />
                   </div>

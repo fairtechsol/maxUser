@@ -46,9 +46,10 @@
     color: #000;
     font-weight: 500;
 }
-.sessionOddEvenRateContainer{
+.sessionRateContainer{
     width: 100%;
-    height: 50px;
+    // height: "auto";
+    min-height: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -63,8 +64,8 @@
     justify-content: start;
     padding: 5px;
 }
-.sessionRateBoxContainer{
-    width:46%;
+.sessionCCRateBoxContainer{
+    width:15%;
     height: 100%;
     display: flex;
     flex-direction: row;

@@ -20,6 +20,7 @@ import ScrollToTop from "../../components/commonComponent/ScrollToTop";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Footer from "./footer";
 import FooterBottom from "./footerBottom";
+import FooterMain from "./footerMain";
 
 const MainLayout = () => {
   const navigate = useNavigate();
@@ -154,9 +155,14 @@ const MainLayout = () => {
           <Outlet />
         </main>
       </div>
-      <div style={{position: "relative" ,top: 100}}>
-      <Footer/>
-      <FooterBottom/>
+      <div
+        className="contents-wrapper"
+        style={{ width: "100%" }}
+      >
+        <div className="footer-container">
+          <FooterMain />
+          <FooterBottom />
+        </div>
       </div>
     </div>
   );

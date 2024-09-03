@@ -15,7 +15,7 @@ const DesktopTopBar = () => {
                 ? `/game-list${item?.link}`
                 : item?.link
             }
-            className={`text-decoration-none f600 title-13  text-white topbar-link`}
+            className={`text-decoration-none f600 title-14  text-white topbar-link`}
           >
             {item?.name}
           </Link>

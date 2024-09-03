@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #f2f2f2;
+    background-color: #fff;
     margin-top: 10px;
 }
 .sessionNormalTitle{
@@ -48,18 +48,21 @@
 }
 .sessionRateContainer{
     width: 100%;
-    height: 50px;
+    // height: "auto";
+    min-height: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     border-bottom: 1px solid #c7c8ca;
+    background-color: #f2f2f2;
 }
 .sessionRateName{
+    width: 54%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: start;
-    margin: 5px;
+    padding: 5px;
 }
 .sessionRateBoxContainer{
     width:46%;
@@ -69,7 +72,7 @@
     position: relative;
 }
 .sessionRateBox{
-    width: 33.33%;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;

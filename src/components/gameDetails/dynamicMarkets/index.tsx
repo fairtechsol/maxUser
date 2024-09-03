@@ -7,7 +7,7 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 const DynamicMarket=({title,data,detail})=>{
     const dispatch: AppDispatch = useDispatch();
 
-    const handlePlaceBet=(odds:any,type:any,betTeam:any,status:any,index:any)=>{
+    const handlePlaceBet=(odds:any,type:any,betTeam:any,status:any,index:any,runner:any)=>{
         if(data?.activeStatus != "live" || status !="ACTIVE"){
             return false;
         }
@@ -23,7 +23,9 @@ const DynamicMarket=({title,data,detail})=>{
             eventType:detail?.matchType,
             matchId:detail?.id,
             matchBetType:data?.type,
-            placeIndex:index
+            placeIndex:index,
+            mid: data?.mid?.toString(),
+            selectionId:runner?.selectionId?.toString()
         }
         dispatch(
             selectedBetAction({
@@ -66,27 +68,27 @@ const DynamicMarket=({title,data,detail})=>{
               <div className="dynamicRateBox" style={{width:isMobile?"24%":"72%"}}>
               {(data?.activeStatus === "live" && data?.runners?.[0]?.status !="ACTIVE") && <div className="suspended-overlayRatesdynamic"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtdynamic`}>
                 SUSPENDED</span></div>}
-               {!isMobile && <div className="dynamicBackBox back3Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,"BACK","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno)}>
+               {!isMobile && <div className="dynamicBackBox back3Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,"BACK","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,data?.runners?.[0])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[0]?.ex?.availableToBack?.[0]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}</span>
                 </div>}
-               {!isMobile && <div className="dynamicBackBox back2Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[1]?.price,"BACK","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[1]?.tno)}>
+               {!isMobile && <div className="dynamicBackBox back2Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[1]?.price,"BACK","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[1]?.tno,data?.runners?.[0])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[0]?.ex?.availableToBack?.[1]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}</span>
                 </div>}
-                <div className="dynamicBackBox back1Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[2]?.price,"BACK","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[2]?.tno)}>
+                <div className="dynamicBackBox back1Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[2]?.price,"BACK","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[2]?.tno,data?.runners?.[0])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[0]?.ex?.availableToBack?.[2]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[0]?.ex?.availableToBack?.[2]?.size}</span>
                 </div>
-                <div className="dynamicBackBox lay1Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToLay?.[0]?.price,"LAY","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno)}>
+                <div className="dynamicBackBox lay1Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToLay?.[0]?.price,"LAY","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,data?.runners?.[0])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[0]?.ex?.availableToLay?.[0]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}</span>
                 </div>
-               {!isMobile && <div className="dynamicBackBox lay2Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToLay?.[1]?.price,"LAY","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToLay?.[1]?.tno)}>
+               {!isMobile && <div className="dynamicBackBox lay2Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToLay?.[1]?.price,"LAY","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToLay?.[1]?.tno,data?.runners?.[0])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[0]?.ex?.availableToLay?.[1]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}</span>
                 </div>}
-               {!isMobile && <div className="dynamicBackBox lay3Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToLay?.[2]?.price,"LAY","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToLay?.[2]?.tno)}>
+               {!isMobile && <div className="dynamicBackBox lay3Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToLay?.[2]?.price,"LAY","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToLay?.[2]?.tno,data?.runners?.[0])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[0]?.ex?.availableToLay?.[2]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}</span>
                 </div>}
@@ -102,27 +104,27 @@ const DynamicMarket=({title,data,detail})=>{
               <div className="dynamicRateBox" style={{width:isMobile?"24%":"72%"}}>
               {(data?.activeStatus === "live" && data?.runners?.[1]?.status !="ACTIVE") && <div className="suspended-overlayRatesdynamic"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtdynamic`}>
                 SUSPENDED</span></div>}
-               {!isMobile && <div className="dynamicBackBox back3Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,"BACK","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[0]?.tno)}>
+               {!isMobile && <div className="dynamicBackBox back3Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,"BACK","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[0]?.tno,data?.runners?.[1])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[1]?.ex?.availableToBack?.[0]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}</span>
                 </div>}
-               {!isMobile && <div className="dynamicBackBox back2Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[1]?.price,"BACK","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[1]?.tno)}>
+               {!isMobile && <div className="dynamicBackBox back2Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[1]?.price,"BACK","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[1]?.tno,data?.runners?.[1])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[1]?.ex?.availableToBack?.[1]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}</span>
                 </div>}
-                <div className="dynamicBackBox back1Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[2]?.price,"BACK","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[2]?.tno)}>
+                <div className="dynamicBackBox back1Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[2]?.price,"BACK","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[2]?.tno,data?.runners?.[1])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[1]?.ex?.availableToBack?.[2]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[1]?.ex?.availableToBack?.[2]?.size}</span>
                 </div>
-                <div className="dynamicBackBox lay1Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToLay?.[0]?.price,"LAY","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToLay?.[0]?.tno)}>
+                <div className="dynamicBackBox lay1Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToLay?.[0]?.price,"LAY","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToLay?.[0]?.tno,data?.runners?.[1])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[1]?.ex?.availableToLay?.[0]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}</span>
                 </div>
-              {!isMobile && <div className="dynamicBackBox lay2Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToLay?.[1]?.price,"LAY","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToLay?.[1]?.tno)}>
+              {!isMobile && <div className="dynamicBackBox lay2Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToLay?.[1]?.price,"LAY","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToLay?.[1]?.tno,data?.runners?.[1])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[1]?.ex?.availableToLay?.[1]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}</span>
                 </div>}
-               {!isMobile && <div className="dynamicBackBox lay3Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToLay?.[2]?.price,"LAY","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToLay?.[2]?.tno)}>
+               {!isMobile && <div className="dynamicBackBox lay3Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToLay?.[2]?.price,"LAY","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToLay?.[2]?.tno,data?.runners?.[1])}>
                     <span className={`${!isMobile ? "f-size18":"f-size12"} dynamicRate1Box`}>{data?.runners?.[1]?.ex?.availableToLay?.[2]?.price ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size10"} dynamicRate2Box`}>{data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}</span>
                 </div>}
