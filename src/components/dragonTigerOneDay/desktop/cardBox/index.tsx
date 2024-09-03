@@ -83,7 +83,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">
+          <div className="dtlTitlee">
             {" "}
             <div style={{ width: "30%" }}>
               <span className="minmaxi">
@@ -114,14 +114,14 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
-          <div className="dtlTitle">Dragon </div>
+          <div className="dtlTitlee">Dragon </div>
           {renderItem(dragonData?.[4], 4)}
           {renderItem(dragonData?.[5], 5)}
           {renderItem(dragonData?.[7], 7)}
           {renderItem(dragonData?.[6], 6)}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
-          <div className="dtlTitle"> Tiger</div>
+          <div className="dtlTitlee"> Tiger</div>
           {renderItem(tigerData?.[4], 4)}
           {renderItem(tigerData?.[5], 5)}
           {renderItem(tigerData?.[7], 7)}
