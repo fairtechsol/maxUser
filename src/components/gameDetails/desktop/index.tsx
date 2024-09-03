@@ -290,7 +290,7 @@ const DesktopGameDetail = () => {
                 }
                 )}
               </div>
-              {matchDetails?.sessionBettings?.length > 0 &&
+              {/* {matchDetails?.sessionBettings?.length > 0 &&
                 matchDetails?.sessionBettings?.map(
                   (item: any, index: number) =>{ 
                     const jsonObject = JSON.parse(item);
@@ -308,7 +308,7 @@ const DesktopGameDetail = () => {
                       )} 
                     </div>
                   )}
-                )}
+                )} */}
               {/* {matchDetails?.quickBookmaker?.length > 0 &&
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
