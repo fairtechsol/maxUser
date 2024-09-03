@@ -11,6 +11,9 @@ const MatchOdd=({title,data,detail})=>{
         if(data?.activeStatus != "live" || status !="ACTIVE"){
             return false;
         }
+        if(odds === 0){
+          return false;
+      }
         let team ={
             betOnTeam:betTeam,
             rate:odds,
@@ -131,7 +134,7 @@ const MatchOdd=({title,data,detail})=>{
               </div>
             </div>
 
-            <div className="matchOddTeamTab">
+            {detail?.teamC &&  <div className="matchOddTeamTab">
             {data?.activeStatus != "live" && <div className="suspended-overlayRatesMatchOdd"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
                 SUSPENDED</span></div>}
               <div className="matchOddTeam">
@@ -165,7 +168,7 @@ const MatchOdd=({title,data,detail})=>{
                     <span className={`${!isMobile ? "f-size12":"f-size10"} matchOddRate2Box`}>{data?.runners?.[2]?.ex?.availableToLay?.[2]?.size}</span>
                 </div>
               </div>
-            </div>
+            </div>}
            
         </div>
         </>

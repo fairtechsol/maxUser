@@ -10,6 +10,9 @@ const ManualMarket=({title,data,detail})=>{
         if(data?.activeStatus != "live" || status !="active"){
             return false;
         }
+        if(odds === 0){
+          return false;
+      }
         let team ={
             betOnTeam:betTeam,
             rate:odds,
@@ -60,7 +63,7 @@ const ManualMarket=({title,data,detail})=>{
             {data?.activeStatus != "live" && <div className="suspended-overlayRatesmanual"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtmanual`}>
                 SUSPENDED</span></div>}
               <div className="manualTeam">
-                <span className={`${!isMobile ? "f-size16":"f-size12"} manualTeamTxt`}>{"Yes"}</span>
+                <span className={`${!isMobile ? "f-size16":"f-size12"} manualTeamTxt`}>{data?.type?.includes('quickbookmaker1')?detail?.teamA :"Yes"}</span>
               </div>
               <div className="manualRateBox" style={{width:isMobile?"24%":"72%"}}>
               {(data?.activeStatus === "live" && data?.statusTeamA !="active") && <div className="suspended-overlayRatesmanual"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtmanual`}>
@@ -90,7 +93,7 @@ const ManualMarket=({title,data,detail})=>{
             {data?.activeStatus != "live" && <div className="suspended-overlayRatesmanual"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtmanual`}>
                 SUSPENDED</span></div>}
               <div className="manualTeam">
-                <span className={`${!isMobile ? "f-size16":"f-size12"} manualTeamTxt`}>{"No"}</span>
+                <span className={`${!isMobile ? "f-size16":"f-size12"} manualTeamTxt`}>{data?.type?.includes('quickbookmaker1')?detail?.teamB :"No"}</span>
               </div>
               <div className="manualRateBox" style={{width:isMobile?"24%":"72%"}}>
               {(data?.activeStatus === "live" && data?.statusTeamB !="active") && <div className="suspended-overlayRatesmanual"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtmanual`}>
@@ -115,6 +118,37 @@ const ManualMarket=({title,data,detail})=>{
                 </div>}
               </div>
             </div>
+
+
+         {(data?.type?.includes('quickbookmaker1') && detail?.teamC) &&  <div className="manualTeamTab">
+            {data?.activeStatus != "live" && <div className="suspended-overlayRatesmanual"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtmanual`}>
+                SUSPENDED</span></div>}
+              <div className="manualTeam">
+                <span className={`${!isMobile ? "f-size16":"f-size12"} manualTeamTxt`}>{detail?.teamC}</span>
+              </div>
+              <div className="manualRateBox" style={{width:isMobile?"24%":"72%"}}>
+              {(data?.activeStatus === "live" && data?.statusTeamB !="active") && <div className="suspended-overlayRatesmanual"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtmanual`}>
+                SUSPENDED</span></div>}
+               {!isMobile && <div className="manualBackBox back3Background" onClick={()=> handlePlaceBet(data?.backTeamC-2,"BACK","No",data?.statusTeamC,2)}>
+                    <span className={`${!isMobile ? "f-size18":"f-size12"} manualRate1Box`}>{data?.backTeamC !=0 ?data?.backTeamC-2 : '-'}</span>
+                </div>}
+              {!isMobile &&  <div className="manualBackBox back2Background" onClick={()=> handlePlaceBet(data?.backTeamC-1,"BACK","No",data?.statusTeamC,1)}>
+                    <span className={`${!isMobile ? "f-size18":"f-size12"} manualRate1Box`}>{data?.backTeamC !=0 ?data?.backTeamC-1 : '-'}</span>
+                </div>}
+                <div className="manualBackBox back1Background" onClick={()=> handlePlaceBet(data?.backTeamC,"BACK","No",data?.statusTeamC,0)}>
+                    <span className={`${!isMobile ? "f-size18":"f-size12"} manualRate1Box`}>{data?.backTeamC !=0 ?data?.backTeamC : '-'}</span>
+                </div>
+                <div className="manualBackBox lay1Background" onClick={()=> handlePlaceBet(data?.layTeamC,"LAY","No",data?.statusTeamC,0)}>
+                    <span className={`${!isMobile ? "f-size18":"f-size12"} manualRate1Box`}>{data?.layTeamC !=0 ?data?.layTeamC : '-'}</span>
+                </div>
+               {!isMobile && <div className="manualBackBox lay2Background" onClick={()=> handlePlaceBet(data?.layTeamC+1,"LAY","No",data?.statusTeamC,1)}>
+                    <span className={`${!isMobile ? "f-size18":"f-size12"} manualRate1Box`}>{data?.layTeamC !=0 ?data?.layTeamC+1 : '-'}</span>
+                </div>}
+               {!isMobile && <div className="manualBackBox lay3Background" onClick={()=> handlePlaceBet(data?.layTeamC+2,"LAY","No",data?.statusTeamC,2)}>
+                    <span className={`${!isMobile ? "f-size18":"f-size12"} manualRate1Box`}>{data?.layTeamC !=0 ?data?.layTeamC+2 : '-'}</span>
+                </div>}
+              </div>
+            </div>}
            
         </div>
         </>
