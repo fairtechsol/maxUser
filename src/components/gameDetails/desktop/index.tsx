@@ -22,7 +22,6 @@ import SessionNormal from "../sessionNormal";
 import SessionFancy from "../sessionFancy";
 import SessionOddEven from "../sessionOddEven";
 import SessionCricketCasino from "../sessionCricketCasino";
-import SessionManual from "../sessionManual";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -290,25 +289,7 @@ const DesktopGameDetail = () => {
                 }
                 )}
               </div>
-              {/* {matchDetails?.sessionBettings?.length > 0 &&
-                matchDetails?.sessionBettings?.map(
-                  (item: any, index: number) =>{ 
-                    const jsonObject = JSON.parse(item);
-                    console.log("jsonObjec89t",matchDetails)
-                    return (
-                    <div key={index}>
-                      {jsonObject?.activeStatus ==="live" && (
-                        <Col md={12}>
-                          <SessionManual
-                            title={jsonObject?.name}
-                            data={jsonObject}
-                            detail={matchDetails}
-                          />
-                        </Col>
-                      )} 
-                    </div>
-                  )}
-                )} */}
+              
               {/* {matchDetails?.quickBookmaker?.length > 0 &&
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (

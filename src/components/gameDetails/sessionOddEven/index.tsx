@@ -147,9 +147,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                             "Back",
                             "Back",
                             item?.activeStatus,
-                            title === "oddeven"
-                              ? item?.ex?.availableToBack?.[0]?.price
-                              : item?.ex?.availableToBack?.[0]?.size,
+                            item?.ex?.availableToBack?.[0]?.price,
                             item,
                             item?.ex?.availableToBack?.[0]?.tno,
                             "even"
@@ -232,9 +230,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                               "Back",
                               "Back",
                               item?.activeStatus,
-                              title === "oddeven"
-                                ? item?.ex?.availableToLay?.[0]?.price
-                                : item?.ex?.availableToLay?.[0]?.size,
+                              item?.ex?.availableToLay?.[0]?.price,
                               item,
                               item?.ex?.availableToLay?.[0]?.tno,"odd"
                             )
@@ -272,9 +268,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                               "Back",
                               "Back",
                               item?.activeStatus,
-                              title === "oddeven"
-                                ? item?.ex?.availableToBack?.[0]?.price
-                                : item?.ex?.availableToBack?.[0]?.size,
+                              item?.ex?.availableToBack?.[0]?.price,
                               item,
                               item?.ex?.availableToBack?.[0]?.tno,"even"
                             )
