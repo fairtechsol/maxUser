@@ -58,7 +58,7 @@ const PlacedBet = () => {
   );
 
   const dispatch: AppDispatch = useDispatch();
-console.log('selectedBet',selectedBet)
+// console.log('selectedBet',selectedBet)
   const handleSubmit = () => {
     if (
       selectedBet?.team?.stake <
@@ -88,6 +88,9 @@ console.log('selectedBet',selectedBet)
         odds: selectedBet?.team?.rate,
         ratePercent: selectedBet?.team?.percent,
         stake: selectedBet?.team?.stake,
+        betPlaceIndex:selectedBet?.team?.betPlaceIndex,
+        mid:selectedBet?.team?.mid,
+        teamName:selectedBet?.team?.teamName
       };
       let payloadForBettings: any = {
         betId: selectedBet?.team?.betId,
@@ -106,6 +109,8 @@ console.log('selectedBet',selectedBet)
         placeIndex: selectedBet?.team?.placeIndex,
         bettingName: selectedBet?.data?.name,
         gameType: selectedBet?.team?.eventType,
+        mid: selectedBet?.team?.mid,
+        selectionId: selectedBet?.team?.selectionId,
       };
       let payloadForRace: any = {
         betId: selectedBet?.team?.betId,
