@@ -12,6 +12,9 @@ const Bookmaker=({title,box,data,detail})=>{
         if(data?.activeStatus != "live" || status !="ACTIVE"){
             return false;
         }
+        if(odds === 0){
+          return false;
+      }
         let team ={
             betOnTeam:betTeam,
             rate:odds,
@@ -133,7 +136,7 @@ const Bookmaker=({title,box,data,detail})=>{
             </div>
              
 
-            <div className="bookmakerTeamTab">
+          {detail?.teamC &&  <div className="bookmakerTeamTab">
             {data?.activeStatus != "live" && <div className="suspended-overlayRatesBookmaker"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtBookmaker`}>
                 SUSPENDED</span></div>}
               <div className="bookmakerTeam">
@@ -167,7 +170,7 @@ const Bookmaker=({title,box,data,detail})=>{
                     <span className={`${!isMobile ? "f-size12":"f-size10"} bookmakerRate2Box`}>{data?.runners?.[2]?.ex?.availableToLay?.[2]?.size}</span>
                 </div>)}
               </div>
-            </div>
+            </div>}
             {data?.rem && 
             <div className="bookmakerRemarkTab"> 
             <div className="remark-content">

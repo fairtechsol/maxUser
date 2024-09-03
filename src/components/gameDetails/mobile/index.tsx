@@ -19,6 +19,10 @@ import MatchOdd from "../matchOdd";
 import Bookmaker from "../bookmaker";
 import ManualMarket from "../manulMarkets";
 import DynamicMarket from "../dynamicMarkets";
+import MobileSessionNormal from "../sessionNormal/mobileSessionNormal";
+import MobileSessionOddEven from "../sessionOddEven/mobileSessionOddEven";
+import MobileSessionFancy from "../sessionFancy/mobileSessionFancy";
+import SessionCricketCasino from "../sessionCricketCasino";
 
 const markets = [
   {
@@ -268,7 +272,75 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-
+                    {matchDetails?.apiSession?.session?.section?.length > 0 && (
+                      <Col className="g-0" md={12}>
+                        <MobileSessionNormal
+                          title={"Normal"}
+                          // type={"normal"}
+                          data={matchDetails?.apiSession?.session}
+                          detail={matchDetails}
+                        />
+                      </Col>
+                    )}
+                    {matchDetails?.apiSession?.overByover?.section?.length > 0 && (
+                <Col className="g-0" md={12}>
+                  <MobileSessionNormal
+                    title={"overByover"}
+                    // type={"normal"}
+                    data={matchDetails?.apiSession?.overByover}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+               {matchDetails?.apiSession?.ballByBall?.section?.length > 0 && (
+                <Col className="g-0" md={12}>
+                  <MobileSessionNormal
+                    title={"Ballbyball"}
+                    // type={"normal"}
+                    data={matchDetails?.apiSession?.ballByBall}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
+                <Col className="g-0" md={12}>
+                  <MobileSessionOddEven
+                    title={"oddeven"}
+                    // type={"fancy"}
+                    data={matchDetails?.apiSession?.oddEven}
+                    detail={matchDetails}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
+                <Col className="g-0" md={12}>
+                  <MobileSessionFancy
+                    title={"fancy1"}
+                    data={matchDetails?.apiSession?.fancy1}
+                    detail={matchDetails}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.cricketCasino?.section?.length > 0 &&
+                matchDetails?.apiSession?.cricketCasino?.section?.map(
+                  (item: any, index: number) => {
+                    return (
+                    <div key={index} style={{width:"100%",padding:0}}>
+                      {item?.activeStatus === "live" && (
+                        <Col className="g-0" md={12}>
+                          <SessionCricketCasino
+                            title={item?.RunnerName}
+                            data={item}
+                            detail={matchDetails}
+                          />
+                        </Col>
+                      )}
+                    </div>
+                  )
+                }
+                )}
                     {/* {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
@@ -348,104 +420,7 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )} */}
-                    <Col className="g-0" md={12}>
-                      <div
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          flexDirection: "column",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                          }}
-                        >
-                          {markets?.map((item, index) => {
-                            return (
-                              index < 5 && (
-                                <div
-                                  className={`matchListTab ${
-                                    item?.id === marketActive ? "active" : ""
-                                  }`}
-                                  style={{ width: "20%" }}
-                                  onClick={() => handleMarket(item?.id)}
-                                >
-                                  <span className="title-12 text-uppercase f500">
-                                    {item?.name}
-                                  </span>
-                                </div>
-                              )
-                            );
-                          })}
-                        </div>
-                        <div
-                          style={{
-                            width: "100%",
-                            display: "flex",
-                            flexDirection: "row",
-                          }}
-                        >
-                          {markets?.map((item, index) => {
-                            return (
-                              index > 4 && (
-                                <div
-                                  className={`matchListTab ${
-                                    item?.id === marketActive ? "active" : ""
-                                  }`}
-                                  style={{ width: index == 8 ? "40%" : "20%" }}
-                                  onClick={() => handleMarket(item?.id)}
-                                >
-                                  <span className="title-12 text-uppercase f500">
-                                    {item?.name}
-                                  </span>
-                                </div>
-                              )
-                            );
-                          })}
-                        </div>
-                      </div>
-                      {marketActive != "fancy" ? (
-                        <>
-                          <ContactAdmin />
-                        </>
-                      ) : (
-                        <>
-                          {matchDetails?.apiSessionActive && (
-                            <Col md={12}>
-                              <BetTable
-                                title={"Session Market"}
-                                type={MatchType.API_SESSION_MARKET}
-                                data={matchDetails?.sessionBettings}
-                              />
-                            </Col>
-                          )}
-                        </>
-                      )}
-                      {/* <Row>
-                        {matchDetails?.apiSessionActive && (
-                          <Col md={12}>
-                            <BetTable
-                              title={"Session Market"}
-                              type={MatchType.API_SESSION_MARKET}
-                              data={matchDetails?.sessionBettings}
-                            />
-                          </Col>
-                        )}
-                      </Row> */}
-                      {matchDetails?.apiTideMatch?.isActive && (
-                        <Col className="g-0" md={12}>
-                          <BetTable
-                            title={matchDetails?.apiTideMatch?.name}
-                            type={MatchType.MATCH_ODDS}
-                            data={matchDetails?.apiTideMatch}
-                            backLayCount={2}
-                          />
-                        </Col>
-                      )}
-                    </Col>
+                    
                   </Row>
                 </Container>
               ) : (
