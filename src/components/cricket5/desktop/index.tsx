@@ -79,7 +79,6 @@ const Cricket5Desktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.cricketv3}`);
   }, []);
 
-  console.log("C5", dragonTigerDetail);
   return (
     <>
       <Row>
