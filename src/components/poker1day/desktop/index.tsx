@@ -153,21 +153,31 @@ const Poker1DayDesktop = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
-                <div className="poker-table-container ">
-                  <div style={{ width: "40%" }}>
+                <div className="poker-table-container mt-1">
+                  <div className="d-flex column gap-4">
+                  <div style={{ width: "50%" }}>
                     <DynamicTable
                       odds={dragonTigerDetail?.oddsData}
                       data={dragonTigerDetail}
-                      playerNum={[8, 9]}
+                      playerNum={dragonTigerDetail?.oddsData?.[0]}
                     />
                   </div>
-                  <div style={{ width: "60%" }}>
+                  <div style={{ width: "50%" }}>
+                    <DynamicTable
+                      odds={dragonTigerDetail?.oddsData}
+                      data={dragonTigerDetail}
+                      playerNum={dragonTigerDetail?.oddsData?.[1]}
+                    />
+                  </div>
+                  </div>
+                  
+                </div>
+                <div className="mt-2" style={{ width: "100%" }}>
                     <PairBox
                       odds={dragonTigerDetail?.playersBonusPair}
                       data={dragonTigerDetail}
                     />
                   </div>
-                </div>
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}

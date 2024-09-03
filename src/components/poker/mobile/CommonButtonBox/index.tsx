@@ -13,19 +13,22 @@ const CommonButtonBox = ({
   card2,
 }: any) => {
   // const dispatch: AppDispatch = useDispatch();
-
+// console.log(data, "data")
   return (
-    <div className="commonButtonBoxContainer" style={{ width: width }}>
+    <div className="poker6-container" style={{ width: width }}>
       <div
-        className={`tiePairbtnMob-theme d-flex row ${lock ? "suspended" : ""}`}
+        className={`tiePairbtnMob-theme back py-1 d-flex row ${lock ? "suspended" : ""}`}
         onClick={() => (!lock ? handleBet(data) : null)}
       >
-        <div className="d-flex column p-1">
-          <span
-            style={{ fontSize: "12px", overflow: "auto", marginLeft: "10px" }}
-          >
-            {value2}
+        <div className="d-flex column justify-content-between">
+        <div className="text-black" >{data?.nation}</div>
+        <div className="d-flex text-black">
+          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+            {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
           </span>
+        </div>
+        </div>
+        <div className="d-flex column p-1">
           {card1 != "1" && (
             <span className="ps-1">
               <HandleGameCards card={card1} />
@@ -36,17 +39,16 @@ const CommonButtonBox = ({
               <HandleGameCards card={card2} />
             </span>
           )}
-        </div>
-        <div className="d-flex justify-content-between">
-          <span style={{ fontSize: "10px", fontWeight: "bolder" }}>
-            {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
+            <span className=""
+            style={{ fontSize: "12px", overflow: "auto", marginLeft: "10px" }}
+          >
+            {value2}
           </span>
-          
-          <div></div>
         </div>
+        
       </div>
 
-      <div className="d-flex justify-content-between w-100">
+      {/* <div className="d-flex justify-content-between w-100">
         <span
           style={{ fontSize: "12px", justifyContent: "flex-start" }}
           className={`${
@@ -67,7 +69,7 @@ const CommonButtonBox = ({
             <span>Max:</span>
             <span>{max}</span>
           </div>
-      </div>
+      </div> */}
     </div>
   );
 };

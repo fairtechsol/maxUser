@@ -36,65 +36,26 @@ const PairBox = ({ odds, data, min, max }: any) => {
     
   }, [odds?.[0]?.gstatus,odds?.[0]?.b1]);
 
+  // console.log(odds, "odds")
   return (
-    <>
-      <div className="poker-table-row">
-        {isMobile ? (
-          <div
-            className="title-12 f600 p-1"
-            style={{ width: "50%", border: "0.1px solid #fff" }}
-          >
-            {" "}
-            Min: {min} Max: {max}
-          </div>
-        ) : (
-          <div style={{ width: "50%", border: "0.1px solid #fff" }}></div>
-        )}
+    <div style={{display: "flex",padding: "0px 0px", flexWrap: "wrap", justifyContent: "space-between"}}>
+     
+      <div className="" style={{width: isMobile ? "100%" : "49%" }}>
+       {isMobile ? <div className="title-15 f700 px-2 text-black">Player A</div> : ""}
         <div
           style={{
-            width: "50%",
-            backgroundColor: "#a7d8fd",
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <div className="poker-table-item f12-b" style={{ width: "50%" }}>
-            BACK
-          </div>
-          <div className="poker-table-item f12-b" style={{ width: "50%" }}>
-            BACK
-          </div>
-        </div>
-      </div>
-      <div className="poker-table-row" style={{ lineHeight: 1 }}>
-        <div
-          style={{
-            width: "50%",
-            padding: "16px",
-            border: "0.1px solid #fff",
-          }}
-        >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-            Player A
-          </span>
-        </div>
-        <div
-          className={
-            odds?.[0]?.gstatus === "SUSPENDED" ||
-            odds?.[0]?.gstatus === "CLOSED" ||
-            odds?.[0]?.b1 === "0.00"
-              ? "suspended"
-              : ""
-          }
-          style={{
-            width: "50%",
             backgroundColor: "#a7d8fd",
             display: "flex",
             flexDirection: "row",
           }}
         >
           <div
-            className="poker-table-item"
+            className={
+              odds?.[0]?.gstatus === "SUSPENDED" ||
+              odds?.[0]?.gstatus === "CLOSED" ||
+              odds?.[0]?.b1 === "0.00"
+                ? "poker-table-item suspended"
+                : "poker-table-item"}
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED" ||
@@ -137,7 +98,12 @@ const PairBox = ({ odds, data, min, max }: any) => {
             </span>
           </div>
           <div
-            className={`poker-table-item`}
+            className={
+              odds?.[1]?.gstatus === "SUSPENDED" ||
+              odds?.[1]?.gstatus === "CLOSED" ||
+              odds?.[1]?.b1 === "0.00"
+                ? "poker-table-item suspended"
+                : "poker-table-item"}
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[1]?.gstatus === "SUSPENDED" ||
@@ -181,35 +147,25 @@ const PairBox = ({ odds, data, min, max }: any) => {
           </div>
         </div>
       </div>
-      <div className="poker-table-row" style={{ lineHeight: 1 }}>
+     {!isMobile &&  <div className="casino-table-box-divider"></div>}
+
+      <div className="" style={{ width: isMobile ? "100%" : "49%"}}>
+      {isMobile ? <div className="title-15 f700 px-2 text-black">Player B</div> : ""}
+
         <div
           style={{
-            width: "50%",
-            padding: "18px",
-            border: "0.1px solid #fff",
-          }}
-        >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-            Player B
-          </span>
-        </div>
-        <div
-          className={
-            odds?.[2]?.gstatus === "SUSPENDED" ||
-            odds?.[2]?.gstatus === "CLOSED" ||
-            odds?.[2]?.b1 === "0.00"
-              ? "suspended"
-              : ""
-          }
-          style={{
-            width: "50%",
             backgroundColor: "#a7d8fd",
             display: "flex",
             flexDirection: "row",
           }}
         >
           <div
-            className="poker-table-item"
+             className={
+              odds?.[2]?.gstatus === "SUSPENDED" ||
+              odds?.[2]?.gstatus === "CLOSED" ||
+              odds?.[2]?.b1 === "0.00"
+                ? "poker-table-item suspended"
+                : "poker-table-item"}
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[2]?.gstatus === "SUSPENDED" ||
@@ -252,7 +208,12 @@ const PairBox = ({ odds, data, min, max }: any) => {
             </span>
           </div>
           <div
-            className={`poker-table-item `}
+             className={
+              odds?.[3]?.gstatus === "SUSPENDED" ||
+              odds?.[3]?.gstatus === "CLOSED" ||
+              odds?.[3]?.b1 === "0.00"
+                ? "poker-table-item suspended"
+                : "poker-table-item"}
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[3]?.gstatus === "SUSPENDED" ||
@@ -296,7 +257,7 @@ const PairBox = ({ odds, data, min, max }: any) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
