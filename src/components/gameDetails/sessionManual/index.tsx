@@ -4,7 +4,7 @@ import isMobile from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 
-const SessionOddEven = ({ title, data, detail }) => {
+const SessionManual = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handlePlaceBet = (
@@ -57,9 +57,9 @@ const SessionOddEven = ({ title, data, detail }) => {
   });
   return (
     <>
-      <div className="sessionNormalContainer">
-        <div className="sessionNormalTitle">
-          <span className="sessionNormalTitleTxt">{title}</span>
+      <div className="sessionManualContainer">
+        <div className="sessionManualTitle">
+          <span className="sessionManualTitleTxt">{title}</span>
         </div>
         <div
           style={{
@@ -72,7 +72,7 @@ const SessionOddEven = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            {evenIndexArray?.map((item: any, index: any) => {
+            {data?.section?.map((item: any, index: any) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
                   <div className="sessionRateName">
@@ -311,4 +311,4 @@ const SessionOddEven = ({ title, data, detail }) => {
     </>
   );
 };
-export default SessionOddEven;
+export default SessionManual;
