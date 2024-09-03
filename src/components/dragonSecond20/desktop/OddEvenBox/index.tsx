@@ -30,7 +30,7 @@ const OddEven = ({ name, data, odds }: any) => {
     <>
       <div className="oddEvenContainer">
         <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "1.5rem" }}>{name}</span>
+          <span style={{ fontSize: "20px",fontWeight:"bold" }}>{name}</span>
         </div>
         <div
           style={{
@@ -49,7 +49,7 @@ const OddEven = ({ name, data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[0]?.gstatus === "0" ? true : false}
             data={odds?.[0]}
@@ -64,7 +64,7 @@ const OddEven = ({ name, data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[1]?.gstatus === "0" ? true : false}
             data={odds?.[1]}
@@ -93,7 +93,7 @@ const OddEven = ({ name, data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[2]?.gstatus === "0" ? true : false}
             data={odds?.[2]}
@@ -108,7 +108,7 @@ const OddEven = ({ name, data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[3]?.gstatus === "0" ? true : false}
             data={odds?.[3]}

@@ -24,6 +24,31 @@ const CardResultBox = ({ data, name, type }: any) => {
     dispatch(resultDragonTiger(id));
   };
 
+  const getBackgroundColor = (item: any, type: any) => {
+    switch (type) {
+      case "race20":
+        return "#d5d5d5";
+      case "baccarat2":
+        if (item.result === "1") {
+          return "#086CB8";
+        } else if (item?.result === "2") {
+          return "#AE2130";
+        } else {
+          return "#355E3B";
+        }
+        case "baccarat":
+          if (item.result === "1") {
+            return "#086CB8";
+          } else if (item?.result === "2") {
+            return "#AE2130";
+          } else {
+            return "#355E3B";
+          }
+      default:
+        return "#355e3b";
+    }
+  };
+
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">
@@ -48,7 +73,7 @@ const CardResultBox = ({ data, name, type }: any) => {
               className="cardResultCircle"
               key={item?.mid}
               style={{
-                backgroundColor: type === "race20" ? "#d5d5d5" : "#355e3b",
+                backgroundColor: getBackgroundColor(item, type),
                 backgroundImage:
                   type === "cmatch20"
                     ? `url(https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${item?.result}.png)`
@@ -248,9 +273,9 @@ const CardResultBox = ({ data, name, type }: any) => {
                     fontWeight: "600",
                     color:
                       item?.result === "1"
-                        ? "#f5cc03"
+                        ? "#ffffff"
                         : item?.result === "2"
-                        ? "#ff4500"
+                        ? "#ffffff"
                         : item?.result === "3"
                         ? "#ffffff"
                         : "#ffffff",

@@ -30,7 +30,7 @@ const OddEven = ({ name, data, odds }: any) => {
     <>
       <div className="oddEvenContainer">
         <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "1.5rem" }}>{name}</span>
+          <span style={{ fontSize: "20px" ,fontWeight:"bold"}}>{name}</span>
         </div>
         <div
           style={{

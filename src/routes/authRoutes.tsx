@@ -2,7 +2,6 @@ import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import AuthLayout from "../layout/auth";
 import Loadable from "../utils/loadable";
-import VideoPage from "../pages/public/VideoPage";
 // import Login from "../pages/auth/login/login";
 // ==============================|| Auth ROUTING ||============================== //
 const Login = Loadable(() => import("../pages/auth/login/login"));
@@ -15,10 +14,6 @@ const AuthRoutes = {
     {
       path: "login",
       element: <Login />,
-    },
-    {
-      path: "videoPage/:vidId",
-      element: <VideoPage />,
     },
     {
       path: "*",

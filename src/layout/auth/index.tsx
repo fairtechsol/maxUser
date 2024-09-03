@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import Footer from "../main/footer";
 
 export default function AuthLayout() {
   const navigate = useNavigate();
@@ -13,5 +14,12 @@ export default function AuthLayout() {
       }
     }
   }, []);
-  return <Outlet />;
+  return (
+    <div className="main-container">
+      <div className="content-wrapper">
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
+  );
 }

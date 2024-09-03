@@ -5,7 +5,7 @@
 .topbar-link {
   text-wrap: wrap;
   text-align: center;
-
+  text-wrap: nowrap;
   &::before {
     content: "";
     position: absolute;

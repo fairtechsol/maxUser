@@ -44,8 +44,8 @@ const TiePairBox = ({ handsData, data, width, title, cards }: any) => {
   }, [handsData?.[0]?.gstatus, handsData?.[0]?.rate]);
 
   return (
-    <div className="tiePairContainer">
-      <div className="tiePairRateBoxMainP">
+    <div className="">
+      <div className="tiePairRateBoxMainP-m mt-1">
         {handsData?.map((hand: any, index: any) => (
           <CommonButtonBox
             key={index}

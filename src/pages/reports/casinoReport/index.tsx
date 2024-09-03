@@ -238,7 +238,7 @@ const CasinoReports = () => {
                 <CustomButton
                   size={isMobile ? "sm" : "lg"}
                   className={`${
-                    isMobile ? "w-100" : " bg-primaryBlue"
+                    isMobile ? "w-100" : " bg-primary"
                   } border-0 `}
                   onClick={() => {
                     let filter = "";

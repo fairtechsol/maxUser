@@ -19,7 +19,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
   const elementsBahar = result?.[1]?.split(",");
 
   const minLength = isMobile ? 5 : 15;
-
+   
   function SampleNextArrow(props: any) {
     const { className, style, onClick } = props;
     return (
@@ -98,7 +98,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
               margin: "8px 9px 10px 11px",
             }}
           >
-            <div style={{width:"100%",textAlign:"center"}}>ANDAR</div>
+            <div style={{width:"100%",textAlign:"center",fontWeight:"font-semibold"}}>ANDAR</div>
             <div>
               {elementsAndar?.length > minLength ? (
                 <Slider
@@ -118,7 +118,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
                 </div>
               )}
             </div>
-            <div style={{width:"100%",textAlign:"center"}}>BAHAR</div>
+            <div style={{width:"100%",textAlign:"center",fontWeight:"font-semibold"}}>BAHAR</div>
             <div>
               {elementsBahar?.length > minLength ? (
                 <Slider
