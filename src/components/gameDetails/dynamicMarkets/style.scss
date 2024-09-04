@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     background-color: #f2f2f2;
-    margin-top: 10px;
+    // margin-top: 10px;
 }
 .dynamicTitle{
     width: 100%;
@@ -73,7 +73,7 @@
 .dynamicTeam{
     padding: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: flex-start;
 }
 .dynamicTeamTxt{
@@ -98,7 +98,7 @@
 .dynamicRate1Box{
     font-size: 18px;
     color: #000;
-    font-weight: 600;
+    font-weight: bold;
 }
 .dynamicRate2Box{
     font-size: 12px;

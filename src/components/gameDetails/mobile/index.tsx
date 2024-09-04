@@ -172,6 +172,17 @@ const MobileGameDetail = () => {
                 <Container>
                   <Row>
                     <Col className="g-0" md={12}>
+                      <BetTableHeader
+                        customClass="py-2"
+                        customTextClass="title-12"
+                        title={matchDetails?.title}
+                        rightComponent={
+                          <span className="title-14 f400" style={{color:"#fff"}}>
+                            {matchDetails?.startAt &&
+                              formatDate(matchDetails?.startAt)}
+                          </span>
+                        }
+                      />
                       <div
                         style={{
                           width: "100%",

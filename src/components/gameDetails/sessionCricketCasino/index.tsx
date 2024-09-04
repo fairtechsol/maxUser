@@ -74,6 +74,14 @@ const SessionCricketCasino = ({ title, data, detail }) => {
     }
     return num.toString();
   };
+  const handlePrice = (rate: any) => {
+    if (rate && rate != 0) {
+      return rate;
+    } else {
+      return "-";
+    }
+  };
+
 
   return (
     <>
@@ -98,7 +106,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
              </div>
              <div className="sessionRateBox back1Background" style={{width:"15%"}}>
               <span className={`${
-                      !isMobile ? "f-size18" : "f-size14"
+                      !isMobile ? "f-size16" : "f-size16"
                     } sessionBackTxt`}>Back</span>
              </div>
             </div>
@@ -143,7 +151,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                             !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                           } sessionRate1Box`}
                         >
-                          {item?.odds?.[0]?.odds ?? "-"}
+                          {handlePrice(item?.odds?.[0]?.odds) ?? "-"}
                         </span>
                         <span
                           className={`${

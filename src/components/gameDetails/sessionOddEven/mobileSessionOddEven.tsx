@@ -49,6 +49,13 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
     );
   };
  
+  const handlePrice = (rate: any) => {
+    if (rate && rate != 0) {
+      return rate;
+    } else {
+      return "-";
+    }
+  };
   return (
     <>
       <div className="sessionNormalContainer">
@@ -112,7 +119,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                         <span
                           className={`f-size15 sessionRate1Box`}
                         >
-                          {item?.ex?.availableToLay?.[0]?.price ?? "-"}
+                          {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
                         </span>
                         <span
                           className={`f-size11 sessionRate2Box`}
@@ -147,7 +154,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                         <span
                           className={`f-size15 sessionRate1Box`}
                         >
-                          {item?.ex?.availableToBack?.[0]?.price ?? "-"}
+                          {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
                         </span>
                         <span
                           className={`f-size11 sessionRate2Box`}
