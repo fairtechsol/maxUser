@@ -63,6 +63,14 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       setMarketArr(newData);
     }
   }, []);
+  const formatNumber = (num:any) => {
+    if (num >= 1000 && num < 1000000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    } else if (num >= 100000) {
+      return (num / 100000).toFixed(1).replace(/\.0$/, '') + 'L';
+    }
+    return num.toString();
+  };
 
   return (
     <>
@@ -81,11 +89,21 @@ const SessionCricketCasino = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
+            <div className="sessionCasinoMinMax" style={{borderBottom:"1px solid #c7c8ca"}}>
+             <div style={{width:"85%",backgroundColor:"#f2f2f2"}}>
+              <span className={`sessionMinBox`} style={{marginLeft:"1%"}}>Min:{formatNumber(marketArr?.min)} Max:{formatNumber(marketArr?.max)}</span>
+             </div>
+             <div className="sessionRateBox back1Background" style={{width:"15%"}}>
+              <span className={`${
+                      !isMobile ? "f-size18" : "f-size14"
+                    } sessionBackTxt`}>Back</span>
+             </div>
+            </div>
             {marketArr?.section?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size16">{index} Number</span>
+                    <span className={isMobile?"f-size13":"f-size14"}>{index} Number</span>
                   </div>
                   <div className="sessionCCRateBoxContainer">
                     {(item?.gstatus !== "" ) && (
@@ -119,14 +137,14 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                       >
                         <span
                           className={`${
-                            !isMobile ? "f-size18" : "f-size12"
+                            !isMobile ? "f-size18" : "f-size15"
                           } sessionRate1Box`}
                         >
                           {item?.odds?.[0]?.odds ?? "-"}
                         </span>
                         <span
                           className={`${
-                            !isMobile ? "f-size14" : "f-size12"
+                            !isMobile ? "f-size12" : "f-size11"
                           } sessionRate2Box`}
                         >
                           {item?.odds?.[0]?.size}

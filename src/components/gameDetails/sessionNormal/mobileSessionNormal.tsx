@@ -97,48 +97,36 @@ const MobileSessionNormal = ({ title, data, detail }) => {
                   <div style={{width:"100%",display:"flex",flexDirection:"column",borderRight:"1px solid #c7c8ca"}}>
                     <div className={`sessionRateBox lay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item,item?.ex?.availableToLay?.[0]?.tno)}>
                       <span
-                        className={`${
-                          !isMobile ? "f-size18" : "f-size12"
-                        } sessionRate1Box`}
+                        className={`f-size15 sessionRate1Box`}
                       >
                         {item?.ex?.availableToLay?.[0]?.price ?? "-"}
                       </span>
                       <span
-                        className={`${
-                          !isMobile ? "f-size16" : "f-size12"
-                        } sessionRate2Box`}
+                        className={`f-size11 sessionRate2Box`}
                       >
                         {item?.ex?.availableToLay?.[0]?.size}
                       </span>
                     </div>
                    {item?.ex?.availableToLay?.length > 1 && <div className={`sessionRateBox lay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[1]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[1]?.size,item,item?.ex?.availableToLay?.[1]?.tno)}>
                       <span
-                        className={`${
-                          !isMobile ? "f-size18" : "f-size12"
-                        } sessionRate1Box`}
+                        className={`f-size15 sessionRate1Box`}
                       >
                         {item?.ex?.availableToLay?.[1]?.price ?? "-"}
                       </span>
                       <span
-                        className={`${
-                          !isMobile ? "f-size16" : "f-size12"
-                        } sessionRate2Box`}
+                        className={`f-size11 sessionRate2Box`}
                       >
                         {item?.ex?.availableToLay?.[1]?.size}
                       </span>
                     </div>}
                     {item?.ex?.availableToLay?.length > 2 &&  <div className={`sessionRateBoxlay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[2]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[2]?.size,item,item?.ex?.availableToLay?.[2]?.tno)}>
                       <span
-                        className={`${
-                          !isMobile ? "f-size18" : "f-size12"
-                        } sessionRate1Box`}
+                        className={`f-size15 sessionRate1Box`}
                       >
                         {item?.ex?.availableToLay?.[2]?.price ?? "-"}
                       </span>
                       <span
-                        className={`${
-                          !isMobile ? "f-size16" : "f-size12"
-                        } sessionRate2Box`}
+                        className={`f-size11 sessionRate2Box`}
                       >
                         {item?.ex?.availableToLay?.[2]?.size}
                       </span>
@@ -147,48 +135,36 @@ const MobileSessionNormal = ({ title, data, detail }) => {
                     <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
                     <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[0]?.size,item,item?.ex?.availableToBack?.[0]?.tno)}>
                       <span
-                        className={`${
-                          !isMobile ? "f-size18" : "f-size12"
-                        } sessionRate1Box`}
+                        className={`f-size15 sessionRate1Box`}
                       >
                         {item?.ex?.availableToBack?.[0]?.price ?? "-"}
                       </span>
                       <span
-                        className={`${
-                          !isMobile ? "f-size16" : "f-size12"
-                        } sessionRate2Box`}
+                        className={`f-size11 sessionRate2Box`}
                       >
                         {item?.ex?.availableToBack?.[0]?.size}
                       </span>
                     </div>
                     {item?.ex?.availableToBack?.length > 1 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[1]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[1]?.size,item,item?.ex?.availableToBack?.[1]?.tno)}>
                       <span
-                        className={`${
-                          !isMobile ? "f-size18" : "f-size12"
-                        } sessionRate1Box`}
+                        className={`f-size15 sessionRate1Box`}
                       >
                         {item?.ex?.availableToBack?.[1]?.price ?? "-"}
                       </span>
                       <span
-                        className={`${
-                          !isMobile ? "f-size16" : "f-size12"
-                        } sessionRate2Box`}
+                        className={`f-size11 sessionRate2Box`}
                       >
                         {item?.ex?.availableToBack?.[1]?.size}
                       </span>
                     </div>}
                     {item?.ex?.availableToBack?.length > 2 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[2]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[2]?.size,item,item?.ex?.availableToBack?.[2]?.tno)}>
                       <span
-                        className={`${
-                          !isMobile ? "f-size18" : "f-size12"
-                        } sessionRate1Box`}
+                        className={`f-size15 sessionRate1Box`}
                       >
                         {item?.ex?.availableToBack?.[2]?.price ?? "-"}
                       </span>
                       <span
-                        className={`${
-                          !isMobile ? "f-size16" : "f-size12"
-                        } sessionRate2Box`}
+                        className={`f-size11 sessionRate2Box`}
                       >
                         {item?.ex?.availableToBack?.[2]?.size}
                       </span>

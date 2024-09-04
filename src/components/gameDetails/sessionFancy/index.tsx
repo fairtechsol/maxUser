@@ -50,6 +50,14 @@ const SessionFancy = ({ title, data, detail }) => {
       oddIndexArray.push(element);
     }
   });
+  const formatNumber = (num:any) => {
+    if (num >= 1000 && num < 1000000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    } else if (num >= 100000) {
+      return (num / 100000).toFixed(1).replace(/\.0$/, '') + 'L';
+    }
+    return num.toString();
+  };
   return (
     <>
       <div className="sessionNormalContainer">
@@ -94,7 +102,7 @@ const SessionFancy = ({ title, data, detail }) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size16">{item?.RunnerName}</span>
+                    <span className="f-size15" style={{width:"60%"}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
                   </div>
                   <div className="sessionRateBoxContainer">
                   {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
@@ -102,14 +110,14 @@ const SessionFancy = ({ title, data, detail }) => {
                     <div className={`sessionRateBox back1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,item?.ex?.availableToBack?.[0]?.price ,item)}>
                       <span
                         className={`${
-                          !isMobile ? "f-size18" : "f-size12"
+                          !isMobile ? "f-size18" : "f-size15"
                         } sessionRate1Box`}
                       >
                         {item?.ex?.availableToBack?.[0]?.price ?? "-"}
                       </span>
                       <span
                         className={`${
-                          !isMobile ? "f-size16" : "f-size12"
+                          !isMobile ? "f-size12" : "f-size11"
                         } sessionRate2Box`}
                       >
                         {item?.ex?.availableToBack?.[0]?.size}
@@ -118,22 +126,22 @@ const SessionFancy = ({ title, data, detail }) => {
                     <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"lay","Back",item?.activeStatus,item?.ex?.availableToLay?.[0]?.price ,item)}>
                       <span
                         className={`${
-                          !isMobile ? "f-size18" : "f-size12"
+                          !isMobile ? "f-size18" : "f-size15"
                         } sessionRate1Box`}
                       >
                         {item?.ex?.availableToLay?.[0]?.price ?? "-"}
                       </span>
                       <span
                         className={`${
-                          !isMobile ? "f-size16" : "f-size12"
+                          !isMobile ? "f-size12" : "f-size11"
                         } sessionRate2Box`}
                       >
                         {item?.ex?.availableToLay?.[0]?.size}
                       </span>
                     </div>
-                    <div className="sessionRateBox">
-                      <span className={`sessionMinBox`}>Min:{item?.min}</span>
-                      <span className={`sessionMinBox`}>Max:{item?.max}</span>
+                    <div className="sessionMinBoxContainer">
+                      <span className={`sessionMinBox`}>Min:{formatNumber(item?.min)}</span>
+                      <span className={`sessionMinBox`}>Max:{formatNumber(item?.max)}</span>
                     </div>
                   </div>
                 </div>
@@ -171,7 +179,7 @@ const SessionFancy = ({ title, data, detail }) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size16">{item?.RunnerName}</span>
+                    <span className="f-size15" style={{width:"60%"}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
                   </div>
                   <div className="sessionRateBoxContainer">
                   {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
@@ -179,14 +187,14 @@ const SessionFancy = ({ title, data, detail }) => {
                     <div className={`sessionRateBox back1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,item?.ex?.availableToBack?.[0]?.price ,item)}>
                       <span
                         className={`${
-                          !isMobile ? "f-size18" : "f-size12"
+                          !isMobile ? "f-size18" : "f-size15"
                         } sessionRate1Box`}
                       >
                         {item?.ex?.availableToBack?.[0]?.price ?? "-"}
                       </span>
                       <span
                         className={`${
-                          !isMobile ? "f-size16" : "f-size12"
+                          !isMobile ? "f-size12" : "f-size11"
                         } sessionRate2Box`}
                       >
                         {item?.ex?.availableToBack?.[0]?.size}
@@ -195,22 +203,22 @@ const SessionFancy = ({ title, data, detail }) => {
                     <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"lay","Back",item?.activeStatus,item?.ex?.availableToLay?.[0]?.price ,item)}>
                       <span
                         className={`${
-                          !isMobile ? "f-size18" : "f-size12"
+                          !isMobile ? "f-size18" : "f-size15"
                         } sessionRate1Box`}
                       >
                         {item?.ex?.availableToLay?.[0]?.price ?? "-"}
                       </span>
                       <span
                         className={`${
-                          !isMobile ? "f-size16" : "f-size12"
+                          !isMobile ? "f-size12" : "f-size11"
                         } sessionRate2Box`}
                       >
                         {item?.ex?.availableToLay?.[0]?.size}
                       </span>
                     </div>
-                    <div className="sessionRateBox">
-                      <span className={`sessionMinBox`}>Min:{item?.min}</span>
-                      <span className={`sessionMinBox`}>Max:{item?.max}</span>
+                    <div className="sessionMinBoxContainer">
+                      <span className={`sessionMinBox`}>Min:{formatNumber(item?.min)}</span>
+                      <span className={`sessionMinBox`}>Max:{formatNumber(item?.max)}</span>
                     </div>
                   </div>
                 </div>
