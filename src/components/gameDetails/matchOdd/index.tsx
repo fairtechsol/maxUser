@@ -117,7 +117,7 @@ const MatchOdd=({title,data,detail})=>{
             {data?.activeStatus != "live" && <div className="suspended-overlayRatesMatchOdd"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
                 </span></div>}
               <div className="matchOddTeam">
-                <span className={`${!isMobile ? "f-size16":"f-size12"} matchOddTeamTxt`}>{detail?.teamB}</span>
+                <span className={`${!isMobile ? "f-size14":"f-size12"} matchOddTeamTxt`}>{detail?.teamB}</span>
               </div>
               <div className="matchOddRateBox">
               {(data?.activeStatus === "live" && data?.runners?.[1]?.status !="ACTIVE") && <div className="suspended-overlayRatesMatchOdd"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtMatchOdd`}>
@@ -153,7 +153,7 @@ const MatchOdd=({title,data,detail})=>{
             {data?.activeStatus != "live" && <div className="suspended-overlayRatesMatchOdd"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
                 </span></div>}
               <div className="matchOddTeam">
-                <span className={`${!isMobile ? "f-size16":"f-size12"} matchOddTeamTxt`}>{detail?.teamC}</span>
+                <span className={`${!isMobile ? "f-size14":"f-size12"} matchOddTeamTxt`}>{detail?.teamC}</span>
               </div>
               <div className="matchOddRateBox">
                {(data?.activeStatus === "live" && data?.runners?.[2]?.status !="ACTIVE") && <div className="suspended-overlayRatesMatchOdd"><span className={`${!isMobile ? "f-size16":"f-size12"} suspendedTxtMatchOdd`}>

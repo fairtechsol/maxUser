@@ -65,7 +65,7 @@ const DynamicMarket=({title,data,detail})=>{
                 <div className="dynamicMinMaxBox">
                     <span className="dynamicMinMax">Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}</span>
                 </div>
-                <div className="dynamicBackLayBoxContainer" style={{width:isMobile?"24%":"48%"}}>
+                <div className="dynamicBackLayBoxContainer" style={{width:isMobile?"35%":"48%"}}>
                     <div className="dynamicBackBoxTab" style={{width:isMobile?"50%":"25%"}}>
                         <span className={`f-size16 dynamicBackTxt`}>Back</span>
                     </div>
@@ -79,10 +79,10 @@ const DynamicMarket=({title,data,detail})=>{
             <div className="dynamicTeamTab">
             {data?.activeStatus != "live" && <div className="suspended-overlayRatesdynamic"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtdynamic`}>
                 SUSPENDED</span></div>}
-              <div className="dynamicTeam"  style={{width:isMobile?"76%":"28%"}}>
+              <div className="dynamicTeam"  style={{width:isMobile?"65%":"28%"}}>
                 <span className={`${!isMobile ? "f-size14":"f-size13"} dynamicTeamTxt`}>{"Yes"}</span>
               </div>
-              <div className="dynamicRateBox" style={{width:isMobile?"24%":"72%"}}>
+              <div className="dynamicRateBox" style={{width:isMobile?"35%":"72%"}}>
               {(data?.activeStatus === "live" && data?.runners?.[0]?.status !="ACTIVE") && <div className="suspended-overlayRatesdynamic"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtdynamic`}>
                 SUSPENDED</span></div>}
                {!isMobile && <div className="dynamicBackBox back3Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,"BACK","Yes",data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,data?.runners?.[0])}>
@@ -115,10 +115,10 @@ const DynamicMarket=({title,data,detail})=>{
             <div className="dynamicTeamTab">
             {data?.activeStatus != "live" && <div className="suspended-overlayRatesdynamic"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtdynamic`}>
                 SUSPENDED</span></div>}
-              <div className="dynamicTeam"  style={{width:isMobile?"76%":"28%"}}>
+              <div className="dynamicTeam"  style={{width:isMobile?"65%":"28%"}}>
                 <span className={`${!isMobile ? "f-size14":"f-size13"} dynamicTeamTxt`}>{"No"}</span>
               </div>
-              <div className="dynamicRateBox" style={{width:isMobile?"24%":"72%"}}>
+              <div className="dynamicRateBox" style={{width:isMobile?"35%":"72%"}}>
               {(data?.activeStatus === "live" && data?.runners?.[1]?.status !="ACTIVE") && <div className="suspended-overlayRatesdynamic"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtdynamic`}>
                 SUSPENDED</span></div>}
                {!isMobile && <div className="dynamicBackBox back3Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,"BACK","No",data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[0]?.tno,data?.runners?.[1])}>
