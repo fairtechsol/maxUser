@@ -57,16 +57,17 @@ const TeenPattiDesktop = () => {
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
   const handleBet = (item: any) => {
+
     let team = {
       bettingType: "BACK",
       matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
+      odd: item?.b,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: item?.sid,
+      selectionId: ""+item?.sid,
     };
     dispatch(
       selectedBetAction({
@@ -114,7 +115,6 @@ const TeenPattiDesktop = () => {
     }
   }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
 
-  console.log("dddd", dragonTigerDetail);
   return (
     <>
       <Row>
@@ -364,13 +364,14 @@ const TeenPattiDesktop = () => {
                           runs?.[0]?.gstatus === "SUSPENDED" &&
                           runs?.[0]?.b === 0
                             ? "suspended"
-                            : ""
+                            : "teenPatti-table-item"
                         }
+                        onClick={()=>handleBet(item)}
                       >
-                        <span style={{ fontSize: "18px", fontWeight: "bold" }}>
+                        <span className="f12-b">
                           {item.b}
                         </span>
-                        <span>{item.bs}</span>
+                        <span className="f10-b">{item.bs}</span>
                       </div>
                       <div
                         style={{

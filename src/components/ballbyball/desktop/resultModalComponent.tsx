@@ -11,7 +11,7 @@ interface Props {
   };
 }
 
-const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
+const BallByBallResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const playerA = resultCards?.filter(
     (_: any, index: number) => index % 2 === 0
@@ -19,91 +19,24 @@ const Teen20ResultComponent: React.FC<Props> = ({ data }: any) => {
   const playerB = resultCards?.filter(
     (_: any, index: number) => index % 2 !== 0
   );
- 
+
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="flex-row justify-content-around" style={{display:"flex"}}>
-        <div className="teen20resultCardContainer mb-3">
-          <span className="fs-5">Player A</span>
-          <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center align-items-center mb-2"}>
-          {data?.result?.win === "1" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
-            <div
-              style={{
-                border: "1px solid #fdef34",
-                borderRadius: "1px",
-                marginLeft: "5px",
-              }}
-            >
-              <HandleCards card={playerA?.[0]} />
-            </div>
-            <div
-              style={{
-                border: "1px solid #fdef34",
-                borderRadius: "1px",
-                marginLeft: "5px",
-              }}
-            >
-              <HandleCards card={playerA?.[1]} />
-            </div>
-            <div
-              style={{
-                border: "1px solid #fdef34",
-                borderRadius: "1px",
-                marginLeft: "5px",
-              }}
-            >
-              <HandleCards card={playerA?.[2]} />
-            </div>
+      <div
+        className="flex-row justify-content-around"
+        style={{ display: "flex" ,marginBottom:"10px",marginTop:"10px"}}
+      >
+        {data?.result?.win && (
+          <div className=" cricket20ballresult cricket20ballpopup d-sm-flex flex-row justify-content-center align-items-center">
+            {/* <img src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/cricket20/ball0.png"></img> */}
+
+            {isMobile?<img style={{height:"50px",width:"50px"}} src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"></img>:<img src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"></img>}
+            {isMobile?<span style={{fontSize:"12px"}}>{data?.result?.desc}</span>:<span>{data?.result?.desc}</span>}
           </div>
-        </div>
-        {data?.result?.win === "0" && (
-        <div className="d-sm-flex flex-row justify-content-center align-items-center">
-          <span className="fs-5">TIE</span>
-        </div> )}
-        <div className="teen20resultCardContainer mb-3">
-          <span className="fs-5">Player B</span>
-          <div className={isMobile ? 'row-flex-mobile' : "d-sm-flex flex-row justify-content-center align-items-center mb-2"}>
-            {data?.result?.win === "3" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
-            <div
-              style={{
-                border: "1px solid #fdef34",
-                borderRadius: "1px",
-                marginLeft: "5px",
-              }}
-            >
-              <HandleCards card={playerB?.[0]} />
-            </div>
-            <div
-              style={{
-                border: "1px solid #fdef34",
-                borderRadius: "1px",
-                marginLeft: "5px",
-              }}
-            >
-              <HandleCards card={playerB?.[1]} />
-            </div>
-            <div
-              style={{
-                border: "1px solid #fdef34",
-                borderRadius: "1px",
-                marginLeft: "5px",
-              }}
-            >
-              <HandleCards card={playerB?.[2]} />
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </Container>
   );
 };
 
-export default Teen20ResultComponent;
+export default BallByBallResultComponent;
