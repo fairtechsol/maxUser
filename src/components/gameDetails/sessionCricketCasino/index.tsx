@@ -104,7 +104,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
              <div style={{width:"85%",backgroundColor:"#f2f2f2"}}>
               <span className={`sessionMinBox`} style={{marginLeft:"1%"}}>Min:{formatNumber(marketArr?.min)} Max:{formatNumber(marketArr?.max)}</span>
              </div>
-             <div className="sessionRateBox back1Background" style={{width:"15%"}}>
+             <div className="sessionRateBox back1Background" style={{width:"18%"}}>
               <span className={`${
                       !isMobile ? "f-size16" : "f-size16"
                     } sessionBackTxt`}>Back</span>

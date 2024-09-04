@@ -79,7 +79,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                   <div className="sessionRateName">
                     <span className="f-size13">{item?.RunnerName}</span>
                   </div>
-                  <div className="sessionRateBoxContainer">
+                  <div className="sessionRateBoxContainer" style={{width:"35%"}}>
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
                       <div className="suspended-overlayRates">
