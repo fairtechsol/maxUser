@@ -460,10 +460,23 @@ const cardDetail = createSlice({
         const videoInfo = { ...t1[0] };
         const odds = t2.slice(0, 18);
 
+        const PlayerA = [];
+        const PlayerB = [];
+
+        t2?.forEach((item:any, index:any) => {
+          if (index % 2 === 0) {
+            PlayerA.push(item);
+          } else {
+            PlayerB.push(item);
+          }
+        })
+
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
           odds,
+          PlayerA,
+          PlayerB
         };
       })
       .addCase(updateBaccarat1Rates.fulfilled, (state, action) => {

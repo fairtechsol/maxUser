@@ -44,7 +44,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   );
   return (
     <>
-      <Table className="matchListTable-desktop mb-4">
+      <Table className="matchListTable-desktop mb-4 ">
         <thead>
           <tr>
             {availableGameType[mTypeid] === "horseRacing" ||

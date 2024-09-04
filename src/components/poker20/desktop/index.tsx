@@ -9,13 +9,13 @@ import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import DynamicTable from "./betTable";
+import DynamicTable from "./playerBox";
 import "./style.scss";
 import Poker20Result from "./poker20";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-
+import PlayerTable from "./playerBox";
 const Poker20Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
@@ -78,6 +78,8 @@ const Poker20Desktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.poker20}`);
   }, []);
 
+  
+
   return (
     <>
       <Row>
@@ -128,16 +130,18 @@ const Poker20Desktop = () => {
           ) : (
             <div>
               <div className="d-flex px-2">
-                <DynamicTable
-                  odds={dragonTigerDetail?.odds}
+                <PlayerTable
+                 title={"PlayerA"}
+                  odds={dragonTigerDetail?.PlayerA}
                   data={dragonTigerDetail}
                   playerNum={[0, 10]}
                 />
                 <div style={{ width: "10px" }}></div>
-                <DynamicTable
-                  odds={dragonTigerDetail?.odds}
+                <PlayerTable
+                  title={"PlayerB"}
+                  odds={dragonTigerDetail?.PlayerB}
                   data={dragonTigerDetail}
-                  playerNum={[10, 18]}
+                  playerNum={[0, 10]}
                 />
               </div>
               <div className="m-2">

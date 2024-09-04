@@ -17,7 +17,7 @@ const CommonButtonBox = ({
   // const dispatch: AppDispatch = useDispatch();
 
   return (
-    <div className="commonButtonBoxContainer" style={{ width: width }}>
+    <div className="commonButtonBoxContainer" style={{ width: width,lineHeight:"2.5" }}>
       <div>
         <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
           {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}

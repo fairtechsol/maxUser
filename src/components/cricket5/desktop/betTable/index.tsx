@@ -48,8 +48,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
   }, [team1?.status, team1?.b1]);
 
   return (
-    <div className="casino-detail detail-page-container-c position-relative w-100">
-      <div className="game-market-c market-2">
+    <div className="casino-detail detail-page-container-c position-relative w-100" style={{background:"#f7f7f7"}}>
+      <div className="game-market-c market-2" style={{background:"f7f7f7"}}>
         <div className="marketHeader">
           <span>Bookmaker</span>
         </div>
@@ -244,47 +244,54 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
       </div>
 
       {showFancy && (
-        <div className="game-market market-6 mt-2">
+        <div className="game-market market-6 mt-2" style={{background:"#f7f7f7"}}>
           <div className="market-title">
             <span>Fancy</span>
           </div>
-          <div className="market-header-c">
-            <div className="market-nation-detail-c"></div>
+          <div className="market-header-c" style={{width:"100%"}}>
+            <div className="market-nation-detail-c" style={{width:"55%"}} ></div>
+            <div style={{width:"45%",display:"flex"}}>
             <div className="market-odd-box-c lay">
               <b>No</b>
             </div>
             <div className="market-odd-box-c back">
               <b>Yes</b>
             </div>
-            <div className="fancy-min-max-box"></div>
+            <div className="fancy-min-max-box ">
+            <b style={{color:"rgb(247, 247, 247)"}}>Yes</b>
+            </div>
+            </div>
           </div>
           <div className="market-body-c" data-title="OPEN">
-            {fancyData?.map((row: any, index: any) => (
+            {showFancy?.length>0 && showFancy?.map((row: any, index: any) => (
               <div className={`fancy-market`}>
-                <div className="market-row-c">
-                  <div className="market-nation-detail-c">
+                <div className="market-row-" style={{display:"flex",}}>
+                  <div className="market-nation-detail-c" style={{width:"55%"}}>
                     <span className="market-nation-name-c pointer">
                       {row.nation}
                     </span>
                     <div className="market-nation-book-c"></div>
                   </div>
                   <div
-                    className={`market-row-c ${
+                    className={`market-row- ${
                       row.suspended ? "suspended-row" : ""
                     }`}
                     data-title={row.suspended ? "SUSPENDED" : "ACTIVE"}
                     key={index}
+                    style={{display:"flex",width:"45%",}}
                   >
-                    <div className="market-odd-box-c lay">
-                      <span className="market-odd-c">{row.layOdd}</span>
+                    <div className="market-odd-box-c lay" >
+                      <span className="market-odd-c" style={{fontWeight:"bold"}}>{row?.b1}</span>
+                      <span className="market-volume">{row?.bs1}</span>
                     </div>
                     <div className="market-odd-box-c back">
-                      <span className="market-odd-c">{row.backOdd}</span>
+                      <span className="market-odd-c" style={{fontWeight:"bold"}}>{row.l1}</span>
+                      <span className="market-volume">{row?.ls1}</span>
                     </div>
                     <div className="fancy-min-max-box">
                       <div className="fancy-min-max">
-                        <span className="w-100 d-block">Min: 100.00</span>
-                        <span className="w-100 d-block">Max: 1L</span>
+                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Min: 100.00</span>
+                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Max: 1L</span>
                       </div>
                     </div>
                   </div>

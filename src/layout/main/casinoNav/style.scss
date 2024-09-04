@@ -1,0 +1,53 @@
+.casino-nav {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 0 auto;
+    height: auto;
+  }
+  
+  .casino-sub-tab {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-item {
+    margin: 0;
+  }
+  
+  .nav-link {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background-color: #eaeaea;
+  }
+  
+//   .nav-link.active {
+//     background-color: #0088cca5;
+//     color: #fff;
+//   }
+  
+.casino-sub-tab {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center !important;
+    background-color: #ffc742;
+    height: 100%;
+
+}
+.casino-sub-tab {
+    width: 100%;
+}
+.nav-item.active .nav-link,
+.nav-link.active {
+  background-color: #0088cca5;
+  color: #fff;
+}

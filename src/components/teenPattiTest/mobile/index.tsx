@@ -307,9 +307,6 @@ const TeenPattiMobile = () => {
                           </div>
 
                           <div
-                            className={`${
-                              section.dstatus !== "True" ? "suspended" : ""
-                            }`}
                             style={{
                               width: "60%",
                               display: "flex",
@@ -317,7 +314,9 @@ const TeenPattiMobile = () => {
                             }}
                           >
                             <div
-                              className={`teenPatti-table-item`}
+                             className={`${
+                              section.dstatus !== "True" ? "teenPatti-table-item suspended" : "teenPatti-table-item"
+                            }`}
                               style={{
                                 width: "33.3%",
                                 backgroundColor: "#72bbef",
@@ -366,7 +365,9 @@ const TeenPattiMobile = () => {
                             </div>
 
                             <div
-                              className={`teenPatti-table-item`}
+                               className={`${
+                                section.dstatus !== "True" ? "teenPatti-table-item suspended" : "teenPatti-table-item"
+                              }`}
                               style={{
                                 width: "33.3%",
                                 backgroundColor: "#72bbef",
@@ -414,7 +415,9 @@ const TeenPattiMobile = () => {
                             </div>
 
                             <div
-                              className={`teenPatti-table-item`}
+                               className={`${
+                                section.dstatus !== "True" ? "teenPatti-table-item suspended" : "teenPatti-table-item"
+                              }`}
                               style={{
                                 width: "33.3%",
                                 backgroundColor: "#72bbef",
