@@ -23,7 +23,6 @@ import {
 import { cardGamesType } from "../../utils/constants";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import CardJComponentList from "../../components/3CardJ";
-import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const CardJ = () => {
   const dispatch: AppDispatch = useDispatch();

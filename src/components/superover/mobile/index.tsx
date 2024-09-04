@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { card32rules, supoerrules } from "../../../assets/images";
+import { supoerrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import "./style.scss";
@@ -67,8 +66,6 @@ const SuperoverMobile = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.superover}`);
   }, []);
 
-  
-
   return (
     <>
       <div>
@@ -115,10 +112,8 @@ const SuperoverMobile = () => {
             <span>
               {" "}
               {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
+                ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
+                : ""}
             </span>
           </div>
         </div>
@@ -152,7 +147,7 @@ const SuperoverMobile = () => {
                     backgroundColor: "#000",
                   }}
                 >
-                   {scoreBoardData?.data && (
+                  {scoreBoardData?.data && (
                     <ScoreBoard data={scoreBoardData?.data} />
                   )}
                   <VideoFrame

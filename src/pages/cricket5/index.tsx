@@ -54,7 +54,6 @@ const Cricket5 = () => {
 
   useEffect(() => {
     if (dragonTigerDetail?.videoInfo?.mid) {
-      const Id = dragonTigerDetail.videoInfo?.mid.split(".");
       let intervalTime = 1000;
       if (errorCount >= 5 && errorCount < 10) {
         intervalTime = 60000;
@@ -62,7 +61,7 @@ const Cricket5 = () => {
         intervalTime = 600000;
       }
       const interval = setInterval(() => {
-        getScoreBoard(Id[1]);
+        getScoreBoard(dragonTigerDetail.videoInfo?.mid);
       }, intervalTime);
 
       return () => clearInterval(interval);

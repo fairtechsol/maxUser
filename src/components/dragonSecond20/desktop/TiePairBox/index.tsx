@@ -28,11 +28,10 @@ const TiePairBox = ({ tiePair, data }: any) => {
   };
 
   useEffect(() => {
-    if (tiePair?.[0]?.gstatus === "0" ||tiePair?.[0]?.rate === "0.00") {
+    if (tiePair?.[0]?.gstatus === "0" || tiePair?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [tiePair?.[0]?.gstatus,tiePair?.[0]?.rate]);
+    }
+  }, [tiePair?.[0]?.gstatus, tiePair?.[0]?.rate]);
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMain">
@@ -46,7 +45,7 @@ const TiePairBox = ({ tiePair, data }: any) => {
                 ]
               : 0
           }
-          width={"30%"}
+          width={"28%"}
           handleBet={handleBet}
           lock={tiePair?.[0]?.gstatus === "0" ? true : false}
           data={tiePair?.[0]}
@@ -61,7 +60,7 @@ const TiePairBox = ({ tiePair, data }: any) => {
                 ]
               : 0
           }
-          width={"10%"}
+          width={"14%"}
           handleBet={handleBet}
           lock={tiePair?.[2]?.gstatus === "0" ? true : false}
           data={tiePair?.[2]}
@@ -76,27 +75,28 @@ const TiePairBox = ({ tiePair, data }: any) => {
                 ]
               : 0
           }
-          width={"30%"}
+          width={"28%"}
           handleBet={handleBet}
           lock={tiePair?.[1]?.gstatus === "0" ? true : false}
           data={tiePair?.[1]}
         />
-        <div style={{ width: "0.5%", backgroundColor: "#ffc742" }}></div>
-        <CommonButtonBox
-          value1={tiePair?.[3]?.rate}
-          value2={"Pair"}
-          value3={
-            data?.profitLoss
-              ? data?.profitLoss[
-                  `${data?.videoInfo?.mid}_${tiePair?.[3]?.sid}_card`
-                ]
-              : 0
-          }
-          width={"20%"}
-          handleBet={handleBet}
-          lock={tiePair?.[3]?.gstatus === "0" ? true : false}
-          data={tiePair?.[3]}
-        />
+        <div style={{ width: "30%",borderLeft:"5px solid #ffc742",display:"flex",justifyContent:"center" }}>
+          <CommonButtonBox
+            value1={tiePair?.[3]?.rate}
+            value2={"Pair"}
+            value3={
+              data?.profitLoss
+                ? data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${tiePair?.[3]?.sid}_card`
+                  ]
+                : 0
+            }
+            width={"80%"}
+            handleBet={handleBet}
+            lock={tiePair?.[3]?.gstatus === "0" ? true : false}
+            data={tiePair?.[3]}
+          />
+        </div>
       </div>
       <div style={{ width: "100%", textAlign: "end" }}>
         <span style={{ fontWeight: "bolder" }}>Min:</span>

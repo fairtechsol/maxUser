@@ -206,19 +206,41 @@
   display: flex;
   // flex-direction: row;
   flex-wrap: wrap;
-  // gap: 5px;
-  justify-content: space-around;
+  // gap: 3px;
+  // justify-content: space-around;
 }
-// .tiePairRateBoxMainP > div {
-//   width: calc(50% - 0px); /* Adjust according to the gap */
-//   box-sizing: border-box;
-// }
+.tiePairRateBoxMainP-m{
+  width: 100%;
+  display: flex;
+  // flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  // justify-content: space-around;
+}
 .commonButtonBoxContainer{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 3px;
+}
+.casino-odds-box-poker {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  // padding: 5px;
+  font-weight: bold;
+  border-left: 1px solid #c7c8ca;
+  cursor: pointer;
+  min-height: 46px;
+}
+
+.poker6player .casino-odds-box {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 10px;
 }
 .tiePairbtn-theme {
   color: #fff !important;
@@ -298,16 +320,17 @@
   // margin-bottom: 20px;
 }
 .hands {
-  padding: 10px 20px;
+  padding: 4px 20px;
   cursor: pointer;
   border: 1px solid #ddd;
+
   // margin-right: 5px;
   background-color: #f0f0f0;
   transition: background-color 0.3s ease;
 }
 .hands.active {
   // border-top: 4px solid white;
-  background-color: $primary;
+  background-color: $secondary;
   border-bottom: none;
   color: #fff;
 }

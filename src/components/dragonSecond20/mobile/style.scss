@@ -158,7 +158,7 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 8px;
   }
   .tiePairbtnMob-theme {
@@ -175,7 +175,16 @@
     position: relative;
     text-align: center;
   }
-
+  .commonCardImgContainer{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 5px;
+  }
   @media (max-width: 768px) {
 
   

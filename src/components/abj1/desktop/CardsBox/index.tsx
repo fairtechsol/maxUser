@@ -37,7 +37,7 @@ const CardBox = ({title, odds, data,cards,bgColor }: any) => {
           {title}
           </span>
         </div>
-        <div className="p-3">
+        <div className="p-3" style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
           <CommonCardImg cardData={odds} cardInfo={title==="ANDAR"?arCards:brCards} handleBet={handleBet} data={data}/>
         </div>
        

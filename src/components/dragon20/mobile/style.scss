@@ -127,8 +127,8 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 3%;
-    justify-content: center;
+   
+    justify-content: space-between;
     align-items: center;
   }
   .dt20TabBox{
@@ -161,6 +161,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     margin-top: 8px;
   }
   .tiePairbtnMob-theme {
@@ -178,6 +179,23 @@
     text-align: center;
   }
 
+  .commonButtonBoxContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+}
+.commonCardImgContainer{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  gap: 7px;
+  margin-top: 5px;
+}
   @media (max-width: 768px) {
 
   

@@ -49,8 +49,8 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
         <h4>Statistics</h4>
         <PieChart data={dataa} options={options} />
       </div>
-      <div className="baccarateRateContainer-m">
-        <div className="baccarateRateContainer1">
+      <div className="baccarateRateContainer-m"  >
+        <div className="baccarateRateContainer1" >
           <div
             className={`perfectpairBox ${
               odds?.[5]?.gstatus == "0" ? "suspended-box" : ""

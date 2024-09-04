@@ -53,7 +53,7 @@ const TeenPattiMobile = () => {
       betOnTeam: item?.nation,
       name: item?.nation,
       bettingName: "Match odds",
-      selectionId: item?.sid,
+      selectionId: item?.sectionId,
     };
     dispatch(
       selectedBetAction({
@@ -245,17 +245,17 @@ const TeenPattiMobile = () => {
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                                 ]
                                 ? JSON.parse(
                                     dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                                     ]
                                   )["playera"] > 0
                                   ? "color-green"
                                   : JSON.parse(
                                       dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                                       ]
                                     )["playera"] < 0
                                   ? "color-red"
@@ -266,11 +266,11 @@ const TeenPattiMobile = () => {
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                               ]
                               ? JSON.parse(
                                   dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                                   ]
                                 )["playera"]
                               : 0
@@ -350,17 +350,17 @@ const TeenPattiMobile = () => {
                           className={
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                                 ]
                                 ? JSON.parse(
                                     dragonTigerDetail?.profitLoss[
-                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                                     ]
                                   )["playerb"] > 0
                                   ? "color-green"
                                   : JSON.parse(
                                       dragonTigerDetail?.profitLoss[
-                                        `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                        `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                                       ]
                                     )["playerb"] < 0
                                   ? "color-red"
@@ -371,11 +371,11 @@ const TeenPattiMobile = () => {
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                               ]
                               ? JSON.parse(
                                   dragonTigerDetail?.profitLoss[
-                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sectionId}_card`
                                   ]
                                 )["playerb"]
                               : 0

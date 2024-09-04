@@ -227,7 +227,7 @@ const CricketMatch20Mobile = () => {
                           rightBoard &&
                           [...leftBoard, ...rightBoard]?.map(
                             (item: any, index: any) => (
-                              <div>
+                              <div style={{marginBottom:"60px"}}>
                                 <ScoreBox
                                   teamA="Team A"
                                   teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}

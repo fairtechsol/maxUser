@@ -14,13 +14,14 @@ const CommonButtonBox = ({
   return (
     <div className="commonButtonBoxContainer" style={{ width: width }}>
       <div>
-        <span style={{ fontSize: "12px", fontWeight: "bolder" }}>
+        <span style={{ fontSize: "12px", fontWeight: "bolder",paddingTop:"0px" }}>
           {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
         </span>
       </div>
       <div
         className={`tiePairbtnMob-theme ${lock ? "suspended" : ""}`}
         onClick={() => (!lock ? handleBet(data) : null)}
+        style={{lineHeight:"2.5",width:"100%"}}
       >
         <span style={{ fontSize: "14px" }}>
           {value2 === "icon1" ? (

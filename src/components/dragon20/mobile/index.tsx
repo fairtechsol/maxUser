@@ -159,7 +159,8 @@ const DragonTigerMobile = () => {
                     data={dragonTigerDetail}
                   />
                 </div>
-                <div className="dt20TabBox">
+
+                {/* <div className="dt20TabBox">
                   <div className="dt20tabheader">
                     <div
                       style={{
@@ -196,34 +197,47 @@ const DragonTigerMobile = () => {
                       </span>
                     </div>
                   </div>
+                </div> */}
+
+                <div
+                  style={{
+                    width: "100%",
+                    margin: "px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                  }}
+                >
+                  <OddEven
+                    name={"DRAGON"}
+                    odds={dragonTigerDetail?.dragonOdds}
+                    data={dragonTigerDetail}
+                  />
+                  <OddEven
+                    name={"TIGER"}
+                    odds={dragonTigerDetail?.tigerOdds}
+                    data={dragonTigerDetail}
+                  />
                 </div>
-                {activeCardTab ? (
-                  <div>
-                    <OddEven
-                      name={"TIGER"}
-                      odds={dragonTigerDetail?.tigerOdds}
-                      data={dragonTigerDetail}
-                    />
-                    <CardBox
-                      name={"TIGER"}
-                      cardData={dragonTigerDetail?.tigerCards}
-                      data={dragonTigerDetail}
-                    />
-                  </div>
-                ) : (
-                  <div>
-                    <OddEven
-                      name={"DRAGON"}
-                      odds={dragonTigerDetail?.dragonOdds}
-                      data={dragonTigerDetail}
-                    />
-                    <CardBox
-                      name={"DRAGON"}
-                      cardData={dragonTigerDetail?.dragonCards}
-                      data={dragonTigerDetail}
-                    />
-                  </div>
-                )}
+
+                <div>
+                  <CardBox
+                    name={"DRAGON"}
+                    cardData={dragonTigerDetail?.dragonCards}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+
+                <div>
+                  <CardBox
+                    name={"TIGER"}
+                    cardData={dragonTigerDetail?.tigerCards}
+                    data={dragonTigerDetail}
+                  />
+                </div>
+
+               
+
                 <div style={{ width: "100%", marginTop: "15px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}

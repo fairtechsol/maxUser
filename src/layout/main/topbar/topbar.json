@@ -2,20 +2,6 @@
   { "id": "home", "name": "Home", "link": "/home", "type": "desktop" },
   { "id": "cricket", "name": "Cricket", "link": "/cricket", "type": "desktop" },
   {
-    "id": "ipl2024",
-    "name": "IPL 2024",
-    "link": "/contact-admin",
-    "type": "both",
-    "blink": true
-  },
-  {
-    "id": "election2023",
-    "name": "LOK SABHA 2024",
-    "link": "/contact-admin",
-    "type": "both",
-    "blink": true
-  },
-  {
     "id": "tennis",
     "name": "Tennis",
     "link": "/tennis",

@@ -14,8 +14,6 @@ const BollywoodTableResultComponent: React.FC<Props> = ({ data }: any) => {
   const pair = resultCards?.[0];
   //const card = resultCards?.[3]?.split(" ");
 
-  
-
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="lucky7resultModal">
@@ -42,41 +40,41 @@ const BollywoodTableResultComponent: React.FC<Props> = ({ data }: any) => {
           }
         >
           <div className="d-sm-flex d-flex flex-row flex-sm-row justify-content-center align-items-center">
-            <div className="lucky7CommonText- d-sm-flex flex-sm-row ">
-              Result:
+            <div className="lucky7CommonText- d-sm-flex flex-sm-row opacity-50 ">
+              Winner:
             </div>
             <div className="d-sm-flex flex-sm-row p-1">
               <span className="lucky7CommonText-">{pair}</span>
             </div>
           </div>
 
-          <div className="d-sm-flex d-flex flex-row flex-sm-row justify-content-center align-items-center">
+          <div className="d-sm-flex d-flex flex-col flex-md-column justify-content-center align-items-center">
+            <div className="d-sm-flex flex-sm-row border-star border-2 border-primary  ">
+              <span className="opacity-50">Odd</span>{" "}
+              <span className="lucky7CommonText-2">
+                {resultCards?.[1] == " Odd " ? "Yes" : "No"}
+              </span>
+            </div>
             <div
-              className="d-sm-flex flex-sm-row border-star border- border-primary mr-2 "
+              className="d-sm-flex flex-sm-row border-star border-2 border-primary "
               style={{ marginRight: "7px" }}
             >
+              <span className="opacity-50">Dulha Dulhan/Barati</span>{" "}
+              <span className="lucky7CommonText-2">{resultCards?.[3]}</span>
+            </div>
+
+            <div className="d-sm-flex flex-sm-row border-star border- border-primary mr-2 ">
               <span className="lucky7CommonText-2 mr-2">
-                {resultCards?.[2]}
+                <span style={{ opacity: "0.5" }}>Color</span> {resultCards?.[2]}
               </span>
             </div>
 
             <div
-              className="d-sm-flex flex-sm-row border-start border-2 border-primary "
-              style={{ marginRight: "7px" }}
-            >
-              <span className="lucky7CommonText-2">{resultCards?.[1]}</span>
-            </div>
-            <div
-              className="d-sm-flex flex-sm-row border-start border-2 border-primary "
-              style={{ marginRight: "7px" }}
-            >
-              <span className="lucky7CommonText-2">{resultCards?.[3]}</span>
-            </div>
-            <div
-              className="d-sm-flex flex-sm-row border-start border-2 border-primary "
+              className="d-sm-flex flex-sm-row border-star border-2 border-primary "
               style={{ marginRight: "5px" }}
             >
-              <span className="lucky7CommonText-2">{resultCards?.[4]}</span>
+              <span className="opacity-50">Card</span>{" "}
+              <span className="lucky7CommonText-2">{resultCards?.[4]?.[6]}</span>
             </div>
           </div>
         </div>

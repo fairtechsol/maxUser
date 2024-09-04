@@ -107,29 +107,29 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                     ) : (
                       <>
                         {mTypeid === "cricket" && (
-                          <div className="px-3 m-game-one-v-one">
+                          <div className="px-1 lh-1 m-game-one-v-one">
                             <Link
-                              className="text-decoration-none text-black f600"
+                              className="text-decoration-none text-black f600 title-12 lh-1"
                               to={"/contact-admin"}
                             >
                               Ball By ball
                             </Link>
-                            <div className="d-flex w-100 pt-2">
+                            <div className="d-flex w-100">
                               <React.Fragment>
                                 <BackLayComponent
-                                  heading="1"
+                                  heading="."
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
-                                  heading="X"
+                                  heading="."
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
-                                  heading="2"
+                                  heading="."
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
@@ -145,12 +145,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                             <>
                               <div
                                 key={index}
-                                className="px-3 py-1 m-game-one-v-one"
+                                className="px-1 m-game-one-v-one"
                               >
                                 <div className="d-flex justify-content-between">
                                   <div className="d-flex flex-column">
                                     <Link
-                                      className="text-decoration-none text-black"
+                                      className="text-decoration-none text-black lh-1"
                                       to={`/${
                                         mTypeid === "cricket"
                                           ? "game-detail/cricket"
@@ -268,12 +268,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
       location.pathname === "/inPlay" ||
       location.pathname === "/casino-slot" ? (
         <div className="tab-pane active casino-tables d-flex">
-          <div className="container-fluid">
-            <div className="row row5">
-              <div className="col-12">
-                <h4 className="text-uppercase mt-3">Our Casino</h4>
-              </div>
-            </div>
+          <div>
             <div
               className="mt-2"
               style={

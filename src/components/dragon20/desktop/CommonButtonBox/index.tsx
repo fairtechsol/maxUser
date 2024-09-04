@@ -26,6 +26,7 @@ const CommonButtonBox = ({
       {/* <div className="tiePairbtn-theme suspended" onClick={handleBet}> */}
       <div
         className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
+        style={{lineHeight:"2.5"}}
         onClick={() => (!lock ? handleBet(data) : null)}
       >
         <span>
@@ -46,7 +47,7 @@ const CommonButtonBox = ({
       </div>
       <div>
         <span
-          style={{ fontSize: "16px" }}
+          style={{ fontSize: "16px", }}
           className={`${
             isNaN(value3)
               ? ""

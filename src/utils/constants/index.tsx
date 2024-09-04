@@ -128,7 +128,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -380,6 +380,7 @@ export const cardUrl =
     : "https://maxbet9.fairgame.club/videoPage/";
 
 export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
+export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventid=";
 
 export const baseUrls = {
   socket:

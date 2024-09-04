@@ -44,26 +44,26 @@ const MobileHeader = () => {
     <>
       <div className="float-start d-flex align-items-center gap-2">
         <div className="logodiv">
-          <FaHome className="text-white title-20" />
+          <FaHome className="text-white title-22" />
           <Link to={"home"}>
             <Navbar.Brand>
-              <LogoSection width="auto" height="17px" />
+              <LogoSection width="auto" height="27px" />
             </Navbar.Brand>
           </Link>
         </div>
       </div>
       <div className="d-flex flex-column align-items-center white-text list-unstyled float-end h-100">
         {show?.balance && (
-          <div className="d-flex gap-1 align-items-center justify-content-end w-100">
-            <FaLandmark className="text-white title-18" />
+          <div className="d-flex gap-1 align-items-center justify-content-end w-100 title-12">
+          Balance:
             <b>{parseFloat(getProfile?.userBal?.currentBalance).toFixed(2)}</b>
           </div>
         )}
-        <div className="d-flex gap-1">
+        <div className="d-flex gap-1 title-12">
           {show?.exposure && (
-            <u onClick={handleClickExposureModalOpen}>
+            <span onClick={handleClickExposureModalOpen}>
               Exp:{parseFloat(getProfile?.userBal?.exposure).toFixed(2)}
-            </u>
+            </span>
           )}
           <ExposureModal
             show={openExposure}
@@ -73,7 +73,7 @@ const MobileHeader = () => {
             <Dropdown>
               <Dropdown.Toggle
                 id="dropdown-custom-components"
-                className="p-0 text-decoration-underline"
+                className="p-0 title-12 "
               >
                 {getProfile?.userName}
               </Dropdown.Toggle>
@@ -118,7 +118,7 @@ const MobileHeader = () => {
         </div>
       </div>
       <SearchBox />
-      <div className="marquee-container text-white">
+      <div className="marquee-container text-white p-2">
         <b className="marquee-content title-10">{marqueeNotification?.value}</b>
       </div>
     </>

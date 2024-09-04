@@ -112,11 +112,14 @@ const TeenPattiDesktop = () => {
   useEffect(() => {
     if (
       dragonTigerDetail?.players?.[0]?.[0]?.gstatus === "0" ||
-      dragonTigerDetail?.players?.[0]?.[0]?.b1 ==="0.00"
+      dragonTigerDetail?.players?.[0]?.[0]?.b1 === "0.00"
     ) {
       dispatch(selectedBetAction(""));
     }
-  }, [dragonTigerDetail?.players?.[0]?.[0]?.gstatus, dragonTigerDetail?.players?.[0]?.[0]?.b1]);
+  }, [
+    dragonTigerDetail?.players?.[0]?.[0]?.gstatus,
+    dragonTigerDetail?.players?.[0]?.[0]?.b1,
+  ]);
 
   return (
     <>
@@ -177,7 +180,7 @@ const TeenPattiDesktop = () => {
                     style={{
                       lineHeight: 2,
                       marginTop: "2px",
-                      background: "fff",
+                      background: "#f2f2f2",
                     }}
                   >
                     <div style={{ width: "40%" }}></div>
@@ -230,7 +233,7 @@ const TeenPattiDesktop = () => {
 
                   <div
                     className="teenPatti-table-row"
-                    style={{ lineHeight: 2 }}
+                    style={{ lineHeight: 2,background:"#f2f2f2" }}
                   >
                     <div
                       style={{ width: "40%", border: "0.1px solid #fff" }}
@@ -238,7 +241,7 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "60%",
-                        backgroundColor: "#72bbef",
+                        backgroundColor: "#f2f2f2",
                         display: "flex",
                         flexDirection: "row",
                       }}
@@ -288,7 +291,7 @@ const TeenPattiDesktop = () => {
                         <div
                           key={index}
                           className="teenPatti-table-row"
-                          style={{ lineHeight: 1 }}
+                          style={{ lineHeight: 1,background:"#f2f2f2" }}
                         >
                           <div
                             style={{
@@ -316,64 +319,65 @@ const TeenPattiDesktop = () => {
                               flexDirection: "row",
                             }}
                           >
-                            {playerA?.map((player: any) => (
-                              <div
-                                key={player.sid}
-                                className={`teenPatti-table-item ${
-                                  player.gstatus === "0" ? "locked" : ""
-                                }`}
-                                style={{ width: "16.7%" }}
-                                onClick={() =>
-                                  player.gstatus === "0"
-                                    ? null
-                                    : handleBet(player)
-                                }
-                              >
-                                <span className="f12-b">{player.b1}</span>
-                               
-                                    <span
-                                      className={`f400 title-14 ${
-                                        dragonTigerDetail?.profitLoss
-                                          ? dragonTigerDetail?.profitLoss[
-                                              `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                            ]
-                                            ? dragonTigerDetail?.profitLoss[
-                                                `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                              ] > 0
-                                              ? "color-green"
-                                              : dragonTigerDetail?.profitLoss[
-                                                  `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                                ] < 0
-                                              ? "color-red"
-                                              : ""
-                                            : ""
-                                          : ""
-                                      }`}
-                                      style={{
-                                        marginTop:
-                                          player.gstatus === "0" ? "15px" : "",
-                                        zIndex: "100",
-                                      }}
-                                    >
-                                      {dragonTigerDetail?.profitLoss
+                            {Array.isArray(playerA) &&
+                              playerA?.map((player: any) => (
+                                <div
+                                  key={player.sid}
+                                  className={`teenPatti-table-item ${
+                                    player.gstatus === "0" ? "locked" : ""
+                                  }`}
+                                  style={{ width: "16.7%" }}
+                                  onClick={() =>
+                                    player.gstatus === "0"
+                                      ? null
+                                      : handleBet(player)
+                                  }
+                                >
+                                  <span className="f12-b">{player.b1}</span>
+
+                                  <span
+                                    className={`f400 title-14 ${
+                                      dragonTigerDetail?.profitLoss
                                         ? dragonTigerDetail?.profitLoss[
                                             `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
                                           ]
                                           ? dragonTigerDetail?.profitLoss[
                                               `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
-                                            ]
-                                          : 0
-                                        : 0}
-                                    </span>
-                                  
-                                {/* {(!dragonTigerDetail.profitLoss ||
+                                            ] > 0
+                                            ? "color-green"
+                                            : dragonTigerDetail?.profitLoss[
+                                                `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                              ] < 0
+                                            ? "color-red"
+                                            : ""
+                                          : ""
+                                        : ""
+                                    }`}
+                                    style={{
+                                      marginTop:
+                                        player.gstatus === "0" ? "15px" : "",
+                                      zIndex: "100",
+                                    }}
+                                  >
+                                    {dragonTigerDetail?.profitLoss
+                                      ? dragonTigerDetail?.profitLoss[
+                                          `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                        ]
+                                        ? dragonTigerDetail?.profitLoss[
+                                            `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
+                                          ]
+                                        : 0
+                                      : 0}
+                                  </span>
+
+                                  {/* {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
                                   ]) && (
                                   <span className="f400 title-14">0</span>
                                 )} */}
-                              </div>
-                            ))}
+                                </div>
+                              ))}
                           </div>
                         </div>
                       );
@@ -409,7 +413,7 @@ const TeenPattiDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <RulesModal  show={show} setShow={setShow} rule={warrules} />
+                <RulesModal show={show} setShow={setShow} rule={warrules} />
               </Col>
             </Row>
           </Container>

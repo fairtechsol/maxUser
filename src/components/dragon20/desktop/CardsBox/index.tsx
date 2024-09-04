@@ -30,7 +30,7 @@ const CardBox = ({ name, cardData, data }: any) => {
     <>
       <div className="cardContainer">
         <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "1.5rem" }}>
+          <span style={{ fontSize: "20px" ,fontWeight:"bold"}}>
             {name}{" "}
             {parseFloat(
               isNaN(cardData?.[0]?.rate) ? 0 : cardData?.[0]?.rate

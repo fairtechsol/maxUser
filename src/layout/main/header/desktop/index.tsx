@@ -76,11 +76,11 @@ const DesktopHeader = () => {
   return (
     <>
       <Row className=" w-100vw">
-        <Col xs={12}>
+        <Col xs={12} className="p-2">
           <div className="float-start">
             <Link to={"/home"}>
               <Navbar.Brand>
-                <LogoSection width="auto" height="65px" />
+                <LogoSection width="auto"  />
               </Navbar.Brand>
             </Link>
           </div>
@@ -131,7 +131,7 @@ const DesktopHeader = () => {
                 <div>
                   <span
                     onClick={handleClickExposureModalOpen}
-                    className="white-text text-decoration-underline cursor-pointer"
+                    className="white-text  cursor-pointer"
                   >
                     Exposure:
                     <b>

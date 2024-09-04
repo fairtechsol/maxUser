@@ -40,7 +40,7 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
   }, [cardData?.[0]?.gstatus]);
 
   return (
-    <div className="commonCardImgContainer">
+    <div className="commonCardImgContainer" >
       {cardImg?.map((item: any,index:number) => {
         return (
           <div key={index}>

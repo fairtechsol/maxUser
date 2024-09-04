@@ -58,7 +58,7 @@ const PlacedBet = () => {
   );
 
   const dispatch: AppDispatch = useDispatch();
-
+// console.log('selectedBet',selectedBet)
   const handleSubmit = () => {
     if (
       selectedBet?.team?.stake <
@@ -88,6 +88,9 @@ const PlacedBet = () => {
         odds: selectedBet?.team?.rate,
         ratePercent: selectedBet?.team?.percent,
         stake: selectedBet?.team?.stake,
+        betPlaceIndex:selectedBet?.team?.betPlaceIndex,
+        mid:selectedBet?.team?.mid,
+        teamName:selectedBet?.team?.teamName
       };
       let payloadForBettings: any = {
         betId: selectedBet?.team?.betId,
@@ -106,6 +109,8 @@ const PlacedBet = () => {
         placeIndex: selectedBet?.team?.placeIndex,
         bettingName: selectedBet?.data?.name,
         gameType: selectedBet?.team?.eventType,
+        mid: selectedBet?.team?.mid,
+        selectionId: selectedBet?.team?.selectionId,
       };
       let payloadForRace: any = {
         betId: selectedBet?.team?.betId,
@@ -145,14 +150,14 @@ const PlacedBet = () => {
             dispatch(
               placeBet({
                 url:
-                  selectedBet?.data?.type === "session" ||
+                  selectedBet?.team?.matchBetType=== "session" ||
                   selectedBet?.data?.SelectionId
                     ? ApiConstants.BET.PLACEBETSESSION
                     : selectedBet?.team?.gameType === "other"
                     ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
                     : ApiConstants.BET.PLACEBETMATCHBETTING,
                 data:
-                  selectedBet?.data?.type === "session" ||
+                  selectedBet?.team?.matchBetType=== "session" ||
                   selectedBet?.data?.SelectionId
                     ? JSON.stringify(payloadForSession)
                     : JSON.stringify(payloadForBettings),
@@ -164,14 +169,14 @@ const PlacedBet = () => {
         dispatch(
           placeBet({
             url:
-              selectedBet?.data?.type === "session" ||
+              selectedBet?.team?.matchBetType=== "session" ||
               selectedBet?.data?.SelectionId
                 ? ApiConstants.BET.PLACEBETSESSION
                 : selectedBet?.team?.gameType === "other"
                 ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
                 : ApiConstants.BET.PLACEBETMATCHBETTING,
             data:
-              selectedBet?.data?.type === "session" ||
+              selectedBet?.team?.matchBetType=== "session" ||
               selectedBet?.data?.SelectionId
                 ? JSON.stringify(payloadForSession)
                 : JSON.stringify(payloadForBettings),
@@ -245,7 +250,7 @@ const PlacedBet = () => {
 
   const handleProfit = (value: any) => {
     let profit;
-    if (selectedBet?.data?.type === "session") {
+    if (selectedBet?.team?.matchBetType=== "session") {
       profit =
         selectedBet?.team?.type === "no"
           ? value
@@ -255,9 +260,9 @@ const PlacedBet = () => {
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
       selectedBet?.data?.type === matchBettingType.completeMatch ||
       selectedBet?.data?.type === matchBettingType.halfTime ||
-      selectedBet?.data?.type.includes("overUnder") ||
-      selectedBet?.data?.type.includes("firstHalfGoal") ||
-      selectedBet?.data?.type.includes("setWinner")
+      selectedBet?.data?.type?.includes("overUnder") ||
+      selectedBet?.data?.type?.includes("firstHalfGoal") ||
+      selectedBet?.data?.type?.includes("setWinner")
     ) {
       profit =
         selectedBet?.team?.type === "back"
@@ -342,7 +347,7 @@ const PlacedBet = () => {
                       {selectedBet?.team?.eventType === "horseRacing"
                         ? "MATCH_ODDS"
                         : handleName(selectedBet)}
-                      {/* {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam} */}
+                      {/* {selectedBet?.team?.name ?? selectedgBet?.team?.betOnTeam} */}
                     </span>
                   </td>
                   <td width={"20%"}>

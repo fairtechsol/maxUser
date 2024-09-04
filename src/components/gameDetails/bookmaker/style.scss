@@ -1,0 +1,204 @@
+@keyframes marquee {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.bookmakerContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f2f2f2;
+}
+.bookmakerTitle{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    background-color: #fece5d;
+}
+.bookmakerTitleTxt{
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.bookmakerBackLayTab{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #c7c8ca;
+}
+.bookmakerMinMaxBox{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bookmakerMinMax{
+    font-size: 12px;
+    font-weight: 500;
+    color: #097c93;
+}
+.bookmaker1BackLayBoxContainer{
+    width: 48%;
+    display: flex;
+    flex-direction: row;
+}
+.bookmaker2BackLayBoxContainer{
+    width: 24%;
+    display: flex;
+    flex-direction: row;
+}
+.bookmaker1BackBoxTab{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #72bbef;
+}
+.bookmaker1LayBoxTab{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #faa9ba;
+}
+.bookmaker2BackBoxTab{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #72bbef;
+}
+.bookmaker2LayBoxTab{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #faa9ba;
+}
+.bookmakerEmptyBox{
+    width: 50%;
+}
+.bookmakerBackTxt{
+    font-size: 1rem;
+    color: #000;
+    font-weight: 500;
+}
+.bookmakerTeamTab{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #c7c8ca;
+}
+.bookmakerRemarkTab{
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #c7c8ca;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+.bookmakerTeam{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.bookmakerTeamTxt{
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+}
+.bookmaker1RateBox{
+    position: relative;
+    width: 72%;
+    display: flex;
+    flex-direction: row;
+}
+.bookmaker2RateBox{
+    position: relative;
+    width: 24%;
+    display: flex;
+    flex-direction: row;
+}
+.bookmakerBackBox{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.bookmakerRate1Box{
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+}
+.bookmakerRate2Box{
+    font-size: 12px;
+    color: #000;
+    font-weight: 300;
+}
+.back3Background{
+    background-color: #b2d6f0 !important;
+}
+.back2Background{
+    background-color: #92c9f0 !important;
+}
+.back1Background{
+    background-color: #72bbef !important;
+}
+.lay3Background{
+    background-color: #f6cdd6 !important;
+}
+.lay2Background{
+    background-color: #f8bcc8 !important;
+}
+.lay1Background{
+    background-color: #faa9ba !important;
+}
+.remark-content {
+    font-size: 12px;
+    color: #097c93;
+    font-weight: 600;
+    display: inline-block;
+    padding-left: 38%;
+    animation: marquee 20s linear infinite;
+}
+.suspended-overlayRatesBookmaker{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000099;
+    height: 100%;
+    z-index: 999;
+}
+.suspendedTxtBookmaker {
+    font-weight: 500;
+    color: #df0e00;
+}
+.f-size10 {
+    font-size: 10px !important;
+}
+.f-size12 {
+    font-size: 12px !important;
+}
+.f-size14 {
+    font-size: 14px !important;
+}
+.f-size16 {
+    font-size: 16px !important;
+}
+.f-size18 {
+    font-size: 18px !important;
+}

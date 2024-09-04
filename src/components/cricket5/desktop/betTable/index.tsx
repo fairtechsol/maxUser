@@ -24,7 +24,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: item?.sid,
+      selectionId: (item?.sid).toString(),
     };
     dispatch(
       selectedBetAction({
@@ -39,11 +39,13 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
 
   useEffect(() => {
     if (
-      team1?.status === "SUSPENDED" || team1?.status === "CLOSED" || team1?.b1 === "0.00"
+      team1?.status === "SUSPENDED" ||
+      team1?.status === "CLOSED" ||
+      team1?.b1 === "0.00"
     ) {
       dispatch(selectedBetAction(""));
     }
-  }, [team1?.status,team1?.b1]);
+  }, [team1?.status, team1?.b1]);
 
   return (
     <div className="casino-detail detail-page-container-c position-relative w-100">
@@ -111,16 +113,22 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             </div>
             <div
               className={`market-row-c ${
-                team1?.status === "SUSPENDED" || team1?.status === "CLOSED" ? "suspended-row" : ""
+                team1?.status === "SUSPENDED" || team1?.status === "CLOSED"
+                  ? "suspended-row"
+                  : ""
               }`}
               data-title={
-                team1?.status === "SUSPENDED" || team1?.status === "CLOSED" ? "SUSPENDED" : "ACTIVE"
+                team1?.status === "SUSPENDED" || team1?.status === "CLOSED"
+                  ? "SUSPENDED"
+                  : "ACTIVE"
               }
             >
               <div
                 className="market-odd-box-c back lh-1"
                 onClick={() =>
-                  team1?.status === "SUSPENDED" || team1?.status === "CLOSED" || team1?.b1 === "0.00"
+                  team1?.status === "SUSPENDED" ||
+                  team1?.status === "CLOSED" ||
+                  team1?.b1 === "0.00"
                     ? null
                     : handleBet(team1, "back")
                 }
@@ -133,7 +141,11 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               <div
                 className="market-odd-box-c lay lh-1"
                 onClick={() =>
-                  team1?.status === "SUSPENDED" || team1?.status === "CLOSED" || team1?.l1 === "0.00" ? null : handleBet(team1, "lay")
+                  team1?.status === "SUSPENDED" ||
+                  team1?.status === "CLOSED" ||
+                  team1?.l1 === "0.00"
+                    ? null
+                    : handleBet(team1, "lay")
                 }
               >
                 <span className="market-odd-c f600">
@@ -185,16 +197,22 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             </div>
             <div
               className={`market-row-c ${
-                team2?.status === "SUSPENDED" || team2?.status === "CLOSED"? "suspended-row" : ""
+                team2?.status === "SUSPENDED" || team2?.status === "CLOSED"
+                  ? "suspended-row"
+                  : ""
               }`}
               data-title={
-                team2?.status === "SUSPENDED" || team2?.status === "CLOSED"? "SUSPENDED" : "ACTIVE"
+                team2?.status === "SUSPENDED" || team2?.status === "CLOSED"
+                  ? "SUSPENDED"
+                  : "ACTIVE"
               }
             >
               <div
                 className="market-odd-box-c back lh-1"
                 onClick={() =>
-                  team2?.status === "SUSPENDED" || team2?.status === "CLOSED" || team2?.b1 === "0.00" 
+                  team2?.status === "SUSPENDED" ||
+                  team2?.status === "CLOSED" ||
+                  team2?.b1 === "0.00"
                     ? null
                     : handleBet(team2, "back")
                 }
@@ -207,7 +225,11 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               <div
                 className="market-odd-box-c lay lh-1"
                 onClick={() =>
-                  team2?.status === "SUSPENDED" || team2?.status === "CLOSED" || team2?.l1 === "0.00" ? null : handleBet(team2, "lay")
+                  team2?.status === "SUSPENDED" ||
+                  team2?.status === "CLOSED" ||
+                  team2?.l1 === "0.00"
+                    ? null
+                    : handleBet(team2, "lay")
                 }
               >
                 <span className="market-odd-c f600">

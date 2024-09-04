@@ -70,7 +70,6 @@ const Superover = () => {
 
   useEffect(() => {
     if (dragonTigerDetail?.videoInfo?.mid) {
-      const Id = dragonTigerDetail.videoInfo?.mid.split(".");
       let intervalTime = 1000;
       if (errorCount >= 5 && errorCount < 10) {
         intervalTime = 60000;
@@ -78,7 +77,7 @@ const Superover = () => {
         intervalTime = 600000;
       }
       const interval = setInterval(() => {
-        getScoreBoard(Id[1]);
+        getScoreBoard(dragonTigerDetail.videoInfo?.mid);
       }, intervalTime);
 
       return () => clearInterval(interval);

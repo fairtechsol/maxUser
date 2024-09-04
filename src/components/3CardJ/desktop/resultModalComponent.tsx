@@ -136,11 +136,12 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
                     marginTop: '10px',
                     color:"#9e9e9e",
                     paddingRight:"30px",
-                    paddingLeft:"30px"
+                    paddingLeft:"30px",
+                    width:"40%"
                   }}
                 > Result
                   {elementsAndar?.map((item: any, index: any) => (
-                    <div style={{color:"#000"}}>{item}</div>
+                    <div style={{color:"#000"}}>{item[0]}</div>
                   ))}
                 </div>
               </div>
