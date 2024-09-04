@@ -13,7 +13,8 @@ const MobileSessionFancy = ({ title, data, detail }) => {
     betTeam: any,
     status: any,
     value: any,
-    item:any
+    item:any,
+    tno:any
   ) => {
     if (data?.status != "OPEN" || status != "live") {
       return false;
@@ -31,6 +32,8 @@ const MobileSessionFancy = ({ title, data, detail }) => {
       eventType: detail?.matchType,
       matchId: detail?.id,
       percent: value,
+      mid: data?.mid?.toString(),
+      betPlaceIndex:tno,
       matchBetType:"session"
     };
     dispatch(
@@ -86,7 +89,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                   <div className="sessionRateBoxContainer">
                   {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
                   {item?.GameStatus ?? "SUSPENDED"}</span></div>}
-                    <div className={`sessionRateBox back1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,item?.ex?.availableToBack?.[0]?.price ,item)}>
+                    <div className={`sessionRateBox back1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,item?.ex?.availableToBack?.[0]?.price ,item,item?.ex?.availableToBack?.[0]?.tno)}>
                       <span
                         className={`f-size15 sessionRate1Box`}
                       >
@@ -98,7 +101,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                         {item?.ex?.availableToBack?.[0]?.size}
                       </span>
                     </div>
-                    <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"lay","Back",item?.activeStatus,item?.ex?.availableToLay?.[0]?.price ,item)}>
+                    <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"lay","Back",item?.activeStatus,item?.ex?.availableToLay?.[0]?.price ,item,item?.ex?.availableToBack?.[0]?.tno)}>
                       <span
                         className={`f-size15 sessionRate1Box`}
                       >
