@@ -135,6 +135,10 @@ const cardGames = [
     value: "baccarat2",
     label: "BACCARAT2",
   },
+  {
+    value: "ballbyball",
+    label: "Ball By Ball",
+  },
 ];
 
 const CasinoReports = () => {
