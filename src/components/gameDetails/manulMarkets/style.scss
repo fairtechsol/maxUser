@@ -32,7 +32,7 @@
 }
 .manualMinMax{
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     color: #097c93;
 }
 .manualBackLayBoxContainer{
@@ -71,9 +71,10 @@
     border-bottom: 1px solid #c7c8ca;
 }
 .manualTeam{
+    width: 28%;
     padding: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: flex-start;
 }
 .manualTeamTxt{
@@ -140,14 +141,26 @@
 .f-size10 {
     font-size: 10px !important;
 }
+.f-size11 {
+    font-size: 11px !important;
+}
 .f-size12 {
     font-size: 12px !important;
+}
+.f-size13 {
+    font-size: 13px !important;
 }
 .f-size14 {
     font-size: 14px !important;
 }
+.f-size15 {
+    font-size: 15px !important;
+}
 .f-size16 {
     font-size: 16px !important;
+}
+.f-size17 {
+    font-size: 17px !important;
 }
 .f-size18 {
     font-size: 18px !important;

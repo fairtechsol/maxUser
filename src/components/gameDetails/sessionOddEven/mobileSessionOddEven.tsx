@@ -67,7 +67,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size16">{item?.RunnerName}</span>
+                    <span className="f-size13">{item?.RunnerName}</span>
                   </div>
                   <div className="sessionRateBoxContainer">
                     {(item?.activeStatus != "live" ||
@@ -107,16 +107,12 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`${
-                            !isMobile ? "f-size18" : "f-size12"
-                          } sessionRate1Box`}
+                          className={`f-size15 sessionRate1Box`}
                         >
                           {item?.ex?.availableToLay?.[0]?.price ?? "-"}
                         </span>
                         <span
-                          className={`${
-                            !isMobile ? "f-size16" : "f-size12"
-                          } sessionRate2Box`}
+                          className={`f-size11 sessionRate2Box`}
                         >
                           {item?.ex?.availableToLay?.[0]?.size}
                         </span>
@@ -146,16 +142,12 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`${
-                            !isMobile ? "f-size18" : "f-size12"
-                          } sessionRate1Box`}
+                          className={`f-size15 sessionRate1Box`}
                         >
                           {item?.ex?.availableToBack?.[0]?.price ?? "-"}
                         </span>
                         <span
-                          className={`${
-                            !isMobile ? "f-size16" : "f-size12"
-                          } sessionRate2Box`}
+                          className={`f-size11 sessionRate2Box`}
                         >
                           {item?.ex?.availableToBack?.[0]?.size}
                         </span>
