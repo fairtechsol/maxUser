@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import Cards32Desktop from "./desktop";
 import Cards32Mobile from "./mobile";
 

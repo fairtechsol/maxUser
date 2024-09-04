@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import CricketMatch20Desktop from "./desktop";
 import CricketMatch20Mobile from "./mobile";
 

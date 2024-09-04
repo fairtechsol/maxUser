@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { back, club, diamond, heart, spade } from "../../../assets/images";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 // import Club from "../../assets/cards/clubs.png";
 // import Diamond from "../../assets/cards/diamond.png";
 // import Heart from "../../assets/cards/heart.png";

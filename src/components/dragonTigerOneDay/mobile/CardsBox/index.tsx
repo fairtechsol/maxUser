@@ -6,7 +6,7 @@ import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import SmoothDropdownModal from "../minMaxModal";
 
 const CardBox = ({ dragonData, tigerData, data }: any) => {

@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import CasinoMeterDesktop from "./desktop";
 import CasinoMeterMobile from "./mobile";
 

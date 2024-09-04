@@ -1,5 +1,5 @@
 import Modal from "react-bootstrap/Modal";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 
 const RulesModal = ({ show, setShow, rule }: any) => {
   // const [show, setShow] = useState(false);

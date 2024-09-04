@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import isMobile from "../../../utils/screenDimension";
+import {isLap, isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 
@@ -117,7 +117,7 @@ const SessionFancy = ({ title, data, detail }) => {
                     <div className={`sessionRateBox back1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,item?.ex?.availableToBack?.[0]?.price ,item,item?.ex?.availableToBack?.[0]?.tno)}>
                       <span
                         className={`${
-                          !isMobile ? "f-size18" : "f-size15"
+                          !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                         } sessionRate1Box`}
                       >
                         {item?.ex?.availableToBack?.[0]?.price ?? "-"}
@@ -133,7 +133,7 @@ const SessionFancy = ({ title, data, detail }) => {
                     <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"lay","Back",item?.activeStatus,item?.ex?.availableToLay?.[0]?.price ,item,item?.ex?.availableToLay?.[0]?.tno)}>
                       <span
                         className={`${
-                          !isMobile ? "f-size18" : "f-size15"
+                          !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                         } sessionRate1Box`}
                       >
                         {item?.ex?.availableToLay?.[0]?.price ?? "-"}
@@ -194,7 +194,7 @@ const SessionFancy = ({ title, data, detail }) => {
                     <div className={`sessionRateBox back1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,item?.ex?.availableToBack?.[0]?.price ,item,item?.ex?.availableToBack?.[0]?.tno)}>
                       <span
                         className={`${
-                          !isMobile ? "f-size18" : "f-size15"
+                          !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                         } sessionRate1Box`}
                       >
                         {item?.ex?.availableToBack?.[0]?.price ?? "-"}
@@ -210,7 +210,7 @@ const SessionFancy = ({ title, data, detail }) => {
                     <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"lay","Back",item?.activeStatus,item?.ex?.availableToLay?.[0]?.price ,item,item?.ex?.availableToLay?.[0]?.tno)}>
                       <span
                         className={`${
-                          !isMobile ? "f-size18" : "f-size15"
+                          !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                         } sessionRate1Box`}
                       >
                         {item?.ex?.availableToLay?.[0]?.price ?? "-"}

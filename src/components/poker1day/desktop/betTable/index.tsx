@@ -2,7 +2,7 @@ import "./style.scss";
 import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import { useEffect } from "react";
 const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import { FaTrophy } from "react-icons/fa";
 import { ImClubs } from "react-icons/im";
 import { GiSpades } from "react-icons/gi";

@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 import "./style.scss";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import { FaSync } from "react-icons/fa";
 import { getMyMarket } from "../../../store/actions/betPlace/betPlaceActions";
 import { AppDispatch, RootState } from "../../../store/store";

@@ -1,6 +1,6 @@
 import { debounce } from "lodash";
 import React, { useMemo, useState } from "react";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import CustomInput from "../../input";
 
 interface SearchBoxProps {

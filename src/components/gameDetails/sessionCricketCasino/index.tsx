@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import isMobile from "../../../utils/screenDimension";
+import {isLap, isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { FaLock } from "react-icons/fa";
@@ -140,7 +140,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                       >
                         <span
                           className={`${
-                            !isMobile ? "f-size18" : "f-size15"
+                            !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                           } sessionRate1Box`}
                         >
                           {item?.odds?.[0]?.odds ?? "-"}

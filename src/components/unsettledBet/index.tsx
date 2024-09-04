@@ -1,5 +1,5 @@
 import { Col, Form, Row, Stack } from "react-bootstrap";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import { useDispatch } from "react-redux";

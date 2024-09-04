@@ -4,7 +4,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import SmoothDropdownModal from "../minMaxModal";
 import { useState } from "react";
 import { IoInformationCircle } from "react-icons/io5";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 
 const TotalCards = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();

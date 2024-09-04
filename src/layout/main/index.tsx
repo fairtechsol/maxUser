@@ -11,7 +11,7 @@ import {
   updateBalanceOnSessionResult,
 } from "../../store/actions/user/userAction";
 import { AppDispatch } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import "../layout.scss";
 import Header from "./header";
 import Sidebar from "./sidebar";

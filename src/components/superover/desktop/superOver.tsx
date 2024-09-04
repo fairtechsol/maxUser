@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { s1 ,s2,s3,s4,s6,s0,ballW} from "../../../assets/images";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 
 interface Props {
   data: {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import { back, club, diamond, heart, spade } from "../../../../assets/images";
 // import Club from "../../assets/cards/clubs.png";
 // import Diamond from "../../assets/cards/diamond.png";
