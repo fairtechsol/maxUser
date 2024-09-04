@@ -68,7 +68,7 @@ const SessionOddEven = ({ title, data, detail }) => {
   };
   return (
     <>
-      <div className="sessionNormalContainer">
+      <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt">{title}</span>
         </div>
