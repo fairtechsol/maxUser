@@ -188,11 +188,11 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.manualTiedMatch?.isActive && (
+              {(matchDetails?.manualTiedMatch?.isActive||matchDetails?.manualTideMatch?.isActive) && (
                 <Col md={12}>
                   <ManualMarket
-                    title={matchDetails?.manualTiedMatch?.name}
-                    data={matchDetails?.manualTiedMatch}
+                    title={matchDetails?.manualTiedMatch?.name || matchDetails?.manualTideMatch?.name}
+                    data={matchDetails?.manualTiedMatch||matchDetails?.manualTideMatch}
                     detail={matchDetails}
                     // data={matchDetails?.matchOdd}
                   />

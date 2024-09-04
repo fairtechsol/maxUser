@@ -57,7 +57,7 @@ const ManualMarket=({title,data,detail})=>{
                 <div className="manualMinMaxBox">
                     <span className="manualMinMax">Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}</span>
                 </div>
-                <div className="manualBackLayBoxContainer" style={{width:isMobile?"24%":"48%"}}>
+                <div className="manualBackLayBoxContainer" style={{width:isMobile?"35%":"48%"}}>
                     <div className="manualBackBoxTab" style={{width:isMobile?"50%":"25%"}}>
                         <span className={`f-size16 manualBackTxt`}>Back</span>
                     </div>
