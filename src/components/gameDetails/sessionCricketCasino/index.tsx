@@ -22,6 +22,9 @@ const SessionCricketCasino = ({ title, data, detail }) => {
     if (status != "") {
       return false;
     }
+    if(odds === 0){
+      return false;
+  }
     let team = {
       betOnTeam: betTeam,
       rate: odds,

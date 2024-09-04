@@ -11,6 +11,9 @@ const DynamicMarket=({title,data,detail})=>{
         if(data?.activeStatus != "live" || status !="ACTIVE"){
             return false;
         }
+        if(odds === 0){
+          return false;
+      }
         let team ={
             betOnTeam:betTeam,
             rate:odds,
