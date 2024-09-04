@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import Poker20Desktop from "./desktop";
 import Poker20Mobile from "./mobile";
 

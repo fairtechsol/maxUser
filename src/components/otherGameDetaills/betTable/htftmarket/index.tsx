@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { CSSProperties } from "react";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 const HTFTMarketTable = () => {
   const data = [
     { label: "1/1", nestedLabel: "28", nestedValue: "8923" },

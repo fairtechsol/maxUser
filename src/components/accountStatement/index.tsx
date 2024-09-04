@@ -9,7 +9,7 @@ import { getPlacedBetsForAccountStatement } from "../../store/actions/betPlace/b
 import { getAccountStatement } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { transType } from "../../utils/constants";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
 import NotSet from "../commonComponent/notSet";

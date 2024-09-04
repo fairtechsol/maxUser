@@ -39,7 +39,7 @@
 }
 .bookmakerMinMax{
     font-size: 12px;
-    font-weight: 500;
+    font-weight: bold;
     color: #097c93;
 }
 .bookmaker1BackLayBoxContainer{
@@ -109,7 +109,7 @@
 .bookmakerTeam{
     padding: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: flex-start;
 }
 .bookmakerTeamTxt{
@@ -145,7 +145,7 @@
 .bookmakerRate2Box{
     font-size: 12px;
     color: #000;
-    font-weight: 300;
+    font-weight: 100;
 }
 .back3Background{
     background-color: #b2d6f0 !important;
@@ -190,14 +190,26 @@
 .f-size10 {
     font-size: 10px !important;
 }
+.f-size11 {
+    font-size: 11px !important;
+}
 .f-size12 {
     font-size: 12px !important;
+}
+.f-size13 {
+    font-size: 13px !important;
 }
 .f-size14 {
     font-size: 14px !important;
 }
+.f-size15 {
+    font-size: 15px !important;
+}
 .f-size16 {
     font-size: 16px !important;
+}
+.f-size17 {
+    font-size: 17px !important;
 }
 .f-size18 {
     font-size: 18px !important;

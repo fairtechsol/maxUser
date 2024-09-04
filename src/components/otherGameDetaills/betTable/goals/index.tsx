@@ -5,7 +5,7 @@ import { IoInformationCircle } from "react-icons/io5";
 import {
   //  AppDispatch,
     RootState } from "../../../../store/store";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
 import "../../../gameDetails/betTable/apiSessionMarket/style.scss";
 import CustomModal from "../../../commonComponent/modal";

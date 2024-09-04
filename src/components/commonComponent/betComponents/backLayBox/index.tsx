@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import { useLocation, useParams } from "react-router-dom";
 interface props {
   bgColor?: string;

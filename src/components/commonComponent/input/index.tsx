@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import CustomErrorMessage from "../customErrorMessage";
 import "./style.scss";
 

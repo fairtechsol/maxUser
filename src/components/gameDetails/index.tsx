@@ -31,7 +31,7 @@ import {
   updateTeamRatesOnDeleteMatch,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 import {

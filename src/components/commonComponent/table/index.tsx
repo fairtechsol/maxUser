@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Column } from "../../../models/tableInterface";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
 import TableHeader from "./tableHeader";
 import PaginationComponent from "./tableUtils/pagination"; // Import the PaginationComponent

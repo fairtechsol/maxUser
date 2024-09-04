@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import "../style.scss"
-import isMobile from '../../../utils/screenDimension';
+import {isMobile} from '../../../utils/screenDimension';
 const LatestEvent = ({ events }) => {
   return (
     <div className={isMobile ? "latest-event-mobile border-bottom p-1" :"latest-event border-bottom p-1"}>

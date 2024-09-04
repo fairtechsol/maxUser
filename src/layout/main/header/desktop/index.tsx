@@ -20,7 +20,7 @@ import { SearchListReset } from "../../../../store/actions/match/matchListAction
 import CustomModal from "../../../../components/commonComponent/modal";
 import Drules from "../../../../components/rules/desktop";
 import Mobile from "../../../../components/rules/mobile";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
 
 const DesktopHeader = () => {

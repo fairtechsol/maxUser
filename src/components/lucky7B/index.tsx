@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import Lucky7BDesktop from "./desktop";
 import Lucky7BMobile from "./mobile";
 

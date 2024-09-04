@@ -3,7 +3,7 @@ import { Col, Row, Stack } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
