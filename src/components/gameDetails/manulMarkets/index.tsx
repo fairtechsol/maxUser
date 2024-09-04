@@ -59,10 +59,10 @@ const ManualMarket=({title,data,detail})=>{
                 </div>
                 <div className="manualBackLayBoxContainer" style={{width:isMobile?"24%":"48%"}}>
                     <div className="manualBackBoxTab" style={{width:isMobile?"50%":"25%"}}>
-                        <span className={`${!isMobile ? "f-size18":"f-size14"} manualBackTxt`}>Back</span>
+                        <span className={`f-size16 manualBackTxt`}>Back</span>
                     </div>
                     <div className="manualLayBoxTab" style={{width:isMobile?"50%":"25%"}}>
-                        <span className={`${!isMobile ? "f-size18":"f-size14"} manualBackTxt`}>Lay</span>
+                        <span className={`f-size16 manualBackTxt`}>Lay</span>
                     </div>
                    {!isMobile && <div className="manualEmptyBox"></div>}
                 </div>

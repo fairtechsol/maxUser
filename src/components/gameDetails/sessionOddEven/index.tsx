@@ -66,6 +66,13 @@ const SessionOddEven = ({ title, data, detail }) => {
     }
     return num.toString();
   };
+  const handlePrice = (rate: any) => {
+    if (rate && rate != 0) {
+      return rate;
+    } else {
+      return "-";
+    }
+  };
   return (
     <>
       <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
@@ -129,7 +136,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         <span
                           className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                         >
-                          {item?.ex?.availableToLay?.[0]?.price ?? "-"}
+                          {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
                         </span>
                         <span
                           className={`f-size12 sessionRate2Box`}
@@ -164,7 +171,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         <span
                           className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                         >
-                          {item?.ex?.availableToBack?.[0]?.price ?? "-"}
+                          {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
                         </span>
                         <span
                           className={`f-size12 sessionRate2Box`}
@@ -244,7 +251,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                               !isMobile ? "f-size18" :isLap?"f-size16": "f-size15"
                             } sessionRate1Box`}
                           >
-                            {item?.ex?.availableToLay?.[0]?.price ?? "-"}
+                            {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
                           </span>
                           <span
                             className={`${
@@ -282,7 +289,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                               !isMobile ? "f-size18" : isLap?"f-size16":"f-size15"
                             } sessionRate1Box`}
                           >
-                            {item?.ex?.availableToBack?.[0]?.price ?? "-"}
+                            {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
                           </span>
                           <span
                             className={`${

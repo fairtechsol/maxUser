@@ -65,6 +65,13 @@ const SessionFancy = ({ title, data, detail }) => {
     }
     return num.toString();
   };
+  const handlePrice = (rate: any) => {
+    if (rate && rate != 0) {
+      return rate;
+    } else {
+      return "-";
+    }
+  };
   return (
     <>
       <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
@@ -87,7 +94,7 @@ const SessionFancy = ({ title, data, detail }) => {
                 <div className="sessionYesBox back1Background">
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : "f-size14"
+                      !isMobile ? "f-size18" : "f-size16"
                     } sessionBackTxt`}
                   >
                     Back
@@ -96,7 +103,7 @@ const SessionFancy = ({ title, data, detail }) => {
                 <div className="sessionYesBox lay1Background">
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : "f-size14"
+                      !isMobile ? "f-size18" : "f-size16"
                     } sessionBackTxt`}
                   >
                     Lay
@@ -120,7 +127,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                         } sessionRate1Box`}
                       >
-                        {item?.ex?.availableToBack?.[0]?.price ?? "-"}
+                        {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
                       </span>
                       <span
                         className={`${
@@ -136,7 +143,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                         } sessionRate1Box`}
                       >
-                        {item?.ex?.availableToLay?.[0]?.price ?? "-"}
+                        {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
                       </span>
                       <span
                         className={`${
@@ -164,7 +171,7 @@ const SessionFancy = ({ title, data, detail }) => {
                 <div className="sessionYesBox back1Background">
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : "f-size14"
+                      !isMobile ? "f-size16" : "f-size16"
                     } sessionBackTxt`}
                   >
                     Back
@@ -173,7 +180,7 @@ const SessionFancy = ({ title, data, detail }) => {
                 <div className="sessionYesBox lay1Background">
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : "f-size14"
+                      !isMobile ? "f-size16" : "f-size16"
                     } sessionBackTxt`}
                   >
                     Lay
@@ -197,7 +204,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                         } sessionRate1Box`}
                       >
-                        {item?.ex?.availableToBack?.[0]?.price ?? "-"}
+                        {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
                       </span>
                       <span
                         className={`${
@@ -213,7 +220,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
                         } sessionRate1Box`}
                       >
-                        {item?.ex?.availableToLay?.[0]?.price ?? "-"}
+                        {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
                       </span>
                       <span
                         className={`${
