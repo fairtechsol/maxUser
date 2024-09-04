@@ -164,7 +164,7 @@ const MainLayout = () => {
         className="contents-wrapper"
         style={{ width: "100%" }}
       >
-        <div className="footer-container">
+        <div className="footer-container mt-2">
           <FooterMain />
           <FooterBottom />
         </div>

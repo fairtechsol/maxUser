@@ -197,7 +197,7 @@ const MatchListRow = ({ item, matchType }: any) => {
               {item?.title} /{" "}
               {moment(item?.startAt)
                 .tz(timezone)
-                .format("MMM DD YYYY h:mmA ([IST])")}
+                .format("MMM DD YYYY h:mmA")}
             </div>
           </NavLink>
           <div className="d-flex align-items-center gap-2">

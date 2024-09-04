@@ -23,6 +23,8 @@ import MobileSessionNormal from "../sessionNormal/mobileSessionNormal";
 import MobileSessionOddEven from "../sessionOddEven/mobileSessionOddEven";
 import MobileSessionFancy from "../sessionFancy/mobileSessionFancy";
 import SessionCricketCasino from "../sessionCricketCasino";
+import { FiMonitor } from "react-icons/fi";
+import { FaTv } from "react-icons/fa";
 
 const markets = [
   {
@@ -134,7 +136,16 @@ const MobileGameDetail = () => {
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
-
+      <BetTableHeader
+        customClass=""
+        customTextClass="title-12"
+        title={matchDetails?.title}
+        rightComponent={
+          <span className="title-14 f400 text-white">
+            {matchDetails?.startAt && formatDate(matchDetails?.startAt)}
+          </span>
+        }
+      />
       <CommonTabs defaultActive="odds" className="color">
         {[
           {
@@ -145,29 +156,22 @@ const MobileGameDetail = () => {
             id: "matchedBet",
             name: `MATCHED BET(${Array.from(new Set(placedBets))?.length})`,
           },
+          {
+            id: "live",
+            name: <div style={{padding: "0px", fontSize: "11px"}}><FaTv /> </div>,
+          },
         ]?.map((item, index) => {
           return (
             <Tab
               key={item?.id}
               eventKey={item?.id}
               tabClassName="m-tab"
-              title={<div className="font p-1 px-2">{item?.name}</div>}
+              title={<div className="font p-2 lh-1 py-0 f600">{item?.name} </div>}
             >
               {index == 0 ? (
-                <Container fluid>
+                <Container>
                   <Row>
                     <Col className="g-0" md={12}>
-                      <BetTableHeader
-                        customClass="py-2"
-                        customTextClass="title-12"
-                        title={matchDetails?.title}
-                        rightComponent={
-                          <span className="title-14 f400">
-                            {matchDetails?.startAt &&
-                              formatDate(matchDetails?.startAt)}
-                          </span>
-                        }
-                      />
                       <div
                         style={{
                           width: "100%",
@@ -282,65 +286,71 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                    {matchDetails?.apiSession?.overByover?.section?.length > 0 && (
-                <Col className="g-0" md={12}>
-                  <MobileSessionNormal
-                    title={"overByover"}
-                    // type={"normal"}
-                    data={matchDetails?.apiSession?.overByover}
-                    detail={matchDetails}
-                  />
-                </Col>
-              )}
-               {matchDetails?.apiSession?.ballByBall?.section?.length > 0 && (
-                <Col className="g-0" md={12}>
-                  <MobileSessionNormal
-                    title={"Ballbyball"}
-                    // type={"normal"}
-                    data={matchDetails?.apiSession?.ballByBall}
-                    detail={matchDetails}
-                  />
-                </Col>
-              )}
-              {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
-                <Col className="g-0" md={12}>
-                  <MobileSessionOddEven
-                    title={"oddeven"}
-                    // type={"fancy"}
-                    data={matchDetails?.apiSession?.oddEven}
-                    detail={matchDetails}
-                    // data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
-              {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
-                <Col className="g-0" md={12}>
-                  <MobileSessionFancy
-                    title={"fancy1"}
-                    data={matchDetails?.apiSession?.fancy1}
-                    detail={matchDetails}
-                    // data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
-              {matchDetails?.apiSession?.cricketCasino?.section?.length > 0 &&
-                matchDetails?.apiSession?.cricketCasino?.section?.map(
-                  (item: any, index: number) => {
-                    return (
-                    <div key={index} style={{width:"100%",padding:0}}>
-                      {item?.activeStatus === "live" && (
-                        <Col className="g-0" md={12}>
-                          <SessionCricketCasino
-                            title={item?.RunnerName}
-                            data={item}
-                            detail={matchDetails}
-                          />
-                        </Col>
+                    {matchDetails?.apiSession?.overByover?.section?.length >
+                      0 && (
+                      <Col className="g-0" md={12}>
+                        <MobileSessionNormal
+                          title={"overByover"}
+                          // type={"normal"}
+                          data={matchDetails?.apiSession?.overByover}
+                          detail={matchDetails}
+                        />
+                      </Col>
+                    )}
+                    {matchDetails?.apiSession?.ballByBall?.section?.length >
+                      0 && (
+                      <Col className="g-0" md={12}>
+                        <MobileSessionNormal
+                          title={"Ballbyball"}
+                          // type={"normal"}
+                          data={matchDetails?.apiSession?.ballByBall}
+                          detail={matchDetails}
+                        />
+                      </Col>
+                    )}
+                    {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
+                      <Col className="g-0" md={12}>
+                        <MobileSessionOddEven
+                          title={"oddeven"}
+                          // type={"fancy"}
+                          data={matchDetails?.apiSession?.oddEven}
+                          detail={matchDetails}
+                          // data={matchDetails?.matchOdd}
+                        />
+                      </Col>
+                    )}
+                    {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
+                      <Col className="g-0" md={12}>
+                        <MobileSessionFancy
+                          title={"fancy1"}
+                          data={matchDetails?.apiSession?.fancy1}
+                          detail={matchDetails}
+                          // data={matchDetails?.matchOdd}
+                        />
+                      </Col>
+                    )}
+                    {matchDetails?.apiSession?.cricketCasino?.section?.length >
+                      0 &&
+                      matchDetails?.apiSession?.cricketCasino?.section?.map(
+                        (item: any, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              style={{ width: "100%", padding: 0 }}
+                            >
+                              {item?.activeStatus === "live" && (
+                                <Col className="g-0" md={12}>
+                                  <SessionCricketCasino
+                                    title={item?.RunnerName}
+                                    data={item}
+                                    detail={matchDetails}
+                                  />
+                                </Col>
+                              )}
+                            </div>
+                          );
+                        }
                       )}
-                    </div>
-                  )
-                }
-                )}
                     {/* {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
@@ -420,7 +430,6 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )} */}
-                    
                   </Row>
                 </Container>
               ) : (

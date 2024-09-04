@@ -4,7 +4,7 @@ const FooterBottom = () => {
   return (
     <>
     <div className="footer-bottom">
-      <div className="secure-logo" style={{ display: 'flex', alignItems: 'center' }}>
+      <div className="secure-logo p-2" style={{ display: 'flex', alignItems: 'center' }}>
         <div>
           <img src="https://wver.sprintstaticdata.com/v3/static/front/img/ssl.png" alt="SSL Logo" />
         </div>
