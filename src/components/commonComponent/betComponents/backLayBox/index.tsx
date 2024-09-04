@@ -94,7 +94,7 @@ function BackLayBox({
           <h5
             className={`${
               isMobile ? "backLay-rate-m mb-1" : "backLay-rate"
-            } f500 title-15`}
+            } f400 title-15`}
           >
             {parseFloat(rate || 0) <= 0 || active
               ? isMobile
