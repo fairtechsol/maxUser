@@ -19,6 +19,9 @@ const SessionFancy = ({ title, data, detail }) => {
     if (data?.status != "OPEN" || status != "live") {
       return false;
     }
+    if(odds === 0){
+      return false;
+  }
     let team = {
       betOnTeam: betTeam,
       rate: odds,
@@ -64,7 +67,7 @@ const SessionFancy = ({ title, data, detail }) => {
   };
   return (
     <>
-      <div className="sessionNormalContainer">
+      <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt">{title}</span>
         </div>

@@ -22,6 +22,9 @@ const SessionCricketCasino = ({ title, data, detail }) => {
     if (status != "") {
       return false;
     }
+    if(odds === 0){
+      return false;
+  }
     let team = {
       betOnTeam: betTeam,
       rate: odds,
@@ -74,7 +77,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
 
   return (
     <>
-      <div className="sessionNormalContainer">
+      <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt">{title}</span>
         </div>

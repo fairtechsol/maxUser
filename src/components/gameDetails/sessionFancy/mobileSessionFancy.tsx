@@ -19,6 +19,9 @@ const MobileSessionFancy = ({ title, data, detail }) => {
     if (data?.status != "OPEN" || status != "live") {
       return false;
     }
+    if(odds === 0){
+      return false;
+  }
     let team = {
       betOnTeam: betTeam,
       rate: odds,
