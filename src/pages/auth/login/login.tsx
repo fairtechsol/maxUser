@@ -101,7 +101,7 @@ const Login = () => {
               id="userName"
               value={formik.values.userName}
               onChange={formik.handleChange}
-              inputIcon={<IoPerson style={{ fontWeight: "normal", color: '#333', fontSize: isMobile ? '18' : '20px' }} />}
+              inputIcon={<IoPerson style={{ fontWeight: "normal", color: '#333', fontSize: isMobile ? '16' : '16px' }} />}
               customStyle="mb-4"
               isUnderlinedInput={isMobile}
             />
@@ -116,7 +116,7 @@ const Login = () => {
               customStyle="mb-3"
               name="password"
               id="password"
-              inputIcon={<FaKey style={{ fontWeight: "normal", color: '#333', fontSize: isMobile ? '18' : '20px' }} />}
+              inputIcon={<FaKey style={{ fontWeight: "normal", color: '#333', fontSize: isMobile ? '16' : '16px' }} />}
               isUnderlinedInput={isMobile}
               value={formik.values.password}
               onChange={formik.handleChange}
