@@ -14,7 +14,6 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
         </span>
       </div>
       <div
-        className={player.gstatus === "0" ? "suspended" : ""}
         style={{
           width: "60%",
           backgroundColor: "#72bbef",
@@ -23,7 +22,7 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
         }}
       >
         <div
-          className="teenPatti-table-item"
+          className={player.gstatus === "0" ? "teenPatti-table-item suspended" : "teenPatti-table-item"}
           style={{ width: "50%" }}
           onClick={() => (player.gstatus === "0" ? null : handleBet(player))}
         >
@@ -61,10 +60,7 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
           </span>
         </div>
         <div
-          className={`teenPatti-table-item ${
-            // pairPlus.gstatus !== "0" ? "suspended" :
-            ""
-          }`}
+         className={player.gstatus === "0" ? "teenPatti-table-item suspended" : "teenPatti-table-item"}
           style={{ width: "50%" }}
           onClick={() =>
             pairPlus.gstatus === "0" ? null : handleBet(pairPlus)

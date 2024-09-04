@@ -247,11 +247,11 @@ const MenuGroup: React.FC<{
                   sideBarChild?.type === "liveItem" ? (
                   <MenuItemChild data={sideBarChild} />
                 ) : (
-                  <MenuCollapse
+                  <MenuItemChild
                     data={sideBarChild}
-                    selectedMatchIndex={selectedMatchIndex}
-                    menuItemList={menuItemList}
-                    setMenuItemList={setMenuItemList}
+                    // selectedMatchIndex={selectedMatchIndex}
+                    // menuItemList={menuItemList}
+                    // setMenuItemList={setMenuItemList}
                   />
                 )}
               </Accordion>

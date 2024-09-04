@@ -285,9 +285,6 @@ const TeenPattiDesktop = () => {
                         </div>
 
                         <div
-                          className={`${
-                            section.dstatus !== "True" ? "lock" : ""
-                          }`}
                           style={{
                             width: "60%",
                             display: "flex",
@@ -295,7 +292,9 @@ const TeenPattiDesktop = () => {
                           }}
                         >
                           <div
-                            className={`teenPatti-table-item`}
+                          className={`${
+                            section.dstatus !== "True" ? "teenPatti-table-item lock" : "teenPatti-table-item"
+                          }`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
@@ -340,7 +339,9 @@ const TeenPattiDesktop = () => {
                           </div>
 
                           <div
-                            className={`teenPatti-table-item`}
+                              className={`${
+                                section.dstatus !== "True" ? "teenPatti-table-item lock" : "teenPatti-table-item"
+                              }`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
@@ -385,7 +386,9 @@ const TeenPattiDesktop = () => {
                           </div>
 
                           <div
-                            className={`teenPatti-table-item`}
+                               className={`${
+                                section.dstatus !== "True" ? "teenPatti-table-item lock" : "teenPatti-table-item"
+                              }`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
