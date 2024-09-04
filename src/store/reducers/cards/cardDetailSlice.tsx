@@ -460,10 +460,23 @@ const cardDetail = createSlice({
         const videoInfo = { ...t1[0] };
         const odds = t2.slice(0, 18);
 
+        const PlayerA = [];
+        const PlayerB = [];
+
+        t2?.forEach((item:any, index:any) => {
+          if (index % 2 === 0) {
+            PlayerA.push(item);
+          } else {
+            PlayerB.push(item);
+          }
+        })
+
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
           odds,
+          PlayerA,
+          PlayerB
         };
       })
       .addCase(updateBaccarat1Rates.fulfilled, (state, action) => {
@@ -576,8 +589,6 @@ const cardDetail = createSlice({
         };
       })
       .addCase(update3CardJRates.fulfilled, (state, action) => {
-        
-
         const { t1, t2, t3 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
@@ -625,22 +636,20 @@ const cardDetail = createSlice({
           ...state.dragonTigerDetail,
           videoInfo,
           low,
-          high
+          high,
         };
       })
-      
+
       .addCase(ballbyballMatchRates.fulfilled, (state, action) => {
-        console.log("ballbyballMatchRates",action?.payload)
+        console.log("ballbyball",action?.payload)
         state.loading = false;
-        const { t1, t2 } = action.payload;
-        const videoInfo = { ...t1[0] };
-        const low = { ...t2[0] };
-        const high = { ...t2[1] };
+        const { t1 } = action?.payload;
+        const videoInfo = { ...t1 };
+        const runs = t1?.sub;
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
-          low,
-          high
+          runs
         };
       })
 

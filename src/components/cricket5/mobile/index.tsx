@@ -161,7 +161,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                     data={dragonTigerDetail}
                     min={dragonTigerDetail?.videoInfo?.min}
                     max={dragonTigerDetail?.videoInfo?.max}
-                    showFancy={showFancy}
+                    showFancy={dragonTigerDetail?.fancy}
                   />
                 </div>
                 <div style={{ marginTop: "10px" }}>

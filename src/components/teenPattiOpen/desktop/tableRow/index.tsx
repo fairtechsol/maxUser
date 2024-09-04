@@ -35,7 +35,6 @@ const TeenPattiTableRow = ({
         />
       </div>
       <div
-        className={player.gstatus === "0" ? "suspended" : ""}
         style={{
           width: "60%",
           backgroundColor: "#72bbef",
@@ -44,11 +43,11 @@ const TeenPattiTableRow = ({
         }}
       >
         <div
-          className="teenPatti-table-item"
+         className={player.gstatus === "0" ? "teenPatti-table-item suspended" : "teenPatti-table-item"}
           style={{ width: "50%" }}
           onClick={() => (player.gstatus === "0" ? null : handleBet(player))}
         >
-          <span className="f12-b">{player.rate}</span>
+          <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>{player.rate}</span>
           <span
             className={`f10-b ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss
@@ -80,17 +79,13 @@ const TeenPattiTableRow = ({
               : 0}
           </span>
         </div>
-        <div
-          className={`teenPatti-table-item ${
-            //pairPlus.gstatus === "0" ? "suspended" :
-            ""
-          }`}
+        <div className={player.gstatus === "0" ? "teenPatti-table-item suspended " : "teenPatti-table-item"}
           style={{ width: "50%" }}
           onClick={() =>
             pairPlus.gstatus === "0" ? null : handleBet(pairPlus)
           }
         >
-          <span className="f12-b">{pairPlus.nation}</span>
+          <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>{pairPlus.nation}</span>
           <span
             className={`f10-b ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss

@@ -103,6 +103,32 @@
   font-size: 12px;
   font-weight: bolder;
 }
+
+.ticker-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.ticker-wrap {
+  display: flex;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.ticker-move {
+  display: flex;
+  animation: ticker 40s linear infinite;
+  color: "#097c93";
+}
+
+.ticker-item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  white-space: nowrap;
+}
+
 /* Ensure the tabs are horizontally scrollable on smaller devices */
 @media (max-width: 768px) {
   // .tabs-nav {
