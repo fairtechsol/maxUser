@@ -336,6 +336,7 @@ export const cardGamesId: any = {
   cardj: 3039,
   cmatch20: 3045,
   cmeter: 3046,
+  ballbyball: 3061,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
