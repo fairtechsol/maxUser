@@ -1,6 +1,6 @@
 import React from "react";
 import "../style.scss";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";

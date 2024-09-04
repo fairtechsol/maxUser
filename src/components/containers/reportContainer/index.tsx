@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import isMobile from '../../../utils/screenDimension';
+import {isMobile} from '../../../utils/screenDimension';
 import BetTableHeader from '../../commonComponent/betTableHeader';
 interface ReportContainerProps {
     title: string;

@@ -1,5 +1,5 @@
 import React from "react";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import CustomInput from "../../input";
 
 interface RowPerPageProps {

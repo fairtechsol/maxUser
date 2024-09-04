@@ -5,7 +5,7 @@ import CustomModal from "../../../../components/commonComponent/modal";
 import CustomTable from "../../../../components/commonComponent/table";
 import { RootState } from "../../../../store/store";
 import { navigateToGameDetail } from "../../../../utils/constants";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 
 interface ExposureModalInterface {
   show: boolean;

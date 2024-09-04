@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import Race20Desktop from "./desktop";
 import Race20Mobile from "./mobile";
 

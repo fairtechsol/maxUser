@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import QueenDesktop from "./desktop";
 import QueenMobile from "./mobile";
 

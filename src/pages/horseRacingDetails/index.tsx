@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";

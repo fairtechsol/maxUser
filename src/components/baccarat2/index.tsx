@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import Baccarat2Desktop from "./desktop";
 import Baccarat2Mobile from "./mobile";
 

@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
 import { cardGamesType } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import AbjResultComponent from "../../abj2/desktop/resultModalComponent";
 import Card32ResultComponent from "../../cards32/desktop/resultModalComponent";
 import Dragon20ResultComponent from "../../dragon20/desktop/resultModalComponent";

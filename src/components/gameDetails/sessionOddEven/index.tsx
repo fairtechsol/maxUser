@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import isMobile from "../../../utils/screenDimension";
+import {isLap, isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 
@@ -127,7 +127,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`f-size18 sessionRate1Box`}
+                          className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                         >
                           {item?.ex?.availableToLay?.[0]?.price ?? "-"}
                         </span>
@@ -162,7 +162,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`f-size18 sessionRate1Box`}
+                          className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                         >
                           {item?.ex?.availableToBack?.[0]?.price ?? "-"}
                         </span>
@@ -241,7 +241,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         >
                           <span
                             className={`${
-                              !isMobile ? "f-size18" : "f-size15"
+                              !isMobile ? "f-size18" :isLap?"f-size16": "f-size15"
                             } sessionRate1Box`}
                           >
                             {item?.ex?.availableToLay?.[0]?.price ?? "-"}
@@ -279,7 +279,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         >
                           <span
                             className={`${
-                              !isMobile ? "f-size18" : "f-size15"
+                              !isMobile ? "f-size18" : isLap?"f-size16":"f-size15"
                             } sessionRate1Box`}
                           >
                             {item?.ex?.availableToBack?.[0]?.price ?? "-"}

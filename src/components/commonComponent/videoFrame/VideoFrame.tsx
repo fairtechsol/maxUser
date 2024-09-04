@@ -1,6 +1,6 @@
 import { memo, useEffect } from "react";
 import FlipClock from "./FlipClock";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 
 const VideoFrame = ({ result, time, id, profitLoss }: any) => {
   // const [showModal, setModalOpen] = useState(false);

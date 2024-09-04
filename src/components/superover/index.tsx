@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import SuperoverDesktop from "./desktop";
 import SuperoverMobile from "./mobile";
 

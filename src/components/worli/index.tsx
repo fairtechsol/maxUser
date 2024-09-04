@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import WorliDesktop from "./desktop";
 import WorliMobile from "./mobile";
 

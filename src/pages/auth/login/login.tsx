@@ -17,7 +17,7 @@ import {
 } from "../../../store/actions/authAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
 import { FaHandPointDown, FaKey } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";

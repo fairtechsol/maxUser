@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import isMobile from "../../../utils/screenDimension";
+import {isLap, isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 
@@ -147,7 +147,7 @@ const SessionNormal = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span className={`f-size18 sessionRate1Box`}>
+                        <span className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}>
                           {item?.ex?.availableToLay?.[0]?.price ?? "-"}
                         </span>
                         <span className={`f-size12 sessionRate2Box`}>
@@ -170,7 +170,7 @@ const SessionNormal = ({ title, data, detail }) => {
                             )
                           }
                         >
-                          <span className={`f-size18 sessionRate1Box`}>
+                          <span className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}>
                             {item?.ex?.availableToLay?.[1]?.price ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
@@ -194,7 +194,7 @@ const SessionNormal = ({ title, data, detail }) => {
                             )
                           }
                         >
-                          <span className={`f-size18 sessionRate1Box`}>
+                          <span className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}>
                             {item?.ex?.availableToLay?.[2]?.price ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
@@ -226,7 +226,7 @@ const SessionNormal = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`f-size18 sessionRate1Box`}
+                          className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                         >
                           {item?.ex?.availableToBack?.[0]?.price ?? "-"}
                         </span>
@@ -253,7 +253,7 @@ const SessionNormal = ({ title, data, detail }) => {
                           }
                         >
                           <span
-                            className={`f-size18 sessionRate1Box`}
+                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                           >
                             {item?.ex?.availableToBack?.[1]?.price ?? "-"}
                           </span>
@@ -281,7 +281,7 @@ const SessionNormal = ({ title, data, detail }) => {
                           }
                         >
                           <span
-                            className={`f-size18 sessionRate1Box`}
+                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                           >
                             {item?.ex?.availableToBack?.[2]?.price ?? "-"}
                           </span>
@@ -383,7 +383,7 @@ const SessionNormal = ({ title, data, detail }) => {
                           }
                         >
                           <span
-                            className={`f-size18 sessionRate1Box`}
+                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                           >
                             {item?.ex?.availableToLay?.[0]?.price ?? "-"}
                           </span>
@@ -410,7 +410,7 @@ const SessionNormal = ({ title, data, detail }) => {
                             }
                           >
                             <span
-                              className={`f-size18 sessionRate1Box`}
+                              className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                             >
                               {item?.ex?.availableToLay?.[1]?.price ?? "-"}
                             </span>
@@ -438,7 +438,7 @@ const SessionNormal = ({ title, data, detail }) => {
                             }
                           >
                             <span
-                              className={`f-size18 sessionRate1Box`}
+                              className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                             >
                               {item?.ex?.availableToLay?.[2]?.price ?? "-"}
                             </span>
@@ -473,7 +473,7 @@ const SessionNormal = ({ title, data, detail }) => {
                           }
                         >
                           <span
-                            className={`f-size18 sessionRate1Box`}
+                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                           >
                             {item?.ex?.availableToBack?.[0]?.price ?? "-"}
                           </span>
@@ -502,7 +502,7 @@ const SessionNormal = ({ title, data, detail }) => {
                             }
                           >
                             <span
-                              className={`f-size18 sessionRate1Box`}
+                              className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                             >
                               {item?.ex?.availableToBack?.[1]?.price ?? "-"}
                             </span>
@@ -530,7 +530,7 @@ const SessionNormal = ({ title, data, detail }) => {
                             }
                           >
                             <span
-                              className={`f-size18 sessionRate1Box`}
+                              className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                             >
                               {item?.ex?.availableToBack?.[2]?.price ?? "-"}
                             </span>

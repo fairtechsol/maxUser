@@ -6,7 +6,7 @@ import "./assets/common.scss";
 import routes from "./routes";
 import "./theme/theme.css";
 import LogoutTimer from "./utils/LogoutTimer";
-import isMobile from "./utils/screenDimension";
+import {isMobile} from "./utils/screenDimension";
 
 const contextClass = {
   success: "bg-blue-600",

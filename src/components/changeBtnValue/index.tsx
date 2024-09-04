@@ -7,7 +7,7 @@ import {
   setButtonValue,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";

@@ -1,4 +1,4 @@
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import DesktopTopBar from "./desktop";
 import MobileTopBar from "./mobile";
 import "./style.scss";
