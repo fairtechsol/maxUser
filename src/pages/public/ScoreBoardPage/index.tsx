@@ -29,8 +29,8 @@ const ScoreBoardPage = () => {
         style={iframeStyles}
         src={`${scoreBoardUrlMain}${vidId}`}
         frameBorder="0"
-        allow="autoplay; fullscreen"
-        allowFullScreen
+        // allow="autoplay; fullscreen"
+        // allowFullScreen
       />
     </div>
   );

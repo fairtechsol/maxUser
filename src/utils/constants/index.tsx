@@ -380,7 +380,7 @@ export const cardUrl =
     : "https://maxbet9.fairgame.club/videoPage/";
 
 export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
-export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventid=";
+export const scoreBoardUrlMain = "https://dpmatka.in/dcasino/score.php?matchId=";
 
 export const baseUrls = {
   socket:
