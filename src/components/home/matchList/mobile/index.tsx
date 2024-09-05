@@ -63,7 +63,7 @@ const MobileMatchList = ({ setMatchType, type }: any) => {
                     eventKey={item?.id}
                     tabClassName="m-match-list-tabs"
                     title={
-                      <div className="title-12 text-uppercase f500 px-2 lh-1">
+                      <div className="title-12 text-uppercase f500 px-2 lh-sm">
                         {item?.img ? (
                           <img
                             src={item?.img}
