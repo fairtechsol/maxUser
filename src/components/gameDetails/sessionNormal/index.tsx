@@ -52,17 +52,8 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
   const oddIndexArray = [];
 
   useEffect(() => {
-    if (data?.section) {
-      if(manual){
-        setMarketArr([...data?.section, ...manual]);
-      }else{
-        setMarketArr([...data?.section]);
-      }
-    } else {
-      if(manual){
-        setMarketArr([...manual]);
-      }
-    }
+    const newMarketArr = [...(data?.section || []), ...(manual || [])];
+    setMarketArr(newMarketArr);
   }, [data, manual]);
   
 
