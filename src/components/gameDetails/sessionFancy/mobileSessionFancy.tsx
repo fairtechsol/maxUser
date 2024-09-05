@@ -94,7 +94,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size13">{item?.RunnerName}</span>
+                    <span className="f-size13" style={{fontWeight:"400"}}>{item?.RunnerName}</span>
                   </div>
                   <div className="sessionRateBoxContainer"  style={{width:"40%"}}>
                   {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>

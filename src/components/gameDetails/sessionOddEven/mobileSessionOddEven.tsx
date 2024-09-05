@@ -77,7 +77,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size13">{item?.RunnerName}</span>
+                    <span className="f-size13" style={{fontWeight:"400"}}>{item?.RunnerName}</span>
                   </div>
                   <div className="sessionRateBoxContainer" style={{width:"40%"}}>
                     {(item?.activeStatus != "live" ||

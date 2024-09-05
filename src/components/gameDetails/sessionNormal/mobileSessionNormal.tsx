@@ -76,18 +76,14 @@ const MobileSessionNormal = ({ title, data, detail }) => {
               <div className="sessionYesNoBox" style={{width:"40%"}}>
                 <div className="sessionYesBox lay1Background" style={{width:"100%"}}>
                   <span
-                    className={`${
-                      !isMobile ? "f-size18" : "f-size16"
-                    } sessionBackTxt`}
+                    className={`f-size16 sessionBackTxt`}
                   >
                     No
                   </span>
                 </div>
                 <div className="sessionYesBox back1Background" style={{width:"100%"}}>
                   <span
-                    className={`${
-                      !isMobile ? "f-size18" : "f-size16"
-                    } sessionBackTxt`}
+                    className={`f-size16 sessionBackTxt`}
                   >
                     Yes
                   </span>

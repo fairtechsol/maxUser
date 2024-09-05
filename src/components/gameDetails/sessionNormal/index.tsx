@@ -93,18 +93,14 @@ const SessionNormal = ({ title, data, detail }) => {
               <div className="sessionYesNoBox">
                 <div className="sessionYesBox lay1Background">
                   <span
-                    className={`${
-                      !isMobile ? "f-size16" : "f-size14"
-                    } sessionBackTxt`}
+                    className={`f-size16 sessionBackTxt`}
                   >
                     No
                   </span>
                 </div>
                 <div className="sessionYesBox back1Background">
                   <span
-                    className={`${
-                      !isMobile ? "f-size16" : "f-size14"
-                    } sessionBackTxt`}
+                    className={`f-size16 sessionBackTxt`}
                   >
                     Yes
                   </span>
@@ -116,7 +112,7 @@ const SessionNormal = ({ title, data, detail }) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size15" style={{width:"60%"}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
+                    <span className="f-size15" style={{width:"60%",fontWeight:"400"}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
                   </div>
                   <div className="sessionRateBoxContainer">
                     {(item?.activeStatus != "live" ||
@@ -327,18 +323,14 @@ const SessionNormal = ({ title, data, detail }) => {
                   <div className="sessionYesNoBox">
                     <div className="sessionYesBox lay1Background">
                       <span
-                        className={`${
-                          !isMobile ? "f-size16" : "f-size14"
-                        } sessionBackTxt`}
+                        className={`f-size16 sessionBackTxt`}
                       >
                         No
                       </span>
                     </div>
                     <div className="sessionYesBox back1Background">
                       <span
-                        className={`${
-                          !isMobile ? "f-size16" : "f-size14"
-                        } sessionBackTxt`}
+                        className={`f-size16 sessionBackTxt`}
                       >
                         Yes
                       </span>
@@ -352,7 +344,7 @@ const SessionNormal = ({ title, data, detail }) => {
                 return (
                   <div className="sessionRateContainer" key={index}>
                     <div className="sessionRateName">
-                      <span className="f-size15" style={{width:"60%"}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
+                      <span className="f-size15" style={{width:"60%",fontWeight:"400"}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
                     </div>
                     <div className="sessionRateBoxContainer">
                       {(item?.activeStatus != "live" ||
