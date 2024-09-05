@@ -65,7 +65,7 @@ const ScoreBox = ({
         <div
           className={
             item?.gstatus === "SUSPENDED" || backOdds === "0.00"
-              ? "suspended casino-odds-box back"
+              ? "suspended-box casino-odds-box back"
               : "casino-odds-box back "
           }
           onClick={() =>
@@ -79,7 +79,7 @@ const ScoreBox = ({
         <div
           className={
             item?.gstatus === "SUSPENDED" || layOdds === "0.00"
-              ? "suspended casino-odds-box lay"
+              ? "suspended-box casino-odds-box lay"
               : "casino-odds-box lay "
           }
           onClick={() =>
