@@ -53,7 +53,7 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
 
   useEffect(() => {
     if (data?.section) {
-      setMarketArr([...data.section, ...manual]);
+      setMarketArr([...data?.section, ...manual]);
     } else {
       setMarketArr([...manual]);
     }

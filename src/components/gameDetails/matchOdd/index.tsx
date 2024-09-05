@@ -66,7 +66,7 @@ const MatchOdd=({title,data,detail})=>{
                 <div className="matchOddMinMaxBox">
                     <span className="matchOddMinMax">Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}</span>
                 </div>
-                <div className="matchOddBackLayBoxContainer">
+                <div className="matchOddBackLayBoxContainer" style={{width:isLap?"240px":!isMobile?"320px":""}}>
                     <div className="matchOddBackBoxTab">
                         <span className={`f-size16 matchOddBackTxt`}>Back</span>
                     </div>
@@ -83,31 +83,31 @@ const MatchOdd=({title,data,detail})=>{
               <div className="matchOddTeam">
                 <span className={`${!isMobile ? "f-size14":"f-size13"} matchOddTeamTxt`}>{detail?.teamA}</span>
               </div>
-              <div className="matchOddRateBox">
+              <div className="matchOddRateBox" style={{width:isLap?"360px":!isMobile?"480px":""}}>
               {(data?.activeStatus === "live" && data?.runners?.[0]?.status !="ACTIVE") && <div className="suspended-overlayRatesMatchOdd"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtMatchOdd`}>
                 SUSPENDED</span></div>}
                 <div className="matchOddBackBox back3Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,"BACK",detail?.teamA,data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,data?.runners?.[0])}>
-                    <span className={`${!isMobile ? "f-size18": isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[0]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[0]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}</span>
                 </div>
                 <div className="matchOddBackBox back2Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[1]?.price,"BACK",detail?.teamA,data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[1]?.tno,data?.runners?.[0])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[1]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[1]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}</span>
                 </div>
                 <div className="matchOddBackBox back1Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToBack?.[2]?.price,"BACK",detail?.teamA,data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[2]?.tno,data?.runners?.[0])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[2]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[2]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[0]?.ex?.availableToBack?.[2]?.size}</span>
                 </div>
                 <div className="matchOddBackBox lay1Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToLay?.[0]?.price,"LAY",detail?.teamA,data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,data?.runners?.[0])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToLay?.[0]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToLay?.[0]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}</span>
                 </div>
                 <div className="matchOddBackBox lay2Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToLay?.[1]?.price,"LAY",detail?.teamA,data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToLay?.[1]?.tno,data?.runners?.[0])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToLay?.[1]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToLay?.[1]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}</span>
                 </div>
                 <div className="matchOddBackBox lay3Background" onClick={()=> handlePlaceBet(data?.runners?.[0]?.ex?.availableToLay?.[2]?.price,"LAY",detail?.teamA,data?.runners?.[0]?.status,data?.runners?.[0]?.ex?.availableToLay?.[2]?.tno,data?.runners?.[0])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToLay?.[2]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[0]?.ex?.availableToLay?.[2]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}</span>
                 </div>
               </div>
@@ -119,31 +119,31 @@ const MatchOdd=({title,data,detail})=>{
               <div className="matchOddTeam">
                 <span className={`${!isMobile ? "f-size14":"f-size12"} matchOddTeamTxt`}>{detail?.teamB}</span>
               </div>
-              <div className="matchOddRateBox">
+              <div className="matchOddRateBox" style={{width:isLap?"360px":!isMobile?"480px":""}}>
               {(data?.activeStatus === "live" && data?.runners?.[1]?.status !="ACTIVE") && <div className="suspended-overlayRatesMatchOdd"><span className={`${!isMobile ? "f-size18":"f-size12"} suspendedTxtMatchOdd`}>
                 SUSPENDED</span></div>}
                 <div className="matchOddBackBox back3Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,"BACK",detail?.teamB,data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[0]?.tno,data?.runners?.[1])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[0]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[0]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}</span>
                 </div>
                 <div className="matchOddBackBox back2Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[1]?.price,"BACK",detail?.teamB,data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[1]?.tno,data?.runners?.[1])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[1]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[1]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}</span>
                 </div>
                 <div className="matchOddBackBox back1Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToBack?.[2]?.price,"BACK",detail?.teamB,data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToBack?.[2]?.tno,data?.runners?.[1])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[2]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[2]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[1]?.ex?.availableToBack?.[2]?.size}</span>
                 </div>
                 <div className="matchOddBackBox lay1Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToLay?.[0]?.price,"LAY",detail?.teamB,data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToLay?.[0]?.tno,data?.runners?.[1])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToLay?.[0]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToLay?.[0]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}</span>
                 </div>
                 <div className="matchOddBackBox lay2Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToLay?.[1]?.price,"LAY",detail?.teamB,data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToLay?.[1]?.tno,data?.runners?.[1])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToLay?.[1]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToLay?.[1]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}</span>
                 </div>
                 <div className="matchOddBackBox lay3Background" onClick={()=> handlePlaceBet(data?.runners?.[1]?.ex?.availableToLay?.[2]?.price,"LAY",detail?.teamB,data?.runners?.[1]?.status,data?.runners?.[1]?.ex?.availableToLay?.[2]?.tno,data?.runners?.[1])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToLay?.[2]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[1]?.ex?.availableToLay?.[2]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}</span>
                 </div>
               </div>
@@ -155,31 +155,31 @@ const MatchOdd=({title,data,detail})=>{
               <div className="matchOddTeam">
                 <span className={`${!isMobile ? "f-size14":"f-size12"} matchOddTeamTxt`}>{detail?.teamC}</span>
               </div>
-              <div className="matchOddRateBox">
+              <div className="matchOddRateBox" style={{width:isLap?"360px":!isMobile?"480px":""}}>
                {(data?.activeStatus === "live" && data?.runners?.[2]?.status !="ACTIVE") && <div className="suspended-overlayRatesMatchOdd"><span className={`${!isMobile ? "f-size16":"f-size12"} suspendedTxtMatchOdd`}>
                 SUSPENDED</span></div>}
                 <div className="matchOddBackBox back3Background" onClick={()=> handlePlaceBet(data?.runners?.[2]?.ex?.availableToBack?.[0]?.price,"BACK",detail?.teamC,data?.runners?.[2]?.status,data?.runners?.[2]?.ex?.availableToBack?.[0]?.tno,data?.runners?.[2])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToBack?.[0]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToBack?.[0]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[2]?.ex?.availableToBack?.[0]?.size}</span>
                 </div>
                 <div className="matchOddBackBox back2Background" onClick={()=> handlePlaceBet(data?.runners?.[2]?.ex?.availableToBack?.[1]?.price,"BACK",detail?.teamC,data?.runners?.[2]?.status,data?.runners?.[2]?.ex?.availableToBack?.[1]?.tno,data?.runners?.[2])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToBack?.[1]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToBack?.[1]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[2]?.ex?.availableToBack?.[1]?.size}</span>
                 </div>
                 <div className="matchOddBackBox back1Background" onClick={()=> handlePlaceBet(data?.runners?.[2]?.ex?.availableToBack?.[2]?.price,"BACK",detail?.teamC,data?.runners?.[2]?.status,data?.runners?.[2]?.ex?.availableToBack?.[2]?.tno,data?.runners?.[2])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToBack?.[2]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToBack?.[2]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[2]?.ex?.availableToBack?.[2]?.size}</span>
                 </div>
                 <div className="matchOddBackBox lay1Background" onClick={()=> handlePlaceBet(data?.runners?.[2]?.ex?.availableToLay?.[0]?.price,"LAY",detail?.teamC,data?.runners?.[2]?.status,data?.runners?.[2]?.ex?.availableToLay?.[0]?.tno,data?.runners?.[2])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToLay?.[0]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToLay?.[0]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[2]?.ex?.availableToLay?.[0]?.size}</span>
                 </div>
                 <div className="matchOddBackBox lay2Background" onClick={()=> handlePlaceBet(data?.runners?.[2]?.ex?.availableToLay?.[1]?.price,"LAY",detail?.teamC,data?.runners?.[2]?.status,data?.runners?.[2]?.ex?.availableToLay?.[1]?.tno,data?.runners?.[2])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToLay?.[1]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToLay?.[1]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[2]?.ex?.availableToLay?.[1]?.size}</span>
                 </div>
                 <div className="matchOddBackBox lay3Background" onClick={()=> handlePlaceBet(data?.runners?.[2]?.ex?.availableToLay?.[2]?.price,"LAY",detail?.teamC,data?.runners?.[2]?.status,data?.runners?.[2]?.ex?.availableToLay?.[2]?.tno,data?.runners?.[2])}>
-                    <span className={`${!isMobile ? "f-size18":isLap ? "f-size16":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToLay?.[2]?.price) ?? '-'}</span>
+                    <span className={`${isLap ? "f-size16":!isMobile ? "f-size18":"f-size15"} matchOddRate1Box`}>{handlePrice(data?.runners?.[2]?.ex?.availableToLay?.[2]?.price) ?? '-'}</span>
                     <span className={`${!isMobile ? "f-size12":"f-size11"} matchOddRate2Box`}>{data?.runners?.[2]?.ex?.availableToLay?.[2]?.size}</span>
                 </div>
               </div>
