@@ -102,10 +102,12 @@ const DesktopGameDetail = () => {
       console.log(error);
     }
   }, [matchDetails?.id]);
+  // console.log("first", matchDetails);
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
   const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
+  // console.log(matchDetails?.apiSession?.session,'manualEntries',manualEntries);
   return (
     <Container fluid>
       <Row>

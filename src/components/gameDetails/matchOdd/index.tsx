@@ -79,7 +79,7 @@ const MatchOdd = ({ title, data, detail }) => {
               Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
             </span>
           </div>
-          <div className="matchOddBackLayBoxContainer">
+          <div className="matchOddBackLayBoxContainer" style={{ width: isLap ? "240px" : !isMobile ? "320px" : "" }}>
             <div className="matchOddBackBoxTab">
               <span className={`f-size16 matchOddBackTxt`}>Back</span>
             </div>
@@ -108,6 +108,11 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               {detail?.teamA}
             </span>
+          </div>
+          <div
+            className="matchOddRateBox"
+            style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
+          >
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -154,7 +159,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -184,7 +189,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -214,7 +219,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -244,7 +249,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -274,7 +279,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -304,7 +309,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -340,6 +345,11 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               {detail?.teamB}
             </span>
+          </div>
+          <div
+            className="matchOddRateBox"
+            style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
+          >
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -386,7 +396,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -416,7 +426,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -446,7 +456,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -476,7 +486,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -506,7 +516,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -536,7 +546,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } matchOddRate1Box`}
               >
                 {handlePrice(
@@ -573,6 +583,11 @@ const MatchOdd = ({ title, data, detail }) => {
               >
                 {detail?.teamC}
               </span>
+            </div>
+            <div
+              className="matchOddRateBox"
+              style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
+            >
               <span
                 className={`${
                   detail?.profitLossDataMatch?.[
@@ -619,7 +634,7 @@ const MatchOdd = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } matchOddRate1Box`}
                 >
                   {handlePrice(
@@ -649,7 +664,7 @@ const MatchOdd = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } matchOddRate1Box`}
                 >
                   {handlePrice(
@@ -679,7 +694,7 @@ const MatchOdd = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } matchOddRate1Box`}
                 >
                   {handlePrice(
@@ -709,7 +724,7 @@ const MatchOdd = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } matchOddRate1Box`}
                 >
                   {handlePrice(
@@ -739,7 +754,7 @@ const MatchOdd = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } matchOddRate1Box`}
                 >
                   {handlePrice(
@@ -769,7 +784,7 @@ const MatchOdd = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } matchOddRate1Box`}
                 >
                   {handlePrice(

@@ -73,7 +73,7 @@ const ManualMarket = ({ title, data, detail }) => {
           </div>
           <div
             className="manualBackLayBoxContainer"
-            style={{ width: isMobile ? "40%" : "48%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
               className="manualBackBoxTab"
@@ -157,7 +157,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamA != 0 ? data?.backTeamA - 2 : "-"}
@@ -181,7 +181,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamA != 0 ? data?.backTeamA - 1 : "-"}
@@ -204,7 +204,7 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } manualRate1Box`}
               >
                 {data?.backTeamA != 0 ? data?.backTeamA : "-"}
@@ -224,7 +224,7 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } manualRate1Box`}
               >
                 {data?.layTeamA != 0 ? data?.layTeamA : "-"}
@@ -247,7 +247,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamA != 0 ? data?.layTeamA + 1 : "-"}
@@ -271,7 +271,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamA != 0 ? data?.layTeamA + 2 : "-"}
@@ -347,7 +347,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamB != 0 ? data?.backTeamB - 2 : "-"}
@@ -371,7 +371,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamB != 0 ? data?.backTeamB - 1 : "-"}
@@ -394,7 +394,7 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } manualRate1Box`}
               >
                 {data?.backTeamB != 0 ? data?.backTeamB : "-"}
@@ -414,7 +414,7 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } manualRate1Box`}
               >
                 {data?.layTeamB != 0 ? data?.layTeamB : "-"}
@@ -437,7 +437,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamB != 0 ? data?.layTeamB + 1 : "-"}
@@ -461,7 +461,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamB != 0 ? data?.layTeamB + 2 : "-"}
@@ -539,7 +539,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 >
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                      isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                     } manualRate1Box`}
                   >
                     {data?.backTeamC != 0 ? data?.backTeamC - 2 : "-"}
@@ -561,7 +561,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 >
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                      isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                     } manualRate1Box`}
                   >
                     {data?.backTeamC != 0 ? data?.backTeamC - 1 : "-"}
@@ -582,7 +582,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamC != 0 ? data?.backTeamC : "-"}
@@ -602,7 +602,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamC != 0 ? data?.layTeamC : "-"}
@@ -623,7 +623,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 >
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                      isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                     } manualRate1Box`}
                   >
                     {data?.layTeamC != 0 ? data?.layTeamC + 1 : "-"}
@@ -645,7 +645,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 >
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                      isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                     } manualRate1Box`}
                   >
                     {data?.layTeamC != 0 ? data?.layTeamC + 2 : "-"}

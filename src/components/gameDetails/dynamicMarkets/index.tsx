@@ -83,7 +83,7 @@ const DynamicMarket = ({ title, data, detail }) => {
           </div>
           <div
             className="dynamicBackLayBoxContainer"
-            style={{ width: isMobile ? "40%" : "48%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
               className="dynamicBackBoxTab"
@@ -113,13 +113,14 @@ const DynamicMarket = ({ title, data, detail }) => {
           )}
           <div
             className="dynamicTeam"
-            style={{ width: isMobile ? "65%" : "28%" }}
+            style={{ width: isMobile ? "55%" : "28%" }}
           >
             <span
               className={`${
                 !isMobile ? "f-size14" : "f-size13"
               } dynamicTeamTxt`}
             >
+              {"Yes"}
               Yes
             </span>
             <span
@@ -142,7 +143,7 @@ const DynamicMarket = ({ title, data, detail }) => {
           </div>
           <div
             className="dynamicRateBox"
-            style={{ width: isMobile ? "40%" : "72%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {data?.activeStatus === "live" &&
               data?.runners?.[0]?.status != "ACTIVE" && (
@@ -172,7 +173,7 @@ const DynamicMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } dynamicRate1Box`}
                 >
                   {handlePrice(
@@ -204,7 +205,7 @@ const DynamicMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } dynamicRate1Box`}
                 >
                   {handlePrice(
@@ -235,7 +236,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } dynamicRate1Box`}
               >
                 {handlePrice(
@@ -265,7 +266,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } dynamicRate1Box`}
               >
                 {handlePrice(
@@ -296,7 +297,7 @@ const DynamicMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } dynamicRate1Box`}
                 >
                   {handlePrice(
@@ -328,7 +329,7 @@ const DynamicMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } dynamicRate1Box`}
                 >
                   {handlePrice(
@@ -361,13 +362,14 @@ const DynamicMarket = ({ title, data, detail }) => {
           )}
           <div
             className="dynamicTeam"
-            style={{ width: isMobile ? "65%" : "28%" }}
+            style={{ width: isMobile ? "55%" : "28%" }}
           >
             <span
               className={`${
                 !isMobile ? "f-size14" : "f-size13"
               } dynamicTeamTxt`}
             >
+              {"No"}
               No
             </span>
             <span
@@ -390,7 +392,7 @@ const DynamicMarket = ({ title, data, detail }) => {
           </div>
           <div
             className="dynamicRateBox"
-            style={{ width: isMobile ? "40%" : "72%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {data?.activeStatus === "live" &&
               data?.runners?.[1]?.status != "ACTIVE" && (
@@ -420,7 +422,7 @@ const DynamicMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } dynamicRate1Box`}
                 >
                   {handlePrice(
@@ -452,7 +454,7 @@ const DynamicMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } dynamicRate1Box`}
                 >
                   {handlePrice(
@@ -483,7 +485,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } dynamicRate1Box`}
               >
                 {handlePrice(
@@ -513,7 +515,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } dynamicRate1Box`}
               >
                 {handlePrice(
@@ -544,7 +546,7 @@ const DynamicMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } dynamicRate1Box`}
                 >
                   {handlePrice(
@@ -576,7 +578,7 @@ const DynamicMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } dynamicRate1Box`}
                 >
                   {handlePrice(
