@@ -58,7 +58,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
     <>
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
-          <span className="sessionNormalTitleTxt">{title}</span>
+          <span className="sessionNormalTitleTxt f-size13">{title}</span>
         </div>
         <div
           style={{

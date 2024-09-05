@@ -57,7 +57,7 @@ const DynamicMarket=({title,data,detail})=>{
         <>
         <div className="dynamicContainer" style={{marginTop:isMobile?"":"10px"}}>
             <div className="dynamicTitle">
-               <span className="dynamicTitleTxt">{title}</span>
+               <span className={`dynamicTitleTxt ${isMobile ?"f-size13":"f-size15"}`}>{title}</span>
             </div>
 
 

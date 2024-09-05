@@ -87,7 +87,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
     <>
       <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
         <div className="sessionNormalTitle">
-          <span className="sessionNormalTitleTxt">{title}</span>
+          <span className="sessionNormalTitleTxt" style={{fontSize:isMobile?"13px":"15px"}}>{title}</span>
         </div>
         <div
           style={{

@@ -65,7 +65,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
     <>
       <div className="bookmakerContainer">
         <div className="bookmakerTitle">
-          <span className="bookmakerTitleTxt">{title}</span>
+          <span className={`bookmakerTitleTxt ${isMobile ?"f-size13":"f-size15"}`}>{title}</span>
         </div>
 
         <div className="bookmakerBackLayTab">

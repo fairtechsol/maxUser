@@ -49,7 +49,7 @@ const ManualMarket=({title,data,detail})=>{
         <>
         <div className="manualContainer" style={{marginTop:isMobile?"":"10px"}}>
             <div className="manualTitle">
-               <span className="manualTitleTxt">{title}</span>
+               <span className={`manualTitleTxt ${isMobile ?"f-size13":"f-size15"}`}>{title}</span>
             </div>
 
 

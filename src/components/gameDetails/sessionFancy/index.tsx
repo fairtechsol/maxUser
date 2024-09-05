@@ -76,7 +76,7 @@ const SessionFancy = ({ title, data, detail }) => {
     <>
       <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
         <div className="sessionNormalTitle">
-          <span className="sessionNormalTitleTxt">{title}</span>
+          <span className="sessionNormalTitleTxt f-size15">{title}</span>
         </div>
         <div
           style={{
