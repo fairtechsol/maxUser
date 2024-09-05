@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import {isLap, isMobile} from "../../../utils/screenDimension";
+import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { useEffect, useState } from "react";
 
-const SessionNormal = ({ title, data, detail,manual }:any) => {
+const SessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [marketArr, setMarketArr] = useState(data?.section || []);
 
@@ -16,14 +16,14 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
     status: any,
     value: any,
     item: any,
-    tno: any,
+    tno: any
   ) => {
     if (data?.status != "OPEN" || status != "live") {
       return false;
     }
-    if(odds === 0){
+    if (odds === 0) {
       return false;
-  }
+    }
     let team = {
       betOnTeam: betTeam,
       rate: odds,
@@ -58,7 +58,6 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
   //     setMarketArr([...manual]);
   //   }
   // }, [data, manual]);
-  
 
   marketArr?.forEach((element: any, index: any) => {
     if (index % 2 === 0) {
@@ -67,11 +66,11 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
       oddIndexArray.push(element);
     }
   });
-  const formatNumber = (num:any) => {
+  const formatNumber = (num: any) => {
     if (num >= 1000 && num < 1000000) {
-      return (num / 1000)?.toFixed(1)?.replace(/\.0$/, '') + 'K';
+      return (num / 1000)?.toFixed(1)?.replace(/\.0$/, "") + "K";
     } else if (num >= 100000) {
-      return (num / 100000)?.toFixed(1)?.replace(/\.0$/, '') + 'L';
+      return (num / 100000)?.toFixed(1)?.replace(/\.0$/, "") + "L";
     }
     return num?.toString();
   };
@@ -82,22 +81,25 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
       return "-";
     }
   };
-  const handleStatus=(activeStatus:any,gStaus:any,status:any)=>{
-    if(activeStatus ==="live"){
-      if(gStaus ===""){
+  const handleStatus = (activeStatus: any, gStaus: any, status: any) => {
+    if (activeStatus === "live") {
+      if (gStaus === "") {
         return false;
-      }else if(status==="active"){
+      } else if (status === "active") {
         return false;
-      }else{
-        return true
+      } else {
+        return true;
       }
-     }else{
+    } else {
       return true;
-     }
-  }
+    }
+  };
   return (
     <>
-      <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
+      <div
+        className="sessionNormalContainer"
+        style={{ marginTop: isMobile ? "" : "10px" }}
+      >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
         </div>
@@ -115,18 +117,10 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
             <div className="sessionYesNoBoxContainer">
               <div className="sessionYesNoBox">
                 <div className="sessionYesBox lay1Background">
-                  <span
-                    className={`f-size16 sessionBackTxt`}
-                  >
-                    No
-                  </span>
+                  <span className={`f-size16 sessionBackTxt`}>No</span>
                 </div>
                 <div className="sessionYesBox back1Background">
-                  <span
-                    className={`f-size16 sessionBackTxt`}
-                  >
-                    Yes
-                  </span>
+                  <span className={`f-size16 sessionBackTxt`}>Yes</span>
                 </div>
                 <div className="sessionEmptyBox"></div>
               </div>
@@ -135,10 +129,48 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size15" style={{width:"60%",fontWeight:"400"}}>{(item?.RunnerName || item?.name)?.length > 25 ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...` : (item?.RunnerName || item?.name)}</span>
+                    <span
+                      className="f-size15"
+                      style={{ width: "60%", fontWeight: "400" }}
+                    >
+                      {(item?.RunnerName || item?.name)?.length > 25
+                        ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...`
+                        : item?.RunnerName || item?.name}
+                    </span>
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            ) < 0
+                            ? "color-red"
+                            : "color-green"
+                          : ""
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
+                        : 0}
+                    </span>
                   </div>
                   <div className="sessionRateBoxContainer">
-                    {handleStatus(item?.activeStatus,item?.GameStatus,item?.status) && (
+                    {handleStatus(
+                      item?.activeStatus,
+                      item?.GameStatus,
+                      item?.status
+                    ) && (
                       <div className="suspended-overlayRates">
                         <span
                           className={`${
@@ -162,21 +194,30 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
-                            item?.ex?.availableToLay?.[0]?.price || item?.noRate,
+                            item?.ex?.availableToLay?.[0]?.price ||
+                              item?.noRate,
                             "no",
                             "NO",
                             item?.activeStatus,
-                            item?.ex?.availableToLay?.[0]?.size || item?.noPercent,
+                            item?.ex?.availableToLay?.[0]?.size ||
+                              item?.noPercent,
                             item,
                             item?.ex?.availableToLay?.[0]?.tno || 0
                           )
                         }
                       >
-                        <span className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}>
-                          {handlePrice(item?.ex?.availableToLay?.[0]?.price || item?.noRate) ?? "-"}
+                        <span
+                          className={`${
+                            isLap ? "f-size16" : "f-size18"
+                          } sessionRate1Box`}
+                        >
+                          {handlePrice(
+                            item?.ex?.availableToLay?.[0]?.price || item?.noRate
+                          ) ?? "-"}
                         </span>
                         <span className={`f-size12 sessionRate2Box`}>
-                          {item?.ex?.availableToLay?.[0]?.size || item?.noPercent}
+                          {item?.ex?.availableToLay?.[0]?.size ||
+                            item?.noPercent}
                         </span>
                       </div>
                       {item?.ex?.availableToLay?.length > 1 && (
@@ -195,8 +236,14 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                             )
                           }
                         >
-                          <span className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}>
-                            {handlePrice(item?.ex?.availableToLay?.[1]?.price) ?? "-"}
+                          <span
+                            className={`${
+                              isLap ? "f-size16" : "f-size18"
+                            } sessionRate1Box`}
+                          >
+                            {handlePrice(
+                              item?.ex?.availableToLay?.[1]?.price
+                            ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
                             {item?.ex?.availableToLay?.[1]?.size}
@@ -219,8 +266,14 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                             )
                           }
                         >
-                          <span className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}>
-                            {handlePrice(item?.ex?.availableToLay?.[2]?.price) ?? "-"}
+                          <span
+                            className={`${
+                              isLap ? "f-size16" : "f-size18"
+                            } sessionRate1Box`}
+                          >
+                            {handlePrice(
+                              item?.ex?.availableToLay?.[2]?.price
+                            ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
                             {item?.ex?.availableToLay?.[2]?.size}
@@ -240,25 +293,31 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
-                            item?.ex?.availableToBack?.[0]?.price || item?.yesRate,
+                            item?.ex?.availableToBack?.[0]?.price ||
+                              item?.yesRate,
                             "Yes",
                             "YES",
                             item?.activeStatus,
-                            item?.ex?.availableToBack?.[0]?.size || item?.yesPercent,
+                            item?.ex?.availableToBack?.[0]?.size ||
+                              item?.yesPercent,
                             item,
                             item?.ex?.availableToBack?.[0]?.tno || 0
                           )
                         }
                       >
                         <span
-                          className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
+                          className={`${
+                            isLap ? "f-size16" : "f-size18"
+                          } sessionRate1Box`}
                         >
-                          {handlePrice(item?.ex?.availableToBack?.[0]?.price || item?.yesRate) ?? "-"}
+                          {handlePrice(
+                            item?.ex?.availableToBack?.[0]?.price ||
+                              item?.yesRate
+                          ) ?? "-"}
                         </span>
-                        <span
-                          className={`f-size12 sessionRate2Box`}
-                        >
-                          {item?.ex?.availableToBack?.[0]?.size || item?.yesPercent}
+                        <span className={`f-size12 sessionRate2Box`}>
+                          {item?.ex?.availableToBack?.[0]?.size ||
+                            item?.yesPercent}
                         </span>
                       </div>
                       {item?.ex?.availableToBack?.length > 1 && (
@@ -278,13 +337,15 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                           }
                         >
                           <span
-                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
+                            className={`${
+                              isLap ? "f-size16" : "f-size18"
+                            } sessionRate1Box`}
                           >
-                            {handlePrice(item?.ex?.availableToBack?.[1]?.price) ?? "-"}
+                            {handlePrice(
+                              item?.ex?.availableToBack?.[1]?.price
+                            ) ?? "-"}
                           </span>
-                          <span
-                            className={`f-size12 sessionRate2Box`}
-                          >
+                          <span className={`f-size12 sessionRate2Box`}>
                             {item?.ex?.availableToBack?.[1]?.size}
                           </span>
                         </div>
@@ -306,21 +367,27 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                           }
                         >
                           <span
-                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
+                            className={`${
+                              isLap ? "f-size16" : "f-size18"
+                            } sessionRate1Box`}
                           >
-                            {handlePrice(item?.ex?.availableToBack?.[2]?.price) ?? "-"}
+                            {handlePrice(
+                              item?.ex?.availableToBack?.[2]?.price
+                            ) ?? "-"}
                           </span>
-                          <span
-                            className={`f-size12 sessionRate2Box`}
-                          >
+                          <span className={`f-size12 sessionRate2Box`}>
                             {item?.ex?.availableToBack?.[2]?.size}
                           </span>
                         </div>
                       )}
                     </div>
                     <div className="sessionMinBoxContainer">
-                      <span className={`sessionMinBox`}>Min:{formatNumber(item?.min || item?.minBet)}</span>
-                      <span className={`sessionMinBox`}>Max:{formatNumber(item?.max || item?.maxBet)}</span>
+                      <span className={`sessionMinBox`}>
+                        Min:{formatNumber(item?.min || item?.minBet)}
+                      </span>
+                      <span className={`sessionMinBox`}>
+                        Max:{formatNumber(item?.max || item?.maxBet)}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -344,18 +411,10 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                   ></div>
                   <div className="sessionYesNoBox">
                     <div className="sessionYesBox lay1Background">
-                      <span
-                        className={`f-size16 sessionBackTxt`}
-                      >
-                        No
-                      </span>
+                      <span className={`f-size16 sessionBackTxt`}>No</span>
                     </div>
                     <div className="sessionYesBox back1Background">
-                      <span
-                        className={`f-size16 sessionBackTxt`}
-                      >
-                        Yes
-                      </span>
+                      <span className={`f-size16 sessionBackTxt`}>Yes</span>
                     </div>
                     <div className="sessionEmptyBox"></div>
                   </div>
@@ -366,10 +425,24 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                 return (
                   <div className="sessionRateContainer" key={index}>
                     <div className="sessionRateName">
-                      <span className="f-size15" style={{width:"60%",fontWeight:"400"}}>{(item?.RunnerName || item?.name)?.length > 25 ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...` : (item?.RunnerName || item?.name)}</span>
+                      <span
+                        className="f-size15"
+                        style={{ width: "60%", fontWeight: "400" }}
+                      >
+                        {(item?.RunnerName || item?.name)?.length > 25
+                          ? `${(item?.RunnerName || item?.name)?.slice(
+                              0,
+                              25
+                            )}...`
+                          : item?.RunnerName || item?.name}
+                      </span>
                     </div>
                     <div className="sessionRateBoxContainer">
-                      {handleStatus(item?.activeStatus,item?.GameStatus,item?.status) && (
+                      {handleStatus(
+                        item?.activeStatus,
+                        item?.GameStatus,
+                        item?.status
+                      ) && (
                         <div className="suspended-overlayRates">
                           <span
                             className={`${
@@ -392,25 +465,31 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                           style={{ cursor: "pointer" }}
                           onClick={() =>
                             handlePlaceBet(
-                              item?.ex?.availableToLay?.[0]?.price || item?.noRate,
+                              item?.ex?.availableToLay?.[0]?.price ||
+                                item?.noRate,
                               "no",
                               "NO",
                               item?.activeStatus,
-                              item?.ex?.availableToLay?.[0]?.size || item?.noPercent,
+                              item?.ex?.availableToLay?.[0]?.size ||
+                                item?.noPercent,
                               item,
                               item?.ex?.availableToLay?.[0]?.tno || 0
                             )
                           }
                         >
                           <span
-                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
+                            className={`${
+                              isLap ? "f-size16" : "f-size18"
+                            } sessionRate1Box`}
                           >
-                            {handlePrice(item?.ex?.availableToLay?.[0]?.price || item?.noRate) ?? "-"}
+                            {handlePrice(
+                              item?.ex?.availableToLay?.[0]?.price ||
+                                item?.noRate
+                            ) ?? "-"}
                           </span>
-                          <span
-                            className={`f-size12 sessionRate2Box`}
-                          >
-                            {item?.ex?.availableToLay?.[0]?.size || item?.noPercent}
+                          <span className={`f-size12 sessionRate2Box`}>
+                            {item?.ex?.availableToLay?.[0]?.size ||
+                              item?.noPercent}
                           </span>
                         </div>
                         {item?.ex?.availableToLay?.length > 1 && (
@@ -430,13 +509,15 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                             }
                           >
                             <span
-                              className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
+                              className={`${
+                                isLap ? "f-size16" : "f-size18"
+                              } sessionRate1Box`}
                             >
-                              {handlePrice(item?.ex?.availableToLay?.[1]?.price) ?? "-"}
+                              {handlePrice(
+                                item?.ex?.availableToLay?.[1]?.price
+                              ) ?? "-"}
                             </span>
-                            <span
-                              className={`f-size12 sessionRate2Box`}
-                            >
+                            <span className={`f-size12 sessionRate2Box`}>
                               {item?.ex?.availableToLay?.[1]?.size}
                             </span>
                           </div>
@@ -458,13 +539,15 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                             }
                           >
                             <span
-                              className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
+                              className={`${
+                                isLap ? "f-size16" : "f-size18"
+                              } sessionRate1Box`}
                             >
-                              {handlePrice(item?.ex?.availableToLay?.[2]?.price) ?? "-"}
+                              {handlePrice(
+                                item?.ex?.availableToLay?.[2]?.price
+                              ) ?? "-"}
                             </span>
-                            <span
-                              className={`f-size12 sessionRate2Box`}
-                            >
+                            <span className={`f-size12 sessionRate2Box`}>
                               {item?.ex?.availableToLay?.[2]?.size}
                             </span>
                           </div>
@@ -482,25 +565,31 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                           style={{ cursor: "pointer" }}
                           onClick={() =>
                             handlePlaceBet(
-                              item?.ex?.availableToBack?.[0]?.price || item?.yesRate,
+                              item?.ex?.availableToBack?.[0]?.price ||
+                                item?.yesRate,
                               "Yes",
                               "YES",
                               item?.activeStatus,
-                              item?.ex?.availableToBack?.[0]?.size || item?.yesPercent,
+                              item?.ex?.availableToBack?.[0]?.size ||
+                                item?.yesPercent,
                               item,
                               item?.ex?.availableToBack?.[0]?.tno
                             )
                           }
                         >
                           <span
-                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
+                            className={`${
+                              isLap ? "f-size16" : "f-size18"
+                            } sessionRate1Box`}
                           >
-                            {handlePrice(item?.ex?.availableToBack?.[0]?.price || item?.yesRate) ?? "-"}
+                            {handlePrice(
+                              item?.ex?.availableToBack?.[0]?.price ||
+                                item?.yesRate
+                            ) ?? "-"}
                           </span>
-                          <span
-                            className={`f-size12 sessionRate2Box`}
-                          >
-                            {item?.ex?.availableToBack?.[0]?.size || item?.yesPercent}
+                          <span className={`f-size12 sessionRate2Box`}>
+                            {item?.ex?.availableToBack?.[0]?.size ||
+                              item?.yesPercent}
                           </span>
                         </div>
                         {item?.ex?.availableToBack?.length > 1 && (
@@ -522,13 +611,15 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                             }
                           >
                             <span
-                              className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
+                              className={`${
+                                isLap ? "f-size16" : "f-size18"
+                              } sessionRate1Box`}
                             >
-                              {handlePrice(item?.ex?.availableToBack?.[1]?.price) ?? "-"}
+                              {handlePrice(
+                                item?.ex?.availableToBack?.[1]?.price
+                              ) ?? "-"}
                             </span>
-                            <span
-                              className={`f-size12 sessionRate2Box`}
-                            >
+                            <span className={`f-size12 sessionRate2Box`}>
                               {item?.ex?.availableToBack?.[1]?.size}
                             </span>
                           </div>
@@ -550,21 +641,27 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                             }
                           >
                             <span
-                              className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
+                              className={`${
+                                isLap ? "f-size16" : "f-size18"
+                              } sessionRate1Box`}
                             >
-                              {handlePrice(item?.ex?.availableToBack?.[2]?.price) ?? "-"}
+                              {handlePrice(
+                                item?.ex?.availableToBack?.[2]?.price
+                              ) ?? "-"}
                             </span>
-                            <span
-                              className={`f-size12 sessionRate2Box`}
-                            >
+                            <span className={`f-size12 sessionRate2Box`}>
                               {item?.ex?.availableToBack?.[2]?.size}
                             </span>
                           </div>
                         )}
                       </div>
                       <div className="sessionMinBoxContainer">
-                        <span className={`sessionMinBox`}>Min:{formatNumber(item?.min || item?.minBet)}</span>
-                        <span className={`sessionMinBox`}>Max:{formatNumber(item?.max || item?.maxBet)}</span>
+                        <span className={`sessionMinBox`}>
+                          Min:{formatNumber(item?.min || item?.minBet)}
+                        </span>
+                        <span className={`sessionMinBox`}>
+                          Max:{formatNumber(item?.max || item?.maxBet)}
+                        </span>
                       </div>
                     </div>
                   </div>
