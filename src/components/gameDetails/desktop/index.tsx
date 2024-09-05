@@ -227,7 +227,7 @@ const DesktopGameDetail = () => {
                     // type={"normal"}
                     data={matchDetails?.apiSession?.session}
                     detail={matchDetails}
-                    manual={manualEntries}
+                    manual={manualEntries?manualEntries:[]}
                   />
                 </Col>
               )}
