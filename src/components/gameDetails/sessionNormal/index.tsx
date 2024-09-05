@@ -319,8 +319,8 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                       )}
                     </div>
                     <div className="sessionMinBoxContainer">
-                      <span className={`sessionMinBox`}>Min:{formatNumber(item?.min)}</span>
-                      <span className={`sessionMinBox`}>Max:{formatNumber(item?.max)}</span>
+                      <span className={`sessionMinBox`}>Min:{formatNumber(item?.min || item?.minBet)}</span>
+                      <span className={`sessionMinBox`}>Max:{formatNumber(item?.max || item?.maxBet)}</span>
                     </div>
                   </div>
                 </div>
@@ -563,8 +563,8 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                         )}
                       </div>
                       <div className="sessionMinBoxContainer">
-                        <span className={`sessionMinBox`}>Min:{formatNumber(item?.min)}</span>
-                        <span className={`sessionMinBox`}>Max:{formatNumber(item?.max)}</span>
+                        <span className={`sessionMinBox`}>Min:{formatNumber(item?.min || item?.minBet)}</span>
+                        <span className={`sessionMinBox`}>Max:{formatNumber(item?.max || item?.maxBet)}</span>
                       </div>
                     </div>
                   </div>
