@@ -318,7 +318,7 @@ body select {
   // padding: 1px;
   // padding-left: 0px;
   // padding-right: 0px;
-  padding: 3px 2px 5px;
+  padding: .5rem 1rem;
   flex-wrap: nowrap;
   // overflow-x: auto;
   // overflow-y: hidden;
@@ -349,12 +349,7 @@ body select {
   padding: 10px;
   border: 0.5px $white solid;
 }
-.nav-tab {
-  padding-left: 0px;
-  padding-right: 0px;
-  margin-left: 0%;
-  margin-right: 0%;
-}
+
 .navtab-name {
   font-weight: 410;
 }
@@ -645,6 +640,7 @@ img {
   display: flex;
   justify-content: space-between;
   padding: 6px 8px;
+  color : #ffffff
 }
 .horseRacingTabHeader-m {
   width: 100%;
@@ -653,6 +649,7 @@ img {
   display: flex;
   justify-content: space-between;
   padding: 6px 8px;
+  color : #ffffff
 }
 .teenpatti-20 .suspended:after {
   width: 50%;
@@ -774,6 +771,9 @@ img {
   line-height: 0.6;
   padding-top: "10px" !important;
 }
+.title-16px {
+  font-size: 16px !important;
+}
 .title-15 {
   font-size: 15px !important;
 }
@@ -791,6 +791,9 @@ img {
 }
 .f300 {
   font-weight: 300 !important;
+}
+.fbold {
+  font-weight: bold !important;
 }
 .f400 {
   font-weight: 400 !important;

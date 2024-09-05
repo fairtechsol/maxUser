@@ -105,9 +105,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
       selectedBet?.data?.type === matchBettingType.completeMatch ||
       selectedBet?.data?.type === matchBettingType.halfTime ||
-      selectedBet?.data?.type.includes("overUnder") ||
-      selectedBet?.data?.type.includes("firstHalfGoal") ||
-      selectedBet?.data?.type.includes("setWinner")
+      selectedBet?.data?.type?.includes("overUnder") ||
+      selectedBet?.data?.type?.includes("firstHalfGoal") ||
+      selectedBet?.data?.type?.includes("setWinner")
     ) {
       profit =
         selectedBet?.team?.type === "back"
@@ -313,6 +313,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       odds: selectedBet?.team?.rate,
                       ratePercent: selectedBet?.team?.percent,
                       stake: selectedBet?.team?.stake,
+                      betPlaceIndex:selectedBet?.team?.betPlaceIndex,
+                      mid:selectedBet?.team?.mid,
+                      teamName:selectedBet?.team?.teamName
                     };
                     let payloadForBettings: any = {
                       betId: selectedBet?.team?.betId,
@@ -331,6 +334,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       placeIndex: selectedBet?.team?.placeIndex,
                       bettingName: selectedBet?.data?.name,
                       gameType: selectedBet?.team?.eventType,
+                      mid: selectedBet?.team?.mid,
+                      selectionId: selectedBet?.team?.selectionId,
                     };
                     let payloadForRace: any = {
                       betId: selectedBet?.team?.betId,
@@ -389,12 +394,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       dispatch(
                         placeBet({
                           url:
-                            selectedBet?.data?.type === "session" ||
+                            selectedBet?.team?.matchBetType === "session" ||
                             selectedBet?.data?.SelectionId
                               ? ApiConstants.BET.PLACEBETSESSION
                               : ApiConstants.BET.PLACEBETMATCHBETTING,
                           data:
-                            selectedBet?.data?.type === "session" ||
+                            selectedBet?.team?.matchBetType === "session" ||
                             selectedBet?.data?.SelectionId
                               ? JSON.stringify(payloadForSession)
                               : JSON.stringify(payloadForBettings),

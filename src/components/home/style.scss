@@ -33,7 +33,7 @@
 .latest-event-item a {
     color: #ffffff;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: bold !important;
     text-align: center;
     display: flex;
     align-items: center;
@@ -94,6 +94,12 @@
         padding: 0 5px 5px;
     }
 }
+.icon-4:before {
+    content: "\e905";
+}
+.icon-40:before {
+    content: "\e929";
+}
 .icon-2:before {
     content: "\e903";
 }
@@ -108,7 +114,7 @@
   }
 [class^="icon-"], [class*=" icon-"] {
     font-family: "dfont" !important;
-    // speak: never;
+    speak: never;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;

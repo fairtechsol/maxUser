@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../../store/store";
 import {
   getCardReport,

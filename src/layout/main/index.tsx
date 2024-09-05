@@ -11,7 +11,7 @@ import {
   updateBalanceOnSessionResult,
 } from "../../store/actions/user/userAction";
 import { AppDispatch } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import "../layout.scss";
 import Header from "./header";
 import Sidebar from "./sidebar";
@@ -21,6 +21,8 @@ import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import Footer from "./footer";
 import FooterBottom from "./footerBottom";
 import FooterMain from "./footerMain";
+import CasinoNav from "./casinoNav";
+import { casinoItems } from "../../utils/constants";
 
 const MainLayout = () => {
   const navigate = useNavigate();
@@ -149,8 +151,11 @@ const MainLayout = () => {
         {!isMobile && (
           <div className={`sidebar sidebarActive mt-2`}>
             <Sidebar />
+            
           </div>
+            
         )}
+      {/* <div><CasinoNav items={casinoItems} defaultActiveId={2} /></div> */}
         <main className="w-100 overflow-hidden">
           <Outlet />
         </main>
@@ -159,7 +164,7 @@ const MainLayout = () => {
         className="contents-wrapper"
         style={{ width: "100%" }}
       >
-        <div className="footer-container">
+        <div className="footer-container mt-2">
           <FooterMain />
           <FooterBottom />
         </div>

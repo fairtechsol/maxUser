@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.scss";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 
 const ScoreBoard = ({ data }: any) => {
   return (

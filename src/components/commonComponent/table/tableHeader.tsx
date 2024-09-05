@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaRegFileExcel, FaRegFilePdf } from "react-icons/fa";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import CustomButton from "../button";
 import RowPerPage from "./tableUtils/rowPerPage";
 import SearchBox from "./tableUtils/search";

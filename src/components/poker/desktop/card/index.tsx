@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import { back, club, diamond, heart, spade } from "../../../../assets/images";
 // import Club from "../../assets/cards/clubs.png";
 // import Diamond from "../../assets/cards/diamond.png";
@@ -26,7 +26,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         backgroundSize:"100%",
         WebkitBackgroundSize:"cover",
         // padding: isMobile ?  "0px" :"8px",
-        background: "white",
+        background: "#cccccc",
         height: isMobile ? "18px" : "28px",
         width: isMobile ? "18px" : "38px",
         padding: "0px",

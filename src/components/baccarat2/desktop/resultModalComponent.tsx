@@ -4,7 +4,7 @@ import { HandleCards } from "../../commonComponent/cardsComponent";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import { FaTrophy } from "react-icons/fa";
 import "./style.scss";
 interface Props {

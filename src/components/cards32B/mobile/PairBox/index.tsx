@@ -4,7 +4,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { IoInformationCircle } from "react-icons/io5";
 import { useState } from "react";
 import SmoothDropdownModal from "../minMaxModal";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 
 const PairBox = ({ matchOddsData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();

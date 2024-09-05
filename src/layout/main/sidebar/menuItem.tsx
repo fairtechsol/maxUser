@@ -221,7 +221,7 @@ const MenuGroup: React.FC<{
       {data?.type === "item" || data?.type === "liveItem" ? (
         <MenuItemChild data={data} />
       ) : (
-        <Accordion.Item className="accordion-item-group border-0" eventKey="0">
+        <Accordion.Item className="accordion-item-group  border-0" eventKey="0">
           <Accordion.Header className="accordion-header-group">
             {data?.name}
           </Accordion.Header>

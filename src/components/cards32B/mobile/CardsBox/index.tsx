@@ -4,7 +4,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import SmoothDropdownModal from "../minMaxModal";
 import { IoInformationCircle } from "react-icons/io5";
 import { useState } from "react";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 
 const CardBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();

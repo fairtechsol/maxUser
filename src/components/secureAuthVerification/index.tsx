@@ -7,7 +7,7 @@ import {
   ToggleButtonGroup,
 } from "react-bootstrap";
 import { TfiAndroid } from "react-icons/tfi";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";

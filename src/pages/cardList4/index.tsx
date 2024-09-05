@@ -10,7 +10,7 @@ import {
 } from "../../socketManager";
 import { getMatchList } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import InnerLoader from "../../components/commonComponent/customLoader/InnerLoader";
 
 const CardList4 = () => {

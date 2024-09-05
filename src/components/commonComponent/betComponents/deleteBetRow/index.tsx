@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import "./style.scss";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 
 interface Props {
   children?: ReactNode;

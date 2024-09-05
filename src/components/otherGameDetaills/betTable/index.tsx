@@ -1,5 +1,5 @@
 import { IoInformationCircle } from "react-icons/io5";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 
 import { useSelector } from "react-redux";

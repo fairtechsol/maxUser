@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { back, club, diamond, heart, spade } from "../../../../assets/images";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 
 interface PlayingCardProps {
   number: string;

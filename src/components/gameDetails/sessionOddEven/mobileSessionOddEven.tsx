@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 
@@ -20,6 +20,9 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
     if (data?.status != "OPEN" || status != "live") {
       return false;
     }
+    if(odds === 0){
+      return false;
+  }
     let team = {
       betOnTeam: betTeam,
       rate: odds,
@@ -46,11 +49,18 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
     );
   };
  
+  const handlePrice = (rate: any) => {
+    if (rate && rate != 0) {
+      return rate;
+    } else {
+      return "-";
+    }
+  };
   return (
     <>
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
-          <span className="sessionNormalTitleTxt">{title}</span>
+          <span className="sessionNormalTitleTxt f-size13">{title}</span>
         </div>
         <div
           style={{
@@ -67,9 +77,9 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size16">{item?.RunnerName}</span>
+                    <span className="f-size13" style={{fontWeight:"400"}}>{item?.RunnerName}</span>
                   </div>
-                  <div className="sessionRateBoxContainer">
+                  <div className="sessionRateBoxContainer" style={{width:"40%"}}>
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
                       <div className="suspended-overlayRates">
@@ -107,16 +117,12 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`${
-                            !isMobile ? "f-size18" : "f-size12"
-                          } sessionRate1Box`}
+                          className={`f-size15 sessionRate1Box`}
                         >
-                          {item?.ex?.availableToLay?.[0]?.price ?? "-"}
+                          {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
                         </span>
                         <span
-                          className={`${
-                            !isMobile ? "f-size16" : "f-size12"
-                          } sessionRate2Box`}
+                          className={`f-size11 sessionRate2Box`}
                         >
                           {item?.ex?.availableToLay?.[0]?.size}
                         </span>
@@ -146,16 +152,12 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`${
-                            !isMobile ? "f-size18" : "f-size12"
-                          } sessionRate1Box`}
+                          className={`f-size15 sessionRate1Box`}
                         >
-                          {item?.ex?.availableToBack?.[0]?.price ?? "-"}
+                          {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
                         </span>
                         <span
-                          className={`${
-                            !isMobile ? "f-size16" : "f-size12"
-                          } sessionRate2Box`}
+                          className={`f-size11 sessionRate2Box`}
                         >
                           {item?.ex?.availableToBack?.[0]?.size}
                         </span>

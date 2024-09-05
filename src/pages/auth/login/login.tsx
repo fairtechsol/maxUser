@@ -17,9 +17,9 @@ import {
 } from "../../../store/actions/authAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
-import { FaHandPointDown, FaKey } from "react-icons/fa";
+import { FaHandPointDown, FaKey, FaUser } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import Loader from "../../../components/commonComponent/loader";
 import { maxbetLogo } from "../../../assets/images";
@@ -84,26 +84,26 @@ const Login = () => {
             alt="MAXBET07"
             className="img-fluid"
             style={{
-              width: isMobile ? "100%" : "100%",
+              width: "100%",
               height: "70px",
             }}
           />
-          <div className="auth-box-form rounded-2 bg-light mt-2">
-            <h4 className="auth-title title-24 fw-normal text-center mb-2">
+          <div className={isMobile ? "auth-box-form-m mt-2" : "auth-box-form mt-2"}>
+            <h4 className="auth-title title-22 fw-normal text-center ">
               Login
-             <FaHandPointDown />
+             <FaHandPointDown style={{width: "16px", height: "22px", margin: "5px 0px 10px 5px"}} />
             </h4>
 
             <CustomInput
               type="text"
-              placeholder="User Name"
+              placeholder="Username"
               name="userName"
               id="userName"
               value={formik.values.userName}
               onChange={formik.handleChange}
-              inputIcon={<IoPerson style={{ fontWeight: "normal", color: '#333', fontSize: isMobile ? '18' : '20px' }} />}
+              inputIcon={<FaUser style={{ fontWeight: "normal", color: '#333', fontSize: '16px' }} />}
               customStyle="mb-4"
-              isUnderlinedInput={isMobile}
+              // isUnderlinedInput={isMobile}
             />
             <ValidationError
               touched={touched.userName}
@@ -116,8 +116,8 @@ const Login = () => {
               customStyle="mb-3"
               name="password"
               id="password"
-              inputIcon={<FaKey style={{ fontWeight: "normal", color: '#333', fontSize: isMobile ? '18' : '20px' }} />}
-              isUnderlinedInput={isMobile}
+              inputIcon={<FaKey style={{ fontWeight: "normal", color: '#333', fontSize: '16px' }} />}
+              // isUnderlinedInput={isMobile}
               value={formik.values.password}
               onChange={formik.handleChange}
             />
@@ -131,11 +131,11 @@ const Login = () => {
               type="submit"
             >
               <div className="button-container">
-                <span className="login-text">Login</span>
+                <span className="login-text f400">Login</span>
                 {loading ? (
                   <AiOutlineLoading className="spinner-icon" />
                 ) : (
-                  <i className="fas fa-sign-in-alt float-end mt-1 f600"></i>
+                  <span className="f800"><i className="fas fa-sign-in-alt float-end mt-1 title-16"></i></span>
                 )}
               </div>
             </CustomButton>

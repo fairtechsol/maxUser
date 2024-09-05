@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import Loader from "../commonComponent/loader";
 import DesktopMatchList from "./matchList/desktop";
 import SportsFilters from "./sportsFilters";

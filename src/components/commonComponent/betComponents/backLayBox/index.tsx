@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import { useLocation, useParams } from "react-router-dom";
 interface props {
   bgColor?: string;
@@ -94,7 +94,7 @@ function BackLayBox({
           <h5
             className={`${
               isMobile ? "backLay-rate-m mb-1" : "backLay-rate"
-            } f500 title-15`}
+            } f400 title-15`}
           >
             {parseFloat(rate || 0) <= 0 || active
               ? isMobile

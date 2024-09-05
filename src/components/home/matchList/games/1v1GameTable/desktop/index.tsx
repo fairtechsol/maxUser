@@ -44,7 +44,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   );
   return (
     <>
-      <Table className="matchListTable-desktop mb-4">
+      <Table className="matchListTable-desktop mb-4 ">
         <thead>
           <tr>
             {availableGameType[mTypeid] === "horseRacing" ||
@@ -55,7 +55,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                 {availableGameType[mTypeid] &&
                   tableHeading?.map((item) => (
                     <th
-                      className={`title-14 ${
+                      className={`title-14 lh-1 pt-2 ${
                         item?.textAlign === "center" ? "text-center" : ""
                       }`}
                       colSpan={item?.colspan}
@@ -197,7 +197,7 @@ const MatchListRow = ({ item, matchType }: any) => {
               {item?.title} /{" "}
               {moment(item?.startAt)
                 .tz(timezone)
-                .format("MMM DD YYYY h:mmA ([IST])")}
+                .format("MMM DD YYYY h:mmA")}
             </div>
           </NavLink>
           <div className="d-flex align-items-center gap-2">

@@ -7,7 +7,7 @@ import {
   RootState,
 } from "../../../../store/store";
 // import { teamStatus } from "../../../../utils/constants";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 // import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 // import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import BetTableHeader from "../../../commonComponent/betTableHeader";

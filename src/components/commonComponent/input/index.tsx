@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import CustomErrorMessage from "../customErrorMessage";
 import "./style.scss";
 
@@ -44,7 +44,7 @@ const CustomInput = (props: any) => {
         {type === "select" ? (
           <Form.Select
             className={`${inputClass ?? ""} bg-${bgColor} ${
-              isUnderlinedInput && "underline-textbox"
+              isUnderlinedInput 
             }`}
             name={id}
             {...prop}
@@ -58,7 +58,7 @@ const CustomInput = (props: any) => {
         ) : (
           <Form.Control
             className={` ${inputClass ?? ""} bg-${bgColor} ${
-              isUnderlinedInput && "underline-textbox"
+              isUnderlinedInput 
             }`}
             name={id}
             type={type}
@@ -66,7 +66,7 @@ const CustomInput = (props: any) => {
             {...prop}
           />
         )}
-        {inputIcon && <div className="input-group-text-custom p-2">{inputIcon}</div>}
+        {inputIcon && <div className="input-group-text-custom">{inputIcon}</div>}
         <CustomErrorMessage touched={touched} errors={errors} />
       </Form.Group>
     </>

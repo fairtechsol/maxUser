@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
 interface Props {
   data: {
@@ -14,7 +14,7 @@ interface Props {
 const Poker20ResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const lastCards = resultCards?.slice(4, 9);
-  //  console.log(data,'first',resultCards)
+
   return (
     <Container
       style={{
