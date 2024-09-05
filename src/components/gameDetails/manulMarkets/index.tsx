@@ -3,7 +3,6 @@ import { AppDispatch } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 const ManualMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -73,7 +72,7 @@ const ManualMarket = ({ title, data, detail }) => {
           </div>
           <div
             className="manualBackLayBoxContainer"
-            style={{ width: isMobile ? "40%" : "48%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
               className="manualBackBoxTab"
@@ -107,27 +106,10 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               {data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes"}
             </span>
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              }`}
-            >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A
-              ] ?? 0}
-            </span>
           </div>
           <div
             className="manualRateBox"
-            style={{ width: isMobile ? "40%" : "72%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {data?.activeStatus === "live" && data?.statusTeamA != "active" && (
               <div className="suspended-overlayRatesmanual">
@@ -157,7 +139,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamA != 0 ? data?.backTeamA - 2 : "-"}
@@ -181,7 +163,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamA != 0 ? data?.backTeamA - 1 : "-"}
@@ -204,7 +186,7 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } manualRate1Box`}
               >
                 {data?.backTeamA != 0 ? data?.backTeamA : "-"}
@@ -224,7 +206,7 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } manualRate1Box`}
               >
                 {data?.layTeamA != 0 ? data?.layTeamA : "-"}
@@ -247,7 +229,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamA != 0 ? data?.layTeamA + 1 : "-"}
@@ -271,7 +253,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamA != 0 ? data?.layTeamA + 2 : "-"}
@@ -297,27 +279,10 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               {data?.type?.includes("quickbookmaker") ? detail?.teamB : "No"}
             </span>
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              }`}
-            >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B
-              ] ?? 0}
-            </span>
           </div>
           <div
             className="manualRateBox"
-            style={{ width: isMobile ? "40%" : "72%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {data?.activeStatus === "live" && data?.statusTeamB != "active" && (
               <div className="suspended-overlayRatesmanual">
@@ -347,7 +312,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamB != 0 ? data?.backTeamB - 2 : "-"}
@@ -371,7 +336,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamB != 0 ? data?.backTeamB - 1 : "-"}
@@ -394,7 +359,7 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } manualRate1Box`}
               >
                 {data?.backTeamB != 0 ? data?.backTeamB : "-"}
@@ -414,7 +379,7 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               <span
                 className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                 } manualRate1Box`}
               >
                 {data?.layTeamB != 0 ? data?.layTeamB : "-"}
@@ -437,7 +402,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamB != 0 ? data?.layTeamB + 1 : "-"}
@@ -461,7 +426,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamB != 0 ? data?.layTeamB + 2 : "-"}
@@ -490,27 +455,10 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 {detail?.teamC}
               </span>
-              <span
-                className={`${
-                  detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.C
-                  ] > 0
-                    ? "color-green"
-                    : detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C
-                      ] < 0
-                    ? "color-red"
-                    : ""
-                }`}
-              >
-                {detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.C
-                ] ?? 0}
-              </span>
             </div>
             <div
               className="manualRateBox"
-              style={{ width: isMobile ? "40%" : "72%" }}
+              style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
             >
               {data?.activeStatus === "live" &&
                 data?.statusTeamB != "active" && (
@@ -539,7 +487,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 >
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                      isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                     } manualRate1Box`}
                   >
                     {data?.backTeamC != 0 ? data?.backTeamC - 2 : "-"}
@@ -561,7 +509,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 >
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                      isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                     } manualRate1Box`}
                   >
                     {data?.backTeamC != 0 ? data?.backTeamC - 1 : "-"}
@@ -582,7 +530,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.backTeamC != 0 ? data?.backTeamC : "-"}
@@ -602,7 +550,7 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 <span
                   className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                   } manualRate1Box`}
                 >
                   {data?.layTeamC != 0 ? data?.layTeamC : "-"}
@@ -623,7 +571,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 >
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                      isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                     } manualRate1Box`}
                   >
                     {data?.layTeamC != 0 ? data?.layTeamC + 1 : "-"}
@@ -645,7 +593,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 >
                   <span
                     className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
+                      isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
                     } manualRate1Box`}
                   >
                     {data?.layTeamC != 0 ? data?.layTeamC + 2 : "-"}

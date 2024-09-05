@@ -119,7 +119,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
               </div>
               <div
                 className="sessionRateBox back1Background"
-                style={{ width: "18%" }}
+                style={{ width: isLap ? "61px" : !isMobile ? "81px" : "18%" }}
               >
                 <span className={`f-size16 sessionBackTxt`}>Back</span>
               </div>
@@ -134,37 +134,11 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                     >
                       {index} Number
                     </span>
-                    <span
-                      className={`${
-                        detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.filter(
-                              (a: any) => a?.betId === data?.id
-                            )
-                            ? detail?.profitLossDataSession?.filter(
-                                (a: any) => a?.betId === data?.id
-                              )[0]?.profitLoss?.[index] > 0
-                              ? "color-green"
-                              : detail?.profitLossDataSession?.filter(
-                                  (a: any) => a?.betId === data?.id
-                                )[0]?.profitLoss?.[index] < 0
-                              ? "color-red"
-                              : ""
-                            : 0
-                          : 0
-                      }`}
-                    >
-                      {detail?.profitLossDataSession
-                        ? detail?.profitLossDataSession?.filter(
-                            (a: any) => a?.betId === data?.id
-                          )
-                          ? detail?.profitLossDataSession?.filter(
-                              (a: any) => a?.betId === data?.id
-                            )[0]?.profitLoss?.[index]
-                          : 0
-                        : 0}
-                    </span>
                   </div>
-                  <div className="sessionCCRateBoxContainer">
+                  <div
+                    className="sessionCCRateBoxContainer"
+                    style={{ width: isLap ? "61px" : !isMobile ? "81px" : "" }}
+                  >
                     {item?.gstatus !== "" && (
                       <div className="suspended-overlayRates">
                         <FaLock color="#fff" />

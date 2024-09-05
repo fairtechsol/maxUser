@@ -3,7 +3,6 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { AppDispatch } from "../../../store/store";
-import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 const Bookmaker = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -87,6 +86,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ? "bookmaker1BackLayBoxContainer"
                 : "bookmaker2BackLayBoxContainer"
             }
+            style={
+              box === 6
+                ? { width: isLap ? "240px" : !isMobile ? "320px" : "" }
+                : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+            }
           >
             <div
               className={
@@ -127,26 +131,14 @@ const Bookmaker = ({ title, box, data, detail }) => {
             >
               {detail?.teamA}
             </span>
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              }`}
-            >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A
-              ] ?? 0}
-            </span>
           </div>
           <div
             className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
+            style={
+              box === 6
+                ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
+                : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+            }
           >
             {data?.activeStatus === "live" &&
               data?.runners?.[0]?.status != "ACTIVE" && (
@@ -382,26 +374,14 @@ const Bookmaker = ({ title, box, data, detail }) => {
             >
               {detail?.teamB}
             </span>
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              }`}
-            >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B
-              ] ?? 0}
-            </span>
           </div>
           <div
             className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
+            style={
+              box === 6
+                ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
+                : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+            }
           >
             {data?.activeStatus === "live" &&
               data?.runners?.[1]?.status != "ACTIVE" && (
@@ -638,26 +618,14 @@ const Bookmaker = ({ title, box, data, detail }) => {
               >
                 {detail?.teamC}
               </span>
-              <span
-                className={`${
-                  detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.C
-                  ] > 0
-                    ? "color-green"
-                    : detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C
-                      ] < 0
-                    ? "color-red"
-                    : ""
-                }`}
-              >
-                {detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.C
-                ] ?? 0}
-              </span>
             </div>
             <div
               className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
+              style={
+                box === 6
+                  ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
+                  : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+              }
             >
               {data?.activeStatus === "live" &&
                 data?.runners?.[2]?.status != "ACTIVE" && (

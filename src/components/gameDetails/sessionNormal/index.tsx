@@ -55,7 +55,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
     const newMarketArr = [...(data?.section || []), ...(manual || [])];
     setMarketArr(newMarketArr);
   }, [data, manual]);
-  
 
   marketArr?.forEach((element: any, index: any) => {
     if (index % 2 === 0) {
@@ -113,7 +112,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div className="sessionYesNoBoxContainer">
-              <div className="sessionYesNoBox">
+              <div
+                className="sessionYesNoBox"
+                style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+              >
                 <div className="sessionYesBox lay1Background">
                   <span className={`f-size16 sessionBackTxt`}>No</span>
                 </div>
@@ -129,41 +131,19 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                   <div className="sessionRateName">
                     <span
                       className="f-size15"
-                      style={{ width: "60%", fontWeight: "400" }}
+                      style={{ width: "60%", fontWeight: "400", lineHeight: 1 }}
                     >
                       {(item?.RunnerName || item?.name)?.length > 25
                         ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...`
                         : item?.RunnerName || item?.name}
                     </span>
-                    <span
-                      className={`${
-                        detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            ) < 0
-                            ? "color-red"
-                            : "color-green"
-                          : ""
-                      }`}
-                    >
-                      {detail?.profitLossDataSession
-                        ? detail?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                              return accumulator + maxLossToAdd;
-                            },
-                            0
-                          )
-                        : 0}
-                    </span>
                   </div>
-                  <div className="sessionRateBoxContainer">
+                  <div
+                    className="sessionRateBoxContainer"
+                    style={{
+                      width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    }}
+                  >
                     {handleStatus(
                       item?.activeStatus,
                       item?.GameStatus,
@@ -405,9 +385,14 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                 <div className="sessionYesNoBoxContainer">
                   <div
                     className="sessionEmptyBox"
-                    style={{ width: "54%" }}
+                    // style={{ width: "54%" }}
                   ></div>
-                  <div className="sessionYesNoBox">
+                  <div
+                    className="sessionYesNoBox"
+                    style={{
+                      width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    }}
+                  >
                     <div className="sessionYesBox lay1Background">
                       <span className={`f-size16 sessionBackTxt`}>No</span>
                     </div>
@@ -425,7 +410,11 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     <div className="sessionRateName">
                       <span
                         className="f-size15"
-                        style={{ width: "60%", fontWeight: "400" }}
+                        style={{
+                          width: "60%",
+                          fontWeight: "400",
+                          lineHeight: 1,
+                        }}
                       >
                         {(item?.RunnerName || item?.name)?.length > 25
                           ? `${(item?.RunnerName || item?.name)?.slice(
@@ -435,7 +424,12 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           : item?.RunnerName || item?.name}
                       </span>
                     </div>
-                    <div className="sessionRateBoxContainer">
+                    <div
+                      className="sessionRateBoxContainer"
+                      style={{
+                        width: isLap ? "180px" : !isMobile ? "240px" : "",
+                      }}
+                    >
                       {handleStatus(
                         item?.activeStatus,
                         item?.GameStatus,
