@@ -140,9 +140,9 @@ const Login = () => {
               </div>
             </CustomButton>
             
-            <p className={isMobile ? "title-10 d-inline-block mb-2" :"auth-box-descrip mt-1"}>
+            <small className={isMobile ? "title-10 d-inline-block mb-2 mt-1" :"auth-box-descrip mt-1"}>
               This site is protected by reCAPTCHA and the Google
-              <br />
+              {/* <br /> */}
               <a
                 href="https://policies.google.com/privacy"
                 className="text-primaryBlue text-decoration-none "
@@ -150,7 +150,7 @@ const Login = () => {
                 rel="noopener noreferrer"
               >
                 Privacy Policy
-              </a>
+              </a>{" "}
               and
               <a
                 href="https://policies.google.com/terms"
@@ -158,10 +158,10 @@ const Login = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Terms of Service
+                Terms of Service 
               </a>
-              apply.
-            </p>
+              {" "} apply.
+            </small>
           </div>
         </div>
       </Form>

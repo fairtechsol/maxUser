@@ -61,19 +61,19 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       return "-";
     }
   };
-  const handleStatus=(activeStatus:any,gStaus:any,status:any)=>{
-    if(activeStatus ==="live"){
-      if(gStaus ===""){
+  const handleStatus = (activeStatus: any, gStaus: any, status: any) => {
+    if (activeStatus === "live") {
+      if (gStaus === "") {
         return false;
-      }else if(status==="active"){
+      } else if (status === "active") {
         return false;
-      }else{
-        return true
+      } else {
+        return true;
       }
-     }else{
+    } else {
       return true;
-     }
-  }
+    }
+  };
   return (
     <>
       <div className="sessionNormalContainer">
@@ -111,13 +111,46 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size13">{item?.RunnerName || item?.name}</span>
+                    <span className="f-size13">
+                      {item?.RunnerName || item?.name}
+                    </span>
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            ) < 0
+                            ? "color-red"
+                            : "color-green"
+                          : ""
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
+                        : 0}
+                    </span>
                   </div>
                   <div
                     className="sessionRateBoxContainer"
                     style={{ width: "40%" }}
                   >
-                    {handleStatus(item?.activeStatus,item?.GameStatus,item?.status) && (
+                    {handleStatus(
+                      item?.activeStatus,
+                      item?.GameStatus,
+                      item?.status
+                    ) && (
                       <div className="suspended-overlayRates">
                         <span
                           className={`${
@@ -141,22 +174,26 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
-                            item?.ex?.availableToLay?.[0]?.price || item?.noRate,
+                            item?.ex?.availableToLay?.[0]?.price ||
+                              item?.noRate,
                             "no",
                             "NO",
                             item?.activeStatus,
-                            item?.ex?.availableToLay?.[0]?.size || item?.noPercent,
+                            item?.ex?.availableToLay?.[0]?.size ||
+                              item?.noPercent,
                             item,
                             item?.ex?.availableToLay?.[0]?.tno || 0
                           )
                         }
                       >
                         <span className={`f-size15 sessionRate1Box`}>
-                          {handlePrice(item?.ex?.availableToLay?.[0]?.price || item?.noRate) ??
-                            "-"}
+                          {handlePrice(
+                            item?.ex?.availableToLay?.[0]?.price || item?.noRate
+                          ) ?? "-"}
                         </span>
                         <span className={`f-size11 sessionRate2Box`}>
-                          {item?.ex?.availableToLay?.[0]?.size || item?.noPercent}
+                          {item?.ex?.availableToLay?.[0]?.size ||
+                            item?.noPercent}
                         </span>
                       </div>
                       {item?.ex?.availableToLay?.length > 1 && (
@@ -224,22 +261,27 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
-                            item?.ex?.availableToBack?.[0]?.price || item?.yesRate,
+                            item?.ex?.availableToBack?.[0]?.price ||
+                              item?.yesRate,
                             "Yes",
                             "YES",
                             item?.activeStatus,
-                            item?.ex?.availableToBack?.[0]?.size || item?.yesPercent,
+                            item?.ex?.availableToBack?.[0]?.size ||
+                              item?.yesPercent,
                             item,
                             item?.ex?.availableToBack?.[0]?.tno || 0
                           )
                         }
                       >
                         <span className={`f-size15 sessionRate1Box`}>
-                          {handlePrice(item?.ex?.availableToBack?.[0]?.price || item?.yesRate) ??
-                            "-"}
+                          {handlePrice(
+                            item?.ex?.availableToBack?.[0]?.price ||
+                              item?.yesRate
+                          ) ?? "-"}
                         </span>
                         <span className={`f-size11 sessionRate2Box`}>
-                          {item?.ex?.availableToBack?.[0]?.size || item?.yesPercent}
+                          {item?.ex?.availableToBack?.[0]?.size ||
+                            item?.yesPercent}
                         </span>
                       </div>
                       {item?.ex?.availableToBack?.length > 1 && (

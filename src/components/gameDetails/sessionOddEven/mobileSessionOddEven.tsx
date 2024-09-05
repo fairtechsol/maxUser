@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 
@@ -20,9 +20,9 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
     if (data?.status != "OPEN" || status != "live") {
       return false;
     }
-    if(odds === 0){
+    if (odds === 0) {
       return false;
-  }
+    }
     let team = {
       betOnTeam: betTeam,
       rate: odds,
@@ -39,7 +39,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
       matchBetType: "session",
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
-      teamName:  teamName ,
+      teamName: teamName,
     };
     dispatch(
       selectedBetAction({
@@ -48,7 +48,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
       })
     );
   };
- 
+
   const handlePrice = (rate: any) => {
     if (rate && rate != 0) {
       return rate;
@@ -77,9 +77,41 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size13" style={{fontWeight:"400"}}>{item?.RunnerName}</span>
+                    <span className="f-size13" style={{ fontWeight: "400" }}>
+                      {item?.RunnerName}
+                    </span>
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            ) < 0
+                            ? "color-red"
+                            : "color-green"
+                          : ""
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
+                        : 0}
+                    </span>
                   </div>
-                  <div className="sessionRateBoxContainer" style={{width:"40%"}}>
+                  <div
+                    className="sessionRateBoxContainer"
+                    style={{ width: "40%" }}
+                  >
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
                       <div className="suspended-overlayRates">
@@ -116,14 +148,11 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span
-                          className={`f-size15 sessionRate1Box`}
-                        >
-                          {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
+                        <span className={`f-size15 sessionRate1Box`}>
+                          {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
+                            "-"}
                         </span>
-                        <span
-                          className={`f-size11 sessionRate2Box`}
-                        >
+                        <span className={`f-size11 sessionRate2Box`}>
                           {item?.ex?.availableToLay?.[0]?.size}
                         </span>
                       </div>
@@ -151,26 +180,20 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span
-                          className={`f-size15 sessionRate1Box`}
-                        >
-                          {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
+                        <span className={`f-size15 sessionRate1Box`}>
+                          {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
+                            "-"}
                         </span>
-                        <span
-                          className={`f-size11 sessionRate2Box`}
-                        >
+                        <span className={`f-size11 sessionRate2Box`}>
                           {item?.ex?.availableToBack?.[0]?.size}
                         </span>
                       </div>
                     </div>
-                   
                   </div>
                 </div>
               );
             })}
           </div>
-
-         
         </div>
       </div>
     </>
