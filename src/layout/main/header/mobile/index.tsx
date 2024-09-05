@@ -54,7 +54,7 @@ const MobileHeader = () => {
       </div>
       <div className="d-flex flex-column align-items-center white-text list-unstyled float-end h-100">
         {show?.balance && (
-          <div className="d-flex gap-1 align-items-center justify-content-end w-100 title-12">
+          <div className="d-flex gap-1 align-items-center justify-content-end w-100 title-12 mt-1">
           Balance:
             <b>{parseFloat(getProfile?.userBal?.currentBalance).toFixed(2)}</b>
           </div>
@@ -85,7 +85,7 @@ const MobileHeader = () => {
                 {dropdownList?.map((item) => {
                   return (
                     <Dropdown.Item
-                      className="title-14 d-flex justify-content-between"
+                      className="title-16px d-flex justify-content-between"
                       onClick={() => {
                         navigate(item.link || "");
                       }}

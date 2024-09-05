@@ -55,7 +55,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                 {availableGameType[mTypeid] &&
                   tableHeading?.map((item) => (
                     <th
-                      className={`title-14 ${
+                      className={`title-14 lh-1 pt-2 ${
                         item?.textAlign === "center" ? "text-center" : ""
                       }`}
                       colSpan={item?.colspan}

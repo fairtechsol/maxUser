@@ -5,7 +5,7 @@ import SportsFilterJson from "./sportsFilters.json";
 import LatestEvent from "../latestEvents";
 import { useState } from "react";
 const eventsData = [
-  { id: 1, iconId: 40, eventId: 715926745, name: 'Venezia v Torino' },
+  { id: 1, iconId: 40, eventId: 715926745, name: 'Indian Premier League 2024' },
   { id: 2, iconId: 4, eventId: 780263321, name: 'Caribbean Premier League - Winner' },
   { id: 3, iconId: 2, eventId: 505412737, name: 'E Ruse v P Badosa' },
   { id: 4, iconId: 2, eventId: 707383007, name: 'Svitolina v Gauff' },

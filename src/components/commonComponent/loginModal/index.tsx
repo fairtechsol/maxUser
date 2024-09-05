@@ -10,7 +10,7 @@ const ImageModal = ({ imageUrl, customClass,show,
           <div className="modal-header bg-primary" onClick={() => setShow(false)}>
             <button 
               type="button" 
-              className="btn-close text-white " 
+              className="btn-close " 
               aria-label="Close" 
               
             ></button>

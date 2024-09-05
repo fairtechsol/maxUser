@@ -28,7 +28,7 @@ const DesktopMatchList = ({
       id: 1,
       iconId: 40,
       eventId: 715926745,
-      name: "USA - Presidential Election 2024",
+      name: "Indian Premier League 2024",
     },
     {
       id: 2,
@@ -100,7 +100,7 @@ const DesktopMatchList = ({
               <Tab
                 key={item?.id}
                 eventKey={type ?? item?.id}
-                tabClassName="match-list-tabs title-15 text-nowrap"
+                tabClassName="match-list-tabs text-nowrap"
                 title={item?.name}
               ></Tab>
             );
