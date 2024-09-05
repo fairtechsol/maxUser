@@ -99,12 +99,12 @@ const SessionOddEven = ({ title, data, detail }) => {
                   <div className="sessionRateName">
                     <span
                       className="f-size15"
-                      style={{ width: "60%", fontWeight: "400" }}
+                      style={{ width: "60%", fontWeight: "400", lineHeight: 1 }}
                     >
                       {item?.RunnerName?.length > 25
                         ? `${item?.RunnerName?.slice(0, 25)}...`
                         : item?.RunnerName}
-                    </span>
+                    </span>{" "}
                     <span
                       className={`${
                         detail?.profitLossDataSession
@@ -133,7 +133,12 @@ const SessionOddEven = ({ title, data, detail }) => {
                         : 0}
                     </span>
                   </div>
-                  <div className="sessionRateBoxContainer">
+                  <div
+                    className="sessionRateBoxContainer"
+                    style={{
+                      width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    }}
+                  >
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
                       <div className="suspended-overlayRates">
@@ -247,11 +252,42 @@ const SessionOddEven = ({ title, data, detail }) => {
                     <div className="sessionRateName">
                       <span
                         className="f-size15"
-                        style={{ width: "60%", fontWeight: "400" }}
+                        style={{
+                          width: "60%",
+                          fontWeight: "400",
+                          lineHeight: 1,
+                        }}
                       >
                         {item?.RunnerName?.length > 25
                           ? `${item?.RunnerName?.slice(0, 25)}...`
                           : item?.RunnerName}
+                      </span>{" "}
+                      <span
+                        className={`${
+                          detail?.profitLossDataSession
+                            ? detail?.profitLossDataSession?.reduce(
+                                (accumulator: any, bet: any) => {
+                                  const maxLossToAdd =
+                                    bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                  return accumulator + maxLossToAdd;
+                                },
+                                0
+                              ) < 0
+                              ? "color-red"
+                              : "color-green"
+                            : ""
+                        }`}
+                      >
+                        {detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            )
+                          : 0}
                       </span>
                       <span
                         className={`${
@@ -281,7 +317,12 @@ const SessionOddEven = ({ title, data, detail }) => {
                           : 0}
                       </span>
                     </div>
-                    <div className="sessionRateBoxContainer">
+                    <div
+                      className="sessionRateBoxContainer"
+                      style={{
+                        width: isLap ? "180px" : !isMobile ? "240px" : "",
+                      }}
+                    >
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                         <div className="suspended-overlayRates">
@@ -326,11 +367,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         >
                           <span
                             className={`${
-                              !isMobile
-                                ? "f-size18"
-                                : isLap
-                                ? "f-size16"
-                                : "f-size15"
+                              isLap ? "f-size16" : "f-size18"
                             } sessionRate1Box`}
                           >
                             {handlePrice(
@@ -371,11 +408,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         >
                           <span
                             className={`${
-                              !isMobile
-                                ? "f-size18"
-                                : isLap
-                                ? "f-size16"
-                                : "f-size15"
+                              isLap ? "f-size16" : "f-size18"
                             } sessionRate1Box`}
                           >
                             {handlePrice(

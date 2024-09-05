@@ -119,7 +119,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
               </div>
               <div
                 className="sessionRateBox back1Background"
-                style={{ width: "18%" }}
+                style={{ width: isLap ? "61px" : !isMobile ? "81px" : "18%" }}
               >
                 <span className={`f-size16 sessionBackTxt`}>Back</span>
               </div>
@@ -164,7 +164,10 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                         : 0}
                     </span>
                   </div>
-                  <div className="sessionCCRateBoxContainer">
+                  <div
+                    className="sessionCCRateBoxContainer"
+                    style={{ width: isLap ? "61px" : !isMobile ? "81px" : "" }}
+                  >
                     {item?.gstatus !== "" && (
                       <div className="suspended-overlayRates">
                         <FaLock color="#fff" />

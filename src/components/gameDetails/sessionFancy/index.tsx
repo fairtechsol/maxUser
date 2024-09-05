@@ -93,7 +93,10 @@ const SessionFancy = ({ title, data, detail }) => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div className="sessionYesNoBoxContainer">
-              <div className="sessionYesNoBox">
+              <div
+                className="sessionYesNoBox"
+                style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+              >
                 <div className="sessionYesBox back1Background">
                   <span className={`f-size16 sessionBackTxt`}>Back</span>
                 </div>
@@ -107,11 +110,14 @@ const SessionFancy = ({ title, data, detail }) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size15" style={{ width: "60%" }}>
+                    <span
+                      className="f-size14"
+                      style={{ width: "60%", lineHeight: 1 }}
+                    >
                       {item?.RunnerName?.length > 25
                         ? `${item?.RunnerName?.slice(0, 25)}...`
                         : item?.RunnerName}
-                    </span>
+                    </span>{" "}
                     <span
                       className={`${
                         detail?.profitLossDataSession
@@ -140,7 +146,12 @@ const SessionFancy = ({ title, data, detail }) => {
                         : 0}
                     </span>
                   </div>
-                  <div className="sessionRateBoxContainer">
+                  <div
+                    className="sessionRateBoxContainer"
+                    style={{
+                      width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    }}
+                  >
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
                       <div className="suspended-overlayRates">
@@ -170,10 +181,10 @@ const SessionFancy = ({ title, data, detail }) => {
                     >
                       <span
                         className={`${
-                          !isMobile
-                            ? "f-size18"
-                            : isLap
+                          isLap
                             ? "f-size16"
+                            : !isMobile
+                            ? "f-size18"
                             : "f-size15"
                         } sessionRate1Box`}
                       >
@@ -205,10 +216,10 @@ const SessionFancy = ({ title, data, detail }) => {
                     >
                       <span
                         className={`${
-                          !isMobile
-                            ? "f-size18"
-                            : isLap
+                          isLap
                             ? "f-size16"
+                            : !isMobile
+                            ? "f-size18"
                             : "f-size15"
                         } sessionRate1Box`}
                       >
@@ -246,7 +257,10 @@ const SessionFancy = ({ title, data, detail }) => {
               }}
             >
               <div className="sessionYesNoBoxContainer">
-                <div className="sessionYesNoBox">
+                <div
+                  className="sessionYesNoBox"
+                  style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+                >
                   <div className="sessionYesBox back1Background">
                     <span className={`f-size16 sessionBackTxt`}>Back</span>
                   </div>
@@ -261,12 +275,43 @@ const SessionFancy = ({ title, data, detail }) => {
                   <div className="sessionRateContainer" key={index}>
                     <div className="sessionRateName">
                       <span
-                        className="f-size15"
-                        style={{ width: "60%", fontWeight: "400" }}
+                        className="f-size14"
+                        style={{
+                          width: "60%",
+                          fontWeight: "400",
+                          lineHeight: 1,
+                        }}
                       >
                         {item?.RunnerName?.length > 25
                           ? `${item?.RunnerName?.slice(0, 25)}...`
                           : item?.RunnerName}
+                      </span>{" "}
+                      <span
+                        className={`${
+                          detail?.profitLossDataSession
+                            ? detail?.profitLossDataSession?.reduce(
+                                (accumulator: any, bet: any) => {
+                                  const maxLossToAdd =
+                                    bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                  return accumulator + maxLossToAdd;
+                                },
+                                0
+                              ) < 0
+                              ? "color-red"
+                              : "color-green"
+                            : ""
+                        }`}
+                      >
+                        {detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            )
+                          : 0}
                       </span>
                       <span
                         className={`${
@@ -296,7 +341,12 @@ const SessionFancy = ({ title, data, detail }) => {
                           : 0}
                       </span>
                     </div>
-                    <div className="sessionRateBoxContainer">
+                    <div
+                      className="sessionRateBoxContainer"
+                      style={{
+                        width: isLap ? "180px" : !isMobile ? "240px" : "",
+                      }}
+                    >
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                         <div className="suspended-overlayRates">
@@ -326,10 +376,10 @@ const SessionFancy = ({ title, data, detail }) => {
                       >
                         <span
                           className={`${
-                            !isMobile
-                              ? "f-size18"
-                              : isLap
+                            isLap
                               ? "f-size16"
+                              : !isMobile
+                              ? "f-size18"
                               : "f-size15"
                           } sessionRate1Box`}
                         >
@@ -361,10 +411,10 @@ const SessionFancy = ({ title, data, detail }) => {
                       >
                         <span
                           className={`${
-                            !isMobile
-                              ? "f-size18"
-                              : isLap
+                            isLap
                               ? "f-size16"
+                              : !isMobile
+                              ? "f-size18"
                               : "f-size15"
                           } sessionRate1Box`}
                         >

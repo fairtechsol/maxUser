@@ -87,6 +87,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ? "bookmaker1BackLayBoxContainer"
                 : "bookmaker2BackLayBoxContainer"
             }
+            style={
+              box === 6
+                ? { width: isLap ? "240px" : !isMobile ? "320px" : "" }
+                : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+            }
           >
             <div
               className={
@@ -147,6 +152,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
           </div>
           <div
             className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
+            style={
+              box === 6
+                ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
+                : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+            }
           >
             {data?.activeStatus === "live" &&
               data?.runners?.[0]?.status != "ACTIVE" && (
@@ -402,6 +412,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
           </div>
           <div
             className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
+            style={
+              box === 6
+                ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
+                : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+            }
           >
             {data?.activeStatus === "live" &&
               data?.runners?.[1]?.status != "ACTIVE" && (
@@ -637,7 +652,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 } bookmakerTeamTxt`}
               >
                 {detail?.teamC}
-              </span>
+              </span>{" "}
               <span
                 className={`${
                   detail?.profitLossDataMatch?.[
@@ -658,6 +673,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
             </div>
             <div
               className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
+              style={
+                box === 6
+                  ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
+                  : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+              }
             >
               {data?.activeStatus === "live" &&
                 data?.runners?.[2]?.status != "ACTIVE" && (
