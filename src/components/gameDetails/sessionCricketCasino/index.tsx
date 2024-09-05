@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import {isLap, isMobile} from "../../../utils/screenDimension";
+import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { FaLock } from "react-icons/fa";
@@ -17,14 +17,14 @@ const SessionCricketCasino = ({ title, data, detail }) => {
     value: any,
     item: any,
     tno: any,
-    index:any
+    index: any
   ) => {
     if (status != "") {
       return false;
     }
-    if(odds === 0){
+    if (odds === 0) {
       return false;
-  }
+    }
     let team = {
       betOnTeam: betTeam,
       rate: odds,
@@ -41,7 +41,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       matchBetType: "session",
       betPlaceIndex: tno,
       mid: item?.mid?.toString(),
-      teamName:  index + " Number" ,
+      teamName: index + " Number",
     };
     dispatch(
       selectedBetAction({
@@ -66,11 +66,11 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       setMarketArr(newData);
     }
   }, []);
-  const formatNumber = (num:any) => {
+  const formatNumber = (num: any) => {
     if (num >= 1000 && num < 1000000) {
-      return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
     } else if (num >= 100000) {
-      return (num / 100000).toFixed(1).replace(/\.0$/, '') + 'L';
+      return (num / 100000).toFixed(1).replace(/\.0$/, "") + "L";
     }
     return num.toString();
   };
@@ -82,12 +82,19 @@ const SessionCricketCasino = ({ title, data, detail }) => {
     }
   };
 
-
   return (
     <>
-      <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
+      <div
+        className="sessionNormalContainer"
+        style={{ marginTop: isMobile ? "" : "10px" }}
+      >
         <div className="sessionNormalTitle">
-          <span className="sessionNormalTitleTxt" style={{fontSize:isMobile?"13px":"15px"}}>{title}</span>
+          <span
+            className="sessionNormalTitleTxt"
+            style={{ fontSize: isMobile ? "13px" : "15px" }}
+          >
+            {title}
+          </span>
         </div>
         <div
           style={{
@@ -100,22 +107,65 @@ const SessionCricketCasino = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div className="sessionCasinoMinMax" style={{borderBottom:"1px solid #c7c8ca"}}>
-             <div style={{width:"85%",backgroundColor:"#f2f2f2"}}>
-              <span className={`sessionMinBox`} style={{marginLeft:"1%"}}>Min:{formatNumber(marketArr?.min)} Max:{formatNumber(marketArr?.max)}</span>
-             </div>
-             <div className="sessionRateBox back1Background" style={{width:"18%"}}>
-              <span className={`f-size16 sessionBackTxt`}>Back</span>
-             </div>
+            <div
+              className="sessionCasinoMinMax"
+              style={{ borderBottom: "1px solid #c7c8ca" }}
+            >
+              <div style={{ width: "85%", backgroundColor: "#f2f2f2" }}>
+                <span className={`sessionMinBox`} style={{ marginLeft: "1%" }}>
+                  Min:{formatNumber(marketArr?.min)} Max:
+                  {formatNumber(marketArr?.max)}
+                </span>
+              </div>
+              <div
+                className="sessionRateBox back1Background"
+                style={{ width: "18%" }}
+              >
+                <span className={`f-size16 sessionBackTxt`}>Back</span>
+              </div>
             </div>
             {marketArr?.section?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className={isMobile?"f-size13":"f-size14"} style={{fontWeight:"400"}}>{index} Number</span>
+                    <span
+                      className={isMobile ? "f-size13" : "f-size14"}
+                      style={{ fontWeight: "400" }}
+                    >
+                      {index} Number
+                    </span>
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.filter(
+                              (a: any) => a?.betId === data?.id
+                            )
+                            ? detail?.profitLossDataSession?.filter(
+                                (a: any) => a?.betId === data?.id
+                              )[0]?.profitLoss?.[index] > 0
+                              ? "color-green"
+                              : detail?.profitLossDataSession?.filter(
+                                  (a: any) => a?.betId === data?.id
+                                )[0]?.profitLoss?.[index] < 0
+                              ? "color-red"
+                              : ""
+                            : 0
+                          : 0
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.filter(
+                            (a: any) => a?.betId === data?.id
+                          )
+                          ? detail?.profitLossDataSession?.filter(
+                              (a: any) => a?.betId === data?.id
+                            )[0]?.profitLoss?.[index]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
                   <div className="sessionCCRateBoxContainer">
-                    {(item?.gstatus !== "" ) && (
+                    {item?.gstatus !== "" && (
                       <div className="suspended-overlayRates">
                         <FaLock color="#fff" />
                       </div>
@@ -146,7 +196,11 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                       >
                         <span
                           className={`${
-                            !isMobile ? "f-size18" : isLap ? "f-size16":"f-size15"
+                            !isMobile
+                              ? "f-size18"
+                              : isLap
+                              ? "f-size16"
+                              : "f-size15"
                           } sessionRate1Box`}
                         >
                           {handlePrice(item?.odds?.[0]?.odds) ?? "-"}

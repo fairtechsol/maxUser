@@ -147,7 +147,7 @@ const MainLayout = () => {
       )}
       <Header />
       <TopBar />
-      <div className="d-flex">
+      <div className="d-flex" style={{minHeight: "calc(100vh - 125px)"}}>
         {!isMobile && (
           <div className={`sidebar sidebarActive mt-2`}>
             <Sidebar />

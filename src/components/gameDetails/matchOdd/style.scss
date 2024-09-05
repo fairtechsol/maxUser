@@ -1,161 +1,162 @@
-.matchOddContainer{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: #f2f2f2;
+.matchOddContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
 }
 .matchOddTitle{
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 5px;
+    padding: 3px 6px;
     background-color: #fece5d;
 }
-.matchOddTitleTxt{
-    color: #ffffff;
-    font-weight: bold;
+.matchOddTitleTxt {
+  color: #ffffff;
+  font-weight: bold;
 }
-.matchOddBackLayTab{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #c7c8ca;
+.matchOddBackLayTab {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #c7c8ca;
 }
-.matchOddMinMaxBox{
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.matchOddMinMaxBox {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.matchOddMinMax{
-    font-size: 12px;
-    font-weight: bold;
-    color: #097c93;
+.matchOddMinMax {
+  font-size: 12px;
+  font-weight: bold;
+  color: #097c93;
 }
-.matchOddBackLayBoxContainer{
-    width: 48%;
-    display: flex;
-    flex-direction: row;
+.matchOddBackLayBoxContainer {
+  width: 48%;
+  display: flex;
+  flex-direction: row;
 }
-.matchOddBackBoxTab{
-    width: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #72bbef;
+.matchOddBackBoxTab {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #72bbef;
 }
-.matchOddLayBoxTab{
-    width: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #faa9ba;
+.matchOddLayBoxTab {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #faa9ba;
 }
-.matchOddEmptyBox{
-    width: 50%;
+.matchOddEmptyBox {
+  width: 50%;
 }
-.matchOddBackTxt{
-    color: #000;
-    font-weight: bold;
+.matchOddBackTxt {
+  color: #000;
+  font-weight: bold;
 }
-.matchOddTeamTab{
-    position: relative;
-    width: 100%;
-    height: 45px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #c7c8ca;
+.matchOddTeamTab {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #c7c8ca;
 }
-.matchOddTeam{
-    width: 28%;
-    padding: 5px;
-    display: flex;
-    justify-content: start;
-    align-items: flex-start;
+.matchOddTeam {
+  width: 28%;
+  padding: 5px;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-direction: column;
 }
-.matchOddTeamTxt{
-    font-size: 16px;
-    font-weight: bold;
-    color: #000;
+.matchOddTeamTxt {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
 }
-.matchOddRateBox{
-    position: relative;
-    width: 72%;
-    display: flex;
-    flex-direction: row;
+.matchOddRateBox {
+  position: relative;
+  width: 72%;
+  display: flex;
+  flex-direction: row;
 }
-.matchOddBackBox{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+.matchOddBackBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
-.matchOddRate1Box{
-    font-size: 18px;
-    color: #000;
-    font-weight: bold;
+.matchOddRate1Box {
+  font-size: 18px;
+  color: #000;
+  font-weight: bold;
 }
-.matchOddRate2Box{
-    font-size: 12px;
-    color: #000;
-    font-weight: 100;
+.matchOddRate2Box {
+  font-size: 12px;
+  color: #000;
+  font-weight: 100;
 }
-.back3Background{
-    background-color: #b2d6f0 !important;
+.back3Background {
+  background-color: #b2d6f0 !important;
 }
-.back2Background{
-    background-color: #92c9f0 !important;
+.back2Background {
+  background-color: #92c9f0 !important;
 }
-.back1Background{
-    background-color: #72bbef !important;
+.back1Background {
+  background-color: #72bbef !important;
 }
-.lay3Background{
-    background-color: #f6cdd6 !important;
+.lay3Background {
+  background-color: #f6cdd6 !important;
 }
-.lay2Background{
-    background-color: #f8bcc8 !important;
+.lay2Background {
+  background-color: #f8bcc8 !important;
 }
-.lay1Background{
-    background-color: #faa9ba !important;
+.lay1Background {
+  background-color: #faa9ba !important;
 }
-.suspended-overlayRatesMatchOdd{
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #00000099;
-    height: 100%;
-    z-index: 999;
+.suspended-overlayRatesMatchOdd {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000099;
+  height: 100%;
+  z-index: 999;
 }
 .suspendedTxtMatchOdd {
-    font-weight: 400;
-    color: #df0e00;
+  font-weight: 400;
+  color: #df0e00;
 }
 .f-size10 {
-    font-size: 10px !important;
+  font-size: 10px !important;
 }
 .f-size11 {
-    font-size: 11px !important;
+  font-size: 11px !important;
 }
 .f-size12 {
-    font-size: 12px !important;
+  font-size: 12px !important;
 }
 .f-size13 {
-    font-size: 13px !important;
+  font-size: 13px !important;
 }
 .f-size14 {
-    font-size: 14px !important;
+  font-size: 14px !important;
 }
 .f-size15 {
-    font-size: 15px !important;
+  font-size: 15px !important;
 }
 .f-size16 {
-    font-size: 16px !important;
+  font-size: 16px !important;
 }
 .f-size18 {
-    font-size: 18px !important;
+  font-size: 18px !important;
 }

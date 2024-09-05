@@ -121,6 +121,7 @@ export const Constants = {
   thirdPartyCard: "https://casinoserviceapi.fairgame.club",
   localThird: "http://localhost:3200",
   // localThirdCard: "https://3200dev.fairgame.club",
+  // fdsfsdfsdsdfsd
   localThirdCard: "http://localhost:3201",
   WEBSOCKET: "websocket",
   POLLING: "polling",
@@ -380,7 +381,7 @@ export const cardUrl =
     : "https://maxbet9.fairgame.club/videoPage/";
 
 export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
-export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventid=";
+export const scoreBoardUrlMain = "https://dpmatka.in/dcasino/score.php?matchId=";
 
 export const baseUrls = {
   socket:

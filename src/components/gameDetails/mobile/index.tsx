@@ -132,7 +132,9 @@ const MobileGameDetail = () => {
       console.log(error);
     }
   }, [matchDetails?.id]);
-
+  // const normalizedData = matchDetails?.sessionBettings?.map((item:any) => JSON.parse(item));
+  // const manualEntries = normalizedData?.filter((item:any) => item?.isManual);
+  // console.log('manualEntries',manualEntries)
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -145,7 +147,7 @@ const MobileGameDetail = () => {
             {matchDetails?.startAt && formatDate(matchDetails?.startAt)}
           </span>
         }
-        style={{padding:"5px"}}
+        style={{ padding: "5px" }}
       />
       <CommonTabs defaultActive="odds" className="color">
         {[
@@ -159,7 +161,11 @@ const MobileGameDetail = () => {
           },
           {
             id: "live",
-            name: <div style={{padding: "0px", fontSize: "11px"}}><FaTv /> </div>,
+            name: (
+              <div style={{ padding: "0px", fontSize: "11px" }}>
+                <FaTv />
+              </div>
+            ),
           },
         ]?.map((item, index) => {
           return (
@@ -167,23 +173,14 @@ const MobileGameDetail = () => {
               key={item?.id}
               eventKey={item?.id}
               tabClassName="m-tab"
-              title={<div className="font p-2 lh-1 py-0 f600">{item?.name} </div>}
+              title={
+                <div className="font p-2 lh-1 py-0 f600">{item?.name} </div>
+              }
             >
               {index == 0 ? (
                 <Container>
                   <Row>
                     <Col className="g-0" md={12}>
-                      {/* <BetTableHeader
-                        customClass="py-2"
-                        customTextClass="title-12"
-                        title={matchDetails?.title}
-                        rightComponent={
-                          <span className="title-14 f400" style={{color:"#fff"}}>
-                            {matchDetails?.startAt &&
-                              formatDate(matchDetails?.startAt)}
-                          </span>
-                        }
-                      /> */}
                       <div
                         style={{
                           width: "100%",
@@ -295,6 +292,7 @@ const MobileGameDetail = () => {
                           // type={"normal"}
                           data={matchDetails?.apiSession?.session}
                           detail={matchDetails}
+                          // manual={manualEntries}
                         />
                       </Col>
                     )}

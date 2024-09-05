@@ -1,11 +1,13 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { useEffect, useState } from "react";
 
-const MobileSessionNormal = ({ title, data, detail }) => {
+const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
+  const [marketArr, setMarketArr] = useState(data?.section || []);
 
   const handlePlaceBet = (
     odds: any,
@@ -13,16 +15,15 @@ const MobileSessionNormal = ({ title, data, detail }) => {
     betTeam: any,
     status: any,
     value: any,
-    item:any,
-    tno:any,
-    teamName?:any
+    item: any,
+    tno: any
   ) => {
     if (data?.status != "OPEN" || status != "live") {
       return false;
     }
-    if(odds === 0){
+    if (odds === 0) {
       return false;
-  }
+    }
     let team = {
       betOnTeam: betTeam,
       rate: odds,
@@ -32,13 +33,13 @@ const MobileSessionNormal = ({ title, data, detail }) => {
       teamB: detail?.teamB,
       teamC: detail?.teamC,
       betId: item?.id,
-      name: item?.RunnerName,
+      name: item?.RunnerName || item?.name,
       eventType: detail?.matchType,
       matchId: detail?.id,
       percent: value,
-      matchBetType:"session",
-      betPlaceIndex:tno,
-      mid:data?.mid?.toString(),
+      matchBetType: "session",
+      betPlaceIndex: tno,
+      mid: data?.mid?.toString(),
     };
     dispatch(
       selectedBetAction({
@@ -47,7 +48,12 @@ const MobileSessionNormal = ({ title, data, detail }) => {
       })
     );
   };
- 
+
+  useEffect(() => {
+    const newMarketArr = [...(data?.section || []), ...(manual || [])];
+    setMarketArr(newMarketArr);
+  }, [data, manual]);
+
   const handlePrice = (rate: any) => {
     if (rate && rate != 0) {
       return rate;
@@ -55,11 +61,24 @@ const MobileSessionNormal = ({ title, data, detail }) => {
       return "-";
     }
   };
+  const handleStatus = (activeStatus: any, gStaus: any, status: any) => {
+    if (activeStatus === "live") {
+      if (gStaus === "") {
+        return false;
+      } else if (status === "active") {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+  };
   return (
     <>
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
-          <span className="sessionNormalTitleTxt f-size13" >{title}</span>
+          <span className="sessionNormalTitleTxt f-size13">{title}</span>
         </div>
         <div
           style={{
@@ -73,118 +92,256 @@ const MobileSessionNormal = ({ title, data, detail }) => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div className="sessionYesNoBoxContainer">
-              <div className="sessionYesNoBox" style={{width:"40%"}}>
-                <div className="sessionYesBox lay1Background" style={{width:"100%"}}>
-                  <span
-                    className={`f-size16 sessionBackTxt`}
-                  >
-                    No
-                  </span>
+              <div className="sessionYesNoBox" style={{ width: "40%" }}>
+                <div
+                  className="sessionYesBox lay1Background"
+                  style={{ width: "100%" }}
+                >
+                  <span className={`f-size16 sessionBackTxt`}>No</span>
                 </div>
-                <div className="sessionYesBox back1Background" style={{width:"100%"}}>
-                  <span
-                    className={`f-size16 sessionBackTxt`}
-                  >
-                    Yes
-                  </span>
+                <div
+                  className="sessionYesBox back1Background"
+                  style={{ width: "100%" }}
+                >
+                  <span className={`f-size16 sessionBackTxt`}>Yes</span>
                 </div>
-                
               </div>
             </div>
-            {data?.section?.map((item: any, index: any) => {
+            {marketArr?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size13">{item?.RunnerName}</span>
+                    <span className="f-size13">
+                      {item?.RunnerName || item?.name}
+                    </span>
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            ) < 0
+                            ? "color-red"
+                            : "color-green"
+                          : ""
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
+                        : 0}
+                    </span>
                   </div>
-                  <div className="sessionRateBoxContainer" style={{width:"40%"}}>
-                  {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
-                  {item?.GameStatus ?? "SUSPENDED"}</span></div>}
-                  <div style={{width:"100%",display:"flex",flexDirection:"column",borderRight:"1px solid #c7c8ca"}}>
-                    <div className={`sessionRateBox lay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[0]?.size,item,item?.ex?.availableToLay?.[0]?.tno)}>
-                      <span
-                        className={`f-size15 sessionRate1Box`}
+                  <div
+                    className="sessionRateBoxContainer"
+                    style={{ width: "40%" }}
+                  >
+                    {handleStatus(
+                      item?.activeStatus,
+                      item?.GameStatus,
+                      item?.status
+                    ) && (
+                      <div className="suspended-overlayRates">
+                        <span
+                          className={`${
+                            !isMobile ? "f-size18" : "f-size16"
+                          } suspendedTxtMatchOdd`}
+                        >
+                          {(item?.GameStatus || item?.status) ?? "SUSPENDED"}
+                        </span>
+                      </div>
+                    )}
+                    <div
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        borderRight: "1px solid #c7c8ca",
+                      }}
+                    >
+                      <div
+                        className={`sessionRateBox lay1Background`}
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>
+                          handlePlaceBet(
+                            item?.ex?.availableToLay?.[0]?.price ||
+                              item?.noRate,
+                            "no",
+                            "NO",
+                            item?.activeStatus,
+                            item?.ex?.availableToLay?.[0]?.size ||
+                              item?.noPercent,
+                            item,
+                            item?.ex?.availableToLay?.[0]?.tno || 0
+                          )
+                        }
                       >
-                        {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
-                      </span>
-                      <span
-                        className={`f-size11 sessionRate2Box`}
-                      >
-                        {item?.ex?.availableToLay?.[0]?.size}
-                      </span>
+                        <span className={`f-size15 sessionRate1Box`}>
+                          {handlePrice(
+                            item?.ex?.availableToLay?.[0]?.price || item?.noRate
+                          ) ?? "-"}
+                        </span>
+                        <span className={`f-size11 sessionRate2Box`}>
+                          {item?.ex?.availableToLay?.[0]?.size ||
+                            item?.noPercent}
+                        </span>
+                      </div>
+                      {item?.ex?.availableToLay?.length > 1 && (
+                        <div
+                          className={`sessionRateBox lay1Background`}
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            handlePlaceBet(
+                              item?.ex?.availableToLay?.[1]?.price,
+                              "no",
+                              "NO",
+                              item?.activeStatus,
+                              item?.ex?.availableToLay?.[1]?.size,
+                              item,
+                              item?.ex?.availableToLay?.[1]?.tno
+                            )
+                          }
+                        >
+                          <span className={`f-size15 sessionRate1Box`}>
+                            {handlePrice(
+                              item?.ex?.availableToLay?.[1]?.price
+                            ) ?? "-"}
+                          </span>
+                          <span className={`f-size11 sessionRate2Box`}>
+                            {item?.ex?.availableToLay?.[1]?.size}
+                          </span>
+                        </div>
+                      )}
+                      {item?.ex?.availableToLay?.length > 2 && (
+                        <div
+                          className={`sessionRateBoxlay1Background`}
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            handlePlaceBet(
+                              item?.ex?.availableToLay?.[2]?.price,
+                              "no",
+                              "NO",
+                              item?.activeStatus,
+                              item?.ex?.availableToLay?.[2]?.size,
+                              item,
+                              item?.ex?.availableToLay?.[2]?.tno
+                            )
+                          }
+                        >
+                          <span className={`f-size15 sessionRate1Box`}>
+                            {handlePrice(
+                              item?.ex?.availableToLay?.[2]?.price
+                            ) ?? "-"}
+                          </span>
+                          <span className={`f-size11 sessionRate2Box`}>
+                            {item?.ex?.availableToLay?.[2]?.size}
+                          </span>
+                        </div>
+                      )}
                     </div>
-                   {item?.ex?.availableToLay?.length > 1 && <div className={`sessionRateBox lay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[1]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[1]?.size,item,item?.ex?.availableToLay?.[1]?.tno)}>
-                      <span
-                        className={`f-size15 sessionRate1Box`}
+                    <div
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <div
+                        className="sessionRateBox back1Background"
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>
+                          handlePlaceBet(
+                            item?.ex?.availableToBack?.[0]?.price ||
+                              item?.yesRate,
+                            "Yes",
+                            "YES",
+                            item?.activeStatus,
+                            item?.ex?.availableToBack?.[0]?.size ||
+                              item?.yesPercent,
+                            item,
+                            item?.ex?.availableToBack?.[0]?.tno || 0
+                          )
+                        }
                       >
-                        {handlePrice(item?.ex?.availableToLay?.[1]?.price) ?? "-"}
-                      </span>
-                      <span
-                        className={`f-size11 sessionRate2Box`}
-                      >
-                        {item?.ex?.availableToLay?.[1]?.size}
-                      </span>
-                    </div>}
-                    {item?.ex?.availableToLay?.length > 2 &&  <div className={`sessionRateBoxlay1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[2]?.price,"no","NO",item?.activeStatus,item?.ex?.availableToLay?.[2]?.size,item,item?.ex?.availableToLay?.[2]?.tno)}>
-                      <span
-                        className={`f-size15 sessionRate1Box`}
-                      >
-                        {handlePrice(item?.ex?.availableToLay?.[2]?.price) ?? "-"}
-                      </span>
-                      <span
-                        className={`f-size11 sessionRate2Box`}
-                      >
-                        {item?.ex?.availableToLay?.[2]?.size}
-                      </span>
-                    </div>}
+                        <span className={`f-size15 sessionRate1Box`}>
+                          {handlePrice(
+                            item?.ex?.availableToBack?.[0]?.price ||
+                              item?.yesRate
+                          ) ?? "-"}
+                        </span>
+                        <span className={`f-size11 sessionRate2Box`}>
+                          {item?.ex?.availableToBack?.[0]?.size ||
+                            item?.yesPercent}
+                        </span>
+                      </div>
+                      {item?.ex?.availableToBack?.length > 1 && (
+                        <div
+                          className="sessionRateBox back1Background"
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            handlePlaceBet(
+                              item?.ex?.availableToBack?.[1]?.price,
+                              "Yes",
+                              "YES",
+                              item?.activeStatus,
+                              item?.ex?.availableToBack?.[1]?.size,
+                              item,
+                              item?.ex?.availableToBack?.[1]?.tno
+                            )
+                          }
+                        >
+                          <span className={`f-size15 sessionRate1Box`}>
+                            {handlePrice(
+                              item?.ex?.availableToBack?.[1]?.price
+                            ) ?? "-"}
+                          </span>
+                          <span className={`f-size11 sessionRate2Box`}>
+                            {item?.ex?.availableToBack?.[1]?.size}
+                          </span>
+                        </div>
+                      )}
+                      {item?.ex?.availableToBack?.length > 2 && (
+                        <div
+                          className="sessionRateBox back1Background"
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            handlePlaceBet(
+                              item?.ex?.availableToBack?.[2]?.price,
+                              "Yes",
+                              "YES",
+                              item?.activeStatus,
+                              item?.ex?.availableToBack?.[2]?.size,
+                              item,
+                              item?.ex?.availableToBack?.[2]?.tno
+                            )
+                          }
+                        >
+                          <span className={`f-size15 sessionRate1Box`}>
+                            {handlePrice(
+                              item?.ex?.availableToBack?.[2]?.price
+                            ) ?? "-"}
+                          </span>
+                          <span className={`f-size11 sessionRate2Box`}>
+                            {item?.ex?.availableToBack?.[2]?.size}
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
-                    <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[0]?.size,item,item?.ex?.availableToBack?.[0]?.tno)}>
-                      <span
-                        className={`f-size15 sessionRate1Box`}
-                      >
-                        {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
-                      </span>
-                      <span
-                        className={`f-size11 sessionRate2Box`}
-                      >
-                        {item?.ex?.availableToBack?.[0]?.size}
-                      </span>
-                    </div>
-                    {item?.ex?.availableToBack?.length > 1 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[1]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[1]?.size,item,item?.ex?.availableToBack?.[1]?.tno)}>
-                      <span
-                        className={`f-size15 sessionRate1Box`}
-                      >
-                        {handlePrice(item?.ex?.availableToBack?.[1]?.price) ?? "-"}
-                      </span>
-                      <span
-                        className={`f-size11 sessionRate2Box`}
-                      >
-                        {item?.ex?.availableToBack?.[1]?.size}
-                      </span>
-                    </div>}
-                    {item?.ex?.availableToBack?.length > 2 && <div className="sessionRateBox back1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[2]?.price,"Yes","YES",item?.activeStatus,item?.ex?.availableToBack?.[2]?.size,item,item?.ex?.availableToBack?.[2]?.tno)}>
-                      <span
-                        className={`f-size15 sessionRate1Box`}
-                      >
-                        {handlePrice(item?.ex?.availableToBack?.[2]?.price) ?? "-"}
-                      </span>
-                      <span
-                        className={`f-size11 sessionRate2Box`}
-                      >
-                        {item?.ex?.availableToBack?.[2]?.size}
-                      </span>
-                    </div>
-            }
-                    </div>
-                   
                   </div>
                 </div>
               );
             })}
           </div>
-
-       
         </div>
       </div>
     </>
