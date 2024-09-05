@@ -3,6 +3,7 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { AppDispatch } from "../../../store/store";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 const Bookmaker = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -130,6 +131,23 @@ const Bookmaker = ({ title, box, data, detail }) => {
               } bookmakerTeamTxt`}
             >
               {detail?.teamA}
+            </span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A
+              ] ?? 0}
             </span>
           </div>
           <div
@@ -374,6 +392,23 @@ const Bookmaker = ({ title, box, data, detail }) => {
             >
               {detail?.teamB}
             </span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B
+              ] ?? 0}
+            </span>
           </div>
           <div
             className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
@@ -617,6 +652,23 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 } bookmakerTeamTxt`}
               >
                 {detail?.teamC}
+              </span>{" "}
+              <span
+                className={`${
+                  detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.C
+                  ] > 0
+                    ? "color-green"
+                    : detail?.profitLossDataMatch?.[
+                        profitLossDataForMatchConstants[data?.type]?.C
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                }`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.C
+                ] ?? 0}
               </span>
             </div>
             <div

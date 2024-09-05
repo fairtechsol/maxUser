@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 const DynamicMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -119,7 +120,24 @@ const DynamicMarket = ({ title, data, detail }) => {
                 !isMobile ? "f-size14" : "f-size13"
               } dynamicTeamTxt`}
             >
-              {"Yes"}
+              Yes
+            </span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A
+              ] ?? 0}
             </span>
           </div>
           <div
@@ -349,8 +367,23 @@ const DynamicMarket = ({ title, data, detail }) => {
               className={`${
                 !isMobile ? "f-size14" : "f-size13"
               } dynamicTeamTxt`}
+            ></span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
             >
-              {"No"}
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B
+              ] ?? 0}
             </span>
           </div>
           <div

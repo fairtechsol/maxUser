@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 const ManualMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -105,6 +106,23 @@ const ManualMarket = ({ title, data, detail }) => {
               className={`${!isMobile ? "f-size14" : "f-size13"} manualTeamTxt`}
             >
               {data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes"}
+            </span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A
+              ] ?? 0}
             </span>
           </div>
           <div
@@ -278,6 +296,23 @@ const ManualMarket = ({ title, data, detail }) => {
               className={`${!isMobile ? "f-size14" : "f-size13"} manualTeamTxt`}
             >
               {data?.type?.includes("quickbookmaker") ? detail?.teamB : "No"}
+            </span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B
+              ] ?? 0}
             </span>
           </div>
           <div
@@ -454,6 +489,23 @@ const ManualMarket = ({ title, data, detail }) => {
                 } manualTeamTxt`}
               >
                 {detail?.teamC}
+              </span>{" "}
+              <span
+                className={`${
+                  detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.C
+                  ] > 0
+                    ? "color-green"
+                    : detail?.profitLossDataMatch?.[
+                        profitLossDataForMatchConstants[data?.type]?.C
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                }`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.C
+                ] ?? 0}
               </span>
             </div>
             <div

@@ -117,6 +117,33 @@ const SessionFancy = ({ title, data, detail }) => {
                       {item?.RunnerName?.length > 25
                         ? `${item?.RunnerName?.slice(0, 25)}...`
                         : item?.RunnerName}
+                    </span>{" "}
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            ) < 0
+                            ? "color-red"
+                            : "color-green"
+                          : ""
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
+                        : 0}
                     </span>
                   </div>
                   <div
@@ -258,6 +285,33 @@ const SessionFancy = ({ title, data, detail }) => {
                         {item?.RunnerName?.length > 25
                           ? `${item?.RunnerName?.slice(0, 25)}...`
                           : item?.RunnerName}
+                      </span>{" "}
+                      <span
+                        className={`${
+                          detail?.profitLossDataSession
+                            ? detail?.profitLossDataSession?.reduce(
+                                (accumulator: any, bet: any) => {
+                                  const maxLossToAdd =
+                                    bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                  return accumulator + maxLossToAdd;
+                                },
+                                0
+                              ) < 0
+                              ? "color-red"
+                              : "color-green"
+                            : ""
+                        }`}
+                      >
+                        {detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            )
+                          : 0}
                       </span>
                     </div>
                     <div
