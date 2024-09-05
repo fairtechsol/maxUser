@@ -78,7 +78,7 @@ const DynamicMarket=({title,data,detail})=>{
 
             <div className="dynamicTeamTab">
             {data?.activeStatus != "live" && <div className="suspended-overlayRatesdynamic"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtdynamic`}>
-                SUSPENDED</span></div>}
+                </span></div>}
               <div className="dynamicTeam"  style={{width:isMobile?"65%":"28%"}}>
                 <span className={`${!isMobile ? "f-size14":"f-size13"} dynamicTeamTxt`}>{"Yes"}</span>
               </div>
