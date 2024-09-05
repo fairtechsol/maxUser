@@ -147,7 +147,7 @@ const MobileGameDetail = () => {
             {matchDetails?.startAt && formatDate(matchDetails?.startAt)}
           </span>
         }
-        style={{padding:"5px"}}
+        style={{ padding: "5px" }}
       />
       <CommonTabs defaultActive="odds" className="color">
         {[
@@ -161,7 +161,11 @@ const MobileGameDetail = () => {
           },
           {
             id: "live",
-            name: <div style={{padding: "0px", fontSize: "11px"}}><FaTv /> </div>,
+            name: (
+              <div style={{ padding: "0px", fontSize: "11px" }}>
+                <FaTv />
+              </div>
+            ),
           },
         ]?.map((item, index) => {
           return (
@@ -169,7 +173,9 @@ const MobileGameDetail = () => {
               key={item?.id}
               eventKey={item?.id}
               tabClassName="m-tab"
-              title={<div className="font p-2 lh-1 py-0 f600">{item?.name} </div>}
+              title={
+                <div className="font p-2 lh-1 py-0 f600">{item?.name} </div>
+              }
             >
               {index == 0 ? (
                 <Container>
