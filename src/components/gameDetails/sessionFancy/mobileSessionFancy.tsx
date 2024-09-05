@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 
@@ -13,15 +13,15 @@ const MobileSessionFancy = ({ title, data, detail }) => {
     betTeam: any,
     status: any,
     value: any,
-    item:any,
-    tno:any
+    item: any,
+    tno: any
   ) => {
     if (data?.status != "OPEN" || status != "live") {
       return false;
     }
-    if(odds === 0){
+    if (odds === 0) {
       return false;
-  }
+    }
     let team = {
       betOnTeam: betTeam,
       rate: odds,
@@ -36,8 +36,8 @@ const MobileSessionFancy = ({ title, data, detail }) => {
       matchId: detail?.id,
       percent: value,
       mid: data?.mid?.toString(),
-      betPlaceIndex:tno,
-      matchBetType:"session"
+      betPlaceIndex: tno,
+      matchBetType: "session",
     };
     dispatch(
       selectedBetAction({
@@ -53,7 +53,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
       return "-";
     }
   };
- 
+
   return (
     <>
       <div className="sessionNormalContainer">
@@ -71,21 +71,19 @@ const MobileSessionFancy = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-           <div className="sessionYesNoBoxContainer">
-              <div className="sessionYesNoBox" style={{width:"40%"}}>
-                <div className="sessionYesBox back1Background" style={{width:"100%"}}>
-                  <span
-                    className={`f-size16 sessionBackTxt`}
-                  >
-                    Back
-                  </span>
+            <div className="sessionYesNoBoxContainer">
+              <div className="sessionYesNoBox" style={{ width: "40%" }}>
+                <div
+                  className="sessionYesBox back1Background"
+                  style={{ width: "100%" }}
+                >
+                  <span className={`f-size16 sessionBackTxt`}>Back</span>
                 </div>
-                <div className="sessionYesBox lay1Background" style={{width:"100%"}}>
-                  <span
-                    className={`f-size16 sessionBackTxt`}
-                  >
-                    Lay
-                  </span>
+                <div
+                  className="sessionYesBox lay1Background"
+                  style={{ width: "100%" }}
+                >
+                  <span className={`f-size16 sessionBackTxt`}>Lay</span>
                 </div>
                 {/* <div className="sessionEmptyBox"></div> */}
               </div>
@@ -94,43 +92,104 @@ const MobileSessionFancy = ({ title, data, detail }) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size13" style={{fontWeight:"400"}}>{item?.RunnerName}</span>
+                    <span className="f-size13" style={{ fontWeight: "400" }}>
+                      {item?.RunnerName}
+                    </span>
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            ) < 0
+                            ? "color-red"
+                            : "color-green"
+                          : ""
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
+                        : 0}
+                    </span>
                   </div>
-                  <div className="sessionRateBoxContainer"  style={{width:"40%"}}>
-                  {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
-                  {item?.GameStatus ?? "SUSPENDED"}</span></div>}
-                    <div className={`sessionRateBox back1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,item?.ex?.availableToBack?.[0]?.price ,item,item?.ex?.availableToBack?.[0]?.tno)}>
-                      <span
-                        className={`f-size15 sessionRate1Box`}
-                      >
-                        {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
+                  <div
+                    className="sessionRateBoxContainer"
+                    style={{ width: "40%" }}
+                  >
+                    {(item?.activeStatus != "live" ||
+                      item?.GameStatus != "") && (
+                      <div className="suspended-overlayRates">
+                        <span
+                          className={`${
+                            !isMobile ? "f-size18" : "f-size16"
+                          } suspendedTxtMatchOdd`}
+                        >
+                          {item?.GameStatus ?? "SUSPENDED"}
+                        </span>
+                      </div>
+                    )}
+                    <div
+                      className={`sessionRateBox back1Background`}
+                      style={{ cursor: "pointer" }}
+                      onClick={() =>
+                        handlePlaceBet(
+                          item?.ex?.availableToBack?.[0]?.price,
+                          "Back",
+                          "Back",
+                          item?.activeStatus,
+                          item?.ex?.availableToBack?.[0]?.price,
+                          item,
+                          item?.ex?.availableToBack?.[0]?.tno
+                        )
+                      }
+                    >
+                      <span className={`f-size15 sessionRate1Box`}>
+                        {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
+                          "-"}
                       </span>
-                      <span
-                        className={`f-size11 sessionRate2Box`}
-                      >
+                      <span className={`f-size11 sessionRate2Box`}>
                         {item?.ex?.availableToBack?.[0]?.size}
                       </span>
                     </div>
-                    <div className="sessionRateBox lay1Background" style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToLay?.[0]?.price,"lay","Back",item?.activeStatus,item?.ex?.availableToLay?.[0]?.price ,item,item?.ex?.availableToBack?.[0]?.tno)}>
-                      <span
-                        className={`f-size15 sessionRate1Box`}
-                      >
-                        {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
+                    <div
+                      className="sessionRateBox lay1Background"
+                      style={{ cursor: "pointer" }}
+                      onClick={() =>
+                        handlePlaceBet(
+                          item?.ex?.availableToLay?.[0]?.price,
+                          "lay",
+                          "Back",
+                          item?.activeStatus,
+                          item?.ex?.availableToLay?.[0]?.price,
+                          item,
+                          item?.ex?.availableToBack?.[0]?.tno
+                        )
+                      }
+                    >
+                      <span className={`f-size15 sessionRate1Box`}>
+                        {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
+                          "-"}
                       </span>
-                      <span
-                        className={`f-size11 sessionRate2Box`}
-                      >
+                      <span className={`f-size11 sessionRate2Box`}>
                         {item?.ex?.availableToLay?.[0]?.size}
                       </span>
                     </div>
-                  
                   </div>
                 </div>
               );
             })}
           </div>
-
-         
         </div>
       </div>
     </>
