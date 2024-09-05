@@ -72,7 +72,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
            <div className="sessionYesNoBoxContainer">
-              <div className="sessionYesNoBox" style={{width:"35%"}}>
+              <div className="sessionYesNoBox" style={{width:"40%"}}>
                 <div className="sessionYesBox back1Background" style={{width:"100%"}}>
                   <span
                     className={`f-size16 sessionBackTxt`}
@@ -96,7 +96,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                   <div className="sessionRateName">
                     <span className="f-size13">{item?.RunnerName}</span>
                   </div>
-                  <div className="sessionRateBoxContainer"  style={{width:"35%"}}>
+                  <div className="sessionRateBoxContainer"  style={{width:"40%"}}>
                   {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
                   {item?.GameStatus ?? "SUSPENDED"}</span></div>}
                     <div className={`sessionRateBox back1Background`} style={{cursor:"pointer"}} onClick={()=> handlePlaceBet(item?.ex?.availableToBack?.[0]?.price,"Back","Back",item?.activeStatus,item?.ex?.availableToBack?.[0]?.price ,item,item?.ex?.availableToBack?.[0]?.tno)}>

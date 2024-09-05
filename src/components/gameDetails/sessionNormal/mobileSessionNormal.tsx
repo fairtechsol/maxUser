@@ -73,7 +73,7 @@ const MobileSessionNormal = ({ title, data, detail }) => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div className="sessionYesNoBoxContainer">
-              <div className="sessionYesNoBox" style={{width:"35%"}}>
+              <div className="sessionYesNoBox" style={{width:"40%"}}>
                 <div className="sessionYesBox lay1Background" style={{width:"100%"}}>
                   <span
                     className={`${
@@ -101,7 +101,7 @@ const MobileSessionNormal = ({ title, data, detail }) => {
                   <div className="sessionRateName">
                     <span className="f-size16">{item?.RunnerName}</span>
                   </div>
-                  <div className="sessionRateBoxContainer" style={{width:"35%"}}>
+                  <div className="sessionRateBoxContainer" style={{width:"40%"}}>
                   {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
                   {item?.GameStatus ?? "SUSPENDED"}</span></div>}
                   <div style={{width:"100%",display:"flex",flexDirection:"column",borderRight:"1px solid #c7c8ca"}}>
