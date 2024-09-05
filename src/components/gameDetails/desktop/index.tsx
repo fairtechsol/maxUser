@@ -39,6 +39,7 @@ const DesktopGameDetail = () => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
         const sticky = placeBetRef?.current.offsetTop;
+
         setIsSticky(window.scrollY > sticky);
       }
     };
@@ -138,7 +139,7 @@ const DesktopGameDetail = () => {
               {matchDetails?.matchOdd?.isActive && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <MatchOdd
-                    title={"Match_odd"}
+                    title={matchDetails?.matchOdd?.name}
                     data={matchDetails?.matchOdd}
                     detail={matchDetails}
                   />

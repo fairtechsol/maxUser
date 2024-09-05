@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 const MatchOdd = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -78,10 +79,7 @@ const MatchOdd = ({ title, data, detail }) => {
               Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
             </span>
           </div>
-          <div
-            className="matchOddBackLayBoxContainer"
-            style={{ width: isLap ? "240px" : !isMobile ? "320px" : "" }}
-          >
+          <div className="matchOddBackLayBoxContainer" style={{ width: isLap ? "240px" : !isMobile ? "320px" : "" }}>
             <div className="matchOddBackBoxTab">
               <span className={`f-size16 matchOddBackTxt`}>Back</span>
             </div>
@@ -115,6 +113,25 @@ const MatchOdd = ({ title, data, detail }) => {
             className="matchOddRateBox"
             style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
           >
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A
+              ] ?? 0}
+            </span>
+          </div>
+          <div className="matchOddRateBox">
             {data?.activeStatus === "live" &&
               data?.runners?.[0]?.status != "ACTIVE" && (
                 <div className="suspended-overlayRatesMatchOdd">
@@ -333,6 +350,25 @@ const MatchOdd = ({ title, data, detail }) => {
             className="matchOddRateBox"
             style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
           >
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B
+              ] ?? 0}
+            </span>
+          </div>
+          <div className="matchOddRateBox">
             {data?.activeStatus === "live" &&
               data?.runners?.[1]?.status != "ACTIVE" && (
                 <div className="suspended-overlayRatesMatchOdd">
@@ -552,6 +588,25 @@ const MatchOdd = ({ title, data, detail }) => {
               className="matchOddRateBox"
               style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
             >
+              <span
+                className={`${
+                  detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.C
+                  ] > 0
+                    ? "color-green"
+                    : detail?.profitLossDataMatch?.[
+                        profitLossDataForMatchConstants[data?.type]?.C
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                }`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.C
+                ] ?? 0}
+              </span>
+            </div>
+            <div className="matchOddRateBox">
               {data?.activeStatus === "live" &&
                 data?.runners?.[2]?.status != "ACTIVE" && (
                   <div className="suspended-overlayRatesMatchOdd">

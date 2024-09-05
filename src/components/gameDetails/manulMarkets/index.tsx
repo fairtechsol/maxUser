@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 const ManualMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -106,10 +107,27 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               {data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes"}
             </span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A
+              ] ?? 0}
+            </span>
           </div>
           <div
             className="manualRateBox"
-            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            style={{ width: isMobile ? "40%" : "72%" }}
           >
             {data?.activeStatus === "live" && data?.statusTeamA != "active" && (
               <div className="suspended-overlayRatesmanual">
@@ -279,10 +297,27 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               {data?.type?.includes("quickbookmaker") ? detail?.teamB : "No"}
             </span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B
+              ] ?? 0}
+            </span>
           </div>
           <div
             className="manualRateBox"
-            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            style={{ width: isMobile ? "40%" : "72%" }}
           >
             {data?.activeStatus === "live" && data?.statusTeamB != "active" && (
               <div className="suspended-overlayRatesmanual">
@@ -455,10 +490,27 @@ const ManualMarket = ({ title, data, detail }) => {
               >
                 {detail?.teamC}
               </span>
+              <span
+                className={`${
+                  detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.C
+                  ] > 0
+                    ? "color-green"
+                    : detail?.profitLossDataMatch?.[
+                        profitLossDataForMatchConstants[data?.type]?.C
+                      ] < 0
+                    ? "color-red"
+                    : ""
+                }`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.C
+                ] ?? 0}
+              </span>
             </div>
             <div
               className="manualRateBox"
-              style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+              style={{ width: isMobile ? "40%" : "72%" }}
             >
               {data?.activeStatus === "live" &&
                 data?.statusTeamB != "active" && (

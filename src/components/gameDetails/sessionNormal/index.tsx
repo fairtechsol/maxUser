@@ -144,6 +144,35 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       width: isLap ? "180px" : !isMobile ? "240px" : "",
                     }}
                   >
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.reduce(
+                              (accumulator: any, bet: any) => {
+                                const maxLossToAdd =
+                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                return accumulator + maxLossToAdd;
+                              },
+                              0
+                            ) < 0
+                            ? "color-red"
+                            : "color-green"
+                          : ""
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.reduce(
+                            (accumulator: any, bet: any) => {
+                              const maxLossToAdd =
+                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                              return accumulator + maxLossToAdd;
+                            },
+                            0
+                          )
+                        : 0}
+                    </span>
+                  </div>
+                  <div className="sessionRateBoxContainer">
                     {handleStatus(
                       item?.activeStatus,
                       item?.GameStatus,

@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 const DynamicMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -120,6 +121,24 @@ const DynamicMarket = ({ title, data, detail }) => {
               } dynamicTeamTxt`}
             >
               {"Yes"}
+              Yes
+            </span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A
+              ] ?? 0}
             </span>
           </div>
           <div
@@ -351,6 +370,24 @@ const DynamicMarket = ({ title, data, detail }) => {
               } dynamicTeamTxt`}
             >
               {"No"}
+              No
+            </span>
+            <span
+              className={`${
+                detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B
+                ] > 0
+                  ? "color-green"
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B
+                    ] < 0
+                  ? "color-red"
+                  : ""
+              }`}
+            >
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B
+              ] ?? 0}
             </span>
           </div>
           <div

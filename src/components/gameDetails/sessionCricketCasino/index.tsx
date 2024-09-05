@@ -134,11 +134,37 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                     >
                       {index} Number
                     </span>
+                    <span
+                      className={`${
+                        detail?.profitLossDataSession
+                          ? detail?.profitLossDataSession?.filter(
+                              (a: any) => a?.betId === data?.id
+                            )
+                            ? detail?.profitLossDataSession?.filter(
+                                (a: any) => a?.betId === data?.id
+                              )[0]?.profitLoss?.[index] > 0
+                              ? "color-green"
+                              : detail?.profitLossDataSession?.filter(
+                                  (a: any) => a?.betId === data?.id
+                                )[0]?.profitLoss?.[index] < 0
+                              ? "color-red"
+                              : ""
+                            : 0
+                          : 0
+                      }`}
+                    >
+                      {detail?.profitLossDataSession
+                        ? detail?.profitLossDataSession?.filter(
+                            (a: any) => a?.betId === data?.id
+                          )
+                          ? detail?.profitLossDataSession?.filter(
+                              (a: any) => a?.betId === data?.id
+                            )[0]?.profitLoss?.[index]
+                          : 0
+                        : 0}
+                    </span>
                   </div>
-                  <div
-                    className="sessionCCRateBoxContainer"
-                    style={{ width: isLap ? "61px" : !isMobile ? "81px" : "" }}
-                  >
+                  <div className="sessionCCRateBoxContainer">
                     {item?.gstatus !== "" && (
                       <div className="suspended-overlayRates">
                         <FaLock color="#fff" />
