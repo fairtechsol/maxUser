@@ -49,13 +49,13 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
     );
   };
 
-  useEffect(() => {
-    if (data?.section) {
-      setMarketArr([...data.section, ...manual]);
-    } else {
-      setMarketArr([...manual]);
-    }
-  }, [data, manual]);
+  // useEffect(() => {
+  //   if (data?.section) {
+  //     setMarketArr([...data.section, ...manual]);
+  //   } else {
+  //     setMarketArr([...manual]);
+  //   }
+  // }, [data, manual]);
 
   const handlePrice = (rate: any) => {
     if (rate && rate != 0) {
