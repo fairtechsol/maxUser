@@ -138,13 +138,14 @@ const MobileGameDetail = () => {
       <PlacedBet show={show} setShow={setShow} />
       <BetTableHeader
         customClass=""
-        customTextClass="title-12"
+        customTextClass="title-12 fbold"
         title={matchDetails?.title}
         rightComponent={
-          <span className="title-14 f400 text-white">
+          <span className="title-12 fbold text-white">
             {matchDetails?.startAt && formatDate(matchDetails?.startAt)}
           </span>
         }
+        style={{padding:"5px"}}
       />
       <CommonTabs defaultActive="odds" className="color">
         {[
@@ -172,7 +173,7 @@ const MobileGameDetail = () => {
                 <Container>
                   <Row>
                     <Col className="g-0" md={12}>
-                      <BetTableHeader
+                      {/* <BetTableHeader
                         customClass="py-2"
                         customTextClass="title-12"
                         title={matchDetails?.title}
@@ -182,7 +183,7 @@ const MobileGameDetail = () => {
                               formatDate(matchDetails?.startAt)}
                           </span>
                         }
-                      />
+                      /> */}
                       <div
                         style={{
                           width: "100%",
