@@ -104,7 +104,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
              <div style={{width:"85%",backgroundColor:"#f2f2f2"}}>
               <span className={`sessionMinBox`} style={{marginLeft:"1%"}}>Min:{formatNumber(marketArr?.min)} Max:{formatNumber(marketArr?.max)}</span>
              </div>
-             <div className="sessionRateBox back1Background" style={{width:"18%"}}>
+             <div className="sessionRateBox back1Background" style={{width:isLap?"61px":!isMobile?"81px":"18%"}}>
               <span className={`f-size16 sessionBackTxt`}>Back</span>
              </div>
             </div>
@@ -114,7 +114,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                   <div className="sessionRateName">
                     <span className={isMobile?"f-size13":"f-size14"} style={{fontWeight:"400"}}>{index} Number</span>
                   </div>
-                  <div className="sessionCCRateBoxContainer">
+                  <div className="sessionCCRateBoxContainer" style={{width:isLap?"61px":!isMobile?"81px":"" }}>
                     {(item?.gstatus !== "" ) && (
                       <div className="suspended-overlayRates">
                         <FaLock color="#fff" />
@@ -130,7 +130,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                     >
                       <div
                         className={`sessionRateBox back1Background`}
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer"}}
                         onClick={() =>
                           handlePlaceBet(
                             item?.odds?.[0]?.odds,

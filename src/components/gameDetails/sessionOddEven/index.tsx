@@ -94,9 +94,9 @@ const SessionOddEven = ({ title, data, detail }) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size15" style={{width:"60%",fontWeight:"400"}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
+                    <span className="f-size15" style={{width:"60%",fontWeight:"400",lineHeight:1}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
                   </div>
-                  <div className="sessionRateBoxContainer">
+                  <div className="sessionRateBoxContainer" style={{width:isLap?"180px":!isMobile?"240px":""}}>
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
                       <div className="suspended-overlayRates">
@@ -204,9 +204,9 @@ const SessionOddEven = ({ title, data, detail }) => {
                 return (
                   <div className="sessionOddEvenRateContainer" key={index}>
                     <div className="sessionRateName">
-                      <span className="f-size15" style={{width:"60%",fontWeight:"400"}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
+                      <span className="f-size15" style={{width:"60%",fontWeight:"400",lineHeight:1}}>{item?.RunnerName?.length > 25 ? `${item?.RunnerName?.slice(0, 25)}...` : item?.RunnerName}</span>
                     </div>
-                    <div className="sessionRateBoxContainer">
+                    <div className="sessionRateBoxContainer" style={{width:isLap?"180px":!isMobile?"240px":""}}>
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                         <div className="suspended-overlayRates">
@@ -247,9 +247,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                           }
                         >
                           <span
-                            className={`${
-                              !isMobile ? "f-size18" :isLap?"f-size16": "f-size15"
-                            } sessionRate1Box`}
+                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                           >
                             {handlePrice(item?.ex?.availableToLay?.[0]?.price) ?? "-"}
                           </span>
@@ -285,9 +283,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                           }
                         >
                           <span
-                            className={`${
-                              !isMobile ? "f-size18" : isLap?"f-size16":"f-size15"
-                            } sessionRate1Box`}
+                            className={`${isLap?"f-size16":"f-size18"} sessionRate1Box`}
                           >
                             {handlePrice(item?.ex?.availableToBack?.[0]?.price) ?? "-"}
                           </span>

@@ -110,7 +110,7 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div className="sessionYesNoBoxContainer">
-              <div className="sessionYesNoBox">
+              <div className="sessionYesNoBox"  style={{width:isLap?"180px":!isMobile?"240px":""}}>
                 <div className="sessionYesBox lay1Background">
                   <span
                     className={`f-size16 sessionBackTxt`}
@@ -132,9 +132,9 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size15" style={{width:"60%",fontWeight:"400"}}>{(item?.RunnerName || item?.name)?.length > 25 ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...` : (item?.RunnerName || item?.name)}</span>
+                    <span className="f-size15" style={{width:"60%",fontWeight:"400",lineHeight:1}}>{(item?.RunnerName || item?.name)?.length > 25 ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...` : (item?.RunnerName || item?.name)}</span>
                   </div>
-                  <div className="sessionRateBoxContainer">
+                  <div className="sessionRateBoxContainer"  style={{width:isLap?"180px":!isMobile?"240px":""}}>
                     {handleStatus(item?.activeStatus,item?.GameStatus,item?.status) && (
                       <div className="suspended-overlayRates">
                         <span
@@ -337,9 +337,9 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                 <div className="sessionYesNoBoxContainer">
                   <div
                     className="sessionEmptyBox"
-                    style={{ width: "54%" }}
+                    // style={{ width: "54%" }}
                   ></div>
-                  <div className="sessionYesNoBox">
+                  <div className="sessionYesNoBox" style={{width:isLap?"180px":!isMobile?"240px":""}}>
                     <div className="sessionYesBox lay1Background">
                       <span
                         className={`f-size16 sessionBackTxt`}
@@ -363,9 +363,9 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
                 return (
                   <div className="sessionRateContainer" key={index}>
                     <div className="sessionRateName">
-                      <span className="f-size15" style={{width:"60%",fontWeight:"400"}}>{(item?.RunnerName || item?.name)?.length > 25 ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...` : (item?.RunnerName || item?.name)}</span>
+                      <span className="f-size15" style={{width:"60%",fontWeight:"400",lineHeight:1}}>{(item?.RunnerName || item?.name)?.length > 25 ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...` : (item?.RunnerName || item?.name)}</span>
                     </div>
-                    <div className="sessionRateBoxContainer">
+                    <div className="sessionRateBoxContainer"  style={{width:isLap?"180px":!isMobile?"240px":""}}>
                       {handleStatus(item?.activeStatus,item?.GameStatus,item?.status) && (
                         <div className="suspended-overlayRates">
                           <span
