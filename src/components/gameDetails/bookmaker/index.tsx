@@ -65,7 +65,13 @@ const Bookmaker = ({ title, box, data, detail }) => {
     <>
       <div className="bookmakerContainer">
         <div className="bookmakerTitle">
-          <span className={`bookmakerTitleTxt ${isMobile ?"f-size13":"f-size15"}`}>{title}</span>
+          <span
+            className={`bookmakerTitleTxt ${
+              isMobile ? "f-size13" : "f-size15"
+            }`}
+          >
+            {title}
+          </span>
         </div>
 
         <div className="bookmakerBackLayTab">
@@ -80,7 +86,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ? "bookmaker1BackLayBoxContainer"
                 : "bookmaker2BackLayBoxContainer"
             }
-            style={box === 6?{width:isLap?"240px":!isMobile?"320px":""}:{width:isLap?"120px":!isMobile?"160px":""}}
+            style={
+              box === 6
+                ? { width: isLap ? "240px" : !isMobile ? "320px" : "" }
+                : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+            }
           >
             <div
               className={
@@ -124,7 +134,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
           </div>
           <div
             className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
-            style={box === 6 ? {width:isLap?"360px":!isMobile?"480px":""} : {width:isLap?"120px":!isMobile?"160px":""}}
+            style={
+              box === 6
+                ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
+                : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+            }
           >
             {data?.activeStatus === "live" &&
               data?.runners?.[0]?.status != "ACTIVE" && (
@@ -157,7 +171,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                   } bookmakerRate1Box`}
                 >
-                  {handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[0]?.price) ?? "-"}
+                  {handlePrice(
+                    data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
+                  ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -187,7 +203,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                   } bookmakerRate1Box`}
                 >
-                  {handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[1]?.price) ?? "-"}
+                  {handlePrice(
+                    data?.runners?.[0]?.ex?.availableToBack?.[1]?.price
+                  ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -221,8 +239,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 } bookmakerRate1Box`}
               >
                 {box === 6
-                  ? handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[2]?.price) ?? "-"
-                  : handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[0]?.price) ?? "-"}
+                  ? handlePrice(
+                      data?.runners?.[0]?.ex?.availableToBack?.[2]?.price
+                    ) ?? "-"
+                  : handlePrice(
+                      data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
+                    ) ?? "-"}
               </span>
               <span
                 className={`${
@@ -252,7 +274,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                 } bookmakerRate1Box`}
               >
-                {handlePrice(data?.runners?.[0]?.ex?.availableToLay?.[0]?.price) ?? "-"}
+                {handlePrice(
+                  data?.runners?.[0]?.ex?.availableToLay?.[0]?.price
+                ) ?? "-"}
               </span>
               <span
                 className={`${
@@ -281,7 +305,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                   } bookmakerRate1Box`}
                 >
-                  {handlePrice(data?.runners?.[0]?.ex?.availableToLay?.[1]?.price) ?? "-"}
+                  {handlePrice(
+                    data?.runners?.[0]?.ex?.availableToLay?.[1]?.price
+                  ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -311,7 +337,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                   } bookmakerRate1Box`}
                 >
-                  {handlePrice(data?.runners?.[0]?.ex?.availableToLay?.[2]?.price) ?? "-"}
+                  {handlePrice(
+                    data?.runners?.[0]?.ex?.availableToLay?.[2]?.price
+                  ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -349,7 +377,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
           </div>
           <div
             className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
-            style={box === 6 ? {width:isLap?"360px":!isMobile?"480px":""} : {width:isLap?"120px":!isMobile?"160px":""}}
+            style={
+              box === 6
+                ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
+                : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+            }
           >
             {data?.activeStatus === "live" &&
               data?.runners?.[1]?.status != "ACTIVE" && (
@@ -382,7 +414,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                   } bookmakerRate1Box`}
                 >
-                  {handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[0]?.price) ?? "-"}
+                  {handlePrice(
+                    data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
+                  ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -412,7 +446,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                   } bookmakerRate1Box`}
                 >
-                  {handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[1]?.price) ?? "-"}
+                  {handlePrice(
+                    data?.runners?.[1]?.ex?.availableToBack?.[1]?.price
+                  ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -446,8 +482,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 } bookmakerRate1Box`}
               >
                 {box === 6
-                  ? handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[2]?.price) ?? "-"
-                  : handlePrice(data?.runners?.[1]?.ex?.availableToBack?.[0]?.price) ?? "-"}
+                  ? handlePrice(
+                      data?.runners?.[1]?.ex?.availableToBack?.[2]?.price
+                    ) ?? "-"
+                  : handlePrice(
+                      data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
+                    ) ?? "-"}
               </span>
               <span
                 className={`${
@@ -477,7 +517,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                 } bookmakerRate1Box`}
               >
-                {handlePrice(data?.runners?.[1]?.ex?.availableToLay?.[0]?.price) ?? "-"}
+                {handlePrice(
+                  data?.runners?.[1]?.ex?.availableToLay?.[0]?.price
+                ) ?? "-"}
               </span>
               <span
                 className={`${
@@ -506,7 +548,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                   } bookmakerRate1Box`}
                 >
-                  {handlePrice(data?.runners?.[1]?.ex?.availableToLay?.[1]?.price) ?? "-"}
+                  {handlePrice(
+                    data?.runners?.[1]?.ex?.availableToLay?.[1]?.price
+                  ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -536,7 +580,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                   } bookmakerRate1Box`}
                 >
-                  {handlePrice(data?.runners?.[1]?.ex?.availableToLay?.[2]?.price) ?? "-"}
+                  {handlePrice(
+                    data?.runners?.[1]?.ex?.availableToLay?.[2]?.price
+                  ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -575,7 +621,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
             </div>
             <div
               className={box === 6 ? "bookmaker1RateBox" : "bookmaker2RateBox"}
-              style={box === 6 ? {width:isLap?"360px":!isMobile?"480px":""} : {width:isLap?"120px":!isMobile?"160px":""}}
+              style={
+                box === 6
+                  ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
+                  : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
+              }
             >
               {data?.activeStatus === "live" &&
                 data?.runners?.[2]?.status != "ACTIVE" && (
@@ -608,7 +658,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                       !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                     } bookmakerRate1Box`}
                   >
-                    {handlePrice(data?.runners?.[0]?.ex?.availableToBack?.[0]?.price) ?? "-"}
+                    {handlePrice(
+                      data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
+                    ) ?? "-"}
                   </span>
                   <span
                     className={`${
@@ -638,7 +690,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                       !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                     } bookmakerRate1Box`}
                   >
-                    {handlePrice(data?.runners?.[2]?.ex?.availableToBack?.[1]?.price) ?? "-"}
+                    {handlePrice(
+                      data?.runners?.[2]?.ex?.availableToBack?.[1]?.price
+                    ) ?? "-"}
                   </span>
                   <span
                     className={`${
@@ -672,9 +726,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   } bookmakerRate1Box`}
                 >
                   {box === 6
-                    ? handlePrice(data?.runners?.[2]?.ex?.availableToBack?.[2]?.price) ?? "-"
-                    : handlePrice(data?.runners?.[2]?.ex?.availableToBack?.[0]?.price) ??
-                      "-"}
+                    ? handlePrice(
+                        data?.runners?.[2]?.ex?.availableToBack?.[2]?.price
+                      ) ?? "-"
+                    : handlePrice(
+                        data?.runners?.[2]?.ex?.availableToBack?.[0]?.price
+                      ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -704,7 +761,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                   } bookmakerRate1Box`}
                 >
-                  {handlePrice(data?.runners?.[2]?.ex?.availableToLay?.[0]?.price) ?? "-"}
+                  {handlePrice(
+                    data?.runners?.[2]?.ex?.availableToLay?.[0]?.price
+                  ) ?? "-"}
                 </span>
                 <span
                   className={`${
@@ -733,7 +792,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                       !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                     } bookmakerRate1Box`}
                   >
-                    {handlePrice(data?.runners?.[2]?.ex?.availableToLay?.[1]?.price) ?? "-"}
+                    {handlePrice(
+                      data?.runners?.[2]?.ex?.availableToLay?.[1]?.price
+                    ) ?? "-"}
                   </span>
                   <span
                     className={`${
@@ -763,7 +824,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                       !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
                     } bookmakerRate1Box`}
                   >
-                    {handlePrice(data?.runners?.[2]?.ex?.availableToLay?.[2]?.price) ?? "-"}
+                    {handlePrice(
+                      data?.runners?.[2]?.ex?.availableToLay?.[2]?.price
+                    ) ?? "-"}
                   </span>
                   <span
                     className={`${

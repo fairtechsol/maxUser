@@ -102,8 +102,10 @@ const DesktopGameDetail = () => {
     }
   }, [matchDetails?.id]);
   // console.log("first", matchDetails);
-  const normalizedData = matchDetails?.sessionBettings?.map((item:any) => JSON.parse(item));
-  const manualEntries = normalizedData?.filter((item:any) => item?.isManual);
+  const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
+    JSON.parse(item)
+  );
+  const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
   // console.log(matchDetails?.apiSession?.session,'manualEntries',manualEntries);
   return (
     <Container fluid>
@@ -191,11 +193,18 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {(matchDetails?.manualTiedMatch?.isActive||matchDetails?.manualTideMatch?.isActive) && (
+              {(matchDetails?.manualTiedMatch?.isActive ||
+                matchDetails?.manualTideMatch?.isActive) && (
                 <Col md={12}>
                   <ManualMarket
-                    title={matchDetails?.manualTiedMatch?.name || matchDetails?.manualTideMatch?.name}
-                    data={matchDetails?.manualTiedMatch||matchDetails?.manualTideMatch}
+                    title={
+                      matchDetails?.manualTiedMatch?.name ||
+                      matchDetails?.manualTideMatch?.name
+                    }
+                    data={
+                      matchDetails?.manualTiedMatch ||
+                      matchDetails?.manualTideMatch
+                    }
                     detail={matchDetails}
                     // data={matchDetails?.matchOdd}
                   />
@@ -227,7 +236,7 @@ const DesktopGameDetail = () => {
                     // type={"normal"}
                     data={matchDetails?.apiSession?.session}
                     detail={matchDetails}
-                    manual={manualEntries?manualEntries:[]}
+                    manual={manualEntries ? manualEntries : []}
                   />
                 </Col>
               )}
@@ -272,28 +281,47 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              <div style={{width:"100%",display:"flex",flexDirection:"row",flexWrap:"wrap",gap:"1%"}}>
-              {matchDetails?.apiSession?.cricketCasino?.section?.length > 0 &&
-                matchDetails?.apiSession?.cricketCasino?.section?.map(
-                  (item: any, index: number) => {
-                    let length =matchDetails?.apiSession?.cricketCasino?.section?.length 
-                    return (
-                    <div key={index} style={{width:length % 2 === 0?"49.5%":index===length-1?"100%":"49.5%"}}>
-                      {item?.activeStatus === "live" && (
-                        <Col md={12}>
-                          <SessionCricketCasino
-                            title={item?.RunnerName}
-                            data={item}
-                            detail={matchDetails}
-                          />
-                        </Col>
-                      )}
-                    </div>
-                  )
-                }
-                )}
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  gap: "1%",
+                }}
+              >
+                {matchDetails?.apiSession?.cricketCasino?.section?.length > 0 &&
+                  matchDetails?.apiSession?.cricketCasino?.section?.map(
+                    (item: any, index: number) => {
+                      let length =
+                        matchDetails?.apiSession?.cricketCasino?.section
+                          ?.length;
+                      return (
+                        <div
+                          key={index}
+                          style={{
+                            width:
+                              length % 2 === 0
+                                ? "49.5%"
+                                : index === length - 1
+                                ? "100%"
+                                : "49.5%",
+                          }}
+                        >
+                          {item?.activeStatus === "live" && (
+                            <Col md={12}>
+                              <SessionCricketCasino
+                                title={item?.RunnerName}
+                                data={item}
+                                detail={matchDetails}
+                              />
+                            </Col>
+                          )}
+                        </div>
+                      );
+                    }
+                  )}
               </div>
-              
               {/* {matchDetails?.quickBookmaker?.length > 0 &&
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
