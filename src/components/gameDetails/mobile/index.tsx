@@ -132,8 +132,8 @@ const MobileGameDetail = () => {
       console.log(error);
     }
   }, [matchDetails?.id]);
-  const normalizedData = matchDetails?.sessionBettings?.map((item:any) => JSON.parse(item));
-  const manualEntries = normalizedData?.filter((item:any) => item?.isManual);
+  // const normalizedData = matchDetails?.sessionBettings?.map((item:any) => JSON.parse(item));
+  // const manualEntries = normalizedData?.filter((item:any) => item?.isManual);
   // console.log('manualEntries',manualEntries)
   return (
     <div>
@@ -297,7 +297,7 @@ const MobileGameDetail = () => {
                           // type={"normal"}
                           data={matchDetails?.apiSession?.session}
                           detail={matchDetails}
-                          manual={manualEntries}
+                          // manual={manualEntries}
                         />
                       </Col>
                     )}

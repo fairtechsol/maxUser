@@ -318,7 +318,7 @@ body select {
   // padding: 1px;
   // padding-left: 0px;
   // padding-right: 0px;
-  padding: 3px 2px 5px;
+  padding: .5rem 1rem;
   flex-wrap: nowrap;
   // overflow-x: auto;
   // overflow-y: hidden;
@@ -349,20 +349,15 @@ body select {
   padding: 10px;
   border: 0.5px $white solid;
 }
-.nav-tab {
-  padding-left: 0px;
-  padding-right: 0px;
-  margin-left: 0%;
-  margin-right: 0%;
-}
+
 .navtab-name {
   font-weight: 410;
 }
 .tab-img {
   display: block;
   margin: 0 auto;
-  height: 24px;
-  width: 28px;
+  height: 18px;
+  width: 20px;
 }
 
 /* ===== for reports  ====  */
@@ -775,6 +770,9 @@ img {
   font-size: 16px !important;
   line-height: 0.6;
   padding-top: "10px" !important;
+}
+.title-16px {
+  font-size: 16px !important;
 }
 .title-15 {
   font-size: 15px !important;

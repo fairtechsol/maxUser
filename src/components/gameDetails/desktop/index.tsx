@@ -116,7 +116,7 @@ const DesktopGameDetail = () => {
                   customClass="mt-2 py-2"
                   title={matchDetails?.title}
                   rightComponent={
-                    <span className="title-16 f400">
+                    <span className="title-16 f400 text-white">
                       {matchDetails?.startAt &&
                         formatDate(matchDetails?.startAt)}
                     </span>
@@ -227,7 +227,7 @@ const DesktopGameDetail = () => {
                     // type={"normal"}
                     data={matchDetails?.apiSession?.session}
                     detail={matchDetails}
-                    manual={manualEntries}
+                    manual={manualEntries?manualEntries:[]}
                   />
                 </Col>
               )}

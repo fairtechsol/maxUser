@@ -112,7 +112,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                               className="text-decoration-none text-black f600 title-12 lh-1"
                               to={"/contact-admin"}
                             >
-                              Ball By ball
+                              Ball By Ball
                             </Link>
                             <div className="d-flex w-100">
                               <React.Fragment>
