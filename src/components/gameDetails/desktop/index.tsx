@@ -102,6 +102,9 @@ const DesktopGameDetail = () => {
     }
   }, [matchDetails?.id]);
   // console.log("first", matchDetails);
+  const normalizedData = matchDetails?.sessionBettings?.map((item:any) => JSON.parse(item));
+  const manualEntries = normalizedData?.filter((item:any) => item?.isManual);
+  // console.log(matchDetails?.apiSession?.session,'manualEntries',manualEntries);
   return (
     <Container fluid>
       <Row>
@@ -224,6 +227,7 @@ const DesktopGameDetail = () => {
                     // type={"normal"}
                     data={matchDetails?.apiSession?.session}
                     detail={matchDetails}
+                    manual={manualEntries}
                   />
                 </Col>
               )}

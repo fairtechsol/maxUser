@@ -132,7 +132,9 @@ const MobileGameDetail = () => {
       console.log(error);
     }
   }, [matchDetails?.id]);
-
+  const normalizedData = matchDetails?.sessionBettings?.map((item:any) => JSON.parse(item));
+  const manualEntries = normalizedData?.filter((item:any) => item?.isManual);
+  // console.log('manualEntries',manualEntries)
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -295,6 +297,7 @@ const MobileGameDetail = () => {
                           // type={"normal"}
                           data={matchDetails?.apiSession?.session}
                           detail={matchDetails}
+                          manual={manualEntries}
                         />
                       </Col>
                     )}
