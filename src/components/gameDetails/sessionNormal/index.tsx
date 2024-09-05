@@ -51,13 +51,19 @@ const SessionNormal = ({ title, data, detail,manual }:any) => {
   const evenIndexArray = [];
   const oddIndexArray = [];
 
-  // useEffect(() => {
-  //   if (data?.section) {
-  //     setMarketArr([...data?.section, ...manual]);
-  //   } else {
-  //     setMarketArr([...manual]);
-  //   }
-  // }, [data, manual]);
+  useEffect(() => {
+    if (data?.section) {
+      if(manual){
+        setMarketArr([...data?.section, ...manual]);
+      }else{
+        setMarketArr([...data?.section]);
+      }
+    } else {
+      if(manual){
+        setMarketArr([...manual]);
+      }
+    }
+  }, [data, manual]);
   
 
   marketArr?.forEach((element: any, index: any) => {
