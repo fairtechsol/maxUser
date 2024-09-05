@@ -58,7 +58,7 @@ const MatchOdd=({title,data,detail})=>{
         <>
         <div className="matchOddContainer">
             <div className="matchOddTitle">
-               <span className="matchOddTitleTxt">{title}</span>
+               <span className={`matchOddTitleTxt ${isMobile ?"f-size13":"f-size15"}`}>{title}</span>
             </div>
 
 

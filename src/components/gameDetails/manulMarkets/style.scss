@@ -15,8 +15,7 @@
 }
 .manualTitleTxt{
     color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
+    font-weight: bold;
 }
 .manualBackLayTab{
     width: 100%;
@@ -58,14 +57,13 @@
     width: 50%;
 }
 .manualBackTxt{
-    font-size: 1rem;
     color: #000;
-    font-weight: 500;
+    font-weight: bold;
 }
 .manualTeamTab{
     position: relative;
     width: 100%;
-    height: 50px;
+    height: 45px;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #c7c8ca;
@@ -78,8 +76,7 @@
     align-items: flex-start;
 }
 .manualTeamTxt{
-    font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
     color: #000;
 }
 .manualRateBox{
@@ -135,7 +132,7 @@
     z-index: 999;
 }
 .suspendedTxtmanual {
-    font-weight: 500;
+    font-weight: 400;
     color: #df0e00;
 }
 .f-size10 {

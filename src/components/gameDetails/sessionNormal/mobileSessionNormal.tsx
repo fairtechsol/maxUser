@@ -59,7 +59,7 @@ const MobileSessionNormal = ({ title, data, detail }) => {
     <>
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
-          <span className="sessionNormalTitleTxt">{title}</span>
+          <span className="sessionNormalTitleTxt f-size13" >{title}</span>
         </div>
         <div
           style={{
@@ -73,21 +73,17 @@ const MobileSessionNormal = ({ title, data, detail }) => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div className="sessionYesNoBoxContainer">
-              <div className="sessionYesNoBox" style={{width:"35%"}}>
+              <div className="sessionYesNoBox" style={{width:"40%"}}>
                 <div className="sessionYesBox lay1Background" style={{width:"100%"}}>
                   <span
-                    className={`${
-                      !isMobile ? "f-size18" : "f-size16"
-                    } sessionBackTxt`}
+                    className={`f-size16 sessionBackTxt`}
                   >
                     No
                   </span>
                 </div>
                 <div className="sessionYesBox back1Background" style={{width:"100%"}}>
                   <span
-                    className={`${
-                      !isMobile ? "f-size18" : "f-size16"
-                    } sessionBackTxt`}
+                    className={`f-size16 sessionBackTxt`}
                   >
                     Yes
                   </span>
@@ -99,9 +95,9 @@ const MobileSessionNormal = ({ title, data, detail }) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className="f-size16">{item?.RunnerName}</span>
+                    <span className="f-size13">{item?.RunnerName}</span>
                   </div>
-                  <div className="sessionRateBoxContainer" style={{width:"35%"}}>
+                  <div className="sessionRateBoxContainer" style={{width:"40%"}}>
                   {(item?.activeStatus != "live" || item?.GameStatus != "") && <div className="suspended-overlayRates"><span className={`${!isMobile ? "f-size18":"f-size16"} suspendedTxtMatchOdd`}>
                   {item?.GameStatus ?? "SUSPENDED"}</span></div>}
                   <div style={{width:"100%",display:"flex",flexDirection:"column",borderRight:"1px solid #c7c8ca"}}>

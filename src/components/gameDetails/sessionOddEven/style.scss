@@ -15,8 +15,7 @@
 }
 .sessionNormalTitleTxt{
     color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
+    font-weight: bold;
 }
 .sessionYesNoBoxContainer{
     width: 100%;
@@ -43,13 +42,13 @@
     height: 30px;
 }
 .sessionBackTxt{
-    font-size: 1rem;
+    font-size: 16px;
     color: #000;
-    font-weight: 500;
+    font-weight: bold;
 }
 .sessionOddEvenRateContainer{
     width: 100%;
-    height: 50px;
+    height: 45px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

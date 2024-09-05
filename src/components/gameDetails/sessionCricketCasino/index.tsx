@@ -87,7 +87,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
     <>
       <div className="sessionNormalContainer" style={{marginTop:isMobile?"":"10px"}}>
         <div className="sessionNormalTitle">
-          <span className="sessionNormalTitleTxt">{title}</span>
+          <span className="sessionNormalTitleTxt" style={{fontSize:isMobile?"13px":"15px"}}>{title}</span>
         </div>
         <div
           style={{
@@ -105,16 +105,14 @@ const SessionCricketCasino = ({ title, data, detail }) => {
               <span className={`sessionMinBox`} style={{marginLeft:"1%"}}>Min:{formatNumber(marketArr?.min)} Max:{formatNumber(marketArr?.max)}</span>
              </div>
              <div className="sessionRateBox back1Background" style={{width:"18%"}}>
-              <span className={`${
-                      !isMobile ? "f-size16" : "f-size16"
-                    } sessionBackTxt`}>Back</span>
+              <span className={`f-size16 sessionBackTxt`}>Back</span>
              </div>
             </div>
             {marketArr?.section?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName">
-                    <span className={isMobile?"f-size13":"f-size14"}>{index} Number</span>
+                    <span className={isMobile?"f-size13":"f-size14"} style={{fontWeight:"400"}}>{index} Number</span>
                   </div>
                   <div className="sessionCCRateBoxContainer">
                     {(item?.gstatus !== "" ) && (
