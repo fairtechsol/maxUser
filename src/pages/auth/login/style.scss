@@ -1,24 +1,31 @@
 @import "/src/assets/variable.scss";
 
 .auth-main {
-  height: 100vh;
+  height: 100vh !important;
   width: 100%;
   background-image: linear-gradient($primary, $secondary);
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: flex-start; /* Align items to the top */
+  // padding-top: 2rem;
 
 }
 .login-form{
-  margin-bottom: 15rem !important;
+  width: 350px;
+  max-width: 90%;
+  position: fixed; /* Fix the position of the form */
+  top: 2%; /* Set a 2% margin from the top of the viewport */
+  margin-bottom: 0 !important; 
 }
 .auth-box-mobile{
   width: 100% !important;
 }
 .auth-box {
   height: max-content;
-  width: 350px;
-  max-width: 90%;
   text-align: center;
   margin: 55px 0 0 0;
-
+  width: 350px;
+  max-width: 90%;
   .auth-box-descrip {
     font-size: 10px;
     display: inline-block;
@@ -48,12 +55,21 @@
 // }
 
 .auth-box-form {
-  padding: 25px 10px 15px;
-  background-color: $white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 0 5px #fff;
+  width: 100%;
+  // margin: 15% auto;
+}
+.auth-box-form-m {
+  padding: 5px 10px 0px 10px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 0 5px #fff;
   width: 100%;
   margin: 15% auto;
 }
-
 .auth-box img {
   width: 200px;
 }
@@ -61,7 +77,7 @@
 .auth-main .auth-title {
   position: relative;
   color: $primary;
-  text-transform: uppercase;
+  // text-transform: uppercase;
 }
 
 .auth-main .auth-title:before,
@@ -102,7 +118,7 @@
 
 .login-text {
   flex: 1;
-  font-size: medium;
+  font-size: 1rem;
 }
 
 .mlogintext {
