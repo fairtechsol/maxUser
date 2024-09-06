@@ -113,8 +113,8 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
           >
             <div className="sessionYesNoBoxContainer">
               <div
-                className="sessionYesNoBox"
-                style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+                className="sessionYesNoBox rateBoxWidthNormal"
+                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
               >
                 <div className="sessionYesBox lay1Background">
                   <span className={`f-size16 sessionBackTxt`}>No</span>
@@ -128,10 +128,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
             {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName">
+                  <div className="sessionRateName runnerWidthNormal" style={{overflow:"hidden"}}>
                     <span
                       className="f-size15"
-                      style={{ width: "60%", fontWeight: "400", lineHeight: 1 }}
+                      style={{fontWeight: "400", lineHeight: 1 }}
                     >
                       {(item?.RunnerName || item?.name)?.length > 25
                         ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...`
@@ -166,10 +166,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     </span>
                   </div>
                   <div
-                    className="sessionRateBoxContainer"
-                    style={{
-                      width: isLap ? "180px" : !isMobile ? "240px" : "",
-                    }}
+                    className="sessionRateBoxContainer rateBoxWidthNormal"
+                    // style={{
+                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    // }}
                   >
                     {handleStatus(
                       item?.activeStatus,
@@ -415,10 +415,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     // style={{ width: "54%" }}
                   ></div>
                   <div
-                    className="sessionYesNoBox"
-                    style={{
-                      width: isLap ? "180px" : !isMobile ? "240px" : "",
-                    }}
+                    className="sessionYesNoBox rateBoxWidthNormal"
+                    // style={{
+                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    // }}
                   >
                     <div className="sessionYesBox lay1Background">
                       <span className={`f-size16 sessionBackTxt`}>No</span>
@@ -434,13 +434,13 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
                   <div className="sessionRateContainer" key={index}>
-                    <div className="sessionRateName">
+                    <div className="sessionRateName runnerWidthNormal" style={{overflow:"hidden"}}>
                       <span
                         className="f-size15"
                         style={{
-                          width: "60%",
                           fontWeight: "400",
                           lineHeight: 1,
+                          // overflow:"hidden"
                         }}
                       >
                         {(item?.RunnerName || item?.name)?.length > 25
@@ -479,10 +479,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       </span>
                     </div>
                     <div
-                      className="sessionRateBoxContainer"
-                      style={{
-                        width: isLap ? "180px" : !isMobile ? "240px" : "",
-                      }}
+                      className="sessionRateBoxContainer rateBoxWidthNormal"
+                      // style={{
+                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                      // }}
                     >
                       {handleStatus(
                         item?.activeStatus,

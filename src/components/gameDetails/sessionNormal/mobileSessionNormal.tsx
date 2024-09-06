@@ -110,7 +110,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
             {marketArr?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName">
+                  <div className="sessionRateName" style={{width:"60%",overflow:"hidden"}}>
                     <span className="f-size13">
                       {item?.RunnerName || item?.name}
                     </span>
