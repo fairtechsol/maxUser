@@ -252,22 +252,23 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
-                <Col md={12}>
-                  <SessionOddEven
-                    title={"oddeven"}
-                    // type={"fancy"}
-                    data={matchDetails?.apiSession?.oddEven}
-                    detail={matchDetails}
-                    // data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
+             
               {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
                 <Col md={12}>
                   <SessionFancy
                     title={"fancy1"}
                     data={matchDetails?.apiSession?.fancy1}
+                    detail={matchDetails}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
+               {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
+                <Col md={12}>
+                  <SessionOddEven
+                    title={"oddeven"}
+                    // type={"fancy"}
+                    data={matchDetails?.apiSession?.oddEven}
                     detail={matchDetails}
                     // data={matchDetails?.matchOdd}
                   />

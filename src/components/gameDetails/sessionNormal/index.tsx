@@ -22,9 +22,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
     item: any,
     tno: any
   ) => {
-    if (data?.status != "OPEN" || status != "live") {
-      return false;
-    }
+    console.log('team',item)
+    // if ( status != "live" || ( data?.status != "OPEN" || item?.status != "active")) {
+    //   return false;
+    // }
     if (odds === 0) {
       return false;
     }

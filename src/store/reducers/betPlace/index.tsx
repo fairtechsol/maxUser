@@ -82,6 +82,7 @@ const placedBet = createSlice({
       })
       .addCase(getRunAmount.fulfilled, (state, action) => {
         const { id, arr } = action.payload;
+        console.log('first',arr)
         state.loading = false;
         state.success = true;
         let data = {
