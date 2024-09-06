@@ -175,8 +175,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           ) === 0
                         ) {
                           return;
-                        }
-                        else
+                        } else
                           dispatch(
                             resetRunAmountModal({
                               showModal: true,

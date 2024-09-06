@@ -94,7 +94,7 @@ const MatchOdd = ({ title, data, detail }) => {
         </div>
 
         <div className="matchOddTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesMatchOdd">
               <span
                 className={`${
@@ -102,7 +102,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 } suspendedTxtMatchOdd`}
               ></span>
             </div>
-          )}
+          )} */}
           <div className="matchOddTeam">
             <span
               className={`teamFont matchOddTeamTxt`}
@@ -136,8 +136,7 @@ const MatchOdd = ({ title, data, detail }) => {
             className="matchOddRateBox rateBoxWidth"
             // style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
           >
-            {data?.activeStatus === "live" &&
-              data?.runners?.[0]?.status != "ACTIVE" && (
+            {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesMatchOdd">
                   <span
                     className={`${
@@ -284,7 +283,7 @@ const MatchOdd = ({ title, data, detail }) => {
         </div>
 
         <div className="matchOddTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesMatchOdd">
               <span
                 className={`${
@@ -292,7 +291,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 } suspendedTxtMatchOdd`}
               ></span>
             </div>
-          )}
+          )} */}
           <div className="matchOddTeam">
             <span
               className={`teamFont matchOddTeamTxt`}
@@ -326,8 +325,7 @@ const MatchOdd = ({ title, data, detail }) => {
             className="matchOddRateBox rateBoxWidth"
             // style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
           >
-            {data?.activeStatus === "live" &&
-              data?.runners?.[1]?.status != "ACTIVE" && (
+            {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesMatchOdd">
                   <span
                     className={`${
@@ -475,7 +473,7 @@ const MatchOdd = ({ title, data, detail }) => {
 
         {detail?.teamC && (
           <div className="matchOddTeamTab">
-            {data?.activeStatus != "live" && (
+            {/* {data?.activeStatus != "live" && (
               <div className="suspended-overlayRatesMatchOdd">
                 <span
                   className={`${
@@ -483,7 +481,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   } suspendedTxtMatchOdd`}
                 ></span>
               </div>
-            )}
+            )} */}
             <div className="matchOddTeam">
               <span
                 className={`teamFont matchOddTeamTxt`}
@@ -517,8 +515,7 @@ const MatchOdd = ({ title, data, detail }) => {
               className="matchOddRateBox rateBoxWidth"
               // style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
             >
-              {data?.activeStatus === "live" &&
-                data?.runners?.[2]?.status != "ACTIVE" && (
+              {(data?.activeStatus !== "live" || data?.runners?.[2]?.status !== "ACTIVE") && (
                   <div className="suspended-overlayRatesMatchOdd">
                     <span
                       className={`${
