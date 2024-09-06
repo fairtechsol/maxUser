@@ -105,11 +105,12 @@
   box-sizing: border-box;
 }
 .bookmakerTeam {
-  padding: 5px;
+  padding: 0px 5px;
   display: flex;
   justify-content: start;
   align-items: flex-start;
   flex-direction: column;
+  // line-height: 1;
 }
 .bookmakerTeamTxt {
   font-size: 16px;

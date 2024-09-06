@@ -76,7 +76,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
             {data?.section?.map((item: any, index: any) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
-                  <div className="sessionRateName">
+                  <div className="sessionRateName" style={{width:"60%",overflow:"hidden"}}>
                     <span className="f-size13" style={{ fontWeight: "400" }}>
                       {item?.RunnerName}
                     </span>

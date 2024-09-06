@@ -827,6 +827,177 @@ img {
 .form-check-input[type="radio"] {
   border-radius: 50% !important;
 }
+
+
+/* Styles for width 0px to 760px */
+@media (max-width: 760px) {
+  .backLayBoxWidth {
+    width: 48% !important;
+  }
+  .backLayBoxWidth2 {
+    width: 40% !important;
+  }
+  .rateBoxWidth {
+    width: 72% !important;
+  }
+  .rateBoxWidth2 {
+    width: 40% !important;
+  }
+  .rateFont{
+    font-size: 15px !important;
+    font-weight: bold !important;
+  }
+  .sizeFont{
+    font-size: 11px !important;
+    font-weight: 100 !important;
+  }
+  .teamFont{
+    font-size: 13px !important;
+  }
+}
+
+/* Styles for width 760px to 1200px */
+
+
+@media (min-width: 761px) and (max-width: 1200px) {
+  .backLayBoxWidth {
+    width: 240px !important;
+  }
+  .backLayBoxWidth2 {
+    width: 120px !important;
+  }
+  .rateBoxWidth {
+    width: 360px !important;
+  }
+  .rateBoxWidth2 {
+    width: 120px !important;
+  }
+  .rateBoxWidthNormal {
+    width: 180px !important;
+  }
+  .rateFont{
+    font-size: 16px !important;
+    font-weight: bold !important;
+  }
+  .sizeFont{
+    font-size: 12px !important;
+    font-weight: 100 !important;
+  }
+  .teamFont{
+    font-size: 14px !important;
+  }
+}
+
+/* Styles for width 1200px to 1399px */
+
+
+@media (min-width: 1201px) and (max-width: 1399px) {
+  .backLayBoxWidth {
+    width: 220px !important;
+  }
+  .backLayBoxWidth2 {
+    width: 110px !important;
+  }
+  .rateBoxWidth{
+    width: 330px !important;
+  }
+  .rateBoxWidth2 {
+    width: 110px !important;
+  }
+  .rateBoxWidthNormal {
+    width: 165px !important;
+  }
+  .runnerWidthNormal {
+    flex-grow: 1;
+    // width: 48% !important;
+  }
+  .rateFont {
+    font-size: 16px !important;
+    font-weight: bold !important;
+  }
+  .sizeFont{
+    font-size: 12px !important;
+    font-weight: 100 !important;
+  }
+  .teamFont{
+    font-size: 13px !important;
+  }
+}
+
+
+/* Styles for width 1400px to 1599px */
+
+
+@media (min-width: 1400px) and (max-width: 1599px) {
+
+  .backLayBoxWidth{
+    width: 240px !important;
+  }
+  .backLayBoxWidth2 {
+    width: 120px !important;
+  }
+  .rateBoxWidth {
+    width: 360px !important;
+  }
+  .rateBoxWidth2 {
+    width: 120px !important;
+  }
+  .rateBoxWidthNormal {
+    width: 180px !important;
+  }
+  .runnerWidthNormal {
+    flex-grow: 1;
+    // width: 48% !important;
+  }
+  .rateFont{
+    font-size: 16px !important;
+    font-weight: bold !important;
+  }
+  .sizeFont{
+    font-size: 12px !important;
+    font-weight: 100 !important;
+  }
+  .teamFont{
+    font-size: 14px !important;
+  }
+}
+
+/* Styles for width 1600px and above */
+
+
+@media (min-width: 1600px) {
+ .backLayBoxWidth {
+    width: 320px !important;
+  }
+  .backLayBoxWidth2 {
+    width: 160px !important;
+  }
+  .rateBoxWidth {
+    width: 480px !important;
+  }
+  .rateBoxWidth2 {
+    width: 160px !important;
+  }
+  .rateBoxWidthNormal {
+    width: 240px !important;
+  }
+  .runnerWidthNormal {
+    flex-grow: 1;
+    // width: 48% !important;
+  }
+  .rateFont{
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+  .sizeFont{
+    font-size: 12px !important;
+    font-weight: 100 !important;
+  }
+  .teamFont{
+    font-size: 14px !important;
+  }
+}
+
 // #middleView-playerDiv {
 //   display: none !important; /* This will override the inline display style */
 // }
