@@ -114,8 +114,12 @@
 }
 .bookmakerTeamTxt {
   // font-size: 16px;
+  width: 100%;
   font-weight: 400;
   color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
 }
 .bookmaker1RateBox {
   position: relative;
