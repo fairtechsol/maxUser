@@ -59,6 +59,10 @@
 .manualBackTxt {
   color: #000;
   font-weight: bold;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
 }
 .manualTeamTab {
   position: relative;
