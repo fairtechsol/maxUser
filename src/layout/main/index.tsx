@@ -149,7 +149,7 @@ const MainLayout = () => {
       <TopBar />
       <div className="d-flex" style={{minHeight: "calc(100vh - 125px)"}}>
         {!isMobile && (
-          <div className={`sidebar sidebarActive mt-1`}>
+          <div className={`sidebar side-W sidebarActive mt-2`}>
             <Sidebar />
             
           </div>

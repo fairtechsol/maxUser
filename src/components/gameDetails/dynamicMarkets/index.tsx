@@ -115,13 +115,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             className="dynamicTeam"
             style={{ width: isMobile ? "55%" : "28%" }}
           >
-            <span
-              className={`${
-                !isMobile ? "f-size14" : "f-size13"
-              } dynamicTeamTxt`}
-            >
-              Yes
-            </span>
+            <span className={`teamFont dynamicTeamTxt`}>Yes</span>
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -133,7 +127,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                     ] < 0
                   ? "color-red"
                   : ""
-              } ${isMobile?"fbold title-12":"fbold title-14"}`}
+              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A
@@ -170,20 +164,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                  } dynamicRate1Box`}
-                >
+                <span className={`rateFont dynamicRate1Box`}>
                   {handlePrice(
                     data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } dynamicRate2Box`}
-                >
+                <span className={`sizeFont dynamicRate2Box`}>
                   {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
                 </span>
               </div>
@@ -202,20 +188,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                  } dynamicRate1Box`}
-                >
+                <span className={`rateFont dynamicRate1Box`}>
                   {handlePrice(
                     data?.runners?.[0]?.ex?.availableToBack?.[1]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } dynamicRate2Box`}
-                >
+                <span className={`sizeFont dynamicRate2Box`}>
                   {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}
                 </span>
               </div>
@@ -233,20 +211,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                } dynamicRate1Box`}
-              >
+              <span className={`rateFont dynamicRate1Box`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToBack?.[2]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } dynamicRate2Box`}
-              >
+              <span className={`sizeFont dynamicRate2Box`}>
                 {data?.runners?.[0]?.ex?.availableToBack?.[2]?.size}
               </span>
             </div>
@@ -263,20 +233,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                } dynamicRate1Box`}
-              >
+              <span className={`rateFont dynamicRate1Box`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToLay?.[0]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } dynamicRate2Box`}
-              >
+              <span className={`sizeFont dynamicRate2Box`}>
                 {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}
               </span>
             </div>
@@ -294,20 +256,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                  } dynamicRate1Box`}
-                >
+                <span className={`rateFont dynamicRate1Box`}>
                   {handlePrice(
                     data?.runners?.[0]?.ex?.availableToLay?.[1]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } dynamicRate2Box`}
-                >
+                <span className={`sizeFont dynamicRate2Box`}>
                   {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}
                 </span>
               </div>
@@ -326,20 +280,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                  } dynamicRate1Box`}
-                >
+                <span className={`rateFont dynamicRate1Box`}>
                   {handlePrice(
                     data?.runners?.[0]?.ex?.availableToLay?.[2]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } dynamicRate2Box`}
-                >
+                <span className={`sizeFont dynamicRate2Box`}>
                   {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}
                 </span>
               </div>
@@ -355,7 +301,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   !isMobile ? "f-size18" : "f-size16"
                 } suspendedTxtdynamic`}
               >
-                SUSPENDED
+                
               </span>
             </div>
           )}
@@ -363,11 +309,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             className="dynamicTeam"
             style={{ width: isMobile ? "55%" : "28%" }}
           >
-            <span
-              className={`${
-                !isMobile ? "f-size14" : "f-size13"
-              } dynamicTeamTxt`}
-            ></span>
+            <span className={`teamFont dynamicTeamTxt`}>No</span>
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -379,7 +321,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                     ] < 0
                   ? "color-red"
                   : ""
-              } ${isMobile?"fbold title-12":"fbold title-14"}`}
+              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B
@@ -416,20 +358,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                  } dynamicRate1Box`}
-                >
+                <span className={`rateFont dynamicRate1Box`}>
                   {handlePrice(
                     data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } dynamicRate2Box`}
-                >
+                <span className={`sizeFont dynamicRate2Box`}>
                   {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
                 </span>
               </div>
@@ -448,20 +382,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                  } dynamicRate1Box`}
-                >
+                <span className={`rateFont dynamicRate1Box`}>
                   {handlePrice(
                     data?.runners?.[1]?.ex?.availableToBack?.[1]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } dynamicRate2Box`}
-                >
+                <span className={`sizeFont dynamicRate2Box`}>
                   {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}
                 </span>
               </div>
@@ -479,20 +405,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                } dynamicRate1Box`}
-              >
+              <span className={`rateFont dynamicRate1Box`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToBack?.[2]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } dynamicRate2Box`}
-              >
+              <span className={`sizeFont dynamicRate2Box`}>
                 {data?.runners?.[1]?.ex?.availableToBack?.[2]?.size}
               </span>
             </div>
@@ -509,20 +427,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                } dynamicRate1Box`}
-              >
+              <span className={`rateFont dynamicRate1Box`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToLay?.[0]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } dynamicRate2Box`}
-              >
+              <span className={`sizeFont dynamicRate2Box`}>
                 {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}
               </span>
             </div>
@@ -540,20 +450,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                  } dynamicRate1Box`}
-                >
+                <span className={`rateFont dynamicRate1Box`}>
                   {handlePrice(
                     data?.runners?.[1]?.ex?.availableToLay?.[1]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } dynamicRate2Box`}
-                >
+                <span className={`sizeFont dynamicRate2Box`}>
                   {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}
                 </span>
               </div>
@@ -572,20 +474,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    isLap ? "f-size16" : !isMobile ? "f-size18" : "f-size15"
-                  } dynamicRate1Box`}
-                >
+                <span className={`rateFont dynamicRate1Box`}>
                   {handlePrice(
                     data?.runners?.[1]?.ex?.availableToLay?.[2]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } dynamicRate2Box`}
-                >
+                <span className={`sizeFont dynamicRate2Box`}>
                   {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}
                 </span>
               </div>
