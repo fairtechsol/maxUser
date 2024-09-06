@@ -25,7 +25,7 @@ const FooterBottom = () => {
         </a>
       </div>
     </div>
-    <div className="footer-text"><p></p><p className="text-center">© Copyright 2024. All Rights Reserved. Powered by MAXBET07.</p></div>
+    <div className="footer-text"><p className="text-center">© Copyright 2024. All Rights Reserved. Powered by MAXBET07.</p></div>
     </>
   );
 };

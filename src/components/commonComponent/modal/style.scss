@@ -7,20 +7,20 @@ $btn-close-bg: 11;
         .modal-title {
             font-size: 20px !important;
         }
-        .btn-close {
-            opacity: 1;
-            margin-right: 0;
-            color: $white !important;
-            background: none !important;
-            &:after {
-                content: "x";
-                position: relative;
-                left: -0px;
-                top: -5px;
-                // width: 44rem !important;
-                // font-weight: 900;
-                font-size: 1.2rem;
-            }
-        }
+        // .btn-close {
+        //     opacity: 1;
+        //     margin-right: 0;
+        //     color: $white !important;
+        //     background: none !important;
+        //     &:after {
+        //         content: "x";
+        //         position: relative;
+        //         left: -0px;
+        //         top: -5px;
+        //         // width: 44rem !important;
+        //         // font-weight: 900;
+        //         font-size: 1.2rem;
+        //     }
+        // }
     }
 }

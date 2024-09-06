@@ -8,8 +8,14 @@ const RulesModal = ({ show, setShow, rule }: any) => {
   return (
     <div>
       <Modal show={show} onHide={handleClose} >
-        <Modal.Header closeButton style={{backgroundColor:"#004a25",color:"#fff"}}>
+        <Modal.Header  style={{backgroundColor:"#004a25",color:"#ffffff"}}>
           <Modal.Title>Rules</Modal.Title>
+          <button 
+              type="button" 
+              className="btn-close btn-close-white" 
+              aria-label="Close" 
+              onClick={() => setShow(false)}
+            ></button>
         </Modal.Header>
         <Modal.Body style={{padding:"0px", cursor: "pointer"}}>
           <img src={rule} width={"100%"} height={isMobile ? "550" : "650px"} />

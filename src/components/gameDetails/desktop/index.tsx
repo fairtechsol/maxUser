@@ -107,10 +107,10 @@ const DesktopGameDetail = () => {
   );
   const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
   return (
-    <Container fluid>
+    <Container fluid className="pe-0 ps-1">
       <Row>
         <Col md={8}>
-          <Container fluid className="p-0">
+          <Container className="p-0">
             <Row>
               <Col md={12}>
                 <BetTableHeader

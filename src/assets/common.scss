@@ -120,6 +120,7 @@ body table.table {
 .modalFull-56.customModal .modal-dialog {
   width: 56%;
   max-width: none;
+  margin-top: 10px;
 }
 // cursor pointer
 .cursor-pointer {
@@ -637,7 +638,7 @@ img {
 
 .horseRacingTabHeader {
   width: 100%;
-  height: 12%;
+  // height: 12%;
   background-color: #ffc742;
   display: flex;
   justify-content: space-between;
@@ -650,7 +651,7 @@ img {
   background-color: #ffc742;
   display: flex;
   justify-content: space-between;
-  padding: 6px 8px;
+  // padding: 6px 8px;
   color : #ffffff
 }
 .teenpatti-20 .suspended:after {

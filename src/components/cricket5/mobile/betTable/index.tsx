@@ -129,7 +129,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
 
       {showFancy && (
         <div className="game-market market-6 mt-2">
-          <div className="market-title" style={{width:"100%"}}>
+          <div className="market-title text-white" style={{width:"100%"}}>
             <span>Fancy</span>
           </div>
           <div className="market-header-c" style={{width:"100%"}}>
