@@ -4,7 +4,10 @@ import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { useEffect, useState } from "react";
-import { getRunAmount, resetRunAmountModal } from "../../../store/actions/betPlace/betPlaceActions";
+import {
+  getRunAmount,
+  resetRunAmountModal,
+} from "../../../store/actions/betPlace/betPlaceActions";
 import CustomModal from "../../commonComponent/modal";
 import RunBoxTable from "../betTable/runBoxTable";
 import { useSelector } from "react-redux";
@@ -60,7 +63,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
     const newMarketArr = [...(data?.section || []), ...(manual || [])];
     setMarketArr(newMarketArr);
   }, [data, manual]);
-  
+
   const handlePrice = (rate: any) => {
     if (rate && rate != 0) {
       return rate;
@@ -84,6 +87,20 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   const handleModal = (event: any) => {
     dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
   };
+
+  function calculateMaxLoss(profitLossDataSession: any, betId: any) {
+    if (!profitLossDataSession || !Array.isArray(profitLossDataSession)) {
+      return 0;
+    }
+
+    const totalMaxLoss = profitLossDataSession.reduce((accumulator, bet) => {
+      const maxLossToAdd = bet?.betId === betId ? +bet?.maxLoss : 0;
+      return accumulator + maxLossToAdd;
+    }, 0);
+
+    return totalMaxLoss;
+  }
+
   return (
     <>
       <div className="sessionNormalContainer">
@@ -120,44 +137,51 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
             {marketArr?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName" style={{width:"60%",overflow:"hidden"}}>
-                    <span className="f-size13"
-                        onClick={() => {
-                          if (item.activeStatus === "save") {
-                            return true;
-                          }
-                          // setShowRunModal(true);
+                  <div
+                    className="sessionRateName"
+                    style={{ width: "60%", overflow: "hidden" }}
+                  >
+                    <span
+                      className="f-size13"
+                      onClick={() => {
+                        if (item.activeStatus === "save") {
+                          return true;
+                        } else if (
+                          calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) === 0
+                        ) {
+                          return;
+                        } else
                           dispatch(
-                            resetRunAmountModal({ showModal: true, id: item?.id })
+                            resetRunAmountModal({
+                              showModal: true,
+                              id: item?.id,
+                            })
                           );
-                          dispatch(getRunAmount(item?.id));
-                        }}>
+                        dispatch(getRunAmount(item?.id));
+                      }}
+                    >
                       {item?.RunnerName || item?.name}
                     </span>
                     <span
                       className={`${
-                        detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            ) < 0
-                            ? "color-red"
-                            : "color-green"
-                          : ""
+                        calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
+                          ? "color-red"
+                          : "color-green"
                       } title-13`}
                     >
-                      {detail?.profitLossDataSession
-                        ? detail?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === item?.id ? +bet?.maxLoss : "";
-                              return accumulator + maxLossToAdd;
-                            },
-                            ""
+                      {calculateMaxLoss(
+                        detail?.profitLossDataSession,
+                        item?.id
+                      ) !== 0
+                        ? calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
                           )
                         : ""}
                     </span>
