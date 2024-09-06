@@ -106,6 +106,7 @@ const DesktopGameDetail = () => {
     JSON.parse(item)
   );
   const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
+  // console.log("normalizedData",matchDetails)
   return (
     <Container fluid>
       <Row>
@@ -183,15 +184,7 @@ const DesktopGameDetail = () => {
                     </div>
                   )
                 )}
-              {matchDetails?.apiTideMatch?.isActive && (
-                <Col md={12}>
-                  <DynamicMarket
-                    title={matchDetails?.apiTideMatch?.name}
-                    data={matchDetails?.apiTideMatch}
-                    detail={matchDetails}
-                  />
-                </Col>
-              )}
+              
               {(matchDetails?.manualTiedMatch?.isActive ||
                 matchDetails?.manualTideMatch?.isActive) && (
                 <Col md={12}>
@@ -228,7 +221,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.apiSession?.session?.section?.length > 0 && (
+              {(matchDetails?.apiSession?.session?.section?.length > 0 || manualEntries) && (
                 <Col md={12}>
                   <SessionNormal
                     title={"Normal"}
@@ -321,6 +314,15 @@ const DesktopGameDetail = () => {
                     }
                   )}
               </div>
+              {matchDetails?.apiTideMatch?.isActive && (
+                <Col md={12}>
+                  <DynamicMarket
+                    title={matchDetails?.apiTideMatch?.name}
+                    data={matchDetails?.apiTideMatch}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
               {/* {matchDetails?.quickBookmaker?.length > 0 &&
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
@@ -524,7 +526,7 @@ const DesktopGameDetail = () => {
             </Row>
           </Container>
         </Col>
-        <Col md={4} className="ps-0">
+        <Col md={4} className="ps-0 sideBet-W">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

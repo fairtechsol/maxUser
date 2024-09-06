@@ -205,7 +205,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont} matchOddRate1Box`}>
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToBack?.[2]?.price
                 ) ?? "-"}

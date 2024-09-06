@@ -845,6 +845,7 @@ img {
   .rateFont{
     font-size: 15px !important;
     font-weight: bold !important;
+    color: #333 !important;
   }
   .sizeFont{
     font-size: 11px !important;
@@ -852,6 +853,16 @@ img {
   }
   .teamFont{
     font-size: 13px !important;
+  }
+  .side-W{
+    display: none !important;
+  }
+  .sideBet-W{
+    display: none !important;
+    width: 0 !important;
+  }
+  .betMain-W{
+    width: 100% !important;
   }
 }
 
@@ -877,6 +888,7 @@ img {
   .rateFont{
     font-size: 16px !important;
     font-weight: bold !important;
+    color: #333 !important;
   }
   .sizeFont{
     font-size: 12px !important;
@@ -884,6 +896,16 @@ img {
   }
   .teamFont{
     font-size: 14px !important;
+  }
+  .side-W{
+    display: none !important;
+  }
+  .sideBet-W{
+    display: none !important;
+    width: 0 !important;
+  }
+  .betMain-W{
+    width: 100% !important;
   }
 }
 
@@ -913,6 +935,7 @@ img {
   .rateFont {
     font-size: 16px !important;
     font-weight: bold !important;
+    color: #333 !important;
   }
   .sizeFont{
     font-size: 12px !important;
@@ -920,6 +943,12 @@ img {
   }
   .teamFont{
     font-size: 13px !important;
+  }
+  .side-W{
+    width: 210px !important;
+  }
+  .betMain-W{
+    width: calc(100% - 352px) !important;
   }
 }
 
@@ -951,6 +980,7 @@ img {
   .rateFont{
     font-size: 16px !important;
     font-weight: bold !important;
+    color: #333 !important;
   }
   .sizeFont{
     font-size: 12px !important;
@@ -958,6 +988,12 @@ img {
   }
   .teamFont{
     font-size: 14px !important;
+  }
+  .side-W{
+    width: 240px !important;
+  }
+  .betMain-W{
+    width: calc(100% - 402px) !important;
   }
 }
 
@@ -987,6 +1023,7 @@ img {
   .rateFont{
     font-size: 18px !important;
     font-weight: bold !important;
+    color: #333 !important;
   }
   .sizeFont{
     font-size: 12px !important;
@@ -994,6 +1031,12 @@ img {
   }
   .teamFont{
     font-size: 14px !important;
+  }
+  .side-W{
+    width: 280px !important;
+  }
+  .betMain-W{
+    width: calc(100% - 452px) !important;
   }
 }
 

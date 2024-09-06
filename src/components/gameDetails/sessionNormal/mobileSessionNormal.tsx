@@ -53,7 +53,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
     const newMarketArr = [...(data?.section || []), ...(manual || [])];
     setMarketArr(newMarketArr);
   }, [data, manual]);
-
+  
   const handlePrice = (rate: any) => {
     if (rate && rate != 0) {
       return rate;
@@ -74,6 +74,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       return true;
     }
   };
+  console.log('manual',manual)
   return (
     <>
       <div className="sessionNormalContainer">

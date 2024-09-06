@@ -6,7 +6,6 @@ import { AppDispatch } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
 
 const Bookmaker = ({ title, box, data, detail }) => {
-  console.log(data?.type, "lkj")
   const dispatch: AppDispatch = useDispatch();
 
   const handlePlaceBet = (

@@ -165,7 +165,7 @@ const SessionFancy = ({ title, data, detail }) => {
                       </div>
                     )}
                     <div
-                      className={`sessionRateBox back1Background`}
+                      className={`sessionRateBox rateFont back1Background`}
                       style={{ cursor: "pointer" }}
                       onClick={() =>
                         handlePlaceBet(
@@ -200,7 +200,7 @@ const SessionFancy = ({ title, data, detail }) => {
                       </span>
                     </div>
                     <div
-                      className="sessionRateBox lay1Background"
+                      className="sessionRateBox rateFont lay1Background"
                       style={{ cursor: "pointer" }}
                       onClick={() =>
                         handlePlaceBet(
@@ -333,7 +333,7 @@ const SessionFancy = ({ title, data, detail }) => {
                         </div>
                       )}
                       <div
-                        className={`sessionRateBox back1Background`}
+                        className={`sessionRateBox rateFont back1Background`}
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
@@ -368,7 +368,7 @@ const SessionFancy = ({ title, data, detail }) => {
                         </span>
                       </div>
                       <div
-                        className="sessionRateBox lay1Background"
+                        className="sessionRateBox rateFont lay1Background"
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
