@@ -191,7 +191,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   </div>
                                 </div>
                                 <div className="d-flex w-100">
-                                  {item?.matchOdds?.map(
+                                  {(item?.matchOdds?.length > 0 ? item.matchOdds : new Array(1).fill(null))?.map(
                                     (item: any, index: number) => (
                                       <React.Fragment key={index}>
                                         <BackLayComponent

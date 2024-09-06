@@ -257,7 +257,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       )}
                       {item?.ex?.availableToLay?.length > 2 && (
                         <div
-                          className={`sessionRateBoxlay1Background`}
+                          className={`sessionRateBox lay1Background`}
                           style={{ cursor: "pointer" }}
                           onClick={() =>
                             handlePlaceBet(
