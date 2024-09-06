@@ -1,14 +1,21 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { useEffect, useState } from "react";
+import { getRunAmount, resetRunAmountModal } from "../../../store/actions/betPlace/betPlaceActions";
+import CustomModal from "../../commonComponent/modal";
+import RunBoxTable from "../betTable/runBoxTable";
+import { useSelector } from "react-redux";
 
 const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [marketArr, setMarketArr] = useState(data?.section || []);
 
+  const { runAmount, runAmountModal } = useSelector(
+    (state: RootState) => state.bets
+  );
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -74,6 +81,9 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       return true;
     }
   };
+  const handleModal = (event: any) => {
+    dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
+  };
   return (
     <>
       <div className="sessionNormalContainer">
@@ -111,7 +121,17 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName" style={{width:"60%",overflow:"hidden"}}>
-                    <span className="f-size13">
+                    <span className="f-size13"
+                        onClick={() => {
+                          if (item.activeStatus === "save") {
+                            return true;
+                          }
+                          // setShowRunModal(true);
+                          dispatch(
+                            resetRunAmountModal({ showModal: true, id: item?.id })
+                          );
+                          dispatch(getRunAmount(item?.id));
+                        }}>
                       {item?.RunnerName || item?.name}
                     </span>
                     <span
@@ -344,6 +364,16 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
           </div>
         </div>
       </div>
+      <CustomModal
+        customClass="runAmountBetModal"
+        title={"Run Amount"}
+        show={runAmountModal}
+        setShow={handleModal}
+      >
+        <div style={{ width: "100%", height: "500px", overflowY: "auto" }}>
+          <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+        </div>
+      </CustomModal>
     </>
   );
 };

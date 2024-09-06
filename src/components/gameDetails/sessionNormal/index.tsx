@@ -1,9 +1,13 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { useEffect, useState } from "react";
+import { getRunAmount, resetRunAmountModal } from "../../../store/actions/betPlace/betPlaceActions";
+import CustomModal from "../../commonComponent/modal";
+import RunBoxTable from "../betTable/runBoxTable";
+import { useSelector } from "react-redux";
 
 const SessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -48,6 +52,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
       })
     );
   };
+  
+  const { runAmount, runAmountModal } = useSelector(
+    (state: RootState) => state.bets
+  );
   const evenIndexArray = [];
   const oddIndexArray = [];
 
@@ -91,6 +99,9 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
       return true;
     }
   };
+  const handleModal = (event: any) => {
+    dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
+  };
   return (
     <>
       <div
@@ -132,6 +143,16 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     <span
                       className="f-size15"
                       style={{fontWeight: "400", lineHeight: 1 }}
+                      onClick={() => {
+                        if (item.activeStatus === "save") {
+                          return true;
+                        }
+                        // setShowRunModal(true);
+                        dispatch(
+                          resetRunAmountModal({ showModal: true, id: item?.id })
+                        );
+                        dispatch(getRunAmount(item?.id));
+                      }}
                     >
                       {(item?.RunnerName || item?.name)?.length > 25
                         ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...`
@@ -442,6 +463,16 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           lineHeight: 1,
                           // overflow:"hidden"
                         }}
+                        onClick={() => {
+                          if (item.activeStatus === "save") {
+                            return true;
+                          }
+                          // setShowRunModal(true);
+                          dispatch(
+                            resetRunAmountModal({ showModal: true, id: item?.id })
+                          );
+                          dispatch(getRunAmount(item?.id));
+                        }}
                       >
                         {(item?.RunnerName || item?.name)?.length > 25
                           ? `${(item?.RunnerName || item?.name)?.slice(
@@ -744,6 +775,16 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
           )}
         </div>
       </div>
+      <CustomModal
+        customClass="runAmountBetModal"
+        title={"Run Amount"}
+        show={runAmountModal}
+        setShow={handleModal}
+      >
+        <div style={{ width: "100%", height: "500px", overflowY: "auto" }}>
+          <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+        </div>
+      </CustomModal>
     </>
   );
 };

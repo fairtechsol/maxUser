@@ -2,21 +2,21 @@ import { Table } from "react-bootstrap";
 
 const RunBoxTable = ({ runAmount }: any) => {
   return (
-    <Table striped bordered hover style={{width:'90%', margin:'17px'}}>
+    <Table striped bordered hover style={{width:'100%'}}>
       <thead>
         <tr >
-          <th style={{backgroundColor: '#ffc742',textAlign:'center'}}>Run </th>
-          <th className="text-end" style={{backgroundColor: '#ffc742'}}>Amount</th>
+          <th style={{backgroundColor: '#f2f2f2',textAlign:'start'}}>Run </th>
+          <th className="text-end" style={{backgroundColor: '#f2f2f2'}}>Amount</th>
         </tr>
       </thead>
       <tbody>
         {runAmount?.betPlaced?.map((item: any, index: number) => {
           return (
             <tr key={index}>
-              <td className={+item?.profitLoss >= 0 ? "bg-blue1" : "bg-red1"} style={{textAlign:'center'}}>
+              <td  style={{textAlign:'start',backgroundColor:"#f2f2f2"}}>
                 {item?.odds}
               </td>
-              <td className={+item?.profitLoss >= 0 ? "bg-blue1" : "bg-red1"} style={{textAlign:'end'}}>
+              <td  style={{textAlign:'end',backgroundColor:"#f2f2f2"}}>
                 {parseFloat(item?.profitLoss).toFixed(2)}
               </td>
             </tr>
