@@ -112,11 +112,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
         </div>
 
         <div className="bookmakerTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesBookmaker">
               <span className={`suspendedTxtBookmaker`}></span>
             </div>
-          )}
+          )} */}
           <div
             className="bookmakerTeam"
             style={box === 6 ? { width: "28%" } : {}}
@@ -157,8 +157,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             //     : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
             // }
           >
-            {data?.activeStatus === "live" &&
-              data?.runners?.[0]?.status != "ACTIVE" && (
+            {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesBookmaker">
                   <span
                     className={`${
@@ -323,7 +322,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
         </div>
 
         <div className="bookmakerTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesBookmaker">
               <span
                 className={`${
@@ -331,7 +330,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 } suspendedTxtBookmaker`}
               ></span>
             </div>
-          )}
+          )} */}
           <div
             className="bookmakerTeam"
             style={box === 6 ? { width: "28%" } : {}}
@@ -376,8 +375,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             //     : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
             // }
           >
-            {data?.activeStatus === "live" &&
-              data?.runners?.[1]?.status != "ACTIVE" && (
+            {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesBookmaker">
                   <span
                     className={`${
@@ -596,8 +594,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
               //     : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
               // }
             >
-              {data?.activeStatus === "live" &&
-                data?.runners?.[2]?.status != "ACTIVE" && (
+              {(data?.activeStatus !== "live" || data?.runners?.[2]?.status !== "ACTIVE") && (
                   <div className="suspended-overlayRatesBookmaker">
                     <span
                       className={`${

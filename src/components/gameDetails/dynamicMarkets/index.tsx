@@ -102,7 +102,7 @@ const DynamicMarket = ({ title, data, detail }) => {
         </div>
 
         <div className="dynamicTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesdynamic">
               <span
                 className={`${
@@ -110,7 +110,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 } suspendedTxtdynamic`}
               ></span>
             </div>
-          )}
+          )} */}
           <div
             className="dynamicTeam"
             style={{ width: isMobile ? "55%" : "28%" }}
@@ -138,8 +138,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             className="dynamicRateBox"
             style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {data?.activeStatus === "live" &&
-              data?.runners?.[0]?.status != "ACTIVE" && (
+            {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesdynamic">
                   <span
                     className={`${
@@ -294,7 +293,7 @@ const DynamicMarket = ({ title, data, detail }) => {
         </div>
 
         <div className="dynamicTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesdynamic">
               <span
                 className={`${
@@ -304,7 +303,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 
               </span>
             </div>
-          )}
+          )} */}
           <div
             className="dynamicTeam"
             style={{ width: isMobile ? "55%" : "28%" }}
@@ -332,8 +331,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             className="dynamicRateBox"
             style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {data?.activeStatus === "live" &&
-              data?.runners?.[1]?.status != "ACTIVE" && (
+            {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesdynamic">
                   <span
                     className={`${
