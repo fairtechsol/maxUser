@@ -25,9 +25,9 @@ const ManualMarket = ({ title, data, detail }) => {
       rate: odds,
       type: type,
       stake: 0,
-      teamA: detail?.teamA,
-      teamB: detail?.teamB,
-      teamC: detail?.teamC,
+      teamA: data?.type?.includes("quickbookmaker") ?detail?.teamA:"Yes",
+      teamB: data?.type?.includes("quickbookmaker") ?detail?.teamB:"No",
+      teamC: data?.type?.includes("quickbookmaker") ?detail?.teamC:"",
       betId: data?.id,
       eventType: detail?.matchType,
       matchId: detail?.id,
@@ -103,14 +103,14 @@ const ManualMarket = ({ title, data, detail }) => {
           )}
           <div className="manualTeam">
             <span className={`teamFont manualTeamTxt`}>
-              {(data?.type?.includes("quickbookmaker") ? detail?.teamB : "No") >
+              {(data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes") >
               25
                 ? `${(data?.type?.includes("quickbookmaker")
-                    ? detail?.teamB
+                    ? detail?.teamA
                     : "Yes"
                   )?.slice(0, 25)}...`
                 : data?.type?.includes("quickbookmaker")
-                ? detail?.teamB
+                ? detail?.teamA
                 : "Yes"}
             </span>
             <span

@@ -370,7 +370,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
         show={runAmountModal}
         setShow={handleModal}
       >
-        <div style={{ width: "100%", height: "500px", overflowY: "auto" }}>
+        <div style={{ width: "100%", height: "auto", overflowY: "auto" }}>
           <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
         </div>
       </CustomModal>

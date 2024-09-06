@@ -332,22 +332,23 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
+                    
+                    {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
+                      <Col className="g-0" md={12}>
+                        <MobileSessionFancy
+                          title={"fancy1"}
+                          data={matchDetails?.apiSession?.fancy1}
+                          detail={matchDetails}
+                          // data={matchDetails?.matchOdd}
+                        />
+                      </Col>
+                    )}
                     {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
                       <Col className="g-0" md={12}>
                         <MobileSessionOddEven
                           title={"oddeven"}
                           // type={"fancy"}
                           data={matchDetails?.apiSession?.oddEven}
-                          detail={matchDetails}
-                          // data={matchDetails?.matchOdd}
-                        />
-                      </Col>
-                    )}
-                    {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
-                      <Col className="g-0" md={12}>
-                        <MobileSessionFancy
-                          title={"fancy1"}
-                          data={matchDetails?.apiSession?.fancy1}
                           detail={matchDetails}
                           // data={matchDetails?.matchOdd}
                         />
