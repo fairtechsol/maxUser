@@ -152,6 +152,7 @@ export const teamStatus = {
 export const matchBettingType = {
   matchOdd: "matchOdd",
   bookmaker: "bookmaker",
+  bookmaker2: "bookmaker2",
   quickbookmaker1: "quickbookmaker1",
   quickbookmaker2: "quickbookmaker2",
   quickbookmaker3: "quickbookmaker3",
@@ -183,6 +184,11 @@ export const profitLossDataForMatchConstants = {
     C: "teamCRate",
   },
   [matchBettingType.bookmaker]: {
+    A: "teamARate",
+    B: "teamBRate",
+    C: "teamCRate",
+  },
+  [matchBettingType.bookmaker2]: {
     A: "teamARate",
     B: "teamBRate",
     C: "teamCRate",

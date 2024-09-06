@@ -134,12 +134,12 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         ? detail?.profitLossDataSession?.reduce(
                             (accumulator: any, bet: any) => {
                               const maxLossToAdd =
-                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
+                                bet?.betId === item?.id ? +bet?.maxLoss : "";
                               return accumulator + maxLossToAdd;
                             },
-                            0
+                            ""
                           )
-                        : 0}
+                        : ""}
                     </span>
                   </div>
                   <div
