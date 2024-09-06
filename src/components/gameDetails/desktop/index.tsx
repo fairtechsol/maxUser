@@ -55,7 +55,8 @@ const DesktopGameDetail = () => {
     try {
       const response: any = await service.get(
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
-        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
+        // `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
       );
       if (response) {
         setLiveScoreBoardData(response);
@@ -134,6 +135,11 @@ const DesktopGameDetail = () => {
                     __html: liveScoreBoardData ? liveScoreBoardData : "",
                   }}
                 ></div>
+                <iframe
+                  width={"100%"}
+                  height={"100px"}
+                  src={`https://dpmatka.in/dcasino/score.php?matchId=${matchDetails?.eventId}`}
+                ></iframe>
               </Col>
               {matchDetails?.matchOdd?.isActive && (
                 <Col md={12} style={{ marginTop: "10px" }}>
@@ -184,7 +190,6 @@ const DesktopGameDetail = () => {
                     </div>
                   )
                 )}
-              
               {(matchDetails?.manualTiedMatch?.isActive ||
                 matchDetails?.manualTideMatch?.isActive) && (
                 <Col md={12}>
@@ -221,7 +226,8 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {(matchDetails?.apiSession?.session?.section?.length > 0 || manualEntries) && (
+              {(matchDetails?.apiSession?.session?.section?.length > 0 ||
+                manualEntries) && (
                 <Col md={12}>
                   <SessionNormal
                     title={"Normal"}
@@ -252,7 +258,6 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-             
               {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
                 <Col md={12}>
                   <SessionFancy
@@ -263,7 +268,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-               {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
+              {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
                 <Col md={12}>
                   <SessionOddEven
                     title={"oddeven"}
