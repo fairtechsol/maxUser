@@ -25,9 +25,9 @@ const ManualMarket = ({ title, data, detail }) => {
       rate: odds,
       type: type,
       stake: 0,
-      teamA: data?.type?.includes("quickbookmaker") ?detail?.teamA:"Yes",
-      teamB: data?.type?.includes("quickbookmaker") ?detail?.teamB:"No",
-      teamC: data?.type?.includes("quickbookmaker") ?detail?.teamC:"",
+      teamA: data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes",
+      teamB: data?.type?.includes("quickbookmaker") ? detail?.teamB : "No",
+      teamC: data?.type?.includes("quickbookmaker") ? detail?.teamC : "",
       betId: data?.id,
       eventType: detail?.matchType,
       matchId: detail?.id,
@@ -103,8 +103,9 @@ const ManualMarket = ({ title, data, detail }) => {
           )} */}
           <div className="manualTeam">
             <span className={`teamFont manualTeamTxt`}>
-              {(data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes") >
-              25
+              {(data?.type?.includes("quickbookmaker")
+                ? detail?.teamA
+                : "Yes") > 25
                 ? `${(data?.type?.includes("quickbookmaker")
                     ? detail?.teamA
                     : "Yes"
@@ -135,7 +136,8 @@ const ManualMarket = ({ title, data, detail }) => {
             className="manualRateBox"
             style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.activeStatus !== "live" || data?.statusTeamA != "active") && (
+            {(data?.activeStatus !== "live" ||
+              data?.statusTeamA != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
                   className={`${
@@ -307,7 +309,8 @@ const ManualMarket = ({ title, data, detail }) => {
             className="manualRateBox"
             style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.activeStatus !== "live" || data?.statusTeamB != "active") && (
+            {(data?.activeStatus !== "live" ||
+              data?.statusTeamB != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
                   className={`${
@@ -474,17 +477,18 @@ const ManualMarket = ({ title, data, detail }) => {
               className="manualRateBox"
               style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
             >
-              {(data?.activeStatus !== "live" || data?.statusTeamC != "active") && (
-                  <div className="suspended-overlayRatesmanual">
-                    <span
-                      className={`${
-                        !isMobile ? "f-size18" : "f-size12"
-                      } suspendedTxtmanual`}
-                    >
-                      SUSPENDED
-                    </span>
-                  </div>
-                )}
+              {(data?.activeStatus !== "live" ||
+                data?.statusTeamC != "active") && (
+                <div className="suspended-overlayRatesmanual">
+                  <span
+                    className={`${
+                      !isMobile ? "f-size18" : "f-size12"
+                    } suspendedTxtmanual`}
+                  >
+                    SUSPENDED
+                  </span>
+                </div>
+              )}
               {!isMobile && (
                 <div
                   className="manualBackBox back3Background"
