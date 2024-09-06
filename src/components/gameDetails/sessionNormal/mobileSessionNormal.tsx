@@ -128,7 +128,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             ? "color-red"
                             : "color-green"
                           : ""
-                      }`}
+                      } title-13`}
                     >
                       {detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.reduce(

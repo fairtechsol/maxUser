@@ -133,7 +133,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                     ] < 0
                   ? "color-red"
                   : ""
-              }`}
+              } ${isMobile?"fbold title-12":"fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A
@@ -379,7 +379,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                     ] < 0
                   ? "color-red"
                   : ""
-              }`}
+              } ${isMobile?"fbold title-12":"fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B
