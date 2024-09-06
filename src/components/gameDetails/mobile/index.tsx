@@ -239,15 +239,7 @@ const MobileGameDetail = () => {
                           </div>
                         )
                       )}
-                    {matchDetails?.apiTideMatch?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <DynamicMarket
-                          title={matchDetails?.apiTideMatch?.name}
-                          data={matchDetails?.apiTideMatch}
-                          detail={matchDetails}
-                        />
-                      </Col>
-                    )}
+                    
                     {matchDetails?.manualTiedMatch?.isActive && (
                       <Col className="g-0" md={12}>
                         <ManualMarket
@@ -353,6 +345,15 @@ const MobileGameDetail = () => {
                           );
                         }
                       )}
+                      {matchDetails?.apiTideMatch?.isActive && (
+                      <Col className="g-0" md={12}>
+                        <DynamicMarket
+                          title={matchDetails?.apiTideMatch?.name}
+                          data={matchDetails?.apiTideMatch}
+                          detail={matchDetails}
+                        />
+                      </Col>
+                    )}
                     {/* {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
