@@ -149,7 +149,10 @@ const MobileGameDetail = () => {
         }
         style={{ padding: "5px" }}
       />
-      <CommonTabs defaultActive="odds" className="color">
+      <CommonTabs
+        defaultActive="odds"
+        className="color" // Update the active tab when clicked
+      >
         {[
           {
             id: "odds",
@@ -159,44 +162,33 @@ const MobileGameDetail = () => {
             id: "matchedBet",
             name: `MATCHED BET(${Array.from(new Set(placedBets))?.length})`,
           },
-          {
-            id: "live",
-            name: (
-              <div style={{ padding: "0px", fontSize: "11px" }}>
-                <FaTv />
-              </div>
-            ),
-          },
-        ]?.map((item, index) => {
-          return (
+          channelId !== "0" && channelId
+            ? {
+                id: "live",
+                name: (
+                  <div style={{ padding: "0px", fontSize: "11px" }}>
+                    <FaTv />
+                  </div>
+                ),
+              }
+            : null, // Only show live tab if channelId is valid
+        ]
+          ?.filter(Boolean) // Filter out null if channelId is invalid
+          .map((item, index) => (
             <Tab
               key={item?.id}
               eventKey={item?.id}
               tabClassName="m-tab"
               title={
-                <div className="font p-2 lh-1 py-0 f600">{item?.name} </div>
+                <div className="font p-2 lh-1 py-0 f600">{item?.name}</div>
               }
             >
               {index == 0 ? (
                 <Container>
                   <Row>
-                    <Col className="g-0" md={12}>
-                      <div
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          backgroundColor: "#000",
-                        }}
-                        dangerouslySetInnerHTML={{
-                          __html: liveScoreBoardData ? liveScoreBoardData : "",
-                        }}
-                      ></div>
-                    </Col>
-                    {channelId !== "0" && channelId !== "" && (
-                      <Col className="g-0" md={12}>
-                        <LiveStreamComponent channelId={channelId} />
-                      </Col>
-                    )}
+                  {item?.id === "live" ?   <Col className="g-0" md={12}>
+                      <LiveStreamComponent channelId={channelId} />
+                    </Col> : ""} 
                     {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <MatchOdd
@@ -442,12 +434,28 @@ const MobileGameDetail = () => {
                     )} */}
                   </Row>
                 </Container>
+              ) : item?.id === "live" && channelId !== "0" && channelId ? (
+                <Container>
+                  <Row>
+                    <Col className="g-0" md={12}>
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          backgroundColor: "#000",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: liveScoreBoardData ? liveScoreBoardData : "",
+                        }}
+                      ></div>
+                    </Col>
+                  </Row>
+                </Container>
               ) : (
                 <MyBet />
               )}
             </Tab>
-          );
-        })}
+          ))}
       </CommonTabs>
     </div>
   );

@@ -6,11 +6,11 @@ import { Modal } from 'react-bootstrap';
 const ImageModal = ({ imageUrl, customClass,show,
   setShow, }) => {
   return (
-    <Modal  show={show}  onHide={() => setShow(false)} className={`customModal ${customClass}`}  >
-          <div className="modal-header bg-primary" onClick={() => setShow(false)}>
+    <Modal  show={show}  onHide={() => setShow(false)} className={` customModal ${customClass}`}  >
+          <div className="modal-header bg-primary rounded-0" onClick={() => setShow(false)}>
             <button 
               type="button" 
-              className="btn-close " 
+              className="btn-close btn-close-white" 
               aria-label="Close" 
               
             ></button>
