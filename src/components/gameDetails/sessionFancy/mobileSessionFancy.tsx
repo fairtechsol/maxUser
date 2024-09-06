@@ -109,7 +109,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                             ? "color-red"
                             : "color-green"
                           : ""
-                      }`}
+                      } title-13`}
                     >
                       {detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.reduce(

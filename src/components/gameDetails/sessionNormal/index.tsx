@@ -151,7 +151,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ? "color-red"
                             : "color-green"
                           : ""
-                      }`}
+                      }  title-14`}
                     >
                       {detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.reduce(
@@ -464,7 +464,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               ? "color-red"
                               : "color-green"
                             : ""
-                        }`}
+                        }  title-14`}
                       >
                         {detail?.profitLossDataSession
                           ? detail?.profitLossDataSession?.reduce(

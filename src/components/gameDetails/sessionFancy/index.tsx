@@ -132,7 +132,7 @@ const SessionFancy = ({ title, data, detail }) => {
                             ? "color-red"
                             : "color-green"
                           : ""
-                      }`}
+                      } title-14`}
                     >
                       {detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.reduce(
@@ -300,7 +300,7 @@ const SessionFancy = ({ title, data, detail }) => {
                               ? "color-red"
                               : "color-green"
                             : ""
-                        }`}
+                        } title-14`}
                       >
                         {detail?.profitLossDataSession
                           ? detail?.profitLossDataSession?.reduce(
