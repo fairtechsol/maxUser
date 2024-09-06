@@ -105,7 +105,12 @@ const ManualMarket = ({ title, data, detail }) => {
             <span
               className={`${!isMobile ? "f-size14" : "f-size13"} manualTeamTxt`}
             >
-              {data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes"}
+              {(data?.type?.includes("quickbookmaker") ? detail?.teamB : "No") > 25
+                          ? `${(data?.type?.includes("quickbookmaker") ? detail?.teamB : "Yes")?.slice(
+                              0,
+                              25
+                            )}...`
+                          : (data?.type?.includes("quickbookmaker") ? detail?.teamB : "Yes")}
             </span>
             <span
               className={`${
@@ -295,7 +300,12 @@ const ManualMarket = ({ title, data, detail }) => {
             <span
               className={`${!isMobile ? "f-size14" : "f-size13"} manualTeamTxt`}
             >
-              {data?.type?.includes("quickbookmaker") ? detail?.teamB : "No"}
+              {(data?.type?.includes("quickbookmaker") ? detail?.teamB : "No") > 25
+                          ? `${(data?.type?.includes("quickbookmaker") ? detail?.teamB : "No")?.slice(
+                              0,
+                              25
+                            )}...`
+                          : (data?.type?.includes("quickbookmaker") ? detail?.teamB : "No")}
             </span>
             <span
               className={`${
@@ -488,7 +498,12 @@ const ManualMarket = ({ title, data, detail }) => {
                   !isMobile ? "f-size14" : "f-size13"
                 } manualTeamTxt`}
               >
-                {detail?.teamC}
+               {detail?.teamC?.length > 25
+                          ? `${detail?.teamC?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamC}
               </span>{" "}
               <span
                 className={`${

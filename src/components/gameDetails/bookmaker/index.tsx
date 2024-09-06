@@ -122,7 +122,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
             className="bookmakerTeam"
             style={box === 6 ? { width: "28%" } : {}}
           >
-            <span className={`teamFont bookmakerTeamTxt`}>{detail?.teamA}</span>
+            <span className={`teamFont bookmakerTeamTxt`}>{detail?.teamA?.length > 25
+                          ? `${detail?.teamA?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamA}</span>
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -335,7 +340,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
             <span
               className={`teamFont bookmakerTeamTxt`}
             >
-              {detail?.teamB}
+              {detail?.teamB?.length > 25
+                          ? `${detail?.teamB?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamB}
             </span>
             <span
               className={`${
@@ -550,7 +560,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
               <span
                 className={`teamFont bookmakerTeamTxt`}
               >
-                {detail?.teamC}
+                {detail?.teamC?.length > 25
+                          ? `${detail?.teamC?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamC}
               </span>{" "}
               <span
                 className={`${

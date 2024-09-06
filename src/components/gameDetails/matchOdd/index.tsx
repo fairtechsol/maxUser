@@ -107,7 +107,12 @@ const MatchOdd = ({ title, data, detail }) => {
             <span
               className={`teamFont matchOddTeamTxt`}
             >
-              {detail?.teamA}
+              {detail?.teamA?.length > 20
+                          ? `${detail?.teamA?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamA}
             </span>
             <span
               className={`${
@@ -292,7 +297,12 @@ const MatchOdd = ({ title, data, detail }) => {
             <span
               className={`teamFont matchOddTeamTxt`}
             >
-              {detail?.teamB}
+              {detail?.teamB?.length > 25
+                          ? `${detail?.teamB?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamB}
             </span>
             <span
               className={`${
@@ -478,7 +488,12 @@ const MatchOdd = ({ title, data, detail }) => {
               <span
                 className={`teamFont matchOddTeamTxt`}
               >
-                {detail?.teamC}
+               {detail?.teamC?.length > 25
+                          ? `${detail?.teamC?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamC}
               </span>
               <span
                 className={`${
