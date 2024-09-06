@@ -1,6 +1,6 @@
 import { debounce } from "lodash";
 import { useMemo, useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaSearchPlus } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import {getMatchListSearch } from "../../../../../store/actions/match/matchListAction";
@@ -46,7 +46,7 @@ const SearchBox = () => {
       )}
 
       <div className="search-icon" onClick={searchIcoHandle}>
-        {searchIco ? <IoClose /> : <i className="fas fa-search-plus"></i>}
+        {searchIco ? <IoClose style={{color: "black"}} /> : <FaSearchPlus/>}
       </div>
       {/* </div> */}
 
