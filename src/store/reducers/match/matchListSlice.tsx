@@ -328,7 +328,7 @@ const matchListSlice = createSlice({
                   ...item,
                   maxLoss: JSON.parse(profitLossData)?.maxLoss,
                   totalBet: +item?.totalBet + 1,
-                  profitLoss:  JSON.parse(profitLossData)?.betPlaced
+                  profitLoss: JSON.parse(profitLossData)?.betPlaced,
                 };
               }
               return item;

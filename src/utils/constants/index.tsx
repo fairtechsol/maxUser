@@ -121,6 +121,7 @@ export const Constants = {
   thirdPartyCard: "https://casinoserviceapi.fairgame.club",
   localThird: "http://localhost:3200",
   // localThirdCard: "https://3200dev.fairgame.club",
+  // fdsfsdfsdsdfsd
   localThirdCard: "http://localhost:3201",
   WEBSOCKET: "websocket",
   POLLING: "polling",
@@ -1504,7 +1505,7 @@ export const sportsRules = [
 
 export const casinoIcons = [
   {
-    url: "",
+    url: "/ballbyball",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
     name: "Ball By Ball",
