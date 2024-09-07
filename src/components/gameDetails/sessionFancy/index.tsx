@@ -92,10 +92,10 @@ const SessionFancy = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div className="sessionYesNoBoxContainer">
+            <div className="sessionYesNoBoxContainer" >
               <div
-                className="sessionYesNoBox"
-                style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+                className="sessionYesNoBox  rateBoxWidthNormal"
+                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
               >
                 <div className="sessionYesBox back1Background">
                   <span className={`f-size16 sessionBackTxt`}>Back</span>
@@ -109,10 +109,11 @@ const SessionFancy = ({ title, data, detail }) => {
             {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName">
+                  <div className="sessionRateName runnerWidthNormal"
+                      style={{ overflow: "hidden" }}>
                     <span
-                      className="f-size14"
-                      style={{ width: "60%", lineHeight: 1 }}
+                      className="f-size15"
+                      style={{ fontWeight:"400", lineHeight: 1 }}
                     >
                       {item?.RunnerName?.length > 25
                         ? `${item?.RunnerName?.slice(0, 25)}...`
@@ -147,10 +148,10 @@ const SessionFancy = ({ title, data, detail }) => {
                     </span>
                   </div>
                   <div
-                    className="sessionRateBoxContainer"
-                    style={{
-                      width: isLap ? "180px" : !isMobile ? "240px" : "",
-                    }}
+                    className="sessionRateBoxContainer rateBoxWidthNormal"
+                    // style={{
+                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    // }}
                   >
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
@@ -192,9 +193,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           "-"}
                       </span>
                       <span
-                        className={`${
-                          !isMobile ? "f-size12" : "f-size11"
-                        } sessionRate2Box`}
+                        className={`f-size12 sessionRate2Box`}
                       >
                         {item?.ex?.availableToBack?.[0]?.size}
                       </span>
@@ -258,8 +257,8 @@ const SessionFancy = ({ title, data, detail }) => {
             >
               <div className="sessionYesNoBoxContainer">
                 <div
-                  className="sessionYesNoBox"
-                  style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+                  className="sessionYesNoBox rateBoxWidthNormal"
+                  // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
                 >
                   <div className="sessionYesBox back1Background">
                     <span className={`f-size16 sessionBackTxt`}>Back</span>
@@ -273,7 +272,7 @@ const SessionFancy = ({ title, data, detail }) => {
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
                   <div className="sessionRateContainer" key={index}>
-                    <div className="sessionRateName">
+                    <div className="sessionRateName runnerWidthNormal"  style={{ overflow: "hidden" }}>
                       <span
                         className="f-size14"
                         style={{
@@ -313,39 +312,13 @@ const SessionFancy = ({ title, data, detail }) => {
                             )
                           : 0}
                       </span>
-                      <span
-                        className={`${
-                          detail?.profitLossDataSession
-                            ? detail?.profitLossDataSession?.reduce(
-                                (accumulator: any, bet: any) => {
-                                  const maxLossToAdd =
-                                    bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                  return accumulator + maxLossToAdd;
-                                },
-                                0
-                              ) < 0
-                              ? "color-red"
-                              : "color-green"
-                            : ""
-                        }`}
-                      >
-                        {detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            )
-                          : 0}
-                      </span>
+                    
                     </div>
                     <div
-                      className="sessionRateBoxContainer"
-                      style={{
-                        width: isLap ? "180px" : !isMobile ? "240px" : "",
-                      }}
+                      className="sessionRateBoxContainer rateBoxWidthNormal"
+                      // style={{
+                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                      // }}
                     >
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
