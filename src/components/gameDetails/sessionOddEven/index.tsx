@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { calculateMaxLoss } from "../../../helpers";
 
 const SessionOddEven = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -96,44 +97,42 @@ const SessionOddEven = ({ title, data, detail }) => {
             {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
-                  <div className="sessionRateName">
+                  <div className="sessionRateName runnerWidthNormal"  style={{ overflow: "hidden" }}>
                     <span
                       className="f-size15"
-                      style={{ width: "60%", fontWeight: "400" }}
+                      style={{ width: "60%", fontWeight: "400", lineHeight: 1 }}
                     >
                       {item?.RunnerName?.length > 25
                         ? `${item?.RunnerName?.slice(0, 25)}...`
                         : item?.RunnerName}
-                    </span>
+                    </span>{" "}
                     <span
                       className={`${
-                        detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            ) < 0
-                            ? "color-red"
-                            : "color-green"
-                          : ""
-                      }`}
+                        calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
+                          ? "color-red"
+                          : "color-red"
+                      }  title-14`}
                     >
-                      {detail?.profitLossDataSession
-                        ? detail?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                              return accumulator + maxLossToAdd;
-                            },
-                            0
-                          )
-                        : 0}
+                      {calculateMaxLoss(
+                        detail?.profitLossDataSession,
+                        item?.id
+                      ) !== 0
+                        ? `-${calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
+                        : ""}
                     </span>
                   </div>
-                  <div className="sessionRateBoxContainer">
+                  <div
+                    className="sessionRateBoxContainer rateBoxWidthNormal"
+                    // style={{
+                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    // }}
+                  >
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
                       <div className="suspended-overlayRates">
@@ -244,44 +243,46 @@ const SessionOddEven = ({ title, data, detail }) => {
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
                   <div className="sessionOddEvenRateContainer" key={index}>
-                    <div className="sessionRateName">
+                    <div className="sessionRateName runnerWidthNormal"  style={{ overflow: "hidden" }}>
                       <span
                         className="f-size15"
-                        style={{ width: "60%", fontWeight: "400" }}
+                        style={{
+                          width: "60%",
+                          fontWeight: "400",
+                          lineHeight: 1,
+                        }}
                       >
                         {item?.RunnerName?.length > 25
                           ? `${item?.RunnerName?.slice(0, 25)}...`
                           : item?.RunnerName}
-                      </span>
+                      </span>{" "}
                       <span
                         className={`${
-                          detail?.profitLossDataSession
-                            ? detail?.profitLossDataSession?.reduce(
-                                (accumulator: any, bet: any) => {
-                                  const maxLossToAdd =
-                                    bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                  return accumulator + maxLossToAdd;
-                                },
-                                0
-                              ) < 0
-                              ? "color-red"
-                              : "color-green"
-                            : ""
-                        }`}
+                          calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) < 0
+                            ? "color-red"
+                            : "color-red"
+                        }  title-14`}
                       >
-                        {detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            )
-                          : 0}
+                        {calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) !== 0
+                          ? `-${calculateMaxLoss(
+                              detail?.profitLossDataSession,
+                              item?.id
+                            )}`
+                          : ""}
                       </span>
                     </div>
-                    <div className="sessionRateBoxContainer">
+                    <div
+                      className="sessionRateBoxContainer rateBoxWidthNormal"
+                      // style={{
+                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                      // }}
+                    >
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                         <div className="suspended-overlayRates">
@@ -326,11 +327,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         >
                           <span
                             className={`${
-                              !isMobile
-                                ? "f-size18"
-                                : isLap
-                                ? "f-size16"
-                                : "f-size15"
+                              isLap ? "f-size16" : "f-size18"
                             } sessionRate1Box`}
                           >
                             {handlePrice(
@@ -371,11 +368,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         >
                           <span
                             className={`${
-                              !isMobile
-                                ? "f-size18"
-                                : isLap
-                                ? "f-size16"
-                                : "f-size15"
+                              isLap ? "f-size16" : "f-size18"
                             } sessionRate1Box`}
                           >
                             {handlePrice(

@@ -79,7 +79,10 @@ const MatchOdd = ({ title, data, detail }) => {
               Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
             </span>
           </div>
-          <div className="matchOddBackLayBoxContainer">
+          <div
+            className="matchOddBackLayBoxContainer backLayBoxWidth"
+            // style={{ width: isLap ? "240px" : !isMobile ? "320px" : "" }}
+          >
             <div className="matchOddBackBoxTab">
               <span className={`f-size16 matchOddBackTxt`}>Back</span>
             </div>
@@ -91,7 +94,7 @@ const MatchOdd = ({ title, data, detail }) => {
         </div>
 
         <div className="matchOddTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesMatchOdd">
               <span
                 className={`${
@@ -99,14 +102,17 @@ const MatchOdd = ({ title, data, detail }) => {
                 } suspendedTxtMatchOdd`}
               ></span>
             </div>
-          )}
+          )} */}
           <div className="matchOddTeam">
             <span
-              className={`${
-                !isMobile ? "f-size14" : "f-size13"
-              } matchOddTeamTxt`}
+              className={`teamFont matchOddTeamTxt`}
             >
-              {detail?.teamA}
+              {detail?.teamA?.length > 20
+                          ? `${detail?.teamA?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamA}
             </span>
             <span
               className={`${
@@ -119,16 +125,18 @@ const MatchOdd = ({ title, data, detail }) => {
                     ] < 0
                   ? "color-red"
                   : ""
-              }`}
+              } ${isMobile?"fbold title-12":"fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A
               ] ?? 0}
             </span>
           </div>
-          <div className="matchOddRateBox">
-            {data?.activeStatus === "live" &&
-              data?.runners?.[0]?.status != "ACTIVE" && (
+          <div
+            className="matchOddRateBox rateBoxWidth"
+            // style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
+          >
+            {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesMatchOdd">
                   <span
                     className={`${
@@ -152,20 +160,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
               </span>
             </div>
@@ -182,20 +182,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToBack?.[1]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}
               </span>
             </div>
@@ -212,20 +204,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToBack?.[2]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[0]?.ex?.availableToBack?.[2]?.size}
               </span>
             </div>
@@ -242,20 +226,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToLay?.[0]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}
               </span>
             </div>
@@ -272,20 +248,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToLay?.[1]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}
               </span>
             </div>
@@ -302,20 +270,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToLay?.[2]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}
               </span>
             </div>
@@ -323,7 +283,7 @@ const MatchOdd = ({ title, data, detail }) => {
         </div>
 
         <div className="matchOddTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesMatchOdd">
               <span
                 className={`${
@@ -331,14 +291,17 @@ const MatchOdd = ({ title, data, detail }) => {
                 } suspendedTxtMatchOdd`}
               ></span>
             </div>
-          )}
+          )} */}
           <div className="matchOddTeam">
             <span
-              className={`${
-                !isMobile ? "f-size14" : "f-size12"
-              } matchOddTeamTxt`}
+              className={`teamFont matchOddTeamTxt`}
             >
-              {detail?.teamB}
+              {detail?.teamB?.length > 25
+                          ? `${detail?.teamB?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamB}
             </span>
             <span
               className={`${
@@ -351,16 +314,18 @@ const MatchOdd = ({ title, data, detail }) => {
                     ] < 0
                   ? "color-red"
                   : ""
-              }`}
+              } ${isMobile?"fbold title-12":"fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B
               ] ?? 0}
             </span>
           </div>
-          <div className="matchOddRateBox">
-            {data?.activeStatus === "live" &&
-              data?.runners?.[1]?.status != "ACTIVE" && (
+          <div
+            className="matchOddRateBox rateBoxWidth"
+            // style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
+          >
+            {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesMatchOdd">
                   <span
                     className={`${
@@ -384,20 +349,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
               </span>
             </div>
@@ -414,20 +371,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToBack?.[1]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}
               </span>
             </div>
@@ -444,20 +393,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToBack?.[2]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[1]?.ex?.availableToBack?.[2]?.size}
               </span>
             </div>
@@ -474,20 +415,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToLay?.[0]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}
               </span>
             </div>
@@ -504,20 +437,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToLay?.[1]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}
               </span>
             </div>
@@ -534,20 +459,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } matchOddRate1Box`}
-              >
+              <span className={`rateFont matchOddRate1Box`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToLay?.[2]?.price
                 ) ?? "-"}
               </span>
-              <span
-                className={`${
-                  !isMobile ? "f-size12" : "f-size11"
-                } matchOddRate2Box`}
-              >
+              <span className={`sizeFont matchOddRate2Box`}>
                 {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}
               </span>
             </div>
@@ -556,7 +473,7 @@ const MatchOdd = ({ title, data, detail }) => {
 
         {detail?.teamC && (
           <div className="matchOddTeamTab">
-            {data?.activeStatus != "live" && (
+            {/* {data?.activeStatus != "live" && (
               <div className="suspended-overlayRatesMatchOdd">
                 <span
                   className={`${
@@ -564,14 +481,17 @@ const MatchOdd = ({ title, data, detail }) => {
                   } suspendedTxtMatchOdd`}
                 ></span>
               </div>
-            )}
+            )} */}
             <div className="matchOddTeam">
               <span
-                className={`${
-                  !isMobile ? "f-size14" : "f-size12"
-                } matchOddTeamTxt`}
+                className={`teamFont matchOddTeamTxt`}
               >
-                {detail?.teamC}
+               {detail?.teamC?.length > 25
+                          ? `${detail?.teamC?.slice(
+                              0,
+                              25
+                            )}...`
+                          : detail?.teamC}
               </span>
               <span
                 className={`${
@@ -584,16 +504,18 @@ const MatchOdd = ({ title, data, detail }) => {
                       ] < 0
                     ? "color-red"
                     : ""
-                }`}
+                } ${isMobile?"fbold title-12":"fbold title-14"}`}
               >
                 {detail?.profitLossDataMatch?.[
                   profitLossDataForMatchConstants[data?.type]?.C
                 ] ?? 0}
               </span>
             </div>
-            <div className="matchOddRateBox">
-              {data?.activeStatus === "live" &&
-                data?.runners?.[2]?.status != "ACTIVE" && (
+            <div
+              className="matchOddRateBox rateBoxWidth"
+              // style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
+            >
+              {(data?.activeStatus !== "live" || data?.runners?.[2]?.status !== "ACTIVE") && (
                   <div className="suspended-overlayRatesMatchOdd">
                     <span
                       className={`${
@@ -617,20 +539,12 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } matchOddRate1Box`}
-                >
+                <span className={`rateFont matchOddRate1Box`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToBack?.[0]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } matchOddRate2Box`}
-                >
+                <span className={`sizeFont matchOddRate2Box`}>
                   {data?.runners?.[2]?.ex?.availableToBack?.[0]?.size}
                 </span>
               </div>
@@ -647,20 +561,12 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } matchOddRate1Box`}
-                >
+                <span className={`rateFont matchOddRate1Box`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToBack?.[1]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } matchOddRate2Box`}
-                >
+                <span className={`sizeFont matchOddRate2Box`}>
                   {data?.runners?.[2]?.ex?.availableToBack?.[1]?.size}
                 </span>
               </div>
@@ -677,20 +583,12 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } matchOddRate1Box`}
-                >
+                <span className={`rateFont matchOddRate1Box`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToBack?.[2]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } matchOddRate2Box`}
-                >
+                <span className={`sizeFont matchOddRate2Box`}>
                   {data?.runners?.[2]?.ex?.availableToBack?.[2]?.size}
                 </span>
               </div>
@@ -707,20 +605,12 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } matchOddRate1Box`}
-                >
+                <span className={`rateFont matchOddRate1Box`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToLay?.[0]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } matchOddRate2Box`}
-                >
+                <span className={`sizeFont matchOddRate2Box`}>
                   {data?.runners?.[2]?.ex?.availableToLay?.[0]?.size}
                 </span>
               </div>
@@ -737,20 +627,12 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } matchOddRate1Box`}
-                >
+                <span className={`rateFont matchOddRate1Box`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToLay?.[1]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } matchOddRate2Box`}
-                >
+                <span className={`sizeFont matchOddRate2Box`}>
                   {data?.runners?.[2]?.ex?.availableToLay?.[1]?.size}
                 </span>
               </div>
@@ -767,20 +649,12 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } matchOddRate1Box`}
-                >
+                <span className={`rateFont matchOddRate1Box`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToLay?.[2]?.price
                   ) ?? "-"}
                 </span>
-                <span
-                  className={`${
-                    !isMobile ? "f-size12" : "f-size11"
-                  } matchOddRate2Box`}
-                >
+                <span className={`sizeFont matchOddRate2Box`}>
                   {data?.runners?.[2]?.ex?.availableToLay?.[2]?.size}
                 </span>
               </div>

@@ -117,19 +117,19 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                             <div className="d-flex w-100">
                               <React.Fragment>
                                 <BackLayComponent
-                                  heading="."
+                                  heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
-                                  heading="."
+                                  heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
-                                  heading="."
+                                  heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
@@ -157,7 +157,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                           : `other-game-detail/${mTypeid}`
                                       }/${item?.id}`}
                                     >
-                                      <b className="title-14 f600">
+                                      <b className="title-14 f600" style={{color:"#333"}}>
                                         {item?.title}
                                       </b>
                                       <div className="title-12">
@@ -191,7 +191,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   </div>
                                 </div>
                                 <div className="d-flex w-100">
-                                  {item?.matchOdds?.map(
+                                  {(item?.matchOdds?.length > 0 ? item.matchOdds : new Array(1).fill(null))?.map(
                                     (item: any, index: number) => (
                                       <React.Fragment key={index}>
                                         <BackLayComponent

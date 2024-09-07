@@ -82,11 +82,12 @@ const placedBet = createSlice({
       })
       .addCase(getRunAmount.fulfilled, (state, action) => {
         const { id, arr } = action.payload;
+        const modifiedBets= arr?.slice(4,arr?.length-4)
         state.loading = false;
         state.success = true;
         let data = {
           betId: id,
-          runAmountData: arr?.length > 0 ? arr : [],
+          runAmountData: modifiedBets?.length > 0 ? modifiedBets : [],
         };
         state.runAmount = data;
       })

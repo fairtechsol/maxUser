@@ -83,7 +83,7 @@
   width: 50%;
 }
 .bookmakerBackTxt {
-  color: #000;
+  color: #333;
   font-weight: bold;
 }
 .bookmakerTeamTab {
@@ -105,16 +105,21 @@
   box-sizing: border-box;
 }
 .bookmakerTeam {
-  padding: 5px;
+  padding: 0px 5px;
   display: flex;
   justify-content: start;
   align-items: flex-start;
   flex-direction: column;
+  // line-height: 1;
 }
 .bookmakerTeamTxt {
-  font-size: 16px;
+  // font-size: 16px;
+  width: 100%;
   font-weight: 400;
   color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
 }
 .bookmaker1RateBox {
   position: relative;
@@ -184,7 +189,7 @@
 }
 .suspendedTxtBookmaker {
   font-weight: 400;
-  color: #df0e00;
+  color: #ff1e30;
 }
 .f-size10 {
   font-size: 10px !important;

@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { calculateMaxLoss } from "../../../helpers";
 
 const MobileSessionFancy = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -91,36 +92,32 @@ const MobileSessionFancy = ({ title, data, detail }) => {
             {data?.section?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName">
+                  <div
+                    className="sessionRateName"
+                    style={{ width: "60%", overflow: "hidden" }}
+                  >
                     <span className="f-size13" style={{ fontWeight: "400" }}>
                       {item?.RunnerName}
                     </span>
                     <span
                       className={`${
-                        detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            ) < 0
-                            ? "color-red"
-                            : "color-green"
-                          : ""
-                      }`}
+                        calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
+                          ? "color-red"
+                          : "color-red"
+                      } title-13`}
                     >
-                      {detail?.profitLossDataSession
-                        ? detail?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                              return accumulator + maxLossToAdd;
-                            },
-                            0
-                          )
-                        : 0}
+                      {calculateMaxLoss(
+                        detail?.profitLossDataSession,
+                        item?.id
+                      ) !== 0
+                        ? `-${calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
+                        : ""}
                     </span>
                   </div>
                   <div

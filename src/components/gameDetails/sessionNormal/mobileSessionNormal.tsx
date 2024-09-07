@@ -1,14 +1,25 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { useEffect, useState } from "react";
+import {
+  getRunAmount,
+  resetRunAmountModal,
+} from "../../../store/actions/betPlace/betPlaceActions";
+import CustomModal from "../../commonComponent/modal";
+import RunBoxTable from "../betTable/runBoxTable";
+import { useSelector } from "react-redux";
+import { calculateMaxLoss } from "../../../helpers";
 
 const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [marketArr, setMarketArr] = useState(data?.section || []);
 
+  const { runAmount, runAmountModal } = useSelector(
+    (state: RootState) => state.bets
+  );
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -74,6 +85,10 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       return true;
     }
   };
+  const handleModal = (event: any) => {
+    dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
+  };
+
   return (
     <>
       <div className="sessionNormalContainer">
@@ -110,36 +125,53 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
             {marketArr?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName">
-                    <span className="f-size13">
+                  <div
+                    className="sessionRateName"
+                    style={{ width: "60%", overflow: "hidden" }}
+                  >
+                    <span
+                      className="f-size13"
+                      onClick={() => {
+                        if (item.activeStatus === "save") {
+                          return true;
+                        } else if (
+                          calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) === 0
+                        ) {
+                          return;
+                        } else
+                          dispatch(
+                            resetRunAmountModal({
+                              showModal: true,
+                              id: item?.id,
+                            })
+                          );
+                        dispatch(getRunAmount(item?.id));
+                      }}
+                    >
                       {item?.RunnerName || item?.name}
                     </span>
                     <span
                       className={`${
-                        detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            ) < 0
-                            ? "color-red"
-                            : "color-green"
-                          : ""
-                      }`}
+                        calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
+                          ? "color-red"
+                          : "color-red"
+                      } title-13`}
                     >
-                      {detail?.profitLossDataSession
-                        ? detail?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                              return accumulator + maxLossToAdd;
-                            },
-                            0
-                          )
-                        : 0}
+                      {calculateMaxLoss(
+                        detail?.profitLossDataSession,
+                        item?.id
+                      ) !== 0
+                        ? `-${calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
+                        : ""}
                     </span>
                   </div>
                   <div
@@ -224,7 +256,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                       )}
                       {item?.ex?.availableToLay?.length > 2 && (
                         <div
-                          className={`sessionRateBoxlay1Background`}
+                          className={`sessionRateBox lay1Background`}
                           style={{ cursor: "pointer" }}
                           onClick={() =>
                             handlePlaceBet(
@@ -344,6 +376,16 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
           </div>
         </div>
       </div>
+      <CustomModal
+        customClass="runAmountBetModal"
+        title={"Run Amount"}
+        show={runAmountModal}
+        setShow={handleModal}
+      >
+        <div style={{ width: "100%", height: "auto", overflowY: "auto" }}>
+          <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+        </div>
+      </CustomModal>
     </>
   );
 };

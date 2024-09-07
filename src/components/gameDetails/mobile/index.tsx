@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { Col, Container, Row, Tab } from "react-bootstrap";
+import { Col, Container, Ratio, Row, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 // import { formatDate } from "../../../utils/dateUtils";
@@ -9,11 +9,9 @@ import BetTable from "../betTable";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import ContactAdmin from "../../commonComponent/contactAdmin";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import { formatDate } from "../../../utils/dateUtils";
 import service from "../../../service";
-import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import { getChannelId } from "../../../helpers";
 import MatchOdd from "../matchOdd";
 import Bookmaker from "../bookmaker";
@@ -25,6 +23,7 @@ import MobileSessionFancy from "../sessionFancy/mobileSessionFancy";
 import SessionCricketCasino from "../sessionCricketCasino";
 import { FiMonitor } from "react-icons/fi";
 import { FaTv } from "react-icons/fa";
+import { ApiConstants } from "../../../utils/constants";
 
 const markets = [
   {
@@ -71,7 +70,7 @@ const MobileGameDetail = () => {
   const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   const [errorCount, setErrorCount] = useState<number>(0);
   const [channelId, setChannelId] = useState<string>("");
-
+  const [showVideo, setShowVideo] = useState(false);
   const { matchDetails, marketId } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -132,8 +131,10 @@ const MobileGameDetail = () => {
       console.log(error);
     }
   }, [matchDetails?.id]);
-  // const normalizedData = matchDetails?.sessionBettings?.map((item:any) => JSON.parse(item));
-  // const manualEntries = normalizedData?.filter((item:any) => item?.isManual);
+  const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
+    JSON.parse(item)
+  );
+  const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
   // console.log('manualEntries',manualEntries)
   return (
     <div>
@@ -159,44 +160,72 @@ const MobileGameDetail = () => {
             id: "matchedBet",
             name: `MATCHED BET(${Array.from(new Set(placedBets))?.length})`,
           },
-          {
-            id: "live",
-            name: (
-              <div style={{ padding: "0px", fontSize: "11px" }}>
-                <FaTv />
-              </div>
-            ),
-          },
-        ]?.map((item, index) => {
-          return (
+          channelId !== "0" && channelId
+            ? {
+                // id: "live",
+                name: (
+                  <div
+                    onClick={() => setShowVideo(!showVideo)}
+                    style={{ padding: "0px", fontSize: "11px" }}
+                  >
+                    <FaTv />
+                  </div>
+                ),
+              }
+            : null, // Only add 'live' tab if channelId is valid
+        ]
+          ?.filter(Boolean) // Remove null values from the array
+          .map((item, index) => (
             <Tab
               key={item?.id}
               eventKey={item?.id}
               tabClassName="m-tab"
               title={
-                <div className="font p-2 lh-1 py-0 f600">{item?.name} </div>
+                <div className="font p-2 lh-1 py-0 f600">{item?.name}</div>
               }
             >
               {index == 0 ? (
                 <Container>
                   <Row>
-                    <Col className="g-0" md={12}>
-                      <div
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          backgroundColor: "#000",
-                        }}
-                        dangerouslySetInnerHTML={{
-                          __html: liveScoreBoardData ? liveScoreBoardData : "",
-                        }}
-                      ></div>
-                    </Col>
-                    {channelId !== "0" && channelId !== "" && (
-                      <Col className="g-0" md={12}>
-                        <LiveStreamComponent channelId={channelId} />
-                      </Col>
+                    {/* Conditionally render the LiveStreamComponent if channelId is valid */}
+                    {showVideo && (
+                      <Container>
+                        <Row className="justify-content-md-center">
+                          <Col md={12}>
+                            <Ratio aspectRatio="16x9">
+                              <iframe
+                                src={`${ApiConstants.LIVESTREAM.GET_VIDEO}?chid=${channelId}`}
+                                title="Live Stream"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                              ></iframe>
+                            </Ratio>
+                          </Col>
+                        </Row>
+                      </Container>
                     )}
+                    <Container>
+                      <Row>
+                        <Col className="g-0" md={12}>
+                          <div
+                            style={{
+                              width: "100%",
+                              height: "auto",
+                              backgroundColor: "#000",
+                            }}
+                            dangerouslySetInnerHTML={{
+                              __html: liveScoreBoardData
+                                ? liveScoreBoardData
+                                : "",
+                            }}
+                          ></div>
+                          <iframe
+                            width={"100%"}
+                            height={"105px"}
+                            src={`https://dpmatka.in/dcasino/score.php?matchId=${matchDetails?.eventId}`}
+                          ></iframe>
+                        </Col>
+                      </Row>
+                    </Container>
                     {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <MatchOdd
@@ -247,15 +276,7 @@ const MobileGameDetail = () => {
                           </div>
                         )
                       )}
-                    {matchDetails?.apiTideMatch?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <DynamicMarket
-                          title={matchDetails?.apiTideMatch?.name}
-                          data={matchDetails?.apiTideMatch}
-                          detail={matchDetails}
-                        />
-                      </Col>
-                    )}
+
                     {matchDetails?.manualTiedMatch?.isActive && (
                       <Col className="g-0" md={12}>
                         <ManualMarket
@@ -285,14 +306,15 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                    {matchDetails?.apiSession?.session?.section?.length > 0 && (
+                    {(matchDetails?.apiSession?.session?.section?.length > 0 ||
+                      manualEntries) && (
                       <Col className="g-0" md={12}>
                         <MobileSessionNormal
                           title={"Normal"}
                           // type={"normal"}
                           data={matchDetails?.apiSession?.session}
                           detail={matchDetails}
-                          // manual={manualEntries}
+                          manual={manualEntries ? manualEntries : []}
                         />
                       </Col>
                     )}
@@ -318,22 +340,23 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
+
+                    {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
+                      <Col className="g-0" md={12}>
+                        <MobileSessionFancy
+                          title={"fancy1"}
+                          data={matchDetails?.apiSession?.fancy1}
+                          detail={matchDetails}
+                          // data={matchDetails?.matchOdd}
+                        />
+                      </Col>
+                    )}
                     {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
                       <Col className="g-0" md={12}>
                         <MobileSessionOddEven
                           title={"oddeven"}
                           // type={"fancy"}
                           data={matchDetails?.apiSession?.oddEven}
-                          detail={matchDetails}
-                          // data={matchDetails?.matchOdd}
-                        />
-                      </Col>
-                    )}
-                    {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
-                      <Col className="g-0" md={12}>
-                        <MobileSessionFancy
-                          title={"fancy1"}
-                          data={matchDetails?.apiSession?.fancy1}
                           detail={matchDetails}
                           // data={matchDetails?.matchOdd}
                         />
@@ -361,6 +384,15 @@ const MobileGameDetail = () => {
                           );
                         }
                       )}
+                    {matchDetails?.apiTideMatch?.isActive && (
+                      <Col className="g-0" md={12}>
+                        <DynamicMarket
+                          title={matchDetails?.apiTideMatch?.name}
+                          data={matchDetails?.apiTideMatch}
+                          detail={matchDetails}
+                        />
+                      </Col>
+                    )}
                     {/* {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
@@ -442,12 +474,11 @@ const MobileGameDetail = () => {
                     )} */}
                   </Row>
                 </Container>
-              ) : (
+              ) : item?.id === "matchedBet" ? (
                 <MyBet />
-              )}
+              ) : null}
             </Tab>
-          );
-        })}
+          ))}
       </CommonTabs>
     </div>
   );

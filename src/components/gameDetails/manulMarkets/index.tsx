@@ -25,9 +25,9 @@ const ManualMarket = ({ title, data, detail }) => {
       rate: odds,
       type: type,
       stake: 0,
-      teamA: detail?.teamA,
-      teamB: detail?.teamB,
-      teamC: detail?.teamC,
+      teamA: data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes",
+      teamB: data?.type?.includes("quickbookmaker") ? detail?.teamB : "No",
+      teamC: data?.type?.includes("quickbookmaker") ? detail?.teamC : "",
       betId: data?.id,
       eventType: detail?.matchType,
       matchId: detail?.id,
@@ -73,7 +73,7 @@ const ManualMarket = ({ title, data, detail }) => {
           </div>
           <div
             className="manualBackLayBoxContainer"
-            style={{ width: isMobile ? "40%" : "48%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
               className="manualBackBoxTab"
@@ -92,7 +92,7 @@ const ManualMarket = ({ title, data, detail }) => {
         </div>
 
         <div className="manualTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesmanual">
               <span
                 className={`${
@@ -100,12 +100,19 @@ const ManualMarket = ({ title, data, detail }) => {
                 } suspendedTxtmanual`}
               ></span>
             </div>
-          )}
+          )} */}
           <div className="manualTeam">
-            <span
-              className={`${!isMobile ? "f-size14" : "f-size13"} manualTeamTxt`}
-            >
-              {data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes"}
+            <span className={`teamFont manualTeamTxt`}>
+              {(data?.type?.includes("quickbookmaker")
+                ? detail?.teamA
+                : "Yes") > 25
+                ? `${(data?.type?.includes("quickbookmaker")
+                    ? detail?.teamA
+                    : "Yes"
+                  )?.slice(0, 25)}...`
+                : data?.type?.includes("quickbookmaker")
+                ? detail?.teamA
+                : "Yes"}
             </span>
             <span
               className={`${
@@ -118,7 +125,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     ] < 0
                   ? "color-red"
                   : ""
-              }`}
+              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A
@@ -127,9 +134,10 @@ const ManualMarket = ({ title, data, detail }) => {
           </div>
           <div
             className="manualRateBox"
-            style={{ width: isMobile ? "40%" : "72%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {data?.activeStatus === "live" && data?.statusTeamA != "active" && (
+            {(data?.activeStatus !== "live" ||
+              data?.statusTeamA != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
                   className={`${
@@ -155,11 +163,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.backTeamA != 0 ? data?.backTeamA - 2 : "-"}
                 </span>
               </div>
@@ -179,11 +183,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.backTeamA != 0 ? data?.backTeamA - 1 : "-"}
                 </span>
               </div>
@@ -202,11 +202,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } manualRate1Box`}
-              >
+              <span className={`rateFont manualRate1Box`}>
                 {data?.backTeamA != 0 ? data?.backTeamA : "-"}
               </span>
             </div>
@@ -222,11 +218,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } manualRate1Box`}
-              >
+              <span className={`rateFont manualRate1Box`}>
                 {data?.layTeamA != 0 ? data?.layTeamA : "-"}
               </span>
             </div>
@@ -245,11 +237,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.layTeamA != 0 ? data?.layTeamA + 1 : "-"}
                 </span>
               </div>
@@ -269,11 +257,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.layTeamA != 0 ? data?.layTeamA + 2 : "-"}
                 </span>
               </div>
@@ -282,7 +266,7 @@ const ManualMarket = ({ title, data, detail }) => {
         </div>
 
         <div className="manualTeamTab">
-          {data?.activeStatus != "live" && (
+          {/* {data?.activeStatus != "live" && (
             <div className="suspended-overlayRatesmanual">
               <span
                 className={`${
@@ -290,12 +274,18 @@ const ManualMarket = ({ title, data, detail }) => {
                 } suspendedTxtmanual`}
               ></span>
             </div>
-          )}
+          )} */}
           <div className="manualTeam">
-            <span
-              className={`${!isMobile ? "f-size14" : "f-size13"} manualTeamTxt`}
-            >
-              {data?.type?.includes("quickbookmaker") ? detail?.teamB : "No"}
+            <span className={`teamFont manualTeamTxt`}>
+              {(data?.type?.includes("quickbookmaker") ? detail?.teamB : "No") >
+              25
+                ? `${(data?.type?.includes("quickbookmaker")
+                    ? detail?.teamB
+                    : "No"
+                  )?.slice(0, 25)}...`
+                : data?.type?.includes("quickbookmaker")
+                ? detail?.teamB
+                : "No"}
             </span>
             <span
               className={`${
@@ -308,7 +298,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     ] < 0
                   ? "color-red"
                   : ""
-              }`}
+              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B
@@ -317,9 +307,10 @@ const ManualMarket = ({ title, data, detail }) => {
           </div>
           <div
             className="manualRateBox"
-            style={{ width: isMobile ? "40%" : "72%" }}
+            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {data?.activeStatus === "live" && data?.statusTeamB != "active" && (
+            {(data?.activeStatus !== "live" ||
+              data?.statusTeamB != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
                   className={`${
@@ -345,11 +336,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.backTeamB != 0 ? data?.backTeamB - 2 : "-"}
                 </span>
               </div>
@@ -369,11 +356,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.backTeamB != 0 ? data?.backTeamB - 1 : "-"}
                 </span>
               </div>
@@ -392,11 +375,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } manualRate1Box`}
-              >
+              <span className={`rateFont manualRate1Box`}>
                 {data?.backTeamB != 0 ? data?.backTeamB : "-"}
               </span>
             </div>
@@ -412,11 +391,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 )
               }
             >
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                } manualRate1Box`}
-              >
+              <span className={`rateFont manualRate1Box`}>
                 {data?.layTeamB != 0 ? data?.layTeamB : "-"}
               </span>
             </div>
@@ -435,11 +410,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.layTeamB != 0 ? data?.layTeamB + 1 : "-"}
                 </span>
               </div>
@@ -459,11 +430,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.layTeamB != 0 ? data?.layTeamB + 2 : "-"}
                 </span>
               </div>
@@ -473,7 +440,7 @@ const ManualMarket = ({ title, data, detail }) => {
 
         {data?.type?.includes("quickbookmaker") && detail?.teamC && (
           <div className="manualTeamTab">
-            {data?.activeStatus != "live" && (
+            {/* {data?.activeStatus != "live" && (
               <div className="suspended-overlayRatesmanual">
                 <span
                   className={`${
@@ -481,15 +448,13 @@ const ManualMarket = ({ title, data, detail }) => {
                   } suspendedTxtmanual`}
                 ></span>
               </div>
-            )}
+            )} */}
             <div className="manualTeam">
-              <span
-                className={`${
-                  !isMobile ? "f-size14" : "f-size13"
-                } manualTeamTxt`}
-              >
-                {detail?.teamC}
-              </span>
+              <span className={`teamFont manualTeamTxt`}>
+                {detail?.teamC?.length > 25
+                  ? `${detail?.teamC?.slice(0, 25)}...`
+                  : detail?.teamC}
+              </span>{" "}
               <span
                 className={`${
                   detail?.profitLossDataMatch?.[
@@ -501,7 +466,7 @@ const ManualMarket = ({ title, data, detail }) => {
                       ] < 0
                     ? "color-red"
                     : ""
-                }`}
+                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {detail?.profitLossDataMatch?.[
                   profitLossDataForMatchConstants[data?.type]?.C
@@ -510,20 +475,20 @@ const ManualMarket = ({ title, data, detail }) => {
             </div>
             <div
               className="manualRateBox"
-              style={{ width: isMobile ? "40%" : "72%" }}
+              style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
             >
-              {data?.activeStatus === "live" &&
-                data?.statusTeamB != "active" && (
-                  <div className="suspended-overlayRatesmanual">
-                    <span
-                      className={`${
-                        !isMobile ? "f-size18" : "f-size12"
-                      } suspendedTxtmanual`}
-                    >
-                      SUSPENDED
-                    </span>
-                  </div>
-                )}
+              {(data?.activeStatus !== "live" ||
+                data?.statusTeamC != "active") && (
+                <div className="suspended-overlayRatesmanual">
+                  <span
+                    className={`${
+                      !isMobile ? "f-size18" : "f-size12"
+                    } suspendedTxtmanual`}
+                  >
+                    SUSPENDED
+                  </span>
+                </div>
+              )}
               {!isMobile && (
                 <div
                   className="manualBackBox back3Background"
@@ -537,11 +502,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     )
                   }
                 >
-                  <span
-                    className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                    } manualRate1Box`}
-                  >
+                  <span className={`rateFont manualRate1Box`}>
                     {data?.backTeamC != 0 ? data?.backTeamC - 2 : "-"}
                   </span>
                 </div>
@@ -559,11 +520,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     )
                   }
                 >
-                  <span
-                    className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                    } manualRate1Box`}
-                  >
+                  <span className={`rateFont manualRate1Box`}>
                     {data?.backTeamC != 0 ? data?.backTeamC - 1 : "-"}
                   </span>
                 </div>
@@ -580,11 +537,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.backTeamC != 0 ? data?.backTeamC : "-"}
                 </span>
               </div>
@@ -600,11 +553,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                  } manualRate1Box`}
-                >
+                <span className={`rateFont manualRate1Box`}>
                   {data?.layTeamC != 0 ? data?.layTeamC : "-"}
                 </span>
               </div>
@@ -621,11 +570,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     )
                   }
                 >
-                  <span
-                    className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                    } manualRate1Box`}
-                  >
+                  <span className={`rateFont manualRate1Box`}>
                     {data?.layTeamC != 0 ? data?.layTeamC + 1 : "-"}
                   </span>
                 </div>
@@ -643,11 +588,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     )
                   }
                 >
-                  <span
-                    className={`${
-                      !isMobile ? "f-size18" : isLap ? "f-size16" : "f-size15"
-                    } manualRate1Box`}
-                  >
+                  <span className={`rateFont manualRate1Box`}>
                     {data?.layTeamC != 0 ? data?.layTeamC + 2 : "-"}
                   </span>
                 </div>

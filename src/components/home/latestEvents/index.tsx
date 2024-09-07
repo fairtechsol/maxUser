@@ -6,7 +6,7 @@ import { MdSportsCricket } from 'react-icons/md';
 import { IoTennisball } from 'react-icons/io5';
 const LatestEvent = ({ events }) => {
   return (
-    <div className={isMobile ? "latest-event-mobile border-bottom p-1" :"latest-event border-bottom p-1"}>
+    <div className={isMobile ? "latest-event-mobile border-bottom p-1" :"latest-event border-bottom "}>
       {events?.map((event:any) => (
         <div key={event.id} className="latest-event-item">
           <a className="blink_me" href={`/game-details/${event.iconId}/${event.eventId}`}>

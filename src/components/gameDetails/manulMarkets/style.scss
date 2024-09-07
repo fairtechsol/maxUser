@@ -5,13 +5,13 @@
   background-color: #f2f2f2;
   // margin-top: 10px;
 }
-.manualTitle{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 3px 6px;
-    background-color: #fece5d;
+.manualTitle {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3px 6px;
+  background-color: #fece5d;
 }
 .manualTitleTxt {
   color: #ffffff;
@@ -45,6 +45,7 @@
   justify-content: center;
   align-items: center;
   background-color: #72bbef;
+  text-align: center;
 }
 .manualLayBoxTab {
   width: 25%;
@@ -52,13 +53,18 @@
   justify-content: center;
   align-items: center;
   background-color: #faa9ba;
+  text-align: center;
 }
 .manualEmptyBox {
   width: 50%;
 }
 .manualBackTxt {
-  color: #000;
+  color: #333;
   font-weight: bold;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
 }
 .manualTeamTab {
   position: relative;
@@ -70,7 +76,7 @@
 }
 .manualTeam {
   width: 28%;
-  padding: 5px;
+  padding: 0px 5px;
   display: flex;
   justify-content: start;
   align-items: flex-start;
@@ -134,7 +140,7 @@
 }
 .suspendedTxtmanual {
   font-weight: 400;
-  color: #df0e00;
+  color: #ff1e30;
 }
 .f-size10 {
   font-size: 10px !important;

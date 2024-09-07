@@ -1,9 +1,17 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { useEffect, useState } from "react";
+import {
+  getRunAmount,
+  resetRunAmountModal,
+} from "../../../store/actions/betPlace/betPlaceActions";
+import CustomModal from "../../commonComponent/modal";
+import RunBoxTable from "../betTable/runBoxTable";
+import { useSelector } from "react-redux";
+import { calculateMaxLoss } from "../../../helpers";
 
 const SessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -18,9 +26,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
     item: any,
     tno: any
   ) => {
-    if (data?.status != "OPEN" || status != "live") {
-      return false;
-    }
+    console.log("team", item);
+    // if ( status != "live" || ( data?.status != "OPEN" || item?.status != "active")) {
+    //   return false;
+    // }
     if (odds === 0) {
       return false;
     }
@@ -48,6 +57,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
       })
     );
   };
+
+  const { runAmount, runAmountModal } = useSelector(
+    (state: RootState) => state.bets
+  );
   const evenIndexArray = [];
   const oddIndexArray = [];
 
@@ -91,6 +104,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
       return true;
     }
   };
+  const handleModal = (event: any) => {
+    dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
+  };
+
   return (
     <>
       <div
@@ -112,7 +129,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div className="sessionYesNoBoxContainer">
-              <div className="sessionYesNoBox">
+              <div
+                className="sessionYesNoBox rateBoxWidthNormal"
+                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+              >
                 <div className="sessionYesBox lay1Background">
                   <span className={`f-size16 sessionBackTxt`}>No</span>
                 </div>
@@ -125,44 +145,65 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
             {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName">
+                  <div
+                    className="sessionRateName runnerWidthNormal"
+                    style={{ overflow: "hidden" }}
+                  >
                     <span
                       className="f-size15"
-                      style={{ width: "60%", fontWeight: "400" }}
+                      style={{ fontWeight: "400", lineHeight: 1 }}
+                      onClick={() => {
+                        // console.log("first", item);
+                        if (item.activeStatus === "save") {
+                          return true;
+                        } else if (
+                          calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) === 0
+                        ) {
+                          return;
+                        } else
+                          dispatch(
+                            resetRunAmountModal({
+                              showModal: true,
+                              id: item?.id,
+                            })
+                          );
+                        dispatch(getRunAmount(item?.id));
+                      }}
                     >
                       {(item?.RunnerName || item?.name)?.length > 25
                         ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...`
                         : item?.RunnerName || item?.name}
-                    </span>
+                    </span>{" "}
                     <span
                       className={`${
-                        detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            ) < 0
-                            ? "color-red"
-                            : "color-green"
-                          : ""
-                      }`}
+                        calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
+                          ? "color-red"
+                          : "color-red"
+                      }  title-14`}
                     >
-                      {detail?.profitLossDataSession
-                        ? detail?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                              return accumulator + maxLossToAdd;
-                            },
-                            0
-                          )
-                        : 0}
+                      {calculateMaxLoss(
+                        detail?.profitLossDataSession,
+                        item?.id
+                      ) !== 0
+                        ? `-${calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
+                        : ""}
                     </span>
                   </div>
-                  <div className="sessionRateBoxContainer">
+                  <div
+                    className="sessionRateBoxContainer rateBoxWidthNormal"
+                    // style={{
+                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    // }}
+                  >
                     {handleStatus(
                       item?.activeStatus,
                       item?.GameStatus,
@@ -187,7 +228,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       }}
                     >
                       <div
-                        className={`sessionRateBox lay1Background`}
+                        className={`sessionRateBox rateFont lay1Background`}
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
@@ -249,7 +290,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       )}
                       {item?.ex?.availableToLay?.length > 2 && (
                         <div
-                          className={`sessionRateBoxlay1Background`}
+                          className={`sessionRateBox lay1Background`}
                           style={{ cursor: "pointer" }}
                           onClick={() =>
                             handlePlaceBet(
@@ -404,9 +445,14 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                 <div className="sessionYesNoBoxContainer">
                   <div
                     className="sessionEmptyBox"
-                    style={{ width: "54%" }}
+                    // style={{ width: "54%" }}
                   ></div>
-                  <div className="sessionYesNoBox">
+                  <div
+                    className="sessionYesNoBox rateBoxWidthNormal"
+                    // style={{
+                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    // }}
+                  >
                     <div className="sessionYesBox lay1Background">
                       <span className={`f-size16 sessionBackTxt`}>No</span>
                     </div>
@@ -421,10 +467,36 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
                   <div className="sessionRateContainer" key={index}>
-                    <div className="sessionRateName">
+                    <div
+                      className="sessionRateName runnerWidthNormal"
+                      style={{ overflow: "hidden" }}
+                    >
                       <span
                         className="f-size15"
-                        style={{ width: "60%", fontWeight: "400" }}
+                        style={{
+                          fontWeight: "400",
+                          lineHeight: 1,
+                          // overflow:"hidden"
+                        }}
+                        onClick={() => {
+                          if (item.activeStatus === "save") {
+                            return true;
+                          } else if (
+                            calculateMaxLoss(
+                              detail?.profitLossDataSession,
+                              item?.id
+                            ) === 0
+                          ) {
+                            return;
+                          } else
+                            dispatch(
+                              resetRunAmountModal({
+                                showModal: true,
+                                id: item?.id,
+                              })
+                            );
+                          dispatch(getRunAmount(item?.id));
+                        }}
                       >
                         {(item?.RunnerName || item?.name)?.length > 25
                           ? `${(item?.RunnerName || item?.name)?.slice(
@@ -432,36 +504,34 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               25
                             )}...`
                           : item?.RunnerName || item?.name}
-                      </span>
+                      </span>{" "}
                       <span
                         className={`${
-                          detail?.profitLossDataSession
-                            ? detail?.profitLossDataSession?.reduce(
-                                (accumulator: any, bet: any) => {
-                                  const maxLossToAdd =
-                                    bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                  return accumulator + maxLossToAdd;
-                                },
-                                0
-                              ) < 0
-                              ? "color-red"
-                              : "color-green"
-                            : ""
-                        }`}
+                          calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) < 0
+                            ? "color-red"
+                            : "color-red"
+                        }  title-14`}
                       >
-                        {detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            )
-                          : 0}
+                        {calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) !== 0
+                          ? `-${calculateMaxLoss(
+                              detail?.profitLossDataSession,
+                              item?.id
+                            )}`
+                          : ""}
                       </span>
                     </div>
-                    <div className="sessionRateBoxContainer">
+                    <div
+                      className="sessionRateBoxContainer rateBoxWidthNormal"
+                      // style={{
+                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                      // }}
+                    >
                       {handleStatus(
                         item?.activeStatus,
                         item?.GameStatus,
@@ -695,6 +765,16 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
           )}
         </div>
       </div>
+      <CustomModal
+        customClass="runAmountBetModal"
+        title={"Run Amount"}
+        show={runAmountModal}
+        setShow={handleModal}
+      >
+        <div style={{ width: "100%", height: "auto", overflowY: "auto" }}>
+          <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+        </div>
+      </CustomModal>
     </>
   );
 };

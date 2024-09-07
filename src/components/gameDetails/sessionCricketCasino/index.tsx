@@ -111,7 +111,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
               className="sessionCasinoMinMax"
               style={{ borderBottom: "1px solid #c7c8ca" }}
             >
-              <div style={{ width: "85%", backgroundColor: "#f2f2f2" }}>
+              <div style={{ backgroundColor: "#f2f2f2", flexGrow: 1 }}>
                 <span className={`sessionMinBox`} style={{ marginLeft: "1%" }}>
                   Min:{formatNumber(marketArr?.min)} Max:
                   {formatNumber(marketArr?.max)}
@@ -119,7 +119,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
               </div>
               <div
                 className="sessionRateBox back1Background"
-                style={{ width: "18%" }}
+                style={{ width: isLap ? "61px" : !isMobile ? "81px" : "20%" }}
               >
                 <span className={`f-size16 sessionBackTxt`}>Back</span>
               </div>
@@ -127,7 +127,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
             {marketArr?.section?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName">
+                  <div className="sessionRateName" style={{ flexGrow: 1 }}>
                     <span
                       className={isMobile ? "f-size13" : "f-size14"}
                       style={{ fontWeight: "400" }}
@@ -148,11 +148,12 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                                   (a: any) => a?.betId === data?.id
                                 )[0]?.profitLoss?.[index] < 0
                               ? "color-red"
-                              : ""
+                              : "color-red"
                             : 0
                           : 0
                       }`}
                     >
+                      -
                       {detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.filter(
                             (a: any) => a?.betId === data?.id
@@ -164,7 +165,10 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                         : 0}
                     </span>
                   </div>
-                  <div className="sessionCCRateBoxContainer">
+                  <div
+                    className="sessionCCRateBoxContainer"
+                    style={{ width: isLap ? "61px" : !isMobile ? "81px" : "" }}
+                  >
                     {item?.gstatus !== "" && (
                       <div className="suspended-overlayRates">
                         <FaLock color="#fff" />
