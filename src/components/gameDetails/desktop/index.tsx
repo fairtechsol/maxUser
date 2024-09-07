@@ -55,8 +55,8 @@ const DesktopGameDetail = () => {
     try {
       const response: any = await service.get(
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
-        `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
-        // `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
+        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
       );
       if (response) {
         setLiveScoreBoardData(response);

@@ -131,8 +131,10 @@ const MobileGameDetail = () => {
       console.log(error);
     }
   }, [matchDetails?.id]);
-  const normalizedData = matchDetails?.sessionBettings?.map((item:any) => JSON.parse(item));
-  const manualEntries = normalizedData?.filter((item:any) => item?.isManual);
+  const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
+    JSON.parse(item)
+  );
+  const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
   // console.log('manualEntries',manualEntries)
   return (
     <div>
@@ -216,6 +218,11 @@ const MobileGameDetail = () => {
                                 : "",
                             }}
                           ></div>
+                          <iframe
+                            width={"100%"}
+                            height={"105px"}
+                            src={`https://dpmatka.in/dcasino/score.php?matchId=${matchDetails?.eventId}`}
+                          ></iframe>
                         </Col>
                       </Row>
                     </Container>
@@ -269,7 +276,7 @@ const MobileGameDetail = () => {
                           </div>
                         )
                       )}
-                    
+
                     {matchDetails?.manualTiedMatch?.isActive && (
                       <Col className="g-0" md={12}>
                         <ManualMarket
@@ -299,7 +306,8 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                    {(matchDetails?.apiSession?.session?.section?.length > 0  || manualEntries) && (
+                    {(matchDetails?.apiSession?.session?.section?.length > 0 ||
+                      manualEntries) && (
                       <Col className="g-0" md={12}>
                         <MobileSessionNormal
                           title={"Normal"}
@@ -332,7 +340,7 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                    
+
                     {matchDetails?.apiSession?.fancy1?.section?.length > 0 && (
                       <Col className="g-0" md={12}>
                         <MobileSessionFancy
@@ -376,7 +384,7 @@ const MobileGameDetail = () => {
                           );
                         }
                       )}
-                      {matchDetails?.apiTideMatch?.isActive && (
+                    {matchDetails?.apiTideMatch?.isActive && (
                       <Col className="g-0" md={12}>
                         <DynamicMarket
                           title={matchDetails?.apiTideMatch?.name}
