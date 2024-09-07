@@ -24,6 +24,7 @@ import SessionCricketCasino from "../sessionCricketCasino";
 import { FiMonitor } from "react-icons/fi";
 import { FaTv } from "react-icons/fa";
 import { ApiConstants } from "../../../utils/constants";
+import OtherMarket from "../otherMarket";
 
 const markets = [
   {
@@ -281,27 +282,29 @@ const MobileGameDetail = () => {
                         )
                       )}
                     {matchDetails?.other?.length > 0 &&
-                      matchDetails?.other?.map(
-                        (item: any, index: number) => (
-                          <div key={index} className="p-0">
-                            {item?.isActive && (
-                              <Col className="g-0" md={12}>
-                                <Bookmaker
-                                  title={item?.name}
-                                  box={2}
-                                  data={item}
-                                  detail={matchDetails}
-                                  // type={MatchType.MATCH_ODDS}
-                                  // data={matchDetails?.matchOdd}
-                                />
-                              </Col>
-                            )}
-                          </div>
-                        )
-                      )}
+                      matchDetails?.other?.map((item: any, index: number) => (
+                        <div key={index} className="p-0">
+                          {item?.isActive && (
+                            <Col className="g-0" md={12}>
+                              <OtherMarket
+                                title={item?.name}
+                                box={
+                                  item?.runners?.[0]?.ex?.availableToBack
+                                    ?.length > 2
+                                    ? 6
+                                    : 2
+                                }
+                                data={item}
+                                detail={matchDetails}
+                                // data={matchDetails?.matchOdd}
+                              />
+                            </Col>
+                          )}
+                        </div>
+                      ))}
                     {matchDetails?.apiTideMatch2?.isActive && (
                       <Col className="g-0" md={12}>
-                        <Bookmaker
+                        <OtherMarket
                           title={matchDetails?.apiTideMatch2?.name}
                           box={2}
                           data={matchDetails?.apiTideMatch2}
@@ -311,6 +314,7 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
+                    
                     {matchDetails?.manualTiedMatch?.isActive && (
                       <Col className="g-0" md={12}>
                         <ManualMarket
