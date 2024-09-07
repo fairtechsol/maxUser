@@ -11,6 +11,7 @@ import {
 import CustomModal from "../../commonComponent/modal";
 import RunBoxTable from "../betTable/runBoxTable";
 import { useSelector } from "react-redux";
+import { calculateMaxLoss } from "../../../helpers";
 
 const SessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -107,19 +108,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
     dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
   };
 
-  function calculateMaxLoss(profitLossDataSession: any, betId: any) {
-    if (!profitLossDataSession || !Array.isArray(profitLossDataSession)) {
-      return 0;
-    }
-
-    const totalMaxLoss = profitLossDataSession.reduce((accumulator, bet) => {
-      const maxLossToAdd = bet?.betId === betId ? +bet?.maxLoss : 0;
-      return accumulator + maxLossToAdd;
-    }, 0);
-
-    return totalMaxLoss;
-  }
-
   return (
     <>
       <div
@@ -199,14 +187,14 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           : "color-red"
                       }  title-14`}
                     >
-                      -{calculateMaxLoss(
+                      {calculateMaxLoss(
                         detail?.profitLossDataSession,
                         item?.id
                       ) !== 0
-                        ? calculateMaxLoss(
+                        ? `-${calculateMaxLoss(
                             detail?.profitLossDataSession,
                             item?.id
-                          )
+                          )}`
                         : ""}
                     </span>
                   </div>
@@ -527,14 +515,14 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             : "color-red"
                         }  title-14`}
                       >
-                        -{calculateMaxLoss(
+                        {calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) !== 0
-                          ? calculateMaxLoss(
+                          ? `-${calculateMaxLoss(
                               detail?.profitLossDataSession,
                               item?.id
-                            )
+                            )}`
                           : ""}
                       </span>
                     </div>
