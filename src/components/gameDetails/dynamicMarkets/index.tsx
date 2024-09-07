@@ -82,7 +82,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className="dynamicBackLayBoxContainer"
+            className={`dynamicBackLayBoxContainer ${isMobile?"backLayBoxWidth2":"backLayBoxWidth"}`}
             style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
@@ -131,12 +131,12 @@ const DynamicMarket = ({ title, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
-            className="dynamicRateBox"
-            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            className={`dynamicRateBox ${isMobile?"rateBoxWidth2": "rateBoxWidth"}`}
+            // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesdynamic">
@@ -322,12 +322,12 @@ const DynamicMarket = ({ title, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
-            className="dynamicRateBox"
-            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            className={`dynamicRateBox ${isMobile?"rateBoxWidth2": "rateBoxWidth"}`}
+            // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesdynamic">

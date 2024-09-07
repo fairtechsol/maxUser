@@ -109,6 +109,34 @@ const DesktopGameDetail = () => {
   );
   const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
   // console.log("normalizedData",matchDetails)
+
+  const handleBook1Show=(book1:any,book2:any,tide:any)=>{
+    if(book1 && !book2 && !tide){
+      return 12;
+    }else if(book1 && book2 && !tide){
+      return 8;
+    }else if(book1 && !book2 && tide){
+      return 8;
+    }
+  }
+  const handleBook2Show=(book1:any,book2:any,tide:any)=>{
+    if(book2 && !book1 && !tide){
+      return 12;
+    }else if(book2 && book1 && !tide){
+      return 4;
+    }else if(book2 && !book1 && tide){
+      return 6;
+    }
+  }
+  const handleTideShow=(book1:any,book2:any,tide:any)=>{
+    if(tide && !book1 && !book2){
+      return 12;
+    }else if(tide && book1 && !book2){
+      return 4;
+    }else if(tide && !book1 && book2){
+      return 6;
+    }
+  }
   return (
     <Container fluid className="pe-0 ps-1">
       <Row>
@@ -191,6 +219,42 @@ const DesktopGameDetail = () => {
                     </div>
                   )
                 )}
+                {/* <div style={{display:"flex",flexDirection:"row",gap:"10px"}}>
+                {matchDetails?.bookmaker?.isActive && (
+                <Col md={handleBook1Show(matchDetails?.bookmaker?.isActive,matchDetails?.bookmaker2?.isActive,matchDetails?.apiTideMatch2?.isActive)} style={{ marginTop: "10px" }}>
+                  <Bookmaker
+                    title={matchDetails?.bookmaker?.name}
+                    box={6}
+                    data={matchDetails?.bookmaker}
+                    detail={matchDetails}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
+              {matchDetails?.bookmaker2?.isActive && (
+                <Col md={handleBook2Show(matchDetails?.bookmaker?.isActive,matchDetails?.bookmaker2?.isActive,matchDetails?.apiTideMatch2?.isActive)} style={{ marginTop: "10px" }}>
+                  <Bookmaker
+                    title={matchDetails?.bookmaker2?.name}
+                    box={2}
+                    data={matchDetails?.bookmaker2}
+                    detail={matchDetails}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiTideMatch2?.isActive && (
+                <Col  md={handleTideShow(matchDetails?.bookmaker?.isActive,matchDetails?.bookmaker2?.isActive,matchDetails?.apiTideMatch2?.isActive)} style={{ marginTop: "10px" }}>
+                 <OtherMarket
+                    title={matchDetails?.apiTideMatch2?.name}
+                    box={2}
+                    data={matchDetails?.apiTideMatch2}
+                    detail={matchDetails}
+                    // type={MatchType.MATCH_ODDS}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
+                </div> */}
               {matchDetails?.other?.length > 0 &&
                 matchDetails?.other?.map((item: any, index: number) => (
                   <div key={index}>
