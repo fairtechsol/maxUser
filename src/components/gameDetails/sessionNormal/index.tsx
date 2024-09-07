@@ -165,7 +165,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       className="f-size15"
                       style={{ fontWeight: "400", lineHeight: 1 }}
                       onClick={() => {
-                        console.log("first", item);
+                        // console.log("first", item);
                         if (item.activeStatus === "save") {
                           return true;
                         } else if (
@@ -196,10 +196,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           item?.id
                         ) < 0
                           ? "color-red"
-                          : "color-green"
+                          : "color-red"
                       }  title-14`}
                     >
-                      {calculateMaxLoss(
+                      -{calculateMaxLoss(
                         detail?.profitLossDataSession,
                         item?.id
                       ) !== 0
@@ -524,10 +524,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             item?.id
                           ) < 0
                             ? "color-red"
-                            : "color-green"
+                            : "color-red"
                         }  title-14`}
                       >
-                        {calculateMaxLoss(
+                        -{calculateMaxLoss(
                           detail?.profitLossDataSession,
                           item?.id
                         ) !== 0
