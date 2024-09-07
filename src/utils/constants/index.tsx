@@ -1505,7 +1505,7 @@ export const sportsRules = [
 
 export const casinoIcons = [
   {
-    url: "",
+    url: "/ballbyball",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
     name: "Ball By Ball",
