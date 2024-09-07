@@ -139,9 +139,7 @@ const MatchOdd = ({ title, data, detail }) => {
             {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesMatchOdd">
                   <span
-                    className={`${
-                      !isMobile ? "f-size18" : "f-size12"
-                    } suspendedTxtMatchOdd`}
+                    className={`suspendTextCmmn`}
                   >
                     SUSPENDED
                   </span>
@@ -328,9 +326,7 @@ const MatchOdd = ({ title, data, detail }) => {
             {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesMatchOdd">
                   <span
-                    className={`${
-                      !isMobile ? "f-size18" : "f-size12"
-                    } suspendedTxtMatchOdd`}
+                    className={`suspendTextCmmn`}
                   >
                     SUSPENDED
                   </span>
@@ -518,9 +514,7 @@ const MatchOdd = ({ title, data, detail }) => {
               {(data?.activeStatus !== "live" || data?.runners?.[2]?.status !== "ACTIVE") && (
                   <div className="suspended-overlayRatesMatchOdd">
                     <span
-                      className={`${
-                        !isMobile ? "f-size16" : "f-size12"
-                      } suspendedTxtMatchOdd`}
+                      className={`suspendTextCmmn`}
                     >
                       SUSPENDED
                     </span>

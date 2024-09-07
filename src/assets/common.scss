@@ -865,6 +865,11 @@ img {
   .betMain-W{
     width: 100% !important;
   }
+  .suspendTextCmmn{
+    font-size: 12px !important;
+    font-weight: bold;
+    color: #ff0000;
+  }
 }
 
 /* Styles for width 760px to 1200px */
@@ -908,6 +913,11 @@ img {
   .betMain-W{
     width: 100% !important;
   }
+  .suspendTextCmmn{
+    font-size: 13px !important;
+    font-weight: bold;
+    color: #ff0000;
+  }
 }
 
 /* Styles for width 1200px to 1399px */
@@ -950,6 +960,11 @@ img {
   }
   .betMain-W{
     width: calc(100% - 352px) !important;
+  }
+  .suspendTextCmmn{
+    font-size: 14px !important;
+    font-weight: bold;
+    color: #ff0000;
   }
 }
 
@@ -996,6 +1011,11 @@ img {
   .betMain-W{
     width: calc(100% - 402px) !important;
   }
+  .suspendTextCmmn{
+    font-size: 15px !important;
+    font-weight: bold;
+    color: #ff0000;
+  }
 }
 
 /* Styles for width 1600px and above */
@@ -1019,7 +1039,7 @@ img {
   }
   .runnerWidthNormal {
     flex-grow: 1;
-    width: 48% !important;
+    width: 45% !important;
   }
   .rateFont{
     font-size: 18px !important;
@@ -1038,6 +1058,11 @@ img {
   }
   .betMain-W{
     width: calc(100% - 452px) !important;
+  }
+  .suspendTextCmmn{
+    font-size: 16px !important;
+    font-weight: bold;
+    color: #ff0000;
   }
 }
 
