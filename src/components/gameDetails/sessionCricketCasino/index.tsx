@@ -152,17 +152,18 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                             : 0
                           : 0
                       }`}
+                      
                     >
-                      -
+                      
                       {detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.filter(
                             (a: any) => a?.betId === data?.id
                           )
                           ? detail?.profitLossDataSession?.filter(
                               (a: any) => a?.betId === data?.id
-                            )[0]?.profitLoss?.[index]
-                          : 0
-                        : 0}
+                            )[0]?.profitLoss?.[index] 
+                          : ''
+                        : ''}
                     </span>
                   </div>
                   <div

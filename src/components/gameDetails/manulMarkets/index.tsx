@@ -140,9 +140,7 @@ const ManualMarket = ({ title, data, detail }) => {
               data?.statusTeamA != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
-                  className={`${
-                    !isMobile ? "f-size18" : "f-size12"
-                  } suspendedTxtmanual`}
+                  className={`suspendTextCmmn`}
                 >
                   SUSPENDED
                 </span>
@@ -313,9 +311,7 @@ const ManualMarket = ({ title, data, detail }) => {
               data?.statusTeamB != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
-                  className={`${
-                    !isMobile ? "f-size18" : "f-size12"
-                  } suspendedTxtmanual`}
+                  className={`suspendTextCmmn`}
                 >
                   SUSPENDED
                 </span>
@@ -481,9 +477,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 data?.statusTeamC != "active") && (
                 <div className="suspended-overlayRatesmanual">
                   <span
-                    className={`${
-                      !isMobile ? "f-size18" : "f-size12"
-                    } suspendedTxtmanual`}
+                    className={`suspendTextCmmn`}
                   >
                     SUSPENDED
                   </span>
