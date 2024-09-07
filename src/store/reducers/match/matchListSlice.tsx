@@ -168,6 +168,25 @@ const matchListSlice = createSlice({
         //     newSessionBettings?.push(apiItem);
         //   }
         // });
+        const parsedSessionBettings =
+          state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
+        const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];
+        apiParsedSessionBettings.forEach((apiItem: any) => {
+          const index = parsedSessionBettings.findIndex(
+            (parsedItem: any) => parsedItem.id === apiItem.id
+          );
+          if (index !== -1) {
+            parsedSessionBettings[index] = {
+              ...parsedSessionBettings[index],
+              ...apiItem,
+            };
+          } else {
+            parsedSessionBettings.push(apiItem);
+          }
+        });
+        const stringifiedSessionBetting = parsedSessionBettings.map(
+          JSON.stringify
+        );
 
         state.matchDetails = {
           ...state.matchDetails,
@@ -188,6 +207,7 @@ const matchListSlice = createSlice({
           halfTime,
           overUnder,
           setWinner,
+          sessionBettings: stringifiedSessionBetting
           // sessionBettings: newSessionBettings?.map((item: any) => {
           //   if (!JSON.parse(item)?.selectionId) {
           //     const parsedItem = JSON.parse(item);

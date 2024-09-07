@@ -137,9 +137,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                       item?.GameStatus != "") && (
                       <div className="suspended-overlayRates">
                         <span
-                          className={`${
-                            !isMobile ? "f-size18" : "f-size16"
-                          } suspendedTxtMatchOdd`}
+                          className={`suspendTextCmmn`}
                         >
                           {item?.GameStatus ?? "SUSPENDED"}
                         </span>
@@ -287,9 +285,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         item?.GameStatus != "") && (
                         <div className="suspended-overlayRates">
                           <span
-                            className={`${
-                              !isMobile ? "f-size18" : "f-size16"
-                            } suspendedTxtMatchOdd`}
+                            className={`suspendTextCmmn`}
                           >
                             {item?.GameStatus ?? "SUSPENDED"}
                           </span>

@@ -24,7 +24,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
     );
   };
   const handleLock = (status: any, value: any) => {
-    if (status != "ACTIVE" || value === "0.00") {
+    if (status != "ACTIVE" || value === 0) {
       return true;
     } else {
       return false;
@@ -34,7 +34,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const team2 = matchOddsData?.[1];
 
   useEffect(() => {
-    if (team1?.gstatus !== "ACTIVE" || team1?.b1 === "0.00") {
+    if (team1?.gstatus !== "ACTIVE" || team1?.b1 === 0) {
       dispatch(selectedBetAction(""));
     }
   }, [team1?.gstatus, team1?.b1]);
@@ -131,7 +131,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             }
           >
             <span className="f600 rateText lh-1">
-              {team1?.b1 === "0.00" ? "-" : team1?.b1}
+              {team1?.b1 === 0 ? "-" : team1?.b1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team1?.bs1}
@@ -147,7 +147,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             }
           >
             <span className="f600 rateText lh-1">
-              {team1?.l1 === "0.00" ? "-" : team1?.l1}
+              {team1?.l1 === 0 ? "-" : team1?.l1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team1?.ls1}
@@ -211,7 +211,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             }
           >
             <span className="f600 rateText">
-              {team2?.b1 === "0.00" ? "-" : team2?.b1}
+              {team2?.b1 === 0 ? "-" : team2?.b1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team2?.bs1}
@@ -227,7 +227,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             }
           >
             <span className="f600 rateText">
-              {team2?.l1 === "0.00" ? "-" : team2?.l1}
+              {team2?.l1 === 0 ? "-" : team2?.l1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team2?.ls1}

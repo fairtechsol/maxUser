@@ -144,11 +144,15 @@ body table.table {
 .color {
   background-color: $primary !important;
   border-top: 1px solid #ffffff;
-  line-height: 0.5;
+  line-height: 1.25;
+  display: flex;
+  box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
 }
 .font {
   font-size: 12px;
 }
+
+
 // mobile tabs
 .m-tab {
   border-radius: 0px !important;
@@ -158,27 +162,27 @@ body table.table {
   background-color: $primary !important;
   padding: 5px 10px !important;
   color: $white !important;
-  border-right: 1px solid $white !important;
+  // border-right: 1px solid $white !important;
   width: 100% !important;
   div {
     width: 100% !important;
   }
 }
-.m-tab.active {
-  border-color: transparent;
-  border-top: 2px solid $white !important;
-  border-left: none !important;
-}
+// .m-tab.active {
+//   border-color: transparent;
+//   border-top: 0.1rem solid $white !important;
+//   border-left: none !important;
+// }
 
- .m-tab .active::after {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: #ffffff;
-  top: -12px;
-  content: "";
-  left: 0;
-}
+//  .m-tab .active::after {
+//   // position: absolute;
+//   width: 100%;
+//   // height: 2px;
+//   // background-color: #ffffff;
+//   // top: -12px;
+//   content: "";
+//   left: 0;
+// }
 
 @media only screen and (max-width: 1199px) {
   .m-tab .active::after {
@@ -196,6 +200,9 @@ body table.table {
 }
 .bg-secondary {
   background-color: $secondary;
+}
+.placeBet-bg-blue{
+ background-color: #72bbef !important;
 }
 .bg-blue1 {
   background-color: $blue1 !important;
@@ -652,7 +659,8 @@ img {
   display: flex;
   justify-content: space-between;
   // padding: 6px 8px;
-  color : #ffffff
+  color : #ffffff;
+  flex-direction: column;
 }
 .teenpatti-20 .suspended:after {
   width: 50%;
@@ -730,6 +738,36 @@ img {
   align-items: center;
   width: 100%;
   margin-top: 2rem;
+}
+.dt20subheader1{
+  color: #fff;
+  display: flex;
+  padding: 0 5px;
+}
+.dt20subheader2{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  font-size: 12px;
+  padding-right: 5px;
+}
+
+.dt20header{
+  width: 100%;
+  background-color: #004a25;
+  box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: row;
+  padding: 2px 0px;
+  justify-content: space-between
+}
+
+.headfirst{
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0px 5px;
 }
 
 /* ===== for title ====  */
@@ -850,7 +888,7 @@ img {
   }
   .sizeFont{
     font-size: 11px !important;
-    font-weight: 100 !important;
+    font-weight: 200 !important;
   }
   .teamFont{
     font-size: 13px !important;
@@ -864,6 +902,11 @@ img {
   }
   .betMain-W{
     width: 100% !important;
+  }
+  .suspendTextCmmn{
+    font-size: 12px !important;
+    font-weight: bold;
+    color: #ff0000;
   }
 }
 
@@ -893,7 +936,7 @@ img {
   }
   .sizeFont{
     font-size: 12px !important;
-    font-weight: 100 !important;
+    font-weight: 200 !important;
   }
   .teamFont{
     font-size: 14px !important;
@@ -907,6 +950,11 @@ img {
   }
   .betMain-W{
     width: 100% !important;
+  }
+  .suspendTextCmmn{
+    font-size: 13px !important;
+    font-weight: bold;
+    color: #ff0000;
   }
 }
 
@@ -940,7 +988,7 @@ img {
   }
   .sizeFont{
     font-size: 12px !important;
-    font-weight: 100 !important;
+    font-weight: 200 !important;
   }
   .teamFont{
     font-size: 13px !important;
@@ -950,6 +998,11 @@ img {
   }
   .betMain-W{
     width: calc(100% - 352px) !important;
+  }
+  .suspendTextCmmn{
+    font-size: 14px !important;
+    font-weight: bold;
+    color: #ff0000;
   }
 }
 
@@ -985,7 +1038,7 @@ img {
   }
   .sizeFont{
     font-size: 12px !important;
-    font-weight: 100 !important;
+    font-weight: 200 !important;
   }
   .teamFont{
     font-size: 14px !important;
@@ -995,6 +1048,11 @@ img {
   }
   .betMain-W{
     width: calc(100% - 402px) !important;
+  }
+  .suspendTextCmmn{
+    font-size: 15px !important;
+    font-weight: bold;
+    color: #ff0000;
   }
 }
 
@@ -1019,7 +1077,7 @@ img {
   }
   .runnerWidthNormal {
     flex-grow: 1;
-    width: 48% !important;
+    width: 45% !important;
   }
   .rateFont{
     font-size: 18px !important;
@@ -1028,7 +1086,7 @@ img {
   }
   .sizeFont{
     font-size: 12px !important;
-    font-weight: 100 !important;
+    font-weight: 200 !important;
   }
   .teamFont{
     font-size: 14px !important;
@@ -1038,6 +1096,11 @@ img {
   }
   .betMain-W{
     width: calc(100% - 452px) !important;
+  }
+  .suspendTextCmmn{
+    font-size: 16px !important;
+    font-weight: bold;
+    color: #ff0000;
   }
 }
 

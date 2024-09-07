@@ -58,7 +58,7 @@ const MyBet = () => {
                     }`}
                   >
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-12 text-start f400 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -71,7 +71,7 @@ const MyBet = () => {
                         : bet?.bettingName ?? bet?.teamName}
                     </th>
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-12 text-start f400 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -80,7 +80,7 @@ const MyBet = () => {
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-12 text-start f400 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"

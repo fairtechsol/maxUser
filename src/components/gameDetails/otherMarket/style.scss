@@ -1,11 +1,18 @@
-.dynamicContainer {
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.otherMarketContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
   background-color: #f2f2f2;
-  // margin-top: 10px;
 }
-.dynamicTitle{
+.otherMarketTitle{
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -13,54 +20,73 @@
     padding: 3px 6px;
     background-color: #fece5d;
 }
-.dynamicTitleTxt {
+.otherMarketTitleTxt {
   color: #ffffff;
   font-weight: bold;
 }
-.dynamicBackLayTab {
+.otherMarketBackLayTab {
   width: 100%;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #c7c8ca;
 }
-.dynamicMinMaxBox {
+.otherMarketMinMaxBox {
   padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.dynamicMinMax {
+.otherMarketMinMax {
   font-size: 12px;
   font-weight: bold;
   color: #097c93;
 }
-.dynamicBackLayBoxContainer {
+.otherMarket1BackLayBoxContainer {
   width: 48%;
   display: flex;
   flex-direction: row;
 }
-.dynamicBackBoxTab {
+.otherMarket2BackLayBoxContainer {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+}
+.otherMarket1BackBoxTab {
   width: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #72bbef;
 }
-.dynamicLayBoxTab {
+.otherMarket1LayBoxTab {
   width: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #faa9ba;
 }
-.dynamicEmptyBox {
+.otherMarket2BackBoxTab {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #72bbef;
+}
+.otherMarket2LayBoxTab {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #faa9ba;
+}
+.otherMarketEmptyBox {
   width: 50%;
 }
-.dynamicBackTxt {
+.otherMarketBackTxt {
   color: #333;
   font-weight: bold;
 }
-.dynamicTeamTab {
+.otherMarketTeamTab {
   position: relative;
   width: 100%;
   height: 45px;
@@ -68,25 +94,46 @@
   justify-content: space-between;
   border-bottom: 1px solid #c7c8ca;
 }
-.dynamicTeam {
+.otherMarketRemarkTab {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #c7c8ca;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.otherMarketTeam {
   padding: 0px 5px;
   display: flex;
   justify-content: start;
   align-items: flex-start;
   flex-direction: column;
+  // line-height: 1;
 }
-.dynamicTeamTxt {
+.otherMarketTeamTxt {
   // font-size: 16px;
-  font-weight: 500;
+  width: 100%;
+  font-weight: 400;
   color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
 }
-.dynamicRateBox {
+.otherMarket1RateBox {
   position: relative;
   width: 72%;
   display: flex;
   flex-direction: row;
 }
-.dynamicBackBox {
+.otherMarket2RateBox {
+  position: relative;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+}
+.otherMarketBackBox {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -94,12 +141,12 @@
   align-items: center;
   cursor: pointer;
 }
-.dynamicRate1Box {
+.otherMarketRate1Box {
   font-size: 18px;
   color: #000;
   font-weight: bold;
 }
-.dynamicRate2Box {
+.otherMarketRate2Box {
   font-size: 12px;
   color: #000;
   font-weight: 100;
@@ -122,7 +169,15 @@
 .lay1Background {
   background-color: #faa9ba !important;
 }
-.suspended-overlayRatesdynamic {
+.remark-content {
+  font-size: 11px;
+  color: #097c93;
+  font-weight: normal;
+  display: inline-block;
+  padding-left: 38%;
+  animation: marquee 20s linear infinite;
+}
+.suspended-overlayRatesotherMarket {
   position: absolute;
   width: 100%;
   display: flex;
@@ -132,21 +187,33 @@
   height: 100%;
   z-index: 999;
 }
-.suspendedTxtdynamic {
+.suspendedTxtotherMarket {
   font-weight: 400;
   color: #ff1e30;
 }
 .f-size10 {
   font-size: 10px !important;
 }
+.f-size11 {
+  font-size: 11px !important;
+}
 .f-size12 {
   font-size: 12px !important;
+}
+.f-size13 {
+  font-size: 13px !important;
 }
 .f-size14 {
   font-size: 14px !important;
 }
+.f-size15 {
+  font-size: 15px !important;
+}
 .f-size16 {
   font-size: 16px !important;
+}
+.f-size17 {
+  font-size: 17px !important;
 }
 .f-size18 {
   font-size: 18px !important;

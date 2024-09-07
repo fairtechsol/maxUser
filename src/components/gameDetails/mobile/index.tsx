@@ -24,6 +24,7 @@ import SessionCricketCasino from "../sessionCricketCasino";
 import { FiMonitor } from "react-icons/fi";
 import { FaTv } from "react-icons/fa";
 import { ApiConstants } from "../../../utils/constants";
+import OtherMarket from "../otherMarket";
 
 const markets = [
   {
@@ -135,7 +136,11 @@ const MobileGameDetail = () => {
     JSON.parse(item)
   );
   const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
-  // console.log('manualEntries',manualEntries)
+  console.log(
+    matchDetails?.apiSession?.session?.section?.length,
+    "manualEntries",
+    manualEntries
+  );
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -154,11 +159,15 @@ const MobileGameDetail = () => {
         {[
           {
             id: "odds",
-            name: "ODDS",
+            name: <div className="oddstab border-end lh-sm pe-1">ODDS</div>,
           },
           {
             id: "matchedBet",
-            name: `MATCHED BET(${Array.from(new Set(placedBets))?.length})`,
+            name: (
+              <div className="ps-5 border-end pe-2">{`MATCHED BET(${
+                Array.from(new Set(placedBets))?.length
+              })`}</div>
+            ),
           },
           channelId !== "0" && channelId
             ? {
@@ -166,7 +175,8 @@ const MobileGameDetail = () => {
                 name: (
                   <div
                     onClick={() => setShowVideo(!showVideo)}
-                    style={{ padding: "0px", fontSize: "11px" }}
+                    className="ps-5"
+                    style={{ fontSize: "12px", lineHeight: 1.22 }}
                   >
                     <FaTv />
                   </div>
@@ -179,9 +189,11 @@ const MobileGameDetail = () => {
             <Tab
               key={item?.id}
               eventKey={item?.id}
-              tabClassName="m-tab"
+              tabClassName="m-tab border-0"
               title={
-                <div className="font p-2 lh-1 py-0 f600">{item?.name}</div>
+                <div className="font rounded-0 lh-sm py-0 f600">
+                  {item?.name}
+                </div>
               }
             >
               {index == 0 ? (
@@ -276,6 +288,39 @@ const MobileGameDetail = () => {
                           </div>
                         )
                       )}
+                    {matchDetails?.other?.length > 0 &&
+                      matchDetails?.other?.map((item: any, index: number) => (
+                        <div key={index} className="p-0">
+                          {item?.isActive && (
+                            <Col className="g-0" md={12}>
+                              <OtherMarket
+                                title={item?.name}
+                                box={
+                                  item?.runners?.[0]?.ex?.availableToBack
+                                    ?.length > 2
+                                    ? 6
+                                    : 2
+                                }
+                                data={item}
+                                detail={matchDetails}
+                                // data={matchDetails?.matchOdd}
+                              />
+                            </Col>
+                          )}
+                        </div>
+                      ))}
+                    {matchDetails?.apiTideMatch2?.isActive && (
+                      <Col className="g-0" md={12}>
+                        <OtherMarket
+                          title={matchDetails?.apiTideMatch2?.name}
+                          box={2}
+                          data={matchDetails?.apiTideMatch2}
+                          detail={matchDetails}
+                          // type={MatchType.MATCH_ODDS}
+                          // data={matchDetails?.matchOdd}
+                        />
+                      </Col>
+                    )}
 
                     {matchDetails?.manualTiedMatch?.isActive && (
                       <Col className="g-0" md={12}>
@@ -307,7 +352,7 @@ const MobileGameDetail = () => {
                       </Col>
                     )}
                     {(matchDetails?.apiSession?.session?.section?.length > 0 ||
-                      manualEntries) && (
+                      manualEntries?.length > 0) && (
                       <Col className="g-0" md={12}>
                         <MobileSessionNormal
                           title={"Normal"}

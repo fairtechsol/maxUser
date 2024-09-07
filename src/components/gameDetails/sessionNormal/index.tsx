@@ -93,7 +93,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
   };
   const handleStatus = (activeStatus: any, gStaus: any, status: any) => {
     if (activeStatus === "live") {
-      if (gStaus === "") {
+      if (gStaus!= undefined && (gStaus === "" || gStaus === "OPEN" || gStaus === "open")) {
         return false;
       } else if (status === "active") {
         return false;
@@ -211,9 +211,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     ) && (
                       <div className="suspended-overlayRates">
                         <span
-                          className={`${
-                            !isMobile ? "f-size18" : "f-size16"
-                          } suspendedTxtMatchOdd`}
+                          className={`suspendTextCmmn`}
                         >
                           {(item?.GameStatus || item?.status) ?? "SUSPENDED"}
                         </span>
@@ -539,9 +537,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       ) && (
                         <div className="suspended-overlayRates">
                           <span
-                            className={`${
-                              !isMobile ? "f-size18" : "f-size16"
-                            } suspendedTxtMatchOdd`}
+                            className={`suspendTextCmmn`}
                           >
                             {(item?.GameStatus || item?.status) ?? "SUSPENDED"}
                           </span>
