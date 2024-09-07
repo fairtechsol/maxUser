@@ -210,7 +210,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 handlePlaceBet(
                   data?.layTeamA,
                   "LAY",
-                  data?.type?.includes("quickbookmaker") ? detail?.teamA : "No",
+                  data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes",
                   data?.statusTeamA,
                   0
                 )
@@ -229,7 +229,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     "LAY",
                     data?.type?.includes("quickbookmaker")
                       ? detail?.teamA
-                      : "No",
+                      : "Yes",
                     data?.statusTeamA,
                     1
                   )
@@ -249,7 +249,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     "LAY",
                     data?.type?.includes("quickbookmaker")
                       ? detail?.teamA
-                      : "No",
+                      : "Yes",
                     data?.statusTeamA,
                     2
                   )
@@ -326,7 +326,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     "BACK",
                     data?.type?.includes("quickbookmaker")
                       ? detail?.teamB
-                      : "Yes",
+                      : "No",
                     data?.statusTeamB,
                     2
                   )
@@ -346,7 +346,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     "BACK",
                     data?.type?.includes("quickbookmaker")
                       ? detail?.teamB
-                      : "Yes",
+                      : "No",
                     data?.statusTeamB,
                     1
                   )
@@ -365,7 +365,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   "BACK",
                   data?.type?.includes("quickbookmaker")
                     ? detail?.teamB
-                    : "Yes",
+                    : "No",
                   data?.statusTeamB,
                   0
                 )
