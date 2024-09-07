@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { calculateMaxLoss } from "../../../helpers";
 
 const SessionOddEven = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -107,30 +108,23 @@ const SessionOddEven = ({ title, data, detail }) => {
                     </span>{" "}
                     <span
                       className={`${
-                        detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            ) < 0
-                            ? "color-red"
-                            : "color-red"
-                          : ""
+                        calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) < 0
+                          ? "color-red"
+                          : "color-red"
                       }  title-14`}
                     >
-                      -{detail?.profitLossDataSession
-                        ? detail?.profitLossDataSession?.reduce(
-                            (accumulator: any, bet: any) => {
-                              const maxLossToAdd =
-                                bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                              return accumulator + maxLossToAdd;
-                            },
-                            0
-                          )
-                        : 0}
+                      {calculateMaxLoss(
+                        detail?.profitLossDataSession,
+                        item?.id
+                      ) !== 0
+                        ? `-${calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          )}`
+                        : ""}
                     </span>
                   </div>
                   <div
@@ -264,32 +258,24 @@ const SessionOddEven = ({ title, data, detail }) => {
                       </span>{" "}
                       <span
                         className={`${
-                          detail?.profitLossDataSession
-                            ? detail?.profitLossDataSession?.reduce(
-                                (accumulator: any, bet: any) => {
-                                  const maxLossToAdd =
-                                    bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                  return accumulator + maxLossToAdd;
-                                },
-                                0
-                              ) < 0
-                              ? "color-red"
-                              : "color-red"
-                            : ""
+                          calculateMaxLoss(
+                            detail?.profitLossDataSession,
+                            item?.id
+                          ) < 0
+                            ? "color-red"
+                            : "color-red"
                         }  title-14`}
                       >
-                        -{detail?.profitLossDataSession
-                          ? detail?.profitLossDataSession?.reduce(
-                              (accumulator: any, bet: any) => {
-                                const maxLossToAdd =
-                                  bet?.betId === item?.id ? +bet?.maxLoss : 0;
-                                return accumulator + maxLossToAdd;
-                              },
-                              0
-                            )
-                          : 0}
+                        {calculateMaxLoss(
+                          detail?.profitLossDataSession,
+                          item?.id
+                        ) !== 0
+                          ? `-${calculateMaxLoss(
+                              detail?.profitLossDataSession,
+                              item?.id
+                            )}`
+                          : ""}
                       </span>
-                     
                     </div>
                     <div
                       className="sessionRateBoxContainer rateBoxWidthNormal"

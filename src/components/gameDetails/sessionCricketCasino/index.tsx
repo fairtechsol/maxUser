@@ -111,7 +111,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
               className="sessionCasinoMinMax"
               style={{ borderBottom: "1px solid #c7c8ca" }}
             >
-              <div style={{ backgroundColor: "#f2f2f2",flexGrow:1 }}>
+              <div style={{ backgroundColor: "#f2f2f2", flexGrow: 1 }}>
                 <span className={`sessionMinBox`} style={{ marginLeft: "1%" }}>
                   Min:{formatNumber(marketArr?.min)} Max:
                   {formatNumber(marketArr?.max)}
@@ -127,7 +127,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
             {marketArr?.section?.map((item: any, index: any) => {
               return (
                 <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName" style={{flexGrow:1}}>
+                  <div className="sessionRateName" style={{ flexGrow: 1 }}>
                     <span
                       className={isMobile ? "f-size13" : "f-size14"}
                       style={{ fontWeight: "400" }}
@@ -153,7 +153,8 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                           : 0
                       }`}
                     >
-                      -{detail?.profitLossDataSession
+                      -
+                      {detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.filter(
                             (a: any) => a?.betId === data?.id
                           )

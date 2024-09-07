@@ -128,7 +128,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "http://localhost:5001",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -386,7 +386,8 @@ export const cardUrl =
     : "https://maxbet9.fairgame.club/videoPage/";
 
 export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
-export const scoreBoardUrlMain = "https://dpmatka.in/dcasino/score.php?matchId=";
+export const scoreBoardUrlMain =
+  "https://dpmatka.in/dcasino/score.php?matchId=";
 
 export const baseUrls = {
   socket:
@@ -1895,19 +1896,19 @@ export const bollywoodTableCards = [
 ];
 
 export const casinoItems = [
-  { id: '1', name: 'All Casino', link: '/contact-admin' },
-  { id: '2', name: 'Roulette', link: '/contact-admin' },
-  { id: '3', name: 'Teenpatti', link: '/contact-admin' },
-  { id: '4', name: 'Poker', link: '/contact-admin' },
-  { id: '5', name: 'Bacarrat', link: '/contact-admin' },
-  { id: '6', name: 'Dragon Tiger', link: '/contact-admin' },
-  { id: '7', name: '32 Cards', link: '/contact-admin' },
-  { id: '8', name: 'Andar Bahar', link: '/contact-admin' },
-  { id: '9', name: 'Luck-7', link: '/contact-admin' },
-  { id: '10', name: '3 Card Judgement', link: '/contact-admin' },
-  { id: '11', name: 'Casino war', link: '/contact-admin' },
-  { id: '12', name: 'worli', link: '/contact-admin' },
-  { id: '13', name: 'sports', link: '/contact-admin' },
-  { id: '14', name: 'Bollywood', link: '/contact-admin' },
-  { id: '15', name: 'Queen', link: '/contact-admin' },
+  { id: "1", name: "All Casino", link: "/contact-admin" },
+  { id: "2", name: "Roulette", link: "/contact-admin" },
+  { id: "3", name: "Teenpatti", link: "/contact-admin" },
+  { id: "4", name: "Poker", link: "/contact-admin" },
+  { id: "5", name: "Bacarrat", link: "/contact-admin" },
+  { id: "6", name: "Dragon Tiger", link: "/contact-admin" },
+  { id: "7", name: "32 Cards", link: "/contact-admin" },
+  { id: "8", name: "Andar Bahar", link: "/contact-admin" },
+  { id: "9", name: "Luck-7", link: "/contact-admin" },
+  { id: "10", name: "3 Card Judgement", link: "/contact-admin" },
+  { id: "11", name: "Casino war", link: "/contact-admin" },
+  { id: "12", name: "worli", link: "/contact-admin" },
+  { id: "13", name: "sports", link: "/contact-admin" },
+  { id: "14", name: "Bollywood", link: "/contact-admin" },
+  { id: "15", name: "Queen", link: "/contact-admin" },
 ];

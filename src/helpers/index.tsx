@@ -26,3 +26,16 @@ export const customSortOnName = (a: any, b: any) => {
 
   return numA - numB;
 };
+
+export const calculateMaxLoss = (profitLossDataSession: any, betId: any) => {
+  if (!profitLossDataSession || !Array.isArray(profitLossDataSession)) {
+    return 0;
+  }
+
+  const totalMaxLoss = profitLossDataSession.reduce((accumulator, bet) => {
+    const maxLossToAdd = bet?.betId === betId ? +bet?.maxLoss : 0;
+    return accumulator + maxLossToAdd;
+  }, 0);
+
+  return totalMaxLoss;
+};
