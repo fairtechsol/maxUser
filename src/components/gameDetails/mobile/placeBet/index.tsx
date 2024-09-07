@@ -190,9 +190,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
         <Container
           className={`${
             selectedBet?.team?.type === "lay" ||
+            selectedBet?.team?.type === "LAY" ||
             selectedBet?.team?.type === "no"
               ? "bg-red1"
-              : "bg-blue1"
+              : "placeBet-bg-blue"
           }`}
           fluid
         >
@@ -489,7 +490,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       <div className="col-md-4">
                         <div className="row">
                           <div className="col-md-12">
-                            <span className="f600 title-12">
+                            <span className="f400 title-12">
                               {handleTeamRates(
                                 selectedBet?.team?.matchBetType,
                                 "A"
@@ -499,7 +500,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                         </div>
                         <div className="row">
                           <div className="col-md-12">
-                            <span className="f600 title-12">
+                            <span className="f400 title-12">
                               {handleTeamRates(
                                 selectedBet?.team?.matchBetType,
                                 "B"
@@ -510,7 +511,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                         {selectedBet?.team?.teamC && (
                           <div className="row">
                             <div className="col-md-12">
-                              <span className="f600 title-12">
+                              <span className="f400 title-12">
                                 {matchDetails?.profitLossDataMatch?.teamCRate ||
                                   0}
                               </span>
@@ -524,7 +525,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                         <div className="row">
                           <div className="col-md-12">
                             <span
-                              style={{ fontSize: "12px", fontWeight: "600" }}
+                              style={{ fontSize: "12px", fontWeight: "400" }}
                               className={
                                 Number(handleProLoss(selectedBet?.team, "A")) >
                                 0
@@ -545,7 +546,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                         <div className="row">
                           <div className="col-md-12">
                             <span
-                              style={{ fontSize: "12px", fontWeight: "600" }}
+                              style={{ fontSize: "12px", fontWeight: "400" }}
                               className={
                                 Number(handleProLoss(selectedBet?.team, "B")) >
                                 0

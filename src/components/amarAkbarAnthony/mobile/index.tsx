@@ -17,6 +17,7 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
 
 const AmarAkbarAnthonyMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -70,66 +71,12 @@ const AmarAkbarAnthonyMobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
-          <div className="dt20subheader1">
             <MobilePlacedBet show={show1} setShow={setShow1} />
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+            <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "250px" }}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
+            <div style={{ width: "100%" }}>
               <div
                 style={{
                   width: "100%",
@@ -149,7 +96,7 @@ const AmarAkbarAnthonyMobile = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
-                <div style={{ width: "100%", marginTop: "35px" }}>
+                <div style={{ width: "100%" }}>
                   <TiePairBox
                     lowHigh={dragonTigerDetail?.players}
                     data={dragonTigerDetail}
