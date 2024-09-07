@@ -97,7 +97,7 @@ const SessionOddEven = ({ title, data, detail }) => {
             {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
-                  <div className="sessionRateName">
+                  <div className="sessionRateName runnerWidthNormal"  style={{ overflow: "hidden" }}>
                     <span
                       className="f-size15"
                       style={{ width: "60%", fontWeight: "400", lineHeight: 1 }}
@@ -128,10 +128,10 @@ const SessionOddEven = ({ title, data, detail }) => {
                     </span>
                   </div>
                   <div
-                    className="sessionRateBoxContainer"
-                    style={{
-                      width: isLap ? "180px" : !isMobile ? "240px" : "",
-                    }}
+                    className="sessionRateBoxContainer rateBoxWidthNormal"
+                    // style={{
+                    //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                    // }}
                   >
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
@@ -243,7 +243,7 @@ const SessionOddEven = ({ title, data, detail }) => {
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
                   <div className="sessionOddEvenRateContainer" key={index}>
-                    <div className="sessionRateName">
+                    <div className="sessionRateName runnerWidthNormal"  style={{ overflow: "hidden" }}>
                       <span
                         className="f-size15"
                         style={{
@@ -278,10 +278,10 @@ const SessionOddEven = ({ title, data, detail }) => {
                       </span>
                     </div>
                     <div
-                      className="sessionRateBoxContainer"
-                      style={{
-                        width: isLap ? "180px" : !isMobile ? "240px" : "",
-                      }}
+                      className="sessionRateBoxContainer rateBoxWidthNormal"
+                      // style={{
+                      //   width: isLap ? "180px" : !isMobile ? "240px" : "",
+                      // }}
                     >
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (

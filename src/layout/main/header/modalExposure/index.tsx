@@ -62,7 +62,7 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
                     {item?.eventName}
                   </Link>
                 </td>
-                <td>{item?.groupedmarkettype}</td>
+                <td>{item?.groupedmarkettype || item?.marketType}</td>
                 <td>{item?.trade}</td>
               </tr>
             );

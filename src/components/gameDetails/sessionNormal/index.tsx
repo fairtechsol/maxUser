@@ -228,7 +228,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       }}
                     >
                       <div
-                        className={`sessionRateBox lay1Background`}
+                        className={`sessionRateBox rateFont lay1Background`}
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
