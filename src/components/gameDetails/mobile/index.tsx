@@ -135,7 +135,11 @@ const MobileGameDetail = () => {
     JSON.parse(item)
   );
   const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
-  // console.log('manualEntries',manualEntries)
+  console.log(
+    matchDetails?.apiSession?.session?.section?.length,
+    "manualEntries",
+    manualEntries
+  );
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -276,7 +280,37 @@ const MobileGameDetail = () => {
                           </div>
                         )
                       )}
-
+                    {matchDetails?.other?.length > 0 &&
+                      matchDetails?.other?.map(
+                        (item: any, index: number) => (
+                          <div key={index} className="p-0">
+                            {item?.isActive && (
+                              <Col className="g-0" md={12}>
+                                <Bookmaker
+                                  title={item?.name}
+                                  box={2}
+                                  data={item}
+                                  detail={matchDetails}
+                                  // type={MatchType.MATCH_ODDS}
+                                  // data={matchDetails?.matchOdd}
+                                />
+                              </Col>
+                            )}
+                          </div>
+                        )
+                      )}
+                    {matchDetails?.apiTideMatch2?.isActive && (
+                      <Col className="g-0" md={12}>
+                        <Bookmaker
+                          title={matchDetails?.apiTideMatch2?.name}
+                          box={2}
+                          data={matchDetails?.apiTideMatch2}
+                          detail={matchDetails}
+                          // type={MatchType.MATCH_ODDS}
+                          // data={matchDetails?.matchOdd}
+                        />
+                      </Col>
+                    )}
                     {matchDetails?.manualTiedMatch?.isActive && (
                       <Col className="g-0" md={12}>
                         <ManualMarket
@@ -307,7 +341,7 @@ const MobileGameDetail = () => {
                       </Col>
                     )}
                     {(matchDetails?.apiSession?.session?.section?.length > 0 ||
-                      manualEntries) && (
+                      manualEntries?.length > 0) && (
                       <Col className="g-0" md={12}>
                         <MobileSessionNormal
                           title={"Normal"}

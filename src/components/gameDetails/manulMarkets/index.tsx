@@ -72,8 +72,8 @@ const ManualMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className="manualBackLayBoxContainer"
-            style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
+            className={`manualBackLayBoxContainer ${isMobile?"backLayBoxWidth2":"backLayBoxWidth"}`}
+            // style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
               className="manualBackBoxTab"
@@ -133,8 +133,8 @@ const ManualMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className="manualRateBox"
-            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
+            // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" ||
               data?.statusTeamA != "active") && (
@@ -304,8 +304,8 @@ const ManualMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className="manualRateBox"
-            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
+            // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" ||
               data?.statusTeamB != "active") && (
@@ -470,8 +470,8 @@ const ManualMarket = ({ title, data, detail }) => {
               </span>
             </div>
             <div
-              className="manualRateBox"
-              style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+              className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
+              // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
             >
               {(data?.activeStatus !== "live" ||
                 data?.statusTeamC != "active") && (

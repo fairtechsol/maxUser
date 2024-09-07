@@ -190,6 +190,34 @@ const DesktopGameDetail = () => {
                     </div>
                   )
                 )}
+              {matchDetails?.other?.length > 0 &&
+                matchDetails?.other?.map((item: any, index: number) => (
+                  <div key={index}>
+                    {item?.isActive && (
+                      <Col md={12} style={{ marginTop: "10px" }}>
+                        <Bookmaker
+                          title={item?.name}
+                          box={2}
+                          data={item}
+                          detail={matchDetails}
+                          // data={matchDetails?.matchOdd}
+                        />
+                      </Col>
+                    )}
+                  </div>
+                ))}
+              {matchDetails?.apiTideMatch2?.isActive && (
+                <Col md={12} style={{ marginTop: "10px" }}>
+                  <Bookmaker
+                    title={matchDetails?.apiTideMatch2?.name}
+                    box={2}
+                    data={matchDetails?.apiTideMatch2}
+                    detail={matchDetails}
+                    // type={MatchType.MATCH_ODDS}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
               {(matchDetails?.manualTiedMatch?.isActive ||
                 matchDetails?.manualTideMatch?.isActive) && (
                 <Col md={12}>
@@ -227,7 +255,7 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
               {(matchDetails?.apiSession?.session?.section?.length > 0 ||
-                manualEntries) && (
+                manualEntries?.length > 0) && (
                 <Col md={12}>
                   <SessionNormal
                     title={"Normal"}
