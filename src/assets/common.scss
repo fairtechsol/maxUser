@@ -197,6 +197,9 @@ body table.table {
 .bg-secondary {
   background-color: $secondary;
 }
+.placeBet-bg-blue{
+ background-color: #72bbef !important;
+}
 .bg-blue1 {
   background-color: $blue1 !important;
 }
@@ -652,7 +655,8 @@ img {
   display: flex;
   justify-content: space-between;
   // padding: 6px 8px;
-  color : #ffffff
+  color : #ffffff;
+  flex-direction: column;
 }
 .teenpatti-20 .suspended:after {
   width: 50%;
@@ -730,6 +734,36 @@ img {
   align-items: center;
   width: 100%;
   margin-top: 2rem;
+}
+.dt20subheader1{
+  color: #fff;
+  display: flex;
+  padding: 0 5px;
+}
+.dt20subheader2{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  font-size: 12px;
+  padding-right: 5px;
+}
+
+.dt20header{
+  width: 100%;
+  background-color: #004a25;
+  box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: row;
+  padding: 2px 0px;
+  justify-content: space-between
+}
+
+.headfirst{
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0px 5px;
 }
 
 /* ===== for title ====  */
