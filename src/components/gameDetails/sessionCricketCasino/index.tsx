@@ -148,12 +148,12 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                                   (a: any) => a?.betId === data?.id
                                 )[0]?.profitLoss?.[index] < 0
                               ? "color-red"
-                              : ""
+                              : "color-red"
                             : 0
                           : 0
                       }`}
                     >
-                      {detail?.profitLossDataSession
+                      -{detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.filter(
                             (a: any) => a?.betId === data?.id
                           )

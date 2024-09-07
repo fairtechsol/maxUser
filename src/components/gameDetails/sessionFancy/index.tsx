@@ -130,11 +130,11 @@ const SessionFancy = ({ title, data, detail }) => {
                               0
                             ) < 0
                             ? "color-red"
-                            : "color-green"
+                            : "color-red"
                           : ""
                       } title-14`}
                     >
-                      {detail?.profitLossDataSession
+                      -{detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.reduce(
                             (accumulator: any, bet: any) => {
                               const maxLossToAdd =
@@ -298,11 +298,11 @@ const SessionFancy = ({ title, data, detail }) => {
                                 0
                               ) < 0
                               ? "color-red"
-                              : "color-green"
+                              : "color-red"
                             : ""
                         } title-14`}
                       >
-                        {detail?.profitLossDataSession
+                        -{detail?.profitLossDataSession
                           ? detail?.profitLossDataSession?.reduce(
                               (accumulator: any, bet: any) => {
                                 const maxLossToAdd =

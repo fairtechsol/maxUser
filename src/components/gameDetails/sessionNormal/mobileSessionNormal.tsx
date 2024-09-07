@@ -172,10 +172,10 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                           item?.id
                         ) < 0
                           ? "color-red"
-                          : "color-green"
+                          : "color-red"
                       } title-13`}
                     >
-                      {calculateMaxLoss(
+                      -{calculateMaxLoss(
                         detail?.profitLossDataSession,
                         item?.id
                       ) !== 0

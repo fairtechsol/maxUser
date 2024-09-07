@@ -92,11 +92,11 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                               0
                             ) < 0
                             ? "color-red"
-                            : "color-green"
+                            : "color-red"
                           : ""
                       } title-13`}
                     >
-                      {detail?.profitLossDataSession
+                      -{detail?.profitLossDataSession
                         ? detail?.profitLossDataSession?.reduce(
                             (accumulator: any, bet: any) => {
                               const maxLossToAdd =
