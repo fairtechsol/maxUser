@@ -22,6 +22,7 @@ import SessionNormal from "../sessionNormal";
 import SessionFancy from "../sessionFancy";
 import SessionOddEven from "../sessionOddEven";
 import SessionCricketCasino from "../sessionCricketCasino";
+import OtherMarket from "../otherMarket";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -195,9 +196,9 @@ const DesktopGameDetail = () => {
                   <div key={index}>
                     {item?.isActive && (
                       <Col md={12} style={{ marginTop: "10px" }}>
-                        <Bookmaker
+                        <OtherMarket
                           title={item?.name}
-                          box={2}
+                          box={item?.runners?.[0]?.ex?.availableToBack?.length > 2 ? 6:2}
                           data={item}
                           detail={matchDetails}
                           // data={matchDetails?.matchOdd}
@@ -208,7 +209,7 @@ const DesktopGameDetail = () => {
                 ))}
               {matchDetails?.apiTideMatch2?.isActive && (
                 <Col md={12} style={{ marginTop: "10px" }}>
-                  <Bookmaker
+                  <OtherMarket
                     title={matchDetails?.apiTideMatch2?.name}
                     box={2}
                     data={matchDetails?.apiTideMatch2}
@@ -218,6 +219,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
+              
               {(matchDetails?.manualTiedMatch?.isActive ||
                 matchDetails?.manualTideMatch?.isActive) && (
                 <Col md={12}>
