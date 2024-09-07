@@ -129,7 +129,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
@@ -316,7 +316,7 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
@@ -504,7 +504,7 @@ const MatchOdd = ({ title, data, detail }) => {
               >
                 {detail?.profitLossDataMatch?.[
                   profitLossDataForMatchConstants[data?.type]?.C
-                ] ?? 0}
+                ] ?? ""}
               </span>
             </div>
             <div
