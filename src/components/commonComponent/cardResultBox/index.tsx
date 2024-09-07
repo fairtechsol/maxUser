@@ -15,9 +15,13 @@ const CardResultBox = ({ data, name, type }: any) => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const [lgShow, setLgShow] = useState(false);
-  const { liveGameResultTop10, resultData } = useSelector(
+  let { liveGameResultTop10, resultData } = useSelector(
     (state: RootState) => state.card
   );
+
+  if (liveGameResultTop10?.res) {
+    liveGameResultTop10 = liveGameResultTop10?.res;
+  }
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
@@ -338,7 +342,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                         ? "#f5cc03"
                         : item?.result === "2" || item?.result === "21"
                         ? "#ff4500"
-                        : "#ffffff",
+                        : "#ffff33",
                   }}
                 >
                   {type === "teen20"

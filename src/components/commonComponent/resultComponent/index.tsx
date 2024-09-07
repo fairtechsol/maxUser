@@ -33,6 +33,7 @@ import CricketMatch20ResultComponent from "../../cricketMatch_20/desktop/resultM
 import Bacarrate1ResultComponent from "../../baccarat1/desktop/resultModalComponent";
 import Bacarrate2ResultComponent from "../../baccarat2/desktop/resultModalComponent";
 import QueenResultComponent from "../../queen/desktop/resultModalComponent";
+import BallByBallResultComponent from "../../ballbyball/desktop/resultModalComponent";
 const title = {
   dt20: "20-20 Dragon Tiger",
   teen20: "20-20 Teenpatti",
@@ -66,12 +67,15 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
 }) => {
   const [date, setDate] = useState<any>();
 
+  // if(data?.res){
+  //   data=data?.res
+  // }
   useEffect(() => {
     if (!date) {
       setDate(Date.now());
     }
   }, []);
-
+  
   return (
     <Container style={{ padding: 0, width: "100%" }}>
       <div className="resultModalHeader">
@@ -161,6 +165,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <QueenResultComponent data={data} />
       ) : type === cardGamesType?.baccarat2 ? (
         <Bacarrate2ResultComponent data={data} />
+      ) : type === cardGamesType?.ballbyball ? (
+        <BallByBallResultComponent data={data} />
       ) : (
         <></>
       )}

@@ -121,6 +121,7 @@ export const Constants = {
   thirdPartyCard: "https://casinoserviceapi.fairgame.club",
   localThird: "http://localhost:3200",
   // localThirdCard: "https://3200dev.fairgame.club",
+  // fdsfsdfsdsdfsd
   localThirdCard: "http://localhost:3201",
   WEBSOCKET: "websocket",
   POLLING: "polling",
