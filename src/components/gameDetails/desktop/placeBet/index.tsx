@@ -327,6 +327,7 @@ const PlacedBet = () => {
                 <tr
                   className={
                     selectedBet?.team?.type == "lay" ||
+                    selectedBet?.team?.type === "LAY" ||
                     selectedBet?.team?.type == "no"
                       ? "place-bet-table-red"
                       : "place-bet-table-blue"
@@ -426,6 +427,7 @@ const PlacedBet = () => {
                 <tr
                   className={
                     selectedBet?.team?.type == "lay" ||
+                    selectedBet?.team?.type === "LAY" ||
                     selectedBet?.team?.type == "no"
                       ? "place-bet-table-red"
                       : "place-bet-table-blue"
