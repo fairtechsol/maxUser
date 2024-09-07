@@ -16,6 +16,7 @@ import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
+import { Tab, Tabs } from "react-bootstrap";
 
 const DragonTigerMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -25,6 +26,11 @@ const DragonTigerMobile = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [videoFrameId, setVideoFrameId] = useState("");
   const [show1, setShow1] = useState(false);
+  const tabData = [
+    { id: "dragon", name: "Dragon" },
+    { id: "tiger", name: "Tiger" },
+    { id: "lion", name: "Lion" },
+  ];
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
@@ -64,14 +70,18 @@ const DragonTigerMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />         
-           <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%"}}>
+            <div style={{ width: "100%" }}>
               <div
                 style={{
                   width: "100%",
@@ -91,84 +101,46 @@ const DragonTigerMobile = () => {
             {loading ? (
               <LoaderOnRefresh />
             ) : (
-              <div style={{ marginTop: "-2rem" }}>
-                <div className="dt20TabBox">
-                  <div className="dtltabheader">
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        padding: "6px",
-                        width: "100%",
-                        textAlign: "center",
-                        borderTop:
-                          activeCardTab === "dragon"
-                            ? "2px solid white"
-                            : "none",
-                      }}
-                      onClick={() => setActiveCardTab("dragon")}
+              <div>
+                <Tabs
+                  activeKey={activeCardTab}
+                  onSelect={(key) => setActiveCardTab(key as string)}
+                  className=" d-xl-none nav nav-pills"
+                >
+                  {tabData.map((tab) => (
+                    <Tab
+                      key={tab.id}
+                      eventKey={tab.id}
+                      title={tab.name}
+                      tabClassName={`match-tabs p-2 ${
+                        activeCardTab === tab.id ? "active" : ""
+                      }`} // Custom class for styling
                     >
-                      DRAGON
-                    </span>
-                    <span style={{ fontSize: "18px" }}> | </span>
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        padding: "5px",
-                        width: "100%",
-                        textAlign: "center",
-                        borderTop:
-                          activeCardTab === "tiger"
-                            ? "2px solid white"
-                            : "none",
-                      }}
-                      onClick={() => setActiveCardTab("tiger")}
-                    >
-                      TIGER
-                    </span>
-                    <span style={{ fontSize: "18px" }}> | </span>
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        padding: "5px",
-                        width: "100%",
-                        textAlign: "center",
-                        borderTop:
-                          activeCardTab === "lion" ? "2px solid white" : "none",
-                      }}
-                      onClick={() => setActiveCardTab("lion")}
-                    >
-                      LION
-                    </span>
-                  </div>
-                </div>
-                {activeCardTab === "dragon" ? (
-                  <div>
-                    <OddEven
-                      name={"DRAGON"}
-                      odds={dragonTigerDetail?.dragonData}
-                      data={dragonTigerDetail}
-                    />
-                  </div>
-                ) : activeCardTab === "tiger" ? (
-                  <div>
-                    <OddEven
-                      name={"TIGER"}
-                      odds={dragonTigerDetail?.tigerData}
-                      data={dragonTigerDetail}
-                    />
-                  </div>
-                ) : (
-                  <div>
-                    <OddEven
-                      name={"LION"}
-                      odds={dragonTigerDetail?.lionData}
-                      data={dragonTigerDetail}
-                    />
-                  </div>
-                )}
+                      {tab.id === "dragon" && (
+                        <OddEven
+                          name={"DRAGON"}
+                          odds={dragonTigerDetail?.dragonData}
+                          data={dragonTigerDetail}
+                        />
+                      )}
+                      {tab.id === "tiger" && (
+                        <OddEven
+                          name={"TIGER"}
+                          odds={dragonTigerDetail?.tigerData}
+                          data={dragonTigerDetail}
+                        />
+                      )}
+                      {tab.id === "lion" && (
+                        <OddEven
+                          name={"LION"}
+                          odds={dragonTigerDetail?.lionData}
+                          data={dragonTigerDetail}
+                        />
+                      )}
+                    </Tab>
+                  ))}
+                </Tabs>
+
                 <div style={{ width: "100%", marginTop: "15px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
