@@ -19,6 +19,9 @@ const CardResultBox = ({ data, name, type }: any) => {
     (state: RootState) => state.card
   );
 
+  if (liveGameResultTop10?.res) {
+    liveGameResultTop10 = liveGameResultTop10?.res;
+  }
   const handleResult = (id: any) => {
     setLgShow(true);
     dispatch(resultDragonTiger(id));
