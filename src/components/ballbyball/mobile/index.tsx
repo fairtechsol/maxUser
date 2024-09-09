@@ -264,7 +264,7 @@ const TeenPattiMobile = () => {
                       }}
                       key={item.sid}
                     >
-                      <div
+                      {/* <div
                         style={{
                           width: "60%",
                           border: "0.1px solid #fff",
@@ -273,6 +273,53 @@ const TeenPattiMobile = () => {
                         }}
                       >
                         {item.nat}
+                      </div> */}
+                      <div
+                        style={{
+                          width: "60%",
+                          fontSize: "14px",
+                          marginLeft: "3px",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontSize: "14px",
+                          }}
+                        >
+                          {item.nat}
+                        </div>
+                        <span
+                          className={`f10-b ${
+                            dragonTigerDetail?.profitLoss
+                              ? dragonTigerDetail?.profitLoss[
+                                  `null_${item?.sid}_card`
+                                ]
+                                ? dragonTigerDetail?.profitLoss[
+                                    `null_${item?.sid}_card`
+                                  ] > 0
+                                  ? "color-green"
+                                  : dragonTigerDetail?.profitLoss[
+                                      `null_${item?.sid}_card`
+                                    ] < 0
+                                  ? "color-red"
+                                  : ""
+                                : ""
+                              : ""
+                          }`}
+                          style={{ zIndex: "100" }}
+                        >
+                          {dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `null_${item?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `null_${item?.sid}_card`
+                                ]
+                              : 0
+                            : 0}
+                        </span>
                       </div>
                       <div
                         style={{
