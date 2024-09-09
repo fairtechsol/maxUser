@@ -181,16 +181,20 @@ const BetHistoryComponent = () => {
             }
             columns={[
               {
+                id: "sports",
+                label: "Sports",
+              },
+              {
                 id: "event_name",
                 label: "Event Name",
               },
               {
-                id: "nation",
-                label: "Nation",
+                id: "market_name",
+                label: "Market Name",
               },
               {
-                id: "bet_type",
-                label: "Bet Type",
+                id: "nation",
+                label: "Nation",
               },
               {
                 id: "user_rate",
@@ -201,17 +205,13 @@ const BetHistoryComponent = () => {
                 label: "Amount",
               },
               {
-                id: "profit_loss",
-                label: "Profit/Loss",
-              },
-              {
                 id: "place_date",
                 label: "Place Date",
               },
-              {
-                id: "match_date",
-                label: "Match Date",
-              },
+              // {
+              //   id: "match_date",
+              //   label: "Match Date",
+              // },
             ]}
             // itemCount={10}
             // setTableConfig={() => {}}
@@ -227,6 +227,7 @@ const BetHistoryComponent = () => {
                           ? "bg-red1"
                           : "bg-blue3"
                       }`}
+                      // style={{textAlign:"start"}}
                     >
                       {item?.eventType}
                     </td>
@@ -236,8 +237,9 @@ const BetHistoryComponent = () => {
                           ? "bg-red1"
                           : "bg-blue3"
                       }`}
+                      // style={{textAlign:"start"}}
                     >
-                      {item?.teamName}
+                      {item?.match?.title}
                     </td>
                     <td
                       className={` ${
@@ -245,8 +247,19 @@ const BetHistoryComponent = () => {
                           ? "bg-red1"
                           : "bg-blue3"
                       }`}
+                      // style={{textAlign:"start"}}
                     >
-                      {item?.betType}
+                      {item?.marketType}
+                    </td>
+                    <td
+                      className={` ${
+                        item?.betType === "NO" || item?.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue3"
+                      }`}
+                      // style={{textAlign:"start"}}
+                    >
+                      {item?.teamName}
                     </td>
                     <td
                       className={` ${
@@ -265,20 +278,11 @@ const BetHistoryComponent = () => {
                       }`}
                     >
                       {item?.amount}
-                    </td>
-                    <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {/* {item?.winAmount} */}
-                      {item.result === "LOSS" ? (
+                      {/* {item.result === "LOSS" ? (
                         <span className="color-red">-{item.lossAmount}</span>
                       ) : (
                         <span className="color-green">{item.winAmount}</span>
-                      )}
+                      )} */}
                     </td>
                     <td
                       className={` ${
@@ -289,7 +293,7 @@ const BetHistoryComponent = () => {
                     >
                       {moment(item?.createdAt).format("DD-MM-YYYY h:mm:ss A")}
                     </td>
-                    <td
+                    {/* <td
                       className={` ${
                         item?.betType === "NO" || item?.betType === "LAY"
                           ? "bg-red1"
@@ -299,7 +303,7 @@ const BetHistoryComponent = () => {
                       {moment(item?.match?.startAt).format(
                         "DD-MM-YYYY h:mm:ss A"
                       )}
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })}
