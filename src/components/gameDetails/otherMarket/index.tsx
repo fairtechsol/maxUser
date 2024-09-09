@@ -521,11 +521,11 @@ const OtherMarket = ({ title, box, data, detail }) => {
 
         {data?.metaData?.teamC && (
           <div className="otherMarketTeamTab">
-            {data?.activeStatus != "live" && (
+            {/* {data?.activeStatus != "live" && (
               <div className="suspended-overlayRatesotherMarket">
                 <span className={`suspendTextCmmn`}></span>
               </div>
-            )}
+            )} */}
             <div
               className="otherMarketTeam"
               style={box === 6 ? { width: "28%" } : {}}

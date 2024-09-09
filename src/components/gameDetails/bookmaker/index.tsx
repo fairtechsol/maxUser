@@ -525,11 +525,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
 
         {detail?.teamC && (
           <div className="bookmakerTeamTab">
-            {data?.activeStatus != "live" && (
+            {/* {data?.activeStatus != "live" && (
               <div className="suspended-overlayRatesBookmaker">
                 <span className={`suspendTextCmmn`}></span>
               </div>
-            )}
+            )} */}
             <div
               className="bookmakerTeam"
               style={box === 6 ? { width: "28%" } : {}}
