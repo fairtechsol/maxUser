@@ -7670,6 +7670,9 @@ textarea.form-control-lg {
 .br-0 {
   border-radius: 0px !important;
 }
+.br-5 {
+  border-radius: 5px !important;
+}
 .flex-fill {
   flex: 1 1 auto !important;
 }

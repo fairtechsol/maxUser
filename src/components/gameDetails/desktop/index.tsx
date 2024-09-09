@@ -170,7 +170,7 @@ const DesktopGameDetail = () => {
                   src={`https://dpmatka.in/dcasino/score.php?matchId=${matchDetails?.eventId}`}
                 ></iframe>
               </Col>
-              {matchDetails?.matchOdd?.isActive && (
+              {matchDetails?.matchOdd?.isActive ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <MatchOdd
                     title={matchDetails?.matchOdd?.name}
@@ -179,7 +179,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.bookmaker?.isActive && (
+              {matchDetails?.bookmaker?.isActive ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <Bookmaker
                     title={matchDetails?.bookmaker?.name}
@@ -190,7 +190,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.bookmaker2?.isActive && (
+              {matchDetails?.bookmaker2?.isActive ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <Bookmaker
                     title={matchDetails?.bookmaker2?.name}
@@ -206,7 +206,7 @@ const DesktopGameDetail = () => {
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
                     <div key={index}>
-                      {item?.isActive && (
+                      {item?.isActive ==="live" && (
                         <Col md={12}>
                           <ManualMarket
                             title={item?.name}
@@ -258,7 +258,7 @@ const DesktopGameDetail = () => {
               {matchDetails?.other?.length > 0 &&
                 matchDetails?.other?.map((item: any, index: number) => (
                   <div key={index}>
-                    {item?.isActive && (
+                    {item?.isActive ==="live" && (
                       <Col md={12} style={{ marginTop: "10px" }}>
                         <OtherMarket
                           title={item?.name}
@@ -271,7 +271,7 @@ const DesktopGameDetail = () => {
                     )}
                   </div>
                 ))}
-              {matchDetails?.apiTideMatch2?.isActive && (
+              {matchDetails?.apiTideMatch2?.isActive ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <OtherMarket
                     title={matchDetails?.apiTideMatch2?.name}
@@ -284,8 +284,8 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
               
-              {(matchDetails?.manualTiedMatch?.isActive ||
-                matchDetails?.manualTideMatch?.isActive) && (
+              {(matchDetails?.manualTiedMatch?.isActive ==="live" ||
+                matchDetails?.manualTideMatch?.isActive ==="live") && (
                 <Col md={12}>
                   <ManualMarket
                     title={
@@ -301,7 +301,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.marketCompleteMatch?.isActive && (
+              {matchDetails?.marketCompleteMatch?.isActive ==="live" && (
                 <Col md={12}>
                   <DynamicMarket
                     title={matchDetails?.marketCompleteMatch?.name}
@@ -310,7 +310,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.manualCompleteMatch?.isActive && (
+              {matchDetails?.manualCompleteMatch?.isActive ==="live" && (
                 <Col md={12}>
                   <ManualMarket
                     title={matchDetails?.manualCompleteMatch?.name}
@@ -414,7 +414,7 @@ const DesktopGameDetail = () => {
                     }
                   )}
               </div>
-              {matchDetails?.apiTideMatch?.isActive && (
+              {matchDetails?.apiTideMatch?.isActive ==="live" && (
                 <Col md={12}>
                   <DynamicMarket
                     title={matchDetails?.apiTideMatch?.name}

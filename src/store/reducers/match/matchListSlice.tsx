@@ -189,7 +189,18 @@ const matchListSlice = createSlice({
         const stringifiedSessionBetting = parsedSessionBettings.map(
           JSON.stringify
         );
-
+        const updatedOther = state.matchDetails?.other?.map((item:any) => {
+          const updatedItem = other.find((newItem:any) => newItem.id === item.id);
+      
+          if (updatedItem) {
+            return {
+              ...item,         
+              ...updatedItem, 
+            };
+          }
+      
+          return item; 
+        });
         state.matchDetails = {
           ...state.matchDetails,
           manualSessionActive:
@@ -201,7 +212,7 @@ const matchListSlice = createSlice({
           apiTideMatch2: apiTiedMatch2,
           bookmaker: bookmaker,
           bookmaker2: bookmaker2,
-          other: other,
+          other: updatedOther,
           manualTiedMatch: manualTideMatch,
           marketCompleteMatch: marketCompleteMatch,
           manualCompleteMatch: completeManual,

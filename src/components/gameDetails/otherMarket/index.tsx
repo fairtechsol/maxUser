@@ -61,7 +61,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
       return "-";
     }
   };
-
+console.log('data',data)
   return (
     <>
       <div className="otherMarketContainer">

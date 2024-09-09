@@ -193,7 +193,15 @@ body table.table {
   flex-wrap: nowrap !important;
   text-wrap: nowrap;
 }
-
+.modal-dialog{
+  margin: 0 !important;
+}
+.btnbg-blue{
+ background-color: #3089f8 !important;
+}
+.btnbg-red{
+ background-color: #5f83e6 !important;
+}
 /* ====== bg Colors start ====  */
 .bg-secondaryLight {
   background-color: rgba($secondary, 0.7) !important;

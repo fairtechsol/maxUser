@@ -14,7 +14,8 @@ import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";
 import "./style.scss";
-
+import { Modal } from "react-bootstrap";
+import ButtonValues from "../buttonValues";
 interface PlaceBetProps {
   show: boolean;
   setShow: any;
@@ -26,6 +27,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
+  const [shown, setShow] = useState(false)
   const { buttonValues, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -177,6 +179,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     if (e.key === "e" || e.key === "E") {
       e.preventDefault();
     }
+  }; 
+  const formatNumber = (num: any) => {
+    if (num >= 1000 && num < 1000000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    } else if (num >= 100000) {
+      return (num / 100000).toFixed(1).replace(/\.0$/, "") + "L";
+    }
+    return num.toString();
   };
   return (
     <>
@@ -198,7 +208,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           fluid
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
-            <Col xs={8} className="f600 title-14">
+            <Col xs={8} className="title-12 fbold">
               {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
             </Col>
             <Col xs={4} className="d-flex justify-content-end">
@@ -222,14 +232,27 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 }}
                 className="bg-secondary py-0 br-0"
               >
-                <span className="f900 text-black">-</span>
+                <span className="f600 title-16 text-white">-</span>
               </CustomButton>
               <input
                 min={0}
                 value={+selectedBet?.team?.rate || 0}
                 type="number"
                 className="w-50 br-0"
-                style={{ border: "1px solid #000" }}
+                style={{
+                  border:
+                  selectedBet?.team?.type === "lay" ||
+                  selectedBet?.team?.type === "LAY" ||
+                  selectedBet?.team?.type === "no"
+                    ? "1px solid #faa9ba"
+                      :"1px solid #72bbef",
+                  backgroundColor:
+                    selectedBet?.team?.type === "lay" ||
+                    selectedBet?.team?.type === "LAY" ||
+                    selectedBet?.team?.type === "no"
+                      ? "#f7dde2"
+                      : "#cbe3f3",
+                }}
               />
               <CustomButton
                 onClick={() => {
@@ -246,9 +269,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                     })
                   );
                 }}
-                className="bg-secondary f900 text-black br-0"
+                className="bg-secondary f900 text-white br-0"
+                style={{ border: 0 }}
               >
-                <span className="f900 text-black">+</span>
+                <span className="f600 title-16 text-white">+</span>
               </CustomButton>
             </Col>
             <Col xs={4}>
@@ -278,8 +302,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
 
             <Col xs={4} className="f800 title-12">
               <CustomButton
-                style={{ height: "28px" }}
-                className="f600 w-100 br-0"
+                style={{ height: "28px",backgroundColour:"red" }}
+                className={`f600 w-100 br-5 ${selectedBet?.team?.type === "lay" ||
+                  selectedBet?.team?.type === "LAY" ||
+                  selectedBet?.team?.type === "no"
+                    ?"btnbg-red":"btnbg-blue"}`}
                 onClick={() => {
                   try {
                     if (
@@ -314,9 +341,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       odds: selectedBet?.team?.rate,
                       ratePercent: selectedBet?.team?.percent,
                       stake: selectedBet?.team?.stake,
-                      betPlaceIndex:selectedBet?.team?.betPlaceIndex,
-                      mid:selectedBet?.team?.mid,
-                      teamName:selectedBet?.team?.teamName
+                      betPlaceIndex: selectedBet?.team?.betPlaceIndex,
+                      mid: selectedBet?.team?.mid,
+                      teamName: selectedBet?.team?.teamName,
                     };
                     let payloadForBettings: any = {
                       betId: selectedBet?.team?.betId,
@@ -434,7 +461,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
             {valueLabel?.map((item: any, index: number) => (
               <Col key={index} xs={4}>
                 <CustomButton
-                  className="w-100 border-0 bg-secondary f600 text-black"
+                  className="w-100 border-0 br-0 bg-secondary f600 text-black"
                   size="sm"
                   onClick={() => {
                     dispatch(
@@ -448,10 +475,15 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                     );
                   }}
                 >
-                  {item?.label}
+                  <span style={{color:"#fff"}}>{formatNumber(item?.label)}</span>
                 </CustomButton>
               </Col>
             ))}
+            <Col xs={12}>
+               <div style={{width:"50px",height:"38px",backgroundColor:"#097c93",display:"flex",justifyContent:"center",alignItems:"center",color:"#fff",fontSize:"16px",borderRadius:"3px"}} onClick={()=> setShow(true)}>
+                Edit
+               </div>
+              </Col>
             <div className="container d-flex justify-content-between mt-2">
               {selectedBet?.data?.type &&
                 selectedBet.data.type !== "session" &&
@@ -597,6 +629,30 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           </Row>
         </Container>
       </CustomModal>
+      <Modal
+        show={shown}
+        onHide={() => setShow(false)}
+      >
+       
+        <Modal.Header
+          className="bg-primary rounded-0"
+          style={{ zIndex: "999" }}
+        >
+          <Modal.Title
+            
+          >
+           <span style={{color:"#fff",fontSize:"16px",fontWeight:"bold"}}>Set Button Value</span>
+          </Modal.Title>
+          <button 
+              type="button" 
+              className="btn-close btn-close-white" 
+              aria-label="Close" 
+              onClick={() => setShow(false)}
+            ></button>
+        </Modal.Header>
+        <Modal.Body className="p-0 mt-2 mb-2 rounded-0"><ButtonValues /></Modal.Body>
+        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
+      </Modal>
       {(loading || matchOddLoading) && <Loader />}
     </>
   );
