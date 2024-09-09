@@ -25,7 +25,7 @@ function BetTableHeader({
     <div
       className={`tableHeader d-flex justify-content-between f500 ${padding ? padding : "px-2"} ${customClass ?? ""}
       `}
-      style={{ ...inlineStyle }}
+      style={{ ...inlineStyle , backgroundColor:title==="" && "#fff" }}
     >
       <span className={`text-white ${customTextClass??"title-15 f700"}`}>{title}</span>
       
