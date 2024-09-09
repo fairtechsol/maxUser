@@ -144,8 +144,8 @@ const DesktopGameDetail = () => {
     fetchData();
   }, [matchDetails]);
 
-  // console.log("fetch",matchDetails?.eventId)
-  console.log("scoreData", scoreData);
+   //console.log("fetch",matchDetails?.eventId)
+  //console.log("scoreData", scoreData);
   return (
     <Container fluid className="pe-0 ps-1">
       <Row>
@@ -174,16 +174,16 @@ const DesktopGameDetail = () => {
                   }}
                 ></div> */}
               </Col>
-              {true && (
+              {/* {true && (
                 <div style={{ height: "300px" }}>
                   <ScoreBoardCricket data={scoreData} />
                 </div>
-              )}
+              )} */}
 
               <iframe
                 width={"100%"}
                 height={"auto"}
-                src={`https://dpmatka.in/dcasino/score.php?matchId=${matchDetails?.eventId}`}
+                src={`https://dpmatka.in/dcasino/score.php?matchId=${33537125}`}
               ></iframe>
               
               {matchDetails?.matchOdd?.isActive && (

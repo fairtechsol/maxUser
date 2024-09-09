@@ -10,7 +10,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
       element.style.display = "none !important";
     }
   }, []);
-
+     console.log("time?.length",time?.length)
   return (
     <>
       <div

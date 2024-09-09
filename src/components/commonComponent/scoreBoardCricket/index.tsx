@@ -11,9 +11,9 @@ const ScoreBoardCricket = ({ data }: any) => {
       className=" mb-1"
       style={{
         backgroundImage: `url("https://versionobj.ecoassetsservice.com/v18/static/front/img/scorecard-bg.png")`,
-        backgroundSize: "contain", // Cover the entire component
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center", // Center the image
+        backgroundSize: "cover", // Ensures the image covers the entire container
+        backgroundRepeat: "no-repeat", 
+        backgroundPosition: "center", // Centers the image within the container
         width: "100%",
         height: "105px",
       }}
@@ -26,7 +26,7 @@ const ScoreBoardCricket = ({ data }: any) => {
               isMobile ? "title-12 text-xl-end mb-2" : "text-xl-end mb-2"
             }
           >
-            <span>{data?.spnmessage}</span>
+            <span>{data?.spnmessage} fghjfjh</span>
           </div>
 
           {/* Ball-by-Ball */}
