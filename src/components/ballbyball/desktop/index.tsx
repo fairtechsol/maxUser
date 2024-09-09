@@ -57,7 +57,6 @@ const TeenPattiDesktop = () => {
     { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
   ];
   const handleBet = (item: any) => {
-
     let team = {
       bettingType: "BACK",
       matchId: dragonTigerDetail?.id,
@@ -67,7 +66,7 @@ const TeenPattiDesktop = () => {
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: ""+item?.sid,
+      selectionId: "" + item?.sid,
     };
     dispatch(
       selectedBetAction({
@@ -115,6 +114,7 @@ const TeenPattiDesktop = () => {
     }
   }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
 
+  
   return (
     <>
       <Row>
@@ -201,7 +201,7 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "40%",
-                        border: "0.1px solid #fff",
+                        //border: "0.1px solid #fff",
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
@@ -244,7 +244,7 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "40%",
-                        border: "0.1px solid #fff",
+                        //border: "0.1px solid #fff",
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
@@ -287,7 +287,7 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "40%",
-                        border: "0.1px solid #fff",
+                        //border: "0.1px solid #fff",
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
@@ -343,12 +343,49 @@ const TeenPattiDesktop = () => {
                       <div
                         style={{
                           width: "40%",
-                          border: "0.1px solid #fff",
-                          fontSize: "14px",
+
                           marginLeft: "3px",
+                          display: "flex",
+                          flexDirection: "column",
                         }}
                       >
-                        {item.nat}
+                        <div
+                          style={{
+                            fontSize: "14px",
+                          }}
+                        >
+                          {item.nat}
+                        </div>
+                        <span
+                          className={`f10-b ${
+                            dragonTigerDetail?.profitLoss
+                              ? dragonTigerDetail?.profitLoss[
+                                  `null_${item?.sid}_card`
+                                ]
+                                ? dragonTigerDetail?.profitLoss[
+                                    `null_${item?.sid}_card`
+                                  ] > 0
+                                  ? "color-green"
+                                  : dragonTigerDetail?.profitLoss[
+                                      `null_${item?.sid}_card`
+                                    ] < 0
+                                  ? "color-red"
+                                  : ""
+                                : ""
+                              : ""
+                          }`}
+                          style={{ zIndex: "100" }}
+                        >
+                          {dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `null_${item?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `null_${item?.sid}_card`
+                                ]
+                              : 0
+                            : 0}
+                        </span>
                       </div>
                       <div
                         style={{
@@ -366,11 +403,9 @@ const TeenPattiDesktop = () => {
                             ? "suspended"
                             : "teenPatti-table-item"
                         }
-                        onClick={()=>handleBet(item)}
+                        onClick={() => handleBet(item)}
                       >
-                        <span className="f12-b">
-                          {item.b}
-                        </span>
+                        <span className="f12-b">{item.b}</span>
                         <span className="f10-b">{item.bs}</span>
                       </div>
                       <div
@@ -393,7 +428,7 @@ const TeenPattiDesktop = () => {
                 <div
                   style={{
                     fontWeight: "bold",
-                    width:"100%",
+                    width: "100%",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
@@ -411,7 +446,7 @@ const TeenPattiDesktop = () => {
                       style={{
                         marginLeft: "20px",
                         height: "20px",
-                         boxShadow:"none",
+                        boxShadow: "none",
                         background: "#086f3f",
                       }}
                     ></img>
@@ -421,7 +456,7 @@ const TeenPattiDesktop = () => {
                     className="ticker-container"
                     style={{
                       width: "90%",
-                  
+
                       background: "#086f3f",
                       border: "#086f3f",
                       lineHeight: 2.7,
@@ -475,7 +510,7 @@ const TeenPattiDesktop = () => {
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
+              {/* <Col>
                 <div
                   className="casino-title mt-2"
                   style={{ position: "relative" }}
@@ -502,7 +537,7 @@ const TeenPattiDesktop = () => {
                   </Table>
                 </div>
                 <RulesModal show={show} setShow={setShow} rule={tprules} />
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </Col>

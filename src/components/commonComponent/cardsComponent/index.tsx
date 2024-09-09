@@ -28,7 +28,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         // padding: isMobile ?  "0px" :"8px",
         background: "white",
         height: isMobile ? "24px" : "40px",
-        width: isMobile ? "18px" : "30px",
+        width: isMobile ? "18px" : "32px",
         padding: "0px",
         // border:"1px solid yellow",
       }}

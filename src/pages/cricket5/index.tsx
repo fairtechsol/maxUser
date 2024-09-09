@@ -30,6 +30,8 @@ const Cricket5 = () => {
   const [errorCount, setErrorCount] = useState<number>(0);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
+  
+
   const getScoreBoard = async (marketId: string) => {
     try {
       dispatch(

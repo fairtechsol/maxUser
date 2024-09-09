@@ -1,7 +1,7 @@
 import TickModule from "@pqina/flip";
 import "@pqina/flip/dist/flip.min.css";
 import React, { useEffect, useRef } from "react";
-
+import "./styles.scss";
 /**
  * @typedef {Object} Tick
  * @property {number|string} value - The value of the tick

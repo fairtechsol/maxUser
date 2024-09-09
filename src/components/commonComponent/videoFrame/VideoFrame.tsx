@@ -1,6 +1,6 @@
 import { memo, useEffect } from "react";
 import FlipClock from "./FlipClock";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 
 const VideoFrame = ({ result, time, id, profitLoss }: any) => {
   // const [showModal, setModalOpen] = useState(false);
@@ -11,6 +11,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
     }
   }, []);
 
+  //console.log("time?.length", time);
   return (
     <>
       <div
@@ -116,7 +117,8 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                   width: isMobile ? "150px" : "",
                 }}
               >
-                <FlipClock value={time?.length === 1 ? "0" + time : time} />
+                <FlipClock value={time < 10 ? "0" + time : time} />
+                
               </div>
             )}
           </div>

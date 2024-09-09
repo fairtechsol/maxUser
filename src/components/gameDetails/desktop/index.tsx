@@ -24,6 +24,10 @@ import SessionOddEven from "../sessionOddEven";
 import SessionCricketCasino from "../sessionCricketCasino";
 import OtherMarket from "../otherMarket";
 
+import ScoreBoard from "../../commonComponent/scoreBoard";
+import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
+// import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+//import Iframe from "../../iframe";
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -32,8 +36,15 @@ const DesktopGameDetail = () => {
   const [errorCount, setErrorCount] = useState<number>(0);
   const [channelId, setChannelId] = useState<string>("");
 
+  const [scoreData, setScoreData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
   const { matchDetails, marketId } = useSelector(
     (state: RootState) => state.match.matchList
+  );
+  const { dragonTigerDetail, scoreBoardData } = useSelector(
+    (state: RootState) => state.card
   );
 
   useEffect(() => {
@@ -79,7 +90,7 @@ const DesktopGameDetail = () => {
         intervalTime = 600000;
       }
       const interval = setInterval(() => {
-        getScoreBoard(matchDetails?.marketId);
+        getScoreBoard(matchDetails?.eventId);
       }, intervalTime);
 
       return () => {
@@ -108,6 +119,33 @@ const DesktopGameDetail = () => {
     JSON.parse(item)
   );
   const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //console.log("fetch",matchDetails?.eventId)
+        const response = await fetch(
+          `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${matchDetails?.eventId}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        setScoreData(result);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [matchDetails]);
+
+   //console.log("fetch",matchDetails?.eventId)
+  //console.log("scoreData", scoreData);
   // console.log("normalizedData",matchDetails)
 
   const handleBook1Show=(book1:any,book2:any,tide:any)=>{
@@ -154,7 +192,7 @@ const DesktopGameDetail = () => {
                     </span>
                   }
                 />
-                <div
+                {/* <div
                   style={{
                     width: "100%",
                     height: "auto",
@@ -163,12 +201,7 @@ const DesktopGameDetail = () => {
                   dangerouslySetInnerHTML={{
                     __html: liveScoreBoardData ? liveScoreBoardData : "",
                   }}
-                ></div>
-                <iframe
-                  width={"100%"}
-                  height={"100px"}
-                  src={`https://dpmatka.in/dcasino/score.php?matchId=${matchDetails?.eventId}`}
-                ></iframe>
+                ></div> */}
               </Col>
               {matchDetails?.matchOdd?.isActive ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
