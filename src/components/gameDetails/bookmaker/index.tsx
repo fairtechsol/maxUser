@@ -182,7 +182,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                  {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -206,7 +206,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}
+                  {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -238,8 +238,8 @@ const Bookmaker = ({ title, box, data, detail }) => {
               </span>
               <span className={`sizeFont bookmakerRate2Box`}>
                 {box === 6
-                  ? data?.runners?.[0]?.ex?.availableToBack?.[2]?.size
-                  : data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                  ? data?.runners?.[0]?.ex?.availableToBack?.[2]?.size ?? ""
+                  : data?.runners?.[0]?.ex?.availableToBack?.[0]?.size ?? ""}
               </span>
             </div>
             <div
@@ -261,7 +261,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont bookmakerRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}
+                {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size ?? ""}
               </span>
             </div>
             {box === 6 && (
@@ -284,7 +284,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}
+                  {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -308,7 +308,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}
+                  {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -390,7 +390,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                  {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -414,7 +414,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}
+                  {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -446,8 +446,8 @@ const Bookmaker = ({ title, box, data, detail }) => {
               </span>
               <span className={`sizeFont bookmakerRate2Box`}>
                 {box === 6
-                  ? data?.runners?.[1]?.ex?.availableToBack?.[2]?.size
-                  : data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                  ? data?.runners?.[1]?.ex?.availableToBack?.[2]?.size ?? ""
+                  : data?.runners?.[1]?.ex?.availableToBack?.[0]?.size ?? ""}
               </span>
             </div>
             <div
@@ -469,7 +469,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont bookmakerRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}
+                {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size ?? ""}
               </span>
             </div>
             {box === 6 && (
@@ -492,7 +492,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}
+                  {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -516,7 +516,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}
+                  {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -595,7 +595,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont bookmakerRate2Box`}>
-                    {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                    {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size ?? ""}
                   </span>
                 </div>
               )}
@@ -619,7 +619,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont bookmakerRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToBack?.[1]?.size}
+                    {data?.runners?.[2]?.ex?.availableToBack?.[1]?.size ?? ""}
                   </span>
                 </div>
               )}
@@ -651,8 +651,8 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
                   {box === 6
-                    ? data?.runners?.[2]?.ex?.availableToBack?.[2]?.size
-                    : data?.runners?.[2]?.ex?.availableToBack?.[0]?.size}
+                    ? data?.runners?.[2]?.ex?.availableToBack?.[2]?.size ?? ""
+                    : data?.runners?.[2]?.ex?.availableToBack?.[0]?.size ?? ""}
                 </span>
               </div>
               <div
@@ -674,7 +674,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToLay?.[0]?.size}
+                  {data?.runners?.[2]?.ex?.availableToLay?.[0]?.size ?? ""}
                 </span>
               </div>
               {box === 6 && (
@@ -697,7 +697,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont bookmakerRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToLay?.[1]?.size}
+                    {data?.runners?.[2]?.ex?.availableToLay?.[1]?.size ?? ""}
                   </span>
                 </div>
               )}
@@ -721,7 +721,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont bookmakerRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToLay?.[2]?.size}
+                    {data?.runners?.[2]?.ex?.availableToLay?.[2]?.size ?? ""}
                   </span>
                 </div>
               )}

@@ -155,7 +155,7 @@ const MainLayout = () => {
           </div>
             
         )}
-      {/* <div><CasinoNav items={casinoItems} defaultActiveId={2} /></div> */}
+      {/* <div><CasinoNav items={casinoItems}  /></div> */}
         <main className="w-100 overflow-hidden">
           <Outlet />
         </main>

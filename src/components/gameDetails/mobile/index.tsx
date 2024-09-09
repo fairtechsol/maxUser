@@ -201,7 +201,7 @@ const MobileGameDetail = () => {
                   <Row>
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
                     {showVideo && (
-                      <Container>
+                      <Container className="px-0">
                         <Row className="justify-content-md-center">
                           <Col md={12}>
                             <Ratio aspectRatio="16x9">

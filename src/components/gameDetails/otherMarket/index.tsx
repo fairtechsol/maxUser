@@ -180,7 +180,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                  {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -204,7 +204,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}
+                  {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -236,8 +236,8 @@ const OtherMarket = ({ title, box, data, detail }) => {
               </span>
               <span className={`sizeFont otherMarketRate2Box`}>
                 {box === 6
-                  ? data?.runners?.[0]?.ex?.availableToBack?.[2]?.size
-                  : data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                  ? data?.runners?.[0]?.ex?.availableToBack?.[2]?.size ?? ""
+                  : data?.runners?.[0]?.ex?.availableToBack?.[0]?.size ?? ""}
               </span>
             </div>
             <div
@@ -259,7 +259,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont otherMarketRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}
+                {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size ?? ""}
               </span>
             </div>
             {box === 6 && (
@@ -282,7 +282,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}
+                  {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -306,7 +306,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}
+                  {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -386,7 +386,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                  {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -410,7 +410,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}
+                  {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -442,8 +442,8 @@ const OtherMarket = ({ title, box, data, detail }) => {
               </span>
               <span className={`sizeFont otherMarketRate2Box`}>
                 {box === 6
-                  ? data?.runners?.[1]?.ex?.availableToBack?.[2]?.size
-                  : data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                  ? data?.runners?.[1]?.ex?.availableToBack?.[2]?.size ?? ""
+                  : data?.runners?.[1]?.ex?.availableToBack?.[0]?.size ?? ""}
               </span>
             </div>
             <div
@@ -465,7 +465,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont otherMarketRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}
+                {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size ?? ""}
               </span>
             </div>
             {box === 6 && (
@@ -488,7 +488,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}
+                  {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -512,7 +512,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}
+                  {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size ?? ""}
                 </span>
               </div>
             )}
@@ -589,7 +589,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont otherMarketRate2Box`}>
-                    {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                    {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size ?? ""}
                   </span>
                 </div>
               )}
@@ -613,7 +613,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont otherMarketRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToBack?.[1]?.size}
+                    {data?.runners?.[2]?.ex?.availableToBack?.[1]?.size ?? ""}
                   </span>
                 </div>
               )}
@@ -645,8 +645,8 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
                   {box === 6
-                    ? data?.runners?.[2]?.ex?.availableToBack?.[2]?.size
-                    : data?.runners?.[2]?.ex?.availableToBack?.[0]?.size}
+                    ? data?.runners?.[2]?.ex?.availableToBack?.[2]?.size ?? ""
+                    : data?.runners?.[2]?.ex?.availableToBack?.[0]?.size ?? ""}
                 </span>
               </div>
               <div
@@ -668,7 +668,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToLay?.[0]?.size}
+                  {data?.runners?.[2]?.ex?.availableToLay?.[0]?.size ?? ""}
                 </span>
               </div>
               {box === 6 && (
@@ -691,7 +691,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont otherMarketRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToLay?.[1]?.size}
+                    {data?.runners?.[2]?.ex?.availableToLay?.[1]?.size ?? ""}
                   </span>
                 </div>
               )}
@@ -715,7 +715,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont otherMarketRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToLay?.[2]?.size}
+                    {data?.runners?.[2]?.ex?.availableToLay?.[2]?.size ?? ""}
                   </span>
                 </div>
               )}
