@@ -4,6 +4,7 @@ import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { AppDispatch } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { handleSize } from "../../../helpers";
 
 const OtherMarket = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -180,7 +181,7 @@ console.log('data',data)
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
             )}
@@ -204,7 +205,7 @@ console.log('data',data)
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -236,8 +237,8 @@ console.log('data',data)
               </span>
               <span className={`sizeFont otherMarketRate2Box`}>
                 {box === 6
-                  ? data?.runners?.[0]?.ex?.availableToBack?.[2]?.size
-                  : data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                  ? handleSize(data?.runners?.[0]?.ex?.availableToBack?.[2]?.size)
+                  : handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
               </span>
             </div>
             <div
@@ -259,7 +260,7 @@ console.log('data',data)
                 ) ?? "-"}
               </span>
               <span className={`sizeFont otherMarketRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
             {box === 6 && (
@@ -282,7 +283,7 @@ console.log('data',data)
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -306,7 +307,7 @@ console.log('data',data)
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
             )}
@@ -386,7 +387,7 @@ console.log('data',data)
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
             )}
@@ -410,7 +411,7 @@ console.log('data',data)
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -442,8 +443,8 @@ console.log('data',data)
               </span>
               <span className={`sizeFont otherMarketRate2Box`}>
                 {box === 6
-                  ? data?.runners?.[1]?.ex?.availableToBack?.[2]?.size
-                  : data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                  ? handleSize(data?.runners?.[1]?.ex?.availableToBack?.[2]?.size)
+                  : handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
               </span>
             </div>
             <div
@@ -465,7 +466,7 @@ console.log('data',data)
                 ) ?? "-"}
               </span>
               <span className={`sizeFont otherMarketRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
             {box === 6 && (
@@ -488,7 +489,7 @@ console.log('data',data)
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -512,7 +513,7 @@ console.log('data',data)
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
             )}
@@ -589,7 +590,7 @@ console.log('data',data)
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont otherMarketRate2Box`}>
-                    {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                    {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
                   </span>
                 </div>
               )}
@@ -613,7 +614,7 @@ console.log('data',data)
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont otherMarketRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToBack?.[1]?.size}
+                    {handleSize(data?.runners?.[2]?.ex?.availableToBack?.[1]?.size)}
                   </span>
                 </div>
               )}
@@ -645,8 +646,8 @@ console.log('data',data)
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
                   {box === 6
-                    ? data?.runners?.[2]?.ex?.availableToBack?.[2]?.size
-                    : data?.runners?.[2]?.ex?.availableToBack?.[0]?.size}
+                    ? handleSize(data?.runners?.[2]?.ex?.availableToBack?.[2]?.size)
+                    : handleSize(data?.runners?.[2]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
               <div
@@ -668,7 +669,7 @@ console.log('data',data)
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont otherMarketRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToLay?.[0]?.size}
+                  {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[0]?.size)}
                 </span>
               </div>
               {box === 6 && (
@@ -691,7 +692,7 @@ console.log('data',data)
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont otherMarketRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToLay?.[1]?.size}
+                    {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[1]?.size)}
                   </span>
                 </div>
               )}
@@ -715,7 +716,7 @@ console.log('data',data)
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont otherMarketRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToLay?.[2]?.size}
+                    {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[2]?.size)}
                   </span>
                 </div>
               )}

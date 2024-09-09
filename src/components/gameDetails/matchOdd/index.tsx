@@ -4,6 +4,7 @@ import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { handleSize } from "../../../helpers";
 
 const MatchOdd = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -164,7 +165,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
               </span>
             </div>
             <div
@@ -186,7 +187,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
               </span>
             </div>
             <div
@@ -208,7 +209,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToBack?.[2]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[2]?.size)}
               </span>
             </div>
             <div
@@ -230,7 +231,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
             <div
@@ -252,7 +253,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
               </span>
             </div>
             <div
@@ -274,7 +275,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
               </span>
             </div>
           </div>
@@ -351,7 +352,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
               </span>
             </div>
             <div
@@ -373,7 +374,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
               </span>
             </div>
             <div
@@ -395,7 +396,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToBack?.[2]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[2]?.size)}
               </span>
             </div>
             <div
@@ -417,7 +418,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
             <div
@@ -439,7 +440,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
               </span>
             </div>
             <div
@@ -461,7 +462,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont matchOddRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
               </span>
             </div>
           </div>
@@ -539,7 +540,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont matchOddRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToBack?.[0]?.size}
+                  {handleSize(data?.runners?.[2]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
               <div
@@ -561,7 +562,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont matchOddRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToBack?.[1]?.size}
+                  {handleSize(data?.runners?.[2]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
               <div
@@ -583,7 +584,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont matchOddRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToBack?.[2]?.size}
+                  {handleSize(data?.runners?.[2]?.ex?.availableToBack?.[2]?.size)}
                 </span>
               </div>
               <div
@@ -605,7 +606,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont matchOddRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToLay?.[0]?.size}
+                  {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[0]?.size)}
                 </span>
               </div>
               <div
@@ -627,7 +628,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont matchOddRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToLay?.[1]?.size}
+                  {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
               <div
@@ -649,7 +650,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont matchOddRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToLay?.[2]?.size}
+                  {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
             </div>

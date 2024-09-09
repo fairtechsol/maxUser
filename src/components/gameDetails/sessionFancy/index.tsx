@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { calculateMaxLoss } from "../../../helpers";
+import { calculateMaxLoss, handleSize } from "../../../helpers";
 
 const SessionFancy = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -187,7 +187,7 @@ const SessionFancy = ({ title, data, detail }) => {
                       <span
                         className={`f-size12 sessionRate2Box`}
                       >
-                        {item?.ex?.availableToBack?.[0]?.size}
+                        {handleSize(item?.ex?.availableToBack?.[0]?.size)}
                       </span>
                     </div>
                     <div
@@ -222,7 +222,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           !isMobile ? "f-size12" : "f-size11"
                         } sessionRate2Box`}
                       >
-                        {item?.ex?.availableToLay?.[0]?.size}
+                        {handleSize(item?.ex?.availableToLay?.[0]?.size)}
                       </span>
                     </div>
                     <div className="sessionMinBoxContainer">
@@ -346,7 +346,7 @@ const SessionFancy = ({ title, data, detail }) => {
                             !isMobile ? "f-size12" : "f-size11"
                           } sessionRate2Box`}
                         >
-                          {item?.ex?.availableToBack?.[0]?.size}
+                          {handleSize(item?.ex?.availableToBack?.[0]?.size)}
                         </span>
                       </div>
                       <div
@@ -381,7 +381,7 @@ const SessionFancy = ({ title, data, detail }) => {
                             !isMobile ? "f-size12" : "f-size11"
                           } sessionRate2Box`}
                         >
-                          {item?.ex?.availableToLay?.[0]?.size}
+                          {handleSize(item?.ex?.availableToLay?.[0]?.size)}
                         </span>
                       </div>
                       <div className="sessionMinBoxContainer">

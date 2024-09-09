@@ -144,7 +144,8 @@ body table.table {
 .color {
   background-color: $primary !important;
   border-top: 1px solid #ffffff;
-  line-height: 1.25;
+  // line-height: ;
+  padding: 1px 5px;
   display: flex;
   box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
 }
