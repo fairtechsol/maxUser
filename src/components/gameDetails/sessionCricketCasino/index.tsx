@@ -215,7 +215,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                             !isMobile ? "f-size12" : "f-size11"
                           } sessionRate2Box`}
                         >
-                          {item?.odds?.[0]?.size}
+                          {item?.odds?.[0]?.size ?? ""}
                         </span>
                       </div>
                     </div>

@@ -187,7 +187,7 @@ const SessionFancy = ({ title, data, detail }) => {
                       <span
                         className={`f-size12 sessionRate2Box`}
                       >
-                        {item?.ex?.availableToBack?.[0]?.size}
+                        {item?.ex?.availableToBack?.[0]?.size ?? ""}
                       </span>
                     </div>
                     <div
@@ -222,7 +222,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           !isMobile ? "f-size12" : "f-size11"
                         } sessionRate2Box`}
                       >
-                        {item?.ex?.availableToLay?.[0]?.size}
+                        {item?.ex?.availableToLay?.[0]?.size ?? ""}
                       </span>
                     </div>
                     <div className="sessionMinBoxContainer">
@@ -346,7 +346,7 @@ const SessionFancy = ({ title, data, detail }) => {
                             !isMobile ? "f-size12" : "f-size11"
                           } sessionRate2Box`}
                         >
-                          {item?.ex?.availableToBack?.[0]?.size}
+                          {item?.ex?.availableToBack?.[0]?.size ?? ""}
                         </span>
                       </div>
                       <div
@@ -381,7 +381,7 @@ const SessionFancy = ({ title, data, detail }) => {
                             !isMobile ? "f-size12" : "f-size11"
                           } sessionRate2Box`}
                         >
-                          {item?.ex?.availableToLay?.[0]?.size}
+                          {item?.ex?.availableToLay?.[0]?.size ?? ""}
                         </span>
                       </div>
                       <div className="sessionMinBoxContainer">
