@@ -5,6 +5,7 @@ import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { FaLock } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { handleSize } from "../../../helpers";
 
 const SessionCricketCasino = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -215,7 +216,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                             !isMobile ? "f-size12" : "f-size11"
                           } sessionRate2Box`}
                         >
-                          {item?.odds?.[0]?.size ?? ""}
+                          {handleSize(item?.odds?.[0]?.size)}
                         </span>
                       </div>
                     </div>

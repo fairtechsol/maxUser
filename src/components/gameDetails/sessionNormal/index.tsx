@@ -11,7 +11,7 @@ import {
 import CustomModal from "../../commonComponent/modal";
 import RunBoxTable from "../betTable/runBoxTable";
 import { useSelector } from "react-redux";
-import { calculateMaxLoss } from "../../../helpers";
+import { calculateMaxLoss, handleSize } from "../../../helpers";
 
 const SessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -252,7 +252,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           ) ?? "-"}
                         </span>
                         <span className={`f-size12 sessionRate2Box`}>
-                          {(item?.ex?.availableToLay?.[0]?.size ?? "" ) ||
+                          {handleSize(item?.ex?.availableToLay?.[0]?.size) ||
                             item?.noPercent}
                         </span>
                       </div>
@@ -282,7 +282,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
-                            {item?.ex?.availableToLay?.[1]?.size ?? "" }
+                            {handleSize(item?.ex?.availableToLay?.[1]?.size) }
                           </span>
                         </div>
                       )}
@@ -312,7 +312,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
-                            {item?.ex?.availableToLay?.[2]?.size ?? ""}
+                            {handleSize(item?.ex?.availableToLay?.[2]?.size)}
                           </span>
                         </div>
                       )}
@@ -352,7 +352,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           ) ?? "-"}
                         </span>
                         <span className={`f-size12 sessionRate2Box`}>
-                          {(item?.ex?.availableToBack?.[0]?.size ?? "") ||
+                          {handleSize(item?.ex?.availableToBack?.[0]?.size) ||
                             item?.yesPercent}
                         </span>
                       </div>
@@ -382,7 +382,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
-                            {item?.ex?.availableToBack?.[1]?.size ?? ""}
+                            {handleSize(item?.ex?.availableToBack?.[1]?.size)}
                           </span>
                         </div>
                       )}
@@ -412,7 +412,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
-                            {item?.ex?.availableToBack?.[2]?.size ?? ""}
+                            {handleSize(item?.ex?.availableToBack?.[2]?.size)}
                           </span>
                         </div>
                       )}
@@ -578,7 +578,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
-                            {(item?.ex?.availableToLay?.[0]?.size ?? "") ||
+                            {handleSize(item?.ex?.availableToLay?.[0]?.size) ||
                               item?.noPercent}
                           </span>
                         </div>
@@ -608,7 +608,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               ) ?? "-"}
                             </span>
                             <span className={`f-size12 sessionRate2Box`}>
-                              {item?.ex?.availableToLay?.[1]?.size ?? ""}
+                              {handleSize(item?.ex?.availableToLay?.[1]?.size)}
                             </span>
                           </div>
                         )}
@@ -638,7 +638,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               ) ?? "-"}
                             </span>
                             <span className={`f-size12 sessionRate2Box`}>
-                              {item?.ex?.availableToLay?.[2]?.size ?? ""}
+                              {handleSize(item?.ex?.availableToLay?.[2]?.size)}
                             </span>
                           </div>
                         )}
@@ -678,7 +678,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
-                            {(item?.ex?.availableToBack?.[0]?.size ?? "") ||
+                            {handleSize(item?.ex?.availableToBack?.[0]?.size) ||
                               item?.yesPercent}
                           </span>
                         </div>
@@ -710,7 +710,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               ) ?? "-"}
                             </span>
                             <span className={`f-size12 sessionRate2Box`}>
-                              {item?.ex?.availableToBack?.[1]?.size ?? ""}
+                              {handleSize(item?.ex?.availableToBack?.[1]?.size)}
                             </span>
                           </div>
                         )}
@@ -740,7 +740,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               ) ?? "-"}
                             </span>
                             <span className={`f-size12 sessionRate2Box`}>
-                              {item?.ex?.availableToBack?.[2]?.size ?? ""}
+                              {handleSize(item?.ex?.availableToBack?.[2]?.size)}
                             </span>
                           </div>
                         )}
