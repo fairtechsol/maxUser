@@ -105,9 +105,12 @@ const matchListSlice = createSlice({
         const {
           apiSession,
           apiTiedMatch,
+          apiTiedMatch2,
+          other,
           bookmaker,
           bookmaker2,
           marketCompleteMatch,
+          marketCompleteMatch1,
           matchOdd,
           sessionBettings,
           manualTideMatch,
@@ -187,7 +190,18 @@ const matchListSlice = createSlice({
         const stringifiedSessionBetting = parsedSessionBettings.map(
           JSON.stringify
         );
-
+        const updatedOther = state.matchDetails?.other?.map((item:any) => {
+          const updatedItem = other.find((newItem:any) => newItem.id === item.id);
+      
+          if (updatedItem) {
+            return {
+              ...item,         
+              ...updatedItem, 
+            };
+          }
+      
+          return item; 
+        });
         state.matchDetails = {
           ...state.matchDetails,
           manualSessionActive:
@@ -196,10 +210,13 @@ const matchListSlice = createSlice({
             apiSession && apiSession?.length >= 0 ? true : false,
           apiSession: apiSession,
           apiTideMatch: apiTiedMatch,
+          apiTideMatch2: apiTiedMatch2,
           bookmaker: bookmaker,
           bookmaker2: bookmaker2,
+          other: updatedOther,
           manualTiedMatch: manualTideMatch,
           marketCompleteMatch: marketCompleteMatch,
+          marketCompleteMatch1: marketCompleteMatch1,
           manualCompleteMatch: completeManual,
           matchOdd: matchOdd,
           quickBookmaker: quickbookmaker,
