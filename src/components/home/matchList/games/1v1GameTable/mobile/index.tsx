@@ -163,7 +163,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                       <div className="title-12">
                                         {moment(item?.startAt)
                                           .tz(timezone)
-                                          .format("MMM DD YYYY h:mmA [IST]")}
+                                          .format("MMM DD YYYY h:mmA")}
                                       </div>
                                     </Link>
                                   </div>
