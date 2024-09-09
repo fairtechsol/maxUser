@@ -48,7 +48,7 @@ const TeenPattiMobile = () => {
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: ""+item?.sid,
+      selectionId: "" + item?.sid,
     };
     dispatch(
       selectedBetAction({
@@ -91,7 +91,7 @@ const TeenPattiMobile = () => {
   }, [lastActivityTime, show]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.teen20}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.ballbyball}`);
   }, []);
 
   useEffect(() => {
@@ -144,12 +144,9 @@ const TeenPattiMobile = () => {
               Rules
             </span>
             <span>
-              {" "}
               {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
+                ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
+                : ""}
             </span>
           </div>
         </div>
@@ -173,8 +170,8 @@ const TeenPattiMobile = () => {
                 }}
               >
                 <VideoFrame
-                  time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                  time={dragonTigerDetail?.videoInfo?.lt}
+                  //result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
@@ -246,8 +243,6 @@ const TeenPattiMobile = () => {
                       }}
                     ></div>
                   </div>
-                 
-                 
                 </div>
 
                 <div
@@ -255,8 +250,7 @@ const TeenPattiMobile = () => {
                     lineHeight: 2,
                     width: "100%",
                     display: "flex",
-                    flexDirection:"column",
-                    
+                    flexDirection: "column",
                   }}
                 >
                   {runs?.map((item: any, index: any) => (
@@ -264,7 +258,7 @@ const TeenPattiMobile = () => {
                       style={{
                         display: "flex",
                         width: "100%",
-                        
+
                         borderBottom: "0.01em solid #c7c8ca",
                         background: "#f2f2f2",
                       }}
@@ -296,11 +290,9 @@ const TeenPattiMobile = () => {
                             ? "suspended"
                             : "teenPatti-table-item"
                         }
-                        onClick={()=>handleBet(item)}
+                        onClick={() => handleBet(item)}
                       >
-                        <span className="f12-b">
-                          {item.b}
-                        </span>
+                        <span className="f12-b">{item.b}</span>
                         <span className="f10-b">{item.bs}</span>
                       </div>
                       <div
@@ -323,7 +315,7 @@ const TeenPattiMobile = () => {
                 <div
                   style={{
                     fontWeight: "bold",
-                    width:"100%",
+                    width: "100%",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
@@ -342,7 +334,7 @@ const TeenPattiMobile = () => {
                       style={{
                         marginLeft: "20px",
                         height: "20px",
-                         boxShadow:"none",
+                        boxShadow: "none",
                         background: "#086f3f",
                       }}
                     ></img>
@@ -352,7 +344,7 @@ const TeenPattiMobile = () => {
                     className="ticker-container"
                     style={{
                       width: "85%",
-                  
+
                       background: "#086f3f",
                       border: "#086f3f",
                       lineHeight: 2.6,
@@ -386,7 +378,7 @@ const TeenPattiMobile = () => {
                     type={"ballbyball"}
                   />
                 </div>
-                <div>
+                {/* <div>
                   <div
                     className="casino-title mt-2"
                     style={{ position: "relative" }}
@@ -428,7 +420,7 @@ const TeenPattiMobile = () => {
                       </tbody>
                     </Table>
                   </div>
-                </div>
+                </div> */}
               </div>
             )}
           </div>

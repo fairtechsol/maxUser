@@ -1,0 +1,88 @@
+// .tick-flip {
+//     color: red; /* Change this to the color you want */
+//   }
+
+.flip-clock-label {
+    font-size: .75em;
+  }
+  
+  // clearfix IE8 and up
+  
+  .clearfix::before,
+  .clearfix::after {
+    content: " ";
+    display: table;
+  }
+  
+  .clearfix::after {
+    clear: both;
+  }
+  
+
+
+.tick-flip-panel {
+  background-color:#FFC742
+}
+.tick-flip-card {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    perspective: 4em;
+}
+
+.tick-flip * {
+    
+    white-space: pre;
+    letter-spacing: inherit;
+    text-indent: inherit;
+}
+
+.tick * {
+    box-sizing: inherit;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+.tick span[data-view] {
+    display: inline-block;
+}
+
+.tick [data-view] {
+    max-width: 100%;
+}
+
+.tick * {
+    box-sizing: inherit;
+}
+
+.tick-flip {
+    margin-left: 0.0625em;
+    margin-right: 0.0625em;
+    min-width: 1.125em;
+    border-radius: 0.125em;
+    letter-spacing: 0.25em;
+    text-indent: 0.25em;
+    position: relative;
+    text-align: center;
+}
+
+/* Global box-sizing for better layout control */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+/* flip.css */
+.tick-flip * {
+    border-radius: inherit;
+    white-space: pre;
+    letter-spacing: inherit;
+    text-indent: inherit;
+}
+
+.tick-flip-spacer {
+    display: block;
+    visibility: hidden;
+}

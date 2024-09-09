@@ -510,7 +510,7 @@ const TeenPattiDesktop = () => {
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
+              {/* <Col>
                 <div
                   className="casino-title mt-2"
                   style={{ position: "relative" }}
@@ -537,7 +537,7 @@ const TeenPattiDesktop = () => {
                   </Table>
                 </div>
                 <RulesModal show={show} setShow={setShow} rule={tprules} />
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </Col>

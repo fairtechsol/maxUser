@@ -4,6 +4,7 @@ import { FC } from 'react';
 
 interface FlipClockProps {
   value: number | string; // Adjust the type according to what `value` should be
+  color?: string;
 }
 
 interface Tick {
