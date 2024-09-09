@@ -4,6 +4,7 @@ import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { AppDispatch } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { handleSize } from "../../../helpers";
 
 const Bookmaker = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -141,7 +142,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
@@ -182,7 +183,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
             )}
@@ -206,7 +207,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -238,8 +239,8 @@ const Bookmaker = ({ title, box, data, detail }) => {
               </span>
               <span className={`sizeFont bookmakerRate2Box`}>
                 {box === 6
-                  ? data?.runners?.[0]?.ex?.availableToBack?.[2]?.size
-                  : data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                  ? handleSize(data?.runners?.[0]?.ex?.availableToBack?.[2]?.size)
+                  : handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
               </span>
             </div>
             <div
@@ -261,7 +262,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont bookmakerRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
             {box === 6 && (
@@ -284,7 +285,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -308,7 +309,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
             )}
@@ -349,7 +350,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
@@ -390,7 +391,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
             )}
@@ -414,7 +415,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -446,8 +447,8 @@ const Bookmaker = ({ title, box, data, detail }) => {
               </span>
               <span className={`sizeFont bookmakerRate2Box`}>
                 {box === 6
-                  ? data?.runners?.[1]?.ex?.availableToBack?.[2]?.size
-                  : data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                  ? handleSize(data?.runners?.[1]?.ex?.availableToBack?.[2]?.size)
+                  : handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
               </span>
             </div>
             <div
@@ -469,7 +470,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont bookmakerRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
             {box === 6 && (
@@ -492,7 +493,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -516,7 +517,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
             )}
@@ -525,11 +526,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
 
         {detail?.teamC && (
           <div className="bookmakerTeamTab">
-            {data?.activeStatus != "live" && (
+            {/* {data?.activeStatus != "live" && (
               <div className="suspended-overlayRatesBookmaker">
                 <span className={`suspendTextCmmn`}></span>
               </div>
-            )}
+            )} */}
             <div
               className="bookmakerTeam"
               style={box === 6 ? { width: "28%" } : {}}
@@ -554,7 +555,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
               >
                 {detail?.profitLossDataMatch?.[
                   profitLossDataForMatchConstants[data?.type]?.C
-                ] ?? 0}
+                ] ?? ""}
               </span>
             </div>
             <div
@@ -595,7 +596,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont bookmakerRate2Box`}>
-                    {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                    {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
                   </span>
                 </div>
               )}
@@ -619,7 +620,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont bookmakerRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToBack?.[1]?.size}
+                    {handleSize(data?.runners?.[2]?.ex?.availableToBack?.[1]?.size)}
                   </span>
                 </div>
               )}
@@ -651,8 +652,8 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
                   {box === 6
-                    ? data?.runners?.[2]?.ex?.availableToBack?.[2]?.size
-                    : data?.runners?.[2]?.ex?.availableToBack?.[0]?.size}
+                    ? handleSize(data?.runners?.[2]?.ex?.availableToBack?.[2]?.size)
+                    : handleSize(data?.runners?.[2]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
               <div
@@ -674,7 +675,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont bookmakerRate2Box`}>
-                  {data?.runners?.[2]?.ex?.availableToLay?.[0]?.size}
+                  {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[0]?.size)}
                 </span>
               </div>
               {box === 6 && (
@@ -697,7 +698,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont bookmakerRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToLay?.[1]?.size}
+                    {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[1]?.size)}
                   </span>
                 </div>
               )}
@@ -721,7 +722,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ) ?? "-"}
                   </span>
                   <span className={`sizeFont bookmakerRate2Box`}>
-                    {data?.runners?.[2]?.ex?.availableToLay?.[2]?.size}
+                    {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[2]?.size)}
                   </span>
                 </div>
               )}

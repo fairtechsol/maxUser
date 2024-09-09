@@ -39,3 +39,11 @@ export const calculateMaxLoss = (profitLossDataSession: any, betId: any) => {
 
   return totalMaxLoss;
 };
+
+export const handleSize = (rate: any) => {
+  if (rate && rate != 0) {
+    return rate;
+  } else {
+    return "";
+  }
+};

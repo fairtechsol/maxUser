@@ -4,6 +4,7 @@ import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { handleSize } from "../../../helpers";
 
 const DynamicMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -82,7 +83,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className="dynamicBackLayBoxContainer"
+            className={`dynamicBackLayBoxContainer ${isMobile?"backLayBoxWidth2":"backLayBoxWidth"}`}
             style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
@@ -131,12 +132,12 @@ const DynamicMarket = ({ title, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
-            className="dynamicRateBox"
-            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            className={`dynamicRateBox ${isMobile?"rateBoxWidth2": "rateBoxWidth"}`}
+            // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesdynamic">
@@ -167,7 +168,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont dynamicRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[0]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
             )}
@@ -191,7 +192,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont dynamicRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToBack?.[1]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -214,7 +215,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont dynamicRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToBack?.[2]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[2]?.size)}
               </span>
             </div>
             <div
@@ -236,7 +237,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont dynamicRate2Box`}>
-                {data?.runners?.[0]?.ex?.availableToLay?.[0]?.size}
+                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
             {!isMobile && (
@@ -259,7 +260,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont dynamicRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[1]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -283,7 +284,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont dynamicRate2Box`}>
-                  {data?.runners?.[0]?.ex?.availableToLay?.[2]?.size}
+                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
             )}
@@ -322,12 +323,12 @@ const DynamicMarket = ({ title, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
-            className="dynamicRateBox"
-            style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
+            className={`dynamicRateBox ${isMobile?"rateBoxWidth2": "rateBoxWidth"}`}
+            // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesdynamic">
@@ -358,7 +359,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont dynamicRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[0]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
             )}
@@ -382,7 +383,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont dynamicRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToBack?.[1]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -405,7 +406,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont dynamicRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToBack?.[2]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[2]?.size)}
               </span>
             </div>
             <div
@@ -427,7 +428,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 ) ?? "-"}
               </span>
               <span className={`sizeFont dynamicRate2Box`}>
-                {data?.runners?.[1]?.ex?.availableToLay?.[0]?.size}
+                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
             {!isMobile && (
@@ -450,7 +451,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont dynamicRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[1]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
             )}
@@ -474,7 +475,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   ) ?? "-"}
                 </span>
                 <span className={`sizeFont dynamicRate2Box`}>
-                  {data?.runners?.[1]?.ex?.availableToLay?.[2]?.size}
+                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
             )}

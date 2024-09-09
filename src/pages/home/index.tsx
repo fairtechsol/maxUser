@@ -29,7 +29,7 @@ const Home = () => {
     dispatch(updateMatchOddRates(event));
   };
   const [showModal, setShowModal] = useState(true);
-  const imageUrl = "https://sitethemedata.com/common/wel-banner/wel-1724988945329.png"; // Replace this with the dynamic URL
+  const imageUrl = "https://sitethemedata.com/common/wel-banner/wel-1724988950347.png"; // Replace this with the dynamic URL
 
   const handleClose = () => {
     setShowModal(false);

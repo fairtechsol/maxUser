@@ -55,10 +55,10 @@ const MyBet = () => {
                       bet?.betType === "NO" || bet?.betType === "LAY"
                         ? "bg-red1"
                         : "bg-blue3"
-                    }`}
+                    }`} 
                   >
                     <th
-                      className={`title-12 text-start f400 ${
+                      className={`title-14 text-start f400 lh-05 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -71,7 +71,7 @@ const MyBet = () => {
                         : bet?.bettingName ?? bet?.teamName}
                     </th>
                     <th
-                      className={`title-12 text-start f400 ${
+                      className={`title-14 text-start f400 lh-05 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -80,7 +80,7 @@ const MyBet = () => {
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-12 text-start f400 ${
+                      className={`title-14 text-start f400 lh-05 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
