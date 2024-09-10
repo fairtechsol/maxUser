@@ -83,18 +83,18 @@ const DynamicMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className={`dynamicBackLayBoxContainer ${isMobile?"backLayBoxWidth2":"backLayBoxWidth"}`}
-            style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
+            className={`dynamicBackLayBoxContainer backLayBoxWidth`}
+            // style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
               className="dynamicBackBoxTab"
-              style={{ width: isMobile ? "50%" : "25%" }}
+              style={{ width: "25%" }}
             >
               <span className={`f-size16 dynamicBackTxt`}>Back</span>
             </div>
             <div
               className="dynamicLayBoxTab"
-              style={{ width: isMobile ? "50%" : "25%" }}
+              style={{ width: "25%" }}
             >
               <span className={`f-size16 dynamicBackTxt`}>Lay</span>
             </div>
@@ -114,7 +114,7 @@ const DynamicMarket = ({ title, data, detail }) => {
           )} */}
           <div
             className="dynamicTeam"
-            style={{ width: isMobile ? "55%" : "28%" }}
+            style={{ width: "28%" }}
           >
             <span className={`teamFont dynamicTeamTxt`}>Yes</span>
             <span
@@ -136,7 +136,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className={`dynamicRateBox ${isMobile?"rateBoxWidth2": "rateBoxWidth"}`}
+            className={`dynamicRateBox rateBoxWidth`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
@@ -148,7 +148,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   </span>
                 </div>
               )}
-            {!isMobile && (
+           
               <div
                 className="dynamicBackBox back3Background"
                 onClick={() =>
@@ -171,8 +171,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+            
+            
               <div
                 className="dynamicBackBox back2Background"
                 onClick={() =>
@@ -195,7 +195,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
-            )}
+            
             <div
               className="dynamicBackBox back1Background"
               onClick={() =>
@@ -240,7 +240,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
-            {!isMobile && (
+            
               <div
                 className="dynamicBackBox lay2Background"
                 onClick={() =>
@@ -263,8 +263,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+           
+            
               <div
                 className="dynamicBackBox lay3Background"
                 onClick={() =>
@@ -287,7 +287,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
-            )}
+           
           </div>
         </div>
 
@@ -305,7 +305,7 @@ const DynamicMarket = ({ title, data, detail }) => {
           )} */}
           <div
             className="dynamicTeam"
-            style={{ width: isMobile ? "55%" : "28%" }}
+            style={{ width: "28%" }}
           >
             <span className={`teamFont dynamicTeamTxt`}>No</span>
             <span
@@ -327,7 +327,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className={`dynamicRateBox ${isMobile?"rateBoxWidth2": "rateBoxWidth"}`}
+            className={`dynamicRateBox rateBoxWidth`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
@@ -339,7 +339,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   </span>
                 </div>
               )}
-            {!isMobile && (
+            
               <div
                 className="dynamicBackBox back3Background"
                 onClick={() =>
@@ -362,8 +362,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+            
+            
               <div
                 className="dynamicBackBox back2Background"
                 onClick={() =>
@@ -386,7 +386,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
-            )}
+            
             <div
               className="dynamicBackBox back1Background"
               onClick={() =>
@@ -431,7 +431,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
-            {!isMobile && (
+            
               <div
                 className="dynamicBackBox lay2Background"
                 onClick={() =>
@@ -454,8 +454,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+            
+            
               <div
                 className="dynamicBackBox lay3Background"
                 onClick={() =>
@@ -478,7 +478,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
-            )}
+            
           </div>
         </div>
       </div>
