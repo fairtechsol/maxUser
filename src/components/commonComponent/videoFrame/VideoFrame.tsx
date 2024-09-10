@@ -106,7 +106,8 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                   ))}
               </ol>
             </div>
-            {time && (
+            {/* time && */}
+            { (
               <div
                 style={{
                   position: "absolute",

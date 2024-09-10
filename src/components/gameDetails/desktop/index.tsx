@@ -27,7 +27,7 @@ import OtherMarket from "../otherMarket";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
 // import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-//import Iframe from "../../iframe";
+import Iframe from "../../iframe/iframe";
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -36,9 +36,9 @@ const DesktopGameDetail = () => {
   const [errorCount, setErrorCount] = useState<number>(0);
   const [channelId, setChannelId] = useState<string>("");
 
-  const [scoreData, setScoreData] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  // const [scoreData, setScoreData] = useState<any>(null);
+  // const [loading, setLoading] = useState<boolean>(true);
+  // const [error, setError] = useState<string | null>(null);
 
   const { matchDetails, marketId } = useSelector(
     (state: RootState) => state.match.matchList
@@ -68,10 +68,11 @@ const DesktopGameDetail = () => {
       const response: any = await service.get(
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
         // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
-        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${1809072133}`
       );
       if (response) {
-        setLiveScoreBoardData(response);
+        setLiveScoreBoardData(response?.data);
         setErrorCount(0);
       }
     } catch (e: any) {
@@ -83,7 +84,7 @@ const DesktopGameDetail = () => {
 
   useEffect(() => {
     if (matchDetails?.marketId === marketId) {
-      let intervalTime = 500;
+      let intervalTime = 5000;
       if (errorCount >= 5 && errorCount < 10) {
         intervalTime = 60000;
       } else if (errorCount >= 10) {
@@ -120,33 +121,31 @@ const DesktopGameDetail = () => {
   );
   const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        //console.log("fetch",matchDetails?.eventId)
-        const response = await fetch(
-          `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${matchDetails?.eventId}`
-        );
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       //console.log("fetch",matchDetails?.eventId)
+  //       const response = await fetch(
+  //         `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${1809072133}`
+  //       );
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
 
-        const result = await response.json();
-        setScoreData(result);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       const result = await response.json();
+  //       setScoreData(result);
+  //     } catch (error) {
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, [matchDetails]);
+  //   fetchData();
+  // }, [matchDetails]);
 
-   //console.log("fetch",matchDetails?.eventId)
-  //console.log("scoreData", scoreData);
-  // console.log("normalizedData",matchDetails)
+   
 
   const handleBook1Show=(book1:any,book2:any,tide:any)=>{
     if(book1 && !book2 && !tide){
@@ -175,6 +174,10 @@ const DesktopGameDetail = () => {
       return 6;
     }
   }
+
+  console.log("marketId",matchDetails?.eventId,marketId)
+  console.log("scoreData", "scoreData",liveScoreBoardData);
+  // console.log("normalizedData",matchDetails)
   return (
     <Container fluid className="pe-0 ps-1">
       <Row>
@@ -203,6 +206,9 @@ const DesktopGameDetail = () => {
                   }}
                 ></div> */}
               </Col>
+              
+             
+               <Iframe data={liveScoreBoardData}/> 
               {matchDetails?.matchOdd?.isActive ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <MatchOdd
