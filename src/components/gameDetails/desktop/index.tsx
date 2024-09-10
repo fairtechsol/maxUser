@@ -203,7 +203,7 @@ const DesktopGameDetail = () => {
                   }}
                 ></div> */}
               </Col>
-              {matchDetails?.matchOdd?.isActive ==="live" && (
+              {matchDetails?.matchOdd?.activeStatus ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <MatchOdd
                     title={matchDetails?.matchOdd?.name}
@@ -212,7 +212,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.bookmaker?.isActive ==="live" && (
+              {matchDetails?.bookmaker?.activeStatus ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <Bookmaker
                     title={matchDetails?.bookmaker?.name}
@@ -226,7 +226,7 @@ const DesktopGameDetail = () => {
               {matchDetails?.other?.length > 0 &&
                 matchDetails?.other?.map((item: any, index: number) => (
                   <div key={index}>
-                    {item?.isActive ==="live" && (
+                    {item?.activeStatus ==="live" && (
                       <Col md={12} style={{ marginTop: "10px" }}>
                         <OtherMarket
                           title={item?.name}
@@ -239,7 +239,7 @@ const DesktopGameDetail = () => {
                     )}
                   </div>
                 ))}
-              {matchDetails?.bookmaker2?.isActive ==="live" && (
+              {matchDetails?.bookmaker2?.activeStatus ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <Bookmaker
                     title={matchDetails?.bookmaker2?.name}
@@ -255,7 +255,7 @@ const DesktopGameDetail = () => {
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
                     <div key={index}>
-                      {item?.isActive ==="live" && (
+                      {item?.activeStatus ==="live"  && (
                         <Col md={12}>
                           <ManualMarket
                             title={item?.name}
@@ -270,7 +270,7 @@ const DesktopGameDetail = () => {
                 )}
                
               
-              {matchDetails?.apiTideMatch2?.isActive ==="live" && (
+              {matchDetails?.apiTideMatch2?.activeStatus ==="live" && (
                 <Col md={12} style={{ marginTop: "10px" }}>
                   <OtherMarket
                     title={matchDetails?.apiTideMatch2?.name}
@@ -283,8 +283,8 @@ const DesktopGameDetail = () => {
                 </Col>
               )}
               
-              {(matchDetails?.manualTiedMatch?.isActive ==="live" ||
-                matchDetails?.manualTideMatch?.isActive ==="live") && (
+              {(matchDetails?.manualTiedMatch?.activeStatus ==="live" ||
+                matchDetails?.manualTideMatch?.activeStatus ==="live") && (
                 <Col md={12}>
                   <ManualMarket
                     title={
@@ -300,7 +300,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.marketCompleteMatch1?.isActive ==="live" && (
+              {matchDetails?.marketCompleteMatch1?.activeStatus ==="live" && (
                 <Col md={12}>
                   <OtherMarket
                     title={matchDetails?.marketCompleteMatch1?.name}
@@ -310,7 +310,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.manualCompleteMatch?.isActive ==="live" && (
+              {matchDetails?.manualCompleteMatch?.activeStatus ==="live" && (
                 <Col md={12}>
                   <ManualMarket
                     title={matchDetails?.manualCompleteMatch?.name}
@@ -415,7 +415,7 @@ const DesktopGameDetail = () => {
                     }
                   )}
               </div>
-              {matchDetails?.apiTideMatch?.isActive ==="live" && (
+              {matchDetails?.apiTideMatch?.activeStatus ==="live" && (
                 <Col md={12}>
                   <DynamicMarket
                     title={matchDetails?.apiTideMatch?.name}
@@ -424,7 +424,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {matchDetails?.marketCompleteMatch?.isActive ==="live" && (
+              {matchDetails?.marketCompleteMatch?.activeStatus ==="live" && (
                 <Col md={12}>
                   <DynamicMarket
                     title={matchDetails?.marketCompleteMatch?.name}
