@@ -4,7 +4,7 @@ import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { AppDispatch } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { handleSize } from "../../../helpers";
+import { formatNumber, handleSize } from "../../../helpers";
 
 const Bookmaker = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -47,14 +47,6 @@ const Bookmaker = ({ title, box, data, detail }) => {
     );
   };
 
-  const formatNumber = (num: any) => {
-    if (num >= 1000 && num < 1000000) {
-      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-    } else if (num >= 100000) {
-      return (num / 100000).toFixed(1).replace(/\.0$/, "") + "L";
-    }
-    return num.toString();
-  };
   const handlePrice = (rate: any) => {
     if (rate && rate != 0) {
       return rate;

@@ -4,6 +4,7 @@ import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { formatNumber } from "../../../helpers";
 
 const ManualMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -42,15 +43,7 @@ const ManualMarket = ({ title, data, detail }) => {
     );
   };
 
-  const formatNumber = (num: any) => {
-    if (num >= 1000 && num < 1000000) {
-      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-    } else if (num >= 100000) {
-      return (num / 100000).toFixed(1).replace(/\.0$/, "") + "L";
-    }
-    return num.toString();
-  };
-
+ 
   return (
     <>
       <div
