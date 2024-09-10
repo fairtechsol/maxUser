@@ -129,13 +129,12 @@ const ManualMarket = ({ title, data, detail }) => {
             className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.activeStatus !== "live" ||
-              data?.statusTeamA != "active") && (
+            {(data?.statusTeamA != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
                   className={`suspendTextCmmn`}
                 >
-                  SUSPENDED
+                  {data?.statusTeamA?.toUpperCase()}
                 </span>
               </div>
             )}
@@ -300,13 +299,12 @@ const ManualMarket = ({ title, data, detail }) => {
             className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.activeStatus !== "live" ||
-              data?.statusTeamB != "active") && (
+            {(data?.statusTeamB != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
                   className={`suspendTextCmmn`}
                 >
-                  SUSPENDED
+                   {data?.statusTeamB?.toUpperCase()}
                 </span>
               </div>
             )}
@@ -466,13 +464,12 @@ const ManualMarket = ({ title, data, detail }) => {
               className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
               // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
             >
-              {(data?.activeStatus !== "live" ||
-                data?.statusTeamC != "active") && (
+              {(data?.statusTeamC != "active") && (
                 <div className="suspended-overlayRatesmanual">
                   <span
                     className={`suspendTextCmmn`}
                   >
-                    SUSPENDED
+                     {data?.statusTeamC?.toUpperCase()}
                   </span>
                 </div>
               )}
