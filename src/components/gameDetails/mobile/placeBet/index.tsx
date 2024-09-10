@@ -99,7 +99,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     let profit;
     if (selectedBet?.data?.type === "session") {
       profit =
-        selectedBet?.team?.type === "no"
+      (selectedBet?.team?.type === "no" || selectedBet?.team?.type === "No")
           ? value
           : (value * selectedBet?.team?.percent) / 100;
     } else if (
@@ -112,12 +112,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       selectedBet?.data?.type?.includes("setWinner")
     ) {
       profit =
-        selectedBet?.team?.type === "back"
+        (selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK")
           ? (value * ((selectedBet?.team?.rate - 1) * 100)) / 100
           : -(value * ((selectedBet?.team?.rate - 1) * 100)) / 100;
     } else {
       profit =
-        selectedBet?.team?.type === "back"
+      (selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK")
           ? (value * selectedBet?.team?.rate) / 100
           : -(value * selectedBet?.team?.rate) / 100;
     }
@@ -128,12 +128,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     let profit: any;
     if (data?.betOnTeam === data[`team${type}`]) {
       profit = (
-        Number(handleProfit(stake)) +
+        Number(handleProfit(parseFloat(stake))) +
         Number(handleTeamRates(data?.matchBetType, type))
       ).toFixed(2);
     } else {
       profit =
-        data?.type === "back"
+        (data?.type === "back" || data?.type === "BACK")
           ? (
               -Number(data?.stake) +
               Number(handleTeamRates(data?.matchBetType, type))
@@ -157,24 +157,26 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     if (
       type === "matchOdd" ||
       type === "bookmaker" ||
+      type === "bookmaker2" ||
       type === "quickbookmaker1" ||
       type === "quickbookmaker2" ||
       type === "quickbookmaker3"
     ) {
-      rate = matchDetails?.profitLossDataMatch[`team${team}Rate`];
-    } else if (type === "completeMatch" || type === "completeManual") {
+      rate = matchDetails?.profitLossDataMatch[`team${team}Rate_${matchDetails?.id}`];
+    } else if (type === "completeMatch" || type === "completeMatch1" || type === "completeManual") {
       rate =
         team === "A"
-          ? matchDetails?.profitLossDataMatch?.yesRateComplete
-          : matchDetails?.profitLossDataMatch?.noRateComplete;
+          ? matchDetails?.profitLossDataMatch[`yesRateComplete_${matchDetails?.id}`]
+          : matchDetails?.profitLossDataMatch[`noRateComplete_${matchDetails?.id}`];
     } else {
       rate =
         team === "A"
-          ? matchDetails?.profitLossDataMatch?.yesRateTie
-          : matchDetails?.profitLossDataMatch?.noRateTie;
+          ? matchDetails?.profitLossDataMatch[`yesRateTie_${matchDetails?.id}`]
+          : matchDetails?.profitLossDataMatch[`noRateTie_${matchDetails?.id}`];
     }
     return rate || 0;
   };
+  // console.log('matchDetails',matchDetails)
   const handleKeyDown = (e: any) => {
     if (e.key === "e" || e.key === "E") {
       e.preventDefault();
@@ -472,7 +474,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                         ...selectedBet,
                         team: {
                           ...selectedBet?.team,
-                          stake: item?.value,
+                          stake: parseFloat(item?.value),
                         },
                       })
                     );
@@ -562,8 +564,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           <div className="row">
                             <div className="col-md-12">
                               <span className="f400 title-12">
-                                {matchDetails?.profitLossDataMatch?.teamCRate ||
-                                  0}
+                              {handleTeamRates(
+                                selectedBet?.team?.matchBetType,
+                                "C"
+                              )}
                               </span>
                             </div>
                           </div>
