@@ -107,12 +107,12 @@ const ButtonValues = () => {
   return (
     <>
       <ReportContainer title="">
-        <div style={{width:"60%",height:"30px",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
+        <div style={{width:"60%",height:"30px",display:"flex",justifyContent:"space-around",alignItems:"center",marginBottom:"10px"}}>
           <div className="title-16 f-500 text-white" style={{width:"50%",height:"100%",backgroundColor:"#ffc742",display:"flex",justifyContent:"center",alignItems:"center"}}>Game Buttons</div>
           <div className="title-16 f-500 text-black" style={{width:"50%",height:"100%",backgroundColor:"#cccccc",display:"flex",justifyContent:"center",alignItems:"center"}}>Casino Buttons</div>
         </div>
       <form onSubmit={handleSubmit}>
-        <Row className={` ${isMobile ? "g-1" : "w-50 g-2"}`}>
+        <Row className={` ${isMobile ? "g-1" : "w-100 g-2"}`}>
           <Col md={6} xs={6}>
             <span className={`${isMobile ? "title-12 f800" : "f700"}`}>
               Price Label:
@@ -148,13 +148,16 @@ const ButtonValues = () => {
             );
           })}
         </Row>
+        <Row style={{marginLeft:!isMobile && "12px",padding:isMobile && "12px"}}>
         <CustomButton
           type={"submit"}
           size={isMobile ? "sm" : "lg"}
-          className={`${isMobile ? "w-100" : " bg-primary"} border-0 mt-2`}
+          className={`${isMobile ? "w-100" : "w-40 bg-primary"} border-0 mt-2`}
         >
           Update
         </CustomButton>
+        </Row>
+        
       </form>
     </ReportContainer>
     </>
