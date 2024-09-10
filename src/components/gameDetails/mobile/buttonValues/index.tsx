@@ -4,14 +4,14 @@ import {
   betPlaceSuccessReset,
   placeBet,
 } from "../../../../store/actions/betPlace/betPlaceActions";
-import { selectedBetAction, setButtonValue } from "../../../../store/actions/match/matchListAction";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
 import { ApiConstants, matchBettingType } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
 import Loader from "../../../commonComponent/loader";
 import CustomModal from "../../../commonComponent/modal";
 import "./style.scss";
-import { getButtonValue } from "../../../../store/actions/user/userAction";
+import { getButtonValue, setButtonValue } from "../../../../store/actions/user/userAction";
 import { isMobile } from "../../../../utils/screenDimension";
 import ReportContainer from "../../../containers/reportContainer";
 import { useFormik } from "formik";

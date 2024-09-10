@@ -91,17 +91,6 @@ const profileSlice = createSlice({
         state.loading = false;
         state.error = action?.error?.message;
       })
-      .addCase(setButtonValue.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(setButtonValue.fulfilled, (state) => {
-        state.loading = false;
-      })
-      .addCase(setButtonValue.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action?.error?.message;
-      })
       .addCase(getButtonValue.pending, (state) => {
         state.loading = true;
         state.success = false;
@@ -113,6 +102,27 @@ const profileSlice = createSlice({
         state.success = true;
       })
       .addCase(getButtonValue.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(setButtonValue.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(setButtonValue.fulfilled, (state, action) => {
+        const updatedValue = typeof action.payload === 'object'
+            ? JSON.stringify(action.payload)
+            : action.payload;
+    
+        state.buttonValues = {
+          ...state.buttonValues,
+          value: updatedValue 
+        };
+        state.loading = false;
+        state.success = true;
+    })
+      .addCase(setButtonValue.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })
