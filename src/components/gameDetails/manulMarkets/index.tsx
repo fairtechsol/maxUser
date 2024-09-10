@@ -117,18 +117,18 @@ const ManualMarket = ({ title, data, detail }) => {
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A
+                  profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
                 ] > 0
                   ? "color-green"
                   : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A
+                      profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
                     ] < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A
+                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
               ] ?? ""}
             </span>
           </div>
@@ -288,18 +288,18 @@ const ManualMarket = ({ title, data, detail }) => {
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B
+                  profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
                 ] > 0
                   ? "color-green"
                   : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B
+                      profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
                     ] < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B
+                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
               ] ?? ""}
             </span>
           </div>
@@ -454,18 +454,18 @@ const ManualMarket = ({ title, data, detail }) => {
               <span
                 className={`${
                   detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.C
+                    profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
                   ] > 0
                     ? "color-green"
                     : detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C
+                        profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
                       ] < 0
                     ? "color-red"
                     : ""
                 } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.C
+                  profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
                 ] ?? ""}
               </span>
             </div>
