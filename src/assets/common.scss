@@ -143,7 +143,7 @@ body table.table {
 }
 .color {
   background-color: $primary !important;
-  border-top: 1px solid #ffffff;
+  // border-top: 1px solid #ffffff;
   // line-height: ;
   padding: 1px 5px;
   display: flex;
@@ -815,8 +815,6 @@ img {
 }
 .title-16 {
   font-size: 16px !important;
-  line-height: 0.6;
-  padding-top: "10px" !important;
 }
 .title-16px {
   font-size: 16px !important;

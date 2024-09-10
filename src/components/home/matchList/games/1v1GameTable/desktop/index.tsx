@@ -44,7 +44,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   );
   return (
     <>
-      <Table className="matchListTable-desktop mb-4 ">
+      <Table className="matchListTable-desktop mb-4">
         <thead>
           <tr>
             {availableGameType[mTypeid] === "horseRacing" ||
@@ -88,7 +88,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                 ) : (
                   <>
                     {availableGameType[mTypeid] === "cricket" && (
-                      <tr className="one-v-one-row overflow-hidden">
+                      <tr className="one-v-one-row overflow-hidden ">
                         <td className="px-2 w-50 align-middle">
                           <div className="d-flex justify-content-between align-items-center ">
                             <div className="text-decoration-none">
@@ -99,12 +99,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                                 Ball By Ball
                               </div>
                             </div>
-                            <div className="d-flex align-items-center gap-2">
-                              {/* <span
-                              className="liveDot"
-                              style={{ marginRight: "50px" }}
-                            ></span> */}
-                            </div>
+                      
                           </div>
                         </td>
 
