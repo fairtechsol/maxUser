@@ -17,9 +17,10 @@ import CustomButton from "../../../commonComponent/button";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
+import { Modal } from "react-bootstrap";
+import ButtonValues from "../../mobile/buttonValues";
 
 const placeBetHeader = [
-  {},
   {
     id: "betId",
     name: "(Bet for)",
@@ -45,6 +46,7 @@ const PlacedBet = () => {
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
   const [matchOddRate, setMatchOddRate] = useState<any>(null);
+  const [shown, setShow] = useState(false);
   const { buttonValues, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -58,7 +60,7 @@ const PlacedBet = () => {
   );
 
   const dispatch: AppDispatch = useDispatch();
-// console.log('selectedBet',selectedBet)
+  // console.log('selectedBet',selectedBet)
   const handleSubmit = () => {
     if (
       selectedBet?.team?.stake <
@@ -88,9 +90,9 @@ const PlacedBet = () => {
         odds: selectedBet?.team?.rate,
         ratePercent: selectedBet?.team?.percent,
         stake: selectedBet?.team?.stake,
-        betPlaceIndex:selectedBet?.team?.betPlaceIndex,
-        mid:selectedBet?.team?.mid,
-        teamName:selectedBet?.team?.teamName
+        betPlaceIndex: selectedBet?.team?.betPlaceIndex,
+        mid: selectedBet?.team?.mid,
+        teamName: selectedBet?.team?.teamName,
       };
       let payloadForBettings: any = {
         betId: selectedBet?.team?.betId,
@@ -150,14 +152,14 @@ const PlacedBet = () => {
             dispatch(
               placeBet({
                 url:
-                  selectedBet?.team?.matchBetType=== "session" ||
+                  selectedBet?.team?.matchBetType === "session" ||
                   selectedBet?.data?.SelectionId
                     ? ApiConstants.BET.PLACEBETSESSION
                     : selectedBet?.team?.gameType === "other"
                     ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
                     : ApiConstants.BET.PLACEBETMATCHBETTING,
                 data:
-                  selectedBet?.team?.matchBetType=== "session" ||
+                  selectedBet?.team?.matchBetType === "session" ||
                   selectedBet?.data?.SelectionId
                     ? JSON.stringify(payloadForSession)
                     : JSON.stringify(payloadForBettings),
@@ -169,14 +171,14 @@ const PlacedBet = () => {
         dispatch(
           placeBet({
             url:
-              selectedBet?.team?.matchBetType=== "session" ||
+              selectedBet?.team?.matchBetType === "session" ||
               selectedBet?.data?.SelectionId
                 ? ApiConstants.BET.PLACEBETSESSION
                 : selectedBet?.team?.gameType === "other"
                 ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
                 : ApiConstants.BET.PLACEBETMATCHBETTING,
             data:
-              selectedBet?.team?.matchBetType=== "session" ||
+              selectedBet?.team?.matchBetType === "session" ||
               selectedBet?.data?.SelectionId
                 ? JSON.stringify(payloadForSession)
                 : JSON.stringify(payloadForBettings),
@@ -250,7 +252,7 @@ const PlacedBet = () => {
 
   const handleProfit = (value: any) => {
     let profit;
-    if (selectedBet?.team?.matchBetType=== "session") {
+    if (selectedBet?.team?.matchBetType === "session") {
       profit =
         selectedBet?.team?.type === "no"
           ? value
@@ -301,6 +303,14 @@ const PlacedBet = () => {
       e.preventDefault();
     }
   };
+  const formatNumber = (num: any) => {
+    if (num >= 1000 && num < 1000000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    } else if (num >= 100000) {
+      return (num / 100000).toFixed(1).replace(/\.0$/, "") + "L";
+    }
+    return num.toString();
+  };
   return (
     <>
       <div className="loader-container">
@@ -333,17 +343,7 @@ const PlacedBet = () => {
                       : "place-bet-table-blue"
                   }
                 >
-                  <td width={"8%"}>
-                    <span
-                      className=" text-danger title-12 cursor-pointer"
-                      onClick={() => {
-                        dispatch(selectedBetAction(null));
-                      }}
-                    >
-                      <ImCross />
-                    </span>
-                  </td>
-                  <td width={"34%"}>
+                  <td width={"40%"}>
                     <span className="f600 title-14">
                       {selectedBet?.team?.eventType === "horseRacing"
                         ? "MATCH_ODDS"
@@ -388,31 +388,33 @@ const PlacedBet = () => {
                     </div>
                   </td>
                   <td width={"25%"}>
-                  <div style={{
+                    <div
+                      style={{
                         display: "flex",
                         flexDirection: "row",
                         height: "24px",
-                      }}>
-                    <input
-                      value={stake}
-                      min={0}
-                      onChange={(e) => {
-                        dispatch(
-                          selectedBetAction({
-                            ...selectedBet,
-                            team: {
-                              ...selectedBet?.team,
-                              stake: +e.target.value,
-                            },
-                          })
-                        );
                       }}
-                      type="number"
-                      onKeyDown={handleKeyDown}
-                      placeholder=""
-                      className="p-0 w-100 br-0 title-13"
-                      style={{ border: "2px solid #f0f0f0" }}
-                    />
+                    >
+                      <input
+                        value={stake}
+                        min={0}
+                        onChange={(e) => {
+                          dispatch(
+                            selectedBetAction({
+                              ...selectedBet,
+                              team: {
+                                ...selectedBet?.team,
+                                stake: +e.target.value,
+                              },
+                            })
+                          );
+                        }}
+                        type="number"
+                        onKeyDown={handleKeyDown}
+                        placeholder=""
+                        className="p-0 w-100 br-0 title-13"
+                        style={{ border: "2px solid #f0f0f0" }}
+                      />
                     </div>
                   </td>
                   <td width={"18%"} style={{ textAlign: "end" }}>
@@ -453,31 +455,58 @@ const PlacedBet = () => {
                                 );
                               }}
                             >
-                              {item?.label}
+                              <span
+                                style={{ fontSize: "14px", fontWeight: "bold" }}
+                              >
+                                {formatNumber(item?.label)}
+                              </span>
                             </CustomButton>
                           </Col>
                         ))}
                       </Row>
                       <Row>
-                        <Col md={6}>
-                          <CustomButton
-                            className="bg-danger border-0 py-2"
-                            size="sm"
+                        <Col xs={8}>
+                          <div
+                            style={{
+                              width: "50px",
+                              height: "38px",
+                              backgroundColor: "#097c93",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              color: "#fff",
+                              fontSize: "16px",
+                              borderRadius: "3px",
+                            }}
+                            onClick={() => setShow(true)}
+                          >
+                            Edit
+                          </div>
+                        </Col>
+
+                        <Col md={4} className="reset-submit-btn-container">
+                          <button
+                            className="reset-buttonn"
                             onClick={() => {
-                              setStake(0);
+                              dispatch(selectedBetAction(null));
                             }}
                           >
                             Reset
-                          </CustomButton>
-                        </Col>
-                        <Col md={6} className="text-end">
-                          <CustomButton
-                            className="bg-success border-0 py-2"
-                            size="sm"
+                          </button>
+                          <button
+                            className="submit-buttonn"
                             onClick={handleSubmit}
+                            style={{
+                              backgroundColor:
+                                selectedBet?.team?.type == "lay" ||
+                                selectedBet?.team?.type === "LAY" ||
+                                selectedBet?.team?.type == "no"
+                                  ? "#679378"
+                                  : "#38998a",
+                            }}
                           >
                             Submit
-                          </CustomButton>
+                          </button>
                         </Col>
                       </Row>
                     </Container>
@@ -490,6 +519,30 @@ const PlacedBet = () => {
           )}
         </RightPanelContainer>
       </div>
+      <Modal show={shown} onHide={() => setShow(false)}>
+        <Modal.Header
+          className="bg-primary rounded-0"
+          style={{ zIndex: "999" }}
+        >
+          <Modal.Title>
+            <span
+              style={{ color: "#fff", fontSize: "16px", fontWeight: "bold" }}
+            >
+              Set Button Value
+            </span>
+          </Modal.Title>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            aria-label="Close"
+            onClick={() => setShow(false)}
+          ></button>
+        </Modal.Header>
+        <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
+          <ButtonValues />
+        </Modal.Body>
+        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
+      </Modal>
     </>
   );
 };

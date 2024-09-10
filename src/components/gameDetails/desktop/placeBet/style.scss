@@ -32,3 +32,31 @@
   align-items: "center";
   font-size: "1.5rem";
 }
+.reset-submit-btn-container{
+  // width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.reset-buttonn{
+  width: 48%;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #bd1828;
+  color: #fff;
+  border-radius: 3px;
+  border: 0;
+}
+.submit-buttonn{
+  width: 48%;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-color: #bd1828;
+  color: #fff;
+  border-radius: 3px;
+  border: 0;
+}
