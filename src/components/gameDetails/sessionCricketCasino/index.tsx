@@ -5,7 +5,7 @@ import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { FaLock } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { handleSize } from "../../../helpers";
+import { formatNumber, handleSize } from "../../../helpers";
 
 const SessionCricketCasino = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -67,14 +67,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       setMarketArr(newData);
     }
   }, []);
-  const formatNumber = (num: any) => {
-    if (num >= 1000 && num < 1000000) {
-      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-    } else if (num >= 100000) {
-      return (num / 100000).toFixed(1).replace(/\.0$/, "") + "L";
-    }
-    return num.toString();
-  };
+
   const handlePrice = (rate: any) => {
     if (rate && rate != 0) {
       return rate;
