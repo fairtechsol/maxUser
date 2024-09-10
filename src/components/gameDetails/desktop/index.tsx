@@ -302,8 +302,9 @@ const DesktopGameDetail = () => {
               )}
               {matchDetails?.marketCompleteMatch1?.isActive ==="live" && (
                 <Col md={12}>
-                  <DynamicMarket
+                  <OtherMarket
                     title={matchDetails?.marketCompleteMatch1?.name}
+                    box={2}
                     data={matchDetails?.marketCompleteMatch1}
                     detail={matchDetails}
                   />

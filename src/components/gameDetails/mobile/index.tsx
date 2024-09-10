@@ -336,8 +336,9 @@ const MobileGameDetail = () => {
                     )}
                     {matchDetails?.marketCompleteMatch1?.isActive ==="live" && (
                       <Col className="g-0" md={12}>
-                        <DynamicMarket
+                        <OtherMarket
                           title={matchDetails?.marketCompleteMatch1?.name}
+                          box={2}
                           data={matchDetails?.marketCompleteMatch1}
                           detail={matchDetails}
                         />
