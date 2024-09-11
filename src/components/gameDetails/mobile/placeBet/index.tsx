@@ -27,7 +27,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
-  const [shown, setShow] = useState(false)
+  const [shown, setShow] = useState(false);
   const { buttonValues, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -179,7 +179,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     if (e.key === "e" || e.key === "E") {
       e.preventDefault();
     }
-  }; 
+  };
   const formatNumber = (num: any) => {
     if (num >= 1000 && num < 1000000) {
       return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
@@ -241,11 +241,11 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 className="w-50 br-0"
                 style={{
                   border:
-                  selectedBet?.team?.type === "lay" ||
-                  selectedBet?.team?.type === "LAY" ||
-                  selectedBet?.team?.type === "no"
-                    ? "1px solid #faa9ba"
-                      :"1px solid #72bbef",
+                    selectedBet?.team?.type === "lay" ||
+                    selectedBet?.team?.type === "LAY" ||
+                    selectedBet?.team?.type === "no"
+                      ? "1px solid #faa9ba"
+                      : "1px solid #72bbef",
                   backgroundColor:
                     selectedBet?.team?.type === "lay" ||
                     selectedBet?.team?.type === "LAY" ||
@@ -302,11 +302,14 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
 
             <Col xs={4} className="f800 title-12">
               <CustomButton
-                style={{ height: "28px",backgroundColour:"red" }}
-                className={`f600 w-100 br-5 ${selectedBet?.team?.type === "lay" ||
+                style={{ height: "28px", backgroundColour: "red" }}
+                className={`f600 w-100 br-5 ${
+                  selectedBet?.team?.type === "lay" ||
                   selectedBet?.team?.type === "LAY" ||
                   selectedBet?.team?.type === "no"
-                    ?"btnbg-red":"btnbg-blue"}`}
+                    ? "btnbg-red"
+                    : "btnbg-blue"
+                }`}
                 onClick={() => {
                   try {
                     if (
@@ -475,15 +478,30 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                     );
                   }}
                 >
-                  <span style={{color:"#fff"}}>{formatNumber(item?.label)}</span>
+                  <span style={{ color: "#fff" }}>
+                    {formatNumber(item?.label)}
+                  </span>
                 </CustomButton>
               </Col>
             ))}
             <Col xs={12}>
-               <div style={{width:"50px",height:"38px",backgroundColor:"#097c93",display:"flex",justifyContent:"center",alignItems:"center",color:"#fff",fontSize:"16px",borderRadius:"3px"}} onClick={()=> setShow(true)}>
+              <div
+                style={{
+                  width: "50px",
+                  height: "38px",
+                  backgroundColor: "#097c93",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#fff",
+                  fontSize: "16px",
+                  borderRadius: "3px",
+                }}
+                onClick={() => setShow(true)}
+              >
                 Edit
-               </div>
-              </Col>
+              </div>
+            </Col>
             <div className="container d-flex justify-content-between mt-2">
               {selectedBet?.data?.type &&
                 selectedBet.data.type !== "session" &&
@@ -629,28 +647,28 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
           </Row>
         </Container>
       </CustomModal>
-      <Modal
-        show={shown}
-        onHide={() => setShow(false)}
-      >
-       
+      <Modal show={shown} onHide={() => setShow(false)}>
         <Modal.Header
           className="bg-primary rounded-0"
           style={{ zIndex: "999" }}
         >
-          <Modal.Title
-            
-          >
-           <span style={{color:"#fff",fontSize:"16px",fontWeight:"bold"}}>Set Button Value</span>
+          <Modal.Title>
+            <span
+              style={{ color: "#fff", fontSize: "16px", fontWeight: "bold" }}
+            >
+              Set Button Value
+            </span>
           </Modal.Title>
-          <button 
-              type="button" 
-              className="btn-close btn-close-white" 
-              aria-label="Close" 
-              onClick={() => setShow(false)}
-            ></button>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            aria-label="Close"
+            onClick={() => setShow(false)}
+          ></button>
         </Modal.Header>
-        <Modal.Body className="p-0 mt-2 mb-2 rounded-0"><ButtonValues /></Modal.Body>
+        <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
+          <ButtonValues />
+        </Modal.Body>
         {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
       </Modal>
       {(loading || matchOddLoading) && <Loader />}

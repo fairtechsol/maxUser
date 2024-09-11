@@ -129,7 +129,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -157,6 +157,7 @@ export const matchBettingType = {
   quickbookmaker1: "quickbookmaker1",
   quickbookmaker2: "quickbookmaker2",
   quickbookmaker3: "quickbookmaker3",
+  other: "other",
   tiedMatch1: "tiedMatch1",
   tiedMatch2: "tiedMatch2",
   completeMatch: "completeMatch",
@@ -208,6 +209,11 @@ export const profitLossDataForMatchConstants = {
     A: "teamARate",
     B: "teamBRate",
     C: "teamCRate",
+  },
+  [matchBettingType.other]: {
+    A: "userTeamARateOther",
+    B: "userTeamBRateOther",
+    C: "userTeamCRateOther",
   },
   [matchBettingType.tiedMatch1]: {
     A: "yesRateTie",

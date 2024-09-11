@@ -4,7 +4,7 @@ import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { handleSize } from "../../../helpers";
+import { formatNumber, handleSize } from "../../../helpers";
 
 const DynamicMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -46,14 +46,6 @@ const DynamicMarket = ({ title, data, detail }) => {
       })
     );
   };
-  const formatNumber = (num: any) => {
-    if (num >= 1000 && num < 1000000) {
-      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-    } else if (num >= 100000) {
-      return (num / 100000).toFixed(1).replace(/\.0$/, "") + "L";
-    }
-    return num.toString();
-  };
 
   const handlePrice = (rate: any) => {
     if (rate && rate != 0) {
@@ -83,18 +75,18 @@ const DynamicMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className={`dynamicBackLayBoxContainer ${isMobile?"backLayBoxWidth2":"backLayBoxWidth"}`}
-            style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
+            className={`dynamicBackLayBoxContainer backLayBoxWidth`}
+            // style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
               className="dynamicBackBoxTab"
-              style={{ width: isMobile ? "50%" : "25%" }}
+              style={{ width: "25%" }}
             >
               <span className={`f-size16 dynamicBackTxt`}>Back</span>
             </div>
             <div
               className="dynamicLayBoxTab"
-              style={{ width: isMobile ? "50%" : "25%" }}
+              style={{ width: "25%" }}
             >
               <span className={`f-size16 dynamicBackTxt`}>Lay</span>
             </div>
@@ -114,29 +106,29 @@ const DynamicMarket = ({ title, data, detail }) => {
           )} */}
           <div
             className="dynamicTeam"
-            style={{ width: isMobile ? "55%" : "28%" }}
+            style={{ width: "28%" }}
           >
             <span className={`teamFont dynamicTeamTxt`}>Yes</span>
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A
+                  profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
                 ] > 0
                   ? "color-green"
                   : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A
+                      profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
                     ] < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A
+                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
               ] ?? ""}
             </span>
           </div>
           <div
-            className={`dynamicRateBox ${isMobile?"rateBoxWidth2": "rateBoxWidth"}`}
+            className={`dynamicRateBox rateBoxWidth`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
@@ -148,7 +140,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   </span>
                 </div>
               )}
-            {!isMobile && (
+           
               <div
                 className="dynamicBackBox back3Background"
                 onClick={() =>
@@ -171,8 +163,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+            
+            
               <div
                 className="dynamicBackBox back2Background"
                 onClick={() =>
@@ -195,7 +187,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
-            )}
+            
             <div
               className="dynamicBackBox back1Background"
               onClick={() =>
@@ -240,7 +232,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
-            {!isMobile && (
+            
               <div
                 className="dynamicBackBox lay2Background"
                 onClick={() =>
@@ -263,8 +255,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+           
+            
               <div
                 className="dynamicBackBox lay3Background"
                 onClick={() =>
@@ -287,7 +279,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
-            )}
+           
           </div>
         </div>
 
@@ -305,29 +297,29 @@ const DynamicMarket = ({ title, data, detail }) => {
           )} */}
           <div
             className="dynamicTeam"
-            style={{ width: isMobile ? "55%" : "28%" }}
+            style={{ width: "28%" }}
           >
             <span className={`teamFont dynamicTeamTxt`}>No</span>
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B
+                  profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
                 ] > 0
                   ? "color-green"
                   : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B
+                      profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
                     ] < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B
+                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
               ] ?? ""}
             </span>
           </div>
           <div
-            className={`dynamicRateBox ${isMobile?"rateBoxWidth2": "rateBoxWidth"}`}
+            className={`dynamicRateBox rateBoxWidth`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
@@ -339,7 +331,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   </span>
                 </div>
               )}
-            {!isMobile && (
+            
               <div
                 className="dynamicBackBox back3Background"
                 onClick={() =>
@@ -362,8 +354,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+            
+            
               <div
                 className="dynamicBackBox back2Background"
                 onClick={() =>
@@ -386,7 +378,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
                 </span>
               </div>
-            )}
+            
             <div
               className="dynamicBackBox back1Background"
               onClick={() =>
@@ -431,7 +423,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
-            {!isMobile && (
+            
               <div
                 className="dynamicBackBox lay2Background"
                 onClick={() =>
@@ -454,8 +446,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+            
+            
               <div
                 className="dynamicBackBox lay3Background"
                 onClick={() =>
@@ -478,7 +470,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                   {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
                 </span>
               </div>
-            )}
+            
           </div>
         </div>
       </div>

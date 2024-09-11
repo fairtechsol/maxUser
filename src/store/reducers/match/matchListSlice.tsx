@@ -304,36 +304,17 @@ const matchListSlice = createSlice({
         state.searchedMatchList = null;
       })
       .addCase(updateBalance.fulfilled, (state, action) => {
-        const { matchBetType, newTeamRateData } = action.payload;
-        if (["tiedMatch1", "tiedMatch2"].includes(matchBetType)) {
+        const { newTeamRateData,teamArateRedisKey,teamBrateRedisKey,teamCrateRedisKey } = action.payload;
           state.matchDetails = {
             ...state.matchDetails,
             profitLossDataMatch: {
               ...state.matchDetails.profitLossDataMatch,
-              yesRateTie: newTeamRateData?.teamA,
-              noRateTie: newTeamRateData?.teamB,
+              [teamArateRedisKey]: newTeamRateData?.teamA,
+              [teamBrateRedisKey]: newTeamRateData?.teamB,
+              [teamCrateRedisKey]: newTeamRateData?.teamB,
             },
           };
-        } else if (["completeMatch", "completeManual"].includes(matchBetType)) {
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails.profitLossDataMatch,
-              yesRateComplete: newTeamRateData?.teamA,
-              noRateComplete: newTeamRateData?.teamB,
-            },
-          };
-        } else {
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails.profitLossDataMatch,
-              teamARate: newTeamRateData?.teamA,
-              teamBRate: newTeamRateData?.teamB,
-              teamCRate: newTeamRateData?.teamC,
-            },
-          };
-        }
+        
       })
       .addCase(updateMaxLossForBet.fulfilled, (state, action) => {
         const { betPlaced, profitLossData } = action.payload;
@@ -429,11 +410,11 @@ const matchListSlice = createSlice({
           ...state.matchDetails,
           profitLossDataMatch: {
             ...state.matchDetails?.profitLossDataMatch,
-            [profitLossDataForMatchConstants[matchBetType].A]:
+            [teamArateRedisKey]:
               redisObject[teamArateRedisKey],
-            [profitLossDataForMatchConstants[matchBetType].B]:
+            [teamBrateRedisKey]:
               redisObject[teamBrateRedisKey],
-            [profitLossDataForMatchConstants[matchBetType].C]:
+            [teamCrateRedisKey]:
               redisObject[teamCrateRedisKey],
           },
         };
