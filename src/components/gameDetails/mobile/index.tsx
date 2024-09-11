@@ -85,7 +85,7 @@ const MobileGameDetail = () => {
     try {
       const response: any = await service.get(
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
-        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${marketId}`
       );
       if (response) {
         setLiveScoreBoardData(response);
@@ -107,7 +107,7 @@ const MobileGameDetail = () => {
         intervalTime = 600000;
       }
       const interval = setInterval(() => {
-        getScoreBoard(matchDetails?.marketId);
+        getScoreBoard(matchDetails?.eventId);
       }, intervalTime);
 
       return () => {
@@ -200,7 +200,7 @@ const MobileGameDetail = () => {
                 <Container>
                   <Row>
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
-                    {showVideo && (
+                    {/* {showVideo && (
                       <Container className="px-0">
                         <Row className="justify-content-md-center">
                           <Col md={12}>
@@ -214,7 +214,7 @@ const MobileGameDetail = () => {
                           </Col>
                         </Row>
                       </Container>
-                    )}
+                    )} */}
                     <Container>
                       <Row>
                         <Col className="g-0" md={12}>
