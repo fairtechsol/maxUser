@@ -206,7 +206,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     ) && (
                       <div className="suspended-overlayRates">
                         <span className={`suspendTextCmmn`}>
-                          {(item?.GameStatus || item?.status) ?? "SUSPENDED"}
+                          {(item?.GameStatus || item?.status)?.toUpperCase() ?? "SUSPENDED"}
                         </span>
                       </div>
                     )}
@@ -506,7 +506,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       ) && (
                         <div className="suspended-overlayRates">
                           <span className={`suspendTextCmmn`}>
-                            {(item?.GameStatus || item?.status) ?? "SUSPENDED"}
+                            {(item?.GameStatus || item?.status)?.toUpperCase() ?? "SUSPENDED"}
                           </span>
                         </div>
                       )}

@@ -1,21 +1,11 @@
-import axios from "axios";
-import { toast } from "react-toastify";
-import {
-  betPlaceSuccessReset,
-  placeBet,
-} from "../../../../store/actions/betPlace/betPlaceActions";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { ApiConstants, matchBettingType } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
-import Loader from "../../../commonComponent/loader";
-import CustomModal from "../../../commonComponent/modal";
 import "./style.scss";
-import { getButtonValue, setButtonValue } from "../../../../store/actions/user/userAction";
+import { getButtonValue, getCasinoButtonValue, setButtonValue } from "../../../../store/actions/user/userAction";
 import { isMobile } from "../../../../utils/screenDimension";
 import ReportContainer from "../../../containers/reportContainer";
 import { useFormik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import CustomInput from "../../../commonComponent/input";
@@ -26,6 +16,7 @@ interface ButtonProps {
 }
 
 const ButtonValues = () => {
+  const [casinoBtn, setCasinoBtn] = useState(false)
   const initialValues = [
     {
       label: "",
@@ -63,7 +54,7 @@ const ButtonValues = () => {
   ];
 
   const dispatch: AppDispatch = useDispatch();
-  const { buttonValues } = useSelector(
+  const { buttonValues,buttonValues2 } = useSelector(
     (state: RootState) => state.user.profile
   );
 
@@ -77,8 +68,8 @@ const ButtonValues = () => {
         }
       });
       const payload = {
-        id: buttonValues?.id,
-        type: "Match",
+        id:casinoBtn?buttonValues2?.id: buttonValues?.id,
+        type: casinoBtn?"Casino":"Match",
         value: result,
       };
       dispatch(setButtonValue(payload));
@@ -87,29 +78,43 @@ const ButtonValues = () => {
 
   useEffect(() => {
     dispatch(getButtonValue());
+    dispatch(getCasinoButtonValue());
   }, []);
 
   const { handleSubmit, values, setValues, setFieldValue } = formik;
-
   useEffect(() => {
-    if (buttonValues && buttonValues?.value) {
-      setValues(
-        Object.keys(JSON.parse(buttonValues?.value))?.map((item) => {
-          return {
-            label: item,
-            value: JSON.parse(buttonValues?.value)[item],
-          };
-        })
-      );
+    if(casinoBtn){
+      if (buttonValues2 && buttonValues2?.value) {
+        setValues(
+          Object.keys(JSON.parse(buttonValues2?.value))?.map((item) => {
+            return {
+              label: item,
+              value: JSON.parse(buttonValues2?.value)[item],
+            };
+          })
+        );
+      }
+    }else{
+      if (buttonValues && buttonValues?.value) {
+        setValues(
+          Object.keys(JSON.parse(buttonValues?.value))?.map((item) => {
+            return {
+              label: item,
+              value: JSON.parse(buttonValues?.value)[item],
+            };
+          })
+        );
+      }
     }
-  }, [buttonValues]);
-
+    
+  }, [buttonValues,casinoBtn]);
+// console.log(buttonValues,'initialValues',buttonValues2)
   return (
     <>
       <ReportContainer title="">
         <div style={{width:"60%",height:"30px",display:"flex",justifyContent:"space-around",alignItems:"center",marginBottom:"10px"}}>
-          <div className="title-16 f-500 text-white" style={{width:"50%",height:"100%",backgroundColor:"#ffc742",display:"flex",justifyContent:"center",alignItems:"center"}}>Game Buttons</div>
-          <div className="title-16 f-500 text-black" style={{width:"50%",height:"100%",backgroundColor:"#cccccc",display:"flex",justifyContent:"center",alignItems:"center"}}>Casino Buttons</div>
+          <div className={`title-16 f-500 ${casinoBtn ?"text-black":"text-white"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#cccccc":"#ffc742",display:"flex",justifyContent:"center",alignItems:"center"}} onClick={()=>setCasinoBtn(false)}>Game Buttons</div>
+          <div className={`title-16 f-500 ${casinoBtn ?"text-white":"text-black"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#ffc742":"#cccccc",display:"flex",justifyContent:"center",alignItems:"center"}} onClick={()=>setCasinoBtn(true)}>Casino Buttons</div>
         </div>
       <form onSubmit={handleSubmit}>
         <Row className={` ${isMobile ? "g-1" : "w-100 g-2"}`}>
@@ -123,7 +128,7 @@ const ButtonValues = () => {
               Price Value:
             </span>
           </Col>
-          {initialValues?.map((_: any, index: number) => {
+          {  initialValues?.map((_: any, index: number) => {
             return (
               <Row key={index} style={{marginBottom:"10Px"}}>
                 <Col md={6} xs={6}>
