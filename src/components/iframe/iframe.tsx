@@ -61,8 +61,12 @@ const Iframe = ({ data }: { data: CricketData }) => {
               {data?.spnnation2}
             </span>
             <span className="score col-6 text-end">{data?.score2}</span>
+           
             {data?.spnrunrate2 && (
-              <span  style={{fontStyle: "italic",   }}>
+              <span
+                className="col-3"
+                style={{ fontStyle: "italic",  }}
+              >
                 (CRR {data?.spnrunrate2})
               </span>
             )}

@@ -99,7 +99,7 @@ const DesktopGameDetail = () => {
         setLiveScoreBoardData(null);
       };
     }
-  }, [matchDetails.id,matchDetails.eventId, errorCount, marketId]);
+  }, [matchDetails?.id,matchDetails?.eventId, errorCount, marketId]);
 
   useEffect(() => {
     try {
