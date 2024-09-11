@@ -216,7 +216,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                           )
                         }
                       >
-                        <span className={`f-size15 sessionRate1Box`}>
+                        <span className={`rateFont`}>
                           {handlePrice(
                             item?.ex?.availableToLay?.[0]?.price || item?.noRate
                           ) ?? "-"}
@@ -242,7 +242,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span className={`f-size15 sessionRate1Box`}>
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToLay?.[1]?.price
                             ) ?? "-"}
@@ -268,7 +268,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span className={`f-size15 sessionRate1Box`}>
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToLay?.[2]?.price
                             ) ?? "-"}
@@ -303,7 +303,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                           )
                         }
                       >
-                        <span className={`f-size15 sessionRate1Box`}>
+                        <span className={`rateFont`}>
                           {handlePrice(
                             item?.ex?.availableToBack?.[0]?.price ||
                               item?.yesRate
@@ -330,7 +330,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span className={`f-size15 sessionRate1Box`}>
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToBack?.[1]?.price
                             ) ?? "-"}
@@ -356,7 +356,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span className={`f-size15 sessionRate1Box`}>
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToBack?.[2]?.price
                             ) ?? "-"}

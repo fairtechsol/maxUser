@@ -85,7 +85,20 @@ export const getButtonValue = createAsyncThunk<any>(
     }
   }
 );
-
+export const getCasinoButtonValue = createAsyncThunk<any>(
+  "user/getCasinoButtonValue",
+  async () => {
+    try {
+      const { data } = await service.get(
+        `${ApiConstants.USER.GET_BTN_VALUE}?type=Casino`
+      );
+      return data[0];
+    } catch (error: any) {
+      const err = error as AxiosError;
+      throw err;
+    }
+  }
+);
 export const setButtonValue = createAsyncThunk<any, any>(
   "/setButtonValues",
   async (requestData) => {
@@ -95,7 +108,12 @@ export const setButtonValue = createAsyncThunk<any, any>(
         requestData
       );
       if (resp) {
-        return resp?.data;
+        let data ={
+          id:requestData?.id,
+          type:requestData?.type,
+          value:resp?.data
+        }
+        return data;
       }
     } catch (error: any) {
       const err = error as AxiosError;

@@ -151,7 +151,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
                 ) ?? "-"}
@@ -173,7 +173,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToBack?.[1]?.price
                 ) ?? "-"}
@@ -195,7 +195,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToBack?.[2]?.price
                 ) ?? "-"}
@@ -217,7 +217,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToLay?.[0]?.price
                 ) ?? "-"}
@@ -239,7 +239,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToLay?.[1]?.price
                 ) ?? "-"}
@@ -261,7 +261,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[0]?.ex?.availableToLay?.[2]?.price
                 ) ?? "-"}
@@ -338,7 +338,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
                 ) ?? "-"}
@@ -360,7 +360,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToBack?.[1]?.price
                 ) ?? "-"}
@@ -382,7 +382,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToBack?.[2]?.price
                 ) ?? "-"}
@@ -404,7 +404,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToLay?.[0]?.price
                 ) ?? "-"}
@@ -426,7 +426,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToLay?.[1]?.price
                 ) ?? "-"}
@@ -448,7 +448,7 @@ const MatchOdd = ({ title, data, detail }) => {
                 )
               }
             >
-              <span className={`rateFont matchOddRate1Box`}>
+              <span className={`rateFont`}>
                 {handlePrice(
                   data?.runners?.[1]?.ex?.availableToLay?.[2]?.price
                 ) ?? "-"}
@@ -526,7 +526,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span className={`rateFont matchOddRate1Box`}>
+                <span className={`rateFont`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToBack?.[0]?.price
                   ) ?? "-"}
@@ -548,7 +548,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span className={`rateFont matchOddRate1Box`}>
+                <span className={`rateFont`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToBack?.[1]?.price
                   ) ?? "-"}
@@ -570,7 +570,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span className={`rateFont matchOddRate1Box`}>
+                <span className={`rateFont`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToBack?.[2]?.price
                   ) ?? "-"}
@@ -592,7 +592,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span className={`rateFont matchOddRate1Box`}>
+                <span className={`rateFont`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToLay?.[0]?.price
                   ) ?? "-"}
@@ -614,7 +614,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span className={`rateFont matchOddRate1Box`}>
+                <span className={`rateFont`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToLay?.[1]?.price
                   ) ?? "-"}
@@ -636,7 +636,7 @@ const MatchOdd = ({ title, data, detail }) => {
                   )
                 }
               >
-                <span className={`rateFont matchOddRate1Box`}>
+                <span className={`rateFont`}>
                   {handlePrice(
                     data?.runners?.[2]?.ex?.availableToLay?.[2]?.price
                   ) ?? "-"}

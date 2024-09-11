@@ -126,11 +126,11 @@ const AccountStatementComponent = () => {
                     },
                     {
                       value: "addWithdraw",
-                      label: "Deposit/Withdraw Report",
+                      label: "Deposit/Withdraw Reports",
                     },
                     {
                       value: "game",
-                      label: "Game Report",
+                      label: "Sport Report",
                     },
                   ]}
                   placeholder="All"
