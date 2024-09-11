@@ -118,7 +118,7 @@ const DesktopGameDetail = () => {
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
-  const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
+  const manualEntries = matchDetails?.manualSessionActive ? normalizedData?.filter((item: any) => item?.isManual):[];
 
   useEffect(() => {
     const fetchData = async () => {
