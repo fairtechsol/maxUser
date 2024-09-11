@@ -25,6 +25,7 @@ import { FiMonitor } from "react-icons/fi";
 import { FaTv } from "react-icons/fa";
 import { ApiConstants } from "../../../utils/constants";
 import OtherMarket from "../otherMarket";
+import Iframe from "../../iframe/iframe";
 
 const markets = [
   {
@@ -88,7 +89,7 @@ const MobileGameDetail = () => {
         `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${marketId}`
       );
       if (response) {
-        setLiveScoreBoardData(response);
+        setLiveScoreBoardData(response?.data);
         setErrorCount(0);
       }
     } catch (e: any) {
@@ -100,7 +101,7 @@ const MobileGameDetail = () => {
 
   useEffect(() => {
     if (matchDetails?.marketId === marketId) {
-      let intervalTime = 500;
+      let intervalTime = 5000;
       if (errorCount >= 5 && errorCount < 10) {
         intervalTime = 60000;
       } else if (errorCount >= 10) {
@@ -115,7 +116,8 @@ const MobileGameDetail = () => {
         setLiveScoreBoardData(null);
       };
     }
-  }, [matchDetails?.id, errorCount, marketId]);
+  }, [matchDetails?.id,matchDetails?.eventId, errorCount, marketId]);
+
 
   useEffect(() => {
     try {
@@ -141,6 +143,7 @@ const MobileGameDetail = () => {
     "manualEntries",
     manualEntries
   );
+  console.log("live",liveScoreBoardData)
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -155,7 +158,11 @@ const MobileGameDetail = () => {
         }
         style={{ padding: "5px" }}
       />
+        
+        {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}
+
       <CommonTabs defaultActive="odds" className="color">
+
         {[
           {
             id: "odds",
@@ -185,7 +192,7 @@ const MobileGameDetail = () => {
             : null, // Only add 'live' tab if channelId is valid
         ]
           ?.filter(Boolean) // Remove null values from the array
-          .map((item, index) => (
+          ?.map((item, index) => (
             <Tab
               key={item?.id}
               eventKey={item?.id}
@@ -215,7 +222,7 @@ const MobileGameDetail = () => {
                         </Row>
                       </Container>
                     )} */}
-                    <Container>
+                    {/* <Container>
                       <Row>
                         <Col className="g-0" md={12}>
                           <div
@@ -237,7 +244,7 @@ const MobileGameDetail = () => {
                           ></iframe>
                         </Col>
                       </Row>
-                    </Container>
+                    </Container> */}
                     {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <MatchOdd
