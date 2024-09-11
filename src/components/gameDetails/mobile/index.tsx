@@ -25,7 +25,8 @@ import { FiMonitor } from "react-icons/fi";
 import { FaTv } from "react-icons/fa";
 import { ApiConstants } from "../../../utils/constants";
 import OtherMarket from "../otherMarket";
-
+import Iframe from "../../iframe/iframe";
+import { Constants } from "../../../utils/constants";
 const markets = [
   {
     id: "fancy",
@@ -81,11 +82,12 @@ const MobileGameDetail = () => {
     setMarketActive(type);
   };
 
-  const getScoreBoard = async (marketId: string) => {
+  const getScoreBoard = async (eventId: string) => {
     try {
       const response: any = await service.get(
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
-        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        //`http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${marketId}`
+        `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
       );
       if (response) {
         setLiveScoreBoardData(response);
