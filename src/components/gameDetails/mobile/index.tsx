@@ -25,7 +25,6 @@ import { FiMonitor } from "react-icons/fi";
 import { FaTv } from "react-icons/fa";
 import { ApiConstants } from "../../../utils/constants";
 import OtherMarket from "../otherMarket";
-import Iframe from "../../iframe/iframe";
 
 const markets = [
   {
@@ -86,10 +85,10 @@ const MobileGameDetail = () => {
     try {
       const response: any = await service.get(
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
-        `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${marketId}`
+        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
       );
       if (response) {
-        setLiveScoreBoardData(response?.data);
+        setLiveScoreBoardData(response);
         setErrorCount(0);
       }
     } catch (e: any) {
@@ -101,14 +100,14 @@ const MobileGameDetail = () => {
 
   useEffect(() => {
     if (matchDetails?.marketId === marketId) {
-      let intervalTime = 5000;
+      let intervalTime = 500;
       if (errorCount >= 5 && errorCount < 10) {
         intervalTime = 60000;
       } else if (errorCount >= 10) {
         intervalTime = 600000;
       }
       const interval = setInterval(() => {
-        getScoreBoard(matchDetails?.eventId);
+        getScoreBoard(matchDetails?.marketId);
       }, intervalTime);
 
       return () => {
@@ -116,8 +115,7 @@ const MobileGameDetail = () => {
         setLiveScoreBoardData(null);
       };
     }
-  }, [matchDetails?.id,matchDetails?.eventId, errorCount, marketId]);
-
+  }, [matchDetails?.id, errorCount, marketId]);
 
   useEffect(() => {
     try {
@@ -153,11 +151,7 @@ const MobileGameDetail = () => {
         }
         style={{ padding: "5px" }}
       />
-        
-        {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}
-
       <CommonTabs defaultActive="odds" className="color">
-
         {[
           {
             id: "odds",
@@ -187,7 +181,7 @@ const MobileGameDetail = () => {
             : null, // Only add 'live' tab if channelId is valid
         ]
           ?.filter(Boolean) // Remove null values from the array
-          ?.map((item, index) => (
+          .map((item, index) => (
             <Tab
               key={item?.id}
               eventKey={item?.id}
@@ -202,7 +196,7 @@ const MobileGameDetail = () => {
                 <Container>
                   <Row>
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
-                    {/* {showVideo && (
+                    {showVideo && (
                       <Container className="px-0">
                         <Row className="justify-content-md-center">
                           <Col md={12}>
@@ -216,8 +210,8 @@ const MobileGameDetail = () => {
                           </Col>
                         </Row>
                       </Container>
-                    )} */}
-                    {/* <Container>
+                    )}
+                    <Container>
                       <Row>
                         <Col className="g-0" md={12}>
                           <div
