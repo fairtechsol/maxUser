@@ -113,8 +113,7 @@ const TeenPattiDesktop = () => {
       dispatch(selectedBetAction(""));
     }
   }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
-
-  
+   
   return (
     <>
       <Row>
@@ -156,11 +155,26 @@ const TeenPattiDesktop = () => {
                   width: "100%",
                   height: "90%",
                   backgroundColor: "#000",
+                  position: "relative", 
                 }}
               >
+              
+                {/* <img
+                 className="elem"
+                  src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${0}.png`}
+                  style={{
+                    position: "absolute", 
+                    top: "50%", 
+                    left: "50%", 
+                    transform: "translate(-50%, -100%)", 
+                    zIndex: 2, 
+                  }}
+                  alt="Centered Image"
+                /> */}
+
+                
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.lt}
-                  //result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>

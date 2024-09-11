@@ -27,7 +27,7 @@ import OtherMarket from "../otherMarket";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
 // import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-//import Iframe from "../../iframe";
+import Iframe from "../../iframe/iframe";
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -36,9 +36,9 @@ const DesktopGameDetail = () => {
   const [errorCount, setErrorCount] = useState<number>(0);
   const [channelId, setChannelId] = useState<string>("");
 
-  const [scoreData, setScoreData] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  // const [scoreData, setScoreData] = useState<any>(null);
+  // const [loading, setLoading] = useState<boolean>(true);
+  // const [error, setError] = useState<string | null>(null);
 
   const { matchDetails, marketId } = useSelector(
     (state: RootState) => state.match.matchList
@@ -68,10 +68,11 @@ const DesktopGameDetail = () => {
       const response: any = await service.get(
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
         // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
-        `https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${marketId}`
       );
       if (response) {
-        setLiveScoreBoardData(response);
+        setLiveScoreBoardData(response?.data);
         setErrorCount(0);
       }
     } catch (e: any) {
@@ -83,7 +84,7 @@ const DesktopGameDetail = () => {
 
   useEffect(() => {
     if (matchDetails?.marketId === marketId) {
-      let intervalTime = 500;
+      let intervalTime = 5000;
       if (errorCount >= 5 && errorCount < 10) {
         intervalTime = 60000;
       } else if (errorCount >= 10) {
@@ -98,7 +99,7 @@ const DesktopGameDetail = () => {
         setLiveScoreBoardData(null);
       };
     }
-  }, [matchDetails?.id, errorCount, marketId]);
+  }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
 
   useEffect(() => {
     try {
@@ -120,61 +121,61 @@ const DesktopGameDetail = () => {
   );
   const manualEntries = normalizedData?.filter((item: any) => item?.isManual);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        //console.log("fetch",matchDetails?.eventId)
-        const response = await fetch(
-          `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${matchDetails?.eventId}`
-        );
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       //console.log("fetch",matchDetails?.eventId)
+  //       const response = await fetch(
+  //         `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${1809072133}`
+  //       );
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
 
-        const result = await response.json();
-        setScoreData(result);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       const result = await response.json();
+  //       setScoreData(result);
+  //     } catch (error) {
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, [matchDetails]);
+  //   fetchData();
+  // }, [matchDetails]);
 
-   //console.log("fetch",matchDetails?.eventId)
-  //console.log("scoreData", scoreData);
+  const handleBook1Show = (book1: any, book2: any, tide: any) => {
+    if (book1 && !book2 && !tide) {
+      return 12;
+    } else if (book1 && book2 && !tide) {
+      return 8;
+    } else if (book1 && !book2 && tide) {
+      return 8;
+    }
+  };
+  const handleBook2Show = (book1: any, book2: any, tide: any) => {
+    if (book2 && !book1 && !tide) {
+      return 12;
+    } else if (book2 && book1 && !tide) {
+      return 4;
+    } else if (book2 && !book1 && tide) {
+      return 6;
+    }
+  };
+  const handleTideShow = (book1: any, book2: any, tide: any) => {
+    if (tide && !book1 && !book2) {
+      return 12;
+    } else if (tide && book1 && !book2) {
+      return 4;
+    } else if (tide && !book1 && book2) {
+      return 6;
+    }
+  };
+
+  console.log("eventId", matchDetails?.eventId);
+  console.log("scoreData", "scoreData", liveScoreBoardData);
   // console.log("normalizedData",matchDetails)
-
-  const handleBook1Show=(book1:any,book2:any,tide:any)=>{
-    if(book1 && !book2 && !tide){
-      return 12;
-    }else if(book1 && book2 && !tide){
-      return 8;
-    }else if(book1 && !book2 && tide){
-      return 8;
-    }
-  }
-  const handleBook2Show=(book1:any,book2:any,tide:any)=>{
-    if(book2 && !book1 && !tide){
-      return 12;
-    }else if(book2 && book1 && !tide){
-      return 4;
-    }else if(book2 && !book1 && tide){
-      return 6;
-    }
-  }
-  const handleTideShow=(book1:any,book2:any,tide:any)=>{
-    if(tide && !book1 && !book2){
-      return 12;
-    }else if(tide && book1 && !book2){
-      return 4;
-    }else if(tide && !book1 && book2){
-      return 6;
-    }
-  }
   return (
     <Container fluid className="pe-0 ps-1">
       <Row>
@@ -203,34 +204,41 @@ const DesktopGameDetail = () => {
                   }}
                 ></div> */}
               </Col>
-              {(matchDetails?.matchOdd?.activeStatus ==="live" && matchDetails?.matchOdd?.isActive) && (
-                <Col md={12} style={{ marginTop: "10px" }}>
-                  <MatchOdd
-                    title={matchDetails?.matchOdd?.name}
-                    data={matchDetails?.matchOdd}
-                    detail={matchDetails}
-                  />
-                </Col>
-              )}
-              {(matchDetails?.bookmaker?.activeStatus ==="live" && matchDetails?.bookmaker?.isActive) && (
-                <Col md={12} style={{ marginTop: "10px" }}>
-                  <Bookmaker
-                    title={matchDetails?.bookmaker?.name}
-                    box={6}
-                    data={matchDetails?.bookmaker}
-                    detail={matchDetails}
-                    // data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
+              {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}
+              {matchDetails?.matchOdd?.activeStatus === "live" &&
+                matchDetails?.matchOdd?.isActive && (
+                  <Col md={12} style={{ marginTop: "10px" }}>
+                    <MatchOdd
+                      title={matchDetails?.matchOdd?.name}
+                      data={matchDetails?.matchOdd}
+                      detail={matchDetails}
+                    />
+                  </Col>
+                )}
+              {matchDetails?.bookmaker?.activeStatus === "live" &&
+                matchDetails?.bookmaker?.isActive && (
+                  <Col md={12} style={{ marginTop: "10px" }}>
+                    <Bookmaker
+                      title={matchDetails?.bookmaker?.name}
+                      box={6}
+                      data={matchDetails?.bookmaker}
+                      detail={matchDetails}
+                      // data={matchDetails?.matchOdd}
+                    />
+                  </Col>
+                )}
               {matchDetails?.other?.length > 0 &&
                 matchDetails?.other?.map((item: any, index: number) => (
                   <div key={index}>
-                    {(item?.activeStatus ==="live" && item?.isActive ) && (
+                    {item?.activeStatus === "live" && item?.isActive && (
                       <Col md={12} style={{ marginTop: "10px" }}>
                         <OtherMarket
                           title={item?.name}
-                          box={item?.runners?.[0]?.ex?.availableToBack?.length > 2 ? 6:2}
+                          box={
+                            item?.runners?.[0]?.ex?.availableToBack?.length > 2
+                              ? 6
+                              : 2
+                          }
                           data={item}
                           detail={matchDetails}
                           // data={matchDetails?.matchOdd}
@@ -239,23 +247,24 @@ const DesktopGameDetail = () => {
                     )}
                   </div>
                 ))}
-              {(matchDetails?.bookmaker2?.activeStatus ==="live" && matchDetails?.bookmaker2?.isActive) && (
-                <Col md={12} style={{ marginTop: "10px" }}>
-                  <Bookmaker
-                    title={matchDetails?.bookmaker2?.name}
-                    box={2}
-                    data={matchDetails?.bookmaker2}
-                    detail={matchDetails}
-                    // type={MatchType.MATCH_ODDS}
-                    // data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
+              {matchDetails?.bookmaker2?.activeStatus === "live" &&
+                matchDetails?.bookmaker2?.isActive && (
+                  <Col md={12} style={{ marginTop: "10px" }}>
+                    <Bookmaker
+                      title={matchDetails?.bookmaker2?.name}
+                      box={2}
+                      data={matchDetails?.bookmaker2}
+                      detail={matchDetails}
+                      // type={MatchType.MATCH_ODDS}
+                      // data={matchDetails?.matchOdd}
+                    />
+                  </Col>
+                )}
               {matchDetails?.quickBookmaker?.length > 0 &&
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
                     <div key={index}>
-                      {(item?.activeStatus ==="live" && item?.isActive )  && (
+                      {item?.activeStatus === "live" && item?.isActive && (
                         <Col md={12}>
                           <ManualMarket
                             title={item?.name}
@@ -268,23 +277,23 @@ const DesktopGameDetail = () => {
                     </div>
                   )
                 )}
-               
-              
-              {(matchDetails?.apiTideMatch2?.activeStatus ==="live" && matchDetails?.apiTideMatch2?.isActive) && (
-                <Col md={12} style={{ marginTop: "10px" }}>
-                  <OtherMarket
-                    title={matchDetails?.apiTideMatch2?.name}
-                    box={2}
-                    data={matchDetails?.apiTideMatch2}
-                    detail={matchDetails}
-                    // type={MatchType.MATCH_ODDS}
-                    // data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
-              
-              {((matchDetails?.manualTiedMatch?.activeStatus ==="live" && matchDetails?.manualTiedMatch?.isActive) ||
-                (matchDetails?.manualTideMatch?.activeStatus ==="live" && matchDetails?.manualTideMatch?.isActive)) && (
+              {matchDetails?.apiTideMatch2?.activeStatus === "live" &&
+                matchDetails?.apiTideMatch2?.isActive && (
+                  <Col md={12} style={{ marginTop: "10px" }}>
+                    <OtherMarket
+                      title={matchDetails?.apiTideMatch2?.name}
+                      box={2}
+                      data={matchDetails?.apiTideMatch2}
+                      detail={matchDetails}
+                      // type={MatchType.MATCH_ODDS}
+                      // data={matchDetails?.matchOdd}
+                    />
+                  </Col>
+                )}
+              {((matchDetails?.manualTiedMatch?.activeStatus === "live" &&
+                matchDetails?.manualTiedMatch?.isActive) ||
+                (matchDetails?.manualTideMatch?.activeStatus === "live" &&
+                  matchDetails?.manualTideMatch?.isActive)) && (
                 <Col md={12}>
                   <ManualMarket
                     title={
@@ -300,16 +309,17 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {(matchDetails?.marketCompleteMatch1?.activeStatus ==="live" && matchDetails?.marketCompleteMatch1?.isActive) && (
-                <Col md={12}>
-                  <OtherMarket
-                    title={matchDetails?.marketCompleteMatch1?.name}
-                    box={2}
-                    data={matchDetails?.marketCompleteMatch1}
-                    detail={matchDetails}
-                  />
-                </Col>
-              )}
+              {matchDetails?.marketCompleteMatch1?.activeStatus === "live" &&
+                matchDetails?.marketCompleteMatch1?.isActive && (
+                  <Col md={12}>
+                    <DynamicMarket
+                      title={matchDetails?.marketCompleteMatch1?.name}
+                      // box={2}
+                      data={matchDetails?.marketCompleteMatch1}
+                      detail={matchDetails}
+                    />
+                  </Col>
+                )}
               {(matchDetails?.manualCompleteMatch?.activeStatus ==="live" && matchDetails?.manualCompleteMatch?.isActive) && (
                 <Col md={12}>
                   <ManualMarket
@@ -332,7 +342,7 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}
-               {matchDetails?.apiSession?.overByover?.section?.length > 0 && (
+              {matchDetails?.apiSession?.overByover?.section?.length > 0 && (
                 <Col md={12}>
                   <SessionNormal
                     title={"overByover"}
@@ -361,8 +371,7 @@ const DesktopGameDetail = () => {
                     // data={matchDetails?.matchOdd}
                   />
                 </Col>
-              )}
-             {" "}
+              )}{" "}
               {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
                 <Col md={12}>
                   <SessionOddEven
