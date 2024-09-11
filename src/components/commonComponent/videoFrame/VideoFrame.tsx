@@ -106,7 +106,8 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                   ))}
               </ol>
             </div>
-            {time && (
+            {/* time && */}
+            {
               <div
                 style={{
                   position: "absolute",
@@ -118,9 +119,8 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                 }}
               >
                 <FlipClock value={time < 10 ? "0" + time : time} />
-                
               </div>
-            )}
+            }
           </div>
         </div>
       </div>

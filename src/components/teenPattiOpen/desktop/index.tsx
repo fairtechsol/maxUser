@@ -138,7 +138,7 @@ const TeenPattiDesktop = () => {
     
   }, [players?.player1?.gstatus,players?.player1?.rate]);
 
-
+console.log("detail",dragonTigerDetail)
   return (
     <>
       <Row>
