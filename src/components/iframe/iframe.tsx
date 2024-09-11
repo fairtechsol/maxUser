@@ -195,7 +195,7 @@ const Iframe = ({ data }: any) => {
                         width: "80px",
                         height: "14px",
                         backgroundColor:
-                          ball === "ww" || ball === "wd" || ball === "Nb"
+                          ball === "ww" 
                             ? "#ff0000"
                             : ball === "4" || ball === "6"
                             ? "#087f23"

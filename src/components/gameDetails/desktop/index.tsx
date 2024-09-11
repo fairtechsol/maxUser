@@ -23,7 +23,7 @@ import SessionFancy from "../sessionFancy";
 import SessionOddEven from "../sessionOddEven";
 import SessionCricketCasino from "../sessionCricketCasino";
 import OtherMarket from "../otherMarket";
-
+import { Constants } from "../../../utils/constants";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
 // import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
@@ -63,13 +63,13 @@ const DesktopGameDetail = () => {
     };
   }, []);
 
-  const getScoreBoard = async (marketId: string) => {
+  const getScoreBoard = async (eventId: string) => {
     try {
       const response: any = await service.get(
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
         // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
         //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        `http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${marketId}`
+        `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
       );
       if (response) {
         setLiveScoreBoardData(response?.data);

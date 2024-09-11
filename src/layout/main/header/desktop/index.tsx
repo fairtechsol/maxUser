@@ -20,7 +20,7 @@ import { SearchListReset } from "../../../../store/actions/match/matchListAction
 import CustomModal from "../../../../components/commonComponent/modal";
 import Drules from "../../../../components/rules/desktop";
 import Mobile from "../../../../components/rules/mobile";
-import {isMobile} from "../../../../utils/screenDimension";
+import { isMobile } from "../../../../utils/screenDimension";
 import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
 
 const DesktopHeader = () => {
@@ -80,7 +80,7 @@ const DesktopHeader = () => {
           <div className="float-start">
             <Link to={"/home"}>
               <Navbar.Brand>
-                <LogoSection width="auto"  />
+                <LogoSection width="auto" />
               </Navbar.Brand>
             </Link>
           </div>
@@ -125,7 +125,9 @@ const DesktopHeader = () => {
                 <div>
                   Balance:
                   <b>
-                    {parseFloat(getProfile?.userBal?.currentBalance || 0).toFixed(2)}
+                    {parseFloat(
+                      getProfile?.userBal?.currentBalance || 0
+                    ).toFixed(2)}
                   </b>
                 </div>
                 <div>
@@ -135,7 +137,9 @@ const DesktopHeader = () => {
                   >
                     Exposure:
                     <b>
-                      {parseFloat(getProfile?.userBal?.exposure || 0).toFixed(2)}
+                      {parseFloat(getProfile?.userBal?.exposure || 0).toFixed(
+                        2
+                      )}
                     </b>
                   </span>
                   <ExposureModal
