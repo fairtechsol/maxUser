@@ -85,7 +85,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
   };
   const handleStatus = (activeStatus: any, gStaus: any, status: any) => {
     if (activeStatus === "live") {
-      if (gStaus!= undefined && (gStaus === "" || gStaus === "OPEN" || gStaus === "open")) {
+      if (
+        gStaus != undefined &&
+        (gStaus === "" || gStaus === "OPEN" || gStaus === "open")
+      ) {
         return false;
       } else if (status === "active") {
         return false;
@@ -202,9 +205,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       item?.status
                     ) && (
                       <div className="suspended-overlayRates">
-                        <span
-                          className={`suspendTextCmmn`}
-                        >
+                        <span className={`suspendTextCmmn`}>
                           {(item?.GameStatus || item?.status) ?? "SUSPENDED"}
                         </span>
                       </div>
@@ -234,11 +235,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           )
                         }
                       >
-                        <span
-                          className={`${
-                            isLap ? "f-size16" : "f-size18"
-                          } sessionRate1Box`}
-                        >
+                        <span className={`rateFont`}>
                           {handlePrice(
                             item?.ex?.availableToLay?.[0]?.price || item?.noRate
                           ) ?? "-"}
@@ -264,17 +261,13 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span
-                            className={`${
-                              isLap ? "f-size16" : "f-size18"
-                            } sessionRate1Box`}
-                          >
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToLay?.[1]?.price
                             ) ?? "-"}
                           </span>
                           <span className={`f-size12 sessionRate2Box`}>
-                            {handleSize(item?.ex?.availableToLay?.[1]?.size) }
+                            {handleSize(item?.ex?.availableToLay?.[1]?.size)}
                           </span>
                         </div>
                       )}
@@ -294,11 +287,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span
-                            className={`${
-                              isLap ? "f-size16" : "f-size18"
-                            } sessionRate1Box`}
-                          >
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToLay?.[2]?.price
                             ) ?? "-"}
@@ -333,11 +322,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           )
                         }
                       >
-                        <span
-                          className={`${
-                            isLap ? "f-size16" : "f-size18"
-                          } sessionRate1Box`}
-                        >
+                        <span className={`rateFont`}>
                           {handlePrice(
                             item?.ex?.availableToBack?.[0]?.price ||
                               item?.yesRate
@@ -364,11 +349,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span
-                            className={`${
-                              isLap ? "f-size16" : "f-size18"
-                            } sessionRate1Box`}
-                          >
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToBack?.[1]?.price
                             ) ?? "-"}
@@ -394,11 +375,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span
-                            className={`${
-                              isLap ? "f-size16" : "f-size18"
-                            } sessionRate1Box`}
-                          >
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToBack?.[2]?.price
                             ) ?? "-"}
@@ -528,9 +505,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         item?.status
                       ) && (
                         <div className="suspended-overlayRates">
-                          <span
-                            className={`suspendTextCmmn`}
-                          >
+                          <span className={`suspendTextCmmn`}>
                             {(item?.GameStatus || item?.status) ?? "SUSPENDED"}
                           </span>
                         </div>
@@ -559,11 +534,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span
-                            className={`${
-                              isLap ? "f-size16" : "f-size18"
-                            } sessionRate1Box`}
-                          >
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToLay?.[0]?.price ||
                                 item?.noRate
@@ -590,11 +561,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               )
                             }
                           >
-                            <span
-                              className={`${
-                                isLap ? "f-size16" : "f-size18"
-                              } sessionRate1Box`}
-                            >
+                            <span className={`rateFont`}>
                               {handlePrice(
                                 item?.ex?.availableToLay?.[1]?.price
                               ) ?? "-"}
@@ -620,11 +587,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               )
                             }
                           >
-                            <span
-                              className={`${
-                                isLap ? "f-size16" : "f-size18"
-                              } sessionRate1Box`}
-                            >
+                            <span className={`rateFont`}>
                               {handlePrice(
                                 item?.ex?.availableToLay?.[2]?.price
                               ) ?? "-"}
@@ -659,11 +622,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             )
                           }
                         >
-                          <span
-                            className={`${
-                              isLap ? "f-size16" : "f-size18"
-                            } sessionRate1Box`}
-                          >
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToBack?.[0]?.price ||
                                 item?.yesRate
@@ -692,11 +651,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               )
                             }
                           >
-                            <span
-                              className={`${
-                                isLap ? "f-size16" : "f-size18"
-                              } sessionRate1Box`}
-                            >
+                            <span className={`rateFont`}>
                               {handlePrice(
                                 item?.ex?.availableToBack?.[1]?.price
                               ) ?? "-"}
@@ -722,11 +677,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               )
                             }
                           >
-                            <span
-                              className={`${
-                                isLap ? "f-size16" : "f-size18"
-                              } sessionRate1Box`}
-                            >
+                            <span className={`rateFont`}>
                               {handlePrice(
                                 item?.ex?.availableToBack?.[2]?.price
                               ) ?? "-"}

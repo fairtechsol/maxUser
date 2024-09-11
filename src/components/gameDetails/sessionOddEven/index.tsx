@@ -89,7 +89,10 @@ const SessionOddEven = ({ title, data, detail }) => {
             {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
-                  <div className="sessionRateName runnerWidthNormal"  style={{ overflow: "hidden" }}>
+                  <div
+                    className="sessionRateName runnerWidthNormal"
+                    style={{ overflow: "hidden" }}
+                  >
                     <span
                       className="f-size15"
                       style={{ width: "60%", fontWeight: "400", lineHeight: 1 }}
@@ -128,9 +131,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                     {(item?.activeStatus != "live" ||
                       item?.GameStatus != "") && (
                       <div className="suspended-overlayRates">
-                        <span
-                          className={`suspendTextCmmn`}
-                        >
+                        <span className={`suspendTextCmmn`}>
                           {item?.GameStatus ?? "SUSPENDED"}
                         </span>
                       </div>
@@ -159,11 +160,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span
-                          className={`${
-                            isLap ? "f-size16" : "f-size18"
-                          } sessionRate1Box`}
-                        >
+                        <span className={`rateFont`}>
                           {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
                             "-"}
                         </span>
@@ -195,11 +192,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                           )
                         }
                       >
-                        <span
-                          className={`${
-                            isLap ? "f-size16" : "f-size18"
-                          } sessionRate1Box`}
-                        >
+                        <span className={`rateFont`}>
                           {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
                             "-"}
                         </span>
@@ -233,7 +226,10 @@ const SessionOddEven = ({ title, data, detail }) => {
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
                   <div className="sessionOddEvenRateContainer" key={index}>
-                    <div className="sessionRateName runnerWidthNormal"  style={{ overflow: "hidden" }}>
+                    <div
+                      className="sessionRateName runnerWidthNormal"
+                      style={{ overflow: "hidden" }}
+                    >
                       <span
                         className="f-size15"
                         style={{
@@ -276,9 +272,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                       {(item?.activeStatus != "live" ||
                         item?.GameStatus != "") && (
                         <div className="suspended-overlayRates">
-                          <span
-                            className={`suspendTextCmmn`}
-                          >
+                          <span className={`suspendTextCmmn`}>
                             {item?.GameStatus ?? "SUSPENDED"}
                           </span>
                         </div>
@@ -313,11 +307,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                             )
                           }
                         >
-                          <span
-                            className={`${
-                              isLap ? "f-size16" : "f-size18"
-                            } sessionRate1Box`}
-                          >
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToLay?.[0]?.price
                             ) ?? "-"}
@@ -354,11 +344,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                             )
                           }
                         >
-                          <span
-                            className={`${
-                              isLap ? "f-size16" : "f-size18"
-                            } sessionRate1Box`}
-                          >
+                          <span className={`rateFont`}>
                             {handlePrice(
                               item?.ex?.availableToBack?.[0]?.price
                             ) ?? "-"}
