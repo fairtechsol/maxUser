@@ -11,7 +11,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="sidebarBox bg-light">
+      <div className="sidebarBox side-W bg-light">
         {menuItemList?.map((item: any, index: number) => (
           <Accordion
             className={item?.backgroundColor ? "bg-light-sidebar" : ""}
