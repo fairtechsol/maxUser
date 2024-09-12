@@ -47,6 +47,13 @@ export const handleSize = (rate: any) => {
     return "";
   }
 };
+export const handlePrice = (rate: any) => {
+  if (rate && rate != 0) {
+    return rate;
+  } else {
+    return "-";
+  }
+};
 export const formatNumber = (num: any) => {
   if (num >= 1000 && num < 1000000) {
     return (num / 1000)?.toFixed(1)?.replace(/\.0$/, "") + "K";
