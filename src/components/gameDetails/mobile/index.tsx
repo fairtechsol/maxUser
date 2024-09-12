@@ -157,6 +157,7 @@ const MobileGameDetail = () => {
       <CommonTabs defaultActive="odds" className="color">
         {[
           {
+            
             id: "odds",
             name: <div className="oddstab border-end lh-sm pe-1">ODDS</div>,
           },
