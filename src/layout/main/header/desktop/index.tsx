@@ -1,5 +1,5 @@
 import { debounce } from "lodash";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Col, Collapse, Dropdown, Navbar, Row } from "react-bootstrap";
 import { FaSearchPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,7 @@ import { SearchListReset } from "../../../../store/actions/match/matchListAction
 import CustomModal from "../../../../components/commonComponent/modal";
 import Drules from "../../../../components/rules/desktop";
 import Mobile from "../../../../components/rules/mobile";
-import { isMobile } from "../../../../utils/screenDimension";
+// import { isMobile } from "../../../../utils/screenDimension";
 import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
 
 const DesktopHeader = () => {
@@ -34,7 +34,21 @@ const DesktopHeader = () => {
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1199);
+    };
+
+    // Add event listener to update isMobile on window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   // const { getMatchListBySearch } = useSelector(
   //   (state: RootState) => state.match.matchList
   // );

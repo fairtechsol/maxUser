@@ -912,6 +912,12 @@ img {
     font-weight: bold;
     color: #ff0000;
   }
+  .deatilShow-m{
+    display: block !important;
+  }
+  .deatilShow-d{
+    display: none !important;
+  }
 }
 
 /* Styles for width 760px to 1200px */
@@ -963,6 +969,12 @@ img {
   .bookTeamWidth{
     width: 27% !important;
   }
+  .deatilShow-m{
+    display: block;
+  }
+  .deatilShow-d{
+    display: none;
+  }
 }
 
 /* Styles for width 1200px to 1399px */
@@ -1013,6 +1025,12 @@ img {
   }
   .bookTeamWidth{
     width: 26% !important;
+  }
+  .deatilShow-m{
+    display: none;
+  }
+  .deatilShow-d{
+    display: block;
   }
 }
 
@@ -1067,6 +1085,12 @@ img {
   .bookTeamWidth{
     width: 27% !important;
   }
+  .deatilShow-m{
+    display: none;
+  }
+  .deatilShow-d{
+    display: block;
+  }
 }
 
 /* Styles for width 1600px and above */
@@ -1117,6 +1141,12 @@ img {
   }
   .bookTeamWidth{
     width: 28% !important;
+  }
+  .deatilShow-m{
+    display: none;
+  }
+  .deatilShow-d{
+    display: block;
   }
 }
 

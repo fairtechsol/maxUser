@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -31,7 +31,7 @@ import {
   updateTeamRatesOnDeleteMatch,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
-import { isMobile } from "../../utils/screenDimension";
+// import { isMobile } from "../../utils/screenDimension";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 import {
@@ -46,7 +46,21 @@ const GameDetails = () => {
   const { success } = useSelector((state: RootState) => state.match.matchList);
   const navigate = useNavigate();
   const { id } = useParams();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1199);
+    };
+
+    // Add event listener to update isMobile on window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   useEffect(() => {
     dispatch(getButtonValue());
   }, [dispatch]);

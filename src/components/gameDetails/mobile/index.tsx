@@ -197,8 +197,8 @@ const MobileGameDetail = () => {
               }
             >
               {index == 0 ? (
-                <Container>
-                  <Row>
+                <div className="w-100">
+                  <Row className="ms-0">
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
                     {showVideo && (
                       <Container className="px-0">
@@ -525,7 +525,7 @@ const MobileGameDetail = () => {
                       </Col>
                     )} */}
                   </Row>
-                </Container>
+                </div>
               ) : item?.id === "matchedBet" ? (
                 <MyBet />
               ) : null}
