@@ -73,7 +73,7 @@ const DesktopGameDetail = () => {
         `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
       );
       // {"success":false,"msg":"Not found"}
-      console.log("response 11:", response?.success);
+      //console.log("response 11:", response);
       if (response?.success !== false) {
         setLiveScoreBoardData(response?.data);
         setErrorCount(0);
@@ -206,7 +206,7 @@ const DesktopGameDetail = () => {
                   }}
                 ></div> */}
               </Col>
-              {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}
+              {liveScoreBoardData && <Iframe data={liveScoreBoardData} width="97%" />}
               {matchDetails?.matchOdd?.activeStatus === "live" &&
                 matchDetails?.matchOdd?.isActive && (
                   <Col md={12} style={{ marginTop: "10px" }}>

@@ -15,7 +15,7 @@ import Crick5Result from "./cric5Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-
+import Iframe from "../../iframe/iframe";
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
@@ -26,7 +26,7 @@ const Cricket5Desktop = () => {
   const { dragonTigerDetail, scoreBoardData, loading } = useSelector(
     (state: RootState) => state.card
   );
-  // console.log(dragonTigerDetail, "dtaa")
+
   // const [showFancy, setShowFancy] = useState(false);
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -113,9 +113,9 @@ const Cricket5Desktop = () => {
                   : ""}
               </span>
             </div>
-            {scoreBoardData?.data && (
-              <div>
-                <ScoreBoard data={scoreBoardData?.data} />
+            {scoreBoardData?.balls?.length>0 && (
+              <div style={{ marginBottom: "2px" }}>
+                <Iframe data={scoreBoardData} />
               </div>
             )}
             <div
@@ -140,7 +140,6 @@ const Cricket5Desktop = () => {
                   max={dragonTigerDetail?.videoInfo?.max}
                   data={dragonTigerDetail}
                 />
-              
               </div>
               <div className="mt-2 ms-2">
                 <CardResultBox
@@ -165,13 +164,10 @@ const Cricket5Desktop = () => {
               <Col md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col md={12} style={{ overflowY: "auto", maxHeight: "500px" }}>
                 <DesktopMyBet />
               </Col>
-              <Col
-                className="no-scrollbar"
-                style={{ height: "350px", overflow: "auto" }}
-              >
+              <Col>
                 <div
                   className="casino-title mt-2"
                   style={{ position: "relative" }}

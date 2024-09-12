@@ -16,6 +16,7 @@ import SuperoverResult from "./superOver";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import Iframe from "../../iframe/iframe";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -79,6 +80,7 @@ const SuperoverDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.superover}`);
   }, []);
 
+  console.log("scorebb",scoreBoardData)
   return (
     <div>
       <Row>
@@ -113,11 +115,12 @@ const SuperoverDesktop = () => {
                   : ""}
               </span>
             </div>
-            {scoreBoardData?.data && (
-              <div>
-                <ScoreBoard data={scoreBoardData?.data} />
+            {scoreBoardData?.balls?.length>0 && (
+              <div style={{ marginBottom: "2px" }}>
+                <Iframe data={scoreBoardData} />
               </div>
             )}
+            
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
             >
@@ -171,7 +174,7 @@ const SuperoverDesktop = () => {
               <Col md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col md={12} style={{ overflowY: "auto", maxHeight: "500px" }}>
                 <DesktopMyBet />
               </Col>
               <Col>

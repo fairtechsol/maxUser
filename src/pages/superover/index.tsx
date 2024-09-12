@@ -51,7 +51,7 @@ const Superover = () => {
       dispatch(
         casinoScoreboardMatchRates({
           id: marketId,
-          type: cardGamesType.superover,
+          type: cardGamesType.cricketv3,
         })
       );
       // const response: any = await service.get(

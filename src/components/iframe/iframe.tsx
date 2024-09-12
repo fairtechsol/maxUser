@@ -13,15 +13,15 @@ import "./style.scss";
 //   dayno: string;
 // }
 
-const Iframe = ({ data }: any) => {
+const Iframe = ({ data, width }: any) => {
   return (
     <>
       {!isMobile ? (
-        <div className="scorecard">
+        <div className="scorecard" style={{ width: width }}>
           {/* Team Details */}
           <div className="col-12 col-md-6">
             {/* Team 1 Details */}
-            <p className="team-1 row">
+            <p className="team-1 row" style={{ fontSize: "12px" }}>
               <span className="team-name col-3">{data?.spnnation1}</span>
               <span className="score col-6 text-end">{data?.score1}</span>
               {data?.spnrunrate1 && (
@@ -32,7 +32,7 @@ const Iframe = ({ data }: any) => {
             </p>
 
             {/* Team 2 Details */}
-            <p className="team-1 row mt-2">
+            <p className="team-1 row mt-2" style={{ fontSize: "12px" }}>
               <span className="team-name col-3">{data?.spnnation2}</span>
               <span className="score col-6 text-end">{data?.score2}</span>
               <span className="team-name col-3">
@@ -47,7 +47,7 @@ const Iframe = ({ data }: any) => {
               <div className="col-12">
                 {/* Match Message */}
                 {data?.spnmessage && (
-                  <div className="text-xl-end">
+                  <div className="text-xl-end" style={{ fontSize: "16px" }}>
                     {data?.dayno} | {data?.spnmessage}
                   </div>
                 )}
@@ -56,33 +56,40 @@ const Iframe = ({ data }: any) => {
                 <div className="row">
                   <div className="col-12">
                     <p className="text-xl-end ball-by-ball mt-2 mb-0">
-                      {data?.balls?.map((ball, index) => (
-                        <span
-                          key={index}
-                          className={`ball-runs ${
-                            ball === "4" || ball === "6" ? "four" : ""
-                          }`}
-                          style={{
-                            backgroundColor:
-                              ball === "ww" || ball === "wd" || ball === "Nb"
-                                ? "#ff0000"
-                                : ball === "4" || ball === "6"
-                                ? "#087f23"
-                                : "#08c",
-                            color: "#fff",
-                            borderRadius: "50%",
-                            display: "inline-block",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            width: "25px",
-                            height: "25px",
-                            margin: "0 5px",
-                            textAlign: "center",
-                          }}
-                        >
-                          {ball}
-                        </span>
-                      ))}
+                      {data?.balls?.map((ball: any, index: any) => {
+                        return ball == "" ? (
+                          ""
+                        ) : (
+                          <span
+                            key={index}
+                            className={`ball-runs ${
+                              ball === "4" || ball === "6" ? "four" : ""
+                            }`}
+                            style={{
+                              backgroundColor:
+                                ball === "ww"
+                                  ? "#ff0000"
+                                  : ball === "4"
+                                  ? "#087f23"
+                                  : ball === "6"
+                                  ? "#883997"
+                                  : "#08c",
+                              color: "#fff",
+                              borderRadius: "50%",
+                              display: "inline-block",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              width: "25px",
+                              height: "25px",
+                              margin: "0 5px",
+                              textAlign: "center",
+                              fontSize: "16px",
+                            }}
+                          >
+                            {ball}
+                          </span>
+                        );
+                      })}
                     </p>
                   </div>
                 </div>
@@ -91,11 +98,11 @@ const Iframe = ({ data }: any) => {
           </div>
         </div>
       ) : (
-        <div className="m-scorecard">
+        <div className="m-scorecard" style={{ width: width }}>
           {/* Team Details */}
           <div className="col-12 col-md-6">
             {/* Team 1 Details */}
-            <p className="m-team-1 row">
+            <p className="m-team-1 row" style={{ fontSize: "12px" }}>
               <span className="team-name col-3">{data?.spnnation1}</span>
               <span className="score col-6 text-end">{data?.score1}</span>
               {data?.spnrunrate1 && (
@@ -106,7 +113,7 @@ const Iframe = ({ data }: any) => {
             </p>
 
             {/* Team 2 Details */}
-            <p className="m-team-1 row mt-2">
+            <p className="m-team-1 row mt-2" style={{ fontSize: "12px" }}>
               <span className="team-name col-3">{data?.spnnation2}</span>
               <span className="score col-6 text-end">{data?.score2}</span>
               <span className="team-name col-3">
@@ -134,24 +141,31 @@ const Iframe = ({ data }: any) => {
                 <div className="row">
                   <div className="col-12">
                     <p className="text-xl-end ball-by-ball mt-2 mb-0">
-                      {data?.balls?.map((ball, index) => (
-                        <span
-                          key={index}
-                          className={`ball-runs ${
-                            ball === "4" || ball === "6" ? "four" : ""
-                          }`}
-                          style={{
-                            backgroundColor:
-                              ball === "ww" || ball === "wd" || ball === "Nb"
-                                ? "#ff0000"
-                                : ball === "4" || ball === "6"
-                                ? "#087f23"
-                                : "#08c",
-                          }}
-                        >
-                          {ball}
-                        </span>
-                      ))}
+                      {data?.balls?.map((ball: any, index: any) => {
+                        return ball == "" ? (
+                          ""
+                        ) : (
+                          <span
+                            key={index}
+                            className={`ball-runs ${
+                              ball === "4" || ball === "6" ? "four" : ""
+                            }`}
+                            style={{
+                              backgroundColor:
+                                ball === "ww"
+                                  ? "#ff0000"
+                                  : ball === "4"
+                                  ? "#087f23"
+                                  : ball === "6"
+                                  ? "#883997"
+                                  : "#08c",
+                              fontSize: "12px",
+                            }}
+                          >
+                            {ball}
+                          </span>
+                        );
+                      })}
                     </p>
                   </div>
                 </div>
