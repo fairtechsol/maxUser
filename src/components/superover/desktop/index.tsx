@@ -115,7 +115,7 @@ const SuperoverDesktop = () => {
                   : ""}
               </span>
             </div>
-            {scoreBoardData?.balls.length>0 && (
+            {scoreBoardData?.balls?.length>0 && (
               <div style={{ marginBottom: "2px" }}>
                 <Iframe data={scoreBoardData} />
               </div>
