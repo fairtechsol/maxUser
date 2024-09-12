@@ -177,3 +177,7 @@
 .modal-dialog{
     margin: 0;
 }
+// .runbetMobileModal 
+.modal-backdrop{
+    --bs-backdrop-opacity: 0.25 !important;
+}
