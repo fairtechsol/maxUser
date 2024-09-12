@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { isLap, isMobile } from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { AppDispatch } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { formatNumber, handleSize } from "../../../helpers";
+import { formatNumber } from "../../../helpers";
+import BetBox from "../betBox";
 
 const Bookmaker = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -47,14 +48,6 @@ const Bookmaker = ({ title, box, data, detail }) => {
     );
   };
 
-  const handlePrice = (rate: any) => {
-    if (rate && rate != 0) {
-      return rate;
-    } else {
-      return "-";
-    }
-  };
-
   return (
     <>
       <div className="bookmakerContainer">
@@ -80,11 +73,6 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ? "bookmaker1BackLayBoxContainer backLayBoxWidth"
                 : "bookmaker2BackLayBoxContainer backLayBoxWidth2"
             }
-            // style={
-            //   box === 6
-            //     ? { width: isLap ? "240px" : !isMobile ? "320px" : "" }
-            //     : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
-            // }
           >
             <div
               className={
@@ -105,11 +93,6 @@ const Bookmaker = ({ title, box, data, detail }) => {
         </div>
 
         <div className="bookmakerTeamTab">
-          {/* {data?.activeStatus != "live" && (
-            <div className="suspended-overlayRatesBookmaker">
-              <span className={`suspendedTxtBookmaker`}></span>
-            </div>
-          )} */}
           <div
             className="bookmakerTeam"
             style={box === 6 ? { width: "28%" } : {}}
@@ -122,23 +105,37 @@ const Bookmaker = ({ title, box, data, detail }) => {
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
+                  profitLossDataForMatchConstants[data?.type]?.A +
+                    "_" +
+                    detail?.id
                 ] > 0
                   ? "color-green"
                   : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
+                      profitLossDataForMatchConstants[data?.type]?.A +
+                        "_" +
+                        detail?.id
                     ] < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ] ? detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ] ==="0"?"":detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ]  : ""}
+                profitLossDataForMatchConstants[data?.type]?.A +
+                  "_" +
+                  detail?.id
+              ]
+                ? detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.A +
+                      "_" +
+                      detail?.id
+                  ] === "0"
+                  ? ""
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A +
+                        "_" +
+                        detail?.id
+                    ]
+                : ""}
             </span>
           </div>
           <div
@@ -147,11 +144,6 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ? "bookmaker1RateBox rateBoxWidth"
                 : "bookmaker2RateBox rateBoxWidth2"
             }
-            // style={
-            //   box === 6
-            //     ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
-            //     : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
-            // }
           >
             {(data?.activeStatus !== "live" ||
               data?.runners?.[0]?.status !== "ACTIVE") && (
@@ -159,169 +151,54 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
             )}
-            {box === 6 && (
-              <div
-                className="bookmakerBackBox back3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,
-                    "BACK",
-                    detail?.teamA,
-                    data?.runners?.[0]?.status,
-                    data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,
-                    data?.runners?.[0]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
-                </span>
-              </div>
-            )}
-            {box === 6 && (
-              <div
-                className="bookmakerBackBox back2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[0]?.ex?.availableToBack?.[1]?.price,
-                    "BACK",
-                    detail?.teamA,
-                    data?.runners?.[0]?.status,
-                    data?.runners?.[0]?.ex?.availableToBack?.[1]?.tno,
-                    data?.runners?.[0]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[0]?.ex?.availableToBack?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
-                </span>
-              </div>
-            )}
-            <div
-              className="bookmakerBackBox back1Background"
-              onClick={() =>
-                handlePlaceBet(
-                  box === 6
-                    ? data?.runners?.[0]?.ex?.availableToBack?.[2]?.price
-                    : data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,
-                  "BACK",
-                  detail?.teamA,
-                  data?.runners?.[0]?.status,
-                  box === 6
-                    ? data?.runners?.[0]?.ex?.availableToBack?.[2]?.tno
-                    : data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,
-                  data?.runners?.[0]
-                )
-              }
-            >
-              <span className={`rateFont bookmakerRate1Box`}>
-                {box === 6
-                  ? handlePrice(
-                      data?.runners?.[0]?.ex?.availableToBack?.[2]?.price
-                    ) ?? "-"
-                  : handlePrice(
-                      data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
-                    ) ?? "-"}
-              </span>
-              <span className={`sizeFont bookmakerRate2Box`}>
-                {box === 6
-                  ? handleSize(data?.runners?.[0]?.ex?.availableToBack?.[2]?.size)
-                  : handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
-              </span>
-            </div>
-            <div
-              className="bookmakerBackBox lay1Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[0]?.ex?.availableToLay?.[0]?.price,
-                  "LAY",
-                  detail?.teamA,
-                  data?.runners?.[0]?.status,
-                  data?.runners?.[0]?.ex?.availableToLay?.[0]?.tno,
-                  data?.runners?.[0]
-                )
-              }
-            >
-              <span className={`rateFont bookmakerRate1Box`}>
-                {handlePrice(
-                  data?.runners?.[0]?.ex?.availableToLay?.[0]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont bookmakerRate2Box`}>
-                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[0]?.size)}
-              </span>
-            </div>
-            {box === 6 && (
-              <div
-                className="bookmakerBackBox lay2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[0]?.ex?.availableToLay?.[1]?.price,
-                    "LAY",
-                    detail?.teamA,
-                    data?.runners?.[0]?.status,
-                    data?.runners?.[0]?.ex?.availableToLay?.[1]?.tno,
-                    data?.runners?.[0]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[0]?.ex?.availableToLay?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
-                </span>
-              </div>
-            )}
-            {box === 6 && (
-              <div
-                className="bookmakerBackBox lay3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[0]?.ex?.availableToLay?.[2]?.price,
-                    "LAY",
-                    detail?.teamA,
-                    data?.runners?.[0]?.status,
-                    data?.runners?.[0]?.ex?.availableToLay?.[2]?.tno,
-                    data?.runners?.[0]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[0]?.ex?.availableToLay?.[2]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
-                </span>
-              </div>
+            {box === 6 ? (
+              <>
+                {data?.runners?.[0]?.ex?.availableToBack?.map((item: any) => {
+                  return (
+                    <BetBox
+                      data={item}
+                      type={"back"}
+                      detail={detail}
+                      runner={data?.runners?.[0]}
+                      handlePlaceBet={handlePlaceBet}
+                    />
+                  );
+                })}
+                {data?.runners?.[0]?.ex?.availableToLay?.map((item: any) => {
+                  return (
+                    <BetBox
+                      data={item}
+                      type={"lay"}
+                      detail={detail}
+                      runner={data?.runners?.[0]}
+                      handlePlaceBet={handlePlaceBet}
+                    />
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                <BetBox
+                  data={data?.runners?.[0]?.ex?.availableToBack?.[0]}
+                  type={"back"}
+                  detail={detail}
+                  runner={data?.runners?.[0]}
+                  handlePlaceBet={handlePlaceBet}
+                />
+
+                <BetBox
+                  data={data?.runners?.[0]?.ex?.availableToLay?.[0]}
+                  type={"lay"}
+                  detail={detail}
+                  runner={data?.runners?.[0]}
+                  handlePlaceBet={handlePlaceBet}
+                />
+              </>
             )}
           </div>
         </div>
 
         <div className="bookmakerTeamTab">
-          {/* {data?.activeStatus != "live" && (
-            <div className="suspended-overlayRatesBookmaker">
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : "f-size16"
-                } suspendedTxtBookmaker`}
-              ></span>
-            </div>
-          )} */}
           <div
             className="bookmakerTeam"
             style={box === 6 ? { width: "28%" } : {}}
@@ -334,23 +211,37 @@ const Bookmaker = ({ title, box, data, detail }) => {
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
+                  profitLossDataForMatchConstants[data?.type]?.B +
+                    "_" +
+                    detail?.id
                 ] > 0
                   ? "color-green"
                   : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
+                      profitLossDataForMatchConstants[data?.type]?.B +
+                        "_" +
+                        detail?.id
                     ] < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
-             {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ] ? detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ] ==="0"?"":detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ]  : ""}
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B +
+                  "_" +
+                  detail?.id
+              ]
+                ? detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.B +
+                      "_" +
+                      detail?.id
+                  ] === "0"
+                  ? ""
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B +
+                        "_" +
+                        detail?.id
+                    ]
+                : ""}
             </span>
           </div>
           <div
@@ -359,11 +250,6 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 ? "bookmaker1RateBox rateBoxWidth"
                 : "bookmaker2RateBox rateBoxWidth2"
             }
-            // style={
-            //   box === 6
-            //     ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
-            //     : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
-            // }
           >
             {(data?.activeStatus !== "live" ||
               data?.runners?.[1]?.status !== "ACTIVE") && (
@@ -371,166 +257,55 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
             )}
-            {box === 6 && (
-              <div
-                className="bookmakerBackBox back3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,
-                    "BACK",
-                    detail?.teamB,
-                    data?.runners?.[1]?.status,
-                    data?.runners?.[1]?.ex?.availableToBack?.[0]?.tno,
-                    data?.runners?.[1]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
-                </span>
-              </div>
-            )}
-            {box === 6 && (
-              <div
-                className="bookmakerBackBox back2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[1]?.ex?.availableToBack?.[1]?.price,
-                    "BACK",
-                    detail?.teamB,
-                    data?.runners?.[1]?.status,
-                    data?.runners?.[1]?.ex?.availableToBack?.[1]?.tno,
-                    data?.runners?.[1]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[1]?.ex?.availableToBack?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
-                </span>
-              </div>
-            )}
-            <div
-              className="bookmakerBackBox back1Background"
-              onClick={() =>
-                handlePlaceBet(
-                  box === 6
-                    ? data?.runners?.[1]?.ex?.availableToBack?.[2]?.price
-                    : data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,
-                  "BACK",
-                  detail?.teamB,
-                  data?.runners?.[1]?.status,
-                  box === 6
-                    ? data?.runners?.[1]?.ex?.availableToBack?.[2]?.tno
-                    : data?.runners?.[1]?.ex?.availableToBack?.[0]?.tno,
-                  data?.runners?.[1]
-                )
-              }
-            >
-              <span className={`rateFont bookmakerRate1Box`}>
-                {box === 6
-                  ? handlePrice(
-                      data?.runners?.[1]?.ex?.availableToBack?.[2]?.price
-                    ) ?? "-"
-                  : handlePrice(
-                      data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
-                    ) ?? "-"}
-              </span>
-              <span className={`sizeFont bookmakerRate2Box`}>
-                {box === 6
-                  ? handleSize(data?.runners?.[1]?.ex?.availableToBack?.[2]?.size)
-                  : handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
-              </span>
-            </div>
-            <div
-              className="bookmakerBackBox lay1Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[1]?.ex?.availableToLay?.[0]?.price,
-                  "LAY",
-                  detail?.teamB,
-                  data?.runners?.[1]?.status,
-                  data?.runners?.[1]?.ex?.availableToLay?.[0]?.tno,
-                  data?.runners?.[1]
-                )
-              }
-            >
-              <span className={`rateFont bookmakerRate1Box`}>
-                {handlePrice(
-                  data?.runners?.[1]?.ex?.availableToLay?.[0]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont bookmakerRate2Box`}>
-                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[0]?.size)}
-              </span>
-            </div>
-            {box === 6 && (
-              <div
-                className="bookmakerBackBox lay2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[1]?.ex?.availableToLay?.[1]?.price,
-                    "LAY",
-                    detail?.teamB,
-                    data?.runners?.[1]?.status,
-                    data?.runners?.[1]?.ex?.availableToLay?.[1]?.tno,
-                    data?.runners?.[1]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[1]?.ex?.availableToLay?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
-                </span>
-              </div>
-            )}
-            {box === 6 && (
-              <div
-                className="bookmakerBackBox lay3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[1]?.ex?.availableToLay?.[2]?.price,
-                    "LAY",
-                    detail?.teamB,
-                    data?.runners?.[1]?.status,
-                    data?.runners?.[1]?.ex?.availableToLay?.[2]?.tno,
-                    data?.runners?.[1]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[1]?.ex?.availableToLay?.[2]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
-                </span>
-              </div>
+              {box === 6 ? (
+              <>
+                {data?.runners?.[1]?.ex?.availableToBack?.map((item: any) => {
+                  return (
+                    <BetBox
+                      data={item}
+                      type={"back"}
+                      detail={detail}
+                      runner={data?.runners?.[1]}
+                      handlePlaceBet={handlePlaceBet}
+                    />
+                  );
+                })}
+                {data?.runners?.[1]?.ex?.availableToLay?.map((item: any) => {
+                  return (
+                    <BetBox
+                      data={item}
+                      type={"lay"}
+                      detail={detail}
+                      runner={data?.runners?.[1]}
+                      handlePlaceBet={handlePlaceBet}
+                    />
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                <BetBox
+                  data={data?.runners?.[1]?.ex?.availableToBack?.[0]}
+                  type={"back"}
+                  detail={detail}
+                  runner={data?.runners?.[1]}
+                  handlePlaceBet={handlePlaceBet}
+                />
+
+                <BetBox
+                  data={data?.runners?.[1]?.ex?.availableToLay?.[0]}
+                  type={"lay"}
+                  detail={detail}
+                  runner={data?.runners?.[1]}
+                  handlePlaceBet={handlePlaceBet}
+                />
+              </>
             )}
           </div>
         </div>
 
         {detail?.teamC && (
           <div className="bookmakerTeamTab">
-            {/* {data?.activeStatus != "live" && (
-              <div className="suspended-overlayRatesBookmaker">
-                <span className={`suspendTextCmmn`}></span>
-              </div>
-            )} */}
             <div
               className="bookmakerTeam"
               style={box === 6 ? { width: "28%" } : {}}
@@ -543,23 +318,37 @@ const Bookmaker = ({ title, box, data, detail }) => {
               <span
                 className={`${
                   detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
+                    profitLossDataForMatchConstants[data?.type]?.C +
+                      "_" +
+                      detail?.id
                   ] > 0
                     ? "color-green"
                     : detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
+                        profitLossDataForMatchConstants[data?.type]?.C +
+                          "_" +
+                          detail?.id
                       ] < 0
                     ? "color-red"
                     : ""
                 } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-              ] ? detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-              ] ==="0"?"":detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-              ]  : ""}
+                  profitLossDataForMatchConstants[data?.type]?.C +
+                    "_" +
+                    detail?.id
+                ]
+                  ? detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.C +
+                        "_" +
+                        detail?.id
+                    ] === "0"
+                    ? ""
+                    : detail?.profitLossDataMatch?.[
+                        profitLossDataForMatchConstants[data?.type]?.C +
+                          "_" +
+                          detail?.id
+                      ]
+                  : ""}
               </span>
             </div>
             <div
@@ -568,11 +357,6 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   ? "bookmaker1RateBox rateBoxWidth"
                   : "bookmaker2RateBox rateBoxWidth2"
               }
-              // style={
-              //   box === 6
-              //     ? { width: isLap ? "360px" : !isMobile ? "480px" : "" }
-              //     : { width: isLap ? "120px" : !isMobile ? "160px" : "" }
-              // }
             >
               {(data?.activeStatus !== "live" ||
                 data?.runners?.[2]?.status !== "ACTIVE") && (
@@ -580,156 +364,50 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   <span className={`suspendTextCmmn`}>SUSPENDED</span>
                 </div>
               )}
-              {box === 6 && (
-                <div
-                  className="bookmakerBackBox back3Background"
-                  onClick={() =>
-                    handlePlaceBet(
-                      data?.runners?.[2]?.ex?.availableToBack?.[0]?.price,
-                      "BACK",
-                      detail?.teamC,
-                      data?.runners?.[2]?.status,
-                      data?.runners?.[2]?.ex?.availableToBack?.[0]?.tno,
-                      data?.runners?.[2]
-                    )
-                  }
-                >
-                  <span className={`rateFont bookmakerRate1Box`}>
-                    {handlePrice(
-                      data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
-                    ) ?? "-"}
-                  </span>
-                  <span className={`sizeFont bookmakerRate2Box`}>
-                    {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
-                  </span>
-                </div>
-              )}
-              {box === 6 && (
-                <div
-                  className="bookmakerBackBox back2Background"
-                  onClick={() =>
-                    handlePlaceBet(
-                      data?.runners?.[2]?.ex?.availableToBack?.[1]?.price,
-                      "BACK",
-                      detail?.teamC,
-                      data?.runners?.[2]?.status,
-                      data?.runners?.[2]?.ex?.availableToBack?.[1]?.tno,
-                      data?.runners?.[2]
-                    )
-                  }
-                >
-                  <span className={`rateFont bookmakerRate1Box`}>
-                    {handlePrice(
-                      data?.runners?.[2]?.ex?.availableToBack?.[1]?.price
-                    ) ?? "-"}
-                  </span>
-                  <span className={`sizeFont bookmakerRate2Box`}>
-                    {handleSize(data?.runners?.[2]?.ex?.availableToBack?.[1]?.size)}
-                  </span>
-                </div>
-              )}
-              <div
-                className="bookmakerBackBox back1Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    box === 6
-                      ? data?.runners?.[2]?.ex?.availableToBack?.[2]?.price
-                      : data?.runners?.[2]?.ex?.availableToBack?.[0]?.price,
-                    "BACK",
-                    detail?.teamC,
-                    data?.runners?.[2]?.status,
-                    box === 6
-                      ? data?.runners?.[2]?.ex?.availableToBack?.[2]?.tno
-                      : data?.runners?.[2]?.ex?.availableToBack?.[0]?.tno,
-                    data?.runners?.[2]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {box === 6
-                    ? handlePrice(
-                        data?.runners?.[2]?.ex?.availableToBack?.[2]?.price
-                      ) ?? "-"
-                    : handlePrice(
-                        data?.runners?.[2]?.ex?.availableToBack?.[0]?.price
-                      ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {box === 6
-                    ? handleSize(data?.runners?.[2]?.ex?.availableToBack?.[2]?.size)
-                    : handleSize(data?.runners?.[2]?.ex?.availableToBack?.[0]?.size)}
-                </span>
-              </div>
-              <div
-                className="bookmakerBackBox lay1Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[2]?.ex?.availableToLay?.[0]?.price,
-                    "LAY",
-                    detail?.teamC,
-                    data?.runners?.[2]?.status,
-                    data?.runners?.[2]?.ex?.availableToLay?.[0]?.tno,
-                    data?.runners?.[2]
-                  )
-                }
-              >
-                <span className={`rateFont bookmakerRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[2]?.ex?.availableToLay?.[0]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont bookmakerRate2Box`}>
-                  {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[0]?.size)}
-                </span>
-              </div>
-              {box === 6 && (
-                <div
-                  className="bookmakerBackBox lay2Background"
-                  onClick={() =>
-                    handlePlaceBet(
-                      data?.runners?.[2]?.ex?.availableToLay?.[1]?.price,
-                      "LAY",
-                      detail?.teamC,
-                      data?.runners?.[2]?.status,
-                      data?.runners?.[2]?.ex?.availableToLay?.[1]?.tno,
-                      data?.runners?.[2]
-                    )
-                  }
-                >
-                  <span className={`rateFont bookmakerRate1Box`}>
-                    {handlePrice(
-                      data?.runners?.[2]?.ex?.availableToLay?.[1]?.price
-                    ) ?? "-"}
-                  </span>
-                  <span className={`sizeFont bookmakerRate2Box`}>
-                    {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[1]?.size)}
-                  </span>
-                </div>
-              )}
-              {box === 6 && (
-                <div
-                  className="bookmakerBackBox lay3Background"
-                  onClick={() =>
-                    handlePlaceBet(
-                      data?.runners?.[2]?.ex?.availableToLay?.[2]?.price,
-                      "LAY",
-                      detail?.teamC,
-                      data?.runners?.[2]?.status,
-                      data?.runners?.[2]?.ex?.availableToLay?.[2]?.tno,
-                      data?.runners?.[2]
-                    )
-                  }
-                >
-                  <span className={`rateFont bookmakerRate1Box`}>
-                    {handlePrice(
-                      data?.runners?.[2]?.ex?.availableToLay?.[2]?.price
-                    ) ?? "-"}
-                  </span>
-                  <span className={`sizeFont bookmakerRate2Box`}>
-                    {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[2]?.size)}
-                  </span>
-                </div>
-              )}
+              {box === 6 ? (
+              <>
+                {data?.runners?.[2]?.ex?.availableToBack?.map((item: any) => {
+                  return (
+                    <BetBox
+                      data={item}
+                      type={"back"}
+                      detail={detail}
+                      runner={data?.runners?.[2]}
+                      handlePlaceBet={handlePlaceBet}
+                    />
+                  );
+                })}
+                {data?.runners?.[2]?.ex?.availableToLay?.map((item: any) => {
+                  return (
+                    <BetBox
+                      data={item}
+                      type={"lay"}
+                      detail={detail}
+                      runner={data?.runners?.[2]}
+                      handlePlaceBet={handlePlaceBet}
+                    />
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                <BetBox
+                  data={data?.runners?.[2]?.ex?.availableToBack?.[0]}
+                  type={"back"}
+                  detail={detail}
+                  runner={data?.runners?.[2]}
+                  handlePlaceBet={handlePlaceBet}
+                />
+
+                <BetBox
+                  data={data?.runners?.[2]?.ex?.availableToLay?.[0]}
+                  type={"lay"}
+                  detail={detail}
+                  runner={data?.runners?.[2]}
+                  handlePlaceBet={handlePlaceBet}
+                />
+              </>
+            )}
             </div>
           </div>
         )}
