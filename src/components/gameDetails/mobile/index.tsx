@@ -81,16 +81,16 @@ const MobileGameDetail = () => {
   const handleMarket = (type: string) => {
     setMarketActive(type);
   };
-
   const getScoreBoard = async (eventId: string) => {
     try {
       const response: any = await service.get(
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
-        //`http://172.105.54.97:8085/api/new/GetCricketScoreDiamoand?eventid=${marketId}`
+        // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
+        //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
         `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
       );
       if (response) {
-        setLiveScoreBoardData(response);
+        setLiveScoreBoardData(response?.data);
         setErrorCount(0);
       }
     } catch (e: any) {
@@ -102,14 +102,14 @@ const MobileGameDetail = () => {
 
   useEffect(() => {
     if (matchDetails?.marketId === marketId) {
-      let intervalTime = 500;
+      let intervalTime = 5000;
       if (errorCount >= 5 && errorCount < 10) {
         intervalTime = 60000;
       } else if (errorCount >= 10) {
         intervalTime = 600000;
       }
       const interval = setInterval(() => {
-        getScoreBoard(matchDetails?.marketId);
+        getScoreBoard(matchDetails?.eventId);
       }, intervalTime);
 
       return () => {
@@ -117,7 +117,7 @@ const MobileGameDetail = () => {
         setLiveScoreBoardData(null);
       };
     }
-  }, [matchDetails?.id, errorCount, marketId]);
+  }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
 
   useEffect(() => {
     try {
@@ -153,6 +153,7 @@ const MobileGameDetail = () => {
         }
         style={{ padding: "5px" }}
       />
+        {/* {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}  */}
       <CommonTabs defaultActive="odds" className="color">
         {[
           {
@@ -213,29 +214,7 @@ const MobileGameDetail = () => {
                         </Row>
                       </Container>
                     )}
-                    <Container>
-                      <Row>
-                        <Col className="g-0" md={12}>
-                          <div
-                            style={{
-                              width: "100%",
-                              height: "auto",
-                              backgroundColor: "#000",
-                            }}
-                            dangerouslySetInnerHTML={{
-                              __html: liveScoreBoardData
-                                ? liveScoreBoardData
-                                : "",
-                            }}
-                          ></div>
-                          <iframe
-                            width={"100%"}
-                            height={"105px"}
-                            src={`https://dpmatka.in/dcasino/score.php?matchId=${matchDetails?.eventId}`}
-                          ></iframe>
-                        </Col>
-                      </Row>
-                    </Container>
+                     {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}
                     {(matchDetails?.matchOdd?.activeStatus === "live" &&
                       matchDetails?.matchOdd?.isActive) && (
                         <Col className="g-0" md={12}>
