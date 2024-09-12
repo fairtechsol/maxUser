@@ -25,7 +25,7 @@ import SessionCricketCasino from "../sessionCricketCasino";
 import OtherMarket from "../otherMarket";
 import { Constants } from "../../../utils/constants";
 import ScoreBoard from "../../commonComponent/scoreBoard";
-import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
+// import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
 // import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Iframe from "../../iframe/iframe";
 const DesktopGameDetail = () => {
@@ -69,9 +69,11 @@ const DesktopGameDetail = () => {
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
         // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
         //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
+        `${Constants.thirdParty}/cricketScore?eventId=${"1809111913"}`
       );
-      if (response) {
+      // {"success":false,"msg":"Not found"}
+      console.log("response 11:", response?.success);
+      if (response?.success !== false) {
         setLiveScoreBoardData(response?.data);
         setErrorCount(0);
       }
@@ -119,7 +121,9 @@ const DesktopGameDetail = () => {
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
-  const manualEntries = matchDetails?.manualSessionActive ? normalizedData?.filter((item: any) => item?.isManual):[];
+  const manualEntries = matchDetails?.manualSessionActive
+    ? normalizedData?.filter((item: any) => item?.isManual)
+    : [];
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -317,16 +321,17 @@ const DesktopGameDetail = () => {
                     />
                   </Col>
                 )}
-              {(matchDetails?.manualCompleteMatch?.activeStatus ==="live" && matchDetails?.manualCompleteMatch?.isActive) && (
-                <Col md={12}>
-                  <ManualMarket
-                    title={matchDetails?.manualCompleteMatch?.name}
-                    data={matchDetails?.manualCompleteMatch}
-                    detail={matchDetails}
-                    // data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
+              {matchDetails?.manualCompleteMatch?.activeStatus === "live" &&
+                matchDetails?.manualCompleteMatch?.isActive && (
+                  <Col md={12}>
+                    <ManualMarket
+                      title={matchDetails?.manualCompleteMatch?.name}
+                      data={matchDetails?.manualCompleteMatch}
+                      detail={matchDetails}
+                      // data={matchDetails?.matchOdd}
+                    />
+                  </Col>
+                )}
               {(matchDetails?.apiSession?.session?.section?.length > 0 ||
                 manualEntries?.length > 0) && (
                 <Col md={12}>
@@ -421,24 +426,26 @@ const DesktopGameDetail = () => {
                     }
                   )}
               </div>
-              {(matchDetails?.apiTideMatch?.activeStatus ==="live" && matchDetails?.apiTideMatch?.isActive) && (
-                <Col md={12}>
-                  <DynamicMarket
-                    title={matchDetails?.apiTideMatch?.name}
-                    data={matchDetails?.apiTideMatch}
-                    detail={matchDetails}
-                  />
-                </Col>
-              )}
-              {(matchDetails?.marketCompleteMatch?.activeStatus ==="live" && matchDetails?.marketCompleteMatch?.isActive) && (
-                <Col md={12}>
-                  <DynamicMarket
-                    title={matchDetails?.marketCompleteMatch?.name}
-                    data={matchDetails?.marketCompleteMatch}
-                    detail={matchDetails}
-                  />
-                </Col>
-              )}
+              {matchDetails?.apiTideMatch?.activeStatus === "live" &&
+                matchDetails?.apiTideMatch?.isActive && (
+                  <Col md={12}>
+                    <DynamicMarket
+                      title={matchDetails?.apiTideMatch?.name}
+                      data={matchDetails?.apiTideMatch}
+                      detail={matchDetails}
+                    />
+                  </Col>
+                )}
+              {matchDetails?.marketCompleteMatch?.activeStatus === "live" &&
+                matchDetails?.marketCompleteMatch?.isActive && (
+                  <Col md={12}>
+                    <DynamicMarket
+                      title={matchDetails?.marketCompleteMatch?.name}
+                      data={matchDetails?.marketCompleteMatch}
+                      detail={matchDetails}
+                    />
+                  </Col>
+                )}
               {/* {matchDetails?.quickBookmaker?.length > 0 &&
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
