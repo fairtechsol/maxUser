@@ -15,7 +15,7 @@ import Crick5Result from "./cric5Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-
+import Iframe from "../../iframe/iframe";
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
@@ -26,7 +26,7 @@ const Cricket5Desktop = () => {
   const { dragonTigerDetail, scoreBoardData, loading } = useSelector(
     (state: RootState) => state.card
   );
-  // console.log(dragonTigerDetail, "dtaa")
+  
   // const [showFancy, setShowFancy] = useState(false);
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -78,7 +78,8 @@ const Cricket5Desktop = () => {
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.cricketv3}`);
   }, []);
-
+ 
+ console.log("scoreBoardData",scoreBoardData)
   return (
     <>
       <Row>
@@ -113,9 +114,9 @@ const Cricket5Desktop = () => {
                   : ""}
               </span>
             </div>
-            {scoreBoardData?.data && (
+            {scoreBoardData && (
               <div>
-                <ScoreBoard data={scoreBoardData?.data} />
+                <ScoreBoard data={scoreBoardData} />
               </div>
             )}
             <div

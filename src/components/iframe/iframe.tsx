@@ -56,7 +56,7 @@ const Iframe = ({ data }: any) => {
                 <div className="row">
                   <div className="col-12">
                     <p className="text-xl-end ball-by-ball mt-2 mb-0">
-                      {data?.balls?.map((ball, index) => (
+                      {data?.balls?.map((ball: any, index: any) => (
                         <span
                           key={index}
                           className={`ball-runs ${
@@ -66,8 +66,10 @@ const Iframe = ({ data }: any) => {
                             backgroundColor:
                               ball === "ww" || ball === "wd" || ball === "Nb"
                                 ? "#ff0000"
-                                : ball === "4" || ball === "6"
+                                : ball === "4"
                                 ? "#087f23"
+                                : ball === "6"
+                                ? "#883997"
                                 : "#08c",
                             color: "#fff",
                             borderRadius: "50%",
@@ -144,8 +146,10 @@ const Iframe = ({ data }: any) => {
                             backgroundColor:
                               ball === "ww" || ball === "wd" || ball === "Nb"
                                 ? "#ff0000"
-                                : ball === "4" || ball === "6"
+                                : ball === "4"
                                 ? "#087f23"
+                                : ball === "6"
+                                ? "#883997"
                                 : "#08c",
                           }}
                         >
