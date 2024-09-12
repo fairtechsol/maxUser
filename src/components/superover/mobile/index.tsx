@@ -93,7 +93,7 @@ const SuperoverMobile = () => {
                     backgroundColor: "#000",
                   }}
                 ></div>
-                 {scoreBoardData && (
+                 {scoreBoardData?.balls.length>0 && (
               <div style={{marginBottom:"2px"}}>
                 <Iframe data={scoreBoardData} />
               </div>

@@ -309,6 +309,7 @@ export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
         `${Constants.thirdParty}/cricketScore?eventId=${requestData?.id}`,
         config
       );
+
       
       if (resp?.data) {
         return resp?.data?.data;

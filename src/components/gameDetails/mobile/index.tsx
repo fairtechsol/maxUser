@@ -89,10 +89,14 @@ const MobileGameDetail = () => {
         //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
         `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
       );
-      if (response) {
+      if (response?.success !== false) {
         setLiveScoreBoardData(response?.data);
         setErrorCount(0);
       }
+      // if (response) {
+      //   setLiveScoreBoardData(response?.data);
+      //   setErrorCount(0);
+      // }
     } catch (e: any) {
       console.log("Error:", e?.message);
       setLiveScoreBoardData(null);
