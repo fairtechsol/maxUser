@@ -8,7 +8,7 @@ const RulesModal = ({ show, setShow, rule }: any) => {
   return (
     <div>
       <Modal show={show} onHide={handleClose} >
-        <Modal.Header  style={{backgroundColor:"#004a25",color:"#ffffff"}}>
+        <Modal.Header className="p-1 rounded-0 px-2"  style={{backgroundColor:"#004a25",color:"#ffffff"}}>
           <Modal.Title>Rules</Modal.Title>
           <button 
               type="button" 
