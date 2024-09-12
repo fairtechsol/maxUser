@@ -166,12 +166,12 @@ const Cricket5Desktop = () => {
               <Col md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col md={12} style={{ overflowY: "auto", maxHeight: "500px" }}>
                 <DesktopMyBet />
               </Col>
               <Col
-                className="no-scrollbar"
-                style={{ height: "350px", overflow: "auto" }}
+                
+               
               >
                 <div
                   className="casino-title mt-2"

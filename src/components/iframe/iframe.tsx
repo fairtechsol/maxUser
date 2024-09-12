@@ -130,7 +130,7 @@ const Iframe = ({ data, width }: any) => {
                 {data?.spnmessage && (
                   <div
                     style={{
-                      fontSize: "16px",
+                      fontSize: "12px",
                     }}
                   >
                     {data?.dayno} | {data?.spnmessage}
@@ -141,27 +141,31 @@ const Iframe = ({ data, width }: any) => {
                 <div className="row">
                   <div className="col-12">
                     <p className="text-xl-end ball-by-ball mt-2 mb-0">
-                      {data?.balls?.map((ball: any, index: any) => (
-                        <span
-                          key={index}
-                          className={`ball-runs ${
-                            ball === "4" || ball === "6" ? "four" : ""
-                          }`}
-                          style={{
-                            backgroundColor:
-                              ball === "ww"
-                                ? "#ff0000"
-                                : ball === "4"
-                                ? "#087f23"
-                                : ball === "6"
-                                ? "#883997"
-                                : "#08c",
-                            fontSize: "16px",
-                          }}
-                        >
-                          {ball}
-                        </span>
-                      ))}
+                      {data?.balls?.map((ball: any, index: any) => {
+                        return ball == "" ? (
+                          ""
+                        ) : (
+                          <span
+                            key={index}
+                            className={`ball-runs ${
+                              ball === "4" || ball === "6" ? "four" : ""
+                            }`}
+                            style={{
+                              backgroundColor:
+                                ball === "ww"
+                                  ? "#ff0000"
+                                  : ball === "4"
+                                  ? "#087f23"
+                                  : ball === "6"
+                                  ? "#883997"
+                                  : "#08c",
+                              fontSize: "12px",
+                            }}
+                          >
+                            {ball}
+                          </span>
+                        );
+                      })}
                     </p>
                   </div>
                 </div>

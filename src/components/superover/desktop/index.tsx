@@ -115,7 +115,7 @@ const SuperoverDesktop = () => {
               </span>
             </div>
             {scoreBoardData && (
-              <div style={{marginBottom:"2px"}}>
+              <div style={{ marginBottom: "2px" }}>
                 <Iframe data={scoreBoardData} />
               </div>
             )}
@@ -172,7 +172,7 @@ const SuperoverDesktop = () => {
               <Col md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col md={12} style={{ overflowY: "auto", maxHeight: "500px" }}>
                 <DesktopMyBet />
               </Col>
               <Col>
