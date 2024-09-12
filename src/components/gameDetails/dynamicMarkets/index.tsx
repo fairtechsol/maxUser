@@ -78,16 +78,10 @@ const DynamicMarket = ({ title, data, detail }) => {
             className={`dynamicBackLayBoxContainer backLayBoxWidth`}
             // style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
-            <div
-              className="dynamicBackBoxTab"
-              style={{ width: "25%" }}
-            >
+            <div className="dynamicBackBoxTab" style={{ width: "25%" }}>
               <span className={`f-size16 dynamicBackTxt`}>Back</span>
             </div>
-            <div
-              className="dynamicLayBoxTab"
-              style={{ width: "25%" }}
-            >
+            <div className="dynamicLayBoxTab" style={{ width: "25%" }}>
               <span className={`f-size16 dynamicBackTxt`}>Lay</span>
             </div>
             {!isMobile && <div className="dynamicEmptyBox"></div>}
@@ -104,94 +98,101 @@ const DynamicMarket = ({ title, data, detail }) => {
               ></span>
             </div>
           )} */}
-          <div
-            className="dynamicTeam"
-            style={{ width: "28%" }}
-          >
+          <div className="dynamicTeam" style={{ width: "28%" }}>
             <span className={`teamFont dynamicTeamTxt`}>Yes</span>
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
+                  profitLossDataForMatchConstants[data?.type]?.A +
+                    "_" +
+                    detail?.id
                 ] > 0
                   ? "color-green"
                   : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
+                      profitLossDataForMatchConstants[data?.type]?.A +
+                        "_" +
+                        detail?.id
                     ] < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
               {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ] ?detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ]==="0"?"":detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ] : ""}
+                profitLossDataForMatchConstants[data?.type]?.A +
+                  "_" +
+                  detail?.id
+              ]
+                ? detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.A +
+                      "_" +
+                      detail?.id
+                  ] === "0"
+                  ? ""
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A +
+                        "_" +
+                        detail?.id
+                    ]
+                : ""}
             </span>
           </div>
           <div
             className={`dynamicRateBox rateBoxWidth`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
-                <div className="suspended-overlayRatesdynamic">
-                  <span
-                    className={`suspendTextCmmn`}
-                  >
-                    SUSPENDED
-                  </span>
-                </div>
-              )}
-           
-              <div
-                className="dynamicBackBox back3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,
-                    "BACK",
-                    "Yes",
-                    data?.runners?.[0]?.status,
-                    data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,
-                    data?.runners?.[0]
-                  )
-                }
-              >
-                <span className={`rateFont dynamicRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont dynamicRate2Box`}>
-                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
-                </span>
+            {(data?.activeStatus !== "live" ||
+              data?.runners?.[0]?.status !== "ACTIVE") && (
+              <div className="suspended-overlayRatesdynamic">
+                <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
-            
-            
-              <div
-                className="dynamicBackBox back2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[0]?.ex?.availableToBack?.[1]?.price,
-                    "BACK",
-                    "Yes",
-                    data?.runners?.[0]?.status,
-                    data?.runners?.[0]?.ex?.availableToBack?.[1]?.tno,
-                    data?.runners?.[0]
-                  )
-                }
-              >
-                <span className={`rateFont dynamicRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[0]?.ex?.availableToBack?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont dynamicRate2Box`}>
-                  {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
-                </span>
-              </div>
-            
+            )}
+
+            <div
+              className="dynamicBackBox back3Background"
+              onClick={() =>
+                handlePlaceBet(
+                  data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,
+                  "BACK",
+                  "Yes",
+                  data?.runners?.[0]?.status,
+                  data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,
+                  data?.runners?.[0]
+                )
+              }
+            >
+              <span className={`rateFont dynamicRate1Box`}>
+                {handlePrice(
+                  data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
+                ) ?? "-"}
+              </span>
+              <span className={`sizeFont dynamicRate2Box`}>
+                {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
+              </span>
+            </div>
+
+            <div
+              className="dynamicBackBox back2Background"
+              onClick={() =>
+                handlePlaceBet(
+                  data?.runners?.[0]?.ex?.availableToBack?.[1]?.price,
+                  "BACK",
+                  "Yes",
+                  data?.runners?.[0]?.status,
+                  data?.runners?.[0]?.ex?.availableToBack?.[1]?.tno,
+                  data?.runners?.[0]
+                )
+              }
+            >
+              <span className={`rateFont dynamicRate1Box`}>
+                {handlePrice(
+                  data?.runners?.[0]?.ex?.availableToBack?.[1]?.price
+                ) ?? "-"}
+              </span>
+              <span className={`sizeFont dynamicRate2Box`}>
+                {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
+              </span>
+            </div>
+
             <div
               className="dynamicBackBox back1Background"
               onClick={() =>
@@ -236,54 +237,52 @@ const DynamicMarket = ({ title, data, detail }) => {
                 {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
-            
-              <div
-                className="dynamicBackBox lay2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[0]?.ex?.availableToLay?.[1]?.price,
-                    "LAY",
-                    "Yes",
-                    data?.runners?.[0]?.status,
-                    data?.runners?.[0]?.ex?.availableToLay?.[1]?.tno,
-                    data?.runners?.[0]
-                  )
-                }
-              >
-                <span className={`rateFont dynamicRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[0]?.ex?.availableToLay?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont dynamicRate2Box`}>
-                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
-                </span>
-              </div>
-           
-            
-              <div
-                className="dynamicBackBox lay3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[0]?.ex?.availableToLay?.[2]?.price,
-                    "LAY",
-                    "Yes",
-                    data?.runners?.[0]?.status,
-                    data?.runners?.[0]?.ex?.availableToLay?.[2]?.tno,
-                    data?.runners?.[0]
-                  )
-                }
-              >
-                <span className={`rateFont dynamicRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[0]?.ex?.availableToLay?.[2]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont dynamicRate2Box`}>
-                  {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
-                </span>
-              </div>
-           
+
+            <div
+              className="dynamicBackBox lay2Background"
+              onClick={() =>
+                handlePlaceBet(
+                  data?.runners?.[0]?.ex?.availableToLay?.[1]?.price,
+                  "LAY",
+                  "Yes",
+                  data?.runners?.[0]?.status,
+                  data?.runners?.[0]?.ex?.availableToLay?.[1]?.tno,
+                  data?.runners?.[0]
+                )
+              }
+            >
+              <span className={`rateFont dynamicRate1Box`}>
+                {handlePrice(
+                  data?.runners?.[0]?.ex?.availableToLay?.[1]?.price
+                ) ?? "-"}
+              </span>
+              <span className={`sizeFont dynamicRate2Box`}>
+                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
+              </span>
+            </div>
+
+            <div
+              className="dynamicBackBox lay3Background"
+              onClick={() =>
+                handlePlaceBet(
+                  data?.runners?.[0]?.ex?.availableToLay?.[2]?.price,
+                  "LAY",
+                  "Yes",
+                  data?.runners?.[0]?.status,
+                  data?.runners?.[0]?.ex?.availableToLay?.[2]?.tno,
+                  data?.runners?.[0]
+                )
+              }
+            >
+              <span className={`rateFont dynamicRate1Box`}>
+                {handlePrice(
+                  data?.runners?.[0]?.ex?.availableToLay?.[2]?.price
+                ) ?? "-"}
+              </span>
+              <span className={`sizeFont dynamicRate2Box`}>
+                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -299,94 +298,101 @@ const DynamicMarket = ({ title, data, detail }) => {
               </span>
             </div>
           )} */}
-          <div
-            className="dynamicTeam"
-            style={{ width: "28%" }}
-          >
+          <div className="dynamicTeam" style={{ width: "28%" }}>
             <span className={`teamFont dynamicTeamTxt`}>No</span>
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
+                  profitLossDataForMatchConstants[data?.type]?.B +
+                    "_" +
+                    detail?.id
                 ] > 0
                   ? "color-green"
                   : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
+                      profitLossDataForMatchConstants[data?.type]?.B +
+                        "_" +
+                        detail?.id
                     ] < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
-            {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ] ?detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ]==="0"?"":detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ] : ""}
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B +
+                  "_" +
+                  detail?.id
+              ]
+                ? detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.B +
+                      "_" +
+                      detail?.id
+                  ] === "0"
+                  ? ""
+                  : detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B +
+                        "_" +
+                        detail?.id
+                    ]
+                : ""}
             </span>
           </div>
           <div
             className={`dynamicRateBox rateBoxWidth`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
-                <div className="suspended-overlayRatesdynamic">
-                  <span
-                    className={`suspendTextCmmn`}
-                  >
-                    SUSPENDED
-                  </span>
-                </div>
-              )}
-            
-              <div
-                className="dynamicBackBox back3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,
-                    "BACK",
-                    "No",
-                    data?.runners?.[1]?.status,
-                    data?.runners?.[1]?.ex?.availableToBack?.[0]?.tno,
-                    data?.runners?.[1]
-                  )
-                }
-              >
-                <span className={`rateFont dynamicRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont dynamicRate2Box`}>
-                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
-                </span>
+            {(data?.activeStatus !== "live" ||
+              data?.runners?.[1]?.status !== "ACTIVE") && (
+              <div className="suspended-overlayRatesdynamic">
+                <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
-            
-            
-              <div
-                className="dynamicBackBox back2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[1]?.ex?.availableToBack?.[1]?.price,
-                    "BACK",
-                    "No",
-                    data?.runners?.[1]?.status,
-                    data?.runners?.[1]?.ex?.availableToBack?.[1]?.tno,
-                    data?.runners?.[1]
-                  )
-                }
-              >
-                <span className={`rateFont dynamicRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[1]?.ex?.availableToBack?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont dynamicRate2Box`}>
-                  {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
-                </span>
-              </div>
-            
+            )}
+
+            <div
+              className="dynamicBackBox back3Background"
+              onClick={() =>
+                handlePlaceBet(
+                  data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,
+                  "BACK",
+                  "No",
+                  data?.runners?.[1]?.status,
+                  data?.runners?.[1]?.ex?.availableToBack?.[0]?.tno,
+                  data?.runners?.[1]
+                )
+              }
+            >
+              <span className={`rateFont dynamicRate1Box`}>
+                {handlePrice(
+                  data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
+                ) ?? "-"}
+              </span>
+              <span className={`sizeFont dynamicRate2Box`}>
+                {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
+              </span>
+            </div>
+
+            <div
+              className="dynamicBackBox back2Background"
+              onClick={() =>
+                handlePlaceBet(
+                  data?.runners?.[1]?.ex?.availableToBack?.[1]?.price,
+                  "BACK",
+                  "No",
+                  data?.runners?.[1]?.status,
+                  data?.runners?.[1]?.ex?.availableToBack?.[1]?.tno,
+                  data?.runners?.[1]
+                )
+              }
+            >
+              <span className={`rateFont dynamicRate1Box`}>
+                {handlePrice(
+                  data?.runners?.[1]?.ex?.availableToBack?.[1]?.price
+                ) ?? "-"}
+              </span>
+              <span className={`sizeFont dynamicRate2Box`}>
+                {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
+              </span>
+            </div>
+
             <div
               className="dynamicBackBox back1Background"
               onClick={() =>
@@ -431,54 +437,52 @@ const DynamicMarket = ({ title, data, detail }) => {
                 {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[0]?.size)}
               </span>
             </div>
-            
-              <div
-                className="dynamicBackBox lay2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[1]?.ex?.availableToLay?.[1]?.price,
-                    "LAY",
-                    "No",
-                    data?.runners?.[1]?.status,
-                    data?.runners?.[1]?.ex?.availableToLay?.[1]?.tno,
-                    data?.runners?.[1]
-                  )
-                }
-              >
-                <span className={`rateFont dynamicRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[1]?.ex?.availableToLay?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont dynamicRate2Box`}>
-                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
-                </span>
-              </div>
-            
-            
-              <div
-                className="dynamicBackBox lay3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[1]?.ex?.availableToLay?.[2]?.price,
-                    "LAY",
-                    "No",
-                    data?.runners?.[1]?.status,
-                    data?.runners?.[1]?.ex?.availableToLay?.[2]?.tno,
-                    data?.runners?.[1]
-                  )
-                }
-              >
-                <span className={`rateFont dynamicRate1Box`}>
-                  {handlePrice(
-                    data?.runners?.[1]?.ex?.availableToLay?.[2]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont dynamicRate2Box`}>
-                  {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
-                </span>
-              </div>
-            
+
+            <div
+              className="dynamicBackBox lay2Background"
+              onClick={() =>
+                handlePlaceBet(
+                  data?.runners?.[1]?.ex?.availableToLay?.[1]?.price,
+                  "LAY",
+                  "No",
+                  data?.runners?.[1]?.status,
+                  data?.runners?.[1]?.ex?.availableToLay?.[1]?.tno,
+                  data?.runners?.[1]
+                )
+              }
+            >
+              <span className={`rateFont dynamicRate1Box`}>
+                {handlePrice(
+                  data?.runners?.[1]?.ex?.availableToLay?.[1]?.price
+                ) ?? "-"}
+              </span>
+              <span className={`sizeFont dynamicRate2Box`}>
+                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
+              </span>
+            </div>
+
+            <div
+              className="dynamicBackBox lay3Background"
+              onClick={() =>
+                handlePlaceBet(
+                  data?.runners?.[1]?.ex?.availableToLay?.[2]?.price,
+                  "LAY",
+                  "No",
+                  data?.runners?.[1]?.status,
+                  data?.runners?.[1]?.ex?.availableToLay?.[2]?.tno,
+                  data?.runners?.[1]
+                )
+              }
+            >
+              <span className={`rateFont dynamicRate1Box`}>
+                {handlePrice(
+                  data?.runners?.[1]?.ex?.availableToLay?.[2]?.price
+                ) ?? "-"}
+              </span>
+              <span className={`sizeFont dynamicRate2Box`}>
+                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
+              </span>
+            </div>
           </div>
         </div>
       </div>
