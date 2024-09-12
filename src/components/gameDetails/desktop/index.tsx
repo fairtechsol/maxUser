@@ -28,6 +28,7 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 // import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
 // import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Iframe from "../../iframe/iframe";
+import { Link } from "react-router-dom";
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -675,7 +676,7 @@ const DesktopGameDetail = () => {
                     style={{ margin: "0 0 0 5px", color: "#ff0000" }}
                     className="fs-5 text-decoration-underline cursor-pointer blinking-text"
                   >
-                    Ball by Ball
+                     <Link className="text-danger" to={"/ballbyball"}> Ball By Ball</Link>
                   </h6>
                 </div>
               </Col>
