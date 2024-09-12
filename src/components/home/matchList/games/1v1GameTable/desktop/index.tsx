@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, } from "react-bootstrap";
 // import { FiMonitor } from "react-icons/fi";
 import moment from "moment-timezone";
 import { Img } from "react-image";
@@ -96,7 +96,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                                 className="one-v-one-title title-14"
                                 style={{ color: "#343a40" }}
                               >
-                                Ball By Ball
+                               <Link className="text-black" to={"/ballbyball"}> Ball By Ball</Link>
                               </div>
                             </div>
                       

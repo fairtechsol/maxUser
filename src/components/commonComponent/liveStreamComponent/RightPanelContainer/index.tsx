@@ -15,7 +15,7 @@ const RightPanelContainer = ({
     <div>
       <div>
         <BetTableHeader
-          customClass="mt-2 rounded-top-1  rounded-bottom-0 py-2"
+          customClass=" rounded-0 py-1 mt-1"
           customTextClass="cursor-pointer"
           title={title}
           rightComponent={

@@ -475,7 +475,7 @@ const PlacedBet = () => {
                               justifyContent: "center",
                               alignItems: "center",
                               color: "#fff",
-                              fontSize: "16px",
+                              fontSize: "14px",
                               borderRadius: "3px",
                             }}
                             onClick={() => setShow(true)}
@@ -490,6 +490,9 @@ const PlacedBet = () => {
                             onClick={() => {
                               dispatch(selectedBetAction(null));
                             }}
+                            style={{
+                              fontSize:"13px"
+                            }}
                           >
                             Reset
                           </button>
@@ -503,6 +506,7 @@ const PlacedBet = () => {
                                 selectedBet?.team?.type == "no"
                                   ? "#679378"
                                   : "#38998a",
+                                  fontSize:"13px"
                             }}
                           >
                             Submit

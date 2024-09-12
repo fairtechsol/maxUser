@@ -5,10 +5,10 @@ import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
 import { formatNumber, handleSize } from "../../../helpers";
+import BetBox from "../betBox";
 
 const MatchOdd = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
-
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -39,6 +39,7 @@ const MatchOdd = ({ title, data, detail }) => {
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
     };
+    console.log('team',team)
     dispatch(
       selectedBetAction({
         team,
@@ -46,15 +47,6 @@ const MatchOdd = ({ title, data, detail }) => {
       })
     );
   };
-
-  const handlePrice = (rate: any) => {
-    if (rate && rate != 0) {
-      return rate;
-    } else {
-      return "-";
-    }
-  };
-
   return (
     <>
       <div className="matchOddContainer">
@@ -74,7 +66,6 @@ const MatchOdd = ({ title, data, detail }) => {
           </div>
           <div
             className="matchOddBackLayBoxContainer backLayBoxWidth"
-            // style={{ width: isLap ? "240px" : !isMobile ? "320px" : "" }}
           >
             <div className="matchOddBackBoxTab">
               <span className={`f-size16 matchOddBackTxt`}>Back</span>
@@ -87,15 +78,6 @@ const MatchOdd = ({ title, data, detail }) => {
         </div>
 
         <div className="matchOddTeamTab">
-          {/* {data?.activeStatus != "live" && (
-            <div className="suspended-overlayRatesMatchOdd">
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : "f-size16"
-                } suspendedTxtMatchOdd`}
-              ></span>
-            </div>
-          )} */}
           <div className="matchOddTeam">
             <span
               className={`teamFont matchOddTeamTxt`}
@@ -131,7 +113,6 @@ const MatchOdd = ({ title, data, detail }) => {
           </div>
           <div
             className="matchOddRateBox rateBoxWidth"
-            // style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[0]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesMatchOdd">
@@ -142,151 +123,20 @@ const MatchOdd = ({ title, data, detail }) => {
                   </span>
                 </div>
               )}
-            <div
-              className="matchOddBackBox back3Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[0]?.ex?.availableToBack?.[0]?.price,
-                  "BACK",
-                  detail?.teamA,
-                  data?.runners?.[0]?.status,
-                  data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,
-                  data?.runners?.[0]
+              {data?.runners?.[0]?.ex?.availableToBack?.map((item:any)=>{
+                return(
+                  <BetBox data={item} type={"back"} detail={detail} runner={data?.runners?.[0]} handlePlaceBet={handlePlaceBet}/>
                 )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[0]?.ex?.availableToBack?.[0]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[0]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox back2Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[0]?.ex?.availableToBack?.[1]?.price,
-                  "BACK",
-                  detail?.teamA,
-                  data?.runners?.[0]?.status,
-                  data?.runners?.[0]?.ex?.availableToBack?.[1]?.tno,
-                  data?.runners?.[0]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[0]?.ex?.availableToBack?.[1]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[1]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox back1Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[0]?.ex?.availableToBack?.[2]?.price,
-                  "BACK",
-                  detail?.teamA,
-                  data?.runners?.[0]?.status,
-                  data?.runners?.[0]?.ex?.availableToBack?.[2]?.tno,
-                  data?.runners?.[0]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[0]?.ex?.availableToBack?.[2]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[0]?.ex?.availableToBack?.[2]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox lay1Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[0]?.ex?.availableToLay?.[0]?.price,
-                  "LAY",
-                  detail?.teamA,
-                  data?.runners?.[0]?.status,
-                  data?.runners?.[0]?.ex?.availableToBack?.[0]?.tno,
-                  data?.runners?.[0]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[0]?.ex?.availableToLay?.[0]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[0]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox lay2Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[0]?.ex?.availableToLay?.[1]?.price,
-                  "LAY",
-                  detail?.teamA,
-                  data?.runners?.[0]?.status,
-                  data?.runners?.[0]?.ex?.availableToLay?.[1]?.tno,
-                  data?.runners?.[0]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[0]?.ex?.availableToLay?.[1]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[1]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox lay3Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[0]?.ex?.availableToLay?.[2]?.price,
-                  "LAY",
-                  detail?.teamA,
-                  data?.runners?.[0]?.status,
-                  data?.runners?.[0]?.ex?.availableToLay?.[2]?.tno,
-                  data?.runners?.[0]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[0]?.ex?.availableToLay?.[2]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[0]?.ex?.availableToLay?.[2]?.size)}
-              </span>
-            </div>
+              })}
+               {data?.runners?.[0]?.ex?.availableToLay?.map((item:any)=>{
+               return(
+                <BetBox data={item} type={"lay"} detail={detail} runner={data?.runners?.[0]} handlePlaceBet={handlePlaceBet}/>
+              )
+              })}
           </div>
         </div>
 
         <div className="matchOddTeamTab">
-          {/* {data?.activeStatus != "live" && (
-            <div className="suspended-overlayRatesMatchOdd">
-              <span
-                className={`${
-                  !isMobile ? "f-size18" : "f-size16"
-                } suspendedTxtMatchOdd`}
-              ></span>
-            </div>
-          )} */}
           <div className="matchOddTeam">
             <span
               className={`teamFont matchOddTeamTxt`}
@@ -322,7 +172,6 @@ const MatchOdd = ({ title, data, detail }) => {
           </div>
           <div
             className="matchOddRateBox rateBoxWidth"
-            // style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
           >
             {(data?.activeStatus !== "live" || data?.runners?.[1]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesMatchOdd">
@@ -333,152 +182,21 @@ const MatchOdd = ({ title, data, detail }) => {
                   </span>
                 </div>
               )}
-            <div
-              className="matchOddBackBox back3Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[1]?.ex?.availableToBack?.[0]?.price,
-                  "BACK",
-                  detail?.teamB,
-                  data?.runners?.[1]?.status,
-                  data?.runners?.[1]?.ex?.availableToBack?.[0]?.tno,
-                  data?.runners?.[1]
+              {data?.runners?.[1]?.ex?.availableToBack?.map((item:any)=>{
+                return(
+                  <BetBox data={item} type={"back"} detail={detail} runner={data?.runners?.[1]} handlePlaceBet={handlePlaceBet}/>
                 )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[1]?.ex?.availableToBack?.[0]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[0]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox back2Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[1]?.ex?.availableToBack?.[1]?.price,
-                  "BACK",
-                  detail?.teamB,
-                  data?.runners?.[1]?.status,
-                  data?.runners?.[1]?.ex?.availableToBack?.[1]?.tno,
-                  data?.runners?.[1]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[1]?.ex?.availableToBack?.[1]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[1]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox back1Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[1]?.ex?.availableToBack?.[2]?.price,
-                  "BACK",
-                  detail?.teamB,
-                  data?.runners?.[1]?.status,
-                  data?.runners?.[1]?.ex?.availableToBack?.[2]?.tno,
-                  data?.runners?.[1]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[1]?.ex?.availableToBack?.[2]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[1]?.ex?.availableToBack?.[2]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox lay1Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[1]?.ex?.availableToLay?.[0]?.price,
-                  "LAY",
-                  detail?.teamB,
-                  data?.runners?.[1]?.status,
-                  data?.runners?.[1]?.ex?.availableToLay?.[0]?.tno,
-                  data?.runners?.[1]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[1]?.ex?.availableToLay?.[0]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[0]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox lay2Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[1]?.ex?.availableToLay?.[1]?.price,
-                  "LAY",
-                  detail?.teamB,
-                  data?.runners?.[1]?.status,
-                  data?.runners?.[1]?.ex?.availableToLay?.[1]?.tno,
-                  data?.runners?.[1]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[1]?.ex?.availableToLay?.[1]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[1]?.size)}
-              </span>
-            </div>
-            <div
-              className="matchOddBackBox lay3Background"
-              onClick={() =>
-                handlePlaceBet(
-                  data?.runners?.[1]?.ex?.availableToLay?.[2]?.price,
-                  "LAY",
-                  detail?.teamB,
-                  data?.runners?.[1]?.status,
-                  data?.runners?.[1]?.ex?.availableToLay?.[2]?.tno,
-                  data?.runners?.[1]
-                )
-              }
-            >
-              <span className={`rateFont`}>
-                {handlePrice(
-                  data?.runners?.[1]?.ex?.availableToLay?.[2]?.price
-                ) ?? "-"}
-              </span>
-              <span className={`sizeFont matchOddRate2Box`}>
-                {handleSize(data?.runners?.[1]?.ex?.availableToLay?.[2]?.size)}
-              </span>
-            </div>
+              })}
+               {data?.runners?.[1]?.ex?.availableToLay?.map((item:any)=>{
+               return(
+                <BetBox data={item} type={"lay"} detail={detail} runner={data?.runners?.[1]} handlePlaceBet={handlePlaceBet}/>
+              )
+              })}
           </div>
         </div>
 
         {detail?.teamC && (
           <div className="matchOddTeamTab">
-            {/* {data?.activeStatus != "live" && (
-              <div className="suspended-overlayRatesMatchOdd">
-                <span
-                  className={`${
-                    !isMobile ? "f-size18" : "f-size16"
-                  } suspendedTxtMatchOdd`}
-                ></span>
-              </div>
-            )} */}
             <div className="matchOddTeam">
               <span
                 className={`teamFont matchOddTeamTxt`}
@@ -514,7 +232,6 @@ const MatchOdd = ({ title, data, detail }) => {
             </div>
             <div
               className="matchOddRateBox rateBoxWidth"
-              // style={{ width: isLap ? "360px" : !isMobile ? "480px" : "" }}
             >
               {(data?.activeStatus !== "live" || data?.runners?.[2]?.status !== "ACTIVE") && (
                   <div className="suspended-overlayRatesMatchOdd">
@@ -525,138 +242,16 @@ const MatchOdd = ({ title, data, detail }) => {
                     </span>
                   </div>
                 )}
-              <div
-                className="matchOddBackBox back3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[2]?.ex?.availableToBack?.[0]?.price,
-                    "BACK",
-                    detail?.teamC,
-                    data?.runners?.[2]?.status,
-                    data?.runners?.[2]?.ex?.availableToBack?.[0]?.tno,
-                    data?.runners?.[2]
-                  )
-                }
-              >
-                <span className={`rateFont`}>
-                  {handlePrice(
-                    data?.runners?.[2]?.ex?.availableToBack?.[0]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont matchOddRate2Box`}>
-                  {handleSize(data?.runners?.[2]?.ex?.availableToBack?.[0]?.size)}
-                </span>
-              </div>
-              <div
-                className="matchOddBackBox back2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[2]?.ex?.availableToBack?.[1]?.price,
-                    "BACK",
-                    detail?.teamC,
-                    data?.runners?.[2]?.status,
-                    data?.runners?.[2]?.ex?.availableToBack?.[1]?.tno,
-                    data?.runners?.[2]
-                  )
-                }
-              >
-                <span className={`rateFont`}>
-                  {handlePrice(
-                    data?.runners?.[2]?.ex?.availableToBack?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont matchOddRate2Box`}>
-                  {handleSize(data?.runners?.[2]?.ex?.availableToBack?.[1]?.size)}
-                </span>
-              </div>
-              <div
-                className="matchOddBackBox back1Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[2]?.ex?.availableToBack?.[2]?.price,
-                    "BACK",
-                    detail?.teamC,
-                    data?.runners?.[2]?.status,
-                    data?.runners?.[2]?.ex?.availableToBack?.[2]?.tno,
-                    data?.runners?.[2]
-                  )
-                }
-              >
-                <span className={`rateFont`}>
-                  {handlePrice(
-                    data?.runners?.[2]?.ex?.availableToBack?.[2]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont matchOddRate2Box`}>
-                  {handleSize(data?.runners?.[2]?.ex?.availableToBack?.[2]?.size)}
-                </span>
-              </div>
-              <div
-                className="matchOddBackBox lay1Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[2]?.ex?.availableToLay?.[0]?.price,
-                    "LAY",
-                    detail?.teamC,
-                    data?.runners?.[2]?.status,
-                    data?.runners?.[2]?.ex?.availableToLay?.[0]?.tno,
-                    data?.runners?.[2]
-                  )
-                }
-              >
-                <span className={`rateFont`}>
-                  {handlePrice(
-                    data?.runners?.[2]?.ex?.availableToLay?.[0]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont matchOddRate2Box`}>
-                  {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[0]?.size)}
-                </span>
-              </div>
-              <div
-                className="matchOddBackBox lay2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[2]?.ex?.availableToLay?.[1]?.price,
-                    "LAY",
-                    detail?.teamC,
-                    data?.runners?.[2]?.status,
-                    data?.runners?.[2]?.ex?.availableToLay?.[1]?.tno,
-                    data?.runners?.[2]
-                  )
-                }
-              >
-                <span className={`rateFont`}>
-                  {handlePrice(
-                    data?.runners?.[2]?.ex?.availableToLay?.[1]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont matchOddRate2Box`}>
-                  {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[1]?.size)}
-                </span>
-              </div>
-              <div
-                className="matchOddBackBox lay3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.runners?.[2]?.ex?.availableToLay?.[2]?.price,
-                    "LAY",
-                    detail?.teamC,
-                    data?.runners?.[2]?.status,
-                    data?.runners?.[2]?.ex?.availableToLay?.[2]?.tno,
-                    data?.runners?.[2]
-                  )
-                }
-              >
-                <span className={`rateFont`}>
-                  {handlePrice(
-                    data?.runners?.[2]?.ex?.availableToLay?.[2]?.price
-                  ) ?? "-"}
-                </span>
-                <span className={`sizeFont matchOddRate2Box`}>
-                  {handleSize(data?.runners?.[2]?.ex?.availableToLay?.[2]?.size)}
-                </span>
-              </div>
+                  {data?.runners?.[2]?.ex?.availableToBack?.map((item:any)=>{
+                return(
+                  <BetBox data={item} type={"back"} detail={detail} runner={data?.runners?.[2]} handlePlaceBet={handlePlaceBet}/>
+                )
+              })}
+               {data?.runners?.[2]?.ex?.availableToLay?.map((item:any)=>{
+               return(
+                <BetBox data={item} type={"lay"} detail={detail} runner={data?.runners?.[2]} handlePlaceBet={handlePlaceBet}/>
+              )
+              })}
             </div>
           </div>
         )}
