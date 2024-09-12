@@ -197,7 +197,7 @@ const MobileGameDetail = () => {
               }
             >
               {index == 0 ? (
-                <div className="w-100">
+                <div style={{width:"98%"}}>
                   <Row className="ms-0">
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
                     {showVideo && (
