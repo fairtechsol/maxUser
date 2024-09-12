@@ -14,7 +14,7 @@ import "./style.scss";
 // }
 
 const Iframe = ({ data }: any) => {
-  console.log("Mdaaata", data?.data);
+  console.log("Mdaaata", data);
   return (
     <>
       {!isMobile ? (
