@@ -16,7 +16,7 @@ const RunBoxTable = ({ runAmount }: any) => {
               <td  style={{textAlign:'start',backgroundColor:"#f2f2f2"}}>
                 {item?.odds}
               </td>
-              <td  style={{textAlign:'end',backgroundColor:"#f2f2f2"}}>
+              <td  style={{textAlign:'end',backgroundColor:"#f2f2f2",color:item?.profitLoss<0?"#086f3f":"#bd1828"}}>
                 {parseFloat(item?.profitLoss).toFixed(2)}
               </td>
             </tr>

@@ -173,9 +173,6 @@ const DesktopGameDetail = () => {
     }
   };
 
-  console.log("eventId", matchDetails?.eventId);
-  console.log("scoreData", "scoreData", liveScoreBoardData);
-  // console.log("normalizedData",matchDetails)
   return (
     <Container fluid className="pe-0 ps-1">
       <Row>
