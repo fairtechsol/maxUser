@@ -137,6 +137,6 @@
     height: auto;
     max-width: calc(90% - 0px);
     width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
 }

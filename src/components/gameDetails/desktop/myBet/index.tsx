@@ -31,7 +31,7 @@ const MyBet = () => {
               {placeBetHeader?.map((item) => (
                 <th
                   key={item?.id}
-                  className="title-12 text-start f500 bg-light"
+                  className="title-12 text-start f500 bg-light lh-1"
                 >
                   {item?.name}
                 </th>

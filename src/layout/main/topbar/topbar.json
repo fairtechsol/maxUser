@@ -20,18 +20,6 @@
     "type": "desktop"
   },
   {
-    "id": "kabaddi",
-    "name": "Kabaddi",
-    "link": "/contact-admin",
-    "type": "desktop"
-  },
-  {
-    "id": "basketball",
-    "name": "BASKETBALL",
-    "link": "/contact-admin",
-    "type": "desktop"
-  },
-  {
     "id": "volleyball",
     "name": "VOLLEYBALL",
     "link": "/contact-admin",
