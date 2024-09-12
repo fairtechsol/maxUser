@@ -8,10 +8,10 @@ import {
   getRunAmount,
   resetRunAmountModal,
 } from "../../../store/actions/betPlace/betPlaceActions";
-import CustomModal from "../../commonComponent/modal";
 import RunBoxTable from "../betTable/runBoxTable";
 import { useSelector } from "react-redux";
 import { calculateMaxLoss, formatNumber, handleSize } from "../../../helpers";
+import { Modal } from "react-bootstrap";
 
 const SessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -704,16 +704,33 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
           )}
         </div>
       </div>
-      <CustomModal
-        customClass="runAmountBetModal"
-        title={"Run Amount"}
-        show={runAmountModal}
-        setShow={handleModal}
-      >
-        <div style={{ width: "100%", height: "auto", overflowY: "auto" }}>
+      
+      <Modal show={runAmountModal} onHide={()=>handleModal(false)}>
+        <Modal.Header
+          className="bg-primary rounded-0"
+          style={{ zIndex: "999" }}
+        >
+          <Modal.Title>
+            <span
+              style={{ color: "#fff", fontSize: "16px", fontWeight: "bold" }}
+            >
+              Run Amount
+            </span>
+          </Modal.Title>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            aria-label="Close"
+            onClick={()=>handleModal(false)}
+          ></button>
+        </Modal.Header>
+        <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
+        <div style={{ width: "100%", height: "auto", overflowY: "auto",padding:"10px" }}>
           <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
         </div>
-      </CustomModal>
+        </Modal.Body>
+        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
+      </Modal>
     </>
   );
 };
