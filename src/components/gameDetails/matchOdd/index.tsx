@@ -122,7 +122,11 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ] ?? ""}
+              ] ? detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
+              ]==="0"?"":detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
+              ] : ""}
             </span>
           </div>
           <div
@@ -309,7 +313,11 @@ const MatchOdd = ({ title, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ] ?? ""}
+              ] ? detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
+              ]==="0"?"":detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
+              ] : ""}
             </span>
           </div>
           <div
@@ -496,8 +504,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 } ${isMobile?"fbold title-12":"fbold title-14"}`}
               >
                 {detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-                ] ?? ""}
+                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
+              ] ? detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
+              ]==="0"?"":detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
+              ] : ""}
               </span>
             </div>
             <div
