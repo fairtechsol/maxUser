@@ -16,6 +16,7 @@ import SuperoverResult from "./superOver";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import Iframe from "../../iframe/iframe";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -113,9 +114,9 @@ const SuperoverDesktop = () => {
                   : ""}
               </span>
             </div>
-            {scoreBoardData?.data && (
-              <div>
-                <ScoreBoard data={scoreBoardData?.data} />
+            {scoreBoardData && (
+              <div style={{marginBottom:"2px"}}>
+                <Iframe data={scoreBoardData} />
               </div>
             )}
             <div

@@ -286,7 +286,12 @@ const TeenPattiMobile = () => {
                             ? "suspended"
                             : "teenPatti-table-item"
                         }
-                        onClick={() => handleBet(item)}
+                        onClick={() =>
+                          runs?.[0]?.gstatus === "SUSPENDED" &&
+                          runs?.[0]?.b === 0
+                            ? ""
+                            : handleBet(item)
+                        }
                       >
                         <span className="f12-b">{item.b}</span>
                         <span className="f10-b">{item.bs}</span>

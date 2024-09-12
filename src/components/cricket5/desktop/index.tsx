@@ -79,7 +79,7 @@ const Cricket5Desktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.cricketv3}`);
   }, []);
  
- console.log("scoreBoardData",scoreBoardData)
+ 
   return (
     <>
       <Row>
@@ -115,8 +115,8 @@ const Cricket5Desktop = () => {
               </span>
             </div>
             {scoreBoardData && (
-              <div>
-                <ScoreBoard data={scoreBoardData} />
+              <div style={{marginBottom:"2px"}}>
+                <Iframe data={scoreBoardData} />
               </div>
             )}
             <div

@@ -138,7 +138,7 @@ const MobileGameDetail = () => {
     JSON.parse(item)
   );
   const manualEntries =  matchDetails?.manualSessionActive ?normalizedData?.filter((item: any) => item?.isManual):[];
-
+ console.log(liveScoreBoardData,"live")
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -157,7 +157,7 @@ const MobileGameDetail = () => {
       <CommonTabs defaultActive="odds" className="color">
         {[
           {
-            
+
             id: "odds",
             name: <div className="oddstab border-end lh-sm pe-1">ODDS</div>,
           },
@@ -215,7 +215,7 @@ const MobileGameDetail = () => {
                         </Row>
                       </Container>
                     )}
-                     {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}
+                      {liveScoreBoardData && <Iframe data={liveScoreBoardData} width="97%" />}
                     {(matchDetails?.matchOdd?.activeStatus === "live" &&
                       matchDetails?.matchOdd?.isActive) && (
                         <Col className="g-0" md={12}>
