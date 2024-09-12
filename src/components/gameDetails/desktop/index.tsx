@@ -69,7 +69,7 @@ const DesktopGameDetail = () => {
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
         // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
         //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        `${Constants.thirdParty}/cricketScore?eventId=${"1809111913"}`
+        `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
       );
       // {"success":false,"msg":"Not found"}
       console.log("response 11:", response?.success);
@@ -182,7 +182,7 @@ const DesktopGameDetail = () => {
       <Row>
         <Col md={8}>
           <Container className="p-0">
-            <Row>
+            <>
               <Col md={12}>
                 <BetTableHeader
                   customClass="mt-2 py-2"
@@ -646,7 +646,7 @@ const DesktopGameDetail = () => {
                   })}
                 </CommonTabs>
               </Col> */}
-            </Row>
+            </>
           </Container>
         </Col>
         <Col md={4} className="ps-0 sideBet-W">
