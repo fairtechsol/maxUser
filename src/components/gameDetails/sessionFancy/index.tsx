@@ -165,13 +165,7 @@ const SessionFancy = ({ title, data, detail }) => {
                       }
                     >
                       <span
-                        className={`${
-                          isLap
-                            ? "f-size16"
-                            : !isMobile
-                            ? "f-size18"
-                            : "f-size15"
-                        } sessionRate1Box`}
+                        className={`rateFont`}
                       >
                         {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
                           "-"}
@@ -198,13 +192,7 @@ const SessionFancy = ({ title, data, detail }) => {
                       }
                     >
                       <span
-                        className={`${
-                          isLap
-                            ? "f-size16"
-                            : !isMobile
-                            ? "f-size18"
-                            : "f-size15"
-                        } sessionRate1Box`}
+                        className={`rateFont`}
                       >
                         {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
                           "-"}
@@ -322,13 +310,7 @@ const SessionFancy = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`${
-                            isLap
-                              ? "f-size16"
-                              : !isMobile
-                              ? "f-size18"
-                              : "f-size15"
-                          } sessionRate1Box`}
+                          className={`rateFont`}
                         >
                           {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
                             "-"}
@@ -357,13 +339,7 @@ const SessionFancy = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`${
-                            isLap
-                              ? "f-size16"
-                              : !isMobile
-                              ? "f-size18"
-                              : "f-size15"
-                          } sessionRate1Box`}
+                          className={`rateFont`}
                         >
                           {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
                             "-"}

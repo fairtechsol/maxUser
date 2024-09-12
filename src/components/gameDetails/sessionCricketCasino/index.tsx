@@ -194,13 +194,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                         }
                       >
                         <span
-                          className={`${
-                            !isMobile
-                              ? "f-size18"
-                              : isLap
-                              ? "f-size16"
-                              : "f-size15"
-                          } sessionRate1Box`}
+                          className={`rateFont`}
                         >
                           {handlePrice(item?.odds?.[0]?.odds) ?? "-"}
                         </span>

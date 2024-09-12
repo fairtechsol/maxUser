@@ -122,20 +122,23 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ] ?? ""}
+              ] ? detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
+              ]==="0"?"":detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
+              ]  : ""}
             </span>
           </div>
           <div
             className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.activeStatus !== "live" ||
-              data?.statusTeamA != "active") && (
+            {(data?.statusTeamA != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
                   className={`suspendTextCmmn`}
                 >
-                  SUSPENDED
+                  {data?.statusTeamA?.toUpperCase()}
                 </span>
               </div>
             )}
@@ -291,22 +294,25 @@ const ManualMarket = ({ title, data, detail }) => {
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
-              {detail?.profitLossDataMatch?.[
+             {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ] ?? ""}
+              ] ? detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
+              ]==="0"?"":detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
+              ]  : ""}
             </span>
           </div>
           <div
             className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.activeStatus !== "live" ||
-              data?.statusTeamB != "active") && (
+            {(data?.statusTeamB != "active") && (
               <div className="suspended-overlayRatesmanual">
                 <span
                   className={`suspendTextCmmn`}
                 >
-                  SUSPENDED
+                   {data?.statusTeamB?.toUpperCase()}
                 </span>
               </div>
             )}
@@ -457,22 +463,25 @@ const ManualMarket = ({ title, data, detail }) => {
                     : ""
                 } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
-                {detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-                ] ?? ""}
+              {detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
+              ] ? detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
+              ]==="0"?"":detail?.profitLossDataMatch?.[
+                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
+              ]  : ""}
               </span>
             </div>
             <div
               className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
               // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
             >
-              {(data?.activeStatus !== "live" ||
-                data?.statusTeamC != "active") && (
+              {(data?.statusTeamC != "active") && (
                 <div className="suspended-overlayRatesmanual">
                   <span
                     className={`suspendTextCmmn`}
                   >
-                    SUSPENDED
+                     {data?.statusTeamC?.toUpperCase()}
                   </span>
                 </div>
               )}

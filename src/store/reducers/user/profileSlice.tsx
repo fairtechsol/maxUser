@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getAccountStatement,
   getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
   marqueeNotification,
@@ -25,6 +26,7 @@ interface InitialState {
   marqueeNotification: any;
   getProfile: any;
   buttonValues: any;
+  buttonValues2: any;
   setButtonValue: any;
   transactions: any;
 }
@@ -34,6 +36,7 @@ const initialState: InitialState = {
   marqueeNotification: null,
   transactionPassword: "",
   buttonValues: [],
+  buttonValues2: [],
   setButtonValue: null,
   profileDetail: null,
   transactions: null,
@@ -91,17 +94,6 @@ const profileSlice = createSlice({
         state.loading = false;
         state.error = action?.error?.message;
       })
-      .addCase(setButtonValue.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(setButtonValue.fulfilled, (state) => {
-        state.loading = false;
-      })
-      .addCase(setButtonValue.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action?.error?.message;
-      })
       .addCase(getButtonValue.pending, (state) => {
         state.loading = true;
         state.success = false;
@@ -113,6 +105,43 @@ const profileSlice = createSlice({
         state.success = true;
       })
       .addCase(getButtonValue.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(getCasinoButtonValue.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(getCasinoButtonValue.fulfilled, (state, action) => {
+        state.buttonValues2 = action.payload;
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(getCasinoButtonValue.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(setButtonValue.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(setButtonValue.fulfilled, (state, action) => {
+        const updatedValue = action.payload;
+
+        if (updatedValue?.type === "Match" || updatedValue?.type === "match") {
+          state.buttonValues = updatedValue;
+        } else if (
+          updatedValue?.type === "Casino" ||
+          updatedValue?.type === "casino"
+        ) {
+          state.buttonValues2 = updatedValue;
+        }
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(setButtonValue.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })

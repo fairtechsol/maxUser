@@ -50,7 +50,7 @@ const MyBet = () => {
                   }`}
                 >
                   {bet?.marketBetType === "SESSION"
-                    ? bet?.eventName
+                    ? (bet?.bettingName ?? bet?.eventName)
                     : bet?.teamName}
                 </th>
                 <th

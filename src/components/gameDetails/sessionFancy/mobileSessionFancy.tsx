@@ -149,7 +149,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                         )
                       }
                     >
-                      <span className={`f-size15 sessionRate1Box`}>
+                      <span className={`rateFont`}>
                         {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
                           "-"}
                       </span>
@@ -172,7 +172,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                         )
                       }
                     >
-                      <span className={`f-size15 sessionRate1Box`}>
+                      <span className={`rateFont`}>
                         {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
                           "-"}
                       </span>

@@ -246,6 +246,76 @@
   display: inline-block;
   animation: none;
 }
+
+.elem {
+  position: absolute;
+  top: 50%; /* Adjust to center vertically */
+  left: 50%; /* Adjust to center horizontally */
+  transform: translate(-50%, -100%); /* Proper centering above the video */
+  height: 30px;
+  width: 30px;
+  z-index: 2;
+
+  /* Transition and animation properties */
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 1s;
+  -moz-transition-property: -moz-transform;
+  -moz-transition-duration: 1s;
+  transition-property: transform;
+  transition-duration: 1s;
+
+  /* Animation properties */
+  -webkit-animation-name: growShrink;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: growShrink;
+  -moz-animation-duration: 2s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  animation-name: growShrink;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/* Updated keyframes for grow and shrink */
+@-webkit-keyframes growShrink {
+  0% {
+      -webkit-transform: scale(1);
+  }
+  50% {
+      -webkit-transform: scale(4.333);
+  }
+  100% {
+      -webkit-transform: scale(1);
+  }
+}
+
+@-moz-keyframes growShrink {
+  0% {
+      -moz-transform: scale(1);
+  }
+  50% {
+      -moz-transform: scale(4.333);
+  }
+  100% {
+      -moz-transform: scale(1);
+  }
+}
+
+@keyframes growShrink {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(4.333);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
 @media (max-width: 768px) {
   .tabs-navs .nav-link {
     flex: 1 0 10%;
