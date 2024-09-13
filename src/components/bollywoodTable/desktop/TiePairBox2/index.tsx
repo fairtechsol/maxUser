@@ -51,7 +51,7 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
 
   return (
     <div className="tiePairContainer">
-      <div style={{ width: "98%", textAlign: "end" }}>
+      {/* <div style={{ width: "98%", textAlign: "end" }}>
         <span className="minmaxi">
           <IoInformationCircle
             color="#ffc742"
@@ -64,7 +64,7 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
             setShow={() => setModelOpen(false)}
           />
         </span>
-      </div>
+      </div> */}
 
       <div className="tiePairRateBoxMainlucky">
         <PlayerButton

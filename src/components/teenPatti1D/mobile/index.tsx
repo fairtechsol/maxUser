@@ -151,10 +151,10 @@ const TeenPattiMobile = () => {
                           border: "1px solid #fff",
                         }}
                       >
-                        <span className="f12-b">
+                        {/* <span className="f12-b">
                           Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
                           {dragonTigerDetail?.videoInfo?.max}
-                        </span>
+                        </span> */}
                       </div>
 
                       <div

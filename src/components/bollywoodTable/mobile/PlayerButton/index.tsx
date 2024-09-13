@@ -146,7 +146,6 @@ const PlayerButton = ({
         style={{ lineHeight: 2, display: "flex", width: "30%" }}
       >
         <div
-          className={lock ? "suspended" : ""}
           style={{
             width: "100%",
             backgroundColor: "#72bbef",
@@ -155,8 +154,8 @@ const PlayerButton = ({
           }}
         >
           <div
-            className="teenPatti-table-item"
-            style={{ width: "50%" }}
+              className={lock ? "teenPatti-table-item suspended" : "teenPatti-table-item"}
+              style={{ width: "50%" }}
             onClick={() => handleBet(data, "BACK")}
           >
             <span className="f18-b my-2 fw-bold">
@@ -165,8 +164,8 @@ const PlayerButton = ({
             <span className="f10-b">{}</span>
           </div>
           <div
-            className={`teenPatti-table-item`}
-            style={{ width: "50%", background: "#f9c9d4" }}
+              className={lock ? "teenPatti-table-item suspended" : "teenPatti-table-item"}
+              style={{ width: "50%", background: "#f9c9d4" }}
             onClick={() => handleBet(data, "LAY")}
           >
             <span className="f18-b my-2 fw-bold">

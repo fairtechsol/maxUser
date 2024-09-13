@@ -200,22 +200,7 @@ const TeenPattiDesktop = () => {
                     className="teenPatti-table-row"
                     style={{ lineHeight: 2 }}
                   >
-                    <div style={{ width: "40%" }}></div>
-                    <div
-                      style={{
-                        width: "60%",
-                        backgroundColor: "#72bbef",
-                        display: "flex",
-                        flexDirection: "row",
-                      }}
-                    >
-                      <div
-                        className="teenPatti-table-item f12-b"
-                        style={{ width: "100%" }}
-                      >
-                        BACK
-                      </div>
-                    </div>
+                 
                   </div>
                   <div
                     className="teenPatti-table-row"

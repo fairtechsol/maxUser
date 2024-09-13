@@ -126,7 +126,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                     type={"cricketv3"}
                   />
                 </div>
-                <div
+                {/* <div
                   className="casino-title mt-2"
                   style={{ position: "relative" }}
                 >
@@ -178,7 +178,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                       </tbody>
                     </Table>
                   ))}
-                </div>
+                </div> */}
               </div>
             )}
           </div>

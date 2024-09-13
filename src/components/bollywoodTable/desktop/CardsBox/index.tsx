@@ -47,7 +47,7 @@ const CardBox = ({ cardData, data }: any) => {
               ).toFixed(2)}
             </span>
           </div>
-          <div style={{ width: "45%", textAlign: "end" }}>
+          {/* <div style={{ width: "45%", textAlign: "end" }}>
             <span className="minmaxi">
               <IoInformationCircle
                 color="#ffc742"
@@ -60,7 +60,7 @@ const CardBox = ({ cardData, data }: any) => {
                 setShow={() => setModelOpen(false)}
               />
             </span>
-          </div>
+          </div> */}
         </div>
         <div>
           <CommonCardImg

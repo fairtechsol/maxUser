@@ -46,12 +46,12 @@ const CardBox = ({ name, cardData, data }: any) => {
             data={data}
           />
         
-        <div style={{ textAlign: "end" }}>
+        {/* <div style={{ textAlign: "end" }}>
           <span style={{ fontSize: "12px" }}>Min:</span>
           <span style={{ fontSize: "12px" }}>{min}</span>
           <span style={{ fontSize: "12px", marginLeft: "10px" }}>Max:</span>
           <span style={{ fontSize: "12px" }}>{max}</span>
-        </div>
+        </div> */}
       </div>
     </>
   );

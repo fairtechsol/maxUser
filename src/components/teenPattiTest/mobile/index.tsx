@@ -161,7 +161,7 @@ const TeenPattiMobile = () => {
               <div>
                 <div style={{ width: "100%" }}>
                   <div className="teenPatti-table-container-m">
-                    <div className="teenPatti-table-row">
+                    {/* <div className="teenPatti-table-row">
                       <div
                         style={{
                           width: "40%",
@@ -182,7 +182,7 @@ const TeenPattiMobile = () => {
                       >
                         BACK
                       </div>
-                    </div>
+                    </div> */}
 
                     <div
                       className="teenPatti-table-row"
@@ -436,7 +436,7 @@ const TeenPattiMobile = () => {
                   />
                 </div>
                 <div>
-                  <div
+                  {/* <div
                     className="casino-title mt-2"
                     style={{ position: "relative" }}
                   >
@@ -476,7 +476,7 @@ const TeenPattiMobile = () => {
                         ))}
                       </tbody>
                     </Table>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}

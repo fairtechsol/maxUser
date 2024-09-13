@@ -57,12 +57,7 @@ const OddEven = ({ card, odds, data }: any) => {
             data={odds?.[1]}
           />
         </div>
-        <div style={{ textAlign: "end" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div></>:<><div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+      </>:<><div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <CommonButtonBox
             value1={odds?.[0]?.rate}
             value2={"icon1"}
@@ -90,12 +85,7 @@ const OddEven = ({ card, odds, data }: any) => {
             data={odds?.[1]}
           />
         </div>
-        <div style={{ textAlign: "end" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div></>}
+     </>}
        
       
       </div>

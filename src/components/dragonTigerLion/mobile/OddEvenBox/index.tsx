@@ -232,7 +232,7 @@ const OddEven = ({ data, odds }: any) => {
                 <div className="dlt-m-conatainer">
                   <div className="dtlTitle-m">
                     {item?.title}
-                    <div style={{ width: "45%", textAlign: "end" }}>
+                    {/* <div style={{ width: "45%", textAlign: "end" }}>
                       <span className="minmaxi">
                         <IoInformationCircle
                           color="#ffc742"
@@ -247,7 +247,7 @@ const OddEven = ({ data, odds }: any) => {
                           />
                         )}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                   <div
                     className={`dtlsubTitle-m ${
@@ -309,7 +309,7 @@ const OddEven = ({ data, odds }: any) => {
                 <div className="dlt-m-conatainer">
                   <div className="dtlTitle-m">
                     {item?.title}
-                    <div style={{ width: "45%", textAlign: "end" }}>
+                    {/* <div style={{ width: "45%", textAlign: "end" }}>
                       <span className="minmaxi">
                         <IoInformationCircle
                           color="#ffc742"
@@ -324,7 +324,7 @@ const OddEven = ({ data, odds }: any) => {
                           />
                         )}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                   <div
                     className={`dtlsubTitle-m ${

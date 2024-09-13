@@ -370,9 +370,9 @@ const DragonTigerDesktop = () => {
                     style={{ height: "30px" }}
                   >
                     <div className="dtlTitle"></div>
-                    <div className="dtlsubTitle">Dragon</div>
-                    <div className="dtlsubTitle">Tiger</div>
-                    <div className="dtlsubTitle">Lion</div>
+                    <div className="dtlsubTitle back">Dragon</div>
+                    <div className="dtlsubTitle back">Tiger</div>
+                    <div className="dtlsubTitle back">Lion</div>
                   </div>
                   {firstArr?.map((item: any, index: number) => (
                     <div
@@ -382,7 +382,7 @@ const DragonTigerDesktop = () => {
                     >
                       <div className="dtlTitle">
                         {item?.title}
-                        <div style={{ width: "45%", textAlign: "end" }}>
+                        {/* <div style={{ width: "45%", textAlign: "end" }}>
                           <span className="minmaxi">
                             <IoInformationCircle
                               color="#ffc742"
@@ -397,10 +397,10 @@ const DragonTigerDesktop = () => {
                               />
                             )}
                           </span>
-                        </div>
+                        </div> */}
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.dragon?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -442,7 +442,7 @@ const DragonTigerDesktop = () => {
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.tiger?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -484,7 +484,7 @@ const DragonTigerDesktop = () => {
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.lion?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -541,9 +541,9 @@ const DragonTigerDesktop = () => {
                     style={{ height: "30px" }}
                   >
                     <div className="dtlTitle"> </div>
-                    <div className="dtlsubTitle">Dragon</div>
-                    <div className="dtlsubTitle">Tiger</div>
-                    <div className="dtlsubTitle">Lion</div>
+                    <div className="dtlsubTitle back">Dragon</div>
+                    <div className="dtlsubTitle back">Tiger</div>
+                    <div className="dtlsubTitle back">Lion</div>
                   </div>
                   {secondArr?.map((item: any, index: any) => (
                     <div
@@ -553,7 +553,7 @@ const DragonTigerDesktop = () => {
                     >
                       <div className="dtlTitle">
                         {item?.title}{" "}
-                        <div style={{ width: "45%", textAlign: "end" }}>
+                        {/* <div style={{ width: "45%", textAlign: "end" }}>
                           <span className="minmaxi">
                             <IoInformationCircle
                               color="#ffc742"
@@ -568,10 +568,10 @@ const DragonTigerDesktop = () => {
                               />
                             )}
                           </span>
-                        </div>
+                        </div> */}
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.dragon?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -613,7 +613,7 @@ const DragonTigerDesktop = () => {
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.tiger?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -656,7 +656,7 @@ const DragonTigerDesktop = () => {
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.lion?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>

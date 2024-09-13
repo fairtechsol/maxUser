@@ -410,11 +410,11 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               : ""}
           </div>
         </div>
-        <div className="baccarateMinMax">
+        {/* <div className="baccarateMinMax">
           <span className="f600">Min:</span>
           {odds?.[0]?.min} <span className="f600">Max:</span>
           {odds?.[0]?.max}
-        </div>
+        </div> */}
       </div>
     </div>
   );

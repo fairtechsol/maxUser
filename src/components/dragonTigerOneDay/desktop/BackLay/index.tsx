@@ -78,7 +78,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           style={{ height: "30px" }}
         >
           <div className="dtlTitle">
-            {isMobile ? (
+            {/* {isMobile ? (
               <>
                 <span style={{ fontWeight: "400" }}>
                   Min:{min} Max:{max}
@@ -99,7 +99,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                   />
                 </span>
               </div>
-            )}
+            )} */}
           </div>
           <div className="dtlsubTitle back-BackGround">Back</div>
           <div className="dtlsubTitle lay-BackGround">Lay</div>

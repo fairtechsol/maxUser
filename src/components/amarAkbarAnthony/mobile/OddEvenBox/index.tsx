@@ -36,7 +36,7 @@ const OddEven = ({ data, card, odds }: any) => {
       className="oddEvenContaine"
       style={{ background: "#EEEEEE", width: "32%" }}
     >
-         <div style={{ textAlign: "end" }}>
+         {/* <div style={{ textAlign: "end" }}>
             <span className="minmaxi">
               <IoInformationCircle
                 color="#ffc742"
@@ -49,7 +49,7 @@ const OddEven = ({ data, card, odds }: any) => {
                 setShow={() => setModelOpen(false)}
               />
             </span>
-          </div>
+          </div> */}
       {card ? (
         <>
           <div
