@@ -359,7 +359,7 @@ const DesktopGameDetail = () => {
                 <Col md={12}>
                   <SessionNormal
                     title={"Normal"}
-                    // type={"normal"}
+                    mtype={"session"}
                     data={matchDetails?.apiSession?.session}
                     detail={matchDetails}
                     manual={manualEntries ? manualEntries : []}
@@ -370,7 +370,7 @@ const DesktopGameDetail = () => {
                 <Col md={12}>
                   <SessionNormal
                     title={"overByover"}
-                    // type={"normal"}
+                    mtype={"overByover"}
                     data={matchDetails?.apiSession?.overByover}
                     detail={matchDetails}
                   />
@@ -380,7 +380,7 @@ const DesktopGameDetail = () => {
                 <Col md={12}>
                   <SessionNormal
                     title={"Ballbyball"}
-                    // type={"normal"}
+                    mtype={"ballByBall"}
                     data={matchDetails?.apiSession?.ballByBall}
                     detail={matchDetails}
                   />

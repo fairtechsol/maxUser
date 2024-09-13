@@ -356,7 +356,7 @@ const MobileGameDetail = () => {
                       <Col className="g-0" md={12}>
                         <MobileSessionNormal
                           title={"Normal"}
-                          // type={"normal"}
+                          mtype={"session"}
                           data={matchDetails?.apiSession?.session}
                           detail={matchDetails}
                           manual={manualEntries ? manualEntries : []}
@@ -368,7 +368,7 @@ const MobileGameDetail = () => {
                       <Col className="g-0" md={12}>
                         <MobileSessionNormal
                           title={"overByover"}
-                          // type={"normal"}
+                          mtype={"overByover"}
                           data={matchDetails?.apiSession?.overByover}
                           detail={matchDetails}
                         />
@@ -379,7 +379,7 @@ const MobileGameDetail = () => {
                       <Col className="g-0" md={12}>
                         <MobileSessionNormal
                           title={"Ballbyball"}
-                          // type={"normal"}
+                          mtype={"ballByBall"}
                           data={matchDetails?.apiSession?.ballByBall}
                           detail={matchDetails}
                         />
