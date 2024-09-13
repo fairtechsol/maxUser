@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { calculateMaxLoss, handleSize } from "../../../helpers";
 import { Modal } from "react-bootstrap";
 
-const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
+const MobileSessionNormal = ({ title, data, detail, manual,mtype }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [marketArr, setMarketArr] = useState(data?.section || []);
 
@@ -48,7 +48,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       eventType: detail?.matchType,
       matchId: detail?.id,
       percent: value,
-      matchBetType: "session",
+      matchBetType: mtype,
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
     };
