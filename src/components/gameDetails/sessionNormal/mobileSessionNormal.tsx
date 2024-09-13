@@ -29,7 +29,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
     item: any,
     tno: any
   ) => {
-    if (data?.status != "OPEN" || status != "live") {
+    if (status != "live") {
       return false;
     }
     if (odds === 0) {

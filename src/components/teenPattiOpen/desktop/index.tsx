@@ -208,15 +208,17 @@ console.log("detail",dragonTigerDetail)
                         className="teenPatti-table-item f12-b"
                         style={{ width: "50%" }}
                       >
-                        BACK(Min: {dragonTigerDetail?.players?.player1?.min}{" "}
-                        Max: {dragonTigerDetail?.players?.player1?.max})
+                        {/* BACK(Min: {dragonTigerDetail?.players?.player1?.min}{" "}
+                        Max: {dragonTigerDetail?.players?.player1?.max}) */}
+                        Odds
                       </div>
                       <div
                         className="teenPatti-table-item f12-b"
                         style={{ width: "50%" }}
                       >
-                        (Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min}{" "}
-                        Max: {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
+                        Pair Plus
+                        {/* (Min: {dragonTigerDetail?.pairsPlus?.pairPlus1?.min}{" "}
+                        Max: {dragonTigerDetail?.pairsPlus?.pairPlus1?.max}) */}
                       </div>
                     </div>
                   </div>

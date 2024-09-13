@@ -305,11 +305,14 @@ export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
         },
       };
       const resp = await axios.get(
-        `${Constants.thirdPartyCard}${ApiConstants.SCOREBOARD.match}/${requestData?.id}?gameName=${requestData?.type}`,
+        // `${Constants.thirdPartyCard}${ApiConstants.SCOREBOARD.match}/${requestData?.id}?gameName=${requestData?.type}`,
+        `${Constants.thirdParty}/cricketScore?eventId=${requestData?.id}`,
         config
       );
+
+      
       if (resp?.data) {
-        return resp?.data?.data?.data;
+        return resp?.data?.data;
       }
     } catch (error) {
       const err = error as AxiosError;

@@ -25,10 +25,11 @@ import SessionCricketCasino from "../sessionCricketCasino";
 import OtherMarket from "../otherMarket";
 import { Constants } from "../../../utils/constants";
 import ScoreBoard from "../../commonComponent/scoreBoard";
-import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
+// import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
 // import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Iframe from "../../iframe/iframe";
 import Tournament from "../tournament";
+import { Link } from "react-router-dom";
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -72,7 +73,9 @@ const DesktopGameDetail = () => {
         //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
         `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
       );
-      if (response) {
+      // {"success":false,"msg":"Not found"}
+      //console.log("response 11:", response);
+      if (response?.success !== false) {
         setLiveScoreBoardData(response?.data);
         setErrorCount(0);
       }
@@ -120,7 +123,9 @@ const DesktopGameDetail = () => {
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
-  const manualEntries = matchDetails?.manualSessionActive ? normalizedData?.filter((item: any) => item?.isManual):[];
+  const manualEntries = matchDetails?.manualSessionActive
+    ? normalizedData?.filter((item: any) => item?.isManual)
+    : [];
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -179,7 +184,7 @@ const DesktopGameDetail = () => {
       <Row>
         <Col md={8}>
           <Container className="p-0">
-            <Row>
+            <>
               <Col md={12}>
                 <BetTableHeader
                   customClass="mt-2 py-2"
@@ -202,7 +207,7 @@ const DesktopGameDetail = () => {
                   }}
                 ></div> */}
               </Col>
-              {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}
+              {liveScoreBoardData && <Iframe data={liveScoreBoardData} width="97%" />}
               {matchDetails?.matchOdd?.activeStatus === "live" &&
                 matchDetails?.matchOdd?.isActive && (
                   <Col md={12} style={{ marginTop: "10px" }}>
@@ -338,16 +343,17 @@ const DesktopGameDetail = () => {
                     />
                   </Col>
                 )}
-              {(matchDetails?.manualCompleteMatch?.activeStatus ==="live" && matchDetails?.manualCompleteMatch?.isActive) && (
-                <Col md={12}>
-                  <ManualMarket
-                    title={matchDetails?.manualCompleteMatch?.name}
-                    data={matchDetails?.manualCompleteMatch}
-                    detail={matchDetails}
-                    // data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
+              {matchDetails?.manualCompleteMatch?.activeStatus === "live" &&
+                matchDetails?.manualCompleteMatch?.isActive && (
+                  <Col md={12}>
+                    <ManualMarket
+                      title={matchDetails?.manualCompleteMatch?.name}
+                      data={matchDetails?.manualCompleteMatch}
+                      detail={matchDetails}
+                      // data={matchDetails?.matchOdd}
+                    />
+                  </Col>
+                )}
               {(matchDetails?.apiSession?.session?.section?.length > 0 ||
                 manualEntries?.length > 0) && (
                 <Col md={12}>
@@ -442,24 +448,26 @@ const DesktopGameDetail = () => {
                     }
                   )}
               </div>
-              {(matchDetails?.apiTideMatch?.activeStatus ==="live" && matchDetails?.apiTideMatch?.isActive) && (
-                <Col md={12}>
-                  <DynamicMarket
-                    title={matchDetails?.apiTideMatch?.name}
-                    data={matchDetails?.apiTideMatch}
-                    detail={matchDetails}
-                  />
-                </Col>
-              )}
-              {(matchDetails?.marketCompleteMatch?.activeStatus ==="live" && matchDetails?.marketCompleteMatch?.isActive) && (
-                <Col md={12}>
-                  <DynamicMarket
-                    title={matchDetails?.marketCompleteMatch?.name}
-                    data={matchDetails?.marketCompleteMatch}
-                    detail={matchDetails}
-                  />
-                </Col>
-              )}
+              {matchDetails?.apiTideMatch?.activeStatus === "live" &&
+                matchDetails?.apiTideMatch?.isActive && (
+                  <Col md={12}>
+                    <DynamicMarket
+                      title={matchDetails?.apiTideMatch?.name}
+                      data={matchDetails?.apiTideMatch}
+                      detail={matchDetails}
+                    />
+                  </Col>
+                )}
+              {matchDetails?.marketCompleteMatch?.activeStatus === "live" &&
+                matchDetails?.marketCompleteMatch?.isActive && (
+                  <Col md={12}>
+                    <DynamicMarket
+                      title={matchDetails?.marketCompleteMatch?.name}
+                      data={matchDetails?.marketCompleteMatch}
+                      detail={matchDetails}
+                    />
+                  </Col>
+                )}
               {/* {matchDetails?.quickBookmaker?.length > 0 &&
                 matchDetails?.quickBookmaker?.map(
                   (item: any, index: number) => (
@@ -660,7 +668,7 @@ const DesktopGameDetail = () => {
                   })}
                 </CommonTabs>
               </Col> */}
-            </Row>
+            </>
           </Container>
         </Col>
         <Col md={4} className="ps-0 sideBet-W">
@@ -689,7 +697,7 @@ const DesktopGameDetail = () => {
                     style={{ margin: "0 0 0 5px", color: "#ff0000" }}
                     className="fs-5 text-decoration-underline cursor-pointer blinking-text"
                   >
-                    Ball by Ball
+                     <Link className="text-danger" to={"/ballbyball"}> Ball By Ball</Link>
                   </h6>
                 </div>
               </Col>

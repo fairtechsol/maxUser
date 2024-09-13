@@ -11,7 +11,7 @@ const LiveStreamComponent = ({ channelId }: any) => {
         {showVideo && (
           <Container>
             <Row className="justify-content-md-center">
-              <Col md={12}>
+              <Col md={12} className="p-0">
                 <Ratio aspectRatio="16x9">
                   <iframe
                     src={`${ApiConstants.LIVESTREAM.GET_VIDEO}?chid=${channelId}`}

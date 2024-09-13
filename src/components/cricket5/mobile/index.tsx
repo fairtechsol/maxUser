@@ -16,6 +16,7 @@ import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
+import Iframe from "../../iframe/iframe";
 
 const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
@@ -91,9 +92,11 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                   backgroundColor: "#000",
                 }}
               >
-                {scoreBoardData?.data && (
-                  <ScoreBoard data={scoreBoardData?.data} />
-                )}{" "}
+                {scoreBoardData?.balls?.length>0 && (
+              <div style={{marginBottom:"2px"}}>
+                <Iframe data={scoreBoardData} />
+              </div>
+            )}
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Crick5Result data={dragonTigerDetail?.videoInfo} />}

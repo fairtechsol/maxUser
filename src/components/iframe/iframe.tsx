@@ -13,205 +13,161 @@ import "./style.scss";
 //   dayno: string;
 // }
 
-const Iframe = ({ data }: any) => {
+const Iframe = ({ data, width }: any) => {
   return (
     <>
       {!isMobile ? (
-        <div
-          className="iframe"
-          style={{ paddingLeft: "10px", backgroundColor: "#f4f4f4" }}
-        >
-          {/* Day Information */}
-          {/* <div className="row">
-        <div className="col-12" style={{ marginBottom: '10px', fontWeight: 'bold', fontSize: '18px' }}>
-          Day {data?.dayno}
-        </div>
-      </div> */}
-
-          <div
-            style={{
-              width: "65%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "left",
-            }}
-          >
+        <div className="scorecard" style={{ width: width }}>
+          {/* Team Details */}
+          <div className="col-12 col-md-6">
             {/* Team 1 Details */}
-            <div>
-              <p className=" row" style={{ fontSize: "12px" }}>
-                <span
-                  className="team-name col-3"
-                  style={{ fontWeight: "semibold" }}
-                >
-                  {data?.spnnation1}
+            <p className="team-1 row" style={{ fontSize: "12px" }}>
+              <span className="team-name col-3">{data?.spnnation1}</span>
+              <span className="score col-6 text-end">{data?.score1}</span>
+              {data?.spnrunrate1 && (
+                <span className="team-name col-3">
+                  <span>CRR {data?.spnrunrate1}</span>
                 </span>
-                <span className="score col-6 text-end">{data?.score1}</span>
-                {data?.spnrunrate1 && (
-                  <span className="col-3" style={{ fontStyle: "italic" }}>
-                    (CRR {data?.spnrunrate1})
-                  </span>
-                )}
-              </p>
-            </div>
+              )}
+            </p>
 
             {/* Team 2 Details */}
-            <div>
-              <p className=" row" style={{ fontSize: "12px" }}>
-                <span className=" col-3" style={{ fontWeight: "semibold" }}>
-                  {data?.spnnation2}
-                </span>
-                <span className="score col-6 text-end">{data?.score2}</span>
-
-                {data?.spnrunrate2 && (
-                  <span className="col-3" style={{ fontStyle: "italic" }}>
-                    (CRR {data?.spnrunrate2})
-                  </span>
-                )}
-              </p>
-            </div>
+            <p className="team-1 row mt-2" style={{ fontSize: "12px" }}>
+              <span className="team-name col-3">{data?.spnnation2}</span>
+              <span className="score col-6 text-end">{data?.score2}</span>
+              <span className="team-name col-3">
+                {data?.spnrunrate2 && <span>CRR {data?.spnrunrate2}</span>}
+              </span>
+            </p>
           </div>
 
-          <div style={{ width: "35%" }}>
-            {/* Match Message */}
-            <div>
-              {data?.spnmessage && (
-                <div
-                  style={{
-                    marginBottom: "10px",
-                    textAlign: "end",
-                    marginRight: "5px",
-                  }}
-                >
-                  {data?.dayno}|{data?.spnmessage}
-                </div>
-              )}
-            </div>
-
-            {/* Ball by Ball Status */}
+          {/* Match Message and Ball by Ball Status */}
+          <div className="col-12 col-md-6">
             <div className="row">
               <div className="col-12">
-                <div className="d-flex justify-content-center mb-3">
-                  {data?.balls?.map((ball, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        width: "30px",
-                        height: "30px",
-                        backgroundColor:
-                          ball === "ww" || ball === "wd" || ball === "Nb"
-                            ? "#ff0000"
-                            : ball === "4" || ball === "6"
-                            ? "#087f23"
-                            : "#08c",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "50%",
-                        margin: "0 5px",
-                        color: "#fff",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {ball}
-                    </div>
-                  ))}
+                {/* Match Message */}
+                {data?.spnmessage && (
+                  <div className="text-xl-end" style={{ fontSize: "16px" }}>
+                    {data?.dayno} | {data?.spnmessage}
+                  </div>
+                )}
+
+                {/* Ball by Ball Status */}
+                <div className="row">
+                  <div className="col-12">
+                    <p className="text-xl-end ball-by-ball mt-2 mb-0">
+                      {data?.balls?.map((ball: any, index: any) => {
+                        return ball == "" ? (
+                          ""
+                        ) : (
+                          <span
+                            key={index}
+                            className={`ball-runs ${
+                              ball === "4" || ball === "6" ? "four" : ""
+                            }`}
+                            style={{
+                              backgroundColor:
+                                ball === "ww"
+                                  ? "#ff0000"
+                                  : ball === "4"
+                                  ? "#087f23"
+                                  : ball === "6"
+                                  ? "#883997"
+                                  : "#08c",
+                              color: "#fff",
+                              borderRadius: "50%",
+                              display: "inline-block",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              width: "25px",
+                              height: "25px",
+                              margin: "0 5px",
+                              textAlign: "center",
+                              fontSize: "16px",
+                            }}
+                          >
+                            {ball}
+                          </span>
+                        );
+                      })}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className="iframe" style={{ paddingLeft: "10px", fontSize:"10px",width:"100%" }}>
-          
-          <div
-            style={{
-              width: "65%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "left",
-            }}
-          >
+        <div className="m-scorecard" style={{ width: width }}>
+          {/* Team Details */}
+          <div className="col-12 col-md-6">
             {/* Team 1 Details */}
-
-            <div>
-              <p className=" row" style={{ fontSize: "10px" }}>
-                <span
-                  className="team-name col-3"
-                  style={{ fontWeight: "semibold" }}
-                >
-                  {data?.spnnation1}
+            <p className="m-team-1 row" style={{ fontSize: "12px" }}>
+              <span className="team-name col-3">{data?.spnnation1}</span>
+              <span className="score col-6 text-end">{data?.score1}</span>
+              {data?.spnrunrate1 && (
+                <span className="team-name col-3">
+                  <span>CRR {data?.spnrunrate1}</span>
                 </span>
-                <span className="score col-6 text-end">{data?.score1}</span>
-                {data?.spnrunrate1 && (
-                  <span className="col-3" style={{ fontStyle: "italic" }}>
-                    (CRR {data?.spnrunrate1})
-                  </span>
-                )}
-              </p>
-            </div>
+              )}
+            </p>
 
             {/* Team 2 Details */}
-            <div>
-              <p className=" row" style={{ fontSize: "10px" }}>
-                <span className=" col-3" style={{ fontWeight: "semibold" }}>
-                  {data?.spnnation2}
-                </span>
-                <span className="score col-6 text-end">{data?.score2}</span>
-
-                {data?.spnrunrate2 && (
-                  <span className="col-3" style={{ fontStyle: "italic" }}>
-                    (CRR {data?.spnrunrate2})
-                  </span>
-                )}
-              </p>
-            </div>
+            <p className="m-team-1 row mt-2" style={{ fontSize: "12px" }}>
+              <span className="team-name col-3">{data?.spnnation2}</span>
+              <span className="score col-6 text-end">{data?.score2}</span>
+              <span className="team-name col-3">
+                {data?.spnrunrate2 && <span>CRR {data?.spnrunrate2}</span>}
+              </span>
+            </p>
           </div>
-          <div style={{ width: "35%" }}>
-            {/* Match Message */}
-            <div>
-              {data?.spnmessage && (
-                <div
-                  style={{
-                    marginBottom: "10px",
-                    textAlign: "end",
-                    marginRight: "5px",
-                     fontSize:"10px"
-                  }}
-                >
-                  {data?.dayno}|{data?.spnmessage}
-                </div>
-              )}
-            </div>
 
-            {/* Ball by Ball Status */}
+          {/* Match Message and Ball by Ball Status */}
+          <div className="col-12 col-md-6">
             <div className="row">
               <div className="col-12">
-                <div className="d-flex justify-content-center mb-3">
-                  {data?.balls?.map((ball:any, index:any) => (
-                    <div
-                      key={index}
-                      style={{
-                        width: "80px",
-                        height: "14px",
-                        backgroundColor:
-                          ball === "ww" 
-                            ? "#ff0000"
-                            : ball === "4" || ball === "6"
-                            ? "#087f23"
-                            : "#08c",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "50%",
-                        margin: "0 5px",
-                        color: "#fff",
-                        fontWeight: "bold",
-                        fontSize:"10px"
-                      }}
-                    >
-                      {ball}
-                    </div>
-                  ))}
+                {/* Match Message */}
+                {data?.spnmessage && (
+                  <div
+                    style={{
+                      fontSize: "12px",
+                    }}
+                  >
+                    {data?.dayno} | {data?.spnmessage}
+                  </div>
+                )}
+
+                {/* Ball by Ball Status */}
+                <div className="row">
+                  <div className="col-12">
+                    <p className="text-xl-end ball-by-ball mt-2 mb-0">
+                      {data?.balls?.map((ball: any, index: any) => {
+                        return ball == "" ? (
+                          ""
+                        ) : (
+                          <span
+                            key={index}
+                            className={`ball-runs ${
+                              ball === "4" || ball === "6" ? "four" : ""
+                            }`}
+                            style={{
+                              backgroundColor:
+                                ball === "ww"
+                                  ? "#ff0000"
+                                  : ball === "4"
+                                  ? "#087f23"
+                                  : ball === "6"
+                                  ? "#883997"
+                                  : "#08c",
+                              fontSize: "12px",
+                            }}
+                          >
+                            {ball}
+                          </span>
+                        );
+                      })}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

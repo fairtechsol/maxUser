@@ -113,7 +113,7 @@ const TeenPattiDesktop = () => {
       dispatch(selectedBetAction(""));
     }
   }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
-   
+
   return (
     <>
       <Row>
@@ -155,10 +155,9 @@ const TeenPattiDesktop = () => {
                   width: "100%",
                   height: "90%",
                   backgroundColor: "#000",
-                  position: "relative", 
+                  position: "relative",
                 }}
               >
-              
                 {/* <img
                  className="elem"
                   src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${0}.png`}
@@ -172,7 +171,6 @@ const TeenPattiDesktop = () => {
                   alt="Centered Image"
                 /> */}
 
-                
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.lt}
                   id={videoFrameId}
@@ -417,7 +415,12 @@ const TeenPattiDesktop = () => {
                             ? "suspended"
                             : "teenPatti-table-item"
                         }
-                        onClick={() => handleBet(item)}
+                        onClick={() =>
+                          runs?.[0]?.gstatus === "SUSPENDED" &&
+                          runs?.[0]?.b === 0
+                            ? ""
+                            : handleBet(item)
+                        }
                       >
                         <span className="f12-b">{item.b}</span>
                         <span className="f10-b">{item.bs}</span>

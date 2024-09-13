@@ -55,13 +55,6 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                 height={isMobile ? "250px" : "380px"}
                 // height="100%"
                 src={id}
-                // transform={}
-                // style={isMobile ?
-                //   {transform :"scaleX(1.20)"} :{}
-                // }
-                // title="YouTube video player"
-                // frameborder="0"
-                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy={"strict-origin-when-cross-origin"}
                 allowFullScreen
               ></iframe>
