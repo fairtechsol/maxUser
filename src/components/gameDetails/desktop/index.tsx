@@ -28,6 +28,7 @@ import ScoreBoard from "../../commonComponent/scoreBoard";
 // import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
 // import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Iframe from "../../iframe/iframe";
+import Tournament from "../tournament";
 import { Link } from "react-router-dom";
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -235,6 +236,26 @@ const DesktopGameDetail = () => {
                     {item?.activeStatus === "live" && item?.isActive && (
                       <Col md={12} style={{ marginTop: "10px" }}>
                         <OtherMarket
+                          title={item?.name}
+                          box={
+                            item?.runners?.[0]?.ex?.availableToBack?.length > 2
+                              ? 6
+                              : 2
+                          }
+                          data={item}
+                          detail={matchDetails}
+                          // data={matchDetails?.matchOdd}
+                        />
+                      </Col>
+                    )}
+                  </div>
+                ))}
+                 {matchDetails?.tournament?.length > 0 &&
+                matchDetails?.tournament?.map((item: any, index: number) => (
+                  <div key={index}>
+                    {item?.activeStatus === "live" && item?.isActive && (
+                      <Col md={12} style={{ marginTop: "10px" }}>
+                        <Tournament
                           title={item?.name}
                           box={
                             item?.runners?.[0]?.ex?.availableToBack?.length > 2

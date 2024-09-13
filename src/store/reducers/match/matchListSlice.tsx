@@ -120,6 +120,7 @@ const matchListSlice = createSlice({
           overUnder,
           setWinner,
           completeManual,
+          tournament
         } = action.payload;
 
         // let removedsessionBettings =
@@ -214,6 +215,7 @@ const matchListSlice = createSlice({
           bookmaker: bookmaker,
           bookmaker2: bookmaker2,
           other: updatedOther,
+          tournament:tournament,
           manualTiedMatch: manualTideMatch,
           marketCompleteMatch: marketCompleteMatch,
           marketCompleteMatch1: marketCompleteMatch1,
