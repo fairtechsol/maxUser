@@ -46,7 +46,7 @@ const SessionNormal = ({ title, data, detail, manual ,mtype}: any) => {
       eventType: detail?.matchType,
       matchId: detail?.id,
       percent: value,
-      matchBetType: mtype,
+      matchBetType: "session",
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
     };
