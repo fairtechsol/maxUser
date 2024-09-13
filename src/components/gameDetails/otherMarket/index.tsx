@@ -4,7 +4,7 @@ import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { AppDispatch } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { formatNumber } from "../../../helpers";
+import { dummyArray, formatNumber } from "../../../helpers";
 import BetBox from "../betBox";
 
 const OtherMarket = ({ title, box, data, detail }) => {
@@ -134,7 +134,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             )}
            {box === 6 ? (
               <>
-                {data?.runners?.[0]?.ex?.availableToBack?.map((item: any) => {
+                {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
@@ -145,7 +145,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     />
                   );
                 })}
-                {data?.runners?.[0]?.ex?.availableToLay?.map((item: any) => {
+                {(data?.runners?.[0]?.ex?.availableToLay?.length>0?data?.runners?.[0]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
@@ -220,7 +220,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             )}
             {box === 6 ? (
               <>
-                {data?.runners?.[1]?.ex?.availableToBack?.map((item: any) => {
+                {(data?.runners?.[1]?.ex?.availableToBack?.length>0?data?.runners?.[1]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
@@ -231,7 +231,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     />
                   );
                 })}
-                {data?.runners?.[1]?.ex?.availableToLay?.map((item: any) => {
+                {(data?.runners?.[1]?.ex?.availableToLay?.length>0?data?.runners?.[1]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
@@ -307,7 +307,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
               )}
                {box === 6 ? (
               <>
-                {data?.runners?.[2]?.ex?.availableToBack?.map((item: any) => {
+                {(data?.runners?.[2]?.ex?.availableToBack?.length>0?data?.runners?.[2]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
@@ -318,7 +318,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     />
                   );
                 })}
-                {data?.runners?.[2]?.ex?.availableToLay?.map((item: any) => {
+                {(data?.runners?.[2]?.ex?.availableToLay?.length>0?data?.runners?.[2]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}

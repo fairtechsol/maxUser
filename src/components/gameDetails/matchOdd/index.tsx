@@ -4,7 +4,7 @@ import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { formatNumber, handleSize } from "../../../helpers";
+import { dummyArray, formatNumber, handleSize } from "../../../helpers";
 import BetBox from "../betBox";
 
 const MatchOdd = ({ title, data, detail }) => {
@@ -123,12 +123,12 @@ const MatchOdd = ({ title, data, detail }) => {
                   </span>
                 </div>
               )}
-              {data?.runners?.[0]?.ex?.availableToBack?.map((item:any)=>{
+              {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToBack:dummyArray)?.map((item:any)=>{
                 return(
                   <BetBox data={item} type={"back"} detail={detail} runner={data?.runners?.[0]} handlePlaceBet={handlePlaceBet}/>
                 )
               })}
-               {data?.runners?.[0]?.ex?.availableToLay?.map((item:any)=>{
+               {(data?.runners?.[0]?.ex?.availableToLay?.length>0?data?.runners?.[0]?.ex?.availableToLay:dummyArray)?.map((item:any)=>{
                return(
                 <BetBox data={item} type={"lay"} detail={detail} runner={data?.runners?.[0]} handlePlaceBet={handlePlaceBet}/>
               )
@@ -182,12 +182,12 @@ const MatchOdd = ({ title, data, detail }) => {
                   </span>
                 </div>
               )}
-              {data?.runners?.[1]?.ex?.availableToBack?.map((item:any)=>{
+              {(data?.runners?.[1]?.ex?.availableToBack?.length>0?data?.runners?.[1]?.ex?.availableToBack:dummyArray)?.map((item:any)=>{
                 return(
                   <BetBox data={item} type={"back"} detail={detail} runner={data?.runners?.[1]} handlePlaceBet={handlePlaceBet}/>
                 )
               })}
-               {data?.runners?.[1]?.ex?.availableToLay?.map((item:any)=>{
+               {(data?.runners?.[1]?.ex?.availableToLay?.length>0?data?.runners?.[1]?.ex?.availableToLay:dummyArray)?.map((item:any)=>{
                return(
                 <BetBox data={item} type={"lay"} detail={detail} runner={data?.runners?.[1]} handlePlaceBet={handlePlaceBet}/>
               )
@@ -242,12 +242,12 @@ const MatchOdd = ({ title, data, detail }) => {
                     </span>
                   </div>
                 )}
-                  {data?.runners?.[2]?.ex?.availableToBack?.map((item:any)=>{
+                  {(data?.runners?.[2]?.ex?.availableToBack?.length>0?data?.runners?.[2]?.ex?.availableToBack:dummyArray)?.map((item:any)=>{
                 return(
                   <BetBox data={item} type={"back"} detail={detail} runner={data?.runners?.[2]} handlePlaceBet={handlePlaceBet}/>
                 )
               })}
-               {data?.runners?.[2]?.ex?.availableToLay?.map((item:any)=>{
+               {(data?.runners?.[2]?.ex?.availableToLay?.length>0?data?.runners?.[2]?.ex?.availableToLay:dummyArray)?.map((item:any)=>{
                return(
                 <BetBox data={item} type={"lay"} detail={detail} runner={data?.runners?.[2]} handlePlaceBet={handlePlaceBet}/>
               )

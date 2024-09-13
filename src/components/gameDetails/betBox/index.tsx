@@ -7,14 +7,14 @@ const BetBox = ({ data, type,handlePlaceBet,detail,runner }: any) => {
 
 
   useEffect(() => {
-    if (parseFloat(data.price) != parseFloat(tempRate)) {
+    if (parseFloat(data?.price) != parseFloat(tempRate)) {
       setTimeout(() => {
         setIsYellow(false);
       }, 700);
       setIsYellow(true);
-      setTempRate(data.price);
+      setTempRate(data?.price);
     }
-  }, [data.price]);
+  }, [data?.price]);
 
 
   const handleBackground = (index: any) => {
@@ -53,10 +53,10 @@ const BetBox = ({ data, type,handlePlaceBet,detail,runner }: any) => {
         }
     >
       <span className={`rateFont`}>
-        {handlePrice(data.price)}
+        {handlePrice(data?.price)}
       </span>
       <span className={`sizeFont matchOddRate2Box`}>
-        {handleSize(data.size)}
+        {handleSize(data?.size)}
       </span>
     </div>
   );

@@ -62,3 +62,17 @@ export const formatNumber = (num: any) => {
   }
   return num?.toString();
 };
+ export const dummyArray=[
+   {
+     price:0,
+     size:0
+   },
+   {
+     price:0,
+     size:0
+   },
+   {
+     price:0,
+     size:0
+   }
+ ]
