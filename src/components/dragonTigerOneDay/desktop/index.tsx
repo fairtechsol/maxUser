@@ -101,16 +101,16 @@ const DragonTigerDesktop = () => {
                   onClick={() => setShow(true)}
                 >
                   {" "}
-                  RULES
+                  Rules
                 </span>
               </div>
-              <span>
+              <div style={{fontSize:"12px",paddingTop:"6px"}}>
                 {dragonTigerDetail?.videoInfo
                   ? `Round ID:  ${handleRoundId(
                       dragonTigerDetail?.videoInfo?.mid
                     )}`
                   : ""}
-              </span>
+              </div>
             </div>
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
