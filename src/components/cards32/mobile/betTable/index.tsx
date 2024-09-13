@@ -97,7 +97,6 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
           </span>
         </div>
         <div
-          className={odds?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""}
           style={{
             width: "50%",
             display: "flex",
@@ -105,7 +104,12 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
           }}
         >
           <div
-            className="card32-table-item back"
+          className={
+            odds?.[0]?.gstatus === "SUSPENDED" ||
+            odds?.[0]?.gstatus === "CLOSED"
+              ? "suspended card32-table-item back"
+              : "card32-table-item back"
+          }
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED"
@@ -117,7 +121,12 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
             <span className="f10-b">{odds?.[0]?.bs1}</span>
           </div>
           <div
-            className="card32-table-item lay"
+              className={
+                odds?.[0]?.gstatus === "SUSPENDED" ||
+                odds?.[0]?.gstatus === "CLOSED"
+                  ? "suspended card32-table-item lay"
+                  : "card32-table-item lay"
+              }
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED"
@@ -169,7 +178,6 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
           </span>
         </div>
         <div
-          className={odds?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""}
           style={{
             width: "50%",
             display: "flex",
@@ -177,7 +185,12 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
           }}
         >
           <div
-            className="card32-table-item back"
+           className={
+            odds?.[1]?.gstatus === "SUSPENDED" ||
+            odds?.[1]?.gstatus === "CLOSED"
+              ? "suspended card32-table-item back"
+              : "card32-table-item back"
+          }
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED"
@@ -189,7 +202,12 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
             <span className="f10-b">{odds?.[1]?.bs1}</span>
           </div>
           <div
-            className="card32-table-item lay"
+             className={
+              odds?.[1]?.gstatus === "SUSPENDED" ||
+              odds?.[1]?.gstatus === "CLOSED"
+                ? "suspended card32-table-item lay"
+                : "card32-table-item lay"
+            }
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED"
