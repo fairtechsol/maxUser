@@ -63,8 +63,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           paddingLeft: "4px",
         }}
       >
-        <span>Min: {min}</span>
-        <span>Max: {max}</span>
+        {/* <span>Min: {min}</span>
+        <span>Max: {max}</span> */}
       </div>
 
       {lowHigh &&

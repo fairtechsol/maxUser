@@ -101,14 +101,14 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitle" style={{ fontWeight: "400" }}>
-            Min:{" "}
+            {/* Min:{" "}
             {title1 === "even"
               ? dragonEvenOdd?.[0]?.min
               : dragonRedBlack?.[0]?.min}{" "}
             Max:{" "}
             {title1 === "even"
               ? dragonEvenOdd?.[0]?.max
-              : dragonRedBlack?.[0]?.max}
+              : dragonRedBlack?.[0]?.max} */}
           </div>
           <div className="dtlsubTitle back-BackGround">
             <span style={{ fontSize: "14px" }}>

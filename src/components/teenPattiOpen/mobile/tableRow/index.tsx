@@ -1,16 +1,33 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
+import { HandleCards2 } from "../../../cardsComponent2";
 
-const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
+const TeenPattiTableRow = ({
+  player,
+  pairPlus,
+  handleBet,
+  indx,
+  cardsA,
+}: any) => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   return (
     <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
-      <div
-        style={{ width: "40%", padding: "10px", border: "0.1px solid #fff" }}
+      <div className="ps-2 py-2"
+        style={{ width: "40%",border: "0.1px solid #fff",display: "flex",
+          alignItems: "start",flexDirection: "column",minHeight: "46px"
+          }}
       >
         <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
           {player.nation}
+        </span>
+        <span className="d-flex row ps-2 gap-1">
+        <HandleCards2 card={cardsA[indx] !== "1" ? cardsA[indx] : ""} />
+
+        <HandleCards2 card={cardsA[9 + indx] !== "1" ? cardsA[indx + 9] : ""} />
+        <HandleCards2
+          card={cardsA[18 + indx] !== "1" ? cardsA[indx + 18] : ""}
+        />
         </span>
       </div>
       <div
@@ -22,7 +39,11 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
         }}
       >
         <div
-          className={player.gstatus === "0" ? "teenPatti-table-item suspended" : "teenPatti-table-item"}
+          className={
+            player.gstatus === "0"
+              ? "teenPatti-table-item suspended"
+              : "teenPatti-table-item"
+          }
           style={{ width: "50%" }}
           onClick={() => (player.gstatus === "0" ? null : handleBet(player))}
         >
@@ -45,7 +66,7 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
                   : ""
                 : ""
             }`}
-            style={{zIndex:"100"}}
+            style={{ zIndex: "100" }}
           >
             {" "}
             {dragonTigerDetail?.profitLoss
@@ -60,7 +81,11 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
           </span>
         </div>
         <div
-         className={player.gstatus === "0" ? "teenPatti-table-item suspended" : "teenPatti-table-item"}
+          className={
+            player.gstatus === "0"
+              ? "teenPatti-table-item suspended"
+              : "teenPatti-table-item"
+          }
           style={{ width: "50%" }}
           onClick={() =>
             pairPlus.gstatus === "0" ? null : handleBet(pairPlus)
@@ -85,7 +110,7 @@ const TeenPattiTableRow = ({ player, pairPlus, handleBet }: any) => {
                   : ""
                 : ""
             }`}
-            style={{zIndex:"100"}}
+            style={{ zIndex: "100" }}
           >
             {" "}
             {dragonTigerDetail?.profitLoss

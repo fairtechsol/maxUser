@@ -37,12 +37,12 @@ const CardBox = ({ cardData, data }: any) => {
         <div>
           <CommonCardImg cardData={cardData} handleBet={handleBet} data={data}/>
         </div>
-        <div style={{ textAlign: "end" }}>
+        {/* <div style={{ textAlign: "end" }}>
         <span style={{ fontWeight: "bolder" }}>Min:</span>
         <span>{min}</span>
         <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
         <span>{max}</span>
-      </div>
+      </div> */}
       </div>
     </>
   );

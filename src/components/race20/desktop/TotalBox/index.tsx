@@ -121,13 +121,13 @@ const TotalsBox = ({ odds, data }: any) => {
             </span>
           </div>
         </div>
-
+{/* 
         <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
           <span style={{ fontWeight: "bolder" }}>Min:</span>
           <span>{odds?.[0]?.min}</span>
           <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
           <span>{odds?.[0]?.max}</span>
-        </div>
+        </div> */}
 
         <div className="total-mainRateBox">
           <div style={{ width: "30%" }}>
@@ -208,12 +208,12 @@ const TotalsBox = ({ odds, data }: any) => {
             </span>
           </div>
         </div>
-        <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
+        {/* <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
           <span style={{ fontWeight: "bolder" }}>Min:</span>
           <span>{odds?.[1]?.min}</span>
           <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
           <span>{odds?.[1]?.max}</span>
-        </div>
+        </div> */}
       </div>
     </>
   );

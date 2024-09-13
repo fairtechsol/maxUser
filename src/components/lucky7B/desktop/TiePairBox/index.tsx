@@ -71,12 +71,12 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         />
        
       </div>
-      <div style={{ textAlign: "end",width:"100%" }}>
+      {/* <div style={{ textAlign: "end",width:"100%" }}>
         <span style={{ fontWeight: "bolder" }}>Min:</span>
         <span>{min}</span>
         <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
         <span>{max}</span>
-      </div>
+      </div> */}
     </div>
   );
 };

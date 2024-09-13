@@ -89,7 +89,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         >
           <div className="dtlTitlee">
             {" "}
-            <div style={{ width: "20%", textAlign: "start" }}>
+            {/* <div style={{ width: "20%", textAlign: "start" }}>
               <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
@@ -102,7 +102,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
                   setShow={() => setModelOpen(false)}
                 />
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="dtlsubTitle" style={{borderLeft:"0.1px solid #c7c8ca",marginRight:"0.1px"}}>
             <GiSpades color="#000000" />

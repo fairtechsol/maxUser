@@ -92,6 +92,28 @@ const TeenPattiMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+  const extractCardAndPlayerInfo = (cardsString: any) => {
+    let cardsPart = cardsString;
+    let playersPart = "";
+
+    if (cardsString?.includes("#")) {
+      [cardsPart, playersPart] = cardsString.split("#");
+    }
+
+    const cardsArray = cardsPart?.split(",");
+
+    const playersArray = playersPart
+      ? playersPart?.match(/\d+/g)?.map(Number)
+      : [];
+
+    return {
+      cardsArray,
+      playersArray,
+    };
+  };
+  const { cardsArray: cardsArray1, playersArray: playersArray1 } =
+    extractCardAndPlayerInfo(dragonTigerDetail?.videoInfo?.cards);
+
 
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenOpen}`);
@@ -152,7 +174,6 @@ const TeenPattiMobile = () => {
                           textAlign: "left",
                           display: "flex",
                         }}
-                        className=""
                       >
                         <div
                           className="teen-back-m"
@@ -164,21 +185,16 @@ const TeenPattiMobile = () => {
                             flexDirection:"column"
                           }}
                         >
-                          
-                          <span>BACK</span>
-                          <span className="f5-b" style={{fontSize:"10px"}}>
-                            ( Min: {dragonTigerDetail?.players?.player1?.min}{" "}
-                            Max: {dragonTigerDetail?.players?.player1?.max})
+                          <span className="f5-b title-12" >
+                            Odds
                           </span>
                         </div>
                         <div className="teen-back-m" style={{
                           width:"50%",
                           border: "0.5px solid #dee2e6",
                         }}>
-                          <span className="f5-b" style={{padding:"2px",marginTop:"20px",fontSize:"10px"}}>
-                            ( Min:{" "}
-                            {dragonTigerDetail?.pairsPlus?.pairPlus1?.min} Max:{" "}
-                            {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
+                          <span className="f5-b title-12" >
+                           Pair Plus
                           </span>
                         </div>
                       </div>
@@ -187,10 +203,13 @@ const TeenPattiMobile = () => {
                     {players &&
                       Object?.keys(players)?.map((key, index) => (
                         <TeenPattiTableRow
-                          key={index}
+                        key={key}
+                        indx={index}
                           player={players[key]}
                           pairPlus={pairsPlus[`pairPlus${index + 1}`]}
                           handleBet={handleBet}
+                          cardsA={cardsArray1}
+                        playersA={playersArray1}
                         />
                       ))}
 

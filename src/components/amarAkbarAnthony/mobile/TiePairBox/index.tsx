@@ -88,7 +88,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           </div>
         </div> */}
 
-        <div
+        {/* <div
           style={{
             textAlign: "start",
             width: "100%",
@@ -102,7 +102,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           <span>{min}</span>
           <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
           <span>{max}</span>
-        </div>
+        </div> */}
 
         <PlayerButton
           value1={lowHigh?.[0]?.b1}
