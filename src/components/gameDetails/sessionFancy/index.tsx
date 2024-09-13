@@ -38,9 +38,9 @@ const SessionFancy = ({ title, data, detail }) => {
       percent: value,
       mid: data?.mid?.toString(),
       betPlaceIndex: tno,
-      matchBetType: "session",
+      matchBetType: "fancy1",
     };
-    console.log(item, "first", team);
+    // console.log(item, "first", team);
     dispatch(
       selectedBetAction({
         team,

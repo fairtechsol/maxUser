@@ -38,7 +38,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
       percent: value,
       mid: data?.mid?.toString(),
       betPlaceIndex: tno,
-      matchBetType: "session",
+      matchBetType: "fancy1",
     };
     dispatch(
       selectedBetAction({
