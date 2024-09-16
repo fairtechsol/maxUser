@@ -67,11 +67,11 @@ const Home = () => {
     try {
       if (event?.gameType === matchType) {
         if (["cricket", "football", "tennis"].includes(matchType)) {
-          if (event?.betType === "quickbookmaker1") {
+          // if (event?.betType === "quickbookmaker1") {
             setTimeout(() => {
               dispatch(getMatchList({ matchType: matchType }));
             }, 1000);
-          }
+          // }
         } else if (["horseRacing", "greyHound"].includes(matchType)) {
           setTimeout(() => {
             dispatch(getHorseRacingCountryWiseList(matchType));
