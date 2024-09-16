@@ -93,17 +93,17 @@ const DragonTigerDesktop = () => {
                 </span>
                 <span
                   style={{
-                    fontSize: "14px",
+                    fontSize: ".875em",
                     textDecoration: "underline",
                     cursor: "pointer",
                   }}
                   onClick={() => setShow(true)}
                 >
                   {" "}
-                  RULES
+                  Rules
                 </span>
               </div>
-              <span>
+              <span style={{fontSize:"12px",paddingTop:"6px"}}>
                 {dragonTigerDetail?.videoInfo
                   ? `Round ID:  ${handleRoundId(
                       dragonTigerDetail?.videoInfo?.mid

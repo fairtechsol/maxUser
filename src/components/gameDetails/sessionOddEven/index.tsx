@@ -37,7 +37,7 @@ const SessionOddEven = ({ title, data, detail }) => {
       eventType: detail?.matchType,
       matchId: detail?.id,
       percent: value,
-      matchBetType: "oddEven",
+      matchBetType: "session",
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
       teamName: teamName,
