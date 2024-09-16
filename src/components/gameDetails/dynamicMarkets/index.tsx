@@ -130,7 +130,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
             )}
-            {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
+            {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
               return (
                 <BetBox
                   data={item}

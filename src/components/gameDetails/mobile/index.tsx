@@ -236,7 +236,10 @@ const MobileGameDetail = () => {
                         <Col className="g-0" md={12}>
                           <Bookmaker
                             title={matchDetails?.bookmaker?.name}
-                            box={6}
+                            box={matchDetails?.bookmaker?.runners?.[0]?.ex?.availableToBack
+                              ?.length > 2
+                              ? 6
+                              : 2}
                             data={matchDetails?.bookmaker}
                             detail={matchDetails}
                             // data={matchDetails?.matchOdd}
