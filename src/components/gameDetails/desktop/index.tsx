@@ -223,7 +223,9 @@ const DesktopGameDetail = () => {
                   <Col md={12} style={{ marginTop: "10px" }}>
                     <Bookmaker
                       title={matchDetails?.bookmaker?.name}
-                      box={6}
+                      box={matchDetails?.bookmaker?.runners?.[0]?.ex?.availableToBack?.length > 2
+                        ? 6
+                        : 2}
                       data={matchDetails?.bookmaker}
                       detail={matchDetails}
                       // data={matchDetails?.matchOdd}
@@ -253,7 +255,7 @@ const DesktopGameDetail = () => {
                  {matchDetails?.tournament?.length > 0 &&
                 matchDetails?.tournament?.map((item: any, index: number) => (
                   <div key={index}>
-                    {item?.activeStatus === "live" && item?.isActive && (
+                    {/* {item?.activeStatus === "live" && item?.isActive && ( */}
                       <Col md={12} style={{ marginTop: "10px" }}>
                         <Tournament
                           title={item?.name}
@@ -267,7 +269,7 @@ const DesktopGameDetail = () => {
                           // data={matchDetails?.matchOdd}
                         />
                       </Col>
-                    )}
+                    {/* // )} */}
                   </div>
                 ))}
               {matchDetails?.bookmaker2?.activeStatus === "live" &&
