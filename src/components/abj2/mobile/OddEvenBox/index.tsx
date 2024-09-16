@@ -45,7 +45,7 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"40%"}
                 lock={odds?.[0]?.gstatus}
@@ -60,7 +60,7 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"40%"}
                 lock={odds?.[1]?.gstatus}
@@ -86,7 +86,7 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"20%"}
                 lock={odds?.[1]?.gstatus}
@@ -101,7 +101,7 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"20%"}
                 lock={odds?.[0]?.gstatus}
@@ -116,7 +116,7 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"20%"}
                 lock={odds?.[2]?.gstatus}
@@ -131,7 +131,7 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"20%"}
                 lock={odds?.[3]?.gstatus}
