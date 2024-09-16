@@ -114,6 +114,25 @@ const PlacedBet = () => {
         mid: selectedBet?.team?.mid,
         selectionId: selectedBet?.team?.selectionId,
       };
+      
+      let payloadForTournament: any = {
+        betId: selectedBet?.team?.betId,
+        bettingType: selectedBet?.team?.type.toUpperCase(),
+        browserDetail: browserInfo?.userAgent,
+        matchId: selectedBet?.team?.matchId,
+        ipAddress:
+          ipAddress === "Not found" || !ipAddress ? "192.168.1.100" : ipAddress,
+        odd: matchOddRate,
+        stake: selectedBet?.team?.stake,
+        matchBetType: selectedBet?.team?.matchBetType,
+        betOnTeam: selectedBet?.team?.betOnTeam,
+        placeIndex: selectedBet?.team?.placeIndex,
+        bettingName: selectedBet?.data?.name,
+        gType: selectedBet?.team?.eventType,
+        mid: selectedBet?.team?.mid,
+        selectionId: selectedBet?.team?.selectionId,
+        runnerId: selectedBet?.team?.runnerId,
+      };
       let payloadForRace: any = {
         betId: selectedBet?.team?.betId,
         bettingType: selectedBet?.team?.type.toUpperCase(),
@@ -147,7 +166,7 @@ const PlacedBet = () => {
               })
             );
           }, getProfile?.delayTime * 1000);
-        } else {
+        }else {
           setTimeout(() => {
             dispatch(
               placeBet({
@@ -167,7 +186,17 @@ const PlacedBet = () => {
             );
           }, getProfile?.delayTime * 1000);
         }
-      } else {
+      }else if(selectedBet?.team?.matchBetType === "tournament"){
+        setMatchOddLoading(true);
+        setTimeout(() => {
+          dispatch(
+            placeBet({
+              url: ApiConstants.BET.PLACEBETTOURNAMENT,
+              data: JSON.stringify(payloadForTournament),
+            })
+          );
+        }, getProfile?.delayTime * 1000);
+      }  else {
         dispatch(
           placeBet({
             url:

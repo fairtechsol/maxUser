@@ -135,7 +135,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 <BetBox
                   data={item}
                   type={"back"}
-                  detail={detail}
+                  detail={"Yes"}
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -146,7 +146,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 <BetBox
                   data={item}
                   type={"lay"}
-                  detail={detail}
+                  detail={"Yes"}
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -209,7 +209,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 <BetBox
                   data={item}
                   type={"back"}
-                  detail={detail}
+                  detail={"No"}
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -220,7 +220,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 <BetBox
                   data={item}
                   type={"lay"}
-                  detail={detail}
+                  detail={"No"}
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />
