@@ -158,7 +158,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"back"}
-                      detail={detail}
+                      detail={detail?.teamA}
                       runner={data?.runners?.[0]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -169,7 +169,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"lay"}
-                      detail={detail}
+                      detail={detail?.teamA}
                       runner={data?.runners?.[0]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -181,7 +181,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[0]?.ex?.availableToBack?.[0]}
                   type={"back"}
-                  detail={detail}
+                  detail={detail?.teamA}
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -189,7 +189,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[0]?.ex?.availableToLay?.[0]}
                   type={"lay"}
-                  detail={detail}
+                  detail={detail?.teamA}
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -264,7 +264,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"back"}
-                      detail={detail}
+                      detail={detail?.teamB}
                       runner={data?.runners?.[1]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -275,7 +275,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"lay"}
-                      detail={detail}
+                      detail={detail?.teamB}
                       runner={data?.runners?.[1]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -287,7 +287,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[1]?.ex?.availableToBack?.[0]}
                   type={"back"}
-                  detail={detail}
+                  detail={detail?.teamB}
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -295,7 +295,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[1]?.ex?.availableToLay?.[0]}
                   type={"lay"}
-                  detail={detail}
+                  detail={detail?.teamB}
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -371,7 +371,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"back"}
-                      detail={detail}
+                      detail={detail?.teamC}
                       runner={data?.runners?.[2]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -382,7 +382,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"lay"}
-                      detail={detail}
+                      detail={detail?.teamC}
                       runner={data?.runners?.[2]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -394,7 +394,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[2]?.ex?.availableToBack?.[0]}
                   type={"back"}
-                  detail={detail}
+                  detail={detail?.teamC}
                   runner={data?.runners?.[2]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -402,7 +402,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[2]?.ex?.availableToLay?.[0]}
                   type={"lay"}
-                  detail={detail}
+                  detail={detail?.teamC}
                   runner={data?.runners?.[2]}
                   handlePlaceBet={handlePlaceBet}
                 />

@@ -125,12 +125,12 @@ const MatchOdd = ({ title, data, detail }) => {
               )}
               {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToBack:dummyArray)?.map((item:any)=>{
                 return(
-                  <BetBox data={item} type={"back"} detail={detail} runner={data?.runners?.[0]} handlePlaceBet={handlePlaceBet}/>
+                  <BetBox data={item} type={"back"} detail={detail?.teamA} runner={data?.runners?.[0]} handlePlaceBet={handlePlaceBet}/>
                 )
               })}
                {(data?.runners?.[0]?.ex?.availableToLay?.length>0?data?.runners?.[0]?.ex?.availableToLay:dummyArray)?.map((item:any)=>{
                return(
-                <BetBox data={item} type={"lay"} detail={detail} runner={data?.runners?.[0]} handlePlaceBet={handlePlaceBet}/>
+                <BetBox data={item} type={"lay"} detail={detail?.teamA} runner={data?.runners?.[0]} handlePlaceBet={handlePlaceBet}/>
               )
               })}
           </div>
@@ -184,12 +184,12 @@ const MatchOdd = ({ title, data, detail }) => {
               )}
               {(data?.runners?.[1]?.ex?.availableToBack?.length>0?data?.runners?.[1]?.ex?.availableToBack:dummyArray)?.map((item:any)=>{
                 return(
-                  <BetBox data={item} type={"back"} detail={detail} runner={data?.runners?.[1]} handlePlaceBet={handlePlaceBet}/>
+                  <BetBox data={item} type={"back"} detail={detail?.teamB} runner={data?.runners?.[1]} handlePlaceBet={handlePlaceBet}/>
                 )
               })}
                {(data?.runners?.[1]?.ex?.availableToLay?.length>0?data?.runners?.[1]?.ex?.availableToLay:dummyArray)?.map((item:any)=>{
                return(
-                <BetBox data={item} type={"lay"} detail={detail} runner={data?.runners?.[1]} handlePlaceBet={handlePlaceBet}/>
+                <BetBox data={item} type={"lay"} detail={detail?.teamB} runner={data?.runners?.[1]} handlePlaceBet={handlePlaceBet}/>
               )
               })}
           </div>
@@ -244,12 +244,12 @@ const MatchOdd = ({ title, data, detail }) => {
                 )}
                   {(data?.runners?.[2]?.ex?.availableToBack?.length>0?data?.runners?.[2]?.ex?.availableToBack:dummyArray)?.map((item:any)=>{
                 return(
-                  <BetBox data={item} type={"back"} detail={detail} runner={data?.runners?.[2]} handlePlaceBet={handlePlaceBet}/>
+                  <BetBox data={item} type={"back"} detail={detail?.teamC} runner={data?.runners?.[2]} handlePlaceBet={handlePlaceBet}/>
                 )
               })}
                {(data?.runners?.[2]?.ex?.availableToLay?.length>0?data?.runners?.[2]?.ex?.availableToLay:dummyArray)?.map((item:any)=>{
                return(
-                <BetBox data={item} type={"lay"} detail={detail} runner={data?.runners?.[2]} handlePlaceBet={handlePlaceBet}/>
+                <BetBox data={item} type={"lay"} detail={detail?.teamC} runner={data?.runners?.[2]} handlePlaceBet={handlePlaceBet}/>
               )
               })}
             </div>

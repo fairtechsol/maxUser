@@ -37,7 +37,6 @@ const BetBox = ({ data, type,handlePlaceBet,detail,runner }: any) => {
     }
   };
 
-
   return (
     <div
       className={`matchOddBackBox ${handleBackground(data?.tno)}`}
@@ -45,7 +44,7 @@ const BetBox = ({ data, type,handlePlaceBet,detail,runner }: any) => {
           handlePlaceBet(
             data?.price,
             type,
-            detail?.teamA,
+            detail,
             runner?.status,
             data?.tno,
             runner

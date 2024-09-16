@@ -18,27 +18,26 @@ const Tournament = ({ title, box, data, detail }) => {
     index: any,
     runner: any
   ) => {
-    if (data?.activeStatus != "live" || status != "ACTIVE") {
+    if (status != "ACTIVE") {
       return false;
     }
     if (odds === 0) {
       return false;
     }
+    // console.log('runner',runner)
     let team = {
-      betOnTeam: betTeam,
+      betOnTeam: runner?.nat,
       rate: odds,
       type: type,
       stake: 0,
-      teamA: data?.type === "other" ? data?.metaData?.teamA : "yes",
-      teamB: data?.type === "other" ? data?.metaData?.teamB : "no",
-      teamC: data?.metaData?.teamC,
       betId: data?.id,
-      eventType: detail?.matchType,
+      eventType: data?.gtype,
       matchId: detail?.id,
-      matchBetType: data?.type,
+      matchBetType: "tournament",
       placeIndex: index,
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
+      runnerId:runner?.id?.toString()
     };
     dispatch(
       selectedBetAction({
@@ -48,7 +47,7 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
-  console.log("first", data);
+  // console.log("first", data);
   return (
     <>
       <div className="otherMarketContainer">
@@ -156,7 +155,7 @@ const Tournament = ({ title, box, data, detail }) => {
                             data={item}
                             type={"back"}
                             detail={detail}
-                            runner={data?.runners?.[0]}
+                            runner={item}
                             handlePlaceBet={handlePlaceBet}
                           />
                         );
@@ -170,7 +169,7 @@ const Tournament = ({ title, box, data, detail }) => {
                             data={item}
                             type={"lay"}
                             detail={detail}
-                            runner={data?.runners?.[0]}
+                            runner={item}
                             handlePlaceBet={handlePlaceBet}
                           />
                         );
@@ -182,7 +181,7 @@ const Tournament = ({ title, box, data, detail }) => {
                         data={data?.runners?.[0]?.ex?.availableToBack?.[0]}
                         type={"back"}
                         detail={detail}
-                        runner={data?.runners?.[0]}
+                        runner={item}
                         handlePlaceBet={handlePlaceBet}
                       />
 
@@ -190,7 +189,7 @@ const Tournament = ({ title, box, data, detail }) => {
                         data={data?.runners?.[0]?.ex?.availableToLay?.[0]}
                         type={"lay"}
                         detail={detail}
-                        runner={data?.runners?.[0]}
+                        runner={item}
                         handlePlaceBet={handlePlaceBet}
                       />
                     </>
