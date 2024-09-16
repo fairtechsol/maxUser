@@ -47,7 +47,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
           <span>Bookmaker</span>
         </div>
         <div className="market-header-c">
-          <div className="market-nation-detail-b">
+          <div className="market-nation-detail-b" style={{width:"58%"}}>
             <span
               className="f600"
               style={{ fontSize: "12px", color: "#097c93" }}
@@ -55,17 +55,17 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               Min: {min} Max: {max}
             </span>
           </div>
-          <div className="market-odd-box-c back ">
+          <div className="market-odd-box-c back " style={{width:"21%"}}>
             <b>Back</b>
           </div>
-          <div className="market-odd-box-c lay">
+          <div className="market-odd-box-c lay" style={{width:"21%"}}>
             <b>Lay</b>
           </div>
         </div>
         <div className="market-body-c" data-title="OPEN">
           {odds?.map((row: any, index: any) => (
             <div className={`market-row-c`}>
-              <div className="market-nation-detail-b">
+              <div className="market-nation-detail-b" style={{width:"58%"}}>
                 <span className="market-nation-name-c">{row?.nat}</span>
                 <div className="market-nation-book-c"></div>
                 <span
@@ -102,12 +102,14 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                   row?.status === "SUSPENDED" ? "SUSPENDED" : "ACTIVE"
                 }
                 key={index}
+                style={{width:"42%"}}
               >
                 <div
                   className="market-odd-box-c back"
                   onClick={() =>
                     row?.status === "SUSPENDED" ? null : handleBet(row, "back")
                   }
+                  style={{width:"50%"}}
                 >
                   <span className="market-odd-c">{row?.b1}</span>
                   <span className="market-volume-c">{row?.bs1}</span>
@@ -117,6 +119,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                   onClick={() =>
                     row?.status === "SUSPENDED" ? null : handleBet(row, "lay")
                   }
+                  style={{width:"50%"}}
                 >
                   <span className="market-odd-c">{row?.l1}</span>
                   <span className="market-volume">{row?.ls1}</span>

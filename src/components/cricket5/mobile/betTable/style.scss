@@ -49,3 +49,15 @@
   margin-right: 0px;
   flex: 1;
 }
+.market-odd-box-c {
+  width: 50%;
+  padding: 2px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-left: 1px solid grey;
+  cursor: pointer;
+  min-height: 30px;
+}

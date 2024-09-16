@@ -195,7 +195,6 @@ const cardDetail = createSlice({
       .addCase(updateTeenPatti1DMatchRates.fulfilled, (state, action) => {
         const { t1 } = action.payload;
         state.loading = false;
-
         const videoInfo = {
           ...t1[0],
           C4: t1[1].C1,
