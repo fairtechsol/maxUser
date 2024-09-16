@@ -20,14 +20,18 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
           <div>
             <div
               key={item?.code}
-              className={item?.gstatus === "0" ||item?.b1 === "0.00" ? "suspended" : ""}
+              className={
+                item?.gstatus === "0" || item?.b1 === "0.00" ? "suspended" : ""
+              }
               style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-              onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
+              onClick={() =>
+                item?.gstatus != "SUSPENDED" ? handleBet(item) : null
+              }
             >
               {" "}
               <img src={item?.imgSrc} width={"30px"} />
