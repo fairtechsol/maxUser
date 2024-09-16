@@ -154,9 +154,15 @@ const PlayerButton = ({
           }}
         >
           <div
-              className={lock ? "teenPatti-table-item suspended" : "teenPatti-table-item"}
-              style={{ width: "50%" }}
-            onClick={() => handleBet(data, "BACK")}
+            className={
+              lock ? "teenPatti-table-item suspended" : "teenPatti-table-item"
+            }
+            style={{ width: "50%" }}
+            onClick={() =>
+              data?.gstatus == "SUSPENDED" || data?.gstatus == "CLOSED"
+                ? null
+                : handleBet(data, "BACK")
+            }
           >
             <span className="f18-b my-2 fw-bold">
               {parseFloat(value1).toFixed(2)}
@@ -164,9 +170,15 @@ const PlayerButton = ({
             <span className="f10-b">{}</span>
           </div>
           <div
-              className={lock ? "teenPatti-table-item suspended" : "teenPatti-table-item"}
-              style={{ width: "50%", background: "#f9c9d4" }}
-            onClick={() => handleBet(data, "LAY")}
+            className={
+              lock ? "teenPatti-table-item suspended" : "teenPatti-table-item"
+            }
+            style={{ width: "50%", background: "#f9c9d4" }}
+            onClick={() =>
+              data?.gstatus == "SUSPENDED" || data?.gstatus == "CLOSED"
+                ? null
+                : handleBet(data, "LAY")
+            }
           >
             <span className="f18-b my-2 fw-bold">
               {parseFloat(value4).toFixed(2)}
