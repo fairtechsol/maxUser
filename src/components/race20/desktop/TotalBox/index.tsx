@@ -116,7 +116,7 @@ const TotalsBox = ({ odds, data }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                     ]
-                  : 0
+                  : ""
                 : 0}
             </span>
           </div>
@@ -203,7 +203,7 @@ const TotalsBox = ({ odds, data }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                     ]
-                  : 0
+                  : ""
                 : 0}
             </span>
           </div>

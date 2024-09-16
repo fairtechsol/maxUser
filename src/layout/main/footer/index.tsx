@@ -4,7 +4,7 @@ import "../../layout.scss";
 
 const Footer = () => {
   return (
-    <section className="footer-login w-100">
+    <section className="footer-login w-100" id="page-footer">
       <div className="footer-top">
         <div className="footer-links">
           <nav className="navbar">

@@ -28,6 +28,8 @@ const SuperoverDesktop = () => {
   );
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+  const [isAtFooter, setIsAtFooter] = useState(false);
+  const rowRef = useRef(null);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -80,7 +82,29 @@ const SuperoverDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.superover}`);
   }, []);
 
-  console.log("scorebb", scoreBoardData);
+
+  useEffect(() => {
+    const footer = document.getElementById("page-footer");
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsAtFooter(entry.isIntersecting); 
+      },
+      { rootMargin: "0px", threshold: 0 }
+    );
+
+    if (footer) {
+      observer.observe(footer);
+    }
+
+    return () => {
+      if (footer) {
+        observer.unobserve(footer);
+      }
+    };
+  }, []);
+
+  
   return (
     <div>
       <Row>
@@ -164,19 +188,19 @@ const SuperoverDesktop = () => {
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
-              className={` ${isSticky ? "position-fixed top-0" : ""}`}
+              ref={rowRef}
+              className={`${isSticky ? "position-fixed top-0" : ""}`}
               style={{
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
-                overflowY: "auto",
-                maxHeight: "600px",
+                bottom: isAtFooter ? "unset" : "0px", 
               }}
             >
               <Col md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12} style={{ overflowY: "auto", maxHeight: "500px" }}>
+              <Col md={12}>
                 <DesktopMyBet />
               </Col>
               <Col>
