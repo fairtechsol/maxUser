@@ -178,7 +178,6 @@ const DesktopGameDetail = () => {
       return 6;
     }
   };
-
   return (
     <Container fluid className="pe-0 ps-1">
       <Row>
@@ -207,7 +206,9 @@ const DesktopGameDetail = () => {
                   }}
                 ></div> */}
               </Col>
-              {liveScoreBoardData && <Iframe data={liveScoreBoardData} width="97%" />}
+              {liveScoreBoardData && (
+                <Iframe data={liveScoreBoardData} width="100%" />
+              )}
               {matchDetails?.matchOdd?.activeStatus === "live" &&
                 matchDetails?.matchOdd?.isActive && (
                   <Col md={12} style={{ marginTop: "10px" }}>
@@ -250,7 +251,7 @@ const DesktopGameDetail = () => {
                     )}
                   </div>
                 ))}
-                 {matchDetails?.tournament?.length > 0 &&
+              {matchDetails?.tournament?.length > 0 &&
                 matchDetails?.tournament?.map((item: any, index: number) => (
                   <div key={index}>
                     {item?.activeStatus === "live" && item?.isActive && (
@@ -697,7 +698,10 @@ const DesktopGameDetail = () => {
                     style={{ margin: "0 0 0 5px", color: "#ff0000" }}
                     className="fs-5 text-decoration-underline cursor-pointer blinking-text"
                   >
-                     <Link className="text-danger" to={"/ballbyball"}> Ball By Ball</Link>
+                    <Link className="text-danger" to={"/ballbyball"}>
+                      {" "}
+                      Ball By Ball
+                    </Link>
                   </h6>
                 </div>
               </Col>

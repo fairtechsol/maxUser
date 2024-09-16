@@ -80,7 +80,7 @@ const SuperoverDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.superover}`);
   }, []);
 
-  console.log("scorebb",scoreBoardData)
+  console.log("scorebb", scoreBoardData);
   return (
     <div>
       <Row>
@@ -115,12 +115,12 @@ const SuperoverDesktop = () => {
                   : ""}
               </span>
             </div>
-            {scoreBoardData?.balls?.length>0 && (
+            {scoreBoardData?.balls?.length > 0 && (
               <div style={{ marginBottom: "2px" }}>
                 <Iframe data={scoreBoardData} />
               </div>
             )}
-            
+
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
             >
@@ -169,7 +169,8 @@ const SuperoverDesktop = () => {
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
-                  overflowY: "auto", maxHeight: "600px" 
+                overflowY: "auto",
+                maxHeight: "600px",
               }}
             >
               <Col md={12}>
