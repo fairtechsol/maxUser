@@ -31,6 +31,8 @@ const CasinoMeterDesktop = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
+
+  const { placedBets } = useSelector((state: RootState) => state.bets);
   //const { playerA, playerB } = dragonTigerDetail;
 
   const handleClose = () => {
@@ -123,7 +125,7 @@ const CasinoMeterDesktop = () => {
     dragonTigerDetail?.players?.[0]?.[0]?.b1,
   ]);
 
-  console.log(dragonTigerDetail);
+  console.log(dragonTigerDetail, "place", placedBets);
   return (
     <>
       <Row>
@@ -193,10 +195,22 @@ const CasinoMeterDesktop = () => {
                   <LowCards
                     odds={dragonTigerDetail.low}
                     data={dragonTigerDetail}
+                    placedLow={
+                      dragonTigerDetail?.videoInfo?.mid ==
+                      placedBets?.[0]?.runnerId
+                        ? placedBets?.[0]?.teamName == "Low"
+                        : true
+                    }
                   />
                   <HighCards
                     odds={dragonTigerDetail.high}
                     data={dragonTigerDetail}
+                    placedHigh={
+                      dragonTigerDetail?.videoInfo?.mid ==
+                      placedBets?.[0]?.runnerId
+                        ? placedBets?.[0]?.teamName == "High"
+                        : true
+                    }
                   />
                 </div>
                 <div style={{ width: "100%", marginTop: "10px" }}>
