@@ -89,7 +89,7 @@ const DesktopHeader = () => {
   }, []);
   return (
     <>
-      <Row className=" w-100vw">
+      <Row className=" w-100">
         <Col xs={12} className="p-2">
           <div className="float-start">
             <Link to={"/home"}>
