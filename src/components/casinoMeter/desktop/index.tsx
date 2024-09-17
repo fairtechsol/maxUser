@@ -169,7 +169,7 @@ const CasinoMeterDesktop = () => {
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={
-                    <CasinoWarResult data={dragonTigerDetail?.videoInfo} />
+                    ""
                   }
                   id={videoFrameId}
                 />
@@ -230,8 +230,8 @@ const CasinoMeterDesktop = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R", "R", "R"]}
-                    type={"war"}
+                    name={["H","L"]}
+                    type={"cmeter"}
                   />
                 </div>
               </div>
