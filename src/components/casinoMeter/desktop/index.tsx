@@ -180,7 +180,17 @@ const CasinoMeterDesktop = () => {
             ) : (
               <div>
                 {dragonTigerDetail?.videoInfo?.cards?.split(",")[0] !== "1" && (
-                  <Meter data={dragonTigerDetail?.videoInfo?.cards} />
+                  <Meter
+                    data={dragonTigerDetail?.videoInfo?.cards}
+                    runPosition={
+                      dragonTigerDetail?.videoInfo?.mid ==
+                      placedBets?.[0]?.runnerId
+                        ? placedBets?.[0]?.teamName == "Low"
+                          ? "Low"
+                          : "High"
+                        : ""
+                    }
+                  />
                 )}
                 <div
                   style={{

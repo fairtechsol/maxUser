@@ -1,7 +1,7 @@
 import React from "react";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 
-function Meter({ data }: { data: string }) {
+function Meter({ data, runPosition }: { data: string; runPosition: string }) {
   const cards = data?.split(",");
 
   const lowCards: string[] = [];
@@ -40,25 +40,53 @@ function Meter({ data }: { data: string }) {
 
   return (
     <div style={{ background: "#ffc742d9", marginTop: "5px", padding: "10px" }}>
-      <div style={{display:"flex",alignItems:"center"}}>
-        <strong style={{margin:"20px",color:"#17ec17"}}>{lowCardSum}</strong>
-        <div style={{display:"flex"}}>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <strong style={{ textAlign: "center", color: "#17ec17", width: "10%" }}>
+          {lowCardSum}
+        </strong>
+        <div style={{ display: "flex", alignItems: "center" }}>
           {lowCards?.map((card, index) => (
             <span key={index} style={{ margin: "5px" }}>
               {<HandleCards card={card} />}
             </span>
           ))}
+          {runPosition == "Low" && (
+            <span style={{ color: "#FFFFFF", marginLeft: "5px" }}>
+              Run Position:
+              <span
+                style={{
+                  color: lowCardSum > highCardSum ? "#FFFFFF" : "#FF2238",
+                }}
+              >
+                {lowCardSum - highCardSum}
+              </span>
+            </span>
+          )}
         </div>
       </div>
 
-      <div style={{display:"flex",alignItems:"center"}}>
-        <strong style={{margin:"20px",color:"#17ec17"}}>{highCardSum}</strong>
-        <div style={{display:"flex"}}>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <strong style={{ textAlign: "center", color: "#17ec17", width: "10%" }}>
+          {highCardSum}
+        </strong>
+        <div style={{ display: "flex", alignItems: "center" }}>
           {highCards.map((card, index) => (
             <span key={index} style={{ margin: "5px" }}>
               {<HandleCards card={card} />}
             </span>
           ))}
+          {runPosition == "High" && (
+            <span style={{ color: "#FFFFFF", marginLeft: "5px" }}>
+              Run Position:
+              <span
+                style={{
+                  color: highCardSum > lowCardSum ? "#FFFFFF" : "#FF2238",
+                }}
+              >
+                {highCardSum - lowCardSum}
+              </span>
+            </span>
+          )}
         </div>
       </div>
     </div>
