@@ -313,17 +313,29 @@ const matchListSlice = createSlice({
           teamArateRedisKey,
           teamBrateRedisKey,
           teamCrateRedisKey,
+          betId,
+          matchBetType,
+          matchId
         } = action.payload;
-        
-        state.matchDetails = {
-          ...state.matchDetails,
-          profitLossDataMatch: {
-            ...state.matchDetails.profitLossDataMatch,
-            [teamArateRedisKey]: newTeamRateData?.teamA,
-            [teamBrateRedisKey]: newTeamRateData?.teamB,
-            [teamCrateRedisKey]: newTeamRateData?.teamB,
-          },
-        };
+        if(matchBetType==="tournament"){
+          state.matchDetails = {
+            ...state.matchDetails,
+            profitLossDataMatch: {
+              ...state.matchDetails.profitLossDataMatch,
+              [betId+"_profitLoss_"+matchId]: JSON.stringify(newTeamRateData)
+            },
+          };
+        }else{
+          state.matchDetails = {
+            ...state.matchDetails,
+            profitLossDataMatch: {
+              ...state.matchDetails.profitLossDataMatch,
+              [teamArateRedisKey]: newTeamRateData?.teamA,
+              [teamBrateRedisKey]: newTeamRateData?.teamB,
+              [teamCrateRedisKey]: newTeamRateData?.teamB,
+            },
+          };
+        }
       })
       .addCase(updateMaxLossForBet.fulfilled, (state, action) => {
         const { betPlaced, profitLossData } = action.payload;
