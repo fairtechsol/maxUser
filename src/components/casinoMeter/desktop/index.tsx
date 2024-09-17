@@ -199,6 +199,8 @@ const CasinoMeterDesktop = () => {
                       dragonTigerDetail?.videoInfo?.mid ==
                       placedBets?.[0]?.runnerId
                         ? placedBets?.[0]?.teamName == "Low"
+                          ? true
+                          : false
                         : true
                     }
                   />
@@ -209,6 +211,8 @@ const CasinoMeterDesktop = () => {
                       dragonTigerDetail?.videoInfo?.mid ==
                       placedBets?.[0]?.runnerId
                         ? placedBets?.[0]?.teamName == "High"
+                          ? true
+                          : false
                         : true
                     }
                   />
