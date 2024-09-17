@@ -58,7 +58,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 color: "#FFF",
                 //fontSize: "16px",
                 fontWeight:"bold",
-                fontSize: "calc(11px + 0.47vw)", 
+                fontSize: "calc(11px + 0.46vw)", 
               }}>Bookmaker</span>
         </div>
         <div className="market-header-c">
@@ -262,7 +262,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 color: "#FFF",
                 //fontSize: "16px",
                 fontWeight:"bold",
-                fontSize: "calc(11px + 0.47vw)", 
+                fontSize: "calc(11px + 0.46vw)", 
               }}
             >
               Fancy
