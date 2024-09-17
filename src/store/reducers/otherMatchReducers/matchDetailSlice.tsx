@@ -64,6 +64,7 @@ const otherMatchDetail = createSlice({
           apiSession,
           apiTiedMatch,
           bookmaker,
+          bookmaker2,
           marketCompleteMatch,
           matchOdd,
           sessionBettings,
@@ -73,6 +74,7 @@ const otherMatchDetail = createSlice({
           halfTime,
           overUnder,
           setWinner,
+          tournament
         } = action.payload;
 
         let newSessionBettings = sessionBettings;
@@ -83,10 +85,12 @@ const otherMatchDetail = createSlice({
           apiSession: apiSession,
           apiTideMatch: apiTiedMatch,
           bookmaker: bookmaker,
+          bookmaker2: bookmaker2,
           manualTiedMatch: manualTideMatch,
           marketCompleteMatch: marketCompleteMatch,
           matchOdd: matchOdd,
           quickBookmaker: quickbookmaker,
+          tournament: tournament,
           firstHalfGoal,
           halfTime,
           overUnder,

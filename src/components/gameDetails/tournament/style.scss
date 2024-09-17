@@ -6,13 +6,13 @@
     transform: translateX(-100%);
   }
 }
-.otherMarketContainer {
+.tournamentContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
   background-color: #f2f2f2;
 }
-.otherMarketTitle{
+.tournamentTitle{
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -20,73 +20,73 @@
     padding: 3px 6px;
     background-color: #fece5d;
 }
-.otherMarketTitleTxt {
+.tournamentTitleTxt {
   color: #ffffff;
   font-weight: bold;
 }
-.otherMarketBackLayTab {
+.tournamentBackLayTab {
   width: 100%;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #c7c8ca;
 }
-.otherMarketMinMaxBox {
+.tournamentMinMaxBox {
   padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.otherMarketMinMax {
+.tournamentMinMax {
   font-size: 12px;
   font-weight: bold;
   color: #097c93;
 }
-.otherMarket1BackLayBoxContainer {
+.tournament1BackLayBoxContainer {
   width: 48%;
   display: flex;
   flex-direction: row;
 }
-.otherMarket2BackLayBoxContainer {
+.tournament2BackLayBoxContainer {
   width: 40%;
   display: flex;
   flex-direction: row;
 }
-.otherMarket1BackBoxTab {
+.tournament1BackBoxTab {
   width: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #72bbef;
 }
-.otherMarket1LayBoxTab {
+.tournament1LayBoxTab {
   width: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #faa9ba;
 }
-.otherMarket2BackBoxTab {
+.tournament2BackBoxTab {
   width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #72bbef;
 }
-.otherMarket2LayBoxTab {
+.tournament2LayBoxTab {
   width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #faa9ba;
 }
-.otherMarketEmptyBox {
+.tournamentEmptyBox {
   width: 50%;
 }
-.otherMarketBackTxt {
+.tournamentBackTxt {
   color: #333;
   font-weight: bold;
 }
-.otherMarketTeamTab {
+.tournamentTeamTab {
   position: relative;
   width: 100%;
   height: 45px;
@@ -94,7 +94,7 @@
   justify-content: space-between;
   border-bottom: 1px solid #c7c8ca;
 }
-.otherMarketRemarkTab {
+.tournamentRemarkTab {
   width: 100%;
   height: 20px;
   display: flex;
@@ -104,7 +104,7 @@
   white-space: nowrap;
   box-sizing: border-box;
 }
-.otherMarketTeam {
+.tournamentTeam {
   padding: 0px 5px;
   display: flex;
   justify-content: start;
@@ -112,7 +112,7 @@
   flex-direction: column;
   // line-height: 1;
 }
-.otherMarketTeamTxt {
+.tournamentTeamTxt {
   // font-size: 16px;
   width: 100%;
   font-weight: 400;
@@ -121,19 +121,19 @@
   text-overflow: ellipsis;
   white-space: nowrap !important;
 }
-.otherMarket1RateBox {
+.tournament1RateBox {
   position: relative;
   width: 72%;
   display: flex;
   flex-direction: row;
 }
-.otherMarket2RateBox {
+.tournament2RateBox {
   position: relative;
   width: 40%;
   display: flex;
   flex-direction: row;
 }
-.otherMarketBackBox {
+.tournamentBackBox {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -141,12 +141,12 @@
   align-items: center;
   cursor: pointer;
 }
-.otherMarketRate1Box {
+.tournamentRate1Box {
   font-size: 18px;
   color: #000;
   font-weight: bold;
 }
-.otherMarketRate2Box {
+.tournamentRate2Box {
   font-size: 12px;
   color: #000;
   font-weight: 100;
@@ -177,7 +177,7 @@
   padding-left: 38%;
   animation: marquee 20s linear infinite;
 }
-.suspended-overlayRatesotherMarket {
+.suspended-overlayRatestournament {
   position: absolute;
   width: 100%;
   display: flex;
@@ -187,7 +187,8 @@
   height: 100%;
   z-index: 999;
 }
-.suspendedTxtotherMarket {
+
+.suspendedTxttournament {
   font-weight: 400;
   color: #ff1e30;
 }

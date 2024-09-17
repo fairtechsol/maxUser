@@ -24,7 +24,6 @@ const Tournament = ({ title, box, data, detail }) => {
     if (odds === 0) {
       return false;
     }
-    // console.log('runner',runner)
     let team = {
       betOnTeam: runner?.nat,
       rate: odds,
@@ -55,10 +54,10 @@ const Tournament = ({ title, box, data, detail }) => {
 
   return (
     <>
-      <div className="otherMarketContainer">
-        <div className="otherMarketTitle">
+      <div className="tournamentContainer">
+        <div className="tournamentTitle">
           <span
-            className={`otherMarketTitleTxt ${
+            className={`tournamentTitleTxt ${
               isMobile ? "f-size13" : "f-size15"
             }`}
           >
@@ -66,45 +65,45 @@ const Tournament = ({ title, box, data, detail }) => {
           </span>
         </div>
 
-        <div className="otherMarketBackLayTab">
-          <div className="otherMarketMinMaxBox">
-            <span className="otherMarketMinMax">
+        <div className="tournamentBackLayTab">
+          <div className="tournamentMinMaxBox">
+            <span className="tournamentMinMax">
               Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
             </span>
           </div>
           <div
             className={
               box === 6
-                ? "otherMarket1BackLayBoxContainer backLayBoxWidth"
-                : "otherMarket2BackLayBoxContainer backLayBoxWidth2"
+                ? "tournament1BackLayBoxContainer backLayBoxWidth"
+                : "tournament2BackLayBoxContainer backLayBoxWidth2"
             }
           >
             <div
               className={
-                box === 6 ? "otherMarket1BackBoxTab" : "otherMarket2BackBoxTab"
+                box === 6 ? "tournament1BackBoxTab" : "tournament2BackBoxTab"
               }
             >
-              <span className={`f-size16 otherMarketBackTxt`}>Back</span>
+              <span className={`f-size16 tournamentBackTxt`}>Back</span>
             </div>
             <div
               className={
-                box === 6 ? "otherMarket1LayBoxTab" : "otherMarket2LayBoxTab"
+                box === 6 ? "tournament1LayBoxTab" : "tournament2LayBoxTab"
               }
             >
-              <span className={`f-size16 otherMarketBackTxt`}>Lay</span>
+              <span className={`f-size16 tournamentBackTxt`}>Lay</span>
             </div>
-            {box === 6 && <div className="otherMarketEmptyBox"></div>}
+            {box === 6 && <div className="tournamentEmptyBox"></div>}
           </div>
         </div>
         {data?.runners?.length > 0 &&
           data?.runners?.map((item: any, index: any) => {
             return (
-              <div className="otherMarketTeamTab" key={index}>
+              <div className="tournamentTeamTab" key={index}>
                 <div
-                  className="otherMarketTeam"
+                  className="tournamentTeam"
                   style={box === 6 ? { width: "28%" } : {}}
                 >
-                  <span className={`teamFont otherMarketTeamTxt`}>
+                  <span className={`teamFont tournamentTeamTxt`}>
                     {item?.nat}
                   </span>
                   <span
@@ -122,12 +121,12 @@ const Tournament = ({ title, box, data, detail }) => {
                 <div
                   className={
                     box === 6
-                      ? "otherMarket1RateBox rateBoxWidth"
-                      : "otherMarket2RateBox rateBoxWidth2"
+                      ? "tournament1RateBox rateBoxWidth"
+                      : "tournament2RateBox rateBoxWidth2"
                   }
                 >
                   {item?.status !== "ACTIVE" && (
-                    <div className="suspended-overlayRatesotherMarket">
+                    <div className="suspended-overlayRatestournament">
                       <span className={`suspendTextCmmn`}>SUSPENDED</span>
                     </div>
                   )}
@@ -136,10 +135,10 @@ const Tournament = ({ title, box, data, detail }) => {
                       {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
                         ? data?.runners?.[0]?.ex?.availableToBack
                         : dummyArray
-                      )?.map((item: any) => {
+                      )?.map((item2: any) => {
                         return (
                           <BetBox
-                            data={item}
+                            data={item2}
                             type={"back"}
                             detail={detail}
                             runner={item}
@@ -150,10 +149,10 @@ const Tournament = ({ title, box, data, detail }) => {
                       {(data?.runners?.[0]?.ex?.availableToLay?.length > 0
                         ? data?.runners?.[0]?.ex?.availableToLay
                         : dummyArray
-                      )?.map((item: any) => {
+                      )?.map((item2: any) => {
                         return (
                           <BetBox
-                            data={item}
+                            data={item2}
                             type={"lay"}
                             detail={detail}
                             runner={item}
@@ -187,7 +186,7 @@ const Tournament = ({ title, box, data, detail }) => {
           })}
 
         {data?.rem && (
-          <div className="otherMarketRemarkTab">
+          <div className="tournamentRemarkTab">
             <div className="remark-content">{data?.rem}</div>
           </div>
         )}
