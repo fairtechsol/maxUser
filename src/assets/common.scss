@@ -1156,6 +1156,14 @@ img {
   }
 }
 
+.matchOddBackBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 // #middleView-playerDiv {
 //   display: none !important; /* This will override the inline display style */
 // }
