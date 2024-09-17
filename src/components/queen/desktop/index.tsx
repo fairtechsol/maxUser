@@ -15,6 +15,7 @@ import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import BetBox from "./betBox";
+import QueenCard from "./queenCard";
 
 const QueenDesktop = () => {
   const [show, setShow] = useState(false);
@@ -74,7 +75,7 @@ const QueenDesktop = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.queen}`);
   }, []);
 
   return (
@@ -119,7 +120,7 @@ const QueenDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  // result={<WorliResult data={dragonTigerDetail?.videoInfo} />}
+                  result={<QueenCard data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
@@ -136,15 +137,16 @@ const QueenDesktop = () => {
                     flexDirection: "column",
                   }}
                 >
-                 <BetBox 
-                  cards={dragonTigerDetail?.cards} 
-                  // data={dragonTigerDetail}
-                 />
-                    <div className="ticker-container">
+                  <BetBox
+                    cards={dragonTigerDetail?.cards}
+                    data={dragonTigerDetail}
+                    playerNum={[0, 1, 2, 3]}
+                  />
+                  <div className="ticker-container">
                     <div className="ticker-wrap">
                       <div
                         className="ticker-move"
-                        style={{ color: "#8b0000", fontWeight: "700" }}
+                        style={{ color: "#097c93", fontWeight: "700" }}
                       >
                         {dragonTigerDetail?.videoInfo?.ramark}
                       </div>
@@ -155,8 +157,8 @@ const QueenDesktop = () => {
                 <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R"]}
-                    type={cardGamesType.worli}
+                    name={["0", "1", "2", "3"]}
+                    type={cardGamesType?.queen}
                   />
                 </div>
               </div>

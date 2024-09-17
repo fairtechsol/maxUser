@@ -110,7 +110,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
               {/* Table header with sorting icons */}
               {columns.map((column, index) => (
                 <th
-                  className={`${tHeadTheme} text-center ${
+                  className={`${tHeadTheme} bg-secondary text-white text-start ${
                     isMobile ? "bg-secondary title-12 f800 p-1" : "f600"
                   }`}
                   key={index}
@@ -132,7 +132,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
           <tbody className="text-center">
             {/* Table body with sorted data */}
             {itemCount === 0 ? (
-              <tr className="text-center">
+              <tr className="text-center ">
                 <td
                   className={`${tBodyTheme ?? ""} ${isMobile && "bg-white"}`}
                   colSpan={columns?.length}

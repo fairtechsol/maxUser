@@ -80,7 +80,6 @@ const SuperoverDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.superover}`);
   }, []);
 
-  console.log("scorebb",scoreBoardData)
   return (
     <div>
       <Row>

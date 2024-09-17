@@ -8,10 +8,12 @@ interface Props {
     C2: string;
     C3: string;
     C4: string;
+    C5: string;
+    C6: string;
   };
 }
 
-const Card32Result: React.FC<Props> = ({ data }: any) => {
+const QueenCard: React.FC<Props> = ({ data }: any) => {
   const elements = data?.desc?.split(",");
 
   let result: string[][] = [[], [], [], []];
@@ -26,6 +28,39 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
   const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
   const numbers = cArray.map((key) => Number(data[key]));
   const max = Math.max(...numbers);
+
+  const handleCount = (cards: any, count: any) => {
+    const getCardValue = (card: any) => {
+      const value = card.slice(0, -2);
+      switch (value) {
+        case "J":
+          return 11;
+        case "Q":
+          return 12;
+        case "K":
+          return 13;
+        case "A":
+          return 1;
+        default:
+          return parseInt(value, 10);
+      }
+    };
+
+    const sum = cards.reduce((accumulator: any, card: any) => {
+      if (card === "1") return accumulator;
+      return accumulator + getCardValue(card);
+    }, count);
+    return sum;
+  };
+
+  const total0 = handleCount(result?.[0], 0);
+  const total1 = handleCount(result?.[1], 1);
+  const total2 = handleCount(result?.[2], 2);
+  const total3 = handleCount(result?.[3], 3);
+
+  // Find the maximum value
+  const maxSum = Math.max(total0, total1, total2, total3);
+
   return (
     data?.mid != "0" && (
       <Container style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}>
@@ -35,15 +70,17 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
               <span
                 style={{
                   color:
-                    max === parseInt(data?.C1) && max != 0 ? "#04d373" : "#fff",
+                  total0 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
                   fontWeight: "600",
-                  backgroundColor: "#696767e6",
+                 
                 }}
               >
-                {parseInt(data?.C1) > 0 ? (
+                {total0 > 0 ? (
                   <>
                     Total 0:{" "}
-                    <span style={{ color: "#FFC107" }}>{data?.C1}</span>
+                    <span style={{ color: "#FFC107" }}>
+                      {total0}
+                    </span>
                   </>
                 ) : (
                   ""
@@ -72,15 +109,17 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
               <span
                 style={{
                   color:
-                    max === parseInt(data?.C2) && max != 0 ? "#04d373" : "#fff",
+                  total1 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
                   fontWeight: "600",
-                  backgroundColor: "#696767e6",
+                 
                 }}
               >
-                {parseInt(data?.C1) > 0 ? (
+                {total1 > 0 ? (
                   <>
                     Total 1:{" "}
-                    <span style={{ color: "#FFC107" }}>{data?.C2}</span>
+                    <span style={{ color: "#FFC107" }}>
+                      {total1}
+                    </span>
                   </>
                 ) : (
                   ""
@@ -109,15 +148,17 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
               <span
                 style={{
                   color:
-                    max === parseInt(data?.C3) && max != 0 ? "#04d373" : "#fff",
+                  total2 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
                   fontWeight: "600",
-                  backgroundColor: "#696767e6",
+                 
                 }}
               >
-                {parseInt(data?.C1) > 0 ? (
+                {total2 > 0 ? (
                   <>
                     Total 2:
-                    <span style={{ color: "#FFC107" }}>{data?.C3}</span>
+                    <span style={{ color: "#FFC107" }}>
+                      {total2}
+                    </span>
                   </>
                 ) : (
                   ""
@@ -146,15 +187,17 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
               <span
                 style={{
                   color:
-                    max === parseInt(data?.C4) && max != 0 ? "#04d373" : "#fff",
+                  total3 === maxSum && maxSum != 0 ? "#086f3f" : "#fff",
                   fontWeight: "600",
-                  backgroundColor: "#696767e6",
+                 
                 }}
               >
-                {parseInt(data?.C1) > 0 ? (
+                {total2 > 0 ? (
                   <>
                     Total 3:{" "}
-                    <span style={{ color: "#FFC107" }}>{data?.C4}</span>
+                    <span style={{ color: "#FFC107" }}>
+                      {total3}
+                    </span>
                   </>
                 ) : (
                   ""
@@ -182,4 +225,4 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
   );
 };
 
-export default Card32Result;
+export default QueenCard;

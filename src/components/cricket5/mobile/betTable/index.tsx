@@ -111,8 +111,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                   }
                   style={{width:"50%"}}
                 >
-                  <span className="market-odd-c">{row?.b1}</span>
-                  <span className="market-volume-c">{row?.bs1}</span>
+                  <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.b1}</span>
+                  <span className="market-volume-c title-11 f100">{row?.bs1}</span>
                 </div>
                 <div
                   className="market-odd-box-c lay"
@@ -121,8 +121,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                   }
                   style={{width:"50%"}}
                 >
-                  <span className="market-odd-c">{row?.l1}</span>
-                  <span className="market-volume">{row?.ls1}</span>
+                  <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.l1}</span>
+                  <span className="market-volume title-11 f100">{row?.ls1}</span>
                 </div>
               </div>
             </div>
@@ -164,12 +164,12 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                     style={{display:"flex",width:"42%"}}
                   >
                     <div className="market-odd-box-c lay" >
-                      <span className="market-odd-c" style={{fontWeight:"bold"}}>{row?.b1}</span>
-                      <span className="market-volume">{row?.bs1}</span>
+                      <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.b1}</span>
+                      <span className="market-volume title-11 f100">{row?.bs1}</span>
                     </div>
-                    <div className="market-odd-box-c back">
-                      <span className="market-odd-c" style={{fontWeight:"bold"}}>{row.l1}</span>
-                      <span className="market-volume">{row?.ls1}</span>
+                    <div className="market-odd-box-c back ">
+                      <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.l1}</span>
+                      <span className="market-volume title-11 f100">{row?.ls1}</span>
                     </div>
                     {/* <div className="fancy-min-max-box">
                       <div className="fancy-min-max">

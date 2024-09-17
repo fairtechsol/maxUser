@@ -25,7 +25,6 @@ const Dragon20ResultComponent: React.FC<Props> = ({ data }: any) => {
     return parts.length > 1 ? parts[1].trim() : cardString;
   }
 
-  console.log(tigerCard, dragonCard, "hanvi");
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>

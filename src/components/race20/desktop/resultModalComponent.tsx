@@ -48,7 +48,7 @@ const Race20ResultComponent: React.FC<Props> = ({ data }: any) => {
           <ImClubs color="#000000" size={35}/>
           <ImDiamonds color="#ff0000" size={35}/>
         </div>
-        <div style={{ display: "flex", flexDirection: "column",gap:"8px"  }}>
+        <div style={{ display: "flex", flexDirection: "column",gap: isMobile ? "28px" : "8px"}}>
           <div className="result-card-container">{hh?.map(((item:any)=>{return (<HandleCards card={item} />)}))} {hh?.length<5?<HandleCards card={"KHH"} />:""} </div>
           <div className="result-card-container">{dd?.map(((item:any)=>{return (<HandleCards card={item} />)}))} {dd?.length<5?<HandleCards card={"KDD"} />:""} </div>
           <div className="result-card-container">{cc?.map(((item:any)=>{return (<HandleCards card={item} />)}))} {cc?.length<5?<HandleCards card={"KCC"} />:""} </div>
@@ -58,16 +58,16 @@ const Race20ResultComponent: React.FC<Props> = ({ data }: any) => {
           <span style={{fontSize:"26px",color:"#097c93"}}>WINNER</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column",gap:"10px",marginLeft:"5px"  }}>
-        <div className="result-card-container" style={{height:"40px"}}> {winner==="1"?<div style={{display:"flex",flexDirection:"row",gap:"5px"}}><HandleCards card={"KHH"} /> <div className="casino-winner-icon">
+        <div className="result-card-container"> {winner==="1"?<div style={{display:"flex",flexDirection:"row",gap:"5px"}}><HandleCards card={"KHH"} /> <div className="casino-winner-icon">
                 <FaTrophy size={isMobile ? 20 : 33} color="#169733" />
               </div></div>:""} </div>
-          <div className="result-card-container" style={{height:"40px"}}>{winner==="2"?<div style={{display:"flex",flexDirection:"row",gap:"5px"}}><HandleCards card={"KDD"} /><div className="casino-winner-icon">
+          <div className="result-card-container" >{winner==="2"?<div style={{display:"flex",flexDirection:"row",gap:"5px"}}><HandleCards card={"KDD"} /><div className="casino-winner-icon">
                 <FaTrophy size={isMobile ? 20 : 33} color="#169733" />
               </div> </div>:""} </div>
-          <div className="result-card-container" style={{height:"40px"}}>{winner==="3"?<div style={{display:"flex",flexDirection:"row",gap:"5px"}}><HandleCards card={"KCC"} /><div className="casino-winner-icon">
+          <div className="result-card-container">{winner==="3"?<div style={{display:"flex",flexDirection:"row",gap:"5px"}}><HandleCards card={"KCC"} /><div className="casino-winner-icon">
                 <FaTrophy size={isMobile ? 20 : 33} color="#169733" />
               </div> </div>:""} </div>
-          <div className="result-card-container" style={{height:"40px"}}>{winner==="4"?<div style={{display:"flex",flexDirection:"row",gap:"5px"}}><HandleCards card={"KSS"} /><div className="casino-winner-icon">
+          <div className="result-card-container">{winner==="4"?<div style={{display:"flex",flexDirection:"row",gap:"5px"}}><HandleCards card={"KSS"} /><div className="casino-winner-icon">
                 <FaTrophy size={isMobile ? 20 : 33} color="#169733" />
               </div> </div>:""} </div>
         </div>

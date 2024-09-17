@@ -1,54 +1,41 @@
-import React from "react";
-import "../style.scss";
-import { AppDispatch } from "../../../../store/store";
-import { useDispatch } from "react-redux";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import React from 'react';
+import './../../desktop/style.scss';
+import { AppDispatch } from '../../../../store/store';
+import { useDispatch } from 'react-redux';
+import { selectedBetAction } from '../../../../store/actions/match/matchListAction';
 
-const CasinoTable = ({ cards, data, playerNum }: any) => {
+const CasinoTable = ({cards,data}:any) => {
   const dispatch: AppDispatch = useDispatch();
-  const handleBet = (item: any, type: any) => {
-    let team = {
-      bettingType: type,
-      matchId: data?.id,
-      odd: type === "BACK" ? item?.b1 : item?.l1,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: item?.nation,
-      name: item?.nation,
-      bettingName: "Match odds",
-      selectionId: item?.sid,
-    };
-    dispatch(
-      selectedBetAction({
-        team,
-        data,
-      })
-    );
+const handleBet = (item: any, type: any) => {
+  let team = {
+    bettingType: type,
+    matchId: data?.id,
+    odd: type === "BACK" ? item?.b1 : item?.l1,
+    stake: 0,
+    matchBetType: "matchOdd",
+    betOnTeam: item?.nation,
+    name: item?.nation,
+    bettingName: "Match odds",
+    selectionId: item?.sid,
   };
+  dispatch(
+    selectedBetAction({
+      team,
+      data,
+    })
+  );
+};
+
   return (
     <div className="casino-table-q">
-      <div className="casino-table-box-q-desktop">
-        {cards?.map((item: any, index: any) => (
+      <div className="casino-table-box-q-mobile">
+        {cards?.map((item:any, index:any) => (
           <div className="casino-odd-box-container-q" key={index}>
             <div className="casino-nation-name-q">{item?.nation}</div>
-            <div
-              onClick={() => handleBet(item, "BACK")}
-              className={
-                item?.gstatus === "SUSPENDED" || item?.b1 === "0.00"
-                  ? "casino-odds-box-q back suspended-box"
-                  : "casino-odds-box-q back "
-              }
-            >
+            <div onClick={() => handleBet(item, "BACK")} className={item?.gstatus === "SUSPENDED" || item?.b1 === "0.00" ? "casino-odds-box-q back suspended-box" : "casino-odds-box-q back "}>
               <span className="casino-odds-q">{item?.b1}</span>
             </div>
-            <div
-              onClick={() => handleBet(item, "LAY")}
-              className={
-                item?.gstatus === "SUSPENDED" || item?.l1 === "0.00"
-                  ? "casino-odds-box-q lay suspended-box"
-                  : "casino-odds-box-q lay "
-              }
-            >
+            <div  onClick={() => handleBet(item, "LAY")} className={item?.gstatus === "SUSPENDED" || item?.l1 === "0.00" ? "casino-odds-box-q lay suspended-box" : "casino-odds-box-q lay "}>
               <span className="casino-odds-q">{item.l1}</span>
             </div>
             <span
