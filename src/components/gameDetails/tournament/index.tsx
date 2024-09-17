@@ -47,7 +47,12 @@ const Tournament = ({ title, box, data, detail }) => {
     );
   };
 
-  // console.log("first", data);
+  const key = `${data.id}_profitLoss_${detail.id}`;
+
+  const profitLossJson = detail?.profitLossDataMatch?.[key];
+
+  const profitLossObj = profitLossJson ? JSON.parse(profitLossJson) : {};
+
   return (
     <>
       <div className="otherMarketContainer">
@@ -104,32 +109,14 @@ const Tournament = ({ title, box, data, detail }) => {
                   </span>
                   <span
                     className={`${
-                      detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.A +
-                          "_" +
-                          data?.id +
-                          "_" +
-                          data?.matchId
-                      ] > 0
+                      profitLossObj?.[item.id] > 0
                         ? "color-green"
-                        : detail?.profitLossDataMatch?.[
-                            profitLossDataForMatchConstants[data?.type]?.A +
-                              "_" +
-                              data?.id +
-                              "_" +
-                              data?.matchId
-                          ] < 0
+                        : profitLossObj?.[item.id] < 0
                         ? "color-red"
                         : ""
                     } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                   >
-                    {detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A +
-                        "_" +
-                        data?.id +
-                        "_" +
-                        data?.matchId
-                    ] ?? 0}
+                    {profitLossObj?.[item.id]}
                   </span>
                 </div>
                 <div

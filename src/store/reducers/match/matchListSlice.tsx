@@ -120,7 +120,7 @@ const matchListSlice = createSlice({
           overUnder,
           setWinner,
           completeManual,
-          tournament
+          tournament,
         } = action.payload;
 
         // let removedsessionBettings =
@@ -191,17 +191,19 @@ const matchListSlice = createSlice({
         const stringifiedSessionBetting = parsedSessionBettings.map(
           JSON.stringify
         );
-        const updatedOther = state.matchDetails?.other?.map((item:any) => {
-          const updatedItem = other.find((newItem:any) => newItem.id === item.id);
-      
+        const updatedOther = state.matchDetails?.other?.map((item: any) => {
+          const updatedItem = other.find(
+            (newItem: any) => newItem.id === item.id
+          );
+
           if (updatedItem) {
             return {
-              ...item,         
-              ...updatedItem, 
+              ...item,
+              ...updatedItem,
             };
           }
-      
-          return item; 
+
+          return item;
         });
         state.matchDetails = {
           ...state.matchDetails,
@@ -215,7 +217,7 @@ const matchListSlice = createSlice({
           bookmaker: bookmaker,
           bookmaker2: bookmaker2,
           other: updatedOther,
-          tournament:tournament,
+          tournament: tournament,
           manualTiedMatch: manualTideMatch,
           marketCompleteMatch: marketCompleteMatch,
           marketCompleteMatch1: marketCompleteMatch1,
@@ -226,7 +228,7 @@ const matchListSlice = createSlice({
           halfTime,
           overUnder,
           setWinner,
-          sessionBettings: stringifiedSessionBetting
+          sessionBettings: stringifiedSessionBetting,
           // sessionBettings: newSessionBettings?.map((item: any) => {
           //   if (!JSON.parse(item)?.selectionId) {
           //     const parsedItem = JSON.parse(item);
@@ -306,17 +308,22 @@ const matchListSlice = createSlice({
         state.searchedMatchList = null;
       })
       .addCase(updateBalance.fulfilled, (state, action) => {
-        const { newTeamRateData,teamArateRedisKey,teamBrateRedisKey,teamCrateRedisKey } = action.payload;
-          state.matchDetails = {
-            ...state.matchDetails,
-            profitLossDataMatch: {
-              ...state.matchDetails.profitLossDataMatch,
-              [teamArateRedisKey]: newTeamRateData?.teamA,
-              [teamBrateRedisKey]: newTeamRateData?.teamB,
-              [teamCrateRedisKey]: newTeamRateData?.teamB,
-            },
-          };
+        const {
+          newTeamRateData,
+          teamArateRedisKey,
+          teamBrateRedisKey,
+          teamCrateRedisKey,
+        } = action.payload;
         
+        state.matchDetails = {
+          ...state.matchDetails,
+          profitLossDataMatch: {
+            ...state.matchDetails.profitLossDataMatch,
+            [teamArateRedisKey]: newTeamRateData?.teamA,
+            [teamBrateRedisKey]: newTeamRateData?.teamB,
+            [teamCrateRedisKey]: newTeamRateData?.teamB,
+          },
+        };
       })
       .addCase(updateMaxLossForBet.fulfilled, (state, action) => {
         const { betPlaced, profitLossData } = action.payload;
@@ -341,7 +348,7 @@ const matchListSlice = createSlice({
             updatedProfitLossDataSession?.push({
               betId: betPlaced?.placedBet?.betId,
               maxLoss: JSON.parse(profitLossData)?.maxLoss,
-              profitLoss:  JSON.parse(profitLossData)?.betPlaced,
+              profitLoss: JSON.parse(profitLossData)?.betPlaced,
               totalBet: 1,
               // Add other properties as necessary
             });
@@ -412,12 +419,9 @@ const matchListSlice = createSlice({
           ...state.matchDetails,
           profitLossDataMatch: {
             ...state.matchDetails?.profitLossDataMatch,
-            [teamArateRedisKey]:
-              redisObject[teamArateRedisKey],
-            [teamBrateRedisKey]:
-              redisObject[teamBrateRedisKey],
-            [teamCrateRedisKey]:
-              redisObject[teamCrateRedisKey],
+            [teamArateRedisKey]: redisObject[teamArateRedisKey],
+            [teamBrateRedisKey]: redisObject[teamBrateRedisKey],
+            [teamCrateRedisKey]: redisObject[teamCrateRedisKey],
           },
         };
       })
