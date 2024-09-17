@@ -12,6 +12,7 @@ import "./style.scss";
 import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../store/actions/authAction";
+import CustomDropDown from "../desktop/dropdown/customDropdown";
 
 const MobileHeader = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -73,7 +74,8 @@ const MobileHeader = () => {
             <Dropdown>
               <Dropdown.Toggle
                 id="dropdown-custom-components"
-                className="p-0 title-14 "
+                className=" title-14"
+                as={CustomDropDown}
               >
                 {getProfile?.userName}
               </Dropdown.Toggle>

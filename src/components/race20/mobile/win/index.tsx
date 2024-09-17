@@ -76,8 +76,8 @@ const WinBox = ({ odds, data }: any) => {
                       ? data?.profitLoss[
                           `${data?.videoInfo?.mid}_${item?.sid}_card`
                         ]
-                      : 0
-                    : 0}
+                      : " "
+                    : " "}
                 </span>
               </div>
             );

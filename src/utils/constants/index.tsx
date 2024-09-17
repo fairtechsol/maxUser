@@ -351,6 +351,7 @@ export const cardGamesId: any = {
   cmatch20: 3045,
   cmeter: 3046,
   ballbyball: 3061,
+  queen: 3037
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -1919,4 +1920,129 @@ export const casinoItems = [
   { id: "13", name: "sports", link: "/contact-admin" },
   { id: "14", name: "Bollywood", link: "/contact-admin" },
   { id: "15", name: "Queen", link: "/contact-admin" },
+];
+
+
+export const cardGames = [
+  { value: "", label: "Select Casino Type", disabled: true },
+  {
+    value: "dt20",
+    label: "20-20 Dragon Tiger", //
+  },
+  {
+    value: "ab20",
+    label: "Andar Bahar 1",
+  },
+  {
+    value: "abj",
+    label: "Andar Bahar 2", //
+  },
+  {
+    value: "teen20",
+    label: "20-20 Teen Patti", //
+  },
+  {
+    value: "teen",
+    label: "Teen Patti One Day", //
+  },
+  {
+    value: "teen8",
+    label: "Open Teen Patti",
+  },
+  {
+    value: "teen9",
+    label: "Test Teen Patti",
+  },
+  {
+    value: "card32",
+    label: "32 Cards - A", //
+  },
+  {
+    value: "card32eu",
+    label: "32 Cards - B",
+  },
+  {
+    value: "lucky7",
+    label: "Lucky 7 - A", //
+  },
+  {
+    value: "lucky7eu",
+    label: "Lucky 7 - B", //
+  },
+  {
+    value: "dt202",
+    label: "20-20 Dragon Tiger 2", //
+  },
+  {
+    value: "dtl20",
+    label: "Dragon Tiger Lion", //
+  },
+  {
+    value: "dt6",
+    label: "Dragon Tiger 1 Day", //
+  },
+  {
+    value: "aaa",
+    label: "Amar Akbar Anthony",
+  },
+  {
+    value: "cricketv3",
+    label: "Fve-Five Cricket",
+  },
+  {
+    value: "superover",
+    label: "Superover",
+  },
+  {
+    value: "race20",
+    label: "Race 20",
+  },
+  {
+    value: "war",
+    label: "Casino War",
+  },
+  {
+    value: "3cardj",
+    label: "3 Card Judgement",
+  },
+  {
+    value: "worli2",
+    label: "Instant Worli",
+  },
+  {
+    value: "poker",
+    label: "Poker 1-day",
+  },
+  {
+    value: "poker20",
+    label: "Poker 20",
+  },
+  {
+    value: "poker6",
+    label: "Poker 6",
+  },
+  {
+    value: "btable",
+    label: "Bollywood Table",
+  },
+  {
+    value: "cmatch20",
+    label: "CRICKET MATCH 20-20",
+  },
+  {
+    value: "baccarat",
+    label: "BACCARAT",
+  },
+  {
+    value: "baccarat2",
+    label: "BACCARAT2",
+  },
+  {
+    value: "ballbyball",
+    label: "Ball By Ball",
+  },
+  {
+    value: "queen",
+    label: "Casino Queen",
+  },
 ];
