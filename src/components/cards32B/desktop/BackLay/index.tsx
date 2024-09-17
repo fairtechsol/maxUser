@@ -142,7 +142,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                       )["player8"]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -180,7 +180,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                       )["player9"]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -217,7 +217,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                       )["player10"]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -254,7 +254,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                       )["player11"]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>

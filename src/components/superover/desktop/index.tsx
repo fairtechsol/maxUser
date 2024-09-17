@@ -84,23 +84,29 @@ const SuperoverDesktop = () => {
 
 
   useEffect(() => {
-    const footer = document.getElementById("page-footer");
+    const handleScroll = () => {
+      const stickyElement = placeBetRef.current;
+      const stopElement = document.querySelector(".footer");
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsAtFooter(entry.isIntersecting); 
-      },
-      { rootMargin: "0px", threshold: 0 }
-    );
+      if (stickyElement && stopElement) {
+        const stopPosition = stopElement.getBoundingClientRect().top;
+        const stickyHeight = stickyElement.offsetHeight;
 
-    if (footer) {
-      observer.observe(footer);
-    }
+        // Change to absolute when the footer is reached
+        if (stopPosition <= stickyHeight) {
+          stickyElement.style.position = 'absolute';
+          stickyElement.style.top = stopPosition + 'px';
+        } else {
+          stickyElement.style.position = 'sticky';
+          stickyElement.style.top = '10px';  // Original sticky top
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      if (footer) {
-        observer.unobserve(footer);
-      }
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -188,13 +194,12 @@ const SuperoverDesktop = () => {
         <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
-              ref={rowRef}
-              className={`${isSticky ? "position-fixed top-0" : ""}`}
+              className={` ${isSticky ? "position-fixed top-0" : ""}`}
               style={{
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
-                bottom: isAtFooter ? "unset" : "0px", 
+                   overflowY: "auto", maxHeight: "500px" 
               }}
             >
               <Col md={12}>

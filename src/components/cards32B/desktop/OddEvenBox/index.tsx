@@ -68,7 +68,7 @@ const OddEven = ({ data, odds }: any) => {
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             : 0
-          : 0}
+          : <br></br>}
       </span>
     </div>
   );
