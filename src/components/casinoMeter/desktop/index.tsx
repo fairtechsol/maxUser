@@ -19,7 +19,7 @@ import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import LowCards from "./Low";
 import HighCards from "./High";
-
+import Meter from "./meter";
 const CasinoMeterDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -114,11 +114,16 @@ const CasinoMeterDesktop = () => {
   useEffect(() => {
     if (
       dragonTigerDetail?.players?.[0]?.[0]?.gstatus === "0" ||
-      dragonTigerDetail?.players?.[0]?.[0]?.b1 ==="0.00"
+      dragonTigerDetail?.players?.[0]?.[0]?.b1 === "0.00"
     ) {
       dispatch(selectedBetAction(""));
     }
-  }, [dragonTigerDetail?.players?.[0]?.[0]?.gstatus, dragonTigerDetail?.players?.[0]?.[0]?.b1]);
+  }, [
+    dragonTigerDetail?.players?.[0]?.[0]?.gstatus,
+    dragonTigerDetail?.players?.[0]?.[0]?.b1,
+  ]);
+
+  console.log(dragonTigerDetail);
   return (
     <>
       <Row>
@@ -172,9 +177,27 @@ const CasinoMeterDesktop = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
-                <div style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"space-around",gap:"10px",paddingTop:"10px"}}>
-                  <LowCards odds={dragonTigerDetail.low} data={dragonTigerDetail}/>
-                  <HighCards  odds={dragonTigerDetail.high} data={dragonTigerDetail}/>
+                {dragonTigerDetail?.videoInfo?.cards?.split(",")[0] !== "1" && (
+                  <Meter data={dragonTigerDetail?.videoInfo?.cards} />
+                )}
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    gap: "10px",
+                    paddingTop: "10px",
+                  }}
+                >
+                  <LowCards
+                    odds={dragonTigerDetail.low}
+                    data={dragonTigerDetail}
+                  />
+                  <HighCards
+                    odds={dragonTigerDetail.high}
+                    data={dragonTigerDetail}
+                  />
                 </div>
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
@@ -204,7 +227,7 @@ const CasinoMeterDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <RulesModal  show={show} setShow={setShow} rule={warrules} />
+                <RulesModal show={show} setShow={setShow} rule={warrules} />
               </Col>
             </Row>
           </Container>
