@@ -62,10 +62,10 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               Min: {min} Max: {max}
             </span>
           </div>
-          <div className="market-odd-box-c back">
+          <div className="market-odd-box-cd back">
             <b>Back</b>
           </div>
-          <div className="market-odd-box-c lay">
+          <div className="market-odd-box-cd lay">
             <b>Lay</b>
           </div>
         </div>
@@ -124,7 +124,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               }
             >
               <div
-                className="market-odd-box-c back lh-1"
+                className="market-odd-box-cd back lh-1"
                 onClick={() =>
                   team1?.status === "SUSPENDED" ||
                   team1?.status === "CLOSED" ||
@@ -139,7 +139,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 <span className="market-volume-c">{team1?.bs1}</span>
               </div>
               <div
-                className="market-odd-box-c lay lh-1"
+                className="market-odd-box-cd lay lh-1"
                 onClick={() =>
                   team1?.status === "SUSPENDED" ||
                   team1?.status === "CLOSED" ||
@@ -208,7 +208,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               }
             >
               <div
-                className="market-odd-box-c back lh-1"
+                className="market-odd-box-cd back lh-1"
                 onClick={() =>
                   team2?.status === "SUSPENDED" ||
                   team2?.status === "CLOSED" ||
@@ -223,7 +223,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 <span className="market-volume-c">{team2?.bs1}</span>
               </div>
               <div
-                className="market-odd-box-c lay lh-1"
+                className="market-odd-box-cd lay lh-1"
                 onClick={() =>
                   team2?.status === "SUSPENDED" ||
                   team2?.status === "CLOSED" ||
@@ -251,10 +251,10 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
           <div className="market-header-c" style={{width:"100%"}}>
             <div className="market-nation-detail-c" style={{width:"55%"}} ></div>
             <div style={{width:"45%",display:"flex"}}>
-            <div className="market-odd-box-c lay">
+            <div className="market-odd-box-cd lay">
               <b>No</b>
             </div>
-            <div className="market-odd-box-c back">
+            <div className="market-odd-box-cd back">
               <b>Yes</b>
             </div>
             <div className="fancy-min-max-box ">
@@ -280,11 +280,11 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                     key={index}
                     style={{display:"flex",width:"45%",}}
                   >
-                    <div className="market-odd-box-c lay" >
+                    <div className="market-odd-box-cd lay" >
                       <span className="market-odd-c" style={{fontWeight:"bold"}}>{row?.b1}</span>
                       <span className="market-volume">{row?.bs1}</span>
                     </div>
-                    <div className="market-odd-box-c back">
+                    <div className="market-odd-box-cd back">
                       <span className="market-odd-c" style={{fontWeight:"bold"}}>{row.l1}</span>
                       <span className="market-volume">{row?.ls1}</span>
                     </div>
