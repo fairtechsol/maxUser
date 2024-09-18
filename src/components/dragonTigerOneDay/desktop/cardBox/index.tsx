@@ -87,10 +87,10 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
             {" "}
             <div style={{ width: "30%" }}>
               <span className="minmaxi">
-                <IoInformationCircle
+                {/* <IoInformationCircle
                   color="#ffc742"
                   onClick={() => setModelOpen(!modelOpen)}
-                />
+                /> */}
                 <SmoothDropdownModal
                   min={dragonData?.[0]?.min}
                   max={dragonData?.[0]?.max}

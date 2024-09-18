@@ -46,10 +46,10 @@ const PairBox = ({ odds, data }: any) => {
       >
         <div style={{ width: "100%", textAlign: "end" }}>
           <span className="minmaxi">
-            <IoInformationCircle
+            {/* <IoInformationCircle
               color="#ffc742"
               onClick={() => setModelOpen(!modelOpen)}
-            />
+            /> */}
             <SmoothDropdownModal
               min={min}
               max={max}
