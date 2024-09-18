@@ -34,8 +34,8 @@ const TiePairBox = ({ tiePair, data }: any) => {
   }, [tiePair?.[0]?.gstatus, tiePair?.[0]?.rate]);
 
   return (
-    <div className="tiePairContainer">
-      <div className="tiePairRateBoxMain">
+    <div className="dg20tiePairContainer" >
+      <div className="dg20tiePairRateBoxMain">
         <CommonButtonBox
           value1={tiePair?.[0]?.rate}
           value2={"Dragon"}

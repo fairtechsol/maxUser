@@ -142,7 +142,7 @@ const QueenDesktop = () => {
                     data={dragonTigerDetail}
                     playerNum={[0, 1, 2, 3]}
                   />
-                  <div className="ticker-container">
+                  <div className="ticker-container mt-4">
                     <div className="ticker-wrap">
                       <div
                         className="ticker-move"
