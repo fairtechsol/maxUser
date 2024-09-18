@@ -189,7 +189,7 @@ const DesktopGameDetail = () => {
                   customClass="mt-2 py-2"
                   title={matchDetails?.title}
                   rightComponent={
-                    <span className="title-16 f400 text-white">
+                    <span className="title-16 fbold text-white">
                       {matchDetails?.startAt &&
                         formatDate(matchDetails?.startAt)}
                     </span>
