@@ -159,7 +159,7 @@ const Cricket5Desktop = () => {
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
-                   overflowY: "auto", maxHeight: "600px" 
+                   overflowY: "auto", maxHeight: "500px" 
               }}
             >
               <Col md={12}>

@@ -48,10 +48,18 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
   }, [team1?.status, team1?.b1]);
 
   return (
-    <div className="casino-detail detail-page-container-c position-relative w-100" style={{background:"#f7f7f7"}}>
-      <div className="game-market-c market-2" style={{background:"f7f7f7"}}>
+    <div
+      className="casino-detail detail-page-container-c position-relative w-100"
+      style={{ background: "#f7f7f7" }}
+    >
+      <div className="game-market-c market-2" style={{ background: "f7f7f7" }}>
         <div className="marketHeader">
-          <span>Bookmaker</span>
+          <span  style={{
+                color: "#FFF",
+                //fontSize: "16px",
+                fontWeight:"bold",
+                fontSize: "calc(11px + 0.46vw)", 
+              }}>Bookmaker</span>
         </div>
         <div className="market-header-c">
           <div className="market-nation-detail-b">
@@ -62,10 +70,10 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               Min: {min} Max: {max}
             </span>
           </div>
-          <div className="market-odd-box-c back">
+          <div className="market-odd-box-cd back">
             <b>Back</b>
           </div>
-          <div className="market-odd-box-c lay">
+          <div className="market-odd-box-cd lay">
             <b>Lay</b>
           </div>
         </div>
@@ -124,7 +132,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               }
             >
               <div
-                className="market-odd-box-c back lh-1"
+                className="market-odd-box-cd back lh-1"
                 onClick={() =>
                   team1?.status === "SUSPENDED" ||
                   team1?.status === "CLOSED" ||
@@ -139,7 +147,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 <span className="market-volume-c">{team1?.bs1}</span>
               </div>
               <div
-                className="market-odd-box-c lay lh-1"
+                className="market-odd-box-cd lay lh-1"
                 onClick={() =>
                   team1?.status === "SUSPENDED" ||
                   team1?.status === "CLOSED" ||
@@ -208,7 +216,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               }
             >
               <div
-                className="market-odd-box-c back lh-1"
+                className="market-odd-box-cd back lh-1"
                 onClick={() =>
                   team2?.status === "SUSPENDED" ||
                   team2?.status === "CLOSED" ||
@@ -223,7 +231,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 <span className="market-volume-c">{team2?.bs1}</span>
               </div>
               <div
-                className="market-odd-box-c lay lh-1"
+                className="market-odd-box-cd lay lh-1"
                 onClick={() =>
                   team2?.status === "SUSPENDED" ||
                   team2?.status === "CLOSED" ||
@@ -244,60 +252,107 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
       </div>
 
       {showFancy && (
-        <div className="game-market market-6 mt-2" style={{background:"#f7f7f7"}}>
+        <div
+          className="game-market market-6 mt-2"
+          style={{ background: "#f7f7f7" }}
+        >
           <div className="market-title">
-            <span>Fancy</span>
+            <span
+              style={{
+                color: "#FFF",
+                //fontSize: "16px",
+                fontWeight:"bold",
+                fontSize: "calc(11px + 0.46vw)", 
+              }}
+            >
+              Fancy
+            </span>
           </div>
-          <div className="market-header-c" style={{width:"100%"}}>
-            <div className="market-nation-detail-c" style={{width:"55%"}} ></div>
-            <div style={{width:"45%",display:"flex"}}>
-            <div className="market-odd-box-c lay">
-              <b>No</b>
-            </div>
-            <div className="market-odd-box-c back">
-              <b>Yes</b>
-            </div>
-            <div className="fancy-min-max-box ">
-            <b style={{color:"rgb(247, 247, 247)"}}>Yes</b>
-            </div>
+          <div className="market-header-c" style={{ width: "100%" }}>
+            <div
+              className="market-nation-detail-c"
+              style={{ width: "55%" }}
+            ></div>
+            <div style={{ width: "45%", display: "flex" }}>
+              <div className="market-odd-box-cd lay">
+                <b>No</b>
+              </div>
+              <div className="market-odd-box-cd back">
+                <b>Yes</b>
+              </div>
+              <div className="fancy-min-max-box ">
+                <b style={{ color: "rgb(247, 247, 247)" }}>Yes</b>
+              </div>
             </div>
           </div>
           <div className="market-body-c" data-title="OPEN">
-            {showFancy?.length>0 && showFancy?.map((row: any, index: any) => (
-              <div className={`fancy-market`}>
-                <div className="market-row-" style={{display:"flex",}}>
-                  <div className="market-nation-detail-c" style={{width:"55%"}}>
-                    <span className="market-nation-name-c pointer">
-                      {row.nation}
-                    </span>
-                    <div className="market-nation-book-c"></div>
-                  </div>
-                  <div
-                    className={`market-row- ${
-                      row.suspended ? "suspended-row" : ""
-                    }`}
-                    data-title={row.suspended ? "SUSPENDED" : "ACTIVE"}
-                    key={index}
-                    style={{display:"flex",width:"45%",}}
-                  >
-                    <div className="market-odd-box-c lay" >
-                      <span className="market-odd-c" style={{fontWeight:"bold"}}>{row?.b1}</span>
-                      <span className="market-volume">{row?.bs1}</span>
+            {showFancy?.length > 0 &&
+              showFancy?.map((row: any, index: any) => (
+                <div className={`fancy-market`}>
+                  <div className="market-row-" style={{ display: "flex" }}>
+                    <div
+                      className="market-nation-detail-c"
+                      style={{ width: "55%" }}
+                    >
+                      <span className="market-nation-name-c pointer">
+                        {row.nation}
+                      </span>
+                      <div className="market-nation-book-c"></div>
                     </div>
-                    <div className="market-odd-box-c back">
-                      <span className="market-odd-c" style={{fontWeight:"bold"}}>{row.l1}</span>
-                      <span className="market-volume">{row?.ls1}</span>
-                    </div>
-                    <div className="fancy-min-max-box">
-                      <div className="fancy-min-max">
-                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Min: 100.00</span>
-                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Max: 1L</span>
+                    <div
+                      className={`market-row- ${
+                        row.suspended ? "suspended-row" : ""
+                      }`}
+                      data-title={row.suspended ? "SUSPENDED" : "ACTIVE"}
+                      key={index}
+                      style={{ display: "flex", width: "45%" }}
+                    >
+                      <div className="market-odd-box-cd lay">
+                        <span
+                          className="market-odd-c"
+                          style={{ fontWeight: "bold" }}
+                        >
+                          {row?.b1}
+                        </span>
+                        <span className="market-volume">{row?.bs1}</span>
+                      </div>
+                      <div className="market-odd-box-cd back">
+                        <span
+                          className="market-odd-c"
+                          style={{ fontWeight: "bold" }}
+                        >
+                          {row.l1}
+                        </span>
+                        <span className="market-volume">{row?.ls1}</span>
+                      </div>
+                      <div className="fancy-min-max-box">
+                        <div className="fancy-min-max">
+                          <span
+                            className="w-100 d-block"
+                            style={{
+                              fontSize: "12px",
+                              color: "#097c93",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Min: 100.00
+                          </span>
+                          <span
+                            className="w-100 d-block"
+                            style={{
+                              fontSize: "12px",
+                              color: "#097c93",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Max: 1L
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       )}

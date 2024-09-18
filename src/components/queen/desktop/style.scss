@@ -6,6 +6,7 @@
     justify-content: space-between;
     margin-top: 5px;
     flex-direction: row;
+    width: 100%;
 }
 
 .casino-table-box-q {
@@ -14,8 +15,23 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+    flex-direction: row;
 }
-
+.casino-table-box-q-desktop {
+    width: 100%;
+    display: flex;
+    // flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+}
+.casino-table-box-q-mobile{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
 .casino-odd-box-container-q {
     width: calc(48% - 7.5px);
     margin-right: 10px;

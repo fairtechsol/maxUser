@@ -46,6 +46,12 @@ const TiePairBox = ({ lowHigh, data }: any) => {
     }
   };
 
+  useEffect(() => {
+    if ( lowHigh?.[0]?.gstatus === "SUSPENDED"||lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00") {
+      dispatch(selectedBetAction(""));
+    }
+  }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.b1]);
+  
   return (
     <div className="tiePairContaine">
       <div
@@ -77,7 +83,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
             value3={getProfitLoss(item?.nat?.replace(/\s+/g, "").toLowerCase())}
             width={"100%"}
             handleBet={handleBet}
-            lock={item?.gstatus === "CLOSED" || item?.b1 === "0.00"}
+            lock={item?.gstatus === "CLOSED" ||item?.gstatus === "SUSPENDED" || item?.b1 === "0.00"}
             data={item}
           />
         ))}

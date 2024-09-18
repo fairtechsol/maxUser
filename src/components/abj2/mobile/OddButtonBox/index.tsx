@@ -54,7 +54,7 @@ const OddButtonBox = ({
               : ""
           }`}
         >
-          {profitLoss || 0}
+          {profitLoss ||  <br></br>}
         </span>
       </div>
     </div>

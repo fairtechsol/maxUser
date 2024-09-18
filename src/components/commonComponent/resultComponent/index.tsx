@@ -34,6 +34,7 @@ import Bacarrate1ResultComponent from "../../baccarat1/desktop/resultModalCompon
 import Bacarrate2ResultComponent from "../../baccarat2/desktop/resultModalComponent";
 import QueenResultComponent from "../../queen/desktop/resultModalComponent";
 import BallByBallResultComponent from "../../ballbyball/desktop/resultModalComponent";
+import moment from "moment";
 const title = {
   dt20: "20-20 Dragon Tiger",
   teen20: "20-20 Teenpatti",
@@ -89,7 +90,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         />
       </div>
       <div
-        className="resultModalSubHea"
+        className="resultModalSubHead pt-0"
         style={{ fontSize: isMobile ? "0.8rem" : "1.1rem" }}
       >
         <div
@@ -102,10 +103,10 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
           <span style={{ fontWeight: "bold" }}>Round Id:</span>
           <span>{handleRoundId(data?.result?.mid)}</span>
         </div>
-        {/* <div>
+        <div>
         <span style={{fontWeight:"bold"}}>Match Time:</span>
         <span>{data?.createdAt ? moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A'): moment(date).format('DD/MM/YYYY hh:mm:ss A')}</span>
-        </div> */}
+        </div>
       </div>
       {type === cardGamesType?.dragonTiger20 ? (
         <Dragon20ResultComponent data={data} />

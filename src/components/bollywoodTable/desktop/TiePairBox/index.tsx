@@ -48,9 +48,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       console.log(error);
     }
   };
-
+  
   useEffect(() => {
-    if ( lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00") {
+    if ( lowHigh?.[0]?.gstatus === "SUSPENDED"||lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
     }
   }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.b1]);
@@ -81,7 +81,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
+            lowHigh?.[0]?.gstatus === "SUSPENDED" ||lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
               ? true
               : false
           }
@@ -96,7 +96,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
+            lowHigh?.[1]?.gstatus === "SUSPENDED" ||lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
               ? true
               : false
           }
@@ -111,7 +111,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
+            lowHigh?.[2]?.gstatus === "SUSPENDED" || lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
               ? true
               : false
           }
@@ -127,7 +127,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[3]?.gstatus === "CLOSED" || lowHigh?.[3]?.b1 === "0.00"
+            lowHigh?.[3]?.gstatus === "SUSPENDED" ||lowHigh?.[3]?.gstatus === "CLOSED" || lowHigh?.[3]?.b1 === "0.00"
               ? true
               : false
           }
@@ -142,7 +142,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[4]?.gstatus === "CLOSED" || lowHigh?.[4]?.b1 === "0.00"
+            lowHigh?.[4]?.gstatus === "SUSPENDED" ||lowHigh?.[4]?.gstatus === "CLOSED" || lowHigh?.[4]?.b1 === "0.00"
               ? true
               : false
           }
@@ -157,7 +157,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[5]?.gstatus === "CLOSED" || lowHigh?.[5]?.b1 === "0.00"
+            lowHigh?.[5]?.gstatus === "SUSPENDED" ||lowHigh?.[5]?.gstatus === "CLOSED" || lowHigh?.[5]?.b1 === "0.00"
               ? true
               : false
           }

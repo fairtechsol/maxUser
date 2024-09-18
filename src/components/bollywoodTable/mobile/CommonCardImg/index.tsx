@@ -21,7 +21,11 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
             <div
               key={item?.code}
               className={
-                item?.gstatus === "0" || item?.b1 === "0.00" ? "suspended" : ""
+                item?.gstatus === "SUSPENDED" ||
+                item?.gstatus === "CLOSED" ||
+                item?.b1 === "0.00"
+                  ? "suspended"
+                  : ""
               }
               style={{
                 display: "flex",
@@ -29,7 +33,11 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-              onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
+              onClick={() =>
+                item?.gstatus == "CLOSED" || item?.gstatus == "SUSPENDED"
+                  ? null
+                  : handleBet(item)
+              }
             >
               {" "}
               <img src={item?.imgSrc} width={"30px"} />
