@@ -14,7 +14,7 @@ import {
   ballbyballMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -85,7 +85,7 @@ const BallByBall = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.ballbyball);

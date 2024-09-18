@@ -10,7 +10,7 @@ import {
   updateQueenRates,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -85,7 +85,7 @@ const Queen = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.queen);
