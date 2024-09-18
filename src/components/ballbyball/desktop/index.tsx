@@ -114,6 +114,7 @@ const TeenPattiDesktop = () => {
     }
   }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
 
+  console.log("byb",dragonTigerDetail)
   return (
     <>
       <Row>
@@ -372,14 +373,14 @@ const TeenPattiDesktop = () => {
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `null_${item?.sid}_card`
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                 ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `null_${item?.sid}_card`
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                   ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `null_${item?.sid}_card`
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                     ] < 0
                                   ? "color-red"
                                   : ""
@@ -390,10 +391,10 @@ const TeenPattiDesktop = () => {
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `null_${item?.sid}_card`
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                               ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `null_${item?.sid}_card`
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                 ]
                               : 0
                             : 0}
