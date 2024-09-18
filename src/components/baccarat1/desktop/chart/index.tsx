@@ -29,6 +29,11 @@ const PieChart = ({ data, options }: any) => {
         >
           <div className="sliceText">
             <span>{data?.[0]}%</span>
+            <span style={{
+              position:"absolute",
+              top:10,
+              left:30
+            }}>{data?.[2]}%</span>
             <span>{data?.[1]}%</span>
           </div>
         </div>
