@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { aaarules, luckyrules } from "../../../assets/images";
+import { aaarules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
@@ -16,8 +16,8 @@ import TiePairBox from "./TiePairBox";
 import Lucky7Result from "./lucky7Card";
 import "./style.scss";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const AmarAkbarAnthonyDesktop = () => {
   const [show, setShow] = useState(false);
@@ -127,7 +127,7 @@ const AmarAkbarAnthonyDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div style={{ width: "100%", margin: "5px" }}>

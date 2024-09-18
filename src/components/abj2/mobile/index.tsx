@@ -9,7 +9,6 @@ import "./style.scss";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 import { abjrules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
@@ -17,9 +16,9 @@ import Abj2Result from "../desktop/abj2Card";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Abj2Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -95,7 +94,7 @@ const Abj2Mobile = () => {
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div style={{ width: "100%" }}>

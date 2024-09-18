@@ -2,23 +2,17 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import SBetBox from "./Sbox";
 import "./style.scss";
-// import CardResultBox from "../../commonComponent/cardResultBox";
-// import CardResultBox from "../../commonComponent/cardResultBox";
-import { abjrules } from "../../../assets/images";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import Abj1Result from "../desktop/abj1Card";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
+import Card3Result from "../desktop/abj1Card";
+import NewLoader from "../../commonComponent/newLoader";
 
 const CardJMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -89,13 +83,13 @@ const CardJMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
+                  result={<Card3Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+            <NewLoader />
             ) : (
               <div>
                 <div

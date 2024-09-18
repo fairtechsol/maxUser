@@ -181,7 +181,8 @@ const CasinoReports = () => {
             >
               {cardReport?.results?.map((item: any, index: number) => {
                 return (
-                  <tr className={`${isMobile && "title-12"}`} key={index}>
+                  <tr className={`${isMobile && "title-12"}`} key={index} 
+                  onClick={() => handleResult(item?.mid)}>
                     <td
                       style={{
                         color: "#0d6efd",

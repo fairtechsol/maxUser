@@ -6,17 +6,16 @@ import { RootState } from "../../../store/store";
 // import CardResultBox from "../../commonComponent/cardResultBox";
 import { baccarat1rules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import BaccaratStatistics from "./betTable";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -91,7 +90,7 @@ const Baccarat1Mobile = () => {
             </div>
 
             {loading ? (
-                <LoaderOnRefresh />
+                <NewLoader />
             ) : (
               <div>
                 <div className="row-flex" style={{ width: "100%" }}>

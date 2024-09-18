@@ -15,9 +15,9 @@ import MyBet from "./myBet";
 import "./style.scss";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import ScoreBox from "./scoreBox";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
+import NewLoader from "../../commonComponent/newLoader";
 const CricketMatch20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -150,7 +150,7 @@ const CricketMatch20Mobile = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div style={{}}>
                 <div style={{ width: "100%" }}>

@@ -18,6 +18,9 @@ const Tournament = ({ title, box, data, detail }) => {
     index: any,
     runner: any
   ) => {
+    if (data?.status != "OPEN") {
+      return false;
+    }
     if (status != "ACTIVE") {
       return false;
     }
@@ -125,7 +128,7 @@ const Tournament = ({ title, box, data, detail }) => {
                       : "tournament2RateBox rateBoxWidth2"
                   }
                 >
-                  {item?.status !== "ACTIVE" && (
+                  {(data?.status !== "OPEN" || item?.status !== "ACTIVE") && (
                     <div className="suspended-overlayRatestournament">
                       <span className={`suspendTextCmmn`}>SUSPENDED</span>
                     </div>

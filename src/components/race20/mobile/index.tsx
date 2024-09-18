@@ -4,7 +4,6 @@ import { RootState } from "../../../store/store";
 import "./style.scss";
 import { race20rules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
@@ -15,9 +14,9 @@ import Race20Result from "../desktop/race20Card";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Race20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -91,7 +90,7 @@ const Race20Mobile = () => {
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div style={{ width: "100%" }}>

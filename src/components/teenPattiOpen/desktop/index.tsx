@@ -15,8 +15,8 @@ import "./style.scss";
 import TeenOpenResult from "./teenCard";
 import TeenPattiTableRow from "./tableRow";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -185,7 +185,7 @@ const TeenPattiDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div className="teenPatti-table-container-open">

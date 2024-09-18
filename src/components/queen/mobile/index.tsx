@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import "./style.scss";
 import { abjrules } from "../../../assets/images";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
@@ -11,11 +10,11 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import CasinoTable from "./betBox";
 import QueenCard from "../desktop/queenCard";
+import NewLoader from "../../commonComponent/newLoader";
 const QueenMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
@@ -28,7 +27,6 @@ const QueenMobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -95,7 +93,7 @@ const QueenMobile = () => {
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div
