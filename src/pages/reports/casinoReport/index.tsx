@@ -182,10 +182,10 @@ const CasinoReports = () => {
             >
               {cardReport?.results?.map((item: any, index: number) => {
                 return (
-                  <tr className={`${isMobile && "title-12"}`} key={index}>
+                  <tr className={`${isMobile && "title-12"}`} key={index} 
+                  onClick={() => handleResult(item?.mid)}>
                     <td
-                      style={{ color: "#0d6efd", cursor: "pointer",textAlign:"left",width:"20%" }}
-                      onClick={() => handleResult(item?.mid)}
+                      style={{ color: "#000", cursor: "pointer",textAlign:"left",width:"20%" }}
                     >
                       <NotSet item={item?.mid} />
                     </td>
