@@ -641,7 +641,7 @@ const cardDetail = createSlice({
       })
 
       .addCase(ballbyballMatchRates.fulfilled, (state, action) => {
-        console.log("ballbyball",action?.payload)
+        
         state.loading = false;
         const { t1 } = action?.payload;
         const videoInfo = { ...t1 };

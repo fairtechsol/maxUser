@@ -125,7 +125,7 @@ const CasinoMeterDesktop = () => {
     dragonTigerDetail?.players?.[0]?.[0]?.b1,
   ]);
 
-  console.log(dragonTigerDetail, "place", placedBets);
+  
   return (
     <>
       <Row>

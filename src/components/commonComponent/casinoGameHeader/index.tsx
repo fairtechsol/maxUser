@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-
+import { handleRoundId } from "../../../utils/formatMinMax";
 const CasinoHead = ({activeTab, setActiveTab, setShow} : any) => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const { placedBets } = useSelector((state: RootState) => state.bets);
@@ -39,8 +39,10 @@ const CasinoHead = ({activeTab, setActiveTab, setShow} : any) => {
           <span>
             {" "}
             {dragonTigerDetail?.videoInfo
-              ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
-              : ""}
+                    ? `Round ID:  ${handleRoundId(
+                        dragonTigerDetail?.videoInfo?.mid
+                      )}`
+                    : ""}
           </span>
         </div>
       </div>

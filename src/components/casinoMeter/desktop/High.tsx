@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-const HighCards = ({ odds, data,placedHigh }: any) => {
+const HighCards = ({ odds, data, placedHigh }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
@@ -14,7 +14,7 @@ const HighCards = ({ odds, data,placedHigh }: any) => {
   const [cardShow, setCardShow] = useState(false);
 
   useEffect(() => {
-    if (selectedBet?.team?.betOnTeam ==="Low") {
+    if (selectedBet?.team?.betOnTeam === "Low") {
       setCardShow(true);
     } else {
       setCardShow(false);
@@ -40,12 +40,17 @@ const HighCards = ({ odds, data,placedHigh }: any) => {
       })
     );
   };
+
+  
   return (
     <div
       className={`LowCommonCardImgContainer ${
         odds?.gstatus === "0" ? "suspended" : ""
       }`}
-      onClick={() => (odds?.gstatus === "1" && placedHigh ? handleBet(odds) : null)}
+      onClick={() =>
+        odds?.gstatus === "1" && placedHigh ? handleBet(odds) : null
+      }
+      style={{ border: "1px solid #c7c8ca" }}
     >
       <div className="lowCardContainer">
         <div
@@ -57,7 +62,7 @@ const HighCards = ({ odds, data,placedHigh }: any) => {
             alignItems: "center",
           }}
         >
-          <span style={{color:"#097c93"}}>High</span>
+          <span style={{ color: "#097c93" }}>High</span>
           {cardShow && <HandleCards card="9HH" />}
         </div>
         <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
@@ -81,12 +86,39 @@ const HighCards = ({ odds, data,placedHigh }: any) => {
                   display: "flex",
                   justifyContent: "center",
                 }}
-              >
-                0
-              </span>
+              ></span>
             </div>
           ))}
         </div>
+        <span
+          style={{
+            fontSize: "12px",
+            display: "flex",
+            justifyContent: "center",
+            zIndex: "999",
+          }}
+          className={`${
+            data?.profitLoss
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_2_card`]
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_2_card`] > 0
+                  ? "color-green"
+                  : data?.profitLoss[`${data?.videoInfo?.mid}_2_card`] < 0
+                  ? "color-red"
+                  : ""
+                : ""
+              : ""
+          }`}
+        >
+          {data?.profitLoss ? (
+            data?.profitLoss[`${data?.videoInfo?.mid}_2_card`] ? (
+              data?.profitLoss[`${data?.videoInfo?.mid}_2_card`]
+            ) : (
+              <br></br>
+            )
+          ) : (
+            0
+          )}
+        </span>
       </div>
     </div>
   );

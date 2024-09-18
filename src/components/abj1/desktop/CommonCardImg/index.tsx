@@ -30,7 +30,7 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
     }
   };
 
-  console.log("check",cardData)
+
 
   useEffect(() => {
     if (cardData?.[0]?.gstatus === "0") {

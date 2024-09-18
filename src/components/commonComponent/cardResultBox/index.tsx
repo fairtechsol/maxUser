@@ -12,7 +12,7 @@ import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
 
 const CardResultBox = ({ data, name, type }: any) => {
-  console.log(data.type, "sdfnkj " )
+
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const [lgShow, setLgShow] = useState(false);
