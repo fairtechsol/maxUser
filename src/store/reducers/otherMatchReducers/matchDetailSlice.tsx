@@ -148,31 +148,41 @@ const otherMatchDetail = createSlice({
         state.searchedMatchList = null;
       })
       .addCase(updateTeamRatesOnPlaceBet.fulfilled, (state, action) => {
-        const { matchBetType, newTeamRateData } = action.payload;
-        if ("teamC" in newTeamRateData) {
+        const { matchBetType, newTeamRateData,betId,matchId } = action.payload;
+        if(matchBetType==="tournament"){
           state.otherMatchDetails = {
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              [profitLossDataForMatchConstants[matchBetType]?.A]:
-                newTeamRateData?.teamA,
-              [profitLossDataForMatchConstants[matchBetType]?.B]:
-                newTeamRateData?.teamB,
-              [profitLossDataForMatchConstants[matchBetType]?.C]:
-                newTeamRateData?.teamC,
+              [betId+"_profitLoss_"+matchId]: JSON.stringify(newTeamRateData)
             },
           };
-        } else {
-          state.otherMatchDetails = {
-            ...state.otherMatchDetails,
-            profitLossDataMatch: {
-              ...state.otherMatchDetails.profitLossDataMatch,
-              [profitLossDataForMatchConstants[matchBetType]?.A]:
-                newTeamRateData?.teamA,
-              [profitLossDataForMatchConstants[matchBetType]?.B]:
-                newTeamRateData?.teamB,
-            },
-          };
+        }else{
+          if ("teamC" in newTeamRateData) {
+            state.otherMatchDetails = {
+              ...state.otherMatchDetails,
+              profitLossDataMatch: {
+                ...state.otherMatchDetails.profitLossDataMatch,
+                [profitLossDataForMatchConstants[matchBetType]?.A]:
+                  newTeamRateData?.teamA,
+                [profitLossDataForMatchConstants[matchBetType]?.B]:
+                  newTeamRateData?.teamB,
+                [profitLossDataForMatchConstants[matchBetType]?.C]:
+                  newTeamRateData?.teamC,
+              },
+            };
+          } else {
+            state.otherMatchDetails = {
+              ...state.otherMatchDetails,
+              profitLossDataMatch: {
+                ...state.otherMatchDetails.profitLossDataMatch,
+                [profitLossDataForMatchConstants[matchBetType]?.A]:
+                  newTeamRateData?.teamA,
+                [profitLossDataForMatchConstants[matchBetType]?.B]:
+                  newTeamRateData?.teamB,
+              },
+            };
+          }
         }
       })
       .addCase(updateTeamRatesOnDeleteMatchOther.fulfilled, (state, action) => {
