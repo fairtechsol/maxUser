@@ -27,6 +27,7 @@ import { ApiConstants } from "../../../utils/constants";
 import OtherMarket from "../otherMarket";
 import Iframe from "../../iframe/iframe";
 import { Constants } from "../../../utils/constants";
+import Tournament from "../tournament";
 const markets = [
   {
     id: "fancy",
@@ -141,8 +142,10 @@ const MobileGameDetail = () => {
   const normalizedData = matchDetails?.sessionBettings?.map((item: any) =>
     JSON.parse(item)
   );
-  const manualEntries =  matchDetails?.manualSessionActive ?normalizedData?.filter((item: any) => item?.isManual):[];
- console.log(liveScoreBoardData,"live")
+  const manualEntries = matchDetails?.manualSessionActive
+    ? normalizedData?.filter((item: any) => item?.isManual)
+    : [];
+  console.log(liveScoreBoardData, "live");
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -157,11 +160,10 @@ const MobileGameDetail = () => {
         }
         style={{ padding: "5px" }}
       />
-        {/* {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}  */}
+      {/* {liveScoreBoardData && <Iframe data={liveScoreBoardData} />}  */}
       <CommonTabs defaultActive="odds" className="color">
         {[
           {
-
             id: "odds",
             name: <div className="oddstab border-end lh-sm pe-1">ODDS</div>,
           },
@@ -201,7 +203,7 @@ const MobileGameDetail = () => {
               }
             >
               {index == 0 ? (
-                <div style={{width:"98%"}}>
+                <div style={{ width: "98%" }}>
                   <Row className="ms-0">
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
                     {showVideo && (
@@ -219,9 +221,11 @@ const MobileGameDetail = () => {
                         </Row>
                       </Container>
                     )}
-                      {liveScoreBoardData && <Iframe data={liveScoreBoardData} width="97%" />}
-                    {(matchDetails?.matchOdd?.activeStatus === "live" &&
-                      matchDetails?.matchOdd?.isActive) && (
+                    {liveScoreBoardData && (
+                      <Iframe data={liveScoreBoardData} width="97%" />
+                    )}
+                    {matchDetails?.matchOdd?.activeStatus === "live" &&
+                      matchDetails?.matchOdd?.isActive && (
                         <Col className="g-0" md={12}>
                           <MatchOdd
                             title={"Match_odd"}
@@ -231,12 +235,17 @@ const MobileGameDetail = () => {
                         </Col>
                       )}
 
-                    {(matchDetails?.bookmaker?.activeStatus === "live" &&
-                      matchDetails?.bookmaker?.isActive) && (
+                    {matchDetails?.bookmaker?.activeStatus === "live" &&
+                      matchDetails?.bookmaker?.isActive && (
                         <Col className="g-0" md={12}>
                           <Bookmaker
                             title={matchDetails?.bookmaker?.name}
-                            box={6}
+                            box={
+                              matchDetails?.bookmaker?.runners?.[0]?.ex
+                                ?.availableToBack?.length > 2
+                                ? 6
+                                : 2
+                            }
                             data={matchDetails?.bookmaker}
                             detail={matchDetails}
                             // data={matchDetails?.matchOdd}
@@ -246,7 +255,7 @@ const MobileGameDetail = () => {
                     {matchDetails?.other?.length > 0 &&
                       matchDetails?.other?.map((item: any, index: number) => (
                         <div key={index} className="p-0">
-                          {(item?.activeStatus === "live" && item?.isActive) && (
+                          {item?.activeStatus === "live" && item?.isActive && (
                             <Col className="g-0" md={12}>
                               <OtherMarket
                                 title={item?.name}
@@ -264,6 +273,30 @@ const MobileGameDetail = () => {
                           )}
                         </div>
                       ))}
+                    {matchDetails?.tournament?.length > 0 &&
+                      matchDetails?.tournament?.map(
+                        (item: any, index: number) => (
+                          <div className="p-0" key={index}>
+                            {item?.activeStatus === "live" &&
+                              item?.isActive && (
+                                <Col className="g-0" md={12}>
+                                  <Tournament
+                                    title={item?.name}
+                                    box={
+                                      item?.runners?.[0]?.ex?.availableToBack
+                                        ?.length > 2
+                                        ? 6
+                                        : 2
+                                    }
+                                    data={item}
+                                    detail={matchDetails}
+                                    // data={matchDetails?.matchOdd}
+                                  />
+                                </Col>
+                            )} 
+                          </div>
+                        )
+                      )}
                     {matchDetails?.bookmaker2?.activeStatus === "live" &&
                       matchDetails?.bookmaker2?.isActive && (
                         <Col className="g-0" md={12}>
@@ -281,8 +314,8 @@ const MobileGameDetail = () => {
                       matchDetails?.quickBookmaker?.map(
                         (item: any, index: number) => (
                           <div key={index} className="p-0">
-                            {(item?.activeStatus === "live" &&
-                              item?.isActive) && (
+                            {item?.activeStatus === "live" &&
+                              item?.isActive && (
                                 <Col className="g-0" md={12}>
                                   <ManualMarket
                                     title={item?.name}
@@ -329,28 +362,30 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                    {(matchDetails?.marketCompleteMatch1?.activeStatus === "live" &&
-                        matchDetails?.marketCompleteMatch1?.isActive) && (
-                      <Col className="g-0" md={12}>
-                        <OtherMarket
-                          title={matchDetails?.marketCompleteMatch1?.name}
-                          box={2}
-                          data={matchDetails?.marketCompleteMatch1}
-                          detail={matchDetails}
-                        />
-                      </Col>
-                    )}
-                    {(matchDetails?.manualCompleteMatch?.activeStatus === "live" &&
-                        matchDetails?.manualCompleteMatch?.isActive) && (
-                      <Col className="g-0" md={12}>
-                        <ManualMarket
-                          title={matchDetails?.manualCompleteMatch?.name}
-                          data={matchDetails?.manualCompleteMatch}
-                          detail={matchDetails}
-                          // data={matchDetails?.matchOdd}
-                        />
-                      </Col>
-                    )}
+                    {matchDetails?.marketCompleteMatch1?.activeStatus ===
+                      "live" &&
+                      matchDetails?.marketCompleteMatch1?.isActive && (
+                        <Col className="g-0" md={12}>
+                          <OtherMarket
+                            title={matchDetails?.marketCompleteMatch1?.name}
+                            box={2}
+                            data={matchDetails?.marketCompleteMatch1}
+                            detail={matchDetails}
+                          />
+                        </Col>
+                      )}
+                    {matchDetails?.manualCompleteMatch?.activeStatus ===
+                      "live" &&
+                      matchDetails?.manualCompleteMatch?.isActive && (
+                        <Col className="g-0" md={12}>
+                          <ManualMarket
+                            title={matchDetails?.manualCompleteMatch?.name}
+                            data={matchDetails?.manualCompleteMatch}
+                            detail={matchDetails}
+                            // data={matchDetails?.matchOdd}
+                          />
+                        </Col>
+                      )}
                     {(matchDetails?.apiSession?.session?.section?.length > 0 ||
                       manualEntries?.length > 0) && (
                       <Col className="g-0" md={12}>
@@ -429,8 +464,8 @@ const MobileGameDetail = () => {
                           );
                         }
                       )}
-                    {(matchDetails?.apiTideMatch?.activeStatus === "live" &&
-                        matchDetails?.apiTideMatch?.isActive) && (
+                    {matchDetails?.apiTideMatch?.activeStatus === "live" &&
+                      matchDetails?.apiTideMatch?.isActive && (
                         <Col className="g-0" md={12}>
                           <DynamicMarket
                             title={matchDetails?.apiTideMatch?.name}
@@ -439,16 +474,17 @@ const MobileGameDetail = () => {
                           />
                         </Col>
                       )}
-                    {(matchDetails?.marketCompleteMatch?.activeStatus === "live" &&
-                        matchDetails?.marketCompleteMatch?.isActive) && (
-                      <Col className="g-0" md={12}>
-                        <DynamicMarket
-                          title={matchDetails?.marketCompleteMatch?.name}
-                          data={matchDetails?.marketCompleteMatch}
-                          detail={matchDetails}
-                        />
-                      </Col>
-                    )}
+                    {matchDetails?.marketCompleteMatch?.activeStatus ===
+                      "live" &&
+                      matchDetails?.marketCompleteMatch?.isActive && (
+                        <Col className="g-0" md={12}>
+                          <DynamicMarket
+                            title={matchDetails?.marketCompleteMatch?.name}
+                            data={matchDetails?.marketCompleteMatch}
+                            detail={matchDetails}
+                          />
+                        </Col>
+                      )}
                     {/* {matchDetails?.matchOdd?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable

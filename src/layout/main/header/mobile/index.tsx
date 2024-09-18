@@ -12,6 +12,7 @@ import "./style.scss";
 import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../store/actions/authAction";
+import CustomDropDown from "../desktop/dropdown/customDropdown";
 
 const MobileHeader = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -61,7 +62,7 @@ const MobileHeader = () => {
         )}
         <div className="d-flex gap-1 title-12">
           {show?.exposure && (
-            <span onClick={handleClickExposureModalOpen}>
+            <span className="d-flex justify-content-center align-items-center" onClick={handleClickExposureModalOpen}>
               Exp:{parseFloat(getProfile?.userBal?.exposure).toFixed(2)}
             </span>
           )}
@@ -73,7 +74,8 @@ const MobileHeader = () => {
             <Dropdown>
               <Dropdown.Toggle
                 id="dropdown-custom-components"
-                className="p-0 title-14 "
+                className=" title-14"
+                as={CustomDropDown}
               >
                 {getProfile?.userName}
               </Dropdown.Toggle>
@@ -118,7 +120,7 @@ const MobileHeader = () => {
         </div>
       </div>
       <SearchBox />
-      <div className="marquee-container text-white p-2">
+      <div className="marquee-container text-white p-1">
         <b className="marquee-content title-10">{marqueeNotification?.value}</b>
       </div>
     </>

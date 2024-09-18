@@ -37,7 +37,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
       eventType: detail?.matchType,
       matchId: detail?.id,
       percent: value,
-      matchBetType: "oddEven",
+      matchBetType: "session",
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
       teamName: teamName,
@@ -132,23 +132,23 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
-                            item?.ex?.availableToLay?.[0]?.price,
+                            item?.ex?.availableToBack?.[0]?.price,
                             "Back",
                             "Back",
                             item?.activeStatus,
-                            item?.ex?.availableToLay?.[0]?.price,
+                            item?.ex?.availableToBack?.[0]?.price,
                             item,
-                            item?.ex?.availableToLay?.[0]?.tno,
+                            item?.ex?.availableToBack?.[0]?.tno,
                             "odd"
                           )
                         }
                       >
                         <span className={`rateFont`}>
-                          {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
+                          {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
                             "-"}
                         </span>
                         <span className={`f-size11 sessionRate2Box`}>
-                          {handleSize(item?.ex?.availableToLay?.[0]?.size)}
+                          {handleSize(item?.ex?.availableToBack?.[0]?.size)}
                         </span>
                       </div>
                     </div>
@@ -164,23 +164,23 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                         style={{ cursor: "pointer" }}
                         onClick={() =>
                           handlePlaceBet(
-                            item?.ex?.availableToBack?.[0]?.price,
+                            item?.ex?.availableToLay?.[0]?.price,
                             "Back",
                             "Back",
                             item?.activeStatus,
-                            item?.ex?.availableToBack?.[0]?.price,
+                            item?.ex?.availableToLay?.[0]?.price,
                             item,
-                            item?.ex?.availableToBack?.[0]?.tno,
+                            item?.ex?.availableToLay?.[0]?.tno,
                             "even"
                           )
                         }
                       >
                         <span className={`rateFont`}>
-                          {handlePrice(item?.ex?.availableToBack?.[0]?.price) ??
+                          {handlePrice(item?.ex?.availableToLay?.[0]?.price) ??
                             "-"}
                         </span>
                         <span className={`f-size11 sessionRate2Box`}>
-                          {handleSize(item?.ex?.availableToBack?.[0]?.size)}
+                          {handleSize(item?.ex?.availableToLay?.[0]?.size)}
                         </span>
                       </div>
                     </div>

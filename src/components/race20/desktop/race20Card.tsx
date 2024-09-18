@@ -51,14 +51,14 @@ const Race20Result: React.FC<Props> = ({ data }: any) => {
           }}
         >
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+            style={{ display: "flex", flexDirection: "column", gap: "15px" }}
           >
             <GiSpades color="#000000" size={30} />
             <BiSolidHeart color="#ff0000" size={30} />
             <ImClubs color="#000000" size={30} />
             <ImDiamonds color="#ff0000" size={30} />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
             <div className="result-card-container" style={{height:"40px"}}>
               {hh?.map((item: any) => {
                 return <HandleCards card={item} />;

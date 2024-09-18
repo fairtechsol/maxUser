@@ -130,12 +130,12 @@ const DynamicMarket = ({ title, data, detail }) => {
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
             )}
-            {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
+            {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
               return (
                 <BetBox
                   data={item}
                   type={"back"}
-                  detail={detail}
+                  detail={"Yes"}
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -146,7 +146,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 <BetBox
                   data={item}
                   type={"lay"}
-                  detail={detail}
+                  detail={"Yes"}
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -209,7 +209,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 <BetBox
                   data={item}
                   type={"back"}
-                  detail={detail}
+                  detail={"No"}
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -220,7 +220,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                 <BetBox
                   data={item}
                   type={"lay"}
-                  detail={detail}
+                  detail={"No"}
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />

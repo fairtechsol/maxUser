@@ -1,5 +1,6 @@
 [
   { "id": "home", "name": "Home", "link": "/home", "type": "desktop" },
+  { "id": "lottery", "name": "Lottery", "link": "/contact-admin", "type": "desktop" },
   { "id": "cricket", "name": "Cricket", "link": "/cricket", "type": "desktop" },
   {
     "id": "tennis",

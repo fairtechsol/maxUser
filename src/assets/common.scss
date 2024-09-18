@@ -724,6 +724,9 @@ img {
 .lock {
   position: relative;
 }
+.lockk {
+  position: relative;
+}
 .locked {
   position: relative;
 }
@@ -833,6 +836,9 @@ img {
 }
 .title-10 {
   font-size: 10px !important;
+}
+.f100 {
+  font-weight: 100 !important;
 }
 .f300 {
   font-weight: 300 !important;
@@ -1150,6 +1156,14 @@ img {
   }
 }
 
+.matchOddBackBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 // #middleView-playerDiv {
 //   display: none !important; /* This will override the inline display style */
 // }

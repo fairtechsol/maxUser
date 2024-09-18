@@ -12,6 +12,9 @@ import { formatDate } from "../../../utils/dateUtils";
 import MyBet from "../../gameDetails/desktop/myBet";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import { customSortOnName, getChannelId } from "../../../helpers";
+import Tournament from "../../gameDetails/tournament";
+import MatchOdd from "../../gameDetails/matchOdd";
+import Bookmaker from "../../gameDetails/bookmaker";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -53,13 +56,12 @@ const FootballDesktopGameDetail = () => {
       console.log(error);
     }
   }, [otherMatchDetails?.id]);
-
   return (
     <Container fluid>
       <Row>
         <Col md={8}>
           <Container fluid className="p-0">
-            <Row>
+            <>
               <Col md={12}>
                 <BetTableHeader
                   customClass="mt-2 py-2"
@@ -76,24 +78,46 @@ const FootballDesktopGameDetail = () => {
 
               {otherMatchDetails?.matchOdd?.isActive && (
                 <Col md={12}>
-                  <BetTable
+                  <MatchOdd
                     title={otherMatchDetails?.matchOdd?.name}
-                    type={MatchType.MATCH_ODDS}
                     data={otherMatchDetails?.matchOdd}
+                    detail={otherMatchDetails}
                   />
                 </Col>
               )}
 
-              {/* {otherMatchDetails?.bookmaker?.isActive && (
+              {otherMatchDetails?.bookmaker?.isActive && (
                 <Col md={12}>
-                  <BetTable
+                  <Bookmaker
                     title={otherMatchDetails?.bookmaker?.name}
-                    type={MatchType.MATCH_ODDS}
+                    box={
+                      otherMatchDetails?.bookmaker?.runners?.[0]?.ex
+                        ?.availableToBack?.length > 2
+                        ? 6
+                        : 2
+                    }
                     data={otherMatchDetails?.bookmaker}
+                    detail={otherMatchDetails}
+                    // data={matchDetails?.matchOdd}
                   />
                 </Col>
-              )} */}
-
+              )}
+              {otherMatchDetails?.bookmaker2?.isActive && (
+                <Col md={12}>
+                  <Bookmaker
+                    title={otherMatchDetails?.bookmaker2?.name}
+                    box={
+                      otherMatchDetails?.bookmaker2?.runners?.[0]?.ex
+                        ?.availableToBack?.length > 2
+                        ? 6
+                        : 2
+                    }
+                    data={otherMatchDetails?.bookmaker2}
+                    detail={otherMatchDetails}
+                    // data={matchDetails?.matchOdd}
+                  />
+                </Col>
+              )}
               {otherMatchDetails?.quickBookmaker?.length > 0 &&
                 otherMatchDetails?.quickBookmaker
                   ?.filter((item: any) => item?.isActive)
@@ -108,7 +132,29 @@ const FootballDesktopGameDetail = () => {
                       </Col>
                     </div>
                   ))}
-
+              {otherMatchDetails?.tournament?.length > 0 &&
+                otherMatchDetails?.tournament?.map(
+                  (item: any, index: number) => (
+                    <div key={index}>
+                      {item?.activeStatus === "live" && item?.isActive && (
+                        <Col md={12} style={{ marginTop: "10px" }}>
+                          <Tournament
+                            title={item?.name}
+                            box={
+                              item?.runners?.[0]?.ex?.availableToBack?.length >
+                              2
+                                ? 6
+                                : 2
+                            }
+                            data={item}
+                            detail={otherMatchDetails}
+                            // data={otherMatchDetails?.matchOdd}
+                          />
+                        </Col>
+                      )}
+                    </div>
+                  )
+                )}
               {otherMatchDetails?.setWinner?.length > 0 &&
                 otherMatchDetails?.setWinner
                   ?.filter((item: any) => item?.isActive)
@@ -168,7 +214,7 @@ const FootballDesktopGameDetail = () => {
                       </Col>
                     </div>
                   ))}
-            </Row>
+            </>
           </Container>
         </Col>
         <Col md={4} className="ps-0">

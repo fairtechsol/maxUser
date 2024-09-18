@@ -39,7 +39,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       eventType: detail?.matchType,
       matchId: detail?.id,
       percent: value,
-      matchBetType: "cricketCasino",
+      matchBetType: "session",
       betPlaceIndex: tno,
       mid: item?.mid?.toString(),
       teamName: index + " Number",

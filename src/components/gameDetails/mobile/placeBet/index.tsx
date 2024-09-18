@@ -350,6 +350,24 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       mid: selectedBet?.team?.mid,
                       teamName: selectedBet?.team?.teamName,
                     };
+                    let payloadForTournament: any = {
+                      betId: selectedBet?.team?.betId,
+                      bettingType: selectedBet?.team?.type.toUpperCase(),
+                      browserDetail: browserInfo?.userAgent,
+                      matchId: selectedBet?.team?.matchId,
+                      ipAddress:
+                        ipAddress === "Not found" || !ipAddress ? "192.168.1.100" : ipAddress,
+                      odd: selectedBet?.team?.rate,
+                      stake: selectedBet?.team?.stake,
+                      matchBetType: selectedBet?.team?.matchBetType,
+                      betOnTeam: selectedBet?.team?.betOnTeam,
+                      placeIndex: selectedBet?.team?.placeIndex,
+                      bettingName: selectedBet?.data?.name,
+                      gType: selectedBet?.team?.eventType,
+                      mid: selectedBet?.team?.mid,
+                      selectionId: selectedBet?.team?.selectionId,
+                      runnerId: selectedBet?.team?.runnerId,
+                    };
                     let payloadForBettings: any = {
                       betId: selectedBet?.team?.betId,
                       teamA: selectedBet?.team?.teamA,
@@ -423,7 +441,17 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           );
                         }, getProfile?.delayTime * 1000);
                       }
-                    } else {
+                    }else if(selectedBet?.team?.matchBetType === "tournament"){
+                      setMatchOddLoading(true);
+                      setTimeout(() => {
+                        dispatch(
+                          placeBet({
+                            url: ApiConstants.BET.PLACEBETTOURNAMENT,
+                            data: JSON.stringify(payloadForTournament),
+                          })
+                        );
+                      }, getProfile?.delayTime * 1000);
+                    }  else {
                       dispatch(
                         placeBet({
                           url:

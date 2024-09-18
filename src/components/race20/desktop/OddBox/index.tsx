@@ -182,7 +182,7 @@ const OddBox = ({ odds, data }: any) => {
                         : ""
                     }`}
                   >
-                    {data?.profitLoss
+                    {data?.profitLoss 
                       ? data?.profitLoss[
                           `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
                         ]

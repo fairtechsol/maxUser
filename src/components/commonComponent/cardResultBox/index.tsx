@@ -12,6 +12,7 @@ import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
 
 const CardResultBox = ({ data, name, type }: any) => {
+  console.log(data.type, "sdfnkj " )
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const [lgShow, setLgShow] = useState(false);
@@ -86,7 +87,25 @@ console.log("re",liveGameResultTop10)
               }}
               onClick={() => handleResult(item?.mid)}
             >
-              {type === "card32" ? (
+              {type === "queen" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "#ffff33",
+                  }}
+                >
+                  {item?.result === "1"
+                    ? name?.[0]
+                    : item?.result === "2"
+                    ? name?.[1]
+                    : item?.result === "3"
+                    ? name?.[2]
+                    : item?.result === "4"
+                    ? name?.[3]
+                    : null}
+                </span>
+              ) : type === "card32" ? (
                 <span
                   style={{
                     fontSize: "16px",
