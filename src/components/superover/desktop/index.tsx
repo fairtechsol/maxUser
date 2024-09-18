@@ -28,6 +28,8 @@ const SuperoverDesktop = () => {
   );
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+  const [isAtFooter, setIsAtFooter] = useState(false);
+  const rowRef = useRef(null);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -80,6 +82,35 @@ const SuperoverDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.superover}`);
   }, []);
 
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const stickyElement = placeBetRef.current;
+      const stopElement = document.querySelector(".footer");
+
+      if (stickyElement && stopElement) {
+        const stopPosition = stopElement.getBoundingClientRect().top;
+        const stickyHeight = stickyElement.offsetHeight;
+
+        // Change to absolute when the footer is reached
+        if (stopPosition <= stickyHeight) {
+          stickyElement.style.position = 'absolute';
+          stickyElement.style.top = stopPosition + 'px';
+        } else {
+          stickyElement.style.position = 'sticky';
+          stickyElement.style.top = '10px';  // Original sticky top
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  
   return (
     <div>
       <Row>
@@ -114,12 +145,12 @@ const SuperoverDesktop = () => {
                   : ""}
               </span>
             </div>
-            {scoreBoardData?.balls?.length>0 && (
+            {scoreBoardData?.balls?.length > 0 && (
               <div style={{ marginBottom: "2px" }}>
                 <Iframe data={scoreBoardData} />
               </div>
             )}
-            
+
             <div
               style={{ width: "100%", height: "92%", backgroundColor: "#000" }}
             >
@@ -168,13 +199,13 @@ const SuperoverDesktop = () => {
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
-                  overflowY: "auto", maxHeight: "600px" 
+                   overflowY: "auto", maxHeight: "500px" 
               }}
             >
               <Col md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12} style={{ overflowY: "auto", maxHeight: "500px" }}>
+              <Col md={12}>
                 <DesktopMyBet />
               </Col>
               <Col>

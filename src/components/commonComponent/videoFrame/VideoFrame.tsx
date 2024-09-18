@@ -12,6 +12,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
   }, []);
 
   //console.log("time?.length", time);
+  
   return (
     <>
       <div
@@ -99,8 +100,8 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                   ))}
               </ol>
             </div>
-            {/* time && */}
-            {
+
+            {typeof time !== "undefined" && time !== null && (
               <div
                 style={{
                   position: "absolute",
@@ -113,7 +114,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
               >
                 <FlipClock value={time < 10 ? "0" + time : time} />
               </div>
-            }
+            )}
           </div>
         </div>
       </div>

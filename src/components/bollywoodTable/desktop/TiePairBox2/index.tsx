@@ -75,7 +75,9 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
           width={"100%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.gstatus === "CLOSED" || lowHigh?.gstatus === "SUSPENDED"
+            lowHigh?.gstatus === "CLOSED" ||
+            lowHigh?.gstatus === "SUSPENDED" ||
+            lowHigh?.[0]?.b1 === "0.00"
           }
           data={lowHigh}
         />

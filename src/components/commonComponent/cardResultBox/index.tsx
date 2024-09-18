@@ -52,7 +52,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         return "#355e3b";
     }
   };
-
+console.log("re",liveGameResultTop10)
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">
@@ -331,6 +331,25 @@ const CardResultBox = ({ data, name, type }: any) => {
                     : name?.[2]}
                 </span>
               ) : type === "dt6" ? (
+                <span
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color:
+                      item?.result === "1"
+                        ? "#ff4500"
+                        : item?.result === "2"
+                        ? "#f5cc03"
+                        : "#ffffff",
+                  }}
+                >
+                  {item?.result === "1"
+                    ? name?.[0]
+                    : item?.result === "2"
+                    ? name?.[1]
+                    : name?.[2]}
+                </span>
+              ) : type === "cmeter" ? (
                 <span
                   style={{
                     fontSize: "16px",

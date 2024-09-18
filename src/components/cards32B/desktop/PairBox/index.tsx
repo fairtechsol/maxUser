@@ -136,7 +136,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -176,7 +176,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -216,7 +216,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>

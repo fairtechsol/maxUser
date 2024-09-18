@@ -191,8 +191,8 @@ const OddBox = ({ odds, data }: any) => {
                               `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
                             ]
                           )[hanleProfitLossForK(item?.nat)]
-                        : " "
-                      : " "}
+                        : ""
+                      : 0}
                   </span>
                 </div>
               </>

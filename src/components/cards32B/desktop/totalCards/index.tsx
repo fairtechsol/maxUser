@@ -109,7 +109,7 @@ const TotalCards = ({ data, odds }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -146,7 +146,7 @@ const TotalCards = ({ data, odds }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>

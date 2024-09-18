@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-const LowCards = ({ odds, data }: any) => {
+const LowCards = ({ odds, data,placedLow }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
@@ -45,7 +45,7 @@ const LowCards = ({ odds, data }: any) => {
       className={`LowCommonCardImgContainer ${
         odds?.gstatus === "0" ? "suspended" : ""
       }`}
-      onClick={() => (odds?.gstatus === "1" ? handleBet(odds) : null)}
+      onClick={() => (odds?.gstatus === "1" && placedLow ? handleBet(odds) : null)}
     >
       <div className="lowCardContainer">
         <div
