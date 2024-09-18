@@ -10,12 +10,11 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import MarketComponent from "./betTable";
-import ScoreBoard from "../../commonComponent/scoreBoard";
 import Crick5Result from "./cric5Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import Iframe from "../../iframe/iframe";
+import NewLoader from "../../commonComponent/newLoader";
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
@@ -129,7 +128,7 @@ const Cricket5Desktop = () => {
             </div>
           </div>
           {loading ? (
-            <LoaderOnRefresh />
+            <NewLoader />
           ) : (
             <div>
               <div className="ms-1 w-100">

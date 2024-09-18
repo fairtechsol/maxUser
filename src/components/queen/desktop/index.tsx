@@ -12,10 +12,10 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import BetBox from "./betBox";
 import QueenCard from "./queenCard";
+import NewLoader from "../../commonComponent/newLoader";
 
 const QueenDesktop = () => {
   const [show, setShow] = useState(false);
@@ -126,7 +126,7 @@ const QueenDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div

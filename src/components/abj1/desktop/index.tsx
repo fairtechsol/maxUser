@@ -14,8 +14,8 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import Abj1Result from "./abj1Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Abj1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -127,7 +127,7 @@ const Abj1Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+           <NewLoader />
             ) : (
               <div>
                 <div

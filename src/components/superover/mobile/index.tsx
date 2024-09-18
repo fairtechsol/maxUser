@@ -8,16 +8,15 @@ import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import Bookmaker from "../desktop/bookmaker";
-import ScoreBoard from "../../commonComponent/scoreBoard";
 import { Table } from "react-bootstrap";
 import SuperoverResult from "../desktop/superOver";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import Iframe from "../../iframe/iframe";
+import NewLoader from "../../commonComponent/newLoader";
 
 const SuperoverMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -109,7 +108,7 @@ const SuperoverMobile = () => {
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div className="" style={{ width: "100%", gap: "10px" }}>

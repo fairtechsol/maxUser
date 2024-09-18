@@ -14,9 +14,10 @@ import Bookmaker from "./bookmaker";
 import ScoreBoard from "../../commonComponent/scoreBoard";
 import SuperoverResult from "./superOver";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import Iframe from "../../iframe/iframe";
+import CustomLoader from "../../commonComponent/customLoader/CustomLoader";
+import NewLoader from "../../commonComponent/newLoader";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -162,7 +163,7 @@ const SuperoverDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <LoaderOnRefresh />
+            <NewLoader />
           ) : (
             <>
               <div
