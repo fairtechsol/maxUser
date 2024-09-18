@@ -94,7 +94,7 @@ const AccountStatementComponent = () => {
               <Col lg={2} md={3} xs={6}>
                 <DatePicker
                   onChange={setFrom}
-                  format="yyyy-MM-dd"
+                  format="dd/MM/yyyy"
                   value={from}
                   closeCalendar={true}
                   clearIcon={null}
@@ -108,7 +108,7 @@ const AccountStatementComponent = () => {
                 <DatePicker
                   onChange={setTo}
                   value={to}
-                  format="yyyy-MM-dd"
+                  format="dd/MM/yyyy"
                   closeCalendar={true}
                   clearIcon={null}
                   className="w-100"

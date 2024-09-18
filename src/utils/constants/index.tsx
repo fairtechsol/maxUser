@@ -319,6 +319,7 @@ export const cardGamesType: any = {
   ballbyball: "ballbyball",
   cmeter: "cmeter",
   queen: "queen",
+  worli1: "worli",
 };
 export const cardGamesId: any = {
   dragonTiger20: 3035,
@@ -1802,6 +1803,13 @@ export const card3 = {
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1013.webp",
       name: "Worli",
     },
+    // {
+    //   id: 26,
+    //   url: "/worli",
+    //   imgSrc:
+    //     "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1013.webp",
+    //   name: "Worli",
+    // },
   ],
 
   "3cardj": [
