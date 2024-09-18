@@ -15,7 +15,7 @@ interface Props {
 }
 
 const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
-  console.log("res",data)
+
   const elements = data?.result?.cards?.split(",");
   const primaryCards = elements?.slice(0, 3);
   const cards = elements?.slice(3);

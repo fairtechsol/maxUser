@@ -58,7 +58,7 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
   const total2 = handleCount(result?.[2], 2);
   const total3 = handleCount(result?.[3], 3);
 
-  // Find the maximum value
+
   const maxSum = Math.max(total0, total1, total2, total3);
 
   return (

@@ -1,40 +1,31 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { tprules, warrules } from "../../../assets/images";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { AppDispatch, RootState } from "../../../store/store";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
+import { useSelector } from "react-redux";
+import { abjrules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
-import CasinoWarResult from "./teenCard";
-import { HandleCards } from "../../commonComponent/cardsComponent";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import LowCards from "./Low";
-import HighCards from "./High";
-import Meter from "./meter";
-const CasinoMeterDesktop = () => {
-  const dispatch: AppDispatch = useDispatch();
+import MatkaNavTab from "./navTab";
+
+const MatkaDesktop = () => {
+  const [show, setShow] = useState(false);
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const [show, setShow] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-
-  const { placedBets } = useSelector((state: RootState) => state.bets);
-  //const { playerA, playerB } = dragonTigerDetail;
-
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -53,33 +44,6 @@ const CasinoMeterDesktop = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  // const rules = [
-  //   { label: "Pair (Double)", value: "1 To 1" },
-  //   { label: "Flush (Color)", value: "1 To 4" },
-  //   { label: "Straight (Rown)", value: "1 To 6" },
-  //   { label: "Trio (Teen)", value: "1 To 35" },
-  //   { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  // ];
-  const handleBet = (item: any) => {
-    let team = {
-      bettingType: "BACK",
-      matchId: dragonTigerDetail?.id,
-      odd: item?.b1,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
-      bettingName: "Match odds",
-      selectionId: item?.sid,
-    };
-    dispatch(
-      selectedBetAction({
-        team,
-        dragonTigerDetail,
-      })
-    );
-  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -110,34 +74,23 @@ const CasinoMeterDesktop = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.cmeter}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
   }, []);
 
-  useEffect(() => {
-    if (
-      dragonTigerDetail?.players?.[0]?.[0]?.gstatus === "0" ||
-      dragonTigerDetail?.players?.[0]?.[0]?.b1 === "0.00"
-    ) {
-      dispatch(selectedBetAction(""));
-    }
-  }, [
-    dragonTigerDetail?.players?.[0]?.[0]?.gstatus,
-    dragonTigerDetail?.players?.[0]?.[0]?.b1,
-  ]);
 
-  
+  console.log(dragonTigerDetail, "detailworli")
   return (
     <>
       <Row>
         <Col md={8}>
-          <div style={{ margin: "5px" }}>
-            <div style={{ marginBottom: ".30px" }}>
+          <div className="horseRacingTab">
+            <div style={{ width: "100%", margin: "5px" }}>
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
-                    CASINO METER
+                    {dragonTigerDetail?.name}
                   </span>
-                  <span
+                  <a
                     style={{
                       fontSize: "14px",
                       textDecoration: "underline",
@@ -145,30 +98,30 @@ const CasinoMeterDesktop = () => {
                     }}
                     onClick={() => setShow(true)}
                   >
-                    {" "}
                     RULES
-                  </span>
+                  </a>
                 </div>
                 <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${
-                        dragonTigerDetail?.players?.[0]?.[0]?.min ?? 0
-                      }|Max: ${dragonTigerDetail?.players?.[0]?.[0]?.max ?? 0}`
+                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
+                        dragonTigerDetail?.videoInfo?.max
+                      }`
                     : ""}
                 </span>
               </div>
               <div
                 style={{
+                  // flex: '1 0 auto',
                   width: "100%",
-                  height: "90%",
+                  // height: "92%",
                   backgroundColor: "#000",
                 }}
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={""}
+                //   result={<WorliResult data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
@@ -177,66 +130,36 @@ const CasinoMeterDesktop = () => {
               <LoaderOnRefresh />
             ) : (
               <div>
-                {dragonTigerDetail?.videoInfo?.cards?.split(",")[0] !== "1" && (
-                  <Meter
-                    data={dragonTigerDetail?.videoInfo?.cards}
-                    runPosition={
-                      dragonTigerDetail?.videoInfo?.mid ==
-                      placedBets?.[0]?.runnerId
-                        ? placedBets?.[0]?.teamName == "Low"
-                          ? "Low"
-                          : "High"
-                        : ""
-                    }
-                  />
-                )}
                 <div
                   style={{
                     width: "100%",
+                    margin: "5px",
                     display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                    gap: "10px",
-                    paddingTop: "10px",
+                    flexDirection: "column",
                   }}
                 >
-                  <LowCards
-                    odds={dragonTigerDetail.low}
-                    data={dragonTigerDetail}
-                    placedLow={
-                      dragonTigerDetail?.videoInfo?.mid ==
-                      placedBets?.[0]?.runnerId
-                        ? placedBets?.[0]?.teamName == "Low"
-                          ? true
-                          : false
-                        : true
-                    }
-                  />
-                  <HighCards
-                    odds={dragonTigerDetail.high}
-                    data={dragonTigerDetail}
-                    placedHigh={
-                      dragonTigerDetail?.videoInfo?.mid ==
-                      placedBets?.[0]?.runnerId
-                        ? placedBets?.[0]?.teamName == "High"
-                          ? true
-                          : false
-                        : true
-                    }
-                  />
+                  <div className="">
+                    <MatkaNavTab
+                     odds={dragonTigerDetail?.worliMatka}
+                     data={dragonTigerDetail}
+                     cards={dragonTigerDetail?.cardInfo}
+                     />
+                  </div>
                 </div>
-                <div style={{ width: "100%", marginTop: "10px" }}>
+
+                <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R", "R"]}
-                    type={"cmeter"}
+                    name={["R"]}
+                    type={cardGamesType.worli}
                   />
                 </div>
               </div>
             )}
+            <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
-        <Col md={4} className="ps-0">
+        <Col md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
@@ -252,9 +175,6 @@ const CasinoMeterDesktop = () => {
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
-                <RulesModal show={show} setShow={setShow} rule={warrules} />
-              </Col>
             </Row>
           </Container>
         </Col>
@@ -264,4 +184,4 @@ const CasinoMeterDesktop = () => {
   );
 };
 
-export default CasinoMeterDesktop;
+export default MatkaDesktop;

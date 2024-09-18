@@ -355,12 +355,12 @@ const CardResultBox = ({ data, name, type }: any) => {
                     color:
                       item?.result === "1"
                         ? "#ff4500"
-                        : item?.result === "2"
+                        : item?.result === "0"
                         ? "#f5cc03"
                         : "#ffffff",
                   }}
                 >
-                  {item?.result === "1"
+                  {item?.result === "0"
                     ? name?.[0]
                     : item?.result === "2"
                     ? name?.[1]

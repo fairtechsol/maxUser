@@ -21,7 +21,37 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
       result[targetArray].push(item);
     });
   }
-  // const max = Math.max(...numbers);
+  const handleCount = (cards: any, count: any) => {
+    const getCardValue = (card: any) => {
+      const value = card.slice(0, -2);
+      switch (value) {
+        case "J":
+          return 11;
+        case "Q":
+          return 12;
+        case "K":
+          return 13;
+        case "A":
+          return 1;
+        default:
+          return parseInt(value, 10);
+      }
+    };
+
+    const sum = cards.reduce((accumulator: any, card: any) => {
+      if (card === "1") return accumulator;
+      return accumulator + getCardValue(card);
+    }, count);
+    return sum;
+  };
+
+  const total0 = handleCount(result?.[0], 0);
+  const total1 = handleCount(result?.[1], 1);
+  const total2 = handleCount(result?.[2], 2);
+  const total3 = handleCount(result?.[3], 3);
+
+
+  const maxSum = Math.max(total0, total1, total2, total3);;
 
   return (
     <Container
@@ -29,7 +59,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
     >
       <div className="card32resultModal">
         <div className="card32resultCardContainer mb-3">
-          <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Total 0</span>
+          <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Total 0 -  <span className="bg-success badge">{total0} </span></span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "1" && (
               <div className="casino-winner-icon">
@@ -54,7 +84,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
         <div className="card32resultCardContainer mb-3">
-          <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Total 1</span>
+          <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Total 1 - <span className="bg-success badge">{total1} </span></span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "2" && (
               <div className="casino-winner-icon">
@@ -80,7 +110,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
         </div>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
-            Total 2
+            Total 2 -  <span className="bg-success badge">{total2} </span>
           </span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "3" && (
@@ -107,7 +137,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
         </div>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
-            Total 3
+            Total 3 -  <span className="bg-success badge">{total3} </span>
           </span>
           <div className="d-sm-flex flex-row justify-content-center align-items-center">
             {data?.result?.win === "4" && (
@@ -142,7 +172,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
         }}
       >
         <span style={{ opacity: "0.6" }}>Winner</span> Total{" "}
-        {7 + Number(data?.result?.win)}
+        {data?.result?.win}
       </div>
     </Container>
   );

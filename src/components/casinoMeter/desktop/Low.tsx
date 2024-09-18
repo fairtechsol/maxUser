@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-const LowCards = ({ odds, data,placedLow }: any) => {
+const LowCards = ({ odds, data, placedLow }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
@@ -14,7 +14,7 @@ const LowCards = ({ odds, data,placedLow }: any) => {
   const [cardShow, setCardShow] = useState(false);
 
   useEffect(() => {
-    if (selectedBet?.team?.betOnTeam ==="High") {
+    if (selectedBet?.team?.betOnTeam === "High") {
       setCardShow(true);
     } else {
       setCardShow(false);
@@ -45,7 +45,10 @@ const LowCards = ({ odds, data,placedLow }: any) => {
       className={`LowCommonCardImgContainer ${
         odds?.gstatus === "0" ? "suspended" : ""
       }`}
-      onClick={() => (odds?.gstatus === "1" && placedLow ? handleBet(odds) : null)}
+      onClick={() =>
+        odds?.gstatus === "1" && placedLow ? handleBet(odds) : null
+      }
+      style={{ border: "1px solid #c7c8ca" }}
     >
       <div className="lowCardContainer">
         <div
@@ -55,12 +58,22 @@ const LowCards = ({ odds, data,placedLow }: any) => {
             gap: "5px",
             justifyContent: "center",
             alignItems: "center",
+            margin: "10px",
           }}
         >
-          <span>Low</span>
+          <span style={{ color: "#097c93" }}>Low</span>
           {cardShow && <HandleCards card="10HH" />}
         </div>
-        <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            flexDirection: "row",
+            gap: "5px",
+            width: "70%",
+          }}
+        >
           {dragonTigerCards.slice(0, 9).map((item, index) => (
             <div
               key={index}
@@ -81,12 +94,39 @@ const LowCards = ({ odds, data,placedLow }: any) => {
                   display: "flex",
                   justifyContent: "center",
                 }}
-              >
-                0
-              </span>
+              ></span>
             </div>
           ))}
         </div>
+        <span
+          style={{
+            fontSize: "12px",
+            display: "flex",
+            justifyContent: "center",
+            zIndex:"999"
+          }}
+          className={`${
+            data?.profitLoss
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] > 0
+                  ? "color-green"
+                  : data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] < 0
+                  ? "color-red"
+                  : ""
+                : ""
+              : ""
+          }`}
+        >
+          {data?.profitLoss ? (
+            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+              data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+            ) : (
+              <br></br>
+            )
+          ) : (
+            0
+          )}
+        </span>
       </div>
     </div>
   );
