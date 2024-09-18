@@ -73,6 +73,13 @@ body table.table {
   z-index: 9999999;
   margin-top: 2rem;
 }
+
+.teenPatti-table-row{
+  background-color: #f7f7f7;
+  width: 100%;
+  display: flex;
+  flex-direction: row
+}
 /* Marquee.css */
 
 .marquee-container {
