@@ -1,0 +1,199 @@
+@font-face {
+    font-family: 'RetroSigned';
+    src: url('/fonts/casinonumfont.woff2') format('woff2'),
+         url('/fonts/casinonumfont.woff') format('woff');
+    font-weight: Light;
+    font-style: normal;
+  }
+
+  .suspended-box {
+    position: relative;
+    pointer-events: none;
+    cursor: none;
+}
+  
+  .suspended-box::before {
+    background-image: url(../../../assets/images/baccarat/lock.svg);
+    background-size: 17px 17px;
+    filter: invert(1);
+    -webkit-filter: invert(1);
+    background-repeat: no-repeat;
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    pointer-events: none;
+}
+.suspended-box::after {
+  content: "";
+  background-color: #373636d6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+  .nav-item, .nav-pills-worli {
+    display: flex;
+    // flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: #cccccc;
+
+}
+.nav-pills-worli .nav-link-worli.active, .nav-pills-worli .show>.nav-link-worli {
+    background-color: #ffc742;
+    color: #ffffff;
+}
+
+.nav-pills-worli .nav-link-worli.active, .nav-pills-worli .show>.nav-link-worli {
+    color: #fff;
+    background-color: #ffc742;
+    
+}
+.nav-pills-worli .nav-link-worli {
+    background-color: #cccccc;
+    color: #000000;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    font-size: 14px;
+    text-align: center;
+    line-height: 0.8;
+    cursor: pointer;
+    white-space: nowrap;
+    border-right: 1px solid #ffc742 !important;
+}
+.nav-pills-worli .nav-link-worli {
+    background: 0 0;
+    border: 0;
+    border-radius: .25rem;
+}
+.nav-link-worli {
+    display: block;
+    padding: .5rem 1rem;
+    color: #0d6efd;
+    text-decoration: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.sp .worli-right .worli-odd-box, .dp .worli-right .worli-odd-box, .chart56 .worli-right .worli-odd-box, .chart64 .worli-right .worli-odd-box, .colordp .worli-right .worli-odd-box {
+    height: 142px;
+    width: 100%;
+}
+
+.worli-full {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+
+  
+  
+  
+  .worlibox {
+    display: flex;
+    margin-top: 5px;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+  }
+  
+  .worli-left {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .worli-box-title {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+    min-height: 24px;
+  }
+  
+  .worli-box-row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+  .worli-left .worli-odd-box, .worli-full .worli-odd-box {
+    width: calc(20% - 2px);
+    margin-right: 2px;
+  }
+  
+  .worli-odd-box {
+    text-align: center;
+    height: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .worli-left .worli-odd-box, .worli-full .worli-odd-box {
+    width: calc(20% - 2px);
+    margin-right: 2px;
+  }
+
+  
+  .worli-right {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .worli-right .worli-odd-box {
+    width: calc(50% - 2px);
+    margin-right: 2px;
+  }
+  
+  .worli-odd-box .worli-odd {
+    font-size: 32px;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "RetroSigned";
+  }
+
+  .abr .worli-left .worli-odd-box {
+    width: calc(33.33% - 2px);
+}
+
+.abr .worli-right .worli-odd-box {
+    width: 100%;
+}
+.worli-odd-box.back.selected {
+    background-color: #086f3f !important;
+    color: #fff;
+}
+  
+  @media only screen and (max-width: 767px) {
+    .worli-odd-box .worli-odd {
+        font-size: 20px;
+    }
+  }
+  
+  @media only screen and (max-width: 767px) {
+    .worli-box-title {
+        min-height: 18px;
+    }
+  }

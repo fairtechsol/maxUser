@@ -39,6 +39,7 @@ import {
   casinoMeterPattiMatchRates,
   ballbyballMatchRates,
   updateQueenRates,
+  updateWorliMatkaRates,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -664,6 +665,21 @@ const cardDetail = createSlice({
           cards,
         };
       })
+
+      .addCase(updateWorliMatkaRates.fulfilled, (state, action) => {
+        const { t1, t2 } = action.payload;
+        state.loading = false;
+        const videoInfo = { ...t1[0] };
+
+        const worliMatka = {...t2};
+
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          videoInfo,
+          worliMatka,
+        };
+      })
+
       .addCase(resultDragonTiger.pending, (state) => {
         // state.loading = true;
         state.error = null;
