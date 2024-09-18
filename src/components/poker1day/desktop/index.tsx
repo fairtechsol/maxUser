@@ -15,8 +15,8 @@ import DynamicTable from "./betTable";
 import Poker1DayResult from "./poker1DayCard";
 import PairBox from "./pairBox";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Poker1DayDesktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -150,7 +150,7 @@ const Poker1DayDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div className="poker-table-container mt-1">

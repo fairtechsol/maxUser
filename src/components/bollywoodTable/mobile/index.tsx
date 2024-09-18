@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { brules, luckyrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
@@ -16,10 +15,10 @@ import TiePairBox from "./TiePairBox";
 import Lucky7Result from "../desktop/lucky7Card";
 import "./style.scss";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import TiePairBox2 from "./TiePairBox2";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
+import NewLoader from "../../commonComponent/newLoader";
 
 const BollywoodTableDesktop = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -112,7 +111,7 @@ const BollywoodTableDesktop = () => {
                 </div>
               </div>
               {loading ? (
-                <LoaderOnRefresh />
+                <NewLoader />
               ) : (
                 <div>
                   <div style={{ width: "100%" }}>

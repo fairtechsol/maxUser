@@ -16,8 +16,8 @@ import SBetBox from "./Sbox";
 import Abj2Result from "./abj2Card";
 import "./style.scss";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -130,7 +130,7 @@ const Abj2Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div

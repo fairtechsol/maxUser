@@ -6,17 +6,15 @@ import { RootState } from "../../../store/store";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Crick5Result from "../desktop/cric5Card";
 import MarketComponent from "./betTable";
-import ScoreBoard from "../../commonComponent/scoreBoard";
-import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { crick5rules } from "../../../assets/images";
-import { Table } from "react-bootstrap";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import Iframe from "../../iframe/iframe";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
@@ -105,7 +103,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div>

@@ -12,14 +12,12 @@ import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
-import CasinoWarResult from "./teenCard";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import LowCards from "./Low";
 import HighCards from "./High";
 import Meter from "./meter";
+import NewLoader from "../../commonComponent/newLoader";
 const CasinoMeterDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -33,7 +31,6 @@ const CasinoMeterDesktop = () => {
   );
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  //const { playerA, playerB } = dragonTigerDetail;
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -174,7 +171,7 @@ const CasinoMeterDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 {dragonTigerDetail?.videoInfo?.cards?.split(",")[0] !== "1" && (

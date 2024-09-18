@@ -9,7 +9,6 @@
 //   );
 // export default Loadable;
 import  { lazy, Suspense } from "react";
-import { LoaderOnRefresh } from "../components/commonComponent/loader";
 
 const Loadable = (importFunc: any) => {
   const LazyComponent = lazy(() =>
@@ -22,7 +21,7 @@ const Loadable = (importFunc: any) => {
   );
 
   return (props: any) => (
-    <Suspense fallback={<LoaderOnRefresh />}>
+    <Suspense >
           <LazyComponent {...props} />
          </Suspense>
   );

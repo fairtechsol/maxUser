@@ -17,8 +17,8 @@ import CardBox from "./cardBox";
 import Dragon20Result from "./dragonCard";
 import "./style.scss";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const DragonTigerDesktop = () => {
   const [show, setShow] = useState(false);
@@ -123,7 +123,7 @@ const DragonTigerDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <LoaderOnRefresh />
+            <NewLoader />
           ) : (
             <div>
               <div

@@ -15,12 +15,12 @@ import "./style.scss";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
 import Meter from "../desktop/meter";
 import LowCards from "../desktop/Low";
 import HighCards from "../desktop/High";
+import NewLoader from "../../commonComponent/newLoader";
 
 const CasinoMeterMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -138,7 +138,7 @@ const CasinoMeterMobile = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 {dragonTigerDetail?.videoInfo?.cards?.split(",")[0] !== "1" && (
