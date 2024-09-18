@@ -19,6 +19,7 @@ import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
+import Card3Result from "../desktop/abj1Card";
 
 const CardJMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -89,7 +90,7 @@ const CardJMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
+                  result={<Card3Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>

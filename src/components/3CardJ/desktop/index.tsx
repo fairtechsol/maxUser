@@ -16,6 +16,7 @@ import Abj1Result from "./abj1Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import { LoaderOnRefresh } from "../../commonComponent/loader";
+import Card3Result from "./abj1Card";
 
 const CardJDesktop = () => {
   const [show, setShow] = useState(false);
@@ -119,7 +120,7 @@ const CardJDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
+                  result={<Card3Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
