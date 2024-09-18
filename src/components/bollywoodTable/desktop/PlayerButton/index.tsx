@@ -79,7 +79,7 @@ const PlayerButton = ({
               : ""
           }`}
         >
-          {value3 || 0}
+          {value3 || <br></br>}
         </span>
       </div>
     </div>

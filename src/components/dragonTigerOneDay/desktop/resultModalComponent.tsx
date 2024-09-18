@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 interface Props {
   data: {
@@ -57,11 +57,6 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
                 : "d-sm-flex flex-row justify-content-center align-items-center"
             }
           >
-            {data?.result?.win === "2" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={isMobile ? 20 : 30} color="#169733" />
-              </div>
-            )}
             <div
               style={{
                 border: "1px solid #fdef34",
@@ -71,6 +66,11 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
             >
               <HandleCards card={resultCards?.[1]} />
             </div>
+            {data?.result?.win === "2" && (
+              <div className="casino-winner-icon">
+                <FaTrophy size={isMobile ? 20 : 30} color="#169733" />
+              </div>
+            )}
           </div>
         </div>
       </div>

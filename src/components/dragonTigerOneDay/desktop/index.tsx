@@ -152,7 +152,7 @@ const DragonTigerDesktop = () => {
                   gap: "8px",
                 }}
               >
-                <OddEven
+                <OddEven 
                   title1={"even"}
                   title2={"odd"}
                   dragonData={dragonTigerDetail?.dragonData}

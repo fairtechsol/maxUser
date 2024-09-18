@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../../store/store";
 import {
   getCardReport,
@@ -21,8 +21,6 @@ import Modal from "react-bootstrap/Modal";
 import { ResultComponent } from "../../../components/commonComponent/resultComponent";
 import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { cardGames } from "../../../utils/constants";
-
-
 
 const CasinoReports = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -92,6 +90,16 @@ const CasinoReports = () => {
         <div>
           <Stack gap={2}>
             <Row className="g-2 mt-1">
+              <Col lg={2} md={3} xs={6}>
+                <DatePicker
+                  onChange={setDate}
+                  format="yyyy-MM-dd"
+                  value={date}
+                  closeCalendar={true}
+                  clearIcon={null}
+                  className="w-100"
+                />
+              </Col>
               <Col md={2} xs={6}>
                 <SelectSearch
                   options={cardGames}
@@ -110,23 +118,14 @@ const CasinoReports = () => {
                   isOptionDisabled={(option: any) => option.disabled}
                 />
               </Col>
-              <Col lg={2} md={3} xs={6}>
-                <DatePicker
-                  onChange={setDate}
-                  format="yyyy-MM-dd"
-                  value={date}
-                  closeCalendar={true}
-                  clearIcon={null}
-                  className="w-100"
-                />
-              </Col>
 
-              <Col md={2} xs={12}>
+              <Col md={2} xs={12} style={{width:"17%",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <CustomButton
+                style={{ paddingLeft: "6rem", paddingRight: "6rem" }}
                   size={isMobile ? "sm" : "lg"}
                   className={`${
-                    isMobile ? "w-100" : " bg-primary"
-                  } border-0 fs-6 `}
+                    isMobile ? "w-100" : "w-100 bg-primary"
+                  } border-0 fs-6 ps-5 pe-5`}
                   onClick={() => {
                     let filter = "";
 
@@ -185,11 +184,17 @@ const CasinoReports = () => {
                   <tr className={`${isMobile && "title-12"}`} key={index} 
                   onClick={() => handleResult(item?.mid)}>
                     <td
-                      style={{ color: "#000", cursor: "pointer",textAlign:"left",width:"20%" }}
+                      style={{
+                        color: "#0d6efd",
+                        cursor: "pointer",
+                        textAlign: "left",
+                        width: "20%",
+                      }}
+                      onClick={() => handleResult(item?.mid)}
                     >
                       <NotSet item={item?.mid} />
                     </td>
-                    <td style={{textAlign:"left"}}>
+                    <td style={{ textAlign: "left" }}>
                       <NotSet item={item?.result} />
                     </td>
                   </tr>

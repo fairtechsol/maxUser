@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { tprules } from "../../../assets/images";
@@ -102,8 +100,12 @@ const TeenPattiMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
@@ -176,7 +178,7 @@ const TeenPattiMobile = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      BACK
+                      Back
                     </div>
                     <div
                       style={{
@@ -241,14 +243,14 @@ const TeenPattiMobile = () => {
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `null_${item?.sid}_card`
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                 ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `null_${item?.sid}_card`
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                   ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `null_${item?.sid}_card`
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                     ] < 0
                                   ? "color-red"
                                   : ""
@@ -259,10 +261,10 @@ const TeenPattiMobile = () => {
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `null_${item?.sid}_card`
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                               ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `null_${item?.sid}_card`
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                 ]
                               : 0
                             : 0}
@@ -299,14 +301,14 @@ const TeenPattiMobile = () => {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          alignItems: "center",
+                          alignItems: "end",
                           color: "#097c93",
-                          fontSize: "12px",
+                          fontSize: "10px",
                           fontWeight: "bold",
                         }}
                       >
-                        <span>Min:{item.min}</span>
-                        <span>Max:{item.max}</span>
+                        <span style={{ lineHeight: "2" }}>Min:{item.min}</span>
+                        <span style={{ lineHeight: "1" }}>Max:{item.max}</span>
                       </div>
                     </div>
                   ))}

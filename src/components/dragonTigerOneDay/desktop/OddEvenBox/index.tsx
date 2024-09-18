@@ -105,10 +105,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
             {" "}
             <div style={{ width: "40%" }}>
               <span className="minmaxi">
-                <IoInformationCircle
+                {/* <IoInformationCircle
                   color="#ffc742"
                   onClick={() => setModelOpen(!modelOpen)}
-                />
+                /> */}
                 <SmoothDropdownModal
                   min={
                     title1 === "even"
@@ -146,8 +146,9 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               ) : (
                 <>
                   Black
-                  <ImClubs color="#000000" size={11} />{" "}
-                  <GiSpades color="#000000" size={11} />
+                  <GiSpades color="#000000" size={11} />{" "}
+                  <ImClubs color="#000000" size={11} />
+                  
                 </>
               )}
             </span>

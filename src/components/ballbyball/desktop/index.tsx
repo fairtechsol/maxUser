@@ -226,7 +226,7 @@ const TeenPattiDesktop = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      BACK
+                      Back
                     </div>
                     <div
                       style={{
@@ -269,7 +269,7 @@ const TeenPattiDesktop = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      BACK
+                      Back
                     </div>
                     <div
                       style={{
@@ -312,7 +312,7 @@ const TeenPattiDesktop = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      BACK
+                      Back
                     </div>
                     <div
                       style={{
@@ -368,14 +368,14 @@ const TeenPattiDesktop = () => {
                           className={`f10-b ${
                             dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
-                                  `null_${item?.sid}_card`
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                 ]
                                 ? dragonTigerDetail?.profitLoss[
-                                    `null_${item?.sid}_card`
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                   ] > 0
                                   ? "color-green"
                                   : dragonTigerDetail?.profitLoss[
-                                      `null_${item?.sid}_card`
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                     ] < 0
                                   ? "color-red"
                                   : ""
@@ -386,10 +386,10 @@ const TeenPattiDesktop = () => {
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
-                                `null_${item?.sid}_card`
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                               ]
                               ? dragonTigerDetail?.profitLoss[
-                                  `null_${item?.sid}_card`
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                 ]
                               : 0
                             : 0}
