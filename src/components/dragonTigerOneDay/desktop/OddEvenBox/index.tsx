@@ -146,8 +146,9 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               ) : (
                 <>
                   Black
-                  <ImClubs color="#000000" size={11} />{" "}
-                  <GiSpades color="#000000" size={11} />
+                  <GiSpades color="#000000" size={11} />{" "}
+                  <ImClubs color="#000000" size={11} />
+                  
                 </>
               )}
             </span>

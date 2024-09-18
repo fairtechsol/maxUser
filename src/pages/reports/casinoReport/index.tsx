@@ -94,7 +94,7 @@ const CasinoReports = () => {
                 <DatePicker
                   onChange={setDate}
                   format="yyyy-MM-dd"
-                  value={date}
+                  value={date} 
                   closeCalendar={true}
                   clearIcon={null}
                   className="w-100"
