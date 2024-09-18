@@ -9,7 +9,7 @@ import {
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -84,7 +84,7 @@ const Abj = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar1));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.andarBahar1);

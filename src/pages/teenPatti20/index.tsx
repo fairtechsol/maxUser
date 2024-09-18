@@ -14,7 +14,7 @@ import {
   updateTeenPattiMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -84,7 +84,7 @@ const TeenPatti20 = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teen20));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.teen20);

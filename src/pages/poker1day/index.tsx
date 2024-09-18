@@ -14,7 +14,7 @@ import {
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -83,7 +83,7 @@ const Poker1day = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker1Day));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.poker1Day);

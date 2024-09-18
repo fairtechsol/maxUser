@@ -15,7 +15,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -84,7 +84,7 @@ const Race20 = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.race20));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.race20);

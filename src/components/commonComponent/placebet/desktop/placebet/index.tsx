@@ -25,9 +25,11 @@ import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
 import { AppDispatch, RootState } from "../../../../../store/store";
 import { ApiConstants } from "../../../../../utils/constants";
+import { formatNumber } from "../../../../../helpers";
+import { Modal } from "react-bootstrap";
+import ButtonValues from "../../../../gameDetails/mobile/buttonValues";
 
 const placeBetHeader = [
-  {},
   {
     id: "betId",
     name: "(Bet for)",
@@ -53,6 +55,7 @@ const DesktopPlacedBet = () => {
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
   const [matchOddRate, setMatchOddRate] = useState<any>(null);
+  const [shown, setShow] = useState(false);
   const { buttonValues } = useSelector(
     (state: RootState) => state.user.profile
   );
@@ -68,6 +71,7 @@ const DesktopPlacedBet = () => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
+    console.log("buttonValues",buttonValues)
     let updatedBtnValue = buttonValues?.value;
 
     // Check if updatedBtnValue is not undefined before parsing
@@ -132,12 +136,58 @@ const DesktopPlacedBet = () => {
       e.preventDefault();
     }
   };
+
+  const handleSubmit = () => {
+    if (loading) {
+      return;
+    } else {
+      let payload: any = {
+        bettingType: selectedBet?.team?.bettingType,
+        browserDetail: browserInfo?.userAgent,
+        matchId: selectedBet?.team?.matchId,
+        ipAddress:
+          ipAddress === "Not found" || !ipAddress
+            ? "192.168.1.100"
+            : ipAddress,
+        odd: parseFloat(selectedBet?.team?.odd),
+        stake: [
+          "Line1 Single",
+          "Line2 Single",
+          "ODD Single",
+          "EVEN Single",
+        ].includes(selectedBet?.team?.betOnTeam)
+          ? selectedBet?.team?.stake * 5
+          : selectedBet?.team?.stake,
+        matchBetType: selectedBet?.team?.matchBetType,
+        betOnTeam: selectedBet?.team?.betOnTeam,
+        bettingName: selectedBet?.team?.bettingName,
+        selectionId: selectedBet?.team?.selectionId,
+      };
+
+      if (
+        selectedBet?.data?.type === "3cardj" &&
+        selectedBet?.team?.betOnTeam.split(" ")[1]
+          .length < 3
+      ) {
+        return;
+      }
+      
+      setMatchOddLoading(true);
+      dispatch(
+        placeBet({
+          url: ApiConstants.CARDS.MATCH.PLACE_BET,
+          data: JSON.stringify(payload),
+        })
+      );
+      setStake(0);
+    }
+  };
   return (
     <>
       <div className="loader-container">
         {(loading || matchOddLoading) && <CustomLoader />}
         <RightPanelContainer title="Place Bet">
-          {selectedBet ? (
+          {/* {selectedBet ? ( */}
             <Table className="w-full">
               <thead>
                 <tr className="bg-darkGrey">
@@ -162,7 +212,7 @@ const DesktopPlacedBet = () => {
                       : "place-bet-table-blue"
                   }
                 >
-                  <td width={"8%"}>
+                  {/* <td width={"8%"}>
                     <span
                       className=" text-danger title-12 cursor-pointer"
                       onClick={() => {
@@ -171,8 +221,12 @@ const DesktopPlacedBet = () => {
                     >
                       <ImCross />
                     </span>
-                  </td>
+                  </td> */}
                   <td width={"34%"}>
+                  <span
+                      className=" text-danger title-12 cursor-pointer">
+                      <ImCross />
+                    </span>
                     <span className="f600 title-14">
                       {selectedBet?.team?.name}
                     </span>
@@ -194,7 +248,7 @@ const DesktopPlacedBet = () => {
                       />
                       <div
                         style={{
-                          backgroundColor: "#bfd6e7",
+                          backgroundColor: "#f0f0f0",
                           display: "flex",
                           flexDirection: "column",
                           width: "15px",
@@ -203,21 +257,9 @@ const DesktopPlacedBet = () => {
                         }}
                       >
                         <FaChevronUp
-                          color="#a6b2bb"
-                          style={{
-                            width: "8px",
-                            height: "10px",
-                            marginLeft: "3px",
-                          }}
-                        />
+                          style={{ width: "8px", height: "10px" }}/>
                         <FaChevronDown
-                          color="#a6b2bb"
-                          style={{
-                            width: "8px",
-                            height: "10px",
-                            marginLeft: "3px",
-                          }}
-                        />
+                          style={{ width: "8px", height: "10px" }}/>
                       </div>
                     </div>
                   </td>
@@ -282,78 +324,62 @@ const DesktopPlacedBet = () => {
                                 );
                               }}
                             >
-                              {item?.label}
+                             <span
+                                style={{ fontSize: "14px", fontWeight: "bold"}}
+                              >
+                                {formatNumber(item?.label)}
+                              </span>
                             </CustomButton>
                           </Col>
                         ))}
                       </Row>
                       <Row>
-                        <Col md={6}>
-                          <CustomButton
-                            className="bg-danger border-0 py-2"
-                            size="sm"
+                      <Col xs={8}>
+                          <div
+                            style={{
+                              width: "50px",
+                              height: "38px",
+                              backgroundColor: "#097c93",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              color: "#fff",
+                              fontSize: "14px",
+                              borderRadius: "3px",
+                            }}
+                            onClick={() => setShow(true)}
+                          >
+                            Edit
+                          </div>
+                        </Col>
+
+                        <Col md={4} className="reset1-submit1-btn-container">
+                          <button
+                            className="reset-buttonn1"
                             onClick={() => {
-                              setStake(0);
-                              selectedBet?.data?.type === "3cardj"
-                                ? dispatch(selectedBetAction(null))
-                                : "";
+                              dispatch(selectedBetAction(null));
+                            }}
+                            style={{
+                              fontSize:"13px"
                             }}
                           >
                             Reset
-                          </CustomButton>
-                        </Col>
-                        <Col md={6} className="text-end">
-                          <CustomButton
-                            className="bg-success border-0 py-2"
-                            size="sm"
-                            onClick={() => {
-                              if (loading) {
-                                return;
-                              } else {
-                                let payload: any = {
-                                  bettingType: selectedBet?.team?.bettingType,
-                                  browserDetail: browserInfo?.userAgent,
-                                  matchId: selectedBet?.team?.matchId,
-                                  ipAddress:
-                                    ipAddress === "Not found" || !ipAddress
-                                      ? "192.168.1.100"
-                                      : ipAddress,
-                                  odd: parseFloat(selectedBet?.team?.odd),
-                                  stake: [
-                                    "Line1 Single",
-                                    "Line2 Single",
-                                    "ODD Single",
-                                    "EVEN Single",
-                                  ].includes(selectedBet?.team?.betOnTeam)
-                                    ? selectedBet?.team?.stake * 5
-                                    : selectedBet?.team?.stake,
-                                  matchBetType: selectedBet?.team?.matchBetType,
-                                  betOnTeam: selectedBet?.team?.betOnTeam,
-                                  bettingName: selectedBet?.team?.bettingName,
-                                  selectionId: selectedBet?.team?.selectionId,
-                                };
-
-                                if (
-                                  selectedBet?.data?.type === "3cardj" &&
-                                  selectedBet?.team?.betOnTeam.split(" ")[1]
-                                    .length < 3
-                                ) {
-                                  return;
-                                }
-                                
-                                setMatchOddLoading(true);
-                                dispatch(
-                                  placeBet({
-                                    url: ApiConstants.CARDS.MATCH.PLACE_BET,
-                                    data: JSON.stringify(payload),
-                                  })
-                                );
-                                setStake(0);
-                              }
+                          </button>
+                          <button
+                            className="submit-buttonn1"
+                            onClick={handleSubmit}
+                            style={{
+                              backgroundColor:
+                                selectedBet?.team?.type == "lay" ||
+                                selectedBet?.team?.type === "LAY" ||
+                                selectedBet?.team?.type == "no"
+                                  ? "#679378"
+                                  : "#38998a",
+                                  fontSize:"13px"
                             }}
                           >
                             Submit
-                          </CustomButton>
+                          </button>
                         </Col>
                       </Row>
                     </Container>
@@ -361,11 +387,35 @@ const DesktopPlacedBet = () => {
                 </tr>
               </tbody>
             </Table>
-          ) : (
-            ""
-          )}
+          {/* // ) : (
+          //   ""
+          // )} */}
         </RightPanelContainer>
       </div>
+      <Modal show={shown} onHide={() => setShow(false)}>
+        <Modal.Header
+          className="bg-primary rounded-0"
+          style={{ zIndex: "999" }}
+        >
+          <Modal.Title>
+            <span
+              style={{ color: "#fff", fontSize: "16px", fontWeight: "bold" }}
+            >
+              Set Button Value
+            </span>
+          </Modal.Title>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            aria-label="Close"
+            onClick={() => setShow(false)}
+          ></button>
+        </Modal.Header>
+        <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
+          <ButtonValues />
+        </Modal.Body>
+        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
+      </Modal>
     </>
   );
 };

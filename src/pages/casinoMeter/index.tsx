@@ -14,7 +14,7 @@ import {
   casinoMeterPattiMatchRates,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -84,7 +84,7 @@ const CasinoMeter = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cmeter));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cmeter);
