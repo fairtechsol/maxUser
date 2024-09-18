@@ -13,6 +13,8 @@ const CommonButtonBox = ({
   handleBet,
   lock,
   data,
+  id
+
 }: any) => {
   // const dispatch: AppDispatch = useDispatch();
 
@@ -20,10 +22,9 @@ const CommonButtonBox = ({
     <div className="commonButtonBoxContainer" style={{ width: width }}>
       <div>
         <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
-          {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
+          {lock ? 0 :  parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
         </span>
       </div>
-      {/* <div className="tiePairbtn-theme suspended" onClick={handleBet}> */}
       <div
         className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
         style={{lineHeight:"2.5"}}
@@ -58,7 +59,7 @@ const CommonButtonBox = ({
               : ""
           }`}
         >
-          {isNaN(value3) ? 0 : value3}
+          {isNaN(value3) ? "\u00A0" : value3}
         </span>
       </div>
     </div>
