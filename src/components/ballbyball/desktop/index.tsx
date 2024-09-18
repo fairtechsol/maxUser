@@ -114,7 +114,6 @@ const TeenPattiDesktop = () => {
     }
   }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
 
-  console.log("byb",dragonTigerDetail)
   return (
     <>
       <Row>
