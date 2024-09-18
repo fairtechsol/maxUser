@@ -48,6 +48,7 @@ const LowCards = ({ odds, data, placedLow }: any) => {
       onClick={() =>
         odds?.gstatus === "1" && placedLow ? handleBet(odds) : null
       }
+      style={{ border: "1px solid #c7c8ca" }}
     >
       <div className="lowCardContainer">
         <div
@@ -57,10 +58,10 @@ const LowCards = ({ odds, data, placedLow }: any) => {
             gap: "5px",
             justifyContent: "center",
             alignItems: "center",
-            margin:"20px"
+            margin: "10px",
           }}
         >
-          <span style={{color:"#097c93"}}>Low</span>
+          <span style={{ color: "#097c93" }}>Low</span>
           {cardShow && <HandleCards card="10HH" />}
         </div>
         <div
@@ -93,12 +94,39 @@ const LowCards = ({ odds, data, placedLow }: any) => {
                   display: "flex",
                   justifyContent: "center",
                 }}
-              >
-                0
-              </span>
+              ></span>
             </div>
           ))}
         </div>
+        <span
+          style={{
+            fontSize: "12px",
+            display: "flex",
+            justifyContent: "center",
+            zIndex:"999"
+          }}
+          className={`${
+            data?.profitLoss
+              ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] > 0
+                  ? "color-green"
+                  : data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] < 0
+                  ? "color-red"
+                  : ""
+                : ""
+              : ""
+          }`}
+        >
+          {data?.profitLoss ? (
+            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+              data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+            ) : (
+              <br></br>
+            )
+          ) : (
+            0
+          )}
+        </span>
       </div>
     </div>
   );

@@ -145,7 +145,7 @@ const MobileGameDetail = () => {
   const manualEntries = matchDetails?.manualSessionActive
     ? normalizedData?.filter((item: any) => item?.isManual)
     : [];
-  console.log(liveScoreBoardData, "live");
+  
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
