@@ -12,7 +12,6 @@ import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
 
 const CardResultBox = ({ data, name, type }: any) => {
-
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const [lgShow, setLgShow] = useState(false);
@@ -52,7 +51,6 @@ const CardResultBox = ({ data, name, type }: any) => {
         return "#355e3b";
     }
   };
-console.log("re",liveGameResultTop10)
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">

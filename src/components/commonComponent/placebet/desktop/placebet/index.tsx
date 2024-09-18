@@ -56,7 +56,7 @@ const DesktopPlacedBet = () => {
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
   const [matchOddRate, setMatchOddRate] = useState<any>(null);
   const [shown, setShow] = useState(false);
-  const { buttonValues } = useSelector(
+  const { buttonValues2 } = useSelector(
     (state: RootState) => state.user.profile
   );
 
@@ -71,8 +71,7 @@ const DesktopPlacedBet = () => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    console.log("buttonValues",buttonValues)
-    let updatedBtnValue = buttonValues?.value;
+    let updatedBtnValue = buttonValues2?.value;
 
     // Check if updatedBtnValue is not undefined before parsing
     if (updatedBtnValue) {
@@ -90,7 +89,7 @@ const DesktopPlacedBet = () => {
         console.error("Error parsing JSON:", error);
       }
     }
-  }, [buttonValues]);
+  }, [buttonValues2]);
 
   useEffect(() => {
     if (selectedBet?.team?.stake) {

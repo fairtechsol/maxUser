@@ -29,7 +29,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
   const [shown, setShow] = useState(false);
-  const { buttonValues } = useSelector(
+  const { buttonValues2 } = useSelector(
     (state: RootState) => state.user.profile
   );
 
@@ -43,7 +43,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    let updatedBtnValue = buttonValues?.value;
+    let updatedBtnValue = buttonValues2?.value;
 
     // Check if updatedBtnValue is not undefined before parsing
     if (updatedBtnValue) {
@@ -61,7 +61,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
         console.error("Error parsing JSON:", error);
       }
     }
-  }, [buttonValues]);
+  }, [buttonValues2]);
 
   useEffect(() => {
     setStake(selectedBet?.team?.stake);
