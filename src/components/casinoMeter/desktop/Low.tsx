@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-const LowCards = ({ odds, data,placedLow }: any) => {
+const LowCards = ({ odds, data, placedLow }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
@@ -14,7 +14,7 @@ const LowCards = ({ odds, data,placedLow }: any) => {
   const [cardShow, setCardShow] = useState(false);
 
   useEffect(() => {
-    if (selectedBet?.team?.betOnTeam ==="High") {
+    if (selectedBet?.team?.betOnTeam === "High") {
       setCardShow(true);
     } else {
       setCardShow(false);
@@ -45,7 +45,9 @@ const LowCards = ({ odds, data,placedLow }: any) => {
       className={`LowCommonCardImgContainer ${
         odds?.gstatus === "0" ? "suspended" : ""
       }`}
-      onClick={() => (odds?.gstatus === "1" && placedLow ? handleBet(odds) : null)}
+      onClick={() =>
+        odds?.gstatus === "1" && placedLow ? handleBet(odds) : null
+      }
     >
       <div className="lowCardContainer">
         <div
@@ -55,12 +57,22 @@ const LowCards = ({ odds, data,placedLow }: any) => {
             gap: "5px",
             justifyContent: "center",
             alignItems: "center",
+            margin:"20px"
           }}
         >
-          <span>Low</span>
+          <span style={{color:"#097c93"}}>Low</span>
           {cardShow && <HandleCards card="10HH" />}
         </div>
-        <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            flexDirection: "row",
+            gap: "5px",
+            width: "70%",
+          }}
+        >
           {dragonTigerCards.slice(0, 9).map((item, index) => (
             <div
               key={index}
