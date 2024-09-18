@@ -57,7 +57,7 @@ const HighCards = ({ odds, data,placedHigh }: any) => {
             alignItems: "center",
           }}
         >
-          <span>High</span>
+          <span style={{color:"#097c93"}}>High</span>
           {cardShow && <HandleCards card="9HH" />}
         </div>
         <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>

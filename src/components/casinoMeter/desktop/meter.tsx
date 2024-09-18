@@ -44,9 +44,9 @@ function Meter({ data, runPosition }: { data: string; runPosition: string }) {
         <strong style={{ textAlign: "center", color: "#17ec17", width: "10%" }}>
           {lowCardSum}
         </strong>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center",flexWrap:"wrap" }}>
           {lowCards?.map((card, index) => (
-            <span key={index} style={{ margin: "5px" }}>
+            <span key={index} style={{ margin: "5px", }}>
               {<HandleCards card={card} />}
             </span>
           ))}
@@ -69,7 +69,7 @@ function Meter({ data, runPosition }: { data: string; runPosition: string }) {
         <strong style={{ textAlign: "center", color: "#17ec17", width: "10%" }}>
           {highCardSum}
         </strong>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center",flexWrap:"wrap" }}>
           {highCards.map((card, index) => (
             <span key={index} style={{ margin: "5px" }}>
               {<HandleCards card={card} />}
