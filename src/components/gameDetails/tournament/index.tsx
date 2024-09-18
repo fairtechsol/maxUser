@@ -132,8 +132,8 @@ const Tournament = ({ title, box, data, detail }) => {
                   )}
                   {box === 6 ? (
                     <>
-                      {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
-                        ? data?.runners?.[0]?.ex?.availableToBack
+                      {(item?.ex?.availableToBack?.length > 0
+                        ? item?.ex?.availableToBack
                         : dummyArray
                       )?.map((item2: any) => {
                         return (
@@ -146,8 +146,8 @@ const Tournament = ({ title, box, data, detail }) => {
                           />
                         );
                       })}
-                      {(data?.runners?.[0]?.ex?.availableToLay?.length > 0
-                        ? data?.runners?.[0]?.ex?.availableToLay
+                      {(item?.ex?.availableToLay?.length > 0
+                        ? item?.ex?.availableToLay
                         : dummyArray
                       )?.map((item2: any) => {
                         return (

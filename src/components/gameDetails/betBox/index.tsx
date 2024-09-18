@@ -35,8 +35,7 @@ const BetBox = ({ data, type,handlePlaceBet,detail,runner }: any) => {
         return isYellow ? "bg-secondary" : "lay1Background";
       }
     }
-  };
-
+  };  
   return (
     <div
       className={`matchOddBackBox ${handleBackground(data?.tno)}`}
