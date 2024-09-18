@@ -230,7 +230,7 @@ const TeenPattiDesktop = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      BACK
+                      Back
                     </div>
                     <div
                       style={{
@@ -273,7 +273,7 @@ const TeenPattiDesktop = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      BACK
+                      Back
                     </div>
                     <div
                       style={{
@@ -316,7 +316,7 @@ const TeenPattiDesktop = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      BACK
+                      Back
                     </div>
                     <div
                       style={{

@@ -178,7 +178,7 @@ const TeenPattiMobile = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      BACK
+                      Back
                     </div>
                     <div
                       style={{
@@ -301,14 +301,15 @@ const TeenPattiMobile = () => {
                           width: "20%",
                           display: "flex",
                           flexDirection: "column",
-                          alignItems: "center",
+                          alignItems: "end",
                           color: "#097c93",
-                          fontSize: "12px",
+                          fontSize: "10px",
                           fontWeight: "bold",
+                          
                         }}
                       >
-                        <span>Min:{item.min}</span>
-                        <span>Max:{item.max}</span>
+                        <span style={{lineHeight:"2"}}>Min:{item.min}</span>
+                        <span style={{lineHeight:"1"}}>Max:{item.max}</span>
                       </div>
                     </div>
                   ))}
