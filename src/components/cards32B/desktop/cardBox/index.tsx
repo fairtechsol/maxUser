@@ -64,8 +64,8 @@ const CardBox = ({ odds, data }: any) => {
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
-          : 0}
+            : ""
+          : "\u00A0"}
       </span>
     </div>
   );
@@ -86,7 +86,7 @@ const CardBox = ({ odds, data }: any) => {
             {" "}
             <div style={{ width: "47%", textAlign: "start" }}>
               <div style={{ width: "20%", textAlign: "start" }}>
-              <span className="minmaxi">
+              {/* <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
                   onClick={() => setModelOpen(!modelOpen)}
@@ -97,7 +97,7 @@ const CardBox = ({ odds, data }: any) => {
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
-              </span>
+              </span> */}
               </div>
               
             </div>

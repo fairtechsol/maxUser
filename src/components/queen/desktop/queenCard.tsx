@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
+import { isMobile } from "../../../utils/screenDimension";
 
 interface Props {
   data: {
@@ -63,7 +64,7 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
 
   return (
     data?.mid != "0" && (
-      <Container style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}>
+      <Container style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }} className={isMobile ? "title-12" : "title-16"}>
         {result?.[0]?.[0] !== "1" && (
           <Row>
             <Col>
@@ -74,6 +75,7 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
                   fontWeight: "600",
                  
                 }}
+                
               >
                 {total0 > 0 ? (
                   <>
@@ -155,7 +157,7 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
               >
                 {total2 > 0 ? (
                   <>
-                    Total 2:
+                    Total 2:{" "}
                     <span style={{ color: "#FFC107" }}>
                       {total2}
                     </span>

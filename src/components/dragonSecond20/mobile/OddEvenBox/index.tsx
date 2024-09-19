@@ -28,7 +28,7 @@ const OddEven = ({ name, data, odds }: any) => {
   };
   return (
     <>
-      <div className="oddEvenContainerMob">
+      <div className="oddEvenContainerMob-d2">
         <div style={{ textAlign: "center" }}>
           <span style={{ fontSize: "16px", fontWeight: "bold" }}>{name}</span>
         </div>

@@ -30,12 +30,12 @@ const handleBet = (item: any, type: any) => {
     <div className="casino-table-q">
       <div className="casino-table-box-q-mobile">
         {cards?.map((item:any, index:any) => (
-          <div className="casino-odd-box-container-q" key={index}>
-            <div className="casino-nation-name-q">{item?.nation}</div>
-            <div onClick={() => handleBet(item, "BACK")} className={item?.gstatus === "SUSPENDED" || item?.b1 === "0.00" ? "casino-odds-box-q back suspended-box" : "casino-odds-box-q back "}>
+          <div className="casino-odd-box-container-q m-1" key={index}>
+            <div className="casino-nation-name-q title-12">{item?.nation}</div>
+            <div onClick={() => handleBet(item, "BACK")} className={item?.gstatus === "SUSPENDED"  ? "casino-odds-box-q back suspended-box" : "casino-odds-box-q back "}>
               <span className="casino-odds-q">{item?.b1}</span>
             </div>
-            <div  onClick={() => handleBet(item, "LAY")} className={item?.gstatus === "SUSPENDED" || item?.l1 === "0.00" ? "casino-odds-box-q lay suspended-box" : "casino-odds-box-q lay "}>
+            <div  onClick={() => handleBet(item, "LAY")} className={item?.gstatus === "SUSPENDED"  ? "casino-odds-box-q lay suspended-box" : "casino-odds-box-q lay "}>
               <span className="casino-odds-q">{item.l1}</span>
             </div>
             <span

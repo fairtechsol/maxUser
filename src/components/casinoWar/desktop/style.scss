@@ -132,16 +132,10 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #f7f7f7;
 }
 
-.teenPatti-table-item{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 0.2px solid #fff;
-  cursor: pointer;
-}
+
 .f12-b{
   font-size: 12px;
   font-weight: bolder;

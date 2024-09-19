@@ -57,10 +57,10 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
     <Container
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <div className="card32resultModal">
+      <div className={isMobile ?"queenresultModal" : "card32resultModal"}>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Total 0 -  <span className="bg-success badge">{total0} </span></span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
+          <div className={isMobile ? "d-flex column justify-content-center align-items-center" : "d-sm-flex flex-row justify-content-center align-items-center"}>
             {data?.result?.win === "1" && (
               <div className="casino-winner-icon">
                 <FaTrophy size={30} color="#169733" />
@@ -85,7 +85,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
         </div>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Total 1 - <span className="bg-success badge">{total1} </span></span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
+          <div className={isMobile ? "d-flex column justify-content-center align-items-center" : "d-sm-flex flex-row justify-content-center align-items-center"}>
             {data?.result?.win === "2" && (
               <div className="casino-winner-icon">
                 <FaTrophy size={30} color="#169733" />
@@ -112,7 +112,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
             Total 2 -  <span className="bg-success badge">{total2} </span>
           </span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
+          <div className={isMobile ? "d-flex column justify-content-center align-items-center" : "d-sm-flex flex-row justify-content-center align-items-center"}>
             {data?.result?.win === "3" && (
               <div className="casino-winner-icon">
                 <FaTrophy size={30} color="#169733" />
@@ -139,7 +139,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
             Total 3 -  <span className="bg-success badge">{total3} </span>
           </span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
+          <div className={isMobile ? "d-flex column justify-content-center align-items-center" : "d-sm-flex flex-row justify-content-center align-items-center"}>
             {data?.result?.win === "4" && (
               <div className="casino-winner-icon">
                 <FaTrophy size={30} color="#169733" />

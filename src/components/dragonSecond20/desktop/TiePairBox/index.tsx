@@ -33,7 +33,7 @@ const TiePairBox = ({ tiePair, data }: any) => {
     }
   }, [tiePair?.[0]?.gstatus, tiePair?.[0]?.rate]);
   return (
-    <div className="tiePairContainer">
+    <div className="tiePairContainer-d2 ps-3">
       <div className="tiePairRateBoxMain">
         <CommonButtonBox
           value1={tiePair?.[0]?.rate}
@@ -80,7 +80,7 @@ const TiePairBox = ({ tiePair, data }: any) => {
           lock={tiePair?.[1]?.gstatus === "0" ? true : false}
           data={tiePair?.[1]}
         />
-        <div style={{ width: "30%",borderLeft:"5px solid #ffc742",display:"flex",justifyContent:"center" }}>
+        <div style={{ width: "30%",borderLeft:"5px solid #ffc742",display:"flex",justifyContent:"center", height: "80px" }}>
           <CommonButtonBox
             value1={tiePair?.[3]?.rate}
             value2={"Pair"}
