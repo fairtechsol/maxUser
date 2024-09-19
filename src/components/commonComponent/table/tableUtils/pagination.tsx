@@ -50,7 +50,6 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
 
     setPageComp(pageNumbers);
   }, [totalPages, currentPage]);
-  console.log(currentPage, "totalPages", totalPages);
   return (
     <div className="d-flex flex-row">
       <Pagination>
