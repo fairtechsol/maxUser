@@ -174,20 +174,20 @@ const Race20ResultComponent: React.FC<Props> = ({ data }: any) => {
           className={
             isMobile
               ? "w-100 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
-              : "w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
+              : "w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p- mb-2"
           }
           style={{ boxShadow: "0 0 4px -1px" }}
         >
-          <div className="d-sm-flex flex-sm-row">
+          <div className="d-flex flex-sm-row align-items-center justify-content-center ">
             <span className="dt20CommonText">Winner</span>
             <span className="dt20CommonText-2">K {description?.[0]}</span>
           </div>
-          <div className="d-sm-flex flex-sm-row">
+          <div className="d-flex flex-sm-row justify-content-center">
             <span className="dt20CommonText">Points</span>
             <span className="dt20CommonText-2">{points?.[1]}</span>
           </div>
 
-          <div className="d-sm-flex flex-sm-row">
+          <div className="d-flex flex-sm-row justify-content-center">
             <span className="dt20CommonText">Card</span>
             <span className="dt20CommonText-2">{card?.[1]}</span>
           </div>
