@@ -132,6 +132,10 @@ const AccountStatementComponent = () => {
                       value: "game",
                       label: "Sport Report",
                     },
+                    {
+                      value: "game",
+                      label: "Casino Reports",
+                    },
                   ]}
                   placeholder="All"
                   onChange={setType}
