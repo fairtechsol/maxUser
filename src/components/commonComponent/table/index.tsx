@@ -29,6 +29,7 @@ interface CustomTableProps {
   striped?: boolean;
   paginationCount?: boolean;
   width?: any;
+  placeHolder?:any;
 }
 
 const CustomTable: React.FC<CustomTableProps> = ({
@@ -45,6 +46,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
   tBodyTheme,
   paginationCount,
   width,
+  placeHolder,
   ...props
 }) => {
   // State for sorting configuration and current page
@@ -101,6 +103,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
         rowPerPage={rowPerPage}
         setRowPerPage={setRowPerPage}
         paginationCount={paginationCount}
+        placeHolder={placeHolder}
       />
       {/* Table for displaying data */}
       <div className="w-100">

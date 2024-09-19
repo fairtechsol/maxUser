@@ -223,6 +223,9 @@ const AccountStatementComponent = () => {
               }}
             >
               {transactions?.transactions?.map((item: any, index: number) => {
+                const keywords = ["ballbyball", "cricketv3"];
+                const firstPart = item?.description?.split("/")?.[0];
+                const containsKeywords = firstPart && keywords.some(keyword => firstPart.includes(keyword));
                 return (
                   <tr className={`${isMobile && "title-12"}`} key={index}>
                     <td>
@@ -272,7 +275,7 @@ const AccountStatementComponent = () => {
                     <td
                       onClick={() => {
                         const match =
-                          item?.description?.split("/")?.[0] == "ballbyball"
+                        containsKeywords
                             ? item?.description.match(/Rno\. (\d+)/)
                             : item?.description.match(/Rno\. (\d+\.\d+)/);
                         if (item?.betId?.length > 0) {

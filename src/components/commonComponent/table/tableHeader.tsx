@@ -13,6 +13,7 @@ interface TableHeaderProps {
   rowPerPage: number;
   setRowPerPage: any;
   paginationCount?:boolean;
+  placeHolder?:any;
 }
 
 const TableHeader: React.FC<TableHeaderProps> = ({
@@ -23,6 +24,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({
   rowPerPage,
   setRowPerPage,
   paginationCount,
+  placeHolder
 }) => {
   const [keyword, setKeyword] = useState("");
   useEffect(() => {
@@ -52,7 +54,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({
       {isPagination && paginationCount &&(
         <RowPerPage value={rowPerPage} onChange={setRowPerPage} />
       )}
-      {isSearch && <SearchBox value={keyword} onSearch={setKeyword} />}
+      {isSearch && <SearchBox value={keyword} onSearch={setKeyword} placeHolder={placeHolder}/>}
     </div>
   );
 };
