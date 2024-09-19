@@ -90,7 +90,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                       ? JSON.parse(
                           data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                         )[row?.nat?.toLowerCase()]
-                      : 0
+                      : <br></br>
                     : 0}
                 </span>
               </div>
@@ -130,7 +130,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
         </div>
       </div>
 
-      {showFancy && (
+      {/* {showFancy && (
         <div className="game-market market-6 mt-2">
           <div className="market-title text-white" style={{width:"100%"}}>
             <span>Fancy</span>
@@ -171,19 +171,14 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                       <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.l1}</span>
                       <span className="market-volume title-11 f100">{row?.ls1}</span>
                     </div>
-                    {/* <div className="fancy-min-max-box">
-                      <div className="fancy-min-max">
-                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Min: 100.00</span>
-                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Max: 1L</span>
-                      </div>
-                    </div> */}
+                   
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
