@@ -39,7 +39,7 @@ const Tournament = ({ title, box, data, detail }) => {
       placeIndex: index,
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
-      runnerId:runner?.id?.toString()
+      runnerId: runner?.id?.toString(),
     };
     dispatch(
       selectedBetAction({
@@ -107,7 +107,7 @@ const Tournament = ({ title, box, data, detail }) => {
                   style={box === 6 ? { width: "28%" } : {}}
                 >
                   <span className={`teamFont tournamentTeamTxt`}>
-                    {item?.nat}
+                    {item?.nat || item?.runnerName}
                   </span>
                   <span
                     className={`${
