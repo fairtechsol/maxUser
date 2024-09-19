@@ -145,7 +145,7 @@ const MobileGameDetail = () => {
   const manualEntries = matchDetails?.manualSessionActive
     ? normalizedData?.filter((item: any) => item?.isManual)
     : [];
-  
+
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -206,8 +206,11 @@ const MobileGameDetail = () => {
                 <div style={{ width: "98%" }}>
                   <Row className="ms-0">
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
+                    {liveScoreBoardData && (
+                      <Iframe data={liveScoreBoardData} width="100%" />
+                    )}
                     {showVideo && (
-                      <Container className="px-0">
+                      <Container className="px-0 mt-1">
                         <Row className="justify-content-md-center">
                           <Col md={12}>
                             <Ratio aspectRatio="16x9">
@@ -221,9 +224,7 @@ const MobileGameDetail = () => {
                         </Row>
                       </Container>
                     )}
-                    {liveScoreBoardData && (
-                      <Iframe data={liveScoreBoardData} width="97%" />
-                    )}
+
                     {matchDetails?.matchOdd?.activeStatus === "live" &&
                       matchDetails?.matchOdd?.isActive && (
                         <Col className="g-0" md={12}>
@@ -293,7 +294,7 @@ const MobileGameDetail = () => {
                                     // data={matchDetails?.matchOdd}
                                   />
                                 </Col>
-                            )} 
+                              )}
                           </div>
                         )
                       )}
