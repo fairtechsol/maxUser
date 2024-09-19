@@ -98,7 +98,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
               margin: "8px 9px 10px 11px",
             }}
           >
-            <div style={{width:"100%",textAlign:"center",fontWeight:"font-semibold"}}>ANDAR</div>
+            <div style={{width:"100%",textAlign:"center",fontWeight:"450"}}>Andar</div>
             <div>
               {elementsAndar?.length > minLength ? (
                 <Slider
@@ -118,7 +118,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
                 </div>
               )}
             </div>
-            <div style={{width:"100%",textAlign:"center",fontWeight:"font-semibold"}}>BAHAR</div>
+            <div style={{width:"100%",textAlign:"center",fontWeight:"450"}}>Bahar</div>
             <div>
               {elementsBahar?.length > minLength ? (
                 <Slider

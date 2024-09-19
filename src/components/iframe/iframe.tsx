@@ -14,6 +14,8 @@ import "./style.scss";
 // }
 
 const Iframe = ({ data, width }: any) => {
+  console.log("data", data);
+
   return (
     <>
       {!isMobile ? (
@@ -22,22 +24,26 @@ const Iframe = ({ data, width }: any) => {
           <div className="col-12 col-md-6">
             {/* Team 1 Details */}
             <p className="team-1 row" style={{ fontSize: "12px" }}>
-              <span className="team-name col-3">{data?.spnnation1}</span>
-              <span className="score col-6 text-end">{data?.score1}</span>
+              <span className=" col-3">{data?.spnnation1}</span>
+              <span className=" col-4 text-end">{data?.score1}</span>
               {data?.spnrunrate1 && (
-                <span className="team-name col-3">
-                  <span>CRR {data?.spnrunrate1}</span>
-                </span>
+                <div className="col-5 d-flex justify-content-start">
+                  <span className="me-2">CRR {data?.spnrunrate1}</span>
+                  {data?.spnreqrate1 && <span className="d-inline ms-2">RR {data?.spnreqrate1}</span>}
+                </div>
               )}
             </p>
 
             {/* Team 2 Details */}
-            <p className="team-1 row mt-2" style={{ fontSize: "12px" }}>
+            <p className="team-1 row" style={{ fontSize: "12px" }}>
               <span className="team-name col-3">{data?.spnnation2}</span>
-              <span className="score col-6 text-end">{data?.score2}</span>
-              <span className="team-name col-3">
-                {data?.spnrunrate2 && <span>CRR {data?.spnrunrate2}</span>}
-              </span>
+              <span className="score col-4 text-end">{data?.score2}</span>
+              {data?.spnrunrate2 && (
+                <div className="col-5 d-flex justify-content-start">
+                  <span className="d-inline">CRR {data?.spnrunrate2}</span>
+                  {data?.spnreqrate2 && <span className="d-inline ms-2">RR {data?.spnreqrate2}</span>}
+                </div>
+              )}
             </p>
           </div>
 
@@ -102,23 +108,27 @@ const Iframe = ({ data, width }: any) => {
           {/* Team Details */}
           <div className="col-12 col-md-6">
             {/* Team 1 Details */}
-            <p className="m-team-1 row" style={{ fontSize: "12px" }}>
-              <span className="team-name col-3">{data?.spnnation1}</span>
-              <span className="score col-6 text-end">{data?.score1}</span>
+            <p className="team-1 row" style={{ fontSize: "12px" }}>
+              <span className=" col-3">{data?.spnnation1}</span>
+              <span className=" col-4 text-end">{data?.score1}</span>
               {data?.spnrunrate1 && (
-                <span className="team-name col-3">
-                  <span>CRR {data?.spnrunrate1}</span>
-                </span>
+                <div className="col-5 d-flex justify-content-start">
+                  <span className="me-2">CRR {data?.spnrunrate1}</span>
+                  {data?.spnreqrate1 && <span className="d-inline ms-2">RR {data?.spnreqrate1}</span>}
+                </div>
               )}
             </p>
 
             {/* Team 2 Details */}
-            <p className="m-team-1 row mt-2" style={{ fontSize: "12px" }}>
+            <p className="team-1 row mt-2" style={{ fontSize: "12px" }}>
               <span className="team-name col-3">{data?.spnnation2}</span>
-              <span className="score col-6 text-end">{data?.score2}</span>
-              <span className="team-name col-3">
-                {data?.spnrunrate2 && <span>CRR {data?.spnrunrate2}</span>}
-              </span>
+              <span className="score col-4 text-end">{data?.score2}</span>
+              {data?.spnrunrate2 && (
+                <div className="col-5 d-flex justify-content-start">
+                  <span className="d-inline">CRR {data?.spnrunrate2}</span>
+                  {data?.spnreqrate2 && <span className="d-inline ms-2">RR {data?.spnreqrate2}</span>}
+                </div>
+              )}
             </p>
           </div>
 

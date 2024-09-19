@@ -71,8 +71,12 @@ const WorliMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <div className="horseRacingTab">
@@ -96,13 +100,16 @@ const WorliMobile = () => {
               <NewLoader />
             ) : (
               <div>
-               <div
+                <div
                   style={{
                     width: "100%",
                     margin: "0px",
                     display: "flex",
                     flexDirection: "column",
                   }}
+                  className={
+                    dragonTigerDetail?.worli?.gstatus == 0 ? "suspended" : ""
+                  }
                 >
                   <div className="parent-rate">
                     <div className="child-rate1">9</div>
@@ -122,7 +129,7 @@ const WorliMobile = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R","R","R"]}
+                    name={["R", "R", "R"]}
                     type={cardGamesType.worli}
                   />
                 </div>

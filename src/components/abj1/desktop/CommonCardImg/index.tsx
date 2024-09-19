@@ -43,7 +43,7 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
     <div className="commonCardImgContainer" >
       {cardImg?.map((item: any,index:number) => {
         return (
-          <div key={index}>
+          <div key={index} style={{margin:"2px"}}>
             <div
               key={item?.code}
               className={handlock(item)}
@@ -56,7 +56,7 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
               onClick={() => (handlock(item) !="" ? null : handleBet(item))}
             >
               {
-              item?.show ? <img src={item?.imgSrc} width={"30px"} /> : <img src={back} width={"30px"} />
+              item?.show ? <img src={item?.imgSrc} height={"45px"} width={"31px"} /> : <img src={back} height={"45px"} width={"31px"} />
             } 
             </div>
             <span
@@ -89,7 +89,7 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${item?.sid}_card`
                     ]
-                  : 0
+                  : <br></br>
                 : 0}
             </span>
           </div>

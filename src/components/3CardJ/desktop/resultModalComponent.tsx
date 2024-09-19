@@ -94,7 +94,7 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
         <div className="w-100 abjresultCardContainer2">
           <div
             style={{
-              width: isMobile ? "90%" : "90%",
+              width: isMobile ? "100%" : "90%",
               margin: "8px 9px 10px 11px",
             }}
           >
@@ -137,7 +137,7 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
                     color:"#9e9e9e",
                     paddingRight:"30px",
                     paddingLeft:"30px",
-                    width:"40%"
+                    width:isMobile?"100%":"40%"
                   }}
                 > Result
                   {elementsAndar?.map((item: any, index: any) => (
