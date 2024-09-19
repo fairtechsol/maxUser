@@ -191,7 +191,7 @@ const CasinoReports = () => {
                         textAlign: "left",
                         width: "20%",
                       }}
-                      onClick={() => handleResult(item?.mid)}
+                      // onClick={() => handleResult(item?.mid)}
                     >
                       <NotSet item={item?.mid} />
                     </td>
