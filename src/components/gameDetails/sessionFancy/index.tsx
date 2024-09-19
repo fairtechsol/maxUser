@@ -120,7 +120,7 @@ const SessionFancy = ({ title, data, detail }) => {
                         ) < 0
                           ? "color-red"
                           : "color-red"
-                      } title-14`}
+                      } title-14 fbold`}
                     >
                       {calculateMaxLoss(
                         detail?.profitLossDataSession,
@@ -265,7 +265,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           ) < 0
                             ? "color-red"
                             : "color-red"
-                        }`}
+                        } title-14 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,

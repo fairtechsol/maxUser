@@ -107,7 +107,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                         ) < 0
                           ? "color-red"
                           : "color-red"
-                      } title-13`}
+                      } title-13 fbold`}
                     >
                       {calculateMaxLoss(
                         detail?.profitLossDataSession,

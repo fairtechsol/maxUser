@@ -494,10 +494,10 @@ const PlacedBet = () => {
                         ))}
                       </Row>
                       <Row>
-                        <Col xs={8}>
+                        <Col xs={6}>
                           <div
                             style={{
-                              width: "50px",
+                              width: "75px",
                               height: "38px",
                               backgroundColor: "#097c93",
                               display: "flex",
@@ -513,7 +513,7 @@ const PlacedBet = () => {
                           </div>
                         </Col>
 
-                        <Col md={4} className="reset-submit-btn-container">
+                        <Col md={6} className="reset-submit-btn-container">
                           <button
                             className="reset-buttonn"
                             onClick={() => {
