@@ -257,9 +257,9 @@ const PlacedBet = () => {
     setBrowserInfo(info);
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("https://geolocation-db.com/json/");
+        const { data } = await axios.get("https://api.ipify.org/?format=json");
         if (data) {
-          setIpAddress(data?.IPv4);
+          setIpAddress(data?.ip);
         }
       } catch (e) {
         console.log(e);

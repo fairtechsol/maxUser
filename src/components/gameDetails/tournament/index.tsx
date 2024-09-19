@@ -128,7 +128,7 @@ const Tournament = ({ title, box, data, detail }) => {
                       : "tournament2RateBox rateBoxWidth2"
                   }
                 >
-                  {(data?.status !== "OPEN" || item?.status !== "ACTIVE") && (
+                  {item?.status !== "ACTIVE" && (
                     <div className="suspended-overlayRatestournament">
                       <span className={`suspendTextCmmn`}>SUSPENDED</span>
                     </div>
@@ -167,7 +167,7 @@ const Tournament = ({ title, box, data, detail }) => {
                   ) : (
                     <>
                       <BetBox
-                        data={data?.runners?.[0]?.ex?.availableToBack?.[0]}
+                        data={item?.ex?.availableToBack?.[0]}
                         type={"back"}
                         detail={detail}
                         runner={item}
@@ -175,7 +175,7 @@ const Tournament = ({ title, box, data, detail }) => {
                       />
 
                       <BetBox
-                        data={data?.runners?.[0]?.ex?.availableToLay?.[0]}
+                        data={item?.ex?.availableToLay?.[0]}
                         type={"lay"}
                         detail={detail}
                         runner={item}
