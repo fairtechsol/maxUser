@@ -27,11 +27,12 @@ const DesktopMyBet = () => {
       <div className="betList" style={{ maxHeight: "30vh", overflow: "auto" }}>
         <Table className="w-full">
           <thead>
-            <tr className="bg-darkGrey">
+            <tr style={{background:"#f7f7f7"}}>
               {placeBetHeader?.map((item) => (
                 <th
                   key={item?.id}
-                  className="title-12 text-start f500 bg-darkGrey"
+                  className="title-12 text-start f500 "
+                  style={{background:"#f7f7f7"}}
                 >
                   {item?.name}
                 </th>
@@ -41,9 +42,9 @@ const DesktopMyBet = () => {
           <tbody>
             {placedBets?.length < 1 && (
               <tr>
-                <th colSpan={3} style={{ textAlign: "center" }}>
+                {/* <th colSpan={3} style={{ textAlign: "center" }}>
                   <span className="f400 title-14">No records Found</span>
-                </th>
+                </th> */}
               </tr>
             )}
             {placedBets &&
