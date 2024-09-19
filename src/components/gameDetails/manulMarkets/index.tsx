@@ -34,6 +34,7 @@ const ManualMarket = ({ title, data, detail }) => {
       matchId: detail?.id,
       matchBetType: data?.type,
       placeIndex: index,
+      gameType:detail?.matchType==="cricket"?"cricket":"other"
     };
     dispatch(
       selectedBetAction({
