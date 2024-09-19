@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
 import { cardGamesType } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import AbjResultComponent from "../../abj2/desktop/resultModalComponent";
 import Card32ResultComponent from "../../cards32/desktop/resultModalComponent";
 import Dragon20ResultComponent from "../../dragon20/desktop/resultModalComponent";
@@ -58,7 +58,7 @@ const title = {
 interface ResultComponentProps {
   data: any;
   setfalse: any;
-  type: keyof typeof title;
+  type: keyof typeof title | string;
 }
 
 export const ResultComponent: React.FC<ResultComponentProps> = ({
@@ -76,7 +76,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
       setDate(Date.now());
     }
   }, []);
-  
+
   return (
     <Container style={{ padding: 0, width: "100%" }}>
       <div className="resultModalHeader">
@@ -104,8 +104,12 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
           <span>{handleRoundId(data?.result?.mid)}</span>
         </div>
         <div>
-        <span style={{fontWeight:"bold"}}>Match Time:</span>
-        <span>{data?.createdAt ? moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A'): moment(date).format('DD/MM/YYYY hh:mm:ss A')}</span>
+          <span style={{ fontWeight: "bold" }}>Match Time:</span>
+          <span>
+            {data?.createdAt
+              ? moment(data?.createdAt).format("DD/MM/YYYY hh:mm:ss A")
+              : moment(date).format("DD/MM/YYYY hh:mm:ss A")}
+          </span>
         </div>
       </div>
       {type === cardGamesType?.dragonTiger20 ? (

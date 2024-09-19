@@ -3,8 +3,7 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { AppDispatch } from "../../../store/store";
-import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { dummyArray, formatNumber } from "../../../helpers";
+import { FaLock } from "react-icons/fa";
 import BetBox from "../../gameDetails/betBox";
 
 const HtFt = ({ title, box, data, detail }) => {
@@ -95,7 +94,7 @@ const HtFt = ({ title, box, data, detail }) => {
                 >
                   {(item?.status !== "OPEN" && item?.status !== "ACTIVE") && (
                     <div className="suspended-overlayRatestournament">
-                      <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                      <FaLock color="#fff" />
                     </div>
                   )}
                   <BetBox

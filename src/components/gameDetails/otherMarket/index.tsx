@@ -116,7 +116,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A+"_"+data?.id+"_"+data?.matchId
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
@@ -139,7 +139,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"back"}
-                      detail={detail?.teamA}
+                      detail={data?.type === "other" ? data?.metaData?.teamA : "Yes"}
                       runner={data?.runners?.[0]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -150,7 +150,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"lay"}
-                      detail={detail?.teamA}
+                      detail={data?.type === "other" ? data?.metaData?.teamA : "Yes"}
                       runner={data?.runners?.[0]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -162,7 +162,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[0]?.ex?.availableToBack?.[0]}
                   type={"back"}
-                  detail={detail?.teamA}
+                  detail={data?.type === "other" ? data?.metaData?.teamA : "Yes"}
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -170,7 +170,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[0]?.ex?.availableToLay?.[0]}
                   type={"lay"}
-                  detail={detail?.teamA}
+                  detail={data?.type === "other" ? data?.metaData?.teamA : "Yes"}
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -202,7 +202,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             >
               {detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.B+"_"+data?.id+"_"+data?.matchId
-              ] ?? 0}
+              ] ?? ""}
             </span>
           </div>
           <div
@@ -225,7 +225,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"back"}
-                      detail={detail?.teamB}
+                      detail={data?.type === "other" ? data?.metaData?.teamB : "No"}
                       runner={data?.runners?.[1]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -236,7 +236,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     <BetBox
                       data={item}
                       type={"lay"}
-                      detail={detail?.teamB}
+                      detail={data?.type === "other" ? data?.metaData?.teamB : "No"}
                       runner={data?.runners?.[1]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -248,7 +248,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[1]?.ex?.availableToBack?.[0]}
                   type={"back"}
-                  detail={detail?.teamB}
+                  detail={data?.type === "other" ? data?.metaData?.teamB : "No"}
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -256,7 +256,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[1]?.ex?.availableToLay?.[0]}
                   type={"lay"}
-                  detail={detail?.teamB}
+                  detail={data?.type === "other" ? data?.metaData?.teamB : "No"}
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />

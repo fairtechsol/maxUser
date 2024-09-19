@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPlacedBetsForAccountStatement } from "../../store/actions/betPlace/betPlaceActions";
 import { getAccountStatement } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
-import { transType } from "../../utils/constants";
+import { casinoKeywords, transType } from "../../utils/constants";
 import { isMobile } from "../../utils/screenDimension";
 import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
@@ -16,6 +16,8 @@ import NotSet from "../commonComponent/notSet";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import "./style.scss";
+import { ResultComponent } from "../commonComponent/resultComponent";
+import { resultDragonTiger } from "../../store/actions/cards/cardDetail";
 
 const AccountStatementComponent = () => {
   const minDate = new Date();
@@ -24,10 +26,18 @@ const AccountStatementComponent = () => {
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
   const [from, setFrom] = useState<any>(sevenDaysAgo);
   const [to, setTo] = useState<any>(new Date());
-  const [type, setType] = useState<any>("");
+  const [type, setType] = useState<any>({
+    label: "Deposit/Withdraw Reports",
+    value: "addWithdraw",
+  });
   const [firstTime, setFirstTime] = useState<any>(false);
   const [minDate2, setminDate2] = useState<any>(minDate);
-  const [show, setShow] = useState({ status: false, betId: [], runnerId: "" });
+  const [show, setShow] = useState({
+    status: false,
+    betId: [],
+    runnerId: "",
+    casinoType: "",
+  });
   const [selectedOption, setSelectedOption] = useState("matched");
 
   const [tableConfig, setTableConfig] = useState<any>(null);
@@ -36,6 +46,7 @@ const AccountStatementComponent = () => {
   const { transactions, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
+  let { resultData } = useSelector((state: RootState) => state.card);
 
   const { placedBetsAccountStatement } = useSelector(
     (state: RootState) => state.bets
@@ -43,7 +54,7 @@ const AccountStatementComponent = () => {
 
   const handleClose = () => {
     setSelectedOption("matched");
-    setShow({ status: false, betId: [], runnerId: "" });
+    setShow({ status: false, betId: [], runnerId: "", casinoType: "" });
   };
 
   useEffect(() => {
@@ -120,10 +131,10 @@ const AccountStatementComponent = () => {
               <Col md={2} xs={12}>
                 <SelectSearch
                   options={[
-                    {
-                      value: "",
-                      label: "All",
-                    },
+                    // {
+                    //   value: "",
+                    //   label: "All",
+                    // },
                     {
                       value: "addWithdraw",
                       label: "Deposit/Withdraw Reports",
@@ -133,14 +144,17 @@ const AccountStatementComponent = () => {
                       label: "Sport Report",
                     },
                     {
-                      value: "game",
+                      value: "casino",
                       label: "Casino Reports",
                     },
                   ]}
-                  placeholder="All"
+                  // placeholder="Deposit/Withdraw Reports"
                   onChange={setType}
                   value={type}
-                  defaultValue={""}
+                  defaultValue={{
+                    label: "Deposit/Withdraw Reports",
+                    value: "addWithdraw",
+                  }}
                 />
               </Col>
               <Col md={2} xs={12}>
@@ -167,7 +181,13 @@ const AccountStatementComponent = () => {
                         )}`;
                       }
                       if (type) {
-                        filter += `&statementType=${type?.value}`;
+                        if (type?.value === "casino") {
+                          filter += `&statementType=game&betId=isNull`;
+                        } else if (type?.value === "game") {
+                          filter += `&statementType=${type?.value}&betId=notNull`;
+                        } else {
+                          filter += `&statementType=${type?.value}`;
+                        }
                       }
 
                       dispatch(
@@ -188,6 +208,8 @@ const AccountStatementComponent = () => {
                 </CustomButton>
               </Col>
             </Row>
+
+            {/* http://localhost:5000/card/result/detail/9.241909153253 */}
             <CustomTable
               width={isMobile ? "1200px" : ""}
               paginationCount={true}
@@ -228,8 +250,14 @@ const AccountStatementComponent = () => {
             >
               {transactions?.transactions?.map((item: any, index: number) => {
                 const keywords = ["ballbyball", "cricketv3"];
+
                 const firstPart = item?.description?.split("/")?.[0];
-                const containsKeywords = firstPart && keywords.some(keyword => firstPart.includes(keyword));
+                const containsKeywords =
+                  firstPart &&
+                  keywords.some((keyword) => firstPart.includes(keyword));
+
+                const isCasinoGame =
+                  firstPart && casinoKeywords.includes(firstPart);
                 return (
                   <tr className={`${isMobile && "title-12"}`} key={index}>
                     <td>
@@ -278,41 +306,52 @@ const AccountStatementComponent = () => {
                     </td>
                     <td
                       onClick={() => {
-                        const match =
-                        containsKeywords
-                            ? item?.description.match(/Rno\. (\d+)/)
-                            : item?.description.match(/Rno\. (\d+\.\d+)/);
-                        if (item?.betId?.length > 0) {
-                          setShow({
-                            status: true,
-                            betId: item?.betId,
-                            runnerId: "",
-                          });
-                          dispatch(
-                            getPlacedBetsForAccountStatement({
-                              betId: item?.betId,
-                              status: "MATCHED",
-                              userId: getProfile?.id,
-                            })
-                          );
-                        } else if (match && match[1]) {
+                        const match = containsKeywords
+                          ? item?.description.match(/Rno\. (\d+)/)
+                          : item?.description.match(/Rno\. (\d+\.\d+)/);
+                        if (isCasinoGame && match && match[1]) {
                           setShow({
                             status: true,
                             betId: [],
-                            runnerId: match[1],
+                            runnerId: "",
+                            casinoType: firstPart,
                           });
-                          dispatch(
-                            getPlacedBetsForAccountStatement({
+                          dispatch(resultDragonTiger(match[1]));
+                        } else {
+                          if (item?.betId?.length > 0) {
+                            setShow({
+                              status: true,
+                              betId: item?.betId,
+                              runnerId: "",
+                              casinoType: "",
+                            });
+                            dispatch(
+                              getPlacedBetsForAccountStatement({
+                                betId: item?.betId,
+                                status: "MATCHED",
+                                userId: getProfile?.id,
+                              })
+                            );
+                          } else if (match && match[1]) {
+                            setShow({
+                              status: true,
+                              betId: [],
                               runnerId: match[1],
-                              isCard: true,
-                              result: `inArr${JSON.stringify([
-                                "WIN",
-                                "LOSS",
-                                "TIE",
-                              ])}`,
-                              userId: getProfile?.id,
-                            })
-                          );
+                              casinoType: "",
+                            });
+                            dispatch(
+                              getPlacedBetsForAccountStatement({
+                                runnerId: match[1],
+                                isCard: true,
+                                result: `inArr${JSON.stringify([
+                                  "WIN",
+                                  "LOSS",
+                                  "TIE",
+                                ])}`,
+                                userId: getProfile?.id,
+                              })
+                            );
+                          }
                         }
                       }}
                       style={{ cursor: "pointer" }}
@@ -332,264 +371,296 @@ const AccountStatementComponent = () => {
         size="xl"
         dialogClassName="custom-modal"
       >
-        <Modal.Body>
-          <Form className="d-flex align-self-center justify-content-center">
-            <div key="inline-radio" className="mb-3">
-              <Form.Check
-                inline
-                label="Matched"
-                name="group1"
-                type="radio"
-                id="inline-radio-1"
-                checked={selectedOption === "matched"}
-                onChange={() => {
-                  setSelectedOption("matched");
-                  if (show?.betId?.length > 0) {
-                    dispatch(
-                      getPlacedBetsForAccountStatement({
-                        betId: show?.betId,
-                        status: "MATCHED",
-                        userId: getProfile?.id,
-                      })
-                    );
-                  } else if (show?.runnerId) {
-                    dispatch(
-                      getPlacedBetsForAccountStatement({
-                        runnerId: show?.runnerId,
-                        isCard: true,
-                        result: `inArr${JSON.stringify([
-                          "WIN",
-                          "LOSS",
-                          "TIE",
-                        ])}`,
-                        userId: getProfile?.id,
-                      })
-                    );
-                  }
-                }}
-              />
-              <Form.Check
-                inline
-                label="Deleted"
-                name="group1"
-                type="radio"
-                id="inline-radio-2"
-                checked={selectedOption === "deleted"}
-                onChange={() => {
-                  setSelectedOption("deleted");
-                  if (show?.betId?.length > 0) {
-                    dispatch(
-                      getPlacedBetsForAccountStatement({
-                        betId: show?.betId,
-                        status: "DELETED",
-                        userId: getProfile?.id,
-                      })
-                    );
-                  } else if (show?.runnerId) {
-                    dispatch(
-                      getPlacedBetsForAccountStatement({
-                        runnerId: show?.runnerId,
-                        status: "DELETED",
-                        userId: getProfile?.id,
-                      })
-                    );
-                  }
-                }}
-              />
-            </div>
-          </Form>
-          {!isMobile ? (
-            <Table bordered hover>
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nation</th>
-                  <th>Side</th>
-                  <th>Rate</th>
-                  <th>Amount</th>
-                  <th>Win/Loss</th>
-                  <th>Place Date</th>
-                  <th>Match Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {placedBetsAccountStatement?.length === 0 && (
-                  <tr>
-                    <td colSpan={12}>No Record Found</td>
-                  </tr>
-                )}
-                {placedBetsAccountStatement?.length >= 0 &&
-                  placedBetsAccountStatement?.map(
-                    (item: any, index: number) => (
-                      <tr key={item?.id}>
-                        <td
-                          className={`${
-                            item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                          }`}
-                        >
-                          {index + 1}
-                        </td>
-                        <td
-                          className={`${
-                            item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                          }`}
-                        >
-                          {item?.teamName}
-                        </td>
-                        <td
-                          className={`${
-                            item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                          }`}
-                        >
-                          {item?.betType}
-                        </td>
-                        <td
-                          className={`${
-                            item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                          }`}
-                        >
-                          {item?.odds}
-                        </td>
-                        <td
-                          className={`${
-                            item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                          }`}
-                        >
-                          {item?.amount}
-                        </td>
-                        <td
-                          className={`${
-                            item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                          }`}
-                          style={{
-                            color:
-                              item?.result === "LOSS"
-                                ? "#dc3545"
-                                : item?.result === "TIE"
-                                ? "#000"
-                                : "#28a745",
-                          }}
-                        >
-                          {item?.result === "LOSS"
-                            ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
-                            : item?.result === "WIN"
-                            ? parseFloat(item?.winAmount).toFixed(2)
-                            : 0}
-                        </td>
-                        <td
-                          className={`${
-                            item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                          }`}
-                        >
-                          {moment(item?.createdAt).format(
-                            "MM/DD/YYYY hh:mm:ss A"
-                          )}
-                        </td>
-                        <td
-                          className={`${
-                            item?.betType === "BACK" ? "bg-blue3" : "bg-red1"
-                          }`}
-                        >
-                          {item?.racingMatch
-                            ? moment(item?.racingMatch?.startAt).format(
-                                "MM/DD/YYYY hh:mm:ss A"
-                              )
-                            : moment(item?.match?.startAt).format(
+        {show?.casinoType ? (
+          <Modal.Body style={{ padding: 0, width: "100%" }}>
+            <ResultComponent
+              data={resultData}
+              setfalse={handleClose}
+              type={show?.casinoType}
+            />
+          </Modal.Body>
+        ) : (
+          <>
+            <Modal.Body>
+              <Form className="d-flex align-self-center justify-content-center">
+                <div key="inline-radio" className="mb-3">
+                  <Form.Check
+                    inline
+                    label="Matched"
+                    name="group1"
+                    type="radio"
+                    id="inline-radio-1"
+                    checked={selectedOption === "matched"}
+                    onChange={() => {
+                      setSelectedOption("matched");
+                      if (show?.betId?.length > 0) {
+                        dispatch(
+                          getPlacedBetsForAccountStatement({
+                            betId: show?.betId,
+                            status: "MATCHED",
+                            userId: getProfile?.id,
+                          })
+                        );
+                      } else if (show?.runnerId) {
+                        dispatch(
+                          getPlacedBetsForAccountStatement({
+                            runnerId: show?.runnerId,
+                            isCard: true,
+                            result: `inArr${JSON.stringify([
+                              "WIN",
+                              "LOSS",
+                              "TIE",
+                            ])}`,
+                            userId: getProfile?.id,
+                          })
+                        );
+                      }
+                    }}
+                  />
+                  <Form.Check
+                    inline
+                    label="Deleted"
+                    name="group1"
+                    type="radio"
+                    id="inline-radio-2"
+                    checked={selectedOption === "deleted"}
+                    onChange={() => {
+                      setSelectedOption("deleted");
+                      if (show?.betId?.length > 0) {
+                        dispatch(
+                          getPlacedBetsForAccountStatement({
+                            betId: show?.betId,
+                            status: "DELETED",
+                            userId: getProfile?.id,
+                          })
+                        );
+                      } else if (show?.runnerId) {
+                        dispatch(
+                          getPlacedBetsForAccountStatement({
+                            runnerId: show?.runnerId,
+                            status: "DELETED",
+                            userId: getProfile?.id,
+                          })
+                        );
+                      }
+                    }}
+                  />
+                </div>
+              </Form>
+              {!isMobile ? (
+                <Table bordered hover>
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nation</th>
+                      <th>Side</th>
+                      <th>Rate</th>
+                      <th>Amount</th>
+                      <th>Win/Loss</th>
+                      <th>Place Date</th>
+                      <th>Match Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {placedBetsAccountStatement?.length === 0 && (
+                      <tr>
+                        <td colSpan={12}>No Record Found</td>
+                      </tr>
+                    )}
+                    {placedBetsAccountStatement?.length >= 0 &&
+                      placedBetsAccountStatement?.map(
+                        (item: any, index: number) => (
+                          <tr key={item?.id}>
+                            <td
+                              className={`${
+                                item?.betType === "BACK"
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
+                            >
+                              {index + 1}
+                            </td>
+                            <td
+                              className={`${
+                                item?.betType === "BACK"
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
+                            >
+                              {item?.teamName}
+                            </td>
+                            <td
+                              className={`${
+                                item?.betType === "BACK"
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
+                            >
+                              {item?.betType}
+                            </td>
+                            <td
+                              className={`${
+                                item?.betType === "BACK"
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
+                            >
+                              {item?.odds}
+                            </td>
+                            <td
+                              className={`${
+                                item?.betType === "BACK"
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
+                            >
+                              {item?.amount}
+                            </td>
+                            <td
+                              className={`${
+                                item?.betType === "BACK"
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
+                              style={{
+                                color:
+                                  item?.result === "LOSS"
+                                    ? "#dc3545"
+                                    : item?.result === "TIE"
+                                    ? "#000"
+                                    : "#28a745",
+                              }}
+                            >
+                              {item?.result === "LOSS"
+                                ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
+                                : item?.result === "WIN"
+                                ? parseFloat(item?.winAmount).toFixed(2)
+                                : 0}
+                            </td>
+                            <td
+                              className={`${
+                                item?.betType === "BACK"
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
+                            >
+                              {moment(item?.createdAt).format(
                                 "MM/DD/YYYY hh:mm:ss A"
                               )}
-                        </td>
-                      </tr>
-                    )
-                  )}
-              </tbody>
-            </Table>
-          ) : (
-            <Row className="row">
-              <Col className="col-12" colspan={12}>
-                {placedBetsAccountStatement?.map((item: any, index: number) => {
-                  return (
-                    <div
-                      className={`unsetteled-bet ${
-                        item.betType === "NO" || item.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                      key={index}
-                    >
-                      <div className="row">
-                        <div className="col-6 coloumn-6">
-                          <div>
-                            <span className="f600">Nation: </span>{" "}
-                            {item?.teamName}
-                          </div>
-                          <div>
-                            <span className="f600">Placed Bet: </span>{" "}
-                            {moment(item?.createdAt).format(
-                              "MM/DD/YYYY hh:mm:ss A"
-                            )}
-                          </div>
-                          <div>
-                            <span className="f600">Matched Date: </span>{" "}
-                            {item?.racingMatch
-                              ? moment(item?.racingMatch?.startAt).format(
-                                  "MM/DD/YYYY hh:mm:ss A"
-                                )
-                              : moment(item?.match?.startAt).format(
-                                  "MM/DD/YYYY hh:mm:ss A"
-                                )}
-                          </div>
-                        </div>
-                        <Col className="col-2 reportBody-a" colspan={6}>
-                          <div>
-                            <span className="f600">Rate</span>
-                          </div>
-                          <div>{item.odds}</div>
-                        </Col>
-                        <div className="col-2 text-right reportBody-a">
-                          <div>
-                            <span className="f600">Amount</span>
-                          </div>
-                          <div>{item.amount}</div>
-                        </div>
-                        <div className="col-2 text-right reportBody-a">
-                          <div>
-                            <span className="f600">W&L</span>
-                          </div>
+                            </td>
+                            <td
+                              className={`${
+                                item?.betType === "BACK"
+                                  ? "bg-blue3"
+                                  : "bg-red1"
+                              }`}
+                            >
+                              {item?.racingMatch
+                                ? moment(item?.racingMatch?.startAt).format(
+                                    "MM/DD/YYYY hh:mm:ss A"
+                                  )
+                                : moment(item?.match?.startAt).format(
+                                    "MM/DD/YYYY hh:mm:ss A"
+                                  )}
+                            </td>
+                          </tr>
+                        )
+                      )}
+                  </tbody>
+                </Table>
+              ) : (
+                <Row className="row">
+                  <Col className="col-12" colspan={12}>
+                    {placedBetsAccountStatement?.map(
+                      (item: any, index: number) => {
+                        return (
                           <div
-                            style={{
-                              color:
-                                item?.result === "LOSS"
-                                  ? "#dc3545"
-                                  : item?.result === "WIN"
-                                  ? "#28a745"
-                                  : "#000",
-                              overflowWrap: "anywhere",
-                            }}
+                            className={`unsetteled-bet ${
+                              item.betType === "NO" || item.betType === "LAY"
+                                ? "bg-red1"
+                                : "bg-blue3"
+                            }`}
+                            key={index}
                           >
-                            {item?.result === "LOSS"
-                              ? `-${parseFloat(item?.lossAmount).toFixed(2)}`
-                              : item?.result === "WIN"
-                              ? parseFloat(item?.winAmount).toFixed(2)
-                              : 0}
+                            <div className="row">
+                              <div className="col-6 coloumn-6">
+                                <div>
+                                  <span className="f600">Nation: </span>{" "}
+                                  {item?.teamName}
+                                </div>
+                                <div>
+                                  <span className="f600">Placed Bet: </span>{" "}
+                                  {moment(item?.createdAt).format(
+                                    "MM/DD/YYYY hh:mm:ss A"
+                                  )}
+                                </div>
+                                <div>
+                                  <span className="f600">Matched Date: </span>{" "}
+                                  {item?.racingMatch
+                                    ? moment(item?.racingMatch?.startAt).format(
+                                        "MM/DD/YYYY hh:mm:ss A"
+                                      )
+                                    : moment(item?.match?.startAt).format(
+                                        "MM/DD/YYYY hh:mm:ss A"
+                                      )}
+                                </div>
+                              </div>
+                              <Col className="col-2 reportBody-a" colspan={6}>
+                                <div>
+                                  <span className="f600">Rate</span>
+                                </div>
+                                <div>{item.odds}</div>
+                              </Col>
+                              <div className="col-2 text-right reportBody-a">
+                                <div>
+                                  <span className="f600">Amount</span>
+                                </div>
+                                <div>{item.amount}</div>
+                              </div>
+                              <div className="col-2 text-right reportBody-a">
+                                <div>
+                                  <span className="f600">W&L</span>
+                                </div>
+                                <div
+                                  style={{
+                                    color:
+                                      item?.result === "LOSS"
+                                        ? "#dc3545"
+                                        : item?.result === "WIN"
+                                        ? "#28a745"
+                                        : "#000",
+                                    overflowWrap: "anywhere",
+                                  }}
+                                >
+                                  {item?.result === "LOSS"
+                                    ? `-${parseFloat(item?.lossAmount).toFixed(
+                                        2
+                                      )}`
+                                    : item?.result === "WIN"
+                                    ? parseFloat(item?.winAmount).toFixed(2)
+                                    : 0}
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </Col>
-            </Row>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            className="btn btn-danger"
-            onClick={handleClose}
-          >
-            {isMobile ? "Cancel" : "Close"}
-          </Button>
-        </Modal.Footer>
+                        );
+                      }
+                    )}
+                  </Col>
+                </Row>
+              )}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary"
+                className="btn btn-danger"
+                onClick={handleClose}
+              >
+                {isMobile ? "Cancel" : "Close"}
+              </Button>
+            </Modal.Footer>
+          </>
+        )}
       </Modal>
     </>
   );
