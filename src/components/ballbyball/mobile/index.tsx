@@ -266,8 +266,8 @@ const TeenPattiMobile = () => {
                               ? dragonTigerDetail?.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                 ]
-                              : 0
-                            : 0}
+                              : ""
+                            : ""}
                         </span>
                       </div>
                       <div
