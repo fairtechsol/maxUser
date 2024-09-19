@@ -13,21 +13,30 @@ const TeenPattiTableRow = ({
 
   return (
     <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
-      <div className="ps-2 py-2"
-        style={{ width: "40%",border: "0.1px solid #fff",display: "flex",
-          alignItems: "start",flexDirection: "column",minHeight: "46px"
-          }}
+      <div
+        className="ps-2 py-2"
+        style={{
+          width: "40%",
+          borderBottom: "0.1px solid #c7c8ca",
+          borderLeft: "0.1px solid #c7c8ca",
+          display: "flex",
+          alignItems: "start",
+          flexDirection: "column",
+          minHeight: "46px",
+        }}
       >
         <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
           {player.nation}
         </span>
         <span className="d-flex row ps-2 gap-1">
-        <HandleCards2 card={cardsA[indx] !== "1" ? cardsA[indx] : ""} />
+          <HandleCards2 card={cardsA[indx] !== "1" ? cardsA[indx] : ""} />
 
-        <HandleCards2 card={cardsA[9 + indx] !== "1" ? cardsA[indx + 9] : ""} />
-        <HandleCards2
-          card={cardsA[18 + indx] !== "1" ? cardsA[indx + 18] : ""}
-        />
+          <HandleCards2
+            card={cardsA[9 + indx] !== "1" ? cardsA[indx + 9] : ""}
+          />
+          <HandleCards2
+            card={cardsA[18 + indx] !== "1" ? cardsA[indx + 18] : ""}
+          />
         </span>
       </div>
       <div
@@ -41,8 +50,8 @@ const TeenPattiTableRow = ({
         <div
           className={
             player.gstatus === "0"
-              ? "teenPatti-table-item suspended"
-              : "teenPatti-table-item"
+              ? "teenPatti-table-itemo suspended"
+              : "teenPatti-table-itemo"
           }
           style={{ width: "50%" }}
           onClick={() => (player.gstatus === "0" ? null : handleBet(player))}
@@ -83,8 +92,8 @@ const TeenPattiTableRow = ({
         <div
           className={
             player.gstatus === "0"
-              ? "teenPatti-table-item suspended"
-              : "teenPatti-table-item"
+              ? "teenPatti-table-itemo suspended"
+              : "teenPatti-table-itemo"
           }
           style={{ width: "50%" }}
           onClick={() =>

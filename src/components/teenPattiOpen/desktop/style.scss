@@ -134,12 +134,13 @@
   flex-direction: column;
 }
 
-.teenPatti-table-item{
+.teenPatti-table-itemo{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 0.2px solid #fff;
+  border-left: 0.01px solid #c7c8ca;
+  border-bottom: 0.01px solid #c7c8ca;
   cursor: pointer;
 }
 .f12-b{

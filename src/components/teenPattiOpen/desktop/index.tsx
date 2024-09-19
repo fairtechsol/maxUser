@@ -191,10 +191,12 @@ const TeenPattiDesktop = () => {
                 <div className="teenPatti-table-container-open">
                   <div
                     className="teenPatti-table-row"
-                    style={{ lineHeight: 2 }}
+                    style={{ lineHeight: 2,background:"#f2f2f2",borderLeft: "0.1px solid #c7c8ca",borderBottom: "0.1px solid #c7c8ca" }}
                   >
                     <div
-                      style={{ width: "40%", border: "0.1px solid #fff" }}
+                      style={{ width: "40%", 
+                        //border: "0.1px solid #fff" 
+                      }}
                     ></div>
                     <div
                       style={{
@@ -205,7 +207,7 @@ const TeenPattiDesktop = () => {
                       }}
                     >
                       <div
-                        className="teenPatti-table-item f12-b"
+                        className="teenPatti-table-itemo f12-b"
                         style={{ width: "50%" }}
                       >
                         {/* BACK(Min: {dragonTigerDetail?.players?.player1?.min}{" "}
@@ -213,7 +215,7 @@ const TeenPattiDesktop = () => {
                         Odds
                       </div>
                       <div
-                        className="teenPatti-table-item f12-b"
+                        className="teenPatti-table-itemo f12-b"
                         style={{ width: "50%" }}
                       >
                         Pair Plus

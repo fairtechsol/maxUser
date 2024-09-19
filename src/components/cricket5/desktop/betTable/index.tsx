@@ -71,17 +71,17 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             </span>
           </div>
           <div className="market-odd-box-cd back">
-            <b>Back</b>
+            <b style={{color:"#333333"}}>Back</b>
           </div>
           <div className="market-odd-box-cd lay">
-            <b>Lay</b>
+            <b style={{color:"#333333"}}>Lay</b>
           </div>
         </div>
         <div className="market-body-c" data-title="OPEN">
           {/* {odds?.map((row:any, index:any) => ( */}
           <div className={`market-row-c`}>
             <div className="market-nation-detail-b">
-              <span className="market-nation-name-c">{team1?.nat}</span>
+              <span className="market-nation-name-c" style={{color:"#333333"}}>{team1?.nat}</span>
               <div className="market-nation-book-c"></div>
               <span
                 className={`${
@@ -141,10 +141,10 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                     : handleBet(team1, "back")
                 }
               >
-                <span className="market-odd-c f600">
+                <span className="market-odd-c f600" style={{color:"#333333"}}>
                   {team1?.b1 === "0.00" ? "-" : team1?.b1}
                 </span>
-                <span className="market-volume-c">{team1?.bs1}</span>
+                <span className="market-volume-c" style={{color:"#333333"}}>{team1?.bs1}</span>
               </div>
               <div
                 className="market-odd-box-cd lay lh-1"
@@ -165,7 +165,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
           </div>
           <div className={`market-row-c`}>
             <div className="market-nation-detail-b">
-              <span className="market-nation-name-c">{team2?.nat}</span>
+              <span className="market-nation-name-c" style={{color:"#333333"}}>{team2?.nat}</span>
               <div className="market-nation-book-c"></div>
               <span
                 className={`${
@@ -225,10 +225,10 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                     : handleBet(team2, "back")
                 }
               >
-                <span className="market-odd-c f600">
+                <span className="market-odd-c f600" style={{color:"#333333"}}>
                   {team2?.b1 === "0.00" ? "-" : team2?.b1}
                 </span>
-                <span className="market-volume-c">{team2?.bs1}</span>
+                <span className="market-volume-c" style={{color:"#333333"}}>{team2?.bs1}</span>
               </div>
               <div
                 className="market-odd-box-cd lay lh-1"

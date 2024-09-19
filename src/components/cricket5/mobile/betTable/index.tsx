@@ -56,17 +56,17 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             </span>
           </div>
           <div className="market-odd-box-c back " style={{width:"21%"}}>
-            <b>Back</b>
+            <b style={{color:"#333333"}}>Back</b>
           </div>
           <div className="market-odd-box-c lay" style={{width:"21%"}}>
-            <b>Lay</b>
+            <b style={{color:"#333333"}}>Lay</b>
           </div>
         </div>
         <div className="market-body-c" data-title="OPEN">
           {odds?.map((row: any, index: any) => (
             <div className={`market-row-c`}>
               <div className="market-nation-detail-b" style={{width:"58%"}}>
-                <span className="market-nation-name-c">{row?.nat}</span>
+                <span className="market-nation-name-c" style={{color:"#333333"}}>{row?.nat}</span>
                 <div className="market-nation-book-c"></div>
                 <span
                   className={`${
@@ -111,8 +111,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                   }
                   style={{width:"50%"}}
                 >
-                  <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.b1}</span>
-                  <span className="market-volume-c title-11 f100">{row?.bs1}</span>
+                  <span className="market-odd-c fbold" style={{color:"#333333"}}> {row?.status === "SUSPENDED" ? "-" : row?.b1}</span>
+                  <span className="market-volume-c title-11 f100" style={{color:"#333333"}}>{row?.bs1}</span>
                 </div>
                 <div
                   className="market-odd-box-c lay"
@@ -121,8 +121,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                   }
                   style={{width:"50%"}}
                 >
-                  <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.l1}</span>
-                  <span className="market-volume title-11 f100">{row?.ls1}</span>
+                  <span className="market-odd-c fbold" style={{color:"#333333"}}> {row?.status === "SUSPENDED" ? "-" : row?.l1}</span>
+                  <span className="market-volume title-11 f100" style={{color:"#333333"}}>{row?.ls1}</span>
                 </div>
               </div>
             </div>
