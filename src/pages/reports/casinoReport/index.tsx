@@ -159,6 +159,7 @@ const CasinoReports = () => {
             </Row>
             <CustomTable
               // width={isMobile ? "1200px" : ""}
+              placeHolder={`${cardReport?.count} records`}
               paginationCount={true}
               bordered={true}
               striped={!isMobile}
@@ -190,7 +191,7 @@ const CasinoReports = () => {
                         textAlign: "left",
                         width: "20%",
                       }}
-                      onClick={() => handleResult(item?.mid)}
+                      // onClick={() => handleResult(item?.mid)}
                     >
                       <NotSet item={item?.mid} />
                     </td>

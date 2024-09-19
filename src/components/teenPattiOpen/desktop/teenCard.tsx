@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
+import { isMobile } from "../../../utils/screenDimension";
 
 interface Props {
   data: {
@@ -19,7 +20,7 @@ const TeenOpenResult: React.FC<Props> = ({ data }:any) => {
     <Container>
       <Row>
         <Col>
-          <span style={{ color: "white",fontWeight:"bolder" }}>DEALER</span>
+          <span style={{ color: "white",fontWeight:"bolder" }} className={isMobile ? "title-12" : "title-16"}>DEALER</span>
           <div style={{ display: "flex", gap: "10px" }}>
             <HandleCards card={data?.[8]!=="1"?data?.[8]:""} />
             <HandleCards card={data?.[17]!=="1"?data?.[17]:""} />

@@ -62,7 +62,7 @@ const CardBox = ({ odds, data }: any) => {
           <div className="cardNumberTitle">
             {" "}
             <div style={{ width: "47%", textAlign: "start" }}>
-              <span className="minmaxi">
+              {/* <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
                   onClick={() => setModelOpen(!modelOpen)}
@@ -73,7 +73,7 @@ const CardBox = ({ odds, data }: any) => {
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
-              </span>
+              </span> */}
             </div>
             <div style={{ width: "53%", textAlign: "start" }}>11.2</div>
           </div>

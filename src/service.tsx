@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Constants } from "./utils/constants";
+import { Constants, serviceUrl } from "./utils/constants";
 
 const toastOptions = {
   autoClose: 1500,
@@ -10,20 +10,8 @@ const toastOptions = {
 };
 
 const service = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "production"
-      ? Constants.apiBasePath
-      : Constants.localPath,
+  baseURL: serviceUrl,
 });
-
-// use below service for live build
-
-// const service = axios.create({
-//   baseURL:
-//     process.env.NODE_ENV === "production"
-//       ? Constants.apiBasePathLive
-//       : Constants.localPath,
-// });
 
 service.defaults.timeout = 100000;
 

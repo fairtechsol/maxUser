@@ -42,7 +42,7 @@ const CommonButtonBox = ({
             value3 && value3 > 0 ? "color-green" : value3 < 0 ? "color-red" : ""
           }`}
         >
-          {value3 || 0}
+          {value3 || "\u00A0"}
         </span>
       </div>
     </div>

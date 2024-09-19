@@ -107,7 +107,7 @@ const Card32BMobile = () => {
             {loading ? (
               <NewLoader />
             ) : (
-              <div>
+              <div >
                 <div className="" style={{ width: "97%", gap: "10px", marginTop: "0.5rem" }}>
                   <div className="w-100">
                     <BackLay

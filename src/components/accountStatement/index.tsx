@@ -9,7 +9,7 @@ import { getPlacedBetsForAccountStatement } from "../../store/actions/betPlace/b
 import { getAccountStatement } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { transType } from "../../utils/constants";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
 import NotSet from "../commonComponent/notSet";
@@ -132,6 +132,10 @@ const AccountStatementComponent = () => {
                       value: "game",
                       label: "Sport Report",
                     },
+                    {
+                      value: "game",
+                      label: "Casino Reports",
+                    },
                   ]}
                   placeholder="All"
                   onChange={setType}
@@ -142,9 +146,7 @@ const AccountStatementComponent = () => {
               <Col md={2} xs={12}>
                 <CustomButton
                   size={isMobile ? "sm" : "lg"}
-                  className={`${
-                    isMobile ? "w-100" : " bg-primary"
-                  } border-0 `}
+                  className={`${isMobile ? "w-100" : " bg-primary"} border-0 `}
                   onClick={() => {
                     if (getProfile?.id && tableConfig) {
                       let filter = "";
@@ -225,6 +227,9 @@ const AccountStatementComponent = () => {
               }}
             >
               {transactions?.transactions?.map((item: any, index: number) => {
+                const keywords = ["ballbyball", "cricketv3"];
+                const firstPart = item?.description?.split("/")?.[0];
+                const containsKeywords = firstPart && keywords.some(keyword => firstPart.includes(keyword));
                 return (
                   <tr className={`${isMobile && "title-12"}`} key={index}>
                     <td>
@@ -274,7 +279,9 @@ const AccountStatementComponent = () => {
                     <td
                       onClick={() => {
                         const match =
-                          item?.description.match(/Rno\. (\d+\.\d+)/);
+                        containsKeywords
+                            ? item?.description.match(/Rno\. (\d+)/)
+                            : item?.description.match(/Rno\. (\d+\.\d+)/);
                         if (item?.betId?.length > 0) {
                           setShow({
                             status: true,

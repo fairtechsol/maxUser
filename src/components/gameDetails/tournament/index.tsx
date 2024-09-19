@@ -18,10 +18,7 @@ const Tournament = ({ title, box, data, detail }) => {
     index: any,
     runner: any
   ) => {
-    if (data?.status != "OPEN") {
-      return false;
-    }
-    if (status != "ACTIVE") {
+    if (status != "ACTIVE" && status != "OPEN") {
       return false;
     }
     if (odds === 0) {
@@ -39,7 +36,7 @@ const Tournament = ({ title, box, data, detail }) => {
       placeIndex: index,
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
-      runnerId:runner?.id?.toString()
+      runnerId: runner?.id?.toString(),
     };
     dispatch(
       selectedBetAction({
@@ -107,7 +104,7 @@ const Tournament = ({ title, box, data, detail }) => {
                   style={box === 6 ? { width: "28%" } : {}}
                 >
                   <span className={`teamFont tournamentTeamTxt`}>
-                    {item?.nat}
+                    {item?.nat || item?.runnerName}
                   </span>
                   <span
                     className={`${
@@ -128,7 +125,7 @@ const Tournament = ({ title, box, data, detail }) => {
                       : "tournament2RateBox rateBoxWidth2"
                   }
                 >
-                  {(data?.status !== "OPEN" || item?.status !== "ACTIVE") && (
+                  {(item?.status !== "ACTIVE" && item?.status !== "OPEN") && (
                     <div className="suspended-overlayRatestournament">
                       <span className={`suspendTextCmmn`}>SUSPENDED</span>
                     </div>
@@ -167,7 +164,7 @@ const Tournament = ({ title, box, data, detail }) => {
                   ) : (
                     <>
                       <BetBox
-                        data={data?.runners?.[0]?.ex?.availableToBack?.[0]}
+                        data={item?.ex?.availableToBack?.[0]}
                         type={"back"}
                         detail={detail}
                         runner={item}
@@ -175,7 +172,7 @@ const Tournament = ({ title, box, data, detail }) => {
                       />
 
                       <BetBox
-                        data={data?.runners?.[0]?.ex?.availableToLay?.[0]}
+                        data={item?.ex?.availableToLay?.[0]}
                         type={"lay"}
                         detail={detail}
                         runner={item}

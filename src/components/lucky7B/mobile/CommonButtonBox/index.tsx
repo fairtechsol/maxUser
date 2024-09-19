@@ -16,7 +16,7 @@ const CommonButtonBox = ({
     <div className="commonButtonBoxContainer" style={{ width: width }}>
       <div>
         <span style={{ fontSize: "12px", fontWeight: "bolder" }}>
-          {parseFloat(value1).toFixed(2)}
+          {lock ? 0 : parseFloat(value1).toFixed(2)}
         </span>
       </div>
       <div
@@ -42,7 +42,7 @@ const CommonButtonBox = ({
             value3 && value3 > 0 ? "color-green" : value3 < 0 ? "color-red" : ""
           }`}
         >
-          {value3 || 0}
+          {value3 || "\u00A0"}
         </span>
       </div>
     </div>

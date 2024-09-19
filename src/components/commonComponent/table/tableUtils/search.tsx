@@ -6,13 +6,14 @@ import CustomInput from "../../input";
 interface SearchBoxProps {
   onSearch: (query: string) => void;
   value: string;
+  placeHolder?:any;
 }
 
-const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
+const SearchBox: React.FC<SearchBoxProps> = ({ onSearch,placeHolder }) => {
   const [keyword, setKeyword] = useState("");
 
   const debouncedInputValue = useMemo(() => {
-    return debounce((value) => {
+    return debounce((value:any) => {
       onSearch(value);
     }, 500);
   }, []);
@@ -29,7 +30,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
       value={keyword}
       type="text"
       onChange={handleSearchChange}
-      placeholder="Type your search"
+      placeholder={placeHolder ?? "Type your search"}
       inputClass={`${isMobile ? "p-0 title-10" : "p-1"}`}
       customStyle={`${
         isMobile ? "flex-column" : "flex-row align-items-center"

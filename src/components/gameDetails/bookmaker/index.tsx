@@ -39,6 +39,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
       placeIndex: index,
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
+      gameType:detail?.matchType==="cricket"?"cricket":"other"
     };
     dispatch(
       selectedBetAction({

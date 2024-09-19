@@ -41,7 +41,7 @@ const RowPerPage: React.FC<RowPerPageProps> = ({ value, onChange }) => {
         isUnderlinedInput={isMobile}
         inputClass={"py-1"}
       />
-      <label>entries</label>
+      <label>Entries</label>
     </div>
   );
 };

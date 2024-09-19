@@ -139,7 +139,7 @@ const TeenPattiMobile = () => {
               <NewLoader />
             ) : (
               <div style={{ height: "780px" }}>
-                <div style={{ width: "100%",background:"#f2f2f2" }}>
+                <div style={{ width: "100%" }}>
                   <div className="teenPatti-table-container-m">
                     <div
                       className="teenPatti-table-row"
@@ -152,7 +152,6 @@ const TeenPattiMobile = () => {
                       <div
                         style={{
                           width: "100%",
-
                           display: "flex",
                           flexDirection: "row",
                           alignItems: "center",
@@ -193,7 +192,7 @@ const TeenPattiMobile = () => {
                         </div>
                         <div
                           className="teenPatti-table-item"
-                          style={{ width: "16.7%" }}
+                          style={{ width: "16.7%", padding: "2px"  }}
                         >
                           <HandleCards
                             card={dragonTigerDetail?.videoInfo?.C5}
@@ -237,8 +236,7 @@ const TeenPattiMobile = () => {
                             style={{
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
+                        
                             }}
                           >
                             1
@@ -250,18 +248,17 @@ const TeenPattiMobile = () => {
                               bettingOptions === 1 ? "1px solid #fff" : "none"
                             }`,
                             width: "16.7%",
-                            marginTop: "2px",
+                            // marginTop: "2px",
                           }}
                           onClick={() => setBettingOptions(1)}
                         >
                           <div
-                            className="teenPatti-table-ite f12-b"
+                            className=" f12-b"
                             style={{
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
+                           
                             }}
                           >
                             2
@@ -283,8 +280,7 @@ const TeenPattiMobile = () => {
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
+                      
                             }}
                           >
                             3
@@ -306,8 +302,7 @@ const TeenPattiMobile = () => {
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
+                           
                             }}
                           >
                             4
@@ -329,8 +324,7 @@ const TeenPattiMobile = () => {
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
+                         
                             }}
                           >
                             5
@@ -353,8 +347,7 @@ const TeenPattiMobile = () => {
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
+                            
                             }}
                           >
                             6
@@ -387,14 +380,14 @@ const TeenPattiMobile = () => {
                                 flexDirection: "row",
                                 width: "100%",
                                 marginBottom: "0px",
-                                background:"#f2f2f2"
+                                background:"#f7f7f7"
                               }}
                             >
                               <div
                                 style={{
                                   width: "70%",
                                   padding: "10px",
-                                  border: "0.1px solid #fff",
+                                  border: "0.1px solid #c7c8ca",
                                   display: "flex",
                                   alignItems: "center",
                                   height: "45px",
@@ -494,15 +487,15 @@ const TeenPattiMobile = () => {
                                           ? dragonTigerDetail?.profitLoss[
                                               `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
                                             ]
-                                          : 0
-                                        : 0}
+                                          : ""
+                                        : ""}
                                     </span>
                                   )}
                                 {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
                                   ]) && (
-                                  <span className="f400 title-14">0</span>
+                                  <span className="f400 title-14"></span>
                                 )}
                               </div>
                             </div>
@@ -522,14 +515,14 @@ const TeenPattiMobile = () => {
                                 flexDirection: "row",
                                 width: "100%",
                                 marginBottom: "0px",
-                                 background:"#f2f2f2"
+                                 background:"#f7f7f7"
                               }}
                             >
                               <div
                                 style={{
                                   width: "70%",
                                   padding: "6px",
-                                  border: "0.1px solid #fff",
+                                  border: "0.1px solid #c7c8ca",
                                   display: "flex",
                                   flexDirection: "row",
                                   alignItems: "center",
@@ -609,15 +602,15 @@ const TeenPattiMobile = () => {
                                           ? dragonTigerDetail?.profitLoss[
                                               `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
                                             ]
-                                          : 0
-                                        : 0}
+                                          : ""
+                                        : ""}
                                     </span>
                                   )}
                                 {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
                                   ]) && (
-                                  <span className="f400 title-14">0</span>
+                                  <span className="f400 title-14"></span>
                                 )}
                               </div>
                             </div>

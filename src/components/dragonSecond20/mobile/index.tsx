@@ -179,7 +179,6 @@ const DragonTigerMobile = () => {
                     margin: "0px",
                     display: "flex",
                     flexDirection: "column",
-                    gap: "8px",
                   }}
                 >
                   <OddEven
@@ -196,10 +195,8 @@ const DragonTigerMobile = () => {
                 <div
                   style={{
                     width: "100%",
-                   
                     display: "flex",
                     flexDirection: "column",
-                    gap: "8px",
                   }}
                 >
                   <CardBox
