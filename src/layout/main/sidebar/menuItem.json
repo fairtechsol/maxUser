@@ -129,6 +129,18 @@
     "backgroundColor": true,
     "children": [
       {
+        "id": "politics",
+        "name": "Politics",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "cricket",
+        "name": "Cricket",
+        "type": "collapse",
+        "children": []
+      },
+      {
         "id": "football",
         "name": "Football",
         "type": "collapse",
@@ -141,44 +153,8 @@
         "children": []
       },
       {
-        "id": "cricket",
-        "name": "Cricket",
-        "type": "collapse",
-        "children": []
-      },
-      {
-        "id": "ice_hockey",
-        "name": "Ice Hockey",
-        "type": "collapse",
-        "children": []
-      },
-      {
-        "id": "volleyball",
-        "name": "Volleyball",
-        "type": "collapse",
-        "children": []
-      },
-      {
-        "id": "politics",
-        "name": "Politics",
-        "type": "collapse",
-        "children": []
-      },
-      {
-        "id": "basketball",
-        "name": "Basketball",
-        "type": "collapse",
-        "children": []
-      },
-      {
         "id": "table_tennis",
         "name": "Table Tennis",
-        "type": "collapse",
-        "children": []
-      },
-      {
-        "id": "darts",
-        "name": "Darts",
         "type": "collapse",
         "children": []
       },
@@ -189,8 +165,68 @@
         "children": []
       },
       {
+        "id": "esoccer",
+        "name": "Esoccer",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "basketball",
+        "name": "Basketball",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "volleyball",
+        "name": "Volleyball",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "snooker",
+        "name": "Snooker",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "ice_hockey",
+        "name": "Ice Hockey",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "egames",
+        "name": "E Games",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "futsal",
+        "name": "Futsal",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "handball",
+        "name": "Handball",
+        "type": "collapse",
+        "children": []
+      },
+      {
         "id": "kabaddi",
         "name": "Kabaddi",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "golf",
+        "name": "Golf",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "rugby_league",
+        "name": "Rugby League",
         "type": "collapse",
         "children": []
       },
@@ -201,8 +237,8 @@
         "children": []
       },
       {
-        "id": "american_football",
-        "name": "American Football",
+        "id": "beach_volleyball",
+        "name": "Beach Volleyball",
         "type": "collapse",
         "children": []
       },
@@ -213,8 +249,98 @@
         "children": []
       },
       {
-        "id": "motor_sport",
-        "name": "Motor Sport",
+        "id": "motogp",
+        "name": "MotoGP",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "chess",
+        "name": "Chess",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "cycling",
+        "name": "Cycling",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "motorbikes",
+        "name": "Motorbikes",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "athletics",
+        "name": "Athletics",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "basketball3x3",
+        "name": "Basketball 3X3",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "sumo",
+        "name": "Sumo",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "virtual_sports",
+        "name": "Virtual Sports",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "motor_sports",
+        "name": "Motor Sports",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "baseball",
+        "name": "Baseball",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "rugby_union",
+        "name": "Rugby Union",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "darts",
+        "name": "Darts",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "american_football",
+        "name": "American Football",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "soccer",
+        "name": "Soccer",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "esports",
+        "name": "Esports",
+        "type": "collapse",
+        "children": []
+      },
+      {
+        "id": "boat_racing",
+        "name": "Boat Racing",
         "type": "collapse",
         "children": []
       }

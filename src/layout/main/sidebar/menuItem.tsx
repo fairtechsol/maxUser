@@ -112,7 +112,7 @@ const MenuCollapse: React.FC<{
 
   return (
     <Accordion.Item className="accordion-item-collapse" eventKey="0">
-      <Accordion.Header className="accordion-header-collapse">
+      <Accordion.Header className="accordion-header-collapse title-14"  style={{backgroundColor:"#bbbbbb",borderBottom:"1px solid #9e9e9e",padding:"4px 2px"}}>
         {data?.name}
       </Accordion.Header>
       <Accordion.Body className="py-0">
