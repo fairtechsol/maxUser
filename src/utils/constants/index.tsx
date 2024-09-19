@@ -352,7 +352,7 @@ export const cardGamesId: any = {
   cmatch20: 3045,
   cmeter: 3046,
   ballbyball: 3061,
-  queen: 3037
+  queen: 3037,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -399,6 +399,11 @@ export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
 export const scoreBoardUrlMain =
   "https://dpmatka.in/dcasino/score.php?matchId=";
 
+export const serviceUrl =
+  process.env.NODE_ENV === "production"
+    ? Constants.apiBasePath
+    : Constants.localPath;
+
 export const baseUrls = {
   socket:
     process.env.NODE_ENV === "production"
@@ -422,6 +427,11 @@ export const baseUrls = {
 
 // export const cardUrl = "https://video.proexch.in/route/?id=";
 // export const cardUrl = "https://maxbet9.fairgame.club/videoPage/";
+
+// export const serviceUrl =
+//   process.env.NODE_ENV === "production"
+//     ? Constants.apiBasePathLive
+//     : Constants.localPath;
 
 // export const baseUrls = {
 //   socket:
@@ -1929,7 +1939,6 @@ export const casinoItems = [
   { id: "14", name: "Bollywood", link: "/contact-admin" },
   { id: "15", name: "Queen", link: "/contact-admin" },
 ];
-
 
 export const cardGames = [
   { value: "", label: "Select Casino Type", disabled: true },
