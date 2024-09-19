@@ -34,7 +34,7 @@ const CasinoTable = ({ cards, data, playerNum }: any) => {
             <div
               onClick={() => handleBet(item, "BACK")}
               className={
-                item?.gstatus === "SUSPENDED" || item?.b1 === "0.00"
+                item?.gstatus === "SUSPENDED" 
                   ? "casino-odds-box-q back suspended-box"
                   : "casino-odds-box-q back "
               }
@@ -44,7 +44,7 @@ const CasinoTable = ({ cards, data, playerNum }: any) => {
             <div
               onClick={() => handleBet(item, "LAY")}
               className={
-                item?.gstatus === "SUSPENDED" || item?.l1 === "0.00"
+                item?.gstatus === "SUSPENDED" 
                   ? "casino-odds-box-q lay suspended-box"
                   : "casino-odds-box-q lay "
               }

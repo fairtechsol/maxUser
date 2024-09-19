@@ -86,7 +86,7 @@ const PlayerButton = ({
                 : ""
             }`}
           >
-            {value3 || 0}
+            {value3 || "\u00A0"}
           </span>
         </div>
       </div>
@@ -101,7 +101,6 @@ const PlayerButton = ({
         style={{ lineHeight: 2, display: "flex", width: "30%" }}
       >
         <div
-          className={lock ? "suspended" : ""}
           style={{
             width: "100%",
             backgroundColor: "#72bbef",
@@ -110,7 +109,7 @@ const PlayerButton = ({
           }}
         >
           <div
-            className="teenPatti-table-item"
+           className={lock ? "suspended teenPatti-table-item" : "teenPatti-table-item"}
             style={{ width: "50%" }}
             onClick={() => handleBet(data, "BACK")}
           >
@@ -120,7 +119,7 @@ const PlayerButton = ({
             <span className="f10-b">{}</span>
           </div>
           <div
-            className={`teenPatti-table-item`}
+           className={lock ? "suspended teenPatti-table-item" : "teenPatti-table-item"}
             style={{ width: "50%", background: "#f9c9d4" }}
             onClick={() => handleBet(data, "LAY")}
           >

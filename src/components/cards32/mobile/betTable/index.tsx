@@ -92,8 +92,8 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
                 ? JSON.parse(
                     data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player1Key]
-                : 0
-              : 0}
+                : "\u00A0"
+              : "\u00A0"}
           </span>
         </div>
         <div
@@ -173,8 +173,8 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
                 ? JSON.parse(
                     data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player2Key]
-                : 0
-              : 0}
+                : "\u00A0"
+              : "\u00A0"}
           </span>
         </div>
         <div

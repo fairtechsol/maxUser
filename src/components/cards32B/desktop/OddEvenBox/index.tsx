@@ -67,7 +67,7 @@ const OddEven = ({ data, odds }: any) => {
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
+            : ""
           : <br></br>}
       </span>
     </div>
@@ -88,7 +88,7 @@ const OddEven = ({ data, odds }: any) => {
           <div className="dtlTitle">
             {" "}
             <div style={{ width: "40%", textAlign: "start" }}>
-              <span className="minmaxi">
+              {/* <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
                   onClick={() => setModelOpen(!modelOpen)}
@@ -99,7 +99,7 @@ const OddEven = ({ data, odds }: any) => {
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="dtlsubTitle back-BackGround">

@@ -63,7 +63,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
           style={{
             width: "50%",
             padding: "8px",
-            border: "0.1px solid #fff",
+            border: "0.1px solid #c7c8ca",
             display: "flex",
             flexDirection: "column",
             cursor: "pointer",
@@ -95,8 +95,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
                 ? JSON.parse(
                     data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player1Key]
-                : 0
-              : 0}
+                : "\u00A0"
+              : "\u00A0"}
           </span>
         </div>
         <div
@@ -182,8 +182,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
                 ? JSON.parse(
                     data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player2Key]
-                : 0
-              : 0}
+                : "\u00A0"
+              : "\u00A0"}
           </span>
         </div>
         <div

@@ -20,7 +20,7 @@ const CommonButtonBox = ({
     <div className="commonButtonBoxContainer" style={{ width: width,lineHeight:"2.5"}}>
       <div>
         <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
-          {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
+          {lock ? 0 : parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
         </span>
       </div>
       {/* <div className="tiePairbtn-theme suspended" onClick={handleBet}> */}
@@ -57,7 +57,7 @@ const CommonButtonBox = ({
               : ""
           }`}
         >
-          {isNaN(value3) ? 0 : value3}
+          {isNaN(value3) ? "\u00A0" : value3}
         </span>
       </div>
     </div>

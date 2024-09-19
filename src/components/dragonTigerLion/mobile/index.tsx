@@ -105,16 +105,16 @@ const DragonTigerMobile = () => {
                 <Tabs
                   activeKey={activeCardTab}
                   onSelect={(key) => setActiveCardTab(key as string)}
-                  className=" d-xl-none nav nav-pills"
+                  className=" d-xl-none nav nav-pills "
                 >
                   {tabData.map((tab) => (
                     <Tab
                       key={tab.id}
                       eventKey={tab.id}
                       title={tab.name}
-                      tabClassName={`match-tabs p-2 ${
+                      tabClassName={`match-tabs lh-1 mt-1 p-2 ${
                         activeCardTab === tab.id ? "active" : ""
-                      }`} // Custom class for styling
+                      }`}
                     >
                       {tab.id === "dragon" && (
                         <OddEven

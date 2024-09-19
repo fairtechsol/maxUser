@@ -61,7 +61,7 @@ const TotalCards = ({ data, odds }: any) => {
           <div className="dtlTitle">
             {" "}
             <div style={{ width: "40%", textAlign: "start" }}>
-              <span className="minmaxi">
+              {/* <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
                   onClick={() => setModelOpen(!modelOpen)}
@@ -72,7 +72,7 @@ const TotalCards = ({ data, odds }: any) => {
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="card32bsubTitle back-BackGround">

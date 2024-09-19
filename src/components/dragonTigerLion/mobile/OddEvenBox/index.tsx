@@ -219,7 +219,7 @@ const OddEven = ({ data, odds }: any) => {
         <div
           style={{
             width: "50%",
-            marginTop: "5%",
+            marginTop: "2%",
             display: "flex",
             flexDirection: "column",
             border: "0.3px solid #c7c8ca",
@@ -285,8 +285,8 @@ const OddEven = ({ data, odds }: any) => {
                           ? data?.profitLoss[
                               `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
                             ]
-                          : 0
-                        : 0}
+                          : ""
+                        : ""}
                     </span>
                   </div>
                 </div>
@@ -297,7 +297,7 @@ const OddEven = ({ data, odds }: any) => {
         <div
           style={{
             width: "50%",
-            marginTop: "5%",
+            marginTop: "2%",
             display: "flex",
             flexDirection: "column",
             border: "0.3px solid #c7c8ca",
@@ -362,8 +362,8 @@ const OddEven = ({ data, odds }: any) => {
                           ? data?.profitLoss[
                               `${data?.videoInfo?.mid}_${item?.data?.sid}_card`
                             ]
-                          : 0
-                        : 0}
+                          : ""
+                        : ""}
                     </span>
                   </div>
                 </div>
