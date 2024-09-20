@@ -29,7 +29,7 @@ const PlayerButton = ({
           {value2 && value2 === "DON" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -43,7 +43,7 @@ const PlayerButton = ({
           {value2 && value2 === "Amar Akbar Anthony" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -57,7 +57,7 @@ const PlayerButton = ({
           {value2 && value2 === "Sahib Bibi Aur Ghulam" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -71,7 +71,7 @@ const PlayerButton = ({
           {value2 && value2 === "Dharam Veer" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -85,7 +85,7 @@ const PlayerButton = ({
           {value2 && value2 === "Kis KisKo Pyaar Karoon" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -99,7 +99,7 @@ const PlayerButton = ({
           {value2 && value2 === "Ghulam" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -112,7 +112,7 @@ const PlayerButton = ({
 
           <span
             style={{
-              fontSize: "16px",
+              fontSize: "12px",
               fontWeight: "bolder",
               paddingLeft: "4px",
             }}
@@ -122,7 +122,7 @@ const PlayerButton = ({
         </div>
         <div>
           <span
-            style={{ fontSize: "16px", paddingLeft: "4px" }}
+            style={{ fontSize: "12px", paddingLeft: "4px" }}
             className={`${
               value3 && value3 > 0
                 ? "color-green"
@@ -164,7 +164,7 @@ const PlayerButton = ({
                 : handleBet(data, "BACK")
             }
           >
-            <span className="f18-b my-2 fw-bold">
+            <span className="f18-b title-14 my-2 fw-bold">
               {parseFloat(value1).toFixed(2)}
             </span>
             <span className="f10-b">{}</span>
@@ -180,7 +180,7 @@ const PlayerButton = ({
                 : handleBet(data, "LAY")
             }
           >
-            <span className="f18-b my-2 fw-bold">
+            <span className="f18-b title-14 my-2 fw-bold">
               {parseFloat(value4).toFixed(2)}
             </span>
             <span className="f10-b">{}</span>

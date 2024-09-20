@@ -130,7 +130,7 @@ const BollywoodTableDesktop = () => {
               <NewLoader />
             ) : (
               <div>
-                <div style={{ width: "100%", margin: "5% 5px" }}>
+                <div style={{ width: "100%" }}>
                   <TiePairBox
                     lowHigh={dragonTigerDetail?.players}
                     data={dragonTigerDetail}

@@ -50,7 +50,7 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
   };
 
   return (
-    <div className="tiePairContainer">
+    <div className="tiePairContainer-bt">
       {/* <div style={{ width: "98%", textAlign: "end" }}>
         <span className="minmaxi">
           <IoInformationCircle

@@ -32,7 +32,7 @@ const CardBox = ({ cardData, data }: any) => {
   };
   return (
     <>
-      <div className="cardContainerMob">
+      <div className="tiePairContainer-bt">
         <div style={{ width: "100%", display: "flex", flexDirection: "row" }}>
           <div style={{ width: "55%", textAlign: "end" }}>
             <span

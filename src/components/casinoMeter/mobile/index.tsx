@@ -24,7 +24,7 @@ import NewLoader from "../../commonComponent/newLoader";
 
 const CasinoMeterMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
-  const [bettingOptions, setBettingOptions] = useState<number>(0);
+  const [modalType, setModalType] = useState("imageWithContent");
   const dispatch: AppDispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
@@ -208,7 +208,7 @@ const CasinoMeterMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={warrules} />
+      <RulesModal show={show} setShow={setShow} type={modalType}/>
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

@@ -23,6 +23,7 @@ const CasinoMeterDesktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [show, setShow] = useState(false);
+  const [modalType, setModalType] = useState("imageWithContent");
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
@@ -143,7 +144,7 @@ const CasinoMeterDesktop = () => {
                     onClick={() => setShow(true)}
                   >
                     {" "}
-                    RULES
+                    Rules
                   </span>
                 </div>
                 <span>
@@ -250,7 +251,7 @@ const CasinoMeterDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <RulesModal show={show} setShow={setShow} rule={warrules} />
+              <RulesModal show={show} setShow={setShow} type={modalType}/>
               </Col>
             </Row>
           </Container>

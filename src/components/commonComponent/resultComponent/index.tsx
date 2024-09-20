@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
-import { cardGamesType } from "../../../utils/constants";
+import { cardGamesType, title } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import { isMobile } from "../../../utils/screenDimension";
 import AbjResultComponent from "../../abj2/desktop/resultModalComponent";
@@ -35,25 +35,6 @@ import Bacarrate2ResultComponent from "../../baccarat2/desktop/resultModalCompon
 import QueenResultComponent from "../../queen/desktop/resultModalComponent";
 import BallByBallResultComponent from "../../ballbyball/desktop/resultModalComponent";
 import moment from "moment";
-const title = {
-  dt20: "20-20 Dragon Tiger",
-  teen20: "20-20 Teenpatti",
-  lucky7: "Lucky 7 - A",
-  Lucky7B: "Lucky 7 - B",
-  card32: "32 Cards A",
-  abj: "Andar Bahar 2",
-  teen: "1 Day Teen Patti",
-  teen8: "Open Teen Patti",
-  teen9: "Test Teen Patti",
-  ab20: "Andar Bahar 1",
-  poker1Day: "Poker 1 Day",
-  aaa: "Amar Akbar Anthony",
-  war: "Casino War",
-  btable: "Bollywood Table",
-  worli2: "Instant Worli",
-  cmatch20: "Cricket Match 20-20",
-  // Add other mappings as needed
-};
 
 interface ResultComponentProps {
   data: any;
@@ -84,7 +65,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
           {title[type]} Result
         </span>
         <RxCross2
-          className="cursor-pointer"
+          className="cursor-pointer" 
           size={25}
           onClick={() => setfalse(false)}
         />
