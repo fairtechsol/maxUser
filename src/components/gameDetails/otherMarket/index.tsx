@@ -31,7 +31,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
       stake: 0,
       teamA: data?.type === "other" ? data?.metaData?.teamA : "yes",
       teamB: data?.type === "other" ? data?.metaData?.teamB : "no",
-      teamC:data?.metaData?.teamC,
+      teamC: data?.metaData?.teamC,
       betId: data?.id,
       eventType: detail?.matchType,
       matchId: detail?.id,
@@ -47,7 +47,40 @@ const OtherMarket = ({ title, box, data, detail }) => {
       })
     );
   };
-
+  const profitLossTeamA =
+    data?.type === "tiedMatch3"
+      ? detail?.profitLossDataMatch?.[
+          profitLossDataForMatchConstants[data?.type]?.A + "_" + detail?.id
+        ]
+      : detail?.profitLossDataMatch?.[
+          profitLossDataForMatchConstants[data?.type]?.A +
+            "_" +
+            data?.id +
+            "_" +
+            data?.matchId
+        ];
+  const profitLossTeamB =
+    data?.type === "tiedMatch3"
+      ? detail?.profitLossDataMatch?.[
+          profitLossDataForMatchConstants[data?.type]?.B + "_" + detail?.id
+        ]
+      : detail?.profitLossDataMatch?.[
+          profitLossDataForMatchConstants[data?.type]?.B +
+            "_" +
+            data?.id +
+            "_" +
+            data?.matchId
+        ];
+  const profitLossTeamC =
+    data?.type === "tiedMatch3"
+      ? ""
+      : detail?.profitLossDataMatch?.[
+          profitLossDataForMatchConstants[data?.type]?.C +
+            "_" +
+            data?.id +
+            "_" +
+            data?.matchId
+        ];
 
   return (
     <>
@@ -103,20 +136,14 @@ const OtherMarket = ({ title, box, data, detail }) => {
             </span>
             <span
               className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A+"_"+data?.id+"_"+data?.matchId
-                ] > 0
+                profitLossTeamA > 0
                   ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A+"_"+data?.id+"_"+data?.matchId
-                    ] < 0
+                  : profitLossTeamA < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+data?.id+"_"+data?.matchId
-              ] ?? ""}
+              {profitLossTeamA ?? ""}
             </span>
           </div>
           <div
@@ -132,25 +159,35 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
             )}
-           {box === 6 ? (
+            {box === 6 ? (
               <>
-                {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
+                {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
+                  ? data?.runners?.[0]?.ex?.availableToBack
+                  : dummyArray
+                )?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
                       type={"back"}
-                      detail={data?.type === "other" ? data?.metaData?.teamA : "Yes"}
+                      detail={
+                        data?.type === "other" ? data?.metaData?.teamA : "Yes"
+                      }
                       runner={data?.runners?.[0]}
                       handlePlaceBet={handlePlaceBet}
                     />
                   );
                 })}
-                {(data?.runners?.[0]?.ex?.availableToLay?.length>0?data?.runners?.[0]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
+                {(data?.runners?.[0]?.ex?.availableToLay?.length > 0
+                  ? data?.runners?.[0]?.ex?.availableToLay
+                  : dummyArray
+                )?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
                       type={"lay"}
-                      detail={data?.type === "other" ? data?.metaData?.teamA : "Yes"}
+                      detail={
+                        data?.type === "other" ? data?.metaData?.teamA : "Yes"
+                      }
                       runner={data?.runners?.[0]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -162,7 +199,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[0]?.ex?.availableToBack?.[0]}
                   type={"back"}
-                  detail={data?.type === "other" ? data?.metaData?.teamA : "Yes"}
+                  detail={
+                    data?.type === "other" ? data?.metaData?.teamA : "Yes"
+                  }
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -170,7 +209,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[0]?.ex?.availableToLay?.[0]}
                   type={"lay"}
-                  detail={data?.type === "other" ? data?.metaData?.teamA : "Yes"}
+                  detail={
+                    data?.type === "other" ? data?.metaData?.teamA : "Yes"
+                  }
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -189,20 +230,14 @@ const OtherMarket = ({ title, box, data, detail }) => {
             </span>
             <span
               className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B+"_"+data?.id+"_"+data?.matchId
-                ] > 0
+                profitLossTeamB > 0
                   ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B+"_"+data?.id+"_"+data?.matchId
-                    ] < 0
+                  : profitLossTeamB < 0
                   ? "color-red"
                   : ""
               } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
             >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+data?.id+"_"+data?.matchId
-              ] ?? ""}
+              {profitLossTeamB ?? ""}
             </span>
           </div>
           <div
@@ -220,23 +255,33 @@ const OtherMarket = ({ title, box, data, detail }) => {
             )}
             {box === 6 ? (
               <>
-                {(data?.runners?.[1]?.ex?.availableToBack?.length>0?data?.runners?.[1]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
+                {(data?.runners?.[1]?.ex?.availableToBack?.length > 0
+                  ? data?.runners?.[1]?.ex?.availableToBack
+                  : dummyArray
+                )?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
                       type={"back"}
-                      detail={data?.type === "other" ? data?.metaData?.teamB : "No"}
+                      detail={
+                        data?.type === "other" ? data?.metaData?.teamB : "No"
+                      }
                       runner={data?.runners?.[1]}
                       handlePlaceBet={handlePlaceBet}
                     />
                   );
                 })}
-                {(data?.runners?.[1]?.ex?.availableToLay?.length>0?data?.runners?.[1]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
+                {(data?.runners?.[1]?.ex?.availableToLay?.length > 0
+                  ? data?.runners?.[1]?.ex?.availableToLay
+                  : dummyArray
+                )?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
                       type={"lay"}
-                      detail={data?.type === "other" ? data?.metaData?.teamB : "No"}
+                      detail={
+                        data?.type === "other" ? data?.metaData?.teamB : "No"
+                      }
                       runner={data?.runners?.[1]}
                       handlePlaceBet={handlePlaceBet}
                     />
@@ -276,20 +321,14 @@ const OtherMarket = ({ title, box, data, detail }) => {
               </span>{" "}
               <span
                 className={`${
-                  detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.C+"_"+data?.id+"_"+data?.matchId
-                  ] > 0
+                  profitLossTeamC > 0
                     ? "color-green"
-                    : detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C+"_"+data?.id+"_"+data?.matchId
-                      ] < 0
+                    : profitLossTeamC < 0
                     ? "color-red"
                     : ""
                 } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
-                {detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.C+"_"+data?.id+"_"+data?.matchId
-                ] ?? 0}
+                {profitLossTeamC ?? 0}
               </span>
             </div>
             <div
@@ -305,50 +344,56 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   <span className={`suspendTextCmmn`}>SUSPENDED</span>
                 </div>
               )}
-               {box === 6 ? (
-              <>
-                {(data?.runners?.[2]?.ex?.availableToBack?.length>0?data?.runners?.[2]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
-                  return (
-                    <BetBox
-                      data={item}
-                      type={"back"}
-                      detail={detail?.teamC}
-                      runner={data?.runners?.[2]}
-                      handlePlaceBet={handlePlaceBet}
-                    />
-                  );
-                })}
-                {(data?.runners?.[2]?.ex?.availableToLay?.length>0?data?.runners?.[2]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
-                  return (
-                    <BetBox
-                      data={item}
-                      type={"lay"}
-                      detail={detail?.teamC}
-                      runner={data?.runners?.[2]}
-                      handlePlaceBet={handlePlaceBet}
-                    />
-                  );
-                })}
-              </>
-            ) : (
-              <>
-                <BetBox
-                  data={data?.runners?.[2]?.ex?.availableToBack?.[0]}
-                  type={"back"}
-                  detail={detail?.teamC}
-                  runner={data?.runners?.[2]}
-                  handlePlaceBet={handlePlaceBet}
-                />
+              {box === 6 ? (
+                <>
+                  {(data?.runners?.[2]?.ex?.availableToBack?.length > 0
+                    ? data?.runners?.[2]?.ex?.availableToBack
+                    : dummyArray
+                  )?.map((item: any) => {
+                    return (
+                      <BetBox
+                        data={item}
+                        type={"back"}
+                        detail={detail?.teamC}
+                        runner={data?.runners?.[2]}
+                        handlePlaceBet={handlePlaceBet}
+                      />
+                    );
+                  })}
+                  {(data?.runners?.[2]?.ex?.availableToLay?.length > 0
+                    ? data?.runners?.[2]?.ex?.availableToLay
+                    : dummyArray
+                  )?.map((item: any) => {
+                    return (
+                      <BetBox
+                        data={item}
+                        type={"lay"}
+                        detail={detail?.teamC}
+                        runner={data?.runners?.[2]}
+                        handlePlaceBet={handlePlaceBet}
+                      />
+                    );
+                  })}
+                </>
+              ) : (
+                <>
+                  <BetBox
+                    data={data?.runners?.[2]?.ex?.availableToBack?.[0]}
+                    type={"back"}
+                    detail={detail?.teamC}
+                    runner={data?.runners?.[2]}
+                    handlePlaceBet={handlePlaceBet}
+                  />
 
-                <BetBox
-                  data={data?.runners?.[2]?.ex?.availableToLay?.[0]}
-                  type={"lay"}
-                  detail={detail?.teamC}
-                  runner={data?.runners?.[2]}
-                  handlePlaceBet={handlePlaceBet}
-                />
-              </>
-            )}
+                  <BetBox
+                    data={data?.runners?.[2]?.ex?.availableToLay?.[0]}
+                    type={"lay"}
+                    detail={detail?.teamC}
+                    runner={data?.runners?.[2]}
+                    handlePlaceBet={handlePlaceBet}
+                  />
+                </>
+              )}
             </div>
           </div>
         )}
