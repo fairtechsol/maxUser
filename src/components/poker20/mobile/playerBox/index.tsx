@@ -49,7 +49,7 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
 
   return (
     <div className="card32-table-container" style={{paddingTop:"10px"}}>
-      <div className="card32-table-row" style={{ lineHeight: 2 }}>
+      <div className="card32-table-row border-0" style={{ lineHeight: 2 }}>
        
         <div
           style={{

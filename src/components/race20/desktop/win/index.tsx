@@ -34,7 +34,7 @@ const WinBox = ({ odds, data }: any) => {
   };
   return (
     <>
-      <div className="winContainer">
+      <div className="winContainer border-bottom-0" style={{ border: "1px solid #c7c8ca"}}>
         <div className="subwinContainer">
           {odds?.map((item: any, index: number) => {
             return (

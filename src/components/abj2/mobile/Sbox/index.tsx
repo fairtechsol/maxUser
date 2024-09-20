@@ -26,12 +26,12 @@ const SBetBox = ({ type, odds, data }: any) => {
   };
   return (
     <div className="sBoxContainer-m">
-      <div className="sBoxMainlucky-m">
+      <div className="sBoxMainlucky-mabj2">
         <div style={{ width: "5%", paddingBottom: "20px", textAlign: "end" }}>
           <span
             style={{
               textAlign: "center",
-              fontSize: "16px",
+              fontSize: "12px",
               width: "100%",
               fontWeight: "bold",
             }}
@@ -54,7 +54,7 @@ const SBetBox = ({ type, odds, data }: any) => {
             handleBet={handleBet}
           />
           <span
-            style={{ fontSize: "14px" }}
+            style={{ fontSize: "12px" }}
             className={`${
               data?.profitLoss
                 ? data?.profitLoss[
@@ -99,7 +99,7 @@ const SBetBox = ({ type, odds, data }: any) => {
             handleBet={handleBet}
           />
           <span
-            style={{ fontSize: "14px" }}
+            style={{ fontSize: "12px" }}
             className={`${
               data?.profitLoss
                 ? data?.profitLoss[
@@ -145,7 +145,7 @@ const SBetBox = ({ type, odds, data }: any) => {
             handleBet={handleBet}
           />
           <span
-            style={{ fontSize: "14px" }}
+            style={{ fontSize: "12px" }}
             className={`${
               data?.profitLoss
                 ? data?.profitLoss[
@@ -179,7 +179,7 @@ const SBetBox = ({ type, odds, data }: any) => {
           <span
             style={{
               textAlign: "center",
-              fontSize: "16px",
+              fontSize: "12px",
               width: "100%",
               fontWeight: "bold",
             }}

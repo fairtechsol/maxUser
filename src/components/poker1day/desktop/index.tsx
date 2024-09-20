@@ -213,11 +213,11 @@ const Poker1DayDesktop = () => {
                 <div className="casino-title mt-2" style={{ position: "relative" }}>
                   <span>Rules</span>
                 </div>
-                <div className="table-responsive rules-table">
+                <div className="table-responsive rules-table lh-1">
                   <Table bordered>
                     <thead>
                       <tr>
-                        <th colSpan={2} className="box-10 text-center title-14">
+                        <th colSpan={2} className="box-10 text-center  title-14">
                           Bonus 1 (2 Cards Bonus)
                         </th>
                       </tr>
@@ -230,7 +230,7 @@ const Poker1DayDesktop = () => {
                         </tr>
                       ))}
                       <tr>
-                        <th colSpan={2} className="box-10 text-center">
+                        <th colSpan={2} className="box-10 text-center lh-1">
                           Bonus 2 (7 Cards Bonus)
                         </th>
                       </tr>
