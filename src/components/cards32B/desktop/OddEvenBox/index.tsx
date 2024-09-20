@@ -72,7 +72,7 @@ const OddEven = ({ data, odds }: any) => {
       </span>
     </div>
   );
-
+console.log(odds)
   return (
     <div className="w-100">
       <div
@@ -103,10 +103,10 @@ const OddEven = ({ data, odds }: any) => {
             </div>
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Even</span>
+            <span style={{ fontSize: "14px" }}>Odd</span>
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Odd</span>
+            <span style={{ fontSize: "14px" }}>Even</span>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row">
@@ -115,8 +115,8 @@ const OddEven = ({ data, odds }: any) => {
               <span>Player 8</span>
             </div>
           </span>
-          {renderItem(player8?.[1], 0)}
           {renderItem(player8?.[0], 1)}
+          {renderItem(player8?.[1], 0)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
           <span className="dtlTitleo ">
@@ -124,8 +124,8 @@ const OddEven = ({ data, odds }: any) => {
               <span>Player 9</span>
             </div>
           </span>
-          {renderItem(player9?.[1], 2)}
           {renderItem(player9?.[0], 3)}
+          {renderItem(player9?.[1], 2)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
           <span className="dtlTitleo ">
@@ -133,8 +133,8 @@ const OddEven = ({ data, odds }: any) => {
               <span>Player 10</span>
             </div>
           </span>
-          {renderItem(player10?.[1], 4)}
           {renderItem(player10?.[0], 5)}
+          {renderItem(player10?.[1], 4)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
           <span className="dtlTitleo ">
@@ -142,8 +142,8 @@ const OddEven = ({ data, odds }: any) => {
               <span>Player 11</span>
             </div>
           </span>
-          {renderItem(player11?.[1], 6)}
           {renderItem(player11?.[0], 7)}
+          {renderItem(player11?.[1], 6)}
         </div>
       </div>
     </div>

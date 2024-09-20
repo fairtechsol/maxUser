@@ -78,7 +78,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
           // marginTop: "3.3%",
           display: "flex",
           flexDirection: "column",
-          border: "0.3px solid #c7c8ca",
+          borderLeft: "0.3px solid #c7c8ca",
+          borderTop: "0.3px solid #c7c8ca",
           marginLeft: "5px",
         }}
       >
