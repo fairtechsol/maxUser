@@ -26,7 +26,7 @@ const OddEven = ({ card, odds, data }: any) => {
   };
   return (
     <>
-      <div className="oddEvenContainer-m">
+      <div className="oddEvenContainer-m" style={{ border: "1px solid #c7c8ca"}}>
         {card ? (
           <>
             {" "}

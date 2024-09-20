@@ -392,12 +392,12 @@ const TeenPattiMobile = () => {
                 </div>
                 <div>
                   <div
-                    className="casino-title mt-2"
+                    className="casino-title mt-2 bg-primary text-white"
                     style={{ position: "relative" }}
                   >
                     <span>Rules</span>
                   </div>
-                  <div className="table-responsive rules-table">
+                  <div className="table-responsive rules-table lh-1">
                     <Table bordered>
                       <thead>
                         <tr>

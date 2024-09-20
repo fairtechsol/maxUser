@@ -38,7 +38,7 @@ const CardBox = ({ cardData, data }: any) => {
           <div style={{ width: "55%", textAlign: "end" }}>
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "14px",
                 fontWeight: "bolder",
                 alignSelf: "center",
               }}

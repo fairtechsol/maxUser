@@ -45,21 +45,17 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
 
   return (
     <div className="card32-table-container">
-      <div className="card32-table-row" style={{ lineHeight: 2 }}>
-      
-      </div>
       <div className="card32-table-row" style={{ lineHeight: 1 }}>
         <div
           style={{
             width: "50%",
             padding: "8px",
-            border: "0.1px solid #fff",
             display: "flex",
             flexDirection: "column",
             cursor: "pointer",
           }}
         >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+          <span style={{ fontSize: isMobile ? "12px" : "14px", fontWeight: "bolder" }}>
             {playerNum?.nation}
           </span>
           <span
@@ -85,8 +81,8 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
                 ? JSON.parse(
                     data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player1Key]
-                : 0
-              : 0}
+                : "\u00A0"
+              : "\u00A0"}
           </span>
         </div>
         <div

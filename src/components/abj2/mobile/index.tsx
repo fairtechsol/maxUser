@@ -97,7 +97,7 @@ const Abj2Mobile = () => {
               <NewLoader />
             ) : (
               <div>
-                <div style={{ width: "100%" }}>
+                <div style={{ width: "100%", border: "1px solid #c7c8ca" }}>
                   <SBetBox
                     type={"A"}
                     odds={dragonTigerDetail?.abjSa}
@@ -115,7 +115,7 @@ const Abj2Mobile = () => {
                     padding: "5px 0px",
                     display: "flex",
                     flexDirection: "column",
-                    gap: "8px",
+                    border: "1px solid #c7c8ca"
                   }}
                 >
                   <OddEven
@@ -132,6 +132,7 @@ const Abj2Mobile = () => {
                 <div
                   style={{
                     width: "100%",
+                    border: "1px solid #c7c8ca"
                   }}
                 >
                   <CardBox
