@@ -132,13 +132,15 @@ const TeenPattiDesktop = () => {
   }, []);
 
   useEffect(() => {
-    if (players?.player1?.gstatus === "0" || players?.player1?.rate === "0.00") {
+    if (
+      players?.player1?.gstatus === "0" ||
+      players?.player1?.rate === "0.00"
+    ) {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [players?.player1?.gstatus,players?.player1?.rate]);
+    }
+  }, [players?.player1?.gstatus, players?.player1?.rate]);
 
-// console.log("detail",dragonTigerDetail)
+  // console.log("detail",dragonTigerDetail)
   return (
     <>
       <Row>
@@ -152,17 +154,17 @@ const TeenPattiDesktop = () => {
                   </span>
                   <span
                     style={{
-                      fontSize: "14px",
+                      fontSize: "12px",
                       textDecoration: "underline",
                       cursor: "pointer",
                     }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
-                    RULES
+                    Rules
                   </span>
                 </div>
-                <span>
+                <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
@@ -191,10 +193,18 @@ const TeenPattiDesktop = () => {
                 <div className="teenPatti-table-container-open">
                   <div
                     className="teenPatti-table-row"
-                    style={{ lineHeight: 2 }}
+                    style={{
+                      lineHeight: 2,
+                      background: "#f2f2f2",
+                      borderLeft: "0.1px solid #c7c8ca",
+                      borderBottom: "0.1px solid #c7c8ca",
+                    }}
                   >
                     <div
-                      style={{ width: "40%", border: "0.1px solid #fff" }}
+                      style={{
+                        width: "40%",
+                        //border: "0.1px solid #fff"
+                      }}
                     ></div>
                     <div
                       style={{
@@ -205,7 +215,7 @@ const TeenPattiDesktop = () => {
                       }}
                     >
                       <div
-                        className="teenPatti-table-item f12-b"
+                        className="teenPatti-table-itemo f12-b"
                         style={{ width: "50%" }}
                       >
                         {/* BACK(Min: {dragonTigerDetail?.players?.player1?.min}{" "}
@@ -213,7 +223,7 @@ const TeenPattiDesktop = () => {
                         Odds
                       </div>
                       <div
-                        className="teenPatti-table-item f12-b"
+                        className="teenPatti-table-itemo f12-b"
                         style={{ width: "50%" }}
                       >
                         Pair Plus
@@ -264,23 +274,40 @@ const TeenPattiDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-                <div className="casino-title mt-2" style={{ position: "relative" }}>
-                  <span>Rules</span>
+                <div
+                  className="casino-title mt-2"
+                  style={{ position: "relative" }}
+                >
+                  <span style={{ color: "#fff" }}>Rules</span>
                 </div>
                 <div className="table-responsive rules-table">
                   <Table bordered>
                     <thead>
                       <tr>
-                        <th colSpan={2} className="box-10 text-center">
+                        <th
+                          colSpan={2}
+                          className="box-10 text-center title-14"
+                          style={{ background: "#f7f7f7" ,lineHeight:"1"}}
+                        >
                           Pair Plus
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       {rules?.map((item, index) => (
-                        <tr key={index}>
-                          <td className="box-7">{item.label}</td>
-                          <td className="box-3">{item.value}</td>
+                        <tr key={index} style={{lineHeight:"1"}}>
+                          <td
+                            className="box-7"
+                            style={{ background: "#f7f7f7" }}
+                          >
+                            {item.label}
+                          </td>
+                          <td
+                            className="box-3"
+                            style={{ background: "#f7f7f7" }}
+                          >
+                            {item.value}
+                          </td>
                         </tr>
                       ))}
                     </tbody>

@@ -121,7 +121,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
                 ? data?.profitLoss[
                     `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
                   ]
-                : 0
+                : <br></br>
               : 0}
           </span>
         </div>

@@ -134,7 +134,15 @@
   flex-direction: column;
 }
 
-
+.teenPatti-table-itemo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-left: 0.01px solid #c7c8ca;
+  border-bottom: 0.01px solid #c7c8ca;
+  cursor: pointer;
+}
 .f12-b{
   font-size: 12px;
   font-weight: bolder;

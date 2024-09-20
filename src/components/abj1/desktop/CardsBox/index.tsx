@@ -33,7 +33,7 @@ const CardBox = ({title, odds, data,cards,bgColor }: any) => {
     <>
       <div className="abjcardContainer" style={{backgroundColor:bgColor,border:"0.5px solid #000"}} >
         <div style={{width:"20%",display:"flex",justifyContent:"center" ,alignItems: "center",borderRight:"0.5px solid #000" }}>
-          <span style={{ fontSize: "16px"}}>
+          <span style={{ fontSize: "16px",fontWeight:"bold"}}>
           {title}
           </span>
         </div>

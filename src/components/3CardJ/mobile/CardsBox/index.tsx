@@ -79,7 +79,8 @@ const CardBox = ({ title, odds, data, cards, bgColor, }: any) => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            borderBottom: "0.5px solid #000",
+            borderBottom: "2px solid #000",
+            
           }}
         >
           <span
@@ -125,7 +126,7 @@ const CardBox = ({ title, odds, data, cards, bgColor, }: any) => {
                 ? data?.profitLoss[
                     `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
                   ]
-                : 0
+                : ""
               : 0}
           </span>
         </div>

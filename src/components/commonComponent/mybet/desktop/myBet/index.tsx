@@ -44,7 +44,7 @@ const DesktopMyBet = () => {
               <tr>
                 <th className="lh-1" colSpan={3} style={{ textAlign: "center" }}>
                   <span className="f400 title-14">No records Found</span>
-                </th>
+                </th> 
               </tr>
             )}
             {placedBets &&

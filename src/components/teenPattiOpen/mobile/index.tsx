@@ -114,23 +114,28 @@ const TeenPattiMobile = () => {
   const { cardsArray: cardsArray1, playersArray: playersArray1 } =
     extractCardAndPlayerInfo(dragonTigerDetail?.videoInfo?.cards);
 
-
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenOpen}`);
   }, []);
 
   useEffect(() => {
-    if (players?.player1?.gstatus === "0" || players?.player1?.rate === "0.00") {
+    if (
+      players?.player1?.gstatus === "0" ||
+      players?.player1?.rate === "0.00"
+    ) {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [players?.player1?.gstatus,players?.player1?.rate]);
-  
+    }
+  }, [players?.player1?.gstatus, players?.player1?.rate]);
+
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <div
@@ -163,14 +168,15 @@ const TeenPattiMobile = () => {
                       <div
                         style={{
                           width: "40%",
-                          border: "0.1px solid #dee2e6",
+                          borderLeft: "0.1px solid #c7c8ca",
+                          borderBottom: "0.1px solid #c7c8ca",
                           textAlign: "left",
                         }}
                       ></div>
                       <div
                         style={{
                           width: "60%",
-                         
+
                           textAlign: "left",
                           display: "flex",
                         }}
@@ -179,23 +185,22 @@ const TeenPattiMobile = () => {
                           className="teen-back-m"
                           style={{
                             border: "0.5px solid #dee2e6",
-                            width:"50%",
-                            padding:"2px",
-                            display:"flex",
-                            flexDirection:"column"
+                            width: "50%",
+                            padding: "2px",
+                            display: "flex",
+                            flexDirection: "column",
                           }}
                         >
-                          <span className="f5-b title-12" >
-                            Odds
-                          </span>
+                          <span className="f5-b title-12">Odds</span>
                         </div>
-                        <div className="teen-back-m" style={{
-                          width:"50%",
-                          border: "0.5px solid #dee2e6",
-                        }}>
-                          <span className="f5-b title-12" >
-                           Pair Plus
-                          </span>
+                        <div
+                          className="teen-back-m"
+                          style={{
+                            width: "50%",
+                            border: "0.5px solid #dee2e6",
+                          }}
+                        >
+                          <span className="f5-b title-12">Pair Plus</span>
                         </div>
                       </div>
                     </div>
@@ -203,13 +208,13 @@ const TeenPattiMobile = () => {
                     {players &&
                       Object?.keys(players)?.map((key, index) => (
                         <TeenPattiTableRow
-                        key={key}
-                        indx={index}
+                          key={key}
+                          indx={index}
                           player={players[key]}
                           pairPlus={pairsPlus[`pairPlus${index + 1}`]}
                           handleBet={handleBet}
                           cardsA={cardsArray1}
-                        playersA={playersArray1}
+                          playersA={playersArray1}
                         />
                       ))}
 

@@ -56,17 +56,17 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
             </span>
           </div>
           <div className="market-odd-box-c back " style={{width:"21%"}}>
-            <b>Back</b>
+            <b style={{color:"#333333"}}>Back</b>
           </div>
           <div className="market-odd-box-c lay" style={{width:"21%"}}>
-            <b>Lay</b>
+            <b style={{color:"#333333"}}>Lay</b>
           </div>
         </div>
         <div className="market-body-c" data-title="OPEN">
           {odds?.map((row: any, index: any) => (
             <div className={`market-row-c`}>
               <div className="market-nation-detail-b" style={{width:"58%"}}>
-                <span className="market-nation-name-c">{row?.nat}</span>
+                <span className="market-nation-name-c" style={{color:"#333333"}}>{row?.nat}</span>
                 <div className="market-nation-book-c"></div>
                 <span
                   className={`${
@@ -90,7 +90,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                       ? JSON.parse(
                           data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                         )[row?.nat?.toLowerCase()]
-                      : 0
+                      : <br></br>
                     : 0}
                 </span>
               </div>
@@ -111,8 +111,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                   }
                   style={{width:"50%"}}
                 >
-                  <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.b1}</span>
-                  <span className="market-volume-c title-11 f100">{row?.bs1}</span>
+                  <span className="market-odd-c fbold" style={{color:"#333333"}}> {row?.status === "SUSPENDED" ? "-" : row?.b1}</span>
+                  <span className="market-volume-c title-11 f100" style={{color:"#333333"}}>{row?.bs1}</span>
                 </div>
                 <div
                   className="market-odd-box-c lay"
@@ -121,8 +121,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                   }
                   style={{width:"50%"}}
                 >
-                  <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.l1}</span>
-                  <span className="market-volume title-11 f100">{row?.ls1}</span>
+                  <span className="market-odd-c fbold" style={{color:"#333333"}}> {row?.status === "SUSPENDED" ? "-" : row?.l1}</span>
+                  <span className="market-volume title-11 f100" style={{color:"#333333"}}>{row?.ls1}</span>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
         </div>
       </div>
 
-      {showFancy && (
+      {/* {showFancy && (
         <div className="game-market market-6 mt-2">
           <div className="market-title text-white" style={{width:"100%"}}>
             <span>Fancy</span>
@@ -171,19 +171,14 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                       <span className="market-odd-c fbold"> {row?.status === "SUSPENDED" ? "-" : row?.l1}</span>
                       <span className="market-volume title-11 f100">{row?.ls1}</span>
                     </div>
-                    {/* <div className="fancy-min-max-box">
-                      <div className="fancy-min-max">
-                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Min: 100.00</span>
-                        <span className="w-100 d-block" style={{fontSize:"12px",color:"#097c93",fontWeight:"bold"}}>Max: 1L</span>
-                      </div>
-                    </div> */}
+                   
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

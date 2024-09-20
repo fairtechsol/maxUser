@@ -161,7 +161,9 @@ export const matchBettingType = {
   other: "other",
   tiedMatch1: "tiedMatch1",
   tiedMatch2: "tiedMatch2",
+  tiedMatch3: "tiedMatch3",
   completeMatch: "completeMatch",
+  completeMatch1: "completeMatch1",
   completeManual: "completeManual",
   ...Array.from({ length: 20 }, (_, index) => index).reduce(
     (prev: any, curr) => {
@@ -224,7 +226,15 @@ export const profitLossDataForMatchConstants = {
     A: "yesRateTie",
     B: "noRateTie",
   },
+  [matchBettingType.tiedMatch3]: {
+    A: "yesRateTie",
+    B: "noRateTie",
+  },
   [matchBettingType.completeMatch]: {
+    A: "yesRateComplete",
+    B: "noRateComplete",
+  },
+  [matchBettingType.completeMatch1]: {
     A: "yesRateComplete",
     B: "noRateComplete",
   },

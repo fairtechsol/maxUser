@@ -91,17 +91,17 @@ const Abj1Desktop = () => {
                   </span>
                   <a
                     style={{
-                      fontSize: "14px",
+                      fontSize: "12px",
                       textDecoration: "underline",
                       cursor: "pointer",
                     }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
-                    RULES
+                    Rules
                   </a>
                 </div>
-                <span>
+                <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
