@@ -21,20 +21,13 @@ const TeenPattiMobile = () => {
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
+  const [modalType, setModalType] = useState("rules");
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
   const { runs } = dragonTigerDetail;
-  const { placedBets } = useSelector((state: RootState) => state.bets);
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -431,7 +424,7 @@ const TeenPattiMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <RulesModal show={show} setShow={setShow} type={modalType}/>
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

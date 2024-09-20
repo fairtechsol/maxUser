@@ -90,8 +90,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                       ? JSON.parse(
                           data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                         )[row?.nat?.toLowerCase()]
-                      : <br></br>
-                    : 0}
+                      : ""
+                    : ""}
                 </span>
               </div>
               <div

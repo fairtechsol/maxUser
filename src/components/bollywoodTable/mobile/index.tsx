@@ -156,7 +156,9 @@ const BollywoodTableDesktop = () => {
                       background: "#EEEEEE",
                       paddingLeft: "4px",
                       paddingRight: "4px",
-                      marginTop: "10px",
+                      borderRight: "1px solid #c7c8ca",
+                      borderTop: "1px solid #c7c8ca",
+                     
                     }}
                   >
                     <OddEven
@@ -173,7 +175,8 @@ const BollywoodTableDesktop = () => {
                       background: "#EEEEEE",
                       paddingLeft: "4px",
                       paddingRight: "4px",
-                      marginTop: "10px",
+                      borderRight: "1px solid #c7c8ca",
+                      borderTop: "1px solid #c7c8ca",
                     }}
                   >
                     <CardBox
