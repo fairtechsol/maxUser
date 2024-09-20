@@ -79,12 +79,13 @@ background-color: rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: row
   }
-  .card32-table-item{
+  .card32-table-item3a{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 0.2px solid #c7c8ca;
+    border-left: 0.1px solid #c7c8ca;
+    border-bottom: 0.1px solid #c7c8ca;
   }
 
 .card32-table-row .suspended:after {

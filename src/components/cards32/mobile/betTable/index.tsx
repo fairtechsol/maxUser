@@ -38,7 +38,7 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
 
   return (
     <div className="card32-table-container-m">
-      <div className="card32-table-row" style={{ lineHeight: 2 }}>
+      <div className="card32-table-row" style={{ lineHeight: 2,borderLeft: "0.1px solid #c7c8ca",borderBottom: "0.1px solid #c7c8ca" }}>
         <div style={{ width: "50%" }}></div>
         {back && (
           <div
@@ -48,11 +48,11 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
               flexDirection: "row",
             }}
           >
-            <div className="card32-table-item-m back" style={{ width: "50%" }}>
-              BACK
+            <div className="card32-table-item-ma back title-12" style={{ width: "50%",fontWeight:"bold" }}>
+              Back
             </div>
-            <div className="card32-table-item-m lay" style={{ width: "50%" }}>
-              LAY
+            <div className="card32-table-item-ma lay title-12" style={{ width: "50%",fontWeight:"bold" }}>
+              Lay
             </div>
           </div>
         )}
@@ -62,12 +62,13 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
           style={{
             width: "50%",
             padding: "10px",
-            border: "0.1px solid #fff",
+            borderBottom: "0.1px solid #c7c8ca",
+            borderLeft: "0.1px solid #c7c8ca",
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+          <span style={{ fontSize: "12px", fontWeight: "bolder" }}>
             {odds?.[0]?.nation}
           </span>
           <span
@@ -146,9 +147,11 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
             padding: "8px",
             display: "flex",
             flexDirection: "column",
+            borderBottom: "0.1px solid rgb(199, 200, 202)",
+            borderLeft: "0.1px solid rgb(199, 200, 202)",
           }}
         >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+          <span style={{ fontSize: "12px", fontWeight: "bolder" }}>
             {odds?.[1]?.nation}
           </span>
           <span
