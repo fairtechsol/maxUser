@@ -196,6 +196,17 @@
   font-weight: 600;
   color: #000;
 }
+.dtlTitleo32b {
+  width: 60%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  font-weight: 600;
+  color: #000;
+  line-height: 1.9;
+}
 .dtlTitleo {
   width: 60%;
   background-color: #ffffff;
@@ -370,7 +381,6 @@
   display: flex;
   flex-direction: column;
 }
-
 
 @media (max-width: 768px) {
   .tabs-navs .nav-link {

@@ -147,10 +147,10 @@ const Card32BDesktop = () => {
               <div
                 style={{
                   width: "100%",
-                  margin: "5px",
+                  margin: "px",
                   display: "flex",
                   flexDirection: "row",
-                  gap: "8px",
+                  gap: "10px",
                 }}
               >
                 <PairBox

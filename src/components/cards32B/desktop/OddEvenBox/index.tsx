@@ -137,7 +137,7 @@ console.log(odds)
           {renderItem(player10?.[1], 4)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
-          <span className="dtlTitleo ">
+          <span className="dtlTitleo32b ">
             <div className="profitLoss-Text">
               <span>Player 11</span>
             </div>

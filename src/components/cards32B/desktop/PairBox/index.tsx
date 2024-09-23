@@ -71,7 +71,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
           flexDirection: "column",
           borderLeft: "0.3px solid #c7c8ca",
           borderTop: "0.3px solid #c7c8ca",
-          // marginLeft: "5px",
+           marginLeft: "5px",
         }}
       >
         <div
