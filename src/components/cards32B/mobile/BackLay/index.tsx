@@ -40,7 +40,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
   const renderItem = (item: any, index: number, type: any) =>
     type === "back" ? (
       <div
-        className={`dtlsubTitle ${type}-BackGround ${
+        className={`dtlsubTitle title-12 ${type}-BackGround ${
           handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
         }`}
         onClick={() =>
@@ -89,14 +89,14 @@ const BackLay = ({ matchOddsData, data }: any) => {
         >
           <div className="dtlTitle">
           </div>
-          <div className="dtlsubTitle back-BackGround">Back</div>
-          <div className="dtlsubTitle lay-BackGround">Lay</div>
+          <div className="dtlsubTitle back-BackGround title-12">Back</div>
+          <div className="dtlsubTitle lay-BackGround title-12">Lay</div>
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle">Player 8 </div>
+          <div className="dtlTitle title-12">Player 8 </div>
           {renderItem(matchOddsData?.[0], 0, "back")}
           {renderItem(matchOddsData?.[0], 1, "lay")}
         </div>
@@ -104,7 +104,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle"> Player 9</div>
+          <div className="dtlTitle title-12"> Player 9</div>
           {renderItem(matchOddsData?.[1], 2, "back")}
           {renderItem(matchOddsData?.[1], 3, "lay")}
         </div>
@@ -112,7 +112,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle"> Player 10</div>
+          <div className="dtlTitle title-12"> Player 10</div>
           {renderItem(matchOddsData?.[2], 2, "back")}
           {renderItem(matchOddsData?.[2], 3, "lay")}
         </div>
@@ -120,7 +120,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle"> Player 11</div>
+          <div className="dtlTitle title-12"> Player 11</div>
           {renderItem(matchOddsData?.[3], 2, "back")}
           {renderItem(matchOddsData?.[3], 3, "lay")}
         </div>

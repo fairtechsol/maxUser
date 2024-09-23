@@ -11,7 +11,7 @@ import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/card32B";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import BackLay from "../desktop/BackLay";
+import BackLay from "./BackLay";
 import PairBox from "./PairBox";
 import TotalCards from "./totalCards";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
