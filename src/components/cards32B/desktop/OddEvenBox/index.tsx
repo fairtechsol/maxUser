@@ -41,7 +41,7 @@ const OddEven = ({ data, odds }: any) => {
   };
   const renderItem = (item: any, index: number) => (
     <div
-      className={`dtlsubTitle back-BackGround ${
+      className={`dtlsubTitle back-BackGround  ${
         handleLock(item?.gstatus, item?.b1) ? "lock" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
@@ -72,7 +72,7 @@ const OddEven = ({ data, odds }: any) => {
       </span>
     </div>
   );
-console.log(odds)
+
   return (
     <div className="w-100">
       <div
@@ -103,10 +103,10 @@ console.log(odds)
             </div>
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Odd</span>
+            <span style={{ fontSize: "16px" }}>Odd</span>
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Even</span>
+            <span style={{ fontSize: "16px" }}>Even</span>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row">

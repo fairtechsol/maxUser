@@ -43,7 +43,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       <div
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
-        }`}
+        } `}
         onClick={() =>
           !handleLock(item?.gstatus, item?.b1) && handleBet(item, "back")
         }
@@ -54,7 +54,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       <div
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
-        }`}
+        } `}
         onClick={() =>
           !handleLock(item?.gstatus, item?.l1) && handleBet(item, "lay")
         }
@@ -111,8 +111,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
               </div>
             )} */}
           </div>
-          <div className="dtlsubTitle back-BackGround">Back</div>
-          <div className="dtlsubTitle lay-BackGround">Lay</div>
+          <div className="dtlsubTitle back-BackGround ">Back</div>
+          <div className="dtlsubTitle lay-BackGround ">Lay</div>
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex"}
@@ -120,7 +120,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Player 8</span>
+              <span className="">Player 8</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -158,7 +158,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Player 9</span>
+              <span className="">Player 9</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -195,7 +195,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Player 10</span>
+              <span className="">Player 10</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -232,7 +232,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Player 11</span>
+              <span className="">Player 11</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss

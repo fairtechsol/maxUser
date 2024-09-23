@@ -91,29 +91,29 @@ const OddEven = ({ data, odds }: any) => {
           <div className="dtlTitle">
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Even</span>
+            <span style={{ fontSize: "12px" }}>Even</span>
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Odd</span>
+            <span style={{ fontSize: "12px" }}>Odd</span>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">Player 8</div>
+          <div className="dtlTitle title-12">Player 8</div>
           {renderItem(player8?.[1], 0)}
           {renderItem(player8?.[0], 1)}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">Player 9</div>
+          <div className="dtlTitle title-12">Player 9</div>
           {renderItem(player9?.[1], 2)}
           {renderItem(player9?.[0], 3)}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">Player 10</div>
+          <div className="dtlTitle title-12">Player 10</div>
           {renderItem(player10?.[1], 4)}
           {renderItem(player10?.[0], 5)}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">Player 11</div>
+          <div className="dtlTitle title-12">Player 11</div>
           {renderItem(player11?.[1], 6)}
           {renderItem(player11?.[0], 7)}
         </div>

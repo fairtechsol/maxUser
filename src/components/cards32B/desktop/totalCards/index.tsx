@@ -77,7 +77,7 @@ const TotalCards = ({ data, odds }: any) => {
             </div>
           </div>
           <div className="card32bsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Back</span>
+            <span style={{ fontSize: "16px" }}>Back</span>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row">

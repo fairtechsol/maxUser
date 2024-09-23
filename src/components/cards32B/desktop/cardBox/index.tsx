@@ -79,7 +79,7 @@ const CardBox = ({ odds, data }: any) => {
           flexDirection: "column",
           borderLeft: "0.3px solid #c7c8ca",
           borderTop: "0.3px solid #c7c8ca",
-          marginLeft: "5px",
+          marginLeft: "px",
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>

@@ -78,15 +78,15 @@ const PairBox = ({ matchOddsData, data }: any) => {
         >
           <div className="dtlTitle">
           </div>
-          <div className="dtlsubTitle back-BackGround">Back</div>
-          <div className="dtlsubTitle lay-BackGround">Lay</div>
+          <div className="dtlsubTitle back-BackGround title-12">Back</div>
+          <div className="dtlsubTitle lay-BackGround title-12">Lay</div>
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Any 3 Card Black</span>
+              <span className="title-12">Any 3 Card Black</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -113,7 +113,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -126,7 +126,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Any 3 Card Red</span>
+              <span className="title-12">Any 3 Card Red</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -153,7 +153,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -166,7 +166,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Two Black Two Red</span>
+              <span className="title-12">Two Black Two Red</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -193,7 +193,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
