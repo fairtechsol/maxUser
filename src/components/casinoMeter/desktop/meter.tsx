@@ -1,6 +1,7 @@
 import React from "react";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-
+import { HandleCards3 } from "../mobile/cardComponent2";
+import { isMobile } from "../../../utils/screenDimension";
 function Meter({ data, runPosition }: { data: string; runPosition: string }) {
   const cards = data?.split(",");
 
@@ -47,7 +48,7 @@ function Meter({ data, runPosition }: { data: string; runPosition: string }) {
         <div style={{ display: "flex", alignItems: "center",flexWrap:"wrap" }}>
           {lowCards?.map((card, index) => (
             <span key={index} style={{ margin: "5px", }}>
-              {<HandleCards card={card} />}
+              {isMobile?<HandleCards3 card={card}/>:<HandleCards card={card} />}
             </span>
           ))}
           {runPosition == "Low" && (
@@ -72,7 +73,7 @@ function Meter({ data, runPosition }: { data: string; runPosition: string }) {
         <div style={{ display: "flex", alignItems: "center",flexWrap:"wrap" }}>
           {highCards.map((card, index) => (
             <span key={index} style={{ margin: "5px" }}>
-              {<HandleCards card={card} />}
+              {isMobile?<HandleCards3 card={card}/>:<HandleCards card={card} />}
             </span>
           ))}
           {runPosition == "High" && (
