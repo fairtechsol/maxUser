@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
+import { formatNumber } from "../../../../helpers";
 // const bookmakerData = [
 //   { nation: 'AUS', backOdd: '1.3', backVolume: '300000.00', layOdd: '1.34', layVolume: '300000.00', suspended: true },
 //   { nation: 'IND', backOdd: '-', backVolume: '0.00', layOdd: '-', layVolume: '0.00', suspended: true },
@@ -67,7 +68,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               className="f600"
               style={{ fontSize: "12px", color: "#097c93" }}
             >
-              Min: {min} Max: {max}
+              Min: {min} Max: {formatNumber(max)}
             </span>
           </div>
           <div className="market-odd-box-cd back">
