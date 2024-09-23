@@ -17,6 +17,7 @@ import Bookmaker from "../../gameDetails/bookmaker";
 import ManualMarket from "../../gameDetails/manulMarkets";
 import HtFt from "../htft";
 import Tournament from "../../gameDetails/tournament";
+import PlacedBet from "../../gameDetails/mobile/placeBet";
 
 // import "./style.scss";
 // import BetTable from "../../gameDetails/betTable";
@@ -51,8 +52,8 @@ const FootballMobileGameDetail = () => {
 
   return (
     <div>
-      <FootballPlaceBet show={show} setShow={setShow} />
-
+      {/* <FootballPlaceBet show={show} setShow={setShow} /> */}
+      <PlacedBet show={show} setShow={setShow} />
       <CommonTabs className="color" defaultActive="odds">
         {[
           {
@@ -139,53 +140,62 @@ const FootballMobileGameDetail = () => {
                         ?.map((item: any) => (
                           <div key={item?.id} className="p-0">
                             <Col className="g-0 mt-2" md={12}>
-                            <ManualMarket
-                            title={item?.name}
-                            data={item}
-                            detail={otherMatchDetails}
-                          />
+                              <ManualMarket
+                                title={item?.name}
+                                data={item}
+                                detail={otherMatchDetails}
+                              />
                             </Col>
                           </div>
                         ))}
-                        {otherMatchDetails?.tournament?.length > 0 &&
-                otherMatchDetails?.tournament?.map(
-                  (item: any, index: number) => (
-                    <div key={index}>
-                      {item?.activeStatus === "live" && item?.isActive && (
-                        item?.name==="HT/FT"?
-                        <Col className="g-0" md={12} style={{ marginTop: "10px" }}>
-                          <HtFt
-                            title={item?.name}
-                            box={
-                              item?.runners?.[0]?.ex?.availableToBack?.length >
-                              2
-                                ? 6
-                                : 2
-                            }
-                            data={item}
-                            detail={otherMatchDetails}
-                            // data={otherMatchDetails?.matchOdd}
-                          />
-                        </Col>
-                        :
-                        <Col className="g-0" md={12} style={{ marginTop: "10px" }}>
-                          <Tournament
-                            title={item?.name}
-                            box={
-                              item?.runners?.[0]?.ex?.availableToBack?.length >
-                              2
-                                ? 6
-                                : 2
-                            }
-                            data={item}
-                            detail={otherMatchDetails}
-                            // data={otherMatchDetails?.matchOdd}
-                          />
-                        </Col>
+                    {otherMatchDetails?.tournament?.length > 0 &&
+                      otherMatchDetails?.tournament?.map(
+                        (item: any, index: number) => (
+                          <div key={index} className="pe-0 ps-0">
+                            {item?.activeStatus === "live" &&
+                              item?.isActive &&
+                              (item?.name === "HT/FT" ? (
+                                <Col
+                                  className="g-0"
+                                  md={12}
+                                  style={{ marginTop: "10px" }}
+                                >
+                                  <HtFt
+                                    title={item?.name}
+                                    box={
+                                      item?.runners?.[0]?.ex?.availableToBack
+                                        ?.length > 2
+                                        ? 6
+                                        : 2
+                                    }
+                                    data={item}
+                                    detail={otherMatchDetails}
+                                    // data={otherMatchDetails?.matchOdd}
+                                  />
+                                </Col>
+                              ) : (
+                                <Col
+                                  className="g-0"
+                                  md={12}
+                                  style={{ marginTop: "10px" }}
+                                >
+                                  <Tournament
+                                    title={item?.name}
+                                    box={
+                                      item?.runners?.[0]?.ex?.availableToBack
+                                        ?.length > 2
+                                        ? 6
+                                        : 2
+                                    }
+                                    data={item}
+                                    detail={otherMatchDetails}
+                                    // data={otherMatchDetails?.matchOdd}
+                                  />
+                                </Col>
+                              ))}
+                          </div>
+                        )
                       )}
-                    </div>
-                  )
-                )}
                     {otherMatchDetails?.setWinner?.length > 0 &&
                       otherMatchDetails?.setWinner
                         ?.filter((item: any) => item?.isActive)
