@@ -22,8 +22,8 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="dt20resultModal">
-        <div className="dt20resultCardContainer" style={{display:"flex", flexDirection:isMobile?"column":"row"}}>
+      <div className="dt20resultModal" style={{display:"flex", flexDirection:isMobile?"column":"row",alignItems:"center"}}>
+        <div className="dt20resultCardContainer" >
           <span className="fs-5">Dragon</span>
           <div
             className={
