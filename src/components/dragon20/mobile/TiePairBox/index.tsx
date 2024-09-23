@@ -36,7 +36,7 @@ const TiePairBox = ({ tiePair, data }: any) => {
 
   return (
     <div className="tiePairContainer-m">
-       <div className="tiePairRateBoxMain" style={{lineHeight:"2.5",width:"100%"}}>
+       <div className="tiePairRateBoxMain" style={{lineHeight:"1",width:"100%"}}>
         <CommonButtonBox
           value1={tiePair?.[0]?.rate}
           value2={"Dragon"}
