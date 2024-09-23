@@ -39,6 +39,7 @@ const OddEven = ({ data, card, odds }: any) => {
                 flexDirection: "column",
                 justifyContent: "space-around",
                 alignItems: "center",
+               
               }}
             >
               <CommonButtonBox
