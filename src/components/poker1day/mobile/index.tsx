@@ -183,7 +183,7 @@ const Poker1dayMobile = () => {
                 </div>
                 <div>
                   <div
-                    className="casino-title mt-2"
+                    className="casino-title mt-2 bg-primary text-white"
                     style={{ position: "relative" }}
                   >
                     <span>Rules</span>
@@ -192,7 +192,7 @@ const Poker1dayMobile = () => {
                     <Table bordered>
                       <thead>
                         <tr>
-                          <th colSpan={2} className="box-10 text-center">
+                          <th colSpan={2} className="box-10 text-center lh-1">
                             Bonus 1 (2 Cards Bonus)
                           </th>
                         </tr>
@@ -221,7 +221,7 @@ const Poker1dayMobile = () => {
                           </tr>
                         ))}
                         <tr>
-                          <th colSpan={2} className="box-10 text-center">
+                          <th colSpan={2} className="box-10 text-center lh-1">
                             Bonus 2 (7 Cards Bonus)
                           </th>
                         </tr>

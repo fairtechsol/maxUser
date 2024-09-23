@@ -85,7 +85,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
       >
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{lineHeight:"1"}}
+     
         >
           <div className="dtlTitlee">
             {" "}

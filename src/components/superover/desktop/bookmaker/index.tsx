@@ -110,8 +110,8 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                         `${data?.videoInfo?.mid}_${team1?.sid}_card`
                       ]
                     )["eng"]
-                  : 0
-                : 0}
+                  : ""
+                : ""}
             </span>
           </div>
         </span>
@@ -190,8 +190,8 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                         `${data?.videoInfo?.mid}_${team1?.sid}_card`
                       ]
                     )["rsa"]
-                  : 0
-                : 0}
+                  : ""
+                : ""}
             </span>
           </div>
         </span>

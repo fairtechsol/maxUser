@@ -211,7 +211,7 @@ const SuperoverDesktop = () => {
               </Col>
               <Col>
                 <div className="sidebar-box place-bet-container super-over-rule mt-2">
-                  <div className="marketHeader">
+                  <div className="marketHeader lh-1">
                     ENGLAND vs RSA Inning's Card Rules
                   </div>
                   <div className="table-responsive">

@@ -161,7 +161,9 @@ export const matchBettingType = {
   other: "other",
   tiedMatch1: "tiedMatch1",
   tiedMatch2: "tiedMatch2",
+  tiedMatch3: "tiedMatch3",
   completeMatch: "completeMatch",
+  completeMatch1: "completeMatch1",
   completeManual: "completeManual",
   ...Array.from({ length: 20 }, (_, index) => index).reduce(
     (prev: any, curr) => {
@@ -224,7 +226,15 @@ export const profitLossDataForMatchConstants = {
     A: "yesRateTie",
     B: "noRateTie",
   },
+  [matchBettingType.tiedMatch3]: {
+    A: "yesRateTie",
+    B: "noRateTie",
+  },
   [matchBettingType.completeMatch]: {
+    A: "yesRateComplete",
+    B: "noRateComplete",
+  },
+  [matchBettingType.completeMatch1]: {
     A: "yesRateComplete",
     B: "noRateComplete",
   },
@@ -2100,3 +2110,39 @@ export const cardGames = [
     label: "Casino Queen",
   },
 ];
+
+
+export const title = {
+  dt20: "20-20 Dragon Tiger",
+  dt6: "1 DAY DRAGON TIGER",
+  teen20: "20-20 Teenpatti",
+  lucky7: "Lucky 7 - A",
+  lucky7eu: "LUCKY 7 - B",
+  card32: "32 Cards A",
+  card32b: "32 Cards B",
+  abj: "Andar Bahar 1",
+  abj2: "Andar Bahar 2",
+  teen: "1 Day Teen Patti",
+  teen8: "Open Teen Patti",
+  teen9: "Test Teen Patti",
+  ab20: "Andar Bahar 1",
+  poker1Day: "Poker 1 Day",
+  aaa: "Amar Akbar Anthony",
+  war: "Casino War",
+  btable: "Bollywood Table",
+  worli2: "Instant Worli",
+  cmatch20: "Cricket Match 20-20",
+  queen: "Casino Queen",
+  poker6: "Poker 6 Player",
+  poker1: "Poker 1 Day",
+  superover: "Super Over",
+  cricketv3: "FIVE FIVE CRICKET",
+  dt202: "20-20 DRAGON TIGER 2",
+  dtl20: "20-20 D T L",
+  race20: "RACE 20",
+  cardj3: "3 CARDS JUDGEMENT",
+  baccarat: "Baccarat",
+  Baccarat2: "Baccarat 2",
+  cmeter: "Casino Meter",
+  ballbyball: "Ball By Ball",
+};
