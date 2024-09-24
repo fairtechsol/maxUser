@@ -1,5 +1,6 @@
 import React from "react";
 import { Container} from "react-bootstrap";
+import ResultBetList from "../../commonComponent/resultBetList";
 interface Props {
   data: {
     C1: string;
@@ -40,6 +41,12 @@ const Cricket5ResultComponent: React.FC<Props> = ({ data }: any) => {
           })}
       </div>
      </div> */}
+     {
+        data?.bets?.count > 0 && 
+        <div className="w-100">
+        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
+      </div>
+      }
     </Container>
   );
 };

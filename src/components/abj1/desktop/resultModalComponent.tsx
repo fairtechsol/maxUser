@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
+import ResultBetList from "../../commonComponent/resultBetList";
 interface Props {
   data: {
     C1: string;
@@ -145,6 +146,12 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
+      {
+        data?.bets?.count > 0 && 
+        <div className="w-100">
+        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
+      </div>
+      }
     </Container>
   );
 };

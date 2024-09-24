@@ -151,7 +151,7 @@ const DesktopHeader = () => {
                   >
                     Exposure:
                     <b>
-                      {parseFloat(getProfile?.userBal?.exposure || 0).toFixed(
+                      -{parseFloat(getProfile?.userBal?.exposure || 0).toFixed(
                         2
                       )}
                     </b>
