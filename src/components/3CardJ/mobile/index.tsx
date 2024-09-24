@@ -19,7 +19,7 @@ const CardJMobile = () => {
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.andarBahar1}`
+    `${cardUrl}${cardGamesId?.cardj}`
   );
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
