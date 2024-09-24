@@ -7,6 +7,8 @@ import {isMobile} from "../../../../utils/screenDimension";
 import SmoothDropdownModal from "../minMaxModal";
 
 const BackLay = ({ matchOddsData, data }: any) => {
+
+
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
   const min = matchOddsData?.[0]?.min;
@@ -31,7 +33,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     );
   };
   const handleLock = (status: any, value: any) => {
-    if (status != "ACTIVE" || value === "0.00") {
+    if (status != "ACTIVE") {
       return true;
     } else {
       return false;
@@ -39,6 +41,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
   };
   const renderItem = (item: any, _: number, type: any) =>
     type === "back" ? (
+      
       <div
         className={`dtlsubTitle ${type}-BackGround ${
           handleLock(item?.gstatus, item?.b1) ? "lock" : ""
@@ -61,6 +64,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         {item?.l1}
       </div>
     );
+    
   return (
     <div className="w-100">
       <div
