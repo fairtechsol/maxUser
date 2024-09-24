@@ -1,9 +1,22 @@
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 import FlipClock from "./FlipClock";
 import { isMobile } from "../../../utils/screenDimension";
+import { useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../../store/store";
+import { useDispatch } from "react-redux";
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 
 const VideoFrame = ({ result, time, id, profitLoss }: any) => {
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+  const [mid, setMid] = useState(null);
+  const [curR,setCurR] = useState(null);
+  const [isClick,setIsClick] = useState(false);
   // const [showModal, setModalOpen] = useState(false);
+  const dispatch: AppDispatch = useDispatch();
+  const {  resultData } = useSelector(
+    (state: RootState) => state.card
+  );
+
   useEffect(() => {
     const element = document.getElementById("middleView-playerDiv");
     if (element) {
@@ -11,10 +24,37 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
     }
   }, []);
 
-  //console.log("time?.length", time);
-  
+ useEffect(() => {
+   if (resultData?.desc && isClick) {
+     setCurR(resultData?.desc);
+   }
+ }, [resultData]);
+
+ useEffect(() => {
+   if (curR) {
+     setTimeout(() => {
+       setCurR(null);
+       setIsClick(false);
+     }, 2000);
+   }
+ }, [curR]);
+
+  useEffect(() => {
+    if(dragonTigerDetail?.videoInfo?.gtype=="ballbyball"){
+    if (mid) {
+      setTimeout(()=>{
+        dispatch(resultDragonTiger(mid));
+        setIsClick(true);
+      },2000)
+    }
+    setMid(dragonTigerDetail?.videoInfo?.mid);
+    }
+  }, [dragonTigerDetail?.videoInfo?.mid]);
+
+  console.log(curR,resultData)
   return (
     <>
+    {curR&&"Yes cumming"}
       <div
         key="odds"
         style={{
