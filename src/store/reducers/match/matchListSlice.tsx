@@ -172,9 +172,17 @@ const matchListSlice = createSlice({
         //     newSessionBettings?.push(apiItem);
         //   }
         // });
-        const parsedSessionBettings =
+        let parsedSessionBettings =
           state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
         const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];
+        parsedSessionBettings = apiParsedSessionBettings
+          ?.filter(
+            (item2: any) =>
+              !parsedSessionBettings?.some(
+                (item1: any) => item1?.id === item2?.id
+              )
+          )
+          .map((item: any) => item?.id);
         apiParsedSessionBettings.forEach((apiItem: any) => {
           const index = parsedSessionBettings.findIndex(
             (parsedItem: any) => parsedItem.id === apiItem.id
@@ -188,6 +196,7 @@ const matchListSlice = createSlice({
             parsedSessionBettings.push(apiItem);
           }
         });
+
         const stringifiedSessionBetting = parsedSessionBettings.map(
           JSON.stringify
         );
@@ -315,17 +324,18 @@ const matchListSlice = createSlice({
           teamCrateRedisKey,
           betId,
           matchBetType,
-          matchId
+          matchId,
         } = action.payload;
-        if(matchBetType==="tournament"){
+        if (matchBetType === "tournament") {
           state.matchDetails = {
             ...state.matchDetails,
             profitLossDataMatch: {
               ...state.matchDetails.profitLossDataMatch,
-              [betId+"_profitLoss_"+matchId]: JSON.stringify(newTeamRateData)
+              [betId + "_profitLoss_" + matchId]:
+                JSON.stringify(newTeamRateData),
             },
           };
-        }else{
+        } else {
           state.matchDetails = {
             ...state.matchDetails,
             profitLossDataMatch: {

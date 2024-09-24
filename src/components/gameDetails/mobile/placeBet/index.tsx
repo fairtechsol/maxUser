@@ -430,8 +430,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                               url:
                                 selectedBet?.data?.type === "session" ||
                                 selectedBet?.data?.SelectionId
-                                  ? ApiConstants.BET.PLACEBETSESSION
-                                  : ApiConstants.BET.PLACEBETMATCHBETTING,
+                                ? ApiConstants.BET.PLACEBETSESSION
+                                : selectedBet?.team?.gameType === "other"
+                                ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
+                                : ApiConstants.BET.PLACEBETMATCHBETTING,
                               data:
                                 selectedBet?.data?.type === "session" ||
                                 selectedBet?.data?.SelectionId
