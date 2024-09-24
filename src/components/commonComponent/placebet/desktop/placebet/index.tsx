@@ -185,8 +185,8 @@ const DesktopPlacedBet = () => {
     <>
       <div className="loader-container">
         {(loading || matchOddLoading) && <CustomLoader />}
+          {selectedBet ? <>
         <RightPanelContainer title="Place Bet">
-          {selectedBet ? (
             <Table className="w-full">
               <thead>
                 <tr className="bg-darkGrey">
@@ -386,10 +386,10 @@ const DesktopPlacedBet = () => {
                 </tr>
               </tbody>
             </Table>
-         ) : (
+            </RightPanelContainer></> : (
              ""
            )} 
-        </RightPanelContainer>
+        
       </div>
       <Modal show={shown} onHide={() => setShow(false)}>
         <Modal.Header
