@@ -40,7 +40,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
               color: type === "heart" || type === "diamond" ? "red" : "black",
               fontWeight: "800",
               lineHeight: isMobile ? "1" : "1.2",
-              fontSize: isMobile ? "18px" : "18px",
+              fontSize: isMobile ? "22px" : "18px",
             }}
           >
             {number}
@@ -59,7 +59,7 @@ interface IconsProps {
 
 export const Icons: React.FC<IconsProps> = ({ type }) => {
   const renderImage = (src: string) => {
-    return <img width={isMobile ? "8" :"15"} alt={type} src={src} />;
+    return <img width={isMobile ? "16" :"15"} alt={type} src={src} />;
   };
 
   switch (type) {
