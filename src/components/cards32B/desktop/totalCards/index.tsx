@@ -53,7 +53,8 @@ const TotalCards = ({ data, odds }: any) => {
           marginTop: "5%",
           display: "flex",
           flexDirection: "column",
-          border: "0.3px solid #c7c8ca",
+          borderLeft: "0.3px solid #c7c8ca",
+          borderTop: "0.3px solid #c7c8ca",
           marginLeft: "5px",
         }}
       >
@@ -76,7 +77,7 @@ const TotalCards = ({ data, odds }: any) => {
             </div>
           </div>
           <div className="card32bsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Back</span>
+            <span style={{ fontSize: "16px" }}>Back</span>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row">

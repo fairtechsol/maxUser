@@ -41,7 +41,15 @@
 //   padding: 0px !important;
 //   margin-top: 10px !important;
 // }
-
+.teenPatti-table-item-b{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 0.2px solid #c7c8ca;
+  cursor: pointer;
+  min-height: 46px;
+}
 .match-tabs {
   margin:  0 !important;
   border-right: 1px solid $secondary !important;

@@ -249,7 +249,7 @@ const AccountStatementComponent = () => {
               }}
             >
               {transactions?.transactions?.map((item: any, index: number) => {
-                const keywords = ["ballbyball", "cricketv3"];
+                const keywords = ["ballbyball", "cricketv3", "superover"];
 
                 const firstPart = item?.description?.split("/")?.[0];
                 const containsKeywords =

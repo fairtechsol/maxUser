@@ -22,8 +22,8 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="dt20resultModal">
-        <div className="dt20resultCardContainer">
+      <div className="dt20resultModal" style={{display:"flex", flexDirection:isMobile?"column":"row",alignItems:"center"}}>
+        <div className="dt20resultCardContainer" >
           <span className="fs-5">Dragon</span>
           <div
             className={
@@ -78,8 +78,8 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
         <div
           className={
             isMobile
-              ? "w-100 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
-              : "w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
+              ? "w-100 d-flex flex-column justify-content-center align-items-center p-4 mb-2"
+              : "w-75 d-flex flex-column justify-content-center align-items-center p-4 mb-2"
           }
           style={{ boxShadow: "0 0 4px -1px" }}
         >

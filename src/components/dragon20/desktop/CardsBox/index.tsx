@@ -28,7 +28,7 @@ const CardBox = ({ name, cardData, data }: any) => {
   };
   return (
     <>
-      <div className="cardContainer">
+      <div className="cardContainer " style={{display:"flex",alignItems:"center"}}>
         <div style={{ textAlign: "center" }}>
           <span style={{ fontSize: "20px" ,fontWeight:"bold"}}>
             {name}{" "}
@@ -37,13 +37,13 @@ const CardBox = ({ name, cardData, data }: any) => {
             ).toFixed(2)}
           </span>
         </div>
-        <div>
+        
           <CommonCardImg
             cardData={cardData}
             handleBet={handleBet}
             data={data}
           />
-        </div>
+        
         {/* <div style={{ textAlign: "end" }}>
           <span style={{ fontWeight: "bolder" }}>Min:</span>
           <span>{min}</span>

@@ -27,15 +27,11 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
     <Container
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <div className="card32resultModal">
+      <div className={isMobile?"card32resultModalm":"card32resultModald"}>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Player 8</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "1" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
+          <div className={"d-flex flex-row justify-content-center align-items-center"}>
+            
             {result?.[0]?.map((item: any) => {
               return (
                 item != "1" && (
@@ -51,16 +47,17 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
                 )
               );
             })}
+            {data?.result?.win === "1" && (
+              <div className="casino-winner-icon ms-1">
+                <FaTrophy size={30} color="#169733 " />
+              </div>
+            )}
           </div>
         </div>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Player 9</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "2" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
+          <div className="d-flex flex-row justify-content-center align-items-center">
+           
             {result?.[1]?.map((item: any) => {
               return (
                 item != "1" && (
@@ -76,18 +73,19 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
                 )
               );
             })}
+             {data?.result?.win === "2" && (
+              <div className="casino-winner-icon ms-1">
+                <FaTrophy size={30} color="#169733" />
+              </div>
+            )}
           </div>
         </div>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
             Player 10
           </span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "3" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
+          <div className="d-flex flex-row justify-content-center align-items-center">
+           
             {result?.[2]?.map((item: any) => {
               return (
                 item != "1" && (
@@ -103,18 +101,19 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
                 )
               );
             })}
+             {data?.result?.win === "3" && (
+              <div className="casino-winner-icon ms-1">
+                <FaTrophy size={30} color="#169733" />
+              </div>
+            )}
           </div>
         </div>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
             Player 11
           </span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "4" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
+          <div className="d-flex flex-row justify-content-center align-items-center">
+            
             {result?.[3]?.map((item: any) => {
               return (
                 item != "1" && (
@@ -130,12 +129,17 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
                 )
               );
             })}
+            {data?.result?.win === "4" && (
+              <div className="casino-winner-icon ms-1">
+                <FaTrophy size={30} color="#169733" />
+              </div>
+            )}
           </div>
         </div>
       </div>
       <div
         style={{
-          width: "50%",
+          width: isMobile?"100%":"50%",
           textAlign: "center",
           boxShadow: "0 0 4px -1px",
           marginBottom: "10px",

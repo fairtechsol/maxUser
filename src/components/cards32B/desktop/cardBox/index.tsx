@@ -42,7 +42,7 @@ const CardBox = ({ odds, data }: any) => {
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
-      <span style={{ fontFamily: "auto", fontSize: "30px" }}>
+      <span style={{ fontFamily: "auto", fontSize: "48px" }}>
         {index + 1 === 10 ? "0" : index + 1}
       </span>
       <span
@@ -77,8 +77,9 @@ const CardBox = ({ odds, data }: any) => {
           marginTop: "2%",
           display: "flex",
           flexDirection: "column",
-          border: "0.3px solid #c7c8ca",
-          marginLeft: "5px",
+          borderLeft: "0.3px solid #c7c8ca",
+          borderTop: "0.3px solid #c7c8ca",
+          marginLeft: "px",
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>

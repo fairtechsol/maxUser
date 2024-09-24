@@ -7,7 +7,14 @@
   .cards-container{
     margin: 0px 8px 0px 0px;
   }
-.card32resultModal{
+.card32resultModalm{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.card32resultModald{
   display: flex;
   flex-direction: row;
   justify-content: space-around;

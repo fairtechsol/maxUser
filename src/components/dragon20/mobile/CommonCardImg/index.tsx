@@ -19,7 +19,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
           <div>
             <div
               key={item?.sid}
-              className={item?.gstatus === "0" ? "suspended" : ""}
+              className={item?.gstatus === "0" ? "lock" : ""}
               style={{
                 display: "flex",
                 flexDirection: "column",

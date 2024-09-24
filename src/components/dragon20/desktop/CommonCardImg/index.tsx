@@ -14,12 +14,12 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
   }, [cardData]);
 
   return (
-    <div className="commonCardImgContainer">
+    <div className="commonCardImgContainerd20">
       {cardImg?.map((item: any,index:number) => (
         <div key={index}>
           <div
             key={item?.code}
-            className={item?.gstatus === "0" ? "suspended" : ""}
+            className={item?.gstatus === "0" ? "lock" : ""}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -28,7 +28,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
             }}
             onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
           >
-            <img src={item?.imgSrc} width={"40px"} />
+            <img src={item?.imgSrc} width={"35px"} />
           </div>
           <span
             style={{

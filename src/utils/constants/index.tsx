@@ -1630,12 +1630,12 @@ export const casinoIcons = [
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
     name: "Lucky 7 - B",
   },
-  {
-    url: "",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teencasino.jpg",
-    name: "Teenpatti 2.0",
-  },
+  // {
+  //   url: "",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teencasino.jpg",
+  //   name: "Teenpatti 2.0",
+  // },
   {
     url: "/cmatch20",
     imgSrc:
@@ -1762,12 +1762,12 @@ export const casinoIcons = [
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "1 Day Dragon Tiger",
   },
-  {
-    url: "",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lottery.jpg",
-    name: "Lottery",
-  },
+  // {
+  //   url: "",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lottery.jpg",
+  //   name: "Lottery",
+  // },
   {
     url: "/lucky7-A", //
     imgSrc:
