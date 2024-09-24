@@ -40,7 +40,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
   const renderItem = (item: any, index: number, type: any) =>
     type === "back" ? (
       <div
-        className={`dtlsubTitle title-12 ${type}-BackGround ${
+        className={`dtlsubTitle title-14 ${type}-BackGround ${
           handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
         }`}
         onClick={() =>
