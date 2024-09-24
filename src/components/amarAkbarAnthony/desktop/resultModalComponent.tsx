@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import {isMobile} from "../../../utils/screenDimension";
+import ResultBetList from "../../commonComponent/resultBetList";
 interface Props {
   data: {
     C1: string;
@@ -60,7 +61,12 @@ const AmarAkbarAnthonyResultComponent: React.FC<Props> = ({ data }: any) => {
           <span className="opacity-50">Card </span> <span className="lucky7CommonText-2">{resultCards?.[4]}</span>
           </div>
         </div>
-      
+        {
+        data?.bets?.count > 0 && 
+        <div className="w-100">
+        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
+      </div>
+      }
     </Container>
   );
 };
