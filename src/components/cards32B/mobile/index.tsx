@@ -45,7 +45,7 @@ const Card32BMobile = () => {
 
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -73,8 +73,12 @@ const Card32BMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <>
@@ -86,7 +90,7 @@ const Card32BMobile = () => {
                 backgroundColor: "#000",
               }}
             >
-              <div style={{ width: "100%"}}>
+              <div style={{ width: "100%" }}>
                 <div
                   style={{
                     width: "100%",
@@ -107,8 +111,11 @@ const Card32BMobile = () => {
             {loading ? (
               <NewLoader />
             ) : (
-              <div >
-                <div className="" style={{ width: "97%", gap: "10px", marginTop: "0.5rem" }}>
+              <div>
+                <div
+                  className=""
+                  style={{ width: "97%", gap: "10px", marginTop: "0.5rem" }}
+                >
                   <div className="w-100">
                     <BackLay
                       matchOddsData={dragonTigerDetail?.matchOdd}
