@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { HandleCards } from "../../../commonComponent/cardsComponent";
 import { useEffect } from "react";
+import { HandleRaceCards } from "../../desktop/card";
 const OddBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const min = odds?.[0]?.min;
@@ -104,7 +104,7 @@ const OddBox = ({ odds, data }: any) => {
                       alignItems: "center",
                     }}
                   >
-                    <HandleCards card={handleCardRender(item?.nat)} />
+                    <HandleRaceCards card={handleCardRender(item?.nat)} />
                   </div>
                   <div
                     style={{
