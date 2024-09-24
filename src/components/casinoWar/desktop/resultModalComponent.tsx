@@ -4,6 +4,7 @@ import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
 import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
+import ResultBetList from "../../commonComponent/resultBetList";
 
 interface Props {
   data: {
@@ -20,7 +21,6 @@ interface Props {
 const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
   const resultCards = data?.result?.cards?.split(",");
   const playerIds = data?.result?.sid?.split(",");
-
   // Create a mapping of player IDs to their respective cards
   const players = resultCards?.map((card, index) => ({
     card,
@@ -297,6 +297,12 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
       )}
 
       {isMobile ? renderColumn() : renderRow()}
+      {/* {
+        data?.bets?.count > 0 && 
+        <div className="w-100">
+        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
+      </div>
+      } */}
     </Container>
   );
 };

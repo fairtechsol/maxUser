@@ -3,6 +3,7 @@ import { Container} from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
+import ResultBetList from "../../commonComponent/resultBetList";
 interface Props {
   data: {
     C1: string;
@@ -57,6 +58,12 @@ const card = resultCards?.[3]?.split(' ')
           </div>
         </div>
       </div>
+      {
+        data?.bets?.count > 0 && 
+        <div className="w-100">
+        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
+      </div>
+      }
     </Container>
   );
 };

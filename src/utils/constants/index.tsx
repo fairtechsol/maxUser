@@ -2109,6 +2109,10 @@ export const cardGames = [
     value: "queen",
     label: "Casino Queen",
   },
+  {
+    value: "cmeter",
+    label: "Casino Meter",
+  },
 ];
 
 
