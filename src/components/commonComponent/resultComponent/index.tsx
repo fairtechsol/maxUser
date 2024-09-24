@@ -34,6 +34,7 @@ import Bacarrate1ResultComponent from "../../baccarat1/desktop/resultModalCompon
 import Bacarrate2ResultComponent from "../../baccarat2/desktop/resultModalComponent";
 import QueenResultComponent from "../../queen/desktop/resultModalComponent";
 import BallByBallResultComponent from "../../ballbyball/desktop/resultModalComponent";
+import CasinoMeterResultComponent from "../../casinoMeter/desktop/resultModalComponent";
 import moment from "moment";
 
 interface ResultComponentProps {
@@ -65,7 +66,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
           {title[type]} Result
         </span>
         <RxCross2
-          className="cursor-pointer" 
+          className="cursor-pointer"
           size={25}
           onClick={() => setfalse(false)}
         />
@@ -153,6 +154,8 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <Bacarrate2ResultComponent data={data} />
       ) : type === cardGamesType?.ballbyball ? (
         <BallByBallResultComponent data={data} />
+      ) : type === cardGamesType?.cmeter ? (
+        <CasinoMeterResultComponent data={data} />
       ) : (
         <></>
       )}

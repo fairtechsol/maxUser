@@ -17,7 +17,7 @@ interface Props {
   };
 }
 
-const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
+const CasinoMeterResultComponent: React.FC<Props> = ({ data }) => {
   const resultCards = data?.result?.cards?.split(",");
   const playerIds = data?.result?.sid?.split(",");
 
@@ -301,4 +301,4 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
   );
 };
 
-export default CasinoWarResultComponent;
+export default CasinoMeterResultComponent;

@@ -119,9 +119,18 @@ const CasinoReports = () => {
                 />
               </Col>
 
-              <Col md={2} xs={12} style={{width:"17%",display:"flex",alignItems:"center",justifyContent:"center"}}>
+              <Col
+                md={2}
+                xs={12}
+                style={{
+                  width: "17%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <CustomButton
-                style={{ paddingLeft: "6rem", paddingRight: "6rem" }}
+                  style={{ paddingLeft: "6rem", paddingRight: "6rem" }}
                   size={isMobile ? "sm" : "lg"}
                   className={`${
                     isMobile ? "w-100" : "w-100 bg-primary"
@@ -182,8 +191,11 @@ const CasinoReports = () => {
             >
               {cardReport?.results?.map((item: any, index: number) => {
                 return (
-                  <tr className={`${isMobile && "title-12"}`} key={index} 
-                  onClick={() => handleResult(item?.mid)}>
+                  <tr
+                    className={`${isMobile && "title-12"}`}
+                    key={index}
+                    onClick={() => handleResult(item?.mid)}
+                  >
                     <td
                       style={{
                         color: "#0d6efd",

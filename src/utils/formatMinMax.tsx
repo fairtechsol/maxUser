@@ -8,13 +8,13 @@ export const formattedMinMax = (min: any, max: any) => {
 };
 
 export const handleRoundId = (id: any) => {
-  console.log("str", id);
-  if (id + "".length > 0 && !(id+"").includes(".")) {
+  if (id === undefined) return;
+  if (id + "".length > 0 && !(id + "")?.includes(".")) {
     return id;
   }
   // if (typeof id !== "string" || !id.includes(".")) {
   //   return 0;
   // }
-  const Id = id.split(".");
+  const Id = id?.split(".");
   return Id[1];
 };
