@@ -122,7 +122,7 @@ const PlayerButton = ({
         </div>
         <div>
           <span
-            style={{ fontSize: "12px", paddingLeft: "4px" }}
+            style={{ fontSize: "14px", paddingLeft: "4px" }}
             className={`${
               value3 && value3 > 0
                 ? "color-green"
@@ -164,7 +164,7 @@ const PlayerButton = ({
                 : handleBet(data, "BACK")
             }
           >
-            <span className="f18-b title-14 my-2 fw-bold">
+            <span className="f18-b my-2 fw-bold title-14">
               {parseFloat(value1).toFixed(2)}
             </span>
             <span className="f10-b">{}</span>
@@ -180,7 +180,7 @@ const PlayerButton = ({
                 : handleBet(data, "LAY")
             }
           >
-            <span className="f18-b title-14 my-2 fw-bold">
+            <span className="f18-b my-2 fw-bold title-14">
               {parseFloat(value4).toFixed(2)}
             </span>
             <span className="f10-b">{}</span>

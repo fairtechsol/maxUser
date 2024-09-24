@@ -23,7 +23,7 @@ const PlayerButton = ({
         onClick={() => (!lock ? handleBet(data) : null)}
       ></div> */}
 
-      <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
+      <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
         <div
           style={{
             width: "100%",

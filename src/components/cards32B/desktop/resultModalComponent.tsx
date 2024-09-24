@@ -59,7 +59,7 @@ const Card32BResultComponent: React.FC<Props> = ({ data }: any) => {
                     )
                 )}
                 {data?.result?.win === (index + 1).toString() && (
-                  <div className="casino-winner-icon">
+                  <div className="casino-winner-icon ms-2">
                     <FaTrophy size={30} color="#169733" />
                   </div>
                 )}

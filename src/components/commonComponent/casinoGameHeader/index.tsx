@@ -44,6 +44,11 @@ const CasinoHead = ({activeTab, setActiveTab, setShow} : any) => {
                       )}`
                     : ""}
           </span>
+          {/* <span>
+                  {dragonTigerDetail?.videoInfo
+                    ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
+                    : ""}
+                </span> */}
         </div>
       </div>
     </div>

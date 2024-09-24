@@ -34,7 +34,7 @@ const OddEven = ({ data, card, odds }: any) => {
 
   return (
     <>
-      <div className="tiePairContainer-bt">
+      <div className="oddEvenContaine mt-2">
         {card ? (
           <>
             {/* <div style={{ width: "98%", textAlign: "end", marginTop: "12px" }}>

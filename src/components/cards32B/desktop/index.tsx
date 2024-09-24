@@ -95,17 +95,17 @@ const Card32BDesktop = () => {
                 </span>
                 <span
                   style={{
-                    fontSize: "14px",
+                    fontSize: "12px",
                     textDecoration: "underline",
                     cursor: "pointer",
                   }}
                   onClick={() => setShow(true)}
                 >
                   {" "}
-                  RULES
+                  Rules
                 </span>
               </div>
-              <span>
+              <span className="title-12 mt-1">
                 {dragonTigerDetail?.videoInfo
                   ? `Round ID:  ${handleRoundId(
                       dragonTigerDetail?.videoInfo?.mid
@@ -147,10 +147,10 @@ const Card32BDesktop = () => {
               <div
                 style={{
                   width: "100%",
-                  margin: "5px",
+                  margin: "px",
                   display: "flex",
                   flexDirection: "row",
-                  gap: "8px",
+                  gap: "10px",
                 }}
               >
                 <PairBox

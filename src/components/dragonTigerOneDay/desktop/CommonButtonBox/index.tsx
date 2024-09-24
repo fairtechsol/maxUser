@@ -57,7 +57,7 @@ const CommonButtonBox = ({
               : ""
           }`}
         >
-          {isNaN(value3) ? 0 : value3}
+          {isNaN(value3) ? <br></br> : value3}
         </span>
       </div>
     </div>

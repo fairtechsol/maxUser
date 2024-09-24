@@ -66,7 +66,7 @@ const TotalCards = ({ data, odds }: any) => {
           <div className="dtlTitle">
           </div>
           <div className="card32bsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Back</span>
+            <span style={{ fontSize: "12px" }}>Back</span>
           </div>
         </div>
         <div
@@ -75,7 +75,7 @@ const TotalCards = ({ data, odds }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>8 & 9 Total</span>
+              <span className="title-12">8 & 9 Total</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -102,7 +102,7 @@ const TotalCards = ({ data, odds }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -115,7 +115,7 @@ const TotalCards = ({ data, odds }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>10 & 11 Total</span>
+              <span className="title-12">10 & 11 Total</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -142,7 +142,7 @@ const TotalCards = ({ data, odds }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
