@@ -54,28 +54,49 @@ const FootballMobileGameDetail = () => {
     <div>
       {/* <FootballPlaceBet show={show} setShow={setShow} /> */}
       <PlacedBet show={show} setShow={setShow} />
+      <Col md={12}>
+        <BetTableHeader
+          customClass="py-1"
+          customTextClass="title-12"
+          title={otherMatchDetails?.title}
+          rightComponent={
+            <span className="title-12 lh-1 f500 text-white ">
+              {otherMatchDetails?.startAt &&
+                formatDate(otherMatchDetails?.startAt)}
+            </span>
+          }
+        />
+      </Col>
       <CommonTabs className="color" defaultActive="odds">
         {[
           {
             id: "odds",
-            name: "ODDS",
+            name: <div className="oddstab border-end lh-sm pe-1">ODDS</div>,
           },
           {
             id: "matchedBet",
-            name: `MATCHED BET(${Array.from(new Set(placedBets))?.length})`,
+            name: (
+              <div className="ps-5 border-end pe-2">{`MATCHED BET(${
+                Array.from(new Set(placedBets))?.length
+              })`}</div>
+            ),
           },
         ]?.map((item, index) => {
           return (
             <Tab
               key={item?.id}
               eventKey={item?.id}
-              tabClassName="m-tab"
-              title={<div className="font p-1 px-2">{item?.name}</div>}
+              tabClassName="m-tab border-0"
+              title={
+                <div className="font rounded-0 lh-sm py-0 f600">
+                  {item?.name}
+                </div>
+              }
             >
               {index == 0 ? (
-                <Container fluid>
+                <Container>
                   <Row>
-                    <Col className="g-0" md={12}>
+                    {/* <Col className="g-0" md={12}>
                       <BetTableHeader
                         customClass="py-2"
                         customTextClass="title-12"
@@ -87,7 +108,7 @@ const FootballMobileGameDetail = () => {
                           </span>
                         }
                       />
-                    </Col>
+                    </Col> */}
                     {channelId !== "0" && channelId !== "" && (
                       <Col className="g-0" md={12}>
                         <LiveStreamComponent channelId={channelId} />

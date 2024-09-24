@@ -66,7 +66,7 @@ const FootballDesktopGameDetail = () => {
             <>
               <Col md={12}>
                 <BetTableHeader
-                  customClass="mt-2 py-2"
+                  customClass="py-2"
                   title={otherMatchDetails?.title}
                   rightComponent={
                     <span className="title-16 fbold text-white">
