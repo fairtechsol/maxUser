@@ -32,7 +32,7 @@ const CardResultBox = ({ data, name, type }: any) => {
       case "race20":
         return "#d5d5d5";
       case "baccarat2":
-        if (item.result === "1") {
+        if (item?.result === "1") {
           return "#086CB8";
         } else if (item?.result === "2") {
           return "#AE2130";
@@ -40,7 +40,7 @@ const CardResultBox = ({ data, name, type }: any) => {
           return "#355E3B";
         }
       case "baccarat":
-        if (item.result === "1") {
+        if (item?.result === "1") {
           return "#086CB8";
         } else if (item?.result === "2") {
           return "#AE2130";
