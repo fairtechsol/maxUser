@@ -12,12 +12,14 @@ import "./style.scss";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import NewLoader from "../../commonComponent/newLoader";
+import RulesModal from "../../commonComponent/rulesModal";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [show, setShow] = useState(false);
+  const [modalType, setModalType] = useState("rules");
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
@@ -45,13 +47,6 @@ const TeenPattiDesktop = () => {
     };
   }, []);
 
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -130,7 +125,7 @@ const TeenPattiDesktop = () => {
                     onClick={() => setShow(true)}
                   >
                     {" "}
-                    RULES
+                    Rules
                   </span>
                 </div>
                 {/* <span>
@@ -391,8 +386,8 @@ const TeenPattiDesktop = () => {
                               ? dragonTigerDetail?.profitLoss[
                                   `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                 ]
-                              : 0
-                            : 0}
+                              : ""
+                            : ""}
                         </span>
                       </div>
                       <div
@@ -523,34 +518,7 @@ const TeenPattiDesktop = () => {
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
-              {/* <Col>
-                <div
-                  className="casino-title mt-2"
-                  style={{ position: "relative" }}
-                >
-                  <span>Rules</span>
-                </div>
-                <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                          Pair Plus
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rules.map((item, index) => (
-                        <tr key={index}>
-                          <td className="box-7">{item.label}</td>
-                          <td className="box-3">{item.value}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </div>
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
-              </Col> */}
+              <RulesModal show={show} setShow={setShow} type={modalType}/>
             </Row>
           </Container>
         </Col>

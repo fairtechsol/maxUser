@@ -135,7 +135,11 @@ const Abj2Desktop = () => {
               <div>
                 <div
                   className="row-flex"
-                  style={{ width: "100%", marginLeft: "5px" }}
+                  style={{
+                    width: "100%",
+                    marginLeft: "5px",
+                    border: "1px solid #c7c8ca",
+                  }}
                 >
                   <SBetBox
                     type={"A"}
@@ -155,6 +159,7 @@ const Abj2Desktop = () => {
                     display: "flex",
                     flexDirection: "row",
                     gap: "8px",
+                    border: "1px solid #c7c8ca",
                   }}
                 >
                   <OddEven
@@ -175,6 +180,7 @@ const Abj2Desktop = () => {
                     display: "flex",
                     flexDirection: "row",
                     gap: "8px",
+                    border: "1px solid #c7c8ca",
                   }}
                 >
                   <CardBox

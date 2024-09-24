@@ -90,3 +90,4 @@ export { default as crick20rules } from "./cricketMatch_20-20/20-20cricketrules.
 export { default as brules } from "./rules/bollywoodtable-rules.webp";
 export { default as aaarules } from "./rules/aaaRules.webp";
 export { default as b2rules } from "./rules/baccarat2-rules.webp";
+export { default as cmeterrules } from "./rules/cmeterrules.webp";

@@ -250,7 +250,7 @@ const MainRoutes = {
     },
     {
       path: "ballbyball",
-      element: <BallByBall/>,
+      element: <BallByBall />,
     },
     {
       path: "cmeter",

@@ -89,8 +89,8 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${item?.sid}_card`
                     ]
-                  : <br></br>
-                : 0}
+                  : ""
+                : ""}
             </span>
           </div>
         );

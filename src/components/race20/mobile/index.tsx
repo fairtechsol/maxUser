@@ -93,7 +93,7 @@ const Race20Mobile = () => {
               <NewLoader />
             ) : (
               <div>
-                <div style={{ width: "100%" }}>
+                <div style={{ width: "100%", paddingBottom: "5px" }}>
                   <OddBox
                     odds={dragonTigerDetail?.cards}
                     data={dragonTigerDetail}
@@ -102,10 +102,11 @@ const Race20Mobile = () => {
                 <div
                   style={{
                     width: "100%",
-                    padding: "5px 0px",
+                    padding: " 0px",
                     display: "flex",
                     flexDirection: "column",
                     gap: "8px",
+                   
                   }}
                 >
                   <TotalsBox

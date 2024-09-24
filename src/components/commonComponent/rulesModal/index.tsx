@@ -1,8 +1,9 @@
 import Modal from "react-bootstrap/Modal";
 import {isMobile} from "../../../utils/screenDimension";
+import RulesSection from "../../baccarat2/desktop/RulesSection";
+import RulesBoth from "../../casinoMeter/desktop/RulesBoth";
 
-const RulesModal = ({ show, setShow, rule }: any) => {
-  // const [show, setShow] = useState(false);
+const RulesModal = ({ show, setShow, rule,type }: any) => {
 
   const handleClose = () => setShow(false);
   return (
@@ -18,7 +19,15 @@ const RulesModal = ({ show, setShow, rule }: any) => {
             ></button>
         </Modal.Header>
         <Modal.Body style={{padding:"0px", cursor: "pointer"}}>
-          <img src={rule} width={"100%"} height={isMobile ? "550" : "650px"} />
+        {type === "rules" ? (
+            <RulesSection />
+          )  : type === "imageWithContent" ? (
+            <div>
+              <RulesBoth /> 
+            </div>
+          ) : (
+            <img src={rule} width={"100%"} height={isMobile ? "550px" : "650px"} alt="modal content" />
+          )}
         </Modal.Body>
       </Modal>
     </div>

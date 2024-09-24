@@ -49,21 +49,6 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
 
   return (
     <div className="card32-table-container">
-      <div className="card32-table-row" style={{ lineHeight: 2 }}>
-       
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <div style={{ width: "100%",display:"flex",alignItems:"initial",paddingLeft:"10px",fontWeight:"bold" }}>
-            {title}
-          </div>
-         
-        </div>
-      </div>
       <div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-between"}}>
       {result &&
         result?.map((item: any, index: number) => {

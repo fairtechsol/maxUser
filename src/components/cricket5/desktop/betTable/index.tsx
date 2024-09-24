@@ -116,8 +116,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                           `${data?.videoInfo?.mid}_${team1?.sid}_card`
                         ]
                       )["aus"]
-                    : <br></br>
-                  : 0}
+                    : ""
+                  : ""}
               </span>
             </div>
             <div
@@ -200,8 +200,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                           `${data?.videoInfo?.mid}_${team1?.sid}_card`
                         ]
                       )["ind"]
-                    : <br></br>
-                  : 0}
+                    : ""
+                  : ""}
               </span>
             </div>
             <div

@@ -1,14 +1,10 @@
 .card32-table-container-m{
     width: 100%;
-    background-color: #f3f1f1;
+    background-color: #f7f7f7;
     display: flex;
     flex-direction: column;
   }
-  .card32-table-row{
-    width: 100%;
-    display: flex;
-    flex-direction: row
-  }
+
   .card32-table-item-m{
     display: flex;
     justify-content: center;
@@ -25,23 +21,7 @@
     padding: 5px;
     color: #ffffff;
   }
-.card32-table-row .suspended:after {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  text-transform: uppercase;
-  font-family: "Font Awesome 5 Free";
-  content: "\f023";
-  font-weight: 900;
-  font-size: 18px;
-  top: 0;
-}
+
 .market-6 {
   min-width: calc(100% - 8px);
   max-width: calc(100% - 0px);

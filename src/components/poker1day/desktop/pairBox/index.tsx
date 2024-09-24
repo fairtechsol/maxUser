@@ -93,8 +93,8 @@ const PairBox = ({ odds, data, min, max }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                     ]
-                  : 0
-                : 0}
+                  : "\u00A0"
+                : "\u00A0"}
             </span>
           </div>
           <div
@@ -141,8 +141,8 @@ const PairBox = ({ odds, data, min, max }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                     ]
-                  : 0
-                : 0}
+                  : "\u00A0"
+                : "\u00A0"}
             </span>
           </div>
         </div>
@@ -203,8 +203,8 @@ const PairBox = ({ odds, data, min, max }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
                     ]
-                  : 0
-                : 0}
+                  : "\u00A0"
+                : "\u00A0"}
             </span>
           </div>
           <div
@@ -251,8 +251,8 @@ const PairBox = ({ odds, data, min, max }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
                     ]
-                  : 0
-                : 0}
+                  : "\u00A0"
+                : "\u00A0"}
             </span>
           </div>
         </div>
