@@ -125,7 +125,7 @@ const CasinoReports = () => {
                   size={isMobile ? "sm" : "lg"}
                   className={`${
                     isMobile ? "w-100" : "w-100 bg-primary"
-                  } border-0 fs-6 ps-5 pe-5`}
+                  } border-0 fs-6`}
                   onClick={() => {
                     let filter = "";
 
