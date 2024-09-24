@@ -65,7 +65,10 @@ const HtFt = ({ title, box, data, detail }) => {
           </span>
         </div>
 
-      <div className="d-flex flex-row flex-wrap">
+      <div className="d-flex flex-row flex-wrap" style={{position:"relative"}}>
+      {(data?.runners?.[0]?.status !== "OPEN" && data?.runners?.[0]?.status !== "ACTIVE") && (<div className="suspended-overlayRatestournament">
+                      <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                    </div> )}
       {data?.runners?.length > 0 &&
           data?.runners?.map((item: any, index: any) => {
             return (
@@ -92,11 +95,11 @@ const HtFt = ({ title, box, data, detail }) => {
                 <div
                   className={"tournament2RateBox rateBoxWidth3"}
                 >
-                  {(item?.status !== "OPEN" && item?.status !== "ACTIVE") && (
+                  {/* {(item?.status !== "OPEN" && item?.status !== "ACTIVE") && (
                     <div className="suspended-overlayRatestournament">
                       <FaLock color="#fff" />
                     </div>
-                  )}
+                  )} */}
                   <BetBox
                         data={item?.ex?.availableToBack?.[0]}
                         type={"back"}
