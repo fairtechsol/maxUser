@@ -228,7 +228,7 @@ const BollywoodTableDesktop = () => {
             <RulesModal show={show} setShow={setShow} rule={brules} />
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

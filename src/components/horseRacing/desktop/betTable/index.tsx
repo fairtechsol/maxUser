@@ -84,7 +84,7 @@ const HorseRaceDetailDesktop = () => {
             <MatchOddComponent data={matchDetail} />
           </Col>
 
-          <Col className="ps-0">
+          <Col className="p-0">
             <Container className="p-0" fluid ref={placeBetRef}>
               <Row
                 className={` ${isSticky ? "position-fixed top-0" : ""}`}

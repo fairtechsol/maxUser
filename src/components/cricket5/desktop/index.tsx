@@ -150,8 +150,8 @@ const Cricket5Desktop = () => {
             </div>
           )}
         </Col>
-        <Col md={4}>
-          <Container className="p-0" fluid ref={placeBetRef}>
+        <Col className="p-0" md={4}>
+          <Container className="p-0" ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
               style={{
