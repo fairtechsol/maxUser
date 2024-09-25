@@ -2,14 +2,17 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { dummyArray, formatNumber } from "../../../helpers";
+import { dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
 import BetBox from "../betBox";
+import { useSelector } from "react-redux";
 
 const OtherMarket = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
-
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -129,11 +132,12 @@ const OtherMarket = ({ title, box, data, detail }) => {
         <div className="otherMarketTeamTab">
           <div
             className="otherMarketTeam"
-            style={box === 6 ? { width: "28%" } : {}}
+            // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont otherMarketTeamTxt`}>
               {data?.type === "other" ? data?.metaData?.teamA : "Yes"}
             </span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 profitLossTeamA > 0
@@ -145,6 +149,8 @@ const OtherMarket = ({ title, box, data, detail }) => {
             >
               {profitLossTeamA ?? ""}
             </span>
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,data?.type === "other" ? data?.metaData?.teamA : "Yes",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,data?.type === "other" ? data?.metaData?.teamA : "Yes",data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
           </div>
           <div
             className={
@@ -223,11 +229,12 @@ const OtherMarket = ({ title, box, data, detail }) => {
         <div className="otherMarketTeamTab">
           <div
             className="otherMarketTeam"
-            style={box === 6 ? { width: "28%" } : {}}
+            // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont otherMarketTeamTxt`}>
               {data?.type === "other" ? data?.metaData?.teamB : "No"}
             </span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 profitLossTeamB > 0
@@ -239,6 +246,8 @@ const OtherMarket = ({ title, box, data, detail }) => {
             >
               {profitLossTeamB ?? ""}
             </span>
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,data?.type === "other" ? data?.metaData?.teamB : "No",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,data?.type === "other" ? data?.metaData?.teamB : "No",data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
           </div>
           <div
             className={
@@ -314,11 +323,12 @@ const OtherMarket = ({ title, box, data, detail }) => {
           <div className="otherMarketTeamTab">
             <div
               className="otherMarketTeam"
-              style={box === 6 ? { width: "28%" } : {}}
+              // style={box === 6 ? { width: "28%" } : {}}
             >
               <span className={`teamFont otherMarketTeamTxt`}>
                 {data?.metaData?.teamC}
               </span>{" "}
+              <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
                   profitLossTeamC > 0
@@ -330,6 +340,8 @@ const OtherMarket = ({ title, box, data, detail }) => {
               >
                 {profitLossTeamC ?? 0}
               </span>
+              <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,data?.metaData?.teamC,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,data?.metaData?.teamC,data?.type,data?.gtype))?.toFixed(2)}</span>
+              </div>
             </div>
             <div
               className={
