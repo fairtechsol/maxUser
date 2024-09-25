@@ -199,15 +199,16 @@ const Poker1DayDesktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
               <Col
+              
                 xs={12}
-                className="no-scrollbar"
+                className="no-scrollbar p-1 pt-0"
                 // style={{ height: "400px", overflow: "auto" }}
               >
                 <div className="casino-title mt-2" style={{ position: "relative" }}>
