@@ -13,7 +13,7 @@ import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import NewLoader from "../../commonComponent/newLoader";
 import RulesModal from "../../commonComponent/rulesModal";
-
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -27,7 +27,12 @@ const TeenPattiDesktop = () => {
     (state: RootState) => state.card
   );
   const { runs } = dragonTigerDetail;
+  const [mid, setMid] = useState(false);
+  const [curR, setCurR] = useState(null);
+  const [isClick, setIsClick] = useState(false);
+  // const [showModal, setModalOpen] = useState(false);
 
+  const { resultData } = useSelector((state: RootState) => state.card);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -105,6 +110,36 @@ const TeenPattiDesktop = () => {
     }
   }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
 
+  useEffect(() => {
+    if (curR && isClick) {
+      setTimeout(() => {
+        setCurR(null);
+        setIsClick(false);
+        setMid(dragonTigerDetail?.videoInfo?.mid);
+      }, 3000);
+    }
+  }, [curR]);
+
+  useEffect(() => {
+    if (mid && mid != dragonTigerDetail?.videoInfo?.mid) {
+      dispatch(resultDragonTiger(mid));
+      setIsClick(true);
+    }
+    if (!mid) {
+      setMid(dragonTigerDetail?.videoInfo?.mid);
+    }
+  }, [dragonTigerDetail?.videoInfo?.mid]);
+
+  useEffect(() => {
+    if (Object.keys(resultData || {})?.length > 0 && mid) {
+      setCurR(resultData);
+    } else if (resultData) {
+      setTimeout(() => {
+        dispatch(resultDragonTiger(mid));
+      }, 1000);
+    }
+  }, [resultData]);
+
   return (
     <>
       <Row>
@@ -149,18 +184,20 @@ const TeenPattiDesktop = () => {
                   position: "relative",
                 }}
               >
-                {/* <img
-                 className="elem"
-                  src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${0}.png`}
-                  style={{
-                    position: "absolute", 
-                    top: "50%", 
-                    left: "50%", 
-                    transform: "translate(-50%, -100%)", 
-                    zIndex: 2, 
-                  }}
-                  alt="Centered Image"
-                /> */}
+                {curR && (
+                  <img
+                    className="elem"
+                    src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${resultData?.result?.win}.png`}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -100%)",
+                      zIndex: 2,
+                    }}
+                    alt="Centered Image"
+                  />
+                )}
 
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.lt}
@@ -518,7 +555,7 @@ const TeenPattiDesktop = () => {
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
-              <RulesModal show={show} setShow={setShow} type={modalType}/>
+              <RulesModal show={show} setShow={setShow} type={modalType} />
             </Row>
           </Container>
         </Col>

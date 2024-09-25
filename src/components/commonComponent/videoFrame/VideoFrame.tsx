@@ -30,31 +30,14 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
    }
  }, [resultData]);
 
- useEffect(() => {
-   if (curR) {
-     setTimeout(() => {
-       setCurR(null);
-       setIsClick(false);
-     }, 2000);
-   }
- }, [curR]);
 
-  useEffect(() => {
-    if(dragonTigerDetail?.videoInfo?.gtype=="ballbyball"){
-    if (mid) {
-      setTimeout(()=>{
-        dispatch(resultDragonTiger(mid));
-        setIsClick(true);
-      },2000)
-    }
-    setMid(dragonTigerDetail?.videoInfo?.mid);
-    }
-  }, [dragonTigerDetail?.videoInfo?.mid]);
 
-  console.log(curR,resultData)
+ 
+
+  
   return (
     <>
-    {curR&&"Yes cumming"}
+    
       <div
         key="odds"
         style={{
