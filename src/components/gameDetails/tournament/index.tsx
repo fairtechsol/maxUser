@@ -104,6 +104,7 @@ const Tournament = ({ title, box, data, detail }) => {
               <div className="tournamentTeamTab" key={index}>
                 <div
                   className="tournamentTeam"
+            style={(isMobile && box === 6)?{width:"28%"}:{}}
                   // style={box === 6 ? { width: "28%" } : {}}
                 >
                   <span className={`teamFont tournamentTeamTxt`}>

@@ -99,6 +99,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
         <div className="bookmakerTeamTab">
           <div
             className="bookmakerTeam"
+            style={(isMobile && box === 6)?{width:"28%"}:{}}
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont bookmakerTeamTxt`}>
@@ -208,6 +209,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
         <div className="bookmakerTeamTab">
           <div
             className="bookmakerTeam"
+            style={(isMobile && box === 6)?{width:"28%"}:{}}
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont bookmakerTeamTxt`}>
@@ -318,6 +320,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
           <div className="bookmakerTeamTab">
             <div
               className="bookmakerTeam"
+            style={(isMobile && box === 6)?{width:"28%"}:{}}
               // style={box === 6 ? { width: "28%" } : {}}
             >
               <span className={`teamFont bookmakerTeamTxt`}>

@@ -84,7 +84,7 @@ const MatchOdd = ({ title, data, detail }) => {
 
         <div className="matchOddTeamTab">
 
-          <div className="matchOddTeam">
+          <div className="matchOddTeam" style={isMobile?{width:"28%"}:{}}>
             <span
               className={`teamFont matchOddTeamTxt`}
             >
@@ -147,7 +147,7 @@ const MatchOdd = ({ title, data, detail }) => {
         </div>
 
         <div className="matchOddTeamTab">
-          <div className="matchOddTeam">
+          <div className="matchOddTeam" style={isMobile?{width:"28%"}:{}}>
             <span
               className={`teamFont matchOddTeamTxt`}
             >
@@ -211,7 +211,7 @@ const MatchOdd = ({ title, data, detail }) => {
 
         {detail?.teamC && (
           <div className="matchOddTeamTab">
-            <div className="matchOddTeam">
+            <div className="matchOddTeam" style={isMobile?{width:"28%"}:{}}>
               <span
                 className={`teamFont matchOddTeamTxt`}
               >
