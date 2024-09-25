@@ -4,7 +4,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import SmoothDropdownModal from "../minMaxModal";
 import { useState } from "react";
 import { IoInformationCircle } from "react-icons/io5";
-import {isMobile} from "../../../../utils/screenDimension";
+import { isMobile } from "../../../../utils/screenDimension";
 
 const OddEven = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -67,11 +67,15 @@ const OddEven = ({ data, odds }: any) => {
         }`}
         style={{ zIndex: "100" }}
       >
-        {data?.profitLoss
-          ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
-          : 0}
+        {data?.profitLoss ? (
+          data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] ? (
+            data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+          ) : (
+            <br></br>
+          )
+        ) : (
+          0
+        )}
       </span>
     </div>
   );
@@ -87,13 +91,15 @@ const OddEven = ({ data, odds }: any) => {
           marginLeft: "5px",
         }}
       >
-        <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">
-          </div>
-          <div className="dtlsubTitle back-BackGround">
+        <div
+          className="w-100 d-sm-flex flex-row "
+          style={{ display: "flex", lineHeight: "2", }}
+        >
+          <div className="dtlTitle lh-lg"></div>
+          <div className="dtlsubTitle back-BackGround lh-lg ">
             <span style={{ fontSize: "12px" }}>Even</span>
           </div>
-          <div className="dtlsubTitle back-BackGround">
+          <div className="dtlsubTitle back-BackGround lh-lg">
             <span style={{ fontSize: "12px" }}>Odd</span>
           </div>
         </div>

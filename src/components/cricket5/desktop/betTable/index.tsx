@@ -59,7 +59,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 color: "#FFF",
                 //fontSize: "16px",
                 fontWeight:"bold",
-                fontSize: "calc(11px + 0.46vw)", 
+                //fontSize: "calc(11px + 0.46vw)", 
+                fontSize:"15px"
               }}>Bookmaker</span>
         </div>
         <div className="market-header-c">
@@ -71,7 +72,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
               Min: {min} Max: {formatNumber(max)}
             </span>
           </div>
-          <div className="market-odd-box-cd back">
+          <div className="market-odd-box-cd back" style={{border:"0px"}}>
             <b style={{color:"#333333"}}>Back</b>
           </div>
           <div className="market-odd-box-cd lay">

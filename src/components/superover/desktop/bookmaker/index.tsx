@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
+import { formatNumber } from "../../../../helpers";
 const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any, type: any) => {
@@ -46,29 +47,26 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
           {title}
         </span>
       </div>
-      <div className="boxContainer">
-        <span className="f600" style={{ fontSize: "12px", color: "#097c93" }}>
-          Min: {min} Max: {max}
+      <div className="boxContainer" style={{ lineHeight: "2" }}>
+        <span
+          className="f600"
+          style={{ fontSize: "12px", color: "#097c93", lineHeight: "2" }}
+        >
+          Min: {min} Max: {formatNumber(max)}
         </span>
-        <div className="blboxes">
-          <div
-            className="w-50 back-BackGround flex-justify-center"
-            style={{ height: "20px" }}
-          >
+        <div className="blboxes " style={{ lineHeight: "2" }}>
+          <div className="w-50 back-BackGround flex-justify-center">
             <span
               className="f600"
-              style={{ fontSize: "14px", color: "#000", textAlign: "center" }}
+              style={{ fontSize: "16px", color: "#333333", textAlign: "center" }}
             >
               Back
             </span>
           </div>
-          <div
-            className="w-50 lay-BackGround flex-justify-center"
-            style={{ height: "20px" }}
-          >
+          <div className="w-50 lay-BackGround flex-justify-center">
             <span
               className="f600"
-              style={{ fontSize: "14px", color: "#000", textAlign: "center" }}
+              style={{ fontSize: "16px", color: "#333333", textAlign: "center" }}
             >
               Lay
             </span>

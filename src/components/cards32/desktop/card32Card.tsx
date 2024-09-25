@@ -42,7 +42,7 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
               >
                 {parseInt(data?.C1) > 0 ? (
                   <>
-                    Total 0:{" "}
+                    Player 8:{" "}
                     <span style={{ color: "#FFC107" }}>{data?.C1}</span>
                   </>
                 ) : (
@@ -79,7 +79,7 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
               >
                 {parseInt(data?.C1) > 0 ? (
                   <>
-                    Total 1:{" "}
+                    Player 9:{" "}
                     <span style={{ color: "#FFC107" }}>{data?.C2}</span>
                   </>
                 ) : (
@@ -116,7 +116,7 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
               >
                 {parseInt(data?.C1) > 0 ? (
                   <>
-                    Total 2:
+                    Player 10:
                     <span style={{ color: "#FFC107" }}>{data?.C3}</span>
                   </>
                 ) : (
@@ -153,7 +153,7 @@ const Card32Result: React.FC<Props> = ({ data }: any) => {
               >
                 {parseInt(data?.C1) > 0 ? (
                   <>
-                    Total 3:{" "}
+                    Player 11:{" "}
                     <span style={{ color: "#FFC107" }}>{data?.C4}</span>
                   </>
                 ) : (

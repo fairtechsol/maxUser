@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import {isMobile} from "../../../../utils/screenDimension";
+import { isMobile } from "../../../../utils/screenDimension";
 import SmoothDropdownModal from "../minMaxModal";
 import { IoInformationCircle } from "react-icons/io5";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const BackLay = ({ matchOddsData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -15,14 +15,15 @@ const BackLay = ({ matchOddsData, data }: any) => {
     let team = {
       bettingType: type === "back" ? "BACK" : "LAY",
       matchId: data?.id,
-      odd: type === "back" ? item?.b1 : item?.l1,
+      odd: item?.b1,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam: item?.nation,
+      name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
     };
+
     dispatch(
       selectedBetAction({
         team,
@@ -40,7 +41,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
   const renderItem = (item: any, index: number, type: any) =>
     type === "back" ? (
       <div
-        className={`dtlsubTitle title-12 ${type}-BackGround ${
+        className={`dtlsubTitle title-14 ${type}-BackGround ${
           handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
         }`}
         onClick={() =>
@@ -87,8 +88,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle">
-          </div>
+          <div className="dtlTitle"></div>
           <div className="dtlsubTitle back-BackGround title-12">Back</div>
           <div className="dtlsubTitle lay-BackGround title-12">Lay</div>
         </div>

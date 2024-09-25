@@ -45,7 +45,7 @@ const CardBox = ({ odds, data }: any) => {
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
-      <span style={{ fontFamily: "auto", fontSize: "48px" }}>
+      <span style={{ fontFamily: "auto", fontSize: "48px" ,color:"#333333"}}>
         {index + 1 === 10 ? "0" : index + 1}
       </span>
       <span
@@ -68,7 +68,7 @@ const CardBox = ({ odds, data }: any) => {
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
+            : <br></br>
           : 0}
       </span>
     </div>
@@ -86,38 +86,15 @@ const CardBox = ({ odds, data }: any) => {
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">
-            {isMobile ? (
-              <>
-                <span style={{ fontWeight: "400" }}>
-                  Min:{min} Max:{max}
-                </span>
-              </>
-            ) : (
-              <div style={{ width: "45%", textAlign: "start" }}>
-                <span className="minmaxi">
-                  <IoInformationCircle
-                    color="#ffc742"
-                    onClick={() => setModelOpen(!modelOpen)}
-                  />
-                  <SmoothDropdownModal
-                    min={min}
-                    max={max}
-                    show={modelOpen}
-                    setShow={() => setModelOpen(false)}
-                  />
-                </span>
-              </div>
-            )}
-          </div>
-          <div style={{ width: "53%", textAlign: "start" }}>
-            {odds?.[0]?.b1}
+         
+          <div style={{ width: "100%", textAlign: "center",fontWeight:"bold" }}>
+            {odds?.[0]?.b1 == "0.00"?0:odds?.[0]?.b1}
           </div>
         </div>
       </div>
       <div
         className="w-100 d-sm-flex flex-row"
-        style={{ height: "auto", display: "flex" }}
+        style={{ height: "auto", display: "flex",color:"#333333" }}
       >
         {odds?.slice(0, 5)?.map((item: any, index: number) => {
           return <>{renderItem(item, index)}</>;
@@ -125,7 +102,7 @@ const CardBox = ({ odds, data }: any) => {
       </div>
       <div
         className="w-100 d-sm-flex flex-row"
-        style={{ height: "auto", display: "flex" }}
+        style={{ height: "auto", display: "flex",color:"#333333" }}
       >
         {odds?.slice(5, 10)?.map((item: any, index: number) => {
           return <>{renderItem(item, index + 5)}</>;
