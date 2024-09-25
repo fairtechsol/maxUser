@@ -66,14 +66,18 @@ const CardJMobile = () => {
   return (
     <>
       <div>
-          {selectedBet?.team?.betOnTeam.split(" ")[1].length === 3 && (
-            <MobilePlacedBet show={show1} setShow={setShow1} />
-          )}
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        {selectedBet?.team?.betOnTeam.split(" ")[1].length === 3 && (
+          <MobilePlacedBet show={show1} setShow={setShow1} />
+        )}
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%"}}>
+            <div style={{ width: "100%" }}>
               <div
                 style={{
                   width: "100%",
@@ -89,7 +93,7 @@ const CardJMobile = () => {
               </div>
             </div>
             {loading ? (
-            <NewLoader />
+              <NewLoader />
             ) : (
               <div>
                 <div
@@ -101,15 +105,17 @@ const CardJMobile = () => {
                   }}
                 >
                   <CardBox
-                    title={"Yes"}
-                    bgColor={"#72bbef"}
+                    title="Yes"
+                    betType="BACK"
+                    bgColor="#72bbef"
                     odds={dragonTigerDetail?.yes}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
                   />
                   <CardBox
-                    title={"No"}
-                    bgColor={"#faa9ba"}
+                    title="No"
+                    betType="LAY"
+                    bgColor="#faa9ba"
                     odds={dragonTigerDetail?.no}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
