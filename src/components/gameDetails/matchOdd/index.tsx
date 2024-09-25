@@ -1,14 +1,18 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { dummyArray, formatNumber, handleSize } from "../../../helpers";
+import { dummyArray, formatNumber, handleSize, manualProfitLoss } from "../../../helpers";
 import BetBox from "../betBox";
+import { useSelector } from "react-redux";
 
 const MatchOdd = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -40,7 +44,7 @@ const MatchOdd = ({ title, data, detail }) => {
       selectionId: runner?.selectionId?.toString(),
       gameType:detail?.matchType==="cricket"?"cricket":"other"
     };
-    console.log('team',team)
+    // console.log('team',team)
     dispatch(
       selectedBetAction({
         team,
@@ -79,6 +83,7 @@ const MatchOdd = ({ title, data, detail }) => {
         </div>
 
         <div className="matchOddTeamTab">
+
           <div className="matchOddTeam">
             <span
               className={`teamFont matchOddTeamTxt`}
@@ -90,6 +95,7 @@ const MatchOdd = ({ title, data, detail }) => {
                             )}...`
                           : detail?.teamA}
             </span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -111,6 +117,9 @@ const MatchOdd = ({ title, data, detail }) => {
                 profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
               ] : ""}
             </span>
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamA,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamA,data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
+           
           </div>
           <div
             className="matchOddRateBox rateBoxWidth"
@@ -149,6 +158,7 @@ const MatchOdd = ({ title, data, detail }) => {
                             )}...`
                           : detail?.teamB}
             </span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -170,6 +180,9 @@ const MatchOdd = ({ title, data, detail }) => {
                 profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
               ] : ""}
             </span>
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamB,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamB,data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
+           
           </div>
           <div
             className="matchOddRateBox rateBoxWidth"
@@ -209,6 +222,7 @@ const MatchOdd = ({ title, data, detail }) => {
                             )}...`
                           : detail?.teamC}
               </span>
+              <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
                   detail?.profitLossDataMatch?.[
@@ -230,6 +244,8 @@ const MatchOdd = ({ title, data, detail }) => {
                 profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
               ] : ""}
               </span>
+              <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype))?.toFixed(2)}</span>
+              </div>
             </div>
             <div
               className="matchOddRateBox rateBoxWidth"
