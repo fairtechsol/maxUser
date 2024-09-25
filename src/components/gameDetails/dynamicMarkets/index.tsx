@@ -86,7 +86,8 @@ const DynamicMarket = ({ title, data, detail }) => {
 
         <div className="dynamicTeamTab">
         
-          <div className="dynamicTeam" style={{ width: "28%" }}>
+          <div className="dynamicTeam" 
+            style={isMobile ?{width:"28%"}:{}}>
             <span className={`teamFont dynamicTeamTxt`}>Yes</span>
             <div className="d-flex flex-row justify-content-between w-100">
             <span
@@ -163,7 +164,8 @@ const DynamicMarket = ({ title, data, detail }) => {
         </div>
 
         <div className="dynamicTeamTab">
-          <div className="dynamicTeam" style={{ width: "28%" }}>
+          <div className="dynamicTeam"
+            style={isMobile?{width:"28%"}:{}}>
             <span className={`teamFont dynamicTeamTxt`}>No</span>
             <div className="d-flex flex-row justify-content-between w-100">
             <span

@@ -99,7 +99,8 @@ const ManualMarket = ({ title, data, detail }) => {
               ></span>
             </div>
           )} */}
-          <div className="manualTeam">
+          <div className="manualTeam" 
+            style={isMobile?{width:"28%"}:{}}>
             <span className={`teamFont manualTeamTxt`}>
               {(data?.type?.includes("quickbookmaker")
                 ? detail?.teamA
@@ -281,7 +282,8 @@ const ManualMarket = ({ title, data, detail }) => {
               ></span>
             </div>
           )} */}
-          <div className="manualTeam">
+          <div className="manualTeam" 
+            style={isMobile?{width:"28%"}:{}}>
             <span className={`teamFont manualTeamTxt`}>
               {(data?.type?.includes("quickbookmaker") ? detail?.teamB : "No") >
               25
@@ -463,7 +465,8 @@ const ManualMarket = ({ title, data, detail }) => {
                 ></span>
               </div>
             )} */}
-            <div className="manualTeam">
+            <div className="manualTeam" 
+            style={isMobile?{width:"28%"}:{}}>
               <span className={`teamFont manualTeamTxt`}>
                 {detail?.teamC?.length > 25
                   ? `${detail?.teamC?.slice(0, 25)}...`

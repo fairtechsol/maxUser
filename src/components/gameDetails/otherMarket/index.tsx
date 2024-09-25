@@ -132,6 +132,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
         <div className="otherMarketTeamTab">
           <div
             className="otherMarketTeam"
+            style={(isMobile && box === 6)?{width:"28%"}:{}}
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont otherMarketTeamTxt`}>
@@ -229,6 +230,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
         <div className="otherMarketTeamTab">
           <div
             className="otherMarketTeam"
+            style={(isMobile && box === 6)?{width:"28%"}:{}}
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont otherMarketTeamTxt`}>
@@ -323,6 +325,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
           <div className="otherMarketTeamTab">
             <div
               className="otherMarketTeam"
+            style={(isMobile && box === 6)?{width:"28%"}:{}}
               // style={box === 6 ? { width: "28%" } : {}}
             >
               <span className={`teamFont otherMarketTeamTxt`}>
