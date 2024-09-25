@@ -8,16 +8,17 @@ export const formattedMinMax = (min: any, max: any) => {
 };
 
 export const handleRoundId = (id: any) => {
-  // console.log("str", id);
-  if(!id){
-    return false;
+  try {
+    if (!id && id !== 0) {
+      return 0;
+    }
+    const idString = id + "";
+    if (idString.length > 0 && !idString.includes(".")) {
+      return id;
+    }
+    const IdParts = idString.split(".");
+    return IdParts[1] || 0;
+  } catch (error) {
+    console.error(error);
   }
-  if (id + "".length > 0 && !(id+"").includes(".")) {
-    return id;
-  }
-  // if (typeof id !== "string" || !id.includes(".")) {
-  //   return 0;
-  // }
-  const Id = id?.split(".");
-  return Id[1];
 };
