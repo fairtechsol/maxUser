@@ -98,8 +98,8 @@ export const manualProfitLoss = (
         }
       } else {
         if (team === selectedBet?.team?.betOnTeam) {
-          let loss = selectedBet?.team?.stake * (selectedBet?.team?.rate - 1);
-          return -loss ?? 0;
+          let loss = -(selectedBet?.team?.stake * (selectedBet?.team?.rate - 1));
+          return loss ?? 0;
         } else {
           let profit = selectedBet?.team?.stake;
           return profit ?? 0;
@@ -120,8 +120,8 @@ export const manualProfitLoss = (
         }
       } else {
         if (team === selectedBet?.team?.betOnTeam) {
-          let loss = (selectedBet?.team?.stake * selectedBet?.team?.rate) / 100;
-          return -loss ?? 0;
+          let loss = -((selectedBet?.team?.stake * selectedBet?.team?.rate) / 100);
+          return loss ?? 0;
         } else {
           let profit = selectedBet?.team?.stake;
           return profit ?? 0;
