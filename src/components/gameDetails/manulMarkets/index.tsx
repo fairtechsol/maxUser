@@ -1,13 +1,17 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { isLap, isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { formatNumber } from "../../../helpers";
+import { formatNumber, manualProfitLoss } from "../../../helpers";
+import { useSelector } from "react-redux";
 
 const ManualMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -108,6 +112,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 ? detail?.teamA
                 : "Yes"}
             </span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -128,7 +133,13 @@ const ManualMarket = ({ title, data, detail }) => {
               ]==="0"?"":detail?.profitLossDataMatch?.[
                 profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
               ]  : ""}
-            </span>
+            </span> 
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,data?.type?.includes("quickbookmaker")
+                ? detail?.teamA
+                : "Yes",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,data?.type?.includes("quickbookmaker")
+                  ? detail?.teamA
+                  : "Yes",data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
           </div>
           <div
             className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
@@ -282,6 +293,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 ? detail?.teamB
                 : "No"}
             </span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -303,6 +315,12 @@ const ManualMarket = ({ title, data, detail }) => {
                 profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
               ]  : ""}
             </span>
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,data?.type?.includes("quickbookmaker")
+                ? detail?.teamB
+                : "No",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,data?.type?.includes("quickbookmaker")
+                  ? detail?.teamB
+                  : "No",data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
           </div>
           <div
             className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
@@ -451,6 +469,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   ? `${detail?.teamC?.slice(0, 25)}...`
                   : detail?.teamC}
               </span>{" "}
+              <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
                   detail?.profitLossDataMatch?.[
@@ -472,6 +491,8 @@ const ManualMarket = ({ title, data, detail }) => {
                 profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
               ]  : ""}
               </span>
+              <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
             </div>
             <div
               className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}

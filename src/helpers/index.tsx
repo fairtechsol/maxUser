@@ -62,56 +62,67 @@ export const formatNumber = (num: any) => {
   }
   return num?.toString();
 };
- export const dummyArray=[
-   {
-     price:0,
-     size:0
-   },
-   {
-     price:0,
-     size:0
-   },
-   {
-     price:0,
-     size:0
-   }
- ]
- 
-export const manualProfitLoss = (selectedBet: any,team:any,type:any,gType:any) => {
-  if(type===selectedBet?.team?.matchBetType && selectedBet?.team?.stake){
-    if(gType==="match"){
-      if(selectedBet?.team?.type==="back"){
-        if(team===selectedBet?.team?.betOnTeam){
-          let profit = selectedBet?.team?.stake*(selectedBet?.team?.rate-1)
+export const dummyArray = [
+  {
+    price: 0,
+    size: 0,
+  },
+  {
+    price: 0,
+    size: 0,
+  },
+  {
+    price: 0,
+    size: 0,
+  },
+];
+
+export const manualProfitLoss = (
+  selectedBet: any,
+  team: any,
+  type: any,
+  gType: any
+) => {
+  if (type === selectedBet?.team?.matchBetType && selectedBet?.team?.stake) {
+    if (gType === "match") {
+      if (
+        selectedBet?.team?.type === "back" ||
+        selectedBet?.team?.type === "BACK"
+      ) {
+        if (team === selectedBet?.team?.betOnTeam) {
+          let profit = selectedBet?.team?.stake * (selectedBet?.team?.rate - 1);
           return profit ?? 0;
-        }else{
+        } else {
           let loss = -selectedBet?.team?.stake;
           return loss ?? 0;
         }
-      }else{
-        if(team===selectedBet?.team?.betOnTeam){
-          let loss = selectedBet?.team?.stake*(selectedBet?.team?.rate-1)
+      } else {
+        if (team === selectedBet?.team?.betOnTeam) {
+          let loss = selectedBet?.team?.stake * (selectedBet?.team?.rate - 1);
           return -loss ?? 0;
-        }else{
+        } else {
           let profit = selectedBet?.team?.stake;
           return profit ?? 0;
         }
       }
-      
-    }else{
-      if(selectedBet?.team?.type==="back"){
-        if(team===selectedBet?.team?.betOnTeam){
-          let profit = (selectedBet?.team?.stake*(selectedBet?.team?.rate))/100
+    } else {
+      if (
+        selectedBet?.team?.type === "back" ||
+        selectedBet?.team?.type === "BACK"
+      ) {
+        if (team === selectedBet?.team?.betOnTeam) {
+          let profit =
+            (selectedBet?.team?.stake * selectedBet?.team?.rate) / 100;
           return profit ?? 0;
-        }else{
+        } else {
           let loss = -selectedBet?.team?.stake;
           return loss ?? 0;
         }
-      }else{
-        if(team===selectedBet?.team?.betOnTeam){
-          let loss = (selectedBet?.team?.stake*(selectedBet?.team?.rate))/100
+      } else {
+        if (team === selectedBet?.team?.betOnTeam) {
+          let loss = (selectedBet?.team?.stake * selectedBet?.team?.rate) / 100;
           return -loss ?? 0;
-        }else{
+        } else {
           let profit = selectedBet?.team?.stake;
           return profit ?? 0;
         }

@@ -2,14 +2,17 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { dummyArray, formatNumber } from "../../../helpers";
+import { dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
 import BetBox from "../betBox";
+import { useSelector } from "react-redux";
 
 const Bookmaker = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
-
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -96,13 +99,14 @@ const Bookmaker = ({ title, box, data, detail }) => {
         <div className="bookmakerTeamTab">
           <div
             className="bookmakerTeam"
-            style={box === 6 ? { width: "28%" } : {}}
+            // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont bookmakerTeamTxt`}>
               {detail?.teamA?.length > 25
                 ? `${detail?.teamA?.slice(0, 25)}...`
                 : detail?.teamA}
             </span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -138,6 +142,8 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ]
                 : ""}
             </span>
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamA,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamA,data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
           </div>
           <div
             className={
@@ -202,13 +208,14 @@ const Bookmaker = ({ title, box, data, detail }) => {
         <div className="bookmakerTeamTab">
           <div
             className="bookmakerTeam"
-            style={box === 6 ? { width: "28%" } : {}}
+            // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont bookmakerTeamTxt`}>
               {detail?.teamB?.length > 25
                 ? `${detail?.teamB?.slice(0, 25)}...`
                 : detail?.teamB}
             </span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -244,6 +251,8 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     ]
                 : ""}
             </span>
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamB,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamB,data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
           </div>
           <div
             className={
@@ -309,13 +318,14 @@ const Bookmaker = ({ title, box, data, detail }) => {
           <div className="bookmakerTeamTab">
             <div
               className="bookmakerTeam"
-              style={box === 6 ? { width: "28%" } : {}}
+              // style={box === 6 ? { width: "28%" } : {}}
             >
               <span className={`teamFont bookmakerTeamTxt`}>
                 {detail?.teamC?.length > 25
                   ? `${detail?.teamC?.slice(0, 25)}...`
                   : detail?.teamC}
               </span>{" "}
+              <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
                   detail?.profitLossDataMatch?.[
@@ -351,6 +361,8 @@ const Bookmaker = ({ title, box, data, detail }) => {
                       ]
                   : ""}
               </span>
+              <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype))?.toFixed(2)}</span>
+              </div>
             </div>
             <div
               className={
