@@ -271,13 +271,14 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color:  item?.result === "1"
-                    ? "red"
-                    : item?.result === "2"
-                    ? "#ffff33"
-                    : item?.result === "3"
-                    ? "#33c6ff"
-                    : "#ffffff",
+                    color:
+                      item?.result === "1"
+                        ? "red"
+                        : item?.result === "2"
+                        ? "#ffff33"
+                        : item?.result === "3"
+                        ? "#33c6ff"
+                        : "#ffffff",
                   }}
                 >
                   {name?.[item?.result - 1]}
@@ -358,19 +359,10 @@ const CardResultBox = ({ data, name, type }: any) => {
                   style={{
                     fontSize: "16px",
                     fontWeight: "600",
-                    color:
-                      item?.result === "1"
-                        ? "#ff4500"
-                        : item?.result === "0"
-                        ? "#f5cc03"
-                        : "#ffffff",
+                    color: item?.result === "0" ? "#f5cc03" : "#ff4500",
                   }}
                 >
-                  {item?.result === "0"
-                    ? name?.[0]
-                    : item?.result === "2"
-                    ? name?.[1]
-                    : name?.[2]}
+                  {item?.result === "0" ? name?.[0] : name?.[1]}
                 </span>
               ) : type === "lucky7" ? (
                 <span
@@ -391,7 +383,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? name?.[1]
                     : name?.[2]}
                 </span>
-              ) :  type === "superover" ? (
+              ) : type === "superover" ? (
                 <span
                   style={{
                     fontSize: "14px",
@@ -410,7 +402,7 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? name?.[1]
                     : name?.[2]}
                 </span>
-              ) :(
+              ) : (
                 <span
                   style={{
                     fontSize: "16px",
