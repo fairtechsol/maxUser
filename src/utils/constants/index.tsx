@@ -438,10 +438,10 @@ export const navigateToGameDetail = {
 
 export const cardUrl =
   process.env.NODE_ENV === "production"
-    ? "https://jmdapi.com/tablevideo/?id="
-    : "https://maxbet9.fairgame.club/videoPage/";
+    ? "https://fairgame7.com/videoPage/"
+    : "https://fairgame7.com/videoPage/";
 
-export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
+export const cardUrlMain = "https://fairgame7.com/videoPage/";
 export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventId=";
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";
@@ -2114,7 +2114,6 @@ export const cardGames = [
     label: "Casino Meter",
   },
 ];
-
 
 export const title = {
   dt20: "20-20 Dragon Tiger",
