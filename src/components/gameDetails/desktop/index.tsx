@@ -674,7 +674,7 @@ const DesktopGameDetail = () => {
             </>
           </Container>
         </Col>
-        <Col md={4} className="ps-0 sideBet-W">
+        <Col md={4} className="p-0 sideBet-W">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

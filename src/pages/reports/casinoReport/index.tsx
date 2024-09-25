@@ -119,22 +119,13 @@ const CasinoReports = () => {
                 />
               </Col>
 
-              <Col
-                md={2}
-                xs={12}
-                style={{
-                  width: "17%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+              <Col md={2} xs={12} style={{width: isMobile ? "100%" : "17%" ,display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <CustomButton
                   style={{ paddingLeft: "6rem", paddingRight: "6rem" }}
                   size={isMobile ? "sm" : "lg"}
                   className={`${
                     isMobile ? "w-100" : "w-100 bg-primary"
-                  } border-0 fs-6 ps-5 pe-5`}
+                  } border-0 fs-6`}
                   onClick={() => {
                     let filter = "";
 

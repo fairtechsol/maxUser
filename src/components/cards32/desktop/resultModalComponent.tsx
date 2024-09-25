@@ -4,6 +4,7 @@ import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
 import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
+import ResultBetList from "../../commonComponent/resultBetList";
 interface Props {
   data: {
     C1: string;
@@ -148,6 +149,12 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
         <span style={{ opacity: "0.6" }}>Winner</span> Player{" "}
         {7 + Number(data?.result?.win)}
       </div>
+      {
+        data?.bets?.count > 0 && 
+        <div className="w-100">
+        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
+      </div>
+      }
     </Container>
   );
 };

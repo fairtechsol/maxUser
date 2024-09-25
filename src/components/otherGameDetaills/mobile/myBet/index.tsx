@@ -22,7 +22,7 @@ const placeBetHeader = [
 const MyBet = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
   return (
-    <Table className="w-full" bordered>
+    <Table className="w-full lh-1" bordered>
       <thead>
         <tr>
           {placeBetHeader?.map((item) => (

@@ -89,16 +89,6 @@ const QueenDesktop = () => {
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
-                  <a
-                    style={{
-                      fontSize: "14px",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setShow(true)}
-                  >
-                    RULES
-                  </a>
                 </div>
                 <span>
                   {dragonTigerDetail?.videoInfo
@@ -166,7 +156,7 @@ const QueenDesktop = () => {
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

@@ -96,7 +96,7 @@ const CasinoMeterMobile = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.casinoWar}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.cmeter}`);
   }, []);
 
   useEffect(() => {

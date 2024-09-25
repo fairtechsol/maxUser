@@ -18,7 +18,7 @@ const CommonButtonBox = ({
     <div className="commonButtonBoxContainer" style={{ width: width }}>
       <div>
         <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
-          {lock ? 0 : parseFloat(value1).toFixed(2)}
+          {lock ? 0 : parseFloat(value1)}
         </span>
       </div>
       <div

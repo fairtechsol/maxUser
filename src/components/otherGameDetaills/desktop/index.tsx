@@ -66,7 +66,7 @@ const FootballDesktopGameDetail = () => {
             <>
               <Col md={12}>
                 <BetTableHeader
-                  customClass="mt-2 py-2"
+                  customClass="py-2"
                   title={otherMatchDetails?.title}
                   rightComponent={
                     <span className="title-16 fbold text-white">
@@ -235,7 +235,7 @@ const FootballDesktopGameDetail = () => {
             </>
           </Container>
         </Col>
-        <Col md={4} className="ps-0">
+        <Col md={4} className="p-0">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

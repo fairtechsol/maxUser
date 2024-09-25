@@ -125,7 +125,7 @@ const CardJDesktop = () => {
               </div>
             </div>
             {loading ? (
-             <NewLoader />
+              <NewLoader />
             ) : (
               <div>
                 <div
@@ -137,15 +137,17 @@ const CardJDesktop = () => {
                   }}
                 >
                   <CardBox
-                    title={"Yes"}
-                    bgColor={"#72bbef"}
+                    title="Yes"
+                    betType="BACK"
+                    bgColor="#72bbef"
                     odds={dragonTigerDetail?.yes}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
                   />
                   <CardBox
-                    title={"No"}
-                    bgColor={"#faa9ba"}
+                    title="No"
+                    betType="BACK"
+                    bgColor="#faa9ba"
                     odds={dragonTigerDetail?.no}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
@@ -155,7 +157,11 @@ const CardJDesktop = () => {
                     <div className="ticker-wrap">
                       <div
                         className="ticker-move"
-                        style={{ color: "#097c93", fontWeight: "700",fontSize:"12px" }}
+                        style={{
+                          color: "#097c93",
+                          fontWeight: "700",
+                          fontSize: "12px",
+                        }}
                       >
                         {dragonTigerDetail?.videoInfo?.remark}
                       </div>
@@ -175,7 +181,7 @@ const CardJDesktop = () => {
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

@@ -113,7 +113,6 @@ const cardDetail = createSlice({
         };
       })
       .addCase(update7CardMatchRates.fulfilled, (state, action) => {
-        console.log("action.payload",action.payload)
         const { t1, t2 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
