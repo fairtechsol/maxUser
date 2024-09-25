@@ -9,7 +9,7 @@ const RightPanelContainer = ({ title, children }: RightPanelContainerProps) => {
     <div>
       <div>
         <BetTableHeader
-          customClass="mt-2 rounded-0  py-1"
+          customClass="mt-1 rounded-0  py-1"
           title={title}
         />
       </div>
