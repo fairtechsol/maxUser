@@ -280,12 +280,9 @@ const PlacedBet = () => {
   }, [success, error]);
 
   const handleProfit = (value: any) => {
-    let profit;
+    let profit:any;
     if (selectedBet?.team?.matchBetType === "session") {
-      profit =
-        selectedBet?.team?.type === "no"
-          ? value
-          : (value * selectedBet?.team?.percent) / 100;
+      profit =0;
     } else if (
       selectedBet?.data?.type === matchBettingType.matchOdd ||
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
