@@ -71,7 +71,7 @@ const DesktopGameDetail = () => {
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
         // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
         //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
+        `${Constants.thirdPartyLive}/cricketScore?eventId=${eventId}`
       );
       // {"success":false,"msg":"Not found"}
       //console.log("response 11:", response);
