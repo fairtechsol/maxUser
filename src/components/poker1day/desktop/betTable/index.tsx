@@ -107,7 +107,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             }
           >
             <span className="title-14 f600">{playerNum?.b1}</span>
-            <span className="title-14 f500">{playerNum?.bs1}</span>
+            {/* <span className="title-14 f500">{playerNum?.bs1}</span> */}
           </div>
           <div
             className={ playerNum?.gstatus === "SUSPENDED" ||
@@ -123,7 +123,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             }
           >
             <span className="title-14 f600">{playerNum?.l1}</span>
-            <span className="title-14 f500">{playerNum?.ls1}</span>
+            {/* <span className="title-14 f500">{playerNum?.ls1}</span> */}
           </div>
         </div>
       </div>

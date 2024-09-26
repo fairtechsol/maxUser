@@ -3,6 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
 import { formatNumber } from "../../../../helpers";
+import { isMobile } from "../../../../utils/screenDimension";
 const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any, type: any) => {
@@ -54,7 +55,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         >
           Min: {min} Max: {formatNumber(max)}
         </span>
-        <div className="blboxes " style={{ lineHeight: "2" }}>
+        <div className={isMobile ? "box-mob" : "blboxes "} style={{ lineHeight: "2" }}>
           <div className="w-50 back-BackGround flex-justify-center">
             <span
               className="f600"
@@ -114,9 +115,10 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
           </div>
         </span>
         <div
-          className={`blboxes  ${
-            handleLock(team1?.status, team1?.b1) ? "suspended-row" : ""
-          }`}
+        className={`
+          ${isMobile ? "box-mob" : "blboxes"} 
+          ${handleLock(team1?.status, team1?.b1) ? "suspended-row" : ""}
+        `}
           data-title={handleLock(team1?.status, team1?.b1) ? "SUSPENDED" : ""}
         >
           <div
@@ -194,9 +196,10 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
           </div>
         </span>
         <div
-          className={`blboxes ${
-            handleLock(team2?.status, team2?.b1) ? "suspended-row" : ""
-          }`}
+       className={`
+        ${isMobile ? "box-mob" : "blboxes"} 
+        ${handleLock(team1?.status, team1?.b1) ? "suspended-row" : ""}
+      `}
           data-title={handleLock(team2?.status, team2?.b1) ? "SUSPENDED" : ""}
         >
           <div

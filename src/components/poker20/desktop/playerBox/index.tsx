@@ -54,7 +54,7 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
         result?.map((item: any, index: number) => {
           return (
             <div
-              
+              className="top-align"
               style={{ lineHeight: 1,width:"30%" }}
               key={index + playerNum[0]}
             >
@@ -75,7 +75,7 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
               </div>
               <div
                 className={
-                  item?.entries?.[0]?.gstatus === "0" ? "suspended" : ""
+                  item?.entries?.[0]?.gstatus === "0" ? "box-overlay suspended-poker20" : ""
                 }
                 style={{
                   width: "100%",
@@ -122,8 +122,8 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
                         ? data?.profitLoss[
                             `${data?.videoInfo?.mid}_${item?.entries?.[0]?.sid}_card`
                           ]
-                        : 0
-                      : 0}
+                        : ""
+                      : ""}
                   </span>
                 </div>
                

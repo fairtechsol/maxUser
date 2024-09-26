@@ -94,7 +94,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
           <div className="dtlTitle title-12">Player 8 </div>
           {renderItem(matchOddsData?.[0], 0, "back")}
@@ -102,7 +102,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
           <div className="dtlTitle title-12"> Player 9</div>
           {renderItem(matchOddsData?.[1], 2, "back")}
@@ -110,7 +110,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
           <div className="dtlTitle title-12"> Player 10</div>
           {renderItem(matchOddsData?.[2], 2, "back")}
@@ -118,7 +118,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
           <div className="dtlTitle title-12"> Player 11</div>
           {renderItem(matchOddsData?.[3], 2, "back")}

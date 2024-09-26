@@ -92,15 +92,15 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="abjresultModal mb-2">
-        <div className="w-100 abjresultCardContainer2">
+        <div className="abjresultCardContainer-sub">
           <div
             style={{
-              width: isMobile ? "90%" : "90%",
+              width: isMobile ? "30%" : "70%",
               margin: "8px 9px 10px 11px",
             }}
           >
             <div style={{width:"100%",textAlign:"center",fontWeight:"450"}}>Andar</div>
-            <div>
+            <div style={{width:"100%"}}>
               {elementsAndar?.length > minLength ? (
                 <Slider
                   {...sliderSettings(elementsAndar.length, elementsAndar.length > minLength)}
@@ -120,7 +120,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
               )}
             </div>
             <div style={{width:"100%",textAlign:"center",fontWeight:"450"}}>Bahar</div>
-            <div>
+            <div style={{width:"100%"}}>
               {elementsBahar?.length > minLength ? (
                 <Slider
                   {...sliderSettings(elementsBahar.length, elementsBahar.length > minLength)}

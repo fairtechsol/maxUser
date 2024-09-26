@@ -193,7 +193,7 @@ const Abj1Desktop = () => {
               }}
             >
               <Col md={12}>
-                <DesktopPlacedBet />
+                <DesktopPlacedBet type={cardGamesType.andarBahar1} />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />

@@ -44,7 +44,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+          handleLock(item?.gstatus, item?.b1) ? "suspended-poker20" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.b1) && handleBet(item, "back")
@@ -55,7 +55,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     ) : (
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.l1) ? "lock" : ""
+          handleLock(item?.gstatus, item?.l1) ? "suspended-poker20" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.l1) && handleBet(item, "lay")

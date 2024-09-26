@@ -114,22 +114,138 @@ body table.table {
   border-radius: 4px;
 }
 
-.suspended:after {
+.suspended{
+  position: relative;
+  pointer-events: none;
+  cursor: none;
+}
+
+.suspended::before {
+  background-image: url(../assets/images/baccarat/lock.svg) !important;
+  background-size: 17px 17px;
+  filter: invert(1);
+  -webkit-filter: invert(1);
+  background-repeat: no-repeat;
+  content: "";
   position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+.suspended::after {
+  content: "";
+  background-color: #373636d6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: not-allowed;
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
+}
+
+.lock{
+  position: relative;
+  pointer-events: none;
+  cursor: none;
+}
+
+.lock::before {
+  background-image: url(../assets//images//baccarat//lock.svg);
+  background-size: 17px 17px;
+  filter: invert(1);
+  -webkit-filter: invert(1);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+.lock::after {
+  content: "";
+  background-color: #373636d6;
+  position: absolute;
   height: 100%;
   width: 100%;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  text-transform: uppercase;
-  font-family: "Font Awesome 5 Free";
-  content: "\f023";
-  font-weight: 900;
-  font-size: 18px;
+  left: 0;
   top: 0;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+// .suspended:after {
+//   position: absolute;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100%;
+//   width: 100%;
+//   right: 0;
+//   background-color: rgba(0, 0, 0, 0.6);
+//   color: #ffffff;
+//   text-transform: uppercase;
+//   font-family: "Font Awesome 5 Free";
+//   content: "\f023";
+//   font-weight: 900;
+//   font-size: 18px;
+//   top: 0;
+// //  bottom: 10px;
+// }
+
+.suspended-poker20{
+  position: relative;
+  pointer-events: none;
+  cursor: none;
+}
+
+.suspended-poker20::before {
+  background-image: url(../assets/images/baccarat/lock.svg) !important;
+  background-size: 17px 17px;
+  filter: invert(1);
+  -webkit-filter: invert(1);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -12px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+.suspended-poker20::after{
+
+  content: "";
+  background-color: #373636d6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
 
 .card32-table-container{
@@ -142,26 +258,10 @@ body table.table {
   width: 100%;
   display: flex;
   flex-direction: row;
-  border: 1px solid #c7c8ca;
+  // border: 1px solid #c7c8ca;
 }
 
-.card32-table-row .suspended:after {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  text-transform: uppercase;
-  font-family: "Font Awesome 5 Free";
-  content: "\f023";
-  font-weight: 900;
-  font-size: 18px;
-  top: 0;
-}
+
 
 
 /* Marquee.css */
@@ -784,23 +884,7 @@ img {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-.suspended:after {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  text-transform: uppercase;
-  font-family: "Font Awesome 5 Free";
-  content: "\f023";
-  font-weight: 900;
-  font-size: 18px;
-  top: 0;
-}
+
 .resultModalHeader {
   width: 100%;
   // height: 70px;
@@ -823,12 +907,10 @@ img {
   align-items: center;
   color: #000000;
 }
-.suspended {
-  position: relative;
-}
-.lock {
-  position: relative;
-}
+// .suspended {
+//   position: relative;
+// }
+
 .lockk {
   position: relative;
 }
