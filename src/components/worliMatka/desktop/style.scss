@@ -1,7 +1,16 @@
-@font-face {
-    font-family: 'RetroSigned';
-    src: url('/fonts/casinonumfont.woff2') format('woff2'),
-         url('/fonts/casinonumfont.woff') format('woff');
+// @font-face {
+//     font-family: 'RetroSigned';
+//     src: url('/fonts/casinonumfont.woff2') format('woff2'),
+//          url('/fonts/casinonumfont.woff') format('woff');
+//     font-weight: Light;
+//     font-style: normal;
+//   }
+  @font-face {
+    font-family: "RetroSigned";
+    // src: url('/fonts/casinonumfont.woff2') format('woff2'),
+    //      url('/fonts/casinonumfont.woff') format('woff');
+    src: url("/fonts/Casino3DMarquee.woff2") format("woff2"),
+      url("/fonts/Casino3DMarquee.woff") format("woff");
     font-weight: Light;
     font-style: normal;
   }

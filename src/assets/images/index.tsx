@@ -72,7 +72,7 @@ export { default as ball4 } from "./sportCasino/ball4.webp";
 export { default as ball6 } from "./sportCasino/ball6.webp";
 export { default as ballW } from "./sportCasino/wicket.webp";
 export { default as cricketfive } from "./rules/5fivecricktrules.webp";
-export { default as race20rules } from "./rules/race20Rules.webp";
+export { default as race20rules } from "./rules/race20Rules7.jpg";
 export { default as baccarat1rules } from "./rules/baccarat1rules.webp";
 export { default as s1 } from "./superOver/A.webp";
 export { default as s2 } from "./superOver/2.webp";
