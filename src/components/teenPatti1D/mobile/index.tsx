@@ -413,7 +413,7 @@ const TeenPattiMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <RulesModal show={show} setShow={setShow} rule={tprules} type={"imageWithContent"} gameType="teen" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

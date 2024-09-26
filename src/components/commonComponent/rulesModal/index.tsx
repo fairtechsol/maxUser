@@ -1,9 +1,9 @@
 import Modal from "react-bootstrap/Modal";
 import {isMobile} from "../../../utils/screenDimension";
 import RulesSection from "../../baccarat2/desktop/RulesSection";
-import RulesBoth from "../../casinoMeter/desktop/RulesBoth";
-
-const RulesModal = ({ show, setShow, rule,type }: any) => {
+import CmeterRules from "../../casinoMeter/desktop/cmeterRules";
+import Teen1dRules from "../../teenPatti1D/desktop/teen1dRules";
+const RulesModal = ({ show, setShow, rule,type ,gameType}: any) => {
 
   const handleClose = () => setShow(false);
   return (
@@ -23,7 +23,10 @@ const RulesModal = ({ show, setShow, rule,type }: any) => {
             <RulesSection />
           )  : type === "imageWithContent" ? (
             <div>
-              <RulesBoth /> 
+              {
+                 gameType == "cmeter"?<CmeterRules/>:gameType=="teen"?<Teen1dRules/>:<></>
+              }
+              
             </div>
           ) : (
             <img src={rule} width={"100%"} height={isMobile ? "550px" : "650px"} alt="modal content" />

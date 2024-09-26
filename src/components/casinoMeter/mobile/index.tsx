@@ -208,7 +208,7 @@ const CasinoMeterMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} type={modalType}/>
+      <RulesModal show={show} setShow={setShow}  type={"imageWithContent"} gameType="cmeter"/>
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
