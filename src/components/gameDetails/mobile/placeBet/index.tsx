@@ -98,7 +98,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   const handleProfit = (value: any) => {
     let profit;
     if (selectedBet?.team?.matchBetType === "session") {
-      profit =0;
+      profit = 0;
       // (selectedBet?.team?.type === "no" || selectedBet?.team?.type === "No")
       //     ? value
       //     : (value * selectedBet?.team?.percent) / 100;
@@ -112,12 +112,12 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       selectedBet?.data?.type?.includes("setWinner")
     ) {
       profit =
-        (selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK")
+        selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK"
           ? (value * ((selectedBet?.team?.rate - 1) * 100)) / 100
           : -(value * ((selectedBet?.team?.rate - 1) * 100)) / 100;
     } else {
       profit =
-      (selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK")
+        selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK"
           ? (value * selectedBet?.team?.rate) / 100
           : -(value * selectedBet?.team?.rate) / 100;
     }
@@ -133,7 +133,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       ).toFixed(2);
     } else {
       profit =
-        (data?.type === "back" || data?.type === "BACK")
+        data?.type === "back" || data?.type === "BACK"
           ? (
               -Number(data?.stake) +
               Number(handleTeamRates(data?.matchBetType, type))
@@ -162,12 +162,23 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
       type === "quickbookmaker2" ||
       type === "quickbookmaker3"
     ) {
-      rate = matchDetails?.profitLossDataMatch[`team${team}Rate_${matchDetails?.id}`];
-    } else if (type === "completeMatch" || type === "completeMatch1" || type === "completeManual") {
+      rate =
+        matchDetails?.profitLossDataMatch[
+          `team${team}Rate_${matchDetails?.id}`
+        ];
+    } else if (
+      type === "completeMatch" ||
+      type === "completeMatch1" ||
+      type === "completeManual"
+    ) {
       rate =
         team === "A"
-          ? matchDetails?.profitLossDataMatch[`yesRateComplete_${matchDetails?.id}`]
-          : matchDetails?.profitLossDataMatch[`noRateComplete_${matchDetails?.id}`];
+          ? matchDetails?.profitLossDataMatch[
+              `yesRateComplete_${matchDetails?.id}`
+            ]
+          : matchDetails?.profitLossDataMatch[
+              `noRateComplete_${matchDetails?.id}`
+            ];
     } else {
       rate =
         team === "A"
@@ -315,21 +326,32 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 onClick={() => {
                   try {
                     if (
-                      selectedBet?.team?.stake <
-                      (selectedBet?.data?.minBet || selectedBet?.data?.min)
+                      ![
+                        "bookmaker",
+                        "bookmaker1",
+                        "bookmaker2",
+                        "quickbookmaker1",
+                        "quickbookmaker2",
+                        "quickbookmaker3",
+                      ].includes(selectedBet?.team?.matchBetType)
                     ) {
-                      toast.error(
-                        "Stake value must be greater or equal to min bet"
-                      );
-                      return;
-                    } else if (
-                      selectedBet?.team?.stake >
-                      (selectedBet?.data?.maxBet || selectedBet?.data?.max)
-                    ) {
-                      toast.error(
-                        "Stake value must be smaller or equal to max bet"
-                      );
-                      return;
+                      if (
+                        selectedBet?.team?.stake <
+                        (selectedBet?.data?.minBet || selectedBet?.data?.min)
+                      ) {
+                        toast.error(
+                          "Stake value must be greater or equal to min bet"
+                        );
+                        return;
+                      } else if (
+                        selectedBet?.team?.stake >
+                        (selectedBet?.data?.maxBet || selectedBet?.data?.max)
+                      ) {
+                        toast.error(
+                          "Stake value must be smaller or equal to max bet"
+                        );
+                        return;
+                      }
                     }
                     if (loading || matchOddLoading) {
                       return;
@@ -356,7 +378,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                       browserDetail: browserInfo?.userAgent,
                       matchId: selectedBet?.team?.matchId,
                       ipAddress:
-                        ipAddress === "Not found" || !ipAddress ? "192.168.1.100" : ipAddress,
+                        ipAddress === "Not found" || !ipAddress
+                          ? "192.168.1.100"
+                          : ipAddress,
                       odd: selectedBet?.team?.rate,
                       stake: selectedBet?.team?.stake,
                       matchBetType: selectedBet?.team?.matchBetType,
@@ -430,10 +454,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                               url:
                                 selectedBet?.data?.type === "session" ||
                                 selectedBet?.data?.SelectionId
-                                ? ApiConstants.BET.PLACEBETSESSION
-                                : selectedBet?.team?.gameType === "other"
-                                ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
-                                : ApiConstants.BET.PLACEBETMATCHBETTING,
+                                  ? ApiConstants.BET.PLACEBETSESSION
+                                  : selectedBet?.team?.gameType === "other"
+                                  ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
+                                  : ApiConstants.BET.PLACEBETMATCHBETTING,
                               data:
                                 selectedBet?.data?.type === "session" ||
                                 selectedBet?.data?.SelectionId
@@ -443,7 +467,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           );
                         }, getProfile?.delayTime * 1000);
                       }
-                    }else if(selectedBet?.team?.matchBetType === "tournament"){
+                    } else if (
+                      selectedBet?.team?.matchBetType === "tournament"
+                    ) {
                       setMatchOddLoading(true);
                       setTimeout(() => {
                         dispatch(
@@ -453,7 +479,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           })
                         );
                       }, getProfile?.delayTime * 1000);
-                    }  else {
+                    } else {
                       dispatch(
                         placeBet({
                           url:
@@ -594,10 +620,10 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                           <div className="row">
                             <div className="col-md-12">
                               <span className="f400 title-12">
-                              {handleTeamRates(
-                                selectedBet?.team?.matchBetType,
-                                "C"
-                              )}
+                                {handleTeamRates(
+                                  selectedBet?.team?.matchBetType,
+                                  "C"
+                                )}
                               </span>
                             </div>
                           </div>
