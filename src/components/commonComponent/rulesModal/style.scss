@@ -1,0 +1,36 @@
+.go2072408551 {
+    display: flex; /* Container is a flexbox */
+    align-items: center; /* Vertically centers flex items */
+    background: #fff; /* White background */
+    color: #363636; /* Dark grey text color */
+    line-height: 1.3; /* Line spacing */
+    will-change: transform; /* Optimizes rendering for potential transforms */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05); /* Light shadow for depth */
+    //max-width: 350px; /* Limits the maximum width of the container */
+    pointer-events: auto; /* Ensures it can receive pointer (mouse/touch) events */
+    padding: 8px 10px; /* Padding inside the container */
+    border-radius: 8px; /* Rounds the corners */
+}
+.go2534082608 {
+    width: 20px; /* Set the width of the element */
+    height: 20px; /* Set the height of the element */
+    opacity: 1; /* Set opacity to 1 (fully visible) */
+    border-radius: 10px; /* Round the corners to create a circle */
+    background: #ff4b4b; /* Set the background color */
+    position: relative; /* Positioning relative to its normal position */
+    //transform: rotate(45deg); /* Rotate the element by 45 degrees */
+    animation: go2264125279 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Apply animation */
+    color: aliceblue; /* Set text color */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    font-size: 14px; /* Adjust font size as needed */
+    text-align: center; /* Center the text */
+}
+
+//animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards running go3223188581;
+.custom-modal-width {
+    max-width: 160px; /* Set your desired width */
+    width: 100%; /* Ensure responsiveness */
+  }
+  

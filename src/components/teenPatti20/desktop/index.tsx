@@ -480,7 +480,7 @@ const TeenPattiDesktop = () => {
                     </tbody>
                   </Table>
                 </div>
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
+                <RulesModal show={show} setShow={setShow} gameType="teen20" rule={tprules} type="imageWithContent" />
               </Col>
             </Row>
           </Container>

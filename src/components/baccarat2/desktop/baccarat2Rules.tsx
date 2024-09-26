@@ -1,6 +1,6 @@
 import React from "react";
-
-const RulesSection = ({ show, setShow }: any) => {
+import { b2rules } from "../../../assets/images"; 
+const Baccarat2Rules = ({ show, setShow }: any) => {
 
     const handleClose = () => setShow(false);
   return (
@@ -57,4 +57,4 @@ const RulesSection = ({ show, setShow }: any) => {
   );
 };
 
-export default RulesSection;
+export default Baccarat2Rules;
