@@ -60,6 +60,7 @@ export const ApiConstants = {
   OLD_PASSWORD: "/user/check/oldPassword",
   MATCH: {
     MATCHLIST: "/match/list",
+    TABLIST: "/expert/blinkingTabs",
     MATCHSEARCHLIST: "/match/search",
     SEARCHLIST: "/user/searchlist",
     MATCHDETAILS: "/match/",

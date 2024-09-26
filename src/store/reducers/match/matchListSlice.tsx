@@ -5,6 +5,7 @@ import {
   SearchListReset,
   getMatchList,
   getMatchListSearch,
+  getTabList,
   matchDetailAction,
   matchListReset,
   resetMarketId,
@@ -27,6 +28,7 @@ interface InitialState {
   loading: boolean;
   error: any;
   matchList: any;
+  tabList: any;
   getMatchListBySearch: any;
   matchDetails: any;
   selectedBet: any;
@@ -36,6 +38,7 @@ interface InitialState {
 
 const initialState: InitialState = {
   matchList: [],
+  tabList: [],
   getMatchListBySearch: [],
   loading: false,
   success: false,
@@ -67,6 +70,20 @@ const matchListSlice = createSlice({
         }
       })
       .addCase(getMatchList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(getTabList.pending, (state) => {
+        state.loading = true;
+        // state.success = false;
+        state.error = null;
+      })
+      .addCase(getTabList.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+          state.tabList = action.payload?.data;
+      })
+      .addCase(getTabList.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })
