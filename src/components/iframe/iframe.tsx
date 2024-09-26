@@ -14,7 +14,7 @@ import "./style.scss";
 // }
 
 const Iframe = ({ data, width }: any) => {
-  console.log("data", data);
+  
 
   return (
     <>
@@ -35,7 +35,7 @@ const Iframe = ({ data, width }: any) => {
             </p>
 
             {/* Team 2 Details */}
-            <p className="team-1 row" style={{ fontSize: "12px" }}>
+            <p className="team-1 row mt-2" style={{ fontSize: "12px" }}>
               <span className="team-name col-3">{data?.spnnation2}</span>
               <span className="score col-4 text-end">{data?.score2}</span>
               {data?.spnrunrate2 && (
