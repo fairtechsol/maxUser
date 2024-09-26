@@ -42,7 +42,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
       placeIndex: index,
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
-      gameType:detail?.matchType==="cricket"?"cricket":"other"
+      gameType: detail?.matchType === "cricket" ? "cricket" : "other",
     };
     dispatch(
       selectedBetAction({
@@ -99,7 +99,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
         <div className="bookmakerTeamTab">
           <div
             className="bookmakerTeam"
-            style={(isMobile && box === 6)?{width:"28%"}:{}}
+            style={isMobile && box === 6 ? { width: "28%" } : {}}
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont bookmakerTeamTxt`}>
@@ -108,42 +108,80 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 : detail?.teamA}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A +
-                    "_" +
-                    detail?.id
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A +
-                        "_" +
-                        detail?.id
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-            >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A +
-                  "_" +
-                  detail?.id
-              ]
-                ? detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.A +
-                      "_" +
-                      detail?.id
-                  ] === "0"
-                  ? ""
-                  : detail?.profitLossDataMatch?.[
+              <span
+                className={`${
+                  parseInt(
+                    detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.A +
                         "_" +
                         detail?.id
                     ]
-                : ""}
-            </span>
-            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamA,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamA,data?.type,data?.gtype))?.toFixed(2)}</span>
+                  ) +
+                    manualProfitLoss(
+                      selectedBet,
+                      detail?.teamA,
+                      data?.type,
+                      data?.gtype
+                    ) >
+                  0
+                    ? "color-green"
+                    : "color-red"
+                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A +
+                    "_" +
+                    detail?.id
+                ]
+                  ? detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A +
+                        "_" +
+                        detail?.id
+                    ] === "0"
+                    ? ""
+                    : parseInt(
+                        detail?.profitLossDataMatch?.[
+                          profitLossDataForMatchConstants[data?.type]?.A +
+                            "_" +
+                            detail?.id
+                        ]
+                      ) +
+                      manualProfitLoss(
+                        selectedBet,
+                        detail?.teamA,
+                        data?.type,
+                        data?.gtype
+                      )
+                  : ""}
+              </span>
+              <span
+                className="title-12 f-400"
+                style={{
+                  color:
+                    manualProfitLoss(
+                      selectedBet,
+                      detail?.teamA,
+                      data?.type,
+                      data?.gtype
+                    ) > 0
+                      ? "#086f3f"
+                      : "#bd1828",
+                }}
+              >
+                {manualProfitLoss(
+                  selectedBet,
+                  detail?.teamA,
+                  data?.type,
+                  data?.gtype
+                ) === 0
+                  ? ""
+                  : manualProfitLoss(
+                      selectedBet,
+                      detail?.teamA,
+                      data?.type,
+                      data?.gtype
+                    )?.toFixed(2)}
+              </span>
             </div>
           </div>
           <div
@@ -161,7 +199,10 @@ const Bookmaker = ({ title, box, data, detail }) => {
             )}
             {box === 6 ? (
               <>
-                {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
+                {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
+                  ? data?.runners?.[0]?.ex?.availableToBack
+                  : dummyArray
+                )?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
@@ -172,7 +213,10 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     />
                   );
                 })}
-                {(data?.runners?.[0]?.ex?.availableToLay?.length>0?data?.runners?.[0]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
+                {(data?.runners?.[0]?.ex?.availableToLay?.length > 0
+                  ? data?.runners?.[0]?.ex?.availableToLay
+                  : dummyArray
+                )?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
@@ -209,7 +253,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
         <div className="bookmakerTeamTab">
           <div
             className="bookmakerTeam"
-            style={(isMobile && box === 6)?{width:"28%"}:{}}
+            style={isMobile && box === 6 ? { width: "28%" } : {}}
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont bookmakerTeamTxt`}>
@@ -218,42 +262,80 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 : detail?.teamB}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B +
-                    "_" +
-                    detail?.id
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B +
-                        "_" +
-                        detail?.id
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-            >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B +
-                  "_" +
-                  detail?.id
-              ]
-                ? detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.B +
-                      "_" +
-                      detail?.id
-                  ] === "0"
-                  ? ""
-                  : detail?.profitLossDataMatch?.[
+              <span
+                className={`${
+                  parseInt(
+                    detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.B +
                         "_" +
                         detail?.id
                     ]
-                : ""}
-            </span>
-            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamB,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamB,data?.type,data?.gtype))?.toFixed(2)}</span>
+                  ) +
+                    manualProfitLoss(
+                      selectedBet,
+                      detail?.teamB,
+                      data?.type,
+                      data?.gtype
+                    ) >
+                  0
+                    ? "color-green"
+                    : "color-red"
+                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B +
+                    "_" +
+                    detail?.id
+                ]
+                  ? detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B +
+                        "_" +
+                        detail?.id
+                    ] === "0"
+                    ? ""
+                    : parseInt(
+                        detail?.profitLossDataMatch?.[
+                          profitLossDataForMatchConstants[data?.type]?.B +
+                            "_" +
+                            detail?.id
+                        ]
+                      ) +
+                      manualProfitLoss(
+                        selectedBet,
+                        detail?.teamB,
+                        data?.type,
+                        data?.gtype
+                      )
+                  : ""}
+              </span>
+              <span
+                className="title-12 f-400"
+                style={{
+                  color:
+                    manualProfitLoss(
+                      selectedBet,
+                      detail?.teamB,
+                      data?.type,
+                      data?.gtype
+                    ) > 0
+                      ? "#086f3f"
+                      : "#bd1828",
+                }}
+              >
+                {manualProfitLoss(
+                  selectedBet,
+                  detail?.teamB,
+                  data?.type,
+                  data?.gtype
+                ) === 0
+                  ? ""
+                  : manualProfitLoss(
+                      selectedBet,
+                      detail?.teamB,
+                      data?.type,
+                      data?.gtype
+                    )?.toFixed(2)}
+              </span>
             </div>
           </div>
           <div
@@ -269,9 +351,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
             )}
-              {box === 6 ? (
+            {box === 6 ? (
               <>
-                {(data?.runners?.[1]?.ex?.availableToBack?.length>0?data?.runners?.[1]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
+                {(data?.runners?.[1]?.ex?.availableToBack?.length > 0
+                  ? data?.runners?.[1]?.ex?.availableToBack
+                  : dummyArray
+                )?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
@@ -282,7 +367,10 @@ const Bookmaker = ({ title, box, data, detail }) => {
                     />
                   );
                 })}
-                {(data?.runners?.[1]?.ex?.availableToLay?.length>0?data?.runners?.[1]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
+                {(data?.runners?.[1]?.ex?.availableToLay?.length > 0
+                  ? data?.runners?.[1]?.ex?.availableToLay
+                  : dummyArray
+                )?.map((item: any) => {
                   return (
                     <BetBox
                       data={item}
@@ -320,7 +408,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
           <div className="bookmakerTeamTab">
             <div
               className="bookmakerTeam"
-            style={(isMobile && box === 6)?{width:"28%"}:{}}
+              style={isMobile && box === 6 ? { width: "28%" } : {}}
               // style={box === 6 ? { width: "28%" } : {}}
             >
               <span className={`teamFont bookmakerTeamTxt`}>
@@ -329,42 +417,80 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   : detail?.teamC}
               </span>{" "}
               <div className="d-flex flex-row justify-content-between w-100">
-              <span
-                className={`${
-                  detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.C +
-                      "_" +
-                      detail?.id
-                  ] > 0
-                    ? "color-green"
-                    : detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C +
-                          "_" +
-                          detail?.id
-                      ] < 0
-                    ? "color-red"
-                    : ""
-                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-              >
-                {detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.C +
-                    "_" +
-                    detail?.id
-                ]
-                  ? detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.C +
-                        "_" +
-                        detail?.id
-                    ] === "0"
-                    ? ""
-                    : detail?.profitLossDataMatch?.[
+                <span
+                  className={`${
+                    parseInt(
+                      detail?.profitLossDataMatch?.[
                         profitLossDataForMatchConstants[data?.type]?.C +
                           "_" +
                           detail?.id
                       ]
-                  : ""}
-              </span>
-              <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype))?.toFixed(2)}</span>
+                    ) +
+                      manualProfitLoss(
+                        selectedBet,
+                        detail?.teamC,
+                        data?.type,
+                        data?.gtype
+                      ) >
+                    0
+                      ? "color-green"
+                      : "color-red"
+                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                >
+                  {detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.C +
+                      "_" +
+                      detail?.id
+                  ]
+                    ? detail?.profitLossDataMatch?.[
+                        profitLossDataForMatchConstants[data?.type]?.C +
+                          "_" +
+                          detail?.id
+                      ] === "0"
+                      ? ""
+                      : parseInt(
+                          detail?.profitLossDataMatch?.[
+                            profitLossDataForMatchConstants[data?.type]?.C +
+                              "_" +
+                              detail?.id
+                          ]
+                        ) +
+                        manualProfitLoss(
+                          selectedBet,
+                          detail?.teamC,
+                          data?.type,
+                          data?.gtype
+                        )
+                    : ""}
+                </span>
+                <span
+                  className="title-12 f-400"
+                  style={{
+                    color:
+                      manualProfitLoss(
+                        selectedBet,
+                        detail?.teamC,
+                        data?.type,
+                        data?.gtype
+                      ) > 0
+                        ? "#086f3f"
+                        : "#bd1828",
+                  }}
+                >
+                  {manualProfitLoss(
+                    selectedBet,
+                    detail?.teamC,
+                    data?.type,
+                    data?.gtype
+                  ) === 0
+                    ? ""
+                    : manualProfitLoss(
+                        selectedBet,
+                        detail?.teamC,
+                        data?.type,
+                        data?.gtype
+                      )?.toFixed(2)}
+                </span>
               </div>
             </div>
             <div
@@ -381,49 +507,55 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 </div>
               )}
               {box === 6 ? (
-              <>
-                {(data?.runners?.[2]?.ex?.availableToBack?.length>0?data?.runners?.[2]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
-                  return (
-                    <BetBox
-                      data={item}
-                      type={"back"}
-                      detail={detail?.teamC}
-                      runner={data?.runners?.[2]}
-                      handlePlaceBet={handlePlaceBet}
-                    />
-                  );
-                })}
-                {(data?.runners?.[2]?.ex?.availableToLay?.length>0?data?.runners?.[2]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
-                  return (
-                    <BetBox
-                      data={item}
-                      type={"lay"}
-                      detail={detail?.teamC}
-                      runner={data?.runners?.[2]}
-                      handlePlaceBet={handlePlaceBet}
-                    />
-                  );
-                })}
-              </>
-            ) : (
-              <>
-                <BetBox
-                  data={data?.runners?.[2]?.ex?.availableToBack?.[0]}
-                  type={"back"}
-                  detail={detail?.teamC}
-                  runner={data?.runners?.[2]}
-                  handlePlaceBet={handlePlaceBet}
-                />
+                <>
+                  {(data?.runners?.[2]?.ex?.availableToBack?.length > 0
+                    ? data?.runners?.[2]?.ex?.availableToBack
+                    : dummyArray
+                  )?.map((item: any) => {
+                    return (
+                      <BetBox
+                        data={item}
+                        type={"back"}
+                        detail={detail?.teamC}
+                        runner={data?.runners?.[2]}
+                        handlePlaceBet={handlePlaceBet}
+                      />
+                    );
+                  })}
+                  {(data?.runners?.[2]?.ex?.availableToLay?.length > 0
+                    ? data?.runners?.[2]?.ex?.availableToLay
+                    : dummyArray
+                  )?.map((item: any) => {
+                    return (
+                      <BetBox
+                        data={item}
+                        type={"lay"}
+                        detail={detail?.teamC}
+                        runner={data?.runners?.[2]}
+                        handlePlaceBet={handlePlaceBet}
+                      />
+                    );
+                  })}
+                </>
+              ) : (
+                <>
+                  <BetBox
+                    data={data?.runners?.[2]?.ex?.availableToBack?.[0]}
+                    type={"back"}
+                    detail={detail?.teamC}
+                    runner={data?.runners?.[2]}
+                    handlePlaceBet={handlePlaceBet}
+                  />
 
-                <BetBox
-                  data={data?.runners?.[2]?.ex?.availableToLay?.[0]}
-                  type={"lay"}
-                  detail={detail?.teamC}
-                  runner={data?.runners?.[2]}
-                  handlePlaceBet={handlePlaceBet}
-                />
-              </>
-            )}
+                  <BetBox
+                    data={data?.runners?.[2]?.ex?.availableToLay?.[0]}
+                    type={"lay"}
+                    detail={detail?.teamC}
+                    runner={data?.runners?.[2]}
+                    handlePlaceBet={handlePlaceBet}
+                  />
+                </>
+              )}
             </div>
           </div>
         )}

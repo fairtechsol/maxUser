@@ -71,9 +71,7 @@ const DynamicMarket = ({ title, data, detail }) => {
               Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
             </span>
           </div>
-          <div
-            className={`dynamicBackLayBoxContainer backLayBoxWidth`}
-          >
+          <div className={`dynamicBackLayBoxContainer backLayBoxWidth`}>
             <div className="dynamicBackBoxTab" style={{ width: "25%" }}>
               <span className={`f-size16 dynamicBackTxt`}>Back</span>
             </div>
@@ -85,59 +83,96 @@ const DynamicMarket = ({ title, data, detail }) => {
         </div>
 
         <div className="dynamicTeamTab">
-        
-          <div className="dynamicTeam" 
-            style={isMobile ?{width:"28%"}:{}}>
+          <div className="dynamicTeam" style={isMobile ? { width: "28%" } : {}}>
             <span className={`teamFont dynamicTeamTxt`}>Yes</span>
             <div className="d-flex flex-row justify-content-between w-100">
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A +
-                    "_" +
-                    detail?.id
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A +
-                        "_" +
-                        detail?.id
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-            >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A +
-                  "_" +
-                  detail?.id
-              ]
-                ? detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.A +
-                      "_" +
-                      detail?.id
-                  ] === "0"
-                  ? ""
-                  : detail?.profitLossDataMatch?.[
+              <span
+                className={`${
+                  parseInt(
+                    detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.A +
                         "_" +
                         detail?.id
                     ]
-                : ""}
-            </span>
-            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,"Yes",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,"Yes",data?.type,data?.gtype))?.toFixed(2)}</span>
+                  ) +
+                    manualProfitLoss(
+                      selectedBet,
+                      "Yes",
+                      data?.type,
+                      data?.gtype
+                    ) >
+                  0
+                    ? "color-green"
+                    : "color-red"
+                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A +
+                    "_" +
+                    detail?.id
+                ]
+                  ? detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A +
+                        "_" +
+                        detail?.id
+                    ] === "0"
+                    ? ""
+                    : parseInt(
+                        detail?.profitLossDataMatch?.[
+                          profitLossDataForMatchConstants[data?.type]?.A +
+                            "_" +
+                            detail?.id
+                        ]
+                      ) +
+                      manualProfitLoss(
+                        selectedBet,
+                        "Yes",
+                        data?.type,
+                        data?.gtype
+                      )
+                  : ""}
+              </span>
+              <span
+                className="title-12 f-400"
+                style={{
+                  color:
+                    manualProfitLoss(
+                      selectedBet,
+                      "Yes",
+                      data?.type,
+                      data?.gtype
+                    ) > 0
+                      ? "#086f3f"
+                      : "#bd1828",
+                }}
+              >
+                {manualProfitLoss(
+                  selectedBet,
+                  "Yes",
+                  data?.type,
+                  data?.gtype
+                ) === 0
+                  ? ""
+                  : manualProfitLoss(
+                      selectedBet,
+                      "Yes",
+                      data?.type,
+                      data?.gtype
+                    )?.toFixed(2)}
+              </span>
             </div>
           </div>
-          <div
-            className={`dynamicRateBox rateBoxWidth`}
-          >
+          <div className={`dynamicRateBox rateBoxWidth`}>
             {(data?.activeStatus !== "live" ||
               data?.runners?.[0]?.status !== "ACTIVE") && (
               <div className="suspended-overlayRatesdynamic">
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
             )}
-            {(data?.runners?.[0]?.ex?.availableToBack?.length>0?data?.runners?.[0]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
+            {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
+              ? data?.runners?.[0]?.ex?.availableToBack
+              : dummyArray
+            )?.map((item: any) => {
               return (
                 <BetBox
                   data={item}
@@ -148,7 +183,10 @@ const DynamicMarket = ({ title, data, detail }) => {
                 />
               );
             })}
-            {(data?.runners?.[0]?.ex?.availableToLay?.length>0?data?.runners?.[0]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
+            {(data?.runners?.[0]?.ex?.availableToLay?.length > 0
+              ? data?.runners?.[0]?.ex?.availableToLay
+              : dummyArray
+            )?.map((item: any) => {
               return (
                 <BetBox
                   data={item}
@@ -159,63 +197,100 @@ const DynamicMarket = ({ title, data, detail }) => {
                 />
               );
             })}
-           
           </div>
         </div>
 
         <div className="dynamicTeamTab">
-          <div className="dynamicTeam"
-            style={isMobile?{width:"28%"}:{}}>
+          <div className="dynamicTeam" style={isMobile ? { width: "28%" } : {}}>
             <span className={`teamFont dynamicTeamTxt`}>No</span>
             <div className="d-flex flex-row justify-content-between w-100">
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B +
-                    "_" +
-                    detail?.id
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B +
-                        "_" +
-                        detail?.id
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-            >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B +
-                  "_" +
-                  detail?.id
-              ]
-                ? detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.B +
-                      "_" +
-                      detail?.id
-                  ] === "0"
-                  ? ""
-                  : detail?.profitLossDataMatch?.[
+              <span
+                className={`${
+                  parseInt(
+                    detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.B +
                         "_" +
                         detail?.id
                     ]
-                : ""}
-            </span>
-            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,"No",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,"No",data?.type,data?.gtype))?.toFixed(2)}</span>
+                  ) +
+                    manualProfitLoss(
+                      selectedBet,
+                      "No",
+                      data?.type,
+                      data?.gtype
+                    ) >
+                  0
+                    ? "color-green"
+                    : "color-red"
+                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B +
+                    "_" +
+                    detail?.id
+                ]
+                  ? detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B +
+                        "_" +
+                        detail?.id
+                    ] === "0"
+                    ? ""
+                    : parseInt(
+                        detail?.profitLossDataMatch?.[
+                          profitLossDataForMatchConstants[data?.type]?.B +
+                            "_" +
+                            detail?.id
+                        ]
+                      ) +
+                      manualProfitLoss(
+                        selectedBet,
+                        "No",
+                        data?.type,
+                        data?.gtype
+                      )
+                  : ""}
+              </span>
+              <span
+                className="title-12 f-400"
+                style={{
+                  color:
+                    manualProfitLoss(
+                      selectedBet,
+                      "No",
+                      data?.type,
+                      data?.gtype
+                    ) > 0
+                      ? "#086f3f"
+                      : "#bd1828",
+                }}
+              >
+                {manualProfitLoss(
+                  selectedBet,
+                  "No",
+                  data?.type,
+                  data?.gtype
+                ) === 0
+                  ? ""
+                  : manualProfitLoss(
+                      selectedBet,
+                      "No",
+                      data?.type,
+                      data?.gtype
+                    )?.toFixed(2)}
+              </span>
             </div>
           </div>
-          <div
-            className={`dynamicRateBox rateBoxWidth`}
-          >
+          <div className={`dynamicRateBox rateBoxWidth`}>
             {(data?.activeStatus !== "live" ||
               data?.runners?.[1]?.status !== "ACTIVE") && (
               <div className="suspended-overlayRatesdynamic">
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
             )}
-            {(data?.runners?.[1]?.ex?.availableToBack?.length>0?data?.runners?.[1]?.ex?.availableToBack:dummyArray)?.map((item: any) => {
+            {(data?.runners?.[1]?.ex?.availableToBack?.length > 0
+              ? data?.runners?.[1]?.ex?.availableToBack
+              : dummyArray
+            )?.map((item: any) => {
               return (
                 <BetBox
                   data={item}
@@ -226,7 +301,10 @@ const DynamicMarket = ({ title, data, detail }) => {
                 />
               );
             })}
-            {(data?.runners?.[1]?.ex?.availableToLay?.length>0?data?.runners?.[1]?.ex?.availableToLay:dummyArray)?.map((item: any) => {
+            {(data?.runners?.[1]?.ex?.availableToLay?.length > 0
+              ? data?.runners?.[1]?.ex?.availableToLay
+              : dummyArray
+            )?.map((item: any) => {
               return (
                 <BetBox
                   data={item}

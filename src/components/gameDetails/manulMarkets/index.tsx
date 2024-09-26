@@ -38,7 +38,7 @@ const ManualMarket = ({ title, data, detail }) => {
       matchId: detail?.id,
       matchBetType: data?.type,
       placeIndex: index,
-      gameType:detail?.matchType==="cricket"?"cricket":"other"
+      gameType: detail?.matchType === "cricket" ? "cricket" : "other",
     };
     dispatch(
       selectedBetAction({
@@ -48,7 +48,6 @@ const ManualMarket = ({ title, data, detail }) => {
     );
   };
 
- 
   return (
     <>
       <div
@@ -70,7 +69,9 @@ const ManualMarket = ({ title, data, detail }) => {
             </span>
           </div>
           <div
-            className={`manualBackLayBoxContainer ${isMobile?"backLayBoxWidth2":"backLayBoxWidth"}`}
+            className={`manualBackLayBoxContainer ${
+              isMobile ? "backLayBoxWidth2" : "backLayBoxWidth"
+            }`}
             // style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
@@ -99,8 +100,7 @@ const ManualMarket = ({ title, data, detail }) => {
               ></span>
             </div>
           )} */}
-          <div className="manualTeam" 
-            style={isMobile?{width:"28%"}:{}}>
+          <div className="manualTeam" style={isMobile ? { width: "28%" } : {}}>
             <span className={`teamFont manualTeamTxt`}>
               {(data?.type?.includes("quickbookmaker")
                 ? detail?.teamA
@@ -114,43 +114,101 @@ const ManualMarket = ({ title, data, detail }) => {
                 : "Yes"}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-            >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ] ? detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ]==="0"?"":detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.A+"_"+detail?.id
-              ]  : ""}
-            </span> 
-            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,data?.type?.includes("quickbookmaker")
-                ? detail?.teamA
-                : "Yes",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,data?.type?.includes("quickbookmaker")
-                  ? detail?.teamA
-                  : "Yes",data?.type,data?.gtype))?.toFixed(2)}</span>
+              <span
+                className={`${
+                  parseInt(
+                    detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A +
+                        "_" +
+                        detail?.id
+                    ]
+                  ) +
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.type?.includes("quickbookmaker")
+                        ? detail?.teamA
+                        : "Yes",
+                      data?.type,
+                      data?.gtype
+                    ) >
+                  0
+                    ? "color-green"
+                    : "color-red"
+                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.A +
+                    "_" +
+                    detail?.id
+                ]
+                  ? detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.A +
+                        "_" +
+                        detail?.id
+                    ] === "0"
+                    ? ""
+                    : parseInt(
+                        detail?.profitLossDataMatch?.[
+                          profitLossDataForMatchConstants[data?.type]?.A +
+                            "_" +
+                            detail?.id
+                        ]
+                      ) +
+                      manualProfitLoss(
+                        selectedBet,
+                        data?.type?.includes("quickbookmaker")
+                          ? detail?.teamA
+                          : "Yes",
+                        data?.type,
+                        data?.gtype
+                      )
+                  : ""}
+              </span>
+              <span
+                className="title-12 f-400"
+                style={{
+                  color:
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.type?.includes("quickbookmaker")
+                        ? detail?.teamA
+                        : "Yes",
+                      data?.type,
+                      data?.gtype
+                    ) > 0
+                      ? "#086f3f"
+                      : "#bd1828",
+                }}
+              >
+                {manualProfitLoss(
+                  selectedBet,
+                  data?.type?.includes("quickbookmaker")
+                    ? detail?.teamA
+                    : "Yes",
+                  data?.type,
+                  data?.gtype
+                ) === 0
+                  ? ""
+                  : manualProfitLoss(
+                      selectedBet,
+                      data?.type?.includes("quickbookmaker")
+                        ? detail?.teamA
+                        : "Yes",
+                      data?.type,
+                      data?.gtype
+                    )?.toFixed(2)}
+              </span>
             </div>
           </div>
           <div
-            className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
+            className={`manualRateBox ${
+              isMobile ? "rateBoxWidth2" : "rateBoxWidth"
+            }`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.statusTeamA != "active") && (
+            {data?.statusTeamA != "active" && (
               <div className="suspended-overlayRatesmanual">
-                <span
-                  className={`suspendTextCmmn`}
-                >
+                <span className={`suspendTextCmmn`}>
                   {data?.statusTeamA?.toUpperCase()}
                 </span>
               </div>
@@ -219,7 +277,9 @@ const ManualMarket = ({ title, data, detail }) => {
                 handlePlaceBet(
                   data?.layTeamA,
                   "LAY",
-                  data?.type?.includes("quickbookmaker") ? detail?.teamA : "Yes",
+                  data?.type?.includes("quickbookmaker")
+                    ? detail?.teamA
+                    : "Yes",
                   data?.statusTeamA,
                   0
                 )
@@ -282,8 +342,7 @@ const ManualMarket = ({ title, data, detail }) => {
               ></span>
             </div>
           )} */}
-          <div className="manualTeam" 
-            style={isMobile?{width:"28%"}:{}}>
+          <div className="manualTeam" style={isMobile ? { width: "28%" } : {}}>
             <span className={`teamFont manualTeamTxt`}>
               {(data?.type?.includes("quickbookmaker") ? detail?.teamB : "No") >
               25
@@ -296,44 +355,100 @@ const ManualMarket = ({ title, data, detail }) => {
                 : "No"}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
-            <span
-              className={`${
-                detail?.profitLossDataMatch?.[
-                  profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-                ] > 0
-                  ? "color-green"
-                  : detail?.profitLossDataMatch?.[
-                      profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-                    ] < 0
-                  ? "color-red"
-                  : ""
-              } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-            >
-             {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ] ? detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ]==="0"?"":detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.B+"_"+detail?.id
-              ]  : ""}
-            </span>
-            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,data?.type?.includes("quickbookmaker")
-                ? detail?.teamB
-                : "No",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,data?.type?.includes("quickbookmaker")
-                  ? detail?.teamB
-                  : "No",data?.type,data?.gtype))?.toFixed(2)}</span>
+              <span
+                className={`${
+                  parseInt(
+                    detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B +
+                        "_" +
+                        detail?.id
+                    ]
+                  ) +
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.type?.includes("quickbookmaker")
+                        ? detail?.teamB
+                        : "No",
+                      data?.type,
+                      data?.gtype
+                    ) >
+                  0
+                    ? "color-green"
+                    : "color-red"
+                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+              >
+                {detail?.profitLossDataMatch?.[
+                  profitLossDataForMatchConstants[data?.type]?.B +
+                    "_" +
+                    detail?.id
+                ]
+                  ? detail?.profitLossDataMatch?.[
+                      profitLossDataForMatchConstants[data?.type]?.B +
+                        "_" +
+                        detail?.id
+                    ] === "0"
+                    ? ""
+                    : parseInt(
+                        detail?.profitLossDataMatch?.[
+                          profitLossDataForMatchConstants[data?.type]?.B +
+                            "_" +
+                            detail?.id
+                        ]
+                      ) +
+                      manualProfitLoss(
+                        selectedBet,
+                        data?.type?.includes("quickbookmaker")
+                          ? detail?.teamB
+                          : "No",
+                        data?.type,
+                        data?.gtype
+                      )
+                  : ""}
+              </span>
+              <span
+                className="title-12 f-400"
+                style={{
+                  color:
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.type?.includes("quickbookmaker")
+                        ? detail?.teamB
+                        : "No",
+                      data?.type,
+                      data?.gtype
+                    ) > 0
+                      ? "#086f3f"
+                      : "#bd1828",
+                }}
+              >
+                {manualProfitLoss(
+                  selectedBet,
+                  data?.type?.includes("quickbookmaker") ? detail?.teamB : "No",
+                  data?.type,
+                  data?.gtype
+                ) === 0
+                  ? ""
+                  : manualProfitLoss(
+                      selectedBet,
+                      data?.type?.includes("quickbookmaker")
+                        ? detail?.teamB
+                        : "No",
+                      data?.type,
+                      data?.gtype
+                    )?.toFixed(2)}
+              </span>
             </div>
           </div>
           <div
-            className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
+            className={`manualRateBox ${
+              isMobile ? "rateBoxWidth2" : "rateBoxWidth"
+            }`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
-            {(data?.statusTeamB != "active") && (
+            {data?.statusTeamB != "active" && (
               <div className="suspended-overlayRatesmanual">
-                <span
-                  className={`suspendTextCmmn`}
-                >
-                   {data?.statusTeamB?.toUpperCase()}
+                <span className={`suspendTextCmmn`}>
+                  {data?.statusTeamB?.toUpperCase()}
                 </span>
               </div>
             )}
@@ -383,9 +498,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 handlePlaceBet(
                   data?.backTeamB,
                   "BACK",
-                  data?.type?.includes("quickbookmaker")
-                    ? detail?.teamB
-                    : "No",
+                  data?.type?.includes("quickbookmaker") ? detail?.teamB : "No",
                   data?.statusTeamB,
                   0
                 )
@@ -465,48 +578,102 @@ const ManualMarket = ({ title, data, detail }) => {
                 ></span>
               </div>
             )} */}
-            <div className="manualTeam" 
-            style={isMobile?{width:"28%"}:{}}>
+            <div
+              className="manualTeam"
+              style={isMobile ? { width: "28%" } : {}}
+            >
               <span className={`teamFont manualTeamTxt`}>
                 {detail?.teamC?.length > 25
                   ? `${detail?.teamC?.slice(0, 25)}...`
                   : detail?.teamC}
               </span>{" "}
               <div className="d-flex flex-row justify-content-between w-100">
-              <span
-                className={`${
-                  detail?.profitLossDataMatch?.[
-                    profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-                  ] > 0
-                    ? "color-green"
-                    : detail?.profitLossDataMatch?.[
-                        profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-                      ] < 0
-                    ? "color-red"
-                    : ""
-                } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-              >
-              {detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-              ] ? detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-              ]==="0"?"":detail?.profitLossDataMatch?.[
-                profitLossDataForMatchConstants[data?.type]?.C+"_"+detail?.id
-              ]  : ""}
-              </span>
-              <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,detail?.teamC,data?.type,data?.gtype))?.toFixed(2)}</span>
-            </div>
+                <span
+                  className={`${
+                    parseInt(
+                      detail?.profitLossDataMatch?.[
+                        profitLossDataForMatchConstants[data?.type]?.C +
+                          "_" +
+                          detail?.id
+                      ]
+                    ) +
+                      manualProfitLoss(
+                        selectedBet,
+                        detail?.teamC,
+                        data?.type,
+                        data?.gtype
+                      ) >
+                    0
+                      ? "color-green"
+                      : "color-red"
+                  } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                >
+                  {detail?.profitLossDataMatch?.[
+                    profitLossDataForMatchConstants[data?.type]?.C +
+                      "_" +
+                      detail?.id
+                  ]
+                    ? detail?.profitLossDataMatch?.[
+                        profitLossDataForMatchConstants[data?.type]?.C +
+                          "_" +
+                          detail?.id
+                      ] === "0"
+                      ? ""
+                      : parseInt(
+                          detail?.profitLossDataMatch?.[
+                            profitLossDataForMatchConstants[data?.type]?.C +
+                              "_" +
+                              detail?.id
+                          ]
+                        ) +
+                        manualProfitLoss(
+                          selectedBet,
+                          detail?.teamC,
+                          data?.type,
+                          data?.gtype
+                        )
+                    : ""}
+                </span>
+                <span
+                  className="title-12 f-400"
+                  style={{
+                    color:
+                      manualProfitLoss(
+                        selectedBet,
+                        detail?.teamC,
+                        data?.type,
+                        data?.gtype
+                      ) > 0
+                        ? "#086f3f"
+                        : "#bd1828",
+                  }}
+                >
+                  {manualProfitLoss(
+                    selectedBet,
+                    detail?.teamC,
+                    data?.type,
+                    data?.gtype
+                  ) === 0
+                    ? ""
+                    : manualProfitLoss(
+                        selectedBet,
+                        detail?.teamC,
+                        data?.type,
+                        data?.gtype
+                      )?.toFixed(2)}
+                </span>
+              </div>
             </div>
             <div
-              className={`manualRateBox ${isMobile?"rateBoxWidth2":"rateBoxWidth"}`}
+              className={`manualRateBox ${
+                isMobile ? "rateBoxWidth2" : "rateBoxWidth"
+              }`}
               // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
             >
-              {(data?.statusTeamC != "active") && (
+              {data?.statusTeamC != "active" && (
                 <div className="suspended-overlayRatesmanual">
-                  <span
-                    className={`suspendTextCmmn`}
-                  >
-                     {data?.statusTeamC?.toUpperCase()}
+                  <span className={`suspendTextCmmn`}>
+                    {data?.statusTeamC?.toUpperCase()}
                   </span>
                 </div>
               )}
