@@ -9,7 +9,7 @@ import {
   socket,
   socketService,
 } from "../../socketManager";
-import { getMatchList } from "../../store/actions/match/matchListAction";
+import { getMatchList, getTabList } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import {isMobile} from "../../utils/screenDimension";
 
@@ -45,6 +45,7 @@ const GameList = () => {
   };
 
   useEffect(() => {
+    dispatch(getTabList({}));
     if (type) {
       // setTimeout(() => {       
         dispatch(getMatchList({ matchType: type }));

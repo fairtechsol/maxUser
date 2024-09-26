@@ -10,6 +10,7 @@ import { rulesModalShowFalse } from "../../store/actions/authAction";
 import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/horseMatchListAction";
 import {
   getMatchList,
+  getTabList,
   updateMatchOddRates,
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
@@ -112,6 +113,9 @@ const Home = () => {
   }, [socket, matchType]);
 
   useEffect(() => {
+    dispatch(
+      getTabList({})
+    );
     if (
       matchType &&
       ["cricket", "football", "tennis"].includes(matchType) &&

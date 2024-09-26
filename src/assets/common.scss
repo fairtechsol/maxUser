@@ -980,7 +980,16 @@ img {
 .form-check-input[type="radio"] {
   border-radius: 50% !important;
 }
+.latest-eventt {
+  display: flex;            /* Use flex to make items align in a row */
+  overflow-x: auto;         /* Enable horizontal scrolling */
+  scrollbar-width: none;    /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in IE 10+ */
+}
 
+.latest-eventt::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers */
+}
 
 /* Styles for width 0px to 760px */
 @media (max-width: 760px) {
