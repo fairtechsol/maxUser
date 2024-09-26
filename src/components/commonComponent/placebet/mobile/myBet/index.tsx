@@ -20,6 +20,7 @@ import { Modal } from "react-bootstrap";
 interface PlaceBetProps {
   show: boolean;
   setShow: any;
+  // type: any;
 }
 
 const MobilePlacedBet = ({ show }: PlaceBetProps) => {
