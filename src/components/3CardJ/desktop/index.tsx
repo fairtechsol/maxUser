@@ -87,7 +87,7 @@ const CardJDesktop = () => {
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
-                  <a
+                  {/* <a
                     style={{
                       fontSize: "12px",
                       textDecoration: "underline",
@@ -97,7 +97,7 @@ const CardJDesktop = () => {
                   >
                     {" "}
                     Rules
-                  </a>
+                  </a> */}
                 </div>
                 <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo

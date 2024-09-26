@@ -41,7 +41,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
   const renderItem = (item: any) => (
     <div
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+        handleLock(item?.gstatus, item?.b1) ? "suspended-poker20" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >

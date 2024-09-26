@@ -44,7 +44,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const renderItem = (item: any, index: number) => (
     <div
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "lockk" : ""
+        handleLock(item?.gstatus, item?.b1) ? "suspended-poker20" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >

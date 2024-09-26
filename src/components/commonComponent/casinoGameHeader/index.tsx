@@ -9,7 +9,7 @@ const CasinoHead = ({activeTab, setActiveTab, setShow} : any) => {
     <div className="horseRacingTabHeader-m">
       <div>
         <span className="title-12 px-2 fbold">{dragonTigerDetail?.name}</span>
-       {dragonTigerDetail?.name === "Queen" ? "" : <span className="title-12 f400" onClick={() => setShow(true)}>
+       {dragonTigerDetail?.name === "Queen" || dragonTigerDetail?.name === "3 CARDS JUDGEMENT" ? "" : <span className="title-12 f400" onClick={() => setShow(true)}>
           Rules
         </span>}
       </div>

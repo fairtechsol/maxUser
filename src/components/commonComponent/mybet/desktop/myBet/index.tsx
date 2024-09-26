@@ -25,7 +25,7 @@ const DesktopMyBet = () => {
   return (
     <RightPanelContainer title={"My Bet"}>
       <div className="betList " style={{ maxHeight: "30vh", overflow: "auto" }}>
-        <Table className="w-full">
+        <Table className="w-full lh-1">
           <thead>
             <tr >
               {placeBetHeader?.map((item) => (

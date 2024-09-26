@@ -43,7 +43,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
         //   data?.worli?.gstatus == 0 ? "suspended" : ""
         // } abjcardContainer`}
         className="abjcardContainer"
-        style={{ backgroundColor: "#72bbef", border: "0.5px solid #fff" }}
+        style={{ backgroundColor: "#72bbef" }}
       >
         <div
           style={{
