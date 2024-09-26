@@ -63,17 +63,28 @@ const PlacedBet = () => {
   // console.log('selectedBet',selectedBet)
   const handleSubmit = () => {
     if (
-      selectedBet?.team?.stake <
-      (selectedBet?.data?.minBet || selectedBet?.data?.min)
+      ![
+        "bookmaker",
+        "bookmaker1",
+        "bookmaker2",
+        "quickbookmaker1",
+        "quickbookmaker2",
+        "quickbookmaker3",
+      ].includes(selectedBet?.team?.matchBetType)
     ) {
-      toast.error("Stake value must be greater or equal to min bet");
-      return;
-    } else if (
-      selectedBet?.team?.stake >
-      (selectedBet?.data?.maxBet || selectedBet?.data?.max)
-    ) {
-      toast.error("Stake value must be smaller or equal to max bet");
-      return;
+      if (
+        selectedBet?.team?.stake <
+        (selectedBet?.data?.minBet || selectedBet?.data?.min)
+      ) {
+        toast.error("Stake value must be greater or equal to min bet");
+        return;
+      } else if (
+        selectedBet?.team?.stake >
+        (selectedBet?.data?.maxBet || selectedBet?.data?.max)
+      ) {
+        toast.error("Stake value must be smaller or equal to max bet");
+        return;
+      }
     }
     if (loading || matchOddLoading) {
       return;
@@ -114,7 +125,7 @@ const PlacedBet = () => {
         mid: selectedBet?.team?.mid,
         selectionId: selectedBet?.team?.selectionId,
       };
-      
+
       let payloadForTournament: any = {
         betId: selectedBet?.team?.betId,
         bettingType: selectedBet?.team?.type.toUpperCase(),
@@ -166,7 +177,7 @@ const PlacedBet = () => {
               })
             );
           }, getProfile?.delayTime * 1000);
-        }else {
+        } else {
           setTimeout(() => {
             dispatch(
               placeBet({
@@ -186,7 +197,7 @@ const PlacedBet = () => {
             );
           }, getProfile?.delayTime * 1000);
         }
-      }else if(selectedBet?.team?.matchBetType === "tournament"){
+      } else if (selectedBet?.team?.matchBetType === "tournament") {
         setMatchOddLoading(true);
         setTimeout(() => {
           dispatch(
@@ -196,7 +207,7 @@ const PlacedBet = () => {
             })
           );
         }, getProfile?.delayTime * 1000);
-      }  else {
+      } else {
         dispatch(
           placeBet({
             url:
@@ -280,9 +291,9 @@ const PlacedBet = () => {
   }, [success, error]);
 
   const handleProfit = (value: any) => {
-    let profit:any;
+    let profit: any;
     if (selectedBet?.team?.matchBetType === "session") {
-      profit =0;
+      profit = 0;
     } else if (
       selectedBet?.data?.type === matchBettingType.matchOdd ||
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
@@ -517,7 +528,7 @@ const PlacedBet = () => {
                               dispatch(selectedBetAction(null));
                             }}
                             style={{
-                              fontSize:"13px"
+                              fontSize: "13px",
                             }}
                           >
                             Reset
@@ -532,7 +543,7 @@ const PlacedBet = () => {
                                 selectedBet?.team?.type == "no"
                                   ? "#679378"
                                   : "#38998a",
-                                  fontSize:"13px"
+                              fontSize: "13px",
                             }}
                           >
                             Submit
