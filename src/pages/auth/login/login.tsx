@@ -79,7 +79,7 @@ const Login = () => {
       >
         {loading && <Loader />}
         <div className={isMobile ? "login-form" : "auth-box"}>
-          {/* <img
+          <img
             src={maxbetLogo}
             alt="MAXBET07"
             className="img-fluid"
@@ -87,7 +87,7 @@ const Login = () => {
               width: "100%",
               height: "70px",
             }}
-          /> */}
+          />
           <div className={isMobile ? "auth-box-form-m mt-2" : "auth-box-form mt-2"}>
             <h4 className="auth-title title-22 fw-normal text-center ">
               Login
