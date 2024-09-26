@@ -4,6 +4,7 @@ import { isMobile } from '../../../utils/screenDimension';
 import { MdSportsCricket } from 'react-icons/md';
 import { PiTennisBallFill } from "react-icons/pi";
 import { IoFootball } from "react-icons/io5";
+import {NavLink } from "react-router-dom";
 
 const LatestEvent = ({ events }) => {
   const iconMapping = {
@@ -16,10 +17,16 @@ const LatestEvent = ({ events }) => {
     <div className={isMobile ? "latest-event-mobile border-bottom" : "latest-eventt border-bottom"}>
       {events?.map((event:any) => (
         <div key={event.id} className="latest-event-item">
-          <a className="blink_me d-icon">
+           <NavLink
+            className="blink_me d-icon"
+            to={`/${
+              event.matchType === "cricket"
+                ? "game-detail/cricket"
+                : `other-game-detail/${event.matchType}`
+            }/${event?.matchId}`}>
             <div className='px-1'>{iconMapping[event.matchType]}</div>
             <span className=''>{event.matchName}</span> 
-          </a>
+            </NavLink>
         </div>
       ))}
     </div>
