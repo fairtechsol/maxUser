@@ -88,7 +88,7 @@ const MobileGameDetail = () => {
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
         // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
         //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
+        `${Constants.thirdPartyLive}/cricketScore?eventId=${eventId}`
       );
       if (response?.success !== false) {
         setLiveScoreBoardData(response?.data);
@@ -205,7 +205,7 @@ const MobileGameDetail = () => {
                 <div style={{ width: "98%" }}>
                   <Row className="ms-0">
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
-                    
+
                     {showVideo && (
                       <Container className="px-0">
                         <Row className="justify-content-md-center">
@@ -221,7 +221,7 @@ const MobileGameDetail = () => {
                         </Row>
                       </Container>
                     )}
-                  {liveScoreBoardData && (
+                    {liveScoreBoardData && (
                       <Iframe data={liveScoreBoardData} width="100%" />
                     )}
                     {matchDetails?.matchOdd?.activeStatus === "live" &&
