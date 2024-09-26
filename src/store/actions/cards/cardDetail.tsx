@@ -313,7 +313,7 @@ export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
       };
       const resp = await axios.get(
         // `${Constants.thirdPartyCard}${ApiConstants.SCOREBOARD.match}/${requestData?.id}?gameName=${requestData?.type}`,
-        `${Constants.thirdParty}/cricketScore?eventId=${requestData?.id}`,
+        `${Constants.thirdPartyLive}/cricketScore?eventId=${requestData?.id}`,
         config
       );
 
