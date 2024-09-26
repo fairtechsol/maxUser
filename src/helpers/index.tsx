@@ -128,5 +128,7 @@ export const manualProfitLoss = (
         }
       }
     }
+  }else{
+    return 0;
   }
 };
