@@ -438,10 +438,10 @@ export const navigateToGameDetail = {
 
 export const cardUrl =
   process.env.NODE_ENV === "production"
-    ? "https://maxbet07.com/videoPage/"
+    ? "https://jmdapi.com/tablevideo/?id="
     : "https://maxbet07.com/videoPage/";
 
-export const cardUrlMain =  "https://maxbet07.com/videoPage/";
+export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
 export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventId=";
 
 // export const scoreBoardUrlMain =
