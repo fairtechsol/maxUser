@@ -1,9 +1,9 @@
-import { dragonTigerCards } from "../../../../utils/constants";
-import { back } from "../../../../assets/images";
 import { useEffect, useState } from "react";
-import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
+import { back } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import { dragonTigerCards } from "../../../../utils/constants";
 
 const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);

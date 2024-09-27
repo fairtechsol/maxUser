@@ -1,17 +1,11 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import PlayerButton from "../PlayerButton";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { IoInformationCircle } from "react-icons/io5";
-import SmoothDropdownModal from "../../mobile/minMaxModal";
-import { useEffect } from "react";
 
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = lowHigh?.[0]?.min;
-  const max = lowHigh?.[0]?.max;
-  const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type,
@@ -57,20 +51,6 @@ const TiePairBox = ({ lowHigh, data }: any) => {
 
   return (
     <div className="tiePairContainer">
-      {/* <div style={{ width: "98%", textAlign: "end" }}>
-        <span className="minmaxi">
-          <IoInformationCircle
-            color="#ffc742"
-            onClick={() => setModelOpen(!modelOpen)}
-          />
-          <SmoothDropdownModal
-            min={min}
-            max={max}
-            show={modelOpen}
-            setShow={() => setModelOpen(false)}
-          />
-        </span>
-      </div> */}
 
       <div className="tiePairRateBoxMainlucky">
         <PlayerButton

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
 import { dragonTigerCards } from "../../../utils/constants";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 
 const HighCards = ({ odds, data, placedHigh }: any) => {
   const dispatch: AppDispatch = useDispatch();

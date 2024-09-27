@@ -14,6 +14,7 @@ import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
+import { FiMonitor } from "react-icons/fi";
 const tableHeading = [
   {
     id: "game",
@@ -42,6 +43,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  console.log(matchList, "data")
   return (
     <>
       <Table className="matchListTable-desktop mb-4">
@@ -197,7 +199,7 @@ const MatchListRow = ({ item, matchType }: any) => {
           </NavLink>
           <div className="d-flex align-items-center gap-2">
             {currentTime >= startAt ? <span className="liveDot"></span> : ""}
-            {/* <FiMonitor /> */}
+            { item?.isTv === true || item?.isTv === "1" ? <FiMonitor /> : "" }
             {item?.manualSessionActive || item?.apiSessionActive ? (
               <span className="fancy">
                 <img src="/ic_fancy.png" alt={"fancy"} />

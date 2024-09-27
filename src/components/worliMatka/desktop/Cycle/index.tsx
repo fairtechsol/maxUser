@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
-import { AppDispatch } from "../../../../store/store";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import "../style.scss";
+import { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 import { FaInfoCircle } from "react-icons/fa"; // Using an info icon from react-icons
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import "../style.scss";
 
 const Cycle = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();

@@ -1,10 +1,8 @@
-import { Container, Navbar } from "react-bootstrap";
-
-// import {isMobile} from "../../../utils/screenDimension";
+import { Navbar } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import DesktopHeader from "./desktop";
 import MobileHeader from "./mobile";
 import "./style.scss";
-import { useEffect, useState } from "react";
 const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
 

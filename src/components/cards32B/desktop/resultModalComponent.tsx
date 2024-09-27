@@ -1,10 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import {isMobile} from "../../../utils/screenDimension";
-import "./style.scss";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -31,7 +31,6 @@ const Card32BResultComponent: React.FC<Props> = ({ data }: any) => {
       result[targetArray].push(item);
     });
   }
-  // const max = Math.max(...numbers);
   return (
     <Container
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}

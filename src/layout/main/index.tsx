@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { socketService } from "../../socketManager";
 // import { getMatchList } from "../../store/actions/match/matchListAction";
+import ScrollToTop from "../../components/commonComponent/ScrollToTop";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getProfile,
   marqueeNotification,
@@ -11,18 +13,13 @@ import {
   updateBalanceOnSessionResult,
 } from "../../store/actions/user/userAction";
 import { AppDispatch } from "../../store/store";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import "../layout.scss";
+import FooterBottom from "./footerBottom";
+import FooterMain from "./footerMain";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import TopBar from "./topbar";
-import ScrollToTop from "../../components/commonComponent/ScrollToTop";
-import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import Footer from "./footer";
-import FooterBottom from "./footerBottom";
-import FooterMain from "./footerMain";
-import CasinoNav from "./casinoNav";
-import { casinoItems } from "../../utils/constants";
 
 const MainLayout = () => {
   const navigate = useNavigate();

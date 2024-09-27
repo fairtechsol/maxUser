@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { expertSocketService } from "../../../../socketManager";
@@ -61,12 +61,7 @@ const DesktopMatchList = ({
       setMatchType(type);
     }
   }, [type]);
-  const [activeTab, setActiveTab] = useState(type ?? matchTypeGameList);
 
-  const handleSelect = (selectedTab) => {
-    setActiveTab(selectedTab);
-    setMatchType(selectedTab);
-  };
   return (
     <div className="m-1 p-0 w-100">
       <TrendsFilters events={tabList} />{" "}

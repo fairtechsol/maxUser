@@ -8,7 +8,6 @@ const PlayerButton = ({
   lock,
   data,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
 
   return (
     <div
@@ -90,11 +89,6 @@ const PlayerButton = ({
           </span>
         </div>
       </div>
-
-      {/* <div
-        className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
-        onClick={() => (!lock ? handleBet(data) : null)}
-      ></div> */}
 
       <div
         className="teenPatti-table-row"

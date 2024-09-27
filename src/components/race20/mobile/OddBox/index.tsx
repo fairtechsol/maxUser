@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { HandleRaceCards } from "../../desktop/card";
 const OddBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
 
   const handleBet = (item: any, type: string) => {
     let team = {

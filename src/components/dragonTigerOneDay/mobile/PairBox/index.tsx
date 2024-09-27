@@ -56,9 +56,6 @@ const PairBox = ({ odds, data }: any) => {
           }
           data={odds}
         />
-        {/* <div style={{ width: "100%", textAlign: "end" }}>
-          Min:{odds?.min} Max:{odds?.max}
-        </div> */}
       </div>
     </div>
   );

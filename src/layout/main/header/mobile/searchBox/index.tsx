@@ -1,9 +1,9 @@
 import { debounce } from "lodash";
 import { useMemo, useState } from "react";
-import { FaSearch, FaSearchPlus } from "react-icons/fa";
+import { FaSearchPlus } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import {getMatchListSearch } from "../../../../../store/actions/match/matchListAction";
+import { getMatchListSearch } from "../../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../../store/store";
 import SearchResult from "../../searchResult";
 import "./style.scss";

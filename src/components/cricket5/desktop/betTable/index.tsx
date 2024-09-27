@@ -1,19 +1,11 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { formatNumber } from "../../../../helpers";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
-import { formatNumber } from "../../../../helpers";
-// const bookmakerData = [
-//   { nation: 'AUS', backOdd: '1.3', backVolume: '300000.00', layOdd: '1.34', layVolume: '300000.00', suspended: true },
-//   { nation: 'IND', backOdd: '-', backVolume: '0.00', layOdd: '-', layVolume: '0.00', suspended: true },
-// ];
 
-const fancyData = [
-  { nation: "Ind Over 3", backOdd: "-", layOdd: "-", suspended: true },
-];
-
-const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
+const MarketComponent = ({ odds, data, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any, type: any) => {
     let team = {
@@ -57,9 +49,7 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
         <div className="marketHeader">
           <span  style={{
                 color: "#FFF",
-                //fontSize: "16px",
-                fontWeight:"bold",
-                //fontSize: "calc(11px + 0.46vw)", 
+                fontWeight:"bold", 
                 fontSize:"15px"
               }}>Bookmaker</span>
         </div>
@@ -80,7 +70,6 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
           </div>
         </div>
         <div className="market-body-c" data-title="OPEN">
-          {/* {odds?.map((row:any, index:any) => ( */}
           <div className={`market-row-c`}>
             <div className="market-nation-detail-b">
               <span className="market-nation-name-c" style={{color:"#333333"}}>{team1?.nat}</span>

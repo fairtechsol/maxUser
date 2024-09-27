@@ -1,13 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {isMobile} from "../../../utils/screenDimension";
 import { FaTrophy } from "react-icons/fa";
-import "./style.scss";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import "../style.scss";
-import { AppDispatch } from '../../../../store/store';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { selectedBetAction } from '../../../../store/actions/match/matchListAction';
+import { AppDispatch } from '../../../../store/store';
+import "../style.scss";
 
 const CardDp = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();

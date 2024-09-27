@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { crick5rules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Crick5Result from "../desktop/cric5Card";
 import MarketComponent from "./betTable";
-import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { crick5rules } from "../../../assets/images";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
-import Iframe from "../../iframe/iframe";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import Iframe from "../../iframe/iframe";
 
 const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
@@ -26,8 +25,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
   const { dragonTigerDetail, scoreBoardData, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
-  const [showFancy] = useState(false);
+
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -79,7 +77,6 @@ const Cricket5Mobile = ({ fancyData }: any) => {
             <div
               style={{
                 width: "100%",
-                // height: scoreBoardData?.data ? "225px" : "150px",
               }}
             >
              

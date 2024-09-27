@@ -14,7 +14,7 @@ const CommonButtonBox = ({
   lock,
   data,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
+
 
   return (
     <div className="commonButtonBoxContainer" style={{ width: width }}>
@@ -23,7 +23,6 @@ const CommonButtonBox = ({
           {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
         </span>
       </div>
-      {/* <div className="tiePairbtn-theme suspended" onClick={handleBet}> */}
       <div
         className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
         onClick={() => (!lock ? handleBet(data) : null)}

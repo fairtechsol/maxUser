@@ -1,10 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import { FaTrophy } from "react-icons/fa";
-import {isMobile} from "../../../utils/screenDimension";
-import "./style.scss";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -16,9 +15,6 @@ const CricketMatch20ResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const playerA = resultCards?.filter(
     (_: any, index: number) => index % 2 === 0
-  );
-  const playerB = resultCards?.filter(
-    (_: any, index: number) => index % 2 !== 0
   );
   
   return (

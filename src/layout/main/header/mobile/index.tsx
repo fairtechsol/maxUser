@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { Dropdown, Form, Navbar } from "react-bootstrap";
-import { FaHome, FaLandmark } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { FaHome } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import LogoSection from "../../../../components/commonComponent/logoSection";
+import { logout } from "../../../../store/actions/authAction";
+import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
 import { AppDispatch, RootState } from "../../../../store/store";
+import CustomDropDown from "../desktop/dropdown/customDropdown";
 import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
 import SearchBox from "./searchBox";
 import "./style.scss";
-import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
-import { useDispatch } from "react-redux";
-import { logout } from "../../../../store/actions/authAction";
-import CustomDropDown from "../desktop/dropdown/customDropdown";
 
 const MobileHeader = () => {
   const dispatch: AppDispatch = useDispatch();

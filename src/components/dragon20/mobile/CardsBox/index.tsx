@@ -5,8 +5,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const CardBox = ({ name, cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = cardData?.[0]?.min;
-  const max = cardData?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -45,13 +43,6 @@ const CardBox = ({ name, cardData, data }: any) => {
             handleBet={handleBet}
             data={data}
           />
-        
-        {/* <div style={{ textAlign: "end" }}>
-          <span style={{ fontSize: "12px" }}>Min:</span>
-          <span style={{ fontSize: "12px" }}>{min}</span>
-          <span style={{ fontSize: "12px", marginLeft: "10px" }}>Max:</span>
-          <span style={{ fontSize: "12px" }}>{max}</span>
-        </div> */}
       </div>
     </>
   );

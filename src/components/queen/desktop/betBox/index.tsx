@@ -1,10 +1,9 @@
-import React from "react";
-import "../style.scss";
-import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import "../style.scss";
 
-const CasinoTable = ({ cards, data, playerNum }: any) => {
+const CasinoTable = ({ cards, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any, type: any) => {
     let team = {

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import "./style.scss"
+import { useState } from 'react';
+import "./style.scss";
 const CasinoNav = ({ items }) => {
     const [activeItem, setActiveItem] = useState(items[0]?.id);
 

@@ -12,7 +12,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
   totalPages,
   onPageChange,
 }) => {
-  const [pageComp, setPageComp] = useState([]);
+  const [_, setPageComp] = useState([]);
 
   useEffect(() => {
     let isPageNumberOutOfRange: Boolean;

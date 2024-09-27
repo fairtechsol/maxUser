@@ -1,23 +1,22 @@
-import React from "react";
 import { Nav, Tab } from "react-bootstrap";
-import "../style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
+import Abr from "../Abr";
+import Card64 from "../Card64";
 import CardBox from "../CardBox";
 import CardBox2 from "../CardBox2";
-import CardSp from "../CardSP";
 import CardDp from "../CardDp";
-import Trio from "../Trio";
+import CardSp from "../CardSP";
+import Card56 from "../Chart56";
+import ColorDp from "../ColorDp";
+import CommonDp from "../CommonDp";
+import CommonSp from "../CommonSp";
 import Cycle from "../Cycle";
 import MotorSp from "../MotorSp";
-import Card56 from "../Chart56";
-import Card64 from "../Card64";
-import Abr from "../Abr";
-import CommonSp from "../CommonSp";
-import CommonDp from "../CommonDp";
-import ColorDp from "../ColorDp";
+import "../style.scss";
+import Trio from "../Trio";
 const MatkaNavTab = ({ data, odds, cards }: any) => {
-  const { dragonTigerDetail, loading } = useSelector(
+  const { dragonTigerDetail } = useSelector(
     (state: RootState) => state.card
   );
   return (

@@ -10,7 +10,7 @@ import {
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../../store/store";
 import { teamStatus } from "../../../../utils/constants";
-import {isMobile} from "../../../../utils/screenDimension";
+import { isMobile } from "../../../../utils/screenDimension";
 import BackLayBox from "../../../commonComponent/betComponents/backLayBox";
 import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
 import BetTableHeader from "../../../commonComponent/betTableHeader";
@@ -20,7 +20,6 @@ import Desktop from "../../../rules/categoryRules/desktop";
 import Mobile from "../../../rules/mobile";
 import RunBoxTable from "../runBoxTable";
 import "./style.scss";
-// import { formattedMinMax } from "../../../../utils/formatMinMax";
 
 interface ApiSessionMarketTableProps {
   data: any;
@@ -60,9 +59,6 @@ function ApiSessionMarketTable({
       })
     );
   };
-  // const handleMinModalToggle = () => {
-  //   setShowMinsModal(!showMinsModal);
-  // };
   const handleModal = (event: any) => {
     dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
   };

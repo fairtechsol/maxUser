@@ -1,5 +1,4 @@
-// import { useDispatch } from "react-redux";
-// import { AppDispatch } from "../../../../store/store";
+
 import { ImClubs } from "react-icons/im";
 import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
@@ -14,7 +13,6 @@ const CommonButtonBox = ({
   lock,
   data,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
 
   return (
     <div className="commonButtonBoxContainer" style={{ width: width,lineHeight:"2.5" }}>

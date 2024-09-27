@@ -1,8 +1,8 @@
-import "./style.scss";
-import { AppDispatch } from "../../../../store/store";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
+import { AppDispatch } from "../../../../store/store";
+import "./style.scss";
 const DynamicTable = ({ odds, data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -132,7 +132,6 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             }
           >
             <span className="title-16 fbold">{odds?.[0]?.b1}</span>
-            {/* <span className="f10-b">{odds?.[0]?.bs1}</span> */}
           </div>
           <div
             className={
@@ -150,7 +149,6 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             }
           >
             <span className="title-16 fbold">{odds?.[0]?.l1}</span>
-            {/* <span className="f10-b">{odds?.[0]?.ls1}</span> */}
           </div>
         </div>
       </div>
@@ -220,7 +218,6 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             }
           >
             <span className="title-16 fbold">{odds?.[1]?.b1}</span>
-            {/* <span className="f10-b">{odds?.[1]?.bs1}</span> */}
           </div>
           <div
             className={
@@ -238,7 +235,6 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
             }
           >
             <span className="title-16 fbold">{odds?.[1]?.l1}</span>
-            {/* <span className="f10-b">{odds?.[1]?.ls1}</span> */}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-const PieChart = ({ data, options }: any) => {
+const PieChart = ({ data}: any) => {
   return (
     <div
       style={{

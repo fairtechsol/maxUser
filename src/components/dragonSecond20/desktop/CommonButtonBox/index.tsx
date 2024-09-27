@@ -1,5 +1,4 @@
-// import { useDispatch } from "react-redux";
-// import { AppDispatch } from "../../../../store/store";
+
 import { ImClubs } from "react-icons/im";
 import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
@@ -23,7 +22,6 @@ const CommonButtonBox = ({
           {lock ? 0 : parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
         </span>
       </div>
-      {/* <div className="tiePairbtn-theme suspended" onClick={handleBet}> */}
       <div
         className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
         onClick={() => (!lock ? handleBet(data) : null)}

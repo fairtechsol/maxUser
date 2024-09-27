@@ -1,15 +1,13 @@
-import React from "react";
-import "../style.scss";
-import {isMobile} from "../../../../utils/screenDimension";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import {
   profitLossDataForMatchConstants,
   teamStatus,
 } from "../../../../utils/constants";
-import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOverlay";
+import { isMobile } from "../../../../utils/screenDimension";
 import Overlay from "../overlay";
+import "../style.scss";
 
 const MatchMarketRow = ({
   title,

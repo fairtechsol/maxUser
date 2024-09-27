@@ -1,8 +1,6 @@
-import React from "react";
 
-const RulesSection = ({ show, setShow }: any) => {
+const RulesSection = () => {
 
-    const handleClose = () => setShow(false);
   return (
     <div className="modal-body">
       {/* Run Section */}

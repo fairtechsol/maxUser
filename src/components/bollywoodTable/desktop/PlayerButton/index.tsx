@@ -8,7 +8,6 @@ const PlayerButton = ({
   lock,
   data,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
 
   return (
     <div className="commonButtonBoxContainer" style={{ width: width }}>
@@ -17,11 +16,6 @@ const PlayerButton = ({
           {value2 && value2}
         </span>
       </div>
-
-      {/* <div
-        className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
-        onClick={() => (!lock ? handleBet(data) : null)}
-      ></div> */}
 
       <div className="teenPatti-table-row" style={{ lineHeight: 2 }}>
         <div
@@ -37,7 +31,6 @@ const PlayerButton = ({
               lock ? "teenPatti-table-item-b suspended" : "teenPatti-table-item-b"
             }
             style={{ width: "50%" }}
-            //onClick={() => handleBet(data, "BACK")}
             onClick={() =>
               data?.gstatus == "SUSPENDED" || data?.gstatus == "CLOSED"
                 ? null

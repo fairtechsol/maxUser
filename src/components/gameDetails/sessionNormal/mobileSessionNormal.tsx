@@ -1,19 +1,17 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
-import { isMobile } from "../../../utils/screenDimension";
-import "./style.scss";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { useEffect, useState } from "react";
+import { Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { calculateMaxLoss, handleSize } from "../../../helpers";
 import {
   getRunAmount,
   resetRunAmountModal,
 } from "../../../store/actions/betPlace/betPlaceActions";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
 import RunBoxTable from "../betTable/runBoxTable";
-import { useSelector } from "react-redux";
-import { calculateMaxLoss, handleSize } from "../../../helpers";
-import { Modal } from "react-bootstrap";
+import "./style.scss";
 
-const MobileSessionNormal = ({ title, data, detail, manual,mtype }: any) => {
+const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [marketArr, setMarketArr] = useState(data?.section || []);
 

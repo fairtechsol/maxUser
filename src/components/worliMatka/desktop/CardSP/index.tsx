@@ -1,37 +1,15 @@
-import React, { useEffect, useState } from "react";
-import "../style.scss";
-import { AppDispatch } from "../../../../store/store";
+import { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { FaInfoCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { FaInfoCircle } from "react-icons/fa";
-import { Modal, Button } from "react-bootstrap";
+import { AppDispatch } from "../../../../store/store";
+import "../style.scss";
 
-const CardSp = ({ data, odds }: any) => {
+const CardSp = ({ odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
-
-  const handleBet = (item: any) => {
-    let team = {
-      bettingType: "BACK",
-      matchId: data?.id,
-      odd: item?.rate,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
-      bettingName: "Match odds",
-      selectionId: item?.sid,
-    };
-    dispatch(
-      selectedBetAction({
-        team,
-        data,
-      })
-    );
-    setSelectedBox(null); // Reset selection after placing the bet
-    setShowModal(false);
-  };
 
   useEffect(() => {
     if (odds?.gstatus === "0") {
