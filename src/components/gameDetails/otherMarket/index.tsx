@@ -154,12 +154,20 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {parseInt(profitLossTeamA) +
-                  manualProfitLoss(
-                    selectedBet,
-                    data?.type === "other" ? data?.metaData?.teamA : "Yes",
-                    data?.type,
-                    data?.gtype
-                  ) ?? ""}
+                manualProfitLoss(
+                  selectedBet,
+                  data?.type === "other" ? data?.metaData?.teamA : "Yes",
+                  data?.type,
+                  data?.gtype
+                )
+                  ? parseInt(profitLossTeamA) +
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.type === "other" ? data?.metaData?.teamA : "Yes",
+                      data?.type,
+                      data?.gtype
+                    )
+                  : ""}
               </span>
               <span
                 className="title-12 f-400"
@@ -290,12 +298,20 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
                 {parseInt(profitLossTeamB) +
-                  manualProfitLoss(
-                    selectedBet,
-                    data?.type === "other" ? data?.metaData?.teamB : "No",
-                    data?.type,
-                    data?.gtype
-                  ) ?? ""}
+                manualProfitLoss(
+                  selectedBet,
+                  data?.type === "other" ? data?.metaData?.teamB : "No",
+                  data?.type,
+                  data?.gtype
+                )
+                  ? parseInt(profitLossTeamB) +
+                    manualProfitLoss(
+                      selectedBet,
+                      data?.type === "other" ? data?.metaData?.teamB : "No",
+                      data?.type,
+                      data?.gtype
+                    )
+                  : ""}
               </span>
               <span
                 className="title-12 f-400"
@@ -423,12 +439,20 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                 >
                   {parseInt(profitLossTeamC) +
-                    manualProfitLoss(
-                      selectedBet,
-                      data?.metaData?.teamC,
-                      data?.type,
-                      data?.gtype
-                    ) ?? 0}
+                  manualProfitLoss(
+                    selectedBet,
+                    data?.metaData?.teamC,
+                    data?.type,
+                    data?.gtype
+                  )
+                    ? parseInt(profitLossTeamC) +
+                      manualProfitLoss(
+                        selectedBet,
+                        data?.metaData?.teamC,
+                        data?.type,
+                        data?.gtype
+                      )
+                    : 0}
                 </span>
                 <span
                   className="title-12 f-400"
