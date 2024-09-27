@@ -480,15 +480,13 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
 
             <Col xs={4} className="f800 title-12">
               <CustomButton
-                style={{ height: "28px", backgroundColour: "red" }}
+                style={{ height: "28px" }}
                 className={`f600 w-100 br-5 ${
-                  selectedBet?.team?.type === "lay" ||
-                  selectedBet?.team?.type === "LAY" ||
-                  selectedBet?.team?.type === "no"
-                    ? "btnbg-red"
+                  selectedBet?.team?.stake === 0 ? "btnbg-red"
                     : "btnbg-blue"
                 }`}
                 onClick={handleSubmit}
+                disabled={selectedBet?.team?.stake === 0 ?true:false}
               >
                 <span
                   style={{

@@ -379,15 +379,14 @@ const DesktopPlacedBet = ({ type }:any) => {
                             Reset
                           </button>
                           <button
+                          disabled={selectedBet?.team?.stake == 0?true:false}
                             className="submit-buttonn1"
                             onClick={handleSubmit}
                             style={{
                               backgroundColor:
-                                selectedBet?.team?.type == "lay" ||
-                                selectedBet?.team?.type === "LAY" ||
-                                selectedBet?.team?.type == "no"
-                                  ? "#679378"
-                                  : "#38998a",
+                              selectedBet?.team?.stake == 0 
+                                ? "#198754"
+                                : "#086f3f",
                                   fontSize:"13px"
                             }}
                           >

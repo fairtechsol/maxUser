@@ -167,7 +167,11 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             <Col xs={4} className="f800 title-12">
               <CustomButton
                 style={{ height: "28px" }}
-                className="f600 w-100 br-0"
+                className={`f600 w-100 br-5 ${
+                  selectedBet?.team?.stake === 0 ? "btnbg-red"
+                    : "btnbg-blue"
+                }`}
+                disabled={selectedBet?.team?.stake === 0 ?true:false}
                 onClick={() => {
                   try {
                     if (loading || matchOddLoading) {
