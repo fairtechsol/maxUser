@@ -34,7 +34,7 @@ export { default as luck7B } from "./lucky7/lucky7B.webp";
 export { default as cards32A } from "./cards32/32cardsA.webp";
 export { default as cards32B } from "./cards32/32cardsB.webp";export { default as luckyrules } from "./rules/lucky7-rules.webp";
 export { default as tprules } from "./rules/tp-rules.webp";
-export { default as dtrules } from "./rules/dragon-tiger-20-rules.webp";
+export { default as dtrules } from "./rules/dt202.jpg";
 export { default as abjrules } from "./rules/abj-rules.webp";
 export { default as lucky7rules } from "./rules/lucky7-rules.webp";
 export { default as card32rules } from "./rules/tt32_cards_rule.webp";
