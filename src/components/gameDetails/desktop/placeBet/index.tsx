@@ -502,7 +502,7 @@ const PlacedBet = () => {
                         ))}
                       </Row>
                       <Row>
-                        <Col xs={6}>
+                        <Col xs={7}>
                           <div
                             style={{
                               width: "75px",
@@ -521,9 +521,9 @@ const PlacedBet = () => {
                           </div>
                         </Col>
 
-                        <Col md={6} className="reset-submit-btn-container">
+                        <Col md={5} className="reset-submit-btn-container">
                           <button
-                            className="reset-buttonn"
+                            className="reset-buttonn me-1"
                             onClick={() => {
                               dispatch(selectedBetAction(null));
                             }}
