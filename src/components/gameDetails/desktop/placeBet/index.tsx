@@ -304,12 +304,12 @@ const PlacedBet = () => {
       selectedBet?.data?.type?.includes("setWinner")
     ) {
       profit =
-        selectedBet?.team?.type === "back"
+        selectedBet?.team?.type === "BACK" || selectedBet?.team?.type === "back"
           ? (value * ((matchOddRate - 1) * 100)) / 100
           : value;
     } else {
       profit =
-        selectedBet?.team?.type === "back"
+        selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK"
           ? (value * matchOddRate) / 100
           : value;
     }
