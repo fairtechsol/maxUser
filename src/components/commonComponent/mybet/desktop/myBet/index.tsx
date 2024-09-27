@@ -32,7 +32,7 @@ const DesktopMyBet = () => {
                 <th
                 style={{backgroundColor: "#f7f7f7"}}
                   key={item?.id}
-                  className="title-12 text-start f500 lh-1"
+                  className="title-12 text-start fbold lh-1"
                 >
                   {item?.name}
                 </th>

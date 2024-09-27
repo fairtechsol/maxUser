@@ -144,7 +144,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 }
               >
                 <span className="market-odd-c f600" style={{color:"#333333"}}>
-                  {team1?.b1 === "0.00" || "0" ? "-" : team1?.b1}
+                  {team1?.status === "SUSPENDED" ||
+                  team1?.status === "CLOSED" ? "-" : team1?.b1}
                 </span>
                 <span className="market-volume-c" style={{color:"#333333"}}>{team1?.bs1}</span>
               </div>
@@ -159,7 +160,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 }
               >
                 <span className="market-odd-c f600">
-                  {team1?.l1 === "0.00" || "0" ? "-" : team1?.l1}
+                  {team1?.status === "SUSPENDED" ||
+                  team1?.status === "CLOSED" ? "-" : team1?.l1}
                 </span>
                 <span className="market-volume">{team1?.ls1}</span>
               </div>
@@ -228,7 +230,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 }
               >
                 <span className="market-odd-c f600" style={{color:"#333333"}}>
-                  {team2?.b1 === "0.00" || "0" ? "-" : team2?.b1}
+                  {  team2?.status === "SUSPENDED" ||
+                  team2?.status === "CLOSED" ? "-" : team2?.b1}
                 </span>
                 <span className="market-volume-c" style={{color:"#333333"}}>{team2?.bs1}</span>
               </div>
@@ -243,7 +246,8 @@ const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
                 }
               >
                 <span className="market-odd-c f600">
-                  {team2?.l1 === "0.00" || "0" ? "-" : team2?.l1}
+                  {team2?.status === "SUSPENDED" ||
+                  team2?.status === "CLOSED" ? "-" : team2?.l1}
                 </span>
                 <span className="market-volume">{team2?.ls1}</span>
               </div>

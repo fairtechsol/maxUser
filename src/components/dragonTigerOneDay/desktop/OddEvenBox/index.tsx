@@ -126,7 +126,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               </span>
             </div>
           </div>
-          <div className="dtlsubTitle back-BackGround">
+          <div className="dtlsubTitle back-BackGround lh-1">
             <span style={{ fontSize: "14px" }}>
               {title1 === "even" ? (
                 "Even"
@@ -139,7 +139,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               )}
             </span>
           </div>
-          <div className="dtlsubTitle back-BackGround">
+          <div className="dtlsubTitle back-BackGround lh-1">
             <span style={{ fontSize: "14px" }}>
               {title2 === "odd" ? (
                 "Odd"
