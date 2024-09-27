@@ -125,13 +125,13 @@ const Tournament = ({ title, box, data, detail }) => {
                           : "color-red"
                       } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
-                      {parseInt(profitLossObj?.[item.id]) +
+                     {profitLossObj?.[item.id]? parseInt(profitLossObj?.[item.id]) +
                         manualProfitLoss(
                           selectedBet,
                           item?.nat || item?.runnerName,
                           data?.type,
                           data?.gtype
-                        )}
+                        ):""}
                     </span>
                     <span
                       className="title-12 f-400"
