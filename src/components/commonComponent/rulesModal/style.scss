@@ -30,14 +30,17 @@
 
 //animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards running go3223188581;
 .custom-modal-width {
-  
-  width: 10px;
+  width: 350px !important; /* Custom width for the modal */
+  max-width: 150px !important; /* Ensure the modal doesn't expand */
+  margin: auto !important; /* Center the modal horizontally */
+ // width: 10px;
+ justify-content: space-between;
 }
 .modal-content {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 10%;
+    width: 106% !important;
     color: var(--bs-modal-color);
     pointer-events: auto;
     background-color: var(--bs-modal-bg);
