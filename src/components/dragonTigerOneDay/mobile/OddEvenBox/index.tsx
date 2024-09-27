@@ -110,7 +110,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               ? dragonEvenOdd?.[0]?.max
               : dragonRedBlack?.[0]?.max} */}
           </div>
-          <div className="dtlsubTitle back-BackGround">
+          <div className="dtlsubTitle back-BackGround p-1">
             <span style={{ fontSize: "14px" }}>
               {title1 === "even" ? (
                 "Even"

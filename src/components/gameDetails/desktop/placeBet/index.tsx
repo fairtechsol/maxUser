@@ -304,12 +304,12 @@ const PlacedBet = () => {
       selectedBet?.data?.type?.includes("setWinner")
     ) {
       profit =
-        selectedBet?.team?.type === "back"
+        selectedBet?.team?.type === "BACK" || selectedBet?.team?.type === "back"
           ? (value * ((matchOddRate - 1) * 100)) / 100
           : value;
     } else {
       profit =
-        selectedBet?.team?.type === "back"
+        selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK"
           ? (value * matchOddRate) / 100
           : value;
     }
@@ -502,7 +502,7 @@ const PlacedBet = () => {
                         ))}
                       </Row>
                       <Row>
-                        <Col xs={6}>
+                        <Col xs={7}>
                           <div
                             style={{
                               width: "75px",
@@ -521,9 +521,9 @@ const PlacedBet = () => {
                           </div>
                         </Col>
 
-                        <Col md={6} className="reset-submit-btn-container">
+                        <Col md={5} className="reset-submit-btn-container">
                           <button
-                            className="reset-buttonn"
+                            className="reset-buttonn me-1"
                             onClick={() => {
                               dispatch(selectedBetAction(null));
                             }}
