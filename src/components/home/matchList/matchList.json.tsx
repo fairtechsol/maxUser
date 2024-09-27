@@ -12,9 +12,12 @@ import { TbPlayVolleyball } from "react-icons/tb";
 import {
   Badmin,
   Esoc,
+  FUTSAL,
   Grey,
+  HANDBALL,
   Horse,
   Kabaddi,
+  MOTORSPORT,
   POLITICS,
   Snooker,
   TableT,
@@ -137,19 +140,19 @@ const MatchListJson = () => {
       id: "futsal",
       name: "Futsal",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <IoGameController />,
+      img: FUTSAL,
     },
     {
       id: "handball ",
       name: "Hand Ball",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <IoGameController />,
+      img: HANDBALL,
     },
     {
       id: "motorSports",
       name: "Motor Sports",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <IoGameController />,
+      img: MOTORSPORT,
     },
   ];
 };

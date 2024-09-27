@@ -92,4 +92,7 @@ export { default as brules } from "./rules/bollywoodtable-rules.webp";
 export { default as aaarules } from "./rules/aaaRules.webp";
 export { default as b2rules } from "./rules/baccarat2-rules.webp";
 export { default as cmeterrules } from "./rules/cmeterrules.webp";
-export { default as POLITICS } from "./conference.png";
+export { default as POLITICS } from "./gameicons/conference.png";
+export { default as FUTSAL } from "./gameicons/futsal.png";
+export { default as HANDBALL } from "./gameicons/handball.png";
+export { default as MOTORSPORT } from "./gameicons/motorSport.png";
