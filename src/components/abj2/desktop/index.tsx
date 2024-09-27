@@ -198,7 +198,7 @@ const Abj2Desktop = () => {
                 </div>
               </div>
             )}
-            <RulesModal show={show} setShow={setShow} rule={abjrules} />
+            <RulesModal show={show} setShow={setShow} rule={abjrules} gameType="abj2" type="imageWithContent" />
           </div>
         </Col>
         <Col className="p-0" md={4}>

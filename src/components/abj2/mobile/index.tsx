@@ -157,7 +157,7 @@ const Abj2Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <RulesModal show={show} setShow={setShow} rule={abjrules} gameType="abj2" type="imageWithContent" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

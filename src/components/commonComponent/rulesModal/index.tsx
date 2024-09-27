@@ -6,6 +6,7 @@ import Teen20Rules from "../../teenPatti20/desktop/teen20Rules";
 import Baccarat2Rules from "../../baccarat2/desktop/baccarat2Rules";
 import Card32Rules from "../../cards32/desktop/card32Rules";
 import BTableRules from "../../bollywoodTable/desktop/btableRules";
+import Abj2Rules from "../../abj2/desktop/abj2Rules";
 import "./style.scss";
 
 const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
@@ -77,7 +78,7 @@ const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
                 <Card32Rules />
               ) : gameType == "btable" ? (
                 <BTableRules />
-              ) : (
+              ) : gameType=="abj2"?<Abj2Rules/>:(
                 <></>
               )}
             </div>
