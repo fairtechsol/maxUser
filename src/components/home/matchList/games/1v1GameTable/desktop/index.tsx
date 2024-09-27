@@ -43,7 +43,6 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  console.log(matchList, "data")
   return (
     <>
       <Table className="matchListTable-desktop mb-4">
