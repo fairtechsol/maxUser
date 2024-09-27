@@ -182,7 +182,6 @@ const DesktopPlacedBet = ({ type }:any) => {
     }
   };
 
-console.log(selectedBet?.team?.bettingType, "bet")
 
   return (
     <>
