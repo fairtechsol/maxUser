@@ -100,7 +100,7 @@ const TotalCards = ({ data, odds }: any) => {
               </span>
             </div>
           </span>
-          {renderItem(odds?.[0], 0)}
+          {renderItem(odds?.[0])}
         </div>
         <div
           className="w-100 d-sm-flex flex-row"
@@ -140,7 +140,7 @@ const TotalCards = ({ data, odds }: any) => {
               </span>
             </div>
           </span>
-          {renderItem(odds?.[1], 1)}
+          {renderItem(odds?.[1])}
         </div>
       </div>
     </div>
