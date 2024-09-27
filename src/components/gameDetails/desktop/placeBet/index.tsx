@@ -1,8 +1,8 @@
 import { Col, Container, Row, Table } from "react-bootstrap";
-import { ImCross } from "react-icons/im";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Modal } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -15,10 +15,9 @@ import { AppDispatch, RootState } from "../../../../store/store";
 import { ApiConstants, matchBettingType } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
+import ButtonValues from "../../mobile/buttonValues";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
-import { Modal } from "react-bootstrap";
-import ButtonValues from "../../mobile/buttonValues";
 
 const placeBetHeader = [
   {

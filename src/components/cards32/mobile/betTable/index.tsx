@@ -1,8 +1,8 @@
-import "./style.scss";
-import { AppDispatch } from "../../../../store/store";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
+import { AppDispatch } from "../../../../store/store";
+import "./style.scss";
 const DynamicTable = ({ odds, data, back, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 

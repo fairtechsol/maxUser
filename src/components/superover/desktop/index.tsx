@@ -4,20 +4,18 @@ import { Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { supoerrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
-import { cardGamesId, cardUrl, rulesData } from "../../../utils/constants";
-import Bookmaker from "./bookmaker";
-import ScoreBoard from "../../commonComponent/scoreBoard";
-import SuperoverResult from "./superOver";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import Iframe from "../../iframe/iframe";
-import CustomLoader from "../../commonComponent/customLoader/CustomLoader";
-import NewLoader from "../../commonComponent/newLoader";
+import Bookmaker from "./bookmaker";
+import "./style.scss";
+import SuperoverResult from "./superOver";
 
 const SuperoverDesktop = () => {
   const [show, setShow] = useState(false);
@@ -29,8 +27,6 @@ const SuperoverDesktop = () => {
   );
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const [isAtFooter, setIsAtFooter] = useState(false);
-  const rowRef = useRef(null);
 
   const handleClose = () => {
     setShowInactivityModal(false);

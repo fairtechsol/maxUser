@@ -1,23 +1,18 @@
 import { Tab } from "react-bootstrap";
-import CommonTabs from "../../commonComponent/tabs";
-import MobileMatchList from "../matchList/mobile";
-import SportsFilterJson from "./sportsFilters.json";
-import LatestEvent from "../latestEvents";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import CommonTabs from "../../commonComponent/tabs";
+import LatestEvent from "../latestEvents";
+import MobileMatchList from "../matchList/mobile";
+import SportsFilterJson from "./sportsFilters.json";
 
 const SportsFilters = ({ type, setMatchType }: any) => {
 
-  const [selectedItem, setSelectedItem] = useState(null);
+
 
   const { tabList} = useSelector(
     (state: RootState) => state.match.matchList
   );
-  const handleClick = (id:any) => {
-    setSelectedItem(id);
-    // Perform any additional actions you want on item click
-  };
   return (
     <div className="m-0 p-0 w-100 ">
      <LatestEvent events={tabList}/>

@@ -1,17 +1,15 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
-import { isLap, isMobile } from "../../../utils/screenDimension";
-import "./style.scss";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
 import {
   dummyArray,
   formatNumber,
-  handleSize,
-  manualProfitLoss,
+  manualProfitLoss
 } from "../../../helpers";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { isMobile } from "../../../utils/screenDimension";
 import BetBox from "../betBox";
-import { useSelector } from "react-redux";
+import "./style.scss";
 
 const MatchOdd = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();

@@ -7,40 +7,15 @@ interface Props {
     C2: string;
   };
 }
-// const head=["team1","1","2","3","4","5","6","Run/Over","Score"]
 
 const Cricket5ResultComponent: React.FC<Props> = ({ data }: any) => {
-// console.log('first',data)
+
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
      <div className="mb-2" style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
       <span>{data?.result?.desc} | Winner :{data?.result?.win ==="1"? " AUS":data?.result?.win ==="0"?" TIE":" IND"}</span>
      </div>
-     {/* <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
-      <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>FIRST INNINGS</span></div>
-      <div className="resultTeamTab">
-          {head?.map((item:any,index:number)=>{
-            return(
-              <div style={{width:index===0?"20%":"10%",padding:"3px"}}>
-              <span className="f600" key={index} >{item==="team1"?"AUS":item}</span>
-              </div>
-            )
-          })}
-      </div>
-     </div>
-     <div className="mt-2 mb-2" style={{width:"100%",display:"flex",flexDirection:"column"}}>
-      <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>SECOND INNINGS</span></div>
-      <div className="resultTeamTab">
-          {head?.map((item:any,index:number)=>{
-            return(
-              <div style={{width:index===0?"20%":"10%",padding:"3px"}}>
-              <span className="f600" key={index} >{item==="team1"?"IND":item}</span>
-              </div>
-            )
-          })}
-      </div>
-     </div> */}
      {
         data?.bets?.count > 0 && 
         <div className="w-100">

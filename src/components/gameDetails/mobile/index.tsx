@@ -3,73 +3,30 @@ import { Col, Container, Ratio, Row, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 // import { formatDate } from "../../../utils/dateUtils";
-import { MatchType } from "../../../utils/enum";
+import { FaTv } from "react-icons/fa";
+import { getChannelId } from "../../../helpers";
+import service from "../../../service";
+import { ApiConstants, Constants } from "../../../utils/constants";
+import { formatDate } from "../../../utils/dateUtils";
+import BetTableHeader from "../../commonComponent/betTableHeader";
 import CommonTabs from "../../commonComponent/tabs";
-import BetTable from "../betTable";
+import Iframe from "../../iframe/iframe";
+import Bookmaker from "../bookmaker";
+import DynamicMarket from "../dynamicMarkets";
+import ManualMarket from "../manulMarkets";
+import MatchOdd from "../matchOdd";
+import OtherMarket from "../otherMarket";
+import SessionCricketCasino from "../sessionCricketCasino";
+import MobileSessionFancy from "../sessionFancy/mobileSessionFancy";
+import MobileSessionNormal from "../sessionNormal/mobileSessionNormal";
+import MobileSessionOddEven from "../sessionOddEven/mobileSessionOddEven";
+import Tournament from "../tournament";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import BetTableHeader from "../../commonComponent/betTableHeader";
-import { formatDate } from "../../../utils/dateUtils";
-import service from "../../../service";
-import { getChannelId } from "../../../helpers";
-import MatchOdd from "../matchOdd";
-import Bookmaker from "../bookmaker";
-import ManualMarket from "../manulMarkets";
-import DynamicMarket from "../dynamicMarkets";
-import MobileSessionNormal from "../sessionNormal/mobileSessionNormal";
-import MobileSessionOddEven from "../sessionOddEven/mobileSessionOddEven";
-import MobileSessionFancy from "../sessionFancy/mobileSessionFancy";
-import SessionCricketCasino from "../sessionCricketCasino";
-import { FiMonitor } from "react-icons/fi";
-import { FaTv } from "react-icons/fa";
-import { ApiConstants } from "../../../utils/constants";
-import OtherMarket from "../otherMarket";
-import Iframe from "../../iframe/iframe";
-import { Constants } from "../../../utils/constants";
-import Tournament from "../tournament";
-const markets = [
-  {
-    id: "fancy",
-    name: "Fancy",
-  },
-  {
-    id: "fancy1",
-    name: "Fancy 1",
-  },
-  {
-    id: "meter",
-    name: "Meter",
-  },
-  {
-    id: "khado",
-    name: "Khado",
-  },
-  {
-    id: "oddEven",
-    name: "OdD Even",
-  },
-  {
-    id: "wicket",
-    name: "WICKET",
-  },
-  {
-    id: "four",
-    name: "FOUR",
-  },
-  {
-    id: "six",
-    name: "SIX",
-  },
-  {
-    id: "cricketcasino",
-    name: "CRICKET CASINO",
-  },
-];
 
 const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
-  const [marketActive, setMarketActive] = useState("fancy");
   const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   const [errorCount, setErrorCount] = useState<number>(0);
   const [channelId, setChannelId] = useState<string>("");
@@ -79,9 +36,6 @@ const MobileGameDetail = () => {
   );
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  const handleMarket = (type: string) => {
-    setMarketActive(type);
-  };
   const getScoreBoard = async (eventId: string) => {
     try {
       const response: any = await service.get(

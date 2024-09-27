@@ -1,10 +1,8 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
-import { FaTrophy } from "react-icons/fa";
-import {isMobile} from "../../../utils/screenDimension";
-import "./style.scss";
+import { isMobile } from "../../../utils/screenDimension";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -13,13 +11,6 @@ interface Props {
 }
 
 const BallByBallResultComponent: React.FC<Props> = ({ data }: any) => {
-  const resultCards = data?.result?.cards?.split(",");
-  const playerA = resultCards?.filter(
-    (_: any, index: number) => index % 2 === 0
-  );
-  const playerB = resultCards?.filter(
-    (_: any, index: number) => index % 2 !== 0
-  );
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>

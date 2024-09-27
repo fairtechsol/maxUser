@@ -1,26 +1,22 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules, warrules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CasinoWarResult from "../desktop/teenCard";
-import { HandleCards } from "../../commonComponent/cardsComponent";
-import { HandleCards3 } from "./cardComponent2";
 import "./style.scss";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
-import Meter from "../desktop/meter";
-import LowCards from "../desktop/Low";
-import HighCards from "../desktop/High";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import HighCards from "../desktop/High";
+import LowCards from "../desktop/Low";
+import Meter from "../desktop/meter";
 
 const CasinoMeterMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -36,32 +32,6 @@ const CasinoMeterMobile = () => {
   );
 
   const { placedBets } = useSelector((state: RootState) => state.bets);
-  // const rules = [
-  //   { label: "Pair (Double)", value: "1 To 1" },
-  //   { label: "Flush (Color)", value: "1 To 4" },
-  //   { label: "Straight (Rown)", value: "1 To 6" },
-  //   { label: "Trio (Teen)", value: "1 To 35" },
-  //   { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  // ];
-  const handleBet = (item: any) => {
-    let team = {
-      bettingType: "BACK",
-      matchId: dragonTigerDetail?.id,
-      odd: item?.b1,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
-      bettingName: "Match odds",
-      selectionId: item?.sid,
-    };
-    dispatch(
-      selectedBetAction({
-        team,
-        dragonTigerDetail,
-      })
-    );
-  };
 
   const handleClose = () => {
     setShowInactivityModal(false);

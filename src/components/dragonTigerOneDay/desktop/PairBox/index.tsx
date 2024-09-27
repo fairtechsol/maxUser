@@ -1,9 +1,8 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { IoInformationCircle } from "react-icons/io5";
-import { useState } from "react";
 import SmoothDropdownModal from "../minMaxModal";
 
 const PairBox = ({ odds, data }: any) => {

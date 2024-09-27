@@ -41,7 +41,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const renderItem = (item: any) => (
     <div
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "suspended-poker20" : ""
+        handleLock(item?.gstatus, item?.b1) ? "suspended-1day" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -138,6 +138,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           </div>
         </div>
         <div
+         style={{ height: "40px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitle">Dragon </div>
@@ -149,6 +150,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           )}
         </div>
         <div
+         style={{ height: "40px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitle"> Tiger</div>

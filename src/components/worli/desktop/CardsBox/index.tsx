@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import "./style.scss";
 
-const CardBox = ({ title, data, cards, odds }: any) => {
+const CardBox = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any) => {

@@ -112,7 +112,7 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
         <div style={{ display: "flex",  flexDirection: "column", alignItems: "center"}}>
           <span className="title-18 f500">Board</span>
           <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>
-          {lastCards?.map((item: any, index: number) => {
+          {lastCards?.map((item: any) => {
             return (
                 <HandleCards card={item} />
             );

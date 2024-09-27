@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
-import { isLap, isMobile } from "../../../utils/screenDimension";
-import "./style.scss";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { calculateMaxLoss, formatNumber, handleSize } from "../../../helpers";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../store/store";
+import { isMobile } from "../../../utils/screenDimension";
+import "./style.scss";
 
 const SessionFancy = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();

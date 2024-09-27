@@ -1,19 +1,19 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import NewLoader from "../../commonComponent/newLoader";
-import RulesModal from "../../commonComponent/rulesModal";
-import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -163,13 +163,6 @@ const TeenPattiDesktop = () => {
                     Rules
                   </span>
                 </div>
-                {/* <span>
-                  {dragonTigerDetail?.videoInfo
-                    ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}`: ""}
-                    
-                </span> */}
                 <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
@@ -284,7 +277,6 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "40%",
-                        //border: "0.1px solid #fff",
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
@@ -327,7 +319,6 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "40%",
-                        //border: "0.1px solid #fff",
                         fontSize: "14px",
                         marginLeft: "3px",
                       }}
@@ -369,7 +360,7 @@ const TeenPattiDesktop = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  {runs?.map((item: any, index: any) => (
+                  {runs?.map((item: any) => (
                     <div
                       style={{
                         display: "flex",

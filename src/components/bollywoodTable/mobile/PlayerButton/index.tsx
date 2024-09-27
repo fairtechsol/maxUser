@@ -135,12 +135,6 @@ const PlayerButton = ({
           </span>
         </div>
       </div>
-
-      {/* <div
-        className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
-        onClick={() => (!lock ? handleBet(data) : null)}
-      ></div> */}
-
       <div
         className="teenPatti-table-row"
         style={{ lineHeight: 2, display: "flex", width: "30%" }}

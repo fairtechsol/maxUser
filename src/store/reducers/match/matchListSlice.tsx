@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { profitLossDataForMatchConstants } from "../../../utils/constants";
 import {
   SearchList,
   SearchListReset,
@@ -448,7 +447,6 @@ const matchListSlice = createSlice({
       })
       .addCase(updateTeamRatesOnDeleteMatch.fulfilled, (state, action) => {
         const {
-          matchBetType,
           redisObject,
           teamArateRedisKey,
           teamBrateRedisKey,

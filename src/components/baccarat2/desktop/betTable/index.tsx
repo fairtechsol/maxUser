@@ -35,7 +35,6 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
       })
     );
   };
-  // console.log(odds, "odds");
 
   useEffect(() => {
     if ( odds?.[0]?.gstatus === "0" || odds?.[0]?.b1 === "0.00") {

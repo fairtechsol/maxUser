@@ -1,5 +1,4 @@
 import loader from "../../../assets/svg/loadersv.svg";
-import LogoSection from "../logoSection";
 import "./style.scss";
 
 const Loader = () => {

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { BiSolidHeart } from "react-icons/bi";
 import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
@@ -37,10 +36,10 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number) => (
+  const renderItem = (item: any) => (
     <div
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "suspended-poker20" : ""
+        handleLock(item?.gstatus, item?.b1) ? "suspended-1day" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -87,10 +86,6 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
             {" "}
             <div style={{ width: "30%" }}>
               <span className="minmaxi">
-                {/* <IoInformationCircle
-                  color="#ffc742"
-                  onClick={() => setModelOpen(!modelOpen)}
-                /> */}
                 <SmoothDropdownModal
                   min={dragonData?.[0]?.min}
                   max={dragonData?.[0]?.max}
@@ -115,17 +110,17 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
           <div className="dtlTitlee">Dragon </div>
-          {renderItem(dragonData?.[4], 4)}
-          {renderItem(dragonData?.[5], 5)}
-          {renderItem(dragonData?.[7], 7)}
-          {renderItem(dragonData?.[6], 6)}
+          {renderItem(dragonData?.[4])}
+          {renderItem(dragonData?.[5])}
+          {renderItem(dragonData?.[7])}
+          {renderItem(dragonData?.[6])}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
           <div className="dtlTitlee"> Tiger</div>
-          {renderItem(tigerData?.[4], 4)}
-          {renderItem(tigerData?.[5], 5)}
-          {renderItem(tigerData?.[7], 7)}
-          {renderItem(tigerData?.[6], 6)}
+          {renderItem(tigerData?.[4])}
+          {renderItem(tigerData?.[5])}
+          {renderItem(tigerData?.[7])}
+          {renderItem(tigerData?.[6])}
         </div>
       </div>
     </div>

@@ -1,11 +1,10 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
-import { isLap, isMobile } from "../../../utils/screenDimension";
-import "./style.scss";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
 import { formatNumber, manualProfitLoss } from "../../../helpers";
-import { useSelector } from "react-redux";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
+import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { isMobile } from "../../../utils/screenDimension";
+import "./style.scss";
 
 const ManualMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
