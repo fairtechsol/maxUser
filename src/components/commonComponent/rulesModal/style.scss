@@ -26,6 +26,7 @@
   align-items: center;
   font-size: 14px;
   text-align: center;
+  cursor: pointer;
 }
 
 //animation: 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) 0s 1 normal forwards running go3223188581;
@@ -40,7 +41,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 106% !important;
+    width: 100% !important;
     color: var(--bs-modal-color);
     pointer-events: auto;
     background-color: var(--bs-modal-bg);

@@ -4,6 +4,8 @@ import CmeterRules from "../../casinoMeter/desktop/cmeterRules";
 import Teen1dRules from "../../teenPatti1D/desktop/teen1dRules";
 import Teen20Rules from "../../teenPatti20/desktop/teen20Rules";
 import Baccarat2Rules from "../../baccarat2/desktop/baccarat2Rules";
+import Card32Rules from "../../cards32/desktop/card32Rules";
+import BTableRules from "../../bollywoodTable/desktop/btableRules";
 import "./style.scss";
 
 const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
@@ -29,7 +31,9 @@ const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
           <div className="go685806154">
             <div className="go1858758034"></div>
             <div className="go1579819456">
-              <div className="go2534082608">X</div>
+              <div className="go2534082608" onClick={handleClose}>
+                X
+              </div>
             </div>
           </div>
           <div role="status" aria-live="polite" className="go3958317564">
@@ -67,6 +71,12 @@ const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
                 <Teen20Rules />
               ) : gameType == "baccarat2" ? (
                 <Baccarat2Rules />
+              ) : gameType == "card32" ? (
+                <Card32Rules />
+              ) : gameType == "card32eu" ? (
+                <Card32Rules />
+              ) : gameType == "btable" ? (
+                <BTableRules />
               ) : (
                 <></>
               )}

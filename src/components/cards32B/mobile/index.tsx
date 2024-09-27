@@ -164,7 +164,7 @@ const Card32BMobile = () => {
         )}
       </div>
 
-      <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32eu' type="imageWithContent" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
