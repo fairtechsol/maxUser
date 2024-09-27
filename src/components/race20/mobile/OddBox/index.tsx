@@ -116,8 +116,8 @@ const OddBox = ({ odds, data }: any) => {
                     }}
                   >
                     <div
-                      className={`back-BackGround ${
-                        handleLock(item, "back") ? "suspended" : ""
+                      className={`back-BackGround py-1 ${
+                        handleLock(item, "back") ? "suspended py-1" : ""
                       }`}
                       style={{
                         width: "45%",
@@ -125,7 +125,7 @@ const OddBox = ({ odds, data }: any) => {
                         justifyContent: "center",
                         alignItems: "center",
                         flexDirection: "column",
-                        paddingTop: "7px",
+                        // paddingTop: "7px",
                       }}
                       onClick={() =>
                         handleLock(item, "back")
@@ -137,8 +137,8 @@ const OddBox = ({ odds, data }: any) => {
                       <span className="casino-volume f400">{item?.bs1}</span>
                     </div>
                     <div
-                      className={`lay-BackGround ${
-                        handleLock(item, "lay") ? "suspended" : ""
+                      className={`lay-BackGround py-1${
+                        handleLock(item, "lay") ? "suspended py-1" : ""
                       }`}
                       style={{
                         width: "50%",
@@ -146,7 +146,7 @@ const OddBox = ({ odds, data }: any) => {
                         justifyContent: "center",
                         alignItems: "center",
                         flexDirection: "column",
-                        paddingTop: "7px",
+                        // paddingTop: "7px",
                       }}
                       onClick={() =>
                         handleLock(item, "lay")

@@ -146,7 +146,6 @@ const DragonTigerDesktop = () => {
               <div
                 style={{
                   width: "100%",
-                  margin: "px",
                   display: "flex",
                   flexDirection: "row",
                   gap: "8px",
