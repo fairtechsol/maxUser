@@ -14,6 +14,7 @@ import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
+import { TbDeviceTvOld } from "react-icons/tb";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
@@ -173,6 +174,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                     ) : (
                                       ""
                                     )}
+                                { item?.isTv === true || item?.isTv === "1" ? <TbDeviceTvOld /> : "" }
                                     {item?.manualSessionActive ||
                                     item?.apiSessionActive ? (
                                       <span className="fancy">
