@@ -295,6 +295,7 @@ export const availableGameType: any = {
   tennis: "tennis",
   horseRacing: "horseRacing",
   greyHound: "greyHound",
+  politics: "politics",
 };
 
 export const cardGamesType: any = {

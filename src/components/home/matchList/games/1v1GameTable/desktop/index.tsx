@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 // import { FiMonitor } from "react-icons/fi";
 import moment from "moment-timezone";
 import { Img } from "react-image";
@@ -97,10 +97,12 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                                 className="one-v-one-title title-14"
                                 style={{ color: "#343a40" }}
                               >
-                               <Link className="text-black" to={"/ballbyball"}> Ball By Ball</Link>
+                                <Link className="text-black" to={"/ballbyball"}>
+                                  {" "}
+                                  Ball By Ball
+                                </Link>
                               </div>
                             </div>
-                      
                           </div>
                         </td>
 
@@ -181,7 +183,7 @@ const MatchListRow = ({ item, matchType }: any) => {
           <NavLink
             className="text-decoration-none"
             to={`/${
-              matchType === "cricket"
+              matchType === "cricket" || matchType === "politics"
                 ? "game-detail/cricket"
                 : `other-game-detail/${matchType}`
             }/${item?.id}`}
@@ -191,14 +193,12 @@ const MatchListRow = ({ item, matchType }: any) => {
               style={{ color: "#343a40" }}
             >
               {item?.title} /{" "}
-              {moment(item?.startAt)
-                .tz(timezone)
-                .format("MMM DD YYYY h:mmA")}
+              {moment(item?.startAt).tz(timezone).format("MMM DD YYYY h:mmA")}
             </div>
           </NavLink>
           <div className="d-flex align-items-center gap-2">
             {currentTime >= startAt ? <span className="liveDot"></span> : ""}
-            { item?.isTv === true || item?.isTv === "1" ? <FiMonitor /> : "" }
+            {item?.isTv === true || item?.isTv === "1" ? <FiMonitor /> : ""}
             {item?.manualSessionActive || item?.apiSessionActive ? (
               <span className="fancy">
                 <img src="/ic_fancy.png" alt={"fancy"} />
