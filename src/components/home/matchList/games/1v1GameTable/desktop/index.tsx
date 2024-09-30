@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 // import { FiMonitor } from "react-icons/fi";
 import moment from "moment-timezone";
+import { FiMonitor } from "react-icons/fi";
 import { Img } from "react-image";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
@@ -14,7 +15,6 @@ import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
-import { FiMonitor } from "react-icons/fi";
 const tableHeading = [
   {
     id: "game",
@@ -216,83 +216,47 @@ const MatchListRow = ({ item, matchType }: any) => {
           </div>
         </div>
       </td>
-      {item?.matchOdds?.map((item: any, index: number) => {
-        return (
-          <React.Fragment key={index}>
-            <BackLayComponent
-              backRate={
-                (item?.runners &&
-                  item?.runners[0]?.ex?.availableToBack[0]?.price) ??
-                item?.backTeamA ??
-                0
-              }
-              layRate={
-                (item?.runners &&
-                  item?.runners[0]?.ex?.availableToLay[0]?.price) ??
-                item?.layTeamA ??
-                0
-              }
-              active={false}
-              //   backPercent={
-              //     (item?.runners &&
-              //       item?.runners[0]?.ex?.availableToBack[0]?.size) ??
-              //     ""
-              //   }
-              //   layPercent={
-              //     (item?.runners &&
-              //       item?.runners[0]?.ex?.availableToLay[0]?.size) ??
-              //     ""
-              //   }
-            />
-            <BackLayComponent
-              backRate={
-                (item?.runners &&
-                  item?.runners[2]?.ex?.availableToBack[0]?.price) ??
-                0
-              }
-              layRate={
-                (item?.runners &&
-                  item?.runners[2]?.ex?.availableToLay[0]?.price) ??
-                0
-              }
-              active={false}
-              // backPercent={
-              //   (item?.runners &&
-              //     item?.runners[2]?.ex?.availableToBack[0]?.size) ??
-              //   ""
-              // }
-              // layPercent={
-              //   (item?.runners &&
-              //     item?.runners[2]?.ex?.availableToLay[0]?.size) ??
-              //   ""
-              // }
-            />
-            <BackLayComponent
-              backRate={
-                (item?.runners &&
-                  item?.runners[1]?.ex?.availableToBack[0]?.price) ??
-                0
-              }
-              layRate={
-                (item?.runners &&
-                  item?.runners[1]?.ex?.availableToLay[0]?.price) ??
-                0
-              }
-              active={false}
-              // backPercent={
-              //   (item?.runners &&
-              //     item?.runners[1]?.ex?.availableToBack[0]?.size) ??
-              //   ""
-              // }
-              // layPercent={
-              //   (item?.runners &&
-              //     item?.runners[1]?.ex?.availableToLay[0]?.size) ??
-              //   ""
-              // }
-            />
-          </React.Fragment>
-        );
-      })}
+      <BackLayComponent
+        backRate={
+          (item?.matchOdds?.[0]?.runners &&
+            item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack[2]?.price) ??
+          item?.matchOdds?.[0]?.backTeamA ??
+          0
+        }
+        layRate={
+          (item?.matchOdds?.[0]?.runners &&
+            item?.matchOdds?.[0]?.runners[0]?.ex?.availableToLay[0]?.price) ??
+          item?.matchOdds?.[0]?.layTeamA ??
+          0
+        }
+        active={false}
+      />
+      <BackLayComponent
+        backRate={
+          (item?.matchOdds?.[0]?.runners &&
+            item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack[2]?.price) ??
+          0
+        }
+        layRate={
+          (item?.matchOdds?.[0]?.runners &&
+            item?.matchOdds?.[0]?.runners[2]?.ex?.availableToLay[0]?.price) ??
+          0
+        }
+        active={false}
+      />
+      <BackLayComponent
+        backRate={
+          (item?.matchOdds?.[0]?.runners &&
+            item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack[2]?.price) ??
+          0
+        }
+        layRate={
+          (item?.matchOdds?.[0]?.runners &&
+            item?.matchOdds?.[0]?.runners[1]?.ex?.availableToLay[0]?.price) ??
+          0
+        }
+        active={false}
+      />
     </tr>
   );
 };
