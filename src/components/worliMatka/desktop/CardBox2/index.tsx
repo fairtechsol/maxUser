@@ -30,12 +30,24 @@ const CardBox2 = ({ data, odds }: any) => {
   //   );
   // };
 
+  const bettingOdds = (num: any) => {
+    const hash = new Array(10);
+    let count = 0;
+    for (let i = 0; i < num.length; i++) {
+      if (hash[Number(num.charAt(i))] != 1) {
+        count++;
+        hash[Number(num.charAt(i))] = 1;
+      }
+    }
+
+    return count == 1 ? 140 : count == 2 ? 240 : 700;
+  };
   const handleBet = () => {
     //setSelectedBox(index);
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd: "fixed",
+      odd: bettingOdds(betTeam + zeros),
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: betTeam,
