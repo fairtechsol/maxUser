@@ -57,6 +57,7 @@ const Cycle = ({ data, odds }: any) => {
   //   }
   // };
 
+  
   const handleBet = () => {
     let team = {
       bettingType: "BACK",
@@ -67,7 +68,7 @@ const Cycle = ({ data, odds }: any) => {
       betOnTeam: betTeam,
       name: betTeam,
       bettingName: "Match odds",
-      selectionId: "pending",
+      selectionId: odds?.sid,
     };
     dispatch(
       selectedBetAction({

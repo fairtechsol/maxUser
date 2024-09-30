@@ -52,7 +52,7 @@ const CardBox2 = ({ data, odds }: any) => {
       betOnTeam: betTeam,
       name: betTeam + zeros,
       bettingName: "Match odds",
-      selectionId: "pending",
+      selectionId: odds?.sid,
     };
     dispatch(
       selectedBetAction({
