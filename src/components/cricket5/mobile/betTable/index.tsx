@@ -19,6 +19,8 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: (item?.sid).toString(),
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({

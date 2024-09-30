@@ -249,7 +249,10 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                 </CustomButton>
               </Col>
             ))}
-             <Col xs={12}>
+             <Col xs={12} className="d-flex justify-content-between align-items-center">
+             <span className="text-black fbold title-12">
+             Range: {formatNumber(selectedBet?.team?.min)+" to "+formatNumber(selectedBet?.team?.max)}
+             </span>
               <div
                 style={{
                   width: "50px",
