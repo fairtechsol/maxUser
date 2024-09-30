@@ -123,7 +123,7 @@ const Cards32Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32' type="imageWithContent" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

@@ -1,7 +1,7 @@
 
 import { cmeterrules } from '../../../assets/images';
 
-const RulesBoth = () => {
+const CmeterRules = () => {
   return (
     <div className="rules-section">
       <div>
@@ -37,4 +37,4 @@ const RulesBoth = () => {
   );
 };
 
-export default RulesBoth;
+export default CmeterRules;

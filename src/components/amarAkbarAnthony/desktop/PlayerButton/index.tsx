@@ -1,5 +1,3 @@
-
-
 const PlayerButton = ({
   value1,
   value2,
@@ -10,7 +8,6 @@ const PlayerButton = ({
   lock,
   data,
 }: any) => {
-
   return (
     <div className="commonButtonBoxContainer" style={{ width: width }}>
       <div>
@@ -26,7 +23,6 @@ const PlayerButton = ({
 
       <div className="teenPatti-table-row" style={{ lineHeight: 1 }}>
         <div
-       
           style={{
             width: "100%",
             backgroundColor: "#72bbef",
@@ -34,18 +30,28 @@ const PlayerButton = ({
             flexDirection: "row",
           }}
         >
-          <div className={lock ? "suspended teenPatti-table-item" : "teenPatti-table-item"}
+          <div
+            className={
+              lock ? "suspended teenPatti-table-item" : "teenPatti-table-item"
+            }
             style={{ width: "50%" }}
-            onClick={() => handleBet(data,"BACK")}
+            onClick={() => (lock ? "" : handleBet(data, "BACK"))}
           >
-            <span className="f18-b my-2 fw-bold">{parseFloat(value1).toFixed(2)}</span>
+            <span className="f18-b my-2 fw-bold">
+              {parseFloat(value1).toFixed(2)}
+            </span>
             <span className="f10-b">{}</span>
           </div>
-          <div className={lock ? "suspended teenPatti-table-item" : "teenPatti-table-item"}
+          <div
+            className={
+              lock ? "suspended teenPatti-table-item" : "teenPatti-table-item"
+            }
             style={{ width: "50%", background: "#f9c9d4" }}
-            onClick={() => handleBet(data,"LAY")}
+            onClick={() => (lock ? "" : handleBet(data, "LAY"))}
           >
-            <span className="f18-b my-2 fw-bold">{parseFloat(value4).toFixed(2)}</span> 
+            <span className="f18-b my-2 fw-bold">
+              {parseFloat(value4).toFixed(2)}
+            </span>
             <span className="f10-b">{}</span>
           </div>
         </div>

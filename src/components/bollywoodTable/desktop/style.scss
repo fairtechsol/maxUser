@@ -225,7 +225,48 @@
 }
 
 
-
+.suspended:after {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Font Awesome 5 Free";
+  content: "\f023";
+  font-weight: 900;
+  font-size: 18px;
+  top: 0;
+  z-index: 10;
+}
+.card-black {
+  font-size: 22px;
+  border: none !important;
+}
+.card-red {
+  font-size: 22px;
+  border: none !important;
+  color: #ff0000;
+}
+.card-character-black {
+  display: flex;
+  font-weight: 600;
+  margin-left: 2px;
+}
+.card-character-red {
+  display: flex;
+  font-weight: 600;
+  color: #ff0000;
+  margin-left: 2px;
+}
+.cards-box {
+  display: flex !important;
+  align-items:center;
+}
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }

@@ -224,7 +224,7 @@ const CasinoMeterDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-              <RulesModal show={show} setShow={setShow} type={modalType}/>
+              <RulesModal show={show} setShow={setShow} type={modalType} gameType="cmeter"/>
               </Col>
             </Row>
           </Container>

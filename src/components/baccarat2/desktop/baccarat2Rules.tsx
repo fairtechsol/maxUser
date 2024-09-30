@@ -1,5 +1,6 @@
-
-const RulesSection = () => {
+import React from "react";
+import { b2rules } from "../../../assets/images"; 
+const Baccarat2Rules = ({ show, setShow }: any) => {
 
   return (
     <div className="modal-body">
@@ -55,4 +56,4 @@ const RulesSection = () => {
   );
 };
 
-export default RulesSection;
+export default Baccarat2Rules;

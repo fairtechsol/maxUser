@@ -42,7 +42,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       console.log(error);
     }
   };
-
+  
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
@@ -54,7 +54,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
+            lowHigh?.[0]?.gstatus === "SUSPENDED" ||
+            lowHigh?.[0]?.gstatus === "CLOSED" ||
+            lowHigh?.[0]?.b1 === "0.00"
               ? true
               : false
           }
@@ -69,7 +71,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
+            lowHigh?.[1]?.gstatus === "SUSPENDED" ||
+            lowHigh?.[1]?.gstatus === "CLOSED" ||
+            lowHigh?.[1]?.b1 === "0.00"
               ? true
               : false
           }
@@ -84,7 +88,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
+            lowHigh?.[2]?.gstatus === "SUSPENDED" ||
+            lowHigh?.[2]?.gstatus === "CLOSED" ||
+            lowHigh?.[2]?.b1 === "0.00"
               ? true
               : false
           }
