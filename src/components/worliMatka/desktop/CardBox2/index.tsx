@@ -52,16 +52,16 @@ const CardBox2 = ({ data, odds }: any) => {
   };
 
   useEffect(() => {
-    if(betTeam){
-    handleBet();}
+    if (betTeam) {
+      handleBet();
+    }
   }, [betTeam]);
-  
- 
+
   useEffect(() => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
       setSelectedBox(null);
-      setBetTeam("")
+      setBetTeam("");
     }
   }, [odds?.gstatus, dispatch]);
 
@@ -74,8 +74,10 @@ const CardBox2 = ({ data, odds }: any) => {
       onClick={() => {
         setBetTeam((p) => {
           if (p && p.length === 3) return p;
-          return p + value;
+          p = p + value;
+          return p.split("").sort().join("");
         });
+
         //handleBet({ rate: value, nat: value, sid: index }, index);
       }}
     >
