@@ -60,6 +60,7 @@ export const ApiConstants = {
   OLD_PASSWORD: "/user/check/oldPassword",
   MATCH: {
     MATCHLIST: "/match/list",
+    TABLIST: "/expert/blinkingTabs",
     MATCHSEARCHLIST: "/match/search",
     SEARCHLIST: "/user/searchlist",
     MATCHDETAILS: "/match/",
@@ -294,6 +295,7 @@ export const availableGameType: any = {
   tennis: "tennis",
   horseRacing: "horseRacing",
   greyHound: "greyHound",
+  politics: "politics",
 };
 
 export const cardGamesType: any = {
@@ -438,10 +440,10 @@ export const navigateToGameDetail = {
 
 export const cardUrl =
   process.env.NODE_ENV === "production"
-    ? "https://jmdapi.com/tablevideo/?id="
+    ? "https://maxbet07.com/videoPage/"
     : "https://maxbet07.com/videoPage/";
 
-export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
+export const cardUrlMain = "https://maxbet07.com/videoPage/";
 export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventId=";
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";

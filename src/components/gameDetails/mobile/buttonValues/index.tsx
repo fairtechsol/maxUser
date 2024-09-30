@@ -1,14 +1,14 @@
-import { AppDispatch, RootState } from "../../../../store/store";
-import CustomButton from "../../../commonComponent/button";
-import "./style.scss";
-import { getButtonValue, getCasinoButtonValue, setButtonValue } from "../../../../store/actions/user/userAction";
-import { isMobile } from "../../../../utils/screenDimension";
-import ReportContainer from "../../../containers/reportContainer";
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { getButtonValue, getCasinoButtonValue, setButtonValue } from "../../../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { isMobile } from "../../../../utils/screenDimension";
+import CustomButton from "../../../commonComponent/button";
 import CustomInput from "../../../commonComponent/input";
+import ReportContainer from "../../../containers/reportContainer";
+import "./style.scss";
 
 interface ButtonProps {
   label: string;

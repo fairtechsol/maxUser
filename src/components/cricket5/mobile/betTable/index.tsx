@@ -1,13 +1,11 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
-const fancyData = [
-  { nation: "Ind Over 3", backOdd: "-", layOdd: "-", suspended: true },
-];
 
-const MarketComponent = ({ showFancy, odds, data, min, max }: any) => {
+
+const MarketComponent = ({ odds, data, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any, type: any) => {

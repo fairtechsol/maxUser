@@ -2,23 +2,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { brules, luckyrules } from "../../../assets/images";
+import { brules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Lucky7Result from "../desktop/lucky7Card";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
-import TiePairBox from "./TiePairBox";
-import Lucky7Result from "../desktop/lucky7Card";
 import "./style.scss";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import TiePairBox from "./TiePairBox";
 import TiePairBox2 from "./TiePairBox2";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import CasinoHead from "../../commonComponent/casinoGameHeader";
-import NewLoader from "../../commonComponent/newLoader";
 
 const BollywoodTableDesktop = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -30,7 +30,7 @@ const BollywoodTableDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.btable}`
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
+
 
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card

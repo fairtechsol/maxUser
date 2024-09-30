@@ -1,12 +1,10 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
 const TiePairBox = ({ tiePair, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = tiePair?.[0]?.min;
-  const max = tiePair?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -100,13 +98,6 @@ const TiePairBox = ({ tiePair, data }: any) => {
           />
         </div>
       </div>
-     
-      {/* <div style={{ textAlign: "end", width: "100%" }}>
-        <span style={{ fontSize: "14px" }}>Min:</span>
-        <span style={{ fontSize: "14px" }}>{min}</span>
-        <span style={{ marginLeft: "10px", fontSize: "14px" }}>Max:</span>
-        <span style={{ fontSize: "14px" }}>{max}</span>
-      </div> */}
     </div>
   );
 };

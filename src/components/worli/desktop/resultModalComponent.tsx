@@ -1,12 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {isMobile} from "../../../utils/screenDimension";
-import "./style.scss";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -17,78 +14,6 @@ interface Props {
 const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
   const result = data?.result?.cards?.split("*");
   const elementsAndar = result?.[0]?.split(",");
-  const elementsBahar = result?.[1]?.split(",");
-
-  const minLength = isMobile ? 5 : 15;
-
-  function SampleNextArrow(props: any) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          cursor: "pointer",
-          backgroundColor: "#9e9ba1",
-          borderRadius: "10px",
-        }}
-        onClick={onClick}
-      >
-        {/* <img src={rightArrow} alt="Next" /> */}
-      </div>
-    );
-  }
-
-  function SamplePrevArrow(props: any) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          cursor: "pointer",
-          backgroundColor: "#9e9ba1",
-          borderRadius: "10px",
-        }}
-        onClick={onClick}
-      >
-        {/* <img src={leftArrow} alt="Previous" /> */}
-      </div>
-    );
-  }
-
-  const sliderSettings = (_: any, __: any) => ({
-    infinite: false,
-    // arrows: false,
-    speed: 500,
-    slidesToShow: isMobile ? 5 : 15,
-    slidesToScroll: 5,
-    arrows: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    // initialSlide: isMobile ? (length > 3 ? length - 3 : 0) : 3,
-
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          infinite: false,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          infinite: false,
-        },
-      },
-    ],
-  });
 
   let a: any[] = [];
 

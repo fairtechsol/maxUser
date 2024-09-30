@@ -49,10 +49,6 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
   type,
 }) => {
   const [date, setDate] = useState<any>();
-
-  // if(data?.res){
-  //   data=data?.res
-  // }
   useEffect(() => {
     if (!date) {
       setDate(Date.now());

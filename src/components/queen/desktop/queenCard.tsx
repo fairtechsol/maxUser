@@ -25,11 +25,6 @@ const QueenCard: React.FC<Props> = ({ data }: any) => {
     });
   }
 
-  const allKeys = Object.keys(data ? data : 0);
-  const cArray = allKeys?.filter((key) => /^C\d+$/.test(key));
-  const numbers = cArray.map((key) => Number(data[key]));
-  const max = Math.max(...numbers);
-
   const handleCount = (cards: any, count: any) => {
     const getCardValue = (card: any) => {
       const value = card.slice(0, -2);

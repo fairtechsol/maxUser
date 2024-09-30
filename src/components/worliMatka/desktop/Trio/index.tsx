@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../style.scss";
 
-const Trio = ({ data, odds }: any) => {
+const Trio = ({ odds }: any) => {
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
 
   const handleBoxClick = (index: number) => {

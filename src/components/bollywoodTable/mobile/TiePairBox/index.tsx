@@ -5,9 +5,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = lowHigh?.[0]?.min;
-  const max = lowHigh?.[0]?.max;
-  // const [modelOpen, setModelOpen] = useState(false);
 
   const handleBet = (item: any, type: any) => {
     let team = {
@@ -69,8 +66,6 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           paddingLeft: "4px",
         }}
       >
-        {/* <span>Min: {min}</span>
-        <span>Max: {max}</span> */}
       </div>
 
       {lowHigh &&

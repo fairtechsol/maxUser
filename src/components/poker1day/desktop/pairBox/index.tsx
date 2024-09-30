@@ -4,7 +4,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { useDispatch } from "react-redux";
 import {isMobile} from "../../../../utils/screenDimension";
 import { useEffect } from "react";
-const PairBox = ({ odds, data, min, max }: any) => {
+const PairBox = ({ odds, data }: any) => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   const dispatch: AppDispatch = useDispatch();
 

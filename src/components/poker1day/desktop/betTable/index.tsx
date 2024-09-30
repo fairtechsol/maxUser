@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import {isMobile} from "../../../../utils/screenDimension";
 import { useEffect } from "react";
-const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
+const DynamicTable = ({ data, playerNum, }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any, type: any) => {
@@ -32,8 +32,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
   };
 
   let player1Key = `playera`;
-  let player2Key = `playerb`;
-  // console.log('first',odds)
+
 
   
   useEffect(() => {
@@ -107,7 +106,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             }
           >
             <span className="title-14 f600">{playerNum?.b1}</span>
-            <span className="title-14 f500">{playerNum?.bs1}</span>
+            {/* <span className="title-14 f500">{playerNum?.bs1}</span> */}
           </div>
           <div
             className={ playerNum?.gstatus === "SUSPENDED" ||
@@ -123,7 +122,7 @@ const DynamicTable = ({ odds, data, playerNum, min, max }: any) => {
             }
           >
             <span className="title-14 f600">{playerNum?.l1}</span>
-            <span className="title-14 f500">{playerNum?.ls1}</span>
+            {/* <span className="title-14 f500">{playerNum?.ls1}</span> */}
           </div>
         </div>
       </div>

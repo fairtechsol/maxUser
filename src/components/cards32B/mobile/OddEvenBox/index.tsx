@@ -1,16 +1,9 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import SmoothDropdownModal from "../minMaxModal";
-import { useState } from "react";
-import { IoInformationCircle } from "react-icons/io5";
-import { isMobile } from "../../../../utils/screenDimension";
+import { AppDispatch } from "../../../../store/store";
 
 const OddEven = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -42,7 +35,7 @@ const OddEven = ({ data, odds }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number) => (
+  const renderItem = (item: any) => (
     <div
       className={`dtlsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "lock" : ""
@@ -105,23 +98,23 @@ const OddEven = ({ data, odds }: any) => {
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
           <div className="dtlTitle title-12">Player 8</div>
-          {renderItem(player8?.[1], 0)}
-          {renderItem(player8?.[0], 1)}
+          {renderItem(player8?.[1])}
+          {renderItem(player8?.[0])}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
           <div className="dtlTitle title-12">Player 9</div>
-          {renderItem(player9?.[1], 2)}
-          {renderItem(player9?.[0], 3)}
+          {renderItem(player9?.[1])}
+          {renderItem(player9?.[0])}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
           <div className="dtlTitle title-12">Player 10</div>
-          {renderItem(player10?.[1], 4)}
-          {renderItem(player10?.[0], 5)}
+          {renderItem(player10?.[1])}
+          {renderItem(player10?.[0])}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
           <div className="dtlTitle title-12">Player 11</div>
-          {renderItem(player11?.[1], 6)}
-          {renderItem(player11?.[0], 7)}
+          {renderItem(player11?.[1])}
+          {renderItem(player11?.[0])}
         </div>
       </div>
     </div>

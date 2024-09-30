@@ -2,7 +2,6 @@ import React from "react";
 import { b2rules } from "../../../assets/images"; 
 const Baccarat2Rules = ({ show, setShow }: any) => {
 
-    const handleClose = () => setShow(false);
   return (
     <div className="modal-body">
       {/* Run Section */}

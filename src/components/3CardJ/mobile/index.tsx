@@ -1,33 +1,32 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import CardBox from "./CardsBox";
-import "./style.scss";
-import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import CasinoHead from "../../commonComponent/casinoGameHeader";
-import Card3Result from "../desktop/abj1Card";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Card3Result from "../desktop/abj1Card";
+import CardBox from "./CardsBox";
+import "./style.scss";
 
 const CardJMobile = () => {
+
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId?.cardj}`
   );
-  const [show, setShow] = useState(false);
+  const [_, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
-  const [nat, setNat] = useState("");
+
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -63,6 +62,7 @@ const CardJMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
   return (
     <>
       <div>

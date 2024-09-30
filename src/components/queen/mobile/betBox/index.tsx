@@ -1,8 +1,7 @@
-import React from 'react';
-import './../../desktop/style.scss';
-import { AppDispatch } from '../../../../store/store';
 import { useDispatch } from 'react-redux';
 import { selectedBetAction } from '../../../../store/actions/match/matchListAction';
+import { AppDispatch } from '../../../../store/store';
+import './../../desktop/style.scss';
 
 const CasinoTable = ({cards,data}:any) => {
   const dispatch: AppDispatch = useDispatch();

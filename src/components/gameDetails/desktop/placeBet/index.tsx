@@ -1,8 +1,8 @@
 import { Col, Container, Row, Table } from "react-bootstrap";
-import { ImCross } from "react-icons/im";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Modal } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -15,10 +15,9 @@ import { AppDispatch, RootState } from "../../../../store/store";
 import { ApiConstants, matchBettingType } from "../../../../utils/constants";
 import CustomButton from "../../../commonComponent/button";
 import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
+import ButtonValues from "../../mobile/buttonValues";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
-import { Modal } from "react-bootstrap";
-import ButtonValues from "../../mobile/buttonValues";
 
 const placeBetHeader = [
   {
@@ -63,17 +62,28 @@ const PlacedBet = () => {
   // console.log('selectedBet',selectedBet)
   const handleSubmit = () => {
     if (
-      selectedBet?.team?.stake <
-      (selectedBet?.data?.minBet || selectedBet?.data?.min)
+      ![
+        "bookmaker",
+        "bookmaker1",
+        "bookmaker2",
+        "quickbookmaker1",
+        "quickbookmaker2",
+        "quickbookmaker3",
+      ].includes(selectedBet?.team?.matchBetType)
     ) {
-      toast.error("Stake value must be greater or equal to min bet");
-      return;
-    } else if (
-      selectedBet?.team?.stake >
-      (selectedBet?.data?.maxBet || selectedBet?.data?.max)
-    ) {
-      toast.error("Stake value must be smaller or equal to max bet");
-      return;
+      if (
+        selectedBet?.team?.stake <
+        (selectedBet?.data?.minBet || selectedBet?.data?.min)
+      ) {
+        toast.error("Stake value must be greater or equal to min bet");
+        return;
+      } else if (
+        selectedBet?.team?.stake >
+        (selectedBet?.data?.maxBet || selectedBet?.data?.max)
+      ) {
+        toast.error("Stake value must be smaller or equal to max bet");
+        return;
+      }
     }
     if (loading || matchOddLoading) {
       return;
@@ -114,7 +124,7 @@ const PlacedBet = () => {
         mid: selectedBet?.team?.mid,
         selectionId: selectedBet?.team?.selectionId,
       };
-      
+
       let payloadForTournament: any = {
         betId: selectedBet?.team?.betId,
         bettingType: selectedBet?.team?.type.toUpperCase(),
@@ -166,7 +176,7 @@ const PlacedBet = () => {
               })
             );
           }, getProfile?.delayTime * 1000);
-        }else {
+        } else {
           setTimeout(() => {
             dispatch(
               placeBet({
@@ -186,7 +196,7 @@ const PlacedBet = () => {
             );
           }, getProfile?.delayTime * 1000);
         }
-      }else if(selectedBet?.team?.matchBetType === "tournament"){
+      } else if (selectedBet?.team?.matchBetType === "tournament") {
         setMatchOddLoading(true);
         setTimeout(() => {
           dispatch(
@@ -196,7 +206,7 @@ const PlacedBet = () => {
             })
           );
         }, getProfile?.delayTime * 1000);
-      }  else {
+      } else {
         dispatch(
           placeBet({
             url:
@@ -280,9 +290,9 @@ const PlacedBet = () => {
   }, [success, error]);
 
   const handleProfit = (value: any) => {
-    let profit:any;
+    let profit: any;
     if (selectedBet?.team?.matchBetType === "session") {
-      profit =0;
+      profit = 0;
     } else if (
       selectedBet?.data?.type === matchBettingType.matchOdd ||
       selectedBet?.data?.type === matchBettingType.tiedMatch1 ||
@@ -293,12 +303,12 @@ const PlacedBet = () => {
       selectedBet?.data?.type?.includes("setWinner")
     ) {
       profit =
-        selectedBet?.team?.type === "back"
+        selectedBet?.team?.type === "BACK" || selectedBet?.team?.type === "back"
           ? (value * ((matchOddRate - 1) * 100)) / 100
           : value;
     } else {
       profit =
-        selectedBet?.team?.type === "back"
+        selectedBet?.team?.type === "back" || selectedBet?.team?.type === "BACK"
           ? (value * matchOddRate) / 100
           : value;
     }
@@ -491,7 +501,7 @@ const PlacedBet = () => {
                         ))}
                       </Row>
                       <Row>
-                        <Col xs={6}>
+                        <Col xs={7}>
                           <div
                             style={{
                               width: "75px",
@@ -510,29 +520,28 @@ const PlacedBet = () => {
                           </div>
                         </Col>
 
-                        <Col md={6} className="reset-submit-btn-container">
+                        <Col md={5} className="reset-submit-btn-container">
                           <button
-                            className="reset-buttonn"
+                            className="reset-buttonn me-1"
                             onClick={() => {
                               dispatch(selectedBetAction(null));
                             }}
                             style={{
-                              fontSize:"13px"
+                              fontSize: "13px",
                             }}
                           >
                             Reset
                           </button>
                           <button
+                          disabled={selectedBet?.team?.stake == 0?true:false}
                             className="submit-buttonn"
                             onClick={handleSubmit}
                             style={{
                               backgroundColor:
-                                selectedBet?.team?.type == "lay" ||
-                                selectedBet?.team?.type === "LAY" ||
-                                selectedBet?.team?.type == "no"
-                                  ? "#679378"
-                                  : "#38998a",
-                                  fontSize:"13px"
+                                selectedBet?.team?.stake == 0 
+                                  ? "#198754"
+                                  : "#086f3f",
+                              fontSize: "13px",
                             }}
                           >
                             Submit

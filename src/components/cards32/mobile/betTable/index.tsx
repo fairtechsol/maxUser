@@ -1,8 +1,8 @@
-import "./style.scss";
-import { AppDispatch } from "../../../../store/store";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
+import { AppDispatch } from "../../../../store/store";
+import "./style.scss";
 const DynamicTable = ({ odds, data, back, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -38,7 +38,7 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
 
   return (
     <div className="card32-table-container-m">
-      <div className="card32-table-row" style={{ lineHeight: 2,borderLeft: "0.1px solid #c7c8ca",borderBottom: "0.1px solid #c7c8ca" }}>
+      <div className="card32-table-row" style={{ lineHeight: 2 }}>
         <div style={{ width: "50%" }}></div>
         {back && (
           <div

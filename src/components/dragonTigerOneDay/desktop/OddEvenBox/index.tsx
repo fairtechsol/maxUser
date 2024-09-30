@@ -1,13 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiSolidHeart } from "react-icons/bi";
 import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import SmoothDropdownModal from "../minMaxModal";
-import { useEffect } from "react";
 const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [modelOpen, setModelOpen] = useState(false);
@@ -41,10 +39,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number) => (
+  const renderItem = (item: any) => (
     <div
-      className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "lockk" : ""
+      className={`dtlsubTitle  back-BackGround ${
+        handleLock(item?.gstatus, item?.b1) ? "suspended-1day" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -126,7 +124,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               </span>
             </div>
           </div>
-          <div className="dtlsubTitle back-BackGround">
+          <div className="dtlsubTitle back-BackGround lh-1">
             <span style={{ fontSize: "14px" }}>
               {title1 === "even" ? (
                 "Even"
@@ -139,7 +137,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               )}
             </span>
           </div>
-          <div className="dtlsubTitle back-BackGround">
+          <div className="dtlsubTitle back-BackGround lh-1">
             <span style={{ fontSize: "14px" }}>
               {title2 === "odd" ? (
                 "Odd"
@@ -157,12 +155,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
           <div className="dtlTitle">Dragon </div>
           {renderItem(
-            title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0],
-            0
+            title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0]
           )}
           {renderItem(
-            title2 === "odd" ? dragonEvenOdd?.[1] : dragonRedBlack?.[1],
-            1
+            title2 === "odd" ? dragonEvenOdd?.[1] : dragonRedBlack?.[1]
           )}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
@@ -192,12 +188,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
             {title2 === "odd" ? tigerEvenOdd?.[1]?.b1 : tigerRedBlack?.[1]?.b1}
           </div> */}
           {renderItem(
-            title1 === "even" ? tigerEvenOdd?.[0] : tigerRedBlack?.[0],
-            2
+            title1 === "even" ? tigerEvenOdd?.[0] : tigerRedBlack?.[0]
           )}
           {renderItem(
-            title2 === "odd" ? tigerEvenOdd?.[1] : tigerRedBlack?.[1],
-            3
+            title2 === "odd" ? tigerEvenOdd?.[1] : tigerRedBlack?.[1]
           )}
         </div>
       </div>

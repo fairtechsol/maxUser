@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import AuthLayout from "../layout/auth";
 import Loadable from "../utils/loadable";

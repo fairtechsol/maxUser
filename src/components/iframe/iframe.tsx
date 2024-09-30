@@ -1,4 +1,3 @@
-import React from "react";
 import { isMobile } from "../../utils/screenDimension";
 import "./style.scss";
 // interface CricketData {

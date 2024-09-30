@@ -1,6 +1,5 @@
 
-import React from 'react';
-import "../style.scss"
+import "../style.scss";
 const ColorDp = () => {
   return (
     <div className="worlibox sp">

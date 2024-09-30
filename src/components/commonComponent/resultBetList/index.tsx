@@ -70,7 +70,7 @@ const ResultBetList=({bets,total}:any)=>{
           </tr>
         )}
         {list?.length > 0 &&
-          list?.map((item: any, index: number) => {
+          list?.map((item: any) => {
             const {
               id,
               teamName,
@@ -78,9 +78,7 @@ const ResultBetList=({bets,total}:any)=>{
               amount,
               winAmount,
               createdAt,
-              ip,
               ipAddress,
-              browserDetail,
               deleteReason,
               betType,
               result,

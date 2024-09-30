@@ -1,10 +1,9 @@
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { isMobile } from "../../../utils/screenDimension";
-import "./style.scss";
 import { AppDispatch } from "../../../store/store";
-import { FaLock } from "react-icons/fa";
+import { isMobile } from "../../../utils/screenDimension";
 import BetBox from "../../gameDetails/betBox";
+import "./style.scss";
 
 const HtFt = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -12,7 +11,6 @@ const HtFt = ({ title, box, data, detail }) => {
   const handlePlaceBet = (
     odds: any,
     type: any,
-    betTeam: any,
     status: any,
     index: any,
     runner: any

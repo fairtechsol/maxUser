@@ -24,7 +24,7 @@ import { selectedBetAction } from "../../../../../store/actions/match/matchListA
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
 import { AppDispatch, RootState } from "../../../../../store/store";
-import { ApiConstants } from "../../../../../utils/constants";
+import { ApiConstants, cardGamesType } from "../../../../../utils/constants";
 import { formatNumber } from "../../../../../helpers";
 import { Modal } from "react-bootstrap";
 import ButtonValues from "../../../../gameDetails/mobile/buttonValues";
@@ -48,7 +48,7 @@ const placeBetHeader = [
   },
 ];
 
-const DesktopPlacedBet = () => {
+const DesktopPlacedBet = ({ type }:any) => {
   const [stake, setStake] = useState<any>(0);
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
@@ -181,6 +181,8 @@ const DesktopPlacedBet = () => {
       setStake(0);
     }
   };
+
+
   return (
     <>
       <div className="loader-container">
@@ -205,11 +207,17 @@ const DesktopPlacedBet = () => {
               </thead>
               <tbody>
                 <tr
-                  className={
-                    selectedBet?.team?.bettingType === "LAY"
-                      ? "place-bet-table-red"
-                      : "place-bet-table-blue"
-                  }
+                   className={`
+                    ${
+                      type === cardGamesType.andarBahar1
+                        ? selectedBet?.team?.name?.includes('Andar')
+                          ? "game-type-andar" 
+                          : "game-type-bahar" 
+                        : selectedBet?.team?.bettingType === "LAY"
+                        ? "place-bet-table-red" 
+                        : "place-bet-table-blue" 
+                    }
+                  `}
                 >
                   {/* <td width={"8%"}>
                     <span
@@ -297,11 +305,17 @@ const DesktopPlacedBet = () => {
                   </td>
                 </tr>
                 <tr
-                  className={
-                    selectedBet?.team?.bettingType === "LAY"
-                      ? "place-bet-table-red"
-                      : "place-bet-table-blue"
+                 className={`
+                  ${
+                    type === cardGamesType.andarBahar1
+                      ? selectedBet?.team?.bettingType === "BACK"
+                        ? "game-type-andar" 
+                        : "game-type-bahar" 
+                      : selectedBet?.team?.bettingType === "LAY"
+                      ? "place-bet-table-red" 
+                      : "place-bet-table-blue" 
                   }
+                `}
                 >
                   <td colSpan={5}>
                     <Container fluid>
@@ -365,15 +379,14 @@ const DesktopPlacedBet = () => {
                             Reset
                           </button>
                           <button
+                          disabled={selectedBet?.team?.stake == 0?true:false}
                             className="submit-buttonn1"
                             onClick={handleSubmit}
                             style={{
                               backgroundColor:
-                                selectedBet?.team?.type == "lay" ||
-                                selectedBet?.team?.type === "LAY" ||
-                                selectedBet?.team?.type == "no"
-                                  ? "#679378"
-                                  : "#38998a",
+                              selectedBet?.team?.stake == 0 
+                                ? "#198754"
+                                : "#086f3f",
                                   fontSize:"13px"
                             }}
                           >

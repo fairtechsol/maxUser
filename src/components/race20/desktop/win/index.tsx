@@ -4,8 +4,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const WinBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",

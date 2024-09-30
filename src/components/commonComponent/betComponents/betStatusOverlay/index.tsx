@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
 import { FaLock } from "react-icons/fa";
-import "./style.scss";
 import { useParams } from "react-router-dom";
-import {isMobile} from "../../../../utils/screenDimension";
+import "./style.scss";
 
 interface Props {
   children?: ReactNode;

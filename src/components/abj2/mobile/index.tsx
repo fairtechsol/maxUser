@@ -5,15 +5,12 @@ import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import SBetBox from "./Sbox";
 import "./style.scss";
-// import CardResultBox from "../../commonComponent/cardResultBox";
-// import CardResultBox from "../../commonComponent/cardResultBox";
 import { abjrules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Abj2Result from "../desktop/abj2Card";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
@@ -30,7 +27,6 @@ const Abj2Mobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -112,7 +108,7 @@ const Abj2Mobile = () => {
                 <div
                   style={{
                     width: "100%",
-                    padding: "5px 0px",
+                    padding: "20px 0px",
                     display: "flex",
                     flexDirection: "column",
                     border: "1px solid #c7c8ca"
