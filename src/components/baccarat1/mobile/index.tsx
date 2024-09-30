@@ -118,7 +118,7 @@ const Baccarat1Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
+      <RulesModal show={show} setShow={setShow} rule={baccarat1rules} gameType="baccarat" type="imageWithContent" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

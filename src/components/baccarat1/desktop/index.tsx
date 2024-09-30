@@ -160,7 +160,7 @@ const Baccarat1Desktop = () => {
                 </div>
               </div>
             )}
-            <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
+            <RulesModal show={show} setShow={setShow} rule={baccarat1rules} gameType="baccarat" type="imageWithContent" />
           </div>
         </Col>
         <Col className="p-0" md={4}>

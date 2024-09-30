@@ -163,7 +163,7 @@ const AmarAkbarAnthonyMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={aaarules} />
+      <RulesModal show={show} setShow={setShow} rule={aaarules} gameType="aaa" type="imageWithContent" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

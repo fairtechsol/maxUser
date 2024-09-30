@@ -8,6 +8,7 @@ import Card32Rules from "../../cards32/desktop/card32Rules";
 import BTableRules from "../../bollywoodTable/desktop/btableRules";
 import Abj2Rules from "../../abj2/desktop/abj2Rules";
 import AmarAkbarAnthonyRules from "../../amarAkbarAnthony/desktop/AmrAkbrAnthny";
+import Baccarat1Rules from "../../baccarat1/desktop/baccarat1Rules";
 import "./style.scss";
 
 const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
@@ -83,7 +84,7 @@ const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
                 <Abj2Rules />
               ) : gameType == "aaa" ? (
                 <AmarAkbarAnthonyRules/>
-              ) : (
+              ) :gameType=="baccarat1"? <Baccarat1Rules/>:(
                 <></>
               )}
             </div>
