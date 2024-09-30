@@ -17,6 +17,8 @@ const OddBox = ({ odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({

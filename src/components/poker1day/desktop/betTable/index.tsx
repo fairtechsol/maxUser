@@ -21,6 +21,8 @@ const DynamicTable = ({ data, playerNum, }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({

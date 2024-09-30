@@ -65,6 +65,8 @@ const CricketMatch20Desktop = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
