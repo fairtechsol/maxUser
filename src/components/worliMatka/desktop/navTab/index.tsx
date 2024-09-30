@@ -16,9 +16,7 @@ import MotorSp from "../MotorSp";
 import "../style.scss";
 import Trio from "../Trio";
 const MatkaNavTab = ({ data, odds, cards }: any) => {
-  const { dragonTigerDetail } = useSelector(
-    (state: RootState) => state.card
-  );
+  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
   return (
     <div className="">
       <Tab.Container defaultActiveKey="single">
@@ -124,7 +122,7 @@ const MatkaNavTab = ({ data, odds, cards }: any) => {
             <Cycle odds={odds && odds[5]} data={data} cards={cards} />
           </Tab.Pane>
           <Tab.Pane eventKey="motorsp">
-            <MotorSp />
+            <MotorSp odds={odds && odds[6]} data={dragonTigerDetail} />
           </Tab.Pane>
           <Tab.Pane eventKey="56">
             <Card56 />
