@@ -14,7 +14,6 @@ import "./style.scss";
 // }
 
 const Iframe = ({ data, width }: any) => {
-  
 
   return (
     <>
