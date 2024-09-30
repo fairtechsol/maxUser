@@ -43,7 +43,6 @@ const CardBox2 = ({ data, odds }: any) => {
     return count == 1 ? 140 : count == 2 ? 240 : 700;
   };
   const handleBet = () => {
-    //setSelectedBox(index);
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
@@ -82,7 +81,7 @@ const CardBox2 = ({ data, odds }: any) => {
     <div
       key={index}
       className={`worli-odd-box back ${
-        selectedBox === index ? "selected" : ""
+        betTeam.includes(value) || zeros.includes(value) ? "selected" : ""
       }`}
       onClick={() => {
         setZeros((p) => {
@@ -108,7 +107,7 @@ const CardBox2 = ({ data, odds }: any) => {
   );
 
   return (
-    <div className={`${odds?.gstatus == 0 ? "suspended-bo" : ""} worli-full`}>
+    <div className={`${odds?.gstatus == 0 ? "suspended-box" : ""} worli-full`}>
       <div className="worli-box-title">
         <b>SP:140 | DP:240 | TP:700</b>
       </div>
