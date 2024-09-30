@@ -154,7 +154,7 @@ const DesktopGameDetail = () => {
             <>
               <Col md={12}>
                 <BetTableHeader
-                  customClass="mt-2 py-2"
+                  customClass="mt-1 py-2"
                   title={matchDetails?.title}
                   rightComponent={
                     <span className="title-16 fbold text-white">
@@ -179,7 +179,7 @@ const DesktopGameDetail = () => {
               )}
               {matchDetails?.matchOdd?.activeStatus === "live" &&
                 matchDetails?.matchOdd?.isActive && (
-                  <Col md={12} style={{ marginTop: "10px" }}>
+                  <Col md={12} style={{ marginTop: "8px" }}>
                     <MatchOdd
                       title={matchDetails?.matchOdd?.name}
                       data={matchDetails?.matchOdd}
@@ -189,7 +189,7 @@ const DesktopGameDetail = () => {
                 )}
               {matchDetails?.bookmaker?.activeStatus === "live" &&
                 matchDetails?.bookmaker?.isActive && (
-                  <Col md={12} style={{ marginTop: "10px" }}>
+                  <Col md={12} style={{ marginTop: "8px" }}>
                     <Bookmaker
                       title={matchDetails?.bookmaker?.name}
                       box={matchDetails?.bookmaker?.runners?.[0]?.ex?.availableToBack?.length > 2
@@ -205,7 +205,7 @@ const DesktopGameDetail = () => {
                 matchDetails?.other?.map((item: any, index: number) => (
                   <div key={index}>
                     {item?.activeStatus === "live" && item?.isActive && (
-                      <Col md={12} style={{ marginTop: "10px" }}>
+                      <Col md={12} style={{ marginTop: "8px" }}>
                         <OtherMarket
                           title={item?.name}
                           box={
@@ -225,7 +225,7 @@ const DesktopGameDetail = () => {
                 matchDetails?.tournament?.map((item: any, index: number) => (
                   <div key={index}>
                     {item?.activeStatus === "live" && item?.isActive && (
-                      <Col md={12} style={{ marginTop: "10px" }}>
+                      <Col md={12} style={{ marginTop: "8px" }}>
                         <Tournament
                           title={item?.name}
                           box={
@@ -243,7 +243,7 @@ const DesktopGameDetail = () => {
                 ))}
               {matchDetails?.bookmaker2?.activeStatus === "live" &&
                 matchDetails?.bookmaker2?.isActive && (
-                  <Col md={12} style={{ marginTop: "10px" }}>
+                  <Col md={12} style={{ marginTop: "8px" }}>
                     <Bookmaker
                       title={matchDetails?.bookmaker2?.name}
                       box={2}
@@ -273,7 +273,7 @@ const DesktopGameDetail = () => {
                 )}
               {matchDetails?.apiTideMatch2?.activeStatus === "live" &&
                 matchDetails?.apiTideMatch2?.isActive && (
-                  <Col md={12} style={{ marginTop: "10px" }}>
+                  <Col md={12} style={{ marginTop: "8px" }}>
                     <OtherMarket
                       title={matchDetails?.apiTideMatch2?.name}
                       box={2}
