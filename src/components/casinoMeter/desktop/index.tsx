@@ -226,7 +226,7 @@ const CasinoMeterDesktop = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R", "R"]}
+                    name={["H", "L"]}
                     type={"cmeter"}
                   />
                 </div>
@@ -244,10 +244,10 @@ const CasinoMeterDesktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
               <Col>

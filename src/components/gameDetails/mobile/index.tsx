@@ -145,7 +145,6 @@ const MobileGameDetail = () => {
   const manualEntries = matchDetails?.manualSessionActive
     ? normalizedData?.filter((item: any) => item?.isManual)
     : [];
-
   return (
     <div>
       <PlacedBet show={show} setShow={setShow} />
@@ -175,7 +174,7 @@ const MobileGameDetail = () => {
               })`}</div>
             ),
           },
-          channelId !== "0" && channelId
+          matchDetails?.isTv !== "0" && matchDetails?.isTv
             ? {
                 // id: "live",
                 name: (
@@ -208,7 +207,7 @@ const MobileGameDetail = () => {
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
                     
                     {showVideo && (
-                      <Container className="px-0 mt-1">
+                      <Container className="px-0">
                         <Row className="justify-content-md-center">
                           <Col md={12}>
                             <Ratio aspectRatio="16x9">

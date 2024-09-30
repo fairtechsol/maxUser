@@ -2,14 +2,17 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { dummyArray, formatNumber } from "../../../helpers";
+import { dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
 import BetBox from "../betBox";
+import { useSelector } from "react-redux";
 
 const Tournament = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
-
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -101,11 +104,13 @@ const Tournament = ({ title, box, data, detail }) => {
               <div className="tournamentTeamTab" key={index}>
                 <div
                   className="tournamentTeam"
-                  style={box === 6 ? { width: "28%" } : {}}
+            style={(isMobile && box === 6)?{width:"28%"}:{}}
+                  // style={box === 6 ? { width: "28%" } : {}}
                 >
                   <span className={`teamFont tournamentTeamTxt`}>
                     {item?.nat || item?.runnerName}
                   </span>
+                  <div className="d-flex flex-row justify-content-between w-100">
                   <span
                     className={`${
                       profitLossObj?.[item.id] > 0
@@ -117,6 +122,8 @@ const Tournament = ({ title, box, data, detail }) => {
                   >
                     {profitLossObj?.[item.id]}
                   </span>
+                  <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,item?.nat || item?.runnerName,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,item?.nat || item?.runnerName,data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
                 </div>
                 <div
                   className={

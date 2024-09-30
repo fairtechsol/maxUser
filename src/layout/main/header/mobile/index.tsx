@@ -63,7 +63,7 @@ const MobileHeader = () => {
         <div className="d-flex gap-1 title-12">
           {show?.exposure && (
             <span className="d-flex justify-content-center align-items-center" onClick={handleClickExposureModalOpen}>
-              Exp:{parseInt(getProfile?.userBal?.exposure)===0 ? 0 :-parseFloat(getProfile?.userBal?.exposure).toFixed(2)}
+              Exp: <span className="fbold">{parseInt(getProfile?.userBal?.exposure)===0 ? 0 :-parseFloat(getProfile?.userBal?.exposure).toFixed(2)}</span>
             </span>
           )}
           <ExposureModal

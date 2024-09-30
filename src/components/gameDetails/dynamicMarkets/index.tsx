@@ -1,15 +1,18 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
-import { dummyArray, formatNumber } from "../../../helpers";
+import { dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
 import BetBox from "../betBox";
+import { useSelector } from "react-redux";
 
 const DynamicMarket = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
-
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -83,8 +86,10 @@ const DynamicMarket = ({ title, data, detail }) => {
 
         <div className="dynamicTeamTab">
         
-          <div className="dynamicTeam" style={{ width: "28%" }}>
+          <div className="dynamicTeam" 
+            style={isMobile ?{width:"28%"}:{}}>
             <span className={`teamFont dynamicTeamTxt`}>Yes</span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -120,6 +125,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                     ]
                 : ""}
             </span>
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,"Yes",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,"Yes",data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
           </div>
           <div
             className={`dynamicRateBox rateBoxWidth`}
@@ -157,8 +164,10 @@ const DynamicMarket = ({ title, data, detail }) => {
         </div>
 
         <div className="dynamicTeamTab">
-          <div className="dynamicTeam" style={{ width: "28%" }}>
+          <div className="dynamicTeam"
+            style={isMobile?{width:"28%"}:{}}>
             <span className={`teamFont dynamicTeamTxt`}>No</span>
+            <div className="d-flex flex-row justify-content-between w-100">
             <span
               className={`${
                 detail?.profitLossDataMatch?.[
@@ -194,6 +203,8 @@ const DynamicMarket = ({ title, data, detail }) => {
                     ]
                 : ""}
             </span>
+            <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,"No",data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,"No",data?.type,data?.gtype))?.toFixed(2)}</span>
+            </div>
           </div>
           <div
             className={`dynamicRateBox rateBoxWidth`}

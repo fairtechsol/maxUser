@@ -185,7 +185,7 @@ const Card32BDesktop = () => {
 
 <RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32eu' type="imageWithContent" />
         </Col>
-        <Col className="p-0" md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

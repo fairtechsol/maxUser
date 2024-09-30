@@ -307,14 +307,14 @@ const CricketMatch20Desktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
 
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
+              <Col className="p-1 pt-0">
                 <RulesComponent />
                 <RulesModal show={show} setShow={setShow} rule={crick20rules} />
               </Col>

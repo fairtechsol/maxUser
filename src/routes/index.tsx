@@ -8,7 +8,10 @@ import ExternalRoutes from "./externalRoutes";
 // ==============================|| ROUTING RENDER ||============================== //
 
 export default function routes() {
-  return createBrowserRouter([AuthRoutes, MainRoutes, OtherRoutes,ExternalRoutes], {
-    basename: config.BASE_NAME,
-  });
+  return createBrowserRouter(
+    [AuthRoutes, MainRoutes, OtherRoutes, ExternalRoutes],
+    {
+      basename: config.BASE_NAME,
+    }
+  );
 }

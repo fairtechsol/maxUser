@@ -9,7 +9,7 @@ const RightPanelContainer = ({title,children}:RightPanelContainerProps) => {
   return (
     <div>
       <div>
-        <BetTableHeader customClass="mt-2 rounded-0 py-1 lh-sm" title={title} />
+        <BetTableHeader customClass="mt05 rounded-0 py-1 lh-sm" title={title} />
       </div>
       <div className="borderTable border rounded-0">
        {children}
