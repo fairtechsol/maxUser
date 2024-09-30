@@ -15,7 +15,9 @@ const CardBox = ({ cards, data }: any) => {
       "betOnTeam":item?.nat,
       "name":item?.nat,
       "bettingName": "Match odds",
-      "selectionId": item?.sid
+      "selectionId": item?.sid,
+      "min":data?.videoInfo?.min,
+      "max":data?.videoInfo?.max
     }
     dispatch(
       selectedBetAction({

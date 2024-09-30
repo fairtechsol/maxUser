@@ -18,7 +18,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       "betOnTeam":item?.nation,
       "name":item?.nation,
       "bettingName": "Match odds",
-      "selectionId": item?.sid
+      "selectionId": item?.sid,
+      "min":item?.min,
+      "max":item?.max
     }
     dispatch(
       selectedBetAction({
