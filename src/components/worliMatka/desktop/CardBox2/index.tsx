@@ -8,7 +8,7 @@ const CardBox2 = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [betTeam, setBetTeam] = useState("");
-
+  const [zeros, setZeros] = useState("");
   // const handleBet = (item: any, index: number) => {
   //   setSelectedBox(index);
   //   let team = {
@@ -39,7 +39,7 @@ const CardBox2 = ({ data, odds }: any) => {
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: betTeam,
-      name: betTeam,
+      name: betTeam + zeros,
       bettingName: "Match odds",
       selectionId: "pending",
     };
@@ -52,16 +52,17 @@ const CardBox2 = ({ data, odds }: any) => {
   };
 
   useEffect(() => {
-    if (betTeam) {
+    if (betTeam || zeros) {
       handleBet();
     }
-  }, [betTeam]);
+  }, [betTeam, zeros]);
 
   useEffect(() => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
       setSelectedBox(null);
       setBetTeam("");
+      setZeros("");
     }
   }, [odds?.gstatus, dispatch]);
 
@@ -72,10 +73,19 @@ const CardBox2 = ({ data, odds }: any) => {
         selectedBox === index ? "selected" : ""
       }`}
       onClick={() => {
+        setZeros((p) => {
+          if ((betTeam ? betTeam.length : 0) + (p ? p.length : 0) == 3)
+            return p;
+          if (value == "0") return p + 0;
+          return p;
+        });
+
         setBetTeam((p) => {
-          if (p && p.length === 3) return p;
-          p = p + value;
-          return p.split("").sort().join("");
+          if ((p ? p.length : 0) + (zeros ? zeros.length : 0) == 3) return p;
+          p = value == "0" ? p : p + value;
+          p = p.split("").sort().join("");
+
+          return p;
         });
 
         //handleBet({ rate: value, nat: value, sid: index }, index);
