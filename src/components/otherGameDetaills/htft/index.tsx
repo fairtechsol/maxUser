@@ -11,11 +11,11 @@ const HtFt = ({ title, box, data, detail }) => {
   const handlePlaceBet = (
     odds: any,
     type: any,
+    betTeam: any,
     status: any,
     index: any,
     runner: any
   ) => {
-    
     if (status != "ACTIVE" && status != "OPEN") {
       return false;
     }
