@@ -15,15 +15,16 @@ import Cycle from "../Cycle";
 import MotorSp from "../MotorSp";
 import "../style.scss";
 import Trio from "../Trio";
+import { isMobile } from "../../../../utils/screenDimension";
 const MatkaNavTab = ({ data, odds, cards }: any) => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
 
   return (
     <div className="">
       <Tab.Container defaultActiveKey="single">
-        <Nav variant="pills" className="navmain">
-          <Nav.Item className="nav-pills-worli">
-            <Nav.Link eventKey="single" className="nav-link-worli">
+        <Nav variant="pills" className="navmain" style={{marginLeft:isMobile?"1px":""}}>
+          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"26%":""}}>
+            <Nav.Link eventKey="single" className="nav-link-worli" style={{width:"100%"}} >
               Single
             </Nav.Link>
           </Nav.Item>
@@ -53,22 +54,22 @@ const MatkaNavTab = ({ data, odds, cards }: any) => {
               Cycle
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item className="nav-pills-worli">
+          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"27%":""}}>
             <Nav.Link eventKey="motorsp" className="nav-link-worli">
               Motor SP
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item className="nav-pills-worli">
+          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"25%":""}}>
             <Nav.Link eventKey="56" className="nav-link-worli">
               56 Charts
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item className="nav-pills-worli">
+          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"25%":""}}>
             <Nav.Link eventKey="64" className="nav-link-worli">
               64 Charts
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item className="nav-pills-worli">
+          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"22.5%":""}}>
             <Nav.Link eventKey="abr" className="nav-link-worli">
               ABR
             </Nav.Link>
