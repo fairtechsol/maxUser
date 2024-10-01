@@ -46,7 +46,7 @@ const CardDp = ({ data, odds }: any) => {
         value == "0" ? "" : setClicked(value);
         return value == "0"
           ? ""
-          : value == "D P ALL"
+          : value == "DP - ALL"
           ? handleBet(value)
           : handleBet(value + " DP");
       }}
@@ -73,7 +73,7 @@ const CardDp = ({ data, odds }: any) => {
       <div className="worli-right">
         <div className="worli-box-row">
           <div className="worli-odd-box back">
-            <span className="worli-odd">{renderBox("D P ALL", 10)}</span>
+            <span className="worli-odd">{renderBox("DP - ALL", 10)}</span>
           </div>
         </div>
       </div>

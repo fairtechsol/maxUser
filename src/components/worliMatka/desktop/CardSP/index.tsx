@@ -77,7 +77,7 @@ const CardSp = ({ odds, data }: any) => {
         </div>
       </div>
       <div className="worli-right">
-        <div className="worli-box-row">{renderBox("SP ALL", 10)}</div>
+        <div className="worli-box-row">{renderBox("SP - ALL", 10)}</div>
       </div>
 
       {/* Info Icon */}
