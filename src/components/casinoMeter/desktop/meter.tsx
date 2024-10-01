@@ -1,7 +1,6 @@
-import React from "react";
+import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { HandleCards3 } from "../mobile/cardComponent2";
-import { isMobile } from "../../../utils/screenDimension";
 function Meter({ data, runPosition }: { data: string; runPosition: string }) {
   const cards = data?.split(",");
 

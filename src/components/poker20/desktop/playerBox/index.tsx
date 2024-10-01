@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
-const PlayerTable = ({ title,odds, data, playerNum }: any) => {
+const PlayerTable = ({ odds, data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any) => {
@@ -17,6 +17,8 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -54,7 +56,7 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
         result?.map((item: any, index: number) => {
           return (
             <div
-              
+              className="top-align"
               style={{ lineHeight: 1,width:"30%" }}
               key={index + playerNum[0]}
             >
@@ -75,7 +77,7 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
               </div>
               <div
                 className={
-                  item?.entries?.[0]?.gstatus === "0" ? "suspended" : ""
+                  item?.entries?.[0]?.gstatus === "0" ? "box-overlay suspended-poker20" : ""
                 }
                 style={{
                   width: "100%",
@@ -122,8 +124,8 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
                         ? data?.profitLoss[
                             `${data?.videoInfo?.mid}_${item?.entries?.[0]?.sid}_card`
                           ]
-                        : 0
-                      : 0}
+                        : ""
+                      : ""}
                   </span>
                 </div>
                

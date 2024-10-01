@@ -1,12 +1,10 @@
-import { useDispatch } from "react-redux";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
-import { isMobile } from "../../../utils/screenDimension";
-import "./style.scss";
-import { AppDispatch, RootState } from "../../../store/store";
-import { profitLossDataForMatchConstants } from "../../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
 import { dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch, RootState } from "../../../store/store";
+import { isMobile } from "../../../utils/screenDimension";
 import BetBox from "../betBox";
-import { useSelector } from "react-redux";
+import "./style.scss";
 
 const Tournament = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -104,26 +102,64 @@ const Tournament = ({ title, box, data, detail }) => {
               <div className="tournamentTeamTab" key={index}>
                 <div
                   className="tournamentTeam"
-            style={(isMobile && box === 6)?{width:"28%"}:{}}
+                  style={isMobile && box === 6 ? { width: "28%" } : {}}
                   // style={box === 6 ? { width: "28%" } : {}}
                 >
                   <span className={`teamFont tournamentTeamTxt`}>
                     {item?.nat || item?.runnerName}
                   </span>
                   <div className="d-flex flex-row justify-content-between w-100">
-                  <span
-                    className={`${
-                      profitLossObj?.[item.id] > 0
-                        ? "color-green"
-                        : profitLossObj?.[item.id] < 0
-                        ? "color-red"
-                        : ""
-                    } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
-                  >
-                    {profitLossObj?.[item.id]}
-                  </span>
-                  <span className="title-12 f-400" style={{color:manualProfitLoss(selectedBet,item?.nat || item?.runnerName,data?.type,data?.gtype)>0?"#086f3f":"#bd1828"}}>{(manualProfitLoss(selectedBet,item?.nat || item?.runnerName,data?.type,data?.gtype))?.toFixed(2)}</span>
-            </div>
+                    <span
+                      className={`${
+                        parseInt(profitLossObj?.[item.id]) +
+                          manualProfitLoss(
+                            selectedBet,
+                            item?.nat || item?.runnerName,
+                            data?.type,
+                            data?.gtype
+                          ) >
+                        0
+                          ? "color-green"
+                          : "color-red"
+                      } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
+                    >
+                     {profitLossObj?.[item.id]? parseInt(profitLossObj?.[item.id]) +
+                        manualProfitLoss(
+                          selectedBet,
+                          item?.nat || item?.runnerName,
+                          data?.type,
+                          data?.gtype
+                        ):""}
+                    </span>
+                    <span
+                      className="title-12 f-400"
+                      style={{
+                        color:
+                          manualProfitLoss(
+                            selectedBet,
+                            item?.nat || item?.runnerName,
+                            data?.type,
+                            data?.gtype
+                          ) > 0
+                            ? "#086f3f"
+                            : "#bd1828",
+                      }}
+                    >
+                      {manualProfitLoss(
+                        selectedBet,
+                        item?.nat || item?.runnerName,
+                        data?.type,
+                        data?.gtype
+                      ) === 0
+                        ? ""
+                        : manualProfitLoss(
+                            selectedBet,
+                            item?.nat || item?.runnerName,
+                            data?.type,
+                            data?.gtype
+                          )?.toFixed(2)}
+                    </span>
+                  </div>
                 </div>
                 <div
                   className={
@@ -132,7 +168,7 @@ const Tournament = ({ title, box, data, detail }) => {
                       : "tournament2RateBox rateBoxWidth2"
                   }
                 >
-                  {(item?.status !== "ACTIVE" && item?.status !== "OPEN") && (
+                  {item?.status !== "ACTIVE" && item?.status !== "OPEN" && (
                     <div className="suspended-overlayRatestournament">
                       <span className={`suspendTextCmmn`}>SUSPENDED</span>
                     </div>

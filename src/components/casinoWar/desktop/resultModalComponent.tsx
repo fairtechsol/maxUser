@@ -1,10 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import "./style.scss";
-import ResultBetList from "../../commonComponent/resultBetList";
 
 interface Props {
   data: {
@@ -45,46 +44,6 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
           }}
         >
           {index !== 6 && (
-            // <div
-            //   style={{
-            //     width: "90%",
-            //     border: "0.5px solid",
-            //     display: "flex",
-            //     justifyContent: "start",
-            //     flexDirection: "row",
-            //     alignItems: "center",
-
-            //     gap: "20px",
-            //   }}
-            // >
-            //   <span className="fs-6" style={{ marginLeft: "10px" }}>
-            //     Player {index + 1}
-            //   </span>
-            //   <div className="d-flex flex-row align-items-center mb-2" style={{marginTop:"15px",marginLeft:"100px",justifyContent:"space-between"}}>
-            //     <div
-            //       style={{
-            //         border: "1px solid #fdef34",
-            //         borderRadius: "1px",
-            //         marginLeft: "15px",
-            //         position: "relative",
-            //         display: "flex",
-            //         justifyContent: "space-between",
-            //         gap: "5px",
-
-            //       }}
-            //     >
-            //       <HandleCards card={player.card} />
-            //     </div>
-            //     {data?.result?.sid.includes(`${index+1}` ) && (
-            //       <div
-            //         className="casino-winner-icon"
-            //         style={{ marginLeft: "5px" }}
-            //       >
-            //         <FaTrophy size={30} color="#169733" />
-            //       </div>
-            //     )}
-            //   </div>
-            // </div>
             <div
               style={{
                 width: "100%",

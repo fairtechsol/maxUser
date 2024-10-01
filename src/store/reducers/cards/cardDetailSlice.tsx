@@ -590,7 +590,7 @@ const cardDetail = createSlice({
         };
       })
       .addCase(update3CardJRates.fulfilled, (state, action) => {
-        const { t1, t2, t3 } = action.payload;
+        const { t1, t2 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
         //const cardInfo = { ...t3[0] };

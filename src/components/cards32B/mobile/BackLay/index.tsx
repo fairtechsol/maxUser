@@ -1,16 +1,11 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import { isMobile } from "../../../../utils/screenDimension";
-import SmoothDropdownModal from "../minMaxModal";
-import { IoInformationCircle } from "react-icons/io5";
-import { useState, useEffect } from "react";
 
 const BackLay = ({ matchOddsData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = matchOddsData?.[0]?.min;
-  const max = matchOddsData?.[0]?.max;
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type === "back" ? "BACK" : "LAY",
@@ -22,6 +17,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
 
     dispatch(
@@ -94,7 +91,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
           <div className="dtlTitle title-12">Player 8 </div>
           {renderItem(matchOddsData?.[0], 0, "back")}
@@ -102,7 +99,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
           <div className="dtlTitle title-12"> Player 9</div>
           {renderItem(matchOddsData?.[1], 2, "back")}
@@ -110,7 +107,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
           <div className="dtlTitle title-12"> Player 10</div>
           {renderItem(matchOddsData?.[2], 2, "back")}
@@ -118,7 +115,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
           <div className="dtlTitle title-12"> Player 11</div>
           {renderItem(matchOddsData?.[3], 2, "back")}

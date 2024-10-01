@@ -1,18 +1,14 @@
 import { memo, useEffect, useState } from "react";
-import FlipClock from "./FlipClock";
-import { isMobile } from "../../../utils/screenDimension";
 import { useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../../store/store";
-import { useDispatch } from "react-redux";
-import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
+import { RootState } from "../../../store/store";
+import { isMobile } from "../../../utils/screenDimension";
+import FlipClock from "./FlipClock";
 
 const VideoFrame = ({ result, time, id, profitLoss }: any) => {
-  const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-  const [mid, setMid] = useState(null);
-  const [curR,setCurR] = useState(null);
+
+  const [_,setCurR] = useState(null);
   const [isClick,setIsClick] = useState(false);
-  // const [showModal, setModalOpen] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
+
   const {  resultData } = useSelector(
     (state: RootState) => state.card
   );

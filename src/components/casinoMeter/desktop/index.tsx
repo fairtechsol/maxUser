@@ -2,22 +2,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules, warrules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import LowCards from "./Low";
 import HighCards from "./High";
+import LowCards from "./Low";
 import Meter from "./meter";
-import NewLoader from "../../commonComponent/newLoader";
+import "./style.scss";
 const CasinoMeterDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -52,32 +51,6 @@ const CasinoMeterDesktop = () => {
     };
   }, []);
 
-  // const rules = [
-  //   { label: "Pair (Double)", value: "1 To 1" },
-  //   { label: "Flush (Color)", value: "1 To 4" },
-  //   { label: "Straight (Rown)", value: "1 To 6" },
-  //   { label: "Trio (Teen)", value: "1 To 35" },
-  //   { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  // ];
-  const handleBet = (item: any) => {
-    let team = {
-      bettingType: "BACK",
-      matchId: dragonTigerDetail?.id,
-      odd: item?.b1,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
-      bettingName: "Match odds",
-      selectionId: item?.sid,
-    };
-    dispatch(
-      selectedBetAction({
-        team,
-        dragonTigerDetail,
-      })
-    );
-  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -251,7 +224,7 @@ const CasinoMeterDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col>
-              <RulesModal show={show} setShow={setShow} type={modalType}/>
+              <RulesModal show={show} setShow={setShow} type={modalType} gameType="cmeter"/>
               </Col>
             </Row>
           </Container>

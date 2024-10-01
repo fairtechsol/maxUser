@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import "../style.scss";
 
 const CardBox = ({ data, odds }: any) => {
@@ -13,7 +13,7 @@ const CardBox = ({ data, odds }: any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd: item?.rate,
+      odd: "9.5",
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,

@@ -1,35 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { IoInformationCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import { getChannelId } from "../../../helpers";
+import service from "../../../service";
 import { RootState } from "../../../store/store";
+import { Constants } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
 import BetTableHeader from "../../commonComponent/betTableHeader";
+import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
+import CustomModal from "../../commonComponent/modal";
 import BetTable from "../betTable";
+import Bookmaker from "../bookmaker";
+import DynamicMarket from "../dynamicMarkets";
+import ManualMarket from "../manulMarkets";
+import MatchOdd from "../matchOdd";
+import OtherMarket from "../otherMarket";
+import SessionCricketCasino from "../sessionCricketCasino";
+import SessionFancy from "../sessionFancy";
+import SessionNormal from "../sessionNormal";
+import SessionOddEven from "../sessionOddEven";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { IoInformationCircle } from "react-icons/io5";
-import CustomModal from "../../commonComponent/modal";
-import service from "../../../service";
-import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
-import { getChannelId } from "../../../helpers";
-import MatchOdd from "../matchOdd";
-import Bookmaker from "../bookmaker";
-import ManualMarket from "../manulMarkets";
-import DynamicMarket from "../dynamicMarkets";
-import SessionNormal from "../sessionNormal";
-import SessionFancy from "../sessionFancy";
-import SessionOddEven from "../sessionOddEven";
-import SessionCricketCasino from "../sessionCricketCasino";
-import OtherMarket from "../otherMarket";
-import { Constants } from "../../../utils/constants";
-import ScoreBoard from "../../commonComponent/scoreBoard";
-// import ScoreBoardCricket from "../../commonComponent/scoreBoardCricket";
-// import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import { Link } from "react-router-dom";
 import Iframe from "../../iframe/iframe";
 import Tournament from "../tournament";
-import { Link } from "react-router-dom";
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -45,9 +42,7 @@ const DesktopGameDetail = () => {
   const { matchDetails, marketId } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  const { dragonTigerDetail, scoreBoardData } = useSelector(
-    (state: RootState) => state.card
-  );
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -151,33 +146,6 @@ const DesktopGameDetail = () => {
   //   fetchData();
   // }, [matchDetails]);
 
-  const handleBook1Show = (book1: any, book2: any, tide: any) => {
-    if (book1 && !book2 && !tide) {
-      return 12;
-    } else if (book1 && book2 && !tide) {
-      return 8;
-    } else if (book1 && !book2 && tide) {
-      return 8;
-    }
-  };
-  const handleBook2Show = (book1: any, book2: any, tide: any) => {
-    if (book2 && !book1 && !tide) {
-      return 12;
-    } else if (book2 && book1 && !tide) {
-      return 4;
-    } else if (book2 && !book1 && tide) {
-      return 6;
-    }
-  };
-  const handleTideShow = (book1: any, book2: any, tide: any) => {
-    if (tide && !book1 && !book2) {
-      return 12;
-    } else if (tide && book1 && !book2) {
-      return 4;
-    } else if (tide && !book1 && book2) {
-      return 6;
-    }
-  };
   return (
     <Container fluid className="pe-0 ps-1">
       <Row>
@@ -186,7 +154,7 @@ const DesktopGameDetail = () => {
             <>
               <Col md={12}>
                 <BetTableHeader
-                  customClass="mt-2 py-2"
+                  customClass="mt-1 py-2"
                   title={matchDetails?.title}
                   rightComponent={
                     <span className="title-16 fbold text-white">
@@ -211,7 +179,7 @@ const DesktopGameDetail = () => {
               )}
               {matchDetails?.matchOdd?.activeStatus === "live" &&
                 matchDetails?.matchOdd?.isActive && (
-                  <Col md={12} style={{ marginTop: "10px" }}>
+                  <Col md={12} style={{ marginTop: "8px" }}>
                     <MatchOdd
                       title={matchDetails?.matchOdd?.name}
                       data={matchDetails?.matchOdd}
@@ -221,7 +189,7 @@ const DesktopGameDetail = () => {
                 )}
               {matchDetails?.bookmaker?.activeStatus === "live" &&
                 matchDetails?.bookmaker?.isActive && (
-                  <Col md={12} style={{ marginTop: "10px" }}>
+                  <Col md={12} style={{ marginTop: "8px" }}>
                     <Bookmaker
                       title={matchDetails?.bookmaker?.name}
                       box={matchDetails?.bookmaker?.runners?.[0]?.ex?.availableToBack?.length > 2
@@ -237,7 +205,7 @@ const DesktopGameDetail = () => {
                 matchDetails?.other?.map((item: any, index: number) => (
                   <div key={index}>
                     {item?.activeStatus === "live" && item?.isActive && (
-                      <Col md={12} style={{ marginTop: "10px" }}>
+                      <Col md={12} style={{ marginTop: "8px" }}>
                         <OtherMarket
                           title={item?.name}
                           box={
@@ -257,7 +225,7 @@ const DesktopGameDetail = () => {
                 matchDetails?.tournament?.map((item: any, index: number) => (
                   <div key={index}>
                     {item?.activeStatus === "live" && item?.isActive && (
-                      <Col md={12} style={{ marginTop: "10px" }}>
+                      <Col md={12} style={{ marginTop: "8px" }}>
                         <Tournament
                           title={item?.name}
                           box={
@@ -275,7 +243,7 @@ const DesktopGameDetail = () => {
                 ))}
               {matchDetails?.bookmaker2?.activeStatus === "live" &&
                 matchDetails?.bookmaker2?.isActive && (
-                  <Col md={12} style={{ marginTop: "10px" }}>
+                  <Col md={12} style={{ marginTop: "8px" }}>
                     <Bookmaker
                       title={matchDetails?.bookmaker2?.name}
                       box={2}
@@ -305,7 +273,7 @@ const DesktopGameDetail = () => {
                 )}
               {matchDetails?.apiTideMatch2?.activeStatus === "live" &&
                 matchDetails?.apiTideMatch2?.isActive && (
-                  <Col md={12} style={{ marginTop: "10px" }}>
+                  <Col md={12} style={{ marginTop: "8px" }}>
                     <OtherMarket
                       title={matchDetails?.apiTideMatch2?.name}
                       box={2}

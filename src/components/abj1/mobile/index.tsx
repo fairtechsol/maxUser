@@ -26,7 +26,6 @@ const Abj1Mobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -143,7 +142,7 @@ const Abj1Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={abjrules} />
+      <RulesModal show={show} setShow={setShow} rule={abjrules} type="No Record Found."/>
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

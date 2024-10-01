@@ -4,7 +4,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import { BiSolidHeart } from "react-icons/bi";
 import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import {
   A,
@@ -28,13 +27,13 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "./dragonCard";
 import "./style.scss";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import NewLoader from "../../commonComponent/newLoader";
 
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
@@ -162,13 +161,9 @@ const DragonTigerDesktop = () => {
   );
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const [openModalIndex, setOpenModalIndex] = useState(null);
 
   const handleClose = () => {
     setShowInactivityModal(false);
-  };
-  const handleModalOpen = (index: any) => {
-    setOpenModalIndex(openModalIndex === index ? null : index);
   };
 
   useEffect(() => {
@@ -275,6 +270,8 @@ const DragonTigerDesktop = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({

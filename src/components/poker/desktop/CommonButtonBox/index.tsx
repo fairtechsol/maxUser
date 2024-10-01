@@ -6,13 +6,10 @@ import { HandleGameCards } from "../card";
 const CommonButtonBox = ({
   value1,
   value2,
-  value3,
   width,
   handleBet,
   lock,
   data,
-  min,
-  max,
   card1,
   card2
 }: any) => {

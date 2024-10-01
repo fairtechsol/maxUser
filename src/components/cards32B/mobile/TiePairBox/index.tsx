@@ -5,8 +5,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const TiePairBox = ({ tiePair, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = tiePair?.[0]?.min;
-  const max = tiePair?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",

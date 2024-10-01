@@ -1,12 +1,10 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import PlayerButton from "../PlayerButton";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = lowHigh?.[0]?.min;
-  const max = lowHigh?.[0]?.max;
+
 
   const handleBet = (item: any, type: any) => {
     let team = {
@@ -19,6 +17,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -44,7 +44,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       console.log(error);
     }
   };
-
+  
   return (
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
@@ -56,7 +56,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
+            lowHigh?.[0]?.gstatus === "SUSPENDED" ||
+            lowHigh?.[0]?.gstatus === "CLOSED" ||
+            lowHigh?.[0]?.b1 === "0.00"
               ? true
               : false
           }
@@ -71,7 +73,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
+            lowHigh?.[1]?.gstatus === "SUSPENDED" ||
+            lowHigh?.[1]?.gstatus === "CLOSED" ||
+            lowHigh?.[1]?.b1 === "0.00"
               ? true
               : false
           }
@@ -86,19 +90,15 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
+            lowHigh?.[2]?.gstatus === "SUSPENDED" ||
+            lowHigh?.[2]?.gstatus === "CLOSED" ||
+            lowHigh?.[2]?.b1 === "0.00"
               ? true
               : false
           }
           data={lowHigh?.[2]}
         />
       </div>
-      {/* <div style={{ textAlign: "end", width: "100%" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div> */}
     </div>
   );
 };

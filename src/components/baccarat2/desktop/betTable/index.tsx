@@ -27,6 +27,8 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -35,7 +37,6 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
       })
     );
   };
-  // console.log(odds, "odds");
 
   useEffect(() => {
     if ( odds?.[0]?.gstatus === "0" || odds?.[0]?.b1 === "0.00") {

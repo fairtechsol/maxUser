@@ -2,11 +2,9 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import CommonCardImg from "../../mobile/CommonCardImg";
 const OddEven = ({ data, card, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
+
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -18,6 +16,8 @@ const OddEven = ({ data, card, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -73,14 +73,6 @@ const OddEven = ({ data, card, odds }: any) => {
                 data={odds?.[1]}
               />
             </div>
-            {/* <div style={{ textAlign: "end" }}>
-              <span style={{ fontWeight: "bolder" }}>Min:</span>
-              <span>{min}</span>
-              <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>
-                Max:
-              </span>
-              <span>{max}</span>
-            </div> */}
           </>
         ) : (
           <>
@@ -123,14 +115,6 @@ const OddEven = ({ data, card, odds }: any) => {
                 data={odds?.[1]}
               />
             </div>
-            {/* <div style={{ textAlign: "end" }}>
-              <span style={{ fontWeight: "bolder" }}>Min:</span>
-              <span>{min}</span>
-              <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>
-                Max:
-              </span>
-              <span>{max}</span>
-            </div> */}
           </>
         )}
       </div>

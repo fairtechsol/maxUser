@@ -1,17 +1,13 @@
-import { useState } from "react";
 import { BiSolidHeart } from "react-icons/bi";
 import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import {isMobile} from "../../../../utils/screenDimension";
-import SmoothDropdownModal from "../minMaxModal";
+import { isMobile } from "../../../../utils/screenDimension";
 
 const CardBox = ({ dragonData, tigerData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -23,6 +19,8 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -41,7 +39,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
   const renderItem = (item: any) => (
     <div
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+        handleLock(item?.gstatus, item?.b1) ? "suspended-1day" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -80,12 +78,12 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           display: "flex",
           flexDirection: "column",
           border: "0.3px solid #c7c8ca",
-          marginLeft: "5px",
+          marginLeft: "5px", 
         }}
       >
         <div
-          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-     
+          className={isMobile ? "row-flex-mobile p-0" : "w-100 d-sm-flex flex-row"}
+
         >
           <div className="dtlTitlee">
             {" "}
@@ -118,6 +116,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           </div>
         </div>
         <div
+         style={{ height: "40px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitlee">Dragon </div>
@@ -127,6 +126,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           {renderItem(dragonData?.[6])}
         </div>
         <div
+         style={{ height: "40px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitlee"> Tiger</div>

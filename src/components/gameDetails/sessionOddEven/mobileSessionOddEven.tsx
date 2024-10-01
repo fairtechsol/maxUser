@@ -1,9 +1,8 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store/store";
-import { isMobile } from "../../../utils/screenDimension";
-import "./style.scss";
-import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { calculateMaxLoss, handleSize } from "../../../helpers";
+import { selectedBetAction } from "../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../store/store";
+import "./style.scss";
 
 const MobileSessionOddEven = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();

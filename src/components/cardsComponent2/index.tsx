@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { back , club, diamond, heart, spade} from "../../assets/images";
 import {isMobile} from "../../utils/screenDimension";
-// import Club from "../../assets/cards/clubs.png";
-// import Diamond from "../../assets/cards/diamond.png";
-// import Heart from "../../assets/cards/heart.png";
-// import Spade from "../../assets/cards/spade.png";
 
 interface PlayingCardProps {
   number: string;
@@ -17,13 +13,10 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
     <div
       style={{
         borderRadius: "2px",
-        // border: "1px solid yellow",
-        // lineHeight: isMobile ?  "2" :"0.8",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        // padding: isMobile ?  "0px" :"8px",
         background: lock ? `url(${back})` : "white",
         height: isMobile ? "20px" : "40px",
         width: isMobile ? "16px" : "30px",

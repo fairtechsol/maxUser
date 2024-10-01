@@ -22,7 +22,6 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
       result[targetArray].push(item);
     });
   }
-  // const max = Math.max(...numbers);
 
   return (
     <Container

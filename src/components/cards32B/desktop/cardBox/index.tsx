@@ -1,13 +1,9 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import SmoothDropdownModal from "../minMaxModal";
-import { IoInformationCircle } from "react-icons/io5";
-import { useState } from "react";
+import { AppDispatch } from "../../../../store/store";
 
 const CardBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -19,6 +15,8 @@ const CardBox = ({ odds, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -87,18 +85,6 @@ const CardBox = ({ odds, data }: any) => {
             {" "}
             <div style={{ width: "47%", textAlign: "start" }}>
               <div style={{ width: "20%", textAlign: "start" }}>
-              {/* <span className="minmaxi">
-                <IoInformationCircle
-                  color="#ffc742"
-                  onClick={() => setModelOpen(!modelOpen)}
-                />
-                <SmoothDropdownModal
-                  min={odds?.[0]?.min}
-                  max={odds?.[0]?.max}
-                  show={modelOpen}
-                  setShow={() => setModelOpen(false)}
-                />
-              </span> */}
               </div>
               
             </div>

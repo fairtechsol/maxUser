@@ -1,6 +1,5 @@
 
-import React from 'react';
-import "../style.scss"
+import "../style.scss";
 const Card56 = () => {
   return (
     <div className="worlibox sp">

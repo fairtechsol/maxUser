@@ -1,10 +1,8 @@
-import React from "react";
+ 
+const Baccarat2Rules = () => {
 
-const RulesSection = ({ show, setShow }: any) => {
-
-    const handleClose = () => setShow(false);
   return (
-    <div className="modal-body">
+    <div className="modal-body lh-sm p-0">
       {/* Run Section */}
       <div className="rules-section">
         <h6 className="rules-highlight">Run Section:</h6>
@@ -57,4 +55,4 @@ const RulesSection = ({ show, setShow }: any) => {
   );
 };
 
-export default RulesSection;
+export default Baccarat2Rules;

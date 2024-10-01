@@ -19,6 +19,8 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -41,7 +43,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const renderItem = (item: any) => (
     <div
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+        handleLock(item?.gstatus, item?.b1) ? "suspended-1day" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -110,7 +112,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
               ? dragonEvenOdd?.[0]?.max
               : dragonRedBlack?.[0]?.max} */}
           </div>
-          <div className="dtlsubTitle back-BackGround">
+          <div className="dtlsubTitle back-BackGround p-1">
             <span style={{ fontSize: "14px" }}>
               {title1 === "even" ? (
                 "Even"
@@ -138,6 +140,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           </div>
         </div>
         <div
+         style={{ height: "40px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitle">Dragon </div>
@@ -149,6 +152,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           )}
         </div>
         <div
+         style={{ height: "40px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitle"> Tiger</div>

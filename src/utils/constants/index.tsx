@@ -60,6 +60,7 @@ export const ApiConstants = {
   OLD_PASSWORD: "/user/check/oldPassword",
   MATCH: {
     MATCHLIST: "/match/list",
+    TABLIST: "/expert/blinkingTabs",
     MATCHSEARCHLIST: "/match/search",
     SEARCHLIST: "/user/searchlist",
     MATCHDETAILS: "/match/",
@@ -294,6 +295,7 @@ export const availableGameType: any = {
   tennis: "tennis",
   horseRacing: "horseRacing",
   greyHound: "greyHound",
+  politics: "politics",
 };
 
 export const cardGamesType: any = {
@@ -441,64 +443,64 @@ export const cardUrl =
     ? "https://jmdapi.com/tablevideo/?id="
     : "https://maxbet07.com/videoPage/";
 
-export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
+export const cardUrlMain = "https://maxbet07.com/videoPage/";
 export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventId=";
 
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";
 
-// export const serviceUrl =
-//   process.env.NODE_ENV === "production"
-//     ? Constants.apiBasePath
-//     : Constants.localPath;
+export const serviceUrl =
+  process.env.NODE_ENV === "production"
+    ? Constants.apiBasePath
+    : Constants.localPath;
 
-// export const baseUrls = {
-//   socket:
-//     process.env.NODE_ENV === "production"
-//       ? Constants.apiBasePath
-//       : Constants.localPath,
-//   expertSocket:
-//     process.env.NODE_ENV === "production"
-//       ? Constants.expertSocketBasePath
-//       : Constants.localPathExpert,
-//   matchSocket:
-//     process.env.NODE_ENV === "production"
-//       ? Constants.thirdParty
-//       : Constants.localThird,
-//   cardSocket:
-//     process.env.NODE_ENV === "production"
-//       ? Constants.thirdPartyCard
-//       : Constants.localThirdCard,
-// };
+export const baseUrls = {
+  socket:
+    process.env.NODE_ENV === "production"
+      ? Constants.apiBasePath
+      : Constants.localPath,
+  expertSocket:
+    process.env.NODE_ENV === "production"
+      ? Constants.expertSocketBasePath
+      : Constants.localPathExpert,
+  matchSocket:
+    process.env.NODE_ENV === "production"
+      ? Constants.thirdParty
+      : Constants.localThird,
+  cardSocket:
+    process.env.NODE_ENV === "production"
+      ? Constants.thirdPartyCard
+      : Constants.localThirdCard,
+};
 
 // use below baseUrl for live build
 
 // export const cardUrl = "https://video.proexch.in/route/?id=";
 // export const cardUrl = "https://maxbet9.fairgame.club/videoPage/";
 
-export const serviceUrl =
-  process.env.NODE_ENV === "production"
-    ? Constants.apiBasePathLive
-    : Constants.localPath;
+// export const serviceUrl =
+//   process.env.NODE_ENV === "production"
+//     ? Constants.apiBasePathLive
+//     : Constants.localPath;
 
-export const baseUrls = {
-  socket:
-    process.env.NODE_ENV === "production"
-      ? Constants.apiBasePathLive
-      : Constants.localPath,
-  matchSocket:
-    process.env.NODE_ENV === "production"
-      ? Constants.thirdPartyLive
-      : Constants.localThird,
-  expertSocket:
-    process.env.NODE_ENV === "production"
-      ? Constants.expertPathLive
-      : Constants.localPathExpert,
-  cardSocket:
-    process.env.NODE_ENV === "production"
-      ? Constants.thirdPartyCardLive
-      : Constants.localThirdCard,
-};
+// export const baseUrls = {
+//   socket:
+//     process.env.NODE_ENV === "production"
+//       ? Constants.apiBasePathLive
+//       : Constants.localPath,
+//   matchSocket:
+//     process.env.NODE_ENV === "production"
+//       ? Constants.thirdPartyLive
+//       : Constants.localThird,
+//   expertSocket:
+//     process.env.NODE_ENV === "production"
+//       ? Constants.expertPathLive
+//       : Constants.localPathExpert,
+//   cardSocket:
+//     process.env.NODE_ENV === "production"
+//       ? Constants.thirdPartyCardLive
+//       : Constants.localThirdCard,
+// };
 
 //Rules casino
 export const cardData = [

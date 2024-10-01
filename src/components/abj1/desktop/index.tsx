@@ -179,7 +179,7 @@ const Abj1Desktop = () => {
                 </div>
               </div>
             )}
-            <RulesModal show={show} setShow={setShow} rule={abjrules} />
+            <RulesModal show={show} setShow={setShow} rule={abjrules} type="No Record Found."/>
           </div>
         </Col>
         <Col className="p-0 pt-1" md={4}>
@@ -193,7 +193,7 @@ const Abj1Desktop = () => {
               }}
             >
               <Col md={12}>
-                <DesktopPlacedBet />
+                <DesktopPlacedBet type={cardGamesType.andarBahar1} />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />

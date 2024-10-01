@@ -6,8 +6,6 @@ import CommonButtonBox from "../CommonButtonBox";
 import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = lowHigh?.[0]?.min;
-  const max = lowHigh?.[0]?.max;
 
   const handleBet = (item: any) => {
     let team = {
@@ -20,6 +18,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      "min":item?.min,
+      "max":item?.max
     };
     dispatch(
       selectedBetAction({

@@ -3,8 +3,12 @@ import { useSelector } from "react-redux";
 import { aaarules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Lucky7Result from "../desktop/lucky7Card";
@@ -12,16 +16,9 @@ import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
 import "./style.scss";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-import CasinoHead from "../../commonComponent/casinoGameHeader";
-import NewLoader from "../../commonComponent/newLoader";
 
 const AmarAkbarAnthonyMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
-  // const [activeCardTab, setActiveCardTab] = useState(false);
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
@@ -30,7 +27,7 @@ const AmarAkbarAnthonyMobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
+
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -163,7 +160,7 @@ const AmarAkbarAnthonyMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={aaarules} />
+      <RulesModal show={show} setShow={setShow} rule={aaarules} gameType="aaa" type="imageWithContent" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

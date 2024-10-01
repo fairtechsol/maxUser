@@ -1,24 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import "../style.scss"
-import {isMobile} from '../../../utils/screenDimension';
-import { MdSportsCricket } from 'react-icons/md';
-import { IoTennisball } from 'react-icons/io5';
-import { FaTrophy } from 'react-icons/fa';
+import PropTypes from "prop-types";
+import "../style.scss";
+import { isMobile } from "../../../utils/screenDimension";
+import { MdSportsCricket } from "react-icons/md";
+import { PiTennisBallFill } from "react-icons/pi";
+import { IoFootball } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
+
 const LatestEvent = ({ events }) => {
   const iconMapping = {
-    40: <MdSportsCricket size={18} />, 
-    4: <IoTennisball size={18}/>, 
-    2: <MdSportsCricket size={18}/>, 
-    1: <IoTennisball size={18}/>, 
+    cricket: <MdSportsCricket size={18} />,
+    football: <IoFootball size={18} />,
+    tennis: <PiTennisBallFill size={18} />,
   };
+
   return (
-    <div className={isMobile ? "latest-event-mobile border-bottom" :"latest-event border-bottom "}>
-      {events?.map((event:any) => (
+    <div
+      className={
+        isMobile
+          ? "latest-event-mobile border-bottom"
+          : "latest-eventt border-bottom"
+      }
+    >
+      {events?.map((event: any) => (
         <div key={event.id} className="latest-event-item">
-                                                      
-            <a className="blink_me d-icon "> <div className='px-1'>{iconMapping[event.iconId]}</div><span className=''>{event.name}</span></a>
-    
+          <NavLink
+            className="blink_me d-icon"
+            to={`/${
+              event.matchType === "cricket" || event.matchType === "politics"
+                ? "game-detail/cricket"
+                : `other-game-detail/${event.matchType}`
+            }/${event?.matchId}`}
+          >
+            <div className="px-1">{iconMapping[event.matchType]}</div>
+            <span className="">{event.matchName}</span>
+          </NavLink>
         </div>
       ))}
     </div>
@@ -29,7 +44,7 @@ LatestEvent.propTypes = {
   events: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      iconId: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired,
       eventId: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
     })

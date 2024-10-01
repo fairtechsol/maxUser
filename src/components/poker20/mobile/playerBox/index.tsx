@@ -17,6 +17,8 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -83,14 +85,14 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
                   cursor: "pointer",
                   alignItems:"center"
                 }}
-              >
+              > 
                 <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                   {item?.nation}
                 </span>
               </div>
               <div
                 className={
-                  item?.entries?.[0]?.gstatus === "0" ? "suspended" : ""
+                  item?.entries?.[0]?.gstatus === "0" ? "suspended-poker20" : ""
                 }
                 style={{
                   width: "100%",

@@ -91,6 +91,8 @@ const TeenPattiDesktop = () => {
         item?.nation,
       bettingName: "Match odds",
       selectionId: sectionId,
+      min:dragonTigerDetail?.videoInfo?.min,
+      max:dragonTigerDetail?.videoInfo?.max
     };
 
     dispatch(

@@ -1,22 +1,21 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
-import {isMobile} from "../../utils/screenDimension";
-import SelectSearch from "../commonComponent/SelectSearch";
-import CustomButton from "../commonComponent/button";
-import CustomTable from "../commonComponent/table";
-import ReportContainer from "../containers/reportContainer";
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
 import { TableConfig } from "../../models/tableInterface";
-import { useSelector } from "react-redux";
 import {
   betReportList,
   resetDataUnsettledMatch,
 } from "../../store/actions/match/matchListAction";
-import moment from "moment";
+import { AppDispatch, RootState } from "../../store/store";
+import { isMobile } from "../../utils/screenDimension";
+import SelectSearch from "../commonComponent/SelectSearch";
+import CustomButton from "../commonComponent/button";
+import CustomTable from "../commonComponent/table";
+import ReportContainer from "../containers/reportContainer";
 
 const BetHistoryComponent = () => {
   const minDate = new Date();
@@ -34,12 +33,9 @@ const BetHistoryComponent = () => {
     { value: "cricket", label: "Cricket" },
     { value: "football", label: "Football" },
     { value: "tennis", label: "Tennis" },
-    // { value: "horseRacing", label: "Horse Racing" },
-    // { value: "greyHoundRacing", label: "GreyHound Racing" },
   ];
   const optionsType = [
     { value: "MATCHED", label: "Matched" },
-    // { value: "UNMATCHED", label: "UnMatched" },
     { value: "DELETED", label: "Deleted" },
   ];
   const dispatch: AppDispatch = useDispatch();
@@ -138,7 +134,6 @@ const BetHistoryComponent = () => {
                 minDate={minDate}
                 maxDate={new Date()}
               />
-              {/* <CustomInput type="date" /> */}
             </Col>
             <Col md={2} xs={6}>
               <DatePicker
@@ -151,7 +146,6 @@ const BetHistoryComponent = () => {
                 minDate={minDate2}
                 maxDate={new Date()}
               />
-              {/* <CustomInput type="date" /> */}
             </Col>
 
             <Col md={2} xs={12}>
@@ -208,13 +202,7 @@ const BetHistoryComponent = () => {
                 id: "place_date",
                 label: "Place Date",
               },
-              // {
-              //   id: "match_date",
-              //   label: "Match Date",
-              // },
             ]}
-            // itemCount={10}
-            // setTableConfig={() => {}}
           >
             {ReportBetList &&
               ReportBetList?.count > 0 &&
@@ -227,7 +215,6 @@ const BetHistoryComponent = () => {
                           ? "bg-red1"
                           : "bg-blue3"
                       }`}
-                      // style={{textAlign:"start"}}
                     >
                       {item?.eventType}
                     </td>
@@ -237,7 +224,6 @@ const BetHistoryComponent = () => {
                           ? "bg-red1"
                           : "bg-blue3"
                       }`}
-                      // style={{textAlign:"start"}}
                     >
                       {item?.match?.title}
                     </td>
@@ -247,7 +233,6 @@ const BetHistoryComponent = () => {
                           ? "bg-red1"
                           : "bg-blue3"
                       }`}
-                      // style={{textAlign:"start"}}
                     >
                       {item?.marketType}
                     </td>
@@ -257,7 +242,6 @@ const BetHistoryComponent = () => {
                           ? "bg-red1"
                           : "bg-blue3"
                       }`}
-                      // style={{textAlign:"start"}}
                     >
                       {item?.teamName}
                     </td>
@@ -278,11 +262,6 @@ const BetHistoryComponent = () => {
                       }`}
                     >
                       {item?.amount}
-                      {/* {item.result === "LOSS" ? (
-                        <span className="color-red">-{item.lossAmount}</span>
-                      ) : (
-                        <span className="color-green">{item.winAmount}</span>
-                      )} */}
                     </td>
                     <td
                       className={` ${
@@ -293,17 +272,6 @@ const BetHistoryComponent = () => {
                     >
                       {moment(item?.createdAt).format("DD-MM-YYYY h:mm:ss A")}
                     </td>
-                    {/* <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {moment(item?.match?.startAt).format(
-                        "DD-MM-YYYY h:mm:ss A"
-                      )}
-                    </td> */}
                   </tr>
                 );
               })}

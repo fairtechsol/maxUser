@@ -1,14 +1,14 @@
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { Form } from "react-bootstrap";
-// import { FaHandPointDown, FaKey } from "react-icons/fa";
-// import { IoPerson } from "react-icons/io5";
-import { MdOutlineLogin } from "react-icons/md";
 import { AiOutlineLoading } from "react-icons/ai"; // Import the AiOutlineLoading spinner
+import { FaHandPointDown, FaKey, FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { maxbetLogo } from "../../../assets/images";
 import CustomButton from "../../../components/commonComponent/button";
 import CustomInput from "../../../components/commonComponent/input";
+import Loader from "../../../components/commonComponent/loader";
 import ValidationError from "../../../components/commonComponent/validationError";
 import {
   authReset,
@@ -17,20 +17,10 @@ import {
 } from "../../../store/actions/authAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-import { FaHandPointDown, FaKey, FaUser } from "react-icons/fa";
-import { IoPerson } from "react-icons/io5";
-import Loader from "../../../components/commonComponent/loader";
-import { maxbetLogo } from "../../../assets/images";
-import Footer from "../../../layout/main/footer";
 
 const Login = () => {
-  // const [loginState, setLoginState] = useState({
-  //   userName: "",
-  //   password: "",
-  //   loginType: "wallet",
-  // });
   const initialValues: any = {
     userName: "",
     password: "",
@@ -43,11 +33,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const dispatch: AppDispatch = useDispatch();
-
-  // const handleSubmit = (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-  //   dispatch(login(loginState));
-  // };
 
   const formik = useFormik({
     initialValues: initialValues,

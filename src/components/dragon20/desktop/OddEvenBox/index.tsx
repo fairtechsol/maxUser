@@ -5,8 +5,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const OddEven = ({ name, data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -18,6 +16,8 @@ const OddEven = ({ name, data, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -70,12 +70,6 @@ const OddEven = ({ name, data, odds }: any) => {
             data={odds?.[1]}
           />
         </div>
-        {/* <div style={{ textAlign: "end" }}>
-          <span style={{ fontWeight: "bolder" }}>Min:</span>
-          <span>{min}</span>
-          <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-          <span>{max}</span>
-        </div> */}
         <div
           style={{
             display: "flex",
@@ -114,12 +108,6 @@ const OddEven = ({ name, data, odds }: any) => {
             data={odds?.[3]}
           />
         </div>
-        {/* <div style={{ textAlign: "end" }}>
-          <span style={{ fontWeight: "bolder" }}>Min:</span>
-          <span>{min}</span>
-          <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-          <span>{max}</span>
-        </div> */}
       </div>
     </>
   );

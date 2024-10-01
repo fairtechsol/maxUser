@@ -1,27 +1,21 @@
 import { Tab } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 import CommonTabs from "../../commonComponent/tabs";
+import LatestEvent from "../latestEvents";
 import MobileMatchList from "../matchList/mobile";
 import SportsFilterJson from "./sportsFilters.json";
-import LatestEvent from "../latestEvents";
-import { useState } from "react";
-const eventsData = [
-  { id: 1, iconId: 40, eventId: 715926745, name: 'Indian Premier League 2024' },
-  { id: 2, iconId: 4, eventId: 780263321, name: 'Caribbean Premier League - Winner' },
-  { id: 3, iconId: 2, eventId: 505412737, name: 'E Ruse v P Badosa' },
-  { id: 4, iconId: 2, eventId: 707383007, name: 'Svitolina v Gauff' },
-  { id: 5, iconId: 1, eventId: 718966835, name: 'Venezia v Torino' },
-];
+
 const SportsFilters = ({ type, setMatchType }: any) => {
 
-  const [selectedItem, setSelectedItem] = useState(null);
 
-  const handleClick = (id) => {
-    setSelectedItem(id);
-    // Perform any additional actions you want on item click
-  };
+
+  const { tabList} = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   return (
     <div className="m-0 p-0 w-100 ">
-     <LatestEvent events={eventsData}/>
+     <LatestEvent events={tabList}/>
       {" "}
       <CommonTabs
         customClass="overflow-x-auto overflow-y-hidden no-wrap lh-1"

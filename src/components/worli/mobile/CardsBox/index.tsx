@@ -1,11 +1,10 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import CommonCardImg from "../CommonCardImg";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import "./style.scss";
 
-const CardBox = ({ title, data, cards, odds }: any) => {
+const CardBox = ({  data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any) => {
@@ -19,6 +18,8 @@ const CardBox = ({ title, data, cards, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -27,8 +28,6 @@ const CardBox = ({ title, data, cards, odds }: any) => {
       })
     );
   };
-  const arCards = cards?.ar?.split(",");
-  const brCards = cards?.br?.split(",");
 
   useEffect(() => {
     if (data?.worli?.gstatus === "0") {
@@ -39,9 +38,6 @@ const CardBox = ({ title, data, cards, odds }: any) => {
   return (
     <>
       <div
-        // className={ 
-        //   data?.worli?.gstatus == 0 ? "suspended abjcardContainer" : " abjcardContainer"
-        // }
         className="abjcardContainer"
         style={{ backgroundColor: "#72bbef", border: "0.5px solid #9e9e9e" }}
       >

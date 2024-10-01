@@ -1,16 +1,10 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
-import { useState } from "react";
-import PlayerButton from "../../desktop/PlayerButton";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { IoInformationCircle } from "react-icons/io5";
-import SmoothDropdownModal from "../../mobile/minMaxModal";
+import { AppDispatch } from "../../../../store/store";
+import PlayerButton from "../../desktop/PlayerButton";
 
 const TiePairBox2 = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = lowHigh?.min;
-  const max = lowHigh?.max;
-  const [modelOpen, setModelOpen] = useState(false);
 
   const handleBet = (item: any, type: any) => {
     let team = {
@@ -23,6 +17,8 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -51,20 +47,6 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
 
   return (
     <div className="tiePairContainer-bt">
-      {/* <div style={{ width: "98%", textAlign: "end" }}>
-        <span className="minmaxi">
-          <IoInformationCircle
-            color="#ffc742"
-            onClick={() => setModelOpen(!modelOpen)}
-          />
-          <SmoothDropdownModal
-            min={min}
-            max={max}
-            show={modelOpen}
-            setShow={() => setModelOpen(false)}
-          />
-        </span>
-      </div> */}
 
       <div className="tiePairRateBoxMainlucky">
         <PlayerButton
@@ -82,12 +64,6 @@ const TiePairBox2 = ({ lowHigh, data }: any) => {
           data={lowHigh}
         />
       </div>
-      {/* <div style={{ textAlign: "end", width: "100%" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div> */}
     </div>
   );
 };

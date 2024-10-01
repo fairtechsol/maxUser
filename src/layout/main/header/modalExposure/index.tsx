@@ -5,7 +5,7 @@ import CustomModal from "../../../../components/commonComponent/modal";
 import CustomTable from "../../../../components/commonComponent/table";
 import { RootState } from "../../../../store/store";
 import { navigateToGameDetail } from "../../../../utils/constants";
-import {isMobile} from "../../../../utils/screenDimension";
+import { isMobile } from "../../../../utils/screenDimension";
 
 interface ExposureModalInterface {
   show: boolean;
@@ -49,7 +49,8 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
                 <td style={{ color: "#007bff" }}>
                   <Link
                     to={
-                      item.eventType === "cricket"
+                      item.eventType === "cricket" ||
+                      item.eventType === "politics"
                         ? `/game-detail/${item.eventType}/${item.matchId}`
                         : ["greyHound", "horseRacing"].includes(item.eventType)
                         ? `/race/${item.matchId}`

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import "./style.scss";
 
-const CardBox = ({ title, data, cards, odds }: any) => {
+const CardBox = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any) => {
@@ -19,6 +19,8 @@ const CardBox = ({ title, data, cards, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -43,7 +45,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
         //   data?.worli?.gstatus == 0 ? "suspended" : ""
         // } abjcardContainer`}
         className="abjcardContainer"
-        style={{ backgroundColor: "#72bbef", border: "0.5px solid #fff" }}
+        style={{ backgroundColor: "#72bbef" }}
       >
         <div
           style={{

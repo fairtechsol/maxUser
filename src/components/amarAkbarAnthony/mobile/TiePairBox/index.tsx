@@ -1,12 +1,9 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import PlayerButton from "../PlayerButton";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = lowHigh?.[0]?.min;
-  const max = lowHigh?.[0]?.max;
 
   const handleBet = (item: any, type: any) => {
     let team = {
@@ -56,53 +53,6 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           alignItems: "start",
         }}
       >
-        {/* <div className="commonButtonBoxContainer" style={{ width: "30%" }}>
-          <div>
-            <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
-              {parseFloat(lowHigh?.[0]?.b1).toFixed(2)}
-            </span>
-          </div>
-          <div  //lowHigh?.[0]?.gstatus === "0" ? true : false
-            className={`tiePairbtn-theme ${lowHigh?.[0]?.gstatus === "0" ? "suspended" : ""}`}
-            onClick={() => (!(lowHigh?.[0]?.gstatus === "0") ? handleBet(data) : null)}
-          >
-            <span>
-              {
-                "Amar"
-              }
-            </span>
-          </div>
-          <div>
-            <span
-              style={{ fontSize: "16px" }}
-              className={`${
-                value3 && value3 > 0
-                  ? "color-green"
-                  : value3 < 0
-                  ? " color-red"
-                  : ""
-              }`}
-            >
-              {value3 || 0}
-            </span>
-          </div>
-        </div> */}
-
-        {/* <div
-          style={{
-            textAlign: "start",
-            width: "100%",
-            alignItems: "center",
-            borderBottom: "1px solid #aaa",
-            display: "flex",
-            paddingTop: "2px",
-          }}
-        >
-          <span style={{ fontWeight: "bolder" }}>Min:</span>
-          <span>{min}</span>
-          <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-          <span>{max}</span>
-        </div> */}
 
         <PlayerButton
           value1={lowHigh?.[0]?.b1}
@@ -112,7 +62,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"100%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
+            lowHigh?.[0]?.gstatus === "SUSPENDED" ||lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
               ? true
               : false
           }
@@ -127,7 +77,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"100%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
+            lowHigh?.[1]?.gstatus === "SUSPENDED" || lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
               ? true
               : false
           }
@@ -142,7 +92,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"100%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
+            lowHigh?.[2]?.gstatus === "SUSPENDED" ||  lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
               ? true
               : false
           }

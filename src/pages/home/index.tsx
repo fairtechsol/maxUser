@@ -10,10 +10,11 @@ import { rulesModalShowFalse } from "../../store/actions/authAction";
 import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/horseMatchListAction";
 import {
   getMatchList,
+  getTabList,
   updateMatchOddRates,
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import ImageModal from "../../components/commonComponent/loginModal";
 
 const Home = () => {
@@ -28,12 +29,9 @@ const Home = () => {
   const setMatchOddRatesInRedux = (event: any) => {
     dispatch(updateMatchOddRates(event));
   };
-  const [showModal, setShowModal] = useState(true);
-  const imageUrl = "https://sitethemedata.com/common/wel-banner/wel-1724988950347.png"; // Replace this with the dynamic URL
+  const imageUrl =
+    "https://sitethemedata.com/common/wel-banner/wel-1724988950347.png"; // Replace this with the dynamic URL
 
-  const handleClose = () => {
-    setShowModal(false);
-  };
   const getMatchListService = () => {
     try {
       dispatch(
@@ -112,9 +110,10 @@ const Home = () => {
   }, [socket, matchType]);
 
   useEffect(() => {
+    dispatch(getTabList({}));
     if (
       matchType &&
-      ["cricket", "football", "tennis"].includes(matchType) &&
+      ["cricket", "football", "tennis", "politics"].includes(matchType) &&
       ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
     ) {
       getMatchListService();
@@ -141,7 +140,7 @@ const Home = () => {
       success &&
       matchList.length > 0 &&
       isMobile &&
-      ["cricket", "football", "tennis"].includes(matchType)
+      ["cricket", "football", "tennis", "politics"].includes(matchType)
     ) {
       matchList?.forEach((element: any) => {
         expertSocketService.match.joinMatchRoom(element?.id, "user");
@@ -168,8 +167,12 @@ const Home = () => {
   return (
     <div>
       <MatchList setMatchType={setMatchType} matchType={matchType} />
-      <ImageModal customClass={isMobile ? "" : "modalFull-56 rule-popup"}  show={show}
-        setShow={popUpClose}  imageUrl={imageUrl}  />
+      <ImageModal
+        customClass={isMobile ? "" : "modalFull-56 rule-popup"}
+        show={show}
+        setShow={popUpClose}
+        imageUrl={imageUrl}
+      />
     </div>
   );
 };

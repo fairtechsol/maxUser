@@ -2,24 +2,22 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { handleRoundId } from "../../../utils/formatMinMax";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
-import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/card32B";
-import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import BackLay from "./BackLay";
+import CardBox from "./CardsBox";
+import OddEven from "./OddEvenBox";
 import PairBox from "./PairBox";
+import "./style.scss";
 import TotalCards from "./totalCards";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-import CasinoHead from "../../commonComponent/casinoGameHeader";
-import NewLoader from "../../commonComponent/newLoader";
 
 const Card32BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -32,7 +30,6 @@ const Card32BMobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -164,7 +161,7 @@ const Card32BMobile = () => {
         )}
       </div>
 
-      <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32eu' type="imageWithContent" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

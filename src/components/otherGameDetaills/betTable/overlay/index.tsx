@@ -1,6 +1,4 @@
-import React from "react";
 import "../style.scss";
-import { FaLock } from "react-icons/fa";
 const Overlay = ({ title, children, active }) => {
   return (
 <div className={`${active ? "suspended-o" : ""} d-flex w-75`}>

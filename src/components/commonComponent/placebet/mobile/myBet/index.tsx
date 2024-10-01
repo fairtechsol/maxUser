@@ -20,6 +20,7 @@ import { Modal } from "react-bootstrap";
 interface PlaceBetProps {
   show: boolean;
   setShow: any;
+  // type: any;
 }
 
 const MobilePlacedBet = ({ show }: PlaceBetProps) => {
@@ -166,7 +167,11 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             <Col xs={4} className="f800 title-12">
               <CustomButton
                 style={{ height: "28px" }}
-                className="f600 w-100 br-0"
+                className={`f600 w-100 br-5 ${
+                  selectedBet?.team?.stake === 0 ? "btnbg-red"
+                    : "btnbg-blue"
+                }`}
+                disabled={selectedBet?.team?.stake === 0 ?true:false}
                 onClick={() => {
                   try {
                     if (loading || matchOddLoading) {
@@ -244,7 +249,10 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                 </CustomButton>
               </Col>
             ))}
-             <Col xs={12}>
+             <Col xs={12} className="d-flex justify-content-between align-items-center">
+             <span className="text-black fbold title-12">
+             Range: {formatNumber(selectedBet?.team?.min)+" to "+formatNumber(selectedBet?.team?.max)}
+             </span>
               <div
                 style={{
                   width: "50px",

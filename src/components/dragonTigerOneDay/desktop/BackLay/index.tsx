@@ -1,18 +1,12 @@
-import { useState } from "react";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import {isMobile} from "../../../../utils/screenDimension";
-import SmoothDropdownModal from "../minMaxModal";
+import { isMobile } from "../../../../utils/screenDimension";
 
 const BackLay = ({ matchOddsData, data }: any) => {
 
 
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = matchOddsData?.[0]?.min;
-  const max = matchOddsData?.[0]?.max;
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type === "back" ? "BACK" : "LAY",
@@ -24,6 +18,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -44,7 +40,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+          handleLock(item?.gstatus, item?.b1) ? "suspended-1day" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.b1) && handleBet(item, "back")
@@ -55,7 +51,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     ) : (
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.l1) ? "lock" : ""
+          handleLock(item?.gstatus, item?.l1) ? "suspended-1day" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.l1) && handleBet(item, "lay")
@@ -119,6 +115,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
               flexDirection: "column",
               alignItems: "flex-start",
               lineHeight: 1,
+              height: "40px" 
             }}
           >
             <span>Dragon</span>

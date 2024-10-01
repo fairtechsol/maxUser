@@ -31,7 +31,7 @@ const MyBet = () => {
               {placeBetHeader?.map((item) => (
                 <th
                   key={item?.id}
-                  className="title-12 text-start f500 bg-light lh-1"
+                  className={`title-14 ${item?.id==="stake"?"text-end" :"text-start"} fbold bg-light lh-1`}
                 >
                   {item?.name}
                 </th>
@@ -80,7 +80,7 @@ const MyBet = () => {
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-14 text-start f400 lh-05 ${
+                      className={`title-14 text-end f400 lh-05 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"

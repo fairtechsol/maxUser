@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { BiSolidHeart } from "react-icons/bi";
 import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import {
   A,
@@ -21,7 +20,6 @@ import {
 } from "../../../../assets/images";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import SmoothDropdownModal from "../minMaxModal";
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
 };
@@ -139,10 +137,6 @@ const OddEven = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [firstArr, setFirstArr] = useState(data1);
   const [secondArr, setSecondArr] = useState(data2);
-  const [openModalIndex, setOpenModalIndex] = useState(null);
-  const handleModalOpen = (index: any) => {
-    setOpenModalIndex(openModalIndex === index ? null : index);
-  };
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -154,6 +148,8 @@ const OddEven = ({ data, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -226,28 +222,12 @@ const OddEven = ({ data, odds }: any) => {
             marginLeft: "5px",
           }}
         >
-          {firstArr?.map((item: any, index: any) => {
+          {firstArr?.map((item: any) => {
             return (
               <>
                 <div className="dlt-m-conatainer">
                   <div className="dtlTitle-m">
                     {item?.title}
-                    {/* <div style={{ width: "45%", textAlign: "end" }}>
-                      <span className="minmaxi">
-                        <IoInformationCircle
-                          color="#ffc742"
-                          onClick={() => handleModalOpen(index)}
-                        />
-                        {openModalIndex === index && (
-                          <SmoothDropdownModal
-                            min={item?.data?.min}
-                            max={item?.data?.max}
-                            show={openModalIndex === index}
-                            setShow={() => setOpenModalIndex(null)}
-                          />
-                        )}
-                      </span>
-                    </div> */}
                   </div>
                   <div
                     className={`dtlsubTitle-m ${
@@ -303,28 +283,12 @@ const OddEven = ({ data, odds }: any) => {
             border: "0.3px solid #c7c8ca",
           }}
         >
-          {secondArr?.map((item: any, index: any) => {
+          {secondArr?.map((item: any) => {
             return (
               <>
                 <div className="dlt-m-conatainer">
                   <div className="dtlTitle-m">
                     {item?.title}
-                    {/* <div style={{ width: "45%", textAlign: "end" }}>
-                      <span className="minmaxi">
-                        <IoInformationCircle
-                          color="#ffc742"
-                          onClick={() => handleModalOpen(index + 9)}
-                        />
-                        {openModalIndex === index + 9 && (
-                          <SmoothDropdownModal
-                            min={item?.data?.min}
-                            max={item?.data?.max}
-                            show={openModalIndex === index + 9}
-                            setShow={() => setOpenModalIndex(null)}
-                          />
-                        )}
-                      </span>
-                    </div> */}
                   </div>
                   <div
                     className={`dtlsubTitle-m ${

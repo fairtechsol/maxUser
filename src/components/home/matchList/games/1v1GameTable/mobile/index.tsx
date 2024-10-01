@@ -14,6 +14,7 @@ import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
+import { TbDeviceTvOld } from "react-icons/tb";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
@@ -152,12 +153,16 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                     <Link
                                       className="text-decoration-none text-black lh-1"
                                       to={`/${
-                                        mTypeid === "cricket"
+                                        mTypeid === "cricket" ||
+                                        mTypeid === "politics"
                                           ? "game-detail/cricket"
                                           : `other-game-detail/${mTypeid}`
                                       }/${item?.id}`}
                                     >
-                                      <b className="title-14 f600" style={{color:"#333"}}>
+                                      <b
+                                        className="title-14 f600"
+                                        style={{ color: "#333" }}
+                                      >
                                         {item?.title}
                                       </b>
                                       <div className="title-12">
@@ -170,6 +175,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   <div className="d-flex align-items-center gap-2">
                                     {currentTime >= startAt ? (
                                       <span className="liveDot"></span>
+                                    ) : (
+                                      ""
+                                    )}
+                                    {item?.isTv === true ||
+                                    item?.isTv === "1" ? (
+                                      <TbDeviceTvOld />
                                     ) : (
                                       ""
                                     )}
@@ -191,62 +202,56 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   </div>
                                 </div>
                                 <div className="d-flex w-100">
-                                  {(item?.matchOdds?.length > 0 ? item.matchOdds : new Array(1).fill(null))?.map(
-                                    (item: any, index: number) => (
-                                      <React.Fragment key={index}>
-                                        <BackLayComponent
-                                          heading="1"
-                                          backRate={
-                                            (item?.runners &&
-                                              item?.runners[0]?.ex
-                                                ?.availableToBack[0]?.price) ||
-                                            item?.backTeamA ||
-                                            0
-                                          }
-                                          layRate={
-                                            (item?.runners &&
-                                              item?.runners[0]?.ex
-                                                ?.availableToLay[0]?.price) ||
-                                            item?.layTeamA ||
-                                            0
-                                          }
-                                          active={false}
-                                        />
-                                        <BackLayComponent
-                                          heading="X"
-                                          backRate={
-                                            (item?.runners &&
-                                              item?.runners[2]?.ex
-                                                ?.availableToBack[0]?.price) ||
-                                            0
-                                          }
-                                          layRate={
-                                            (item?.runners &&
-                                              item?.runners[2]?.ex
-                                                ?.availableToLay[0]?.price) ||
-                                            0
-                                          }
-                                          active={false}
-                                        />
-                                        <BackLayComponent
-                                          heading="2"
-                                          backRate={
-                                            (item?.runners &&
-                                              item?.runners[1]?.ex
-                                                ?.availableToBack[0]?.price) ||
-                                            0
-                                          }
-                                          layRate={
-                                            (item?.runners &&
-                                              item?.runners[1]?.ex
-                                                ?.availableToLay[0]?.price) ||
-                                            0
-                                          }
-                                          active={false}
-                                        />
-                                      </React.Fragment>
-                                    )
-                                  )}
+                                  <BackLayComponent
+                                    heading="1"
+                                    backRate={
+                                      (item?.matchOdds?.[0]?.runners &&
+                                        item?.matchOdds?.[0]?.runners[0]?.ex
+                                          ?.availableToBack[2]?.price) ||
+                                      item?.matchOdds?.[0]?.backTeamA ||
+                                      0
+                                    }
+                                    layRate={
+                                      (item?.matchOdds?.[0]?.runners &&
+                                        item?.matchOdds?.[0]?.runners[0]?.ex
+                                          ?.availableToLay[0]?.price) ||
+                                      item?.matchOdds?.[0]?.layTeamA ||
+                                      0
+                                    }
+                                    active={false}
+                                  />
+                                  <BackLayComponent
+                                    heading="X"
+                                    backRate={
+                                      (item?.matchOdds?.[0]?.runners &&
+                                        item?.matchOdds?.[0]?.runners[2]?.ex
+                                          ?.availableToBack[2]?.price) ||
+                                      0
+                                    }
+                                    layRate={
+                                      (item?.matchOdds?.[0]?.runners &&
+                                        item?.matchOdds?.[0]?.runners[2]?.ex
+                                          ?.availableToLay[0]?.price) ||
+                                      0
+                                    }
+                                    active={false}
+                                  />
+                                  <BackLayComponent
+                                    heading="2"
+                                    backRate={
+                                      (item?.matchOdds?.[0]?.runners &&
+                                        item?.matchOdds?.[0]?.runners[1]?.ex
+                                          ?.availableToBack[2]?.price) ||
+                                      0
+                                    }
+                                    layRate={
+                                      (item?.matchOdds?.[0]?.runners &&
+                                        item?.matchOdds?.[0]?.runners[1]?.ex
+                                          ?.availableToLay[0]?.price) ||
+                                      0
+                                    }
+                                    active={false}
+                                  />
                                 </div>
                               </div>
                             </>

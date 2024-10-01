@@ -12,7 +12,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
   totalPages,
   onPageChange,
 }) => {
-  const [pageComp, setPageComp] = useState([]);
+  const [_, setPageComp] = useState([]);
 
   useEffect(() => {
     let isPageNumberOutOfRange: Boolean;
@@ -79,7 +79,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
             Last
           </Pagination.Last>
 
-          <div className="title-14 d-flex justify-content-center align-items-center ms-2">
+          <div className="title-14 d-flex justify-content-center align-items-center ms-2 mt-1">
             Page
             <span className="fbold ms-1 me-2">
               {currentPage} of {totalPages}

@@ -4,22 +4,22 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import OddEven from "./OddEvenBox";
 import BackLay from "./BackLay";
-import "./style.scss";
-import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
+import OddEven from "./OddEvenBox";
 import PairBox from "./PairBox";
-import CardBox from "./cardBox";
-import TotalCards from "./totalCards";
 import Card32BResult from "./card32B";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import NewLoader from "../../commonComponent/newLoader";
+import CardBox from "./cardBox";
+import "./style.scss";
+import TotalCards from "./totalCards";
 
 const Card32BDesktop = () => {
   const [show, setShow] = useState(false);
@@ -183,7 +183,7 @@ const Card32BDesktop = () => {
             </div>
           )}
 
-          <RulesModal show={show} setShow={setShow} rule={card32rules} />
+<RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32eu' type="imageWithContent" />
         </Col>
         <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
