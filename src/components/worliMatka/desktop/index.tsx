@@ -77,8 +77,6 @@ const MatkaDesktop = () => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
   }, []);
 
-
-  console.log(dragonTigerDetail, "matka")
   return (
     <>
       <Row>
@@ -121,7 +119,7 @@ const MatkaDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                //   result={<WorliResult data={dragonTigerDetail?.videoInfo} />}
+                  //   result={<WorliResult data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
@@ -140,10 +138,10 @@ const MatkaDesktop = () => {
                 >
                   <div className="">
                     <MatkaNavTab
-                     odds={dragonTigerDetail?.worliMatka}
-                     data={dragonTigerDetail}
-                     cards={dragonTigerDetail?.cardInfo}
-                     />
+                      odds={dragonTigerDetail?.worliMatka}
+                      data={dragonTigerDetail}
+                      cards={dragonTigerDetail?.cardInfo}
+                    />
                   </div>
                 </div>
 
