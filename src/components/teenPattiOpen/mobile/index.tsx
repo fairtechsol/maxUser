@@ -151,9 +151,10 @@ const TeenPattiMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={
-                    <TeenOpenResult data={dragonTigerDetail?.videoInfo} />
-                  }
+                  // result={
+                  //   <TeenOpenResult data={dragonTigerDetail?.videoInfo} />
+                  // }
+                  result={<TeenOpenResult data={cardsArray1} />}
                   id={videoFrameId}
                 />
               </div>
