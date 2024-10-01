@@ -32,7 +32,7 @@ function BetTableHeader({
       style={{ ...inlineStyle }}
     >
       <span
-        className={`text-black ${customTextClass ?? "title-15 f700"}`}
+        className={`text-white ${customTextClass ?? "title-15 f700"}`}
         onClick={() => setShowVideo((prev: boolean) => !prev)}
       >
         {title}
