@@ -2,9 +2,9 @@ import "./style.scss";
 import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import {isMobile} from "../../../../utils/screenDimension";
+import { isMobile } from "../../../../utils/screenDimension";
 import { useEffect } from "react";
-const DynamicTable = ({ data, playerNum, }: any) => {
+const DynamicTable = ({ data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any, type: any) => {
@@ -21,8 +21,8 @@ const DynamicTable = ({ data, playerNum, }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -34,15 +34,13 @@ const DynamicTable = ({ data, playerNum, }: any) => {
   };
 
   let player1Key = `playera`;
+  let player2Key = `playerb`;
 
-
-  
   useEffect(() => {
-    if (playerNum?.gstatus === "CLOSED" ||playerNum?.b1 === "0.00") {
+    if (playerNum?.gstatus === "CLOSED" || playerNum?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [playerNum?.gstatus,playerNum?.b1]);
+    }
+  }, [playerNum?.gstatus, playerNum?.b1]);
 
   return (
     <div className="card32-table-container">
@@ -56,7 +54,12 @@ const DynamicTable = ({ data, playerNum, }: any) => {
             cursor: "pointer",
           }}
         >
-          <span style={{ fontSize: isMobile ? "12px" : "14px", fontWeight: "bolder" }}>
+          <span
+            style={{
+              fontSize: isMobile ? "12px" : "14px",
+              fontWeight: "bolder",
+            }}
+          >
             {playerNum?.nation}
           </span>
           <span
@@ -65,23 +68,29 @@ const DynamicTable = ({ data, playerNum, }: any) => {
                 ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   ? JSON.parse(
                       data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                    )[player1Key] > 0
+                    )[
+                      playerNum?.nation === "Player A" ? player1Key : player2Key
+                    ] > 0
                     ? "color-green"
                     : JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )[player1Key] < 0
+                      )[
+                        playerNum?.nation === "Player A"
+                          ? player1Key
+                          : player2Key
+                      ] < 0
                     ? "color-red"
                     : ""
                   : ""
                 : ""
             }`}
-            style={{zIndex:"111"}}
+            style={{ zIndex: "111" }}
           >
             {data?.profitLoss
               ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                 ? JSON.parse(
                     data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                  )[player1Key]
+                  )[playerNum?.nation === "Player A" ? player1Key : player2Key]
                 : "\u00A0"
               : "\u00A0"}
           </span>
@@ -95,10 +104,12 @@ const DynamicTable = ({ data, playerNum, }: any) => {
           }}
         >
           <div
-           className={ playerNum?.gstatus === "SUSPENDED" ||
-            playerNum?.gstatus === "CLOSED"
-              ? "card32-table-item back suspended"
-              : "card32-table-item back"}
+            className={
+              playerNum?.gstatus === "SUSPENDED" ||
+              playerNum?.gstatus === "CLOSED"
+                ? "card32-table-item back suspended"
+                : "card32-table-item back"
+            }
             style={{ width: "50%" }}
             onClick={() =>
               playerNum?.gstatus === "SUSPENDED" ||
@@ -111,10 +122,12 @@ const DynamicTable = ({ data, playerNum, }: any) => {
             {/* <span className="title-14 f500">{playerNum?.bs1}</span> */}
           </div>
           <div
-            className={ playerNum?.gstatus === "SUSPENDED" ||
+            className={
+              playerNum?.gstatus === "SUSPENDED" ||
               playerNum?.gstatus === "CLOSED"
                 ? "card32-table-item lay suspended"
-                : "card32-table-item lay"}
+                : "card32-table-item lay"
+            }
             style={{ width: "50%" }}
             onClick={() =>
               playerNum?.gstatus === "SUSPENDED" ||
@@ -129,8 +142,7 @@ const DynamicTable = ({ data, playerNum, }: any) => {
         </div>
       </div>
 
-
-     {/* {playerNum === 9 && <div className="card32-table-row" style={{ lineHeight: 1 }}>
+      {/* {playerNum === 9 && <div className="card32-table-row" style={{ lineHeight: 1 }}>
         <div
           style={{
             width: "50%",
