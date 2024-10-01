@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import "./style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import { formatNumber } from "../../../helpers";
 interface props {
   bgColor?: string;
   title?: string;
@@ -35,7 +36,7 @@ function BetTableHeader({
     >
       <span className={`text-white ${customTextClass??"title-15 f700"}`}>{title}</span>
       
-      {rightComponent}{(selectedBet?.team?.min && selectedBet?.team?.max) ? <span className="title-14 text-white f400">Range: {selectedBet?.team?.min} to {selectedBet?.team?.max}</span> : ""}
+      {rightComponent}{(selectedBet?.team?.min && selectedBet?.team?.max) ? <span className="title-14 text-white f400">Range: {formatNumber(selectedBet?.team?.min)} to {formatNumber(selectedBet?.team?.max)}</span> : ""}
     </div>
   );
 }

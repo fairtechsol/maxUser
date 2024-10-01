@@ -19,6 +19,8 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
