@@ -1,9 +1,8 @@
-import React from "react";
-import { b2rules } from "../../../assets/images"; 
-const Baccarat2Rules = ({ show, setShow }: any) => {
+ 
+const Baccarat2Rules = () => {
 
   return (
-    <div className="modal-body">
+    <div className="modal-body lh-sm p-0">
       {/* Run Section */}
       <div className="rules-section">
         <h6 className="rules-highlight">Run Section:</h6>

@@ -58,7 +58,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
       <div className={isMobile ?"queenresultModal" : "card32resultModal"}>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Total 0 -  <span className="bg-success badge">{total0} </span></span>
-          <div className={isMobile ? "d-flex column justify-content-center align-items-center" : "d-sm-flex flex-row justify-content-center align-items-center"}>
+          <div className={isMobile ? "d-flex column justify-content-center align-items-center gap-1" : "d-sm-flex flex-row justify-content-center align-items-center"}>
            
             {result?.[0]?.map((item: any) => {
               return (
@@ -84,7 +84,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
         </div>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Total 1 - <span className="bg-success badge">{total1} </span></span>
-          <div className={isMobile ? "d-flex column justify-content-center align-items-center" : "d-sm-flex flex-row justify-content-center align-items-center"}>
+          <div className={isMobile ? "d-flex column justify-content-center align-items-center gap-1" : "d-sm-flex flex-row justify-content-center align-items-center"}>
           
             {result?.[1]?.map((item: any) => {
               return (
@@ -112,7 +112,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
             Total 2 -  <span className="bg-success badge">{total2} </span>
           </span>
-          <div className={isMobile ? "d-flex column justify-content-center align-items-center" : "d-sm-flex flex-row justify-content-center align-items-center"}>
+          <div className={isMobile ? "d-flex column justify-content-center align-items-center gap-1" : "d-sm-flex flex-row justify-content-center align-items-center"}>
            
             {result?.[2]?.map((item: any) => {
               return (
@@ -140,7 +140,7 @@ const QueenResultComponent: React.FC<Props> = ({ data }: any) => {
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
             Total 3 -  <span className="bg-success badge">{total3} </span>
           </span>
-          <div className={isMobile ? "d-flex column justify-content-center align-items-center" : "d-sm-flex flex-row justify-content-center align-items-center"}>
+          <div className={isMobile ? "d-flex column justify-content-center align-items-center gap-1" : "d-sm-flex flex-row justify-content-center align-items-center"}>
           
             {result?.[3]?.map((item: any) => {
               return (
