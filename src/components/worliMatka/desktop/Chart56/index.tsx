@@ -59,7 +59,7 @@ const Card56 = ({ odds, data }: any) => {
 
   return (
     <div
-      className={`worlibox sp ${odds?.gstatus === "0" ? "suspended-bo" : ""}`}
+      className={`worlibox sp ${odds?.gstatus === "0" ? "suspended-box" : ""}`}
     >
       <div className="worli-box-title">
         <b>140</b>
