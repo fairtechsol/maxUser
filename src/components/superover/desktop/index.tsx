@@ -184,7 +184,7 @@ const SuperoverDesktop = () => {
                   type={"superover"}
                 />
               </div>
-              <Col>
+              {/* <Col>
                 <div className="sidebar-box place-bet-container super-over-rule mt-2">
                   <div className="marketHeader lh-1 bg-primary">
                     ENGLAND vs RSA Inning's Card Rules
@@ -226,7 +226,7 @@ const SuperoverDesktop = () => {
                     </Table>
                   </div>
                 </div>
-              </Col>
+              </Col> */}
             </>
           )}
 
@@ -249,7 +249,7 @@ const SuperoverDesktop = () => {
               <Col md={12}>
                 <DesktopMyBet />
               </Col>
-              {/* <Col>
+              <Col>
                 <div className="sidebar-box place-bet-container super-over-rule mt-2">
                   <div className="marketHeader lh-1">
                     ENGLAND vs RSA Inning's Card Rules
@@ -291,7 +291,7 @@ const SuperoverDesktop = () => {
                     </Table>
                   </div>
                 </div>
-              </Col> */}
+              </Col>
             </Row>
           </Container>
         </Col>
