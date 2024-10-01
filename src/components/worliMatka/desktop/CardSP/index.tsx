@@ -10,6 +10,7 @@ const CardSp = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [clicked, setClicked] = useState<string>("");
 
   const handleBet = (betTeam: any) => {
     let team = {
@@ -35,16 +36,22 @@ const CardSp = ({ odds, data }: any) => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
       setSelectedBox(null);
+      setClicked("");
     }
   }, [odds?.gstatus, dispatch]);
 
   const renderBox = (value: string, index: number) => (
     <div
       key={index}
-      className={`worli-odd-box back ${
-        selectedBox === index ? "selected" : ""
-      }`}
-      onClick={() => (value == "0" ? "" : handleBet(value + " SP"))}
+      className={`worli-odd-box back ${clicked == value ? "selected" : ""}`}
+      onClick={() => {
+        value == "0" ? "" : setClicked(value);
+        return value == "0"
+          ? ""
+          : value == "SP ALL"
+          ? handleBet(value)
+          : handleBet(value + " SP");
+      }}
     >
       <span className="worli-odd">{value}</span>
     </div>
@@ -52,7 +59,7 @@ const CardSp = ({ odds, data }: any) => {
 
   return (
     <div
-      className={`worlibox sp ${odds?.gstatus === "0" ? "suspended-bo" : ""}`}
+      className={`worlibox sp ${odds?.gstatus === "0" ? "suspended-box" : ""}`}
     >
       <div className="worli-box-title">
         <b>140</b>
