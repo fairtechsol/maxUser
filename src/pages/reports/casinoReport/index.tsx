@@ -21,6 +21,7 @@ import Modal from "react-bootstrap/Modal";
 import { ResultComponent } from "../../../components/commonComponent/resultComponent";
 import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { cardGames } from "../../../utils/constants";
+import CustomTable2 from "../../../components/commonComponent/table2";
 
 const CasinoReports = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -157,7 +158,7 @@ const CasinoReports = () => {
                 </CustomButton>
               </Col>
             </Row>
-            <CustomTable
+            <CustomTable2
               // width={isMobile ? "1200px" : ""}
               placeHolder={`${cardReport?.count} records`}
               paginationCount={true}
@@ -189,7 +190,7 @@ const CasinoReports = () => {
                   >
                     <td
                       style={{
-                        color: "#0d6efd",
+                        color: "#000",
                         cursor: "pointer",
                         textAlign: "left",
                         width: "20%",
@@ -204,7 +205,7 @@ const CasinoReports = () => {
                   </tr>
                 );
               })}
-            </CustomTable>
+            </CustomTable2>
           </Stack>
         </div>
       </ReportContainer>

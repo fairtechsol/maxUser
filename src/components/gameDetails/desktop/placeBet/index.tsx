@@ -18,6 +18,7 @@ import CustomLoader from "../../../commonComponent/customLoader/CustomLoader";
 import ButtonValues from "../../mobile/buttonValues";
 import RightPanelContainer from "../rightPanelContainer";
 import "./style.scss";
+import { formatNumber } from "../../../../helpers";
 
 const placeBetHeader = [
   {
@@ -339,20 +340,20 @@ const PlacedBet = () => {
       e.preventDefault();
     }
   };
-  const formatNumber = (num: any) => {
-    if (num >= 1000 && num < 1000000) {
-      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-    } else if (num >= 100000) {
-      return (num / 100000).toFixed(1).replace(/\.0$/, "") + "L";
-    }
-    return num.toString();
-  };
+  // const formatNumber = (num: any) => {
+  //   if (num >= 1000 && num < 1000000) {
+  //     return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+  //   } else if (num >= 100000) {
+  //     return (num / 100000).toFixed(1).replace(/\.0$/, "") + "L";
+  //   }
+  //   return num.toString();
+  // };
   return (
     <>
       <div className="loader-container">
         {(loading || matchOddLoading) && <CustomLoader />}
-        <RightPanelContainer title="Place Bet">
-          {selectedBet ? (
+        {selectedBet ? (
+          <RightPanelContainer title="Place Bet">
             <Table className="w-full">
               <thead>
                 <tr className="bg-darkGrey">
@@ -533,12 +534,14 @@ const PlacedBet = () => {
                             Reset
                           </button>
                           <button
-                          disabled={selectedBet?.team?.stake == 0?true:false}
+                            disabled={
+                              selectedBet?.team?.stake == 0 ? true : false
+                            }
                             className="submit-buttonn"
                             onClick={handleSubmit}
                             style={{
                               backgroundColor:
-                                selectedBet?.team?.stake == 0 
+                                selectedBet?.team?.stake == 0
                                   ? "#198754"
                                   : "#086f3f",
                               fontSize: "13px",
@@ -553,10 +556,10 @@ const PlacedBet = () => {
                 </tr>
               </tbody>
             </Table>
-          ) : (
-            ""
-          )}
-        </RightPanelContainer>
+          </RightPanelContainer>
+        ) : (
+          ""
+        )}
       </div>
       <Modal show={shown} onHide={() => setShow(false)}>
         <Modal.Header

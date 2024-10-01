@@ -175,6 +175,7 @@ const SuperoverDesktop = () => {
                     data={dragonTigerDetail}
                   />
                 </div>
+
               </div>
               <div style={{ margin: "5px 0px 0px 6px" }}>
                 <CardResultBox
@@ -183,6 +184,49 @@ const SuperoverDesktop = () => {
                   type={"superover"}
                 />
               </div>
+              {/* <Col>
+                <div className="sidebar-box place-bet-container super-over-rule mt-2">
+                  <div className="marketHeader lh-1 bg-primary">
+                    ENGLAND vs RSA Inning's Card Rules
+                  </div>
+                  <div className="table-responsive">
+                    <Table className="table-over">
+                      <thead>
+                        <tr>
+                          <th>Cards</th>
+                          <th className="text-center">Count</th>
+                          <th className="text-end">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rulesData?.map((rule, index) => (
+                          <tr key={index}>
+                            <td>
+                              <img
+                                src={rule.cardImage}
+                                alt="Card"
+                                className="ms-2"
+                              />
+                              <span className="ms-2">X</span>
+                            </td>
+                            <td className="text-center">{rule.count}</td>
+                            <td className="text-end">
+                              {rule.valueText ? (
+                                <span>
+                                  {rule.valueText}
+                                  <img src={rule.valueImage} alt="Value" />
+                                </span>
+                              ) : (
+                                <img src={rule.valueImage} alt="Value" />
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div>
+                </div>
+              </Col> */}
             </>
           )}
 
@@ -196,7 +240,7 @@ const SuperoverDesktop = () => {
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
-                   overflowY: "auto", maxHeight: "400px" 
+                  //  overflowY: "auto", maxHeight: "400px" 
               }}
             >
               <Col md={12}>
