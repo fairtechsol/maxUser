@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { selectedBetAction } from '../../../../store/actions/match/matchListAction';
-import { AppDispatch } from '../../../../store/store';
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
 import "../style.scss";
 
 const CardDp = ({ data, odds }: any) => {
@@ -21,6 +21,8 @@ const CardDp = ({ data, odds }: any) => {
       name: betTeam,
       bettingName: "Match odds",
       selectionId: odds?.sid,
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -56,18 +58,20 @@ const CardDp = ({ data, odds }: any) => {
   );
 
   return (
-    <div      className={`${
-      odds?.gstatus == 0 ? "suspended-box" : ""
-    } worlibox sp`}>
+    <div className={`${odds?.gstatus == 0 ? "suspended-box" : ""} worlibox sp`}>
       <div className="worli-box-title">
         <b>240</b>
       </div>
       <div className="worli-left">
         <div className="worli-box-row">
-          {['1', '2', '3', '4', '5'].map((value, index) => renderBox(value, index))}
+          {["1", "2", "3", "4", "5"].map((value, index) =>
+            renderBox(value, index)
+          )}
         </div>
         <div className="worli-box-row">
-          {['6', '7', '8', '9', '0'].map((value, index) => renderBox(value, index + 5))}
+          {["6", "7", "8", "9", "0"].map((value, index) =>
+            renderBox(value, index + 5)
+          )}
         </div>
       </div>
       <div className="worli-right">
