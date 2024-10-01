@@ -7,19 +7,20 @@ import "../style.scss";
 const CommonDp = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [clicked, setClicked] = useState<string>("");
 
-  const handleBet = (item: any, index: number) => {
-    setSelectedBox(index);
+  const handleBet = (betTeam: any) => {
     let team = {
       bettingType: "BACK",
       matchId: data?.id,
-      odd: item?.rate,
+      odd: "240",
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam: betTeam,
+      name: betTeam,
       bettingName: "Match odds",
-      selectionId: item?.sid,
+      selectionId: odds?.sid,
     };
     dispatch(
       selectedBetAction({
@@ -33,18 +34,23 @@ const CommonDp = ({ data, odds }: any) => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
       setSelectedBox(null);
+      setClicked("");
     }
   }, [odds?.gstatus, dispatch]);
 
   const renderBox = (value: string, index: number) => (
     <div
       key={index}
-      className={`worli-odd-box back ${selectedBox === index ? 'selected' : ''}`}
-      onClick={() => handleBet({ rate: value, nat: value, sid: index }, index)}
+      className={`worli-odd-box back ${clicked == value ? "selected" : ""}`}
+      onClick={() => {
+        value == "0" ? "" : setClicked(value);
+        return value == "0" ? "" : handleBet("Common DP - " + value);
+      }}
     >
       <span className="worli-odd">{value}</span>
     </div>
   );
+
 
   return (
     <div className={`${

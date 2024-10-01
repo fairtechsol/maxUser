@@ -42,6 +42,7 @@ const CardBox2 = ({ data, odds }: any) => {
 
     return count == 1 ? 140 : count == 2 ? 240 : 700;
   };
+  
   const handleBet = () => {
     let team = {
       bettingType: "BACK",

@@ -6,35 +6,61 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { AppDispatch } from "../../../../store/store";
 import "../style.scss";
 
-const CardSp = ({ odds }: any) => {
+const CardSp = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [clicked, setClicked] = useState<string>("");
+
+  const handleBet = (betTeam: any) => {
+    let team = {
+      bettingType: "BACK",
+      matchId: data?.id,
+      odd: "140",
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: betTeam,
+      name: betTeam,
+      bettingName: "Match odds",
+      selectionId: odds?.sid,
+    };
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+  };
 
   useEffect(() => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
+      setSelectedBox(null);
+      setClicked("");
     }
-  }, [odds?.gstatus]);
-
-  const handleBoxClick = (index: number) => {
-    setSelectedBox(index);
-  };
+  }, [odds?.gstatus, dispatch]);
 
   const renderBox = (value: string, index: number) => (
     <div
       key={index}
-      className={`worli-odd-box back ${
-        selectedBox === index ? "selected" : ""
-      }`}
-      onClick={() => handleBoxClick(index)}
+      className={`worli-odd-box back ${clicked == value ? "selected" : ""}`}
+      onClick={() => {
+        value == "0" ? "" : setClicked(value);
+        return value == "0"
+          ? ""
+          : value == "SP ALL"
+          ? handleBet(value)
+          : handleBet(value + " SP");
+      }}
     >
       <span className="worli-odd">{value}</span>
     </div>
   );
 
   return (
-    <div className={`worlibox sp ${odds?.gstatus === "0" ? "suspended-box" : ""}`}>
+    <div
+      className={`worlibox sp ${odds?.gstatus === "0" ? "suspended-box" : ""}`}
+    >
       <div className="worli-box-title">
         <b>140</b>
       </div>
@@ -51,7 +77,7 @@ const CardSp = ({ odds }: any) => {
         </div>
       </div>
       <div className="worli-right">
-        <div className="worli-box-row">{renderBox("SP ALL", 10)}</div>
+        <div className="worli-box-row">{renderBox("SP - ALL", 10)}</div>
       </div>
 
       {/* Info Icon */}

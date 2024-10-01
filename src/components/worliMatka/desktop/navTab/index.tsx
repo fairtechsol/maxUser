@@ -17,6 +17,7 @@ import "../style.scss";
 import Trio from "../Trio";
 const MatkaNavTab = ({ data, odds, cards }: any) => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+
   return (
     <div className="">
       <Tab.Container defaultActiveKey="single">
@@ -125,18 +126,18 @@ const MatkaNavTab = ({ data, odds, cards }: any) => {
             <MotorSp odds={odds && odds[6]} data={dragonTigerDetail} />
           </Tab.Pane>
           <Tab.Pane eventKey="56">
-            <Card56 />
+            <Card56 odds={odds && odds[7]} data={dragonTigerDetail} />
           </Tab.Pane>
 
           <Tab.Pane eventKey="64">
-            <Card64 />
+            <Card64 odds={odds && odds[8]} data={dragonTigerDetail} />
           </Tab.Pane>
           <Tab.Pane eventKey="abr">
-            <Abr />
+            <Abr odds={odds && odds[9]} data={dragonTigerDetail} />
           </Tab.Pane>
           <Tab.Pane eventKey="commonsp">
             <CommonSp
-              odds={odds && odds[11]}
+              odds={odds && odds[10]}
               data={dragonTigerDetail}
               cards={dragonTigerDetail?.cardInfo}
             />
@@ -149,7 +150,7 @@ const MatkaNavTab = ({ data, odds, cards }: any) => {
             />
           </Tab.Pane>
           <Tab.Pane eventKey="colordp">
-            <ColorDp />
+            <ColorDp odds={odds && odds[12]} data={dragonTigerDetail} />
           </Tab.Pane>
         </Tab.Content>
       </Tab.Container>
