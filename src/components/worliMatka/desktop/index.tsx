@@ -78,7 +78,7 @@ const MatkaDesktop = () => {
   }, []);
 
 
-  console.log(dragonTigerDetail, "detailworli")
+  console.log(dragonTigerDetail, "matka")
   return (
     <>
       <Row>

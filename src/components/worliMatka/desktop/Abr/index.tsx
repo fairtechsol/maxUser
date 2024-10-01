@@ -6,7 +6,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { AppDispatch } from "../../../../store/store";
 import "../style.scss";
 
-const Abr = (odds: any, data: any) => {
+const Abr = ({odds, data}) => {
   const dispatch: AppDispatch = useDispatch();
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
