@@ -122,6 +122,7 @@ const TeenPattiMobile = () => {
                   result={
                     <CasinoWarResult data={dragonTigerDetail?.videoInfo} />
                   }
+                   
                   id={videoFrameId}
                 />
               </div>
