@@ -84,6 +84,8 @@ const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
                 <Abj2Rules />
               ) : gameType == "aaa" ? (
                 <AmarAkbarAnthonyRules/>
+              )  : gameType == "ballbyball" ? (
+                  <Baccarat2Rules/>
               ) :gameType=="baccarat1"? <Baccarat1Rules/>:(
                 <></>
               )}
