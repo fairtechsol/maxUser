@@ -32,7 +32,7 @@ const DesktopMyBet = () => {
                 <th
                 style={{backgroundColor: "#f7f7f7"}}
                   key={item?.id}
-                  className="title-12 text-start fbold lh-1"
+                  className={`title-14 ${item?.id==="stake"?"text-end" :"text-start"} fbold lh-1`}
                 >
                   {item?.name}
                 </th>
@@ -75,7 +75,7 @@ const DesktopMyBet = () => {
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-12 text-end f500 ${
                         bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
                       }`}
                     >
