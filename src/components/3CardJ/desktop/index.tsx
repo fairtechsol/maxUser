@@ -133,7 +133,7 @@ const CardJDesktop = () => {
                   />
                   <CardBox
                     title="No"
-                    betType="BACK"
+                    betType="LAY"
                     bgColor="#faa9ba"
                     odds={dragonTigerDetail?.no}
                     data={dragonTigerDetail}
