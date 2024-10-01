@@ -81,7 +81,7 @@ const ColorDp = ({ odds, data }: any) => {
       </div>
 
       {/* Info Icon */}
-      {selectedBox !== null && (
+      {clicked !== "" && (
         <div className="info-icon" onClick={() => setShowModal(true)}>
           <FaInfoCircle size={24} />
         </div>

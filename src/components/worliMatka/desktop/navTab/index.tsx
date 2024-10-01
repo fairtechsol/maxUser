@@ -122,17 +122,17 @@ const MatkaNavTab = ({ data, odds, cards }: any) => {
             <Cycle odds={odds && odds[5]} data={data} cards={cards} />
           </Tab.Pane>
           <Tab.Pane eventKey="motorsp">
-            <MotorSp odds={odds && odds[6]} data={dragonTigerDetail} />
+            <MotorSp odds={odds && odds[7]} data={dragonTigerDetail} />
           </Tab.Pane>
           <Tab.Pane eventKey="56">
-            <Card56 />
+            <Card56 odds={odds && odds[8]} data={dragonTigerDetail} />
           </Tab.Pane>
 
           <Tab.Pane eventKey="64">
-            <Card64 />
+            <Card64 odds={odds && odds[9]} data={dragonTigerDetail} />
           </Tab.Pane>
           <Tab.Pane eventKey="abr">
-            <Abr />
+            <Abr odds={odds && odds[10]} data={dragonTigerDetail} />
           </Tab.Pane>
           <Tab.Pane eventKey="commonsp">
             <CommonSp
@@ -143,13 +143,13 @@ const MatkaNavTab = ({ data, odds, cards }: any) => {
           </Tab.Pane>
           <Tab.Pane eventKey="commondp">
             <CommonDp
-              odds={odds && odds[11]}
+              odds={odds && odds[12]}
               data={dragonTigerDetail}
               cards={dragonTigerDetail?.cardInfo}
             />
           </Tab.Pane>
           <Tab.Pane eventKey="colordp">
-            <ColorDp />
+            <ColorDp odds={odds && odds[13]} data={dragonTigerDetail} />
           </Tab.Pane>
         </Tab.Content>
       </Tab.Container>
