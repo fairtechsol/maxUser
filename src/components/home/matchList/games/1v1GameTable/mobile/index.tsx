@@ -207,7 +207,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[0]?.ex
-                                          ?.availableToBack[2]?.price) ||
+                                          ?.availableToBack[
+                                          item?.matchOdds?.[0]?.runners[0]?.ex
+                                            ?.availableToBack?.length > 1
+                                            ? 2
+                                            : 0
+                                        ]?.price) ||
                                       item?.matchOdds?.[0]?.backTeamA ||
                                       0
                                     }
@@ -225,7 +230,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[2]?.ex
-                                          ?.availableToBack[2]?.price) ||
+                                          ?.availableToBack[
+                                          item?.matchOdds?.[0]?.runners[2]?.ex
+                                            ?.availableToBack?.length > 1
+                                            ? 2
+                                            : 0
+                                        ]?.price) ||
                                       0
                                     }
                                     layRate={
@@ -241,7 +251,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[1]?.ex
-                                          ?.availableToBack[2]?.price) ||
+                                          ?.availableToBack[
+                                          item?.matchOdds?.[0]?.runners[1]?.ex
+                                            ?.availableToBack?.length > 1
+                                            ? 2
+                                            : 0
+                                        ]?.price) ||
                                       0
                                     }
                                     layRate={
