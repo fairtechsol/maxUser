@@ -66,7 +66,7 @@ const FootballDesktopGameDetail = () => {
             <>
               <Col md={12}>
                 <BetTableHeader
-                  customClass="py-2"
+                  customClass="mt-1 py-2"
                   title={otherMatchDetails?.title}
                   rightComponent={
                     <span className="title-16 fbold text-white">
@@ -79,7 +79,7 @@ const FootballDesktopGameDetail = () => {
               </Col>
 
               {otherMatchDetails?.matchOdd?.isActive && (
-                <Col md={12} className="mt-2">
+                <Col md={12} style={{ marginTop: "8px" }}>
                   <MatchOdd
                     title={otherMatchDetails?.matchOdd?.name}
                     data={otherMatchDetails?.matchOdd}
@@ -89,7 +89,7 @@ const FootballDesktopGameDetail = () => {
               )}
 
               {otherMatchDetails?.bookmaker?.isActive && (
-                <Col md={12}  className="mt-2">
+                <Col md={12}  style={{ marginTop: "8px" }}>
                   <Bookmaker
                     title={otherMatchDetails?.bookmaker?.name}
                     box={
@@ -105,7 +105,7 @@ const FootballDesktopGameDetail = () => {
                 </Col>
               )}
               {otherMatchDetails?.bookmaker2?.isActive && (
-                <Col md={12}  className="mt-2">
+                <Col md={12}  style={{ marginTop: "8px" }}>
                   <Bookmaker
                     title={otherMatchDetails?.bookmaker2?.name}
                     box={
@@ -125,7 +125,7 @@ const FootballDesktopGameDetail = () => {
                   ?.filter((item: any) => item?.isActive)
                   ?.map((item: any) => (
                     <div key={item?.id}>
-                      <Col md={12}  className="mt-2">
+                      <Col md={12}  style={{ marginTop: "8px" }}>
                       <ManualMarket
                             title={item?.name}
                             data={item}
@@ -140,7 +140,7 @@ const FootballDesktopGameDetail = () => {
                     <div key={index}>
                       {item?.activeStatus === "live" && item?.isActive && (
                         item?.name==="HT/FT"?
-                        <Col md={12} style={{ marginTop: "10px" }}>
+                        <Col md={12} style={{ marginTop: "8px" }}>
                           <HtFt
                             title={item?.name}
                             box={
@@ -155,7 +155,7 @@ const FootballDesktopGameDetail = () => {
                           />
                         </Col>
                         :
-                        <Col md={12} style={{ marginTop: "10px" }}>
+                        <Col md={12} style={{ marginTop: "8px" }}>
                           <Tournament
                             title={item?.name}
                             box={
