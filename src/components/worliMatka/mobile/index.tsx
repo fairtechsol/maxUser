@@ -65,8 +65,12 @@ const MatkaMobile = () => {
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
         {!activeTab ? (
           <div className="horseRacingTab">
             <div style={{ width: "100%", height: "210px" }}>
@@ -106,7 +110,7 @@ const MatkaMobile = () => {
               <NewLoader />
             ) : (
               <div style={{ height: "450px", marginTop: "70px" }}>
-               <div
+                <div
                   style={{
                     width: "100%",
                     margin: "0px",
@@ -114,14 +118,14 @@ const MatkaMobile = () => {
                     flexDirection: "column",
                   }}
                 >
-                      <div className="">
-                    <MatkaNavTab/>
+                  <div className="">
+                    <MatkaNavTab />
                   </div>
                 </div>
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R","R","R"]}
+                    name={["R", "R", "R"]}
                     type={cardGamesType.worli}
                   />
                 </div>

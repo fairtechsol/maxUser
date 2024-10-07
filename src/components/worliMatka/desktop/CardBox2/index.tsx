@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
+import WorliClearBox from "../../mobile/WorliClearBox";
+import { isMobile } from "../../../../utils/screenDimension";
 import "../style.scss";
 
 const CardBox2 = ({ data, odds }: any) => {
@@ -122,6 +124,7 @@ const CardBox2 = ({ data, odds }: any) => {
           renderBox(value, index + 5)
         )}
       </div>
+      {isMobile && <WorliClearBox/>}
     </div>
   );
 };

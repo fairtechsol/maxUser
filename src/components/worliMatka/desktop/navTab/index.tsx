@@ -22,9 +22,20 @@ const MatkaNavTab = ({ data, odds, cards }: any) => {
   return (
     <div className="">
       <Tab.Container defaultActiveKey="single">
-        <Nav variant="pills" className="navmain" style={{marginLeft:isMobile?"1px":""}}>
-          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"26%":""}}>
-            <Nav.Link eventKey="single" className="nav-link-worli" style={{width:"100%"}} >
+        <Nav
+          variant="pills"
+          className="navmain"
+          style={{ marginLeft: isMobile ? "1px" : "" }}
+        >
+          <Nav.Item
+            className="nav-pills-worli"
+            style={{ width: isMobile ? "26%" : "" }}
+          >
+            <Nav.Link
+              eventKey="single"
+              className="nav-link-worli"
+              style={{ width: "100%" }}
+            >
               Single
             </Nav.Link>
           </Nav.Item>
@@ -54,22 +65,34 @@ const MatkaNavTab = ({ data, odds, cards }: any) => {
               Cycle
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"27%":""}}>
+          <Nav.Item
+            className="nav-pills-worli"
+            style={{ width: isMobile ? "27%" : "" }}
+          >
             <Nav.Link eventKey="motorsp" className="nav-link-worli">
               Motor SP
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"25%":""}}>
+          <Nav.Item
+            className="nav-pills-worli"
+            style={{ width: isMobile ? "25%" : "" }}
+          >
             <Nav.Link eventKey="56" className="nav-link-worli">
               56 Charts
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"25%":""}}>
+          <Nav.Item
+            className="nav-pills-worli"
+            style={{ width: isMobile ? "25%" : "" }}
+          >
             <Nav.Link eventKey="64" className="nav-link-worli">
               64 Charts
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item className="nav-pills-worli" style={{width:isMobile?"22.5%":""}}>
+          <Nav.Item
+            className="nav-pills-worli"
+            style={{ width: isMobile ? "22.5%" : "" }}
+          >
             <Nav.Link eventKey="abr" className="nav-link-worli">
               ABR
             </Nav.Link>
