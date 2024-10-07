@@ -4,6 +4,7 @@ import { AppDispatch } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import BetBox from "../../gameDetails/betBox";
 import "./style.scss";
+import { FaLock } from "react-icons/fa";
 
 const HtFt = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -64,7 +65,7 @@ const HtFt = ({ title, box, data, detail }) => {
         </div>
 
       <div className="d-flex flex-row flex-wrap" style={{position:"relative"}}>
-      {(data?.runners?.[0]?.status !== "OPEN" && data?.runners?.[0]?.status !== "ACTIVE") && (<div className="suspended-overlayRatestournament">
+      {(data?.status !== "OPEN" && data?.status !== "ACTIVE") && (<div className="suspended-overlayRatestournament">
                       <span className={`suspendTextCmmn`}>SUSPENDED</span>
                     </div> )}
       {data?.runners?.length > 0 &&
@@ -75,11 +76,16 @@ const HtFt = ({ title, box, data, detail }) => {
                   className="htftTeam"
                   style={box === 6 ? { width: "28%" } : {}}
                 >
-                  <span className={`teamFont tournamentTeamTxt`}>
+                   {((item?.status !== "OPEN" && item?.status !== "ACTIVE") && (data?.status==="OPEN" || data?.status === "ACTIVE")) && (
+                    <div className="suspended-overlayRatestournament">
+                      <FaLock color="#fff" />
+                    </div>
+                  )}
+                  <span className={`teamFont tournamentTeamTxt ms-1`}>
                     {item?.nat || item?.runnerName}
                   </span>
                   <span
-                    className={`${
+                    className={` ms-1 mt-1 ${
                       profitLossObj?.[item.id] > 0
                         ? "color-green"
                         : profitLossObj?.[item.id] < 0
