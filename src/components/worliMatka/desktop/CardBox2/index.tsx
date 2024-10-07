@@ -129,7 +129,7 @@ const CardBox2 = ({ data, odds }: any) => {
         )}
       </div>
       {isMobile && (zeros?.length > 0 || betTeam?.length > 0) && (
-        <WorliClearBox setBox={setMobileBox}/>
+        <WorliClearBox team={betTeam} zeros={zeros} setBox={setMobileBox} />
       )}
     </div>
   );
