@@ -36,6 +36,7 @@ const HtFt = ({ title, box, data, detail }) => {
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       runnerId: runner?.id?.toString(),
+      runners:data
     };
     dispatch(
       selectedBetAction({

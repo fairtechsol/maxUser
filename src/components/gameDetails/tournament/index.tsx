@@ -38,6 +38,7 @@ const Tournament = ({ title, box, data, detail }) => {
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       runnerId: runner?.id?.toString(),
+      runners:data
     };
     dispatch(
       selectedBetAction({
@@ -131,7 +132,9 @@ const Tournament = ({ title, box, data, detail }) => {
                           data?.gtype
                         ):""}
                     </span>
-                    <span
+                    {
+                      selectedBet?.team?.betId===data?.id ? 
+                      <span
                       className="title-12 f-400"
                       style={{
                         color:
@@ -159,6 +162,9 @@ const Tournament = ({ title, box, data, detail }) => {
                             data?.gtype
                           )?.toFixed(2)}
                     </span>
+                    : ""
+                    }
+                    
                   </div>
                 </div>
                 <div
