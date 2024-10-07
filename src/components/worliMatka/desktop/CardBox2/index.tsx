@@ -138,7 +138,7 @@ const CardBox2 = ({ data, odds }: any) => {
         )}
       </div>
       {isMobile && (zeros?.length > 0 || betTeam?.length > 0) && (
-        <WorliClearBox team={betTeam} zeros={zeros} setBox={setMobileBox} handleClear={handleClear} />
+        <WorliClearBox game="Pana" team={betTeam} zeros={zeros} setBox={setMobileBox} handleClear={handleClear} disabled={betTeam?.length + zeros?.length < 3} />
       )}
     </div>
   );
