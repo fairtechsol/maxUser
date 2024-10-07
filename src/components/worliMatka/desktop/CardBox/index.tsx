@@ -57,7 +57,7 @@ const CardBox = ({ data, odds }: any) => {
   );
 
   return (
-    <div className={`${odds?.gstatus == 0 ? "suspended-bo" : ""} worlibox`}>
+    <div className={`${odds?.gstatus == 0 ? "suspended-box" : ""} worlibox`}>
       <div className="worli-left">
         <div className="worli-box-title">
           <b>9.5</b>

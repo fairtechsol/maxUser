@@ -81,6 +81,7 @@ const CardBox2 = ({ data, odds }: any) => {
       setSelectedBox(null);
       setBetTeam("");
       setZeros("");
+      setMobileBox(false);
     }
   }, [odds?.gstatus, dispatch]);
 
@@ -116,7 +117,9 @@ const CardBox2 = ({ data, odds }: any) => {
   const handleClear = ()=>{
     setZeros("")
     setBetTeam("")
+    setMobileBox(false)
   }
+  
   return (
     <div className={`${odds?.gstatus == 0 ? "suspended-box" : ""} worli-full`}>
       <div className="worli-box-title">
