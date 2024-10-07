@@ -59,7 +59,7 @@ const MatkaMobile = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.worli2}`);
   }, []);
 
   return (
