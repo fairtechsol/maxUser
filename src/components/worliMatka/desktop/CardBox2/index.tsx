@@ -11,6 +11,8 @@ const CardBox2 = ({ data, odds }: any) => {
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [betTeam, setBetTeam] = useState("");
   const [zeros, setZeros] = useState("");
+  const [mobileBox,setMobileBox]=useState(false)
+
   // const handleBet = (item: any, index: number) => {
   //   setSelectedBox(index);
   //   let team = {
@@ -44,7 +46,7 @@ const CardBox2 = ({ data, odds }: any) => {
 
     return count == 1 ? 140 : count == 2 ? 240 : 700;
   };
-  
+
   const handleBet = () => {
     let team = {
       bettingType: "BACK",
@@ -66,10 +68,12 @@ const CardBox2 = ({ data, odds }: any) => {
   };
 
   useEffect(() => {
-    if (betTeam || zeros) {
+    if ((betTeam || zeros) && !isMobile) {
       handleBet();
+    }else if((betTeam || zeros) && isMobile && mobileBox){
+      handleBet()
     }
-  }, [betTeam, zeros]);
+  }, [betTeam, zeros,mobileBox]);
 
   useEffect(() => {
     if (odds?.gstatus === "0") {
@@ -124,7 +128,9 @@ const CardBox2 = ({ data, odds }: any) => {
           renderBox(value, index + 5)
         )}
       </div>
-      {isMobile && <WorliClearBox/>}
+      {isMobile && (zeros?.length > 0 || betTeam?.length > 0) && (
+        <WorliClearBox setBox={setMobileBox}/>
+      )}
     </div>
   );
 };
