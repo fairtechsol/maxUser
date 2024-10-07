@@ -62,6 +62,9 @@ const DesktopHeader = () => {
   };
 
   const handleClickExposureModalOpen = () => {
+    if(parseFloat(getProfile?.userBal?.exposure)===0){
+      return false
+    }
     if (!openExposure) {
       dispatch(getMyMarket());
     }

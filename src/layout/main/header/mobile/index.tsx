@@ -21,6 +21,9 @@ const MobileHeader = () => {
   });
   const [openExposure, setOpenExposure] = useState(false);
   const handleClickExposureModalOpen = () => {
+     if(parseFloat(getProfile?.userBal?.exposure)===0){
+      return false
+    }
     if (!openExposure) {
       dispatch(getMyMarket());
     }
