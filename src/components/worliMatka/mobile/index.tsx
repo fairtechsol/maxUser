@@ -130,7 +130,7 @@ const MatkaMobile = () => {
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["R", "R", "R"]}
-                    type={cardGamesType.worli}
+                    type={cardGamesType.worli1}
                   />
                 </div>
               </div>

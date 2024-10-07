@@ -27,6 +27,7 @@ import Poker6ResultComponent from "../../poker/desktop/resultModalComponent";
 import Poker20ResultComponent from "../../poker20/desktop/resultModalComponent";
 import Card32BResultComponent from "../../cards32B/desktop/resultModalComponent";
 import BollywoodTableResultComponent from "../../bollywoodTable/desktop/resultModalComponent";
+import WorliMatkaResultComponent from "../../worliMatka/desktop/resultModalComponent";
 import WorliResultComponent from "../../worli/desktop/resultModalComponent";
 import CardJResultComponent from "../../3CardJ/desktop/resultModalComponent";
 import CricketMatch20ResultComponent from "../../cricketMatch_20/desktop/resultModalComponent";
@@ -152,7 +153,9 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <BallByBallResultComponent data={data} />
       ) : type === cardGamesType?.cmeter ? (
         <CasinoMeterResultComponent data={data} />
-      ) : (
+      ) :  type === cardGamesType?.worli1 ? (
+        <WorliMatkaResultComponent data={data} />
+      ) :(
         <></>
       )}
     </Container>
