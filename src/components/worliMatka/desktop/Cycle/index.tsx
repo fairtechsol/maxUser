@@ -67,7 +67,7 @@ const Cycle = ({ data, odds }: any) => {
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: betTeam,
-      name: betTeam,
+      name: betTeam + " Cycle",
       bettingName: "Match odds",
       selectionId: odds?.sid,
       min: data?.videoInfo?.min,
