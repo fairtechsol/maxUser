@@ -48,7 +48,7 @@ const CommonButtonBox = ({
             value3 && value3 > 0
               ? "color-green"
               : value3 < 0
-              ? " color-red"
+              ? "color-red"
               : ""
           }`}
         >
