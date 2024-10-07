@@ -55,7 +55,7 @@ const CardBox2 = ({ data, odds }: any) => {
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: betTeam,
-      name: betTeam + zeros,
+      name: betTeam + zeros +" Pana",
       bettingName: "Match odds",
       selectionId: odds?.sid,
     };
@@ -113,6 +113,10 @@ const CardBox2 = ({ data, odds }: any) => {
     </div>
   );
 
+  const handleClear = ()=>{
+    setZeros("")
+    setBetTeam("")
+  }
   return (
     <div className={`${odds?.gstatus == 0 ? "suspended-box" : ""} worli-full`}>
       <div className="worli-box-title">
@@ -129,7 +133,7 @@ const CardBox2 = ({ data, odds }: any) => {
         )}
       </div>
       {isMobile && (zeros?.length > 0 || betTeam?.length > 0) && (
-        <WorliClearBox team={betTeam} zeros={zeros} setBox={setMobileBox} />
+        <WorliClearBox team={betTeam} zeros={zeros} setBox={setMobileBox} handleClear={handleClear} />
       )}
     </div>
   );
