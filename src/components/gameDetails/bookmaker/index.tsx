@@ -21,7 +21,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
     index: any,
     runner: any
   ) => {
-    if (data?.activeStatus != "live" || status != "ACTIVE") {
+    if (data?.activeStatus != "live" || (status != "ACTIVE" && status != "OPEN")) {
       return false;
     }
     if (odds === 0) {
@@ -192,7 +192,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             }
           >
             {(data?.activeStatus !== "live" ||
-              data?.runners?.[0]?.status !== "ACTIVE") && (
+              ( data?.runners?.[0]?.status !== "ACTIVE" && data?.runners?.[0]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesBookmaker">
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
@@ -346,7 +346,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             }
           >
             {(data?.activeStatus !== "live" ||
-              data?.runners?.[1]?.status !== "ACTIVE") && (
+              ( data?.runners?.[1]?.status !== "ACTIVE" && data?.runners?.[1]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesBookmaker">
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
@@ -501,7 +501,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
               }
             >
               {(data?.activeStatus !== "live" ||
-                data?.runners?.[2]?.status !== "ACTIVE") && (
+                ( data?.runners?.[2]?.status !== "ACTIVE" && data?.runners?.[2]?.status !== "OPEN")) && (
                 <div className="suspended-overlayRatesBookmaker">
                   <span className={`suspendTextCmmn`}>SUSPENDED</span>
                 </div>

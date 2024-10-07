@@ -24,7 +24,7 @@ const MatchOdd = ({ title, data, detail }) => {
     index: any,
     runner: any
   ) => {
-    if (data?.activeStatus != "live" || status != "ACTIVE") {
+    if (data?.activeStatus != "live" || (status != "ACTIVE" && status != "OPEN")) {
       return false;
     }
     if (odds === 0) {
@@ -172,7 +172,7 @@ const MatchOdd = ({ title, data, detail }) => {
           </div>
           <div className="matchOddRateBox rateBoxWidth">
             {(data?.activeStatus !== "live" ||
-              data?.runners?.[0]?.status !== "ACTIVE") && (
+             ( data?.runners?.[0]?.status !== "ACTIVE" && data?.runners?.[0]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesMatchOdd">
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
@@ -297,7 +297,7 @@ const MatchOdd = ({ title, data, detail }) => {
           </div>
           <div className="matchOddRateBox rateBoxWidth">
             {(data?.activeStatus !== "live" ||
-              data?.runners?.[1]?.status !== "ACTIVE") && (
+              ( data?.runners?.[1]?.status !== "ACTIVE" && data?.runners?.[1]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesMatchOdd">
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
@@ -423,7 +423,7 @@ const MatchOdd = ({ title, data, detail }) => {
             </div>
             <div className="matchOddRateBox rateBoxWidth">
               {(data?.activeStatus !== "live" ||
-                data?.runners?.[2]?.status !== "ACTIVE") && (
+                ( data?.runners?.[2]?.status !== "ACTIVE" && data?.runners?.[2]?.status !== "OPEN")) && (
                 <div className="suspended-overlayRatesMatchOdd">
                   <span className={`suspendTextCmmn`}>SUSPENDED</span>
                 </div>
