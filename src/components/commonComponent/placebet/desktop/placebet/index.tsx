@@ -318,8 +318,8 @@ const DesktopPlacedBet = ({ type }:any) => {
                 `}
                 >
                   <td colSpan={5}>
-                    <Container fluid>
-                      <Row>
+                    <div>
+                      <Row style={{padding:"0.5rem"}}>
                         {valueLabel?.map((item: any, index: any) => (
                           <Col className="p-1" key={index} md={3}>
                             <CustomButton
@@ -346,11 +346,11 @@ const DesktopPlacedBet = ({ type }:any) => {
                           </Col>
                         ))}
                       </Row>
-                      <Row>
-                      <Col xs={8}>
+                      <div className="w-100 d-flex flex-row justify-content-between">
+                      <div>
                           <div
                             style={{
-                              width: "50px",
+                              width: "80px",
                               height: "38px",
                               backgroundColor: "#097c93",
                               display: "flex",
@@ -364,9 +364,9 @@ const DesktopPlacedBet = ({ type }:any) => {
                           >
                             Edit
                           </div>
-                        </Col>
+                        </div>
 
-                        <Col md={4} className="reset1-submit1-btn-container">
+                        <div className="reset1-submit1-btn-container">
                           <button
                             className="reset-buttonn1"
                             onClick={() => {
@@ -392,9 +392,9 @@ const DesktopPlacedBet = ({ type }:any) => {
                           >
                             Submit
                           </button>
-                        </Col>
-                      </Row>
-                    </Container>
+                        </div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               </tbody>
