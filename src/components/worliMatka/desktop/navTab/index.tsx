@@ -18,8 +18,8 @@ import Trio from "../Trio";
 import { isMobile } from "../../../../utils/screenDimension";
 const MatkaNavTab = ({ data, odds, cards }: any) => {
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
+
   
-  console.log("odds",odds,"data",data)
   return (
     <div className="">
       <Tab.Container defaultActiveKey="single">

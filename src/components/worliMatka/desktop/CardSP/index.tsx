@@ -23,6 +23,8 @@ const CardSp = ({ odds, data }: any) => {
       name: betTeam,
       bettingName: "Match odds",
       selectionId: odds?.sid,
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({

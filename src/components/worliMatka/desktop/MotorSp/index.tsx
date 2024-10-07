@@ -27,6 +27,8 @@ const MotorSp = ({ odds, data }: any) => {
       name: betTeam + zeros,
       bettingName: "Match odds",
       selectionId: odds?.sid,
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
