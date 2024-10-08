@@ -28,7 +28,7 @@ const WorliMatkaResultComponent: React.FC<Props> = ({ data }: any) => {
   let sortString = 0,
     sum = 0;
 
-  a?.sort()?.map((item) => {
+  a?.sort((a,b)=>a-b)?.map((item) => {
     if (item < 10) {
       sortString = sortString * 10 + item;
     } else {
