@@ -5,6 +5,8 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { useState } from "react";
 import WorliClearBox from "../../mobile/WorliClearBox";
 import { isMobile } from "../../../../utils/screenDimension";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import "../style.scss";
 
 const MotorSp = ({ odds, data }: any) => {
@@ -12,6 +14,9 @@ const MotorSp = ({ odds, data }: any) => {
   const [betTeam, setBetTeam] = useState("");
   const [zeros, setZeros] = useState("");
   const [mobileBox, setMobileBox] = useState(false);
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
   useEffect(() => {
     if (data?.worli?.gstatus === "0") {
@@ -27,7 +32,7 @@ const MotorSp = ({ odds, data }: any) => {
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: betTeam,
-      name: betTeam + zeros +" Motor",
+      name: betTeam + zeros + " Motor",
       bettingName: "Match odds",
       selectionId: odds?.sid,
       min: data?.videoInfo?.min,
@@ -58,6 +63,15 @@ const MotorSp = ({ odds, data }: any) => {
       setMobileBox(false);
     }
   }, [odds?.gstatus, dispatch]);
+
+  useEffect(() => {
+    if (selectedBet == null) {
+      setBetTeam("");
+      setZeros("");
+      setMobileBox(false);
+    }
+  }, [selectedBet]);
+
   const renderBox = (value: string, index: number) => (
     <div
       key={index}
@@ -87,11 +101,11 @@ const MotorSp = ({ odds, data }: any) => {
     </div>
   );
 
-  const handleClear = ()=>{
-    setZeros("")
-    setBetTeam("")
-    setMobileBox(false)
-  }
+  const handleClear = () => {
+    setZeros("");
+    setBetTeam("");
+    setMobileBox(false);
+  };
 
   return (
     <>
@@ -110,8 +124,15 @@ const MotorSp = ({ odds, data }: any) => {
           )}
         </div>
         {isMobile && (zeros?.length > 0 || betTeam?.length > 0) && (
-        <WorliClearBox game="Motor" team={betTeam} zeros={zeros} setBox={setMobileBox} handleClear={handleClear} disabled={betTeam?.length + zeros?.length < 4} />
-      )}
+          <WorliClearBox
+            game="Motor"
+            team={betTeam}
+            zeros={zeros}
+            setBox={setMobileBox}
+            handleClear={handleClear}
+            disabled={betTeam?.length + zeros?.length < 4}
+          />
+        )}
       </div>
     </>
   );

@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import "../style.scss";
 
 const CardBox = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
-
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+  
   const matchIds = (dta: any) => {
     if (typeof dta !== "string") return undefined;
     const parts = dta.split(".");
@@ -41,6 +46,14 @@ const CardBox = ({ data, odds }: any) => {
       dispatch(selectedBetAction(""));
     }
   }, [odds?.gstatus]);
+
+ 
+  useEffect(() => {
+    if (selectedBet == null) {
+      setSelectedBox(null);
+    
+    }
+  }, [selectedBet]);
 
   const renderBox = (value: string, index: number) => (
     <div

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import "../style.scss";
 
 const CardDp = ({ data, odds }: any) => {
@@ -9,6 +11,11 @@ const CardDp = ({ data, odds }: any) => {
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [clicked, setClicked] = useState<string>("");
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+  
+ 
 
   const handleBet = (betTeam: any) => {
     let team = {
@@ -39,6 +46,15 @@ const CardDp = ({ data, odds }: any) => {
       setClicked("");
     }
   }, [odds?.gstatus, dispatch]);
+
+  
+  
+  useEffect(() => {
+    if (selectedBet == null) {
+      setSelectedBox(null);
+      setClicked("");
+    }
+  }, [selectedBet]);
 
   const renderBox = (value: string, index: number) => (
     <div

@@ -6,6 +6,8 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { AppDispatch } from "../../../../store/store";
 import WorliClearBox from "../../mobile/WorliClearBox";
 import { isMobile } from "../../../../utils/screenDimension";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import "../style.scss";
 
 const Cycle = ({ data, odds }: any) => {
@@ -14,6 +16,10 @@ const Cycle = ({ data, odds }: any) => {
   const [showModal, setShowModal] = useState(false);
   const [betTeam, setBetTeam] = useState<string>("");
   const [mobileBox, setMobileBox] = useState(false);
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+
   // const handleBoxClick = (index: number) => {
   //   setSelectedBoxes((prev) => {
   //     const updatedBoxes = prev.includes(index)
@@ -97,6 +103,14 @@ const Cycle = ({ data, odds }: any) => {
       setMobileBox(false);
     }
   }, [odds?.gstatus]);
+
+
+  useEffect(() => {
+    if (selectedBet == null) {
+      setBetTeam("");
+      setMobileBox(false);
+    }
+  }, [selectedBet]);
 
   const renderBox = (value: string, index: number) => (
     <div

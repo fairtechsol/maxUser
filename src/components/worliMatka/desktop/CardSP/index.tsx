@@ -4,6 +4,8 @@ import { FaInfoCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import "../style.scss";
 
 const CardSp = ({ odds, data }: any) => {
@@ -11,7 +13,11 @@ const CardSp = ({ odds, data }: any) => {
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [clicked, setClicked] = useState<string>("");
-
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+  
+ 
   const handleBet = (betTeam: any) => {
     let team = {
       bettingType: "BACK",
@@ -42,6 +48,14 @@ const CardSp = ({ odds, data }: any) => {
     }
   }, [odds?.gstatus, dispatch]);
 
+  
+  useEffect(() => {
+    if (selectedBet == null) {
+      setSelectedBox(null);
+      setClicked("");
+    }
+  }, [selectedBet]);
+  
   const renderBox = (value: string, index: number) => (
     <div
       key={index}
