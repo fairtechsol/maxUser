@@ -150,7 +150,7 @@ const CardBox = ({  data, odds }: any) => {
             })
           }
         >
-          <span className="fs-6 fw-bold ">
+          <span className="fs-6  style">
             {odds === "L1" ? "Line1" : "Line2"}
           </span>
           {odds === "L1" ? <div>1|2|3|4|5</div> : <div>6|7|8|9|0</div>}
@@ -172,7 +172,7 @@ const CardBox = ({  data, odds }: any) => {
             })
           }
         >
-          <span className="fs-6 fw-bold">{odds === "L1" ? "ODD" : "EVEN"}</span>
+          <span className="fs-6 style">{odds === "L1" ? "ODD" : "EVEN"}</span>
           {odds === "L1" ? <div>1|3|5|7|9</div> : <div>2|4|6|8|0</div>}
         </div>
       </div>

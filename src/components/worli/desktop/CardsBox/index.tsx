@@ -45,7 +45,7 @@ const CardBox = ({ data, odds }: any) => {
         //   data?.worli?.gstatus == 0 ? "suspended" : ""
         // } abjcardContainer`}
         className="abjcardContainer"
-        style={{ backgroundColor: "#72bbef" }}
+        style={{ backgroundColor: "#72bbef",borderBottom:"2px solid #fff" }}
       >
         <div
           style={{
@@ -53,7 +53,7 @@ const CardBox = ({ data, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
             paddingTop: "17px",
             paddingBottom: "17px",
           }}
@@ -73,7 +73,7 @@ const CardBox = ({ data, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
           }}
           onClick={() =>
             handleBet({
@@ -91,7 +91,7 @@ const CardBox = ({ data, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
           }}
           onClick={() =>
             handleBet({
@@ -109,7 +109,7 @@ const CardBox = ({ data, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
           }}
           onClick={() =>
             handleBet({
@@ -127,7 +127,7 @@ const CardBox = ({ data, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
           }}
           onClick={() =>
             handleBet({
@@ -145,7 +145,7 @@ const CardBox = ({ data, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
             flexDirection: "column",
           }}
           onClick={() =>
