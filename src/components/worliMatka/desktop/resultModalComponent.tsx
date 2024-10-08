@@ -11,14 +11,13 @@ interface Props {
   };
 }
 
-const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
+const WorliMatkaResultComponent: React.FC<Props> = ({ data }: any) => {
   const result = data?.result?.cards?.split("*");
   const elementsAndar = result?.[0]?.split(",");
 
   let a: any[] = [];
 
   a = elementsAndar?.map((item: any) => {
-    if (item?.substring(0, item.length - 2) === "10") return 10;
     if (item?.substring(0, item.length - 2) === "J") return 11;
     if (item?.substring(0, item.length - 2) === "Q") return 12;
     if (item?.substring(0, item.length - 2) === "K") return 13;
@@ -88,4 +87,4 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 };
 
-export default WorliResultComponent;
+export default WorliMatkaResultComponent;

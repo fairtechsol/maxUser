@@ -23,7 +23,8 @@ const CardBox = ({ title, odds, data, cards, bgColor, betType }: any) => {
       bettingName: "Match odds",
       selectionId: odds?.sid,
       min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max
+      max:data?.videoInfo?.max,
+      isActive: nat.length==3?true:false
     };
     if (nat !== "") {
       dispatch(

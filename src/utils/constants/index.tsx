@@ -396,7 +396,7 @@ export const cardGamesId: any = {
   aaa: 3056,
   btable: 3041,
   worli: 3040,
-  worli2:3054,
+  worli1:3054,
   cardj: 3039,
   cmatch20: 3045,
   cmeter: 3046,
@@ -2075,6 +2075,10 @@ export const cardGames = [
   {
     value: "worli2",
     label: "Instant Worli",
+  },
+  {
+    value: "worli",
+    label: "Worli Matka",
   },
   {
     value: "poker",

@@ -4,6 +4,8 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { AppDispatch } from "../../../../store/store";
 import WorliClearBox from "../../mobile/WorliClearBox";
 import { isMobile } from "../../../../utils/screenDimension";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import "../style.scss";
 
 const CardBox2 = ({ data, odds }: any) => {
@@ -11,8 +13,11 @@ const CardBox2 = ({ data, odds }: any) => {
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
   const [betTeam, setBetTeam] = useState("");
   const [zeros, setZeros] = useState("");
-  const [mobileBox,setMobileBox]=useState(false)
+  const [mobileBox, setMobileBox] = useState(false);
 
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   // const handleBet = (item: any, index: number) => {
   //   setSelectedBox(index);
   //   let team = {
@@ -55,7 +60,7 @@ const CardBox2 = ({ data, odds }: any) => {
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: betTeam,
-      name: betTeam + zeros +" Pana",
+      name: betTeam + zeros + " Pana",
       bettingName: "Match odds",
       selectionId: odds?.sid,
       min: data?.videoInfo?.min,
@@ -72,10 +77,10 @@ const CardBox2 = ({ data, odds }: any) => {
   useEffect(() => {
     if ((betTeam || zeros) && !isMobile) {
       handleBet();
-    }else if((betTeam || zeros) && isMobile && mobileBox){
-      handleBet()
+    } else if ((betTeam || zeros) && isMobile && mobileBox) {
+      handleBet();
     }
-  }, [betTeam, zeros,mobileBox]);
+  }, [betTeam, zeros, mobileBox]);
 
   useEffect(() => {
     if (odds?.gstatus === "0") {
@@ -86,6 +91,14 @@ const CardBox2 = ({ data, odds }: any) => {
       setMobileBox(false);
     }
   }, [odds?.gstatus, dispatch]);
+
+  useEffect(() => {
+    if (selectedBet == null) {
+      setBetTeam("");
+      setZeros("");
+      setMobileBox(false);
+    }
+  }, [selectedBet]);
 
   const renderBox = (value: string, index: number) => (
     <div
@@ -116,12 +129,12 @@ const CardBox2 = ({ data, odds }: any) => {
     </div>
   );
 
-  const handleClear = ()=>{
-    setZeros("")
-    setBetTeam("")
-    setMobileBox(false)
-  }
-  
+  const handleClear = () => {
+    setZeros("");
+    setBetTeam("");
+    setMobileBox(false);
+  };
+
   return (
     <div className={`${odds?.gstatus == 0 ? "suspended-box" : ""} worli-full`}>
       <div className="worli-box-title">
@@ -138,7 +151,14 @@ const CardBox2 = ({ data, odds }: any) => {
         )}
       </div>
       {isMobile && (zeros?.length > 0 || betTeam?.length > 0) && (
-        <WorliClearBox game="Pana" team={betTeam} zeros={zeros} setBox={setMobileBox} handleClear={handleClear} disabled={betTeam?.length + zeros?.length < 3} />
+        <WorliClearBox
+          game="Pana"
+          team={betTeam}
+          zeros={zeros}
+          setBox={setMobileBox}
+          handleClear={handleClear}
+          disabled={betTeam?.length + zeros?.length < 3}
+        />
       )}
     </div>
   );
