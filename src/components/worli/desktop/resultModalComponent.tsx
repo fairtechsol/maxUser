@@ -18,6 +18,7 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
   let a: any[] = [];
 
   a = elementsAndar?.map((item: any) => {
+    if (item?.substring(0, item.length - 2) === "10") return 10;
     if (item?.substring(0, item.length - 2) === "J") return 11;
     if (item?.substring(0, item.length - 2) === "Q") return 12;
     if (item?.substring(0, item.length - 2) === "K") return 13;
@@ -28,7 +29,7 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
   let sortString = 0,
     sum = 0;
 
-  a?.sort()?.map((item) => {
+  a?.sort((a,b)=>a-b)?.map((item) => {
     if (item < 10) {
       sortString = sortString * 10 + item;
     } else {
