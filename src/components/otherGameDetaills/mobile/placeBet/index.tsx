@@ -170,7 +170,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
         parseFloat(handleProfitLoss(data?.runners?.id, id)) - parseFloat(stake);
     }
     // console.log(id,'first',data)
-    return profit ? profit : "";
+    return profit ? (profit)?.toFixed(2) : "";
   };
 
   const handleTeamRates = (type: any, team: string) => {
