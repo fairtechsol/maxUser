@@ -124,13 +124,13 @@ const Tournament = ({ title, box, data, detail }) => {
                           : "color-red"
                       } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
-                     {profitLossObj?.[item.id]? parseInt(profitLossObj?.[item.id]) +
+                     {profitLossObj?.[item.id] ? selectedBet?.team?.betId===data?.id ? parseInt(profitLossObj?.[item.id]) +
                         manualProfitLoss(
                           selectedBet,
                           item?.nat || item?.runnerName,
                           data?.type,
                           data?.gtype
-                        ):""}
+                        ):profitLossObj?.[item.id]:""}
                     </span>
                     {
                       selectedBet?.team?.betId===data?.id ? 
