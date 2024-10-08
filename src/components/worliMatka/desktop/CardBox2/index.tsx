@@ -4,6 +4,8 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { AppDispatch } from "../../../../store/store";
 import WorliClearBox from "../../mobile/WorliClearBox";
 import { isMobile } from "../../../../utils/screenDimension";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import "../style.scss";
 
 const CardBox2 = ({ data, odds }: any) => {
@@ -13,6 +15,9 @@ const CardBox2 = ({ data, odds }: any) => {
   const [zeros, setZeros] = useState("");
   const [mobileBox,setMobileBox]=useState(false)
 
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
   // const handleBet = (item: any, index: number) => {
   //   setSelectedBox(index);
   //   let team = {
@@ -86,6 +91,15 @@ const CardBox2 = ({ data, odds }: any) => {
       setMobileBox(false);
     }
   }, [odds?.gstatus, dispatch]);
+
+  useEffect(()=>{
+    if(selectedBet == null){
+      setBetTeam("");
+      setZeros("");
+      setMobileBox(false);
+    }
+
+  },[selectedBet])
 
   const renderBox = (value: string, index: number) => (
     <div
