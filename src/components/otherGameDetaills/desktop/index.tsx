@@ -78,27 +78,29 @@ const FootballDesktopGameDetail = () => {
                 />
               </Col>
 
-              {otherMatchDetails?.matchOdd?.isActive && (
-                <Col md={12} style={{ marginTop: "8px" }}>
-                  {otherMatchDetails?.bookmaker?.runners?.[0]?.ex
-                    ?.availableToBack?.length > 2 ? (
-                    <MatchOdd
-                      title={otherMatchDetails?.matchOdd?.name}
-                      data={otherMatchDetails?.matchOdd}
-                      detail={otherMatchDetails}
-                    />
-                  ) : (
-                    <Bookmaker
-                      title={otherMatchDetails?.matchOdd?.name}
-                      box={2}
-                      data={otherMatchDetails?.matchOdd}
-                      detail={otherMatchDetails}
-                    />
-                  )}
-                </Col>
-              )}
+              {otherMatchDetails?.matchOdd?.activeStatus === "live" &&
+                otherMatchDetails?.matchOdd?.isActive && (
+                  <Col md={12} style={{ marginTop: "8px" }}>
+                    {otherMatchDetails?.bookmaker?.runners?.[0]?.ex
+                      ?.availableToBack?.length > 2 ? (
+                      <MatchOdd
+                        title={otherMatchDetails?.matchOdd?.name}
+                        data={otherMatchDetails?.matchOdd}
+                        detail={otherMatchDetails}
+                      />
+                    ) : (
+                      <Bookmaker
+                        title={otherMatchDetails?.matchOdd?.name}
+                        box={2}
+                        data={otherMatchDetails?.matchOdd}
+                        detail={otherMatchDetails}
+                      />
+                    )}
+                  </Col>
+                )}
 
-              {otherMatchDetails?.bookmaker?.isActive && (
+              {otherMatchDetails?.bookmaker?.activeStatus === "live" &&
+                otherMatchDetails?.bookmaker?.isActive && (
                 <Col md={12} style={{ marginTop: "8px" }}>
                   <Bookmaker
                     title={otherMatchDetails?.bookmaker?.name}
@@ -114,7 +116,8 @@ const FootballDesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {otherMatchDetails?.bookmaker2?.isActive && (
+              {otherMatchDetails?.bookmaker2?.activeStatus === "live" &&
+                otherMatchDetails?.bookmaker2?.isActive && (
                 <Col md={12} style={{ marginTop: "8px" }}>
                   <Bookmaker
                     title={otherMatchDetails?.bookmaker2?.name}
@@ -132,7 +135,7 @@ const FootballDesktopGameDetail = () => {
               )}
               {otherMatchDetails?.quickBookmaker?.length > 0 &&
                 otherMatchDetails?.quickBookmaker
-                  ?.filter((item: any) => item?.isActive)
+                  ?.filter((item: any) =>item?.activeStatus === "live" && item?.isActive)
                   ?.map((item: any) => (
                     <div key={item?.id}>
                       <Col md={12} style={{ marginTop: "8px" }}>
