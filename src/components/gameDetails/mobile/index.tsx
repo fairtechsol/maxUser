@@ -135,9 +135,9 @@ const MobileGameDetail = () => {
                   <div
                     onClick={() => setShowVideo(!showVideo)}
                     className="ps-5"
-                    style={{ fontSize: "12px", lineHeight: 1.22 }}
+                    // style={{  lineHeight: 1.22 }}
                   >
-                    <FaTv />
+                    <FaTv size={15} />
                   </div>
                 ),
               }
