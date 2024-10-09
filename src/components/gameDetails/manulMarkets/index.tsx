@@ -21,7 +21,10 @@ const ManualMarket = ({ title, data, detail }) => {
     if (data?.activeStatus != "live" || status != "active") {
       return false;
     }
-    if (odds === 0) {
+    if (odds === 0 || odds <0) {
+      return false;
+    }
+    if(!detail?.rateThan100 && odds >100){
       return false;
     }
     let team = {
@@ -228,7 +231,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 }
               >
                 <span className={`rateFont manualRate1Box`}>
-                  {data?.backTeamA != 0 ? data?.backTeamA - 2 : "-"}
+                  {data?.backTeamA != 0 ? data?.backTeamA - 2 >0 ? data?.backTeamA - 2:"-" : "-"}
                 </span>
               </div>
             )}
@@ -248,7 +251,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 }
               >
                 <span className={`rateFont manualRate1Box`}>
-                  {data?.backTeamA != 0 ? data?.backTeamA - 1 : "-"}
+                  {data?.backTeamA != 0 ?data?.backTeamA - 1 >0 ? data?.backTeamA - 1:"-" : "-"}
                 </span>
               </div>
             )}
@@ -304,7 +307,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 }
               >
                 <span className={`rateFont manualRate1Box`}>
-                  {data?.layTeamA != 0 ? data?.layTeamA + 1 : "-"}
+                  {data?.layTeamA != 0 ? detail?.rateThan100? data?.layTeamA + 1 : data?.layTeamA + 1>100?"-": data?.layTeamA + 1 : "-"}
                 </span>
               </div>
             )}
@@ -324,7 +327,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 }
               >
                 <span className={`rateFont manualRate1Box`}>
-                  {data?.layTeamA != 0 ? data?.layTeamA + 2 : "-"}
+                  {data?.layTeamA != 0 ? detail?.rateThan100? data?.layTeamA + 2 : data?.layTeamA + 2>100?"-": data?.layTeamA + 2 : "-"}
                 </span>
               </div>
             )}
@@ -467,7 +470,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 }
               >
                 <span className={`rateFont manualRate1Box`}>
-                  {data?.backTeamB != 0 ? data?.backTeamB - 2 : "-"}
+                  {data?.backTeamB != 0 ? data?.backTeamB - 2 >0 ? data?.backTeamB - 2:"-" : "-"}
                 </span>
               </div>
             )}
@@ -487,7 +490,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 }
               >
                 <span className={`rateFont manualRate1Box`}>
-                  {data?.backTeamB != 0 ? data?.backTeamB - 1 : "-"}
+                  {data?.backTeamB != 0 ? data?.backTeamB - 1 >0 ? data?.backTeamB - 1:"-" : "-"}
                 </span>
               </div>
             )}
@@ -539,7 +542,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 }
               >
                 <span className={`rateFont manualRate1Box`}>
-                  {data?.layTeamB != 0 ? data?.layTeamB + 1 : "-"}
+                  {data?.layTeamB != 0 ? detail?.rateThan100 ? data?.layTeamB + 1 : data?.layTeamB + 1>100?"-": data?.layTeamB + 1 : "-"}
                 </span>
               </div>
             )}
@@ -559,7 +562,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 }
               >
                 <span className={`rateFont manualRate1Box`}>
-                  {data?.layTeamB != 0 ? data?.layTeamB + 2 : "-"}
+                  {data?.layTeamB != 0 ? detail?.rateThan100 ? data?.layTeamB + 2 : data?.layTeamB + 2>100 ? "-" : data?.layTeamB + 2 : "-"}
                 </span>
               </div>
             )}
@@ -690,7 +693,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   }
                 >
                   <span className={`rateFont manualRate1Box`}>
-                    {data?.backTeamC != 0 ? data?.backTeamC - 2 : "-"}
+                    {data?.backTeamC != 0 ? data?.backTeamC - 2 >0 ? data?.backTeamC - 2:"-" : "-"}
                   </span>
                 </div>
               )}
@@ -708,7 +711,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   }
                 >
                   <span className={`rateFont manualRate1Box`}>
-                    {data?.backTeamC != 0 ? data?.backTeamC - 1 : "-"}
+                    {data?.backTeamC != 0 ? data?.backTeamC - 1 >0 ? data?.backTeamC - 1:"-" : "-"}
                   </span>
                 </div>
               )}
@@ -758,7 +761,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   }
                 >
                   <span className={`rateFont manualRate1Box`}>
-                    {data?.layTeamC != 0 ? data?.layTeamC + 1 : "-"}
+                    {data?.layTeamC != 0 ? detail?.rateThan100 ? data?.layTeamC + 1 : data?.layTeamC + 1>100?"-": data?.layTeamC + 1 : "-"}
                   </span>
                 </div>
               )}
@@ -776,7 +779,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   }
                 >
                   <span className={`rateFont manualRate1Box`}>
-                    {data?.layTeamC != 0 ? data?.layTeamC + 2 : "-"}
+                    {data?.layTeamC != 0 ? detail?.rateThan100 ? data?.layTeamC + 2 : data?.layTeamC + 2 > 100 ? "-" : data?.layTeamC + 2 : "-"}
                   </span>
                 </div>
               )}
