@@ -1,155 +1,151 @@
 import React from "react";
+import { HandleCards } from "../../commonComponent/cardsComponent";
+import { Container } from "react-bootstrap";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 
-interface Props {
-  data: {
-    result: {
-      mid: string;
-      sid: string;
-      win: string;
-      desc: string;
-      cards: string;
-    };
-  };
-}
+const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
+  const lowCards: string[] = [];
+  const highCards: string[] = [];
+  let spadeCard = "";
 
-const CasinoMeterResultComponent: React.FC<Props> = () => {
-  // const resultCards = data?.result?.cards?.split(",");
-  // const playerIds = data?.result?.sid?.split(",");
+  let lowCardSum = 0;
+  let highCardSum = 0;
 
-  // Create a mapping of player IDs to their respective cards
-  // const players = resultCards?.map((card, index) => ({
-  //   card,
-  //   id: playerIds[index], // Distribute player IDs cyclically
-  // }));
+  const cards = data?.result?.cards?.split(",");
+
+  cards?.forEach((card: any) => {
+    if (card?.length < 3) return;
+    if (card == "9HH" || card == "10HH") {
+      spadeCard = spadeCard + card + ",";
+      return;
+    }
+    const firstChar = card[0];
+
+    if (
+      firstChar === "1" ||
+      firstChar === "J" ||
+      firstChar === "Q" ||
+      firstChar === "K"
+    ) {
+      highCards.push(card);
+      highCardSum =
+        highCardSum +
+        (firstChar == "1"
+          ? 10
+          : firstChar == "J"
+          ? 11
+          : firstChar == "Q"
+          ? 12
+          : firstChar == "K"
+          ? 13
+          : 0);
+    } else {
+      lowCards.push(card);
+      lowCardSum = lowCardSum + (firstChar == "A" ? 1 : Number(firstChar));
+    }
+  });
 
   return (
-    <></>
-    // <Container
-    //   style={{
-    //     display: "flex",
-    //     flexDirection: "column",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //   }}
-    // >
-    //   {isMobile ? (
-    //     <div
-    //       style={{
-    //         width: "100%",
-    //         border: "0.5px solid",
-    //         display: "flex",
-    //         justifyContent: "start",
-    //         flexDirection: "row",
-    //         alignItems: "center",
-    //         gap: "20px",
-    //         marginBottom: "15px",
-    //       }}
-    //     >
-    //       {players && (
-    //         // <div
-    //         //   className="d-flex flex-row justify-content-between align-items-center mb-2 "
-    //         //   style={{ width: "50%" }}
-    //         // >
-    //         //   <span className="fs-6" style={{ marginLeft: "10px" }}>
-    //         //     Dealer
-    //         //   </span>
-    //         //   <div className="d-flex flex-row justify-content-center align-items-center mb-2" style={{
+    <Container
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", width: "90%" }}>
+        <div style={{ width: "100%" }}>
+          <div
+            style={{
+              display: "flex",
 
-    //         //   }}>
-    //         //     <div
-    //         //       style={{
-    //         //         border: "1px solid #fdef34",
-    //         //         borderRadius: "1px",
-    //         //         marginLeft: "5px",
-    //         //         marginTop:"15px",
-    //         //         display: "flex",
-    //         //         justifyContent: "center",
-    //         //         alignItems: "center",
-    //         //         gap: "5px",
-    //         //       }}
-    //         //     >
-    //         //       <HandleCards card={players[6]?.card} />
-    //         //     </div>
-    //         //     {data?.result?.sid.includes(players[6]?.id) && (
-    //         //       <div
-    //         //         className="casino-winner-icon"
-    //         //         style={{ marginLeft: "5px" }}
-    //         //       >
-    //         //         <FaTrophy size={30} color="#169733" />
-    //         //       </div>
-    //         //     )}
-    //         //   </div>
-    //         // </div>
-    //         <div
-    //           style={{
-    //             width: "100%",
-    //             display: "flex",
-    //             flexDirection: "row",
-    //             padding: "10px",
-    //             border: "0.5px solid",
-    //             borderRadius: "1px",
-    //           }}
-    //         >
-    //           <div style={{ width: "50%", textAlign: "start" }}>
-    //             <span className="fs-6" style={{ marginLeft: "10px" }}>
-    //               Dealer
-    //             </span>
-    //           </div>
-    //           <div
-    //             style={{
-    //               width: "50%",
-    //               display: "flex",
-    //               flexDirection: "row",
-    //               justifyContent: "space-between",
-    //             }}
-    //           >
-    //             <HandleCards card={players[6]?.card} />
-    //             {data?.result?.sid.includes(players[6]?.id) && (
-    //               <div
-    //                 className="casino-winner-icon"
-    //                 style={{ marginLeft: "5px" }}
-    //               >
-    //                 <FaTrophy size={30} color="#169733" />
-    //               </div>
-    //             )}
-    //           </div>
-    //         </div>
-    //       )}
-    //     </div>
-    //   ) : (
-    //     <div
-    //       style={{
-    //         border: "1px solid #fdef34",
-    //         borderRadius: "1px",
-    //         marginLeft: "5px",
-    //         position: "relative",
-    //       }}
-    //     ></div>
-    //   )}
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <span style={{ width: "15%", fontSize: isMobile ? "12px" : "" }}>
+              Low Cards
+            </span>
+            <div
+              style={{
+                width: "70%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {lowCards?.map((card, index) => (
+                <span key={index} style={{ margin: "5px" }}>
+                  {isMobile ? (
+                    <HandleCards card={card} />
+                  ) : (
+                    <HandleCards card={card} />
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
 
-    //   {players && !isMobile && (
-    //     <div
-    //       style={{
-    //         display: "flex",
-    //         justifyContent: "center",
-    //         flexDirection: "column",
-    //         alignItems: "center",
-    //       }}
-    //     >
-    //       <span className="fs-6">Dealer</span>
-    //       <HandleCards card={players[6]?.card} />
-    //     </div>
-    //   )}
+          <div
+            style={{
+              display: "flex",
 
-    //   {isMobile ? renderColumn() : renderRow()}
-    //   {/* {
-    //     data?.bets?.count > 0 &&
-    //     <div className="w-100">
-    //     <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-    //   </div>
-    //   } */}
-    // </Container>
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <span style={{ width: "15%", fontSize: isMobile ? "12px" : "" }}>
+              High Cards
+            </span>
+            <div
+              style={{
+                width: "70%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {highCards.map((card, index) => (
+                <span key={index} style={{ margin: "5px" }}>
+                  {isMobile ? (
+                    <HandleCards card={card} />
+                  ) : (
+                    <HandleCards card={card} />
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", gap: "5px" }}>
+          {/* <HandleCards card="9HH" /> */}
+          {spadeCard?.split(",")?.map((crd) => {
+            return <HandleCards card={crd} />;
+          })}
+        </div>
+      </div>
+
+      <div
+        style={{
+          width: isMobile ? "95%" : "70%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: "5px",
+          marginTop: "5px",
+          boxShadow: "0 0 4px -1px",
+        }}
+      >
+        <span style={{ color: "#000000", opacity: "0.6", marginRight: "5px" }}>
+          Winner{" "}
+        </span>
+        {lowCardSum > highCardSum ? " Low" : " High"}
+      </div>
+    </Container>
   );
 };
 
