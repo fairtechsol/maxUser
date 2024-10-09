@@ -409,7 +409,7 @@ export const navigateToGameDetail = {
   [availableGameType.tennis]: "/other-game-detail/",
   [availableGameType.horseRacing]: "/race/",
   [availableGameType.greyHound]: "/race/",
-  [cardGamesType.teen20]: "teenPatti20",
+  [cardGamesType.teen20]: "teen20",
   [cardGamesType.card32]: "32cards-A",
   [cardGamesType.card32B]: "32cards-B",
   [cardGamesType.lucky7]: "lucky7-A",
@@ -1682,7 +1682,7 @@ export const casinoIcons = [
     name: "1 Day Teenpatti",
   },
   {
-    url: "/teenPatti20", //
+    url: "/teen20", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "20-20 Teenpatti",
@@ -1792,7 +1792,7 @@ export const card3 = {
     { id: 4, url: "/dt20", imgSrc: dt20, name: "20-20 DRAGON TIGER" },
   ],
   teenPatti: [
-    { id: 6, url: "/teenPatti20", imgSrc: twentyteen, name: "20-20 TEENPATTI" },
+    { id: 6, url: "/teen20", imgSrc: twentyteen, name: "20-20 TEENPATTI" },
     { id: 7, url: "/teen", imgSrc: dayteen, name: "1 DAY TEENPATTI" },
     { id: 8, url: "/teen9", imgSrc: testteen, name: "TEST TEENPATTI" },
     { id: 9, url: "/teen8", imgSrc: teenplayer, name: "OPEN TEENPATTI" },
