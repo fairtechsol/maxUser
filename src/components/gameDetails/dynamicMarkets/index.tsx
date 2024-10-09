@@ -88,7 +88,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
-                  parseInt(
+                  parseFloat(
                     detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.A +
                         "_" +
@@ -117,7 +117,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                         detail?.id
                     ] === "0"
                     ? ""
-                    : parseInt(
+                    : parseFloat(
                         detail?.profitLossDataMatch?.[
                           profitLossDataForMatchConstants[data?.type]?.A +
                             "_" +
@@ -206,7 +206,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
-                  parseInt(
+                  parseFloat(
                     detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.B +
                         "_" +
@@ -235,7 +235,7 @@ const DynamicMarket = ({ title, data, detail }) => {
                         detail?.id
                     ] === "0"
                     ? ""
-                    : parseInt(
+                    : parseFloat(
                         detail?.profitLossDataMatch?.[
                           profitLossDataForMatchConstants[data?.type]?.B +
                             "_" +

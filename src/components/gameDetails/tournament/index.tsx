@@ -112,7 +112,7 @@ const Tournament = ({ title, box, data, detail }) => {
                   <div className="d-flex flex-row justify-content-between w-100">
                     <span
                       className={`${
-                        parseInt(profitLossObj?.[item.id]) +
+                        parseFloat(profitLossObj?.[item.id]) +
                           manualProfitLoss(
                             selectedBet,
                             item?.nat || item?.runnerName,
@@ -124,7 +124,7 @@ const Tournament = ({ title, box, data, detail }) => {
                           : "color-red"
                       } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
-                     {profitLossObj?.[item.id] ? selectedBet?.team?.betId===data?.id ? parseInt(profitLossObj?.[item.id]) +
+                     {profitLossObj?.[item.id] ? selectedBet?.team?.betId===data?.id ? parseFloat(profitLossObj?.[item.id]) +
                         manualProfitLoss(
                           selectedBet,
                           item?.nat || item?.runnerName,

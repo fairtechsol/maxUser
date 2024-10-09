@@ -128,20 +128,19 @@ const MobileGameDetail = () => {
               })`}</div>
             ),
           },
-          matchDetails?.isTv !== "0" && matchDetails?.isTv
-            ? {
-                // id: "live",
-                name: (
-                  <div
-                    onClick={() => setShowVideo(!showVideo)}
-                    className="ps-5"
-                    style={{ fontSize: "12px", lineHeight: 1.22 }}
-                  >
-                    <FaTv />
-                  </div>
-                ),
-              }
-            : null, // Only add 'live' tab if channelId is valid
+          channelId !== "0" &&
+            channelId !== "" && {
+              // id: "live",
+              name: (
+                <div
+                  onClick={() => setShowVideo(!showVideo)}
+                  className="ps-5"
+                  // style={{  lineHeight: 1.22 }}
+                >
+                  <FaTv size={15} />
+                </div>
+              ),
+            },
         ]
           ?.filter(Boolean) // Remove null values from the array
           .map((item, index) => (
@@ -159,7 +158,7 @@ const MobileGameDetail = () => {
                 <div style={{ width: "98%" }}>
                   <Row className="ms-0">
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
-                    
+
                     {showVideo && (
                       <Container className="px-0">
                         <Row className="justify-content-md-center">
@@ -175,7 +174,7 @@ const MobileGameDetail = () => {
                         </Row>
                       </Container>
                     )}
-                  {liveScoreBoardData && (
+                    {liveScoreBoardData && (
                       <Iframe data={liveScoreBoardData} width="100%" />
                     )}
                     {matchDetails?.matchOdd?.activeStatus === "live" &&

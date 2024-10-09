@@ -116,7 +116,6 @@ const TeenPattiMobile = () => {
               <div
                 style={{
                   width: "100%",
-                  height: "20%",
                   backgroundColor: "#000",
                 }}
               >

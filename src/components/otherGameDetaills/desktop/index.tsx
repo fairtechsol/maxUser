@@ -17,6 +17,8 @@ import MatchOdd from "../../gameDetails/matchOdd";
 import Bookmaker from "../../gameDetails/bookmaker";
 import ManualMarket from "../../gameDetails/manulMarkets";
 import HtFt from "../htft";
+import { IoInformationCircle } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -59,14 +61,14 @@ const FootballDesktopGameDetail = () => {
     }
   }, [otherMatchDetails?.id]);
   return (
-    <Container fluid>
+    <Container fluid className="mt-1 pe-0 ps-1">
       <Row>
         <Col md={8}>
-          <Container fluid className="p-0">
+          <Container className="p-0">
             <>
               <Col md={12}>
                 <BetTableHeader
-                  customClass="mt-1 py-2"
+                  customClass="py-1"
                   title={otherMatchDetails?.title}
                   rightComponent={
                     <span className="title-16 fbold text-white">
@@ -78,27 +80,29 @@ const FootballDesktopGameDetail = () => {
                 />
               </Col>
 
-              {otherMatchDetails?.matchOdd?.isActive && (
-                <Col md={12} style={{ marginTop: "8px" }}>
-                  {otherMatchDetails?.bookmaker?.runners?.[0]?.ex
-                    ?.availableToBack?.length > 2 ? (
-                    <MatchOdd
-                      title={otherMatchDetails?.matchOdd?.name}
-                      data={otherMatchDetails?.matchOdd}
-                      detail={otherMatchDetails}
-                    />
-                  ) : (
-                    <Bookmaker
-                      title={otherMatchDetails?.matchOdd?.name}
-                      box={2}
-                      data={otherMatchDetails?.matchOdd}
-                      detail={otherMatchDetails}
-                    />
-                  )}
-                </Col>
-              )}
+              {otherMatchDetails?.matchOdd?.activeStatus === "live" &&
+                otherMatchDetails?.matchOdd?.isActive && (
+                  <Col md={12} style={{ marginTop: "8px" }}>
+                    {otherMatchDetails?.matchOdd?.runners?.[0]?.ex
+                      ?.availableToBack?.length > 2 ? (
+                      <MatchOdd
+                        title={otherMatchDetails?.matchOdd?.name}
+                        data={otherMatchDetails?.matchOdd}
+                        detail={otherMatchDetails}
+                      />
+                    ) : (
+                      <Bookmaker
+                        title={otherMatchDetails?.matchOdd?.name}
+                        box={2}
+                        data={otherMatchDetails?.matchOdd}
+                        detail={otherMatchDetails}
+                      />
+                    )}
+                  </Col>
+                )}
 
-              {otherMatchDetails?.bookmaker?.isActive && (
+              {otherMatchDetails?.bookmaker?.activeStatus === "live" &&
+                otherMatchDetails?.bookmaker?.isActive && (
                 <Col md={12} style={{ marginTop: "8px" }}>
                   <Bookmaker
                     title={otherMatchDetails?.bookmaker?.name}
@@ -114,7 +118,8 @@ const FootballDesktopGameDetail = () => {
                   />
                 </Col>
               )}
-              {otherMatchDetails?.bookmaker2?.isActive && (
+              {otherMatchDetails?.bookmaker2?.activeStatus === "live" &&
+                otherMatchDetails?.bookmaker2?.isActive && (
                 <Col md={12} style={{ marginTop: "8px" }}>
                   <Bookmaker
                     title={otherMatchDetails?.bookmaker2?.name}
@@ -132,7 +137,7 @@ const FootballDesktopGameDetail = () => {
               )}
               {otherMatchDetails?.quickBookmaker?.length > 0 &&
                 otherMatchDetails?.quickBookmaker
-                  ?.filter((item: any) => item?.isActive)
+                  ?.filter((item: any) =>item?.activeStatus === "live" && item?.isActive)
                   ?.map((item: any) => (
                     <div key={item?.id}>
                       <Col md={12} style={{ marginTop: "8px" }}>
@@ -256,15 +261,38 @@ const FootballDesktopGameDetail = () => {
                   : "100%",
               }}
             >
+              <Col md={12}>
+                <div
+                  onClick={() => setShowContactAdmin(true)}
+                  style={{
+                    display: "flex",
+                    margin: "10px 0",
+                    marginBottom: "0",
+                    alignItems: "center",
+                  }}
+                  className="fs-4"
+                >
+                  <IoInformationCircle />
+                  <h6
+                    style={{ margin: "0px 0px 0px 5px", color: "#ff0000" }}
+                    className="fs-5 text-decoration-underline cursor-pointer blinking-text"
+                  >
+                    <Link className="text-danger" to={"/ballbyball"}>
+                      {" "}
+                      Ball By Ball
+                    </Link>
+                  </h6>
+                </div>
+              </Col>
               {channelId !== "0" && channelId !== "" && (
-                <Col md={12}>
+                <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent channelId={channelId} />
                 </Col>
               )}
-              <Col md={12}>
+              <Col md={12} className="px-1 pt-1">
                 <PlacedBet />
               </Col>
-              <Col md={12}>
+              <Col md={12} className="px-1 pt-1">
                 <MyBet />
               </Col>
             </Row>

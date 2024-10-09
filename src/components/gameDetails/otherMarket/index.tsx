@@ -141,7 +141,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
-                  parseInt(profitLossTeamA) +
+                  parseFloat(profitLossTeamA) +
                     manualProfitLoss(
                       selectedBet,
                       data?.type === "other" ? data?.metaData?.teamA : "Yes",
@@ -153,14 +153,14 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     : "color-red"
                 } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
-                {parseInt(profitLossTeamA) +
+                {parseFloat(profitLossTeamA) +
                 manualProfitLoss(
                   selectedBet,
                   data?.type === "other" ? data?.metaData?.teamA : "Yes",
                   data?.type,
                   data?.gtype
                 )
-                  ? parseInt(profitLossTeamA) +
+                  ? parseFloat(profitLossTeamA) +
                     manualProfitLoss(
                       selectedBet,
                       data?.type === "other" ? data?.metaData?.teamA : "Yes",
@@ -285,7 +285,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
-                  parseInt(profitLossTeamB) +
+                  parseFloat(profitLossTeamB) +
                     manualProfitLoss(
                       selectedBet,
                       data?.type === "other" ? data?.metaData?.teamB : "No",
@@ -297,14 +297,14 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     : "color-red"
                 } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
               >
-                {parseInt(profitLossTeamB) +
+                {parseFloat(profitLossTeamB) +
                 manualProfitLoss(
                   selectedBet,
                   data?.type === "other" ? data?.metaData?.teamB : "No",
                   data?.type,
                   data?.gtype
                 )
-                  ? parseInt(profitLossTeamB) +
+                  ? parseFloat(profitLossTeamB) +
                     manualProfitLoss(
                       selectedBet,
                       data?.type === "other" ? data?.metaData?.teamB : "No",
@@ -426,7 +426,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
               <div className="d-flex flex-row justify-content-between w-100">
                 <span
                   className={`${
-                    parseInt(profitLossTeamC) +
+                    parseFloat(profitLossTeamC) +
                       manualProfitLoss(
                         selectedBet,
                         data?.metaData?.teamC,
@@ -438,14 +438,14 @@ const OtherMarket = ({ title, box, data, detail }) => {
                       : "color-red"
                   } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                 >
-                  {parseInt(profitLossTeamC) +
+                  {parseFloat(profitLossTeamC) +
                   manualProfitLoss(
                     selectedBet,
                     data?.metaData?.teamC,
                     data?.type,
                     data?.gtype
                   )
-                    ? parseInt(profitLossTeamC) +
+                    ? parseFloat(profitLossTeamC) +
                       manualProfitLoss(
                         selectedBet,
                         data?.metaData?.teamC,
