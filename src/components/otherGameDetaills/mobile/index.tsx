@@ -94,7 +94,7 @@ const FootballMobileGameDetail = () => {
               }
             >
               {index == 0 ? (
-                <Container>
+                <Container fluid className="p-0">
                   <Row>
                     {/* <Col className="g-0" md={12}>
                       <BetTableHeader
