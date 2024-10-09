@@ -51,6 +51,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         return "#355e3b";
     }
   };
+
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">

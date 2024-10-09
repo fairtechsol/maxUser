@@ -46,7 +46,6 @@ const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
     }
   });
 
-  console.log("meterR", data);
   return (
     <Container
       style={{
@@ -118,7 +117,7 @@ const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
           </div>
         </div>
 
-        <div style={{display:"flex",gap:"5px"}}>
+        <div style={{ display: "flex", gap: "5px" }}>
           {/* <HandleCards card="9HH" /> */}
           {spadeCard?.split(",")?.map((crd) => {
             return <HandleCards card={crd} />;
@@ -137,7 +136,9 @@ const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
           boxShadow: "0 0 4px -1px",
         }}
       >
-        <span style={{ color: "#000000", opacity: "0.6",marginRight:"5px" }}>Winner </span>
+        <span style={{ color: "#000000", opacity: "0.6", marginRight: "5px" }}>
+          Winner{" "}
+        </span>
         {lowCardSum > highCardSum ? " Low" : " High"}
       </div>
     </Container>
