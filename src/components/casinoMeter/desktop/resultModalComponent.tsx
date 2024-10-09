@@ -66,7 +66,9 @@ const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
               width: "100%",
             }}
           >
-            <span style={{ width: "15%" }}>Low Cards</span>
+            <span style={{ width: "15%", fontSize: isMobile ? "12px" : "" }}>
+              Low Cards
+            </span>
             <div
               style={{
                 width: "70%",
@@ -95,7 +97,9 @@ const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
               width: "100%",
             }}
           >
-            <span style={{ width: "15%" }}>High Cards</span>
+            <span style={{ width: "15%", fontSize: isMobile ? "12px" : "" }}>
+              High Cards
+            </span>
             <div
               style={{
                 width: "70%",
@@ -127,7 +131,7 @@ const CasinoMeterResultComponent: React.FC<any> = ({ data }) => {
 
       <div
         style={{
-          width: "70%",
+          width: isMobile ? "95%" : "70%",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
