@@ -208,7 +208,7 @@ const AccountStatementComponent = () => {
                 </CustomButton>
               </Col>
             </Row>
-
+           
             {/* http://localhost:5000/card/result/detail/9.241909153253 */}
             <CustomTable
               width={isMobile ? "1200px" : ""}
