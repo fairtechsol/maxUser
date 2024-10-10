@@ -396,7 +396,7 @@ export const cardGamesId: any = {
   aaa: 3056,
   btable: 3041,
   worli: 3040,
-  worli1:3054,
+  worli1: 3054,
   cardj: 3039,
   cmatch20: 3045,
   cmeter: 3046,
@@ -445,7 +445,10 @@ export const cardUrl =
     : "https://jmdapi.com/tablevideo/?id=";
 
 export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
+export const liveStreamPageUrl = "https://dpmatka.in/dcasino/nntv.php?MatchID=";
 export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventId=";
+
+export const streamVidUrl = "https://dpmatka.in/dcasino/nntv.php?MatchID=";
 
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";

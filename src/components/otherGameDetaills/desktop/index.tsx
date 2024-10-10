@@ -284,9 +284,9 @@ const FootballDesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {channelId !== "0" && channelId !== "" && (
+              {otherMatchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
-                  <LiveStreamComponent channelId={channelId} />
+                  <LiveStreamComponent eventId={otherMatchDetails?.eventId} />
                 </Col>
               )}
               <Col md={12} className="px-1 pt-1">
