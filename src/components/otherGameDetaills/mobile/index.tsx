@@ -116,7 +116,7 @@ const FootballMobileGameDetail = () => {
                     )}
                     {otherMatchDetails?.matchOdd?.isActive && (
                       <Col className="g-0 mt-2" md={12}>
-                        {otherMatchDetails?.bookmaker?.runners?.[0]?.ex
+                        {otherMatchDetails?.matchOdd?.runners?.[0]?.ex
                           ?.availableToBack?.length > 2 ? (
                           <MatchOdd
                             title={otherMatchDetails?.matchOdd?.name}
