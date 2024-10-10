@@ -39,8 +39,8 @@ const ResultBetList = ({ bets, total }: any) => {
   };
   return (
     <div className="w-100 d-flex flex-column">
-      <div className={isMobile ? "w-100 d-flex flex-column justify-content-between title-14" : "w-100 d-flex flex-row justify-content-between"}>
-        <div className="w-25 d-flex flex-row justify-content-between">
+      <div className={isMobile ? "w-100 d-flex flex-row justify-content-between title-12 gap-2" : "w-100 d-flex flex-row justify-content-between"}>
+        <div className={isMobile ? "w-75 lh-2 d-flex flex-row justify-content-between" : "w-25 lh-2 d-flex flex-row justify-content-between" }>
           <input
             type="radio"
             id={selected}
@@ -71,7 +71,9 @@ const ResultBetList = ({ bets, total }: any) => {
           />
           <label>Deleted</label>
         </div>
-        <div className="w-35 d-flex flex-row justify-content-around right-0">
+       
+      </div>
+      <div className={isMobile ? "title-12 d-flex flex-row justify-content-end   float-end" : "title-16 d-flex flex-row justify-content-end   float-end"}>
           <span>Total Bets: {total}</span>
           <span>
             Total Amount:{" "}
@@ -80,7 +82,6 @@ const ResultBetList = ({ bets, total }: any) => {
             }, 0)}
           </span>
         </div>
-      </div>
 
       <div className="w-100">
         <CustomTable2
