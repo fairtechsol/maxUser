@@ -73,6 +73,22 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
+            <div className="sessionYesNoBoxContainer">
+              <div className="sessionYesNoBox" style={{ width: "40%" }}>
+                <div
+                  className="sessionYesBox back1Background"
+                  style={{ width: "100%",borderRight:"1px solid #c7c8ca" }}
+                >
+                  <span className={`f-size16 sessionBackTxt`}>Odd</span>
+                </div>
+                <div
+                  className="sessionYesBox back1Background"
+                  style={{ width: "100%" }}
+                >
+                  <span className={`f-size16 sessionBackTxt`}>Even</span>
+                </div>
+              </div>
+            </div>
             {data?.section?.map((item: any, index: any) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>

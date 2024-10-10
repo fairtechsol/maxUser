@@ -86,6 +86,20 @@ const SessionOddEven = ({ title, data, detail }) => {
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
+            <div className="sessionYesNoBoxContainer">
+              <div
+                className="sessionYesNoBox rateBoxWidthNormal"
+                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+              >
+                <div className="sessionYesBox back1Background" style={{borderRight:"1px solid #c7c8ca"}}>
+                  <span className={`f-size16 sessionBackTxt`}>Odd</span>
+                </div>
+                <div className="sessionYesBox back1Background">
+                  <span className={`f-size16 sessionBackTxt`}>Even</span>
+                </div>
+                <div className="sessionEmptyBox"></div>
+              </div>
+            </div>
             {evenIndexArray?.map((item: any, index: any) => {
               return (
                 <div className="sessionOddEvenRateContainer" key={index}>
