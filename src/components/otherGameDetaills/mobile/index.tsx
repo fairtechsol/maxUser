@@ -109,9 +109,11 @@ const FootballMobileGameDetail = () => {
                         }
                       />
                     </Col> */}
-                    {channelId !== "0" && channelId !== "" && (
+                    {otherMatchDetails?.eventId && (
                       <Col className="g-0" md={12}>
-                        <LiveStreamComponent channelId={channelId} />
+                        <LiveStreamComponent
+                          eventId={otherMatchDetails?.eventId}
+                        />
                       </Col>
                     )}
                     {otherMatchDetails?.matchOdd?.isActive && (

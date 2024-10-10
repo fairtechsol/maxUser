@@ -43,7 +43,6 @@ const DesktopGameDetail = () => {
     (state: RootState) => state.match.matchList
   );
 
-
   useEffect(() => {
     const handleScroll = () => {
       if (placeBetRef?.current && placeBetRef?.current?.offsetTop) {
@@ -192,9 +191,12 @@ const DesktopGameDetail = () => {
                   <Col md={12} style={{ marginTop: "8px" }}>
                     <Bookmaker
                       title={matchDetails?.bookmaker?.name}
-                      box={matchDetails?.bookmaker?.runners?.[0]?.ex?.availableToBack?.length > 2
-                        ? 6
-                        : 2}
+                      box={
+                        matchDetails?.bookmaker?.runners?.[0]?.ex
+                          ?.availableToBack?.length > 2
+                          ? 6
+                          : 2
+                      }
                       data={matchDetails?.bookmaker}
                       detail={matchDetails}
                       // data={matchDetails?.matchOdd}
@@ -238,7 +240,7 @@ const DesktopGameDetail = () => {
                           // data={matchDetails?.matchOdd}
                         />
                       </Col>
-                     )}
+                    )}
                   </div>
                 ))}
               {matchDetails?.bookmaker2?.activeStatus === "live" &&
@@ -675,9 +677,9 @@ const DesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {channelId !== "0" && channelId !== "" && (
+              {matchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
-                  <LiveStreamComponent channelId={channelId} />
+                  <LiveStreamComponent eventId={matchDetails?.eventId} />
                 </Col>
               )}
               <Col md={12} className="px-1 pt-1">
