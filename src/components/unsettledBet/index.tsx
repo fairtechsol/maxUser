@@ -1,5 +1,5 @@
 import { Col, Form, Row, Stack } from "react-bootstrap";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import { useDispatch } from "react-redux";
@@ -217,7 +217,12 @@ const UnsettledBetComponent = () => {
                               "MM/DD/YYYY hh:mm:ss A"
                             )
                           : column.type === "index"
-                          ? `${index + 1}`
+                          ? `${
+                              index +
+                              1 +
+                              tableConfig?.rowPerPage *
+                                ((tableConfig?.page || 1) - 1)
+                            }`
                           : _.get(item, column.id)}
                       </td>
                       // <td key={index}>{item.userName}</td>
