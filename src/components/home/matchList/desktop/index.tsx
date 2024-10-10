@@ -20,10 +20,10 @@ const DesktopMatchList = ({
 }: any) => {
   const { type } = useParams();
   const dispatch: AppDispatch = useDispatch();
-  const { matchList, success,tabList } = useSelector(
+  const { matchList, success, tabList } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  
+
   const setMatchOddRatesInRedux = (event: any) => {
     dispatch(updateMatchOddRates(event));
   };
