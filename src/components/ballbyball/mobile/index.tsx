@@ -11,6 +11,7 @@ import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import "./style.scss";
 
 const TeenPattiMobile = () => {
@@ -22,10 +23,16 @@ const TeenPattiMobile = () => {
   const [modalType, setModalType] = useState("rules");
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [curR, setCurR] = useState(null);
+ 
+  const [mid, setMid] = useState(false);
+
+  const [isClick, setIsClick] = useState(false);
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
   const { runs } = dragonTigerDetail;
+  const { resultData } = useSelector((state: RootState) => state.card);
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -90,6 +97,37 @@ const TeenPattiMobile = () => {
     }
   }, [runs?.[0]?.gstatus, runs?.[0]?.b1]);
 
+  useEffect(() => {
+    if (curR && isClick) {
+      setTimeout(() => {
+        setCurR(null);
+        setIsClick(false);
+        setMid(dragonTigerDetail?.videoInfo?.mid);
+      }, 3000);
+    }
+  }, [curR]);
+
+  useEffect(() => {
+    if (mid && mid != dragonTigerDetail?.videoInfo?.mid) {
+      dispatch(resultDragonTiger(mid));
+      setIsClick(true);
+    }
+    if (!mid) {
+      setMid(dragonTigerDetail?.videoInfo?.mid);
+    }
+  }, [dragonTigerDetail?.videoInfo?.mid]);
+
+  useEffect(() => {
+    if (Object.keys(resultData || {})?.length > 0 && mid) {
+      setCurR(resultData);
+    } else if (resultData) {
+      setTimeout(() => {
+        dispatch(resultDragonTiger(mid));
+      }, 1000);
+    }
+  }, [resultData]);
+
+
   return (
     <>
       <div>
@@ -111,6 +149,21 @@ const TeenPattiMobile = () => {
                   backgroundColor: "#000",
                 }}
               >
+                {curR && (
+                  <img
+                    className="elem"
+                    src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${resultData?.result?.desc.split(" ")[0]}.png`}
+                    style={{
+                      position: "absolute",
+                      top: "35%",
+                      left: "47%",
+                      transform: "translate(-50%, -100%)",
+                      zIndex: 2,
+                    }}
+                    alt="Centered Image"
+                  />
+                )}
+
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.lt}
                   //result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
