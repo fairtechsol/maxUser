@@ -128,20 +128,19 @@ const MobileGameDetail = () => {
               })`}</div>
             ),
           },
-          matchDetails?.isTv !== "0" && matchDetails?.isTv
-            ? {
-                // id: "live",
-                name: (
-                  <div
-                    onClick={() => setShowVideo(!showVideo)}
-                    className="ps-5"
-                    style={{ fontSize: "12px", lineHeight: 1.22 }}
-                  >
-                    <FaTv />
-                  </div>
-                ),
-              }
-            : null, // Only add 'live' tab if channelId is valid
+          channelId !== "0" &&
+            channelId !== "" && {
+              // id: "live",
+              name: (
+                <div
+                  onClick={() => setShowVideo(!showVideo)}
+                  className="ps-5"
+                  // style={{  lineHeight: 1.22 }}
+                >
+                  <FaTv size={15} />
+                </div>
+              ),
+            },
         ]
           ?.filter(Boolean) // Remove null values from the array
           .map((item, index) => (

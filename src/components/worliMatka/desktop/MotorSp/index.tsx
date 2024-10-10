@@ -3,12 +3,20 @@ import { AppDispatch } from "../../../../store/store";
 import { useEffect } from "react";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useState } from "react";
+import WorliClearBox from "../../mobile/WorliClearBox";
+import { isMobile } from "../../../../utils/screenDimension";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import "../style.scss";
 
 const MotorSp = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const [betTeam, setBetTeam] = useState("");
   const [zeros, setZeros] = useState("");
+  const [mobileBox, setMobileBox] = useState(false);
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
   useEffect(() => {
     if (data?.worli?.gstatus === "0") {
@@ -24,9 +32,11 @@ const MotorSp = ({ odds, data }: any) => {
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: betTeam,
-      name: betTeam + zeros,
+      name: betTeam + zeros + " Motor",
       bettingName: "Match odds",
       selectionId: odds?.sid,
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -37,19 +47,30 @@ const MotorSp = ({ odds, data }: any) => {
   };
 
   useEffect(() => {
-    if (betTeam || zeros) {
+    if ((betTeam || zeros) && !isMobile) {
+      handleBet();
+    } else if ((betTeam || zeros) && isMobile && mobileBox) {
       handleBet();
     }
-  }, [betTeam, zeros]);
+  }, [betTeam, zeros, mobileBox]);
 
   useEffect(() => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
-
+      //setSelectedBox(null);
       setBetTeam("");
       setZeros("");
+      setMobileBox(false);
     }
   }, [odds?.gstatus, dispatch]);
+
+  useEffect(() => {
+    if (selectedBet == null) {
+      setBetTeam("");
+      setZeros("");
+      setMobileBox(false);
+    }
+  }, [selectedBet]);
 
   const renderBox = (value: string, index: number) => (
     <div
@@ -80,22 +101,38 @@ const MotorSp = ({ odds, data }: any) => {
     </div>
   );
 
+  const handleClear = () => {
+    setZeros("");
+    setBetTeam("");
+    setMobileBox(false);
+  };
+
   return (
     <>
       <div className="worli-full">
         <div className="worli-box-title">
           <b>140</b>
         </div>
-       <div className="worli-box-row">
-        {["1", "2", "3", "4", "5"].map((value, index) =>
-          renderBox(value, index)
+        <div className="worli-box-row">
+          {["1", "2", "3", "4", "5"].map((value, index) =>
+            renderBox(value, index)
+          )}
+        </div>
+        <div className="worli-box-row">
+          {["6", "7", "8", "9", "0"].map((value, index) =>
+            renderBox(value, index + 5)
+          )}
+        </div>
+        {isMobile && (zeros?.length > 0 || betTeam?.length > 0) && (
+          <WorliClearBox
+            game="Motor"
+            team={betTeam}
+            zeros={zeros}
+            setBox={setMobileBox}
+            handleClear={handleClear}
+            disabled={betTeam?.length + zeros?.length < 4}
+          />
         )}
-      </div>
-      <div className="worli-box-row">
-        {["6", "7", "8", "9", "0"].map((value, index) =>
-          renderBox(value, index + 5)
-        )}
-      </div>
       </div>
     </>
   );

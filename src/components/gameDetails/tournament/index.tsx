@@ -38,6 +38,7 @@ const Tournament = ({ title, box, data, detail }) => {
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       runnerId: runner?.id?.toString(),
+      runners:data
     };
     dispatch(
       selectedBetAction({
@@ -111,7 +112,7 @@ const Tournament = ({ title, box, data, detail }) => {
                   <div className="d-flex flex-row justify-content-between w-100">
                     <span
                       className={`${
-                        parseInt(profitLossObj?.[item.id]) +
+                        parseFloat(profitLossObj?.[item.id]) +
                           manualProfitLoss(
                             selectedBet,
                             item?.nat || item?.runnerName,
@@ -123,15 +124,17 @@ const Tournament = ({ title, box, data, detail }) => {
                           : "color-red"
                       } ${isMobile ? "fbold title-12" : "fbold title-14"}`}
                     >
-                     {profitLossObj?.[item.id]? parseInt(profitLossObj?.[item.id]) +
+                     {profitLossObj?.[item.id] ? selectedBet?.team?.betId===data?.id ? parseFloat(profitLossObj?.[item.id]) +
                         manualProfitLoss(
                           selectedBet,
                           item?.nat || item?.runnerName,
                           data?.type,
                           data?.gtype
-                        ):""}
+                        ):profitLossObj?.[item.id]:""}
                     </span>
-                    <span
+                    {
+                      selectedBet?.team?.betId===data?.id ? 
+                      <span
                       className="title-12 f-400"
                       style={{
                         color:
@@ -159,6 +162,9 @@ const Tournament = ({ title, box, data, detail }) => {
                             data?.gtype
                           )?.toFixed(2)}
                     </span>
+                    : ""
+                    }
+                    
                   </div>
                 </div>
                 <div

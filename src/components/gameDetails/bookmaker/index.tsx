@@ -21,7 +21,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
     index: any,
     runner: any
   ) => {
-    if (data?.activeStatus != "live" || status != "ACTIVE") {
+    if (data?.activeStatus != "live" || (status != "ACTIVE" && status != "OPEN")) {
       return false;
     }
     if (odds === 0) {
@@ -110,7 +110,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
-                  parseInt(
+                  parseFloat(
                     detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.A +
                         "_" +
@@ -139,7 +139,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                         detail?.id
                     ] === "0"
                     ? ""
-                    : parseInt(
+                    : parseFloat(
                         detail?.profitLossDataMatch?.[
                           profitLossDataForMatchConstants[data?.type]?.A +
                             "_" +
@@ -192,7 +192,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             }
           >
             {(data?.activeStatus !== "live" ||
-              data?.runners?.[0]?.status !== "ACTIVE") && (
+              ( data?.runners?.[0]?.status !== "ACTIVE" && data?.runners?.[0]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesBookmaker">
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
@@ -264,7 +264,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             <div className="d-flex flex-row justify-content-between w-100">
               <span
                 className={`${
-                  parseInt(
+                  parseFloat(
                     detail?.profitLossDataMatch?.[
                       profitLossDataForMatchConstants[data?.type]?.B +
                         "_" +
@@ -293,7 +293,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                         detail?.id
                     ] === "0"
                     ? ""
-                    : parseInt(
+                    : parseFloat(
                         detail?.profitLossDataMatch?.[
                           profitLossDataForMatchConstants[data?.type]?.B +
                             "_" +
@@ -346,7 +346,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             }
           >
             {(data?.activeStatus !== "live" ||
-              data?.runners?.[1]?.status !== "ACTIVE") && (
+              ( data?.runners?.[1]?.status !== "ACTIVE" && data?.runners?.[1]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesBookmaker">
                 <span className={`suspendTextCmmn`}>SUSPENDED</span>
               </div>
@@ -419,7 +419,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
               <div className="d-flex flex-row justify-content-between w-100">
                 <span
                   className={`${
-                    parseInt(
+                    parseFloat(
                       detail?.profitLossDataMatch?.[
                         profitLossDataForMatchConstants[data?.type]?.C +
                           "_" +
@@ -448,7 +448,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                           detail?.id
                       ] === "0"
                       ? ""
-                      : parseInt(
+                      : parseFloat(
                           detail?.profitLossDataMatch?.[
                             profitLossDataForMatchConstants[data?.type]?.C +
                               "_" +
@@ -501,7 +501,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
               }
             >
               {(data?.activeStatus !== "live" ||
-                data?.runners?.[2]?.status !== "ACTIVE") && (
+                ( data?.runners?.[2]?.status !== "ACTIVE" && data?.runners?.[2]?.status !== "OPEN")) && (
                 <div className="suspended-overlayRatesBookmaker">
                   <span className={`suspendTextCmmn`}>SUSPENDED</span>
                 </div>

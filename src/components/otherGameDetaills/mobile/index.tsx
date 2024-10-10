@@ -11,12 +11,13 @@ import CommonTabs from "../../commonComponent/tabs";
 import Bookmaker from "../../gameDetails/bookmaker";
 import ManualMarket from "../../gameDetails/manulMarkets";
 import MatchOdd from "../../gameDetails/matchOdd";
-import PlacedBet from "../../gameDetails/mobile/placeBet";
+// import PlacedBet from "../../gameDetails/mobile/placeBet";
 import "../../gameDetails/mobile/style.scss";
 import Tournament from "../../gameDetails/tournament";
 import BetTable from "../betTable";
 import HtFt from "../htft";
 import MyBet from "./myBet";
+import FootballPlaceBet from "./placeBet";
 
 // import "./style.scss";
 // import BetTable from "../../gameDetails/betTable";
@@ -52,7 +53,7 @@ const FootballMobileGameDetail = () => {
   return (
     <div>
       {/* <FootballPlaceBet show={show} setShow={setShow} /> */}
-      <PlacedBet show={show} setShow={setShow} />
+      <FootballPlaceBet show={show} setShow={setShow} />
       <Col md={12}>
         <BetTableHeader
           customClass="py-1"
@@ -93,7 +94,7 @@ const FootballMobileGameDetail = () => {
               }
             >
               {index == 0 ? (
-                <Container>
+                <Container fluid className="p-0">
                   <Row>
                     {/* <Col className="g-0" md={12}>
                       <BetTableHeader
@@ -115,11 +116,21 @@ const FootballMobileGameDetail = () => {
                     )}
                     {otherMatchDetails?.matchOdd?.isActive && (
                       <Col className="g-0 mt-2" md={12}>
-                        <MatchOdd
-                          title={otherMatchDetails?.matchOdd?.name}
-                          data={otherMatchDetails?.matchOdd}
-                          detail={otherMatchDetails}
-                        />
+                        {otherMatchDetails?.bookmaker?.runners?.[0]?.ex
+                          ?.availableToBack?.length > 2 ? (
+                          <MatchOdd
+                            title={otherMatchDetails?.matchOdd?.name}
+                            data={otherMatchDetails?.matchOdd}
+                            detail={otherMatchDetails}
+                          />
+                        ) : (
+                          <Bookmaker
+                            title={otherMatchDetails?.matchOdd?.name}
+                            box={2}
+                            data={otherMatchDetails?.matchOdd}
+                            detail={otherMatchDetails}
+                          />
+                        )}
                       </Col>
                     )}
                     {otherMatchDetails?.bookmaker?.isActive && (

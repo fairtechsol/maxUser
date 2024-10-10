@@ -130,7 +130,7 @@ const MainRoutes = {
       element: <ContactAdmin />,
     },
     {
-      path: "teenPatti20",
+      path: "teen20",
       element: <TeenPatti20 />, //
     },
 

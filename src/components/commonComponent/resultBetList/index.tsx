@@ -3,6 +3,7 @@ import DeleteBetOverlay from "../betComponents/deleteBetRow";
 import moment from "moment";
 import { Column } from "../../../models/tableInterface";
 import CustomTable2 from "../table2";
+import { isMobile } from "../../../utils/screenDimension";
 const columns: Column[] = [
   { id: "nation", label: "Nation " },
   { id: "rate", label: "Rate " },
@@ -38,8 +39,8 @@ const ResultBetList = ({ bets, total }: any) => {
   };
   return (
     <div className="w-100 d-flex flex-column">
-      <div className="w-100 d-flex flex-row justify-content-between">
-        <div className="w-25 d-flex flex-row justify-content-around">
+      <div className={isMobile ? "w-100 d-flex flex-column justify-content-between title-14" : "w-100 d-flex flex-row justify-content-between"}>
+        <div className="w-25 d-flex flex-row justify-content-between">
           <input
             type="radio"
             id={selected}
@@ -70,7 +71,7 @@ const ResultBetList = ({ bets, total }: any) => {
           />
           <label>Deleted</label>
         </div>
-        <div className="w-35 d-flex flex-row justify-content-around">
+        <div className="w-35 d-flex flex-row justify-content-around right-0">
           <span>Total Bets: {total}</span>
           <span>
             Total Amount:{" "}

@@ -7,16 +7,10 @@ import MobileMatchList from "../matchList/mobile";
 import SportsFilterJson from "./sportsFilters.json";
 
 const SportsFilters = ({ type, setMatchType }: any) => {
-
-
-
-  const { tabList} = useSelector(
-    (state: RootState) => state.match.matchList
-  );
+  const { tabList } = useSelector((state: RootState) => state.match.matchList);
   return (
     <div className="m-0 p-0 w-100 ">
-     <LatestEvent events={tabList}/>
-      {" "}
+      <LatestEvent events={tabList} />
       <CommonTabs
         customClass="overflow-x-auto overflow-y-hidden no-wrap lh-1"
         defaultActive={

@@ -51,6 +51,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         return "#355e3b";
     }
   };
+
   return (
     <div className="cardResultBoxContainer">
       <div className="cardResultBoxHeader">
@@ -402,7 +403,26 @@ const CardResultBox = ({ data, name, type }: any) => {
                     ? name?.[1]
                     : name?.[2]}
                 </span>
-              ) : (
+              ) :  type === "worli" ? (
+                <span
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    color:
+                      item?.result === "1"
+                        ? "#ffff33"
+                        : item?.result === "2"
+                        ? "#ffff33"
+                        : "#ffff33",
+                  }}
+                >
+                  {item?.result === "1"
+                    ? name?.[0]
+                    : item?.result === "2"
+                    ? name?.[1]
+                    : name?.[2]}
+                </span>
+              ) :(
                 <span
                   style={{
                     fontSize: "16px",

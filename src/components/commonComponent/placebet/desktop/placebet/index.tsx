@@ -48,7 +48,7 @@ const placeBetHeader = [
   },
 ];
 
-const DesktopPlacedBet = ({ type }:any) => {
+const DesktopPlacedBet = ({ type }: any) => {
   const [stake, setStake] = useState<any>(0);
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
@@ -145,9 +145,7 @@ const DesktopPlacedBet = ({ type }:any) => {
         browserDetail: browserInfo?.userAgent,
         matchId: selectedBet?.team?.matchId,
         ipAddress:
-          ipAddress === "Not found" || !ipAddress
-            ? "192.168.1.100"
-            : ipAddress,
+          ipAddress === "Not found" || !ipAddress ? "192.168.1.100" : ipAddress,
         odd: parseFloat(selectedBet?.team?.odd),
         stake: [
           "Line1 Single",
@@ -165,12 +163,11 @@ const DesktopPlacedBet = ({ type }:any) => {
 
       if (
         selectedBet?.data?.type === "3cardj" &&
-        selectedBet?.team?.betOnTeam.split(" ")[1]
-          .length < 3
+        selectedBet?.team?.betOnTeam.split(" ")[1].length < 3
       ) {
         return;
       }
-      
+
       setMatchOddLoading(true);
       dispatch(
         placeBet({
@@ -182,44 +179,44 @@ const DesktopPlacedBet = ({ type }:any) => {
     }
   };
 
-
   return (
     <>
       <div className="loader-container">
         {(loading || matchOddLoading) && <CustomLoader />}
-          {selectedBet ? <>
-        <RightPanelContainer title="Place Bet">
-            <Table className="w-full">
-              <thead>
-                <tr className="bg-darkGrey">
-                  {placeBetHeader?.map((item, index) => (
-                    <th
-                      key={index}
-                      className="title-12 bg-darkGrey"
-                      style={{
-                        textAlign: item?.name === "Profit" ? "end" : "start",
-                      }}
-                    >
-                      {item?.name}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                   className={`
+        {selectedBet ? (
+          <>
+            <RightPanelContainer title="Place Bet">
+              <Table className="w-full">
+                <thead>
+                  <tr className="bg-darkGrey">
+                    {placeBetHeader?.map((item, index) => (
+                      <th
+                        key={index}
+                        className="title-12 bg-darkGrey"
+                        style={{
+                          textAlign: item?.name === "Profit" ? "end" : "start",
+                        }}
+                      >
+                        {item?.name}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    className={`
                     ${
                       type === cardGamesType.andarBahar1
-                        ? selectedBet?.team?.name?.includes('Andar')
-                          ? "game-type-andar" 
-                          : "game-type-bahar" 
+                        ? selectedBet?.team?.name?.includes("Andar")
+                          ? "game-type-andar"
+                          : "game-type-bahar"
                         : selectedBet?.team?.bettingType === "LAY"
-                        ? "place-bet-table-red" 
-                        : "place-bet-table-blue" 
+                        ? "place-bet-table-red"
+                        : "place-bet-table-blue"
                     }
                   `}
-                >
-                  {/* <td width={"8%"}>
+                  >
+                    {/* <td width={"8%"}>
                     <span
                       className=" text-danger title-12 cursor-pointer"
                       onClick={() => {
@@ -229,180 +226,198 @@ const DesktopPlacedBet = ({ type }:any) => {
                       <ImCross />
                     </span>
                   </td> */}
-                  <td width={"34%"}>
-                  <span
-                      className=" text-danger title-12 cursor-pointer">
-                      <ImCross />
-                    </span>
-                    <span className="f600 title-14">
-                      {selectedBet?.team?.name}
-                    </span>
-                  </td>
-                  <td width={"20%"}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        height: "24px",
-                      }}
-                    >
-                      <input
-                        // disabled
-                        placeholder=""
-                        className="p-0 w-75 br-0 title-13"
-                        style={{ border: "2px solid #f0f0f0" }}
-                        value={matchOddRate}
-                      />
+                    <td width={"34%"}>
+                      <span className=" text-danger title-12 cursor-pointer">
+                        <ImCross />
+                      </span>
+                      <span className="f600 title-14">
+                        {selectedBet?.team?.name}
+                      </span>
+                    </td>
+                    <td width={"20%"}>
                       <div
                         style={{
-                          backgroundColor: "#f0f0f0",
                           display: "flex",
-                          flexDirection: "column",
-                          width: "15px",
-                          height: "100%",
-                          justifyContent: "space-around",
+                          flexDirection: "row",
+                          height: "24px",
                         }}
                       >
-                        <FaChevronUp
-                          style={{ width: "8px", height: "10px" }}/>
-                        <FaChevronDown
-                          style={{ width: "8px", height: "10px" }}/>
+                        <input
+                          // disabled
+                          placeholder=""
+                          className="p-0 w-75 br-0 title-13"
+                          style={{ border: "2px solid #f0f0f0" }}
+                          value={matchOddRate}
+                        />
+                        <div
+                          style={{
+                            backgroundColor: "#f0f0f0",
+                            display: "flex",
+                            flexDirection: "column",
+                            width: "15px",
+                            height: "100%",
+                            justifyContent: "space-around",
+                          }}
+                        >
+                          <FaChevronUp
+                            style={{ width: "8px", height: "10px" }}
+                          />
+                          <FaChevronDown
+                            style={{ width: "8px", height: "10px" }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td width={"25%"}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        height: "24px",
-                      }}
-                    >
-                      <input
-                        value={stake}
-                        min={0}
-                        onChange={(e) => {
-                          dispatch(
-                            selectedBetAction({
-                              ...selectedBet,
-                              team: {
-                                ...selectedBet?.team,
-                                stake: +e.target.value,
-                              },
-                            })
-                          );
+                    </td>
+                    <td width={"25%"}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          height: "24px",
                         }}
-                        type="number"
-                        onKeyDown={handleKeyDown}
-                        placeholder=""
-                        className="p-0 w-100 br-0 title-13"
-                        style={{ border: "2px solid #f0f0f0" }}
-                      />
-                    </div>
-                  </td>
-                  <td width={"18%"} style={{ textAlign: "end" }}>
-                    <span className="f500" style={{ textAlign: "end" }}></span>
-                  </td>
-                </tr>
-                <tr
-                 className={`
+                      >
+                        <input
+                          value={stake}
+                          min={0}
+                          onChange={(e) => {
+                            dispatch(
+                              selectedBetAction({
+                                ...selectedBet,
+                                team: {
+                                  ...selectedBet?.team,
+                                  stake: +e.target.value,
+                                },
+                              })
+                            );
+                          }}
+                          type="number"
+                          onKeyDown={handleKeyDown}
+                          placeholder=""
+                          className="p-0 w-100 br-0 title-13"
+                          style={{ border: "2px solid #f0f0f0" }}
+                        />
+                      </div>
+                    </td>
+                    <td width={"18%"} style={{ textAlign: "end" }}>
+                      <span
+                        className="f500"
+                        style={{ textAlign: "end" }}
+                      ></span>
+                    </td>
+                  </tr>
+                  <tr
+                    className={`
                   ${
                     type === cardGamesType.andarBahar1
                       ? selectedBet?.team?.bettingType === "BACK"
-                        ? "game-type-andar" 
-                        : "game-type-bahar" 
+                        ? "game-type-andar"
+                        : "game-type-bahar"
                       : selectedBet?.team?.bettingType === "LAY"
-                      ? "place-bet-table-red" 
-                      : "place-bet-table-blue" 
+                      ? "place-bet-table-red"
+                      : "place-bet-table-blue"
                   }
                 `}
-                >
-                  <td colSpan={5}>
-                    <Container fluid>
-                      <Row>
-                        {valueLabel?.map((item: any, index: any) => (
-                          <Col className="p-1" key={index} md={3}>
-                            <CustomButton
-                              className="w-100 bg-darkGrey border-0 text-black"
-                              size="sm"
+                  >
+                    <td colSpan={5}>
+                      <div>
+                        <Row style={{ padding: "0.5rem" }}>
+                          {valueLabel?.map((item: any, index: any) => (
+                            <Col className="p-1" key={index} md={3}>
+                              <CustomButton
+                                className="w-100 bg-darkGrey border-0 text-black"
+                                size="sm"
+                                onClick={() => {
+                                  dispatch(
+                                    selectedBetAction({
+                                      ...selectedBet,
+                                      team: {
+                                        ...selectedBet?.team,
+                                        stake: +item?.value,
+                                      },
+                                    })
+                                  );
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    fontSize: "14px",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  {formatNumber(item?.label)}
+                                </span>
+                              </CustomButton>
+                            </Col>
+                          ))}
+                        </Row>
+                        <div className="w-100 d-flex flex-row justify-content-between">
+                          <div>
+                            <div
+                              style={{
+                                width: "80px",
+                                height: "38px",
+                                backgroundColor: "#097c93",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                color: "#fff",
+                                fontSize: "14px",
+                                borderRadius: "3px",
+                              }}
+                              onClick={() => setShow(true)}
+                            >
+                              Edit
+                            </div>
+                          </div>
+
+                          <div className="reset1-submit1-btn-container">
+                            <button
+                              className="reset-buttonn1"
                               onClick={() => {
-                                dispatch(
-                                  selectedBetAction({
-                                    ...selectedBet,
-                                    team: {
-                                      ...selectedBet?.team,
-                                      stake: +item?.value,
-                                    },
-                                  })
-                                );
+                                dispatch(selectedBetAction(null));
+                              }}
+                              style={{
+                                fontSize: "13px",
                               }}
                             >
-                             <span
-                                style={{ fontSize: "14px", fontWeight: "bold"}}
-                              >
-                                {formatNumber(item?.label)}
-                              </span>
-                            </CustomButton>
-                          </Col>
-                        ))}
-                      </Row>
-                      <Row>
-                      <Col xs={8}>
-                          <div
-                            style={{
-                              width: "50px",
-                              height: "38px",
-                              backgroundColor: "#097c93",
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              color: "#fff",
-                              fontSize: "14px",
-                              borderRadius: "3px",
-                            }}
-                            onClick={() => setShow(true)}
-                          >
-                            Edit
+                              Reset
+                            </button>
+                            <button
+                              disabled={
+                                selectedBet?.team?.stake == 0
+                                  ? true
+                                  : false &&
+                                    (selectedBet?.team?.isActive != undefined
+                                      ? selectedBet?.team?.isActive
+                                      : true)
+                              }
+                              className="submit-buttonn1"
+                              onClick={handleSubmit}
+                              style={{
+                                backgroundColor:
+                                  selectedBet?.team?.stake == 0 ||
+                                  (selectedBet?.team?.isActive != undefined
+                                    ? !selectedBet?.team?.isActive
+                                    : false)
+                                    ? "#198754"
+                                    : "#086f3f",
+                                fontSize: "13px",
+                              }}
+                            >
+                              Submit
+                            </button>
                           </div>
-                        </Col>
-
-                        <Col md={4} className="reset1-submit1-btn-container">
-                          <button
-                            className="reset-buttonn1"
-                            onClick={() => {
-                              dispatch(selectedBetAction(null));
-                            }}
-                            style={{
-                              fontSize:"13px"
-                            }}
-                          >
-                            Reset
-                          </button>
-                          <button
-                          disabled={selectedBet?.team?.stake == 0?true:false}
-                            className="submit-buttonn1"
-                            onClick={handleSubmit}
-                            style={{
-                              backgroundColor:
-                              selectedBet?.team?.stake == 0 
-                                ? "#198754"
-                                : "#086f3f",
-                                  fontSize:"13px"
-                            }}
-                          >
-                            Submit
-                          </button>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
-            </RightPanelContainer></> : (
-             ""
-           )} 
-        
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </RightPanelContainer>
+          </>
+        ) : (
+          ""
+        )}
       </div>
       <Modal show={shown} onHide={() => setShow(false)}>
         <Modal.Header

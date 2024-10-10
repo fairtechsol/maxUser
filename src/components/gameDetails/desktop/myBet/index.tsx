@@ -31,7 +31,9 @@ const MyBet = () => {
               {placeBetHeader?.map((item) => (
                 <th
                   key={item?.id}
-                  className={`title-14 ${item?.id==="stake"?"text-end" :"text-start"} fbold bg-light lh-1`}
+                  className={`title-14 ${
+                    item?.id === "stake" ? "text-end" : "text-start"
+                  } fbold bg-light lh-1`}
                 >
                   {item?.name}
                 </th>
@@ -55,7 +57,7 @@ const MyBet = () => {
                       bet?.betType === "NO" || bet?.betType === "LAY"
                         ? "bg-red1"
                         : "bg-blue3"
-                    }`} 
+                    }`}
                   >
                     <th
                       className={`title-14 text-start f400 lh-05 ${
@@ -68,7 +70,7 @@ const MyBet = () => {
                         ? bet?.teamName?.split(".")?.[1]?.trim()
                           ? bet?.teamName?.split(".")?.[1]?.trim()
                           : bet?.teamName
-                        : bet?.bettingName ?? bet?.teamName}
+                        : bet?.teamName ?? bet?.bettingName}
                     </th>
                     <th
                       className={`title-14 text-start f400 lh-05 ${

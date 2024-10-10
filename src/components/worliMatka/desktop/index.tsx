@@ -74,7 +74,7 @@ const MatkaDesktop = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.worli1}`);
   }, []);
 
   return (
@@ -148,8 +148,8 @@ const MatkaDesktop = () => {
                 <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R"]}
-                    type={cardGamesType.worli}
+                    name={["R", "R", "R"]}
+                    type={cardGamesType.worli1}
                   />
                 </div>
               </div>

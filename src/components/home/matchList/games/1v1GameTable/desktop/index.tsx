@@ -219,7 +219,11 @@ const MatchListRow = ({ item, matchType }: any) => {
       <BackLayComponent
         backRate={
           (item?.matchOdds?.[0]?.runners &&
-            item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack[2]?.price) ??
+            item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.[
+              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.length > 1
+                ? 2
+                : 0
+            ]?.price) ??
           item?.matchOdds?.[0]?.backTeamA ??
           0
         }
@@ -234,12 +238,18 @@ const MatchListRow = ({ item, matchType }: any) => {
       <BackLayComponent
         backRate={
           (item?.matchOdds?.[0]?.runners &&
-            item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack[2]?.price) ??
+            item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack[
+              item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack?.length > 1
+                ? 2
+                : 0
+            ]?.price) ??
+          item?.matchOdds?.[0]?.backTeamC ??
           0
         }
         layRate={
           (item?.matchOdds?.[0]?.runners &&
             item?.matchOdds?.[0]?.runners[2]?.ex?.availableToLay[0]?.price) ??
+          item?.matchOdds?.[0]?.layTeamC ??
           0
         }
         active={false}
@@ -247,12 +257,18 @@ const MatchListRow = ({ item, matchType }: any) => {
       <BackLayComponent
         backRate={
           (item?.matchOdds?.[0]?.runners &&
-            item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack[2]?.price) ??
+            item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack[
+              item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack?.length > 1
+                ? 2
+                : 0
+            ]?.price) ??
+          item?.matchOdds?.[0]?.backTeamB ??
           0
         }
         layRate={
           (item?.matchOdds?.[0]?.runners &&
             item?.matchOdds?.[0]?.runners[1]?.ex?.availableToLay[0]?.price) ??
+          item?.matchOdds?.[0]?.layTeamB ??
           0
         }
         active={false}

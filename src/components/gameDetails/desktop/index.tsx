@@ -148,13 +148,13 @@ const DesktopGameDetail = () => {
 
   return (
     <Container fluid className="pe-0 ps-1">
-      <Row>
+      <Row className="p-0">
         <Col md={8}>
           <Container className="p-0">
             <>
-              <Col md={12}>
+              <Col md={12} className="p-0">
                 <BetTableHeader
-                  customClass="mt-1 py-2"
+                  customClass="mt-1 py-1 "
                   title={matchDetails?.title}
                   rightComponent={
                     <span className="title-16 fbold text-white">
@@ -676,14 +676,14 @@ const DesktopGameDetail = () => {
                 </div>
               </Col>
               {channelId !== "0" && channelId !== "" && (
-                <Col md={12}>
+                <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent channelId={channelId} />
                 </Col>
               )}
-              <Col md={12}>
+              <Col md={12} className="px-1 pt-1">
                 <PlacedBet />
               </Col>
-              <Col md={12}>
+              <Col md={12} className="px-1 pt-1 ">
                 <MyBet />
               </Col>
             </Row>

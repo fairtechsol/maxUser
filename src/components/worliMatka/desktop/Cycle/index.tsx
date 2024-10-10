@@ -4,6 +4,10 @@ import { FaInfoCircle } from "react-icons/fa"; // Using an info icon from react-
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
+import WorliClearBox from "../../mobile/WorliClearBox";
+import { isMobile } from "../../../../utils/screenDimension";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 import "../style.scss";
 
 const Cycle = ({ data, odds }: any) => {
@@ -11,6 +15,10 @@ const Cycle = ({ data, odds }: any) => {
   const [selectedBoxes, setSelectedBoxes] = useState<number[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [betTeam, setBetTeam] = useState<string>("");
+  const [mobileBox, setMobileBox] = useState(false);
+  const { selectedBet } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
   // const handleBoxClick = (index: number) => {
   //   setSelectedBoxes((prev) => {
@@ -57,7 +65,6 @@ const Cycle = ({ data, odds }: any) => {
   //   }
   // };
 
-  
   const handleBet = () => {
     let team = {
       bettingType: "BACK",
@@ -66,9 +73,11 @@ const Cycle = ({ data, odds }: any) => {
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: betTeam,
-      name: betTeam,
+      name: betTeam + " Cycle",
       bettingName: "Match odds",
       selectionId: odds?.sid,
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -79,16 +88,29 @@ const Cycle = ({ data, odds }: any) => {
   };
 
   useEffect(() => {
-    if (betTeam) {
+    if (betTeam && !isMobile) {
+      handleBet();
+    } else if (betTeam && isMobile && mobileBox) {
       handleBet();
     }
-  }, [betTeam]);
+  }, [betTeam, mobileBox]);
 
   useEffect(() => {
     if (odds?.gstatus === "0") {
       dispatch(selectedBetAction(""));
+      setBetTeam("");
+
+      setMobileBox(false);
     }
   }, [odds?.gstatus]);
+
+
+  useEffect(() => {
+    if (selectedBet == null) {
+      setBetTeam("");
+      setMobileBox(false);
+    }
+  }, [selectedBet]);
 
   const renderBox = (value: string, index: number) => (
     <div
@@ -118,6 +140,12 @@ const Cycle = ({ data, odds }: any) => {
     </div>
   );
 
+  const handleClear = ()=>{
+  
+    setBetTeam("")
+    setMobileBox(false)
+  }
+
   return (
     <div className={`${odds?.gstatus == 0 ? "suspended-bo" : ""} worli-full`}>
       <div className="worli-box-title">
@@ -142,6 +170,9 @@ const Cycle = ({ data, odds }: any) => {
       )}
 
       {/* React Bootstrap Modal */}
+      {isMobile && ( betTeam?.length > 0) && (
+        <WorliClearBox game="Cycle" team={betTeam} zeros={""} setBox={setMobileBox} handleClear={handleClear} disabled={betTeam?.length < 2} />
+      )}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Place Bet</Modal.Title>

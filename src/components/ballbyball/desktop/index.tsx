@@ -182,7 +182,7 @@ const TeenPattiDesktop = () => {
                 {curR && (
                   <img
                     className="elem"
-                    src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${resultData?.result?.win}.png`}
+                    src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${resultData?.result?.desc.split(" ")[0]}.png`}
                     style={{
                       position: "absolute",
                       top: "50%",
