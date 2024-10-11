@@ -110,6 +110,7 @@ const matchListSlice = createSlice({
         state.success = false;
         state.error = null;
         state.marketId = "";
+        state.matchDetails = null;
       })
       .addCase(matchDetailAction.fulfilled, (state, action) => {
         state.loading = false;

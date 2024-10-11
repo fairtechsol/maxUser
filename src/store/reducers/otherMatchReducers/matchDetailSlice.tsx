@@ -49,6 +49,7 @@ const otherMatchDetail = createSlice({
         state.loading = true;
         state.success = false;
         state.error = null;
+        state.otherMatchDetails = null;
       })
       .addCase(otherMatchDetailAction.fulfilled, (state, action) => {
         state.loading = false;

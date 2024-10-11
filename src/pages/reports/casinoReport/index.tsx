@@ -160,7 +160,7 @@ const CasinoReports = () => {
             </Row>
             <CustomTable2
               // width={isMobile ? "1200px" : ""}
-              placeHolder={`${cardReport?.count} records`}
+              placeHolder={cardReport?.count>0?`${cardReport?.count} records`:"0 records..."}
               paginationCount={true}
               bordered={true}
               striped={!isMobile}
