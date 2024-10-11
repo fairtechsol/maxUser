@@ -6,7 +6,10 @@ import { RootState } from "../../../store/store";
 import { FaTv } from "react-icons/fa";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
-import { ApiConstants, Constants } from "../../../utils/constants";
+import {
+  Constants,
+  liveStreamPageUrl,
+} from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import CommonTabs from "../../commonComponent/tabs";
@@ -128,19 +131,18 @@ const MobileGameDetail = () => {
               })`}</div>
             ),
           },
-          channelId !== "0" &&
-            channelId !== "" && {
-              // id: "live",
-              name: (
-                <div
-                  onClick={() => setShowVideo(!showVideo)}
-                  className="ps-5"
-                  // style={{  lineHeight: 1.22 }}
-                >
-                  <FaTv size={15} />
-                </div>
-              ),
-            },
+          matchDetails?.eventId && {
+            // id: "live",
+            name: (
+              <div
+                onClick={() => setShowVideo(!showVideo)}
+                className="ps-5"
+                // style={{  lineHeight: 1.22 }}
+              >
+                <FaTv size={15} />
+              </div>
+            ),
+          },
         ]
           ?.filter(Boolean) // Remove null values from the array
           .map((item, index) => (
@@ -165,7 +167,7 @@ const MobileGameDetail = () => {
                           <Col md={12}>
                             <Ratio aspectRatio="16x9">
                               <iframe
-                                src={`${ApiConstants.LIVESTREAM.GET_VIDEO}?chid=${channelId}`}
+                                src={`${liveStreamPageUrl}${matchDetails?.eventId}`}
                                 title="Live Stream"
                                 referrerPolicy="strict-origin-when-cross-origin"
                               ></iframe>

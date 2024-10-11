@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import VideoPage from "../pages/public/VideoPage";
 import ScoreBoardPage from "../pages/public/ScoreBoardPage";
 import OtherLayout from "../layout/otherLayout";
+import LiveStreamPage from "../pages/public/liveStreamPage";
 
 const OtherRoutes = {
   path: "/",
@@ -11,6 +12,10 @@ const OtherRoutes = {
     {
       path: "videoPage/:vidId",
       element: <VideoPage />,
+    },
+    {
+      path: "liveStream/:vidId",
+      element: <LiveStreamPage />,
     },
     {
       path: "scoreBoardPage/:vidId",
