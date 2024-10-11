@@ -167,9 +167,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         dispatch(getRunAmount(item?.id));
                       }}
                     >
-                      {(item?.RunnerName || item?.name)?.length > 25
-                        ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...`
-                        : item?.RunnerName || item?.name}
+                      {item?.RunnerName || item?.name}
                     </span>{" "}
                     <span
                       className={`${
@@ -464,12 +462,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           dispatch(getRunAmount(item?.id));
                         }}
                       >
-                        {(item?.RunnerName || item?.name)?.length > 25
-                          ? `${(item?.RunnerName || item?.name)?.slice(
-                              0,
-                              25
-                            )}...`
-                          : item?.RunnerName || item?.name}
+                        {item?.RunnerName || item?.name}
                       </span>{" "}
                       <span
                         className={`${
