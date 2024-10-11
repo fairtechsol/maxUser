@@ -10,6 +10,7 @@ import "./style.scss";
 
 const SearchBox = () => {
   const [searchIco, setSearchIco] = useState(false);
+  const [searchValue,setSearchValue] = useState("")
 
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
@@ -21,7 +22,7 @@ const SearchBox = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const debouncedInputValue = useMemo(() => {
-    return debounce((value) => {
+    return debounce((value:any) => {
       dispatch(
         getMatchListSearch({
           type: "search",
@@ -30,18 +31,20 @@ const SearchBox = () => {
       );
     }, 500);
   }, []);
+  
   return (
     <div className={`search-box  ${searchIco ? "searchIcoActive" : ""} `}>
       {/* <div className={`position-relative`}> */}
       <input
         type="text"
         onChange={(e: any) => {
+          setSearchValue(e.target.value)
           if (e.target.value?.length > 2) {
             debouncedInputValue(e.target.value);
           }
         }}
       />
-      {searchIco && searchedMatchList && (
+      {searchIco && searchedMatchList && searchValue?.length>0 && (
         <SearchResult setOpen={setSearchIco} data={searchedMatchList} />
       )}
 
