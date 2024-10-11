@@ -17,7 +17,7 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
 
   return (
     <CustomModal show={show} setShow={setShow} title={"My Market"}>
-      <div className="market">
+      <div className="market" >
         <CustomTable
           bordered={isMobile}
           striped={!isMobile}
@@ -44,8 +44,8 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
         >
           {myMarketList?.map((item: any, index: number) => {
             return (
-              <tr key={index}>
-                <td>{item?.eventType}</td>
+              <tr style={{fontSize:isMobile?"12px":"16px"}} key={index}>
+                <td style={{textAlign:isMobile?"left":"left"}}>{item?.eventType}</td>
                 <td style={{ color: "#007bff" }}>
                   <Link
                     to={
@@ -58,6 +58,7 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
                         ? `/other-game-detail/${item.eventType}/${item.matchId}`
                         : `/${navigateToGameDetail[item.eventType]}`
                     }
+                    style={{color:"#0d6efd"}}
                     onClick={() => setShow(false)}
                   >
                     {item?.eventName}

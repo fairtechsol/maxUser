@@ -1,26 +1,37 @@
 @import "/src/assets/variable.scss";
 $btn-close-bg: 11;
+
 .customModal {
-    .modal-header {
-        border: 0 !important;
-        padding: 8px 12px;
-        .modal-title {
-            font-size: 20px !important;
-        }
-        // .btn-close {
-        //     opacity: 1;
-        //     margin-right: 0;
-        //     color: $white !important;
-        //     background: none !important;
-        //     &:after {
-        //         content: "x";
-        //         position: relative;
-        //         left: -0px;
-        //         top: -5px;
-        //         // width: 44rem !important;
-        //         // font-weight: 900;
-        //         font-size: 1.2rem;
-        //     }
-        // }
+  .modal-dialog {
+    max-width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    .modal-dialog {
+      max-width: 95%;
     }
+  }
+
+  .modal-header {
+    border: 0 !important;
+    padding: 8px 12px;
+    .modal-title {
+      font-size: 20px !important;
+    }
+    // .btn-close {
+    //     opacity: 1;
+    //     margin-right: 0;
+    //     color: $white !important;
+    //     background: none !important;
+    //     &:after {
+    //         content: "x";
+    //         position: relative;
+    //         left: -0px;
+    //         top: -5px;
+    //         // width: 44rem !important;
+    //         // font-weight: 900;
+    //         font-size: 1.2rem;
+    //     }
+    // }
+  }
 }
