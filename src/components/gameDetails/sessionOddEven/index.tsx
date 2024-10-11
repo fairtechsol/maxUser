@@ -111,9 +111,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                       className="f-size15"
                       style={{ width: "60%", fontWeight: "400", lineHeight: 1 }}
                     >
-                      {item?.RunnerName?.length > 25
-                        ? `${item?.RunnerName?.slice(0, 25)}...`
-                        : item?.RunnerName}
+                      {item?.RunnerName}
                     </span>{" "}
                     <span
                       className={`${
@@ -252,9 +250,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                           lineHeight: 1,
                         }}
                       >
-                        {item?.RunnerName?.length > 25
-                          ? `${item?.RunnerName?.slice(0, 25)}...`
-                          : item?.RunnerName}
+                        {item?.RunnerName}
                       </span>{" "}
                       <span
                         className={`${

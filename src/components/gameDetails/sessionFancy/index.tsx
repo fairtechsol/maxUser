@@ -108,9 +108,7 @@ const SessionFancy = ({ title, data, detail }) => {
                       className="f-size15"
                       style={{ fontWeight:"400", lineHeight: 1 }}
                     >
-                      {item?.RunnerName?.length > 25
-                        ? `${item?.RunnerName?.slice(0, 25)}...`
-                        : item?.RunnerName}
+                      {item?.RunnerName}
                     </span>{" "}
                     <span
                       className={`${
@@ -253,9 +251,7 @@ const SessionFancy = ({ title, data, detail }) => {
                           lineHeight: 1,
                         }}
                       >
-                        {item?.RunnerName?.length > 25
-                          ? `${item?.RunnerName?.slice(0, 25)}...`
-                          : item?.RunnerName}
+                        {item?.RunnerName}
                       </span>
                       <span
                         className={`${
