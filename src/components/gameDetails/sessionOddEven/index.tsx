@@ -152,7 +152,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                     )}
                     <div
                       style={{
-                        width: "100%",
+                        width: "33.33%",
                         display: "flex",
                         flexDirection: "column",
                         borderRight: "1px solid #c7c8ca",
@@ -185,7 +185,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                     </div>
                     <div
                       style={{
-                        width: "100%",
+                        width: "33.33%",
                         display: "flex",
                         flexDirection: "column",
                       }}
@@ -215,7 +215,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         </span>
                       </div>
                     </div>
-                    <div className="sessionMinBoxContainer">
+                    <div className="sessionMinBoxContainer" style={{width:"33.33%"}}>
                       <span className={`sessionMinBox`}>
                         Min:{formatNumber(item?.min)}
                       </span>
