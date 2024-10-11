@@ -15,7 +15,7 @@ interface ButtonProps {
   value: string;
 }
 
-const ButtonValues = () => {
+const ButtonValues = ({setShow}:any) => {
   const [casinoBtn, setCasinoBtn] = useState(false)
   const initialValues = [
     {
@@ -73,6 +73,7 @@ const ButtonValues = () => {
         value: result,
       };
       dispatch(setButtonValue(payload));
+      setShow(false);
     },
   });
 

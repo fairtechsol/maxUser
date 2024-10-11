@@ -15,6 +15,7 @@ function CustomModal({
   title,
   children,
   footer,
+  size,
   ...props
 }: any) {
   const dispatch: AppDispatch = useDispatch();
@@ -24,6 +25,7 @@ function CustomModal({
       <Modal
         {...props}
         show={show}
+        size={size}
         onHide={() => setShow(false)}
         className={`customModal ${customClass}`}
       >

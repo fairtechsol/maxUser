@@ -194,7 +194,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             {(data?.activeStatus !== "live" ||
               ( data?.runners?.[0]?.status !== "ACTIVE" && data?.runners?.[0]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesBookmaker">
-                <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[0]?.status}</span>
               </div>
             )}
             {box === 6 ? (
@@ -348,7 +348,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
             {(data?.activeStatus !== "live" ||
               ( data?.runners?.[1]?.status !== "ACTIVE" && data?.runners?.[1]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesBookmaker">
-                <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[1]?.status}</span>
               </div>
             )}
             {box === 6 ? (
@@ -503,7 +503,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
               {(data?.activeStatus !== "live" ||
                 ( data?.runners?.[2]?.status !== "ACTIVE" && data?.runners?.[2]?.status !== "OPEN")) && (
                 <div className="suspended-overlayRatesBookmaker">
-                  <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                  <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[2]?.status}</span>
                 </div>
               )}
               {box === 6 ? (
