@@ -7,7 +7,7 @@ const CasinoHead = ({activeTab, setActiveTab, setShow} : any) => {
   return (
     <div className="horseRacingTabHeader-m">
       <div>
-        <span className="title-12 px-2 fbold">{dragonTigerDetail?.name}</span>
+        <span className="title-12 px-2 fbold">{dragonTigerDetail?.name=="Casino Meter"?"CASINO METER":dragonTigerDetail?.name}</span>
        {dragonTigerDetail?.name === "Queen" || dragonTigerDetail?.name === "3 CARDS JUDGEMENT"  || dragonTigerDetail?.name === "INSTANT WORLI" ? "" : <span className="title-12 f400" onClick={() => setShow(true)}>
           Rules
         </span>}
