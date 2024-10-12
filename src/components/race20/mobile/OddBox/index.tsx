@@ -40,7 +40,7 @@ const OddBox = ({ odds, data }: any) => {
   };
   const handleLock = (item: any, type: string) => {
     if (type == "back") {
-      if (item?.gstatus != "ACTIVE" || item?.b1 === "0.00") {
+      if (item?.gstatus != "ACTIVE" || item?.b1 === "0.00" ) {
         return true;
       } else {
         return false;
@@ -137,7 +137,7 @@ const OddBox = ({ odds, data }: any) => {
                       <span className="casino-volume f400">{item?.bs1}</span>
                     </div>
                     <div
-                      className={`lay-BackGround py-1${
+                      className={`lay-BackGround py-1 ${
                         handleLock(item, "lay") ? "suspended py-1" : ""
                       }`}
                       style={{

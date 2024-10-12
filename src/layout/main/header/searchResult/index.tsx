@@ -24,7 +24,7 @@ const SearchResult = ({ data, setOpen }: any) => {
   //   };
   // }, [setOpen]);
   return (
-    <div className="position-absolute bg-white text-black p-1 search-result">
+    <div className="position-absolute bg-white text-black p-1 search-result" style={{marginTop: "2.5rem"}}>
       {data?.length == 0 ? (
         <p className="text-start pt-1">No real-time records found</p>
       ) : (
