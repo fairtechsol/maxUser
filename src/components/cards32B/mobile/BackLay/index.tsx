@@ -49,7 +49,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
       </div>
     ) : (
       <div
-        className={`dtlsubTitle ${type}-BackGround ${
+        className={`dtlsubTitle title-14 ${type}-BackGround ${
           handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
         }`}
         onClick={() =>
@@ -93,7 +93,33 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="dtlTitle title-12">Player 8 </div>
+          <div className="card32bTitle "><span className=" title-12">Player 8</span>
+          <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player8"] > 0
+                        ? "color-green"
+                        : JSON.parse(
+                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                          )["player8"] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player8"]
+                    : <br></br>
+                  : 0}
+              </span>
+          </div>
           {renderItem(matchOddsData?.[0], 0, "back")}
           {renderItem(matchOddsData?.[0], 1, "lay")}
         </div>
@@ -101,7 +127,32 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="dtlTitle title-12"> Player 9</div>
+          <div className="card32bTitle"><span className="title-12">Player 9</span>
+          <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player9"] > 0
+                        ? "color-green"
+                        : JSON.parse(
+                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                          )["player9"] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player9"]
+                    : <br></br>
+                  : 0}
+              </span></div>
           {renderItem(matchOddsData?.[1], 2, "back")}
           {renderItem(matchOddsData?.[1], 3, "lay")}
         </div>
@@ -109,7 +160,32 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="dtlTitle title-12"> Player 10</div>
+          <div className="card32bTitle"> <span className="title-12">Player 10</span>
+          <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player10"] > 0
+                        ? "color-green"
+                        : JSON.parse(
+                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                          )["player10"] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player10"]
+                    : <br></br>
+                  : 0}
+              </span></div>
           {renderItem(matchOddsData?.[2], 2, "back")}
           {renderItem(matchOddsData?.[2], 3, "lay")}
         </div>
@@ -117,7 +193,32 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="dtlTitle title-12"> Player 11</div>
+          <div className="card32bTitle"> <span className="title-12">Player 11</span>
+          <span
+                className={`title-14 f400 ${
+                  data?.profitLoss
+                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      ? JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player11"] > 0
+                        ? "color-green"
+                        : JSON.parse(
+                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                          )["player11"] < 0
+                        ? "color-red"
+                        : ""
+                      : ""
+                    : ""
+                }`}
+              >
+                {data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player11"]
+                    : <br></br>
+                  : 0}
+              </span></div>
           {renderItem(matchOddsData?.[3], 2, "back")}
           {renderItem(matchOddsData?.[3], 3, "lay")}
         </div>
