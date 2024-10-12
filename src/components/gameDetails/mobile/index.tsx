@@ -27,6 +27,7 @@ import Tournament from "../tournament";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
+import NewLoader from "../../commonComponent/newLoader";
 
 const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
@@ -34,7 +35,7 @@ const MobileGameDetail = () => {
   const [errorCount, setErrorCount] = useState<number>(0);
   const [channelId, setChannelId] = useState<string>("");
   const [showVideo, setShowVideo] = useState(false);
-  const { matchDetails, marketId } = useSelector(
+  const { matchDetails, marketId,loading } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -157,7 +158,7 @@ const MobileGameDetail = () => {
               }
             >
               {index == 0 ? (
-                <div style={{ width: "98%" }}>
+               !loading ? <div style={{ width: "98%" }}>
                   <Row className="ms-0">
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
 
@@ -520,7 +521,7 @@ const MobileGameDetail = () => {
                       </Col>
                     )} */}
                   </Row>
-                </div>
+                </div> : <div className="w-100 d-flex justify-content-center align-items-center" style={{height:"100vh"}}><NewLoader /></div>
               ) : item?.id === "matchedBet" ? (
                 <MyBet />
               ) : null}

@@ -19,6 +19,7 @@ import ManualMarket from "../../gameDetails/manulMarkets";
 import HtFt from "../htft";
 import { IoInformationCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import NewLoader from "../../commonComponent/newLoader";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -26,7 +27,7 @@ const FootballDesktopGameDetail = () => {
   const [showContactAdmin, setShowContactAdmin] = useState(false);
   const [channelId, setChannelId] = useState<string>("");
 
-  const { otherMatchDetails } = useSelector(
+  const { otherMatchDetails,loading } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
   );
 
@@ -64,7 +65,7 @@ const FootballDesktopGameDetail = () => {
     <Container fluid className="mt-1 pe-0 ps-1">
       <Row>
         <Col md={8}>
-          <Container className="p-0">
+         {!loading ? <Container className="p-0">
             <>
               <Col md={12}>
                 <BetTableHeader
@@ -249,7 +250,7 @@ const FootballDesktopGameDetail = () => {
                     </div>
                   ))}
             </>
-          </Container>
+          </Container>:<div className="w-100 d-flex justify-content-center align-items-center" style={{height:"100vh"}}><NewLoader /></div>}
         </Col>
         <Col md={4} className="p-0">
           <Container className="p-0" fluid ref={placeBetRef}>
