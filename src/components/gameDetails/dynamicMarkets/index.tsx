@@ -166,7 +166,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             {(data?.activeStatus !== "live" ||
               data?.runners?.[0]?.status !== "ACTIVE") && (
               <div className="suspended-overlayRatesdynamic">
-                <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[0]?.status}</span>
               </div>
             )}
             {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
@@ -284,7 +284,7 @@ const DynamicMarket = ({ title, data, detail }) => {
             {(data?.activeStatus !== "live" ||
               data?.runners?.[1]?.status !== "ACTIVE") && (
               <div className="suspended-overlayRatesdynamic">
-                <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[1]?.status}</span>
               </div>
             )}
             {(data?.runners?.[1]?.ex?.availableToBack?.length > 0

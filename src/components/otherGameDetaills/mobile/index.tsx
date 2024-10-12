@@ -18,6 +18,7 @@ import BetTable from "../betTable";
 import HtFt from "../htft";
 import MyBet from "./myBet";
 import FootballPlaceBet from "./placeBet";
+import NewLoader from "../../commonComponent/newLoader";
 
 // import "./style.scss";
 // import BetTable from "../../gameDetails/betTable";
@@ -28,7 +29,7 @@ const FootballMobileGameDetail = () => {
   const [show, setShow] = useState(true);
   const [channelId, setChannelId] = useState<string>("");
 
-  const { otherMatchDetails } = useSelector(
+  const { otherMatchDetails,loading } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
   );
 
@@ -94,8 +95,8 @@ const FootballMobileGameDetail = () => {
               }
             >
               {index == 0 ? (
-                <Container fluid className="p-0">
-                  <Row>
+               !loading ? <div style={{ width: "98%" }}>
+                  <Row className="ms-0">
                     {/* <Col className="g-0" md={12}>
                       <BetTableHeader
                         customClass="py-2"
@@ -136,7 +137,7 @@ const FootballMobileGameDetail = () => {
                       </Col>
                     )}
                     {otherMatchDetails?.bookmaker?.isActive && (
-                      <Col className="g-0 mt-2" md={12}>
+                      <Col className="g-0" md={12}>
                         <Bookmaker
                           title={otherMatchDetails?.bookmaker?.name}
                           box={
@@ -152,7 +153,7 @@ const FootballMobileGameDetail = () => {
                       </Col>
                     )}
                     {otherMatchDetails?.bookmaker2?.isActive && (
-                      <Col className="g-0 mt-2" md={12}>
+                      <Col className="g-0" md={12}>
                         <Bookmaker
                           title={otherMatchDetails?.bookmaker2?.name}
                           box={
@@ -172,7 +173,7 @@ const FootballMobileGameDetail = () => {
                         ?.filter((item: any) => item?.isActive)
                         ?.map((item: any) => (
                           <div key={item?.id} className="p-0">
-                            <Col className="g-0 mt-2" md={12}>
+                            <Col className="g-0" md={12}>
                               <ManualMarket
                                 title={item?.name}
                                 data={item}
@@ -191,7 +192,7 @@ const FootballMobileGameDetail = () => {
                                 <Col
                                   className="g-0"
                                   md={12}
-                                  style={{ marginTop: "10px" }}
+                                  // style={{ marginTop: "10px" }}
                                 >
                                   <HtFt
                                     title={item?.name}
@@ -210,7 +211,7 @@ const FootballMobileGameDetail = () => {
                                 <Col
                                   className="g-0"
                                   md={12}
-                                  style={{ marginTop: "10px" }}
+                                  // style={{ marginTop: "10px" }}
                                 >
                                   <Tournament
                                     title={item?.name}
@@ -366,7 +367,7 @@ const FootballMobileGameDetail = () => {
                       </CommonTabs>
                     </Col> */}
                   </Row>
-                </Container>
+                </div> : <div className="w-100 d-flex justify-content-center align-items-center" style={{height:"100vh"}}><NewLoader /></div>
               ) : (
                 <MyBet />
               )}

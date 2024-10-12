@@ -174,7 +174,7 @@ const MatchOdd = ({ title, data, detail }) => {
             {(data?.activeStatus !== "live" ||
              ( data?.runners?.[0]?.status !== "ACTIVE" && data?.runners?.[0]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesMatchOdd">
-                <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[0]?.status}</span>
               </div>
             )}
             {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
@@ -299,7 +299,7 @@ const MatchOdd = ({ title, data, detail }) => {
             {(data?.activeStatus !== "live" ||
               ( data?.runners?.[1]?.status !== "ACTIVE" && data?.runners?.[1]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesMatchOdd">
-                <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[1]?.status}</span>
               </div>
             )}
             {(data?.runners?.[1]?.ex?.availableToBack?.length > 0
@@ -425,7 +425,7 @@ const MatchOdd = ({ title, data, detail }) => {
               {(data?.activeStatus !== "live" ||
                 ( data?.runners?.[2]?.status !== "ACTIVE" && data?.runners?.[2]?.status !== "OPEN")) && (
                 <div className="suspended-overlayRatesMatchOdd">
-                  <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                  <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[2]?.status}</span>
                 </div>
               )}
               {(data?.runners?.[2]?.ex?.availableToBack?.length > 0

@@ -16,36 +16,22 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
   const { myMarketList } = useSelector((state: RootState) => state.bets);
 
   return (
-    <CustomModal show={show} setShow={setShow} title={"My Market"}>
-      <div className="market">
-        <CustomTable
-          bordered={isMobile}
-          striped={!isMobile}
-          columns={[
+    <CustomModal show={show} setShow={setShow} title={"My Market"} size={"lg"}>
+      <div className="w-100 p-1 d-flex justify-content-center align-items-center" >
+        <table style={{width:"98%",backgroundColor:"#f2f2f2"}}>
+          <thead className={`w-100 ${isMobile?"title-12":"title-14"}`}>
+            <th>EventType</th>
+            <th>Event Name</th>
+            <th>Match Name</th>
+            <th>Trade</th>
+          </thead>
+          <tbody className={`w-100 ${isMobile?"title-12":"title-14"}`}>
             {
-              id: "eventType",
-              label: "EventType",
-            },
-            {
-              id: "eventName",
-              label: "Event Name",
-            },
-            {
-              id: "matchName",
-              label: "Match Name",
-            },
-            {
-              id: "trade",
-              label: "Trade",
-            },
-          ]}
-          itemCount={10}
-          setTableConfig={() => {}}
-        >
-          {myMarketList?.map((item: any, index: number) => {
-            return (
-              <tr key={index}>
-                <td>{item?.eventType}</td>
+             myMarketList?.map((item:any,index:number)=>{
+              return(
+                <>
+                <tr style={{height:"32px",backgroundColor:"#f2f2f2",borderBottom:"0.5px solid #c7c8ca"}}>
+                <td className="d-flex justify-content-start align-items-center">{item?.eventType}</td>
                 <td style={{ color: "#007bff" }}>
                   <Link
                     to={
@@ -65,10 +51,13 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
                 </td>
                 <td>{item?.groupedmarkettype || item?.marketType}</td>
                 <td>{item?.trade}</td>
-              </tr>
-            );
-          })}
-        </CustomTable>
+                </tr>
+                </>
+              )
+             })
+            }
+          </tbody>
+          </table>
       </div>
     </CustomModal>
   );

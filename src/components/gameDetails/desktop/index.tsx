@@ -27,6 +27,8 @@ import "./style.scss";
 import { Link } from "react-router-dom";
 import Iframe from "../../iframe/iframe";
 import Tournament from "../tournament";
+import NewLoader from "../../commonComponent/newLoader";
+
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
@@ -39,7 +41,7 @@ const DesktopGameDetail = () => {
   // const [loading, setLoading] = useState<boolean>(true);
   // const [error, setError] = useState<string | null>(null);
 
-  const { matchDetails, marketId } = useSelector(
+  const { matchDetails, marketId,loading } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -149,7 +151,7 @@ const DesktopGameDetail = () => {
     <Container fluid className="pe-0 ps-1">
       <Row className="p-0">
         <Col md={8}>
-          <Container className="p-0">
+         {!loading ? <Container className="p-0">
             <>
               <Col md={12} className="p-0">
                 <BetTableHeader
@@ -642,7 +644,7 @@ const DesktopGameDetail = () => {
                 </CommonTabs>
               </Col> */}
             </>
-          </Container>
+          </Container>: <div className="w-100 d-flex justify-content-center align-items-center" style={{height:"100vh"}}><NewLoader /></div>}
         </Col>
         <Col md={4} className="p-0 sideBet-W">
           <Container className="p-0" fluid ref={placeBetRef}>

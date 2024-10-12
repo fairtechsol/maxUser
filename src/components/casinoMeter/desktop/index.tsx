@@ -199,7 +199,7 @@ const CasinoMeterDesktop = () => {
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["H", "L"]}
+                    name={["R", "R"]}
                     type={"cmeter"}
                   />
                 </div>

@@ -194,7 +194,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         width: "100%",
                         display: "flex",
                         flexDirection: "column",
-                        borderRight: "1px solid #c7c8ca",
+                        // borderRight: "1px solid #c7c8ca",
                       }}
                     >
                       <div

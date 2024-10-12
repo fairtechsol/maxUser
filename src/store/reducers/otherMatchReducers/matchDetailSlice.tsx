@@ -49,9 +49,10 @@ const otherMatchDetail = createSlice({
         state.loading = true;
         state.success = false;
         state.error = null;
+        state.otherMatchDetails = null;
       })
       .addCase(otherMatchDetailAction.fulfilled, (state, action) => {
-        state.loading = false;
+        // state.loading = false;
         state.success = true;
         state.otherMatchDetails = action.payload;
       })
@@ -78,6 +79,7 @@ const otherMatchDetail = createSlice({
         } = action.payload;
 
         let newSessionBettings = sessionBettings;
+        state.loading = false;
         state.otherMatchDetails = {
           ...state.otherMatchDetails,
           manualSessionActive: sessionBettings?.length >= 0 ? true : false,

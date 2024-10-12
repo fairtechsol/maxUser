@@ -209,7 +209,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             {(data?.activeStatus !== "live" ||
               data?.runners?.[0]?.status !== "ACTIVE") && (
               <div className="suspended-overlayRatesotherMarket">
-                <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[0]?.status}</span>
               </div>
             )}
             {box === 6 ? (
@@ -353,7 +353,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             {(data?.activeStatus !== "live" ||
               data?.runners?.[1]?.status !== "ACTIVE") && (
               <div className="suspended-overlayRatesotherMarket">
-                <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[1]?.status}</span>
               </div>
             )}
             {box === 6 ? (
@@ -494,7 +494,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
               {(data?.activeStatus !== "live" ||
                 data?.runners?.[2]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesotherMarket">
-                  <span className={`suspendTextCmmn`}>SUSPENDED</span>
+                  <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[2]?.status}</span>
                 </div>
               )}
               {box === 6 ? (
