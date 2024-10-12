@@ -27,7 +27,7 @@ const MyBet = () => {
       <thead>
         <tr>
           {placeBetHeader?.map((item) => (
-            <th key={item?.id} className="title-12 text-start lh-05">
+            <th key={item?.id} className="title-12 text-start lh-05" style={{backgroundColor:"#f7f7f7"}}>
               {item?.name}
             </th>
           ))}

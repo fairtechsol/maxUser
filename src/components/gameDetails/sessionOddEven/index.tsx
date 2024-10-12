@@ -121,7 +121,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                         ) < 0
                           ? "color-red"
                           : "color-red"
-                      }  title-14`}
+                      }  title-14 fbold`}
                     >
                       {calculateMaxLoss(
                         detail?.profitLossDataSession,
@@ -214,10 +214,10 @@ const SessionOddEven = ({ title, data, detail }) => {
                       </div>
                     </div>
                     <div className="sessionMinBoxContainer" style={{width:"33.33%"}}>
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Min:{formatNumber(item?.min)}
                       </span>
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Max:{formatNumber(item?.max)}
                       </span>
                     </div>
@@ -226,7 +226,7 @@ const SessionOddEven = ({ title, data, detail }) => {
               );
             })}
           </div>
-
+          
           {oddIndexArray?.length > 0 && (
             <div
               style={{
@@ -235,6 +235,20 @@ const SessionOddEven = ({ title, data, detail }) => {
                 flexDirection: "column",
               }}
             >
+              <div className="sessionYesNoBoxContainer">
+              <div
+                className="sessionYesNoBox rateBoxWidthNormal"
+                // style={{ width: isLap ? "180px" : !isMobile ? "240px" : "" }}
+              >
+                <div className="sessionYesBox back1Background" style={{borderRight:"1px solid #c7c8ca"}}>
+                  <span className={`f-size16 sessionBackTxt`}>Odd</span>
+                </div>
+                <div className="sessionYesBox back1Background">
+                  <span className={`f-size16 sessionBackTxt`}>Even</span>
+                </div>
+                <div className="sessionEmptyBox"></div>
+              </div>
+            </div>
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
                   <div className="sessionOddEvenRateContainer" key={index}>
@@ -260,7 +274,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                           ) < 0
                             ? "color-red"
                             : "color-red"
-                        }  title-14`}
+                        }  title-14 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
@@ -369,10 +383,10 @@ const SessionOddEven = ({ title, data, detail }) => {
                         </div>
                       </div>
                       <div className="sessionMinBoxContainer">
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Min:{formatNumber(item?.min)}
                         </span>
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Max:{formatNumber(item?.max)}
                         </span>
                       </div>
