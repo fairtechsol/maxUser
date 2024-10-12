@@ -113,7 +113,7 @@ const matchListSlice = createSlice({
         state.matchDetails = null;
       })
       .addCase(matchDetailAction.fulfilled, (state, action) => {
-        state.loading = false;
+        // state.loading = false;
         state.success = true;
         state.matchDetails = action.payload;
         state.marketId = action.payload.marketId;
@@ -189,6 +189,7 @@ const matchListSlice = createSlice({
         //     newSessionBettings?.push(apiItem);
         //   }
         // });
+        state.loading = false;
         let parsedSessionBettings =
           state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
         const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];
