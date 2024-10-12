@@ -106,7 +106,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
               style={{ borderBottom: "1px solid #c7c8ca" }}
             >
               <div style={{ backgroundColor: "#f2f2f2", flexGrow: 1 }}>
-                <span className={`sessionMinBox`} style={{ marginLeft: "1%" }}>
+                <span className={`sessionMinBox sessionMinMaxFont`} style={{ marginLeft: "1%" }}>
                   Min:{formatNumber(marketArr?.min)} Max:
                   {formatNumber(marketArr?.max)}
                 </span>

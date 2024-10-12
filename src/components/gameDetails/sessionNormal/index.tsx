@@ -177,7 +177,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         ) < 0
                           ? "color-red"
                           : "color-red"
-                      }  title-14`}
+                      }  title-14 fbold`}
                     >
                       {calculateMaxLoss(
                         detail?.profitLossDataSession,
@@ -384,10 +384,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       )}
                     </div>
                     <div className="sessionMinBoxContainer">
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Min:{formatNumber(item?.min || item?.minBet)}
                       </span>
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Max:{formatNumber(item?.max || item?.maxBet)}
                       </span>
                     </div>
@@ -472,7 +472,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           ) < 0
                             ? "color-red"
                             : "color-red"
-                        }  title-14`}
+                        }  title-14 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
@@ -681,10 +681,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         )}
                       </div>
                       <div className="sessionMinBoxContainer">
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Min:{formatNumber(item?.min || item?.minBet)}
                         </span>
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Max:{formatNumber(item?.max || item?.maxBet)}
                         </span>
                       </div>

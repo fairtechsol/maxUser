@@ -204,10 +204,10 @@ const SessionFancy = ({ title, data, detail }) => {
                       </span>
                     </div>
                     <div className="sessionMinBoxContainer">
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Min:{formatNumber(item?.min)}
                       </span>
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Max:{formatNumber(item?.max)}
                       </span>
                     </div>
@@ -349,10 +349,10 @@ const SessionFancy = ({ title, data, detail }) => {
                         </span>
                       </div>
                       <div className="sessionMinBoxContainer">
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Min:{formatNumber(item?.min)}
                         </span>
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Max:{formatNumber(item?.max)}
                         </span>
                       </div>
