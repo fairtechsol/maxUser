@@ -15,10 +15,6 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
   const result = data?.result?.cards?.split("*");
   const elementsAndar = result?.[0]?.split(",");
 
-
-
-
-
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="abjresultModal mb-2">
@@ -62,17 +58,19 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
                     flexDirection: "row",
                     justifyContent: "center",
                     alignItems: "center",
-                    padding: '6px',
-                    boxShadow: '0 0 4px -1px rgba(0, 0, 0, 0.5)',
-                    marginTop: '10px',
-                    color:"#9e9e9e",
-                    paddingRight:"30px",
-                    paddingLeft:"30px",
-                    width:isMobile?"100%":"40%"
+                    padding: "6px",
+                    boxShadow: "0 0 4px -1px rgba(0, 0, 0, 0.5)",
+                    marginTop: "10px",
+                    color: "#9e9e9e",
+                    paddingRight: "30px",
+                    paddingLeft: "30px",
+                    width: isMobile ? "100%" : "40%",
                   }}
-                > Result
+                >
+                  {" "}
+                  Result
                   {elementsAndar?.map((item: any) => (
-                    <div style={{color:"#000"}}>{item[0]}</div>
+                    <div style={{ color: "#000" }}>{item[0]=="1"?"10":item[0]}</div>
                   ))}
                 </div>
               </div>
@@ -80,12 +78,14 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList
+            bets={data?.bets?.rows ?? 12}
+            total={data?.bets?.count}
+          />
+        </div>
+      )}
     </Container>
   );
 };
