@@ -4,6 +4,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { useEffect } from "react";
 import { formatNumber } from "../../../../helpers";
 import { isMobile } from "../../../../utils/screenDimension";
+import "../style.scss"
 const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any, type: any) => {
