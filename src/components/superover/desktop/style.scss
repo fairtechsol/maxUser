@@ -328,6 +328,28 @@
   vertical-align: middle;
 }
 
+.suspended-row {
+  position: relative;
+}
+.suspended-row::after {
+  content: attr(data-title);
+  background-color: #373636d6;
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  top: 0;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
 @media (max-width: 768px) {
   .tabs-navs .nav-link {
     flex: 1 0 10%;

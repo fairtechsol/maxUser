@@ -81,10 +81,11 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           flexDirection: "column",
           border: "0.3px solid #c7c8ca",
           marginLeft: "5px",
+          background:"#F2F2F2"
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitlee">
+          <div className="dtlTitlee" style={{background:"#F2F2F2"}}>
             {" "}
             <div style={{ width: "30%" }}>
               <span className="minmaxi">
@@ -97,28 +98,28 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
               </span>
             </div>
           </div>
-          <div className="dtlsubTitle" style={{borderLeft:"0.1px solid #c7c8ca",marginRight:"0.1px"}}>
+          <div className="dtlsubTitle" style={{background:"#F2F2F2",borderLeft:"0.1px solid #c7c8ca",marginRight:"0.1px"}}>
             <GiSpades color="#000000" />
           </div>
-          <div className="dtlsubTitle">
+          <div className="dtlsubTitle" style={{background:"#F2F2F2"}}>
             <BiSolidHeart color="#ff0000" />
           </div>
-          <div className="dtlsubTitle">
+          <div className="dtlsubTitle" style={{background:"#F2F2F2"}}>
             <ImClubs color="#000000" />
           </div>
-          <div className="dtlsubTitle">
+          <div className="dtlsubTitle" style={{background:"#F2F2F2"}}>
             <ImDiamonds color="#ff0000" />
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
-          <div className="dtlTitlee">Dragon </div>
+          <div className="dtlTitlee" style={{background:"#F2F2F2"}}>Dragon </div>
           {renderItem(dragonData?.[4])}
           {renderItem(dragonData?.[5])}
           {renderItem(dragonData?.[7])}
           {renderItem(dragonData?.[6])}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
-          <div className="dtlTitlee"> Tiger</div>
+          <div className="dtlTitlee" style={{background:"#F2F2F2"}}> Tiger</div>
           {renderItem(tigerData?.[4])}
           {renderItem(tigerData?.[5])}
           {renderItem(tigerData?.[7])}

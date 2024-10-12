@@ -101,7 +101,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "35px" }}>
-          <div className="dtlTitle">
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}>
             {" "}
             <div style={{ width: "40%" }}>
               <span className="minmaxi">
@@ -155,7 +155,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
-          <div className="dtlTitle">Dragon </div>
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}>Dragon </div>
           {renderItem(
             title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0]
           )}
@@ -164,7 +164,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           )}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ height: "40px" }}>
-          <div className="dtlTitle"> Tiger</div>
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}> Tiger</div>
           {/* <div className={`dtlsubTitle back-BackGround ${ title1 === "even" ?
               tigerEvenOdd?.[0]?.gstatus === "CLOSED" ||
               tigerEvenOdd?.[0]?.b1 === "0.00"
