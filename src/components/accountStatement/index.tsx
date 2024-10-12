@@ -30,7 +30,6 @@ const AccountStatementComponent = () => {
     label: "Deposit/Withdraw Reports",
     value: "addWithdraw",
   });
-  const [firstTime, setFirstTime] = useState<any>(false);
   const [minDate2, setminDate2] = useState<any>(minDate);
   const [show, setShow] = useState({
     status: false,
@@ -57,8 +56,46 @@ const AccountStatementComponent = () => {
     setShow({ status: false, betId: [], runnerId: "", casinoType: "" });
   };
 
+  const handleSubmitClick = () => {
+    if (getProfile?.id && tableConfig) {
+      let filter = "";
+
+      if (from && to) {
+        filter += `&createdAt=between${moment(new Date(from))?.format(
+          "YYYY-MM-DD"
+        )}|${moment(new Date(to).setDate(to.getDate() + 1))?.format(
+          "YYYY-MM-DD"
+        )}`;
+      } else if (from) {
+        filter += `&createdAt=gte${moment(from)?.format("YYYY-MM-DD")}`;
+      } else if (to) {
+        filter += `&createdAt=lte${moment(to)?.format("YYYY-MM-DD")}`;
+      }
+      if (type) {
+        if (type?.value === "casino") {
+          filter += `&statementType=game&betId=isNull`;
+        } else if (type?.value === "game") {
+          filter += `&statementType=${type?.value}&betId=notNull`;
+        } else {
+          filter += `&statementType=${type?.value}`;
+        }
+      }
+
+      dispatch(
+        getAccountStatement({
+          userId: getProfile?.id,
+          page: tableConfig?.page,
+          limit: tableConfig?.rowPerPage,
+          searchBy: "description",
+          keyword: tableConfig?.keyword || "",
+          filter,
+        })
+      );
+    }
+  };
+
   useEffect(() => {
-    if (getProfile?.id && tableConfig && firstTime) {
+    if (getProfile?.id && tableConfig) {
       let filter = "";
 
       if (from && to) {
@@ -161,62 +198,22 @@ const AccountStatementComponent = () => {
                 <CustomButton
                   size={isMobile ? "sm" : "lg"}
                   className={`${isMobile ? "w-100" : " bg-primary"} border-0 `}
-                  onClick={() => {
-                    if (getProfile?.id && tableConfig) {
-                      let filter = "";
-
-                      if (from && to) {
-                        filter += `&createdAt=between${moment(
-                          new Date(from)
-                        )?.format("YYYY-MM-DD")}|${moment(
-                          new Date(to).setDate(to.getDate() + 1)
-                        )?.format("YYYY-MM-DD")}`;
-                      } else if (from) {
-                        filter += `&createdAt=gte${moment(from)?.format(
-                          "YYYY-MM-DD"
-                        )}`;
-                      } else if (to) {
-                        filter += `&createdAt=lte${moment(to)?.format(
-                          "YYYY-MM-DD"
-                        )}`;
-                      }
-                      if (type) {
-                        if (type?.value === "casino") {
-                          filter += `&statementType=game&betId=isNull`;
-                        } else if (type?.value === "game") {
-                          filter += `&statementType=${type?.value}&betId=notNull`;
-                        } else {
-                          filter += `&statementType=${type?.value}`;
-                        }
-                      }
-
-                      dispatch(
-                        getAccountStatement({
-                          userId: getProfile?.id,
-                          page: tableConfig?.page,
-                          limit: tableConfig?.rowPerPage,
-                          searchBy: "description",
-                          keyword: tableConfig?.keyword || "",
-                          filter,
-                        })
-                      );
-                    }
-                    setFirstTime(true);
-                  }}
+                  onClick={handleSubmitClick}
                 >
                   Submit
                 </CustomButton>
               </Col>
             </Row>
-           
+
             {/* http://localhost:5000/card/result/detail/9.241909153253 */}
             <CustomTable
+               placeHolder={`${transactions?.count} records...`  || "0 records..."}
               width={isMobile ? "1200px" : ""}
               paginationCount={true}
               bordered={true}
               striped={!isMobile}
-              isPagination={firstTime}
-              isSearch={firstTime}
+              isPagination={true}
+              isSearch={true}
               columns={[
                 {
                   id: "createdAt",
@@ -236,7 +233,7 @@ const AccountStatementComponent = () => {
                 },
                 {
                   id: "closingBalance",
-                  label: "Balance",
+                  label: "Pts",
                 },
                 {
                   id: "description",
@@ -259,19 +256,19 @@ const AccountStatementComponent = () => {
                 const isCasinoGame =
                   firstPart && casinoKeywords.includes(firstPart);
                 return (
-                  <tr className={`${isMobile && "title-12"}`} key={index}>
-                    <td>
+                  <tr className={`${isMobile && "title-12 lh-1"}`} key={index}>
+                    <td className={isMobile ? "date-as bg-grey" : ""} >
                       {moment(new Date(item?.createdAt)).format(
                         "YYYY-MM-DD hh:mm"
                       )}
                     </td>
-                    <td>
+                    <td className={isMobile ? "sr-as bg-grey" : ""}>
                       {index +
                         (tableConfig?.rowPerPage || 15) *
                           (tableConfig?.page - 1 || 0) +
                         1}
                     </td>
-                    <td className="color-green">
+                    <td className={isMobile ? "color-green credit-as bg-grey" : "color-green" }>
                       <NotSet
                         item={
                           item?.transType == transType.add ||
@@ -282,7 +279,7 @@ const AccountStatementComponent = () => {
                         }
                       />
                     </td>
-                    <td className="color-red">
+                    <td className={isMobile ? "color-green debit-as bg-grey" : "color-red" }>
                       <NotSet
                         item={
                           item?.transType == transType.loss ||
@@ -294,17 +291,17 @@ const AccountStatementComponent = () => {
                     </td>
                     <td
                       className={
-                        parseInt(item?.closingBalance) < 0
+                      ` ${ parseInt(item?.closingBalance) < 0
                           ? "color-red"
                           : parseInt(item?.closingBalance) > 0
                           ? "color-green"
-                          : ""
-                      }
+                          : ""} ${isMobile ? " pts-as bg-grey" : ""} `
+                      } 
                     >
                       {" "}
                       <NotSet item={item?.closingBalance} />
                     </td>
-                    <td
+                    <td className={isMobile ? "text-start bg-grey" : ""}
                       onClick={() => {
                         const match = containsKeywords
                           ? item?.description.match(/Rno\. (\d+)/)
