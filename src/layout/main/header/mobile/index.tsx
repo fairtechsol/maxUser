@@ -122,7 +122,7 @@ const MobileHeader = () => {
         </div>
       </div>
       <SearchBox />
-      <div className="marquee-container text-white p-1 ms-5 w-75 ">
+      <div className="marquee-container text-white p-1">
         <b className="marquee-content title-10">{marqueeNotification?.value}</b>
       </div>
     </>
