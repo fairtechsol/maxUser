@@ -8,6 +8,7 @@ import {
 } from "../../actions/match/matchListAction";
 import {
   otherMatchDetailAction,
+  resetOtherMatchDetail,
   updateMatchRates,
   updateTeamRatesOnPlaceBet,
 } from "../../actions/otherMatchActions";
@@ -75,7 +76,7 @@ const otherMatchDetail = createSlice({
           halfTime,
           overUnder,
           setWinner,
-          tournament
+          tournament,
         } = action.payload;
 
         let newSessionBettings = sessionBettings;
@@ -150,16 +151,25 @@ const otherMatchDetail = createSlice({
         state.searchedMatchList = null;
       })
       .addCase(updateTeamRatesOnPlaceBet.fulfilled, (state, action) => {
-        const { matchBetType, newTeamRateData,betId,matchId,teamArateRedisKey,teamBrateRedisKey,teamCrateRedisKey } = action.payload;
-        if(matchBetType==="tournament"){
+        const {
+          matchBetType,
+          newTeamRateData,
+          betId,
+          matchId,
+          teamArateRedisKey,
+          teamBrateRedisKey,
+          teamCrateRedisKey,
+        } = action.payload;
+        if (matchBetType === "tournament") {
           state.otherMatchDetails = {
             ...state.otherMatchDetails,
             profitLossDataMatch: {
               ...state.otherMatchDetails.profitLossDataMatch,
-              [betId+"_profitLoss_"+matchId]: JSON.stringify(newTeamRateData)
+              [betId + "_profitLoss_" + matchId]:
+                JSON.stringify(newTeamRateData),
             },
           };
-        }else{
+        } else {
           if ("teamC" in newTeamRateData) {
             state.otherMatchDetails = {
               ...state.otherMatchDetails,
@@ -221,6 +231,9 @@ const otherMatchDetail = createSlice({
           [profitLossDataForMatchConstants[betType].C]:
             profitLossData[teamCrateRedisKey],
         };
+      })
+      .addCase(resetOtherMatchDetail, (state) => {
+        state.otherMatchDetails = null;
       });
   },
 });

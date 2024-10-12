@@ -6,6 +6,7 @@ import {
   getMatchListSearch,
   getTabList,
   matchDetailAction,
+  matchDetailReset,
   matchListReset,
   resetMarketId,
   searchListReset,
@@ -80,7 +81,7 @@ const matchListSlice = createSlice({
       .addCase(getTabList.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-          state.tabList = action.payload?.data;
+        state.tabList = action.payload?.data;
       })
       .addCase(getTabList.rejected, (state, action) => {
         state.loading = false;
@@ -501,6 +502,9 @@ const matchListSlice = createSlice({
       })
       .addCase(resetMarketId, (state) => {
         state.marketId = "";
+      })
+      .addCase(matchDetailReset, (state) => {
+        state.matchDetails = null;
       });
   },
 });

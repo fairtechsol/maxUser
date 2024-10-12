@@ -268,3 +268,4 @@ export const searchListReset = createAction("search/list");
 export const matchListReset = createAction("matchList/reset");
 export const resetDataUnsettledMatch = createAction("dataUnsettledMatch/reset");
 export const resetMarketId = createAction("marketId/reset");
+export const matchDetailReset = createAction("matchDetail/reset");
