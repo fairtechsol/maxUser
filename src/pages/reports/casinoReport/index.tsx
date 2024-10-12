@@ -85,6 +85,41 @@ const CasinoReports = () => {
     dispatch(resetCardReport());
   }, []);
 
+  const cMeterResult = (resut: any) => {
+    let lowCardSum = 0;
+    let highCardSum = 0;
+
+    const cards = resut?.split(",");
+
+    cards?.forEach((card: any) => {
+      if (card?.length < 3) return;
+
+      const firstChar = card[0];
+
+      if (
+        firstChar === "1" ||
+        firstChar === "J" ||
+        firstChar === "Q" ||
+        firstChar === "K"
+      ) {
+        highCardSum =
+          highCardSum +
+          (firstChar == "1"
+            ? 10
+            : firstChar == "J"
+            ? 11
+            : firstChar == "Q"
+            ? 12
+            : firstChar == "K"
+            ? 13
+            : 0);
+      } else {
+        lowCardSum = lowCardSum + (firstChar == "A" ? 1 : Number(firstChar));
+      }
+    });
+
+    return lowCardSum > highCardSum ? "Low" : "High";
+  };
   return (
     <div className="vh-100">
       <ReportContainer title="Casino Result">
@@ -120,7 +155,16 @@ const CasinoReports = () => {
                 />
               </Col>
 
-              <Col md={2} xs={12} style={{width: isMobile ? "100%" : "17%" ,display:"flex",alignItems:"center",justifyContent:"center"}}>
+              <Col
+                md={2}
+                xs={12}
+                style={{
+                  width: isMobile ? "100%" : "17%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <CustomButton
                   style={{ paddingLeft: "6rem", paddingRight: "6rem" }}
                   size={isMobile ? "sm" : "lg"}
@@ -200,7 +244,11 @@ const CasinoReports = () => {
                       <NotSet item={item?.mid} />
                     </td>
                     <td style={{ textAlign: "left" }}>
-                      <NotSet item={item?.result} />
+                      {item?.gameType == "cmeter" ? (
+                        cMeterResult(item?.result)
+                      ) : (
+                        <NotSet item={item?.result} />
+                      )}
                     </td>
                   </tr>
                 );
