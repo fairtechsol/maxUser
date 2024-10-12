@@ -111,7 +111,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                           <div className="px-1 lh-1 m-game-one-v-one">
                             <Link
                               className="text-decoration-none text-black f600 title-12 lh-1"
-                              to={"/contact-admin"}
+                              to={"/ballbyball"}
                             >
                               Ball By Ball
                             </Link>
