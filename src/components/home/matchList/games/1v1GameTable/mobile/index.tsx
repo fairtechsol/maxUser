@@ -4,7 +4,7 @@ import { Img } from "react-image";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
-import fancy from "../../../../../../assets/images/gameicons/ic_fancy.png";
+import { LiaFacebookF } from "react-icons/lia";
 import { RootState } from "../../../../../../store/store";
 import {
   availableGameType,
@@ -111,7 +111,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                           <div className="px-1 lh-1 m-game-one-v-one">
                             <Link
                               className="text-decoration-none text-black f600 title-12 lh-1"
-                              to={"/contact-admin"}
+                              to={"/ballbyball"}
                             >
                               Ball By Ball
                             </Link>
@@ -186,9 +186,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                     )}
                                     {item?.manualSessionActive ||
                                     item?.apiSessionActive ? (
-                                      <span className="fancy">
-                                        <img src={fancy} alt={"fancy"} />
-                                      </span>
+                                      <LiaFacebookF size={11} />
                                     ) : (
                                       ""
                                     )}

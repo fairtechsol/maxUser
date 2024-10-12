@@ -24,7 +24,7 @@ interface PlaceBetProps {
 }
 
 const MobilePlacedBet = ({ show }: PlaceBetProps) => {
-  const [stake, setStake] = useState<any>(0);
+  const [stake, setStake] = useState<any>();
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
@@ -65,7 +65,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
   }, [buttonValues2]);
 
   useEffect(() => {
-    setStake(selectedBet?.team?.stake);
+    setStake(selectedBet?.team?.stake<1?"":selectedBet?.team?.stake);
   }, [selectedBet]);
 
   useEffect(() => {
@@ -116,7 +116,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             selectedBet?.team?.bettingType === "LAY" ||
             selectedBet?.team?.bettingType === "NO"
               ? "bg-red1"
-              : "bg-blue1"
+              : "placeBet-bg-blue"
           }`}
           fluid
         >
@@ -143,19 +143,21 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
               {" "}
               <input
                 value={stake}
-                min={0}
+                // min={5}
                 onChange={(e) => {
+                  const value = e.target.value === "" ? "" : +e.target.value;
+                  setStake(value); // Update stake state
+
                   dispatch(
                     selectedBetAction({
                       ...selectedBet,
                       team: {
                         ...selectedBet?.team,
-                        stake: +e.target.value,
+                        stake: value,
                       },
                     })
                   );
                 }}
-                // disabled
                 type="number"
                 onKeyDown={handleKeyDown}
                 placeholder=""
@@ -168,10 +170,9 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
               <CustomButton
                 style={{ height: "28px" }}
                 className={`f600 w-100 br-5 ${
-                  selectedBet?.team?.stake === 0 ? "btnbg-red"
-                    : "btnbg-blue"
+                  selectedBet?.team?.stake < 1 ? "btnbg-red" : "btnbg-blue"
                 }`}
-                disabled={selectedBet?.team?.stake === 0 ?true:false}
+                disabled={selectedBet?.team?.stake < 1 ? true : false}
                 onClick={() => {
                   try {
                     if (loading || matchOddLoading) {
@@ -249,10 +250,16 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                 </CustomButton>
               </Col>
             ))}
-             <Col xs={12} className="d-flex justify-content-between align-items-center">
-             <span className="text-black fbold title-12">
-             Range: {formatNumber(selectedBet?.team?.min)+" to "+formatNumber(selectedBet?.team?.max)}
-             </span>
+            <Col
+              xs={12}
+              className="d-flex justify-content-between align-items-center"
+            >
+              <span className="text-black fbold title-12">
+                Range:{" "}
+                {formatNumber(selectedBet?.team?.min) +
+                  " to " +
+                  formatNumber(selectedBet?.team?.max)}
+              </span>
               <div
                 style={{
                   width: "50px",

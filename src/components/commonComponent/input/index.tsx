@@ -35,7 +35,7 @@ const CustomInput = (props: any) => {
         } d-flex gap-1 position-relative inputMain`}
       >
         {title ? (
-          <Form.Label className={`${isMobile && "title-14"} mb-0`}>
+          <Form.Label className={`${isMobile && "mt-1 title-14"} mb-0`}>
             {title}
           </Form.Label>
         ) : (

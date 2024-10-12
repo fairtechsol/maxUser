@@ -6,6 +6,7 @@ import {
   getMatchListSearch,
   getTabList,
   matchDetailAction,
+  matchDetailReset,
   matchListReset,
   resetMarketId,
   searchListReset,
@@ -80,7 +81,7 @@ const matchListSlice = createSlice({
       .addCase(getTabList.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-          state.tabList = action.payload?.data;
+        state.tabList = action.payload?.data;
       })
       .addCase(getTabList.rejected, (state, action) => {
         state.loading = false;
@@ -110,9 +111,10 @@ const matchListSlice = createSlice({
         state.success = false;
         state.error = null;
         state.marketId = "";
+        state.matchDetails = null;
       })
       .addCase(matchDetailAction.fulfilled, (state, action) => {
-        state.loading = false;
+        // state.loading = false;
         state.success = true;
         state.matchDetails = action.payload;
         state.marketId = action.payload.marketId;
@@ -188,6 +190,7 @@ const matchListSlice = createSlice({
         //     newSessionBettings?.push(apiItem);
         //   }
         // });
+        state.loading = false;
         let parsedSessionBettings =
           state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
         const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];
@@ -499,6 +502,9 @@ const matchListSlice = createSlice({
       })
       .addCase(resetMarketId, (state) => {
         state.marketId = "";
+      })
+      .addCase(matchDetailReset, (state) => {
+        state.matchDetails = null;
       });
   },
 });

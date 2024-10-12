@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import FootballDesktopGameDetail from "./desktop";
 import FootballMobileGameDetail from "./mobile";
 import { useSelector } from "react-redux";
@@ -32,6 +32,7 @@ import {
 } from "../../socketManager";
 import {
   otherMatchDetailAction,
+  resetOtherMatchDetail,
   updateMatchRates,
   updateTeamRatesOnPlaceBet,
   updateUserBalanceOnPlaceBet,
@@ -217,6 +218,7 @@ const FootballGameDetails = () => {
         socketService.userBalance.matchResultUnDeclared(handleMatchResult);
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
+        dispatch(resetOtherMatchDetail());
       };
     } catch (e) {
       console.log(e);

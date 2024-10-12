@@ -13,6 +13,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import "./style.scss";
+import { formatNumber } from "../../../helpers";
 
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -353,8 +354,8 @@ const TeenPattiMobile = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        <span style={{ lineHeight: "2" }}>Min:{item.min}</span>
-                        <span style={{ lineHeight: "1" }}>Max:{item.max}</span>
+                        <span className="pe-1" style={{ lineHeight: "2" }}>Min:{item.min}</span>
+                        <span className="pe-1" style={{ lineHeight: "1" }}>Max:{formatNumber(item.max)}</span>
                       </div>
                     </div>
                   ))}

@@ -167,9 +167,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         dispatch(getRunAmount(item?.id));
                       }}
                     >
-                      {(item?.RunnerName || item?.name)?.length > 25
-                        ? `${(item?.RunnerName || item?.name)?.slice(0, 25)}...`
-                        : item?.RunnerName || item?.name}
+                      {item?.RunnerName || item?.name}
                     </span>{" "}
                     <span
                       className={`${
@@ -214,7 +212,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         width: "100%",
                         display: "flex",
                         flexDirection: "column",
-                        borderRight: "1px solid #c7c8ca",
+                        // borderRight: "1px solid #c7c8ca",
                       }}
                     >
                       <div
@@ -246,7 +244,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       </div>
                       {item?.ex?.availableToLay?.length > 1 && (
                         <div
-                          className={`sessionRateBox lay1Background`}
+                          className={`sessionRateBox rateFont lay1Background`}
                           style={{ cursor: "pointer" }}
                           onClick={() =>
                             handlePlaceBet(
@@ -464,12 +462,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           dispatch(getRunAmount(item?.id));
                         }}
                       >
-                        {(item?.RunnerName || item?.name)?.length > 25
-                          ? `${(item?.RunnerName || item?.name)?.slice(
-                              0,
-                              25
-                            )}...`
-                          : item?.RunnerName || item?.name}
+                        {item?.RunnerName || item?.name}
                       </span>{" "}
                       <span
                         className={`${

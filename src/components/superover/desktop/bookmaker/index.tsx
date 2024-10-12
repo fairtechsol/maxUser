@@ -29,6 +29,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
     );
   };
   const handleLock = (status: any, value: any) => {
+    console.log(status,'first',value)
     if (status != "ACTIVE" || value === 0) {
       return true;
     } else {
@@ -120,7 +121,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         <div
         className={`
           ${isMobile ? "box-mob" : "blboxes"} 
-          ${handleLock(team1?.status, team1?.b1) ? "suspended-row" : ""}
+          ${handleLock(team1?.status, team1?.b1) ? " suspended-row" : ""}
         `}
           data-title={handleLock(team1?.status, team1?.b1) ? "SUSPENDED" : ""}
         >
@@ -201,7 +202,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         <div
        className={`
         ${isMobile ? "box-mob" : "blboxes"} 
-        ${handleLock(team1?.status, team1?.b1) ? "suspended-row" : ""}
+        ${handleLock(team2?.status, team2?.b1) ? " suspended-row" : ""}
       `}
           data-title={handleLock(team2?.status, team2?.b1) ? "SUSPENDED" : ""}
         >

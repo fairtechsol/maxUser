@@ -14,6 +14,7 @@ import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
+import { formatNumber } from "../../../helpers";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -458,7 +459,7 @@ const TeenPattiDesktop = () => {
                         }}
                       >
                         <span>Min:{item.min}</span>
-                        <span>Max:{item.max}</span>
+                        <span>Max:{formatNumber(item.max)}</span>
                       </div>
                     </div>
                   ))}

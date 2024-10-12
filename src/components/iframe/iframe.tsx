@@ -52,7 +52,7 @@ const Iframe = ({ data, width }: any) => {
                 {/* Match Message */}
                 {data?.spnmessage && (
                   <div className="text-xl-end" style={{ fontSize: "16px" }}>
-                    {data?.dayno} | {data?.spnmessage}
+                    {data?.dayno ? `${data?.dayno} | `:""}  {data?.spnmessage}
                   </div>
                 )}
 

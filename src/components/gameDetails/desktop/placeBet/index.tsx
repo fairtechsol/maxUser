@@ -581,7 +581,7 @@ const PlacedBet = () => {
           ></button>
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
-          <ButtonValues />
+          <ButtonValues  setShow={setShow}/>
         </Modal.Body>
         {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
       </Modal>
