@@ -1226,6 +1226,9 @@ img {
   .deatilShow-d{
     display: none;
   }
+  .sessionMinMaxFont{
+    font-size: 9px !important;
+  }
 }
 
 /* Styles for width 1200px to 1399px */
@@ -1288,6 +1291,9 @@ img {
   }
   .placeBet-w{
     width: 350px !important;
+  }
+  .sessionMinMaxFont{
+    font-size: 9px !important;
   }
 }
 
@@ -1354,6 +1360,9 @@ img {
   .placeBet-w{
     width: 400px !important;
   }
+  .sessionMinMaxFont{
+    font-size: 10px !important;
+  }
 }
 
 /* Styles for width 1600px and above */
@@ -1417,6 +1426,9 @@ img {
   .placeBet-w{
     width: 450px !important;
   }
+  .sessionMinMaxFont{
+    font-size: 12px !important;
+  }
 }
 
 .matchOddBackBox {
@@ -1426,6 +1438,17 @@ img {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.suspended-list-rates {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373636d6;
+  height: 100%;
+  z-index: 999;
 }
 // #middleView-playerDiv {
 //   display: none !important; /* This will override the inline display style */

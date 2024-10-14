@@ -144,7 +144,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     style={{ overflow: "hidden" }}
                   >
                     <span
-                      className="f-size15"
+                      className="teamFont"
                       style={{ fontWeight: "400", lineHeight: 1 }}
                       onClick={() => {
                         // console.log("first", item);
@@ -177,7 +177,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         ) < 0
                           ? "color-red"
                           : "color-red"
-                      }  title-14`}
+                      }  title-14 fbold`}
                     >
                       {calculateMaxLoss(
                         detail?.profitLossDataSession,
@@ -384,10 +384,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       )}
                     </div>
                     <div className="sessionMinBoxContainer">
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Min:{formatNumber(item?.min || item?.minBet)}
                       </span>
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Max:{formatNumber(item?.max || item?.maxBet)}
                       </span>
                     </div>
@@ -436,7 +436,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       style={{ overflow: "hidden" }}
                     >
                       <span
-                        className="f-size15"
+                        className="teamFont"
                         style={{
                           fontWeight: "400",
                           lineHeight: 1,
@@ -472,7 +472,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           ) < 0
                             ? "color-red"
                             : "color-red"
-                        }  title-14`}
+                        }  title-14 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
@@ -681,10 +681,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         )}
                       </div>
                       <div className="sessionMinBoxContainer">
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Min:{formatNumber(item?.min || item?.minBet)}
                         </span>
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Max:{formatNumber(item?.max || item?.maxBet)}
                         </span>
                       </div>

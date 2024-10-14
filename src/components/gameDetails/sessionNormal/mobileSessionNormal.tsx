@@ -159,7 +159,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         ) < 0
                           ? "color-red"
                           : "color-red"
-                      } title-13`}
+                      } title-13 fbold`}
                     >
                       {calculateMaxLoss(
                         detail?.profitLossDataSession,

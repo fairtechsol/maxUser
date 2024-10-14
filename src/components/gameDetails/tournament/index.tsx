@@ -236,7 +236,7 @@ const Tournament = ({ title, box, data, detail }) => {
 
         {data?.rem && (
           <div className="tournamentRemarkTab">
-            <div className="remark-content">{data?.rem}</div>
+            <div className="remark-content1">{data?.rem}</div>
           </div>
         )}
       </div>
