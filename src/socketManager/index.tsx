@@ -33,7 +33,7 @@ export const initialiseSocket = () => {
   cardSocket = io(baseUrls.cardSocket, {
     transports: [
       process.env.NODE_ENV === "production"
-        ? `${Constants.POLLING}`
+        ? `${Constants.WEBSOCKET}`
         : `${Constants.WEBSOCKET}`,
     ],
   });
