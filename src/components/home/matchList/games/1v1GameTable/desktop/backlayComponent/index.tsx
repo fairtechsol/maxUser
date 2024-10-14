@@ -17,7 +17,7 @@ const BackLayComponent = ({
 }: BackLayComponentProps) => {
   return (
     <>
-      <td style={{ width: "5%" }}>
+      <div style={{ width: "100%",display:"flex",flexDirection:"row" }} >
         <BackLayBox
           bgColor={"blue3"}
           rate={backRate}
@@ -25,8 +25,6 @@ const BackLayComponent = ({
           percent={backPercent}
           onClick={() => {}}
         />
-      </td>
-      <td style={{ width: "5%" }}>
         <BackLayBox
           bgColor={"red1"}
           rate={layRate}
@@ -34,7 +32,16 @@ const BackLayComponent = ({
           percent={layPercent}
           onClick={() => {}}
         />
-      </td>
+      </div>
+      {/* <td style={{ width: "5%" }}>
+        <BackLayBox
+          bgColor={"red1"}
+          rate={layRate}
+          active={active}
+          percent={layPercent}
+          onClick={() => {}}
+        />
+      </td> */}
     </>
   );
 };

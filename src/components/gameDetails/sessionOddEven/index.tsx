@@ -108,7 +108,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                     style={{ overflow: "hidden" }}
                   >
                     <span
-                      className="f-size15"
+                      className="teamFont"
                       style={{ width: "60%", fontWeight: "400", lineHeight: 1 }}
                     >
                       {item?.RunnerName}
@@ -257,7 +257,7 @@ const SessionOddEven = ({ title, data, detail }) => {
                       style={{ overflow: "hidden" }}
                     >
                       <span
-                        className="f-size15"
+                        className="teamFont"
                         style={{
                           width: "60%",
                           fontWeight: "400",
