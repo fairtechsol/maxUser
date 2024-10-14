@@ -123,7 +123,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName" style={{ flexGrow: 1 }}>
                     <span
-                      className={isMobile ? "f-size13" : "f-size14"}
+                      className="teamFont"
                       style={{ fontWeight: "400" }}
                     >
                       {index} Number

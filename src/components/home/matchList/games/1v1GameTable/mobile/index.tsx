@@ -118,18 +118,21 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                             <div className="d-flex w-100">
                               <React.Fragment>
                                 <BackLayComponent
+                                    suspend={false}
                                   heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
+                                    suspend={false}
                                   heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
+                                    suspend={false}
                                   heading=""
                                   backRate={"0"}
                                   layRate={"0"}
@@ -202,6 +205,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                 <div className="d-flex w-100">
                                   <BackLayComponent
                                     heading="1"
+                                    suspend={item?.matchOdds?.[0]?.status==="SUSPENDED"?true:false}
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[0]?.ex
@@ -225,6 +229,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   />
                                   <BackLayComponent
                                     heading="X"
+                                    suspend={item?.matchOdds?.[0]?.status==="SUSPENDED"?true:false}
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[2]?.ex
@@ -246,6 +251,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   />
                                   <BackLayComponent
                                     heading="2"
+                                    suspend={item?.matchOdds?.[0]?.status==="SUSPENDED"?true:false}
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[1]?.ex

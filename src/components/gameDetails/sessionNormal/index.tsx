@@ -144,7 +144,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     style={{ overflow: "hidden" }}
                   >
                     <span
-                      className="f-size15"
+                      className="teamFont"
                       style={{ fontWeight: "400", lineHeight: 1 }}
                       onClick={() => {
                         // console.log("first", item);
@@ -436,7 +436,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       style={{ overflow: "hidden" }}
                     >
                       <span
-                        className="f-size15"
+                        className="teamFont"
                         style={{
                           fontWeight: "400",
                           lineHeight: 1,

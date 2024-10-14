@@ -15,6 +15,7 @@ import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
+import { FaLock } from "react-icons/fa";
 const tableHeading = [
   {
     id: "game",
@@ -106,7 +107,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                           </div>
                         </td>
 
-                        <React.Fragment>
+                        <td style={{width:"10%",position:"relative"}} colSpan={2}>
                           <BackLayComponent
                             backRate={0}
                             layRate={0}
@@ -114,6 +115,8 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                             backPercent={0}
                             layPercent={0}
                           />
+                          </td>
+                        <td style={{width:"10%",position:"relative"}} colSpan={2}>
                           <BackLayComponent
                             backRate={0}
                             layRate={0}
@@ -121,6 +124,8 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                             backPercent={0}
                             layPercent={0}
                           />
+                          </td>
+                        <td style={{width:"10%",position:"relative"}} colSpan={2}>
                           <BackLayComponent
                             backRate={0}
                             layRate={0}
@@ -128,7 +133,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                             backPercent={0}
                             layPercent={0}
                           />
-                        </React.Fragment>
+                        </td>
                       </tr>
                     )}
                     {matchList?.map((item: any, index: number) => {
@@ -216,6 +221,12 @@ const MatchListRow = ({ item, matchType }: any) => {
           </div>
         </div>
       </td>
+      <td style={{width:"10%",position:"relative"}} colSpan={2}>
+      {( item?.matchOdds?.[0]?.status==="SUSPENDED") && (
+        <div className="suspended-list-rates">
+                        <FaLock color="#fff" />
+                      </div>
+                    )} 
       <BackLayComponent
         backRate={
           (item?.matchOdds?.[0]?.runners &&
@@ -235,6 +246,13 @@ const MatchListRow = ({ item, matchType }: any) => {
         }
         active={false}
       />
+      </td>
+      <td style={{width:"10%",position:"relative"}} colSpan={2}>
+      {( item?.matchOdds?.[0]?.status==="SUSPENDED") && (
+        <div className="suspended-list-rates">
+                        <FaLock color="#fff" />
+                      </div>
+                    )} 
       <BackLayComponent
         backRate={
           (item?.matchOdds?.[0]?.runners &&
@@ -254,7 +272,14 @@ const MatchListRow = ({ item, matchType }: any) => {
         }
         active={false}
       />
-      <BackLayComponent
+        </td>
+        <td style={{width:"10%",position:"relative"}} colSpan={2}>
+        {( item?.matchOdds?.[0]?.status==="SUSPENDED") && (
+        <div className="suspended-list-rates">
+                        <FaLock color="#fff" />
+                      </div>
+                    )} 
+        <BackLayComponent
         backRate={
           (item?.matchOdds?.[0]?.runners &&
             item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack[
@@ -273,6 +298,10 @@ const MatchListRow = ({ item, matchType }: any) => {
         }
         active={false}
       />
+        </td>
+      
+      
+      
     </tr>
   );
 };
