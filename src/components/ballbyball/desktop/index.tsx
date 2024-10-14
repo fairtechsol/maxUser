@@ -152,7 +152,7 @@ const TeenPattiDesktop = () => {
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
-                    BallbyBall
+                    BALL BY BALL
                   </span>
                   <span
                     style={{
