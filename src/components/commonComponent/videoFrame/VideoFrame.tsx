@@ -59,7 +59,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
             }}
           >
             {result && (
-              <div style={{ position: "absolute", zIndex: "999" }}>
+              <div style={{ position: "absolute", zIndex: "99" }}>
                 {result}
               </div>
             )}
