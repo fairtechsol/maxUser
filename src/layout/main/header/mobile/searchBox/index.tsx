@@ -36,27 +36,25 @@ const SearchBox = () => {
   
   return (
     <div className={`search-box  ${searchIco ? "searchIcoActive" : ""} `}>
-      {searchIco && searchedMatchList && searchValue?.length>0 && (
+   <div className={`search-input-container ${searchIco ? "active" : ""}`}>
+   {searchIco && searchedMatchList && searchValue?.length>0 && (
         <SearchResult setOpen={setSearchIco} data={searchedMatchList} />
       )}
-
-      <div className="search-box" >
-        {searchIco && (
-          <input
-            type="text"
-            placeholder="Search here"
-            className="form-control search-input-show br-0 ms-1"
-            onChange={(e: any) => {
-              setSearchValue(e.target.value)
-              if (e.target.value?.length > 2) {
-                debouncedInputValue(e.target.value);
-              }
-            }}
-          />
-        )}
-        <div className="search-icon" onClick={searchIcoHandle}>
-          <FaSearchPlus />
-        </div>
+    <input
+      type="text"
+      placeholder="Search here"
+      className="form-control search-input-show br-0 ms-1"
+      onChange={(e: any) => {
+        setSearchValue(e.target.value);
+        if (e.target.value?.length > 2) {
+          debouncedInputValue(e.target.value);
+        }
+      }}
+    />
+  </div>
+  <div className="search-icon" onClick={searchIcoHandle}>
+    <FaSearchPlus />
+  </div>
 
         {/* <div className="search-icon" onClick={searchIcoHandle}>
         {searchIco ? <IoClose style={{color: "black"}} /> : <FaSearchPlus/>}
@@ -65,7 +63,6 @@ const SearchBox = () => {
 
         {/* <div className="search-icon" onClick={searchIcoHandle}></div> */}
       </div>
-    </div>
   );
 };
 
