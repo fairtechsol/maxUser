@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, formatNumber, handleSize } from "../../../helpers";
 import {
   getRunAmount,
+  getRunAmountMeter,
   resetRunAmountModal,
 } from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
@@ -164,7 +165,11 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                               id: item?.id,
                             })
                           );
-                        dispatch(getRunAmount(item?.id));
+                          if(title==="meter"){
+                            dispatch(getRunAmountMeter(item?.id));
+                          }else{
+                            dispatch(getRunAmount(item?.id));
+                          }
                       }}
                     >
                       {item?.RunnerName || item?.name}
@@ -721,7 +726,6 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
           <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
         </div>
         </Modal.Body>
-        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
       </Modal>
     </>
   );

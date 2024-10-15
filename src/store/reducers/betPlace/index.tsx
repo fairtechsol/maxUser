@@ -5,6 +5,7 @@ import {
   getPlacedBets,
   getPlacedBetsForAccountStatement,
   getRunAmount,
+  getRunAmountMeter,
   resetRunAmount,
   resetRunAmountModal,
   updateBetsPlaced,
@@ -92,6 +93,27 @@ const placedBet = createSlice({
         state.runAmount = data;
       })
       .addCase(getRunAmount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(getRunAmountMeter.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+        state.runAmount = [];
+      })
+      .addCase(getRunAmountMeter.fulfilled, (state, action) => {
+        const { id, arr } = action.payload;
+        const modifiedBets= arr
+        state.loading = false;
+        state.success = true;
+        let data = {
+          betId: id,
+          runAmountData: modifiedBets?.length > 0 ? modifiedBets : [],
+        };
+        state.runAmount = data;
+      })
+      .addCase(getRunAmountMeter.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })
