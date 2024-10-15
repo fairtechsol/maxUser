@@ -28,6 +28,7 @@ import { Link } from "react-router-dom";
 import Iframe from "../../iframe/iframe";
 import Tournament from "../tournament";
 import NewLoader from "../../commonComponent/newLoader";
+import SessionKhado from "../sessionKhado";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -371,6 +372,25 @@ const DesktopGameDetail = () => {
                   />
                 </Col>
               )}{" "}
+              {matchDetails?.apiSession?.khado?.section?.length > 0 && (
+                <Col md={12}>
+                  <SessionKhado
+                    title={"khado"}
+                    data={matchDetails?.apiSession?.khado}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
+              {matchDetails?.apiSession?.meter?.section?.length > 0 && (
+                <Col md={12}>
+                  <SessionNormal
+                    title={"meter"}
+                    mtype={"meter"}
+                    data={matchDetails?.apiSession?.meter}
+                    detail={matchDetails}
+                  />
+                </Col>
+              )}
               {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
                 <Col md={12}>
                   <SessionOddEven
