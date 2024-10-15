@@ -464,7 +464,11 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 id: item?.id,
                               })
                             );
-                          dispatch(getRunAmount(item?.id));
+                            if(title==="meter"){
+                              dispatch(getRunAmountMeter(item?.id));
+                            }else{
+                              dispatch(getRunAmount(item?.id));
+                            }
                         }}
                       >
                         {item?.RunnerName || item?.name}
