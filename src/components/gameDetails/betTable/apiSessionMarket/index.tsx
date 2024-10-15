@@ -273,7 +273,7 @@ function ApiSessionMarketTable({
           })}
         </tbody>
       </Table>
-      <CustomModal
+      {/* <CustomModal
         customClass="runAmountBetModal"
         title={"Run Position"}
         show={runAmountModal}
@@ -282,7 +282,7 @@ function ApiSessionMarketTable({
         <div style={{ width: "100%", height: "500px", overflowY: "auto" }}>
           <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
         </div>
-      </CustomModal>
+      </CustomModal> */}
     </div>
   );
 }

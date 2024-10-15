@@ -278,14 +278,14 @@ function SessionMarketTable({
           })}
         </tbody>
       </Table>
-      <CustomModal
+      {/* <CustomModal
         customClass="runAmountBetModal"
         title={"Run Position"}
         show={runAmountModal}
         setShow={handleModal}
       >
         <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
-      </CustomModal>
+      </CustomModal> */}
       {/* <div style={{ height: "80px" }}></div> */}
     </div>
   );
