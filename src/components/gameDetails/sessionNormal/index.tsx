@@ -726,7 +726,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
           ></button>
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
-        <div style={{ width: "100%", height: "85vh", overflowY: "auto",padding:"10px" }}>
+        <div style={{ width: "100%", maxHeight: "85vh", overflowY: "auto",padding:"10px" }}>
           <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
         </div>
         </Modal.Body>
