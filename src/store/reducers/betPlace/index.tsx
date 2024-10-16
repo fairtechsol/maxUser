@@ -8,6 +8,7 @@ import {
   getRunAmountMeter,
   resetRunAmount,
   resetRunAmountModal,
+  runAmountReset,
   updateBetsPlaced,
 } from "../../actions/betPlace/betPlaceActions";
 import {
@@ -198,6 +199,9 @@ const placedBet = createSlice({
             state.runAmountModal = showModal;
           }
         }
+      })
+      .addCase(runAmountReset, (state) => {
+        state.runAmount = {};
       });
   },
 });
