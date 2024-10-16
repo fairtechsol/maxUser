@@ -1,11 +1,26 @@
+import { useEffect } from "react";
 import { Table } from "react-bootstrap";
+import { runAmountReset } from "../../../../store/actions/betPlace/betPlaceActions";
+import { AppDispatch } from "../../../../store/store";
+import { useDispatch } from "react-redux";
 
 const RunBoxTable = ({ runAmount }: any) => {
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    
+  
+    return () => {
+      dispatch(
+        runAmountReset()
+      );
+    }
+  }, [])
+  
   return (
     <Table striped bordered hover style={{width:'100%'}}>
       <thead>
         <tr >
-          <th style={{backgroundColor: '#f2f2f2',textAlign:'start'}}>Run </th>
+          <th style={{backgroundColor: '#f2f2f2',textAlign:'start'}}>Run</th>
           <th className="text-end" style={{backgroundColor: '#f2f2f2'}}>Amount</th>
         </tr>
       </thead>

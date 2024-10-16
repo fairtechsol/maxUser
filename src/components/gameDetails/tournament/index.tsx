@@ -70,7 +70,7 @@ const Tournament = ({ title, box, data, detail }) => {
         <div className="tournamentBackLayTab">
           <div className="tournamentMinMaxBox">
             <span className="tournamentMinMax">
-              Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
+            {data?.minBet===data?.maxBet? `Max:${formatNumber(data?.maxBet)}` :`Min:${formatNumber(data?.minBet)} Max:${formatNumber(data?.maxBet)}`}
             </span>
           </div>
           <div
