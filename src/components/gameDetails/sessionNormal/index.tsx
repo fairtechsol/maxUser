@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, formatNumber, handleSize } from "../../../helpers";
 import {
   getRunAmount,
+  getRunAmountMeter,
   resetRunAmountModal,
 } from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
@@ -157,14 +158,18 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           ) === 0
                         ) {
                           return;
-                        } else
+                        } else{
                           dispatch(
                             resetRunAmountModal({
                               showModal: true,
                               id: item?.id,
                             })
                           );
-                        dispatch(getRunAmount(item?.id));
+                          if(title==="meter"){
+                            dispatch(getRunAmountMeter(item?.id));
+                          }else{
+                            dispatch(getRunAmount(item?.id));
+                          }}
                       }}
                     >
                       {item?.RunnerName || item?.name}
@@ -452,14 +457,18 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ) === 0
                           ) {
                             return;
-                          } else
+                          } else{
                             dispatch(
                               resetRunAmountModal({
                                 showModal: true,
                                 id: item?.id,
                               })
                             );
-                          dispatch(getRunAmount(item?.id));
+                            if(title==="meter"){
+                              dispatch(getRunAmountMeter(item?.id));
+                            }else{
+                              dispatch(getRunAmount(item?.id));
+                            }}
                         }}
                       >
                         {item?.RunnerName || item?.name}
@@ -717,11 +726,10 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
           ></button>
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
-        <div style={{ width: "100%", height: "auto", overflowY: "auto",padding:"10px" }}>
+        <div style={{ width: "100%", height: "85vh", overflowY: "auto",padding:"10px" }}>
           <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
         </div>
         </Modal.Body>
-        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
       </Modal>
     </>
   );
