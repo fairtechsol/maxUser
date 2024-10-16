@@ -170,7 +170,7 @@ const MobileSessionKhado = ({ title, data, detail }) => {
                           "Back",
                           "Back",
                           item?.activeStatus,
-                          item?.ex?.availableToBack?.[0]?.price,
+                          item?.ex?.availableToBack?.[0]?.size,
                           item,
                           item?.ex?.availableToBack?.[0]?.tno
                         )
