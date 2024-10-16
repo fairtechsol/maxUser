@@ -8,6 +8,7 @@ import {  getRunAmountMeter, resetRunAmountModal } from "../../../store/actions/
 import { Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import RunBoxTable from "../betTable/runBoxTable";
+import { useEffect } from "react";
 
 const SessionKhado = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -72,6 +73,10 @@ const SessionKhado = ({ title, data, detail }) => {
       return "-";
     }
   };
+  
+  useEffect(() => {
+    handleModal(false)
+  }, [])
   
   const handleModal = (event: any) => {
     dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));

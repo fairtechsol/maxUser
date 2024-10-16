@@ -88,6 +88,9 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
     dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
   };
 
+  useEffect(() => {
+    handleModal(false)
+  }, [])
   return (
     <>
       <div className="sessionNormalContainer">

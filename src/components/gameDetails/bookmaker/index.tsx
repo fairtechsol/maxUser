@@ -68,7 +68,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
         <div className="bookmakerBackLayTab">
           <div className="bookmakerMinMaxBox">
             <span className="bookmakerMinMax">
-              Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
+            {data?.minBet===data?.maxBet? `Max:${formatNumber(data?.maxBet)}` :`Min:${formatNumber(data?.minBet)} Max:${formatNumber(data?.maxBet)}`}
             </span>
           </div>
           <div

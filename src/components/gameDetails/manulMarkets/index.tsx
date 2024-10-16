@@ -67,7 +67,7 @@ const ManualMarket = ({ title, data, detail }) => {
         <div className="manualBackLayTab">
           <div className="manualMinMaxBox">
             <span className="manualMinMax">
-              Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
+            {data?.minBet===data?.maxBet? `Max:${formatNumber(data?.maxBet)}` :`Min:${formatNumber(data?.minBet)} Max:${formatNumber(data?.maxBet)}`}
             </span>
           </div>
           <div
