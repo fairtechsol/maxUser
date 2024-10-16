@@ -68,7 +68,7 @@ const DynamicMarket = ({ title, data, detail }) => {
         <div className="dynamicBackLayTab">
           <div className="dynamicMinMaxBox">
             <span className="dynamicMinMax">
-              Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
+            {data?.minBet===data?.maxBet? `Max:${formatNumber(data?.maxBet)}` :`Min:${formatNumber(data?.minBet)} Max:${formatNumber(data?.maxBet)}`}
             </span>
           </div>
           <div className={`dynamicBackLayBoxContainer backLayBoxWidth`}>
