@@ -1,9 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  dummyArray,
-  formatNumber,
-  manualProfitLoss
-} from "../../../helpers";
+import { dummyArray, formatNumber, manualProfitLoss } from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { profitLossDataForMatchConstants } from "../../../utils/constants";
@@ -24,7 +20,10 @@ const MatchOdd = ({ title, data, detail }) => {
     index: any,
     runner: any
   ) => {
-    if (data?.activeStatus != "live" || (status != "ACTIVE" && status != "OPEN")) {
+    if (
+      data?.activeStatus != "live" ||
+      (status != "ACTIVE" && status != "OPEN")
+    ) {
       return false;
     }
     if (odds === 0) {
@@ -69,7 +68,11 @@ const MatchOdd = ({ title, data, detail }) => {
         <div className="matchOddBackLayTab">
           <div className="matchOddMinMaxBox">
             <span className="matchOddMinMax">
-            {data?.minBet===data?.maxBet? `Max:${formatNumber(data?.maxBet)}` :`Min:${formatNumber(data?.minBet)} Max:${formatNumber(data?.maxBet)}`}
+              {data?.minBet === data?.maxBet
+                ? `Max:${formatNumber(data?.maxBet)}`
+                : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
+                    data?.maxBet
+                  )}`}
             </span>
           </div>
           <div className="matchOddBackLayBoxContainer backLayBoxWidth">
@@ -89,9 +92,12 @@ const MatchOdd = ({ title, data, detail }) => {
             style={isMobile ? { width: "28%" } : {}}
           >
             <span className={`teamFont matchOddTeamTxt`}>
-              {detail?.teamA?.length > 20
-                ? `${detail?.teamA?.slice(0, 25)}...`
-                : detail?.teamA}
+              {(data?.runners?.[0]?.nat || detail?.teamA)?.length > 20
+                ? `${(data?.runners?.[0]?.nat || detail?.teamA)?.slice(
+                    0,
+                    25
+                  )}...`
+                : data?.runners?.[0]?.nat || detail?.teamA}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
@@ -172,9 +178,15 @@ const MatchOdd = ({ title, data, detail }) => {
           </div>
           <div className="matchOddRateBox rateBoxWidth">
             {(data?.activeStatus !== "live" ||
-             ( data?.runners?.[0]?.status !== "ACTIVE" && data?.runners?.[0]?.status !== "OPEN")) && (
+              (data?.runners?.[0]?.status !== "ACTIVE" &&
+                data?.runners?.[0]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesMatchOdd">
-                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[0]?.status}</span>
+                <span
+                  className={`suspendTextCmmn`}
+                  style={{ textTransform: "uppercase" }}
+                >
+                  {data?.runners?.[0]?.status}
+                </span>
               </div>
             )}
             {(data?.runners?.[0]?.ex?.availableToBack?.length > 0
@@ -214,9 +226,12 @@ const MatchOdd = ({ title, data, detail }) => {
             style={isMobile ? { width: "28%" } : {}}
           >
             <span className={`teamFont matchOddTeamTxt`}>
-              {detail?.teamB?.length > 25
-                ? `${detail?.teamB?.slice(0, 25)}...`
-                : detail?.teamB}
+              {(data?.runners?.[1]?.nat || detail?.teamB)?.length > 25
+                ? `${(data?.runners?.[1]?.nat || detail?.teamB)?.slice(
+                    0,
+                    25
+                  )}...`
+                : data?.runners?.[1]?.nat || detail?.teamB}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
@@ -297,9 +312,15 @@ const MatchOdd = ({ title, data, detail }) => {
           </div>
           <div className="matchOddRateBox rateBoxWidth">
             {(data?.activeStatus !== "live" ||
-              ( data?.runners?.[1]?.status !== "ACTIVE" && data?.runners?.[1]?.status !== "OPEN")) && (
+              (data?.runners?.[1]?.status !== "ACTIVE" &&
+                data?.runners?.[1]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesMatchOdd">
-                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[1]?.status}</span>
+                <span
+                  className={`suspendTextCmmn`}
+                  style={{ textTransform: "uppercase" }}
+                >
+                  {data?.runners?.[1]?.status}
+                </span>
               </div>
             )}
             {(data?.runners?.[1]?.ex?.availableToBack?.length > 0
@@ -333,16 +354,19 @@ const MatchOdd = ({ title, data, detail }) => {
           </div>
         </div>
 
-        {detail?.teamC && (
+        {(data?.runners?.[2]?.nat || detail?.teamC) && (
           <div className="matchOddTeamTab">
             <div
               className="matchOddTeam"
               style={isMobile ? { width: "28%" } : {}}
             >
               <span className={`teamFont matchOddTeamTxt`}>
-                {detail?.teamC?.length > 25
-                  ? `${detail?.teamC?.slice(0, 25)}...`
-                  : detail?.teamC}
+                {(data?.runners?.[2]?.nat || detail?.teamC)?.length > 25
+                  ? `${(data?.runners?.[2]?.nat || detail?.teamC)?.slice(
+                      0,
+                      25
+                    )}...`
+                  : data?.runners?.[2]?.nat || detail?.teamC}
               </span>
               <div className="d-flex flex-row justify-content-between w-100">
                 <span
@@ -423,9 +447,15 @@ const MatchOdd = ({ title, data, detail }) => {
             </div>
             <div className="matchOddRateBox rateBoxWidth">
               {(data?.activeStatus !== "live" ||
-                ( data?.runners?.[2]?.status !== "ACTIVE" && data?.runners?.[2]?.status !== "OPEN")) && (
+                (data?.runners?.[2]?.status !== "ACTIVE" &&
+                  data?.runners?.[2]?.status !== "OPEN")) && (
                 <div className="suspended-overlayRatesMatchOdd">
-                  <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[2]?.status}</span>
+                  <span
+                    className={`suspendTextCmmn`}
+                    style={{ textTransform: "uppercase" }}
+                  >
+                    {data?.runners?.[2]?.status}
+                  </span>
                 </div>
               )}
               {(data?.runners?.[2]?.ex?.availableToBack?.length > 0
