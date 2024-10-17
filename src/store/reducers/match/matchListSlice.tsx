@@ -11,6 +11,7 @@ import {
   resetMarketId,
   searchListReset,
   selectedBetAction,
+  updateMatchDetailFromMatchList,
   updateMatchOddRates,
   updateMatchRates,
 } from "../../actions/match/matchListAction";
@@ -106,12 +107,15 @@ const matchListSlice = createSlice({
         state.success = false;
         state.getMatchListBySearch = [];
       })
+      .addCase(updateMatchDetailFromMatchList.fulfilled, (state, action) => {
+        state.matchDetails = action.payload;
+      })
       .addCase(matchDetailAction.pending, (state) => {
-        state.loading = true;
+        // state.loading = true;
         state.success = false;
         state.error = null;
-        state.marketId = "";
-        state.matchDetails = null;
+        // state.marketId = "";
+        // state.matchDetails = null;
       })
       .addCase(matchDetailAction.fulfilled, (state, action) => {
         // state.loading = false;
@@ -190,7 +194,7 @@ const matchListSlice = createSlice({
         //     newSessionBettings?.push(apiItem);
         //   }
         // });
-        state.loading = false;
+        // state.loading = false;
         let parsedSessionBettings =
           state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
         const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];

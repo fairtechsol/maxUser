@@ -12,6 +12,7 @@ import {
   matchDetailReset,
   resetMarketId,
   selectedBetAction,
+  updateMatchDetailFromMatchList,
   updateMatchRates,
 } from "../../store/actions/match/matchListAction";
 import {
@@ -48,6 +49,9 @@ const GameDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
+  const { matchList } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -231,6 +235,12 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       if (id) {
+        const findMatchInList = matchList?.filter(
+          (item: any) => item?.id === id
+        );
+        if (findMatchInList) {
+          dispatch(updateMatchDetailFromMatchList(findMatchInList));
+        }
         dispatch(selectedBetAction(null));
         dispatch(matchDetailAction(id));
         dispatch(getPlacedBets(id));
