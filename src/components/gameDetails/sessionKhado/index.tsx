@@ -4,7 +4,7 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-import {  getRunAmountMeter, resetRunAmountModal } from "../../../store/actions/betPlace/betPlaceActions";
+import {  getRunAmountMeter, resetRunAmountModalKhado } from "../../../store/actions/betPlace/betPlaceActions";
 import { Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import RunBoxTable from "../betTable/runBoxTable";
@@ -13,7 +13,7 @@ import { useEffect } from "react";
 const SessionKhado = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
 
-  const { runAmount, runAmountModal } = useSelector(
+  const { runAmount, runAmountModalKhado } = useSelector(
     (state: RootState) => state.bets
   );
   const handlePlaceBet = (
@@ -79,7 +79,7 @@ const SessionKhado = ({ title, data, detail }) => {
   }, [])
   
   const handleModal = (event: any) => {
-    dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
+    dispatch(resetRunAmountModalKhado({ showModal: event, id: runAmount?.betId }));
   };
   return (
     <>
@@ -133,7 +133,7 @@ const SessionKhado = ({ title, data, detail }) => {
                           return;
                         } else
                           dispatch(
-                            resetRunAmountModal({
+                            resetRunAmountModalKhado({
                               showModal: true,
                               id: item?.id,
                             })
@@ -223,7 +223,10 @@ const SessionKhado = ({ title, data, detail }) => {
             })}
           </div>
 
-          <Modal show={runAmountModal} onHide={()=>handleModal(false)}>
+         
+        </div>
+      </div>
+      <Modal show={runAmountModalKhado} onHide={()=>handleModal(false)}>
         <Modal.Header
           className="bg-primary rounded-0"
           style={{ zIndex: "999" }}
@@ -248,8 +251,6 @@ const SessionKhado = ({ title, data, detail }) => {
         </div>
         </Modal.Body>
       </Modal>
-        </div>
-      </div>
     </>
   );
 };
