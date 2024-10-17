@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { Col, Container, Row, Tab } from "react-bootstrap";
+import { Col, Container, Row, Tab,Ratio } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { customSortOnName, getChannelId } from "../../../helpers";
 import { RootState } from "../../../store/store";
@@ -19,6 +19,9 @@ import HtFt from "../htft";
 import MyBet from "./myBet";
 import FootballPlaceBet from "./placeBet";
 import NewLoader from "../../commonComponent/newLoader";
+import { liveStreamPageUrl } from "../../../utils/constants";
+import service from "../../../service";
+import Iframe from "../../iframe/iframe";
 
 // import "./style.scss";
 // import BetTable from "../../gameDetails/betTable";
@@ -28,6 +31,9 @@ import NewLoader from "../../commonComponent/newLoader";
 const FootballMobileGameDetail = () => {
   const [show, setShow] = useState(true);
   const [channelId, setChannelId] = useState<string>("");
+  const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
+  const [errorCount, setErrorCount] = useState<number>(0);
+  const [showVideo, setShowVideo] = useState(false);
 
   const { otherMatchDetails,loading } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
@@ -50,7 +56,45 @@ const FootballMobileGameDetail = () => {
       console.log(error);
     }
   }, [otherMatchDetails?.id]);
+  useEffect(() => {
+    if (otherMatchDetails?.eventId) {
+      let intervalTime = 5000;
+      if (errorCount >= 5 && errorCount < 10) {
+        intervalTime = 60000;
+      } else if (errorCount >= 10) {
+        intervalTime = 600000;
+      }
+      const interval = setInterval(() => {
+        getScoreBoard(otherMatchDetails?.eventId);
+      }, intervalTime);
 
+      return () => {
+        clearInterval(interval);
+        setLiveScoreBoardData(null);
+      };
+    }
+  }, [otherMatchDetails?.id, otherMatchDetails?.eventId, errorCount]);
+
+  const getScoreBoard = async (eventId: string) => {
+    try {
+      const response: any = await service.get(
+        // `https://fairscore7.com/score/getMatchScore/${marketId}`
+        // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
+        //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+        `https://dpmatka.in/sr.php?eventid=${eventId}&sportid=${otherMatchDetails?.matchType==="football"?"2":"1"}`
+      );
+      // {"success":false,"msg":"Not found"}
+      //console.log("response 11:", response);
+      if (response?.success !== false) {
+        setLiveScoreBoardData(response?.data);
+        setErrorCount(0);
+      }
+    } catch (e: any) {
+      console.log("Error:", e?.message);
+      setLiveScoreBoardData(null);
+      setErrorCount((prevCount: number) => prevCount + 1);
+    }
+  };
   return (
     <div>
       {/* <FootballPlaceBet show={show} setShow={setShow} /> */}
@@ -110,13 +154,24 @@ const FootballMobileGameDetail = () => {
                         }
                       />
                     </Col> */}
-                    {otherMatchDetails?.eventId && (
-                      <Col className="g-0" md={12}>
-                        <LiveStreamComponent
-                          eventId={otherMatchDetails?.eventId}
-                        />
-                      </Col>
-                    )}
+                     {showVideo && (
+                        <Container className="px-0">
+                          <Row className="justify-content-md-center">
+                            <Col md={12}>
+                              <Ratio aspectRatio="16x9">
+                                <iframe
+                                  src={`${liveStreamPageUrl}${otherMatchDetails?.eventId}`}
+                                  title="Live Stream"
+                                  referrerPolicy="strict-origin-when-cross-origin"
+                                ></iframe>
+                              </Ratio>
+                            </Col>
+                          </Row>
+                        </Container>
+                      )}
+                      {liveScoreBoardData && (
+                        <Iframe data={liveScoreBoardData} width="100%" />
+                      )}
                     {otherMatchDetails?.matchOdd?.isActive && (
                       <Col className="g-0 mt-2" md={12}>
                         {otherMatchDetails?.matchOdd?.runners?.[0]?.ex
