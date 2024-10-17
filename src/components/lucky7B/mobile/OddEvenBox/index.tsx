@@ -31,7 +31,7 @@ const OddEven = ({ card, odds, data }: any) => {
       <div className="oddEvenContainerlucky">
         {card ? <> <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <CommonButtonBox
-            value1={odds?.[0]?.rate}
+            value1={odds?.[0]?.rate || 0}
             value2={"EVEN"}
             value3={data?.profitLoss
               ? data?.profitLoss[
@@ -44,7 +44,7 @@ const OddEven = ({ card, odds, data }: any) => {
             data={odds?.[0]}
           />
           <CommonButtonBox
-            value1={odds?.[1]?.rate}
+            value1={odds?.[1]?.rate || 0}
             value2={"ODD"}
             value3={data?.profitLoss
               ? data?.profitLoss[
@@ -59,7 +59,7 @@ const OddEven = ({ card, odds, data }: any) => {
         </div>
        </>:<><div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <CommonButtonBox
-            value1={odds?.[0]?.rate}
+            value1={odds?.[0]?.rate || 0}
             value2={"icon1"}
             value3={data?.profitLoss
               ? data?.profitLoss[
@@ -72,7 +72,7 @@ const OddEven = ({ card, odds, data }: any) => {
             data={odds?.[0]}
           />
           <CommonButtonBox
-            value1={odds?.[1]?.rate}
+            value1={odds?.[1]?.rate || 0}
             value2={"icon2"}
             value3={data?.profitLoss
               ? data?.profitLoss[
