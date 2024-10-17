@@ -83,7 +83,17 @@ const cardDetail = createSlice({
       })
       .addCase(getDragonTigerDetailHorseRacing.fulfilled, (state, action) => {
         state.success = true;
-        state.dragonTigerDetail = action.payload;
+        // state.dragonTigerDetail = action.payload;
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          name: action.payload.name,
+          marketId: action.payload?.marketId,
+          id: action.payload?.id,
+          profitLoss: action.payload?.profitLoss,
+          type: action.payload?.type,
+          maxBet: action.payload?.maxBet,
+          minBet: action.payload?.maxBet
+        };
         state.liveGameResultTop10 = action.payload.topTenResult;
       })
       .addCase(getDragonTigerDetailHorseRacing.rejected, (state, action) => {

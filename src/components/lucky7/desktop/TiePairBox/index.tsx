@@ -41,7 +41,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
         <CommonButtonBox
-          value1={lowHigh?.[0]?.rate}
+          value1={lowHigh?.[0]?.rate || 0}
           value2={"LOW CARD"}
           value3={data?.profitLoss
               ? data?.profitLoss[
@@ -58,7 +58,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         </div>
          
         <CommonButtonBox
-          value1={lowHigh?.[1]?.rate}
+          value1={lowHigh?.[1]?.rate || 0}
           value2={"HIGH CARD"}
           value3={data?.profitLoss
               ? data?.profitLoss[
