@@ -144,23 +144,18 @@ const MainLayout = () => {
       )}
       <Header />
       <TopBar />
-      <div className="d-flex" style={{minHeight: "calc(100vh - 125px)"}}>
+      <div className="d-flex" style={{ minHeight: "calc(100vh - 125px)" }}>
         {!isMobile && (
           <div className={`sidebar sidebarActive mt-1`}>
             <Sidebar />
-            
           </div>
-            
         )}
-      {/* <div><CasinoNav items={casinoItems}  /></div> */}
+        {/* <div><CasinoNav items={casinoItems}  /></div> */}
         <main className="w-100 overflow-hidden">
           <Outlet />
         </main>
       </div>
-      <div
-        className="contents-wrapper"
-        style={{ width: "100%" }}
-      >
+      <div className="contents-wrapper" style={{ width: "100%" }}>
         <div className="footer-container mt-2">
           <FooterMain />
           <FooterBottom />

@@ -17,6 +17,22 @@ export const marqueeNotification = createAsyncThunk<any>(
     }
   }
 );
+export const getBannerImage = createAsyncThunk<any>(
+  "/user/bannerImage",
+  async (_, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.USER.MARQUEE}?type=banner`
+      );
+      if (resp) {
+        return resp?.data;
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 
 export const getProfile = createAsyncThunk<any>("/user/profile", async () => {
   try {
@@ -108,11 +124,11 @@ export const setButtonValue = createAsyncThunk<any, any>(
         requestData
       );
       if (resp) {
-        let data ={
-          id:requestData?.id,
-          type:requestData?.type,
-          value:resp?.data
-        }
+        let data = {
+          id: requestData?.id,
+          type: requestData?.type,
+          value: resp?.data,
+        };
         return data;
       }
     } catch (error: any) {
