@@ -258,7 +258,12 @@ const MobileGameDetail = () => {
                           <Col className="g-0" md={12}>
                             <Bookmaker
                               title={matchDetails?.bookmaker2?.name}
-                              box={2}
+                              box={
+                                matchDetails?.bookmaker2?.runners?.[0]?.ex
+                                  ?.availableToBack?.length > 2
+                                  ? 6
+                                  : 2
+                              }
                               data={matchDetails?.bookmaker2}
                               detail={matchDetails}
                               // type={MatchType.MATCH_ODDS}
@@ -290,7 +295,12 @@ const MobileGameDetail = () => {
                           <Col className="g-0" md={12}>
                             <OtherMarket
                               title={matchDetails?.apiTideMatch2?.name}
-                              box={2}
+                              box={
+                                matchDetails?.apiTideMatch2?.runners?.[0]?.ex
+                                  ?.availableToBack?.length > 2
+                                  ? 6
+                                  : 2
+                              }
                               data={matchDetails?.apiTideMatch2}
                               detail={matchDetails}
                               // type={MatchType.MATCH_ODDS}
@@ -326,7 +336,12 @@ const MobileGameDetail = () => {
                           <Col className="g-0" md={12}>
                             <OtherMarket
                               title={matchDetails?.marketCompleteMatch1?.name}
-                              box={2}
+                              box={
+                                matchDetails?.apiTideMatch2?.runners?.[0]?.ex
+                                  ?.availableToBack?.length > 2
+                                  ? 6
+                                  : 2
+                              }
                               data={matchDetails?.marketCompleteMatch1}
                               detail={matchDetails}
                             />
@@ -448,10 +463,17 @@ const MobileGameDetail = () => {
                       {matchDetails?.apiTideMatch?.activeStatus === "live" &&
                         matchDetails?.apiTideMatch?.isActive && (
                           <Col className="g-0" md={12}>
-                            <DynamicMarket
+                            <Bookmaker
                               title={matchDetails?.apiTideMatch?.name}
+                              box={
+                                matchDetails?.apiTideMatch?.runners?.[0]?.ex
+                                  ?.availableToBack?.length > 2
+                                  ? 6
+                                  : 2
+                              }
                               data={matchDetails?.apiTideMatch}
                               detail={matchDetails}
+                              // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
@@ -459,14 +481,20 @@ const MobileGameDetail = () => {
                         "live" &&
                         matchDetails?.marketCompleteMatch?.isActive && (
                           <Col className="g-0" md={12}>
-                            <DynamicMarket
+                            <Bookmaker
                               title={matchDetails?.marketCompleteMatch?.name}
+                              box={
+                                matchDetails?.marketCompleteMatch?.runners?.[0]
+                                  ?.ex?.availableToBack?.length > 2
+                                  ? 6
+                                  : 2
+                              }
                               data={matchDetails?.marketCompleteMatch}
                               detail={matchDetails}
+                              // data={matchDetails?.matchOdd}
                             />
                           </Col>
                         )}
-                     
                     </Row>
                   </div>
                 ) : (
