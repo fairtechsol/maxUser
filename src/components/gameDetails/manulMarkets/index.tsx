@@ -72,23 +72,23 @@ const ManualMarket = ({ title, data, detail }) => {
           </div>
           <div
             className={`manualBackLayBoxContainer ${
-              isMobile ? "backLayBoxWidth2" : "backLayBoxWidth"
+              isMobile ? "backLayBoxWidth" : "backLayBoxWidth"
             }`}
             // style={{ width: isMobile ? "40%" : isLap ? "240px" : "320px" }}
           >
             <div
               className="manualBackBoxTab"
-              style={{ width: isMobile ? "50%" : "25%" }}
+              // style={{ width: isMobile ? "50%" : "25%" }}
             >
               <span className={`f-size16 manualBackTxt`}>Back</span>
             </div>
             <div
               className="manualLayBoxTab"
-              style={{ width: isMobile ? "50%" : "25%" }}
+              // style={{ width: isMobile ? "50%" : "25%" }}
             >
               <span className={`f-size16 manualBackTxt`}>Lay</span>
             </div>
-            {!isMobile && <div className="manualEmptyBox"></div>}
+             <div className="manualEmptyBox"></div>
           </div>
         </div>
 
@@ -204,7 +204,7 @@ const ManualMarket = ({ title, data, detail }) => {
           </div>
           <div
             className={`manualRateBox ${
-              isMobile ? "rateBoxWidth2" : "rateBoxWidth"
+              isMobile ? "rateBoxWidth" : "rateBoxWidth"
             }`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
@@ -215,7 +215,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 </span>
               </div>
             )}
-            {!isMobile && (
+            {/* {!isMobile && ( */}
               <div
                 className="manualBackBox back3Background"
                 onClick={() =>
@@ -234,8 +234,8 @@ const ManualMarket = ({ title, data, detail }) => {
                   {data?.backTeamA != 0 ? data?.backTeamA - 2 >0 ? data?.backTeamA - 2:"-" : "-"}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+            
+            {/* {!isMobile && ( */}
               <div
                 className="manualBackBox back2Background"
                 onClick={() =>
@@ -254,7 +254,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   {data?.backTeamA != 0 ?data?.backTeamA - 1 >0 ? data?.backTeamA - 1:"-" : "-"}
                 </span>
               </div>
-            )}
+            
             <div
               className="manualBackBox back1Background"
               onClick={() =>
@@ -291,7 +291,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 {data?.layTeamA != 0 ? data?.layTeamA : "-"}
               </span>
             </div>
-            {!isMobile && (
+            {/* {!isMobile && ( */}
               <div
                 className="manualBackBox lay2Background"
                 onClick={() =>
@@ -310,8 +310,8 @@ const ManualMarket = ({ title, data, detail }) => {
                   {data?.layTeamA != 0 ? detail?.rateThan100? data?.layTeamA + 1 : data?.layTeamA + 1>100?"-": data?.layTeamA + 1 : "-"}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+           
+            {/* {!isMobile && ( */}
               <div
                 className="manualBackBox lay3Background"
                 onClick={() =>
@@ -330,7 +330,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   {data?.layTeamA != 0 ? detail?.rateThan100? data?.layTeamA + 2 : data?.layTeamA + 2>100?"-": data?.layTeamA + 2 : "-"}
                 </span>
               </div>
-            )}
+           
           </div>
         </div>
 
@@ -443,7 +443,7 @@ const ManualMarket = ({ title, data, detail }) => {
           </div>
           <div
             className={`manualRateBox ${
-              isMobile ? "rateBoxWidth2" : "rateBoxWidth"
+              isMobile ? "rateBoxWidth" : "rateBoxWidth"
             }`}
             // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
           >
@@ -454,7 +454,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 </span>
               </div>
             )}
-            {!isMobile && (
+            {/* {!isMobile && ( */}
               <div
                 className="manualBackBox back3Background"
                 onClick={() =>
@@ -473,8 +473,8 @@ const ManualMarket = ({ title, data, detail }) => {
                   {data?.backTeamB != 0 ? data?.backTeamB - 2 >0 ? data?.backTeamB - 2:"-" : "-"}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+            
+             {/* {!isMobile && ( */}
               <div
                 className="manualBackBox back2Background"
                 onClick={() =>
@@ -493,7 +493,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   {data?.backTeamB != 0 ? data?.backTeamB - 1 >0 ? data?.backTeamB - 1:"-" : "-"}
                 </span>
               </div>
-            )}
+            
             <div
               className="manualBackBox back1Background"
               onClick={() =>
@@ -526,7 +526,7 @@ const ManualMarket = ({ title, data, detail }) => {
                 {data?.layTeamB != 0 ? data?.layTeamB : "-"}
               </span>
             </div>
-            {!isMobile && (
+             {/* {!isMobile && ( */}
               <div
                 className="manualBackBox lay2Background"
                 onClick={() =>
@@ -545,8 +545,8 @@ const ManualMarket = ({ title, data, detail }) => {
                   {data?.layTeamB != 0 ? detail?.rateThan100 ? data?.layTeamB + 1 : data?.layTeamB + 1>100?"-": data?.layTeamB + 1 : "-"}
                 </span>
               </div>
-            )}
-            {!isMobile && (
+            
+             {/* {!isMobile && ( */}
               <div
                 className="manualBackBox lay3Background"
                 onClick={() =>
@@ -565,7 +565,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   {data?.layTeamB != 0 ? detail?.rateThan100 ? data?.layTeamB + 2 : data?.layTeamB + 2>100 ? "-" : data?.layTeamB + 2 : "-"}
                 </span>
               </div>
-            )}
+            
           </div>
         </div>
 
@@ -668,7 +668,7 @@ const ManualMarket = ({ title, data, detail }) => {
             </div>
             <div
               className={`manualRateBox ${
-                isMobile ? "rateBoxWidth2" : "rateBoxWidth"
+                isMobile ? "rateBoxWidth" : "rateBoxWidth"
               }`}
               // style={{ width: isMobile ? "40%" : isLap ? "360px" : "480px" }}
             >
@@ -679,7 +679,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   </span>
                 </div>
               )}
-              {!isMobile && (
+              {/* {!isMobile && ( */}
                 <div
                   className="manualBackBox back3Background"
                   onClick={() =>
@@ -696,8 +696,8 @@ const ManualMarket = ({ title, data, detail }) => {
                     {data?.backTeamC != 0 ? data?.backTeamC - 2 >0 ? data?.backTeamC - 2:"-" : "-"}
                   </span>
                 </div>
-              )}
-              {!isMobile && (
+              
+              {/* {!isMobile && ( */}
                 <div
                   className="manualBackBox back2Background"
                   onClick={() =>
@@ -714,7 +714,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     {data?.backTeamC != 0 ? data?.backTeamC - 1 >0 ? data?.backTeamC - 1:"-" : "-"}
                   </span>
                 </div>
-              )}
+              
               <div
                 className="manualBackBox back1Background"
                 onClick={() =>
@@ -747,7 +747,7 @@ const ManualMarket = ({ title, data, detail }) => {
                   {data?.layTeamC != 0 ? data?.layTeamC : "-"}
                 </span>
               </div>
-              {!isMobile && (
+              {/* {!isMobile && ( */}
                 <div
                   className="manualBackBox lay2Background"
                   onClick={() =>
@@ -764,8 +764,8 @@ const ManualMarket = ({ title, data, detail }) => {
                     {data?.layTeamC != 0 ? detail?.rateThan100 ? data?.layTeamC + 1 : data?.layTeamC + 1>100?"-": data?.layTeamC + 1 : "-"}
                   </span>
                 </div>
-              )}
-              {!isMobile && (
+              
+              {/* {!isMobile && ( */}
                 <div
                   className="manualBackBox lay3Background"
                   onClick={() =>
@@ -782,7 +782,7 @@ const ManualMarket = ({ title, data, detail }) => {
                     {data?.layTeamC != 0 ? detail?.rateThan100 ? data?.layTeamC + 2 : data?.layTeamC + 2 > 100 ? "-" : data?.layTeamC + 2 : "-"}
                   </span>
                 </div>
-              )}
+              
             </div>
           </div>
         )}
