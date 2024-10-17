@@ -23,7 +23,7 @@ const ImageModal = ({ customClass, show, setShow }) => {
           aria-label="Close"
         ></button>
       </div>
-      <div className="p-0 modal-body">
+      <div className="p-0 modal-body overflow-auto" style={{maxHeight: "90vh"}}>
         <img
           src={"data:image/png;base64," + bannerImage?.value}
           alt="Modal Content"
