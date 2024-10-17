@@ -101,7 +101,11 @@ const OtherMarket = ({ title, box, data, detail }) => {
         <div className="otherMarketBackLayTab">
           <div className="otherMarketMinMaxBox">
             <span className="otherMarketMinMax">
-            {data?.minBet===data?.maxBet? `Max:${formatNumber(data?.maxBet)}` :`Min:${formatNumber(data?.minBet)} Max:${formatNumber(data?.maxBet)}`}
+              {data?.minBet === data?.maxBet
+                ? `Max:${formatNumber(data?.maxBet)}`
+                : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
+                    data?.maxBet
+                  )}`}
             </span>
           </div>
           <div
@@ -209,7 +213,12 @@ const OtherMarket = ({ title, box, data, detail }) => {
             {(data?.activeStatus !== "live" ||
               data?.runners?.[0]?.status !== "ACTIVE") && (
               <div className="suspended-overlayRatesotherMarket">
-                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[0]?.status}</span>
+                <span
+                  className={`suspendTextCmmn`}
+                  style={{ textTransform: "uppercase" }}
+                >
+                  {data?.runners?.[0]?.status}
+                </span>
               </div>
             )}
             {box === 6 ? (
@@ -353,7 +362,12 @@ const OtherMarket = ({ title, box, data, detail }) => {
             {(data?.activeStatus !== "live" ||
               data?.runners?.[1]?.status !== "ACTIVE") && (
               <div className="suspended-overlayRatesotherMarket">
-                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[1]?.status}</span>
+                <span
+                  className={`suspendTextCmmn`}
+                  style={{ textTransform: "uppercase" }}
+                >
+                  {data?.runners?.[1]?.status}
+                </span>
               </div>
             )}
             {box === 6 ? (
@@ -494,7 +508,12 @@ const OtherMarket = ({ title, box, data, detail }) => {
               {(data?.activeStatus !== "live" ||
                 data?.runners?.[2]?.status !== "ACTIVE") && (
                 <div className="suspended-overlayRatesotherMarket">
-                  <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[2]?.status}</span>
+                  <span
+                    className={`suspendTextCmmn`}
+                    style={{ textTransform: "uppercase" }}
+                  >
+                    {data?.runners?.[2]?.status}
+                  </span>
                 </div>
               )}
               {box === 6 ? (

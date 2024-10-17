@@ -65,11 +65,6 @@ const Abj = () => {
         socketService.card.getCardRatesOff(cardGamesType.andarBahar1);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.andarBahar1);
-        socketService.card.getCardRates(
-          cardGamesType.andarBahar1,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.andarBahar1,
@@ -77,6 +72,11 @@ const Abj = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.andarBahar1);
+      socketService.card.getCardRates(
+        cardGamesType.andarBahar1,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }

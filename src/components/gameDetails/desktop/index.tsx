@@ -152,7 +152,7 @@ const DesktopGameDetail = () => {
     <Container fluid className="pe-0 ps-1">
       <Row className="p-0">
         <Col md={8}>
-          {!loading ? (
+          {/* {!loading ? ( */}
             <Container className="p-0">
               <>
                 <Col md={12} className="p-0">
@@ -496,218 +496,17 @@ const DesktopGameDetail = () => {
                       />
                     </Col>
                   )}
-                {/* {matchDetails?.quickBookmaker?.length > 0 &&
-                matchDetails?.quickBookmaker?.map(
-                  (item: any, index: number) => (
-                    <div key={index}>
-                      {item?.isActive && (
-                        <Col md={12}>
-                          <ManualMarket
-                            title={item?.name}
-                            data={item}
-                            detail={matchDetails}
-                            // data={matchDetails?.matchOdd}
-                          />
-                        </Col>
-                      )}
-                    </div>
-                  )
-                )} */}
-                {/* {matchDetails?.matchOdd?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.matchOdd?.name}
-                    type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.matchOdd}
-                  />
-                </Col>
-              )}
-
-              {matchDetails?.bookmaker?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.bookmaker?.name}
-                    type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.bookmaker}
-                  />
-                </Col>
-              )}
-
-              {matchDetails?.quickBookmaker?.length > 0 &&
-                matchDetails?.quickBookmaker?.map(
-                  (item: any, index: number) => (
-                    <div key={index}>
-                      {item?.isActive && (
-                        <Col md={12}>
-                          <BetTable
-                            title={item?.name}
-                            type={MatchType.BOOKMAKER}
-                            data={item}
-                          />
-                        </Col>
-                      )}
-                    </div>
-                  )
-                )} */}
-                {matchDetails?.firstHalfGoal?.length > 0 &&
-                  matchDetails?.firstHalfGoal?.map(
-                    (item: any, index: number) => (
-                      <div key={index}>
-                        {item?.isActive && (
-                          <Col md={12}>
-                            <BetTable
-                              title={item?.name}
-                              type={MatchType.MATCH_ODDS}
-                              data={item}
-                            />
-                          </Col>
-                        )}
-                      </div>
-                    )
-                  )}
-                {matchDetails?.halfTime?.isActive && (
-                  <Col md={12}>
-                    <BetTable
-                      title={matchDetails?.halfTime?.name}
-                      type={MatchType.MATCH_ODDS}
-                      data={matchDetails?.halfTime}
-                    />
-                  </Col>
-                )}
-                {matchDetails?.overUnder?.length > 0 &&
-                  matchDetails?.overUnder?.map((item: any, index: number) => (
-                    <div key={index}>
-                      {item?.isActive && (
-                        <Col md={12}>
-                          <BetTable
-                            title={item?.name}
-                            type={MatchType.MATCH_ODDS}
-                            data={item}
-                          />
-                        </Col>
-                      )}
-                    </div>
-                  ))}
-                {/* {matchDetails?.apiTideMatch?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.apiTideMatch?.name}
-                    type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.apiTideMatch}
-                  />
-                </Col>
-              )}
-              {matchDetails?.manualTiedMatch?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.manualTiedMatch?.name}
-                    type={MatchType.BOOKMAKER}
-                    data={matchDetails?.manualTiedMatch}
-                  />
-                </Col>
-              )}
-              {matchDetails?.marketCompleteMatch?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.marketCompleteMatch?.name}
-                    type={MatchType.MATCH_ODDS}
-                    data={matchDetails?.marketCompleteMatch}
-                  />
-                </Col>
-              )}
-              {matchDetails?.manualCompleteMatch?.isActive && (
-                <Col md={12}>
-                  <BetTable
-                    title={matchDetails?.manualCompleteMatch?.name}
-                    type={MatchType.BOOKMAKER}
-                    data={matchDetails?.manualCompleteMatch}
-                  />
-                </Col>
-              )} */}
-                {/* {matchDetails?.apiSessionActive && (
-                <Col
-                  md={
-                    window.innerWidth >= 768 && window.innerWidth <= 1021
-                      ? 12
-                      : 6
-                  }
-                >
-                  <BetTable
-                    title={"Session Market"}
-                    type={MatchType.API_SESSION_MARKET}
-                    data={matchDetails?.sessionBettings}
-                  />
-                </Col>
-              )} */}
-                {/* {matchDetails?.manualSessionActive && (
-                <Col md={6}>
-                  <BetTable
-                    title={"Quick Session Market"}
-                    type={MatchType.SESSION_MARKET}
-                    data={matchDetails?.sessionBettings}
-                  />
-                </Col>
-              )} */}
-                {/* <Col md={12}>
-                <CommonTabs
-                  customClass="overflow-x-auto overflow-y-hidden no-wrap"
-                  defaultActive="fancy"
-                >
-                  {[
-                    {
-                      id: "fancy",
-                      name: "Fancy 1",
-                    },
-                    {
-                      id: "meter",
-                      name: "Meter",
-                    },
-                    {
-                      id: "khado",
-                      name: "Khado",
-                    },
-                    {
-                      id: "oddEven",
-                      name: "OdeEven",
-                    },
-                  ]?.map((item) => {
-                    return (
-                      <Tab
-                        key={item?.id}
-                        eventKey={item?.id}
-                        tabClassName="m-match-list-tabs"
-                        title={
-                          <div className="title-12 text-uppercase f600">
-                            <span>{item?.name}</span>
-                          </div>
-                        }
-                      >
-                        <Row>
-                          {data?.session?.map((item: any, index: number) => (
-                            <Col md={6} key={index}>
-                              <BetTable
-                                title={item?.title}
-                                type={MatchType.SESSION_MARKET}
-                                data={item?.data}
-                              />
-                            </Col>
-                          ))}
-                        </Row>
-                      </Tab>
-                    );
-                  })}
-                </CommonTabs>
-              </Col> */}
+               
               </>
             </Container>
-          ) : (
-            <div
-              className="w-100 d-flex justify-content-center align-items-center"
-              style={{ height: "100vh" }}
-            >
-              <NewLoader />
-            </div>
-          )}
+          {/* // ) : (
+          //   <div
+          //     className="w-100 d-flex justify-content-center align-items-center"
+          //     style={{ height: "100vh" }}
+          //   >
+          //     <NewLoader />
+          //   </div>
+          // )} */}
         </Col>
         <Col md={4} className="p-0 sideBet-W">
           <Container className="p-0" fluid ref={placeBetRef}>

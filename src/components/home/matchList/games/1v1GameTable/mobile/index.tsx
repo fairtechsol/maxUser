@@ -175,7 +175,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                       </div>
                                     </Link>
                                   </div>
-                                  <div className="d-flex align-items-center gap-2">
+                                  <div className="d-flex align-items-center gap-2" style={{display:"flex",width:"120px",justifyContent:"center"}}>
                                     {currentTime >= startAt ? (
                                       <span className="liveDot"></span>
                                     ) : (

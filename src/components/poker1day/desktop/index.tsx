@@ -28,7 +28,7 @@ const Poker1DayDesktop = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  console.log(dragonTigerDetail, "data")
+  console.log(dragonTigerDetail, "data");
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -155,29 +155,28 @@ const Poker1DayDesktop = () => {
               <div>
                 <div className="poker-table-container mt-1">
                   <div className="d-flex column gap-4">
-                  <div style={{ width: "50%" }}>
-                    <DynamicTable
-                      odds={dragonTigerDetail?.oddsData}
-                      data={dragonTigerDetail}
-                      playerNum={dragonTigerDetail?.oddsData?.[0]}
-                    />
+                    <div style={{ width: "50%" }}>
+                      <DynamicTable
+                        odds={dragonTigerDetail?.oddsData}
+                        data={dragonTigerDetail}
+                        playerNum={dragonTigerDetail?.oddsData?.[0]}
+                      />
+                    </div>
+                    <div style={{ width: "50%" }}>
+                      <DynamicTable
+                        odds={dragonTigerDetail?.oddsData}
+                        data={dragonTigerDetail}
+                        playerNum={dragonTigerDetail?.oddsData?.[1]}
+                      />
+                    </div>
                   </div>
-                  <div style={{ width: "50%" }}>
-                    <DynamicTable
-                      odds={dragonTigerDetail?.oddsData}
-                      data={dragonTigerDetail}
-                      playerNum={dragonTigerDetail?.oddsData?.[1]}
-                    />
-                  </div>
-                  </div>
-                  
                 </div>
                 <div className="mt-2" style={{ width: "100%" }}>
-                    <PairBox
-                      odds={dragonTigerDetail?.playersBonusPair}
-                      data={dragonTigerDetail}
-                    />
-                  </div>
+                  <PairBox
+                    odds={dragonTigerDetail?.playersBonusPair}
+                    data={dragonTigerDetail}
+                  />
+                </div>
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
@@ -197,6 +196,8 @@ const Poker1DayDesktop = () => {
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
+                height: "565px",
+                overflowY: "scroll",
               }}
             >
               <Col className="p-1 pt-0" md={12}>
@@ -206,39 +207,85 @@ const Poker1DayDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col
-              
                 xs={12}
                 className="no-scrollbar p-1 pt-0"
-                // style={{ height: "400px", overflow: "auto" }}
+                style={{ height: "493px", overflow: "scroll" }}
               >
-                <div className="casino-title mt-2" style={{ position: "relative" }}>
+                <div
+                  className="casino-title mt-"
+                  style={{ position: "relative" }}
+                >
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table lh-1">
                   <Table bordered>
                     <thead>
                       <tr>
-                        <th colSpan={2} className="box-10 text-center  title-14">
+                        <th
+                          colSpan={2}
+                          className="box-10 text-center  title-14"
+                          style={{ background: "#f2f2f2" }}
+                        >
                           Bonus 1 (2 Cards Bonus)
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       {bonus1.map((item, index) => (
-                        <tr key={index}>
-                          <td className="box-7">{item.label}</td>
-                          <td className="box-3">{item.value}</td>
+                        <tr key={index} style={{ background: "#f2f2f2" }}>
+                          <td
+                            className="box-7 title-14"
+                            style={{
+                              paddingTop: "0.4rem",
+                              paddingBottom: "0.5rem",
+                              background: "#f2f2f2",
+                            }}
+                          >
+                            {item.label}
+                          </td>
+                          <td
+                            className="box-3 title-14"
+                            style={{
+                              paddingTop: "0.4rem",
+                              paddingBottom: "0.5rem",
+                              background: "#f2f2f2",
+                            }}
+                          >
+                            {item.value}
+                          </td>
                         </tr>
                       ))}
                       <tr>
-                        <th colSpan={2} className="box-10 text-center lh-1">
+                        <th
+                          colSpan={2}
+                          className="box-10 text-center title-14 lh-1"
+                          style={{ background: "#f2f2f2" }}
+                        >
                           Bonus 2 (7 Cards Bonus)
                         </th>
                       </tr>
                       {bonus2.map((item, index) => (
-                        <tr key={index}>
-                          <td className="box-7">{item.label}</td>
-                          <td className="box-3">{item.value}</td>
+                        <tr key={index} style={{ background: "#f2f2f2" }}>
+                          <td
+                            className="box-7 title-14"
+                            style={{
+                              paddingTop: "0.4rem",
+                              paddingBottom: "0.5rem",
+                              background: "#f2f2f2",
+                            }}
+                          >
+                            {item.label}
+                          </td>
+                          <td
+                            className="box-3 title-14"
+                            style={{
+                              paddingTop: "0.4rem",
+                              paddingBottom: "0.5rem",
+                              background: "#f2f2f2",
+                            }}
+                          >
+                            {item.value}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
