@@ -32,9 +32,15 @@ const OtherMarket = ({ title, box, data, detail }) => {
       rate: odds,
       type: type,
       stake: 0,
-      teamA: data?.type === "other" ? data?.metaData?.teamA : "yes",
-      teamB: data?.type === "other" ? data?.metaData?.teamB : "no",
-      teamC: data?.metaData?.teamC,
+      teamA:
+        data?.type === "other"
+          ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+          : "yes",
+      teamB:
+        data?.type === "other"
+          ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+          : "no",
+      teamC: data?.runners?.[2]?.nat || data?.metaData?.teamC,
       betId: data?.id,
       eventType: detail?.matchType,
       matchId: detail?.id,
@@ -50,6 +56,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
       })
     );
   };
+
   const profitLossTeamA =
     data?.type === "tiedMatch3"
       ? detail?.profitLossDataMatch?.[
@@ -60,7 +67,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             "_" +
             data?.id +
             "_" +
-            data?.matchId
+            detail?.id
         ];
   const profitLossTeamB =
     data?.type === "tiedMatch3"
@@ -72,7 +79,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             "_" +
             data?.id +
             "_" +
-            data?.matchId
+            detail?.id
         ];
   const profitLossTeamC =
     data?.type === "tiedMatch3"
@@ -82,7 +89,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
             "_" +
             data?.id +
             "_" +
-            data?.matchId
+            detail?.id
         ];
 
   return (
@@ -140,7 +147,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont otherMarketTeamTxt`}>
-              {data?.type === "other" ? data?.metaData?.teamA : "Yes"}
+              {data?.type === "other"
+                ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                : "Yes"}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
@@ -148,7 +157,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   parseFloat(profitLossTeamA) +
                     manualProfitLoss(
                       selectedBet,
-                      data?.type === "other" ? data?.metaData?.teamA : "Yes",
+                      data?.type === "other"
+                        ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                        : "Yes",
                       data?.type,
                       data?.gtype
                     ) >
@@ -160,14 +171,18 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 {parseFloat(profitLossTeamA) +
                 manualProfitLoss(
                   selectedBet,
-                  data?.type === "other" ? data?.metaData?.teamA : "Yes",
+                  data?.type === "other"
+                    ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                    : "Yes",
                   data?.type,
                   data?.gtype
                 )
                   ? parseFloat(profitLossTeamA) +
                     manualProfitLoss(
                       selectedBet,
-                      data?.type === "other" ? data?.metaData?.teamA : "Yes",
+                      data?.type === "other"
+                        ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                        : "Yes",
                       data?.type,
                       data?.gtype
                     )
@@ -179,7 +194,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   color:
                     manualProfitLoss(
                       selectedBet,
-                      data?.type === "other" ? data?.metaData?.teamA : "Yes",
+                      data?.type === "other"
+                        ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                        : "Yes",
                       data?.type,
                       data?.gtype
                     ) > 0
@@ -189,14 +206,18 @@ const OtherMarket = ({ title, box, data, detail }) => {
               >
                 {manualProfitLoss(
                   selectedBet,
-                  data?.type === "other" ? data?.metaData?.teamA : "Yes",
+                  data?.type === "other"
+                    ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                    : "Yes",
                   data?.type,
                   data?.gtype
                 ) === 0
                   ? ""
                   : manualProfitLoss(
                       selectedBet,
-                      data?.type === "other" ? data?.metaData?.teamA : "Yes",
+                      data?.type === "other"
+                        ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                        : "Yes",
                       data?.type,
                       data?.gtype
                     )?.toFixed(2)}
@@ -232,7 +253,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                       data={item}
                       type={"back"}
                       detail={
-                        data?.type === "other" ? data?.metaData?.teamA : "Yes"
+                        data?.type === "other"
+                          ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                          : "Yes"
                       }
                       runner={data?.runners?.[0]}
                       handlePlaceBet={handlePlaceBet}
@@ -248,7 +271,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                       data={item}
                       type={"lay"}
                       detail={
-                        data?.type === "other" ? data?.metaData?.teamA : "Yes"
+                        data?.type === "other"
+                          ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                          : "Yes"
                       }
                       runner={data?.runners?.[0]}
                       handlePlaceBet={handlePlaceBet}
@@ -262,7 +287,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   data={data?.runners?.[0]?.ex?.availableToBack?.[0]}
                   type={"back"}
                   detail={
-                    data?.type === "other" ? data?.metaData?.teamA : "Yes"
+                    data?.type === "other"
+                      ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                      : "Yes"
                   }
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
@@ -272,7 +299,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   data={data?.runners?.[0]?.ex?.availableToLay?.[0]}
                   type={"lay"}
                   detail={
-                    data?.type === "other" ? data?.metaData?.teamA : "Yes"
+                    data?.type === "other"
+                      ? data?.runners?.[0]?.nat || data?.metaData?.teamA
+                      : "Yes"
                   }
                   runner={data?.runners?.[0]}
                   handlePlaceBet={handlePlaceBet}
@@ -289,7 +318,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont otherMarketTeamTxt`}>
-              {data?.type === "other" ? data?.metaData?.teamB : "No"}
+              {data?.type === "other"
+                ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                : "No"}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
@@ -297,7 +328,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   parseFloat(profitLossTeamB) +
                     manualProfitLoss(
                       selectedBet,
-                      data?.type === "other" ? data?.metaData?.teamB : "No",
+                      data?.type === "other"
+                        ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                        : "No",
                       data?.type,
                       data?.gtype
                     ) >
@@ -309,14 +342,18 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 {parseFloat(profitLossTeamB) +
                 manualProfitLoss(
                   selectedBet,
-                  data?.type === "other" ? data?.metaData?.teamB : "No",
+                  data?.type === "other"
+                    ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                    : "No",
                   data?.type,
                   data?.gtype
                 )
                   ? parseFloat(profitLossTeamB) +
                     manualProfitLoss(
                       selectedBet,
-                      data?.type === "other" ? data?.metaData?.teamB : "No",
+                      data?.type === "other"
+                        ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                        : "No",
                       data?.type,
                       data?.gtype
                     )
@@ -328,7 +365,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   color:
                     manualProfitLoss(
                       selectedBet,
-                      data?.type === "other" ? data?.metaData?.teamB : "No",
+                      data?.type === "other"
+                        ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                        : "No",
                       data?.type,
                       data?.gtype
                     ) > 0
@@ -338,14 +377,18 @@ const OtherMarket = ({ title, box, data, detail }) => {
               >
                 {manualProfitLoss(
                   selectedBet,
-                  data?.type === "other" ? data?.metaData?.teamB : "No",
+                  data?.type === "other"
+                    ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                    : "No",
                   data?.type,
                   data?.gtype
                 ) === 0
                   ? ""
                   : manualProfitLoss(
                       selectedBet,
-                      data?.type === "other" ? data?.metaData?.teamB : "No",
+                      data?.type === "other"
+                        ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                        : "No",
                       data?.type,
                       data?.gtype
                     )?.toFixed(2)}
@@ -381,7 +424,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                       data={item}
                       type={"back"}
                       detail={
-                        data?.type === "other" ? data?.metaData?.teamB : "No"
+                        data?.type === "other"
+                          ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                          : "No"
                       }
                       runner={data?.runners?.[1]}
                       handlePlaceBet={handlePlaceBet}
@@ -397,7 +442,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                       data={item}
                       type={"lay"}
                       detail={
-                        data?.type === "other" ? data?.metaData?.teamB : "No"
+                        data?.type === "other"
+                          ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                          : "No"
                       }
                       runner={data?.runners?.[1]}
                       handlePlaceBet={handlePlaceBet}
@@ -410,7 +457,11 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[1]?.ex?.availableToBack?.[0]}
                   type={"back"}
-                  detail={data?.type === "other" ? data?.metaData?.teamB : "No"}
+                  detail={
+                    data?.type === "other"
+                      ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                      : "No"
+                  }
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -418,7 +469,11 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 <BetBox
                   data={data?.runners?.[1]?.ex?.availableToLay?.[0]}
                   type={"lay"}
-                  detail={data?.type === "other" ? data?.metaData?.teamB : "No"}
+                  detail={
+                    data?.type === "other"
+                      ? data?.runners?.[1]?.nat || data?.metaData?.teamB
+                      : "No"
+                  }
                   runner={data?.runners?.[1]}
                   handlePlaceBet={handlePlaceBet}
                 />
@@ -427,7 +482,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
           </div>
         </div>
 
-        {data?.metaData?.teamC && (
+        {(data?.runners?.[2]?.nat || data?.metaData?.teamC) && (
           <div className="otherMarketTeamTab">
             <div
               className="otherMarketTeam"
@@ -435,7 +490,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
               // style={box === 6 ? { width: "28%" } : {}}
             >
               <span className={`teamFont otherMarketTeamTxt`}>
-                {data?.metaData?.teamC}
+                {data?.runners?.[2]?.nat || data?.metaData?.teamC}
               </span>{" "}
               <div className="d-flex flex-row justify-content-between w-100">
                 <span
@@ -443,7 +498,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     parseFloat(profitLossTeamC) +
                       manualProfitLoss(
                         selectedBet,
-                        data?.metaData?.teamC,
+                        data?.runners?.[2]?.nat || data?.metaData?.teamC,
                         data?.type,
                         data?.gtype
                       ) >
@@ -455,14 +510,14 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   {parseFloat(profitLossTeamC) +
                   manualProfitLoss(
                     selectedBet,
-                    data?.metaData?.teamC,
+                    data?.runners?.[2]?.nat || data?.metaData?.teamC,
                     data?.type,
                     data?.gtype
                   )
                     ? parseFloat(profitLossTeamC) +
                       manualProfitLoss(
                         selectedBet,
-                        data?.metaData?.teamC,
+                        data?.runners?.[2]?.nat || data?.metaData?.teamC,
                         data?.type,
                         data?.gtype
                       )
@@ -474,7 +529,7 @@ const OtherMarket = ({ title, box, data, detail }) => {
                     color:
                       manualProfitLoss(
                         selectedBet,
-                        data?.metaData?.teamC,
+                        data?.runners?.[2]?.nat || data?.metaData?.teamC,
                         data?.type,
                         data?.gtype
                       ) > 0
@@ -484,14 +539,14 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 >
                   {manualProfitLoss(
                     selectedBet,
-                    data?.metaData?.teamC,
+                    data?.runners?.[2]?.nat || data?.metaData?.teamC,
                     data?.type,
                     data?.gtype
                   ) === 0
                     ? ""
                     : manualProfitLoss(
                         selectedBet,
-                        data?.metaData?.teamC,
+                        data?.runners?.[2]?.nat || data?.metaData?.teamC,
                         data?.type,
                         data?.gtype
                       )?.toFixed(2)}
