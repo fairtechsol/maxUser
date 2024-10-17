@@ -66,11 +66,6 @@ const BallByBall = () => {
         socketService.card.getCardRatesOff(cardGamesType.ballbyball);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.ballbyball);
-        socketService.card.getCardRates(
-          cardGamesType.ballbyball,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.ballbyball,
@@ -78,6 +73,11 @@ const BallByBall = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.ballbyball);
+      socketService.card.getCardRates(
+        cardGamesType.ballbyball,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
