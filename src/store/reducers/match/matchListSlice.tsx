@@ -273,7 +273,7 @@ const matchListSlice = createSlice({
           apiTideMatch2: apiTiedMatch2,
           bookmaker: bookmaker,
           bookmaker2: bookmaker2,
-          other: updatedOther,
+          other,
           tournament: tournament,
           manualTiedMatch: manualTideMatch,
           marketCompleteMatch: marketCompleteMatch,
