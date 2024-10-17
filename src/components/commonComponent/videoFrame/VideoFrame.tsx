@@ -53,7 +53,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
           <div
             style={{
               // height: isMobile ? "30vh" : "40vh",
-              backgroundColor: "black",
+              backgroundColor: "white",
               position: "relative",
               // width: "100vw"
             }}

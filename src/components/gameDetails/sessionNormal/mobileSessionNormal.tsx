@@ -50,6 +50,8 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       matchBetType: "session",
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
+      min:item?.min || item?.minBet,
+      max:item?.max || item?.maxBet,
     };
     dispatch(
       selectedBetAction({
@@ -126,6 +128,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
             </div>
             {marketArr?.map((item: any, index: any) => {
               return (
+                <div className="w-100 d-flex flex-column">
                 <div className="sessionRateContainer" key={index}>
                   <div
                     className="sessionRateName"
@@ -375,6 +378,9 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                     </div>
                   </div>
                 </div>
+                {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                    </div>)}
+                  </div>
               );
             })}
           </div>

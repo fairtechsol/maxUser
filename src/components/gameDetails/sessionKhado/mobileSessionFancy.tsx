@@ -46,6 +46,8 @@ const MobileSessionKhado = ({ title, data, detail }) => {
       mid: data?.mid?.toString(),
       betPlaceIndex: tno,
       matchBetType: "session",
+      min:item?.min ,
+      max:item?.max 
     };
     dispatch(
       selectedBetAction({
