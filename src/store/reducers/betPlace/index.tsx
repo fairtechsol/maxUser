@@ -8,7 +8,7 @@ import {
   getRunAmountMeter,
   resetRunAmount,
   resetRunAmountModal,
-  resetRunAmountModal1,
+  resetRunAmountModalKhado,
   runAmountReset,
   updateBetsPlaced,
 } from "../../actions/betPlace/betPlaceActions";
@@ -28,7 +28,7 @@ interface InitialState {
   loadingMyMarket: boolean;
   error: any;
   runAmountModal: boolean;
-  runAmountModal1: boolean;
+  runAmountModalKhado: boolean;
   title?:any;
 }
 
@@ -42,7 +42,7 @@ const initialState: InitialState = {
   success: false,
   error: null,
   runAmountModal: false,
-  runAmountModal1: false,
+  runAmountModalKhado: false,
   title: null
 };
 
@@ -247,14 +247,14 @@ const placedBet = createSlice({
       .addCase(runAmountReset, (state) => {
         state.runAmount = {};
       })
-      .addCase(resetRunAmountModal1.fulfilled, (state, action) => {
+      .addCase(resetRunAmountModalKhado.fulfilled, (state, action) => {
         // console.log('first',action.payload)
         const { id, showModal } = action.payload;
         if (showModal) {
-          state.runAmountModal1 = showModal;
+          state.runAmountModalKhado = showModal;
         } else {
           if (state.runAmount?.betId === id) {
-            state.runAmountModal1 = showModal;
+            state.runAmountModalKhado = showModal;
           }
         }
       });

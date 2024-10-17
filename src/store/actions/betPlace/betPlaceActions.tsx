@@ -138,7 +138,7 @@ export const resetRunAmountModal: any = createAsyncThunk<any, any>(
     return placedBets;
   }
 );
-export const resetRunAmountModal1: any = createAsyncThunk<any, any>(
+export const resetRunAmountModalKhado: any = createAsyncThunk<any, any>(
   "/resetRunAmountModal1/reset1",
   async (placedBets) => {
     return placedBets;

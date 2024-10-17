@@ -3,7 +3,7 @@ import { calculateMaxLoss, handleSize } from "../../../helpers";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import "./style.scss";
-import {  getRunAmountMeter, resetRunAmountModal1 } from "../../../store/actions/betPlace/betPlaceActions";
+import {  getRunAmountMeter, resetRunAmountModalKhado } from "../../../store/actions/betPlace/betPlaceActions";
 import { useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import RunBoxTable from "../betTable/runBoxTable";
@@ -12,7 +12,7 @@ import { useEffect } from "react";
 const MobileSessionKhado = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
 
-  const { runAmount, runAmountModal1 } = useSelector(
+  const { runAmount, runAmountModalKhado } = useSelector(
     (state: RootState) => state.bets
   );
   const handlePlaceBet = (
@@ -66,7 +66,7 @@ const MobileSessionKhado = ({ title, data, detail }) => {
     handleModal(false)
   }, [])
   const handleModal = (event: any) => {
-    dispatch(resetRunAmountModal1({ showModal: event, id: runAmount?.betId }));
+    dispatch(resetRunAmountModalKhado({ showModal: event, id: runAmount?.betId }));
   };
   return (
     <>
@@ -117,7 +117,7 @@ const MobileSessionKhado = ({ title, data, detail }) => {
                         return;
                       } else
                         dispatch(
-                          resetRunAmountModal1({
+                          resetRunAmountModalKhado({
                             showModal: true,
                             id: item?.id,
                           })
@@ -191,7 +191,7 @@ const MobileSessionKhado = ({ title, data, detail }) => {
             })}
           </div>
         </div>
-        <Modal show={runAmountModal1} onHide={()=>handleModal(false)}>
+        <Modal show={runAmountModalKhado} onHide={()=>handleModal(false)}>
         <Modal.Header
           className="bg-primary rounded-0"
           style={{ zIndex: "999" }}
