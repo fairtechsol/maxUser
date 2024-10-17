@@ -28,6 +28,7 @@ const ImageModal = ({ customClass, show, setShow }) => {
           src={"data:image/png;base64," + bannerImage?.value}
           alt="Modal Content"
           className="img-fluid"
+          style={{ width: "100%", height: "auto" }} 
         />
       </div>
     </Modal>
