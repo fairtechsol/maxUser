@@ -58,7 +58,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
     );
   };
 
-  const { runAmount, runAmountModal } = useSelector(
+  const { runAmount, runAmountModal,title:modalTitle } = useSelector(
     (state: RootState) => state.bets
   );
   const evenIndexArray = [];
@@ -161,18 +161,20 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           ) === 0
                         ) {
                           return;
-                        } else{
+                        } else {
                           dispatch(
                             resetRunAmountModal({
                               showModal: true,
                               id: item?.id,
+                              title: title,
                             })
                           );
-                          if(title==="meter"){
+                          if (title === "meter") {
                             dispatch(getRunAmountMeter(item?.id));
-                          }else{
+                          } else {
                             dispatch(getRunAmount(item?.id));
-                          }}
+                          }
+                        }
                       }}
                     >
                       {item?.RunnerName || item?.name}
@@ -211,7 +213,8 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     ) && (
                       <div className="suspended-overlayRates">
                         <span className={`suspendTextCmmn`}>
-                          {(item?.GameStatus || item?.status)?.toUpperCase() ?? "SUSPENDED"}
+                          {(item?.GameStatus || item?.status)?.toUpperCase() ??
+                            "SUSPENDED"}
                         </span>
                       </div>
                     )}
@@ -460,18 +463,19 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ) === 0
                           ) {
                             return;
-                          } else{
+                          } else {
                             dispatch(
                               resetRunAmountModal({
                                 showModal: true,
                                 id: item?.id,
                               })
                             );
-                            if(title==="meter"){
+                            if (title === "meter") {
                               dispatch(getRunAmountMeter(item?.id));
-                            }else{
+                            } else {
                               dispatch(getRunAmount(item?.id));
-                            }}
+                            }
+                          }
                         }}
                       >
                         {item?.RunnerName || item?.name}
@@ -510,7 +514,9 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       ) && (
                         <div className="suspended-overlayRates">
                           <span className={`suspendTextCmmn`}>
-                            {(item?.GameStatus || item?.status)?.toUpperCase() ?? "SUSPENDED"}
+                            {(
+                              item?.GameStatus || item?.status
+                            )?.toUpperCase() ?? "SUSPENDED"}
                           </span>
                         </div>
                       )}
@@ -708,8 +714,11 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
           )}
         </div>
       </div>
-      
-      <Modal show={runAmountModal} onHide={()=>handleModal(false)}>
+
+      <Modal
+        show={runAmountModal && modalTitle == title}
+        onHide={() => handleModal(false)}
+      >
         <Modal.Header
           className="bg-primary rounded-0"
           style={{ zIndex: "999" }}
@@ -725,13 +734,20 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
             type="button"
             className="btn-close btn-close-white"
             aria-label="Close"
-            onClick={()=>handleModal(false)}
+            onClick={() => handleModal(false)}
           ></button>
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
-        <div style={{ width: "100%", maxHeight: "85vh", overflowY: "auto",padding:"10px" }}>
-          <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
-        </div>
+          <div
+            style={{
+              width: "100%",
+              maxHeight: "85vh",
+              overflowY: "auto",
+              padding: "10px",
+            }}
+          >
+            <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+          </div>
         </Modal.Body>
       </Modal>
     </>
