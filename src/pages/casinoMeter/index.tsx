@@ -65,11 +65,6 @@ const CasinoMeter = () => {
         socketService.card.getCardRatesOff(cardGamesType.cmeter);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.cmeter);
-        socketService.card.getCardRates(
-          cardGamesType.cmeter,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.cmeter,
@@ -77,6 +72,11 @@ const CasinoMeter = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.cmeter);
+      socketService.card.getCardRates(
+        cardGamesType.cmeter,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }

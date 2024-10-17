@@ -65,11 +65,6 @@ const DragonTigerLion = () => {
         socketService.card.getCardRatesOff(cardGamesType.dragonTigerLion);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.dragonTigerLion);
-        socketService.card.getCardRates(
-          cardGamesType.dragonTigerLion,
-          setMatchRatesInRedux
-        );
         socketService.card.getLiveGameResultTop10(
           cardGamesType.dragonTigerLion,
           handleLiveGameResultTop10
@@ -77,6 +72,11 @@ const DragonTigerLion = () => {
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.dragonTigerLion);
+      socketService.card.getCardRates(
+        cardGamesType.dragonTigerLion,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }

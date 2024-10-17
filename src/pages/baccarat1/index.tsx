@@ -70,13 +70,13 @@ const Bacarrat1 = () => {
           cardGamesType.baccarat,
           setMatchRatesInRedux
         );
-        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
-        socketService.card.getLiveGameResultTop10(
-          cardGamesType.baccarat,
-          handleLiveGameResultTop10
-        );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+      socketService.card.getLiveGameResultTop10(
+        cardGamesType.baccarat,
+        handleLiveGameResultTop10
+      );
     } catch (error) {
       console.log(error);
     }
