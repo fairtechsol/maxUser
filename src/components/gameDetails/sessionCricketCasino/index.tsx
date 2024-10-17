@@ -43,6 +43,8 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       betPlaceIndex: tno,
       mid: item?.mid?.toString(),
       teamName: index + " Number",
+      min:item?.min ,
+      max:item?.max 
     };
     dispatch(
       selectedBetAction({

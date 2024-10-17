@@ -40,6 +40,8 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
       teamName: teamName,
+      min:item?.min ,
+      max:item?.max 
     };
     dispatch(
       selectedBetAction({
