@@ -447,7 +447,7 @@ export const cardUrl =
 export const cardUrlMain = "https://maxbet07.com/videoPage/";
 export const liveStreamPageUrl = "https://maxbet07.com/liveStream/";
 // export const scoreBoardUrlMain = "https://maxbet07.com/scoreBoardPage/";
-export const scoreBoardUrlMain = "https://dpmatka.in/sr.php?";
+export const scoreBoardUrlMain = "https://maxbet07.com/scoreBoardPage/";
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";
 
