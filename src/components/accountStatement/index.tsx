@@ -279,7 +279,7 @@ const AccountStatementComponent = () => {
                         }
                       />
                     </td>
-                    <td className={isMobile ? "color-green debit-as bg-grey" : "color-red" }>
+                    <td className={isMobile ? "color-red debit-as bg-grey" : "color-red" }>
                       <NotSet
                         item={
                           item?.transType == transType.loss ||
