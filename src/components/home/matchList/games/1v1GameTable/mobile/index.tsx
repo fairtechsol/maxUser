@@ -118,18 +118,21 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                             <div className="d-flex w-100">
                               <React.Fragment>
                                 <BackLayComponent
+                                  suspend={false}
                                   heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
+                                  suspend={false}
                                   heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
+                                  suspend={false}
                                   heading=""
                                   backRate={"0"}
                                   layRate={"0"}
@@ -172,36 +175,62 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                       </div>
                                     </Link>
                                   </div>
-                                  <div className="d-flex align-items-center gap-2">
+                                  <div
+                                    className="d-flex align-items-center gap-2"
+                                    style={{
+                                      display: "flex",
+                                      width: "120px",
+                                      justifyContent: "center",
+                                    }}
+                                  >
                                     {currentTime >= startAt ? (
                                       <span className="liveDot"></span>
                                     ) : (
-                                      ""
+                                      <span style={{ width: "10px" }}>
+                                        &nbsp;
+                                      </span>
                                     )}
+
                                     {item?.isTv === true ||
                                     item?.isTv === "1" ? (
                                       <TbDeviceTvOld />
                                     ) : (
-                                      ""
+                                      <span style={{ width: "20px" }}>
+                                        &nbsp;
+                                      </span>
                                     )}
+
+                                    {/* Facebook Icon */}
                                     {item?.manualSessionActive ||
                                     item?.apiSessionActive ? (
                                       <LiaFacebookF size={11} />
                                     ) : (
-                                      ""
+                                      <span style={{ width: "15px" }}>
+                                        &nbsp;
+                                      </span>
                                     )}
+
+                                    {/* Bookmaker */}
                                     {item?.isBookmaker.length > 0 ? (
                                       <span className="bookmaker">
-                                        <img src={bm} alt={"fancy"} />
+                                        <img src={bm} alt="fancy" />
                                       </span>
                                     ) : (
-                                      ""
+                                      <span style={{ width: "20px" }}>
+                                        &nbsp;
+                                      </span>
                                     )}
                                   </div>
                                 </div>
                                 <div className="d-flex w-100">
                                   <BackLayComponent
                                     heading="1"
+                                    suspend={
+                                      item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                        ? true
+                                        : false
+                                    }
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[0]?.ex
@@ -225,6 +254,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   />
                                   <BackLayComponent
                                     heading="X"
+                                    suspend={
+                                      item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                        ? true
+                                        : false
+                                    }
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[2]?.ex
@@ -246,6 +281,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   />
                                   <BackLayComponent
                                     heading="2"
+                                    suspend={
+                                      item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                        ? true
+                                        : false
+                                    }
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[1]?.ex

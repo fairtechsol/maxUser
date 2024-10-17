@@ -446,7 +446,7 @@ export const cardUrl =
 
 export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
 export const liveStreamPageUrl = "https://dpmatka.in/dcasino/nntv.php?MatchID=";
-export const scoreBoardUrlMain = "https://score.hr08bets.in/api?eventId=";
+export const scoreBoardUrlMain = "https://dpmatka.in/sr.php?";
 
 export const streamVidUrl = "https://dpmatka.in/dcasino/nntv.php?MatchID=";
 

@@ -76,10 +76,10 @@ const MobileHeader = () => {
             <Dropdown>
               <Dropdown.Toggle
                 id="dropdown-custom-components"
-                className=" title-14"
+                className="title-14"
                 as={CustomDropDown}
               >
-                {getProfile?.userName}
+                <span className="title-14">{getProfile?.userName}</span>
               </Dropdown.Toggle>
 
               <Dropdown.Menu

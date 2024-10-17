@@ -77,29 +77,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile " : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle">
-            {/* {isMobile ? (
-              <>
-                <span style={{ fontWeight: "400" }}>
-                  Min:{min} Max:{max}
-                </span>
-              </>
-            ) : (
-              <div style={{ width: "45%", textAlign: "start" }}>
-                <span className="minmaxi">
-                  <IoInformationCircle
-                    color="#ffc742"
-                    onClick={() => setModelOpen(!modelOpen)}
-                  />
-                  <SmoothDropdownModal
-                    min={min}
-                    max={max}
-                    show={modelOpen}
-                    setShow={() => setModelOpen(false)}
-                  />
-                </span>
-              </div>
-            )} */}
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}>
+           
           </div>
           <div className="dtlsubTitle back-BackGround">Back</div>
           <div className="dtlsubTitle lay-BackGround">Lay</div>
@@ -115,10 +94,11 @@ const BackLay = ({ matchOddsData, data }: any) => {
               flexDirection: "column",
               alignItems: "flex-start",
               lineHeight: 1,
-              height: "40px" 
+              height: "40px" ,
+              background:"#F2F2F2"
             }}
           >
-            <span>Dragon</span>
+            <span >Dragon</span>
             <span
               className={`f400 title-14 ${
                 data?.profitLoss
@@ -169,6 +149,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
               flexDirection: "column",
               alignItems: "flex-start",
               lineHeight: 1,
+              background:"#F2F2F2"
             }}
           >
             <span>Tiger</span>

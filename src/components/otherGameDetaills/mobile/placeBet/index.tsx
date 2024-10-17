@@ -23,7 +23,7 @@ interface PlaceBetProps {
 }
 
 const FootballPlaceBet = ({ show }: PlaceBetProps) => {
-  const [stake, setStake] = useState<any>(0);
+  const [stake, setStake] = useState<any>();
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
@@ -67,7 +67,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
   }, [buttonValues]);
 
   useEffect(() => {
-    setStake(selectedBet?.team?.stake);
+    setStake(selectedBet?.team?.stake===0?"":selectedBet?.team?.stake);
   }, [selectedBet]);
 
   useEffect(() => {

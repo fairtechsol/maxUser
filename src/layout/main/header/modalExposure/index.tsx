@@ -44,6 +44,7 @@ const ExposureModal: React.FC<ExposureModalInterface> = ({ show, setShow }) => {
                         ? `/other-game-detail/${item.eventType}/${item.matchId}`
                         : `/${navigateToGameDetail[item.eventType]}`
                     }
+                    style={{color:"#0d6efd"}}
                     onClick={() => setShow(false)}
                   >
                     {item?.eventName}

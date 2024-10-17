@@ -65,11 +65,6 @@ const Worli = () => {
         socketService.card.getCardRatesOff(cardGamesType.worli);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.worli);
-        socketService.card.getCardRates(
-          cardGamesType.worli,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.worli,
@@ -77,6 +72,11 @@ const Worli = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.worli);
+      socketService.card.getCardRates(
+        cardGamesType.worli,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }

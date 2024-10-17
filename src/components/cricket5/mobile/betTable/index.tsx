@@ -111,7 +111,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                   }
                   style={{width:"50%"}}
                 >
-                  <span className="market-odd-c fbold" style={{color:"#333333"}}> {row?.status === "SUSPENDED" ? "-" : row?.b1}</span>
+                  <span className="market-odd-c fbold" style={{color:"#333333"}}> {row?.status === "SUSPENDED" || row?.b1 === "0" ? "-" : row?.b1}</span>
                   <span className="market-volume-c title-11 f100" style={{color:"#333333"}}>{row?.bs1}</span>
                 </div>
                 <div
@@ -121,7 +121,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                   }
                   style={{width:"50%"}}
                 >
-                  <span className="market-odd-c fbold" style={{color:"#333333"}}> {row?.status === "SUSPENDED" ? "-" : row?.l1}</span>
+                  <span className="market-odd-c fbold" style={{color:"#333333"}}> {row?.status === "SUSPENDED" || row?.l1 === "0" ? "-" : row?.l1}</span>
                   <span className="market-volume title-11 f100" style={{color:"#333333"}}>{row?.ls1}</span>
                 </div>
               </div>

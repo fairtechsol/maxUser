@@ -43,6 +43,8 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       betPlaceIndex: tno,
       mid: item?.mid?.toString(),
       teamName: index + " Number",
+      min:item?.min ,
+      max:item?.max 
     };
     dispatch(
       selectedBetAction({
@@ -106,7 +108,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
               style={{ borderBottom: "1px solid #c7c8ca" }}
             >
               <div style={{ backgroundColor: "#f2f2f2", flexGrow: 1 }}>
-                <span className={`sessionMinBox`} style={{ marginLeft: "1%" }}>
+                <span className={`sessionMinBox sessionMinMaxFont`} style={{ marginLeft: "1%" }}>
                   Min:{formatNumber(marketArr?.min)} Max:
                   {formatNumber(marketArr?.max)}
                 </span>
@@ -123,7 +125,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName" style={{ flexGrow: 1 }}>
                     <span
-                      className={isMobile ? "f-size13" : "f-size14"}
+                      className="teamFont"
                       style={{ fontWeight: "400" }}
                     >
                       {index} Number

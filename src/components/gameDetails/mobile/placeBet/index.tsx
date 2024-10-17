@@ -22,7 +22,7 @@ interface PlaceBetProps {
 }
 
 const PlacedBet = ({ show }: PlaceBetProps) => {
-  const [stake, setStake] = useState<any>(0);
+  const [stake, setStake] = useState<any>();
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
@@ -63,7 +63,7 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
   }, [buttonValues]);
 
   useEffect(() => {
-    setStake(selectedBet?.team?.stake);
+    setStake(selectedBet?.team?.stake===0?"":selectedBet?.team?.stake);
   }, [selectedBet]);
 
   useEffect(() => {
@@ -557,7 +557,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 </CustomButton>
               </Col>
             ))}
-            <Col xs={12}>
+            <Col xs={12} className="d-flex justify-content-between">
+           <div className="d-flex align-items-center justify-content-start"><span className="fbold title-12 text-black">Range: {selectedBet?.team?.min} to {formatNumber(parseFloat(selectedBet?.team?.max))}</span></div> 
               <div
                 style={{
                   width: "50px",

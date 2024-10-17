@@ -65,18 +65,18 @@ const Cards32 = () => {
         socketService.card.getCardRatesOff(cardGamesType.card32);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.card32);
-        socketService.card.getCardRates(
-          cardGamesType.card32,
-          setMatchRatesInRedux
-        );
-        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
-        socketService.card.getLiveGameResultTop10(
-          cardGamesType.card32,
-          handleLiveGameResultTop10
-        );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+      socketService.card.getLiveGameResultTop10(
+        cardGamesType.card32,
+        handleLiveGameResultTop10
+      );
+      socketService.card.joinMatchRoom(cardGamesType.card32);
+      socketService.card.getCardRates(
+        cardGamesType.card32,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }

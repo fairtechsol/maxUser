@@ -121,11 +121,6 @@ const Superover = () => {
         socketService.card.getCardRatesOff(cardGamesType.superover);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.superover);
-        socketService.card.getCardRates(
-          cardGamesType.superover,
-          setMatchRatesInRedux
-        );
         socketService.card.getLiveGameResultTop10(
           cardGamesType.superover,
           handleLiveGameResultTop10
@@ -133,6 +128,11 @@ const Superover = () => {
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.superover);
+      socketService.card.getCardRates(
+        cardGamesType.superover,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }

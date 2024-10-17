@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, formatNumber, handleSize } from "../../../helpers";
 import {
   getRunAmount,
+  getRunAmountMeter,
   resetRunAmountModal,
 } from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
@@ -57,7 +58,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
     );
   };
 
-  const { runAmount, runAmountModal } = useSelector(
+  const { runAmount, runAmountModal,title:modalTitle } = useSelector(
     (state: RootState) => state.bets
   );
   const evenIndexArray = [];
@@ -102,6 +103,9 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
     dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
   };
 
+  useEffect(() => {
+    handleModal(false)
+  }, [])
   return (
     <>
       <div
@@ -138,13 +142,14 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
             </div>
             {evenIndexArray?.map((item: any, index: any) => {
               return (
+                <div className="w-100 d-flex flex-column">
                 <div className="sessionRateContainer" key={index}>
                   <div
                     className="sessionRateName runnerWidthNormal"
                     style={{ overflow: "hidden" }}
                   >
                     <span
-                      className="f-size15"
+                      className="teamFont"
                       style={{ fontWeight: "400", lineHeight: 1 }}
                       onClick={() => {
                         // console.log("first", item);
@@ -157,14 +162,20 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           ) === 0
                         ) {
                           return;
-                        } else
+                        } else {
                           dispatch(
                             resetRunAmountModal({
                               showModal: true,
                               id: item?.id,
+                              title: title,
                             })
                           );
-                        dispatch(getRunAmount(item?.id));
+                          if (title === "meter") {
+                            dispatch(getRunAmountMeter(item?.id));
+                          } else {
+                            dispatch(getRunAmount(item?.id));
+                          }
+                        }
                       }}
                     >
                       {item?.RunnerName || item?.name}
@@ -177,7 +188,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         ) < 0
                           ? "color-red"
                           : "color-red"
-                      }  title-14`}
+                      }  title-14 fbold`}
                     >
                       {calculateMaxLoss(
                         detail?.profitLossDataSession,
@@ -203,7 +214,8 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                     ) && (
                       <div className="suspended-overlayRates">
                         <span className={`suspendTextCmmn`}>
-                          {(item?.GameStatus || item?.status)?.toUpperCase() ?? "SUSPENDED"}
+                          {(item?.GameStatus || item?.status)?.toUpperCase() ??
+                            "SUSPENDED"}
                         </span>
                       </div>
                     )}
@@ -384,14 +396,17 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       )}
                     </div>
                     <div className="sessionMinBoxContainer">
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Min:{formatNumber(item?.min || item?.minBet)}
                       </span>
-                      <span className={`sessionMinBox`}>
+                      <span className={`sessionMinBox sessionMinMaxFont`}>
                         Max:{formatNumber(item?.max || item?.maxBet)}
                       </span>
                     </div>
                   </div>
+                </div>
+                {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                </div>)}
                 </div>
               );
             })}
@@ -430,13 +445,14 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
 
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
+                  <div className="w-100 d-flex flex-column">
                   <div className="sessionRateContainer" key={index}>
                     <div
                       className="sessionRateName runnerWidthNormal"
                       style={{ overflow: "hidden" }}
                     >
                       <span
-                        className="f-size15"
+                        className="teamFont"
                         style={{
                           fontWeight: "400",
                           lineHeight: 1,
@@ -452,14 +468,19 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                             ) === 0
                           ) {
                             return;
-                          } else
+                          } else {
                             dispatch(
                               resetRunAmountModal({
                                 showModal: true,
                                 id: item?.id,
                               })
                             );
-                          dispatch(getRunAmount(item?.id));
+                            if (title === "meter") {
+                              dispatch(getRunAmountMeter(item?.id));
+                            } else {
+                              dispatch(getRunAmount(item?.id));
+                            }
+                          }
                         }}
                       >
                         {item?.RunnerName || item?.name}
@@ -472,7 +493,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                           ) < 0
                             ? "color-red"
                             : "color-red"
-                        }  title-14`}
+                        }  title-14 fbold`}
                       >
                         {calculateMaxLoss(
                           detail?.profitLossDataSession,
@@ -498,7 +519,9 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       ) && (
                         <div className="suspended-overlayRates">
                           <span className={`suspendTextCmmn`}>
-                            {(item?.GameStatus || item?.status)?.toUpperCase() ?? "SUSPENDED"}
+                            {(
+                              item?.GameStatus || item?.status
+                            )?.toUpperCase() ?? "SUSPENDED"}
                           </span>
                         </div>
                       )}
@@ -681,14 +704,17 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         )}
                       </div>
                       <div className="sessionMinBoxContainer">
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Min:{formatNumber(item?.min || item?.minBet)}
                         </span>
-                        <span className={`sessionMinBox`}>
+                        <span className={`sessionMinBox sessionMinMaxFont`}>
                           Max:{formatNumber(item?.max || item?.maxBet)}
                         </span>
                       </div>
                     </div>
+                  </div>
+                  {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                    </div>)}
                   </div>
                 );
               })}
@@ -696,8 +722,11 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
           )}
         </div>
       </div>
-      
-      <Modal show={runAmountModal} onHide={()=>handleModal(false)}>
+
+      <Modal
+        show={runAmountModal && modalTitle == title}
+        onHide={() => handleModal(false)}
+      >
         <Modal.Header
           className="bg-primary rounded-0"
           style={{ zIndex: "999" }}
@@ -713,15 +742,21 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
             type="button"
             className="btn-close btn-close-white"
             aria-label="Close"
-            onClick={()=>handleModal(false)}
+            onClick={() => handleModal(false)}
           ></button>
         </Modal.Header>
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
-        <div style={{ width: "100%", height: "auto", overflowY: "auto",padding:"10px" }}>
-          <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
-        </div>
+          <div
+            style={{
+              width: "100%",
+              maxHeight: "85vh",
+              overflowY: "auto",
+              padding: "10px",
+            }}
+          >
+            <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
+          </div>
         </Modal.Body>
-        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
       </Modal>
     </>
   );

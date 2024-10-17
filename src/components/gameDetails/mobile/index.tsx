@@ -6,10 +6,7 @@ import { RootState } from "../../../store/store";
 import { FaTv } from "react-icons/fa";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
-import {
-  Constants,
-  liveStreamPageUrl,
-} from "../../../utils/constants";
+import { Constants, liveStreamPageUrl } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import CommonTabs from "../../commonComponent/tabs";
@@ -28,6 +25,7 @@ import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
 import NewLoader from "../../commonComponent/newLoader";
+import MobileSessionKhado from "../sessionKhado/mobileSessionFancy";
 
 const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
@@ -35,7 +33,7 @@ const MobileGameDetail = () => {
   const [errorCount, setErrorCount] = useState<number>(0);
   const [channelId, setChannelId] = useState<string>("");
   const [showVideo, setShowVideo] = useState(false);
-  const { matchDetails, marketId,loading } = useSelector(
+  const { matchDetails, marketId } = useSelector(
     (state: RootState) => state.match.matchList
   );
 
@@ -158,7 +156,8 @@ const MobileGameDetail = () => {
               }
             >
               {index == 0 ? (
-               !loading ? <div style={{ width: "98%" }}>
+                // !loading ? (
+                <div style={{ width: "98%" }}>
                   <Row className="ms-0">
                     {/* Conditionally render the LiveStreamComponent if channelId is valid */}
 
@@ -253,12 +252,18 @@ const MobileGameDetail = () => {
                           </div>
                         )
                       )}
+                    
                     {matchDetails?.bookmaker2?.activeStatus === "live" &&
                       matchDetails?.bookmaker2?.isActive && (
                         <Col className="g-0" md={12}>
                           <Bookmaker
                             title={matchDetails?.bookmaker2?.name}
-                            box={2}
+                            box={
+                              matchDetails?.bookmaker2?.runners?.[0]?.ex
+                                ?.availableToBack?.length > 2
+                                ? 6
+                                : 2
+                            }
                             data={matchDetails?.bookmaker2}
                             detail={matchDetails}
                             // type={MatchType.MATCH_ODDS}
@@ -290,7 +295,12 @@ const MobileGameDetail = () => {
                         <Col className="g-0" md={12}>
                           <OtherMarket
                             title={matchDetails?.apiTideMatch2?.name}
-                            box={2}
+                            box={
+                              matchDetails?.apiTideMatch2?.runners?.[0]?.ex
+                                ?.availableToBack?.length > 2
+                                ? 6
+                                : 2
+                            }
                             data={matchDetails?.apiTideMatch2}
                             detail={matchDetails}
                             // type={MatchType.MATCH_ODDS}
@@ -318,13 +328,20 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
+                    
+                   
                     {matchDetails?.marketCompleteMatch1?.activeStatus ===
                       "live" &&
                       matchDetails?.marketCompleteMatch1?.isActive && (
                         <Col className="g-0" md={12}>
                           <OtherMarket
                             title={matchDetails?.marketCompleteMatch1?.name}
-                            box={2}
+                            box={
+                              matchDetails?.apiTideMatch2?.runners?.[0]?.ex
+                                ?.availableToBack?.length > 2
+                                ? 6
+                                : 2
+                            }
                             data={matchDetails?.marketCompleteMatch1}
                             detail={matchDetails}
                           />
@@ -387,6 +404,26 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
+
+                    {matchDetails?.apiSession?.khado?.section?.length > 0 && (
+                      <Col className="g-0" md={12}>
+                        <MobileSessionKhado
+                          title={"khado"}
+                          data={matchDetails?.apiSession?.khado}
+                          detail={matchDetails}
+                        />
+                      </Col>
+                    )}
+                    {matchDetails?.apiSession?.meter?.section?.length > 0 && (
+                      <Col className="g-0" md={12}>
+                        <MobileSessionNormal
+                          title={"meter"}
+                          mtype={"meter"}
+                          data={matchDetails?.apiSession?.meter}
+                          detail={matchDetails}
+                        />
+                      </Col>
+                    )}
                     {matchDetails?.apiSession?.oddEven?.section?.length > 0 && (
                       <Col className="g-0" md={12}>
                         <MobileSessionOddEven
@@ -420,13 +457,21 @@ const MobileGameDetail = () => {
                           );
                         }
                       )}
+                   
                     {matchDetails?.apiTideMatch?.activeStatus === "live" &&
                       matchDetails?.apiTideMatch?.isActive && (
                         <Col className="g-0" md={12}>
-                          <DynamicMarket
+                          <Bookmaker
                             title={matchDetails?.apiTideMatch?.name}
+                            box={
+                              matchDetails?.apiTideMatch?.runners?.[0]?.ex
+                                ?.availableToBack?.length > 2
+                                ? 6
+                                : 2
+                            }
                             data={matchDetails?.apiTideMatch}
                             detail={matchDetails}
+                            // data={matchDetails?.matchOdd}
                           />
                         </Col>
                       )}
@@ -434,94 +479,22 @@ const MobileGameDetail = () => {
                       "live" &&
                       matchDetails?.marketCompleteMatch?.isActive && (
                         <Col className="g-0" md={12}>
-                          <DynamicMarket
+                          <Bookmaker
                             title={matchDetails?.marketCompleteMatch?.name}
+                            box={
+                              matchDetails?.marketCompleteMatch?.runners?.[0]
+                                ?.ex?.availableToBack?.length > 2
+                                ? 6
+                                : 2
+                            }
                             data={matchDetails?.marketCompleteMatch}
                             detail={matchDetails}
+                            // data={matchDetails?.matchOdd}
                           />
                         </Col>
                       )}
-                    {/* {matchDetails?.matchOdd?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={matchDetails?.matchOdd?.name}
-                          type={MatchType.MATCH_ODDS}
-                          data={matchDetails?.matchOdd}
-                          backLayCount={2}
-                        />
-                      </Col>
-                    )}
-
-                    {matchDetails?.bookmaker?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={matchDetails?.bookmaker?.name}
-                          type={MatchType.MATCH_ODDS}
-                          data={matchDetails?.bookmaker}
-                          backLayCount={6}
-                        />
-                      </Col>
-                    )}
-
-                    {matchDetails?.quickBookmaker?.length > 0 &&
-                      matchDetails?.quickBookmaker?.map(
-                        (item: any, index: number) => (
-                          <div key={index} className="p-0">
-                            {item?.isActive && (
-                              <Col className="g-0" md={12}>
-                                <BetTable
-                                  title={item?.name}
-                                  type={MatchType.BOOKMAKER}
-                                  data={item}
-                                  backLayCount={2}
-                                />
-                              </Col>
-                            )}
-                          </div>
-                        )
-                      )} */}
-                    {/* {matchDetails?.apiTideMatch?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={matchDetails?.apiTideMatch?.name}
-                          type={MatchType.MATCH_ODDS}
-                          data={matchDetails?.apiTideMatch}
-                          backLayCount={2}
-                        />
-                      </Col>
-                    )} */}
-                    {/* {matchDetails?.manualTiedMatch?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={matchDetails?.manualTiedMatch?.name}
-                          type={MatchType.BOOKMAKER}
-                          data={matchDetails?.manualTiedMatch}
-                          backLayCount={2}
-                        />
-                      </Col>
-                    )}
-                    {matchDetails?.marketCompleteMatch?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={matchDetails?.marketCompleteMatch?.name}
-                          type={MatchType.MATCH_ODDS}
-                          data={matchDetails?.marketCompleteMatch}
-                          backLayCount={2}
-                        />
-                      </Col>
-                    )}
-                    {matchDetails?.manualCompleteMatch?.isActive && (
-                      <Col className="g-0" md={12}>
-                        <BetTable
-                          title={matchDetails?.manualCompleteMatch?.name}
-                          type={MatchType.BOOKMAKER}
-                          data={matchDetails?.manualCompleteMatch}
-                          backLayCount={2}
-                        />
-                      </Col>
-                    )} */}
                   </Row>
-                </div> : <div className="w-100 d-flex justify-content-center align-items-center" style={{height:"100vh"}}><NewLoader /></div>
+                </div>
               ) : item?.id === "matchedBet" ? (
                 <MyBet />
               ) : null}

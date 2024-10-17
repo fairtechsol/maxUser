@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   getAccountStatement,
+  getBannerImage,
   getButtonValue,
   getCasinoButtonValue,
   getProfile,
@@ -23,6 +24,7 @@ interface InitialState {
   success: boolean;
   loading: boolean;
   error: any;
+  bannerImage: any;
   marqueeNotification: any;
   getProfile: any;
   buttonValues: any;
@@ -34,6 +36,7 @@ interface InitialState {
 const initialState: InitialState = {
   getProfile: null,
   marqueeNotification: null,
+  bannerImage: "",
   transactionPassword: "",
   buttonValues: [],
   buttonValues2: [],
@@ -51,7 +54,6 @@ const profileSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-
       .addCase(marqueeNotification.pending, (state) => {
         state.loading = true;
         state.success = false;
@@ -63,6 +65,20 @@ const profileSlice = createSlice({
         state.marqueeNotification = action.payload;
       })
       .addCase(marqueeNotification.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(getBannerImage.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(getBannerImage.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.bannerImage = action.payload;
+      })
+      .addCase(getBannerImage.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })

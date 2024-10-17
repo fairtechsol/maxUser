@@ -21,7 +21,10 @@ const Bookmaker = ({ title, box, data, detail }) => {
     index: any,
     runner: any
   ) => {
-    if (data?.activeStatus != "live" || (status != "ACTIVE" && status != "OPEN")) {
+    if (
+      data?.activeStatus != "live" ||
+      (status != "ACTIVE" && status != "OPEN")
+    ) {
       return false;
     }
     if (odds === 0) {
@@ -68,7 +71,11 @@ const Bookmaker = ({ title, box, data, detail }) => {
         <div className="bookmakerBackLayTab">
           <div className="bookmakerMinMaxBox">
             <span className="bookmakerMinMax">
-              Min:{formatNumber(data?.minBet)} Max:{formatNumber(data?.maxBet)}
+              {data?.minBet === data?.maxBet
+                ? `Max:${formatNumber(data?.maxBet)}`
+                : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
+                    data?.maxBet
+                  )}`}
             </span>
           </div>
           <div
@@ -103,9 +110,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont bookmakerTeamTxt`}>
-              {detail?.teamA?.length > 25
-                ? `${detail?.teamA?.slice(0, 25)}...`
-                : detail?.teamA}
+              {(data?.runners?.[0]?.nat || detail?.teamA)?.length > 25
+                ? `${(data?.runners?.[0]?.nat || detail?.teamA)?.slice(
+                    0,
+                    25
+                  )}...`
+                : data?.runners?.[0]?.nat || detail?.teamA}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
@@ -192,9 +202,15 @@ const Bookmaker = ({ title, box, data, detail }) => {
             }
           >
             {(data?.activeStatus !== "live" ||
-              ( data?.runners?.[0]?.status !== "ACTIVE" && data?.runners?.[0]?.status !== "OPEN")) && (
+              (data?.runners?.[0]?.status !== "ACTIVE" &&
+                data?.runners?.[0]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesBookmaker">
-                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[0]?.status}</span>
+                <span
+                  className={`suspendTextCmmn`}
+                  style={{ textTransform: "uppercase" }}
+                >
+                  {data?.runners?.[0]?.status}
+                </span>
               </div>
             )}
             {box === 6 ? (
@@ -257,9 +273,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
             // style={box === 6 ? { width: "28%" } : {}}
           >
             <span className={`teamFont bookmakerTeamTxt`}>
-              {detail?.teamB?.length > 25
-                ? `${detail?.teamB?.slice(0, 25)}...`
-                : detail?.teamB}
+              {(data?.runners?.[1]?.nat || detail?.teamB)?.length > 25
+                ? `${(data?.runners?.[1]?.nat || detail?.teamB)?.slice(
+                    0,
+                    25
+                  )}...`
+                : data?.runners?.[1]?.nat || detail?.teamB}
             </span>
             <div className="d-flex flex-row justify-content-between w-100">
               <span
@@ -346,9 +365,15 @@ const Bookmaker = ({ title, box, data, detail }) => {
             }
           >
             {(data?.activeStatus !== "live" ||
-              ( data?.runners?.[1]?.status !== "ACTIVE" && data?.runners?.[1]?.status !== "OPEN")) && (
+              (data?.runners?.[1]?.status !== "ACTIVE" &&
+                data?.runners?.[1]?.status !== "OPEN")) && (
               <div className="suspended-overlayRatesBookmaker">
-                <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[1]?.status}</span>
+                <span
+                  className={`suspendTextCmmn`}
+                  style={{ textTransform: "uppercase" }}
+                >
+                  {data?.runners?.[1]?.status}
+                </span>
               </div>
             )}
             {box === 6 ? (
@@ -404,7 +429,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
           </div>
         </div>
 
-        {detail?.teamC && (
+        {(data?.runners?.[2]?.nat || detail?.teamC) && (
           <div className="bookmakerTeamTab">
             <div
               className="bookmakerTeam"
@@ -412,9 +437,12 @@ const Bookmaker = ({ title, box, data, detail }) => {
               // style={box === 6 ? { width: "28%" } : {}}
             >
               <span className={`teamFont bookmakerTeamTxt`}>
-                {detail?.teamC?.length > 25
-                  ? `${detail?.teamC?.slice(0, 25)}...`
-                  : detail?.teamC}
+                {(data?.runners?.[2]?.nat || detail?.teamC)?.length > 25
+                  ? `${(data?.runners?.[2]?.nat || detail?.teamC)?.slice(
+                      0,
+                      25
+                    )}...`
+                  : data?.runners?.[2]?.nat || detail?.teamC}
               </span>{" "}
               <div className="d-flex flex-row justify-content-between w-100">
                 <span
@@ -501,9 +529,15 @@ const Bookmaker = ({ title, box, data, detail }) => {
               }
             >
               {(data?.activeStatus !== "live" ||
-                ( data?.runners?.[2]?.status !== "ACTIVE" && data?.runners?.[2]?.status !== "OPEN")) && (
+                (data?.runners?.[2]?.status !== "ACTIVE" &&
+                  data?.runners?.[2]?.status !== "OPEN")) && (
                 <div className="suspended-overlayRatesBookmaker">
-                  <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{data?.runners?.[2]?.status}</span>
+                  <span
+                    className={`suspendTextCmmn`}
+                    style={{ textTransform: "uppercase" }}
+                  >
+                    {data?.runners?.[2]?.status}
+                  </span>
                 </div>
               )}
               {box === 6 ? (

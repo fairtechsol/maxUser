@@ -106,7 +106,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
                   {...sliderSettings(elementsAndar.length, elementsAndar.length > minLength)}
                 >
                   {elementsAndar?.map((item: any, index: any) => (
-                    <div key={index}>
+                    <div key={index} style={{background:"red"}}>
                       <HandleCards card={item} />
                     </div>
                   ))}

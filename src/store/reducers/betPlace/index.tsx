@@ -5,8 +5,11 @@ import {
   getPlacedBets,
   getPlacedBetsForAccountStatement,
   getRunAmount,
+  getRunAmountMeter,
   resetRunAmount,
   resetRunAmountModal,
+  resetRunAmountModalKhado,
+  runAmountReset,
   updateBetsPlaced,
 } from "../../actions/betPlace/betPlaceActions";
 import {
@@ -25,6 +28,8 @@ interface InitialState {
   loadingMyMarket: boolean;
   error: any;
   runAmountModal: boolean;
+  runAmountModalKhado: boolean;
+  title?:any;
 }
 
 const initialState: InitialState = {
@@ -37,6 +42,8 @@ const initialState: InitialState = {
   success: false,
   error: null,
   runAmountModal: false,
+  runAmountModalKhado: false,
+  title: null
 };
 
 const placedBet = createSlice({
@@ -82,7 +89,64 @@ const placedBet = createSlice({
       })
       .addCase(getRunAmount.fulfilled, (state, action) => {
         const { id, arr } = action.payload;
-        const modifiedBets= arr?.slice(4,arr?.length-4)
+        let dataArr:any=[]
+        state.loading = false;
+        state.success = true;
+        // dataArr=arr?.slice(1)
+        // console.log(arr,'dataArr',dataArr)
+        if(arr.every((bet:any) => bet.profitLoss >= 0) || arr.every((bet:any) => bet.profitLoss >= 0)){
+          if(arr?.length > 8){
+            dataArr=arr?.slice(4,arr?.length-4)
+          }else{
+            dataArr=arr
+          }
+        }else{
+          if(arr?.length > 8){
+            const findTransitionIndex = (arr:any) => {
+              for (let i = 1; i < arr.length; i++) {
+                if (
+                  (arr[i - 1].profitLoss < 0 && arr[i].profitLoss >= 0) || 
+                  (arr[i - 1].profitLoss >= 0 && arr[i].profitLoss < 0)   
+                ) {
+                    // console.log('first',i)
+                      return i;
+                  }
+              }
+              return -1; 
+          };
+          const transitionIndex = findTransitionIndex(arr);
+          if(transitionIndex>4){
+            let count = arr?.length-transitionIndex > 4 ? 4 : arr?.length-transitionIndex
+            dataArr=arr?.slice(4,arr?.length-count)
+          }else{
+            dataArr=arr?.slice(transitionIndex-1,arr?.length-4)
+          }
+          }else{
+            dataArr=arr
+          }
+         
+        }
+        // const modifiedBets= arr?.slice(4,arr?.length-5)
+        // console.log('arrz',arr?.slice(1))
+        let data = {
+          betId: id,
+          runAmountData: dataArr?.length > 0 ? dataArr : [],
+        };
+        state.runAmount = data;
+      })
+      .addCase(getRunAmount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(getRunAmountMeter.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+        state.runAmount = [];
+      })
+      .addCase(getRunAmountMeter.fulfilled, (state, action) => {
+        const { id, arr } = action.payload;
+        const modifiedBets= arr
         state.loading = false;
         state.success = true;
         let data = {
@@ -91,7 +155,7 @@ const placedBet = createSlice({
         };
         state.runAmount = data;
       })
-      .addCase(getRunAmount.rejected, (state, action) => {
+      .addCase(getRunAmountMeter.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })
@@ -168,12 +232,29 @@ const placedBet = createSlice({
         // return { ...state, runAmount: [] };
       })
       .addCase(resetRunAmountModal.fulfilled, (state, action) => {
-        const { id, showModal } = action.payload;
+        const { id, showModal, title } = action.payload;
         if (showModal) {
           state.runAmountModal = showModal;
+          state.title = title;
         } else {
           if (state.runAmount?.betId === id) {
             state.runAmountModal = showModal;
+          }
+          state.title = null;
+
+        }
+      })
+      .addCase(runAmountReset, (state) => {
+        state.runAmount = {};
+      })
+      .addCase(resetRunAmountModalKhado.fulfilled, (state, action) => {
+        // console.log('first',action.payload)
+        const { id, showModal } = action.payload;
+        if (showModal) {
+          state.runAmountModalKhado = showModal;
+        } else {
+          if (state.runAmount?.betId === id) {
+            state.runAmountModalKhado = showModal;
           }
         }
       });

@@ -1166,6 +1166,9 @@ img {
   .deatilShow-d{
     display: none !important;
   }
+  .rateBoxWidthKhado {
+    width: 20% !important;
+  }
 }
 
 /* Styles for width 760px to 1200px */
@@ -1189,6 +1192,9 @@ img {
   }
   .rateBoxWidthNormal {
     width: 180px !important;
+  }
+  .rateBoxWidthKhado {
+    width: 120px !important;
   }
   .rateFont{
     font-size: 16px !important;
@@ -1226,6 +1232,9 @@ img {
   .deatilShow-d{
     display: none;
   }
+  .sessionMinMaxFont{
+    font-size: 9px !important;
+  }
 }
 
 /* Styles for width 1200px to 1399px */
@@ -1249,6 +1258,9 @@ img {
   }
   .rateBoxWidthNormal {
     width: 165px !important;
+  }
+  .rateBoxWidthKhado {
+    width: 110px !important;
   }
   .runnerWidthNormal {
     flex-grow: 1;
@@ -1289,6 +1301,9 @@ img {
   .placeBet-w{
     width: 350px !important;
   }
+  .sessionMinMaxFont{
+    font-size: 9px !important;
+  }
 }
 
 
@@ -1314,6 +1329,9 @@ img {
   }
   .rateBoxWidthNormal {
     width: 180px !important;
+  }
+  .rateBoxWidthKhado {
+    width: 120px !important;
   }
   .runnerWidthNormal {
     flex-grow: 1;
@@ -1354,6 +1372,9 @@ img {
   .placeBet-w{
     width: 400px !important;
   }
+  .sessionMinMaxFont{
+    font-size: 10px !important;
+  }
 }
 
 /* Styles for width 1600px and above */
@@ -1377,6 +1398,9 @@ img {
   }
   .rateBoxWidthNormal {
     width: 240px !important;
+  }
+  .rateBoxWidthKhado {
+    width: 160px !important;
   }
   .runnerWidthNormal {
     flex-grow: 1;
@@ -1417,6 +1441,9 @@ img {
   .placeBet-w{
     width: 450px !important;
   }
+  .sessionMinMaxFont{
+    font-size: 12px !important;
+  }
 }
 
 .matchOddBackBox {
@@ -1426,6 +1453,17 @@ img {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.suspended-list-rates {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373636d6;
+  height: 100%;
+  z-index: 999;
 }
 // #middleView-playerDiv {
 //   display: none !important; /* This will override the inline display style */

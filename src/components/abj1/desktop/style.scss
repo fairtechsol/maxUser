@@ -263,6 +263,13 @@
 //   margin: 0 !important;
 // }
 
+.slick-list {
+  margin: 1px !important;
+}
+.slick-slide > div > div {
+  display: flex !important;
+  justify-content: center;
+}
 .ticker-container {
   width: 100%;
   overflow: hidden;

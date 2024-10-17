@@ -49,12 +49,6 @@
         "path": "/race20"
       },
       {
-        "id": "casinoqueen",
-        "name": "Casino Queen",
-        "type": "liveItem",
-        "path": "/contact-admin"
-      },
-      {
         "id": "dragontiger",
         "name": "Dragon Tiger",
         "type": "liveItem",

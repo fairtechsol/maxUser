@@ -141,7 +141,7 @@ const Iframe = ({ data, width }: any) => {
                       fontSize: "12px",
                     }}
                   >
-                    {data?.dayno} | {data?.spnmessage}
+                    {data?.dayno ? `${data?.dayno} | `:""} {data?.spnmessage}
                   </div>
                 )}
 

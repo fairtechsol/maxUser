@@ -11,6 +11,7 @@ import {
   resetMarketId,
   searchListReset,
   selectedBetAction,
+  updateMatchDetailFromMatchList,
   updateMatchOddRates,
   updateMatchRates,
 } from "../../actions/match/matchListAction";
@@ -106,18 +107,46 @@ const matchListSlice = createSlice({
         state.success = false;
         state.getMatchListBySearch = [];
       })
+      .addCase(updateMatchDetailFromMatchList.fulfilled, (state, action) => {
+        state.matchDetails = action.payload;
+      })
       .addCase(matchDetailAction.pending, (state) => {
-        state.loading = true;
+        // state.loading = true;
         state.success = false;
         state.error = null;
-        state.marketId = "";
-        state.matchDetails = null;
+        // state.marketId = "";
+        // state.matchDetails = null;
       })
       .addCase(matchDetailAction.fulfilled, (state, action) => {
         // state.loading = false;
         state.success = true;
-        state.matchDetails = action.payload;
-        state.marketId = action.payload.marketId;
+        state.matchDetails = {
+          ...state.matchDetails,
+          isBookmaker: action.payload.isBookmaker,
+          marketId: action.payload?.marketId,
+          rateThan100: action.payload?.rateThan100,
+          title: action.payload?.title,
+          manualSessionActive: action.payload?.manualSessionActive,
+          eventId: action.payload?.eventId,
+          isTv: action.payload?.isTv,
+          matchType: action.payload?.matchType,
+          betFairSessionMinBet: action.payload?.betFairSessionMinBet,
+          competitionId: action.payload?.competitionId,
+          teamB: action.payload?.teamB,
+          teamA: action.payload?.teamA,
+          teamC: action.payload?.teamC ?? null,
+          betFairSessionMaxBet: action.payload?.betFairSessionMaxBet,
+          startAt: action.payload?.startAt,
+          apiSessionActive: action.payload?.apiSessionActive,
+          competitionName: action.payload?.competitionName,
+          id: action.payload?.id,
+          isFancy: action.payload?.isFancy,
+          teamRates: action.payload?.teamRates,
+          profitLossDataSession: action.payload?.profitLossDataSession,
+          profitLossDataMatch: action.payload?.profitLossDataMatch,
+          stopAt: action.payload?.stopAt ?? null,
+        };
+        state.marketId = action.payload?.marketId;
       })
       .addCase(updateMatchRates.fulfilled, (state, action) => {
         const {
@@ -190,7 +219,7 @@ const matchListSlice = createSlice({
         //     newSessionBettings?.push(apiItem);
         //   }
         // });
-        state.loading = false;
+        // state.loading = false;
         let parsedSessionBettings =
           state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
         const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];

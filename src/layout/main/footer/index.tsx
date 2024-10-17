@@ -1,4 +1,5 @@
 
+import { isMobile } from "../../../utils/screenDimension";
 import "../../layout.scss";
 
 
@@ -23,7 +24,7 @@ const Footer = () => {
           </nav>
         </div>
         <div className="support-detail mt-3">
-          <h2>24X7 Support</h2>
+        {isMobile ? <h5>24X7 Support</h5>:<h2>24X7 Support</h2>}
           <p></p>
         </div>
         <div className="social-icons-box"></div>

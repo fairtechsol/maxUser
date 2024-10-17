@@ -164,6 +164,19 @@
     display: flex;
     flex-direction: column;
   }
+  .card32bTitle{
+    background-color: #fff;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 0.1px solid #c7c8ca;
+    // padding: 5px;
+    font-weight: 600;
+    text-align: start;
+    // background-color: #ffc742;
+  }
 
   @media (max-width: 768px) {
 

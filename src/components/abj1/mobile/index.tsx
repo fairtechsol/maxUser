@@ -142,7 +142,7 @@ const Abj1Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={abjrules} type="No Record Found."/>
+      <RulesModal show={show} setShow={setShow} rule={abjrules}/>
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

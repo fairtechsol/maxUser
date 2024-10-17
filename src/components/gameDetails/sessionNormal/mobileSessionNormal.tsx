@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { calculateMaxLoss, handleSize } from "../../../helpers";
 import {
   getRunAmount,
+  getRunAmountMeter,
   resetRunAmountModal,
 } from "../../../store/actions/betPlace/betPlaceActions";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
@@ -49,6 +50,8 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       matchBetType: "session",
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
+      min:item?.min || item?.minBet,
+      max:item?.max || item?.maxBet,
     };
     dispatch(
       selectedBetAction({
@@ -87,6 +90,9 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
     dispatch(resetRunAmountModal({ showModal: event, id: runAmount?.betId }));
   };
 
+  useEffect(() => {
+    handleModal(false)
+  }, [])
   return (
     <>
       <div className="sessionNormalContainer">
@@ -122,6 +128,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
             </div>
             {marketArr?.map((item: any, index: any) => {
               return (
+                <div className="w-100 d-flex flex-column">
                 <div className="sessionRateContainer" key={index}>
                   <div
                     className="sessionRateName"
@@ -146,7 +153,11 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                               id: item?.id,
                             })
                           );
-                        dispatch(getRunAmount(item?.id));
+                          if(title==="meter"){
+                            dispatch(getRunAmountMeter(item?.id));
+                          }else{
+                            dispatch(getRunAmount(item?.id));
+                          }
                       }}
                     >
                       {item?.RunnerName || item?.name}
@@ -159,7 +170,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                         ) < 0
                           ? "color-red"
                           : "color-red"
-                      } title-13`}
+                      } title-13 fbold`}
                     >
                       {calculateMaxLoss(
                         detail?.profitLossDataSession,
@@ -367,6 +378,9 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                     </div>
                   </div>
                 </div>
+                {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                    </div>)}
+                  </div>
               );
             })}
           </div>
@@ -396,7 +410,6 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
           <RunBoxTable runAmount={{ betPlaced: runAmount?.runAmountData }} />
         </div>
         </Modal.Body>
-        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
       </Modal>
     </>
   );

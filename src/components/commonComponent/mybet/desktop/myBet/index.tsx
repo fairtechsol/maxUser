@@ -24,7 +24,7 @@ const DesktopMyBet = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
   return (
     <RightPanelContainer title={"My Bet"}>
-      <div className="betList " style={{ maxHeight: "30vh", overflow: "auto" }}>
+      <div className="betList " style={{ maxHeight: "60vh", overflow: "auto" }}>
         <Table className="w-full lh-1">
           <thead>
             <tr >
@@ -40,13 +40,13 @@ const DesktopMyBet = () => {
             </tr>
           </thead>
           <tbody>
-            {placedBets?.length < 1 && (
+            {/* {placedBets?.length < 1 && (
               <tr>
                 <th className="lh-1" colSpan={3} style={{ textAlign: "center" }}>
                   <span className="f400 title-14">No records Found</span>
                 </th> 
               </tr>
-            )}
+            )} */}
             {placedBets &&
               Array.from(new Set(placedBets))?.map((bet: any) => {
                 return (

@@ -60,22 +60,21 @@ const Abj2 = () => {
     try {
       if (socket && dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
-
         socketService.card.getCardRatesOff(cardGamesType.andarBahar2);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.andarBahar2);
+        socketService.card.cardResult(handleCardResult);
+      }
+      socketService.card.joinMatchRoom(cardGamesType.andarBahar2);
         socketService.card.getCardRates(
           cardGamesType.andarBahar2,
           setMatchRatesInRedux
         );
-        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
-        socketService.card.getLiveGameResultTop10(
-          cardGamesType.andarBahar2,
-          handleLiveGameResultTop10
-        );
-        socketService.card.cardResult(handleCardResult);
-      }
+      socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+      socketService.card.getLiveGameResultTop10(
+        cardGamesType.andarBahar2,
+        handleLiveGameResultTop10
+      );
     } catch (error) {
       console.log(error);
     }

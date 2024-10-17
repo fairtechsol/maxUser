@@ -40,6 +40,8 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
       teamName: teamName,
+      min:item?.min ,
+      max:item?.max 
     };
     dispatch(
       selectedBetAction({
@@ -107,7 +109,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                         ) < 0
                           ? "color-red"
                           : "color-red"
-                      } title-13`}
+                      } title-13 fbold`}
                     >
                       {calculateMaxLoss(
                         detail?.profitLossDataSession,
