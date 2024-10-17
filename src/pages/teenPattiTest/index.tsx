@@ -65,11 +65,6 @@ const TeenPattiTest = () => {
         socketService.card.getCardRatesOff(cardGamesType.teenTest);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.teenTest);
-        socketService.card.getCardRates(
-          cardGamesType.teenTest,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.teenTest,
@@ -77,6 +72,11 @@ const TeenPattiTest = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.teenTest);
+      socketService.card.getCardRates(
+        cardGamesType.teenTest,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }

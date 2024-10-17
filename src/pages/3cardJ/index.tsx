@@ -75,14 +75,10 @@ const CardJ = () => {
   useEffect(() => {
     try {
       if (socket && dragonTigerDetail?.id) {
+        dispatch(getPlacedBets(dragonTigerDetail?.id));
         socketService.card.getCardRatesOff(cardGamesType.cardj);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.cardj);
-        socketService.card.getCardRates(
-          cardGamesType.cardj,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.cardj,
@@ -90,6 +86,11 @@ const CardJ = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.cardj);
+      socketService.card.getCardRates(
+        cardGamesType.cardj,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }

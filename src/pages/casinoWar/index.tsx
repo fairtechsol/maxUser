@@ -70,13 +70,13 @@ const CasinoWar = () => {
           cardGamesType.casinoWar,
           setMatchRatesInRedux
         );
-        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
-        socketService.card.getLiveGameResultTop10(
-          cardGamesType.casinoWar,
-          handleLiveGameResultTop10
-        );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+      socketService.card.getLiveGameResultTop10(
+        cardGamesType.casinoWar,
+        handleLiveGameResultTop10
+      );
     } catch (error) {
       console.log(error);
     }
