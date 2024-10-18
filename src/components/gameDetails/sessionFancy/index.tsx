@@ -101,6 +101,7 @@ const SessionFancy = ({ title, data, detail }) => {
             </div>
             {evenIndexArray?.map((item: any, index: any) => {
               return (
+                <div className="w-100 d-flex flex-column">
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName runnerWidthNormal"
                       style={{ overflow: "hidden" }}>
@@ -213,6 +214,9 @@ const SessionFancy = ({ title, data, detail }) => {
                     </div>
                   </div>
                 </div>
+                {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                    </div>)}
+                  </div>
               );
             })}
           </div>
@@ -241,6 +245,7 @@ const SessionFancy = ({ title, data, detail }) => {
               </div>
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
+                  <div className="w-100 d-flex flex-column">
                   <div className="sessionRateContainer" key={index}>
                     <div className="sessionRateName runnerWidthNormal"  style={{ overflow: "hidden" }}>
                       <span
@@ -357,6 +362,9 @@ const SessionFancy = ({ title, data, detail }) => {
                         </span>
                       </div>
                     </div>
+                  </div>
+                  {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                    </div>)}
                   </div>
                 );
               })}
