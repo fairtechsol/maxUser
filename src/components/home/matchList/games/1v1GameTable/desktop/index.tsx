@@ -245,7 +245,7 @@ const MatchListRow = ({ item, matchType }: any) => {
                 <img src="/ic_bm.png" alt={"fancy"} />
               </span>
             ) : (
-              <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
+              <span style={{ width: "18px", height: "16px" }}></span> // Placeholder space
             )}
           </div>
         </div>
