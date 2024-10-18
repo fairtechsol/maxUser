@@ -94,11 +94,19 @@
   font-size: 16px;
   font-weight: bold;
 }
-
+@media only screen and (max-width: 767px) {
+  body {
+      font-size: 14px;
+  }
+}
 .no-record-found {
+  width: 100%;
+  border-bottom: 1px solid #c7c8ca;
+  padding: 2px;
   display: flex;
-  height: 38px;
-  justify-content: center;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  justify-content: flex-start;
   align-items: center;
-  background-color: #ccc;
+  background-color: #f2f2f2;
 }
