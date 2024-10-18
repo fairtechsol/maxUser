@@ -3,44 +3,47 @@ import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
 import "./style.scss";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { updateMatchOddRates } from "../../../../store/actions/match/matchListAction";
+import { useEffect } from "react";
+import { expertSocketService } from "../../../../socketManager";
 
 const MobileMatchList = ({ setMatchType, type }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
-  // const { matchList, success } = useSelector(
-  //   (state: RootState) => state.match.matchList
-  // );
-  // const { getProfile } = useSelector((state: RootState) => state.user.profile);
+  const dispatch: AppDispatch = useDispatch();
+  const { matchList, success } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
+  const { getProfile } = useSelector((state: RootState) => state.user.profile);
 
-  // const setMatchOddRatesInRedux = (event: any) => {
-  //   dispatch(updateMatchOddRates(event));
-  // };
+  const setMatchOddRatesInRedux = (event: any) => {
+    dispatch(updateMatchOddRates(event));
+  };
 
-  // useEffect(() => {
-  //   if (success && getProfile?.roleName) {
-  //     matchList?.forEach((element: any) => {
-  //       expertSocketService.match.joinMatchRoom(
-  //         element?.id,
-  //         getProfile?.roleName
-  //       );
-  //     });
-  //     matchList?.forEach((element: any) => {
-  //       expertSocketService.match.getMatchRates(
-  //         element?.id,
-  //         setMatchOddRatesInRedux
-  //       );
-  //     });
-  //   }
+  useEffect(() => {
+    if (success && getProfile?.roleName) {
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.joinMatchRoom(element?.id, "user");
+      });
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.getMatchRates(
+          element?.id,
+          setMatchOddRatesInRedux
+        );
+      });
+    }
 
-  //   return () => {
-  //     // expertSocketService.match.leaveAllRooms();
-  //     matchList?.forEach((element: any) => {
-  //       expertSocketService.match.leaveMatchRoom(element?.id);
-  //     });
-  //     matchList?.forEach((element: any) => {
-  //       expertSocketService.match.getMatchRatesOff(element?.id);
-  //     });
-  //   };
-  // }, [success, type, getProfile?.roleName]);
+    return () => {
+      // expertSocketService.match.leaveAllRooms();
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.leaveMatchRoom(element?.id);
+      });
+      matchList?.forEach((element: any) => {
+        expertSocketService.match.getMatchRatesOff(element?.id);
+      });
+    };
+  }, [success, type]);
 
   return (
     <div className="m-0 p-0 w-100">
@@ -75,7 +78,9 @@ const MobileMatchList = ({ setMatchType, type }: any) => {
                             {item?.icon}
                           </div>
                         )}
-                        <span className="navtab-name text-white">{item?.name}</span>
+                        <span className="navtab-name text-white">
+                          {item?.name}
+                        </span>
                       </div>
                     }
                   ></Tab>
