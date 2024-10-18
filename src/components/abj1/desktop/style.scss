@@ -262,14 +262,79 @@
 // .horseRacingTab .nav-link{
 //   margin: 0 !important;
 // }
+/* General Slick Arrow Styles */
+.slick-prev,
+.slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: white !important;
+  color: transparent;
+  opacity: 0.75; /* Default opacity when slidable */
+  transition: opacity 0.3s ease;
+}
 
+/* Arrow Text Styles */
+.slick-prev:before,
+.slick-next:before {
+  font-family: "slick";
+  font-size: 20px;
+  line-height: 1;
+  color: #000 !important;
+  opacity: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "←"; /* Default left arrow for prev */
+}
+
+.slick-next:before {
+  content: "→"; /* Default right arrow for next */
+}
+
+/* Hover/Focus State for Arrows */
+.slick-prev:hover:not(.slick-disabled),
+.slick-next:hover:not(.slick-disabled),
+.slick-prev:focus:not(.slick-disabled),
+.slick-next:focus:not(.slick-disabled) {
+  opacity: 1; /* Full opacity on hover/focus if not disabled */
+}
+
+.slick-prev:hover:not(.slick-disabled),
+.slick-next:hover:not(.slick-disabled),
+.slick-prev:focus:not(.slick-disabled),
+.slick-next:focus:not(.slick-disabled) {
+  opacity: 1; /* Full opacity for background on hover/focus if not disabled */
+}
+
+/* Disabled Arrows */
+.slick-prev.slick-disabled,
+.slick-next.slick-disabled {
+  color: #000 !important;
+  background: white !important;
+  opacity: 0.75 !important; /* Lower opacity when disabled */
+  cursor: not-allowed;
+}
+
+/* Styling for Slick List */
 .slick-list {
   margin: 1px !important;
 }
+
+/* Flexbox for Slick Slides */
 .slick-slide > div > div {
   display: flex !important;
   justify-content: center;
 }
+
 .ticker-container {
   width: 100%;
   overflow: hidden;

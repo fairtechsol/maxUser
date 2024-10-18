@@ -10,7 +10,8 @@ import { ImClubs } from "react-icons/im";
 import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
 import { ImDiamonds } from "react-icons/im";
-
+import { isMobile } from "../../../utils/screenDimension";
+import "./style.scss"
 const CardResultBox = ({ data, name, type }: any) => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
@@ -460,6 +461,7 @@ const CardResultBox = ({ data, name, type }: any) => {
         show={lgShow}
         onHide={() => setLgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
+        className={isMobile ? "modal-mobile" : "modal-desktop"}
       >
         <Modal.Body style={{ padding: 0, width: "100%" }}>
           <ResultComponent data={resultData} setfalse={setLgShow} type={type} />
