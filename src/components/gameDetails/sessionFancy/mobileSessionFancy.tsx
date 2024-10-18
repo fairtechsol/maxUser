@@ -92,6 +92,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
             </div>
             {data?.section?.map((item: any, index: any) => {
               return (
+                <div className="w-100 d-flex flex-column">
                 <div className="sessionRateContainer" key={index}>
                   <div
                     className="sessionRateName"
@@ -182,6 +183,9 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                       </span>
                     </div>
                   </div>
+                </div>
+                {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                  </div>)}
                 </div>
               );
             })}
