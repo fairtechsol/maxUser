@@ -20,6 +20,9 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  const { countryWiseList } = useSelector(
+    (state: RootState) => state.horseRacing.matchList
+  );
   const { id } = useParams();
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const location = useLocation();
@@ -74,11 +77,6 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               isSportsRoute ? "match-list-containerm" : ""
             }`}
             ref={boxRef}
-            // style={
-            //   location.pathname === "/home" || location.pathname === "/inPlay"
-            //     ? { height: !matchList || matchList?.length === 0 ? "" : "400px" }
-            //     : {}
-            // }
             style={{
               minHeight:
                 location.pathname === "/home" || location.pathname === "/inPlay"
@@ -88,23 +86,27 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 location.pathname === "/home" || location.pathname === "/inPlay"
                   ? ""
                   : "",
-              // overflowY:
-              //   location.pathname === "/home" || location.pathname === "/inPlay"
-              //     ? "hidden"
-              //     : "visible",
             }}
           >
             {availableGameType[mTypeid || id] ? (
               <>
                 {availableGameType[mTypeid] === "horseRacing" ||
                 availableGameType[mTypeid] === "greyHound" ? (
-                  <HorseRacingComponentList matchType={mTypeid} />
+                  <>
+                    {!countryWiseList || countryWiseList?.length === 0 ? (
+                      <div className="text-center">
+                      <ContactAdmin />
+                    </div>
+                    ) : (
+                      <HorseRacingComponentList matchType={mTypeid} />
+                    )}
+                  </>
                 ) : (
                   <>
                     {!matchList || matchList.length === 0 ? (
-                      <div className="text-center no-record-found">
-                        <span>No real-time records found</span>
-                      </div>
+                      <div className="text-center">
+                      <ContactAdmin />
+                    </div>
                     ) : (
                       <>
                         {mTypeid === "cricket" && (

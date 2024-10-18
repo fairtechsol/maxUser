@@ -122,6 +122,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
             </div>
             {marketArr?.section?.map((item: any, index: any) => {
               return (
+                <div className="w-100 d-flex flex-column">
                 <div className="sessionRateContainer" key={index}>
                   <div className="sessionRateName" style={{ flexGrow: 1 }}>
                     <span
@@ -211,6 +212,9 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                     </div>
                   </div>
                 </div>
+                  {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                    </div>)}
+                  </div>
               );
             })}
           </div>
