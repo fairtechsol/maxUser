@@ -222,7 +222,9 @@ const MatchListRow = ({ item, matchType }: any) => {
         </div>
       </td>
       <td style={{width:"10%",position:"relative"}} colSpan={2}>
-      {( item?.matchOdds?.[0]?.status==="SUSPENDED") && (
+      {(matchType==="politics"?  <div className="suspended-list-rates">
+                        <FaLock color="#fff" />
+                      </div> :item?.matchOdds?.[0]?.status==="SUSPENDED") && (
         <div className="suspended-list-rates">
                         <FaLock color="#fff" />
                       </div>
@@ -274,7 +276,9 @@ const MatchListRow = ({ item, matchType }: any) => {
       />
         </td>
         <td style={{width:"10%",position:"relative"}} colSpan={2}>
-        {( item?.matchOdds?.[0]?.status==="SUSPENDED") && (
+        {(matchType==="politics"?  <div className="suspended-list-rates">
+                        <FaLock color="#fff" />
+                      </div> : item?.matchOdds?.[0]?.status==="SUSPENDED") && (
         <div className="suspended-list-rates">
                         <FaLock color="#fff" />
                       </div>
