@@ -1,14 +1,10 @@
-import { Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom"; // Assuming you're using React Router for routing
+
 
 function ContactAdmin() {
   return (
-    <Container className="my-5 text-center d-flex flex-column justify-content-center align-items-center">
-      <h1>Contact Admin</h1>
-      <Link to="home">
-        <Button variant="primary">Back to Home</Button>
-      </Link>
-    </Container>
+    <div className="text-center no-record-found">
+    <span>No Record Found</span>
+  </div>
   );
 }
 

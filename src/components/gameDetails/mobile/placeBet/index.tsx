@@ -557,7 +557,8 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
                 </CustomButton>
               </Col>
             ))}
-            <Col xs={12}>
+            <Col xs={12} className="d-flex justify-content-between">
+           <div className="d-flex align-items-center justify-content-start"><span className="fbold title-12 text-black">Range: {selectedBet?.team?.min} to {formatNumber(parseFloat(selectedBet?.team?.max))}</span></div> 
               <div
                 style={{
                   width: "50px",

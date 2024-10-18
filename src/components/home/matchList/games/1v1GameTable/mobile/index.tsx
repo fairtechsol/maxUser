@@ -20,6 +20,9 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  const { countryWiseList } = useSelector(
+    (state: RootState) => state.horseRacing.matchList
+  );
   const { id } = useParams();
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const location = useLocation();
@@ -74,11 +77,6 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               isSportsRoute ? "match-list-containerm" : ""
             }`}
             ref={boxRef}
-            // style={
-            //   location.pathname === "/home" || location.pathname === "/inPlay"
-            //     ? { height: !matchList || matchList?.length === 0 ? "" : "400px" }
-            //     : {}
-            // }
             style={{
               minHeight:
                 location.pathname === "/home" || location.pathname === "/inPlay"
@@ -88,23 +86,27 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 location.pathname === "/home" || location.pathname === "/inPlay"
                   ? ""
                   : "",
-              // overflowY:
-              //   location.pathname === "/home" || location.pathname === "/inPlay"
-              //     ? "hidden"
-              //     : "visible",
             }}
           >
             {availableGameType[mTypeid || id] ? (
               <>
                 {availableGameType[mTypeid] === "horseRacing" ||
                 availableGameType[mTypeid] === "greyHound" ? (
-                  <HorseRacingComponentList matchType={mTypeid} />
+                  <>
+                    {!countryWiseList || countryWiseList?.length === 0 ? (
+                      <div className="text-center">
+                      <ContactAdmin />
+                    </div>
+                    ) : (
+                      <HorseRacingComponentList matchType={mTypeid} />
+                    )}
+                  </>
                 ) : (
                   <>
                     {!matchList || matchList.length === 0 ? (
-                      <div className="text-center no-record-found">
-                        <span>No real-time records found</span>
-                      </div>
+                      <div className="text-center">
+                      <ContactAdmin />
+                    </div>
                     ) : (
                       <>
                         {mTypeid === "cricket" && (
@@ -118,21 +120,21 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                             <div className="d-flex w-100">
                               <React.Fragment>
                                 <BackLayComponent
-                                    suspend={false}
+                                  suspend={false}
                                   heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
-                                    suspend={false}
+                                  suspend={false}
                                   heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
-                                    suspend={false}
+                                  suspend={false}
                                   heading=""
                                   backRate={"0"}
                                   layRate={"0"}
@@ -175,37 +177,62 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                       </div>
                                     </Link>
                                   </div>
-                                  <div className="d-flex align-items-center gap-2" style={{display:"flex",width:"120px",justifyContent:"center"}}>
+                                  <div
+                                    className="d-flex align-items-center gap-2"
+                                    style={{
+                                      display: "flex",
+                                      width: "120px",
+                                      justifyContent: "center",
+                                    }}
+                                  >
                                     {currentTime >= startAt ? (
                                       <span className="liveDot"></span>
                                     ) : (
-                                      ""
+                                      <span style={{ width: "10px" }}>
+                                        &nbsp;
+                                      </span>
                                     )}
+
                                     {item?.isTv === true ||
                                     item?.isTv === "1" ? (
                                       <TbDeviceTvOld />
                                     ) : (
-                                      ""
+                                      <span style={{ width: "20px" }}>
+                                        &nbsp;
+                                      </span>
                                     )}
+
+                                    {/* Facebook Icon */}
                                     {item?.manualSessionActive ||
                                     item?.apiSessionActive ? (
                                       <LiaFacebookF size={11} />
                                     ) : (
-                                      ""
+                                      <span style={{ width: "15px" }}>
+                                        &nbsp;
+                                      </span>
                                     )}
+
+                                    {/* Bookmaker */}
                                     {item?.isBookmaker.length > 0 ? (
                                       <span className="bookmaker">
-                                        <img src={bm} alt={"fancy"} />
+                                        <img src={bm} alt="fancy" />
                                       </span>
                                     ) : (
-                                      ""
+                                      <span style={{ width: "20px" }}>
+                                        &nbsp;
+                                      </span>
                                     )}
                                   </div>
                                 </div>
                                 <div className="d-flex w-100">
                                   <BackLayComponent
                                     heading="1"
-                                    suspend={item?.matchOdds?.[0]?.status==="SUSPENDED"?true:false}
+                                    suspend={
+                                      item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                        ? true
+                                        : false
+                                    }
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[0]?.ex
@@ -229,7 +256,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   />
                                   <BackLayComponent
                                     heading="X"
-                                    suspend={item?.matchOdds?.[0]?.status==="SUSPENDED"?true:false}
+                                    suspend={
+                                      item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                        ? true
+                                        : false
+                                    }
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[2]?.ex
@@ -251,7 +283,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   />
                                   <BackLayComponent
                                     heading="2"
-                                    suspend={item?.matchOdds?.[0]?.status==="SUSPENDED"?true:false}
+                                    suspend={
+                                      item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                        ? true
+                                        : false
+                                    }
                                     backRate={
                                       (item?.matchOdds?.[0]?.runners &&
                                         item?.matchOdds?.[0]?.runners[1]?.ex

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { scoreBoardUrlMain } from "../../../utils/constants";
 
 const ScoreBoardPage = () => {
-  const { vidId } = useParams();
+  const { vidId, sportsId } = useParams();
   const iframeStyles: any = {
     position: "absolute",
     top: 0,
@@ -27,7 +27,7 @@ const ScoreBoardPage = () => {
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
-        src={`${scoreBoardUrlMain}${vidId}`}
+        src={`${scoreBoardUrlMain}eventid=${vidId}&sportid=${sportsId}`}
         frameBorder="0"
         // allow="autoplay; fullscreen"
         // allowFullScreen

@@ -16,10 +16,12 @@ import {
 import { AppDispatch, RootState } from "../../store/store";
 import { isMobile } from "../../utils/screenDimension";
 import ImageModal from "../../components/commonComponent/loginModal";
+import { getBannerImage } from "../../store/actions/user/userAction";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
   const { rulesPopShow } = useSelector((state: RootState) => state.auth);
+  const { bannerImage } = useSelector((state: RootState) => state.user.profile);
   const [matchType, setMatchType] = useState("cricket");
   const [show, setShow] = useState(false);
   const { matchList, success } = useSelector(
@@ -29,8 +31,6 @@ const Home = () => {
   const setMatchOddRatesInRedux = (event: any) => {
     dispatch(updateMatchOddRates(event));
   };
-  const imageUrl =
-    "https://sitethemedata.com/common/wel-banner/wel-1724988950347.png"; // Replace this with the dynamic URL
 
   const getMatchListService = () => {
     try {
@@ -136,6 +136,12 @@ const Home = () => {
   };
 
   useEffect(() => {
+    if (rulesPopShow) {
+      dispatch(getBannerImage());
+    }
+  }, []);
+
+  useEffect(() => {
     if (
       success &&
       matchList.length > 0 &&
@@ -169,9 +175,8 @@ const Home = () => {
       <MatchList setMatchType={setMatchType} matchType={matchType} />
       <ImageModal
         customClass={isMobile ? "" : "modalFull-56 rule-popup"}
-        show={show}
+        show={show && bannerImage}
         setShow={popUpClose}
-        imageUrl={imageUrl}
       />
     </div>
   );

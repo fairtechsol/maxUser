@@ -33,7 +33,9 @@ const DesktopMatchList = ({
       if (
         success &&
         matchList.length > 0 &&
-        ["cricket", "football", "tennis"].includes(matchType || type)
+        ["cricket", "football", "tennis", "politics"].includes(
+          matchType || type || matchTypeGameList
+        )
       ) {
         matchList?.forEach((element: any) => {
           expertSocketService.match.joinMatchRoom(element?.id, "user");
@@ -54,7 +56,7 @@ const DesktopMatchList = ({
     } catch (e) {
       console.log(e);
     }
-  }, [matchList.length, success, type, matchType]);
+  }, [matchList.length, success, type, matchType, matchTypeGameList]);
 
   useEffect(() => {
     if (type) {

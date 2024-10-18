@@ -44,6 +44,9 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  const { countryWiseList } = useSelector(
+    (state: RootState) => state.horseRacing.matchList
+  );
   return (
     <>
       <Table className="matchListTable-desktop mb-4">
@@ -75,18 +78,21 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
           {availableGameType[mTypeid] ? (
             availableGameType[mTypeid] === "horseRacing" ||
             availableGameType[mTypeid] === "greyHound" ? (
-              <HorseRacingComponentList matchType={mTypeid} />
+              <>
+                {!countryWiseList || countryWiseList?.length === 0 ? (
+                  <div className="text-center">
+                    <ContactAdmin />
+                  </div>
+                ) : (
+                  <HorseRacingComponentList matchType={mTypeid} />
+                )}
+              </>
             ) : (
               <>
                 {!matchList || matchList?.length === 0 ? (
-                  <tr>
-                    <td style={{ backgroundColor: "#ccc" }}>
-                      No real-time records found
-                    </td>
-                    {[1, 2, 3, 4, 5].map((item: number) => (
-                      <td key={item} style={{ backgroundColor: "#ccc" }}></td>
-                    ))}
-                  </tr>
+                  <div className="text-center">
+                    <ContactAdmin />
+                  </div>
                 ) : (
                   <>
                     {availableGameType[mTypeid] === "cricket" && (
@@ -107,7 +113,10 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                           </div>
                         </td>
 
-                        <td style={{width:"10%",position:"relative"}} colSpan={2}>
+                        <td
+                          style={{ width: "10%", position: "relative" }}
+                          colSpan={2}
+                        >
                           <BackLayComponent
                             backRate={0}
                             layRate={0}
@@ -115,8 +124,11 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                             backPercent={0}
                             layPercent={0}
                           />
-                          </td>
-                        <td style={{width:"10%",position:"relative"}} colSpan={2}>
+                        </td>
+                        <td
+                          style={{ width: "10%", position: "relative" }}
+                          colSpan={2}
+                        >
                           <BackLayComponent
                             backRate={0}
                             layRate={0}
@@ -124,8 +136,11 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                             backPercent={0}
                             layPercent={0}
                           />
-                          </td>
-                        <td style={{width:"10%",position:"relative"}} colSpan={2}>
+                        </td>
+                        <td
+                          style={{ width: "10%", position: "relative" }}
+                          colSpan={2}
+                        >
                           <BackLayComponent
                             backRate={0}
                             layRate={0}
@@ -202,27 +217,43 @@ const MatchListRow = ({ item, matchType }: any) => {
             </div>
           </NavLink>
           <div className="d-flex align-items-center gap-2">
-            {currentTime >= startAt ? <span className="liveDot"></span> : ""}
-            {item?.isTv === true || item?.isTv === "1" ? <FiMonitor /> : ""}
+            {/* Live Dot */}
+            {currentTime >= startAt ? (
+              <span className="liveDot"></span>
+            ) : (
+              <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
+            )}
+
+            {/* TV Icon */}
+            {item?.isTv === true || item?.isTv === "1" ? (
+              <FiMonitor />
+            ) : (
+              <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
+            )}
+
+            {/* Fancy Icon */}
             {item?.manualSessionActive || item?.apiSessionActive ? (
               <span className="fancy">
                 <img src="/ic_fancy.png" alt={"fancy"} />
               </span>
             ) : (
-              ""
+              <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
             )}
+            {/* Bookmaker Icon */}
             {item?.isBookmaker?.length > 0 ? (
               <span className="bookmaker">
                 <img src="/ic_bm.png" alt={"fancy"} />
               </span>
             ) : (
-              ""
+              <span style={{ width: "18px", height: "16px" }}></span> // Placeholder space
             )}
           </div>
         </div>
       </td>
       <td style={{width:"10%",position:"relative"}} colSpan={2}>
-      {( item?.matchOdds?.[0]?.status==="SUSPENDED") && (
+      {(matchType==="politics"?  <div className="suspended-list-rates">
+                        <FaLock color="#fff" />
+                      </div> :item?.matchOdds?.[0]?.status==="SUSPENDED") && (
         <div className="suspended-list-rates">
                         <FaLock color="#fff" />
                       </div>
@@ -274,34 +305,88 @@ const MatchListRow = ({ item, matchType }: any) => {
       />
         </td>
         <td style={{width:"10%",position:"relative"}} colSpan={2}>
-        {( item?.matchOdds?.[0]?.status==="SUSPENDED") && (
+        {(matchType==="politics"?  <div className="suspended-list-rates">
+                        <FaLock color="#fff" />
+                      </div> : item?.matchOdds?.[0]?.status==="SUSPENDED") && (
         <div className="suspended-list-rates">
                         <FaLock color="#fff" />
                       </div>
                     )} 
         <BackLayComponent
-        backRate={
-          (item?.matchOdds?.[0]?.runners &&
-            item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack[
-              item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack?.length > 1
-                ? 2
-                : 0
-            ]?.price) ??
-          item?.matchOdds?.[0]?.backTeamB ??
-          0
-        }
-        layRate={
-          (item?.matchOdds?.[0]?.runners &&
-            item?.matchOdds?.[0]?.runners[1]?.ex?.availableToLay[0]?.price) ??
-          item?.matchOdds?.[0]?.layTeamB ??
-          0
-        }
-        active={false}
-      />
-        </td>
-      
-      
-      
+          backRate={
+            (item?.matchOdds?.[0]?.runners &&
+              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.[
+                item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.length >
+                1
+                  ? 2
+                  : 0
+              ]?.price) ??
+            item?.matchOdds?.[0]?.backTeamA ??
+            0
+          }
+          layRate={
+            (item?.matchOdds?.[0]?.runners &&
+              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToLay[0]?.price) ??
+            item?.matchOdds?.[0]?.layTeamA ??
+            0
+          }
+          active={false}
+        />
+      </td>
+      <td style={{ width: "10%", position: "relative" }} colSpan={2}>
+        {item?.matchOdds?.[0]?.status === "SUSPENDED" && (
+          <div className="suspended-list-rates">
+            <FaLock color="#fff" />
+          </div>
+        )}
+        <BackLayComponent
+          backRate={
+            (item?.matchOdds?.[0]?.runners &&
+              item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack[
+                item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack?.length >
+                1
+                  ? 2
+                  : 0
+              ]?.price) ??
+            item?.matchOdds?.[0]?.backTeamC ??
+            0
+          }
+          layRate={
+            (item?.matchOdds?.[0]?.runners &&
+              item?.matchOdds?.[0]?.runners[2]?.ex?.availableToLay[0]?.price) ??
+            item?.matchOdds?.[0]?.layTeamC ??
+            0
+          }
+          active={false}
+        />
+      </td>
+      <td style={{ width: "10%", position: "relative" }} colSpan={2}>
+        {item?.matchOdds?.[0]?.status === "SUSPENDED" && (
+          <div className="suspended-list-rates">
+            <FaLock color="#fff" />
+          </div>
+        )}
+        <BackLayComponent
+          backRate={
+            (item?.matchOdds?.[0]?.runners &&
+              item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack[
+                item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack?.length >
+                1
+                  ? 2
+                  : 0
+              ]?.price) ??
+            item?.matchOdds?.[0]?.backTeamB ??
+            0
+          }
+          layRate={
+            (item?.matchOdds?.[0]?.runners &&
+              item?.matchOdds?.[0]?.runners[1]?.ex?.availableToLay[0]?.price) ??
+            item?.matchOdds?.[0]?.layTeamB ??
+            0
+          }
+          active={false}
+        />
+      </td>
     </tr>
   );
 };

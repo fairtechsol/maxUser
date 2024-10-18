@@ -102,6 +102,7 @@ const SessionOddEven = ({ title, data, detail }) => {
             </div>
             {evenIndexArray?.map((item: any, index: any) => {
               return (
+                <div className="w-100 d-flex flex-column">
                 <div className="sessionOddEvenRateContainer" key={index}>
                   <div
                     className="sessionRateName runnerWidthNormal"
@@ -223,6 +224,9 @@ const SessionOddEven = ({ title, data, detail }) => {
                     </div>
                   </div>
                 </div>
+                {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                    </div>)}
+                  </div>
               );
             })}
           </div>
@@ -251,6 +255,7 @@ const SessionOddEven = ({ title, data, detail }) => {
             </div>
               {oddIndexArray?.map((item: any, index: any) => {
                 return (
+                  <div className="w-100 d-flex flex-column">
                   <div className="sessionOddEvenRateContainer" key={index}>
                     <div
                       className="sessionRateName runnerWidthNormal"
@@ -391,6 +396,9 @@ const SessionOddEven = ({ title, data, detail }) => {
                         </span>
                       </div>
                     </div>
+                  </div>
+                  {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                    </div>)}
                   </div>
                 );
               })}

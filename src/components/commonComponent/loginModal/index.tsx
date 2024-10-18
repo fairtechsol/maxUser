@@ -1,18 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import PropTypes from "prop-types";
-import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
-import { getBannerImage } from "../../../store/actions/user/userAction";
+import { RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
 
-const ImageModal = ({ imageUrl, customClass, show, setShow }) => {
-  const dispatch: AppDispatch = useDispatch();
+const ImageModal = ({ customClass, show, setShow }) => {
   const { bannerImage } = useSelector((state: RootState) => state.user.profile);
-  useEffect(() => {
-    dispatch(getBannerImage());
-  }, []);
+
   return (
     <Modal
       show={show}
@@ -29,11 +23,12 @@ const ImageModal = ({ imageUrl, customClass, show, setShow }) => {
           aria-label="Close"
         ></button>
       </div>
-      <div className="p-0 modal-body">
+      <div className="p-0 modal-body overflow-auto" style={{maxHeight: "90vh"}}>
         <img
-          src={"data:image/png;base64,"+bannerImage?.value}
+          src={"data:image/png;base64," + bannerImage?.value}
           alt="Modal Content"
           className="img-fluid"
+          style={{ width: "100%", height: "auto" }} 
         />
       </div>
     </Modal>

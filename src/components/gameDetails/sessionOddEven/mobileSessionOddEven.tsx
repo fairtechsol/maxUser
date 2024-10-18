@@ -40,6 +40,8 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
       betPlaceIndex: tno,
       mid: data?.mid?.toString(),
       teamName: teamName,
+      min:item?.min ,
+      max:item?.max 
     };
     dispatch(
       selectedBetAction({
@@ -91,6 +93,7 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
             </div>
             {data?.section?.map((item: any, index: any) => {
               return (
+                <div className="w-100 d-flex flex-column">
                 <div className="sessionOddEvenRateContainer" key={index}>
                   <div
                     className="sessionRateName"
@@ -200,6 +203,9 @@ const MobileSessionOddEven = ({ title, data, detail }) => {
                       </div>
                     </div>
                   </div>
+                </div>
+                 {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
+                  </div>)}
                 </div>
               );
             })}
