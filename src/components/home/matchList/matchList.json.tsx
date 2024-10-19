@@ -45,16 +45,16 @@ const MatchListJson = () => {
       type: GAME_TYPE.ONE_V_ONE,
     },
     {
-      id: "esoccer",
-      name: "Esoccer",
-      type: GAME_TYPE.ONE_V_ONE,
-      img: Esoc,
-    },
-    {
       id: "tennis",
       name: "Tennis",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <IoTennisball />,
+    },
+    {
+      id: "esoccer",
+      name: "Esoccer",
+      type: GAME_TYPE.ONE_V_ONE,
+      img: Esoc,
     },
     {
       id: "horseRacing",
