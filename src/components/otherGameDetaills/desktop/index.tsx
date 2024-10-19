@@ -350,7 +350,7 @@ const FootballDesktopGameDetail = () => {
                   <LiveStreamComponent
                     eventId={otherMatchDetails?.eventId}
                     sportId={
-                      otherMatchDetails?.matchType === "football" ? "2" : "1"
+                      otherMatchDetails?.matchType === "football" ? "1" : "2"
                     }
                   />
                 </Col>

@@ -83,7 +83,7 @@ const FootballMobileGameDetail = () => {
         // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
         //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
         `https://dpmatka.in/sr.php?eventid=${eventId}&sportid=${
-          otherMatchDetails?.matchType === "football" ? "2" : "1"
+          otherMatchDetails?.matchType === "football" ? "1" : "2"
         }`
       );
       // {"success":false,"msg":"Not found"}
@@ -180,8 +180,8 @@ const FootballMobileGameDetail = () => {
                                     otherMatchDetails?.eventId
                                   }&sportid=${
                                     otherMatchDetails?.matchType === "football"
-                                      ? "2"
-                                      : "1"
+                                      ? "1"
+                                      : "2"
                                   }`}
                                   title="Live Stream"
                                   referrerPolicy="strict-origin-when-cross-origin"
