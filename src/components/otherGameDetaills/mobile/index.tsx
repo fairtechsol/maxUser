@@ -22,6 +22,7 @@ import NewLoader from "../../commonComponent/newLoader";
 import { liveStreamPageUrl } from "../../../utils/constants";
 import service from "../../../service";
 import Iframe from "../../iframe/iframe";
+import { FaTv } from "react-icons/fa";
 
 // import "./style.scss";
 // import BetTable from "../../gameDetails/betTable";
@@ -124,6 +125,18 @@ const FootballMobileGameDetail = () => {
               <div className="ps-5 border-end pe-2">{`MATCHED BET(${
                 Array.from(new Set(placedBets))?.length
               })`}</div>
+            ),
+          },
+          otherMatchDetails?.eventId && {
+            // id: "live",
+            name: (
+              <div
+                onClick={() => setShowVideo(!showVideo)}
+                className="ps-5"
+                // style={{  lineHeight: 1.22 }}
+              >
+                <FaTv size={15} />
+              </div>
             ),
           },
         ]?.map((item, index) => {

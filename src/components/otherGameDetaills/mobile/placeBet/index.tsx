@@ -386,6 +386,8 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
               selectedBet?.team?.matchBetType === "session" ||
               selectedBet?.data?.SelectionId
                 ? ApiConstants.BET.PLACEBETSESSION
+                : selectedBet?.team?.gameType === "other"
+                ? ApiConstants.BET.PLACEBETMATCHBETTINGOTHER
                 : ApiConstants.BET.PLACEBETMATCHBETTING,
             data:
               selectedBet?.team?.matchBetType === "session" ||
