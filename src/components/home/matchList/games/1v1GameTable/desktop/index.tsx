@@ -250,7 +250,7 @@ const MatchListRow = ({ item, matchType }: any) => {
           </div>
         </div>
       </td>
-      <td style={{width:"10%",position:"relative"}} colSpan={2}>
+      {matchType==="politics"? <> <td style={{width:"10%",position:"relative"}} colSpan={2}>
       {(matchType==="politics"?  <div className="suspended-list-rates">
                         <FaLock color="#fff" />
                       </div> :item?.matchOdds?.[0]?.status==="SUSPENDED") && (
@@ -304,6 +304,37 @@ const MatchListRow = ({ item, matchType }: any) => {
         active={false}
       />
         </td>
+        <td style={{width:"10%",position:"relative"}} colSpan={2}>
+        {(matchType==="politics"?  <div className="suspended-list-rates">
+                        <FaLock color="#fff" />
+                      </div> : item?.matchOdds?.[0]?.status==="SUSPENDED") && (
+        <div className="suspended-list-rates">
+                        <FaLock color="#fff" />
+                      </div>
+                    )} 
+        <BackLayComponent
+          backRate={
+            (item?.matchOdds?.[0]?.runners &&
+              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.[
+                item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.length >
+                1
+                  ? 2
+                  : 0
+              ]?.price) ??
+            item?.matchOdds?.[0]?.backTeamA ??
+            0
+          }
+          layRate={
+            (item?.matchOdds?.[0]?.runners &&
+              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToLay[0]?.price) ??
+            item?.matchOdds?.[0]?.layTeamA ??
+            0
+          }
+          active={false}
+        />
+      </td></>:
+      <> 
+      
         <td style={{width:"10%",position:"relative"}} colSpan={2}>
         {(matchType==="politics"?  <div className="suspended-list-rates">
                         <FaLock color="#fff" />
@@ -386,7 +417,8 @@ const MatchListRow = ({ item, matchType }: any) => {
           }
           active={false}
         />
-      </td>
+      </td></>}
+     
     </tr>
   );
 };
