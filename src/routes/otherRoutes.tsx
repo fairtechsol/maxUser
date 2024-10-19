@@ -14,7 +14,7 @@ const OtherRoutes = {
       element: <VideoPage />,
     },
     {
-      path: "liveStream/:vidId",
+      path: "liveStream/:vidId/:sportId",
       element: <LiveStreamPage />,
     },
     {

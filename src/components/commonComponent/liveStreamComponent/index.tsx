@@ -3,7 +3,7 @@ import { liveStreamPageUrl } from "../../../utils/constants";
 import RightPanelContainer from "./RightPanelContainer";
 import { useState } from "react";
 
-const LiveStreamComponent = ({ eventId }: any) => {
+const LiveStreamComponent = ({ eventId, sportid }: any) => {
   const [showVideo, setShowVideo] = useState<boolean>(false);
   return (
     <>
@@ -14,7 +14,7 @@ const LiveStreamComponent = ({ eventId }: any) => {
               <Col md={12} className="p-0">
                 <Ratio aspectRatio="16x9">
                   <iframe
-                    src={`${liveStreamPageUrl}${eventId}`}
+                    src={`${liveStreamPageUrl}${eventId}&sportid=${sportid}`}
                     title="Live Stream"
                     referrerPolicy={"strict-origin-when-cross-origin"}
                   ></iframe>
