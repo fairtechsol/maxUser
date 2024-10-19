@@ -125,7 +125,8 @@ const DragonTigerDesktop = () => {
           {loading ? (
             <NewLoader />
           ) : (
-            <div style={{background:"#F7F7F7",width:"100%",margin:"5px",paddingRight:"10px"}}>
+            <div className="ddt1">
+              
               <div
                 className="d-sm-flex flex-row justify-content-around align-items-center"
                 style={{ width: "100%",gap: "10px" }}

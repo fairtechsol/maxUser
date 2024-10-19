@@ -4,9 +4,10 @@ import { HandleCards } from "../../commonComponent/cardsComponent";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import ResultBetList from "../../commonComponent/resultBetList";
+import { CustomCards } from "../../commonComponent/customCardComponent";
 interface Props {
   data: {
     C1: string;
@@ -15,12 +16,12 @@ interface Props {
 }
 
 const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
-  const result = data?.result?.cards?.split('*')
+  const result = data?.result?.cards?.split("*");
   const elementsAndar = result?.[0]?.split(",");
   const elementsBahar = result?.[1]?.split(",");
 
   const minLength = isMobile ? 5 : 15;
-   
+
   function SampleNextArrow(props: any) {
     const { className, style, onClick } = props;
     return (
@@ -95,63 +96,139 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
         <div className="abjresultCardContainer-sub">
           <div
             style={{
-              width: isMobile ? "30%" : "70%",
+              width: isMobile ? "90%" : "70%",
               margin: "8px 9px 10px 11px",
             }}
           >
-            <div style={{width:"100%",textAlign:"center",fontWeight:"450"}}>Andar</div>
-            <div style={{width:"100%"}}>
+            <div
+              style={{ width: "100%", textAlign: "center", fontWeight: "450" }}
+            >
+              Andar
+            </div>
+            <div style={{ width: "100%" }}>
               {elementsAndar?.length > minLength ? (
                 <Slider
-                  {...sliderSettings(elementsAndar.length, elementsAndar.length > minLength)}
+                  {...sliderSettings(
+                    elementsAndar.length,
+                    elementsAndar.length > minLength
+                  )}
                 >
-                  {elementsAndar?.map((item: any, index: any) => (
-                    <div key={index} style={{background:"red"}}>
-                      <HandleCards card={item} />
-                    </div>
-                  ))}
+                  {elementsBahar?.map((item: any, index: any) => {
+                    return (
+                      item != "" && (
+                        <div key={index}>
+                          {isMobile ? (
+                            <CustomCards
+                              card={item}
+                              width={"40px"}
+                              height={"60px"}
+                              font={"24px"}
+                              icon={"16px"}
+                            />
+                          ) : (
+                            <HandleCards key={index} card={item} />
+                          )}
+                        </div>
+                      )
+                    );
+                  })}
                 </Slider>
               ) : (
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" ,justifyContent:"space-around",alignItems:"center"}}>
-                  {elementsAndar?.map((item: any, index: any) => (
-                    <HandleCards key={index} card={item} />
-                  ))}
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    flexWrap: "wrap",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                  }}
+                >
+                  {elementsAndar?.map((item: any, index: any) =>
+                    isMobile ? (
+                      <CustomCards
+                        card={item}
+                        width={"40px"}
+                        height={"60px"}
+                        font={"24px"}
+                        icon={"16px"}
+                      />
+                    ) : (
+                      <HandleCards key={index} card={item} />
+                    )
+                  )}
                 </div>
               )}
             </div>
-            <div style={{width:"100%",textAlign:"center",fontWeight:"450"}}>Bahar</div>
-            <div style={{width:"100%"}}>
+            <div
+              style={{ width: "100%", textAlign: "center", fontWeight: "450" }}
+            >
+              Bahar
+            </div>
+            <div style={{ width: "100%" }}>
               {elementsBahar?.length > minLength ? (
                 <Slider
-                  {...sliderSettings(elementsBahar.length, elementsBahar.length > minLength)}
+                  {...sliderSettings(
+                    elementsBahar.length,
+                    elementsBahar.length > minLength
+                  )}
                 >
                   {elementsBahar?.map((item: any, index: any) => {
-                    return item!='' && (
-                      <div key={index}>
-                      <HandleCards card={item} />
-                    </div>
-                    )
-                  }
-                  
-                  )}
+                    return (
+                      item != "" && (
+                        <div key={index}>
+                          {isMobile ? (
+                            <CustomCards
+                              card={item}
+                              width={"40px"}
+                              height={"60px"}
+                              font={"24px"}
+                              icon={"16px"}
+                            />
+                          ) : (
+                            <HandleCards key={index} card={item} />
+                          )}
+                        </div>
+                      )
+                    );
+                  })}
                 </Slider>
               ) : (
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" ,justifyContent:"space-around",alignItems:"center"}}>
-                  {elementsBahar?.map((item: any, index: any) => (
-                    <HandleCards key={index} card={item} />
-                  ))}
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    flexWrap: "wrap",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                  }}
+                >
+                  {elementsBahar?.map((item: any, index: any) =>
+                    isMobile ? (
+                      <CustomCards
+                        card={item}
+                        width={"40px"}
+                        height={"60px"}
+                        font={"24px"}
+                        icon={"16px"}
+                      />
+                    ) : (
+                      <HandleCards key={index} card={item} />
+                    )
+                  )}
                 </div>
               )}
             </div>
           </div>
         </div>
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList
+            bets={data?.bets?.rows ?? 12}
+            total={data?.bets?.count}
+          />
+        </div>
+      )}
     </Container>
   );
 };
