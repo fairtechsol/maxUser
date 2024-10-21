@@ -53,7 +53,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           data={lowHigh?.[0]}
         />
         <div >
-        <img src={seven} width={"45px"} height={"60px"} style={{marginTop:"22px"}}/>
+        <img src={seven} width={"45px"} height={"60px"}/>
         </div>
          
         <CommonButtonBox

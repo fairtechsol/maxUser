@@ -59,7 +59,6 @@ const TiePairBox = ({ lowHigh, data }: any) => {
             src={seven}
             width={"55px"}
             height={"70px"}
-            style={{ marginTop: "22px" }}
           />
         </div>
 

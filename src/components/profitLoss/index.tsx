@@ -52,6 +52,7 @@ const typeToTitle: { [key: string]: string } = {
 const ProfitLossComponent = () => {
   const minDate = new Date();
   minDate.setMonth(minDate.getMonth() - 1);
+  const [tableConfig, setTableConfig] = useState<any>(null);
   const dispatch: AppDispatch = useDispatch();
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
@@ -80,17 +81,32 @@ const ProfitLossComponent = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (getProfile.id) {
-  //     dispatch(
-  //       getProfitLossReport({
-  //         startDate: moment(fromDate).format("YYYY-MM-DD"),
-  //         endDate: moment(toDate).format("YYYY-MM-DD"),
-  //         userId: getProfile?.id,
-  //       })
-  //     );
-  //   }
-  // }, [getProfile]);
+  useEffect(() => {
+    if (getProfile?.id && tableConfig) {
+      let filter = "";
+  
+      if (fromDate && toDate) {
+        filter += `&startDate=${moment(new Date(fromDate))?.format("YYYY-MM-DD")}`;
+        filter += `&endDate=${moment(new Date(toDate).setDate(toDate.getDate() + 1))?.format("YYYY-MM-DD")}`;
+      } else if (fromDate) {
+        filter += `&startDate=${moment(fromDate)?.format("YYYY-MM-DD")}`;
+      } else if (toDate) {
+        filter += `&endDate=${moment(toDate)?.format("YYYY-MM-DD")}`;
+      }
+  
+      dispatch(
+        getProfitLossReport({
+          userId: getProfile?.id,
+          page: tableConfig?.page,
+          limit: tableConfig?.rowPerPage,
+          filter,
+        })
+      );
+    }
+  }, [getProfile?.id, tableConfig, fromDate, toDate]);
+  
+
+  
   useEffect(() => {
     const date = Math.floor(new Date().getTime() / 1000);
     const timestamp = Math.floor(new Date(fromDate).getTime() / 1000);
@@ -98,10 +114,11 @@ const ProfitLossComponent = () => {
       setminDate2(fromDate);
     }
   }, [fromDate]);
-  return (
+
+    return (
     <>
       {isMobile && (
-        <div className="vh-100">
+        <div className="h-100">
           <ReportContainer title="Profit Loss">
             <Stack gap={2}>
               <Row className="g-2 mt-1">
@@ -147,6 +164,9 @@ const ProfitLossComponent = () => {
               <CustomTable
                 bordered={true}
                 striped={!isMobile}
+                paginationCount={true}
+                isPagination={true}
+                isSearch={true}
                 columns={[
                   {
                     id: "eventType",
@@ -161,8 +181,10 @@ const ProfitLossComponent = () => {
                     label: "Amount",
                   },
                 ]}
-                itemCount={10}
-                setTableConfig={() => {}}
+                itemCount={profitLossReport?.count || 0}
+                setTableConfig={(data: any) => {
+                  setTableConfig(data);
+                }}
               >
                 {profitLossReport &&
                   profitLossReport?.result?.map((item: any, index: number) => {
