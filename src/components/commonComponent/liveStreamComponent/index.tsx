@@ -14,7 +14,7 @@ const LiveStreamComponent = ({ eventId, sportId }: any) => {
               <Col md={12} className="p-0">
                 <Ratio aspectRatio="16x9">
                   <iframe
-                    src={`${liveStreamPageUrl}${eventId}&sportid=${sportId}`}
+                    src={`${liveStreamPageUrl}${eventId}/${sportId}`}
                     title="Live Stream"
                     referrerPolicy={"strict-origin-when-cross-origin"}
                   ></iframe>
