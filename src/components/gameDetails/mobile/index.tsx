@@ -6,7 +6,10 @@ import { RootState } from "../../../store/store";
 import { FaTv } from "react-icons/fa";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
-import { Constants, liveStreamPageUrl } from "../../../utils/constants";
+import {
+  Constants,
+  liveStreamCricketPageUrl,
+} from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import CommonTabs from "../../commonComponent/tabs";
@@ -167,7 +170,7 @@ const MobileGameDetail = () => {
                           <Col md={12}>
                             <Ratio aspectRatio="16x9">
                               <iframe
-                                src={`${liveStreamPageUrl}${matchDetails?.eventId}/4`}
+                                src={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
                                 title="Live Stream"
                                 referrerPolicy="strict-origin-when-cross-origin"
                               ></iframe>

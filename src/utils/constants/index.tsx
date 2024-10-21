@@ -445,6 +445,7 @@ export const cardUrl =
     : "https://maxbet07.com/videoPage/";
 
 export const cardUrlMain = "https://maxbet07.com/videoPage/";
+export const liveStreamCricketPageUrl = "https://maxbet07.com/liveStreamCricket/";
 export const liveStreamPageUrl = "https://maxbet07.com/liveStream/";
 export const scoreBoardUrlMain = "https://maxbet07.com/scoreBoardPage/";
 
