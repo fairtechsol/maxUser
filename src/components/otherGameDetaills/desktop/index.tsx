@@ -21,7 +21,7 @@ import { IoInformationCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import NewLoader from "../../commonComponent/newLoader";
 // import service from "../../../service";
-import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
+import { liveStreamPageUrl } from "../../../utils/constants";
 // import Iframe from "../../iframe/iframe";
 
 const FootballDesktopGameDetail = () => {
@@ -132,7 +132,7 @@ const FootballDesktopGameDetail = () => {
                   <Iframe data={liveScoreBoardData} width="100%" />
                 )} */}
                 {/* {showScoreboard && ( */}
-                <Container className="px-0">
+                {/* <Container className="px-0">
                   <Row className="justify-content-md-center">
                     <Col md={12}>
                       <Ratio aspectRatio="16x9">
@@ -150,7 +150,7 @@ const FootballDesktopGameDetail = () => {
                       </Ratio>
                     </Col>
                   </Row>
-                </Container>
+                </Container> */}
                 {/* )} */}
                 {otherMatchDetails?.matchOdd?.activeStatus === "live" &&
                   otherMatchDetails?.matchOdd?.isActive && (
