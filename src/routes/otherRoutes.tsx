@@ -3,6 +3,7 @@ import VideoPage from "../pages/public/VideoPage";
 import ScoreBoardPage from "../pages/public/ScoreBoardPage";
 import OtherLayout from "../layout/otherLayout";
 import LiveStreamPage from "../pages/public/liveStreamPage";
+import LiveStreamPageCricket from "../pages/public/liveStreamPageCricket";
 
 const OtherRoutes = {
   path: "/",
@@ -12,6 +13,10 @@ const OtherRoutes = {
     {
       path: "videoPage/:vidId",
       element: <VideoPage />,
+    },
+    {
+      path: "liveStreamCricket/:vidId",
+      element: <LiveStreamPageCricket />,
     },
     {
       path: "liveStream/:vidId/:sportId",

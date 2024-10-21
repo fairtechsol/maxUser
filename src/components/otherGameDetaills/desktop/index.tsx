@@ -21,7 +21,7 @@ import { IoInformationCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import NewLoader from "../../commonComponent/newLoader";
 import service from "../../../service";
-import { Constants } from "../../../utils/constants";
+import { Constants, liveStreamPageUrl } from "../../../utils/constants";
 import Iframe from "../../iframe/iframe";
 
 const FootballDesktopGameDetail = () => {
@@ -348,10 +348,11 @@ const FootballDesktopGameDetail = () => {
               {otherMatchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent
-                    eventId={otherMatchDetails?.eventId}
-                    sportId={
+                    url={`${liveStreamPageUrl}${
+                      otherMatchDetails?.eventId
+                    }&sportid=${
                       otherMatchDetails?.matchType === "football" ? "1" : "2"
-                    }
+                    }`}
                   />
                 </Col>
               )}

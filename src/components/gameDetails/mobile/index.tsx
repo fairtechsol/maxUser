@@ -6,7 +6,10 @@ import { RootState } from "../../../store/store";
 import { FaTv } from "react-icons/fa";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
-import { Constants, liveStreamPageUrl } from "../../../utils/constants";
+import {
+  Constants,
+  liveStreamPageCricketUrl,
+} from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import CommonTabs from "../../commonComponent/tabs";
@@ -167,7 +170,7 @@ const MobileGameDetail = () => {
                           <Col md={12}>
                             <Ratio aspectRatio="16x9">
                               <iframe
-                                src={`${liveStreamPageUrl}${matchDetails?.eventId}&sportid=4`}
+                                src={`${liveStreamPageCricketUrl}${matchDetails?.eventId}`}
                                 title="Live Stream"
                                 referrerPolicy="strict-origin-when-cross-origin"
                               ></iframe>
@@ -252,7 +255,7 @@ const MobileGameDetail = () => {
                           </div>
                         )
                       )}
-                    
+
                     {matchDetails?.bookmaker2?.activeStatus === "live" &&
                       matchDetails?.bookmaker2?.isActive && (
                         <Col className="g-0" md={12}>
@@ -328,8 +331,7 @@ const MobileGameDetail = () => {
                         />
                       </Col>
                     )}
-                    
-                   
+
                     {matchDetails?.marketCompleteMatch1?.activeStatus ===
                       "live" &&
                       matchDetails?.marketCompleteMatch1?.isActive && (
@@ -457,7 +459,7 @@ const MobileGameDetail = () => {
                           );
                         }
                       )}
-                   
+
                     {matchDetails?.apiTideMatch?.activeStatus === "live" &&
                       matchDetails?.apiTideMatch?.isActive && (
                         <Col className="g-0" md={12}>
