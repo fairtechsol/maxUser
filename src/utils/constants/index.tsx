@@ -441,13 +441,12 @@ export const navigateToGameDetail = {
 
 export const cardUrl =
   process.env.NODE_ENV === "production"
-    ? "https://jmdapi.com/tablevideo/?id="
-    : "https://jmdapi.com/tablevideo/?id=";
+    ? "https://maxbet07.com/videoPage/"
+    : "https://maxbet07.com/videoPage/";
 
-export const cardUrlMain = "https://jmdapi.com/tablevideo/?id="; //rr client name for casino video url
-export const liveStreamPageUrl =
-  "https://dpmatka.in/anm.php?type=video&eventId="; //rr client name for cricket/football video
-export const scoreBoardUrlMain = "https://dpmatka.in/sr.php?"; //rr client name for scoreboard/ cricket
+export const cardUrlMain = "https://maxbet07.com/videoPage/";
+export const liveStreamPageUrl = "https://maxbet07.com/liveStream/";
+export const scoreBoardUrlMain = "https://maxbet07.com/scoreBoardPage/";
 
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";
