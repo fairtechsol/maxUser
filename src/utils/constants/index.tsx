@@ -444,11 +444,10 @@ export const cardUrl =
     ? "https://jmdapi.com/tablevideo/?id="
     : "https://jmdapi.com/tablevideo/?id=";
 
-export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
-export const liveStreamPageUrl = "https://dpmatka.in/anm.php?type=video&eventId=";
-export const scoreBoardUrlMain = "https://dpmatka.in/sr.php?";
-
-export const streamVidUrl = "https://dpmatka.in/dcasino/nntv.php?MatchID=";
+export const cardUrlMain = "https://jmdapi.com/tablevideo/?id="; //rr client name for casino video url
+export const liveStreamPageUrl =
+  "https://dpmatka.in/anm.php?type=video&eventId="; //rr client name for cricket/football video
+export const scoreBoardUrlMain = "https://dpmatka.in/sr.php?"; //rr client name for scoreboard/ cricket
 
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";
