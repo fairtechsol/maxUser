@@ -10,7 +10,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     let team = {
       bettingType: type === "back" ? "BACK" : "LAY",
       matchId: data?.id,
-      odd: item?.b1,
+      odd: type === "back" ? item?.b1 : item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nation,
