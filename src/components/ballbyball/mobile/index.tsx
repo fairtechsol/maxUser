@@ -341,7 +341,7 @@ const TeenPattiMobile = () => {
                         }
                       >
                         <span className="f12-b">{item.b}</span>
-                        <span className="f10-b">{item.bs}</span>
+                        <span className="f10-b" style={{fontWeight:"normal"}}>{item.bs}</span>
                       </div>
                       <div
                         style={{
