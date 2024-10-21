@@ -178,7 +178,7 @@ const FootballMobileGameDetail = () => {
                                 <iframe
                                   src={`${liveStreamPageUrl}${
                                     otherMatchDetails?.eventId
-                                  }&sportid=${
+                                  }/${
                                     otherMatchDetails?.matchType === "football"
                                       ? "1"
                                       : "2"
