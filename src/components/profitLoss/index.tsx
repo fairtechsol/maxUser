@@ -247,6 +247,7 @@ const ProfitLossComponent = () => {
                 bordered={true}
                 striped={!isMobile}
                 paginationCount={true}
+                isPagination={true}
                 columns={[
                   {
                     id: "eventType",
@@ -261,8 +262,10 @@ const ProfitLossComponent = () => {
                     label: "Amount",
                   },
                 ]}
-                itemCount={10}
-                setTableConfig={() => {}}
+                itemCount={profitLossReport?.count || 0}
+                setTableConfig={(data: any) => {
+                  setTableConfig(data);
+                }}
               >
                 {profitLossReport &&
                   profitLossReport?.result?.map((item: any, index: number) => {
