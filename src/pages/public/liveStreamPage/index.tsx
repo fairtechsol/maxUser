@@ -27,7 +27,7 @@ const LiveStreamPage = () => {
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
-        src={`${liveStreamPageUrl}${vidId}&sportid=${sportId}`}
+        src={`${liveStreamPageUrl}${vidId}/${sportId}`}
         frameBorder="0"
         allow="autoplay; fullscreen"
         allowFullScreen
