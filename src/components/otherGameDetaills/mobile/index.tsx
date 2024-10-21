@@ -141,7 +141,7 @@ const FootballMobileGameDetail = () => {
               </div>
             ),
           },
-        ]?.map((item, index) => {
+        ]?.filter(Boolean).map((item, index) => {
           return (
             <Tab
               key={item?.id}
