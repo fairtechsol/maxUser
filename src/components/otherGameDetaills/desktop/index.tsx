@@ -66,6 +66,7 @@ const FootballDesktopGameDetail = () => {
       console.log(error);
     }
   }, [otherMatchDetails?.id]);
+  
   useEffect(() => {
     if (otherMatchDetails?.eventId) {
       let intervalTime = 5000;
@@ -105,6 +106,7 @@ const FootballDesktopGameDetail = () => {
       setErrorCount((prevCount: number) => prevCount + 1);
     }
   };
+
   return (
     <Container fluid className="mt-1 pe-0 ps-1">
       <Row>
