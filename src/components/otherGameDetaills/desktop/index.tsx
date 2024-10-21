@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Ratio, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import BetTableHeader from "../../commonComponent/betTableHeader";
@@ -20,17 +20,18 @@ import HtFt from "../htft";
 import { IoInformationCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import NewLoader from "../../commonComponent/newLoader";
-import service from "../../../service";
-import { Constants, liveStreamPageUrl } from "../../../utils/constants";
-import Iframe from "../../iframe/iframe";
+// import service from "../../../service";
+import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
+// import Iframe from "../../iframe/iframe";
 
 const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
-  const [channelId, setChannelId] = useState<string>("");
-  const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
-  const [errorCount, setErrorCount] = useState<number>(0);
+  // const [showScoreboard, setShowScoreboard] = useState(false);
+  const [_, setChannelId] = useState<string>("");
+  // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
+  // const [errorCount, setErrorCount] = useState<number>(0);
 
   const { otherMatchDetails, loading } = useSelector(
     (state: RootState) => state.otherGames.matchDetail
@@ -66,47 +67,47 @@ const FootballDesktopGameDetail = () => {
       console.log(error);
     }
   }, [otherMatchDetails?.id]);
-  useEffect(() => {
-    if (otherMatchDetails?.eventId) {
-      let intervalTime = 5000;
-      if (errorCount >= 5 && errorCount < 10) {
-        intervalTime = 60000;
-      } else if (errorCount >= 10) {
-        intervalTime = 600000;
-      }
-      const interval = setInterval(() => {
-        getScoreBoard(otherMatchDetails?.eventId);
-      }, intervalTime);
+  // useEffect(() => {
+  //   if (otherMatchDetails?.eventId) {
+  //     let intervalTime = 5000;
+  //     if (errorCount >= 5 && errorCount < 10) {
+  //       intervalTime = 60000;
+  //     } else if (errorCount >= 10) {
+  //       intervalTime = 600000;
+  //     }
+  //     const interval = setInterval(() => {
+  //       getScoreBoard(otherMatchDetails?.eventId);
+  //     }, intervalTime);
 
-      return () => {
-        clearInterval(interval);
-        setLiveScoreBoardData(null);
-      };
-    }
-  }, [otherMatchDetails?.id, otherMatchDetails?.eventId, errorCount]);
+  //     return () => {
+  //       clearInterval(interval);
+  //       setLiveScoreBoardData(null);
+  //     };
+  //   }
+  // }, [otherMatchDetails?.id, otherMatchDetails?.eventId, errorCount]);
 
-  const getScoreBoard = async (eventId: string) => {
-    try {
-      const response: any = await service.get(
-        // `https://fairscore7.com/score/getMatchScore/${marketId}`
-        // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
-        //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        `https://dpmatka.in/sr.php?eventid=${eventId}&sportid=${
-          otherMatchDetails?.matchType === "football" ? "2" : "1"
-        }`
-      );
-      // {"success":false,"msg":"Not found"}
-      //console.log("response 11:", response);
-      if (response?.success !== false) {
-        setLiveScoreBoardData(response?.data);
-        setErrorCount(0);
-      }
-    } catch (e: any) {
-      console.log("Error:", e?.message);
-      setLiveScoreBoardData(null);
-      setErrorCount((prevCount: number) => prevCount + 1);
-    }
-  };
+  // const getScoreBoard = async (eventId: string) => {
+  //   try {
+  //     const response: any = await service.get(
+  //       // `https://fairscore7.com/score/getMatchScore/${marketId}`
+  //       // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
+  //       //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
+  //       `https://dpmatka.in/sr.php?eventid=${eventId}&sportid=${
+  //         otherMatchDetails?.matchType === "football" ? "2" : "1"
+  //       }`
+  //     );
+  //     // {"success":false,"msg":"Not found"}
+  //     //console.log("response 11:", response);
+  //     if (response?.success !== false) {
+  //       setLiveScoreBoardData(response?.data);
+  //       setErrorCount(0);
+  //     }
+  //   } catch (e: any) {
+  //     console.log("Error:", e?.message);
+  //     setLiveScoreBoardData(null);
+  //     setErrorCount((prevCount: number) => prevCount + 1);
+  //   }
+  // };
   return (
     <Container fluid className="mt-1 pe-0 ps-1">
       <Row>
@@ -127,9 +128,30 @@ const FootballDesktopGameDetail = () => {
                     }
                   />
                 </Col>
-                {liveScoreBoardData && (
+                {/* {liveScoreBoardData && (
                   <Iframe data={liveScoreBoardData} width="100%" />
-                )}
+                )} */}
+                {/* {showScoreboard && ( */}
+                <Container className="px-0">
+                  <Row className="justify-content-md-center">
+                    <Col md={12}>
+                      <Ratio aspectRatio="16x9">
+                        <iframe
+                          src={`${scoreBoardUrlMain}${
+                            otherMatchDetails?.eventId
+                          }&sportid=${
+                            otherMatchDetails?.matchType === "football"
+                              ? "1"
+                              : "2"
+                          }`}
+                          title="Live Stream"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                        ></iframe>
+                      </Ratio>
+                    </Col>
+                  </Row>
+                </Container>
+                {/* )} */}
                 {otherMatchDetails?.matchOdd?.activeStatus === "live" &&
                   otherMatchDetails?.matchOdd?.isActive && (
                     <Col md={12} style={{ marginTop: "8px" }}>
