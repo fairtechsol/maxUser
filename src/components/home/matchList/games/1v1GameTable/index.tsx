@@ -27,7 +27,7 @@ const OneVOneGameTable = ({ id }: any) => {
       ) : (
         <DesktopOneVOneGameTable mTypeid={id} />
       )}
-    </div> 
+    </div>
   );
 };
 

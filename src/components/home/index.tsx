@@ -27,7 +27,7 @@ const MatchList = ({ setMatchType, matchType }: any) => {
     <>
       {loading && <Loader />}
       {isMobile ? (
-        <SportsFilters setMatchType={setMatchType} type={matchType} />
+        <SportsFilters setMatchType={setMatchType} matchType={matchType} />
       ) : (
         <DesktopMatchList setMatchType={setMatchType} matchType={matchType} />
       )}
