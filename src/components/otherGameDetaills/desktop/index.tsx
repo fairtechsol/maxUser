@@ -132,23 +132,32 @@ const FootballDesktopGameDetail = () => {
                   <Iframe data={liveScoreBoardData} width="100%" />
                 )} */}
                 {/* {showScoreboard && ( */}
-                <Container className="px-0">
-                  {/* <Row className="justify-content-md-center"> */}
-                  {/* <Col md={12}> */}
-                  <Ratio aspectRatio="21x9">
+                <div
+                  style={{
+                    height: "250px",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    position: "relative",
+                    marginLeft: "4px",
+                    marginRight: "4px",
+                    width: "calc(100%-8px)",
+                  }}
+                >
                   <iframe
-                    height={"300px"}
-                    width={"100%"}
+                    style={{
+                      height: "100%",
+                      position: "absolute",
+                      width: "100%",
+                      left: 0,
+                      top: 0,
+                    }}
                     src={`${scoreBoardUrlMain}${otherMatchDetails?.eventId}/${
                       otherMatchDetails?.matchType === "football" ? "1" : "2"
                     }`}
                     title="Live Stream"
                     referrerPolicy="strict-origin-when-cross-origin"
                   ></iframe>
-                  </Ratio>
-                  {/* </Col> */}
-                  {/* </Row> */}
-                </Container>
+                </div>
                 {/* )} */}
                 {otherMatchDetails?.matchOdd?.activeStatus === "live" &&
                   otherMatchDetails?.matchOdd?.isActive && (
