@@ -19,7 +19,7 @@ import HtFt from "../htft";
 import MyBet from "./myBet";
 import FootballPlaceBet from "./placeBet";
 import NewLoader from "../../commonComponent/newLoader";
-import { liveStreamPageUrl } from "../../../utils/constants";
+import { liveStreamPageUrl, scoreBoardUrlMain } from "../../../utils/constants";
 import service from "../../../service";
 import Iframe from "../../iframe/iframe";
 import { FaTv } from "react-icons/fa";
@@ -191,7 +191,7 @@ const FootballMobileGameDetail = () => {
                           </Row>
                         </Container>
                       )}
-                      {/* <Container className="px-0">
+                      <Container className="px-0">
                         <Row className="justify-content-md-center">
                           <Col md={12}>
                             <Ratio aspectRatio="16x9">
@@ -209,7 +209,7 @@ const FootballMobileGameDetail = () => {
                             </Ratio>
                           </Col>
                         </Row>
-                      </Container> */}
+                      </Container>
                       {/* {liveScoreBoardData && (
                         <Iframe data={liveScoreBoardData} width="100%" />
                       )} */}
