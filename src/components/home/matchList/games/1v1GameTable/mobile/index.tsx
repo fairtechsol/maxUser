@@ -95,8 +95,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   <>
                     {!countryWiseList || countryWiseList?.length === 0 ? (
                       <div className="text-center">
-                      <ContactAdmin />
-                    </div>
+                        <ContactAdmin />
+                      </div>
                     ) : (
                       <HorseRacingComponentList matchType={mTypeid} />
                     )}
@@ -105,8 +105,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   <>
                     {!matchList || matchList.length === 0 ? (
                       <div className="text-center">
-                      <ContactAdmin />
-                    </div>
+                        <ContactAdmin />
+                      </div>
                     ) : (
                       <>
                         {mTypeid === "cricket" && (
@@ -234,21 +234,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                         : false
                                     }
                                     backRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[0]?.ex
-                                          ?.availableToBack[
-                                          item?.matchOdds?.[0]?.runners[0]?.ex
-                                            ?.availableToBack?.length > 1
-                                            ? 2
-                                            : 0
-                                        ]?.price) ||
+                                      item?.back1 ||
                                       item?.matchOdds?.[0]?.backTeamA ||
                                       0
                                     }
                                     layRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[0]?.ex
-                                          ?.availableToLay[0]?.price) ||
+                                      item?.lay1 ||
                                       item?.matchOdds?.[0]?.layTeamA ||
                                       0
                                     }
@@ -262,23 +253,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                         ? true
                                         : false
                                     }
-                                    backRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[2]?.ex
-                                          ?.availableToBack[
-                                          item?.matchOdds?.[0]?.runners[2]?.ex
-                                            ?.availableToBack?.length > 1
-                                            ? 2
-                                            : 0
-                                        ]?.price) ||
-                                      0
-                                    }
-                                    layRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[2]?.ex
-                                          ?.availableToLay[0]?.price) ||
-                                      0
-                                    }
+                                    backRate={item?.back12 || 0}
+                                    layRate={item?.lay12 || 0}
                                     active={false}
                                   />
                                   <BackLayComponent
@@ -289,23 +265,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                         ? true
                                         : false
                                     }
-                                    backRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[1]?.ex
-                                          ?.availableToBack[
-                                          item?.matchOdds?.[0]?.runners[1]?.ex
-                                            ?.availableToBack?.length > 1
-                                            ? 2
-                                            : 0
-                                        ]?.price) ||
-                                      0
-                                    }
-                                    layRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[1]?.ex
-                                          ?.availableToLay[0]?.price) ||
-                                      0
-                                    }
+                                    backRate={item?.back11 || 0}
+                                    layRate={item?.lay11 || 0}
                                     active={false}
                                   />
                                 </div>

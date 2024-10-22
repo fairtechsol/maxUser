@@ -14,6 +14,7 @@ import {
   updateMatchDetailFromMatchList,
   updateMatchOddRates,
   updateMatchRates,
+  updateMatchRatesFromApiOnList,
 } from "../../actions/match/matchListAction";
 import {
   updateBalance,
@@ -349,6 +350,20 @@ const matchListSlice = createSlice({
           if (state.matchList) {
             state.matchList[indexOfItemToUpdate].matchOdds[0] = matchOdd;
           }
+        }
+      })
+      .addCase(updateMatchRatesFromApiOnList.fulfilled, (state, action) => {
+        let matchListFromApi = action.payload;
+        if (state.matchList.length > 0) {
+          state.matchList = state.matchList?.map((items: any) => {
+            const itemToUpdate = matchListFromApi?.find(
+              (item: any) => item?.gameId === items?.eventId
+            );
+            return {
+              ...items,
+              ...itemToUpdate,
+            };
+          });
         }
       })
       .addCase(matchListReset, (state) => {

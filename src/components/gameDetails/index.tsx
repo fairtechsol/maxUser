@@ -252,7 +252,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     try {
-      if (success && socket) {
+      if (socket) {
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
@@ -282,7 +282,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [success, socket, id]);
+  }, [socket, id]);
 
   useEffect(() => {
     try {
