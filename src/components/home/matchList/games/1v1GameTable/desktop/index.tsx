@@ -380,8 +380,8 @@ const MatchListRow = ({ item, matchType }: any) => {
               </div>
             )}
             <BackLayComponent
-              backRate={item?.back1 || item?.matchOdds?.[0]?.backTeamA || 0}
-              layRate={item?.lay1 || item?.matchOdds?.[0]?.layTeamA || 0}
+              backRate={item?.back1 || item?.section?.[0]?.odds?.[0]?.odds || 0}
+              layRate={item?.lay1 || item?.section?.[0]?.odds?.[1]?.odds || 0}
               active={false}
             />
           </td>
@@ -392,8 +392,10 @@ const MatchListRow = ({ item, matchType }: any) => {
               </div>
             )}
             <BackLayComponent
-              backRate={item?.back12 || item?.matchOdds?.[0]?.backTeamC || 0}
-              layRate={item?.lay12 || item?.matchOdds?.[0]?.layTeamC || 0}
+              backRate={
+                item?.back12 || item?.section?.[2]?.odds?.[0]?.odds || 0
+              }
+              layRate={item?.lay12 || item?.section?.[2]?.odds?.[0]?.odds || 0}
               active={false}
             />
           </td>
@@ -404,8 +406,10 @@ const MatchListRow = ({ item, matchType }: any) => {
               </div>
             )}
             <BackLayComponent
-              backRate={item?.back11 || item?.matchOdds?.[0]?.backTeamB || 0}
-              layRate={item?.lay11 || item?.matchOdds?.[0]?.layTeamB || 0}
+              backRate={
+                item?.back11 || item?.section?.[1]?.odds?.[0]?.odds || 0
+              }
+              layRate={item?.lay11 || item?.section?.[1]?.odds?.[0]?.odds || 0}
               active={false}
             />
           </td>
