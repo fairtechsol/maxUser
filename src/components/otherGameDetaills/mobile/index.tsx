@@ -141,23 +141,25 @@ const FootballMobileGameDetail = () => {
               </div>
             ),
           },
-        ]?.map((item, index) => {
-          return (
-            <Tab
-              key={item?.id}
-              eventKey={item?.id}
-              tabClassName="m-tab border-0"
-              title={
-                <div className="font rounded-0 lh-sm py-0 f600">
-                  {item?.name}
-                </div>
-              }
-            >
-              {index == 0 ? (
-                !loading ? (
-                  <div style={{ width: "98%" }}>
-                    <Row className="ms-0">
-                      {/* <Col className="g-0" md={12}>
+        ]
+          ?.filter(Boolean)
+          .map((item, index) => {
+            return (
+              <Tab
+                key={item?.id}
+                eventKey={item?.id}
+                tabClassName="m-tab border-0"
+                title={
+                  <div className="font rounded-0 lh-sm py-0 f600">
+                    {item?.name}
+                  </div>
+                }
+              >
+                {index == 0 ? (
+                  !loading ? (
+                    <div style={{ width: "98%" }}>
+                      <Row className="ms-0">
+                        {/* <Col className="g-0" md={12}>
                       <BetTableHeader
                         customClass="py-2"
                         customTextClass="title-12"
@@ -170,191 +172,192 @@ const FootballMobileGameDetail = () => {
                         }
                       />
                     </Col> */}
-                      {showVideo && (
-                        <Container className="px-0">
-                          <Row className="justify-content-md-center">
-                            <Col md={12}>
-                              <Ratio aspectRatio="16x9">
-                                <iframe
-                                  src={`${liveStreamPageUrl}${
-                                    otherMatchDetails?.eventId
-                                  }&sportid=${
-                                    otherMatchDetails?.matchType === "football"
-                                      ? "1"
-                                      : "2"
-                                  }`}
-                                  title="Live Stream"
-                                  referrerPolicy="strict-origin-when-cross-origin"
-                                ></iframe>
-                              </Ratio>
-                            </Col>
-                          </Row>
-                        </Container>
-                      )}
-                      <div
-                        style={{
-                          height: "250px",
-                          backgroundPosition: "center",
-                          backgroundSize: "cover",
-                          position: "relative",
-                          marginLeft: "4px",
-                          marginRight: "4px",
-                          width: "calc(100%-8px)",
-                        }}
-                      >
-                        <iframe
+                        {showVideo && (
+                          <Container className="px-0">
+                            <Row className="justify-content-md-center">
+                              <Col md={12}>
+                                <Ratio aspectRatio="16x9">
+                                  <iframe
+                                    src={`${liveStreamPageUrl}${
+                                      otherMatchDetails?.eventId
+                                    }&sportid=${
+                                      otherMatchDetails?.matchType ===
+                                      "football"
+                                        ? "1"
+                                        : "2"
+                                    }`}
+                                    title="Live Stream"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                  ></iframe>
+                                </Ratio>
+                              </Col>
+                            </Row>
+                          </Container>
+                        )}
+                        <div
                           style={{
-                            height: "100%",
-                            position: "absolute",
-                            width: "100%",
-                            left: 0,
-                            top: 0,
+                            height: "250px",
+                            backgroundPosition: "center",
+                            backgroundSize: "cover",
+                            position: "relative",
+                            marginLeft: "4px",
+                            marginRight: "4px",
+                            width: "calc(100%-8px)",
                           }}
-                          src={`${scoreBoardUrlMain}${
-                            otherMatchDetails?.eventId
-                          }&sportid=${
-                            otherMatchDetails?.matchType === "football"
-                              ? "1"
-                              : "2"
-                          }`}
-                          title="Live Stream"
-                          referrerPolicy="strict-origin-when-cross-origin"
-                        ></iframe>
-                      </div>
-                      {/* {liveScoreBoardData && (
+                        >
+                          <iframe
+                            style={{
+                              height: "100%",
+                              position: "absolute",
+                              width: "100%",
+                              left: 0,
+                              top: 0,
+                            }}
+                            src={`${scoreBoardUrlMain}${
+                              otherMatchDetails?.eventId
+                            }&sportid=${
+                              otherMatchDetails?.matchType === "football"
+                                ? "1"
+                                : "2"
+                            }`}
+                            title="Live Stream"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                          ></iframe>
+                        </div>
+                        {/* {liveScoreBoardData && (
                         <Iframe data={liveScoreBoardData} width="100%" />
                       )} */}
-                      {otherMatchDetails?.matchOdd?.isActive && (
-                        <Col className="g-0 mt-2" md={12}>
-                          {otherMatchDetails?.matchOdd?.runners?.[0]?.ex
-                            ?.availableToBack?.length > 2 ? (
-                            <MatchOdd
-                              title={otherMatchDetails?.matchOdd?.name}
-                              data={otherMatchDetails?.matchOdd}
-                              detail={otherMatchDetails}
-                            />
-                          ) : (
-                            <Bookmaker
-                              title={otherMatchDetails?.matchOdd?.name}
-                              box={2}
-                              data={otherMatchDetails?.matchOdd}
-                              detail={otherMatchDetails}
-                            />
-                          )}
-                        </Col>
-                      )}
-                      {otherMatchDetails?.bookmaker?.isActive && (
-                        <Col className="g-0" md={12}>
-                          <Bookmaker
-                            title={otherMatchDetails?.bookmaker?.name}
-                            box={
-                              otherMatchDetails?.bookmaker?.runners?.[0]?.ex
-                                ?.availableToBack?.length > 2
-                                ? 6
-                                : 2
-                            }
-                            data={otherMatchDetails?.bookmaker}
-                            detail={otherMatchDetails}
-                            // data={matchDetails?.matchOdd}
-                          />
-                        </Col>
-                      )}
-                      {otherMatchDetails?.bookmaker2?.isActive && (
-                        <Col className="g-0" md={12}>
-                          <Bookmaker
-                            title={otherMatchDetails?.bookmaker2?.name}
-                            box={
-                              otherMatchDetails?.bookmaker2?.runners?.[0]?.ex
-                                ?.availableToBack?.length > 2
-                                ? 6
-                                : 2
-                            }
-                            data={otherMatchDetails?.bookmaker2}
-                            detail={otherMatchDetails}
-                            // data={matchDetails?.matchOdd}
-                          />
-                        </Col>
-                      )}
-                      {otherMatchDetails?.quickBookmaker?.length > 0 &&
-                        otherMatchDetails?.quickBookmaker
-                          ?.filter((item: any) => item?.isActive)
-                          ?.map((item: any) => (
-                            <div key={item?.id} className="p-0">
-                              <Col className="g-0" md={12}>
-                                <ManualMarket
-                                  title={item?.name}
-                                  data={item}
-                                  detail={otherMatchDetails}
-                                />
-                              </Col>
-                            </div>
-                          ))}
-                      {otherMatchDetails?.tournament?.length > 0 &&
-                        otherMatchDetails?.tournament?.map(
-                          (item: any, index: number) => (
-                            <div key={index} className="pe-0 ps-0">
-                              {item?.activeStatus === "live" &&
-                                item?.isActive &&
-                                (item?.name === "HT/FT" ? (
-                                  <Col
-                                    className="g-0"
-                                    md={12}
-                                    // style={{ marginTop: "10px" }}
-                                  >
-                                    <HtFt
-                                      title={item?.name}
-                                      box={
-                                        item?.runners?.[0]?.ex?.availableToBack
-                                          ?.length > 2
-                                          ? 6
-                                          : 2
-                                      }
-                                      data={item}
-                                      detail={otherMatchDetails}
-                                      // data={otherMatchDetails?.matchOdd}
-                                    />
-                                  </Col>
-                                ) : (
-                                  <Col
-                                    className="g-0"
-                                    md={12}
-                                    // style={{ marginTop: "10px" }}
-                                  >
-                                    <Tournament
-                                      title={item?.name}
-                                      box={
-                                        item?.runners?.[0]?.ex?.availableToBack
-                                          ?.length > 2
-                                          ? 6
-                                          : 2
-                                      }
-                                      data={item}
-                                      detail={otherMatchDetails}
-                                      // data={otherMatchDetails?.matchOdd}
-                                    />
-                                  </Col>
-                                ))}
-                            </div>
-                          )
+                        {otherMatchDetails?.matchOdd?.isActive && (
+                          <Col className="g-0 mt-2" md={12}>
+                            {otherMatchDetails?.matchOdd?.runners?.[0]?.ex
+                              ?.availableToBack?.length > 2 ? (
+                              <MatchOdd
+                                title={otherMatchDetails?.matchOdd?.name}
+                                data={otherMatchDetails?.matchOdd}
+                                detail={otherMatchDetails}
+                              />
+                            ) : (
+                              <Bookmaker
+                                title={otherMatchDetails?.matchOdd?.name}
+                                box={2}
+                                data={otherMatchDetails?.matchOdd}
+                                detail={otherMatchDetails}
+                              />
+                            )}
+                          </Col>
                         )}
-                      {otherMatchDetails?.setWinner?.length > 0 &&
-                        otherMatchDetails?.setWinner
-                          ?.filter((item: any) => item?.isActive)
-                          ?.slice()
-                          ?.sort(customSortOnName)
-                          ?.map((item: any) => (
-                            <div key={item?.id} className="p-0">
-                              <Col className="g-0" md={12}>
-                                <BetTable
-                                  title={item?.name}
-                                  type={MatchType.SET_WINNER}
-                                  data={item}
-                                  backLayCount={2}
-                                />
-                              </Col>
-                            </div>
-                          ))}
-                      {/* {otherMatchDetails?.bookmaker?.isActive && (
+                        {otherMatchDetails?.bookmaker?.isActive && (
+                          <Col className="g-0" md={12}>
+                            <Bookmaker
+                              title={otherMatchDetails?.bookmaker?.name}
+                              box={
+                                otherMatchDetails?.bookmaker?.runners?.[0]?.ex
+                                  ?.availableToBack?.length > 2
+                                  ? 6
+                                  : 2
+                              }
+                              data={otherMatchDetails?.bookmaker}
+                              detail={otherMatchDetails}
+                              // data={matchDetails?.matchOdd}
+                            />
+                          </Col>
+                        )}
+                        {otherMatchDetails?.bookmaker2?.isActive && (
+                          <Col className="g-0" md={12}>
+                            <Bookmaker
+                              title={otherMatchDetails?.bookmaker2?.name}
+                              box={
+                                otherMatchDetails?.bookmaker2?.runners?.[0]?.ex
+                                  ?.availableToBack?.length > 2
+                                  ? 6
+                                  : 2
+                              }
+                              data={otherMatchDetails?.bookmaker2}
+                              detail={otherMatchDetails}
+                              // data={matchDetails?.matchOdd}
+                            />
+                          </Col>
+                        )}
+                        {otherMatchDetails?.quickBookmaker?.length > 0 &&
+                          otherMatchDetails?.quickBookmaker
+                            ?.filter((item: any) => item?.isActive)
+                            ?.map((item: any) => (
+                              <div key={item?.id} className="p-0">
+                                <Col className="g-0" md={12}>
+                                  <ManualMarket
+                                    title={item?.name}
+                                    data={item}
+                                    detail={otherMatchDetails}
+                                  />
+                                </Col>
+                              </div>
+                            ))}
+                        {otherMatchDetails?.tournament?.length > 0 &&
+                          otherMatchDetails?.tournament?.map(
+                            (item: any, index: number) => (
+                              <div key={index} className="pe-0 ps-0">
+                                {item?.activeStatus === "live" &&
+                                  item?.isActive &&
+                                  (item?.name === "HT/FT" ? (
+                                    <Col
+                                      className="g-0"
+                                      md={12}
+                                      // style={{ marginTop: "10px" }}
+                                    >
+                                      <HtFt
+                                        title={item?.name}
+                                        box={
+                                          item?.runners?.[0]?.ex
+                                            ?.availableToBack?.length > 2
+                                            ? 6
+                                            : 2
+                                        }
+                                        data={item}
+                                        detail={otherMatchDetails}
+                                        // data={otherMatchDetails?.matchOdd}
+                                      />
+                                    </Col>
+                                  ) : (
+                                    <Col
+                                      className="g-0"
+                                      md={12}
+                                      // style={{ marginTop: "10px" }}
+                                    >
+                                      <Tournament
+                                        title={item?.name}
+                                        box={
+                                          item?.runners?.[0]?.ex
+                                            ?.availableToBack?.length > 2
+                                            ? 6
+                                            : 2
+                                        }
+                                        data={item}
+                                        detail={otherMatchDetails}
+                                        // data={otherMatchDetails?.matchOdd}
+                                      />
+                                    </Col>
+                                  ))}
+                              </div>
+                            )
+                          )}
+                        {otherMatchDetails?.setWinner?.length > 0 &&
+                          otherMatchDetails?.setWinner
+                            ?.filter((item: any) => item?.isActive)
+                            ?.slice()
+                            ?.sort(customSortOnName)
+                            ?.map((item: any) => (
+                              <div key={item?.id} className="p-0">
+                                <Col className="g-0" md={12}>
+                                  <BetTable
+                                    title={item?.name}
+                                    type={MatchType.SET_WINNER}
+                                    data={item}
+                                    backLayCount={2}
+                                  />
+                                </Col>
+                              </div>
+                            ))}
+                        {/* {otherMatchDetails?.bookmaker?.isActive && (
                       <Col className="g-0" md={12}>
                         <BetTable
                           title={otherMatchDetails?.bookmaker?.name}
@@ -365,52 +368,52 @@ const FootballMobileGameDetail = () => {
                       </Col>
                     )} */}
 
-                      {otherMatchDetails?.firstHalfGoal?.length > 0 &&
-                        otherMatchDetails?.firstHalfGoal
-                          ?.filter((item: any) => item?.isActive)
-                          ?.slice()
-                          ?.sort(customSortOnName)
-                          ?.map((item: any) => (
-                            <div key={item?.id} className="p-0">
-                              <Col className="g-0" md={12}>
-                                <BetTable
-                                  title={item?.name}
-                                  type={MatchType.FIRST_HALF_GOAL}
-                                  data={item}
-                                  backLayCount={2}
-                                />
-                              </Col>
-                            </div>
-                          ))}
-                      {otherMatchDetails?.halfTime?.isActive && (
-                        <Col className="g-0" md={12}>
-                          <BetTable
-                            title={otherMatchDetails?.halfTime?.name}
-                            type={MatchType.HALF_TIME}
-                            data={otherMatchDetails?.halfTime}
-                            backLayCount={2}
-                          />
-                        </Col>
-                      )}
-                      {otherMatchDetails?.overUnder?.length > 0 &&
-                        otherMatchDetails?.overUnder
-                          ?.filter((item: any) => item?.isActive)
-                          ?.slice()
-                          ?.sort(customSortOnName)
-                          ?.map((item: any) => (
-                            <div key={item?.id} className="p-0">
-                              <Col className="g-0" md={12}>
-                                <BetTable
-                                  title={item?.name}
-                                  type={MatchType.UNDER_OVER}
-                                  data={item}
-                                  backLayCount={2}
-                                />
-                              </Col>
-                            </div>
-                          ))}
+                        {otherMatchDetails?.firstHalfGoal?.length > 0 &&
+                          otherMatchDetails?.firstHalfGoal
+                            ?.filter((item: any) => item?.isActive)
+                            ?.slice()
+                            ?.sort(customSortOnName)
+                            ?.map((item: any) => (
+                              <div key={item?.id} className="p-0">
+                                <Col className="g-0" md={12}>
+                                  <BetTable
+                                    title={item?.name}
+                                    type={MatchType.FIRST_HALF_GOAL}
+                                    data={item}
+                                    backLayCount={2}
+                                  />
+                                </Col>
+                              </div>
+                            ))}
+                        {otherMatchDetails?.halfTime?.isActive && (
+                          <Col className="g-0" md={12}>
+                            <BetTable
+                              title={otherMatchDetails?.halfTime?.name}
+                              type={MatchType.HALF_TIME}
+                              data={otherMatchDetails?.halfTime}
+                              backLayCount={2}
+                            />
+                          </Col>
+                        )}
+                        {otherMatchDetails?.overUnder?.length > 0 &&
+                          otherMatchDetails?.overUnder
+                            ?.filter((item: any) => item?.isActive)
+                            ?.slice()
+                            ?.sort(customSortOnName)
+                            ?.map((item: any) => (
+                              <div key={item?.id} className="p-0">
+                                <Col className="g-0" md={12}>
+                                  <BetTable
+                                    title={item?.name}
+                                    type={MatchType.UNDER_OVER}
+                                    data={item}
+                                    backLayCount={2}
+                                  />
+                                </Col>
+                              </div>
+                            ))}
 
-                      {/* <Col className="g-0" md={12}>
+                        {/* <Col className="g-0" md={12}>
                       <CommonTabs
                         customClass="overflow-x-auto overflow-y-hidden no-wrap"
                         defaultActive="fancy"
@@ -473,22 +476,22 @@ const FootballMobileGameDetail = () => {
                         })}
                       </CommonTabs>
                     </Col> */}
-                    </Row>
-                  </div>
+                      </Row>
+                    </div>
+                  ) : (
+                    <div
+                      className="w-100 d-flex justify-content-center align-items-center"
+                      style={{ height: "100vh" }}
+                    >
+                      <NewLoader />
+                    </div>
+                  )
                 ) : (
-                  <div
-                    className="w-100 d-flex justify-content-center align-items-center"
-                    style={{ height: "100vh" }}
-                  >
-                    <NewLoader />
-                  </div>
-                )
-              ) : (
-                <MyBet />
-              )}
-            </Tab>
-          );
-        })}
+                  <MyBet />
+                )}
+              </Tab>
+            );
+          })}
       </CommonTabs>
     </div>
   );

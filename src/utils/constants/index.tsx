@@ -445,11 +445,12 @@ export const cardUrl =
     : "https://jmdapi.com/tablevideo/?id=";
 
 export const cardUrlMain = "https://jmdapi.com/tablevideo/?id="; //rr client name for casino video url
-export const liveStreamPageCricketUrl =
+export const liveStreamCricketPageUrl =
   "https://mis3.sqmr.xyz/rtv.php?eventId="; //rr client name for cricket video url
 export const liveStreamPageUrl =
   "https://dpmatka.in/anm.php?type=video&eventId="; //rr client name for football video
-export const scoreBoardUrlMain = "https://dpmatka.in/anm.php?type=scorecard&eventId="; //rr client name for scoreboard/ cricket
+export const scoreBoardUrlMain =
+  "https://dpmatka.in/anm.php?type=scorecard&eventId="; //rr client name for scoreboard/ cricket
 
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";

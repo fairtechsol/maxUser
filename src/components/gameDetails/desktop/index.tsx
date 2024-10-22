@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
 import { RootState } from "../../../store/store";
-import { Constants, liveStreamPageCricketUrl } from "../../../utils/constants";
+import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
 import BetTableHeader from "../../commonComponent/betTableHeader";
@@ -540,7 +540,7 @@ const DesktopGameDetail = () => {
               {matchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent
-                    url={`${liveStreamPageCricketUrl}${matchDetails?.eventId}`}
+                    url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
                   />
                 </Col>
               )}

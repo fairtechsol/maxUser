@@ -6,7 +6,7 @@ import LatestEvent from "../latestEvents";
 import MobileMatchList from "../matchList/mobile";
 import SportsFilterJson from "./sportsFilters.json";
 
-const SportsFilters = ({ type, setMatchType }: any) => {
+const SportsFilters = ({ type, setMatchType, matchType }: any) => {
   const { tabList } = useSelector((state: RootState) => state.match.matchList);
   return (
     <div className="m-0 p-0 w-100 ">
@@ -42,7 +42,7 @@ const SportsFilters = ({ type, setMatchType }: any) => {
           );
         })}
       </CommonTabs>
-      <MobileMatchList setMatchType={setMatchType} type={type} />
+      <MobileMatchList setMatchType={setMatchType} type={type} matchType={matchType}/>
     </div>
   );
 };

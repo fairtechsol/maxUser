@@ -8,7 +8,7 @@ import { getChannelId } from "../../../helpers";
 import service from "../../../service";
 import {
   Constants,
-  liveStreamPageCricketUrl,
+  liveStreamCricketPageUrl,
 } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
@@ -170,7 +170,7 @@ const MobileGameDetail = () => {
                           <Col md={12}>
                             <Ratio aspectRatio="16x9">
                               <iframe
-                                src={`${liveStreamPageCricketUrl}${matchDetails?.eventId}`}
+                                src={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
                                 title="Live Stream"
                                 referrerPolicy="strict-origin-when-cross-origin"
                               ></iframe>

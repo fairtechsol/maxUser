@@ -24,13 +24,6 @@ const Home = () => {
   const { bannerImage } = useSelector((state: RootState) => state.user.profile);
   const [matchType, setMatchType] = useState("cricket");
   const [show, setShow] = useState(false);
-  const { matchList, success } = useSelector(
-    (state: RootState) => state.match.matchList
-  );
-
-  const setMatchOddRatesInRedux = (event: any) => {
-    dispatch(updateMatchOddRates(event));
-  };
 
   const getMatchListService = () => {
     try {
@@ -65,11 +58,11 @@ const Home = () => {
     try {
       if (event?.gameType === matchType) {
         if (["cricket", "football", "tennis"].includes(matchType)) {
-          if (event?.betType === "quickbookmaker1") {
-            setTimeout(() => {
-              dispatch(getMatchList({ matchType: matchType }));
-            }, 1000);
-          }
+          // if (event?.betType === "quickbookmaker1") {
+          setTimeout(() => {
+            dispatch(getMatchList({ matchType: matchType }));
+          }, 1000);
+          // }
         } else if (["horseRacing", "greyHound"].includes(matchType)) {
           setTimeout(() => {
             dispatch(getHorseRacingCountryWiseList(matchType));
@@ -140,35 +133,6 @@ const Home = () => {
       dispatch(getBannerImage());
     }
   }, []);
-
-  useEffect(() => {
-    if (
-      success &&
-      matchList.length > 0 &&
-      isMobile &&
-      ["cricket", "football", "tennis", "politics"].includes(matchType)
-    ) {
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.joinMatchRoom(element?.id, "user");
-      });
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.getMatchRates(
-          element?.id,
-          setMatchOddRatesInRedux
-        );
-      });
-    }
-
-    return () => {
-      // expertSocketService.match.leaveAllRooms();
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.leaveMatchRoom(element?.id);
-      });
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.getMatchRatesOff(element?.id);
-      });
-    };
-  }, [matchList.length, success, matchType]);
 
   return (
     <div>
