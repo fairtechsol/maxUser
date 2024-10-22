@@ -133,23 +133,21 @@ const FootballDesktopGameDetail = () => {
                 )} */}
                 {/* {showScoreboard && ( */}
                 <Container className="px-0">
-                  <Row className="justify-content-md-center">
-                    <Col md={12}>
-                      <Ratio aspectRatio="16x9">
-                        <iframe
-                          src={`${scoreBoardUrlMain}${
-                            otherMatchDetails?.eventId
-                          }&sportid=${
-                            otherMatchDetails?.matchType === "football"
-                              ? "1"
-                              : "2"
-                          }`}
-                          title="Live Stream"
-                          referrerPolicy="strict-origin-when-cross-origin"
-                        ></iframe>
-                      </Ratio>
-                    </Col>
-                  </Row>
+                  {/* <Row className="justify-content-md-center"> */}
+                  {/* <Col md={12}> */}
+                  <Ratio aspectRatio="21x9">
+                  <iframe
+                    height={"300px"}
+                    width={"100%"}
+                    src={`${scoreBoardUrlMain}${otherMatchDetails?.eventId}/${
+                      otherMatchDetails?.matchType === "football" ? "1" : "2"
+                    }`}
+                    title="Live Stream"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  ></iframe>
+                  </Ratio>
+                  {/* </Col> */}
+                  {/* </Row> */}
                 </Container>
                 {/* )} */}
                 {otherMatchDetails?.matchOdd?.activeStatus === "live" &&
