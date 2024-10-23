@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
 import { LiaFacebookF } from "react-icons/lia";
-import { RootState } from "../../../../../../store/store";
+import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
   casinoIcons,
@@ -15,8 +15,11 @@ import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import { TbDeviceTvOld } from "react-icons/tb";
+import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
+import { useDispatch } from "react-redux";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
+  const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -316,7 +319,11 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               }
             >
               {casinoIcons.map((item, index) => (
-                <Link to={item.url} key={index}>
+                <Link
+                  to={item.url}
+                  key={index}
+                  onClick={() => dispatch(betPlacedReset())}
+                >
                   <div className="d-inline-block casinoiconsm">
                     <Img
                       src={item.imgSrc}

@@ -22,6 +22,7 @@ import {
   selectedBetAction,
 } from "../../store/actions/match/matchListAction";
 import {
+  betPlacedReset,
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
@@ -219,6 +220,7 @@ const FootballGameDetails = () => {
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
         dispatch(resetOtherMatchDetail());
+        dispatch(betPlacedReset());
       };
     } catch (e) {
       console.log(e);

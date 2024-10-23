@@ -6,7 +6,7 @@ import { FiMonitor } from "react-icons/fi";
 import { Img } from "react-image";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { RootState } from "../../../../../../store/store";
+import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
   casinoIcons,
@@ -17,6 +17,8 @@ import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import { FaLock } from "react-icons/fa";
 import { expertSocketService } from "../../../../../../socketManager";
+import { useDispatch } from "react-redux";
+import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
 const tableHeading = [
   {
     id: "game",
@@ -42,6 +44,7 @@ const tableHeading = [
   },
 ];
 const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
+  const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -178,7 +181,14 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
       <div className=" mt-2 casino-list">
         {["/home"].includes(location.pathname) &&
           casinoIcons.map((item) => (
-            <Link to={item.url} key={item?.name} className="casino-list-item">
+            <Link
+              to={item.url}
+              key={item?.name}
+              className="casino-list-item"
+              onClick={() => {
+                dispatch(betPlacedReset());
+              }}
+            >
               <div className="d-inline-block casinoicons">
                 <Img src={item.imgSrc} className="img-fluid" alt={item.name} />
                 <div className="casino-name">{item.name}</div>

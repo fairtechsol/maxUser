@@ -37,6 +37,7 @@ import { AppDispatch, RootState } from "../../store/store";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 import {
+  betPlacedReset,
   getPlacedBets,
   resetRunAmount,
   resetRunAmountModal,
@@ -312,6 +313,7 @@ const GameDetails = () => {
         socketService.userBalance.sessionDeleteBet(getUserProfile);
         dispatch(resetMarketId());
         dispatch(matchDetailReset());
+        dispatch(betPlacedReset());
       };
     } catch (e) {
       console.log(e);
