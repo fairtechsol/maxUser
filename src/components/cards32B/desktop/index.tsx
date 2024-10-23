@@ -173,7 +173,7 @@ const Card32BDesktop = () => {
                   data={dragonTigerDetail}
                 />
               </div>
-              <div style={{ width: "100%", margin: "5px 0px 0px 10px" }}>
+              <div style={{ width: "100%", margin: "5px 0px 0px 5px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["8", "9", "10", "11"]}
@@ -183,7 +183,13 @@ const Card32BDesktop = () => {
             </div>
           )}
 
-<RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32eu' type="imageWithContent" />
+          <RulesModal
+            show={show}
+            setShow={setShow}
+            rule={card32rules}
+            gameType="card32eu"
+            type="imageWithContent"
+          />
         </Col>
         <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
