@@ -35,7 +35,7 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
     if (!acc[nation]) {
       acc[nation] = { nation, entries: [] };
     }
-    const suffix = String.fromCharCode(65 + acc[nation].entries.length);
+    const suffix = String.fromCharCode(title==="PlayerB"?66:65 + acc[nation].entries.length);
     acc[nation].entries?.push({ nation: `${nation} ${suffix}`, sid, rate, gstatus });
     return acc;
   }, {});

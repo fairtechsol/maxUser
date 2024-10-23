@@ -3,9 +3,8 @@ import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
-const PlayerTable = ({ odds, data, playerNum }: any) => {
+const PlayerTable = ({ odds, data, playerNum,title }: any) => {
   const dispatch: AppDispatch = useDispatch();
-
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -26,7 +25,6 @@ const PlayerTable = ({ odds, data, playerNum }: any) => {
         data,
       })
     );
-    console.log("team", item);
   };
   const array = odds?.slice(playerNum[0], playerNum[1]);
 
@@ -35,13 +33,13 @@ const PlayerTable = ({ odds, data, playerNum }: any) => {
     if (!acc[nation]) {
       acc[nation] = { nation, entries: [] };
     }
-    const suffix = String.fromCharCode(65 + acc[nation].entries.length);
+    const suffix = String.fromCharCode(title==="PlayerB"?66:65 + acc[nation].entries.length);
     acc[nation].entries?.push({ nation: `${nation} ${suffix}`, sid, rate, gstatus });
     return acc;
   }, {});
 
   const result = Object.values(groupedData);
-
+// console.log('first',result)
   useEffect(() => {
     if (odds?.[0]?.gstatus === "0" ||odds?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
