@@ -234,21 +234,21 @@ const MatchListRow = ({ item, matchType }: any) => {
           </span>
           <div className="d-flex align-items-center gap-2">
             {/* Live Dot */}
-            {item?.f === "True" ? (
+            {item?.inPlay === "True" || item?.iplay === true ? (
               <span className="liveDot"></span>
             ) : (
               <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
             )}
 
             {/* TV Icon */}
-            {item?.tv === "True" ? (
+            {item?.tv === "True" || item?.tv === true ? (
               <FiMonitor />
             ) : (
               <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
             )}
 
             {/* Fancy Icon */}
-            {item?.f === "True" ? (
+            {item?.f === "True" || item?.f === true ? (
               <span className="fancy">
                 <img src="/ic_fancy.png" alt={"fancy"} />
               </span>

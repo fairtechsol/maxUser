@@ -185,7 +185,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                       justifyContent: "center",
                                     }}
                                   >
-                                    {currentTime >= startAt ? (
+                                    {item?.inPlay === "True" ||
+                                    item?.iplay === true ? (
                                       <span className="liveDot"></span>
                                     ) : (
                                       <span style={{ width: "10px" }}>
@@ -193,8 +194,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                       </span>
                                     )}
 
-                                    {item?.isTv === true ||
-                                    item?.isTv === "1" ? (
+                                    {item?.tv === "True" ||
+                                    item?.tv === true ? (
                                       <TbDeviceTvOld />
                                     ) : (
                                       <span style={{ width: "20px" }}>
@@ -203,8 +204,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                     )}
 
                                     {/* Facebook Icon */}
-                                    {item?.manualSessionActive ||
-                                    item?.apiSessionActive ? (
+                                    {item?.f === "True" || item?.f === true ? (
                                       <LiaFacebookF size={11} />
                                     ) : (
                                       <span style={{ width: "15px" }}>
@@ -235,12 +235,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                     }
                                     backRate={
                                       item?.back1 ||
-                                      item?.matchOdds?.[0]?.backTeamA ||
+                                      item?.section?.[0]?.odds?.[0]?.odds ||
                                       0
                                     }
                                     layRate={
                                       item?.lay1 ||
-                                      item?.matchOdds?.[0]?.layTeamA ||
+                                      item?.section?.[0]?.odds?.[1]?.odds ||
                                       0
                                     }
                                     active={false}
@@ -253,8 +253,16 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                         ? true
                                         : false
                                     }
-                                    backRate={item?.back12 || 0}
-                                    layRate={item?.lay12 || 0}
+                                    backRate={
+                                      item?.back12 ||
+                                      item?.section?.[2]?.odds?.[0]?.odds ||
+                                      0
+                                    }
+                                    layRate={
+                                      item?.lay12 ||
+                                      item?.section?.[2]?.odds?.[0]?.odds ||
+                                      0
+                                    }
                                     active={false}
                                   />
                                   <BackLayComponent
@@ -265,8 +273,16 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                         ? true
                                         : false
                                     }
-                                    backRate={item?.back11 || 0}
-                                    layRate={item?.lay11 || 0}
+                                    backRate={
+                                      item?.back11 ||
+                                      item?.section?.[1]?.odds?.[0]?.odds ||
+                                      0
+                                    }
+                                    layRate={
+                                      item?.lay11 ||
+                                      item?.section?.[1]?.odds?.[0]?.odds ||
+                                      0
+                                    }
                                     active={false}
                                   />
                                 </div>

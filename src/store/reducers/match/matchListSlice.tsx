@@ -358,7 +358,8 @@ const matchListSlice = createSlice({
           state.matchList = state.matchList?.map((items: any) => {
             const itemToUpdate = matchListFromApi?.find(
               (item: any) =>
-                item?.gameId === items?.eventId || item?.gmid === items?.eventId
+                +item?.gameId === +items?.eventId ||
+                +item?.gmid === +items?.eventId
             );
             return {
               ...items,
