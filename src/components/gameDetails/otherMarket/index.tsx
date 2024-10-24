@@ -48,6 +48,8 @@ const OtherMarket = ({ title, box, data, detail }) => {
       placeIndex: index,
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
+      min:data?.minBet ,
+      max:data?.maxBet ,
     };
     dispatch(
       selectedBetAction({
