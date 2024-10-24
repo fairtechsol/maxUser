@@ -70,6 +70,8 @@ const ProfitLossComponent = () => {
       if (getProfile?.id) {
         dispatch(
           getProfitLossReport({
+            page: tableConfig?.page,
+            limit: tableConfig?.rowPerPage,
             startDate: moment(fromDate).format("YYYY-MM-DD"),
             endDate: moment(toDate).add(1, "days").format("YYYY-MM-DD"),
             userId: getProfile?.id,
@@ -83,23 +85,15 @@ const ProfitLossComponent = () => {
 
   useEffect(() => {
     if (getProfile?.id && tableConfig) {
-      let filter = "";
-  
-      if (fromDate && toDate) {
-        filter += `&startDate=${moment(new Date(fromDate))?.format("YYYY-MM-DD")}`;
-        filter += `&endDate=${moment(new Date(toDate).setDate(toDate.getDate() + 1))?.format("YYYY-MM-DD")}`;
-      } else if (fromDate) {
-        filter += `&startDate=${moment(fromDate)?.format("YYYY-MM-DD")}`;
-      } else if (toDate) {
-        filter += `&endDate=${moment(toDate)?.format("YYYY-MM-DD")}`;
-      }
+    
   
       dispatch(
         getProfitLossReport({
           userId: getProfile?.id,
           page: tableConfig?.page,
           limit: tableConfig?.rowPerPage,
-          filter,
+          startDate: moment(fromDate).format("YYYY-MM-DD"),
+          endDate: moment(toDate).add(1, "days").format("YYYY-MM-DD"),
         })
       );
     }

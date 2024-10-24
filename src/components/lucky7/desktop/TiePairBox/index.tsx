@@ -38,7 +38,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
   }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.rate]);
 
   return (
-    <div className="tiePairContainer">
+    <div className="tiePairContainer-lucky7">
       <div className="tiePairRateBoxMainlucky">
         <CommonButtonBox
           value1={lowHigh?.[0]?.rate || 0}
@@ -48,13 +48,13 @@ const TiePairBox = ({ lowHigh, data }: any) => {
                   `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
                 ]
               : 0}
-          width={"30%"}
+          width={"40%"}
           handleBet={handleBet}
           lock={lowHigh?.[0]?.gstatus==="0"?true:false}
           data={lowHigh?.[0]}
         />
-        <div >
-        <img src={seven} width={"45px"} height={"60px"}/>
+        <div className="mb-3" >
+        <img src={seven} width={"55px"} height={"70px"}/>
         </div>
          
         <CommonButtonBox
@@ -65,7 +65,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
                   `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
                 ]
               : 0}
-          width={"30%"}
+          width={"40%"}
           handleBet={handleBet}
           lock={lowHigh?.[1]?.gstatus==="0"?true:false}
           data={lowHigh?.[1]}
