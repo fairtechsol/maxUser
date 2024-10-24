@@ -41,6 +41,8 @@ const ManualMarket = ({ title, data, detail }) => {
       matchBetType: data?.type,
       placeIndex: index,
       gameType: detail?.matchType === "cricket" ? "cricket" : "other",
+      min:data?.minBet ,
+      max:data?.maxBet ,
     };
     dispatch(
       selectedBetAction({
