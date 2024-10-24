@@ -68,7 +68,7 @@ export const ApiConstants = {
     CURRENTBET: "/bet",
     PROFIT_LOSS_REPORT: "/bet/profitLoss",
     MARKET_MATCH_LIST_CRICKET:
-      "http://marketsarket.qnsports.live/getcricketmatches",
+      "https://marketsarket.qnsports.live/getcricketmatches",
     MARKET_MATCH_LIST_FOOTBALL:
       "https://marketsarket.qnsports.live/getsoccerallmatches2",
     MARKET_MATCH_LIST_TENNIS:
