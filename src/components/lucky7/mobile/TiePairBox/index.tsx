@@ -54,11 +54,11 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           lock={lowHigh?.[0]?.gstatus === "0" ? true : false}
           data={lowHigh?.[0]}
         />
-        <div>
+        <div className="mb-4">
           <img
             src={seven}
-            width={"55px"}
-            height={"70px"}
+            width={"45px"}
+            height={"50px"}
           />
         </div>
 
