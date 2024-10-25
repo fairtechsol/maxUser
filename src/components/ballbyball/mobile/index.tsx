@@ -340,8 +340,8 @@ const TeenPattiMobile = () => {
                             : handleBet(item)
                         }
                       >
-                        <span className="f12-b">{item.b}</span>
-                        <span className="f10-b">{item.bs}</span>
+                        <span className="f12-b">{item.b=="0"?"":item.b}</span>
+                        <span className="f10-b" style={{fontWeight:"normal"}}>{item.bs=="0"?"":item.bs}</span>
                       </div>
                       <div
                         style={{

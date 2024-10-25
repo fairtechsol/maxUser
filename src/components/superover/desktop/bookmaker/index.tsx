@@ -59,7 +59,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         >
           Min: {min} Max: {formatNumber(max)}
         </span>
-        <div className={isMobile ? "box-mob" : "blboxessp "} style={{ lineHeight: "2" }}>
+        <div className={isMobile ? "box-mob" : "blboxessp1 "} style={{ lineHeight: "2" }}>
           <div className="w-50 back-BackGround flex-justify-center">
             <span
               className="f600"
@@ -120,7 +120,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         </span>
         <div
         className={`
-          ${isMobile ? "box-mob" : "blboxessp"} 
+          ${isMobile ? "box-mob" : "blboxessp1"} 
           ${handleLock(team1?.status, team1?.b1) ? " suspended-row1" : ""}
         `}
           data-title={handleLock(team1?.status, team1?.b1) ? "SUSPENDED" : ""}
@@ -201,10 +201,10 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
         </span>
         <div
        className={`
-        ${isMobile ? "box-mob" : "blboxessp"} 
+        ${isMobile ? "box-mob" : "blboxessp2"} 
         ${handleLock(team2?.status, team2?.b1) ? " suspended-row2" : ""}
       `}
-          data-title={handleLock(team2?.status, team2?.b1) ? "SUSPENDED" : ""}
+          data-title2={handleLock(team2?.status, team2?.b1) ? "SUSPENDED" : ""}
         >
           <div
             className={`w-50 back-BackGround flex-justify-center cursor-pointer`}
