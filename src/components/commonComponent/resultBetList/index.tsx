@@ -75,7 +75,7 @@ const ResultBetList = ({ bets, total }: any) => {
       </div>
       <div className={isMobile ? "title-12 d-flex flex-row justify-content-end mt-2  float-end" : "title-16 d-flex flex-row justify-content-end  float-end"}>
           <span className="px-2">Total Bets: {total}</span>
-          <span>
+          <span className="pe-1">
             Total Amount:{" "}
             {list?.reduce((acc: number, bet: any) => {
               return acc + bet?.amount;
