@@ -42,7 +42,7 @@ const OddEven = ({ data, card, odds }: any) => {
             >
               <CommonButtonBox
                 value1={odds?.[0]?.rate || 0}
-                value2={"EVEN"}
+                value2={"Even"}
                 value3={
                   data?.profitLoss
                     ? data?.profitLoss[
@@ -57,7 +57,7 @@ const OddEven = ({ data, card, odds }: any) => {
               />
               <CommonButtonBox
                 value1={odds?.[1]?.rate || 0}
-                value2={"ODD"}
+                value2={"Odd"}
                 value3={
                   data?.profitLoss
                     ? data?.profitLoss[
