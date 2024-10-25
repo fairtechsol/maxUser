@@ -99,10 +99,11 @@
   height: 20px;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   border-bottom: 1px solid #c7c8ca;
-  overflow: hidden;
-  white-space: nowrap;
-  box-sizing: border-box;
+  // overflow: hidden;
+  // white-space: nowrap;
+  // box-sizing: border-box;
 }
 .bookmakerTeam {
   flex: 1;
@@ -174,9 +175,9 @@
   font-size: 11px;
   color: #097c93;
   font-weight: normal;
-  display: inline-block;
-  padding-left: 38%;
-  animation: marquee 20s linear infinite;
+  // display: inline-block;
+  // padding-left: 38%;
+  // animation: marquee 20s linear infinite;
 }
 .suspended-overlayRatesBookmaker {
   position: absolute;
