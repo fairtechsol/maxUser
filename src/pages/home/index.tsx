@@ -146,7 +146,7 @@ const Home = () => {
 
   useEffect(() => {
     if (rulesPopShow) {
-      dispatch(getBannerImage());
+      dispatch(getBannerImage(isMobile ? "mobile" : "desktop"));
     }
   }, []);
 
