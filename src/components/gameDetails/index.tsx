@@ -37,6 +37,7 @@ import { AppDispatch, RootState } from "../../store/store";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 import {
+  betPlacedReset,
   getPlacedBets,
   resetRunAmount,
   resetRunAmountModal,
@@ -252,7 +253,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     try {
-      if (success && socket) {
+      if (socket) {
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
@@ -282,7 +283,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [success, socket, id]);
+  }, [socket, id]);
 
   useEffect(() => {
     try {
@@ -312,6 +313,7 @@ const GameDetails = () => {
         socketService.userBalance.sessionDeleteBet(getUserProfile);
         dispatch(resetMarketId());
         dispatch(matchDetailReset());
+        dispatch(betPlacedReset());
       };
     } catch (e) {
       console.log(e);

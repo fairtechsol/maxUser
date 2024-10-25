@@ -38,7 +38,9 @@ const Tournament = ({ title, box, data, detail }) => {
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       runnerId: runner?.id?.toString(),
-      runners:data
+      runners:data,
+      min:data?.minBet ,
+      max:data?.maxBet ,
     };
     dispatch(
       selectedBetAction({

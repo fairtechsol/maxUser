@@ -159,10 +159,9 @@
   padding: 0; /* Remove padding from Nav.Link */
   margin: 0; /* Remove margin from Nav.Link */
 }
-.tiePairContainer{
+.tiePairContainer-lucky7{
   width: 100%;
   background-color: #eee;
-  padding: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -178,7 +177,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
 }
 
 .oddEvenContainer{
@@ -209,10 +208,6 @@
 
 
 
-
-// .horseRacingTab .nav-link{
-//   margin: 0 !important;
-// }
 
 @media (max-width: 768px) {
   .tabs-navs .nav-link {

@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { liveStreamPageUrl } from "../../../utils/constants";
+import { liveStreamCricketPageUrl } from "../../../utils/constants";
 
-const LiveStreamPage = () => {
-  const { vidId, sportId } = useParams();
+const LiveStreamPageCricket = () => {
+  const { vidId } = useParams();
   const iframeStyles: any = {
     position: "absolute",
     top: 0,
@@ -27,7 +27,7 @@ const LiveStreamPage = () => {
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
-        src={`${liveStreamPageUrl}${vidId}/${sportId}`}
+        src={`${liveStreamCricketPageUrl}${vidId}`}
         frameBorder="0"
         allow="autoplay; fullscreen"
         allowFullScreen
@@ -36,4 +36,4 @@ const LiveStreamPage = () => {
   );
 };
 
-export default LiveStreamPage;
+export default LiveStreamPageCricket;

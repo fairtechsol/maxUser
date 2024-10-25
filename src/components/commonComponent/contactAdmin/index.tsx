@@ -3,7 +3,7 @@
 function ContactAdmin() {
   return (
     <div className="text-center no-record-found">
-    <span>No Record Found</span>
+    <span>No real time Record Found</span>
   </div>
   );
 }

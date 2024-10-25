@@ -67,6 +67,12 @@ export const ApiConstants = {
     OTHERMATCHDETAILS: "/match/other/",
     CURRENTBET: "/bet",
     PROFIT_LOSS_REPORT: "/bet/profitLoss",
+    MARKET_MATCH_LIST_CRICKET:
+      "https://marketsarket.qnsports.live/getcricketmatches",
+    MARKET_MATCH_LIST_FOOTBALL:
+      "https://marketsarket.qnsports.live/getsoccerallmatches2",
+    MARKET_MATCH_LIST_TENNIS:
+      "https://marketsarket.qnsports.live/gettennisallmatches2",
   },
   USER: {
     MARQUEE: "/expert/notification",
@@ -113,6 +119,12 @@ export const ApiConstants = {
     GET_CHANNEL_ID: "https://scoreapi.365cric.com/api/match/getStream",
     GET_VIDEO: "https://video.proexch.in/tv/static",
   },
+};
+
+export const marketApiConst = {
+  cricket: ApiConstants.MATCH.MARKET_MATCH_LIST_CRICKET,
+  football: ApiConstants.MATCH.MARKET_MATCH_LIST_FOOTBALL,
+  tennis: ApiConstants.MATCH.MARKET_MATCH_LIST_TENNIS,
 };
 
 export const Constants = {
@@ -445,13 +457,13 @@ export const cardUrl =
     : "https://maxbet07.com/videoPage/";
 
 export const cardUrlMain = "https://maxbet07.com/videoPage/";
+export const liveStreamCricketPageUrl =
+  "https://maxbet07.com/liveStreamCricket/";
 export const liveStreamPageUrl = "https://maxbet07.com/liveStream/";
-// export const scoreBoardUrlMain = "https://maxbet07.com/scoreBoardPage/";
 export const scoreBoardUrlMain = "https://maxbet07.com/scoreBoardPage/";
+
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";
-
-export const streamVidUrl = "https://dpmatka.in/dcasino/nntv.php?MatchID=";
 
 export const serviceUrl =
   process.env.NODE_ENV === "production"

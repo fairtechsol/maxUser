@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
 import { RootState } from "../../../store/store";
-import { Constants } from "../../../utils/constants";
+import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import { MatchType } from "../../../utils/enum";
 import BetTableHeader from "../../commonComponent/betTableHeader";
@@ -68,7 +68,7 @@ const DesktopGameDetail = () => {
         // `https://fairscore7.com/score/getMatchScore/${marketId}`
         // `https://dpmatka.in/dcasino/score.php?matchId=${marketId}`
         //`https://devscore.fairgame.club/score/getMatchScore/${marketId}`
-        `${Constants.thirdParty}/cricketScore?eventId=${eventId}`
+        `${Constants.thirdPartyLive}/cricketScore?eventId=${eventId}`
       );
       // {"success":false,"msg":"Not found"}
       //console.log("response 11:", response);
@@ -152,7 +152,7 @@ const DesktopGameDetail = () => {
     <Container fluid className="pe-0 ps-1">
       <Row className="p-0">
         <Col md={8}>
-          {/* {!loading ? ( */}
+          {!loading ? (
             <Container className="p-0">
               <>
                 <Col md={12} className="p-0">
@@ -325,16 +325,16 @@ const DesktopGameDetail = () => {
                   matchDetails?.marketCompleteMatch1?.isActive && (
                     <Col md={12}>
                       <OtherMarket
-                              title={matchDetails?.marketCompleteMatch1?.name}
-                              box={
-                                matchDetails?.apiTideMatch2?.runners?.[0]?.ex
-                                  ?.availableToBack?.length > 2
-                                  ? 6
-                                  : 2
-                              }
-                              data={matchDetails?.marketCompleteMatch1}
-                              detail={matchDetails}
-                            />
+                        title={matchDetails?.marketCompleteMatch1?.name}
+                        box={
+                          matchDetails?.apiTideMatch2?.runners?.[0]?.ex
+                            ?.availableToBack?.length > 2
+                            ? 6
+                            : 2
+                        }
+                        data={matchDetails?.marketCompleteMatch1}
+                        detail={matchDetails}
+                      />
                     </Col>
                   )}
                 {matchDetails?.manualCompleteMatch?.activeStatus === "live" &&
@@ -496,17 +496,16 @@ const DesktopGameDetail = () => {
                       />
                     </Col>
                   )}
-               
               </>
             </Container>
-          {/* // ) : (
-          //   <div
-          //     className="w-100 d-flex justify-content-center align-items-center"
-          //     style={{ height: "100vh" }}
-          //   >
-          //     <NewLoader />
-          //   </div>
-          // )} */}
+          ) : (
+            <div
+              className="w-100 d-flex justify-content-center align-items-center"
+              style={{ height: "100vh" }}
+            >
+              <NewLoader />
+            </div>
+          )}
         </Col>
         <Col md={4} className="p-0 sideBet-W">
           <Container className="p-0" fluid ref={placeBetRef}>
@@ -543,7 +542,9 @@ const DesktopGameDetail = () => {
               </Col>
               {matchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
-                  <LiveStreamComponent eventId={matchDetails?.eventId} />
+                  <LiveStreamComponent
+                    url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
+                  />
                 </Col>
               )}
               <Col md={12} className="px-1 pt-1">

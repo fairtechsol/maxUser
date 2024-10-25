@@ -10,15 +10,15 @@ const BackLay = ({ matchOddsData, data }: any) => {
     let team = {
       bettingType: type === "back" ? "BACK" : "LAY",
       matchId: data?.id,
-      odd: item?.b1,
+      odd: type === "back" ? item?.b1 : item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nation,
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:parseFloat(item?.min),
-      max:parseFloat(item?.max)
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max),
     };
 
     dispatch(
@@ -93,32 +93,37 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="card32bTitle "><span className=" title-12">Player 8</span>
-          <span
-                className={`title-14 f400 ${
-                  data?.profitLoss
-                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      ? JSON.parse(
-                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        )["player8"] > 0
-                        ? "color-green"
-                        : JSON.parse(
-                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                          )["player8"] < 0
-                        ? "color-red"
-                        : ""
-                      : ""
-                    : ""
-                }`}
-              >
-                {data?.profitLoss
+          <div className="card32bTitle ">
+            <span className=" title-12">Player 8</span>
+            <span
+              className={`title-14 f400 ${
+                data?.profitLoss
                   ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )["player8"]
-                    : <br></br>
-                  : 0}
-              </span>
+                      )["player8"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player8"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss ? (
+                data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                  JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["player8"]
+                ) : (
+                  <br></br>
+                )
+              ) : (
+                0
+              )}
+            </span>
           </div>
           {renderItem(matchOddsData?.[0], 0, "back")}
           {renderItem(matchOddsData?.[0], 1, "lay")}
@@ -127,32 +132,38 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="card32bTitle"><span className="title-12">Player 9</span>
-          <span
-                className={`title-14 f400 ${
-                  data?.profitLoss
-                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      ? JSON.parse(
-                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        )["player9"] > 0
-                        ? "color-green"
-                        : JSON.parse(
-                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                          )["player9"] < 0
-                        ? "color-red"
-                        : ""
-                      : ""
-                    : ""
-                }`}
-              >
-                {data?.profitLoss
+          <div className="card32bTitle">
+            <span className="title-12">Player 9</span>
+            <span
+              className={`title-14 f400 ${
+                data?.profitLoss
                   ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )["player9"]
-                    : <br></br>
-                  : 0}
-              </span></div>
+                      )["player9"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player9"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss ? (
+                data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                  JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["player9"]
+                ) : (
+                  <br></br>
+                )
+              ) : (
+                0
+              )}
+            </span>
+          </div>
           {renderItem(matchOddsData?.[1], 2, "back")}
           {renderItem(matchOddsData?.[1], 3, "lay")}
         </div>
@@ -160,32 +171,39 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="card32bTitle"> <span className="title-12">Player 10</span>
-          <span
-                className={`title-14 f400 ${
-                  data?.profitLoss
-                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      ? JSON.parse(
-                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        )["player10"] > 0
-                        ? "color-green"
-                        : JSON.parse(
-                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                          )["player10"] < 0
-                        ? "color-red"
-                        : ""
-                      : ""
-                    : ""
-                }`}
-              >
-                {data?.profitLoss
+          <div className="card32bTitle">
+            {" "}
+            <span className="title-12">Player 10</span>
+            <span
+              className={`title-14 f400 ${
+                data?.profitLoss
                   ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )["player10"]
-                    : <br></br>
-                  : 0}
-              </span></div>
+                      )["player10"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player10"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss ? (
+                data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                  JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["player10"]
+                ) : (
+                  <br></br>
+                )
+              ) : (
+                0
+              )}
+            </span>
+          </div>
           {renderItem(matchOddsData?.[2], 2, "back")}
           {renderItem(matchOddsData?.[2], 3, "lay")}
         </div>
@@ -193,32 +211,39 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "40px" }}
         >
-          <div className="card32bTitle"> <span className="title-12">Player 11</span>
-          <span
-                className={`title-14 f400 ${
-                  data?.profitLoss
-                    ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      ? JSON.parse(
-                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                        )["player11"] > 0
-                        ? "color-green"
-                        : JSON.parse(
-                            data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                          )["player11"] < 0
-                        ? "color-red"
-                        : ""
-                      : ""
-                    : ""
-                }`}
-              >
-                {data?.profitLoss
+          <div className="card32bTitle">
+            {" "}
+            <span className="title-12">Player 11</span>
+            <span
+              className={`title-14 f400 ${
+                data?.profitLoss
                   ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
-                      )["player11"]
-                    : <br></br>
-                  : 0}
-              </span></div>
+                      )["player11"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player11"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss ? (
+                data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                  JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["player11"]
+                ) : (
+                  <br></br>
+                )
+              ) : (
+                0
+              )}
+            </span>
+          </div>
           {renderItem(matchOddsData?.[3], 2, "back")}
           {renderItem(matchOddsData?.[3], 3, "lay")}
         </div>

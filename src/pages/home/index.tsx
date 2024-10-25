@@ -11,12 +11,14 @@ import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/h
 import {
   getMatchList,
   getTabList,
-  updateMatchOddRates,
+  updateMatchRatesFromApiOnList,
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { isMobile } from "../../utils/screenDimension";
 import ImageModal from "../../components/commonComponent/loginModal";
 import { getBannerImage } from "../../store/actions/user/userAction";
+import { marketApiConst } from "../../utils/constants";
+import axios from "axios";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -24,13 +26,6 @@ const Home = () => {
   const { bannerImage } = useSelector((state: RootState) => state.user.profile);
   const [matchType, setMatchType] = useState("cricket");
   const [show, setShow] = useState(false);
-  const { matchList, success } = useSelector(
-    (state: RootState) => state.match.matchList
-  );
-
-  const setMatchOddRatesInRedux = (event: any) => {
-    dispatch(updateMatchOddRates(event));
-  };
 
   const getMatchListService = () => {
     try {
@@ -43,6 +38,20 @@ const Home = () => {
       console.log(e);
     }
   };
+
+  const getMatchListMarket = async (matchType: string) => {
+    try {
+      const resp: any = await axios.get(marketApiConst[matchType], {
+        timeout: 2000,
+      });
+      if (resp?.status) {
+        dispatch(updateMatchRatesFromApiOnList(resp?.data));
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+
   const getMatchListServiceSocket = (event: any) => {
     try {
       if (event?.gameType === matchType) {
@@ -65,11 +74,11 @@ const Home = () => {
     try {
       if (event?.gameType === matchType) {
         if (["cricket", "football", "tennis"].includes(matchType)) {
-          if (event?.betType === "quickbookmaker1") {
-            setTimeout(() => {
-              dispatch(getMatchList({ matchType: matchType }));
-            }, 1000);
-          }
+          // if (event?.betType === "quickbookmaker1") {
+          setTimeout(() => {
+            dispatch(getMatchList({ matchType: matchType }));
+          }, 1000);
+          // }
         } else if (["horseRacing", "greyHound"].includes(matchType)) {
           setTimeout(() => {
             dispatch(getHorseRacingCountryWiseList(matchType));
@@ -137,38 +146,17 @@ const Home = () => {
 
   useEffect(() => {
     if (rulesPopShow) {
-      dispatch(getBannerImage());
+      dispatch(getBannerImage(isMobile ? "mobile" : "desktop"));
     }
   }, []);
 
   useEffect(() => {
-    if (
-      success &&
-      matchList.length > 0 &&
-      isMobile &&
-      ["cricket", "football", "tennis", "politics"].includes(matchType)
-    ) {
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.joinMatchRoom(element?.id, "user");
-      });
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.getMatchRates(
-          element?.id,
-          setMatchOddRatesInRedux
-        );
-      });
-    }
+    const intervalId = setInterval(() => {
+      getMatchListMarket(matchType);
+    }, 500);
 
-    return () => {
-      // expertSocketService.match.leaveAllRooms();
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.leaveMatchRoom(element?.id);
-      });
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.getMatchRatesOff(element?.id);
-      });
-    };
-  }, [matchList.length, success, matchType]);
+    return () => clearInterval(intervalId);
+  }, [matchType]);
 
   return (
     <div>

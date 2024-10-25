@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  betPlacedReset,
   betsSuccessReset,
   getMyMarket,
   getPlacedBets,
@@ -29,7 +30,7 @@ interface InitialState {
   error: any;
   runAmountModal: boolean;
   runAmountModalKhado: boolean;
-  title?:any;
+  title?: any;
 }
 
 const initialState: InitialState = {
@@ -43,7 +44,7 @@ const initialState: InitialState = {
   error: null,
   runAmountModal: false,
   runAmountModalKhado: false,
-  title: null
+  title: null,
 };
 
 const placedBet = createSlice({
@@ -89,42 +90,47 @@ const placedBet = createSlice({
       })
       .addCase(getRunAmount.fulfilled, (state, action) => {
         const { id, arr } = action.payload;
-        let dataArr:any=[]
+        let dataArr: any = [];
         state.loading = false;
         state.success = true;
         // dataArr=arr?.slice(1)
         // console.log(arr,'dataArr',dataArr)
-        if(arr.every((bet:any) => bet.profitLoss >= 0) || arr.every((bet:any) => bet.profitLoss >= 0)){
-          if(arr?.length > 8){
-            dataArr=arr?.slice(4,arr?.length-4)
-          }else{
-            dataArr=arr
+        if (
+          arr.every((bet: any) => bet.profitLoss >= 0) ||
+          arr.every((bet: any) => bet.profitLoss >= 0)
+        ) {
+          if (arr?.length > 8) {
+            dataArr = arr?.slice(4, arr?.length - 4);
+          } else {
+            dataArr = arr;
           }
-        }else{
-          if(arr?.length > 8){
-            const findTransitionIndex = (arr:any) => {
+        } else {
+          if (arr?.length > 8) {
+            const findTransitionIndex = (arr: any) => {
               for (let i = 1; i < arr.length; i++) {
                 if (
-                  (arr[i - 1].profitLoss < 0 && arr[i].profitLoss >= 0) || 
-                  (arr[i - 1].profitLoss >= 0 && arr[i].profitLoss < 0)   
+                  (arr[i - 1].profitLoss < 0 && arr[i].profitLoss >= 0) ||
+                  (arr[i - 1].profitLoss >= 0 && arr[i].profitLoss < 0)
                 ) {
-                    // console.log('first',i)
-                      return i;
-                  }
+                  // console.log('first',i)
+                  return i;
+                }
               }
-              return -1; 
-          };
-          const transitionIndex = findTransitionIndex(arr);
-          if(transitionIndex>4){
-            let count = arr?.length-transitionIndex > 4 ? 4 : arr?.length-transitionIndex
-            dataArr=arr?.slice(4,arr?.length-count)
-          }else{
-            dataArr=arr?.slice(transitionIndex-1,arr?.length-4)
+              return -1;
+            };
+            const transitionIndex = findTransitionIndex(arr);
+            if (transitionIndex > 4) {
+              let count =
+                arr?.length - transitionIndex > 4
+                  ? 4
+                  : arr?.length - transitionIndex;
+              dataArr = arr?.slice(4, arr?.length - count);
+            } else {
+              dataArr = arr?.slice(transitionIndex - 1, arr?.length - 4);
+            }
+          } else {
+            dataArr = arr;
           }
-          }else{
-            dataArr=arr
-          }
-         
         }
         // const modifiedBets= arr?.slice(4,arr?.length-5)
         // console.log('arrz',arr?.slice(1))
@@ -146,7 +152,7 @@ const placedBet = createSlice({
       })
       .addCase(getRunAmountMeter.fulfilled, (state, action) => {
         const { id, arr } = action.payload;
-        const modifiedBets= arr
+        const modifiedBets = arr;
         state.loading = false;
         state.success = true;
         let data = {
@@ -241,7 +247,6 @@ const placedBet = createSlice({
             state.runAmountModal = showModal;
           }
           state.title = null;
-
         }
       })
       .addCase(runAmountReset, (state) => {
@@ -257,6 +262,9 @@ const placedBet = createSlice({
             state.runAmountModalKhado = showModal;
           }
         }
+      })
+      .addCase(betPlacedReset, (state) => {
+        state.placedBets = [];
       });
   },
 });

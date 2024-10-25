@@ -17,12 +17,12 @@ export const marqueeNotification = createAsyncThunk<any>(
     }
   }
 );
-export const getBannerImage = createAsyncThunk<any>(
+export const getBannerImage = createAsyncThunk<string, any>(
   "/user/bannerImage",
-  async (_, thunkApi) => {
+  async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.USER.MARQUEE}?type=banner`
+        `${ApiConstants.USER.MARQUEE}?type=banner${requestData}`
       );
       if (resp) {
         return resp?.data;
