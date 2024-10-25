@@ -18,8 +18,8 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: (item?.sid).toString(),
-      min:data?.videoInfo?.min,
-      max:data?.videoInfo?.max
+      min: data?.videoInfo?.min,
+      max: data?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -49,11 +49,15 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
     >
       <div className="game-market-c market-2" style={{ background: "f7f7f7" }}>
         <div className="marketHeader">
-          <span  style={{
-                color: "#FFF",
-                fontWeight:"bold", 
-                fontSize:"15px"
-              }}>Bookmaker</span>
+          <span
+            style={{
+              color: "#FFF",
+              fontWeight: "bold",
+              fontSize: "15px",
+            }}
+          >
+            Bookmaker
+          </span>
         </div>
         <div className="market-header-c">
           <div className="market-nation-detail-b">
@@ -64,17 +68,22 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
               Min: {min} Max: {formatNumber(max)}
             </span>
           </div>
-          <div className="market-odd-box-cd back" style={{border:"0px"}}>
-            <b style={{color:"#333333"}}>Back</b>
+          <div className="market-odd-box-cd back" style={{ border: "0px" }}>
+            <b style={{ color: "#333333" }}>Back</b>
           </div>
           <div className="market-odd-box-cd lay">
-            <b style={{color:"#333333"}}>Lay</b>
+            <b style={{ color: "#333333" }}>Lay</b>
           </div>
         </div>
         <div className="market-body-c" data-title="OPEN">
           <div className={`market-row-c`}>
             <div className="market-nation-detail-b">
-              <span className="market-nation-name-c" style={{color:"#333333"}}>{team1?.nat}</span>
+              <span
+                className="market-nation-name-c"
+                style={{ color: "#333333" }}
+              >
+                {team1?.nat}
+              </span>
               <div className="market-nation-book-c"></div>
               <span
                 className={`${
@@ -134,11 +143,17 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                     : handleBet(team1, "back")
                 }
               >
-                <span className="market-odd-c f600" style={{color:"#333333"}}>
-                  {team1?.status === "SUSPENDED" ||
-                  team1?.status === "CLOSED" ? "-" : team1?.b1}
+                <span
+                  className="market-odd-c f600"
+                  style={{ color: "#333333" }}
+                >
+                  {team1?.status === "SUSPENDED" || team1?.status === "CLOSED"
+                    ? "-"
+                    : team1?.b1}
                 </span>
-                <span className="market-volume-c" style={{color:"#333333"}}>{team1?.bs1}</span>
+                <span className="market-volume-c" style={{ color: "#333333" }}>
+                  {team1?.bs1}
+                </span>
               </div>
               <div
                 className="market-odd-box-cd lay lh-1"
@@ -152,7 +167,10 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
               >
                 <span className="market-odd-c f600">
                   {team1?.status === "SUSPENDED" ||
-                  team1?.status === "CLOSED" ? "-" : team1?.l1}
+                  team1?.status === "CLOSED" ||
+                  team1?.l1 === "0.00"
+                    ? "-"
+                    : team1?.l1}
                 </span>
                 <span className="market-volume">{team1?.ls1}</span>
               </div>
@@ -160,7 +178,12 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
           </div>
           <div className={`market-row-c`}>
             <div className="market-nation-detail-b">
-              <span className="market-nation-name-c" style={{color:"#333333"}}>{team2?.nat}</span>
+              <span
+                className="market-nation-name-c"
+                style={{ color: "#333333" }}
+              >
+                {team2?.nat}
+              </span>
               <div className="market-nation-book-c"></div>
               <span
                 className={`${
@@ -220,11 +243,17 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                     : handleBet(team2, "back")
                 }
               >
-                <span className="market-odd-c f600" style={{color:"#333333"}}>
-                  {  team2?.status === "SUSPENDED" ||
-                  team2?.status === "CLOSED" ? "-" : team2?.b1}
+                <span
+                  className="market-odd-c f600"
+                  style={{ color: "#333333" }}
+                >
+                  {team2?.status === "SUSPENDED" || team2?.status === "CLOSED"
+                    ? "-"
+                    : team2?.b1}
                 </span>
-                <span className="market-volume-c" style={{color:"#333333"}}>{team2?.bs1}</span>
+                <span className="market-volume-c" style={{ color: "#333333" }}>
+                  {team2?.bs1}
+                </span>
               </div>
               <div
                 className="market-odd-box-cd lay lh-1"
@@ -238,7 +267,10 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
               >
                 <span className="market-odd-c f600">
                   {team2?.status === "SUSPENDED" ||
-                  team2?.status === "CLOSED" ? "-" : team2?.l1}
+                  team2?.status === "CLOSED" ||
+                  team2?.l1 === "0.00"
+                    ? "-"
+                    : team2?.l1}
                 </span>
                 <span className="market-volume">{team2?.ls1}</span>
               </div>

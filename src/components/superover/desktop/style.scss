@@ -284,7 +284,12 @@
   display: flex;
   flex-direction: row;
 }
-.blboxessp{
+.blboxessp1{
+  width: 15%;
+  display: flex;
+  flex-direction: row;
+}
+.blboxessp2{
   width: 15%;
   display: flex;
   flex-direction: row;
@@ -381,7 +386,7 @@
   position: relative;
 }
 .suspended-row2::after {
-  content: attr(data-title);
+  content: attr(data-title2);
   background-color: #373636d6;
   color: #ff0000;
   font-weight: bold !important;

@@ -114,7 +114,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
               {columns.map((column, index) => (
                 <th
                   className={`${tHeadTheme} bg-[#f7f7f7] text-[#333333] text-start ${
-                    isMobile ? "bg-secondary title-12 f800 p-1" : "f600 title-16"
+                    isMobile ? "bg-secondary title-12 f800 p-1 text-white" : "f600 title-16"
                   }`}
                   key={index}
                   style={{background:"#f7f7f7"}}

@@ -79,11 +79,11 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
             paddingRight: "15px",
           }}
         >
-          <span style={{ fontWeight: "bold" }}>Round Id:</span>
+          <span style={{ fontWeight: "bold" }} className="pe-1">Round Id:</span>
           <span>{handleRoundId(data?.result?.mid)}</span>
         </div>
-        <div>
-          <span style={{ fontWeight: "bold" }}>Match Time:</span>
+        <div >
+          <span style={{ fontWeight: "bold" }} className="pe-1">Match Time:</span>
           <span>
             {data?.createdAt
               ? moment(data?.createdAt).format("DD/MM/YYYY hh:mm:ss A")

@@ -11,12 +11,14 @@ import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/h
 import {
   getMatchList,
   getTabList,
-  updateMatchOddRates,
+  updateMatchRatesFromApiOnList,
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { isMobile } from "../../utils/screenDimension";
 import ImageModal from "../../components/commonComponent/loginModal";
 import { getBannerImage } from "../../store/actions/user/userAction";
+import { marketApiConst } from "../../utils/constants";
+import axios from "axios";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -36,6 +38,20 @@ const Home = () => {
       console.log(e);
     }
   };
+
+  const getMatchListMarket = async (matchType: string) => {
+    try {
+      const resp: any = await axios.get(marketApiConst[matchType], {
+        timeout: 2000,
+      });
+      if (resp?.status) {
+        dispatch(updateMatchRatesFromApiOnList(resp?.data));
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+
   const getMatchListServiceSocket = (event: any) => {
     try {
       if (event?.gameType === matchType) {
@@ -130,9 +146,17 @@ const Home = () => {
 
   useEffect(() => {
     if (rulesPopShow) {
-      dispatch(getBannerImage());
+      dispatch(getBannerImage(isMobile ? "mobile" : "desktop"));
     }
   }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      getMatchListMarket(matchType);
+    }, 500);
+
+    return () => clearInterval(intervalId);
+  }, [matchType]);
 
   return (
     <div>

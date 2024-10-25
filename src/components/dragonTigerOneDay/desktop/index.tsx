@@ -170,7 +170,6 @@ const DragonTigerDesktop = () => {
               <div
                 style={{
                   width: "100%",
-                  marginLeft: "5px",
                 }}
               >
                 <CardBox
@@ -179,7 +178,7 @@ const DragonTigerDesktop = () => {
                   data={dragonTigerDetail}
                 />
               </div>
-              <div style={{ width: "100%", margin: "5px 0px 0px 10px" }}>
+              <div style={{ width: "100%", margin: "5px 0px 0px 5px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["D", "T"]}

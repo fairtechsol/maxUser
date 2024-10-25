@@ -45,6 +45,8 @@ const MatchOdd = ({ title, data, detail }) => {
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
       gameType: detail?.matchType === "cricket" ? "cricket" : "other",
+      min:data?.minBet ,
+      max:data?.maxBet ,
     };
     // console.log('team',team)
     dispatch(

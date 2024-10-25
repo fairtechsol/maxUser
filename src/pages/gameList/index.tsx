@@ -9,15 +9,34 @@ import {
   socket,
   socketService,
 } from "../../socketManager";
-import { getMatchList, getTabList } from "../../store/actions/match/matchListAction";
+import {
+  getMatchList,
+  getTabList,
+  updateMatchRatesFromApiOnList,
+} from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
+import axios from "axios";
+import { marketApiConst } from "../../utils/constants";
 
 const GameList = () => {
   const { loading } = useSelector((state: RootState) => state.match.matchList);
 
   const { type } = useParams();
   const dispatch: AppDispatch = useDispatch();
+
+  const getMatchListMarket = async (matchType: string) => {
+    try {
+      const resp: any = await axios.get(marketApiConst[matchType], {
+        timeout: 2000,
+      });
+      if (resp?.status) {
+        dispatch(updateMatchRatesFromApiOnList(resp?.data));
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
 
   const getMatchListService = (event: any) => {
     try {
@@ -47,8 +66,8 @@ const GameList = () => {
   useEffect(() => {
     dispatch(getTabList({}));
     if (type) {
-      // setTimeout(() => {       
-        dispatch(getMatchList({ matchType: type }));
+      // setTimeout(() => {
+      dispatch(getMatchList({ matchType: type }));
       // }, 500);
     }
   }, [type]);
@@ -79,6 +98,14 @@ const GameList = () => {
       console.log(e);
     }
   }, [socket]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      getMatchListMarket(type);
+    }, 500);
+
+    return () => clearInterval(intervalId);
+  }, [type]);
 
   return (
     <>

@@ -19,44 +19,42 @@ const DesktopMatchList = ({
   matchType,
 }: any) => {
   const { type } = useParams();
-  const dispatch: AppDispatch = useDispatch();
-  const { matchList, success, tabList } = useSelector(
-    (state: RootState) => state.match.matchList
-  );
+  // const dispatch: AppDispatch = useDispatch();
+  const { tabList } = useSelector((state: RootState) => state.match.matchList);
 
-  const setMatchOddRatesInRedux = (event: any) => {
-    dispatch(updateMatchOddRates(event));
-  };
+  // const setMatchOddRatesInRedux = (event: any) => {
+  //   dispatch(updateMatchOddRates(event));
+  // };
 
-  useEffect(() => {
-    try {
-      if (
-        success &&
-        matchList.length > 0 &&
-        ["cricket", "football", "tennis", "politics"].includes(
-          matchType || type || matchTypeGameList
-        )
-      ) {
-        matchList?.forEach((element: any) => {
-          expertSocketService.match.joinMatchRoom(element?.id, "user");
-        });
-        matchList?.forEach((element: any) => {
-          expertSocketService.match.getMatchRates(
-            element?.id,
-            setMatchOddRatesInRedux
-          );
-        });
-        return () => {
-          matchList?.forEach((element: any) => {
-            expertSocketService.match.leaveMatchRoom(element?.id);
-            expertSocketService.match.getMatchRatesOff(element?.id);
-          });
-        };
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }, [matchList.length, success, type, matchType, matchTypeGameList]);
+  // useEffect(() => {
+  //   try {
+  //     if (
+  //       success &&
+  //       matchList.length > 0 &&
+  //       ["cricket", "football", "tennis", "politics"].includes(
+  //         matchType || type || matchTypeGameList
+  //       )
+  //     ) {
+  //       matchList?.forEach((element: any) => {
+  //         expertSocketService.match.joinMatchRoom(element?.id, "user");
+  //       });
+  //       matchList?.forEach((element: any) => {
+  //         expertSocketService.match.getMatchRates(
+  //           element?.id,
+  //           setMatchOddRatesInReduxj
+  //         );
+  //       });
+  //       return () => {
+  //         matchList?.forEach((element: any) => {
+  //           expertSocketService.match.leaveMatchRoom(element?.id);
+  //           expertSocketService.match.getMatchRatesOff(element?.id);
+  //         });
+  //       };
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }, [matchList.length, success, type, matchType, matchTypeGameList]);
 
   useEffect(() => {
     if (type) {

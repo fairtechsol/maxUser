@@ -14,6 +14,7 @@ import {
   updateMatchDetailFromMatchList,
   updateMatchOddRates,
   updateMatchRates,
+  updateMatchRatesFromApiOnList,
 } from "../../actions/match/matchListAction";
 import {
   updateBalance,
@@ -111,7 +112,7 @@ const matchListSlice = createSlice({
         state.matchDetails = action.payload;
       })
       .addCase(matchDetailAction.pending, (state) => {
-        // state.loading = true;
+        state.loading = true;
         state.success = false;
         state.error = null;
         // state.marketId = "";
@@ -219,7 +220,7 @@ const matchListSlice = createSlice({
         //     newSessionBettings?.push(apiItem);
         //   }
         // });
-        // state.loading = false;
+        state.loading = false;
         let parsedSessionBettings =
           state.matchDetails?.sessionBettings?.map(JSON.parse) || [];
         const apiParsedSessionBettings = sessionBettings?.map(JSON.parse) || [];
@@ -349,6 +350,22 @@ const matchListSlice = createSlice({
           if (state.matchList) {
             state.matchList[indexOfItemToUpdate].matchOdds[0] = matchOdd;
           }
+        }
+      })
+      .addCase(updateMatchRatesFromApiOnList.fulfilled, (state, action) => {
+        let matchListFromApi = action.payload;
+        if (state.matchList.length > 0) {
+          state.matchList = state.matchList?.map((items: any) => {
+            const itemToUpdate = matchListFromApi?.find(
+              (item: any) =>
+                +item?.gameId === +items?.eventId ||
+                +item?.gmid === +items?.eventId
+            );
+            return {
+              ...items,
+              ...itemToUpdate,
+            };
+          });
         }
       })
       .addCase(matchListReset, (state) => {

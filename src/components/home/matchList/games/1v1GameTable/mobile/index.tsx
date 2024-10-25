@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
 import { LiaFacebookF } from "react-icons/lia";
-import { RootState } from "../../../../../../store/store";
+import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
   casinoIcons,
@@ -15,8 +15,11 @@ import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import { TbDeviceTvOld } from "react-icons/tb";
+import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
+import { useDispatch } from "react-redux";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
+  const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
@@ -95,8 +98,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   <>
                     {!countryWiseList || countryWiseList?.length === 0 ? (
                       <div className="text-center">
-                      <ContactAdmin />
-                    </div>
+                        <ContactAdmin />
+                      </div>
                     ) : (
                       <HorseRacingComponentList matchType={mTypeid} />
                     )}
@@ -105,8 +108,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   <>
                     {!matchList || matchList.length === 0 ? (
                       <div className="text-center">
-                      <ContactAdmin />
-                    </div>
+                        <ContactAdmin />
+                      </div>
                     ) : (
                       <>
                         {mTypeid === "cricket" && (
@@ -185,7 +188,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                       justifyContent: "center",
                                     }}
                                   >
-                                    {currentTime >= startAt ? (
+                                    {item?.inPlay === "True" ||
+                                    item?.iplay === true ? (
                                       <span className="liveDot"></span>
                                     ) : (
                                       <span style={{ width: "10px" }}>
@@ -193,8 +197,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                       </span>
                                     )}
 
-                                    {item?.isTv === true ||
-                                    item?.isTv === "1" ? (
+                                    {item?.tv === "True" ||
+                                    item?.tv === true ? (
                                       <TbDeviceTvOld />
                                     ) : (
                                       <span style={{ width: "20px" }}>
@@ -203,8 +207,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                     )}
 
                                     {/* Facebook Icon */}
-                                    {item?.manualSessionActive ||
-                                    item?.apiSessionActive ? (
+                                    {item?.f === "True" || item?.f === true ? (
                                       <LiaFacebookF size={11} />
                                     ) : (
                                       <span style={{ width: "15px" }}>
@@ -234,22 +237,13 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                         : false
                                     }
                                     backRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[0]?.ex
-                                          ?.availableToBack[
-                                          item?.matchOdds?.[0]?.runners[0]?.ex
-                                            ?.availableToBack?.length > 1
-                                            ? 2
-                                            : 0
-                                        ]?.price) ||
-                                      item?.matchOdds?.[0]?.backTeamA ||
+                                      item?.back1 ||
+                                      item?.section?.[0]?.odds?.[0]?.odds ||
                                       0
                                     }
                                     layRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[0]?.ex
-                                          ?.availableToLay[0]?.price) ||
-                                      item?.matchOdds?.[0]?.layTeamA ||
+                                      item?.lay1 ||
+                                      item?.section?.[0]?.odds?.[1]?.odds ||
                                       0
                                     }
                                     active={false}
@@ -263,20 +257,13 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                         : false
                                     }
                                     backRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[2]?.ex
-                                          ?.availableToBack[
-                                          item?.matchOdds?.[0]?.runners[2]?.ex
-                                            ?.availableToBack?.length > 1
-                                            ? 2
-                                            : 0
-                                        ]?.price) ||
+                                      item?.back12 ||
+                                      item?.section?.[2]?.odds?.[0]?.odds ||
                                       0
                                     }
                                     layRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[2]?.ex
-                                          ?.availableToLay[0]?.price) ||
+                                      item?.lay12 ||
+                                      item?.section?.[2]?.odds?.[0]?.odds ||
                                       0
                                     }
                                     active={false}
@@ -290,20 +277,13 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                         : false
                                     }
                                     backRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[1]?.ex
-                                          ?.availableToBack[
-                                          item?.matchOdds?.[0]?.runners[1]?.ex
-                                            ?.availableToBack?.length > 1
-                                            ? 2
-                                            : 0
-                                        ]?.price) ||
+                                      item?.back11 ||
+                                      item?.section?.[1]?.odds?.[0]?.odds ||
                                       0
                                     }
                                     layRate={
-                                      (item?.matchOdds?.[0]?.runners &&
-                                        item?.matchOdds?.[0]?.runners[1]?.ex
-                                          ?.availableToLay[0]?.price) ||
+                                      item?.lay11 ||
+                                      item?.section?.[1]?.odds?.[0]?.odds ||
                                       0
                                     }
                                     active={false}
@@ -339,7 +319,11 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               }
             >
               {casinoIcons.map((item, index) => (
-                <Link to={item.url} key={index}>
+                <Link
+                  to={item.url}
+                  key={index}
+                  onClick={() => dispatch(betPlacedReset())}
+                >
                   <div className="d-inline-block casinoiconsm">
                     <Img
                       src={item.imgSrc}

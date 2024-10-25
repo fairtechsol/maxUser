@@ -5,8 +5,8 @@ import moment from "moment-timezone";
 import { FiMonitor } from "react-icons/fi";
 import { Img } from "react-image";
 import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
-import { RootState } from "../../../../../../store/store";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
   casinoIcons,
@@ -16,6 +16,9 @@ import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
 import { FaLock } from "react-icons/fa";
+import { expertSocketService } from "../../../../../../socketManager";
+import { useDispatch } from "react-redux";
+import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
 const tableHeading = [
   {
     id: "game",
@@ -41,12 +44,14 @@ const tableHeading = [
   },
 ];
 const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
+  const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
   const { countryWiseList } = useSelector(
     (state: RootState) => state.horseRacing.matchList
   );
+
   return (
     <>
       <Table className="matchListTable-desktop mb-4">
@@ -176,7 +181,14 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
       <div className=" mt-2 casino-list">
         {["/home"].includes(location.pathname) &&
           casinoIcons.map((item) => (
-            <Link to={item.url} key={item?.name} className="casino-list-item">
+            <Link
+              to={item.url}
+              key={item?.name}
+              className="casino-list-item"
+              onClick={() => {
+                dispatch(betPlacedReset());
+              }}
+            >
               <div className="d-inline-block casinoicons">
                 <Img src={item.imgSrc} className="img-fluid" alt={item.name} />
                 <div className="casino-name">{item.name}</div>
@@ -192,6 +204,9 @@ const MatchListRow = ({ item, matchType }: any) => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const currentTime = new Date().getTime();
   const startAt = new Date(item?.startAt).getTime();
+
+  const navigate = useNavigate();
+
   return (
     <tr className="one-v-one-row overflow-hidden">
       <td className="px-2 w-50 align-middle">
@@ -200,13 +215,24 @@ const MatchListRow = ({ item, matchType }: any) => {
             className="text-decoration-none"
             to={`/game-detail/${item?.id}`}
           > */}
-          <NavLink
+          <span
             className="text-decoration-none"
-            to={`/${
-              matchType === "cricket" || matchType === "politics"
-                ? "game-detail/cricket"
-                : `other-game-detail/${matchType}`
-            }/${item?.id}`}
+            // to={`/${
+            //   matchType === "cricket" || matchType === "politics"
+            //     ? "game-detail/cricket"
+            //     : `other-game-detail/${matchType}`
+            // }/${item?.id}`}
+            onClick={() => {
+              expertSocketService.match.joinMatchRoom(item?.id, "user");
+
+              navigate(
+                `/${
+                  matchType === "cricket" || matchType === "politics"
+                    ? "game-detail/cricket"
+                    : `other-game-detail/${matchType}`
+                }/${item?.id}`
+              );
+            }}
           >
             <div
               className="one-v-one-title title-14"
@@ -215,24 +241,24 @@ const MatchListRow = ({ item, matchType }: any) => {
               {item?.title} /{" "}
               {moment(item?.startAt).tz(timezone).format("MMM DD YYYY h:mmA")}
             </div>
-          </NavLink>
+          </span>
           <div className="d-flex align-items-center gap-2">
             {/* Live Dot */}
-            {currentTime >= startAt ? (
+            {item?.inPlay === "True" || item?.iplay === true ? (
               <span className="liveDot"></span>
             ) : (
               <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
             )}
 
             {/* TV Icon */}
-            {item?.isTv === true || item?.isTv === "1" ? (
+            {item?.tv === "True" || item?.tv === true ? (
               <FiMonitor />
             ) : (
               <span style={{ width: "16px", height: "16px" }}></span> // Placeholder space
             )}
 
             {/* Fancy Icon */}
-            {item?.manualSessionActive || item?.apiSessionActive ? (
+            {item?.f === "True" || item?.f === true ? (
               <span className="fancy">
                 <img src="/ic_fancy.png" alt={"fancy"} />
               </span>
@@ -250,175 +276,155 @@ const MatchListRow = ({ item, matchType }: any) => {
           </div>
         </div>
       </td>
-      {matchType==="politics"? <> <td style={{width:"10%",position:"relative"}} colSpan={2}>
-      {(matchType==="politics"?  <div className="suspended-list-rates">
-                        <FaLock color="#fff" />
-                      </div> :item?.matchOdds?.[0]?.status==="SUSPENDED") && (
-        <div className="suspended-list-rates">
-                        <FaLock color="#fff" />
-                      </div>
-                    )} 
-      <BackLayComponent
-        backRate={
-          (item?.matchOdds?.[0]?.runners &&
-            item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.[
-              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.length > 1
-                ? 2
-                : 0
-            ]?.price) ??
-          item?.matchOdds?.[0]?.backTeamA ??
-          0
-        }
-        layRate={
-          (item?.matchOdds?.[0]?.runners &&
-            item?.matchOdds?.[0]?.runners[0]?.ex?.availableToLay[0]?.price) ??
-          item?.matchOdds?.[0]?.layTeamA ??
-          0
-        }
-        active={false}
-      />
-      </td>
-      <td style={{width:"10%",position:"relative"}} colSpan={2}>
-      {( item?.matchOdds?.[0]?.status==="SUSPENDED") && (
-        <div className="suspended-list-rates">
-                        <FaLock color="#fff" />
-                      </div>
-                    )} 
-      <BackLayComponent
-        backRate={
-          (item?.matchOdds?.[0]?.runners &&
-            item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack[
-              item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack?.length > 1
-                ? 2
-                : 0
-            ]?.price) ??
-          item?.matchOdds?.[0]?.backTeamC ??
-          0
-        }
-        layRate={
-          (item?.matchOdds?.[0]?.runners &&
-            item?.matchOdds?.[0]?.runners[2]?.ex?.availableToLay[0]?.price) ??
-          item?.matchOdds?.[0]?.layTeamC ??
-          0
-        }
-        active={false}
-      />
-        </td>
-        <td style={{width:"10%",position:"relative"}} colSpan={2}>
-        {(matchType==="politics"?  <div className="suspended-list-rates">
-                        <FaLock color="#fff" />
-                      </div> : item?.matchOdds?.[0]?.status==="SUSPENDED") && (
-        <div className="suspended-list-rates">
-                        <FaLock color="#fff" />
-                      </div>
-                    )} 
-        <BackLayComponent
-          backRate={
-            (item?.matchOdds?.[0]?.runners &&
-              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.[
-                item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.length >
-                1
-                  ? 2
-                  : 0
-              ]?.price) ??
-            item?.matchOdds?.[0]?.backTeamA ??
-            0
-          }
-          layRate={
-            (item?.matchOdds?.[0]?.runners &&
-              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToLay[0]?.price) ??
-            item?.matchOdds?.[0]?.layTeamA ??
-            0
-          }
-          active={false}
-        />
-      </td></>:
-      <> 
-      
-        <td style={{width:"10%",position:"relative"}} colSpan={2}>
-        {(matchType==="politics"?  <div className="suspended-list-rates">
-                        <FaLock color="#fff" />
-                      </div> : item?.matchOdds?.[0]?.status==="SUSPENDED") && (
-        <div className="suspended-list-rates">
-                        <FaLock color="#fff" />
-                      </div>
-                    )} 
-        <BackLayComponent
-          backRate={
-            (item?.matchOdds?.[0]?.runners &&
-              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.[
-                item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.length >
-                1
-                  ? 2
-                  : 0
-              ]?.price) ??
-            item?.matchOdds?.[0]?.backTeamA ??
-            0
-          }
-          layRate={
-            (item?.matchOdds?.[0]?.runners &&
-              item?.matchOdds?.[0]?.runners[0]?.ex?.availableToLay[0]?.price) ??
-            item?.matchOdds?.[0]?.layTeamA ??
-            0
-          }
-          active={false}
-        />
-      </td>
-      <td style={{ width: "10%", position: "relative" }} colSpan={2}>
-        {item?.matchOdds?.[0]?.status === "SUSPENDED" && (
-          <div className="suspended-list-rates">
-            <FaLock color="#fff" />
-          </div>
-        )}
-        <BackLayComponent
-          backRate={
-            (item?.matchOdds?.[0]?.runners &&
-              item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack[
-                item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack?.length >
-                1
-                  ? 2
-                  : 0
-              ]?.price) ??
-            item?.matchOdds?.[0]?.backTeamC ??
-            0
-          }
-          layRate={
-            (item?.matchOdds?.[0]?.runners &&
-              item?.matchOdds?.[0]?.runners[2]?.ex?.availableToLay[0]?.price) ??
-            item?.matchOdds?.[0]?.layTeamC ??
-            0
-          }
-          active={false}
-        />
-      </td>
-      <td style={{ width: "10%", position: "relative" }} colSpan={2}>
-        {item?.matchOdds?.[0]?.status === "SUSPENDED" && (
-          <div className="suspended-list-rates">
-            <FaLock color="#fff" />
-          </div>
-        )}
-        <BackLayComponent
-          backRate={
-            (item?.matchOdds?.[0]?.runners &&
-              item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack[
-                item?.matchOdds?.[0]?.runners[1]?.ex?.availableToBack?.length >
-                1
-                  ? 2
-                  : 0
-              ]?.price) ??
-            item?.matchOdds?.[0]?.backTeamB ??
-            0
-          }
-          layRate={
-            (item?.matchOdds?.[0]?.runners &&
-              item?.matchOdds?.[0]?.runners[1]?.ex?.availableToLay[0]?.price) ??
-            item?.matchOdds?.[0]?.layTeamB ??
-            0
-          }
-          active={false}
-        />
-      </td></>}
-     
+      {matchType === "politics" ? (
+        <>
+          <td style={{ width: "10%", position: "relative" }} colSpan={2}>
+            {(matchType === "politics" ? (
+              <div className="suspended-list-rates">
+                <FaLock color="#fff" />
+              </div>
+            ) : (
+              item?.matchOdds?.[0]?.status === "SUSPENDED"
+            )) && (
+              <div className="suspended-list-rates">
+                <FaLock color="#fff" />
+              </div>
+            )}
+            <BackLayComponent
+              backRate={
+                (item?.matchOdds?.[0]?.runners &&
+                  item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.[
+                    item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack
+                      ?.length > 1
+                      ? 2
+                      : 0
+                  ]?.price) ??
+                item?.matchOdds?.[0]?.backTeamA ??
+                0
+              }
+              layRate={
+                (item?.matchOdds?.[0]?.runners &&
+                  item?.matchOdds?.[0]?.runners[0]?.ex?.availableToLay[0]
+                    ?.price) ??
+                item?.matchOdds?.[0]?.layTeamA ??
+                0
+              }
+              active={false}
+            />
+          </td>
+          <td style={{ width: "10%", position: "relative" }} colSpan={2}>
+            {item?.matchOdds?.[0]?.status === "SUSPENDED" && (
+              <div className="suspended-list-rates">
+                <FaLock color="#fff" />
+              </div>
+            )}
+            <BackLayComponent
+              backRate={
+                (item?.matchOdds?.[0]?.runners &&
+                  item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack[
+                    item?.matchOdds?.[0]?.runners[2]?.ex?.availableToBack
+                      ?.length > 1
+                      ? 2
+                      : 0
+                  ]?.price) ??
+                item?.matchOdds?.[0]?.backTeamC ??
+                0
+              }
+              layRate={
+                (item?.matchOdds?.[0]?.runners &&
+                  item?.matchOdds?.[0]?.runners[2]?.ex?.availableToLay[0]
+                    ?.price) ??
+                item?.matchOdds?.[0]?.layTeamC ??
+                0
+              }
+              active={false}
+            />
+          </td>
+          <td style={{ width: "10%", position: "relative" }} colSpan={2}>
+            {(matchType === "politics" ? (
+              <div className="suspended-list-rates">
+                <FaLock color="#fff" />
+              </div>
+            ) : (
+              item?.matchOdds?.[0]?.status === "SUSPENDED"
+            )) && (
+              <div className="suspended-list-rates">
+                <FaLock color="#fff" />
+              </div>
+            )}
+            <BackLayComponent
+              backRate={
+                (item?.matchOdds?.[0]?.runners &&
+                  item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack?.[
+                    item?.matchOdds?.[0]?.runners[0]?.ex?.availableToBack
+                      ?.length > 1
+                      ? 2
+                      : 0
+                  ]?.price) ??
+                item?.matchOdds?.[0]?.backTeamA ??
+                0
+              }
+              layRate={
+                (item?.matchOdds?.[0]?.runners &&
+                  item?.matchOdds?.[0]?.runners[0]?.ex?.availableToLay[0]
+                    ?.price) ??
+                item?.matchOdds?.[0]?.layTeamA ??
+                0
+              }
+              active={false}
+            />
+          </td>
+        </>
+      ) : (
+        <>
+          <td style={{ width: "10%", position: "relative" }} colSpan={2}>
+            {(matchType === "politics" ? (
+              <div className="suspended-list-rates">
+                <FaLock color="#fff" />
+              </div>
+            ) : (
+              item?.matchOdds?.[0]?.status === "SUSPENDED"
+            )) && (
+              <div className="suspended-list-rates">
+                <FaLock color="#fff" />
+              </div>
+            )}
+            <BackLayComponent
+              backRate={item?.back1 || item?.section?.[0]?.odds?.[0]?.odds || 0}
+              layRate={item?.lay1 || item?.section?.[0]?.odds?.[1]?.odds || 0}
+              active={false}
+            />
+          </td>
+          <td style={{ width: "10%", position: "relative" }} colSpan={2}>
+            {item?.matchOdds?.[0]?.status === "SUSPENDED" && (
+              <div className="suspended-list-rates">
+                <FaLock color="#fff" />
+              </div>
+            )}
+            <BackLayComponent
+              backRate={
+                item?.back12 || item?.section?.[2]?.odds?.[0]?.odds || 0
+              }
+              layRate={item?.lay12 || item?.section?.[2]?.odds?.[0]?.odds || 0}
+              active={false}
+            />
+          </td>
+          <td style={{ width: "10%", position: "relative" }} colSpan={2}>
+            {item?.matchOdds?.[0]?.status === "SUSPENDED" && (
+              <div className="suspended-list-rates">
+                <FaLock color="#fff" />
+              </div>
+            )}
+            <BackLayComponent
+              backRate={
+                item?.back11 || item?.section?.[1]?.odds?.[0]?.odds || 0
+              }
+              layRate={item?.lay11 || item?.section?.[1]?.odds?.[0]?.odds || 0}
+              active={false}
+            />
+          </td>
+        </>
+      )}
     </tr>
   );
 };

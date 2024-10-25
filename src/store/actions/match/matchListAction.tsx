@@ -23,15 +23,14 @@ export const getMatchList = createAsyncThunk<any, any>(
     }
   }
 );
+
 export const getTabList = createAsyncThunk<any, any>(
   "/tab/list",
-  async ( {},thunkApi) => {
+  async ({}, thunkApi) => {
     try {
-      const resp = await service.get(
-        `${ApiConstants.MATCH.TABLIST}`
-      );
+      const resp = await service.get(`${ApiConstants.MATCH.TABLIST}`);
       if (resp) {
-        return { data: resp?.data};
+        return { data: resp?.data };
       }
     } catch (error: any) {
       const err = error as AxiosError;
@@ -265,6 +264,12 @@ export const updateMatchOddRates = createAsyncThunk<any, any>(
 );
 export const updateMatchDetailFromMatchList = createAsyncThunk<any, any>(
   "/matchDetailFromList/rates",
+  async (data) => {
+    return data;
+  }
+);
+export const updateMatchRatesFromApiOnList = createAsyncThunk<any, any>(
+  "/updateMatchRatesFromApiOnList/rates",
   async (data) => {
     return data;
   }
