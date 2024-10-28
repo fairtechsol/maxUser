@@ -57,7 +57,7 @@ const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
               ? data?.profitLoss[
                   `${data?.videoInfo?.mid}_${hand?.sid}_card`
                 ]
-              : 0
+              : ""
           }
           width={width}
           handleBet={handleBet}
