@@ -39,7 +39,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
     }
   }, [odds?.[0]?.status, odds?.[0]?.team1?.b1]);
 
-  console.log("data",data)
+  // console.log("data",data)
   return (
     <div className="casino-detail detail-page-container-c position-relative">
       <div className="game-market w-100">
