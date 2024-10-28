@@ -260,7 +260,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               <span>Player</span>
               <span>{parseFloat(odds?.[0]?.b1)}:1</span>
               <div
-                className="bacarrateCards"
+                className="bacarrateCards mt-2"
                 style={{ width: cardData?.C5 != "1" ? "55px" : "35px" }}
               >
                 {cardData?.C5 != "1" && (
@@ -294,7 +294,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               <span>Banker</span>
               <span>{parseFloat(odds?.[1]?.b1)}:1</span>
               <div
-                className="bacarrateCards"
+                className="bacarrateCards mt-2"
                 style={{ width: cardData?.C6 != "1" ? "55px" : "35px" }}
               >
                 <HandleGameCards card={cardData?.C2} />
