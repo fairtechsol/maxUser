@@ -125,7 +125,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                     row?.status === "CLOSED" ||
                     row?.l1 == "0"
                       ? "-"
-                      : row?.l1}
+                      : row?.b1}
                   </span>
                   <span
                     className="market-volume-c title-11 f100"

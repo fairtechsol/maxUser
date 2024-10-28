@@ -43,6 +43,15 @@ const MobileHeader = () => {
     (state: RootState) => state.user.profile
   );
 
+  // useEffect(() => {
+  //   first
+  
+  //   return () => {
+  //     second
+  //   }
+  // }, [third])
+  
+
   return (
     <>
       <div className="float-start d-flex align-items-center gap-2">
