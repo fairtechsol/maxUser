@@ -123,7 +123,7 @@ const MarketComponent = ({ odds, data, min, max }: any) => {
                     {" "}
                     {row?.status === "SUSPENDED" ||
                     row?.status === "CLOSED" ||
-                    row?.l1 == "0"
+                    row?.b1 == "0"
                       ? "-"
                       : row?.b1}
                   </span>
