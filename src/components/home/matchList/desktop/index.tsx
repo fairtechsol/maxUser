@@ -64,7 +64,7 @@ const DesktopMatchList = ({
 
   return (
     <div className="m-1 p-0 w-100">
-      <TrendsFilters events={tabList} />{" "}
+      <TrendsFilters events={tabList} />
       <CommonTabs
         callback={setMatchType}
         defaultActive={type ?? matchTypeGameList}

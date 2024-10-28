@@ -53,6 +53,8 @@ const TeenPattiMobile = () => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sectionId,
+      min:parseFloat(dragonTigerDetail?.videoInfo?.min),
+      max:parseFloat(dragonTigerDetail?.videoInfo?.max)
     };
     dispatch(
       selectedBetAction({

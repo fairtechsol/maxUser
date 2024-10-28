@@ -19,7 +19,6 @@ import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getCasinoButtonValue,
   getProfile,
-  getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
@@ -29,8 +28,6 @@ const Cricket5 = () => {
   const dispatch: AppDispatch = useDispatch();
   const [errorCount, setErrorCount] = useState<number>(0);
   const { dragonTigerDetail } = useSelector((state: RootState) => state.card);
-
-  
 
   const getScoreBoard = async (marketId: string) => {
     try {
@@ -94,7 +91,7 @@ const Cricket5 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
-      dispatch(getProfileInMatchDetail());
+      dispatch(getProfile());
     }
   };
   const handleMatchResult = () => {

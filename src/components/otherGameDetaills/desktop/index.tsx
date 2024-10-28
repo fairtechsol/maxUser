@@ -28,7 +28,7 @@ const FootballDesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [showContactAdmin, setShowContactAdmin] = useState(false);
-  // const [showScoreboard, setShowScoreboard] = useState(false);
+  const [showScoreboard, setShowScoreboard] = useState<boolean>(false);
   const [_, setChannelId] = useState<string>("");
   // const [liveScoreBoardData, setLiveScoreBoardData] = useState(null);
   // const [errorCount, setErrorCount] = useState<number>(0);
@@ -119,6 +119,7 @@ const FootballDesktopGameDetail = () => {
                   <BetTableHeader
                     customClass="py-1"
                     title={otherMatchDetails?.title}
+                    setShowScoreboard={setShowScoreboard}
                     rightComponent={
                       <span className="title-16 fbold text-white">
                         {/* {formatDate(otherMatchDetails?.startAt)} */}
@@ -131,36 +132,36 @@ const FootballDesktopGameDetail = () => {
                 {/* {liveScoreBoardData && (
                   <Iframe data={liveScoreBoardData} width="100%" />
                 )} */}
-                {/* {showScoreboard && ( */}
-                <div
-                  style={{
-                    height: "250px",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    position: "relative",
-                    marginLeft: "4px",
-                    marginRight: "4px",
-                    width: "calc(100%-8px)",
-                  }}
-                >
-                  <iframe
+                {showScoreboard && (
+                  <div
                     style={{
-                      height: "100%",
-                      position: "absolute",
-                      width: "100%",
-                      left: 0,
-                      top: 0,
+                      height: "250px",
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      position: "relative",
+                      marginLeft: "4px",
+                      marginRight: "4px",
+                      width: "calc(100%-8px)",
                     }}
-                    src={`${scoreBoardUrlMain}${
-                      otherMatchDetails?.eventId
-                    }&sportid=${
-                      otherMatchDetails?.matchType === "football" ? "1" : "2"
-                    }`}
-                    title="Live Stream"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                  ></iframe>
-                </div>
-                {/* )} */}
+                  >
+                    <iframe
+                      style={{
+                        height: "100%",
+                        position: "absolute",
+                        width: "100%",
+                        left: 0,
+                        top: 0,
+                      }}
+                      src={`${scoreBoardUrlMain}${
+                        otherMatchDetails?.eventId
+                      }&sportid=${
+                        otherMatchDetails?.matchType === "football" ? "1" : "2"
+                      }`}
+                      title="Live Stream"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                    ></iframe>
+                  </div>
+                )}
                 {otherMatchDetails?.matchOdd?.activeStatus === "live" &&
                   otherMatchDetails?.matchOdd?.isActive && (
                     <Col md={12} style={{ marginTop: "8px" }}>
