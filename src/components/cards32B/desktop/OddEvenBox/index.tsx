@@ -40,7 +40,7 @@ const OddEven = ({ data, odds }: any) => {
   const renderItem = (item: any, index: number) => (
     <div
       className={`dtlsubTitle back-BackGround  ${
-        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+        handleLock(item?.gstatus, item?.b1) ? "lock-32" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >

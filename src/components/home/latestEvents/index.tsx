@@ -6,7 +6,7 @@ import { PiTennisBallFill } from "react-icons/pi";
 import { IoFootball } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
-const LatestEvent = ({ events }) => {
+const LatestEvent = ({ events }: any) => {
   const iconMapping = {
     cricket: <MdSportsCricket size={18} />,
     football: <IoFootball size={18} />,
@@ -43,12 +43,12 @@ const LatestEvent = ({ events }) => {
 LatestEvent.propTypes = {
   events: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired,
-      eventId: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
+      id: PropTypes.any,
+      type: PropTypes.any,
+      eventId: PropTypes.any,
+      name: PropTypes.any,
     })
-  ).isRequired,
+  ),
 };
 
 export default LatestEvent;

@@ -16,6 +16,8 @@ const handleBet = (item: any, type: any) => {
     name: item?.nation,
     bettingName: "Match odds",
     selectionId: item?.sid,
+    min:parseFloat(data?.videoInfo?.min),
+    max:parseFloat(data?.videoInfo?.max)
   };
   dispatch(
     selectedBetAction({

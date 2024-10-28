@@ -43,8 +43,8 @@ const SessionCricketCasino = ({ title, data, detail }) => {
       betPlaceIndex: tno,
       mid: item?.mid?.toString(),
       teamName: index + " Number",
-      min:item?.min ,
-      max:item?.max 
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -108,7 +108,10 @@ const SessionCricketCasino = ({ title, data, detail }) => {
               style={{ borderBottom: "1px solid #c7c8ca" }}
             >
               <div style={{ backgroundColor: "#f2f2f2", flexGrow: 1 }}>
-                <span className={`sessionMinBox sessionMinMaxFont`} style={{ marginLeft: "1%" }}>
+                <span
+                  className={`sessionMinBox sessionMinMaxFont`}
+                  style={{ marginLeft: "1%" }}
+                >
                   Min:{formatNumber(marketArr?.min)} Max:
                   {formatNumber(marketArr?.max)}
                 </span>
@@ -122,99 +125,105 @@ const SessionCricketCasino = ({ title, data, detail }) => {
             </div>
             {marketArr?.section?.map((item: any, index: any) => {
               return (
-                <div className="w-100 d-flex flex-column">
-                <div className="sessionRateContainer" key={index}>
-                  <div className="sessionRateName" style={{ flexGrow: 1 }}>
-                    <span
-                      className="teamFont"
-                      style={{ fontWeight: "400" }}
-                    >
-                      {index} Number
-                    </span>
-                    <span
-                      className={`${
-                        detail?.profitLossDataSession
+                <div className="w-100 d-flex flex-column" key={index}>
+                  <div className="sessionRateContainer">
+                    <div className="sessionRateName" style={{ flexGrow: 1 }}>
+                      <span className="teamFont" style={{ fontWeight: "400" }}>
+                        {index} Number
+                      </span>
+                      <span
+                        className={`${
+                          detail?.profitLossDataSession
+                            ? detail?.profitLossDataSession?.filter(
+                                (a: any) => a?.betId === data?.id
+                              )
+                              ? detail?.profitLossDataSession?.filter(
+                                  (a: any) => a?.betId === data?.id
+                                )[0]?.profitLoss?.[index] > 0
+                                ? "color-green"
+                                : detail?.profitLossDataSession?.filter(
+                                    (a: any) => a?.betId === data?.id
+                                  )[0]?.profitLoss?.[index] < 0
+                                ? "color-red"
+                                : "color-red"
+                              : 0
+                            : 0
+                        }`}
+                      >
+                        {detail?.profitLossDataSession
                           ? detail?.profitLossDataSession?.filter(
                               (a: any) => a?.betId === data?.id
                             )
                             ? detail?.profitLossDataSession?.filter(
                                 (a: any) => a?.betId === data?.id
-                              )[0]?.profitLoss?.[index] > 0
-                              ? "color-green"
-                              : detail?.profitLossDataSession?.filter(
-                                  (a: any) => a?.betId === data?.id
-                                )[0]?.profitLoss?.[index] < 0
-                              ? "color-red"
-                              : "color-red"
-                            : 0
-                          : 0
-                      }`}
-                      
-                    >
-                      
-                      {detail?.profitLossDataSession
-                        ? detail?.profitLossDataSession?.filter(
-                            (a: any) => a?.betId === data?.id
-                          )
-                          ? detail?.profitLossDataSession?.filter(
-                              (a: any) => a?.betId === data?.id
-                            )[0]?.profitLoss?.[index] 
-                          : ''
-                        : ''}
-                    </span>
-                  </div>
-                  <div
-                    className="sessionCCRateBoxContainer"
-                    style={{ width: isLap ? "61px" : !isMobile ? "81px" : "" }}
-                  >
-                    {item?.gstatus !== "" && (
-                      <div className="suspended-overlayRates">
-                        <FaLock color="#fff" />
-                      </div>
-                    )}
+                              )[0]?.profitLoss?.[index]
+                            : ""
+                          : ""}
+                      </span>
+                    </div>
                     <div
+                      className="sessionCCRateBoxContainer"
                       style={{
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        borderRight: "1px solid #c7c8ca",
+                        width: isLap ? "61px" : !isMobile ? "81px" : "",
                       }}
                     >
+                      {item?.gstatus !== "" && (
+                        <div className="suspended-overlayRates">
+                          <FaLock color="#fff" />
+                        </div>
+                      )}
                       <div
-                        className={`sessionRateBox back1Background`}
-                        style={{ cursor: "pointer" }}
-                        onClick={() =>
-                          handlePlaceBet(
-                            item?.odds?.[0]?.odds,
-                            "Back",
-                            "Back",
-                            item?.gstatus,
-                            item?.odds?.[0]?.odds,
-                            item,
-                            item?.odds?.[0]?.tno,
-                            index
-                          )
-                        }
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          borderRight: "1px solid #c7c8ca",
+                        }}
                       >
-                        <span
-                          className={`rateFont`}
+                        <div
+                          className={`sessionRateBox back1Background`}
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            handlePlaceBet(
+                              item?.odds?.[0]?.odds,
+                              "Back",
+                              "Back",
+                              item?.gstatus,
+                              item?.odds?.[0]?.odds,
+                              item,
+                              item?.odds?.[0]?.tno,
+                              index
+                            )
+                          }
                         >
-                          {handlePrice(item?.odds?.[0]?.odds) ?? "-"}
-                        </span>
-                        <span
-                          className={`${
-                            !isMobile ? "f-size12" : "f-size11"
-                          } sessionRate2Box`}
-                        >
-                          {handleSize(item?.odds?.[0]?.size)}
-                        </span>
+                          <span className={`rateFont`}>
+                            {handlePrice(item?.odds?.[0]?.odds) ?? "-"}
+                          </span>
+                          <span
+                            className={`${
+                              !isMobile ? "f-size12" : "f-size11"
+                            } sessionRate2Box`}
+                          >
+                            {handleSize(item?.odds?.[0]?.size)}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  {item?.rem && (
+                    <div
+                      className="w-100 text-start"
+                      style={{
+                        fontSize: "11px",
+                        color: "#097c93",
+                        backgroundColor: "#f2f2f2",
+                        borderBottom: "1px solid #c7c8ca",
+                      }}
+                    >
+                      {item?.rem}
+                    </div>
+                  )}
                 </div>
-                  {item?.rem && (<div className="w-100 text-start" style={{fontSize:"11px",color:"#097c93",backgroundColor:"#f2f2f2",borderBottom:"1px solid #c7c8ca"}}>{item?.rem}
-                    </div>)}
-                  </div>
               );
             })}
           </div>

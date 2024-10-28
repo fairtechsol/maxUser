@@ -88,9 +88,11 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
 
   useEffect(() => {
     if (success) {
-      dispatch(selectedBetAction(null));
-      dispatch(betPlaceSuccessReset());
       setMatchOddLoading(false);
+      dispatch(betPlaceSuccessReset());
+      setTimeout(() => {
+        dispatch(selectedBetAction(null));
+      }, 500);
     }
     if (error) {
       setMatchOddLoading(false);
@@ -256,9 +258,9 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             >
               <span className="text-black fbold title-12">
                 Range:{" "}
-                {formatNumber(selectedBet?.team?.min) +
+                {formatNumber(selectedBet?.team?.min || 0) +
                   " to " +
-                  formatNumber(selectedBet?.team?.max)}
+                  formatNumber(selectedBet?.team?.max || 0)}
               </span>
               <div
                 style={{
