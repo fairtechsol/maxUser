@@ -62,8 +62,8 @@ const DesktopHeader = () => {
   };
 
   const handleClickExposureModalOpen = () => {
-    if(parseFloat(getProfile?.userBal?.exposure)===0){
-      return false
+    if (parseFloat(getProfile?.userBal?.exposure) === 0) {
+      return false;
     }
     if (!openExposure) {
       dispatch(getMyMarket());
@@ -154,9 +154,11 @@ const DesktopHeader = () => {
                   >
                     Exposure:
                     <b>
-                      {parseInt(getProfile?.userBal?.exposure)===0 ? 0 : -parseFloat(getProfile?.userBal?.exposure || 0).toFixed(
-                        2
-                      )}
+                      {parseInt(getProfile?.userBal?.exposure) === 0
+                        ? 0
+                        : -parseFloat(
+                            getProfile?.userBal?.exposure || 0
+                          ).toFixed(2)}
                     </b>
                   </span>
                   <ExposureModal
@@ -172,7 +174,9 @@ const DesktopHeader = () => {
                   as={CustomDropDown}
                   id="dropdown-custom-components"
                 >
-                  {getProfile?.userName}
+                  {sessionStorage.getItem("isDemo")
+                    ? "Demo"
+                    : getProfile?.userName}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="rounded-2 shadow-sm dropdown-menu-nav">

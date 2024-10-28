@@ -3,6 +3,7 @@ import {
   authReset,
   checkOldPassword,
   login,
+  loginWithDemo,
   rulesModalShowFalse,
   rulesModalShowTrue,
 } from "../actions/authAction";
@@ -13,6 +14,7 @@ const initialState = {
   forceChangePassword: false,
   rulesPopShow: false,
   oldPasswordMatched: false,
+  demoDetails: null,
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
@@ -26,6 +28,17 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.forceChangePassword = action?.payload?.forceChangePassword;
     })
     .addCase(login.rejected, (state) => {
+      state.loading = false;
+    })
+    .addCase(loginWithDemo.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(loginWithDemo.fulfilled, (state, action) => {
+      state.loading = false;
+      state.success = true;
+      state.demoDetails = action?.payload;
+    })
+    .addCase(loginWithDemo.rejected, (state) => {
       state.loading = false;
     })
     .addCase(checkOldPassword.pending, (state) => {

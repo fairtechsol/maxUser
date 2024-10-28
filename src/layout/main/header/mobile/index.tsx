@@ -45,12 +45,11 @@ const MobileHeader = () => {
 
   // useEffect(() => {
   //   first
-  
+
   //   return () => {
   //     second
   //   }
   // }, [third])
-  
 
   return (
     <>
@@ -98,7 +97,11 @@ const MobileHeader = () => {
                 className="title-14"
                 as={CustomDropDown}
               >
-                <span className="title-14">{getProfile?.userName}</span>
+                <span className="title-14">
+                  {sessionStorage.getItem("isDemo")
+                    ? "Demo"
+                    : getProfile?.userName}
+                </span>
               </Dropdown.Toggle>
 
               <Dropdown.Menu
