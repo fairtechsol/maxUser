@@ -232,9 +232,10 @@ const FootballGameDetails = () => {
       if (document.visibilityState === "visible") {
         if (id) {
           dispatch(selectedBetAction(null));
-          dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
+          // dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
           dispatch(getPlacedBets(id));
-          dispatch(getPlacedBets(id));
+          expertSocketService.match.joinMatchRoom(id, "user");
+          expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         }
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);

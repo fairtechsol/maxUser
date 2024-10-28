@@ -46,7 +46,6 @@ import {
 
 const GameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { success } = useSelector((state: RootState) => state.match.matchList);
   const navigate = useNavigate();
   const { id } = useParams();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
@@ -325,7 +324,10 @@ const GameDetails = () => {
       if (document.visibilityState === "visible") {
         if (id) {
           dispatch(selectedBetAction(null));
-          dispatch(matchDetailAction(id));
+          // dispatch(matchDetailAction(id));
+          dispatch(getPlacedBets(id));
+          expertSocketService.match.joinMatchRoom(id, "user");
+          expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         }
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);
