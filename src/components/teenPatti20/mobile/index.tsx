@@ -48,8 +48,8 @@ const TeenPattiMobile = () => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:dragonTigerDetail?.videoInfo?.min,
-      max:dragonTigerDetail?.videoInfo?.max
+      min: dragonTigerDetail?.videoInfo?.min,
+      max: dragonTigerDetail?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -98,15 +98,18 @@ const TeenPattiMobile = () => {
   useEffect(() => {
     if (playerA?.[0]?.gstatus === "0" || playerA?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [playerA?.[0]?.gstatus,playerA?.[0]?.b1]);
-  
+    }
+  }, [playerA?.[0]?.gstatus, playerA?.[0]?.b1]);
+
   return (
     <>
       <div>
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
 
         {!activeTab ? (
           <div
@@ -203,7 +206,7 @@ const TeenPattiMobile = () => {
                                   : ""
                                 : ""
                             }`}
-                            style={{zIndex:"100"}}
+                            style={{ zIndex: "100" }}
                           >
                             {dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -249,7 +252,7 @@ const TeenPattiMobile = () => {
                                   : ""
                                 : ""
                             }`}
-                            style={{zIndex:"100"}}
+                            style={{ zIndex: "100" }}
                           >
                             {dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -320,6 +323,7 @@ const TeenPattiMobile = () => {
                                   : ""
                                 : ""
                             }`}
+                            style={{ zIndex: "100" }}
                           >
                             {dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -365,6 +369,7 @@ const TeenPattiMobile = () => {
                                   : ""
                                 : ""
                             }`}
+                            style={{ zIndex: "100" }}
                           >
                             {dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -441,7 +446,13 @@ const TeenPattiMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={tprules} gameType="teen20" type="imageWithContent" />
+      <RulesModal
+        show={show}
+        setShow={setShow}
+        rule={tprules}
+        gameType="teen20"
+        type="imageWithContent"
+      />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

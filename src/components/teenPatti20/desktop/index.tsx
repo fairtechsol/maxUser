@@ -67,8 +67,8 @@ const TeenPattiDesktop = () => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:dragonTigerDetail?.videoInfo?.min,
-      max:dragonTigerDetail?.videoInfo?.max
+      min: dragonTigerDetail?.videoInfo?.min,
+      max: dragonTigerDetail?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -113,11 +113,9 @@ const TeenPattiDesktop = () => {
   useEffect(() => {
     if (playerA?.[0]?.gstatus === "0" || playerA?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [playerA?.[0]?.gstatus,playerA?.[0]?.b1]);
-  
-  
+    }
+  }, [playerA?.[0]?.gstatus, playerA?.[0]?.b1]);
+
   return (
     <>
       <Row>
@@ -254,7 +252,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
-                          style={{zIndex:"100"}}
+                          style={{ zIndex: "100" }}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -300,7 +298,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
-                          style={{zIndex:"100"}}
+                          style={{ zIndex: "100" }}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -372,6 +370,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
+                          style={{ zIndex: "100" }}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -417,6 +416,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
+                          style={{ zIndex: "100" }}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -460,7 +460,10 @@ const TeenPattiDesktop = () => {
                 <DesktopMyBet />
               </Col>
               <Col className="p-1 pt-0">
-                <div className="casino-title mt-2" style={{ position: "relative" }}>
+                <div
+                  className="casino-title mt-2"
+                  style={{ position: "relative" }}
+                >
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table">
@@ -482,7 +485,13 @@ const TeenPattiDesktop = () => {
                     </tbody>
                   </Table>
                 </div>
-                <RulesModal show={show} setShow={setShow} gameType="teen20" rule={tprules} type="imageWithContent" />
+                <RulesModal
+                  show={show}
+                  setShow={setShow}
+                  gameType="teen20"
+                  rule={tprules}
+                  type="imageWithContent"
+                />
               </Col>
             </Row>
           </Container>
