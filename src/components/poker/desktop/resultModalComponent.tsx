@@ -1,8 +1,8 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import {isMobile} from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import ResultBetList from "../../commonComponent/resultBetList";
 interface Props {
@@ -177,7 +177,7 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div>
         </div>
-        {data?.result?.win === "0" && (
+        {/* {data?.result?.win === "0" && (
           <div
             style={{
               display: "flex",
@@ -187,7 +187,7 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
           >
             <span className="title-18 f500">Tie</span>
           </div>
-        )}
+        )} */}
         <div
           style={{
             display: "flex",
@@ -305,9 +305,8 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
           )}
         </div>
       </div>
-      {/* <Col xs={6} className=" justify-content-center">
-      <Row className="mt-2 justify-content-center">
-   
+      <Col xs={11} md={6} lg={6} className="justify-content-center">
+        <Row className="mt-2 justify-content-center">
           <div className="casino-result-desc">
             <div className="casino-result-desc-item">
               <div>Winner</div>
@@ -318,15 +317,17 @@ const Poker6ResultComponent: React.FC<Props> = ({ data }: any) => {
               <div>Pair</div>
             </div>
           </div>
-    
-      </Row>
-      </Col> */}
-      {
-        data?.bets?.count > 0 && 
+        </Row>
+      </Col>
+
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList
+            bets={data?.bets?.rows ?? 12}
+            total={data?.bets?.count}
+          />
+        </div>
+      )}
     </Container>
   );
 };
