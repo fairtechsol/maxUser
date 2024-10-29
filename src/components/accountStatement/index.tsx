@@ -109,10 +109,18 @@ const AccountStatementComponent = () => {
       } else if (to) {
         filter += `&createdAt=lte${moment(to)?.format("YYYY-MM-DD")}`;
       }
+      // if (type) {
+      //   filter += `&statementType=${type?.value}`;
+      // }
       if (type) {
-        filter += `&statementType=${type?.value}`;
+        if (type?.value === "casino") {
+          filter += `&statementType=game&betId=isNull`;
+        } else if (type?.value === "game") {
+          filter += `&statementType=${type?.value}&betId=notNull`;
+        } else {
+          filter += `&statementType=${type?.value}`;
+        }
       }
-
       dispatch(
         getAccountStatement({
           userId: getProfile?.id,

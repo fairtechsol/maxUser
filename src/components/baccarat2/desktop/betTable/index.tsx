@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import { HandleGameCards } from "../card";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import PieChart from "../../../baccarat1/desktop/chart";
+import PieChart from "../../../baccarat2/desktop/chart";
 export const options = {
   is3D: true,
   backgroundColor: "none",

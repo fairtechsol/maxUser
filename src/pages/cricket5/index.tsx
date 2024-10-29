@@ -8,6 +8,7 @@ import {
 import {
   casinoScoreboardMatchRates,
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   scoreBoardReset,
   updateBalanceOnBetPlaceCards,
@@ -125,6 +126,7 @@ const Cricket5 = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
+      dispatch(getDragonTigerDetail(cardGamesType.cricketv3));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cricketv3);
         socketService.card.getCardRatesOff(cardGamesType.cricketv3);

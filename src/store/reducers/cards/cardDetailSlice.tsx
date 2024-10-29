@@ -40,6 +40,7 @@ import {
   ballbyballMatchRates,
   updateQueenRates,
   updateWorliMatkaRates,
+  getDragonTigerDetail,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -97,6 +98,25 @@ const cardDetail = createSlice({
         state.liveGameResultTop10 = action.payload.topTenResult;
       })
       .addCase(getDragonTigerDetailHorseRacing.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      }).addCase(getDragonTigerDetail.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(getDragonTigerDetail.fulfilled, (state, action) => {
+        state.success = true;
+        // state.dragonTigerDetail = action.payload;
+        state.dragonTigerDetail = {
+          ...state.dragonTigerDetail,
+          name: action.payload.name,
+          id: action.payload?.id,
+          type: action.payload?.type,
+        };
+        state.liveGameResultTop10 = action.payload.topTenResult;
+      })
+      .addCase(getDragonTigerDetail.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })

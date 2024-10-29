@@ -8,6 +8,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateDragonTigerLionRates,
@@ -86,6 +87,7 @@ const DragonTigerLion = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerLion));
+      dispatch(getDragonTigerDetail(cardGamesType.dragonTigerLion));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.dragonTigerLion);
         socketService.card.getCardRatesOff(cardGamesType.dragonTigerLion);

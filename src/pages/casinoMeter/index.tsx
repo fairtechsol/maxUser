@@ -12,6 +12,7 @@ import {
   updateProfitLossCards,
   dragonTigerReset,
   casinoMeterPattiMatchRates,
+  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
   getCasinoButtonValue,
@@ -86,6 +87,7 @@ const CasinoMeter = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cmeter));
+      dispatch(getDragonTigerDetail(cardGamesType.cmeter));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cmeter);
         socketService.card.getCardRatesOff(cardGamesType.cmeter);
