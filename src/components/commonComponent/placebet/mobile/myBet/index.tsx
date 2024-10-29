@@ -90,9 +90,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
     if (success) {
       setMatchOddLoading(false);
       dispatch(betPlaceSuccessReset());
-      setTimeout(() => {
-        dispatch(selectedBetAction(null));
-      }, 500);
+      
     }
     if (error) {
       setMatchOddLoading(false);
@@ -210,6 +208,9 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                       })
                     );
                     setStake(0);
+                    // setTimeout(() => {
+                      dispatch(selectedBetAction(null));
+                    // }, 500);
                   } catch (e) {
                     console.log(e);
                   }

@@ -7,6 +7,7 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
   dragonTigerReset,
+  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
   getCasinoButtonValue,
@@ -100,6 +101,7 @@ const CardJ = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cardj));
+      dispatch(getDragonTigerDetail(cardGamesType.cardj));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cardj);
         socketService.card.getCardRatesOff(cardGamesType.cardj);

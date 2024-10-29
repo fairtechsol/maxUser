@@ -108,6 +108,7 @@ export const ApiConstants = {
   CARDS: {
     MATCH: {
       GET_CARD_DETAIL: "/match/card",
+      GET_CARD_DETAIL_INITIAL: "/match/initial/card",
       PLACE_BET: "/bet/cardBetting",
       RESULT: "/card/result/detail",
     },

@@ -211,7 +211,7 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "40%",
-                        padding: "10px",
+                        padding: "14px",
                         border: "0.1px solid #fff",
                       }}
                     >
@@ -230,7 +230,7 @@ const TeenPattiDesktop = () => {
                       className={`teenPatti-table-item ${
                         playerA?.[0]?.gstatus != "0" &&
                         playerA?.[1]?.gstatus === "0"
-                          ? "lock"
+                          ? "suspended-box2"
                           : ""
                       }`}
                       style={{ width: "20%", backgroundColor: "#72bbef" }}
@@ -241,7 +241,7 @@ const TeenPattiDesktop = () => {
                       className={`teenPatti-table-item ${
                         playerA?.[0]?.gstatus != "0" &&
                         playerA?.[1]?.gstatus === "0"
-                          ? "lock"
+                          ? "suspended-box2"
                           : ""
                       }`}
                       style={{ width: "20%", backgroundColor: "#72bbef" }}
@@ -260,7 +260,7 @@ const TeenPattiDesktop = () => {
                         <div
                           style={{
                             width: "40%",
-                            padding: "10px",
+                            padding: "14px",
                             border: "0.1px solid #fff",
                           }}
                         >
@@ -280,7 +280,7 @@ const TeenPattiDesktop = () => {
                         >
                           <div
                           className={`${
-                            section.dstatus !== "True" ? "teenPatti-table-item lock" : "teenPatti-table-item"
+                            section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
                           }`}
                             style={{
                               width: "33.3%",
@@ -327,7 +327,7 @@ const TeenPattiDesktop = () => {
 
                           <div
                               className={`${
-                                section.dstatus !== "True" ? "teenPatti-table-item lock" : "teenPatti-table-item"
+                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
                               }`}
                             style={{
                               width: "33.3%",
@@ -374,7 +374,7 @@ const TeenPattiDesktop = () => {
 
                           <div
                                className={`${
-                                section.dstatus !== "True" ? "teenPatti-table-item lock" : "teenPatti-table-item"
+                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
                               }`}
                             style={{
                               width: "33.3%",
@@ -437,7 +437,7 @@ const TeenPattiDesktop = () => {
                     </div>
                   </div>
                 </div>
-                <div style={{ width: "100%", marginTop: "10px" }}>
+                <div style={{ width: "100%", marginTop: "14px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["D", "T", "L"]}

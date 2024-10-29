@@ -8,6 +8,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   update7BCardMatchRates,
   updateBalanceOnBetPlaceCards,
@@ -86,6 +87,7 @@ const Lucky7B = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7B));
+      dispatch(getDragonTigerDetail(cardGamesType.lucky7B));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.lucky7B);
         socketService.card.getCardRatesOff(cardGamesType.lucky7B);

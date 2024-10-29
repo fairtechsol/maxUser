@@ -34,7 +34,7 @@ const PieChart = ({ data}: any) => {
               top:10,
               left:35
             }}>
-              {data?.[2]}%
+              {/* {data?.[2]}% */}
               </span>
             <span>{data?.[0]}%</span>
           </div>
