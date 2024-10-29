@@ -203,7 +203,7 @@ const TeenPattiMobile = () => {
                         className={`teenPatti-table-item ${
                           playerA?.[0]?.gstatus != "0" &&
                           playerA?.[1]?.gstatus === "0"
-                            ? "suspended"
+                            ? "suspended-box2"
                             : ""
                         }`}
                         style={{ width: "20%", backgroundColor: "#72bbef" }}
@@ -214,7 +214,7 @@ const TeenPattiMobile = () => {
                         className={`teenPatti-table-item ${
                           playerA?.[0]?.gstatus != "0" &&
                           playerA?.[1]?.gstatus === "0"
-                            ? "suspended"
+                            ? "suspended-box2"
                             : ""
                         }`}
                         style={{ width: "20%", backgroundColor: "#72bbef" }}
@@ -233,7 +233,7 @@ const TeenPattiMobile = () => {
                           <div
                             style={{
                               width: "40%",
-                              padding: "10px",
+                              padding: "14px",
                               border: "0.1px solid #fff",
                             }}
                           >
@@ -253,7 +253,7 @@ const TeenPattiMobile = () => {
                           >
                             <div
                              className={`${
-                              section.dstatus !== "True" ? "teenPatti-table-item suspended" : "teenPatti-table-item"
+                              section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
                             }`}
                               style={{
                                 width: "33.3%",
@@ -269,7 +269,7 @@ const TeenPattiMobile = () => {
                                     )
                               }
                             >
-                              <span className="f12-b">{section.trate}</span>
+                              <span className="f12-b mt-2">{section.trate}</span>
                               <span
                                 className={
                                   dragonTigerDetail?.profitLoss
@@ -304,7 +304,7 @@ const TeenPattiMobile = () => {
 
                             <div
                                className={`${
-                                section.dstatus !== "True" ? "teenPatti-table-item suspended" : "teenPatti-table-item"
+                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
                               }`}
                               style={{
                                 width: "33.3%",
@@ -320,7 +320,7 @@ const TeenPattiMobile = () => {
                                     )
                               }
                             >
-                              <span className="f12-b">{section.lrate}</span>
+                              <span className="f12-b mt-2">{section.lrate}</span>
                               <span
                                 className={
                                   dragonTigerDetail?.profitLoss
@@ -354,7 +354,7 @@ const TeenPattiMobile = () => {
 
                             <div
                                className={`${
-                                section.dstatus !== "True" ? "teenPatti-table-item suspended" : "teenPatti-table-item"
+                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
                               }`}
                               style={{
                                 width: "33.3%",
@@ -370,7 +370,7 @@ const TeenPattiMobile = () => {
                                     )
                               }
                             >
-                              <span className="f12-b">{section.drate}</span>
+                              <span className="f12-b mt-2">{section.drate}</span>
                               <span
                                 className={
                                   dragonTigerDetail?.profitLoss
@@ -419,7 +419,7 @@ const TeenPattiMobile = () => {
                   </div>
                 </div>
 
-                <div style={{ width: "100%", marginTop: "15px" }}>
+                <div style={{ width: "100%", marginTop: "14px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["D", "T", "L"]}
