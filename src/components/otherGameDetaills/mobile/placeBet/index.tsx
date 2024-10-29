@@ -90,7 +90,6 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
 
   useEffect(() => {
     if (success) {
-      dispatch(selectedBetAction(null));
       dispatch(betPlaceSuccessReset());
       setMatchOddLoading(false);
     }
@@ -397,6 +396,7 @@ const FootballPlaceBet = ({ show }: PlaceBetProps) => {
           })
         );
       }
+      dispatch(selectedBetAction(null));
     } catch (e) {
       console.log(e);
     }
