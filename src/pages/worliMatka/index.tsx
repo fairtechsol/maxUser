@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { socket, socketService } from "../../socketManager";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateLiveGameResultTop10,
@@ -86,6 +87,7 @@ const WorliMatka = () => {
     try {
       dispatch(getButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.worli1));
+      dispatch(getDragonTigerDetail(cardGamesType.worli1));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.worli1);
         socketService.card.getCardRatesOff(cardGamesType.worli1);
