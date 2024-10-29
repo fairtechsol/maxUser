@@ -51,7 +51,7 @@ const TeenPattiTableRow = ({
         >
           <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>{player.rate}</span>
           <span
-            className={`f10-b ${"profit-loss-class"} ${
+            className={`title-12 ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss
                 ? dragonTigerDetail?.profitLoss[
                     `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
@@ -89,7 +89,7 @@ const TeenPattiTableRow = ({
         >
           <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>{pairPlus.nation}</span>
           <span
-            className={`f10-b ${"profit-loss-class"} ${
+            className={`title-12 ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss
                 ? dragonTigerDetail?.profitLoss[
                     `${dragonTigerDetail?.videoInfo?.mid}_${pairPlus?.sid}_card`

@@ -161,7 +161,6 @@ const TeenPattiMobile = () => {
                         style={{
                           width: "40%",
                           display: "flex",
-                          gap: "2px",
                         }}
                       >
                         <div

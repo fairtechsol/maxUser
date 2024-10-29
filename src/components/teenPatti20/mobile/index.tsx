@@ -189,7 +189,7 @@ const TeenPattiMobile = () => {
                         >
                           <span className="f12-b">{playerA?.[0]?.rate}</span>
                           <span
-                            className={`f10-b ${
+                            className={`title-12 ${
                               dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
@@ -235,7 +235,7 @@ const TeenPattiMobile = () => {
                         >
                           <span className="f12-b">{playerA?.[1]?.nation}</span>
                           <span
-                            className={`f10-b ${
+                            className={`title-12 ${
                               dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
@@ -306,7 +306,7 @@ const TeenPattiMobile = () => {
                         >
                           <span className="f12-b">{playerB?.[0]?.rate}</span>
                           <span
-                            className={`f10-b ${
+                            className={`title-12 ${
                               dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
