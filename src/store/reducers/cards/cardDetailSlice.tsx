@@ -92,7 +92,7 @@ const cardDetail = createSlice({
           profitLoss: action.payload?.profitLoss,
           type: action.payload?.type,
           maxBet: action.payload?.maxBet,
-          minBet: action.payload?.maxBet
+          minBet: action.payload?.maxBet,
         };
         state.liveGameResultTop10 = action.payload.topTenResult;
       })
@@ -225,7 +225,7 @@ const cardDetail = createSlice({
 
       .addCase(updateTeenPattiOpenMatchRates.fulfilled, (state, action) => {
         const payload = action?.payload;
-        
+
         if (payload) {
           const { t1, t2 } = payload;
           state.loading = false;
@@ -364,9 +364,9 @@ const cardDetail = createSlice({
         };
       })
       .addCase(casinoWarPattiMatchRates.fulfilled, (state, action) => {
+        state.loading = false;
         if (action.payload) {
           const { t1, t2 } = action?.payload;
-          state.loading = false;
 
           const videoInfo = t1 && t1.length > 0 ? { ...t1[0] } : "";
 
@@ -399,13 +399,6 @@ const cardDetail = createSlice({
             ...state?.dragonTigerDetail,
             videoInfo,
             players: chunkedPlayers,
-          };
-        } else {
-          state.loading = false;
-          state.dragonTigerDetail = {
-            ...state?.dragonTigerDetail,
-            videoInfo: "",
-            players: [],
           };
         }
       })
@@ -474,20 +467,20 @@ const cardDetail = createSlice({
         const PlayerA = [];
         const PlayerB = [];
 
-        t2?.forEach((item:any, index:any) => {
+        t2?.forEach((item: any, index: any) => {
           if (index % 2 === 0) {
             PlayerA.push(item);
           } else {
             PlayerB.push(item);
           }
-        })
+        });
 
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
           odds,
           PlayerA,
-          PlayerB
+          PlayerB,
         };
       })
       .addCase(updateBaccarat1Rates.fulfilled, (state, action) => {
@@ -652,7 +645,6 @@ const cardDetail = createSlice({
       })
 
       .addCase(ballbyballMatchRates.fulfilled, (state, action) => {
-        
         state.loading = false;
         const { t1 } = action?.payload;
         const videoInfo = { ...t1 };
@@ -660,7 +652,7 @@ const cardDetail = createSlice({
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
           videoInfo,
-          runs
+          runs,
         };
       })
 
@@ -677,12 +669,12 @@ const cardDetail = createSlice({
       })
 
       .addCase(updateWorliMatkaRates.fulfilled, (state, action) => {
-        console.log("action.payload",action.payload)
+        console.log("action.payload", action.payload);
         const { t1, t2 } = action.payload;
         state.loading = false;
         const videoInfo = { ...t1[0] };
 
-        const worliMatka = {...t2};
+        const worliMatka = { ...t2 };
 
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
