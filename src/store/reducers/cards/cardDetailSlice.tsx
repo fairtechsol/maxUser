@@ -100,7 +100,8 @@ const cardDetail = createSlice({
       .addCase(getDragonTigerDetailHorseRacing.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
-      }).addCase(getDragonTigerDetail.pending, (state) => {
+      })
+      .addCase(getDragonTigerDetail.pending, (state) => {
         state.loading = true;
         state.success = false;
         state.error = null;
@@ -665,15 +666,17 @@ const cardDetail = createSlice({
       })
 
       .addCase(ballbyballMatchRates.fulfilled, (state, action) => {
-        state.loading = false;
-        const { t1 } = action?.payload;
-        const videoInfo = { ...t1 };
-        const runs = t1?.sub;
-        state.dragonTigerDetail = {
-          ...state.dragonTigerDetail,
-          videoInfo,
-          runs,
-        };
+        if (action.payload) {
+          state.loading = false;
+          const { t1 } = action?.payload;
+          const videoInfo = { ...t1 };
+          const runs = t1?.sub;
+          state.dragonTigerDetail = {
+            ...state.dragonTigerDetail,
+            videoInfo,
+            runs,
+          };
+        }
       })
 
       .addCase(updateQueenRates.fulfilled, (state, action) => {

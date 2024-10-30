@@ -25,7 +25,7 @@ const TeenPattiMobile = () => {
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [curR, setCurR] = useState(null);
- 
+
   const [mid, setMid] = useState(false);
 
   const [isClick, setIsClick] = useState(false);
@@ -45,8 +45,8 @@ const TeenPattiMobile = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: "" + item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -127,8 +127,6 @@ const TeenPattiMobile = () => {
       }, 1000);
     }
   }, [resultData]);
-
-
   return (
     <>
       <div>
@@ -153,15 +151,17 @@ const TeenPattiMobile = () => {
                 {curR && (
                   <img
                     className="elem"
-                    src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${resultData?.result?.desc.split(" ")[0]}.png`}
+                    src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
+                      curR?.result?.desc.split(" ")[0]
+                    }.png`}
                     style={{
                       position: "absolute",
-                      top: "35%",
+                      top: "30%",
                       left: "47%",
                       transform: "translate(-50%, -100%)",
                       zIndex: 2,
                     }}
-                    alt="Centered Image"
+                    alt=""
                   />
                 )}
 
@@ -306,7 +306,7 @@ const TeenPattiMobile = () => {
                           }`}
                           style={{ zIndex: "100" }}
                         >
-                          {dragonTigerDetail?.profitLoss
+                          {(dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
                                 `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                               ]
@@ -314,7 +314,7 @@ const TeenPattiMobile = () => {
                                   `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
                                 ]
                               : ""
-                            : ""}
+                            : "") || "\u00A0"}
                         </span>
                       </div>
                       <div
@@ -340,8 +340,15 @@ const TeenPattiMobile = () => {
                             : handleBet(item)
                         }
                       >
-                        <span className="f12-b">{item.b=="0"?"":item.b}</span>
-                        <span className="f10-b" style={{fontWeight:"normal"}}>{item.bs=="0"?"":item.bs}</span>
+                        <span className="f12-b">
+                          {item.b == "0" ? "" : item.b}
+                        </span>
+                        <span
+                          className="f10-b"
+                          style={{ fontWeight: "normal" }}
+                        >
+                          {item.bs == "0" ? "" : item.bs}
+                        </span>
                       </div>
                       <div
                         style={{
@@ -354,8 +361,12 @@ const TeenPattiMobile = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        <span className="pe-1" style={{ lineHeight: "2" }}>Min:{item.min}</span>
-                        <span className="pe-1" style={{ lineHeight: "1" }}>Max:{formatNumber(item.max)}</span>
+                        <span className="pe-1" style={{ lineHeight: "2" }}>
+                          Min:{item.min}
+                        </span>
+                        <span className="pe-1" style={{ lineHeight: "1" }}>
+                          Max:{formatNumber(item.max)}
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -478,7 +489,12 @@ const TeenPattiMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} type={"imageWithContent"} gameType="ballbyball" />
+      <RulesModal
+        show={show}
+        setShow={setShow}
+        type={"imageWithContent"}
+        gameType="ballbyball"
+      />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );
