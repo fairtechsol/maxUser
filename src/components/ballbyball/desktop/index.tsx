@@ -184,7 +184,7 @@ const TeenPattiDesktop = () => {
                   <img
                     className="elem"
                     src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                      resultData?.result?.desc.split(" ")[0]
+                      curR?.result?.desc.split(" ")[0]
                     }.png`}
                     style={{
                       position: "absolute",
@@ -193,7 +193,7 @@ const TeenPattiDesktop = () => {
                       transform: "translate(-50%, -100%)",
                       zIndex: 2,
                     }}
-                    alt="Centered Image"
+                    alt=""
                   />
                 )}
 
@@ -446,8 +446,15 @@ const TeenPattiDesktop = () => {
                             : handleBet(item)
                         }
                       >
-                        <span className="f12-b">{item.b=="0"?"":item.b}</span>
-                        <span className="f10-b" style={{fontWeight:"normal"}}>{item.bs=="0"?"":item.bs}</span>
+                        <span className="f12-b">
+                          {item.b == "0" ? "" : item.b}
+                        </span>
+                        <span
+                          className="f10-b"
+                          style={{ fontWeight: "normal" }}
+                        >
+                          {item.bs == "0" ? "" : item.bs}
+                        </span>
                       </div>
                       <div
                         style={{
