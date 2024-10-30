@@ -56,7 +56,7 @@ const PairBox = ({ odds, data }: any) => {
               odds?.[0]?.gstatus === "SUSPENDED" ||
               odds?.[0]?.gstatus === "CLOSED" ||
               odds?.[0]?.b1 === "0.00"
-                ? "poker-table-item suspended"
+                ? "poker-table-item suspended-box2"
                 : "poker-table-item"}
             style={{ width: "50%" }}
             onClick={() =>
@@ -67,9 +67,9 @@ const PairBox = ({ odds, data }: any) => {
                 : handleBet(odds?.[0])
             }
           >
-            <span className="f12-b">{odds?.[0]?.nation}</span>
+            <span className="title-16 mt-2 f600">{odds?.[0]?.nation}</span>
             <span
-              className={`f10-b f400 ${
+              className={`title-14 f400 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
@@ -104,7 +104,7 @@ const PairBox = ({ odds, data }: any) => {
               odds?.[1]?.gstatus === "SUSPENDED" ||
               odds?.[1]?.gstatus === "CLOSED" ||
               odds?.[1]?.b1 === "0.00"
-                ? "poker-table-item suspended"
+                ? "poker-table-item suspended-box2"
                 : "poker-table-item"}
             style={{ width: "50%" }}
             onClick={() =>
@@ -115,9 +115,9 @@ const PairBox = ({ odds, data }: any) => {
                 : handleBet(odds?.[1])
             }
           >
-            <span className="f12-b">{odds?.[1]?.nation}</span>
+            <span className="title-16 mt-2 f600">{odds?.[1]?.nation}</span>
             <span
-              className={`f10-b f400 ${
+              className={`title-14 f400 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
@@ -166,7 +166,7 @@ const PairBox = ({ odds, data }: any) => {
               odds?.[2]?.gstatus === "SUSPENDED" ||
               odds?.[2]?.gstatus === "CLOSED" ||
               odds?.[2]?.b1 === "0.00"
-                ? "poker-table-item suspended"
+                ? "poker-table-item suspended-box2"
                 : "poker-table-item"}
             style={{ width: "50%" }}
             onClick={() =>
@@ -177,9 +177,9 @@ const PairBox = ({ odds, data }: any) => {
                 : handleBet(odds?.[2])
             }
           >
-            <span className="f12-b">{odds?.[2]?.nation}</span>
+            <span className="title-16 mt-2 f600">{odds?.[2]?.nation}</span>
             <span
-              className={`f10-b f400 ${
+              className={`title-14 f400 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
@@ -214,7 +214,7 @@ const PairBox = ({ odds, data }: any) => {
               odds?.[3]?.gstatus === "SUSPENDED" ||
               odds?.[3]?.gstatus === "CLOSED" ||
               odds?.[3]?.b1 === "0.00"
-                ? "poker-table-item suspended"
+                ? "poker-table-item suspended-box2"
                 : "poker-table-item"}
             style={{ width: "50%" }}
             onClick={() =>
@@ -225,9 +225,9 @@ const PairBox = ({ odds, data }: any) => {
                 : handleBet(odds?.[3])
             }
           >
-            <span className="f12-b">{odds?.[3]?.nation}</span>
+            <span className="title-16 mt-2 f600">{odds?.[3]?.nation}</span>
             <span
-              className={`f10-b f400 ${
+              className={`title-14 f400 ${
                 data?.profitLoss
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`

@@ -39,7 +39,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     type === "back" ? (
       <div
         className={`dtlsubTitle title-14 ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+          handleLock(item?.gstatus, item?.b1) ? "suspended-box2" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.b1) && handleBet(item, "back")
@@ -50,7 +50,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     ) : (
       <div
         className={`dtlsubTitle title-14 ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
+          handleLock(item?.gstatus, item?.l1) ? "suspended-box2" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.l1) && handleBet(item, "lay")
