@@ -16,6 +16,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max),
     };
     dispatch(
       selectedBetAction({
@@ -53,7 +55,6 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           alignItems: "start",
         }}
       >
-
         <PlayerButton
           value1={lowHigh?.[0]?.b1}
           value4={lowHigh?.[0]?.l1}
@@ -62,7 +63,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"100%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[0]?.gstatus === "SUSPENDED" ||lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
+            lowHigh?.[0]?.gstatus === "SUSPENDED" ||
+            lowHigh?.[0]?.gstatus === "CLOSED" ||
+            lowHigh?.[0]?.b1 === "0.00"
               ? true
               : false
           }
@@ -77,7 +80,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"100%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[1]?.gstatus === "SUSPENDED" || lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
+            lowHigh?.[1]?.gstatus === "SUSPENDED" ||
+            lowHigh?.[1]?.gstatus === "CLOSED" ||
+            lowHigh?.[1]?.b1 === "0.00"
               ? true
               : false
           }
@@ -92,7 +97,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"100%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[2]?.gstatus === "SUSPENDED" ||  lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
+            lowHigh?.[2]?.gstatus === "SUSPENDED" ||
+            lowHigh?.[2]?.gstatus === "CLOSED" ||
+            lowHigh?.[2]?.b1 === "0.00"
               ? true
               : false
           }
