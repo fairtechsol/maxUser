@@ -28,7 +28,7 @@ const Poker1DayDesktop = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  console.log(dragonTigerDetail, "data");
+  
   const handleClose = () => {
     setShowInactivityModal(false);
   };
