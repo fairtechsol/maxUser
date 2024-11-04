@@ -1,18 +1,18 @@
 const SportsFilterJson = () => {
   return [
     {
+      id: "lottery",
+      name: "LOTTERY",
+      link: "/contact-admin",
+    },
+    {
       id: "inPlay",
-      name: "IN-PLAY",
+      name: "SPORTS",
       link: "/inPlay",
     },
     {
-      id: "sports",
-      name: "SPORTS",
-      link: "/sports",
-    },
-    {
       id: "casino-slot",
-      name: "CASINO",
+      name: "OUR CASINO",
       link: "/casino-slot",
     },
     {
