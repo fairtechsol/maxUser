@@ -19,7 +19,7 @@ const SportsFilters = ({ type, setMatchType, matchType }: any) => {
             : location.pathname.split("/")[1]
         }
         fill={true}
-        justify={true}
+        // justify={true}
       >
         {SportsFilterJson()?.map((item) => {
           const tabTitleStyle = {

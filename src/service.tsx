@@ -11,6 +11,10 @@ const toastOptions = {
 
 const service = axios.create({
   baseURL: serviceUrl,
+  headers: {
+    "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+    Pragma: "no-cache",
+  },
 });
 
 service.defaults.timeout = 100000;
@@ -18,7 +22,6 @@ service.defaults.timeout = 100000;
 service.interceptors.request.use(
   (config) => {
     config.headers["Content-Type"] = "application/json";
-
     const authToken = sessionStorage.getItem("jwtMaxUser");
     config.headers.Authorization = `Bearer ${authToken}`;
     return config;
