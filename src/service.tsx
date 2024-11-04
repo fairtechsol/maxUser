@@ -11,10 +11,10 @@ const toastOptions = {
 
 const service = axios.create({
   baseURL: serviceUrl,
-  // headers: {
-  //   "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
-  //   Pragma: "no-cache",
-  // },
+  headers: {
+    "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+    Pragma: "no-cache",
+  },
 });
 
 service.defaults.timeout = 100000;
