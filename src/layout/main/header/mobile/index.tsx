@@ -108,27 +108,35 @@ const MobileHeader = () => {
                 variant="light"
                 className="shadow-sm dropdown-menu-nav"
               >
-                {dropdownList?.map((item) => {
-                  return (
-                    <Dropdown.Item
-                      className="title-16px d-flex justify-content-between"
-                      onClick={() => {
-                        navigate(item.link || "");
-                      }}
-                      key={item?.id}
-                      eventKey={item?.id}
-                    >
-                      {item?.name}
-                      {item?.isChecked && (
-                        <Form.Check
-                          id={item?.id}
-                          onChange={(e) => handleCheckboxChange(e, item.id)}
-                          checked={show[item?.id]}
-                        />
-                      )}
-                    </Dropdown.Item>
-                  );
-                })}
+                {dropdownList
+                  ?.filter((item) => {
+                    if (sessionStorage.getItem("isDemo")) {
+                      return item?.showDemo === true;
+                    } else {
+                      return item;
+                    }
+                  })
+                  ?.map((item) => {
+                    return (
+                      <Dropdown.Item
+                        className="title-16px d-flex justify-content-between"
+                        onClick={() => {
+                          navigate(item.link || "");
+                        }}
+                        key={item?.id}
+                        eventKey={item?.id}
+                      >
+                        {item?.name}
+                        {item?.isChecked && (
+                          <Form.Check
+                            id={item?.id}
+                            onChange={(e) => handleCheckboxChange(e, item.id)}
+                            checked={show[item?.id]}
+                          />
+                        )}
+                      </Dropdown.Item>
+                    );
+                  })}
                 <Dropdown.Item
                   className="title-14 d-flex justify-content-between m-logout"
                   eventKey={"Logout"}
@@ -136,7 +144,7 @@ const MobileHeader = () => {
                     dispatch(logout());
                   }}
                 >
-                  Logout
+                  SignOut
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
