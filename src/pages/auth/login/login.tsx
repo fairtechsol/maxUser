@@ -27,7 +27,7 @@ const Login = () => {
     password: "",
     loginType: "user",
   };
-  const { success, forceChangePassword, loading } = useSelector(
+  const { success, forceChangePassword, loading, loadingDemo } = useSelector(
     (state: RootState) => state.auth
   );
 
@@ -157,7 +157,14 @@ const Login = () => {
             }}
           >
             <div className="button-container">
-              <span className="login-text f400">Login with Demo ID</span>
+              <span className="login-text f400">Login with Demo ID</span>{" "}
+              {loadingDemo ? (
+                <AiOutlineLoading className="spinner-icon" />
+              ) : (
+                <span className="f800">
+                  <i className="fas fa-sign-in-alt float-end mt-1 title-16"></i>
+                </span>
+              )}
             </div>
           </CustomButton>
 

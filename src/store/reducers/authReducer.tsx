@@ -11,6 +11,7 @@ import {
 const initialState = {
   success: false,
   loading: false,
+  loadingDemo: false,
   forceChangePassword: false,
   rulesPopShow: false,
   oldPasswordMatched: false,
@@ -31,15 +32,15 @@ export const authReducer = createReducer(initialState, (builder) => {
       state.loading = false;
     })
     .addCase(loginWithDemo.pending, (state) => {
-      state.loading = true;
+      state.loadingDemo = true;
     })
     .addCase(loginWithDemo.fulfilled, (state, action) => {
-      state.loading = false;
+      state.loadingDemo = false;
       state.success = true;
       state.demoDetails = action?.payload;
     })
     .addCase(loginWithDemo.rejected, (state) => {
-      state.loading = false;
+      state.loadingDemo = false;
     })
     .addCase(checkOldPassword.pending, (state) => {
       state.loading = true;
