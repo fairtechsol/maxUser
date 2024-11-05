@@ -230,7 +230,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                 <div className="d-flex w-100">
                                   <BackLayComponent
                                     heading="1"
-                                    suspend={
+                                    suspend={ mTypeid === "politics" ? true :
                                       item?.matchOdds?.[0]?.status ===
                                       "SUSPENDED"
                                         ? true
@@ -270,7 +270,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                                   />
                                   <BackLayComponent
                                     heading="2"
-                                    suspend={
+                                    suspend={mTypeid === "politics" ? true :
                                       item?.matchOdds?.[0]?.status ===
                                       "SUSPENDED"
                                         ? true

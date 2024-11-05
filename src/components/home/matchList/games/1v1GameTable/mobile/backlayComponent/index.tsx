@@ -21,7 +21,7 @@ const BackLayComponent = ({
       <div className="text-center f800 title-14">{heading}</div>
       <div className="d-flex w-100 text-center pb-1 position-relative">
       {( suspend) && (
-        <div className="suspended-list-rates">
+        <div className="suspended-list-rates " style={{height:"86%"}}>
                         <FaLock color="#fff" />
                       </div>
                     )}
