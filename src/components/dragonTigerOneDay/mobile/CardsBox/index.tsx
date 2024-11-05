@@ -64,8 +64,8 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
-          : 0}
+            : ""
+          : ""}
       </span>
     </div>
   );
@@ -116,7 +116,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           </div>
         </div>
         <div
-         style={{ height: "40px" }}
+         style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitlee">Dragon </div>
@@ -126,7 +126,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           {renderItem(dragonData?.[6])}
         </div>
         <div
-         style={{ height: "40px" }}
+         style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitlee"> Tiger</div>
