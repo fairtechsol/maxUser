@@ -3,7 +3,7 @@ const SportsFilterJson = () => {
     {
       id: "lottery",
       name: "LOTTERY",
-      link: "/contact-admin",
+      link: "/contact-admin/1",
     },
     {
       id: "inPlay",
