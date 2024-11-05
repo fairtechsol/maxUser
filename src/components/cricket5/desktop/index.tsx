@@ -106,7 +106,7 @@ const Cricket5Desktop = () => {
               </div>
               <span className="title-12 mt-1">
                 {dragonTigerDetail?.videoInfo
-                  ? `Round ID:  ${dragonTigerDetail.videoInfo?.mid}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${dragonTigerDetail?.videoInfo?.max}`
+                  ? `Round ID:  ${dragonTigerDetail.videoInfo?.mid}`
                   : ""}
               </span>
             </div>
