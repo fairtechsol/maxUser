@@ -242,7 +242,7 @@ const TeenPattiMobile = () => {
                               bettingOptions === 1 ? "1px solid #fff" : "none"
                             }`,
                             width: "16.7%",
-                            // marginTop: "2px",
+                             marginTop: "2px",
                           }}
                           onClick={() => setBettingOptions(1)}
                         >
