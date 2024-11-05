@@ -8,13 +8,13 @@
         "id": "horseRacing",
         "name": "Horse Racing",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/contact-admin/88"
       },
       {
         "id": "grehoundRacing",
         "name": "GreyHound Racing",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/contact-admin/87"
       }
     ]
   },
@@ -28,19 +28,19 @@
         "name": "Tembo Casino",
         "type": "liveItem",
         "blink": true,
-        "path": "/contact-admin"
+        "path": "/contact-admin/89"
       },
       {
         "id": "livecasino",
         "name": "Live Casino",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/contact-admin/90"
       },
       {
         "id": "slotgame",
         "name": "Slot Game",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/contact-admin/91"
       },
       {
         "id": "race2020",
@@ -88,7 +88,7 @@
         "id": "lottery",
         "name": "Lottery",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/contact-admin/11"
       },
       {
         "id": "3cardsjudgement",
@@ -106,13 +106,13 @@
         "id": "virtual_sport",
         "name": "Virtual Sport",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/contact-admin/56"
       },
       {
         "id": "cricketcasino",
         "name": "Cricket Casino",
         "type": "liveItem",
-        "path": "/contact-admin"
+        "path": "/contact-admin/55"
       }
     ]
   },

@@ -1,6 +1,6 @@
 [
   { "id": "home", "name": "Home", "link": "/home", "type": "desktop" },
-  { "id": "lottery", "name": "Lottery", "link": "/contact-admin", "type": "desktop" },
+  { "id": "lottery", "name": "Lottery", "link": "/contact-admin/1", "type": "desktop" },
   { "id": "cricket", "name": "Cricket", "link": "/cricket", "type": "desktop" },
   {
     "id": "tennis",
@@ -17,13 +17,13 @@
   {
     "id": "tableTennis",
     "name": "Table Tennis",
-    "link": "/contact-admin",
+    "link": "/contact-admin/777",
     "type": "desktop"
   },
   {
     "id": "volleyball",
     "name": "VOLLEYBALL",
-    "link": "/contact-admin",
+    "link": "/contact-admin/888",
     "type": "desktop"
   },
   {

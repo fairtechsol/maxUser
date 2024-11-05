@@ -5,7 +5,7 @@ import { expertSocketService } from "../../../../socketManager";
 import { AppDispatch, RootState } from "../../../../store/store";
 // import { onTabSwitch } from "../../../../utils/tabSwitch";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams,useLocation } from "react-router-dom";
 import { updateMatchOddRates } from "../../../../store/actions/match/matchListAction";
 import CommonTabs from "../../../commonComponent/tabs";
 import OneVOneGameTable from "../games/1v1GameTable";
@@ -19,9 +19,11 @@ const DesktopMatchList = ({
   matchType,
 }: any) => {
   const { type } = useParams();
+  const location = useLocation();
+
+  const isGameRoute = location.pathname.includes('game-list');
   // const dispatch: AppDispatch = useDispatch();
   const { tabList } = useSelector((state: RootState) => state.match.matchList);
-
   // const setMatchOddRatesInRedux = (event: any) => {
   //   dispatch(updateMatchOddRates(event));
   // };
@@ -64,7 +66,7 @@ const DesktopMatchList = ({
 
   return (
     <div className="m-1 p-0 w-100">
-      <TrendsFilters events={tabList} />
+      {!isGameRoute && (<><TrendsFilters events={tabList} />
       <CommonTabs
         callback={setMatchType}
         defaultActive={type ?? matchTypeGameList}
@@ -84,7 +86,7 @@ const DesktopMatchList = ({
               ></Tab>
             );
           })}
-      </CommonTabs>
+      </CommonTabs></>)}
       <OneVOneGameTable id={type ?? matchType} />
     </div>
   );
