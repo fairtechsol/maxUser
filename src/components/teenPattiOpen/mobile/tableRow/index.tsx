@@ -50,7 +50,7 @@ const TeenPattiTableRow = ({
         <div
           className={
             player.gstatus === "0"
-              ? "teenPatti-table-itemo suspended"
+              ? "teenPatti-table-itemo suspended-box2"
               : "teenPatti-table-itemo"
           }
           style={{ width: "50%" }}
@@ -58,7 +58,7 @@ const TeenPattiTableRow = ({
         >
           <span className="f12-b">{player.rate}</span>
           <span
-            className={`f10-b ${"profit-loss-class"} ${
+            className={`title-12 ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss
                 ? dragonTigerDetail?.profitLoss[
                     `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
@@ -92,7 +92,7 @@ const TeenPattiTableRow = ({
         <div
           className={
             player.gstatus === "0"
-              ? "teenPatti-table-itemo suspended"
+              ? "teenPatti-table-itemo suspended-box2"
               : "teenPatti-table-itemo"
           }
           style={{ width: "50%" }}
@@ -102,7 +102,7 @@ const TeenPattiTableRow = ({
         >
           <span className="f12-b">{pairPlus.nation}</span>
           <span
-            className={`f10-b ${"profit-loss-class"} ${
+            className={`title-12 ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss
                 ? dragonTigerDetail?.profitLoss[
                     `${dragonTigerDetail?.videoInfo?.mid}_${pairPlus?.sid}_card`

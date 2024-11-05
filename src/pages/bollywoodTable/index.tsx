@@ -13,6 +13,7 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
   dragonTigerReset,
+  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
@@ -85,6 +86,7 @@ const BollywoodTable = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.btable));
+      dispatch(getDragonTigerDetail(cardGamesType.btable));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.btable);
         socketService.card.getCardRatesOff(cardGamesType.btable);

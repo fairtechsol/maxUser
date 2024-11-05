@@ -8,6 +8,7 @@ import {
 import {
   casinoScoreboardMatchRates,
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   scoreBoardReset,
   updateBalanceOnBetPlaceCards,
@@ -142,6 +143,7 @@ const Superover = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.superover));
+      dispatch(getDragonTigerDetail(cardGamesType.superover));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.superover);
         socketService.card.getCardRatesOff(cardGamesType.superover);

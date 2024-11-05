@@ -44,7 +44,7 @@ const CommonButtonBox = ({
               style={{
                 fontSize: "12px",
                 zIndex: 99,
-                color: value3 && value3 < 0 ? "#BD1828" : "#28a745",
+                color: value3 && (value3 < 0) ? "#BD1828" : "#28a745",
               }}
             >
               {value3}

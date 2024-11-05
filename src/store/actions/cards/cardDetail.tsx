@@ -19,6 +19,22 @@ export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
     }
   }
 );
+export const getDragonTigerDetail = createAsyncThunk<any, any>(
+  "card/matchDetail",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.CARDS.MATCH.GET_CARD_DETAIL_INITIAL}/${requestData}`
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 // export const deleteHorseRacingBets = createAsyncThunk<any, any>(
 //   "horseRacing/deleteBet",
 //   async (requestData, thunkApi) => {

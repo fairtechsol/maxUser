@@ -7,6 +7,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   graphData,
   updateBaccarat2Rates,
@@ -86,6 +87,7 @@ const Bacarrat2 = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.baccarat2));
+      dispatch(getDragonTigerDetail(cardGamesType.baccarat2));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.baccarat2);
         socketService.card.getCardRatesOff(cardGamesType.baccarat2);

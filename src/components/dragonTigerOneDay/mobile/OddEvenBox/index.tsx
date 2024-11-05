@@ -68,8 +68,8 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
-          : 0}
+            : ""
+          : ""}
       </span>
     </div>
   );
@@ -140,7 +140,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           </div>
         </div>
         <div
-         style={{ height: "40px" }}
+         style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitle">Dragon </div>
@@ -152,7 +152,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           )}
         </div>
         <div
-         style={{ height: "40px" }}
+         style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
           <div className="dtlTitle"> Tiger</div>

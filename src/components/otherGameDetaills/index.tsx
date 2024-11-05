@@ -247,7 +247,7 @@ const FootballGameDetails = () => {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, [id]);
 
   return isMobile ? (
     <FootballMobileGameDetail />

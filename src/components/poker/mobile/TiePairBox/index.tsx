@@ -17,6 +17,8 @@ const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -57,7 +59,7 @@ const TiePairBox = ({ handsData, data , width,title,cards}: any) => {
               ? data?.profitLoss[
                   `${data?.videoInfo?.mid}_${hand?.sid}_card`
                 ]
-              : 0
+              : ""
           }
           width={width}
           handleBet={handleBet}

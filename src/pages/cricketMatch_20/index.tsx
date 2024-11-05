@@ -12,6 +12,7 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
   updateCricketMatch20MatchRates,
+  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
   getCasinoButtonValue,
@@ -86,6 +87,7 @@ const CricketMatch20 = () => {
     try {
       dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cmatch20));
+      dispatch(getDragonTigerDetail(cardGamesType.cmatch20));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cmatch20);
         socketService.card.getCardRatesOff(cardGamesType.cmatch20);
