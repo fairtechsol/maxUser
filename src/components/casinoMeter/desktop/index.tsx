@@ -124,9 +124,7 @@ const CasinoMeterDesktop = () => {
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${
-                        dragonTigerDetail?.players?.[0]?.[0]?.min ?? 0
-                      }|Max: ${dragonTigerDetail?.players?.[0]?.[0]?.max ?? 0}`
+                      )}`
                     : ""}
                 </span>
               </div>

@@ -59,7 +59,7 @@ const WinBox = ({ odds, data }: any) => {
                           ]
                           ? data?.profitLoss[
                               `${data?.videoInfo?.mid}_${item?.sid}_card`
-                            ] > 0
+                            ] > 0 
                             ? "color-green"
                             : data?.profitLoss[
                                 `${data?.videoInfo?.mid}_${item?.sid}_card`
@@ -77,8 +77,8 @@ const WinBox = ({ odds, data }: any) => {
                         ? data?.profitLoss[
                             `${data?.videoInfo?.mid}_${item?.sid}_card`
                           ]
-                        : ""
-                      : 0}
+                        : "\u00A0"
+                      : "\u00A0"}
                   </span>
                 </div>
               </>
