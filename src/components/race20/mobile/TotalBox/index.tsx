@@ -120,7 +120,7 @@ const TotalsBox = ({ odds, data }: any) => {
                         `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                       ]
                     :  <br></br>
-                  : 0}
+                  : "\u00A0"}
               </span>
             </span>
           </div>
@@ -209,7 +209,7 @@ const TotalsBox = ({ odds, data }: any) => {
                         `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                       ]
                     :  <br></br>
-                  : 0}
+                  : "\u00A0"}
               </span>
             </span>
           </div>
