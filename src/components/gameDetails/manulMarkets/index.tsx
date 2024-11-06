@@ -237,7 +237,7 @@ const ManualMarket = ({ title, data, detail }) => {
               }
             >
               <span className={`rateFont manualRate1Box`}>
-                {data?.backTeamA != 0
+                {Math.floor(data?.backTeamA) != 0
                   ? Math.floor(data?.backTeamA) - 2 > 0
                     ? Math.floor(data?.backTeamA) - 2
                     : "-"
@@ -261,7 +261,7 @@ const ManualMarket = ({ title, data, detail }) => {
               }
             >
               <span className={`rateFont manualRate1Box`}>
-                {data?.backTeamA != 0
+                {Math.floor(data?.backTeamA) != 0
                   ? Math.floor(data?.backTeamA) - 1 > 0
                     ? Math.floor(data?.backTeamA) - 1
                     : "-"
@@ -321,7 +321,7 @@ const ManualMarket = ({ title, data, detail }) => {
               }
             >
               <span className={`rateFont manualRate1Box`}>
-                {data?.layTeamA != 0
+                {Math.floor(data?.layTeamA) != 0
                   ? detail?.rateThan100
                     ? Math.floor(data?.layTeamA) + 1
                     : Math.floor(data?.layTeamA) + 1 > 100
@@ -347,7 +347,7 @@ const ManualMarket = ({ title, data, detail }) => {
               }
             >
               <span className={`rateFont manualRate1Box`}>
-                {data?.layTeamA != 0
+                {Math.floor(data?.layTeamA) != 0
                   ? detail?.rateThan100
                     ? Math.floor(data?.layTeamA) + 2
                     : Math.floor(data?.layTeamA) + 2 > 100
