@@ -49,9 +49,11 @@ const MyBet = () => {
                       : "bg-blue3"
                   }`}
                 >
-                  {bet?.marketBetType === "SESSION"
-                    ? (bet?.bettingName ?? bet?.eventName)
-                    : bet?.teamName}
+                   {["horseRacing", "greyHound"].includes(bet?.eventType)
+                        ? bet?.teamName?.split(".")?.[1]?.trim()
+                          ? bet?.teamName?.split(".")?.[1]?.trim()
+                          : bet?.teamName
+                        : bet?.teamName ?? bet?.bettingName}
                 </th>
                 <th
                   className={`title-12 text-start f400 lh-1 ${
