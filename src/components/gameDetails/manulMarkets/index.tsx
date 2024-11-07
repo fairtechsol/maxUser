@@ -226,7 +226,7 @@ const ManualMarket = ({ title, data, detail }) => {
               className="manualBackBox back3Background"
               onClick={() =>
                 handlePlaceBet(
-                  data?.backTeamA - 2,
+                  Math.floor(data?.backTeamA) - 2,
                   "BACK",
                   data?.type?.includes("quickbookmaker")
                     ? detail?.teamA
