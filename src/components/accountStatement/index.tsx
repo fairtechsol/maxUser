@@ -53,7 +53,7 @@ const AccountStatementComponent = () => {
 
   const handleClose = () => {
     setSelectedOption("matched");
-    setShow({ status: false, betId: [], runnerId: "", casinoType: "" });
+    setShow({ status: false, betId: [], runnerId: "", casinoType: "a" });
   };
 
   const handleSubmitClick = () => {
