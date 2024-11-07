@@ -105,7 +105,12 @@ const Queen = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
+        // dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
+        socketService.card.joinMatchRoom(cardGamesType.queen);
+        socketService.card.getCardRates(
+          cardGamesType.queen,
+          setMatchRatesInRedux
+        );
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
         socketService.card.leaveMatchRoom(cardGamesType.queen);

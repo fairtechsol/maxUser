@@ -147,7 +147,6 @@ const DesktopGameDetail = () => {
 
   //   fetchData();
   // }, [matchDetails]);
-  // console.log('matchDetails',matchDetails)
   return (
     <Container fluid className="pe-0 ps-1">
       <Row className="p-0">
@@ -540,7 +539,7 @@ const DesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {matchDetails?.eventId && (
+              {matchDetails?.eventId && matchDetails?.matchType!=="politics" && (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent
                     url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}

@@ -105,7 +105,7 @@ const DragonTigerMobile = () => {
             {loading ? (
               <NewLoader />
             ) : (
-              <div style={{ height: "760px" }}>
+              <div>
                 <div className="" style={{ width: "97%", gap: "10px" }}>
                   <div className="w-100">
                     <BackLay

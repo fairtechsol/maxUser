@@ -126,7 +126,7 @@ const MainRoutes = {
       element: <CardList4 />,
     },
     {
-      path: "contact-admin",
+      path: "contact-admin/:type",
       element: <ContactAdmin />,
     },
     {

@@ -48,7 +48,7 @@ function BetTableHeader({
       </span>
 
       {rightComponent}
-      {selectedBet?.team?.min && selectedBet?.team?.max ? (
+      {selectedBet?.team?.min && selectedBet?.team?.max && title==="Place Bet" ? (
         <span className="title-14 text-white f400">
           Range: {formatNumber(selectedBet?.team?.min)} to{" "}
           {formatNumber(selectedBet?.team?.max)}

@@ -94,9 +94,7 @@ const QueenDesktop = () => {
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${parseFloat(dragonTigerDetail?.videoInfo?.min)}|Max: ${
-                        parseFloat(dragonTigerDetail?.videoInfo?.max)
-                      }`
+                      )}`
                     : ""}
                 </span>
               </div>

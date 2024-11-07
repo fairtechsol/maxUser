@@ -21,10 +21,16 @@ const RowPerPage: React.FC<RowPerPageProps> = ({ value, onChange }) => {
     {
       name:"30",
       value:30
-    },{
+    },
+    {
       name:"40",
       value:40
-    }];
+    },
+    {
+      name:"50",
+      value:50
+    }
+  ];
 
   return (
     <div
