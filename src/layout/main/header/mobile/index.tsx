@@ -126,14 +126,15 @@ const MobileHeader = () => {
                     </Dropdown.Item>
                   );
                 })}
+                <Dropdown.Divider />
                 <Dropdown.Item
-                  className="title-14 d-flex justify-content-between m-logout"
+                  className="title-16 d-flex justify-content-between"
                   eventKey={"Logout"}
                   onClick={() => {
                     dispatch(logout());
                   }}
                 >
-                  Logout
+                  Signout
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
