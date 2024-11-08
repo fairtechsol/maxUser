@@ -46,19 +46,7 @@ const MobileHeader = () => {
   const { getProfile, marqueeNotification } = useSelector(
     (state: RootState) => state.user.profile
   );
-
-  // useEffect(() => {
-  //   first
   
-  //   return () => {
-  //     second
-  //   }
-  // }, [third])
-  useEffect(() => {
-   
-  }, [show])
-  
-console.log('first',show)
   return (
     <>
       <div className="float-start d-flex align-items-center gap-2">
@@ -116,8 +104,11 @@ console.log('first',show)
                   return (
                     <Dropdown.Item
                       className="title-16px d-flex justify-content-between"
-                      onClick={() => {
-                        !item.onClick? navigate(item.link || ""):null;
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (item?.link) {
+                          navigate(item.link);
+                        }
                       }}
                       key={item?.id}
                       eventKey={item?.id}
