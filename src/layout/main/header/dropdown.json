@@ -64,13 +64,15 @@
     "name": "Balance",
     "isChecked": true,
     "type": "mobile",
-    "showDemo": true
+    "showDemo": true,
+    "onClick": true
   },
   {
     "id": "exposure",
     "name": "Exposure",
     "isChecked": true,
     "type": "mobile",
-    "showDemo": true
+    "showDemo": true,
+    "onClick": true
   }
 ]
