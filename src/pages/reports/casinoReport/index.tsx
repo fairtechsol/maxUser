@@ -121,7 +121,7 @@ const CasinoReports = () => {
     return lowCardSum > highCardSum ? "Low" : "High";
   };
   return (
-    <div className="vh-100">
+    <div className="vh-50">
       <ReportContainer title="Casino Result">
         <div>
           <Stack gap={2}>
