@@ -30,23 +30,14 @@ const MobileHeader = () => {
     setOpenExposure(!openExposure);
   };
 
-  const handleCheckboxChange = (e: any, itemId: any) => {
-    // e.preventDefault();
-    // e.stopPropagation();
-    setShow((prev:any)=>{ 
-      return {
-      ...prev,
-      [itemId]: e.target.checked,
-      }
-    });
-  };
-
   const navigate = useNavigate();
 
   const { getProfile, marqueeNotification } = useSelector(
     (state: RootState) => state.user.profile
   );
-  
+
+  console.log(show);
+
   return (
     <>
       <div className="float-start d-flex align-items-center gap-2">
@@ -115,10 +106,20 @@ const MobileHeader = () => {
                     >
                       {item?.name}
                       {item?.onClick && (
-                        <Form.Check
-                          id={item?.id}
-                          onChange={(e) => {handleCheckboxChange(e, item.id);console.log('first',show[item?.id]);}}
-                          checked={show[item?.id]}
+                        <input
+                          type="checkbox"
+                          id={item.id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setShow((prev: any) => {
+                              return {
+                                ...prev,
+                                [item.id]: !prev[item.id],
+                              };
+                            });
+                          }}
+                          checked={!!show[item.id]}
+                          // className="customCheckbox"
                         />
                       )}
                     </Dropdown.Item>
