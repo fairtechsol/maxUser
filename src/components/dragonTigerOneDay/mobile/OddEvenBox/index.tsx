@@ -102,7 +102,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitle" style={{ fontWeight: "400" }}>
+          <div className="dtlTitle" style={{ fontWeight: "400",background:"#F2F2F2" }}>
             {/* Min:{" "}
             {title1 === "even"
               ? dragonEvenOdd?.[0]?.min
@@ -143,7 +143,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
          style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitle">Dragon </div>
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}>Dragon </div>
           {renderItem(
             title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0]
           )}
@@ -155,7 +155,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
          style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitle"> Tiger</div>
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}> Tiger</div>
           {renderItem(
             title1 === "even" ? tigerEvenOdd?.[0] : tigerRedBlack?.[0]
           )}

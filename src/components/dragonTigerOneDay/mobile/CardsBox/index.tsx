@@ -85,7 +85,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           className={isMobile ? "row-flex-mobile p-0" : "w-100 d-sm-flex flex-row"}
 
         >
-          <div className="dtlTitlee">
+          <div className="dtlTitlee" style={{background:"#F2F2F2"}}>
             {" "}
             {/* <div style={{ width: "20%", textAlign: "start" }}>
               <span className="minmaxi">
@@ -116,10 +116,10 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           </div>
         </div>
         <div
-         style={{ height: "42px" }}
+         style={{ height: "42px", background:"#F2F2F2"}}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitlee">Dragon </div>
+          <div className="dtlTitlee" style={{background:"#F2F2F2"}}>Dragon </div>
           {renderItem(dragonData?.[4])}
           {renderItem(dragonData?.[5])}
           {renderItem(dragonData?.[7])}
@@ -129,7 +129,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
          style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitlee"> Tiger</div>
+          <div className="dtlTitlee" style={{background:"#F2F2F2"}}> Tiger</div>
           {renderItem(tigerData?.[4])}
           {renderItem(tigerData?.[5])}
           {renderItem(tigerData?.[7])}

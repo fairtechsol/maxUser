@@ -38,6 +38,7 @@ const PairBox = ({ odds, data }: any) => {
           marginLeft: "5px",
           justifyContent: "center",
           alignItems: "center",
+          background:"#F2F2F2"
         }}
       >
         <CommonButtonBox

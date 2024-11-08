@@ -130,13 +130,11 @@ const MobileGameDetail = () => {
               })`}</div>
             ),
           },
-          matchDetails?.eventId && {
-            // id: "live",
+          matchDetails?.eventId && matchDetails?.matchType !== "politics" && {
             name: (
               <div
                 onClick={() => setShowVideo(!showVideo)}
                 className="ps-5"
-                // style={{  lineHeight: 1.22 }}
               >
                 <FaTv size={15} />
               </div>
