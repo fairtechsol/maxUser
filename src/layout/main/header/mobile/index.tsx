@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dropdown, Form, Navbar } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,9 +31,13 @@ const MobileHeader = () => {
   };
 
   const handleCheckboxChange = (e: any, itemId: any) => {
-    setShow({
-      ...show,
+    // e.preventDefault();
+    // e.stopPropagation();
+    setShow((prev:any)=>{ 
+      return {
+      ...prev,
       [itemId]: e.target.checked,
+      }
     });
   };
 
@@ -50,8 +54,11 @@ const MobileHeader = () => {
   //     second
   //   }
   // }, [third])
+  useEffect(() => {
+   
+  }, [show])
   
-
+console.log('first',show)
   return (
     <>
       <div className="float-start d-flex align-items-center gap-2">
@@ -110,16 +117,16 @@ const MobileHeader = () => {
                     <Dropdown.Item
                       className="title-16px d-flex justify-content-between"
                       onClick={() => {
-                        navigate(item.link || "");
+                        !item.onClick? navigate(item.link || ""):null;
                       }}
                       key={item?.id}
                       eventKey={item?.id}
                     >
                       {item?.name}
-                      {item?.isChecked && (
+                      {item?.onClick && (
                         <Form.Check
                           id={item?.id}
-                          onChange={(e) => handleCheckboxChange(e, item.id)}
+                          onChange={(e) => {handleCheckboxChange(e, item.id);console.log('first',show[item?.id]);}}
                           checked={show[item?.id]}
                         />
                       )}

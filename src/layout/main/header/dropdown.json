@@ -39,19 +39,20 @@
     "id": "rules",
     "name": "Rules",
     "type": "mobile",
-    "link": "/rules",
-    "onClick": true
+    "link": "/rules"
   },
   {
     "id": "balance",
     "name": "Balance",
     "isChecked": true,
-    "type": "mobile"
+    "type": "mobile",
+    "onClick": true
   },
   {
     "id": "exposure",
     "name": "Exposure",
     "isChecked": true,
-    "type": "mobile"
+    "type": "mobile",
+    "onClick": true
   }
 ]
