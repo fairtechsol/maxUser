@@ -3,13 +3,11 @@ import { useIdleTimer } from "react-idle-timer";
 import { useDispatch } from "react-redux";
 import { logout } from "../store/actions/authAction";
 import { AppDispatch } from "../store/store";
-import { useNavigate } from "react-router-dom";
 
 const LogoutTimer = () => {
   const [show, setShow] = useState(false);
   const [time, setTime] = useState(6);
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (show && time > 0) {
@@ -39,7 +37,7 @@ const LogoutTimer = () => {
     debounce: 500,
   });
   const handleHome = () => {
-    navigate("/home");
+    window.location.href = "/home";
   };
   const handleScreen = () => {
     setShow(true);
