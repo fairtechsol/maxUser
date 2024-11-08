@@ -3,8 +3,7 @@
     "id": "accountStatement",
     "name": "Account Statement",
     "link": "/account-statement",
-    "type": "any",
-    "showDemo": true
+    "type": "any"
   },
   {
     "id": "profitLossReport",
@@ -16,12 +15,11 @@
     "id": "betHistory",
     "name": "Bet History",
     "link": "/bet-history",
-    "type": "any",
-    "showDemo": true
+    "type": "any"
   },
   {
     "id": "unsettledBet",
-    "name": "Current Bet",
+    "name": "Unsettled Bet",
     "link": "/unsettled-bet",
     "type": "any"
   },
@@ -29,15 +27,13 @@
     "id": "casinoReportHistory",
     "name": "Casino Results",
     "link": "/casino-report",
-    "type": "any",
-    "showDemo": true
+    "type": "any"
   },
   {
     "id": "setButtonValues",
     "name": "Set Button Values",
     "link": "/change-btn-value",
-    "type": "any",
-    "showDemo": true
+    "type": "any"
   },
   {
     "id": "securityAuthVerification",
@@ -52,25 +48,22 @@
     "type": "any"
   },
   {
-    "id": "rules",
-    "name": "Rules",
-    "type": "mobile",
-    "link": "/rules",
-    "onClick": true,
-    "showDemo": true
-  },
-  {
     "id": "balance",
     "name": "Balance",
     "isChecked": true,
-    "type": "mobile",
-    "showDemo": true
+    "type": "mobile"
   },
   {
     "id": "exposure",
     "name": "Exposure",
     "isChecked": true,
+    "type": "mobile"
+  },
+  {
+    "id": "rules",
+    "name": "Rules",
     "type": "mobile",
-    "showDemo": true
+    "link": "/rules",
+    "onClick": true
   }
 ]

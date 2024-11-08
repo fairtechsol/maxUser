@@ -189,20 +189,10 @@ export const getProfitLossReport = createAsyncThunk<any, any>(
 );
 export const settleUnsettleMatch = createAsyncThunk<any, any>(
   "/unsettled/bet/",
-  // async (requestData, thunkApi) => {
-  //   try {
-  //     const resp = await service.get(
-  //       `${ApiConstants.MATCH.CURRENTBET}?status=${requestData.status}&keyword=${requestData?.keyword || ""}${requestData?.filter || ""}`
-  //       ?status MATCHED(bet history) pending(current bet) DELETED(UNSETTLED) gameType(FOR ALL BETS) UNmATCHED(PENDING)
-  //     );
-  async ({ status, page, limit, keyword }, thunkApi) => {
+  async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.CURRENTBET}?page=${page || 1}&limit=${
-          limit || 15
-        }&status=${status}&searchBy=betPlaced.eventName&keyword=${
-          keyword || ""
-        }`
+        `${ApiConstants.MATCH.CURRENTBET}?${requestData}`
       );
       if (resp?.data) {
         return resp?.data;
