@@ -23,36 +23,35 @@ const Desktop = () => {
 
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey={activeSport}>
-      <Row className="">
+      <Row className="p-2">
         <Col sm={3} className="pe-0">
           <Nav
-            variant="pills"
+            // variant="pills"
             className="flex-column custom-nav"
             onSelect={handleSelect}
           >
-            {sportsRules.map((sport, index) => (
-              <Nav.Item key={index}>
-                <Nav.Link
-                  eventKey={sport.sportName}
-                  className={`custom-nav-link
-                    shadow-lg rounded
-                     text-white px-2 ${
-                       activeSport === sport.sportName ? "active" : ""
-                     }`}
-                >
-                  {sport.sportName}
-                </Nav.Link>
-              </Nav.Item>
-            ))}
+               {sportsRules.map((sport, index) => (
+      <Nav.Item
+        key={index}
+        className={`custom-nav-item ${activeSport === sport.sportName ? "active" : ""}`}
+      >
+        <Nav.Link
+          eventKey={sport.sportName}
+          className="custom-nav-link text-center px-2"
+        >
+          {sport.sportName}
+        </Nav.Link>
+      </Nav.Item>
+    ))}
           </Nav>
         </Col>
 
-        <Col sm={9} className="ps-0">
+        <Col sm={9} className="ps-2">
           <Tab.Content>
             {sportsRules.map((sport, index) => (
               <Tab.Pane key={index} eventKey={sport.sportName}>
                 <h4 className="rule-popup-heading">{sport.sportName} Rules</h4>
-                <ul>
+                <ul className="border">
                   {sport.rules.map((rule, ruleIndex) => (
                     <div key={ruleIndex}>
                       <h5 className="text-danger">{rule.category}</h5>
