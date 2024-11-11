@@ -2093,25 +2093,25 @@ export const cardGames = [
     value: "worli2",
     label: "Instant Worli",
   },
-  {
-    value: "worli",
-    label: "Worli Matka",
-  },
+  // {
+  //   value: "worli",
+  //   label: "Worli Matka",
+  // },
   {
     value: "poker",
     label: "Poker 1-day",
   },
   {
     value: "poker20",
-    label: "Poker 20",
+    label: "Poker 20-20",
   },
   {
     value: "poker6",
-    label: "Poker 6",
+    label: "Poker 6 Players",
   },
   {
     value: "btable",
-    label: "Bollywood Table",
+    label: "Bollywood Casino",
   },
   {
     value: "cmatch20",

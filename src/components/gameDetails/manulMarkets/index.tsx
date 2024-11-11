@@ -21,10 +21,10 @@ const ManualMarket = ({ title, data, detail }) => {
     if (data?.activeStatus != "live" || status != "active") {
       return false;
     }
-    if (odds === 0 || odds <0) {
+    if (odds === 0 || odds < 0) {
       return false;
     }
-    if(!detail?.rateThan100 && odds >100){
+    if (!detail?.rateThan100 && odds > 100) {
       return false;
     }
     let team = {
@@ -41,8 +41,8 @@ const ManualMarket = ({ title, data, detail }) => {
       matchBetType: data?.type,
       placeIndex: index,
       gameType: detail?.matchType === "cricket" ? "cricket" : "other",
-      min:data?.minBet ,
-      max:data?.maxBet ,
+      min: data?.minBet,
+      max: data?.maxBet,
     };
     dispatch(
       selectedBetAction({
@@ -69,7 +69,11 @@ const ManualMarket = ({ title, data, detail }) => {
         <div className="manualBackLayTab">
           <div className="manualMinMaxBox">
             <span className="manualMinMax">
-            {data?.minBet===data?.maxBet? `Max:${formatNumber(data?.maxBet)}` :`Min:${formatNumber(data?.minBet)} Max:${formatNumber(data?.maxBet)}`}
+              {data?.minBet === data?.maxBet
+                ? `Max:${formatNumber(data?.maxBet)}`
+                : `Min:${formatNumber(data?.minBet)} Max:${formatNumber(
+                    data?.maxBet
+                  )}`}
             </span>
           </div>
           <div
@@ -90,7 +94,7 @@ const ManualMarket = ({ title, data, detail }) => {
             >
               <span className={`f-size16 manualBackTxt`}>Lay</span>
             </div>
-             <div className="manualEmptyBox"></div>
+            <div className="manualEmptyBox"></div>
           </div>
         </div>
 
@@ -218,45 +222,53 @@ const ManualMarket = ({ title, data, detail }) => {
               </div>
             )}
             {/* {!isMobile && ( */}
-              <div
-                className="manualBackBox back3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.backTeamA - 2,
-                    "BACK",
-                    data?.type?.includes("quickbookmaker")
-                      ? detail?.teamA
-                      : "Yes",
-                    data?.statusTeamA,
-                    2
-                  )
-                }
-              >
-                <span className={`rateFont manualRate1Box`}>
-                  {data?.backTeamA != 0 ? data?.backTeamA - 2 >0 ? data?.backTeamA - 2:"-" : "-"}
-                </span>
-              </div>
-            
+            <div
+              className="manualBackBox back3Background"
+              onClick={() =>
+                handlePlaceBet(
+                  Math.floor(data?.backTeamA) - 2,
+                  "BACK",
+                  data?.type?.includes("quickbookmaker")
+                    ? detail?.teamA
+                    : "Yes",
+                  data?.statusTeamA,
+                  2
+                )
+              }
+            >
+              <span className={`rateFont manualRate1Box`}>
+                {Math.floor(data?.backTeamA) != 0
+                  ? Math.floor(data?.backTeamA) - 2 > 0
+                    ? Math.floor(data?.backTeamA) - 2
+                    : "-"
+                  : "-"}
+              </span>
+            </div>
+
             {/* {!isMobile && ( */}
-              <div
-                className="manualBackBox back2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.backTeamA - 1,
-                    "BACK",
-                    data?.type?.includes("quickbookmaker")
-                      ? detail?.teamA
-                      : "Yes",
-                    data?.statusTeamA,
-                    1
-                  )
-                }
-              >
-                <span className={`rateFont manualRate1Box`}>
-                  {data?.backTeamA != 0 ?data?.backTeamA - 1 >0 ? data?.backTeamA - 1:"-" : "-"}
-                </span>
-              </div>
-            
+            <div
+              className="manualBackBox back2Background"
+              onClick={() =>
+                handlePlaceBet(
+                  Math.floor(data?.backTeamA) - 1,
+                  "BACK",
+                  data?.type?.includes("quickbookmaker")
+                    ? detail?.teamA
+                    : "Yes",
+                  data?.statusTeamA,
+                  1
+                )
+              }
+            >
+              <span className={`rateFont manualRate1Box`}>
+                {Math.floor(data?.backTeamA) != 0
+                  ? Math.floor(data?.backTeamA) - 1 > 0
+                    ? Math.floor(data?.backTeamA) - 1
+                    : "-"
+                  : "-"}
+              </span>
+            </div>
+
             <div
               className="manualBackBox back1Background"
               onClick={() =>
@@ -294,45 +306,56 @@ const ManualMarket = ({ title, data, detail }) => {
               </span>
             </div>
             {/* {!isMobile && ( */}
-              <div
-                className="manualBackBox lay2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.layTeamA + 1,
-                    "LAY",
-                    data?.type?.includes("quickbookmaker")
-                      ? detail?.teamA
-                      : "Yes",
-                    data?.statusTeamA,
-                    1
-                  )
-                }
-              >
-                <span className={`rateFont manualRate1Box`}>
-                  {data?.layTeamA != 0 ? detail?.rateThan100? data?.layTeamA + 1 : data?.layTeamA + 1>100?"-": data?.layTeamA + 1 : "-"}
-                </span>
-              </div>
-           
+            <div
+              className="manualBackBox lay2Background"
+              onClick={() =>
+                handlePlaceBet(
+                  Math.floor(data?.layTeamA) + 1,
+                  "LAY",
+                  data?.type?.includes("quickbookmaker")
+                    ? detail?.teamA
+                    : "Yes",
+                  data?.statusTeamA,
+                  1
+                )
+              }
+            >
+              <span className={`rateFont manualRate1Box`}>
+                {Math.floor(data?.layTeamA) != 0
+                  ? detail?.rateThan100
+                    ? Math.floor(data?.layTeamA) + 1
+                    : Math.floor(data?.layTeamA) + 1 > 100
+                    ? "-"
+                    : Math.floor(data?.layTeamA) + 1
+                  : "-"}
+              </span>
+            </div>
+
             {/* {!isMobile && ( */}
-              <div
-                className="manualBackBox lay3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.layTeamA + 2,
-                    "LAY",
-                    data?.type?.includes("quickbookmaker")
-                      ? detail?.teamA
-                      : "Yes",
-                    data?.statusTeamA,
-                    2
-                  )
-                }
-              >
-                <span className={`rateFont manualRate1Box`}>
-                  {data?.layTeamA != 0 ? detail?.rateThan100? data?.layTeamA + 2 : data?.layTeamA + 2>100?"-": data?.layTeamA + 2 : "-"}
-                </span>
-              </div>
-           
+            <div
+              className="manualBackBox lay3Background"
+              onClick={() =>
+                handlePlaceBet(
+                  Math.floor(data?.layTeamA) + 2,
+                  "LAY",
+                  data?.type?.includes("quickbookmaker")
+                    ? detail?.teamA
+                    : "Yes",
+                  data?.statusTeamA,
+                  2
+                )
+              }
+            >
+              <span className={`rateFont manualRate1Box`}>
+                {Math.floor(data?.layTeamA) != 0
+                  ? detail?.rateThan100
+                    ? Math.floor(data?.layTeamA) + 2
+                    : Math.floor(data?.layTeamA) + 2 > 100
+                    ? "-"
+                    : Math.floor(data?.layTeamA) + 2
+                  : "-"}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -457,45 +480,49 @@ const ManualMarket = ({ title, data, detail }) => {
               </div>
             )}
             {/* {!isMobile && ( */}
-              <div
-                className="manualBackBox back3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.backTeamB - 2,
-                    "BACK",
-                    data?.type?.includes("quickbookmaker")
-                      ? detail?.teamB
-                      : "No",
-                    data?.statusTeamB,
-                    2
-                  )
-                }
-              >
-                <span className={`rateFont manualRate1Box`}>
-                  {data?.backTeamB != 0 ? data?.backTeamB - 2 >0 ? data?.backTeamB - 2:"-" : "-"}
-                </span>
-              </div>
-            
-             {/* {!isMobile && ( */}
-              <div
-                className="manualBackBox back2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.backTeamB - 1,
-                    "BACK",
-                    data?.type?.includes("quickbookmaker")
-                      ? detail?.teamB
-                      : "No",
-                    data?.statusTeamB,
-                    1
-                  )
-                }
-              >
-                <span className={`rateFont manualRate1Box`}>
-                  {data?.backTeamB != 0 ? data?.backTeamB - 1 >0 ? data?.backTeamB - 1:"-" : "-"}
-                </span>
-              </div>
-            
+            <div
+              className="manualBackBox back3Background"
+              onClick={() =>
+                handlePlaceBet(
+                  Math.floor(data?.backTeamB) - 2,
+                  "BACK",
+                  data?.type?.includes("quickbookmaker") ? detail?.teamB : "No",
+                  data?.statusTeamB,
+                  2
+                )
+              }
+            >
+              <span className={`rateFont manualRate1Box`}>
+                {Math.floor(data?.backTeamB) != 0
+                  ? Math.floor(data?.backTeamB) - 2 > 0
+                    ? Math.floor(data?.backTeamB) - 2
+                    : "-"
+                  : "-"}
+              </span>
+            </div>
+
+            {/* {!isMobile && ( */}
+            <div
+              className="manualBackBox back2Background"
+              onClick={() =>
+                handlePlaceBet(
+                  Math.floor(data?.backTeamB) - 1,
+                  "BACK",
+                  data?.type?.includes("quickbookmaker") ? detail?.teamB : "No",
+                  data?.statusTeamB,
+                  1
+                )
+              }
+            >
+              <span className={`rateFont manualRate1Box`}>
+                {Math.floor(data?.backTeamB) != 0
+                  ? Math.floor(data?.backTeamB) - 1 > 0
+                    ? Math.floor(data?.backTeamB) - 1
+                    : "-"
+                  : "-"}
+              </span>
+            </div>
+
             <div
               className="manualBackBox back1Background"
               onClick={() =>
@@ -528,46 +555,53 @@ const ManualMarket = ({ title, data, detail }) => {
                 {data?.layTeamB != 0 ? data?.layTeamB : "-"}
               </span>
             </div>
-             {/* {!isMobile && ( */}
-              <div
-                className="manualBackBox lay2Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.layTeamB + 1,
-                    "LAY",
-                    data?.type?.includes("quickbookmaker")
-                      ? detail?.teamB
-                      : "No",
-                    data?.statusTeamB,
-                    1
-                  )
-                }
-              >
-                <span className={`rateFont manualRate1Box`}>
-                  {data?.layTeamB != 0 ? detail?.rateThan100 ? data?.layTeamB + 1 : data?.layTeamB + 1>100?"-": data?.layTeamB + 1 : "-"}
-                </span>
-              </div>
-            
-             {/* {!isMobile && ( */}
-              <div
-                className="manualBackBox lay3Background"
-                onClick={() =>
-                  handlePlaceBet(
-                    data?.layTeamB + 2,
-                    "LAY",
-                    data?.type?.includes("quickbookmaker")
-                      ? detail?.teamB
-                      : "No",
-                    data?.statusTeamB,
-                    2
-                  )
-                }
-              >
-                <span className={`rateFont manualRate1Box`}>
-                  {data?.layTeamB != 0 ? detail?.rateThan100 ? data?.layTeamB + 2 : data?.layTeamB + 2>100 ? "-" : data?.layTeamB + 2 : "-"}
-                </span>
-              </div>
-            
+            {/* {!isMobile && ( */}
+            <div
+              className="manualBackBox lay2Background"
+              onClick={() =>
+                handlePlaceBet(
+                  Math.floor(data?.layTeamB) + 1,
+                  "LAY",
+                  data?.type?.includes("quickbookmaker") ? detail?.teamB : "No",
+                  data?.statusTeamB,
+                  1
+                )
+              }
+            >
+              <span className={`rateFont manualRate1Box`}>
+                {Math.floor(data?.layTeamB) != 0
+                  ? detail?.rateThan100
+                    ? Math.floor(data?.layTeamB) + 1
+                    : Math.floor(data?.layTeamB) + 1 > 100
+                    ? "-"
+                    : Math.floor(data?.layTeamB) + 1
+                  : "-"}
+              </span>
+            </div>
+
+            {/* {!isMobile && ( */}
+            <div
+              className="manualBackBox lay3Background"
+              onClick={() =>
+                handlePlaceBet(
+                  Math.floor(data?.layTeamB) + 2,
+                  "LAY",
+                  data?.type?.includes("quickbookmaker") ? detail?.teamB : "No",
+                  data?.statusTeamB,
+                  2
+                )
+              }
+            >
+              <span className={`rateFont manualRate1Box`}>
+                {Math.floor(data?.layTeamB) != 0
+                  ? detail?.rateThan100
+                    ? Math.floor(data?.layTeamB) + 2
+                    : Math.floor(data?.layTeamB) + 2 > 100
+                    ? "-"
+                    : Math.floor(data?.layTeamB) + 2
+                  : "-"}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -682,41 +716,49 @@ const ManualMarket = ({ title, data, detail }) => {
                 </div>
               )}
               {/* {!isMobile && ( */}
-                <div
-                  className="manualBackBox back3Background"
-                  onClick={() =>
-                    handlePlaceBet(
-                      data?.backTeamC - 2,
-                      "BACK",
-                      detail?.teamC,
-                      data?.statusTeamC,
-                      2
-                    )
-                  }
-                >
-                  <span className={`rateFont manualRate1Box`}>
-                    {data?.backTeamC != 0 ? data?.backTeamC - 2 >0 ? data?.backTeamC - 2:"-" : "-"}
-                  </span>
-                </div>
-              
+              <div
+                className="manualBackBox back3Background"
+                onClick={() =>
+                  handlePlaceBet(
+                    Math.floor(data?.backTeamC) - 2,
+                    "BACK",
+                    detail?.teamC,
+                    data?.statusTeamC,
+                    2
+                  )
+                }
+              >
+                <span className={`rateFont manualRate1Box`}>
+                  {Math.floor(data?.backTeamC) != 0
+                    ? Math.floor(data?.backTeamC) - 2 > 0
+                      ? Math.floor(data?.backTeamC) - 2
+                      : "-"
+                    : "-"}
+                </span>
+              </div>
+
               {/* {!isMobile && ( */}
-                <div
-                  className="manualBackBox back2Background"
-                  onClick={() =>
-                    handlePlaceBet(
-                      data?.backTeamC - 1,
-                      "BACK",
-                      detail?.teamC,
-                      data?.statusTeamC,
-                      1
-                    )
-                  }
-                >
-                  <span className={`rateFont manualRate1Box`}>
-                    {data?.backTeamC != 0 ? data?.backTeamC - 1 >0 ? data?.backTeamC - 1:"-" : "-"}
-                  </span>
-                </div>
-              
+              <div
+                className="manualBackBox back2Background"
+                onClick={() =>
+                  handlePlaceBet(
+                    Math.floor(data?.backTeamC) - 1,
+                    "BACK",
+                    detail?.teamC,
+                    data?.statusTeamC,
+                    1
+                  )
+                }
+              >
+                <span className={`rateFont manualRate1Box`}>
+                  {Math.floor(data?.backTeamC) != 0
+                    ? Math.floor(data?.backTeamC) - 1 > 0
+                      ? Math.floor(data?.backTeamC) - 1
+                      : "-"
+                    : "-"}
+                </span>
+              </div>
+
               <div
                 className="manualBackBox back1Background"
                 onClick={() =>
@@ -750,41 +792,52 @@ const ManualMarket = ({ title, data, detail }) => {
                 </span>
               </div>
               {/* {!isMobile && ( */}
-                <div
-                  className="manualBackBox lay2Background"
-                  onClick={() =>
-                    handlePlaceBet(
-                      data?.layTeamC + 1,
-                      "LAY",
-                      detail?.teamC,
-                      data?.statusTeamC,
-                      1
-                    )
-                  }
-                >
-                  <span className={`rateFont manualRate1Box`}>
-                    {data?.layTeamC != 0 ? detail?.rateThan100 ? data?.layTeamC + 1 : data?.layTeamC + 1>100?"-": data?.layTeamC + 1 : "-"}
-                  </span>
-                </div>
-              
+              <div
+                className="manualBackBox lay2Background"
+                onClick={() =>
+                  handlePlaceBet(
+                    Math.floor(data?.layTeamC) + 1,
+                    "LAY",
+                    detail?.teamC,
+                    data?.statusTeamC,
+                    1
+                  )
+                }
+              >
+                <span className={`rateFont manualRate1Box`}>
+                  {Math.floor(data?.layTeamC) != 0
+                    ? detail?.rateThan100
+                      ? Math.floor(data?.layTeamC) + 1
+                      : Math.floor(data?.layTeamC) + 1 > 100
+                      ? "-"
+                      : Math.floor(data?.layTeamC) + 1
+                    : "-"}
+                </span>
+              </div>
+
               {/* {!isMobile && ( */}
-                <div
-                  className="manualBackBox lay3Background"
-                  onClick={() =>
-                    handlePlaceBet(
-                      data?.layTeamC + 2,
-                      "LAY",
-                      detail?.teamC,
-                      data?.statusTeamC,
-                      2
-                    )
-                  }
-                >
-                  <span className={`rateFont manualRate1Box`}>
-                    {data?.layTeamC != 0 ? detail?.rateThan100 ? data?.layTeamC + 2 : data?.layTeamC + 2 > 100 ? "-" : data?.layTeamC + 2 : "-"}
-                  </span>
-                </div>
-              
+              <div
+                className="manualBackBox lay3Background"
+                onClick={() =>
+                  handlePlaceBet(
+                    Math.floor(data?.layTeamC) + 2,
+                    "LAY",
+                    detail?.teamC,
+                    data?.statusTeamC,
+                    2
+                  )
+                }
+              >
+                <span className={`rateFont manualRate1Box`}>
+                  {Math.floor(data?.layTeamC) != 0
+                    ? detail?.rateThan100
+                      ? Math.floor(data?.layTeamC) + 2
+                      : Math.floor(data?.layTeamC) + 2 > 100
+                      ? "-"
+                      : Math.floor(data?.layTeamC) + 2
+                    : "-"}
+                </span>
+              </div>
             </div>
           </div>
         )}

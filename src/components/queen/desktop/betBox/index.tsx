@@ -74,7 +74,7 @@ const CasinoTable = ({ cards, data }: any) => {
                 ? JSON.parse(
                     data?.profitLoss?.[`${data?.videoInfo?.mid}_1_card`]
                   )[`total${index}`]
-                : ""}
+                : "\u00A0"}
             </span>
           </div>
         ))}

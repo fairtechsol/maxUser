@@ -62,7 +62,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     );
     
   return (
-    <div className="w-100">
+    <div className="w-100 bg-grey">
       <div
         style={{
           width: "100%",

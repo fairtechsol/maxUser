@@ -77,7 +77,7 @@ const WinBox = ({ odds, data }: any) => {
                           `${data?.videoInfo?.mid}_${item?.sid}_card`
                         ]
                       :  <br></br>
-                    : 0}
+                    : "\u00A0"}
                 </span>
               </div>
             );

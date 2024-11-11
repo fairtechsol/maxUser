@@ -73,6 +73,7 @@ const ResultBetList = ({ bets, total }: any) => {
           }
         >
           <input
+            className="form-check-input-custom"
             type="radio"
             id={selected}
             name="betType"
@@ -81,6 +82,7 @@ const ResultBetList = ({ bets, total }: any) => {
           />
           <label>All</label>
           <input
+            className="form-check-input-custom"
             type="radio"
             id={selected}
             name="betType"
@@ -88,6 +90,7 @@ const ResultBetList = ({ bets, total }: any) => {
           />
           <label>Back</label>
           <input
+            className="form-check-input-custom"
             type="radio"
             id={selected}
             name="betType"
@@ -95,6 +98,7 @@ const ResultBetList = ({ bets, total }: any) => {
           />
           <label>Lay</label>
           <input
+            className="form-check-input-custom"
             type="radio"
             id={selected}
             name="betType"
