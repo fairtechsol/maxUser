@@ -44,26 +44,28 @@ const ImageModal = ({ customClass, show, setShow }) => {
       onHide={() => setShow(false)}
       className={`modalLogin-root ${customClass}`}
     >
-      <div
-        className="modal-header bg-primary rounded-0"
-        onClick={() => setShow(false)}
-      >
-        <button
-          type="button"
-          className="btn-close btn-close-white"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div
-        className="p-0 modal-body overflow-auto"
-        style={{ maxHeight: "90vh" }}
-      >
-        <img
-          src={"data:image/png;base64," + bannerImage?.value}
-          alt="Modal Content"
-          className="img-fluid"
-          style={{ width: "100%", height: "auto" }}
-        />
+      <div style={{ maxWidth: "500px", background: "#fff",display:"flex" ,alignItems:"center",justifyContent:"center",flexDirection:"column"}}>
+        <div
+          className="modal-header bg-primary rounded-0 w-100"
+          onClick={() => setShow(false)}
+        >
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div
+          className="p-0 modal-body overflow-auto w-100"
+          //style={{ maxHeight: "90vh" }}
+        >
+          <img
+            src={"data:image/png;base64," + bannerImage?.value}
+            alt="Modal Content"
+            className="img-fluid"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </div>
       </div>
     </Modal>
   );
