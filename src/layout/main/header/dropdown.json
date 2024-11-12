@@ -56,7 +56,6 @@
     "name": "Rules",
     "type": "mobile",
     "link": "/rules",
-    "onClick": true,
     "showDemo": true
   },
   {

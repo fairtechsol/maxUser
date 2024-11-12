@@ -93,40 +93,48 @@ const MobileHeader = () => {
                 variant="light"
                 className="shadow-sm dropdown-menu-nav"
               >
-                {dropdownList?.map((item) => {
-                  return (
-                    <Dropdown.Item
-                      className="title-16px d-flex justify-content-between"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (item?.link) {
-                          navigate(item.link);
-                        }
-                      }}
-                      key={item?.id}
-                      eventKey={item?.id}
-                    >
-                      {item?.name}
-                      {item?.onClick && (
-                        <input
-                          type="checkbox"
-                          id={item.id}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setShow((prev: any) => {
-                              return {
-                                ...prev,
-                                [item.id]: !prev[item.id],
-                              };
-                            });
-                          }}
-                          checked={!!show[item.id]}
-                          // className="customCheckbox"
-                        />
-                      )}
-                    </Dropdown.Item>
-                  );
-                })}
+                {dropdownList
+                  ?.filter((item) => {
+                    if (sessionStorage.getItem("isDemo")) {
+                      return item?.showDemo === true;
+                    } else {
+                      return item;
+                    }
+                  })
+                  ?.map((item) => {
+                    return (
+                      <Dropdown.Item
+                        className="title-16px d-flex justify-content-between"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (item?.link) {
+                            navigate(item.link);
+                          }
+                        }}
+                        key={item?.id}
+                        eventKey={item?.id}
+                      >
+                        {item?.name}
+                        {item?.onClick && (
+                          <input
+                            type="checkbox"
+                            id={item.id}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setShow((prev: any) => {
+                                return {
+                                  ...prev,
+                                  [item.id]: !prev[item.id],
+                                };
+                              });
+                            }}
+                            checked={!!show[item.id]}
+                            // className="customCheckbox"
+                          />
+                        )}
+                      </Dropdown.Item>
+                    );
+                  })}
                 <Dropdown.Divider />
                 <Dropdown.Item
                   className="title-16 d-flex justify-content-between"
