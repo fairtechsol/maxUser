@@ -3,6 +3,7 @@ import {
   betReportList,
   getProfitLossReport,
   resetDataUnsettledMatch,
+  resetReportBetListData,
   settleUnsettleMatch,
 } from "../../actions/match/matchListAction";
 
@@ -72,6 +73,9 @@ const currentBetListSlice = createSlice({
       })
       .addCase(resetDataUnsettledMatch, (state) => {
         return { ...state, ReportBetList: [], success: false };
+      })
+      .addCase(resetReportBetListData, (state) => {
+        state.ReportBetList = [];
       });
   },
 });

@@ -62,7 +62,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     );
     
   return (
-    <div className="w-100">
+    <div className="w-100 bg-grey">
       <div
         style={{
           width: "100%",
@@ -77,7 +77,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile " : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle" >
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}>
            
           </div>
           <div className="dtlsubTitle back-BackGround">Back</div>
@@ -95,7 +95,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
               alignItems: "flex-start",
               lineHeight: 1,
               height: "40px" ,
-              // background:"#F2F2F2"
+              background:"#F2F2F2"
             }}
           >
             <span >Dragon</span>
@@ -149,7 +149,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
               flexDirection: "column",
               alignItems: "flex-start",
               lineHeight: 1,
-              // background:"#F2F2F2"
+              background:"#F2F2F2"
             }}
           >
             <span>Tiger</span>

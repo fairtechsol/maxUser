@@ -6,8 +6,20 @@
     "type": "any"
   },
   {
+    "id": "profitLossReport",
+    "name": "Profit Loss Report",
+    "link": "/profit-loss",
+    "type": "any"
+  },
+  {
+    "id": "betHistory",
+    "name": "Bet History",
+    "link": "/bet-history",
+    "type": "any"
+  },
+  {
     "id": "unsettledBet",
-    "name": "Current Bet",
+    "name": "Unsettled Bet",
     "link": "/unsettled-bet",
     "type": "any"
   },
@@ -36,23 +48,22 @@
     "type": "any"
   },
   {
-    "id": "rules",
-    "name": "Rules",
-    "type": "mobile",
-    "link": "/rules"
-  },
-  {
     "id": "balance",
     "name": "Balance",
     "isChecked": true,
-    "type": "mobile",
-    "onClick": true
+    "type": "mobile"
   },
   {
     "id": "exposure",
     "name": "Exposure",
     "isChecked": true,
+    "type": "mobile"
+  },
+  {
+    "id": "rules",
+    "name": "Rules",
     "type": "mobile",
+    "link": "/rules",
     "onClick": true
   }
 ]

@@ -35,3 +35,23 @@ $btn-close-bg: 11;
     // }
   }
 }
+.modalLogin-root {
+  .modal-dialog {
+    max-width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    .modal-dialog {
+      max-width: 100%;
+      margin: 0;
+    }
+  }
+
+  .modal-header {
+    border: 0 !important;
+    padding: 8px 12px;
+    .modal-title {
+      font-size: 20px !important;
+    }
+  }
+}

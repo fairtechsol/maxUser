@@ -19,8 +19,8 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -78,14 +78,15 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
           display: "flex",
           flexDirection: "column",
           border: "0.3px solid #c7c8ca",
-          marginLeft: "5px", 
+          marginLeft: "5px",
         }}
       >
         <div
-          className={isMobile ? "row-flex-mobile p-0" : "w-100 d-sm-flex flex-row"}
-
+          className={
+            isMobile ? "row-flex-mobile p-0" : "w-100 d-sm-flex flex-row"
+          }
         >
-          <div className="dtlTitlee">
+          <div className="dtlTitlee" style={{ background: "#F2F2F2" }}>
             {" "}
             {/* <div style={{ width: "20%", textAlign: "start" }}>
               <span className="minmaxi">
@@ -102,34 +103,61 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
               </span>
             </div> */}
           </div>
-          <div className="dtlsubTitle" style={{borderLeft:"0.1px solid #c7c8ca",marginRight:"0.1px"}}>
+          <div
+            className="dtlsubTitle"
+            style={{
+              borderLeft: "0.1px solid #c7c8ca",
+              marginRight: "0.1px",
+              backgroundColor: "#f2f2f2",
+            }}
+          >
             <GiSpades color="#000000" />
           </div>
-          <div className="dtlsubTitle">
+          <div
+            className="dtlsubTitle"
+            style={{
+              backgroundColor: "#f2f2f2",
+            }}
+          >
             <BiSolidHeart color="#ff0000" />
           </div>
-          <div className="dtlsubTitle">
+          <div
+            className="dtlsubTitle"
+            style={{
+              backgroundColor: "#f2f2f2",
+            }}
+          >
             <ImClubs color="#000000" />
           </div>
-          <div className="dtlsubTitle">
+          <div
+            className="dtlsubTitle"
+            style={{
+              backgroundColor: "#f2f2f2",
+            }}
+          >
             <ImDiamonds color="#ff0000" />
           </div>
         </div>
         <div
-         style={{ height: "42px" }}
+          style={{ height: "42px", background: "#F2F2F2" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitlee">Dragon </div>
+          <div className="dtlTitlee" style={{ background: "#F2F2F2" }}>
+            Dragon{" "}
+          </div>
           {renderItem(dragonData?.[4])}
           {renderItem(dragonData?.[5])}
           {renderItem(dragonData?.[7])}
           {renderItem(dragonData?.[6])}
         </div>
         <div
-         style={{ height: "42px" }}
+          style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitlee"> Tiger</div>
+          <div className="dtlTitlee" style={{ background: "#F2F2F2" }}>
+            {" "}
+            Tiger
+          </div>
           {renderItem(tigerData?.[4])}
           {renderItem(tigerData?.[5])}
           {renderItem(tigerData?.[7])}

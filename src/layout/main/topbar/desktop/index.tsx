@@ -1,10 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,useLocation } from "react-router-dom";
 import topBarJson from "../topbar.json";
 import "./style.scss";
-import { useState } from "react";
+import {  useState } from "react";
 
 const DesktopTopBar = () => {
   const {type} = useParams();
+  const location = useLocation();
   const [activeId, setActiveId] = useState(null);
 
   const handleLinkClick = (id:any) => {
@@ -26,7 +27,7 @@ const DesktopTopBar = () => {
               className="text-decoration-none f700 title-14 text-white topbar-link"
               onClick={() => handleLinkClick(item?.id)} 
               style={{
-                borderBottom: activeId===item?.id ? '2px solid #fff' : item?.link.includes(type) ? '2px solid #fff' : '',
+                borderBottom: activeId===item?.id && location.pathname===item?.link ? '2px solid #fff' : item?.link.includes(type) ? '2px solid #fff' : '',
               }}
             >
               {item?.name}

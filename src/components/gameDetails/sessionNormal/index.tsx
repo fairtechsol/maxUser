@@ -147,7 +147,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                 <div className="w-100 d-flex flex-column" key={index}>
                   <div className="sessionRateContainer">
                     <div
-                      className="sessionRateName runnerWidthNormal"
+                      className="sessionRateNameNormal runnerWidthNormal"
                       style={{ overflow: "hidden" }}
                     >
                       <span
@@ -463,7 +463,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                   <div className="w-100 d-flex flex-column" key={index}>
                     <div className="sessionRateContainer">
                       <div
-                        className="sessionRateName runnerWidthNormal"
+                        className="sessionRateNameNormal runnerWidthNormal"
                         style={{ overflow: "hidden" }}
                       >
                         <span

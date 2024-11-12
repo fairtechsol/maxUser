@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dropdown, Form, Navbar } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,27 +30,13 @@ const MobileHeader = () => {
     setOpenExposure(!openExposure);
   };
 
-  const handleCheckboxChange = (e: any, itemId: any) => {
-    setShow({
-      ...show,
-      [itemId]: e.target.checked,
-    });
-  };
-
   const navigate = useNavigate();
 
   const { getProfile, marqueeNotification } = useSelector(
     (state: RootState) => state.user.profile
   );
 
-  // useEffect(() => {
-  //   first
-  
-  //   return () => {
-  //     second
-  //   }
-  // }, [third])
-  
+  console.log(show);
 
   return (
     <>
@@ -109,31 +95,45 @@ const MobileHeader = () => {
                   return (
                     <Dropdown.Item
                       className="title-16px d-flex justify-content-between"
-                      onClick={() => {
-                        navigate(item.link || "");
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (item?.link) {
+                          navigate(item.link);
+                        }
                       }}
                       key={item?.id}
                       eventKey={item?.id}
                     >
                       {item?.name}
-                      {item?.isChecked && (
-                        <Form.Check
-                          id={item?.id}
-                          onChange={(e) => handleCheckboxChange(e, item.id)}
-                          checked={show[item?.id]}
+                      {item?.onClick && (
+                        <input
+                          type="checkbox"
+                          id={item.id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setShow((prev: any) => {
+                              return {
+                                ...prev,
+                                [item.id]: !prev[item.id],
+                              };
+                            });
+                          }}
+                          checked={!!show[item.id]}
+                          // className="customCheckbox"
                         />
                       )}
                     </Dropdown.Item>
                   );
                 })}
+                <Dropdown.Divider />
                 <Dropdown.Item
-                  className="title-14 d-flex justify-content-between m-logout"
+                  className="title-16 d-flex justify-content-between"
                   eventKey={"Logout"}
                   onClick={() => {
                     dispatch(logout());
                   }}
                 >
-                  Logout
+                  Signout
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
