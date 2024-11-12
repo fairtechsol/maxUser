@@ -51,28 +51,29 @@ const MobileHeader = () => {
         </div>
       </div>
       <div className="d-flex flex-column align-items-center white-text list-unstyled float-end h-100">
-        {show?.balance && (
-          <div className="d-flex gap-1 align-items-center justify-content-end w-100 title-12 mt-1">
-            Balance:
-            <b>
-              {parseFloat(getProfile?.userBal?.currentBalance || 0).toFixed(2)}
-            </b>
-          </div>
-        )}
+        <div
+          className="d-flex gap-1 align-items-center justify-content-end w-100 title-12 mt-1 "
+          style={{ visibility: show?.balance ? "visible" : "hidden" }}
+        >
+          Balance:
+          <b>
+            {parseFloat(getProfile?.userBal?.currentBalance || 0).toFixed(2)}
+          </b>
+        </div>
         <div className="d-flex gap-1 title-12">
-          {show?.exposure && (
-            <span
-              className="d-flex justify-content-center align-items-center"
-              onClick={handleClickExposureModalOpen}
-            >
-              Exp:{" "}
-              <span className="fbold">
-                {parseInt(getProfile?.userBal?.exposure) === 0
-                  ? 0
-                  : -parseFloat(getProfile?.userBal?.exposure || 0).toFixed(2)}
-              </span>
+          <span
+            className="d-flex justify-content-center align-items-center"
+            style={{ visibility: show?.exposure ? "visible" : "hidden" }}
+            onClick={handleClickExposureModalOpen}
+          >
+            Exp:{" "}
+            <span className="fbold">
+              {parseInt(getProfile?.userBal?.exposure) === 0
+                ? 0
+                : -parseFloat(getProfile?.userBal?.exposure || 0).toFixed(2)}
             </span>
-          )}
+          </span>
+
           <ExposureModal
             show={openExposure}
             setShow={handleClickExposureModalOpen}
