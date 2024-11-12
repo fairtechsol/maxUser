@@ -42,7 +42,7 @@ const ImageModal = ({ customClass, show, setShow }) => {
     <Modal
       show={show}
       onHide={() => setShow(false)}
-      className={` customModal ${customClass}`}
+      className={`modalLogin-root ${customClass}`}
     >
       <div
         className="modal-header bg-primary rounded-0"
