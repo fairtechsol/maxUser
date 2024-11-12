@@ -59,7 +59,18 @@ body table.table {
   height: 100%;
   margin-top: 1%;
 }
+.custom-checkbox .form-check-input:checked {
+  background-color: #FFC742; 
+  border-color: #FFC742;    
+}
 
+.custom-checkbox .form-check-input:focus {
+  border-color: #28a745;   
+}
+
+.custom-checkbox .form-check-input {
+  border-radius: 50%;      
+}
 .loader1 {
   // position: absolute;
   // top: 50%;
