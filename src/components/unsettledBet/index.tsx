@@ -331,7 +331,7 @@ const UnsettledBetComponent = () => {
                     <span className="ms-1">Entries</span>
                   </div>
                 </div>
-                <div className="w-25 d-flex flex-row justify-content-center">
+                <div className="w-25 d-flex flex-row justify-content-center" >
                   <Form.Check
                     label="All"
                     name="matched"
@@ -398,6 +398,7 @@ const UnsettledBetComponent = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
+                
               }}
             >
               <Col md={2} xs={12} className="mt-2">
@@ -551,7 +552,7 @@ const UnsettledBetComponent = () => {
                 ))}
             </CustomTable>
           )} */}
-          <div className="table-responsive">
+          <div className="table-responsive" style={{border:"1px solid #f7f7f7"}}>
             <table
               style={{
                 width: isMobile ? "800px" : "100%",
@@ -566,6 +567,7 @@ const UnsettledBetComponent = () => {
                     backgroundColor: "#f7f7f7",
                     fontSize: isMobile ? "12px" : "14px",
                     borderBottom: "1px solid #c7c8ca",
+                    border:"1px solid #c7c8ca"
                   }}
                 >
                   <th
@@ -639,6 +641,7 @@ const UnsettledBetComponent = () => {
                     backgroundColor: "#f7f7f7",
                     fontSize: isMobile ? "12px" : "14px",
                     borderBottom: "1px solid #c7c8ca",
+                     border:"1px solid #c7c8ca"
                   }}
                 >
                   <td
