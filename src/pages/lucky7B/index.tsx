@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Lucky7BComponentList from "../../components/lucky7B";
 import { socket, socketService } from "../../socketManager";
 import {
+  betPlacedReset,
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
@@ -95,6 +96,7 @@ const Lucky7B = () => {
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
         dispatch(dragonTigerReset());
+        dispatch(betPlacedReset());
         socketService.card.cardResult(handleMatchResult);
       };
     } catch (e) {
