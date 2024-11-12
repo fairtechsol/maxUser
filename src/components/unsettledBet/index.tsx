@@ -1,14 +1,12 @@
 import { Col, Form, Row, Stack } from "react-bootstrap";
 import { isMobile } from "../../utils/screenDimension";
-import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import {
-  resetDataUnsettledMatch,
   settleUnsettleMatch,
 } from "../../store/actions/match/matchListAction";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import _ from "lodash";
@@ -425,6 +423,7 @@ const UnsettledBetComponent = () => {
                     id={""}
                     onChange={(e) => handleCheckboxChange(e)}
                     defaultChecked={true}
+                    className="custom-checkbox"
                   />
                   <Form.Check
                     label="Back"
@@ -433,7 +432,7 @@ const UnsettledBetComponent = () => {
                     id={"back"}
                     onChange={(e) => handleCheckboxChange(e)}
                     // defaultChecked={selectedOption === "PENDING"}
-                    className="ms-2"
+                    className="ms-2 custom-checkbox"
                   />
                   <Form.Check
                     label="Lay"
@@ -442,7 +441,7 @@ const UnsettledBetComponent = () => {
                     id={"lay"}
                     onChange={(e) => handleCheckboxChange(e)}
                     // defaultChecked={selectedOption === "PENDING"}
-                    className="ms-2"
+                    className="ms-2 custom-checkbox"
                   />
                 </div>
               </div>
@@ -466,7 +465,7 @@ const UnsettledBetComponent = () => {
                   <span className="title-14">Search:</span>
                   <input
                     type="text"
-                    className="ms-1"
+                    className="ms-1 w-50"
                     style={{ border: "1px solid #ddd" }}
                     placeholder={`${ReportBetList?.count ?? 0} records...`}
                     onChange={(e) => handleSearchChange(e)}
