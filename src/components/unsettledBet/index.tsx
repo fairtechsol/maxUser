@@ -209,6 +209,7 @@ const UnsettledBetComponent = () => {
 
   const handleLimit = (e: any) => {
     setLimit(e.target.value);
+    setCurrentPage(1);
     if (!type) {
       return false;
     }
@@ -221,7 +222,7 @@ const UnsettledBetComponent = () => {
       }`;
       params.append("betType", betType);
     }
-    if (currentPage) params.append("page", currentPage);
+    if (currentPage) params.append("page", 1);
     params.append("searchBy", "betPlaced.eventName");
     params.append("limit", e.target.value);
     if (keyword) params.append("keyword", e.target.value);
@@ -319,10 +320,7 @@ const UnsettledBetComponent = () => {
                     <span className="me-1">Show</span>
                     <select
                       style={{ width: "35%", height: "30px" }}
-                      onChange={(e) => {
-                        handleLimit(e);
-                        setCurrentPage(1);
-                      }}
+                      onChange={(e) => handleLimit(e)}
                     >
                       <option value={10}>10</option>
                       <option value={20}>20</option>
