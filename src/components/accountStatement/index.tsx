@@ -478,7 +478,7 @@ const AccountStatementComponent = () => {
                           <tr key={item?.id}>
                             <td
                               className={`${
-                                item?.betType === "BACK"
+                                item?.betType === "BACK" || item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -487,7 +487,7 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK"
+                                item?.betType === "BACK" || item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -496,7 +496,7 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK"
+                                item?.betType === "BACK" || item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -505,7 +505,7 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK"
+                                item?.betType === "BACK" || item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -514,7 +514,7 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK"
+                                item?.betType === "BACK" || item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -523,7 +523,7 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK"
+                                item?.betType === "BACK" || item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -544,7 +544,7 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK"
+                                item?.betType === "BACK" || item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -555,7 +555,7 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK"
+                                item?.betType === "BACK" || item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
