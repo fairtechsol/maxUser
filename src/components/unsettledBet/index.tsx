@@ -716,7 +716,7 @@ const UnsettledBetComponent = () => {
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
-                              {moment(item?.match?.startAt).format(
+                              {moment(item?.createdAt).format(
                                 "DD/MM/YYYY hh:mm:ss A"
                               )}
                             </td>
@@ -853,9 +853,9 @@ const UnsettledBetComponent = () => {
                       fontSize: isMobile ? "12px" : "14px",
                     }}
                     onClick={() =>
-                     
-                       handlePageChange(Math.floor((ReportBetList?.count || 0) / limit))
-                        
+                      handlePageChange(
+                        Math.floor((ReportBetList?.count || 0) / limit)
+                      )
                     }
                   >
                     Last

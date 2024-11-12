@@ -75,9 +75,9 @@ const Home = () => {
       if (event?.gameType === matchType) {
         if (["cricket", "football", "tennis"].includes(matchType)) {
           if (event?.isMatchDeclare) {
-          setTimeout(() => {
-            dispatch(getMatchList({ matchType: matchType }));
-          }, 1000);
+            setTimeout(() => {
+              dispatch(getMatchList({ matchType: matchType }));
+            }, 1000);
           }
         } else if (["horseRacing", "greyHound"].includes(matchType)) {
           setTimeout(() => {

@@ -11,7 +11,7 @@ const ImageModal = ({ customClass, show, setShow }) => {
     <Modal
       show={show}
       onHide={() => setShow(false)}
-      className={` customModal ${customClass}`}
+      className={`modalLogin-root ${customClass}`}
     >
       <div
         className="modal-header bg-primary rounded-0"
@@ -23,12 +23,15 @@ const ImageModal = ({ customClass, show, setShow }) => {
           aria-label="Close"
         ></button>
       </div>
-      <div className="p-0 modal-body overflow-auto" style={{maxHeight: "90vh"}}>
+      <div
+        className="p-0 modal-body overflow-auto"
+        style={{ maxHeight: "90vh" }}
+      >
         <img
           src={"data:image/png;base64," + bannerImage?.value}
           alt="Modal Content"
           className="img-fluid"
-          style={{ width: "100%", height: "auto" }} 
+          style={{ width: "100%", height: "auto" }}
         />
       </div>
     </Modal>
