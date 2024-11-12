@@ -7,19 +7,6 @@
     "showDemo": true
   },
   {
-    "id": "profitLossReport",
-    "name": "Profit Loss Report",
-    "link": "/profit-loss",
-    "type": "any"
-  },
-  {
-    "id": "betHistory",
-    "name": "Bet History",
-    "link": "/bet-history",
-    "type": "any",
-    "showDemo": true
-  },
-  {
     "id": "unsettledBet",
     "name": "Current Bet",
     "link": "/unsettled-bet",
