@@ -19,7 +19,7 @@ const ResultBetList = ({ bets, total }: any) => {
   const [list, setList] = useState(bets);
   const [selectedItems, setSelectedItems] = useState([]);
   const [filteredTotal, setFilteredTotal] = useState(total);
-  const handleCheckBox = (item:any) => {
+  const handleCheckBox = (item: any) => {
     setSelectedItems((prevSelectedItems) => {
       if (prevSelectedItems.includes(item)) {
         return prevSelectedItems.filter((i) => i?.id !== item?.id);
@@ -31,18 +31,19 @@ const ResultBetList = ({ bets, total }: any) => {
 
   const handleRadioChange = (type: any) => {
     setSelected(type);
+    setSelectedItems([]);
     if (type === "back") {
-      const filtered = bets.filter(
+      const filtered = bets?.filter(
         (item: any) => item?.betType === "BACK" || item?.betType === "back"
       );
       setList(filtered);
     } else if (type === "lay") {
-      const filtered = bets.filter(
+      const filtered = bets?.filter(
         (item: any) => item?.betType === "LAY" || item?.betType === "lay"
       );
       setList(filtered);
     } else if (type === "delete") {
-      const filtered = bets.filter((item: any) => item?.deleteReason != null);
+      const filtered = bets?.filter((item: any) => item?.deleteReason != null);
       setList(filtered);
     } else {
       setList(bets);
@@ -50,12 +51,13 @@ const ResultBetList = ({ bets, total }: any) => {
   };
 
   useEffect(() => {
-    if (selectedItems.length === 0) {
+    if (selectedItems?.length === 0) {
       setFilteredTotal(total); // Show `total` if no items are selected
     } else {
       setFilteredTotal(selectedItems.length); // Otherwise, show selected items count
     }
   }, [selectedItems, total]);
+
   return (
     <div className="w-100 d-flex flex-column">
       <div
@@ -114,22 +116,40 @@ const ResultBetList = ({ bets, total }: any) => {
             : "title-16 d-flex flex-row justify-content-end  float-end"
         }
       >
-        <span className="px-2">Total Bets: {filteredTotal}</span>
+        <span className="px-2">
+          Total Bets:{" "}
+          {selectedItems?.length > 0
+            ? selectedItems?.length ?? 0
+            : list?.length ?? 0}
+        </span>
         <span className="pe-1">
           Total Amount:{""}
           <span
             className={
-              (selectedItems?.length > 0 ? selectedItems : list)?.reduce((acc: number, bet: any) => {
-                return acc + (bet?.result === "LOSS" ? -bet?.lossAmount : bet?.winAmount);
-              }, 0) < 0
+              (selectedItems?.length > 0 ? selectedItems : list)?.reduce(
+                (acc: number, bet: any) => {
+                  return (
+                    acc +
+                    (bet?.result === "LOSS" ? -bet?.lossAmount : bet?.winAmount)
+                  );
+                },
+                0
+              ) < 0
                 ? "color-red"
                 : "color-green"
             }
           >
-            {" "}
-            {(selectedItems?.length > 0 ? selectedItems : list)?.reduce((acc: number, bet: any) => {
-              return acc + (bet?.result === "LOSS" ? -bet?.lossAmount : bet?.winAmount);
-            }, 0)}
+            {parseFloat(
+              (selectedItems?.length > 0 ? selectedItems : list)?.reduce(
+                (acc: number, bet: any) => {
+                  return (
+                    acc +
+                    (bet?.result === "LOSS" ? -bet?.lossAmount : bet?.winAmount)
+                  );
+                },
+                0
+              )
+            ).toFixed(2) ?? "0.00"}
           </span>
         </span>
       </div>
@@ -263,7 +283,7 @@ const ResultBetList = ({ bets, total }: any) => {
                   >
                     <input
                       type="checkbox"
-                      onChange={() => handleCheckBox(item)}
+                      onClick={() => handleCheckBox(item)}
                       checked={selectedItems.includes(item)}
                     />
                   </td>

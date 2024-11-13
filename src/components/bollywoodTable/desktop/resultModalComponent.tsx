@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import {isMobile} from "../../../utils/screenDimension";
 import ResultBetList from "../../commonComponent/resultBetList";
 interface Props {
   data: {
@@ -75,17 +75,18 @@ const BollywoodTableResultComponent: React.FC<Props> = ({ data }: any) => {
               style={{ marginRight: "5px" }}
             >
               <span className="opacity-50">Card</span>{" "}
-              <span className="lucky7CommonText-2">{resultCards?.[4]?.[6]}</span>
+              <span className="lucky7CommonText-2">
+                {resultCards?.[4]?.[6]}
+              </span>
             </div>
           </div>
         </div>
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

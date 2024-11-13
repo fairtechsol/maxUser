@@ -1,13 +1,13 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import { isMobile } from "../../../utils/screenDimension";
-import "./style.scss";
-import ResultBetList from "../../commonComponent/resultBetList";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import { CustomCards } from "../../commonComponent/customCardComponent";
+import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -223,10 +223,7 @@ const Abj1ResultComponent: React.FC<Props> = ({ data }: any) => {
       </div>
       {data?.bets?.count > 0 && (
         <div className="w-100">
-          <ResultBetList
-            bets={data?.bets?.rows ?? 12}
-            total={data?.bets?.count}
-          />
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
         </div>
       )}
     </Container>

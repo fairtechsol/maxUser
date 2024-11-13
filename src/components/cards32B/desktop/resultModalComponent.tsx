@@ -96,12 +96,11 @@ const Card32BResultComponent: React.FC<Props> = ({ data }: any) => {
           <strong style={{ opacity: "0.6" }}>Total:</strong> {total}
         </div>
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };
