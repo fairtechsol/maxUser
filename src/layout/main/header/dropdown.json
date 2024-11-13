@@ -20,8 +20,9 @@
   {
     "id": "setButtonValues",
     "name": "Set Button Values",
-    "link": "/change-btn-value",
-    "type": "any"
+    "link": "",
+    "type": "any",
+    "isModal":true
   },
   {
     "id": "securityAuthVerification",
