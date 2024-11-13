@@ -28,7 +28,7 @@ const ImageModal = ({ customClass, show, setShow }) => {
         </div>
         <div
           className="p-0 modal-body overflow-auto"
-          style={{ maxHeight: "90vh", width: "100%" }}
+          style={{  width: "100%" }}
         >
           <img
             src={"data:image/png;base64," + bannerImage?.value}
@@ -49,9 +49,10 @@ const ImageModal = ({ customClass, show, setShow }) => {
         height: "100vh",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        //alignItems: "center",
         background: "rgba(0, 0, 0, 0.5)", // Optional overlay
         zIndex: 1050, // Ensures it appears on top of other elements
+        paddingTop:"5px"
       }}
     >
       <div
