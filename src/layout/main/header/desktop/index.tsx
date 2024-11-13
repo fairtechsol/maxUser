@@ -253,7 +253,7 @@ const DesktopHeader = () => {
         >
           <Modal.Title>
             <span
-              style={{ color: "#fff", fontSize: "16px", fontWeight: "bold" }}
+              style={{ color: "#fff", fontSize: "20px", fontWeight: "bold" }}
             >
               Set Button Value
             </span>
