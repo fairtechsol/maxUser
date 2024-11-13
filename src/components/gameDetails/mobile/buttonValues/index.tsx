@@ -112,15 +112,15 @@ const ButtonValues = ({setShow}:any) => {
 // console.log(buttonValues,'initialValues',buttonValues2)
   return (
     <>
-      <ReportContainer title="">
-        <div style={{width:"60%",height:"30px",display:"flex",justifyContent:"space-around",alignItems:"center",marginBottom:"10px"}}>
+      <div className="ms-1">
+        <div className="ms-1" style={{width:"60%",height:"30px",display:"flex",justifyContent:"space-around",alignItems:"center",marginBottom:"10px"}}>
           <div className={`title-16 f-500 ${casinoBtn ?"text-black":"text-white"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#cccccc":"#ffc742",display:"flex",justifyContent:"center",alignItems:"center"}} onClick={()=>setCasinoBtn(false)}>Game Buttons</div>
           <div className={`title-16 f-500 ${casinoBtn ?"text-white":"text-black"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#ffc742":"#cccccc",display:"flex",justifyContent:"center",alignItems:"center"}} onClick={()=>setCasinoBtn(true)}>Casino Buttons</div>
         </div>
       <form onSubmit={handleSubmit}>
         <Row className={` ${isMobile ? "g-1" : "w-100 g-2"}`}>
           <Col md={6} xs={6}>
-            <span className={`${isMobile ? "title-12 f800" : "f700"}`}>
+            <span className={`ms-2 ${isMobile ? "title-12 f800" : "f700"}`}>
               Price Label:
             </span>
           </Col>
@@ -165,7 +165,7 @@ const ButtonValues = ({setShow}:any) => {
         </Row>
         
       </form>
-    </ReportContainer>
+    </div>
     </>
   );
 };

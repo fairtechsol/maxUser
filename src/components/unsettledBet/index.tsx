@@ -486,10 +486,10 @@ const UnsettledBetComponent = () => {
                   <span className="ms-2 title-14">
                     {" "}
                     Total Amount:{" "}
-                    {parseFloat(
+                   {parseFloat(
                       (selectedCheckedBet?.length > 0
-                        ? selectedCheckedBet
-                        : ReportBetList?.rows
+                        ? selectedCheckedBet ?? []
+                        : ReportBetList?.rows ?? []
                       )?.reduce((acc: any, match: any) => {
                         return acc + +match?.amount;
                       }, 0)
@@ -684,7 +684,21 @@ const UnsettledBetComponent = () => {
                     className="justify-content-center h-100 d-flex align-items-center"
                     style={{ width: "4%", borderLeft: "1px solid #c7c8ca" }}
                   >
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      checked={
+                        selectedCheckedBet?.length ===
+                        ReportBetList?.rows?.length
+                      }
+                      onClick={() => {
+                        if (
+                          selectedCheckedBet?.length !==
+                          ReportBetList?.rows?.length
+                        ) {
+                          setSelectedCheckedBet(ReportBetList.rows);
+                        } else setSelectedCheckedBet([]);
+                      }}
+                    />
                   </th>
                 </thead>
               )}
@@ -855,7 +869,7 @@ const UnsettledBetComponent = () => {
                             >
                               <input
                                 type="checkbox"
-                                checked={selectedCheckedBet?.includes(item?.id)}
+                                checked={selectedCheckedBet?.includes(item)}
                                 onClick={() => {
                                   handleCheckboxToggle(item);
                                 }}
