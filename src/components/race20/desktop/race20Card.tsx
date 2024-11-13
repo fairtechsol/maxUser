@@ -35,7 +35,6 @@ const Race20Result: React.FC<Props> = ({ data }: any) => {
       dd.push(item);
     }
   });
-console.log('first',elements)
   return (
     (ss?.length > 0 || hh?.length > 0 || cc?.length > 0 || dd?.length > 0)  && (
       <Container style={{ display: "flex", flexDirection: "column" }}>
