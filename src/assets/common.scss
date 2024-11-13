@@ -387,7 +387,7 @@ body table.table {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  //justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -401,6 +401,24 @@ body table.table {
 .fullscreen-modal .modal-body {
   width: 100%;
 }
+
+.modal-custom {
+  max-width: 100%; /* Fallback for smaller screens */
+  margin: 1.75rem auto;
+}
+
+@media (min-width: 576px) {
+  .modal-custom {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-custom-lg {
+    max-width: 800px;
+  }
+}
+
 
 // ===== blink text ====
 @keyframes blink {
@@ -1243,6 +1261,9 @@ img {
   }
   .rateBoxWidthKhado {
     width: 20% !important;
+  }
+  .setbtn-modal .modal-dialog{
+    margin: 0 !important;
   }
 }
 

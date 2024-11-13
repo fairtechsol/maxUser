@@ -323,10 +323,10 @@ const DesktopGameDetail = () => {
                 {matchDetails?.marketCompleteMatch1?.activeStatus === "live" &&
                   matchDetails?.marketCompleteMatch1?.isActive && (
                     <Col md={12}>
-                      <OtherMarket
+                      <Bookmaker
                         title={matchDetails?.marketCompleteMatch1?.name}
                         box={
-                          matchDetails?.apiTideMatch2?.runners?.[0]?.ex
+                          matchDetails?.marketCompleteMatch1?.runners?.[0]?.ex
                             ?.availableToBack?.length > 2
                             ? 6
                             : 2
@@ -539,13 +539,14 @@ const DesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {matchDetails?.eventId && matchDetails?.matchType!=="politics" && (
-                <Col md={12} className="px-1 pt-1">
-                  <LiveStreamComponent
-                    url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
-                  />
-                </Col>
-              )}
+              {matchDetails?.eventId &&
+                matchDetails?.matchType !== "politics" && (
+                  <Col md={12} className="px-1 pt-1">
+                    <LiveStreamComponent
+                      url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
+                    />
+                  </Col>
+                )}
               <Col md={12} className="px-1 pt-1">
                 <PlacedBet />
               </Col>

@@ -1,10 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import {isMobile} from "../../../utils/screenDimension";
-import "./style.scss";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -13,7 +13,6 @@ interface Props {
 }
 
 const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
- 
   const resultCards = data?.result?.cards?.split(",");
   let result: string[][] = [[], [], [], []];
   if (resultCards) {
@@ -27,11 +26,14 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
     <Container
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <div className={isMobile?"card32resultModalm":"card32resultModald"}>
+      <div className={isMobile ? "card32resultModalm" : "card32resultModald"}>
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Player 8</span>
-          <div className={"d-flex flex-row justify-content-center align-items-center"}>
-            
+          <div
+            className={
+              "d-flex flex-row justify-content-center align-items-center"
+            }
+          >
             {result?.[0]?.map((item: any) => {
               return (
                 item != "1" && (
@@ -57,7 +59,6 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
         <div className="card32resultCardContainer mb-3">
           <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Player 9</span>
           <div className="d-flex flex-row justify-content-center align-items-center">
-           
             {result?.[1]?.map((item: any) => {
               return (
                 item != "1" && (
@@ -73,7 +74,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
                 )
               );
             })}
-             {data?.result?.win === "2" && (
+            {data?.result?.win === "2" && (
               <div className="casino-winner-icon ms-1">
                 <FaTrophy size={30} color="#169733" />
               </div>
@@ -85,7 +86,6 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
             Player 10
           </span>
           <div className="d-flex flex-row justify-content-center align-items-center">
-           
             {result?.[2]?.map((item: any) => {
               return (
                 item != "1" && (
@@ -101,7 +101,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
                 )
               );
             })}
-             {data?.result?.win === "3" && (
+            {data?.result?.win === "3" && (
               <div className="casino-winner-icon ms-1">
                 <FaTrophy size={30} color="#169733" />
               </div>
@@ -113,7 +113,6 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
             Player 11
           </span>
           <div className="d-flex flex-row justify-content-center align-items-center">
-            
             {result?.[3]?.map((item: any) => {
               return (
                 item != "1" && (
@@ -139,7 +138,7 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
       </div>
       <div
         style={{
-          width: isMobile?"100%":"50%",
+          width: isMobile ? "100%" : "50%",
           textAlign: "center",
           boxShadow: "0 0 4px -1px",
           marginBottom: "10px",
@@ -148,12 +147,11 @@ const Card32ResultComponent: React.FC<Props> = ({ data }: any) => {
         <span style={{ opacity: "0.6" }}>Winner</span> Player{" "}
         {7 + Number(data?.result?.win)}
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };
