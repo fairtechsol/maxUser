@@ -133,8 +133,10 @@ const MobileHeader = () => {
                                 };
                               });
                             }}
-                            checked={!!show[item.id]}
-                            // className="customCheckbox"
+                            checked={show[item.id]}
+                            style={show[item.id]?{backgroundColor:"#FFC742",borderColor:"#FFC742"}:{}}
+                            className="custom-checkbox"
+                            
                           />
                         )}
                       </Dropdown.Item>
