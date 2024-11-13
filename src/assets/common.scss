@@ -402,6 +402,24 @@ body table.table {
   width: 100%;
 }
 
+.modal-custom {
+  max-width: 100%; /* Fallback for smaller screens */
+  margin: 1.75rem auto;
+}
+
+@media (min-width: 576px) {
+  .modal-custom {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-custom-lg {
+    max-width: 800px;
+  }
+}
+
+
 // ===== blink text ====
 @keyframes blink {
   0%,
