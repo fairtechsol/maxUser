@@ -184,12 +184,21 @@ const DesktopHeader = () => {
                   as={CustomDropDown}
                   id="dropdown-custom-components"
                 >
-                  {getProfile?.userName}
+                  {sessionStorage.getItem("isDemo")
+                    ? "Demo"
+                    : getProfile?.userName}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="rounded-2 shadow-sm dropdown-menu-nav">
                   {dropdownList
                     ?.filter((item) => item?.type !== "mobile")
+                    ?.filter((item) => {
+                      if (sessionStorage.getItem("isDemo")) {
+                        return item?.showDemo === true;
+                      } else {
+                        return item;
+                      }
+                    })
                     ?.map((item) => {
                       return (
                         <Dropdown.Item
@@ -211,7 +220,7 @@ const DesktopHeader = () => {
                       dispatch(logout());
                     }}
                   >
-                    Signout
+                    SignOut
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

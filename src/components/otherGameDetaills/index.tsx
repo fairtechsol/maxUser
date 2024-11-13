@@ -113,8 +113,15 @@ const FootballGameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
+        dispatch(getProfileInMatchDetail());
         if (event?.betType === "quickbookmaker1") {
-          navigate(`${isMobile ? `/sports` : `/game-list/${event?.gameType}`}`);
+          navigate(
+            `${
+              isMobile
+                ? `/sports`
+                : `/game-list/${event?.gameType || "cricket"}`
+            }`
+          );
         } else {
           dispatch(getPlacedBets(id));
         }
@@ -188,8 +195,8 @@ const FootballGameDetails = () => {
         expertSocketService.match.joinMatchRoom(id, "user");
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-        socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
+        socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
         socketService.userBalance.matchResultUnDeclared(
           handleMatchMarketResult

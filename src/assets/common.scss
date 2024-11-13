@@ -383,6 +383,25 @@ body table.table {
   cursor: pointer;
 }
 
+.customModal-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* Optional for overlay effect */
+  z-index: 1050; /* To be on top of other elements */
+}
+
+.fullscreen-modal .modal-header,
+.fullscreen-modal .modal-body {
+  width: 100%;
+}
+
 // ===== blink text ====
 @keyframes blink {
   0%,
