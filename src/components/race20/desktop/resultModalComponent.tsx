@@ -1,14 +1,13 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
-import { isMobile } from "../../../utils/screenDimension";
-import { FaTrophy } from "react-icons/fa";
-import { ImClubs } from "react-icons/im";
-import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
-import { ImDiamonds } from "react-icons/im";
-import "./style.scss";
+import { FaTrophy } from "react-icons/fa";
+import { GiSpades } from "react-icons/gi";
+import { ImClubs, ImDiamonds } from "react-icons/im";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -47,11 +46,18 @@ const Race20ResultComponent: React.FC<Props> = ({ data }: any) => {
           width: "100%",
           display: "flex",
           flexDirection: "row",
-          justifyContent:"left",
+          justifyContent: "left",
           gap: "10px",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "15px",justifyContent:"end" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            justifyContent: "end",
+          }}
+        >
           <GiSpades color="#000000" size={35} />
           <BiSolidHeart color="#ff0000" size={35} />
           <ImClubs color="#000000" size={35} />
@@ -62,7 +68,7 @@ const Race20ResultComponent: React.FC<Props> = ({ data }: any) => {
             display: "flex",
             flexDirection: "column",
             gap: isMobile ? "28px" : "8px",
-            justifyContent:"end"
+            justifyContent: "end",
           }}
         >
           <div className="result-card-container">
@@ -107,7 +113,7 @@ const Race20ResultComponent: React.FC<Props> = ({ data }: any) => {
             flexDirection: "column",
             gap: "10px",
             marginLeft: "5px",
-            justifyContent:"end"
+            justifyContent: "end",
           }}
         >
           <div className="result-card-container">
@@ -194,12 +200,11 @@ const Race20ResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

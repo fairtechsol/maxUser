@@ -21,9 +21,28 @@ export const login = createAsyncThunk<any, LoginData>(
   async (requestData, thunkApi) => {
     try {
       const { data } = await service.post(`${ApiConstants.LOGIN}`, requestData);
-      const { token } = data;
-      sessionStorage.setItem("jwtMaxUser", token);
-      return data;
+      if (data) {
+        const { token } = data;
+        sessionStorage.setItem("jwtMaxUser", token);
+        return data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const loginWithDemo = createAsyncThunk<LoginData>(
+  "auth/loginWithDemo",
+  async (_, thunkApi) => {
+    try {
+      const { data } = await service.post(ApiConstants.DEMO_LOGIN);
+      if (data) {
+        const { token } = data;
+        sessionStorage.setItem("jwtMaxUser", token);
+        sessionStorage.setItem("isDemo", "true");
+        return data;
+      }
     } catch (error) {
       const err = error as AxiosError;
       return thunkApi.rejectWithValue(err.response?.status);

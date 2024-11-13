@@ -107,7 +107,10 @@ const UnsettledBetComponent = () => {
     if (limit) params.append("limit", limit.toString());
     if (keyword) params.append("keyword", keyword);
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
-    if (type) params.append("marketBetType", marketBetType);
+    if (type) {
+      params.append("marketBetType", marketBetType);
+      params.append("result", "eqPENDING");
+    }
     dispatch(settleUnsettleMatch(params.toString()));
     // if (e.target.id) {
     // } else {
@@ -146,6 +149,7 @@ const UnsettledBetComponent = () => {
     if (keyword) params.append("keyword", keyword);
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
     params.append("marketBetType", marketBetType);
+    params.append("result", "eqPENDING");
     dispatch(settleUnsettleMatch(params.toString()));
   };
   const handleSearchChange = (e: any) => {
@@ -170,6 +174,7 @@ const UnsettledBetComponent = () => {
     if (keyword) params.append("keyword", e.target.value);
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
     params.append("marketBetType", marketBetType);
+    params.append("result", "eqPENDING");
     dispatch(settleUnsettleMatch(params.toString()));
     // }
   };
@@ -203,7 +208,7 @@ const UnsettledBetComponent = () => {
 
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
     params.append("marketBetType", marketBetType);
-
+    params.append("result", "eqPENDING");
     dispatch(settleUnsettleMatch(params.toString()));
   };
 
@@ -228,6 +233,7 @@ const UnsettledBetComponent = () => {
     if (keyword) params.append("keyword", e.target.value);
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
     params.append("marketBetType", marketBetType);
+    params.append("result", "eqPENDING");
     dispatch(settleUnsettleMatch(params.toString()));
   };
 
