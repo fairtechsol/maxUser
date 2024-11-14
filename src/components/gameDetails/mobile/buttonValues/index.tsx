@@ -114,8 +114,8 @@ const ButtonValues = ({setShow}:any) => {
     <>
       <div className="ms-1">
         <div className="ms-1" style={{width:"60%",height:"30px",display:"flex",justifyContent:"space-around",alignItems:"center",marginBottom:"10px"}}>
-          <div className={`title-16 f-500 ${casinoBtn ?"text-black":"text-white"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#cccccc":"#ffc742",display:"flex",justifyContent:"center",alignItems:"center"}} onClick={()=>setCasinoBtn(false)}>Game Buttons</div>
-          <div className={`title-16 f-500 ${casinoBtn ?"text-white":"text-black"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#ffc742":"#cccccc",display:"flex",justifyContent:"center",alignItems:"center"}} onClick={()=>setCasinoBtn(true)}>Casino Buttons</div>
+          <div className={`title-16 f-500 ${casinoBtn ?"text-black":"text-white"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#cccccc":"#ffc742",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}} onClick={()=>setCasinoBtn(false)}>Game Buttons</div>
+          <div className={`title-16 f-500 ${casinoBtn ?"text-white":"text-black"}`} style={{width:"50%",height:"100%",backgroundColor:casinoBtn?"#ffc742":"#cccccc",display:"flex",justifyContent:"center",alignItems:"center",cursor:"pointer"}} onClick={()=>setCasinoBtn(true)}>Casino Buttons</div>
         </div>
       <form onSubmit={handleSubmit}>
         <Row className={` ${isMobile ? "g-1" : "w-100 g-2"}`}>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
+import { isMobile } from "../../../../utils/screenDimension";
 
 interface PaginationComponentProps {
   currentPage: number;
@@ -53,7 +54,8 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
   return (
     <div className="d-flex flex-row">
       <Pagination>
-        <div className={`paginationContainer`}>
+        <div className={`paginationContainer ${isMobile ? "flex-column":""}`}>
+          <div className="d-flex flex-row">
           <Pagination.First
             disabled={currentPage <= 1 ? true : false}
             onClick={() => onPageChange(1)}
@@ -78,7 +80,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
           >
             Last
           </Pagination.Last>
-
+          </div>
           <div className="title-14 d-flex justify-content-center align-items-center ms-2 mt-1">
             Page
             <span className="fbold ms-1 me-2">
