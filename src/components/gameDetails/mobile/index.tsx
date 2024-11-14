@@ -332,7 +332,7 @@ const MobileGameDetail = () => {
                         "live" &&
                         matchDetails?.marketCompleteMatch1?.isActive && (
                           <Col className="g-0" md={12}>
-                            <Bookmaker
+                            <OtherMarket
                               title={matchDetails?.marketCompleteMatch1?.name}
                               box={
                                 matchDetails?.marketCompleteMatch1?.runners?.[0]
@@ -462,7 +462,7 @@ const MobileGameDetail = () => {
                       {matchDetails?.apiTideMatch?.activeStatus === "live" &&
                         matchDetails?.apiTideMatch?.isActive && (
                           <Col className="g-0" md={12}>
-                            <Bookmaker
+                            <OtherMarket
                               title={matchDetails?.apiTideMatch?.name}
                               box={
                                 matchDetails?.apiTideMatch?.runners?.[0]?.ex
@@ -480,7 +480,7 @@ const MobileGameDetail = () => {
                         "live" &&
                         matchDetails?.marketCompleteMatch?.isActive && (
                           <Col className="g-0" md={12}>
-                            <Bookmaker
+                            <OtherMarket
                               title={matchDetails?.marketCompleteMatch?.name}
                               box={
                                 matchDetails?.marketCompleteMatch?.runners?.[0]
