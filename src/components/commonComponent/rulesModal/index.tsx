@@ -73,7 +73,7 @@ const RulesModal = ({ show, setShow, rule, type, gameType }: any) => {
               ) : gameType == "teen20" ? (
                 <Teen20Rules />
               ) : gameType == "baccarat2" ? (
-                <Baccarat2Rules />
+                <Baccarat1Rules />
               ) : gameType == "card32" ? (
                 <Card32Rules />
               ) : gameType == "card32eu" ? (

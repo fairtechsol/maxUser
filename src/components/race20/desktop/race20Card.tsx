@@ -35,10 +35,14 @@ const Race20Result: React.FC<Props> = ({ data }: any) => {
       dd.push(item);
     }
   });
-
   return (
     (ss?.length > 0 || hh?.length > 0 || cc?.length > 0 || dd?.length > 0)  && (
       <Container style={{ display: "flex", flexDirection: "column" }}>
+        <div className="p-1" style={{width:"60px", height:"55px",backgroundColor:"#404040"}}>
+          <div className="w-100 h-100 d-flex flex-column align-items-center" style={{border:"1px solid #ffff00",color:'#fff'}}>
+           <span> Cards</span> <span>{elements?.filter((item:any) => item !== "1").length}</span>
+          </div>
+        </div>
         <div
         className="mt-2 p-1"
           style={{

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Dropdown, Form, Navbar } from "react-bootstrap";
+import { Dropdown, Modal, Navbar } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ import dropdownList from "../dropdown.json";
 import ExposureModal from "../modalExposure";
 import SearchBox from "./searchBox";
 import "./style.scss";
+import ButtonValues from "../../../../components/gameDetails/mobile/buttonValues";
 
 const MobileHeader = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -19,6 +20,7 @@ const MobileHeader = () => {
     balance: true,
     exposure: true,
   });
+  const [show1, setShow1] = useState(false);
   const [openExposure, setOpenExposure] = useState(false);
   const handleClickExposureModalOpen = () => {
     if (parseFloat(getProfile?.userBal?.exposure) === 0) {
@@ -110,6 +112,8 @@ const MobileHeader = () => {
                           e.stopPropagation();
                           if (item?.link) {
                             navigate(item.link);
+                          }else if(item?.isModal){
+                            setShow1(true);
                           }
                         }}
                         key={item?.id}
@@ -129,8 +133,10 @@ const MobileHeader = () => {
                                 };
                               });
                             }}
-                            checked={!!show[item.id]}
-                            // className="customCheckbox"
+                            checked={show[item.id]}
+                            style={show[item.id]?{backgroundColor:"#FFC742",borderColor:"#FFC742"}:{}}
+                            className="custom-checkbox"
+                            
                           />
                         )}
                       </Dropdown.Item>
@@ -155,6 +161,29 @@ const MobileHeader = () => {
       <div className="marquee-container text-white p-1">
         <b className="marquee-content title-10">{marqueeNotification?.value}</b>
       </div>
+      <Modal show={show1} onHide={() => setShow1(false)} className="setbtn-modal">
+        <Modal.Header
+          className="bg-primary rounded-0"
+          style={{ zIndex: "999" }}
+        >
+          <Modal.Title>
+            <span
+              style={{ color: "#fff", fontSize: "16px", fontWeight: "bold" }}
+            >
+              Set Button Value
+            </span>
+          </Modal.Title>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            aria-label="Close"
+            onClick={() => setShow1(false)}
+          ></button>
+        </Modal.Header>
+        <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
+          <ButtonValues setShow={setShow1} />
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

@@ -10,7 +10,8 @@
     "id": "unsettledBet",
     "name": "Current Bet",
     "link": "/unsettled-bet",
-    "type": "any"
+    "type": "any",
+    "showDemo": true
   },
   {
     "id": "casinoReportHistory",
@@ -22,8 +23,9 @@
   {
     "id": "setButtonValues",
     "name": "Set Button Values",
-    "link": "/change-btn-value",
+    "link": "",
     "type": "any",
+    "isModal": true,
     "showDemo": true
   },
   {

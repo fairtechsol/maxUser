@@ -18,7 +18,6 @@ const ResultBetList = ({ bets, total }: any) => {
   const [selected, setSelected] = useState("all");
   const [list, setList] = useState(bets);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [filteredTotal, setFilteredTotal] = useState(total);
   const handleCheckBox = (item: any) => {
     setSelectedItems((prevSelectedItems) => {
       if (prevSelectedItems.includes(item)) {
@@ -49,14 +48,6 @@ const ResultBetList = ({ bets, total }: any) => {
       setList(bets);
     }
   };
-
-  useEffect(() => {
-    if (selectedItems?.length === 0) {
-      setFilteredTotal(total); // Show `total` if no items are selected
-    } else {
-      setFilteredTotal(selectedItems.length); // Otherwise, show selected items count
-    }
-  }, [selectedItems, total]);
 
   return (
     <div className="w-100 d-flex flex-column">

@@ -17,18 +17,38 @@
   left: 6px;
   align-self: center;
 }
-
-.customCheckbox {
-  width: 16px;
-  height: 16px;
-  appearance: none;
-  border-radius: 0;
-  background-color: #ffc742;
-  border: 1px solid #ffc742;
+.custom-checkbox {
+  appearance: none; 
+  -webkit-appearance: none;  
+  -moz-appearance: none; 
+  width: 18px;  
+  height: 18px; 
+  border: 2px solid #ccc;  
+  border-radius: 4px;  
+  background-color: #fff;  
   cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
-// margin-bottom: 4px;
+.custom-checkbox:checked {
+  background-color: #FFC742;  
+  border-color: #FFC742;  
+}
 
-// .navbar-brand
-// margin-top: 29px;
+
+.custom-checkbox:checked::after {
+  content: ''; 
+  position: absolute;
+  left: 5px;  
+  top: 2px;  
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);  
+}
+
+.custom-checkbox:hover {
+  border-color: #999;  
+}
