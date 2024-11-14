@@ -151,7 +151,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                       style={{ overflow: "hidden" }}
                     >
                       <span
-                        className="teamFont"
+                        className="teamFont cursor-pointer"
                         style={{ fontWeight: "400", lineHeight: 1 }}
                         onClick={() => {
                           // console.log("first", item);
@@ -467,7 +467,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                         style={{ overflow: "hidden" }}
                       >
                         <span
-                          className="teamFont"
+                          className="teamFont cursor-pointer"
                           style={{
                             fontWeight: "400",
                             lineHeight: 1,
@@ -488,6 +488,7 @@ const SessionNormal = ({ title, data, detail, manual }: any) => {
                                 resetRunAmountModal({
                                   showModal: true,
                                   id: item?.id,
+                                  title: title,
                                 })
                               );
                               if (title === "meter") {
