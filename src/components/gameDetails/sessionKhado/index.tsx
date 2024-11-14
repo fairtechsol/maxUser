@@ -189,7 +189,7 @@ const SessionKhado = ({ title, data, detail }) => {
                         handlePlaceBet(
                           item?.ex?.availableToBack?.[0]?.price,
                           "Back",
-                          "Back",
+                          `${item?.RunnerName}-${item?.ex?.availableToLay?.[0]?.price}`,
                           item?.activeStatus,
                           item?.ex?.availableToBack?.[0]?.size,
                           item,

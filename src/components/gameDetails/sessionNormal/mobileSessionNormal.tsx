@@ -216,7 +216,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             item?.ex?.availableToLay?.[0]?.price ||
                               item?.noRate,
                             "no",
-                            "NO",
+                            item?.RunnerName || item?.name,
                             item?.activeStatus,
                             item?.ex?.availableToLay?.[0]?.size ||
                               item?.noPercent,
@@ -243,7 +243,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             handlePlaceBet(
                               item?.ex?.availableToLay?.[1]?.price,
                               "no",
-                              "NO",
+                              item?.RunnerName || item?.name,
                               item?.activeStatus,
                               item?.ex?.availableToLay?.[1]?.size,
                               item,
@@ -269,7 +269,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             handlePlaceBet(
                               item?.ex?.availableToLay?.[2]?.price,
                               "no",
-                              "NO",
+                              item?.RunnerName || item?.name,
                               item?.activeStatus,
                               item?.ex?.availableToLay?.[2]?.size,
                               item,
@@ -303,7 +303,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             item?.ex?.availableToBack?.[0]?.price ||
                               item?.yesRate,
                             "Yes",
-                            "YES",
+                            item?.RunnerName || item?.name,
                             item?.activeStatus,
                             item?.ex?.availableToBack?.[0]?.size ||
                               item?.yesPercent,
@@ -331,7 +331,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             handlePlaceBet(
                               item?.ex?.availableToBack?.[1]?.price,
                               "Yes",
-                              "YES",
+                              item?.RunnerName || item?.name,
                               item?.activeStatus,
                               item?.ex?.availableToBack?.[1]?.size,
                               item,
@@ -357,7 +357,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
                             handlePlaceBet(
                               item?.ex?.availableToBack?.[2]?.price,
                               "Yes",
-                              "YES",
+                              item?.RunnerName || item?.name,
                               item?.activeStatus,
                               item?.ex?.availableToBack?.[2]?.size,
                               item,
