@@ -143,7 +143,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                         handlePlaceBet(
                           item?.ex?.availableToBack?.[0]?.price,
                           "Back",
-                          "Back",
+                          item?.RunnerName,
                           item?.activeStatus,
                           item?.ex?.availableToBack?.[0]?.price,
                           item,
@@ -166,7 +166,7 @@ const MobileSessionFancy = ({ title, data, detail }) => {
                         handlePlaceBet(
                           item?.ex?.availableToLay?.[0]?.price,
                           "lay",
-                          "Back",
+                          item?.RunnerName,
                           item?.activeStatus,
                           item?.ex?.availableToLay?.[0]?.price,
                           item,
