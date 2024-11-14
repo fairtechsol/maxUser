@@ -393,6 +393,16 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
     // console.log(id,'first',data)
     return profit ? profit : "";
   };
+  const handleName = (selected: any) => {
+    let name;
+    if (selected?.data?.name?.includes(".5")) {
+      const parts = selected?.data?.name?.split("_");
+      name = selected?.team?.betOnTeam + " " + parts[parts?.length - 1];
+    } else {
+      name = selected?.team?.betOnTeam ?? selected?.team?.name;
+    }
+    return name;
+  };
   return (
     <>
       <CustomModal
@@ -414,7 +424,9 @@ const PlacedBet = ({ show }: PlaceBetProps) => {
         >
           <Row className="row-cols-md-3 g-2 align-items-center">
             <Col xs={8} className="title-12 fbold">
-              {selectedBet?.team?.name ?? selectedBet?.team?.betOnTeam}
+            {selectedBet?.team?.eventType === "horseRacing"
+                        ? "MATCH_ODDS"
+                        : handleName(selectedBet)}
             </Col>
             <Col xs={4} className="d-flex justify-content-end">
               <CustomButton
