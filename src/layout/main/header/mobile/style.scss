@@ -17,7 +17,7 @@
   left: 6px;
   align-self: center;
 }
-.custom-checkbox {
+.custom-checkbox23 {
   appearance: none; 
   -webkit-appearance: none;  
   -moz-appearance: none; 
@@ -31,13 +31,13 @@
   transition: background-color 0.3s, border-color 0.3s;
 }
 
-.custom-checkbox:checked {
+.custom-checkbox23:checked {
   background-color: #FFC742;  
   border-color: #FFC742;  
 }
 
 
-.custom-checkbox:checked::after {
+.custom-checkbox23:checked::after {
   content: ''; 
   position: absolute;
   left: 5px;  
@@ -49,6 +49,6 @@
   transform: rotate(45deg);  
 }
 
-.custom-checkbox:hover {
+.custom-checkbox23:hover {
   border-color: #999;  
 }

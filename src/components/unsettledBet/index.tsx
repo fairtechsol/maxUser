@@ -561,7 +561,7 @@ const UnsettledBetComponent = () => {
           <div className="table-responsive" style={{border:"1px solid #f7f7f7"}}>
             <table
               style={{
-                width: isMobile ? "800px" : "100%",
+                width: isMobile ? gameType === "sports" ?"800px":"100%" : "100%",
                 overflowX: "scroll",
               }}
             >
@@ -570,10 +570,11 @@ const UnsettledBetComponent = () => {
                   className="w-100 d-flex align-items-center fbold"
                   style={{
                     height: "46px",
-                    backgroundColor: "#f7f7f7",
+                    backgroundColor: "#FFC742",
                     fontSize: isMobile ? "12px" : "14px",
                     borderBottom: "1px solid #c7c8ca",
-                    border:"1px solid #c7c8ca"
+                    border:"1px solid #c7c8ca",
+                    color:"#fff"
                   }}
                 >
                   <th
@@ -644,39 +645,40 @@ const UnsettledBetComponent = () => {
                   className="w-100 d-flex align-items-center fbold"
                   style={{
                     height: "46px",
-                    backgroundColor: "#f7f7f7",
+                    backgroundColor: "#FFC742",
                     fontSize: isMobile ? "12px" : "14px",
                     borderBottom: "1px solid #c7c8ca",
-                     border:"1px solid #c7c8ca"
+                     border:"1px solid #c7c8ca",
+                     color:"#fff"
                   }}
                 >
                   <td
                     className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                    style={{ width: "41%" }}
+                    style={{ width: "30%" }}
                   >
                     Event Name
                   </td>
                   <th
                     className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                    style={{ width: "27%", borderLeft: "1px solid #c7c8ca" }}
+                    style={{ width: "25%", borderLeft: "1px solid #c7c8ca" }}
                   >
                     Nation
                   </th>
                   <th
                     className="pe-1 justify-content-end h-100 d-flex align-items-center"
-                    style={{ width: "7%", borderLeft: "1px solid #c7c8ca" }}
+                    style={{ width: "15%", borderLeft: "1px solid #c7c8ca" }}
                   >
                     User Rate
                   </th>
                   <th
                     className="pe-1 justify-content-end h-100 d-flex align-items-center"
-                    style={{ width: "7%", borderLeft: "1px solid #c7c8ca" }}
+                    style={{ width: "10%", borderLeft: "1px solid #c7c8ca" }}
                   >
                     Amount
                   </th>
                   <th
                     className="ps-1 justify-content-start h-100 d-flex align-items-center"
-                    style={{ width: "14%", borderLeft: "1px solid #c7c8ca" }}
+                    style={{ width: "16%", borderLeft: "1px solid #c7c8ca" }}
                   >
                     Place Date
                   </th>
@@ -818,14 +820,14 @@ const UnsettledBetComponent = () => {
                           >
                             <td
                               className="ps-2 justify-content-start h-100 d-flex align-items-center"
-                              style={{ width: "41%" }}
+                              style={{ width: "30%" }}
                             >
                               {item?.eventName}
                             </td>
                             <td
                               className="ps-2 justify-content-start h-100 d-flex align-items-center"
                               style={{
-                                width: "27%",
+                                width: "25%",
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
@@ -834,7 +836,7 @@ const UnsettledBetComponent = () => {
                             <td
                               className="pe-1 justify-content-end h-100 d-flex align-items-center"
                               style={{
-                                width: "7%",
+                                width: "15%",
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
@@ -843,7 +845,7 @@ const UnsettledBetComponent = () => {
                             <td
                               className="pe-1 justify-content-end h-100 d-flex align-items-center"
                               style={{
-                                width: "7%",
+                                width: "10%",
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
@@ -852,7 +854,7 @@ const UnsettledBetComponent = () => {
                             <td
                               className="ps-1 justify-content-start h-100 d-flex align-items-center"
                               style={{
-                                width: "14%",
+                                width: "16%",
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
@@ -883,7 +885,7 @@ const UnsettledBetComponent = () => {
               </tbody>
             </table>
             {ReportBetList?.count > 0 && (
-              <div className="w-100 d-flex flex-row justify-content-center align-items-center mt-4">
+              <div className={`w-100 d-flex justify-content-center align-items-center mt-4 ${isMobile?"flex-column":"flex-row"}`}>
                 <div
                   className="d-flex flex-row"
                   style={{ border: "1px solid #ddd" }}
@@ -945,6 +947,7 @@ const UnsettledBetComponent = () => {
                     Last
                   </div>
                 </div>
+                <div className={`d-flex flex-row ${isMobile?"mt-1":""}`}>
                 <div className="ms-2">
                   <span className={`${isMobile ? "title-12" : "title-14"}`}>
                     Page
@@ -971,6 +974,7 @@ const UnsettledBetComponent = () => {
                     setSelectedCheckedBet([]);
                   }}
                 />
+              </div>
               </div>
             )}
           </div>
