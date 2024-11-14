@@ -188,8 +188,8 @@ const TeenPattiDesktop = () => {
                       //   curR?.result?.desc.split(" ")[0]
                       // }.png`}
                       style={{
-                        width: "30px", // Adjust as needed
-                        height: "30px", // Adjust as needed
+                        width: "30px",
+                        height: "30px",
                         position: "absolute",
                       }}
                       alt=""
@@ -197,11 +197,10 @@ const TeenPattiDesktop = () => {
                     <span
                       style={{
                         position: "absolute",
-
                         transform: "translate(-50%, -50%)",
                         zIndex: 3,
-                        color: "white", // Adjust color as needed
-                        fontWeight: "500", // Make the text bold for better visibility
+                        color: "white",
+                        fontWeight: "500",
                         width: "40%",
                         fontSize: "6px",
                         top: "40%",
