@@ -1,13 +1,13 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {isMobile} from "../../../utils/screenDimension";
 import { FaTrophy } from "react-icons/fa";
-import "./style.scss";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -16,7 +16,6 @@ interface Props {
 }
 
 const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
-
   const elements = data?.result?.cards?.split(",");
   const primaryCards = elements?.slice(0, 3);
   const cards = elements?.slice(3);
@@ -210,7 +209,14 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
                   ))}
                 </Slider>
               ) : (
-                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "10px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    flexWrap: "wrap",
+                    marginBottom: "10px",
+                  }}
+                >
                   {teamB?.map((item: any, index: any) => (
                     <HandleCards key={index} card={item} />
                   ))}
@@ -239,12 +245,11 @@ const AbjResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

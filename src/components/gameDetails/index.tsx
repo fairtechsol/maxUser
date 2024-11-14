@@ -107,6 +107,7 @@ const GameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
+        dispatch(getProfileInMatchDetail());
         if (
           event?.gameType === "cricket" ||
           event?.betType === "quickbookmaker1"

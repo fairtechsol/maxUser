@@ -16,15 +16,21 @@ const CricketMatch20ResultComponent: React.FC<Props> = ({ data }: any) => {
   const playerA = resultCards?.filter(
     (_: any, index: number) => index % 2 === 0
   );
-  
+
   return (
-    <Container style={{ display: "flex", flexDirection: "column",alignItems:"center", justifyContent:"center" }}>
+    <Container
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <div
         className="flex-row justify-content-around"
-        style={{ display: "flex" ,}}
+        style={{ display: "flex" }}
       >
         <div className="teen20resultCardContainer mb-3">
-          
           <div
             className={
               isMobile
@@ -55,18 +61,17 @@ const CricketMatch20ResultComponent: React.FC<Props> = ({ data }: any) => {
           padding: "6px",
           boxShadow: "0 0 4px -1px",
           marginTop: "10px",
-          width:"60%",
-          marginBottom:"5px"
+          width: "60%",
+          marginBottom: "5px",
         }}
       >
         Run {data?.result?.win}
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

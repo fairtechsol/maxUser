@@ -1,11 +1,10 @@
 import { Col, Form, Row, Stack } from "react-bootstrap";
 import { isMobile } from "../../utils/screenDimension";
-import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import {
-  resetDataUnsettledMatch,
+  resetReportBetListData,
   settleUnsettleMatch,
 } from "../../store/actions/match/matchListAction";
 import { useEffect, useState } from "react";
@@ -79,7 +78,7 @@ const cardGames = [
 ];
 const UnsettledBetComponent = () => {
   const dispatch: AppDispatch = useDispatch();
-  const [tableConfig, setTableConfig] = useState<any>(null);
+  const [selectedCheckedBet, setSelectedCheckedBet] = useState<any>([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [type, setType] = useState<any>(null);
   const [gameType, setGameType] = useState<any>(null);
@@ -89,7 +88,6 @@ const UnsettledBetComponent = () => {
   const { ReportBetList } = useSelector(
     (state: RootState) => state.currentBetList
   );
-
   const handleCheckboxChange = (e: any) => {
     setSelectedOption(e.target.id);
     if (!type) {
@@ -109,7 +107,10 @@ const UnsettledBetComponent = () => {
     if (limit) params.append("limit", limit.toString());
     if (keyword) params.append("keyword", keyword);
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
-    if (type) params.append("marketBetType", marketBetType);
+    if (type) {
+      params.append("marketBetType", marketBetType);
+      params.append("result", "eqPENDING");
+    }
     dispatch(settleUnsettleMatch(params.toString()));
     // if (e.target.id) {
     // } else {
@@ -148,6 +149,7 @@ const UnsettledBetComponent = () => {
     if (keyword) params.append("keyword", keyword);
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
     params.append("marketBetType", marketBetType);
+    params.append("result", "eqPENDING");
     dispatch(settleUnsettleMatch(params.toString()));
   };
   const handleSearchChange = (e: any) => {
@@ -172,6 +174,7 @@ const UnsettledBetComponent = () => {
     if (keyword) params.append("keyword", e.target.value);
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
     params.append("marketBetType", marketBetType);
+    params.append("result", "eqPENDING");
     dispatch(settleUnsettleMatch(params.toString()));
     // }
   };
@@ -205,12 +208,13 @@ const UnsettledBetComponent = () => {
 
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
     params.append("marketBetType", marketBetType);
-
+    params.append("result", "eqPENDING");
     dispatch(settleUnsettleMatch(params.toString()));
   };
 
   const handleLimit = (e: any) => {
     setLimit(e.target.value);
+    setCurrentPage(1);
     if (!type) {
       return false;
     }
@@ -223,14 +227,30 @@ const UnsettledBetComponent = () => {
       }`;
       params.append("betType", betType);
     }
-    if (currentPage) params.append("page", currentPage);
+    if (currentPage) params.append("page", 1);
     params.append("searchBy", "betPlaced.eventName");
     params.append("limit", e.target.value);
     if (keyword) params.append("keyword", e.target.value);
     const marketBetType = type?.value === "sports" ? "neCARD" : "eqCARD";
     params.append("marketBetType", marketBetType);
+    params.append("result", "eqPENDING");
     dispatch(settleUnsettleMatch(params.toString()));
   };
+
+  const handleCheckboxToggle = (item: any) => {
+    setSelectedCheckedBet((prevSelected: any) =>
+      prevSelected.includes(item)
+        ? prevSelected.filter(
+            (selectedItem: any) => selectedItem?.id !== item?.id
+          )
+        : [...prevSelected, item]
+    );
+  };
+
+  useEffect(() => {
+    dispatch(resetReportBetListData());
+  }, []);
+
   return (
     <ReportContainer title="Current Bets">
       <div>
@@ -317,7 +337,7 @@ const UnsettledBetComponent = () => {
                     <span className="ms-1">Entries</span>
                   </div>
                 </div>
-                <div className="w-25 d-flex flex-row justify-content-center">
+                <div className="w-25 d-flex flex-row justify-content-center" >
                   <Form.Check
                     label="All"
                     name="matched"
@@ -346,15 +366,22 @@ const UnsettledBetComponent = () => {
                   />
                 </div>
                 <div className="w-25 d-flex flex-row ">
-                  <span> Total Bets: {ReportBetList?.count ?? 0}</span>
+                  <span>
+                    Total Bets:{" "}
+                    {selectedCheckedBet?.length > 0
+                      ? selectedCheckedBet.length ?? 0
+                      : ReportBetList?.rows?.length ?? 0}
+                  </span>
                   <span className="ms-2">
-                    {" "}
                     Total Amount:{" "}
                     {parseFloat(
-                      ReportBetList?.rows?.reduce((acc: any, match: any) => {
+                      (selectedCheckedBet?.length > 0
+                        ? selectedCheckedBet ?? []
+                        : ReportBetList?.rows ?? []
+                      )?.reduce((acc: any, match: any) => {
                         return acc + +match?.amount;
-                      }, 0) || "0.00"
-                    ).toFixed(2)}
+                      }, 0)
+                    ).toFixed(2) || "0.00"}
                   </span>
                 </div>
                 <div className="w-25 d-flex flex-row justify-content-end">
@@ -377,6 +404,7 @@ const UnsettledBetComponent = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
+                
               }}
             >
               <Col md={2} xs={12} className="mt-2">
@@ -425,6 +453,7 @@ const UnsettledBetComponent = () => {
                     id={""}
                     onChange={(e) => handleCheckboxChange(e)}
                     defaultChecked={true}
+                    className="custom-checkbox"
                   />
                   <Form.Check
                     label="Back"
@@ -433,7 +462,7 @@ const UnsettledBetComponent = () => {
                     id={"back"}
                     onChange={(e) => handleCheckboxChange(e)}
                     // defaultChecked={selectedOption === "PENDING"}
-                    className="ms-2"
+                    className="ms-2 custom-checkbox"
                   />
                   <Form.Check
                     label="Lay"
@@ -442,31 +471,36 @@ const UnsettledBetComponent = () => {
                     id={"lay"}
                     onChange={(e) => handleCheckboxChange(e)}
                     // defaultChecked={selectedOption === "PENDING"}
-                    className="ms-2"
+                    className="ms-2 custom-checkbox"
                   />
                 </div>
               </div>
               <div className="w-100 d-flex flex-row mt-2">
                 <div className="w-50 d-flex flex-row align-items-center">
                   <span className="title-14">
-                    {" "}
-                    Total Bets: {ReportBetList?.count ?? 0}
+                    Total Bets:{" "}
+                    {selectedCheckedBet?.length > 0
+                      ? selectedCheckedBet.length ?? 0
+                      : ReportBetList?.rows?.length ?? 0}
                   </span>
                   <span className="ms-2 title-14">
                     {" "}
                     Total Amount:{" "}
-                    {parseFloat(
-                      ReportBetList?.rows?.reduce((acc: any, match: any) => {
+                   {parseFloat(
+                      (selectedCheckedBet?.length > 0
+                        ? selectedCheckedBet ?? []
+                        : ReportBetList?.rows ?? []
+                      )?.reduce((acc: any, match: any) => {
                         return acc + +match?.amount;
-                      }, 0) || "0.00"
-                    ).toFixed(2)}
+                      }, 0)
+                    ).toFixed(2) || "0.00"}
                   </span>
                 </div>
                 <div className="w-50 d-flex flex-row justify-content-end align-items-center">
                   <span className="title-14">Search:</span>
                   <input
                     type="text"
-                    className="ms-1"
+                    className="ms-1 w-50"
                     style={{ border: "1px solid #ddd" }}
                     placeholder={`${ReportBetList?.count ?? 0} records...`}
                     onChange={(e) => handleSearchChange(e)}
@@ -524,7 +558,7 @@ const UnsettledBetComponent = () => {
                 ))}
             </CustomTable>
           )} */}
-          <div className="table-responsive">
+          <div className="table-responsive" style={{border:"1px solid #f7f7f7"}}>
             <table
               style={{
                 width: isMobile ? "800px" : "100%",
@@ -539,6 +573,7 @@ const UnsettledBetComponent = () => {
                     backgroundColor: "#f7f7f7",
                     fontSize: isMobile ? "12px" : "14px",
                     borderBottom: "1px solid #c7c8ca",
+                    border:"1px solid #c7c8ca"
                   }}
                 >
                   <th
@@ -587,7 +622,21 @@ const UnsettledBetComponent = () => {
                     className="justify-content-center h-100 d-flex align-items-center"
                     style={{ width: "4%", borderLeft: "1px solid #c7c8ca" }}
                   >
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      checked={
+                        selectedCheckedBet?.length ===
+                        ReportBetList?.rows?.length
+                      }
+                      onClick={() => {
+                        if (
+                          selectedCheckedBet?.length !==
+                          ReportBetList?.rows?.length
+                        ) {
+                          setSelectedCheckedBet(ReportBetList.rows);
+                        } else setSelectedCheckedBet([]);
+                      }}
+                    />
                   </th>
                 </thead>
               ) : (
@@ -598,6 +647,7 @@ const UnsettledBetComponent = () => {
                     backgroundColor: "#f7f7f7",
                     fontSize: isMobile ? "12px" : "14px",
                     borderBottom: "1px solid #c7c8ca",
+                     border:"1px solid #c7c8ca"
                   }}
                 >
                   <td
@@ -634,7 +684,21 @@ const UnsettledBetComponent = () => {
                     className="justify-content-center h-100 d-flex align-items-center"
                     style={{ width: "4%", borderLeft: "1px solid #c7c8ca" }}
                   >
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      checked={
+                        selectedCheckedBet?.length ===
+                        ReportBetList?.rows?.length
+                      }
+                      onClick={() => {
+                        if (
+                          selectedCheckedBet?.length !==
+                          ReportBetList?.rows?.length
+                        ) {
+                          setSelectedCheckedBet(ReportBetList.rows);
+                        } else setSelectedCheckedBet([]);
+                      }}
+                    />
                   </th>
                 </thead>
               )}
@@ -727,7 +791,13 @@ const UnsettledBetComponent = () => {
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
-                              <input type="checkbox" />
+                              <input
+                                type="checkbox"
+                                checked={selectedCheckedBet?.includes(item)}
+                                onClick={() => {
+                                  handleCheckboxToggle(item);
+                                }}
+                              />
                             </td>
                           </tr>
                         ) : (
@@ -797,7 +867,13 @@ const UnsettledBetComponent = () => {
                                 borderLeft: "1px solid #c7c8ca",
                               }}
                             >
-                              <input type="checkbox" />
+                              <input
+                                type="checkbox"
+                                checked={selectedCheckedBet?.includes(item)}
+                                onClick={() => {
+                                  handleCheckboxToggle(item);
+                                }}
+                              />
                             </td>
                           </tr>
                         )}
@@ -815,7 +891,10 @@ const UnsettledBetComponent = () => {
                   <div
                     className="d-flex flex-row justify-content-center align-items-center p-2 ps-3 pe-3"
                     style={{ fontSize: isMobile ? "12px" : "14px" }}
-                    onClick={() => handlePageChange(1)}
+                    onClick={() => {
+                      handlePageChange(1);
+                      setSelectedCheckedBet([]);
+                    }}
                   >
                     First
                   </div>
@@ -825,9 +904,12 @@ const UnsettledBetComponent = () => {
                       borderLeft: "1px solid #ddd",
                       fontSize: isMobile ? "12px" : "14px",
                     }}
-                    onClick={() =>
-                      currentPage > 1 ? handlePageChange(currentPage - 1) : null
-                    }
+                    onClick={() => {
+                      currentPage > 1
+                        ? handlePageChange(currentPage - 1)
+                        : null;
+                      setSelectedCheckedBet([]);
+                    }}
                   >
                     Previous
                   </div>
@@ -837,12 +919,13 @@ const UnsettledBetComponent = () => {
                       borderLeft: "1px solid #ddd",
                       fontSize: isMobile ? "12px" : "14px",
                     }}
-                    onClick={() =>
+                    onClick={() => {
                       currentPage <
                       Math.floor((ReportBetList?.count || 0) / limit)
                         ? handlePageChange(currentPage + 1)
-                        : null
-                    }
+                        : null;
+                      setSelectedCheckedBet([]);
+                    }}
                   >
                     Next
                   </div>
@@ -852,11 +935,12 @@ const UnsettledBetComponent = () => {
                       borderLeft: "1px solid #ddd",
                       fontSize: isMobile ? "12px" : "14px",
                     }}
-                    onClick={() =>
+                    onClick={() => {
                       handlePageChange(
                         Math.floor((ReportBetList?.count || 0) / limit)
-                      )
-                    }
+                      );
+                      setSelectedCheckedBet([]);
+                    }}
                   >
                     Last
                   </div>
@@ -882,7 +966,10 @@ const UnsettledBetComponent = () => {
                   style={{ width: "80px", border: "1px solid #ddd" }}
                   value={currentPage}
                   min={1}
-                  onChange={(e) => handlePageChange(e.target.value)}
+                  onChange={(e) => {
+                    handlePageChange(e.target.value);
+                    setSelectedCheckedBet([]);
+                  }}
                 />
               </div>
             )}

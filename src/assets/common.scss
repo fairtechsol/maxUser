@@ -59,7 +59,18 @@ body table.table {
   height: 100%;
   margin-top: 1%;
 }
+.custom-checkbox .form-check-input:checked {
+  background-color: #FFC742; 
+  border-color: #FFC742;    
+}
 
+.custom-checkbox .form-check-input:focus {
+  border-color: #28a745;   
+}
+
+.custom-checkbox .form-check-input {
+  border-radius: 50%;      
+}
 .loader1 {
   // position: absolute;
   // top: 50%;
@@ -371,6 +382,43 @@ body table.table {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.customModal-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* Optional for overlay effect */
+  z-index: 1050; /* To be on top of other elements */
+}
+
+.fullscreen-modal .modal-header,
+.fullscreen-modal .modal-body {
+  width: 100%;
+}
+
+.modal-custom {
+  max-width: 100%; /* Fallback for smaller screens */
+  margin: 1.75rem auto;
+}
+
+@media (min-width: 576px) {
+  .modal-custom {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-custom-lg {
+    max-width: 800px;
+  }
+}
+
 
 // ===== blink text ====
 @keyframes blink {
@@ -1213,6 +1261,9 @@ img {
   }
   .rateBoxWidthKhado {
     width: 20% !important;
+  }
+  .setbtn-modal .modal-dialog{
+    margin: 0 !important;
   }
 }
 

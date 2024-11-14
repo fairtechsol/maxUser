@@ -1,8 +1,7 @@
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row, Table,Modal } from "react-bootstrap";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Modal } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -583,7 +582,6 @@ const PlacedBet = () => {
         <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
           <ButtonValues  setShow={setShow}/>
         </Modal.Body>
-        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
       </Modal>
     </>
   );

@@ -130,16 +130,14 @@ const MobileGameDetail = () => {
               })`}</div>
             ),
           },
-          matchDetails?.eventId && matchDetails?.matchType !== "politics" && {
-            name: (
-              <div
-                onClick={() => setShowVideo(!showVideo)}
-                className="ps-5"
-              >
-                <FaTv size={15} />
-              </div>
-            ),
-          },
+          matchDetails?.eventId &&
+            matchDetails?.matchType !== "politics" && {
+              name: (
+                <div onClick={() => setShowVideo(!showVideo)} className="ps-5">
+                  <FaTv size={15} />
+                </div>
+              ),
+            },
         ]
           ?.filter(Boolean) // Remove null values from the array
           .map((item, index) => (
@@ -334,11 +332,11 @@ const MobileGameDetail = () => {
                         "live" &&
                         matchDetails?.marketCompleteMatch1?.isActive && (
                           <Col className="g-0" md={12}>
-                            <OtherMarket
+                            <Bookmaker
                               title={matchDetails?.marketCompleteMatch1?.name}
                               box={
-                                matchDetails?.apiTideMatch2?.runners?.[0]?.ex
-                                  ?.availableToBack?.length > 2
+                                matchDetails?.marketCompleteMatch1?.runners?.[0]
+                                  ?.ex?.availableToBack?.length > 2
                                   ? 6
                                   : 2
                               }

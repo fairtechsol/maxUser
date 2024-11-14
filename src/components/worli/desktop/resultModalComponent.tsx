@@ -29,7 +29,7 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
   let sortString = 0,
     sum = 0;
 
-  a?.sort((a,b)=>a-b)?.map((item) => {
+  a?.sort((a, b) => a - b)?.map((item) => {
     if (item < 10) {
       sortString = sortString * 10 + item;
     } else {
@@ -66,8 +66,8 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
                 style={{
                   boxShadow: "0 0 4px -1px",
                   padding: "6px",
-                  width:"90%",
-                   textAlign:"center"
+                  width: "90%",
+                  textAlign: "center",
                 }}
               >
                 <span style={{ opacity: "0.6" }}>Pana</span> {sortString}
@@ -78,12 +78,11 @@ const WorliResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

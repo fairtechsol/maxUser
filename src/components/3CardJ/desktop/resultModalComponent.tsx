@@ -70,7 +70,9 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
                   {" "}
                   Result
                   {elementsAndar?.map((item: any) => (
-                    <div style={{ color: "#000" }}>{item[0]=="1"?"10":item[0]}</div>
+                    <div style={{ color: "#000" }}>
+                      {item[0] == "1" ? "10" : item[0]}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -80,10 +82,7 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
       </div>
       {data?.bets?.count > 0 && (
         <div className="w-100">
-          <ResultBetList
-            bets={data?.bets?.rows ?? 12}
-            total={data?.bets?.count}
-          />
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
         </div>
       )}
     </Container>

@@ -3,8 +3,8 @@ import { Container } from "react-bootstrap";
 import { FaTrophy } from "react-icons/fa";
 import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import "./style.scss";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 
 interface Props {
   data: {
@@ -15,7 +15,7 @@ interface Props {
       desc: string;
       cards: string;
     };
-    bets:any;
+    bets: any;
   };
 }
 
@@ -258,12 +258,11 @@ const CasinoWarResultComponent: React.FC<Props> = ({ data }) => {
       )}
 
       {isMobile ? renderColumn() : renderRow()}
-       {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      } 
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

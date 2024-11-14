@@ -1,10 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
 import { isMobile } from "../../../utils/screenDimension";
-import "./style.scss";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import ResultBetList from "../../commonComponent/resultBetList";
+import "./style.scss";
 interface Props {
   data: {
     C1: string;
@@ -28,7 +28,15 @@ const Dragon20ResultComponent: React.FC<Props> = ({ data }: any) => {
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="dt20resultModal" style={{display:"flex",flexDirection:isMobile?"column":"row" ,justifyContent:"center" ,alignItems:"center"}}>
+      <div
+        className="dt20resultModal"
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <div className="dt20resultCardContainer">
           <span className="fs-5">Dragon</span>
           <div
@@ -118,12 +126,11 @@ const Dragon20ResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
-      {
-        data?.bets?.count > 0 && 
+      {data?.bets?.count > 0 && (
         <div className="w-100">
-        <ResultBetList bets={data?.bets?.rows ?? 12} total={data?.bets?.count}/>
-      </div>
-      }
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };
