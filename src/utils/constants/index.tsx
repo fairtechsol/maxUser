@@ -55,7 +55,7 @@ import {
 
 export const ApiConstants = {
   LOGIN: "auth/login",
-  DEMO_LOGIN: "/auth/loginWithDemo",
+  DEMO_LOGIN: "/user/loginWithDemo",
   LOGOUT: "auth/logout",
   CHANGEPASSWORD: "user/changePassword",
   OLD_PASSWORD: "/user/check/oldPassword",
