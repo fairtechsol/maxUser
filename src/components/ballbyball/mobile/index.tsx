@@ -14,7 +14,7 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import "./style.scss";
 import { formatNumber } from "../../../helpers";
-
+import ball from "../../../assets/images/ball-blank.png"
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -151,7 +151,8 @@ const TeenPattiMobile = () => {
                 {curR && (
                   <div className="elem">
                     <img
-                      src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
+                    src={ball}
+                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
                       // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
                       //   curR?.result?.desc.split(" ")[0]
                       // }.png`}

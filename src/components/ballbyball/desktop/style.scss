@@ -296,9 +296,9 @@
   animation: none;
 }
 
-.elem {
+.elemd {
   position: absolute;
-  top: 50%; /* Adjust to center vertically */
+  top: 50%; 
   left: 50%; /* Adjust to center horizontally */
   transform: translate(-50%, -100%); /* Proper centering above the video */
   height: 40px;

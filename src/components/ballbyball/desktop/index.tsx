@@ -15,6 +15,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import { formatNumber } from "../../../helpers";
+import ball from "../../../assets/images/ball-blank.png"
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -181,9 +182,10 @@ const TeenPattiDesktop = () => {
                 }}
               >
                 {curR && (
-                  <div className="elem">
+                  <div className="elemd">
                     <img
-                      src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
+                    src={ball}
+                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
                       // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
                       //   curR?.result?.desc.split(" ")[0]
                       // }.png`}
