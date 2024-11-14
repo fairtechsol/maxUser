@@ -147,7 +147,7 @@ const Login = () => {
               )}
             </div>
           </CustomButton>
-          {/* <CustomButton
+          <CustomButton
             className="w-100 mt-2"
             variant="primary"
             type="submit"
@@ -166,7 +166,7 @@ const Login = () => {
                 </span>
               )}
             </div>
-          </CustomButton> */}
+          </CustomButton>
 
           <small
             className={
