@@ -279,7 +279,7 @@
 .cricket20ballpopup span {
   position: absolute;
   top: 50%;
-  left: 40%;
+  left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
   font-weight: bold;
@@ -301,8 +301,8 @@
   top: 50%; /* Adjust to center vertically */
   left: 50%; /* Adjust to center horizontally */
   transform: translate(-50%, -100%); /* Proper centering above the video */
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   z-index: 2;
 
   /* Transition and animation properties */
