@@ -15,6 +15,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import { formatNumber } from "../../../helpers";
+import ball from "../../../assets/images/ball-blank.png"
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -181,20 +182,36 @@ const TeenPattiDesktop = () => {
                 }}
               >
                 {curR && (
-                  <img
-                    className="elem"
-                    src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
-                      curR?.result?.desc.split(" ")[0]
-                    }.png`}
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -100%)",
-                      zIndex: 2,
-                    }}
-                    alt=""
-                  />
+                  <div className="elemd">
+                    <img
+                    src={ball}
+                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
+                      // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
+                      //   curR?.result?.desc.split(" ")[0]
+                      // }.png`}
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        position: "absolute",
+                      }}
+                      alt=""
+                    />
+                    <span
+                      style={{
+                        position: "absolute",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: 3,
+                        color: "white",
+                        fontWeight: "500",
+                        width: "40%",
+                        fontSize: "6px",
+                        top: "40%",
+                        left: "30%",
+                      }}
+                    >
+                      {curR?.result?.desc}
+                    </span>
+                  </div>
                 )}
 
                 <VideoFrame

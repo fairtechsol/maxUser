@@ -4,10 +4,18 @@ import { Modal } from "react-bootstrap";
 import { RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
 import { isMobile } from "../../../utils/screenDimension";
+import { useEffect } from "react";
 import "./style.scss";
 
 const ImageModal = ({ customClass, show, setShow }) => {
   const { bannerImage } = useSelector((state: RootState) => state.user.profile);
+
+  useEffect(() => {
+    if (show) {
+      document.body.style.overflow = 'hidden';
+    } else document.body.style.overflow = 'scroll';
+    return () => {};
+  }, [show]);
 
   return isMobile ? (
     show && (
@@ -27,14 +35,14 @@ const ImageModal = ({ customClass, show, setShow }) => {
           ></button>
         </div>
         <div
-          className="p-0 modal-body overflow-auto"
-          style={{  width: "100%" }}
+          className="p-0 modal-body2 overflow-auto"
+          style={{  width: "100%",overflowY:"auto" }}
         >
           <img
             src={"data:image/png;base64," + bannerImage?.value}
             alt="Modal Content"
             className="img-fluid"
-            style={{ width: "100%", height: "auto" }}
+            style={{ width: "100%", height: "auto",overflow:"scroll" }}
           />
         </div>
       </div>
