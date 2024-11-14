@@ -323,7 +323,7 @@ const DesktopGameDetail = () => {
                 {matchDetails?.marketCompleteMatch1?.activeStatus === "live" &&
                   matchDetails?.marketCompleteMatch1?.isActive && (
                     <Col md={12}>
-                      <Bookmaker
+                      <OtherMarket
                         title={matchDetails?.marketCompleteMatch1?.name}
                         box={
                           matchDetails?.marketCompleteMatch1?.runners?.[0]?.ex
@@ -464,7 +464,7 @@ const DesktopGameDetail = () => {
                 {matchDetails?.apiTideMatch?.activeStatus === "live" &&
                   matchDetails?.apiTideMatch?.isActive && (
                     <Col md={12}>
-                      <Bookmaker
+                      <OtherMarket
                         title={matchDetails?.apiTideMatch?.name}
                         box={
                           matchDetails?.apiTideMatch?.runners?.[0]?.ex
@@ -481,7 +481,7 @@ const DesktopGameDetail = () => {
                 {matchDetails?.marketCompleteMatch?.activeStatus === "live" &&
                   matchDetails?.marketCompleteMatch?.isActive && (
                     <Col md={12}>
-                      <Bookmaker
+                      <OtherMarket
                         title={matchDetails?.marketCompleteMatch?.name}
                         box={
                           matchDetails?.marketCompleteMatch?.runners?.[0]?.ex
