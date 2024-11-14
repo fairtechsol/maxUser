@@ -55,14 +55,15 @@ export const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(authReset, (state) => {
       // Reset the state to initial state
-      return { ...state, success: false, forceChangePassword: false };
+      state.success = false;
+      state.forceChangePassword = false;
     })
     .addCase(rulesModalShowTrue, (state) => {
       // Reset the state to initial state
-      return { ...state, rulesPopShow: true };
+      state.rulesPopShow = true;
     })
     .addCase(rulesModalShowFalse, (state) => {
       // Reset the state to initial state
-      return { ...state, rulesPopShow: false };
+      state.rulesPopShow = false;
     });
 });
