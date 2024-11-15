@@ -15,7 +15,7 @@ import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import { formatNumber } from "../../../helpers";
-import ball from "../../../assets/images/ball-blank.png"
+import ball from "../../../assets/images/ball-blank.png";
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -115,11 +115,12 @@ const TeenPattiDesktop = () => {
   }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
 
   useEffect(() => {
+    0;
     if (curR && isClick) {
+      setMid(dragonTigerDetail?.videoInfo?.mid);
       setTimeout(() => {
         setCurR(null);
         setIsClick(false);
-        setMid(dragonTigerDetail?.videoInfo?.mid);
       }, 3000);
     }
   }, [curR]);
@@ -136,7 +137,9 @@ const TeenPattiDesktop = () => {
 
   useEffect(() => {
     if (Object.keys(resultData || {})?.length > 0 && mid) {
-      setCurR(resultData);
+      if (mid != dragonTigerDetail?.videoInfo?.mid) {
+        setCurR(resultData);
+      }
     } else if (resultData) {
       setTimeout(() => {
         dispatch(resultDragonTiger(mid));
@@ -184,7 +187,7 @@ const TeenPattiDesktop = () => {
                 {curR && (
                   <div className="elemd">
                     <img
-                    src={ball}
+                      src={ball}
                       //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
                       // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
                       //   curR?.result?.desc.split(" ")[0]
