@@ -147,8 +147,6 @@ const TeenPattiDesktop = () => {
     }
   }, [resultData]);
 
-console.log("mid",mid,dragonTigerDetail?.videoInfo?.mid)
-
   return (
     <>
       <Row>
