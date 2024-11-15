@@ -44,7 +44,8 @@
     "id": "rules",
     "name": "Rules",
     "type": "mobile",
-    "link": "/rules",
+    "link": "",
+    "isModal": true,
     "showDemo": true
   },
   {
