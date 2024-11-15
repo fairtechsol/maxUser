@@ -7,6 +7,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   graphData,
   updateBaccarat1Rates,
@@ -16,7 +17,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -70,13 +71,13 @@ const Bacarrat1 = () => {
           cardGamesType.baccarat,
           setMatchRatesInRedux
         );
-        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
-        socketService.card.getLiveGameResultTop10(
-          cardGamesType.baccarat,
-          handleLiveGameResultTop10
-        );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+      socketService.card.getLiveGameResultTop10(
+        cardGamesType.baccarat,
+        handleLiveGameResultTop10
+      );
     } catch (error) {
       console.log(error);
     }
@@ -84,8 +85,9 @@ const Bacarrat1 = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.baccarat));
+      dispatch(getDragonTigerDetail(cardGamesType.baccarat));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.baccarat);
         socketService.card.getCardRatesOff(cardGamesType.baccarat);

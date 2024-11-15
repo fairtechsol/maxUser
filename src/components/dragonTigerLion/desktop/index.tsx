@@ -4,7 +4,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import { BiSolidHeart } from "react-icons/bi";
 import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import {
   A,
@@ -28,14 +27,13 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "./dragonCard";
-import SmoothDropdownModal from "./minMaxModal";
 import "./style.scss";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const cardImg = (type: any) => {
   return <img src={type} width={25} />;
@@ -163,13 +161,9 @@ const DragonTigerDesktop = () => {
   );
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const [openModalIndex, setOpenModalIndex] = useState(null);
 
   const handleClose = () => {
     setShowInactivityModal(false);
-  };
-  const handleModalOpen = (index: any) => {
-    setOpenModalIndex(openModalIndex === index ? null : index);
   };
 
   useEffect(() => {
@@ -276,6 +270,8 @@ const DragonTigerDesktop = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -345,7 +341,7 @@ const DragonTigerDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <LoaderOnRefresh />
+            <NewLoader />
           ) : (
             <div>
               <div
@@ -370,9 +366,9 @@ const DragonTigerDesktop = () => {
                     style={{ height: "30px" }}
                   >
                     <div className="dtlTitle"></div>
-                    <div className="dtlsubTitle">Dragon</div>
-                    <div className="dtlsubTitle">Tiger</div>
-                    <div className="dtlsubTitle">Lion</div>
+                    <div className="dtlsubTitle back">Dragon</div>
+                    <div className="dtlsubTitle back">Tiger</div>
+                    <div className="dtlsubTitle back">Lion</div>
                   </div>
                   {firstArr?.map((item: any, index: number) => (
                     <div
@@ -382,7 +378,7 @@ const DragonTigerDesktop = () => {
                     >
                       <div className="dtlTitle">
                         {item?.title}
-                        <div style={{ width: "45%", textAlign: "end" }}>
+                        {/* <div style={{ width: "45%", textAlign: "end" }}>
                           <span className="minmaxi">
                             <IoInformationCircle
                               color="#ffc742"
@@ -397,10 +393,10 @@ const DragonTigerDesktop = () => {
                               />
                             )}
                           </span>
-                        </div>
+                        </div> */}
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.dragon?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -442,7 +438,7 @@ const DragonTigerDesktop = () => {
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.tiger?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -484,7 +480,7 @@ const DragonTigerDesktop = () => {
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.lion?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -541,9 +537,9 @@ const DragonTigerDesktop = () => {
                     style={{ height: "30px" }}
                   >
                     <div className="dtlTitle"> </div>
-                    <div className="dtlsubTitle">Dragon</div>
-                    <div className="dtlsubTitle">Tiger</div>
-                    <div className="dtlsubTitle">Lion</div>
+                    <div className="dtlsubTitle back">Dragon</div>
+                    <div className="dtlsubTitle back">Tiger</div>
+                    <div className="dtlsubTitle back">Lion</div>
                   </div>
                   {secondArr?.map((item: any, index: any) => (
                     <div
@@ -553,7 +549,7 @@ const DragonTigerDesktop = () => {
                     >
                       <div className="dtlTitle">
                         {item?.title}{" "}
-                        <div style={{ width: "45%", textAlign: "end" }}>
+                        {/* <div style={{ width: "45%", textAlign: "end" }}>
                           <span className="minmaxi">
                             <IoInformationCircle
                               color="#ffc742"
@@ -568,10 +564,10 @@ const DragonTigerDesktop = () => {
                               />
                             )}
                           </span>
-                        </div>
+                        </div> */}
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.dragon?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -613,7 +609,7 @@ const DragonTigerDesktop = () => {
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.tiger?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -656,7 +652,7 @@ const DragonTigerDesktop = () => {
                         </span>
                       </div>
                       <div
-                        className={`dtlsubTitle ${
+                        className={`dtlsubTitle back ${
                           item?.lion?.gstatus === "0" ? "lock" : ""
                         }`}
                         onClick={() =>
@@ -715,7 +711,7 @@ const DragonTigerDesktop = () => {
 
           <RulesModal show={show} setShow={setShow} rule={dtrules} />
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

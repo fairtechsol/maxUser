@@ -1,35 +1,40 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
-import Teen20Result from "./teenCard";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-
+import { formatNumber } from "../../../helpers";
+import ball from "../../../assets/images/ball-blank.png"
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [show, setShow] = useState(false);
+  const [modalType, setModalType] = useState("rules");
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { playerA, playerB } = dragonTigerDetail;
+  const { runs } = dragonTigerDetail;
+  const [mid, setMid] = useState(false);
+  const [curR, setCurR] = useState(null);
+  const [isClick, setIsClick] = useState(false);
+  // const [showModal, setModalOpen] = useState(false);
 
+  const { resultData } = useSelector((state: RootState) => state.card);
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -49,24 +54,19 @@ const TeenPattiDesktop = () => {
     };
   }, []);
 
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
       matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
+      odd: item?.b,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: item?.sid,
+      selectionId: "" + item?.sid,
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -105,14 +105,44 @@ const TeenPattiDesktop = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.teen20}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.ballbyball}`);
   }, []);
 
   useEffect(() => {
-    if (playerA?.[0]?.gstatus === "0" || playerA?.[0]?.rate === "0.00") {
+    if (runs?.[0]?.gstatus === "SUSPENDED" || runs?.[0]?.b === "0.00") {
       dispatch(selectedBetAction(""));
     }
-  }, [playerA?.[0]?.gstatus, playerA?.[0]?.b1]);
+  }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
+
+  useEffect(() => {
+    if (curR && isClick) {
+      setTimeout(() => {
+        setCurR(null);
+        setIsClick(false);
+        setMid(dragonTigerDetail?.videoInfo?.mid);
+      }, 3000);
+    }
+  }, [curR]);
+
+  useEffect(() => {
+    if (mid && mid != dragonTigerDetail?.videoInfo?.mid) {
+      dispatch(resultDragonTiger(mid));
+      setIsClick(true);
+    }
+    if (!mid) {
+      setMid(dragonTigerDetail?.videoInfo?.mid);
+    }
+  }, [dragonTigerDetail?.videoInfo?.mid]);
+
+  useEffect(() => {
+    if (Object.keys(resultData || {})?.length > 0 && mid) {
+      setCurR(resultData);
+    } else if (resultData) {
+      setTimeout(() => {
+        dispatch(resultDragonTiger(mid));
+      }, 1000);
+    }
+  }, [resultData]);
 
   return (
     <>
@@ -123,7 +153,7 @@ const TeenPattiDesktop = () => {
               <div className="horseRacingTabHeader">
                 <div>
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
-                    BallbyBall
+                    BALL BY BALL
                   </span>
                   <span
                     style={{
@@ -134,16 +164,12 @@ const TeenPattiDesktop = () => {
                     onClick={() => setShow(true)}
                   >
                     {" "}
-                    RULES
+                    Rules
                   </span>
                 </div>
                 <span>
                   {dragonTigerDetail?.videoInfo
-                    ? `Round ID:  ${handleRoundId(
-                        dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                        dragonTigerDetail?.videoInfo?.max
-                      }`
+                    ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
                     : ""}
                 </span>
               </div>
@@ -152,158 +178,388 @@ const TeenPattiDesktop = () => {
                   width: "100%",
                   height: "90%",
                   backgroundColor: "#000",
+                  position: "relative",
                 }}
               >
+                {curR && (
+                  <div className="elemd">
+                    <img
+                    src={ball}
+                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
+                      // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
+                      //   curR?.result?.desc.split(" ")[0]
+                      // }.png`}
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        position: "absolute",
+                      }}
+                      alt=""
+                    />
+                    <span
+                      style={{
+                        position: "absolute",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: 3,
+                        color: "white",
+                        fontWeight: "500",
+                        width: "40%",
+                        fontSize: "6px",
+                        top: "40%",
+                        left: "30%",
+                      }}
+                    >
+                      {curR?.result?.desc}
+                    </span>
+                  </div>
+                )}
+
                 <VideoFrame
-                  time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                  time={dragonTigerDetail?.videoInfo?.lt}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
-                <div style={{ display: "flex" }}>
+                <div
+                  style={{
+                    background: "rgb(255 199 66 / 85%)",
+                    color: "#fff",
+                    fontWeight: "bold",
+                    lineHeight: 2,
+                  }}
+                >
+                  <span style={{ marginLeft: "10px" }}> Runs</span>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    width: "100%",
+                    justifyContent: "space-between",
+                    borderBottom: "0.01em solid #c7c8ca",
+                    lineHeight: 2,
+                  }}
+                >
                   <div
-                    
-                    style={{ lineHeight: 2, width: "100%" }}
-                  >
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          display: "flex",
-                          flexDirection: "row",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
-                    </div>
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          display: "flex",
-                          flexDirection: "row",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
-                    </div>
-                  </div>
-                  <div
-                    
-                    style={{ lineHeight: 2, width: "100%" }}
-                  >
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          display: "flex",
-                          flexDirection: "row",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
-                    </div>
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
-                          display: "flex",
-                          flexDirection: "row",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
-                    </div>
-                  </div>
-                  <div
-                    
-                    style={{ lineHeight: 2, width: "100%" }}
-                  >
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
-                      <div
-                        style={{
-                          width: "20%",
-                          backgroundColor: "#72bbef",
+                    style={{
+                      display: "flex",
+                      width: "30%",
 
-                          
+                      borderBottom: "0.01em solid #c7c8ca",
+                      background: "#f2f2f2",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "40%",
+                        //border: "0.1px solid #fff",
+                        fontSize: "14px",
+                        marginLeft: "3px",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        width: "20%",
+                        backgroundColor: "#72bbef",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Back
+                    </div>
+                    <div
+                      style={{
+                        width: "40%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        color: "#097c93",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                      }}
+                    ></div>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "30%",
+
+                      borderBottom: "0.01em solid #c7c8ca",
+                      background: "#f2f2f2",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "40%",
+                        fontSize: "14px",
+                        marginLeft: "3px",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        width: "20%",
+                        backgroundColor: "#72bbef",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Back
+                    </div>
+                    <div
+                      style={{
+                        width: "40%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        color: "#097c93",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                      }}
+                    ></div>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "30%",
+
+                      borderBottom: "0.01em solid #c7c8ca",
+                      background: "#f2f2f2",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "40%",
+                        fontSize: "14px",
+                        marginLeft: "3px",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        width: "20%",
+                        backgroundColor: "#72bbef",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Back
+                    </div>
+                    <div
+                      style={{
+                        width: "40%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        color: "#097c93",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    lineHeight: 2,
+                    width: "100%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  {runs?.map((item: any) => (
+                    <div
+                      style={{
+                        display: "flex",
+                        width: "30%",
+
+                        borderBottom: "0.01em solid #c7c8ca",
+                        background: "#f2f2f2",
+                      }}
+                      key={item.sid}
+                    >
+                      <div
+                        style={{
+                          width: "40%",
+
+                          marginLeft: "3px",
                           display: "flex",
-                          flexDirection: "row",
+                          flexDirection: "column",
                         }}
                       >
-                        BACK
+                        <div
+                          style={{
+                            fontSize: "14px",
+                          }}
+                        >
+                          {item.nat}
+                        </div>
+                        <span
+                          className={`f10-b ${
+                            dragonTigerDetail?.profitLoss
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                ]
+                                ? dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                  ] > 0
+                                  ? "color-green"
+                                  : dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                    ] < 0
+                                  ? "color-red"
+                                  : ""
+                                : ""
+                              : ""
+                          }`}
+                          style={{ zIndex: "100" }}
+                        >
+                          {dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                ]
+                              : ""
+                            : ""}
+                        </span>
                       </div>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
-                    </div>
-                    <div style={{ display: "flex", width: "100%" }}>
-                      <div
-                        style={{ width: "40%", border: "0.1px solid #fff" }}
-                      ></div>
                       <div
                         style={{
                           width: "20%",
                           backgroundColor: "#72bbef",
                           display: "flex",
-                          flexDirection: "row",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontSize: "12px",
                         }}
+                        className={
+                          runs?.[0]?.gstatus === "SUSPENDED" &&
+                          runs?.[0]?.b === 0
+                            ? "suspended"
+                            : "teenPatti-table-item"
+                        }
+                        onClick={() =>
+                          runs?.[0]?.gstatus === "SUSPENDED" &&
+                          runs?.[0]?.b === 0
+                            ? ""
+                            : handleBet(item)
+                        }
                       >
-                        BACK
+                        <span className="f12-b">
+                          {item.b == "0" ? "" : item.b}
+                        </span>
+                        <span
+                          className="f10-b"
+                          style={{ fontWeight: "normal" }}
+                        >
+                          {item.bs == "0" ? "" : item.bs}
+                        </span>
                       </div>
                       <div
-                        style={{ width: "40%", border: "0.1px solid red" }}
-                      ></div>
+                        style={{
+                          width: "40%",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          color: "#097c93",
+                          fontSize: "12px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        <span>Min:{item.min}</span>
+                        <span>Max:{formatNumber(item.max)}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "10%",
+                      background: "#086f3f",
+                      lineHeight: 2,
+                    }}
+                  >
+                    <img
+                      src="https://versionobj.ecoassetsservice.com/v15/static/front/img/icons/remark.png"
+                      style={{
+                        marginLeft: "20px",
+                        height: "20px",
+                        boxShadow: "none",
+                        background: "#086f3f",
+                      }}
+                    ></img>
+                  </div>
+
+                  <div
+                    className="ticker-container"
+                    style={{
+                      width: "90%",
+
+                      background: "#086f3f",
+                      border: "#086f3f",
+                      lineHeight: 2.7,
+                    }}
+                  >
+                    <div
+                      className="ticker-wrap"
+                      style={{ border: "#086f3f", height: "100%" }}
+                    >
+                      <div
+                        className="ticker-move"
+                        style={{
+                          color: "#fff",
+                          fontWeight: "bold",
+                          width: "100%",
+                          fontSize: "12px",
+                          border: "#086f3f",
+                          height: "100%",
+                        }}
+                      >
+                        {dragonTigerDetail?.videoInfo?.remark}
+                      </div>
                     </div>
                   </div>
                 </div>
+
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "T", "B"]}
-                    type={"teen20"}
+                    name={["R", "R", "R"]}
+                    type={"ballbyball"}
                   />
                 </div>
               </div>
             )}
           </div>
         </Col>
-        <Col md={4} className="ps-0">
+        <Col md={4} className="p-0">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
@@ -313,40 +569,13 @@ const TeenPattiDesktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
-                <div
-                  className="casino-title mt-2"
-                  style={{ position: "relative" }}
-                >
-                  <span>Rules</span>
-                </div>
-                <div className="table-responsive rules-table">
-                  <Table bordered>
-                    <thead>
-                      <tr>
-                        <th colSpan={2} className="box-10 text-center">
-                          Pair Plus
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rules.map((item, index) => (
-                        <tr key={index}>
-                          <td className="box-7">{item.label}</td>
-                          <td className="box-3">{item.value}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </div>
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
-              </Col>
+              <RulesModal show={show} setShow={setShow} type={modalType} />
             </Row>
           </Container>
         </Col>

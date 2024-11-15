@@ -15,7 +15,9 @@ const CardBox = ({ cards, data }: any) => {
       "betOnTeam":item?.nat,
       "name":item?.nat,
       "bettingName": "Match odds",
-      "selectionId": item?.sid
+      "selectionId": item?.sid,
+      "min":data?.videoInfo?.min,
+      "max":data?.videoInfo?.max
     }
     dispatch(
       selectedBetAction({
@@ -28,8 +30,8 @@ const CardBox = ({ cards, data }: any) => {
     <>
       <div className="cardContainer">
         <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "16px"}}>
-          {parseFloat(isNaN(cards?.[0]?.b1)?0:cards?.[0]?.b1)}
+          <span style={{ fontSize: "14px"}}>
+          {/* {parseFloat(isNaN(cards?.[0]?.b1)?0:cards?.[0]?.b1)} */}
           </span>
         </div>
         <div>

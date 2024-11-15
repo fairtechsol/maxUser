@@ -90,27 +90,7 @@
     width: 20px;
     padding: 10px 7px 0px 1px;
   }
-  .dt20header{
-    width: 100%;
-    background-color: #004a25;
-    // padding: 5px;
-    display: flex;
-    flex-direction: row;
-  }
-  .dt20subheader1{
-    width: 40%;
-    color: #fff;
-    display: flex;
-  }
-  .dt20subheader2{
-    width: 60%;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-    font-size: 12px;
-  }
+
   .tiePairContainer-m{
     width: 100%;
     background-color: #eee;
@@ -173,6 +153,18 @@
     font-weight: 600;
     position: relative;
     text-align: center;
+  }
+
+  .dtlTitlee{
+    width: 20%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom:0.1px solid #c7c8ca;
+    padding: 5px;
+    font-weight: 600;
+    color: #000;
   }
 
   @media (max-width: 768px) {

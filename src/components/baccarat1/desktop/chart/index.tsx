@@ -1,4 +1,4 @@
-const PieChart = ({ data, options }: any) => {
+const PieChart = ({ data}: any) => {
   return (
     <div
       style={{
@@ -28,8 +28,15 @@ const PieChart = ({ data, options }: any) => {
           }}
         >
           <div className="sliceText">
-            <span>{data?.[0]}%</span>
             <span>{data?.[1]}%</span>
+            <span style={{
+              position:"absolute",
+              top:10,
+              left:35
+            }}>
+              {data?.[2]}%
+              </span>
+            <span>{data?.[0]}%</span>
           </div>
         </div>
         <div

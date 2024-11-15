@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { crick5rules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Crick5Result from "../desktop/cric5Card";
 import MarketComponent from "./betTable";
-import ScoreBoard from "../../commonComponent/scoreBoard";
-import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
-import { crick5rules } from "../../../assets/images";
-import { Table } from "react-bootstrap";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import Iframe from "../../iframe/iframe";
 
 const Cricket5Mobile = ({ fancyData }: any) => {
   const [activeTab, setActiveTab] = useState(false);
@@ -26,8 +25,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
   const { dragonTigerDetail, scoreBoardData, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
-  const [showFancy] = useState(false);
+
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -68,53 +66,9 @@ const Cricket5Mobile = ({ fancyData }: any) => {
   return (
     <>
       <div>
-        <div className="dt20header">
           <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${dragonTigerDetail?.videoInfo?.mid}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+
 
         {!activeTab ? (
           <div
@@ -123,16 +77,9 @@ const Cricket5Mobile = ({ fancyData }: any) => {
             <div
               style={{
                 width: "100%",
-                // height: scoreBoardData?.data ? "225px" : "150px",
               }}
             >
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
+             
               <div
                 style={{
                   width: "100%",
@@ -140,9 +87,11 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                   backgroundColor: "#000",
                 }}
               >
-                {scoreBoardData?.data && (
-                  <ScoreBoard data={scoreBoardData?.data} />
-                )}{" "}
+                {scoreBoardData?.balls?.length>0 && (
+              <div style={{marginBottom:"2px"}}>
+                <Iframe data={scoreBoardData} />
+              </div>
+            )}
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
                   result={<Crick5Result data={dragonTigerDetail?.videoInfo} />}
@@ -151,7 +100,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div>
@@ -161,7 +110,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                     data={dragonTigerDetail}
                     min={dragonTigerDetail?.videoInfo?.min}
                     max={dragonTigerDetail?.videoInfo?.max}
-                    showFancy={showFancy}
+                    showFancy={dragonTigerDetail?.fancy}
                   />
                 </div>
                 <div style={{ marginTop: "10px" }}>
@@ -172,7 +121,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                     type={"cricketv3"}
                   />
                 </div>
-                <div
+                {/* <div
                   className="casino-title mt-2"
                   style={{ position: "relative" }}
                 >
@@ -224,7 +173,7 @@ const Cricket5Mobile = ({ fancyData }: any) => {
                       </tbody>
                     </Table>
                   ))}
-                </div>
+                </div> */}
               </div>
             )}
           </div>

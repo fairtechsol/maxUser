@@ -12,15 +12,15 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
   ballbyballMatchRates,
+  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
-
 
 import BallbyballComponentList from "../../components/ballbyball";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
@@ -66,11 +66,6 @@ const BallByBall = () => {
         socketService.card.getCardRatesOff(cardGamesType.ballbyball);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.ballbyball);
-        socketService.card.getCardRates(
-          cardGamesType.ballbyball,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.ballbyball,
@@ -78,6 +73,11 @@ const BallByBall = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.ballbyball);
+      socketService.card.getCardRates(
+        cardGamesType.ballbyball,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -85,8 +85,9 @@ const BallByBall = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
+      dispatch(getDragonTigerDetail(cardGamesType.ballbyball));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.ballbyball);
         socketService.card.getCardRatesOff(cardGamesType.ballbyball);
@@ -101,23 +102,23 @@ const BallByBall = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        dispatch(selectedBetAction(null));
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
-      } else if (document.visibilityState === "hidden") {
-        dispatch(dragonTigerReset());
-        socketService.card.leaveMatchRoom(cardGamesType.ballbyball);
-        socketService.card.getCardRatesOff(cardGamesType.ballbyball);
-      }
-    };
+  // useEffect(() => {
+  //   const handleVisibilityChange = () => {
+  //     if (document.visibilityState === "visible") {
+  //       dispatch(selectedBetAction(null));
+  //       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
+  //     } else if (document.visibilityState === "hidden") {
+  //       dispatch(dragonTigerReset());
+  //       socketService.card.leaveMatchRoom(cardGamesType.ballbyball);
+  //       socketService.card.getCardRatesOff(cardGamesType.ballbyball);
+  //     }
+  //   };
 
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, []);
+  //   document.addEventListener("visibilitychange", handleVisibilityChange);
+  //   return () => {
+  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
+  //   };
+  // }, []);
 
   return <BallbyballComponentList />;
 };

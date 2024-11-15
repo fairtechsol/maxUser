@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-// import "./style.scss";
-// import CardResultBox from "../../commonComponent/cardResultBox";
-// import CardResultBox from "../../commonComponent/cardResultBox";
 import { baccarat1rules } from "../../../assets/images";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import BaccaratStatistics from "./betTable";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Baccarat1Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -27,7 +23,6 @@ const Baccarat1Mobile = () => {
   const { dragonTigerDetail, loading, graphsData } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -68,76 +63,12 @@ const Baccarat1Mobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
           <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+
         {!activeTab ? (
           <div className="horseRacingTab">
             <div style={{ width: "100%" }}>
-              <div className="horseRacingTabHeader-m">
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    Min:{dragonTigerDetail?.odds?.[3]?.min} Max:
-                    {dragonTigerDetail?.odds?.[3]?.max}
-                  </span>
-                </div>
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -154,7 +85,7 @@ const Baccarat1Mobile = () => {
             </div>
 
             {loading ? (
-                <LoaderOnRefresh />
+                <NewLoader />
             ) : (
               <div>
                 <div className="row-flex" style={{ width: "100%" }}>
@@ -182,7 +113,7 @@ const Baccarat1Mobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
+      <RulesModal show={show} setShow={setShow} rule={baccarat1rules} gameType="baccarat1" type="imageWithContent" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

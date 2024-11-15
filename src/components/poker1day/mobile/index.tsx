@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "../../horseRacing/mobile/betTable/style.scss";
-import "./style.scss";
 import DynamicTable from "../desktop/betTable";
-import { Table } from "react-bootstrap";
-import Poker1DayResult from "../desktop/poker1DayCard";
 import PairBox from "../desktop/pairBox";
+import Poker1DayResult from "../desktop/poker1DayCard";
+import "./style.scss";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 const Poker1dayMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -28,7 +28,6 @@ const Poker1dayMobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const bonus1 = [
     { label: "Pair (2-10)", value: "1 To 3" },
@@ -110,67 +109,14 @@ const Poker1dayMobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
           <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%" }}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -189,7 +135,7 @@ const Poker1dayMobile = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div>
@@ -199,22 +145,32 @@ const Poker1dayMobile = () => {
                     data={dragonTigerDetail}
                     min={dragonTigerDetail?.videoInfo?.min}
                     max={dragonTigerDetail?.videoInfo?.max}
-                    playerNum={[8, 9]}
+                    playerNum={dragonTigerDetail?.oddsData?.[0]}
+                  />
+                  <DynamicTable
+                    back={true}
+                    odds={dragonTigerDetail?.oddsData}
+                    data={dragonTigerDetail}
+                    min={dragonTigerDetail?.videoInfo?.min}
+                    max={dragonTigerDetail?.videoInfo?.max}
+                    playerNum={dragonTigerDetail?.oddsData?.[1]}
                   />
                 </div>
-                <div className="horseRacingTabHeader-m mt-1">
+                {/* <div className="horseRacingTabHeader-m mt-1">
                   <div>
                     <span style={{ fontSize: "14px", fontWeight: "600" }}>
                       Bonus Bet
                     </span>
                   </div>
-                </div>
+                </div> */}
+                    <div className="mt-2" style={{ width: "100%" }}>
                 <PairBox
                   odds={dragonTigerDetail?.playersBonusPair}
                   data={dragonTigerDetail}
                   min={dragonTigerDetail?.videoInfo?.min}
                   max={dragonTigerDetail?.videoInfo?.max}
                 />
+                </div>
                 <div style={{ marginTop: "10px" }}>
                   {" "}
                   <CardResultBox
@@ -225,7 +181,7 @@ const Poker1dayMobile = () => {
                 </div>
                 <div>
                   <div
-                    className="casino-title mt-2"
+                    className="casino-title mt-2 bg-primary text-white"
                     style={{ position: "relative" }}
                   >
                     <span>Rules</span>
@@ -234,7 +190,7 @@ const Poker1dayMobile = () => {
                     <Table bordered>
                       <thead>
                         <tr>
-                          <th colSpan={2} className="box-10 text-center">
+                          <th colSpan={2} className="box-10 text-center lh-1">
                             Bonus 1 (2 Cards Bonus)
                           </th>
                         </tr>
@@ -263,7 +219,7 @@ const Poker1dayMobile = () => {
                           </tr>
                         ))}
                         <tr>
-                          <th colSpan={2} className="box-10 text-center">
+                          <th colSpan={2} className="box-10 text-center lh-1">
                             Bonus 2 (7 Cards Bonus)
                           </th>
                         </tr>

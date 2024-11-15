@@ -1,16 +1,10 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
-import { IoInformationCircle } from "react-icons/io5";
-import SmoothDropdownModal from "../minMaxModal";
-import { useState } from "react";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
 const CardBox = ({ cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = cardData?.[0]?.min;
-  const max = cardData?.[0]?.max;
   const handleBet=(item:any)=>{
     let team ={
       "bettingType": "BACK",
@@ -21,7 +15,9 @@ const CardBox = ({ cardData, data }: any) => {
       "betOnTeam":item?.nation,
       "name":item?.nation,
       "bettingName": "Match odds",
-      "selectionId": item?.sid
+      "selectionId": item?.sid,
+      "min":item?.min,
+      "max":item?.max
     }
     dispatch(
       selectedBetAction({
@@ -38,7 +34,7 @@ const CardBox = ({ cardData, data }: any) => {
           <div style={{ width: "55%", textAlign: "end" }}>
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "14px",
                 fontWeight: "bolder",
                 alignSelf: "center",
               }}
@@ -64,12 +60,12 @@ const CardBox = ({ cardData, data }: any) => {
         <div>
           <CommonCardImg cardData={cardData} handleBet={handleBet} data={data}/>
         </div>
-        <div style={{ textAlign: "end" }}>
+        {/* <div style={{ textAlign: "end" }}>
         <span style={{ fontWeight: "bolder" }}>Min:</span>
         <span>{min}</span>
         <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
         <span>{max}</span>
-      </div>
+      </div> */}
       </div>
     </>
   );

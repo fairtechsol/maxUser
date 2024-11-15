@@ -1,5 +1,4 @@
-// import { useDispatch } from "react-redux";
-// import { AppDispatch } from "../../../../store/store";
+
 import { ImClubs } from "react-icons/im";
 import { GiSpades } from "react-icons/gi";
 import { BiSolidHeart } from "react-icons/bi";
@@ -14,10 +13,9 @@ const CommonButtonBox = ({
   lock,
   data,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
 
   return (
-    <div className="commonButtonBoxContainer" style={{ width: width }}>
+    <div className="commonButtonBoxContainer" style={{ width: width,lineHeight:"2.5" }}>
       <div>
         <span style={{ fontSize: "16px", fontWeight: "bolder" }}>
           {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
@@ -57,7 +55,7 @@ const CommonButtonBox = ({
               : ""
           }`}
         >
-          {isNaN(value3) ? 0 : value3}
+          {isNaN(value3) ? <br></br> : value3}
         </span>
       </div>
     </div>

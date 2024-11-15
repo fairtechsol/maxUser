@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import service from "../../../service";
 import { ApiConstants } from "../../../utils/constants";
@@ -39,3 +39,5 @@ export const updateUserBalanceOnPlaceBet = createAsyncThunk<any, any>(
     return matchDetails;
   }
 );
+
+export const resetOtherMatchDetail = createAction("reset/otherMatchDetail");

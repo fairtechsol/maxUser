@@ -1,8 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
+import ResultBetList from "../../commonComponent/resultBetList";
 import "./style.scss";
 interface Props {
   data: {
@@ -14,7 +15,7 @@ interface Props {
 const Poker20ResultComponent: React.FC<Props> = ({ data }: any) => {
   const resultCards = data?.result?.cards?.split(",");
   const lastCards = resultCards?.slice(4, 9);
-  //  console.log(data,'first',resultCards)
+
   return (
     <Container
       style={{
@@ -127,6 +128,11 @@ const Poker20ResultComponent: React.FC<Props> = ({ data }: any) => {
           })}
         </div>
       </div>
+      {data?.bets?.count > 0 && (
+        <div className="w-100">
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

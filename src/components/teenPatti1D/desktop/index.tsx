@@ -14,8 +14,8 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import Teen1DResult from "./teenCard";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -141,8 +141,8 @@ const TeenPattiDesktop = () => {
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                        dragonTigerDetail?.videoInfo?.max
+                      )}|Min: ${parseFloat(dragonTigerDetail?.videoInfo?.min)}|Max: ${
+                        parseFloat(dragonTigerDetail?.videoInfo?.max)
                       }`
                     : ""}
                 </span>
@@ -162,7 +162,7 @@ const TeenPattiDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div style={{ height: "40%" }}>
                 <div
@@ -425,7 +425,7 @@ const TeenPattiDesktop = () => {
             )}
           </div>
         </Col>
-        <Col md={4} className="ps-0">
+        <Col md={4} className="p-0">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
@@ -435,10 +435,10 @@ const TeenPattiDesktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
               <Col>
@@ -464,7 +464,7 @@ const TeenPattiDesktop = () => {
                     </tbody>
                   </Table>
                 </div> */}
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
+                <RulesModal show={show} setShow={setShow} rule={tprules} type={"imageWithContent"} gameType="teen" />
               </Col>
             </Row>
           </Container>

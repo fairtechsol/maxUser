@@ -4,8 +4,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const WinBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -17,6 +15,8 @@ const WinBox = ({ odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -34,7 +34,7 @@ const WinBox = ({ odds, data }: any) => {
   };
   return (
     <>
-      <div className="winContainer">
+      <div className="winContainer border-bottom-0" style={{ border: "1px solid #c7c8ca"}}>
         <div className="subwinContainer">
           {odds?.map((item: any, index: number) => {
             return (
@@ -59,7 +59,7 @@ const WinBox = ({ odds, data }: any) => {
                           ]
                           ? data?.profitLoss[
                               `${data?.videoInfo?.mid}_${item?.sid}_card`
-                            ] > 0
+                            ] > 0 
                             ? "color-green"
                             : data?.profitLoss[
                                 `${data?.videoInfo?.mid}_${item?.sid}_card`
@@ -77,20 +77,20 @@ const WinBox = ({ odds, data }: any) => {
                         ? data?.profitLoss[
                             `${data?.videoInfo?.mid}_${item?.sid}_card`
                           ]
-                        : 0
-                      : 0}
+                        : "\u00A0"
+                      : "\u00A0"}
                   </span>
                 </div>
               </>
             );
           })}
         </div>
-        <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
+        {/* <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
           <span style={{ fontWeight: "bolder" }}>Min:</span>
           <span>{min}</span>
           <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
           <span>{max}</span>
-        </div>
+        </div> */}
       </div>
     </>
   );

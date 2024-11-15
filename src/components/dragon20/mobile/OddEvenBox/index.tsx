@@ -3,10 +3,8 @@ import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 
-const OddEven = ({ data, odds }: any) => {
+const OddEven = ({ name, data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -18,6 +16,8 @@ const OddEven = ({ data, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -29,6 +29,10 @@ const OddEven = ({ data, odds }: any) => {
   return (
     <>
       <div className="oddEvenContainerMob">
+        <div style={{ textAlign: "center" }}>
+          <span style={{ fontSize: "16px", fontWeight: "bold" }}>{name}</span>
+        </div>
+
         <div
           style={{
             display: "flex",
@@ -46,7 +50,7 @@ const OddEven = ({ data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[0]?.gstatus === "0" ? true : false}
             data={odds?.[0]}
@@ -61,17 +65,11 @@ const OddEven = ({ data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[1]?.gstatus === "0" ? true : false}
             data={odds?.[1]}
           />
-        </div>
-        <div style={{ textAlign: "end" }}>
-          <span style={{ fontSize: "12px" }}>Min:</span>
-          <span style={{ fontSize: "12px" }}>{min}</span>
-          <span style={{ fontSize: "12px", marginLeft: "10px" }}>Max:</span>
-          <span style={{ fontSize: "12px" }}>{max}</span>
         </div>
         <div
           style={{
@@ -90,7 +88,7 @@ const OddEven = ({ data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[2]?.gstatus === "0" ? true : false}
             data={odds?.[2]}
@@ -105,17 +103,11 @@ const OddEven = ({ data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[3]?.gstatus === "0" ? true : false}
             data={odds?.[3]}
           />
-        </div>
-        <div style={{ textAlign: "end" }}>
-          <span style={{ fontSize: "12px" }}>Min:</span>
-          <span style={{ fontSize: "12px" }}>{min}</span>
-          <span style={{ fontSize: "12px", marginLeft: "10px" }}>Max:</span>
-          <span style={{ fontSize: "12px" }}>{max}</span>
         </div>
       </div>
     </>

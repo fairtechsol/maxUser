@@ -29,7 +29,7 @@ const PlayerButton = ({
           {value2 && value2 === "DON" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -43,7 +43,7 @@ const PlayerButton = ({
           {value2 && value2 === "Amar Akbar Anthony" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -57,7 +57,7 @@ const PlayerButton = ({
           {value2 && value2 === "Sahib Bibi Aur Ghulam" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -71,7 +71,7 @@ const PlayerButton = ({
           {value2 && value2 === "Dharam Veer" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -85,7 +85,7 @@ const PlayerButton = ({
           {value2 && value2 === "Kis KisKo Pyaar Karoon" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -99,7 +99,7 @@ const PlayerButton = ({
           {value2 && value2 === "Ghulam" ? (
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "12px",
                 fontWeight: "bolder",
                 paddingLeft: "4px",
               }}
@@ -112,7 +112,7 @@ const PlayerButton = ({
 
           <span
             style={{
-              fontSize: "16px",
+              fontSize: "12px",
               fontWeight: "bolder",
               paddingLeft: "4px",
             }}
@@ -122,7 +122,7 @@ const PlayerButton = ({
         </div>
         <div>
           <span
-            style={{ fontSize: "16px", paddingLeft: "4px" }}
+            style={{ fontSize: "14px", paddingLeft: "4px" }}
             className={`${
               value3 && value3 > 0
                 ? "color-green"
@@ -131,22 +131,15 @@ const PlayerButton = ({
                 : ""
             }`}
           >
-            {value3 || 0}
+            {value3 || <br></br>}
           </span>
         </div>
       </div>
-
-      {/* <div
-        className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
-        onClick={() => (!lock ? handleBet(data) : null)}
-      ></div> */}
-
       <div
         className="teenPatti-table-row"
         style={{ lineHeight: 2, display: "flex", width: "30%" }}
       >
         <div
-          className={lock ? "suspended" : ""}
           style={{
             width: "100%",
             backgroundColor: "#72bbef",
@@ -155,21 +148,33 @@ const PlayerButton = ({
           }}
         >
           <div
-            className="teenPatti-table-item"
+            className={
+              lock ? "teenPatti-table-item-b suspended" : "teenPatti-table-item-b"
+            }
             style={{ width: "50%" }}
-            onClick={() => handleBet(data, "BACK")}
+            onClick={() =>
+              data?.gstatus == "SUSPENDED" || data?.gstatus == "CLOSED"
+                ? null
+                : handleBet(data, "BACK")
+            }
           >
-            <span className="f18-b my-2 fw-bold">
+            <span className="f18-b my-2 fw-bold title-14">
               {parseFloat(value1).toFixed(2)}
             </span>
             <span className="f10-b">{}</span>
           </div>
           <div
-            className={`teenPatti-table-item`}
+            className={
+              lock ? "teenPatti-table-item-b suspended" : "teenPatti-table-item-b"
+            }
             style={{ width: "50%", background: "#f9c9d4" }}
-            onClick={() => handleBet(data, "LAY")}
+            onClick={() =>
+              data?.gstatus == "SUSPENDED" || data?.gstatus == "CLOSED"
+                ? null
+                : handleBet(data, "LAY")
+            }
           >
-            <span className="f18-b my-2 fw-bold">
+            <span className="f18-b my-2 fw-bold title-14">
               {parseFloat(value4).toFixed(2)}
             </span>
             <span className="f10-b">{}</span>

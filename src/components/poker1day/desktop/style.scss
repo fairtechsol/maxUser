@@ -152,8 +152,13 @@
 .poker-table-container{
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 20px;
+}
+
+.casino-table-box-divider {
+  background-color: #c7c8ca;
+  width: 2px;
 }
 .poker-table-row{
   background-color: #f3f1f1;
@@ -168,7 +173,6 @@
   flex-direction: column;
   border: 0.2px solid #fff;
   cursor: pointer;
-  padding: 4px;
 }
 .f12-b{
   font-size: 16px;
@@ -178,27 +182,8 @@
   font-size: 16px;
   font-weight: bolder;
 }
-.suspended {
-  position: relative;
-}
-.suspended:after {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  text-transform: uppercase;
-  font-family: "Font Awesome 5 Free";
-  content: "\f023";
-  font-weight: 900;
-  font-size: 18px;
-  top: 0;
-  z-index: 10;
-}
+
+
 .teen20resultModal{
   display: flex;
   flex-direction: row;

@@ -14,8 +14,8 @@ import TiePairBox from "./TiePairBox";
 import "./style.scss";
 import Poker6Result from "./poker6Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Poker6Desktop = () => {
   const [show, setShow] = useState(false);
@@ -122,7 +122,7 @@ const Poker6Desktop = () => {
             </div>
           </div>
           {loading ? (
-            <LoaderOnRefresh />
+            <NewLoader />
           ) : (
             <div style={{ marginLeft: "10px" }}>
               <div className="tab-containerp">
@@ -157,14 +157,14 @@ const Poker6Desktop = () => {
                     <TiePairBox
                       handsData={dragonTigerDetail?.patternData}
                       data={dragonTigerDetail}
-                      width={"30%"}
+                      width={"32%"}
                       title={"pattern"}
                     />
                   </div>
                 )}
               </div>
 
-              <div style={{ width: "100%", marginTop: "5px"}}>
+              <div style={{ width: "100%", marginTop: "5px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["T", "1"]}
@@ -176,7 +176,7 @@ const Poker6Desktop = () => {
 
           <RulesModal show={show} setShow={setShow} rule={p6rules} />
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

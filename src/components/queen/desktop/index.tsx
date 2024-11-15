@@ -12,9 +12,10 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import BetBox from "./betBox";
+import QueenCard from "./queenCard";
+import NewLoader from "../../commonComponent/newLoader";
 
 const QueenDesktop = () => {
   const [show, setShow] = useState(false);
@@ -74,7 +75,7 @@ const QueenDesktop = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.queen}`);
   }, []);
 
   return (
@@ -88,24 +89,12 @@ const QueenDesktop = () => {
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
-                  <a
-                    style={{
-                      fontSize: "14px",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setShow(true)}
-                  >
-                    RULES
-                  </a>
                 </div>
                 <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${
-                        dragonTigerDetail?.videoInfo?.max
-                      }`
+                      )}`
                     : ""}
                 </span>
               </div>
@@ -119,13 +108,13 @@ const QueenDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  // result={<WorliResult data={dragonTigerDetail?.videoInfo} />}
+                  result={<QueenCard data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div
@@ -136,15 +125,16 @@ const QueenDesktop = () => {
                     flexDirection: "column",
                   }}
                 >
-                 <BetBox 
-                  cards={dragonTigerDetail?.cards} 
-                  // data={dragonTigerDetail}
-                 />
-                    <div className="ticker-container">
+                  <BetBox
+                    cards={dragonTigerDetail?.cards}
+                    data={dragonTigerDetail}
+                    playerNum={[0, 1, 2, 3]}
+                  />
+                  <div className="ticker-container mt-4">
                     <div className="ticker-wrap">
                       <div
                         className="ticker-move"
-                        style={{ color: "#8b0000", fontWeight: "700" }}
+                        style={{ color: "#097c93", fontWeight: "700" }}
                       >
                         {dragonTigerDetail?.videoInfo?.ramark}
                       </div>
@@ -155,8 +145,8 @@ const QueenDesktop = () => {
                 <div style={{ width: "100%", margin: "5px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R"]}
-                    type={cardGamesType.worli}
+                    name={["0", "1", "2", "3"]}
+                    type={cardGamesType?.queen}
                   />
                 </div>
               </div>
@@ -164,7 +154,7 @@ const QueenDesktop = () => {
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

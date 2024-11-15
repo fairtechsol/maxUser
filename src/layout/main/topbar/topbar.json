@@ -1,20 +1,7 @@
 [
   { "id": "home", "name": "Home", "link": "/home", "type": "desktop" },
+  { "id": "lottery", "name": "Lottery", "link": "/contact-admin/1", "type": "desktop" },
   { "id": "cricket", "name": "Cricket", "link": "/cricket", "type": "desktop" },
-  {
-    "id": "ipl2024",
-    "name": "IPL 2024",
-    "link": "/contact-admin",
-    "type": "both",
-    "blink": true
-  },
-  {
-    "id": "election2023",
-    "name": "LOK SABHA 2024",
-    "link": "/contact-admin",
-    "type": "both",
-    "blink": true
-  },
   {
     "id": "tennis",
     "name": "Tennis",
@@ -30,25 +17,13 @@
   {
     "id": "tableTennis",
     "name": "Table Tennis",
-    "link": "/contact-admin",
-    "type": "desktop"
-  },
-  {
-    "id": "kabaddi",
-    "name": "Kabaddi",
-    "link": "/contact-admin",
-    "type": "desktop"
-  },
-  {
-    "id": "basketball",
-    "name": "BASKETBALL",
-    "link": "/contact-admin",
+    "link": "/contact-admin/777",
     "type": "desktop"
   },
   {
     "id": "volleyball",
     "name": "VOLLEYBALL",
-    "link": "/contact-admin",
+    "link": "/contact-admin/888",
     "type": "desktop"
   },
   {

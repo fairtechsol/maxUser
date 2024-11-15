@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Lucky7BComponentList from "../../components/lucky7B";
 import { socket, socketService } from "../../socketManager";
 import {
+  betPlacedReset,
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   update7BCardMatchRates,
   updateBalanceOnBetPlaceCards,
@@ -16,7 +18,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -65,11 +67,6 @@ const Lucky7B = () => {
         socketService.card.getCardRatesOff(cardGamesType.lucky7B);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.lucky7B);
-        socketService.card.getCardRates(
-          cardGamesType.lucky7B,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.lucky7B,
@@ -77,6 +74,11 @@ const Lucky7B = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.lucky7B);
+      socketService.card.getCardRates(
+        cardGamesType.lucky7B,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -84,8 +86,9 @@ const Lucky7B = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7B));
+      dispatch(getDragonTigerDetail(cardGamesType.lucky7B));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.lucky7B);
         socketService.card.getCardRatesOff(cardGamesType.lucky7B);
@@ -93,6 +96,7 @@ const Lucky7B = () => {
         socketService.card.cardResultOff();
         dispatch(selectedBetAction(null));
         dispatch(dragonTigerReset());
+        dispatch(betPlacedReset());
         socketService.card.cardResult(handleMatchResult);
       };
     } catch (e) {

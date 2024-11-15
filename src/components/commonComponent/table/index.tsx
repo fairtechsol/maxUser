@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Column } from "../../../models/tableInterface";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 import "./style.scss";
 import TableHeader from "./tableHeader";
 import PaginationComponent from "./tableUtils/pagination"; // Import the PaginationComponent
@@ -29,6 +29,7 @@ interface CustomTableProps {
   striped?: boolean;
   paginationCount?: boolean;
   width?: any;
+  placeHolder?:any;
 }
 
 const CustomTable: React.FC<CustomTableProps> = ({
@@ -45,6 +46,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
   tBodyTheme,
   paginationCount,
   width,
+  placeHolder,
   ...props
 }) => {
   // State for sorting configuration and current page
@@ -101,6 +103,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
         rowPerPage={rowPerPage}
         setRowPerPage={setRowPerPage}
         paginationCount={paginationCount}
+        placeHolder={placeHolder}
       />
       {/* Table for displaying data */}
       <div className="w-100">
@@ -110,10 +113,11 @@ const CustomTable: React.FC<CustomTableProps> = ({
               {/* Table header with sorting icons */}
               {columns.map((column, index) => (
                 <th
-                  className={`${tHeadTheme} text-center ${
-                    isMobile ? "bg-secondary title-12 f800 p-1" : "f600"
+                  className={`${tHeadTheme} bg-[#f7f7f7] text-[#333333] text-start ${
+                    isMobile ? "bg-secondary title-12 f800 p-1 text-white" : "f600 title-16"
                   }`}
                   key={index}
+                  style={{background:"#f7f7f7"}}
                 >
                   {column.label}
                   {/* Display sorting icons based on the sorting configuration */}
@@ -132,7 +136,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
           <tbody className="text-center">
             {/* Table body with sorted data */}
             {itemCount === 0 ? (
-              <tr className="text-center">
+              <tr className="text-center ">
                 <td
                   className={`${tBodyTheme ?? ""} ${isMobile && "bg-white"}`}
                   colSpan={columns?.length}

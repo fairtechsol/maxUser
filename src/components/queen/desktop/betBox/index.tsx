@@ -1,31 +1,83 @@
-import React from 'react';
-import '../style.scss';
+import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
+import { AppDispatch } from "../../../../store/store";
+import "../style.scss";
 
-const CasinoTable = ({cards,data}:any) => {
-
-  const remarkText = "This is 21 cards game 2,3,4,5,6 x 4 =20 and 1 Queen. Minimum total 10 or queen is required to win.";
-
+const CasinoTable = ({ cards, data }: any) => {
+  const dispatch: AppDispatch = useDispatch();
+  const handleBet = (item: any, type: any) => {
+    let team = {
+      bettingType: type,
+      matchId: data?.id,
+      odd: type === "BACK" ? item?.b1 : item?.l1,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.nation,
+      name: item?.nation,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+      min:parseFloat(data?.videoInfo?.min),
+      max:parseFloat(data?.videoInfo?.max)
+    };
+    dispatch(
+      selectedBetAction({
+        team,
+        data,
+      })
+    );
+  };
   return (
     <div className="casino-table-q">
-      <div className="casino-table-box-q">
-        {cards?.map((item:any, index:any) => (
+      <div className="casino-table-box-q-desktop">
+        {cards?.map((item: any, index: any) => (
           <div className="casino-odd-box-container-q" key={index}>
             <div className="casino-nation-name-q">{item?.nation}</div>
-            <div className="casino-odds-box-q back suspended">
+            <div
+              onClick={() => handleBet(item, "BACK")}
+              className={
+                item?.gstatus === "SUSPENDED" 
+                  ? "casino-odds-box-q back suspended-box"
+                  : "casino-odds-box-q back "
+              }
+            >
               <span className="casino-odds-q">{item?.b1}</span>
             </div>
-            <div className="casino-odds-box-q lay suspended">
+            <div
+              onClick={() => handleBet(item, "LAY")}
+              className={
+                item?.gstatus === "SUSPENDED" 
+                  ? "casino-odds-box-q lay suspended-box"
+                  : "casino-odds-box-q lay "
+              }
+            >
               <span className="casino-odds-q">{item.l1}</span>
             </div>
-            <div className="casino-nation-book-q"></div>
+            <span
+              className={` ps-4 ms-5 ${
+                data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )[`total${index}`] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )[`total${index}`] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+              style={{ zIndex: "100" }}
+            >
+              {data?.profitLoss?.[`${data?.videoInfo?.mid}_1_card`]
+                ? JSON.parse(
+                    data?.profitLoss?.[`${data?.videoInfo?.mid}_1_card`]
+                  )[`total${index}`]
+                : "\u00A0"}
+            </span>
           </div>
         ))}
-      </div>
-      <div className="casino-remark-q mt-1">
-        <div className="marquee-q">
-          <div className="marquee-content-q">
-          </div>
-        </div>
       </div>
     </div>
   );

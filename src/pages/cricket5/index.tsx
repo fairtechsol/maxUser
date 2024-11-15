@@ -8,6 +8,7 @@ import {
 import {
   casinoScoreboardMatchRates,
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   scoreBoardReset,
   updateBalanceOnBetPlaceCards,
@@ -17,9 +18,8 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
-  getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { cardGamesType } from "../../utils/constants";
@@ -92,7 +92,7 @@ const Cricket5 = () => {
   const handleCardResult = (event: any) => {
     if (event?.matchId === dragonTigerDetail?.id) {
       dispatch(getPlacedBets(dragonTigerDetail?.id));
-      dispatch(getProfileInMatchDetail());
+      dispatch(getProfile());
     }
   };
   const handleMatchResult = () => {
@@ -105,11 +105,6 @@ const Cricket5 = () => {
         socketService.card.getCardRatesOff(cardGamesType.cricketv3);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.cricketv3);
-        socketService.card.getCardRates(
-          cardGamesType.cricketv3,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.cricketv3,
@@ -117,6 +112,11 @@ const Cricket5 = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.cricketv3);
+      socketService.card.getCardRates(
+        cardGamesType.cricketv3,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -124,8 +124,9 @@ const Cricket5 = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
+      dispatch(getDragonTigerDetail(cardGamesType.cricketv3));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cricketv3);
         socketService.card.getCardRatesOff(cardGamesType.cricketv3);

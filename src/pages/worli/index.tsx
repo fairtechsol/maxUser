@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { socket, socketService } from "../../socketManager";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCardWorliRates,
@@ -9,7 +10,7 @@ import {
   updateProfitLossCards,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -65,11 +66,6 @@ const Worli = () => {
         socketService.card.getCardRatesOff(cardGamesType.worli);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.worli);
-        socketService.card.getCardRates(
-          cardGamesType.worli,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.worli,
@@ -77,6 +73,11 @@ const Worli = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.worli);
+      socketService.card.getCardRates(
+        cardGamesType.worli,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -84,8 +85,9 @@ const Worli = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.worli));
+      dispatch(getDragonTigerDetail(cardGamesType.worli));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.worli);
         socketService.card.getCardRatesOff(cardGamesType.worli);

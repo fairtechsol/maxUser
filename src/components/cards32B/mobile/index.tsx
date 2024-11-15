@@ -2,23 +2,22 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { handleRoundId } from "../../../utils/formatMinMax";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
-import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import "./style.scss";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Dragon20Result from "../desktop/card32B";
-import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import BackLay from "../desktop/BackLay";
+import BackLay from "./BackLay";
+import CardBox from "./CardsBox";
+import OddEven from "./OddEvenBox";
 import PairBox from "./PairBox";
+import "./style.scss";
 import TotalCards from "./totalCards";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const Card32BMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -31,7 +30,6 @@ const Card32BMobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -44,7 +42,7 @@ const Card32BMobile = () => {
 
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 5 * 60 * 1000) {
-        setShow(true);
+        setShowInactivityModal(true);
         setVideoFrameId("");
       }
     };
@@ -72,56 +70,13 @@ const Card32BMobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
+
         {!activeTab ? (
           <>
             <div
@@ -132,14 +87,7 @@ const Card32BMobile = () => {
                 backgroundColor: "#000",
               }}
             >
-              <div style={{ width: "100%"}}>
-                <div className="horseRacingTabHeader-m">
-                  <div>
-                    <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                      {dragonTigerDetail?.name}
-                    </span>
-                  </div>
-                </div>
+              <div style={{ width: "100%" }}>
                 <div
                   style={{
                     width: "100%",
@@ -158,10 +106,13 @@ const Card32BMobile = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
-                <div className="" style={{ width: "97%", gap: "10px", marginTop: "0.5rem" }}>
+                <div
+                  className=""
+                  style={{ width: "97%", gap: "10px", marginTop: "0.5rem" }}
+                >
                   <div className="w-100">
                     <BackLay
                       matchOddsData={dragonTigerDetail?.matchOdd}
@@ -210,7 +161,7 @@ const Card32BMobile = () => {
         )}
       </div>
 
-      <RulesModal show={show} setShow={setShow} rule={card32rules} />
+      <RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32eu' type="imageWithContent" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

@@ -1,54 +1,52 @@
-import { Table } from "react-bootstrap";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import Teen20Result from "../desktop/teenCard";
+import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
 import "./style.scss";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-
+import { formatNumber } from "../../../helpers";
+import ball from "../../../assets/images/ball-blank.png"
 const TeenPattiMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
+  const [modalType, setModalType] = useState("rules");
   const [show1, setShow1] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [curR, setCurR] = useState(null);
+
+  const [mid, setMid] = useState(false);
+
+  const [isClick, setIsClick] = useState(false);
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { playerA, playerB } = dragonTigerDetail;
-  const { placedBets } = useSelector((state: RootState) => state.bets);
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
+  const { runs } = dragonTigerDetail;
+  const { resultData } = useSelector((state: RootState) => state.card);
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
       matchId: dragonTigerDetail?.id,
-      odd: item?.rate,
+      odd: item?.b,
       stake: 0,
       matchBetType: "matchOdd",
       betOnTeam: item?.nat,
       name: item?.nat,
       bettingName: "Match odds",
-      selectionId: item?.sid,
+      selectionId: "" + item?.sid,
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -91,80 +89,58 @@ const TeenPattiMobile = () => {
   }, [lastActivityTime, show]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.teen20}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.ballbyball}`);
   }, []);
 
   useEffect(() => {
-    if (playerA?.[0]?.gstatus === "0" || playerA?.[0]?.rate === "0.00") {
+    if (runs?.[0]?.gstatus === "0" || runs?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
     }
-  }, [playerA?.[0]?.gstatus, playerA?.[0]?.b1]);
+  }, [runs?.[0]?.gstatus, runs?.[0]?.b1]);
 
+  useEffect(() => {
+    if (curR && isClick) {
+      setTimeout(() => {
+        setCurR(null);
+        setIsClick(false);
+        setMid(dragonTigerDetail?.videoInfo?.mid);
+      }, 3000);
+    }
+  }, [curR]);
+
+  useEffect(() => {
+    if (mid && mid != dragonTigerDetail?.videoInfo?.mid) {
+      dispatch(resultDragonTiger(mid));
+      setIsClick(true);
+    }
+    if (!mid) {
+      setMid(dragonTigerDetail?.videoInfo?.mid);
+    }
+  }, [dragonTigerDetail?.videoInfo?.mid]);
+
+  useEffect(() => {
+    if (Object.keys(resultData || {})?.length > 0 && mid) {
+      setCurR(resultData);
+    } else if (resultData) {
+      setTimeout(() => {
+        dispatch(resultDragonTiger(mid));
+      }, 1000);
+    }
+  }, [resultData]);
   return (
     <>
       <div>
-        <div className="dt20header">
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%" }}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -172,107 +148,299 @@ const TeenPattiMobile = () => {
                   backgroundColor: "#000",
                 }}
               >
+                {curR && (
+                  <div className="elem">
+                    <img
+                    src={ball}
+                      //src="https://versionobj.ecoassetsservice.com/v17/static/front/img/balls/ball-blank.png"
+                      // src={`https://versionobj.ecoassetsservice.com/v13/static/front/img/balls/cricket20/ball${
+                      //   curR?.result?.desc.split(" ")[0]
+                      // }.png`}
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        position: "absolute",
+                      }}
+                      alt=""
+                    />
+                    <span
+                      style={{
+                        position: "absolute",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: 3,
+                        color: "white",
+                        fontWeight: "500",
+                        width: "40%",
+                        fontSize: "6px",
+                        top: "40%",
+                        left: "30%",
+                      }}
+                    >
+                      {curR?.result?.desc}
+                    </span>
+                  </div>
+                )}
+
                 <VideoFrame
-                  time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
+                  time={dragonTigerDetail?.videoInfo?.lt}
+                  //result={<Teen20Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
-                <div style={{ width: "100%" }}>
-                  <div className="teenPatti-table-container-20">
-                    <div className="teenPatti-table-row">
+                <div
+                  style={{
+                    background: "rgb(255 199 66 / 85%)",
+                    color: "#fff",
+                    fontWeight: "bold",
+                    lineHeight: 2,
+                  }}
+                >
+                  <span style={{ marginLeft: "10px" }}> Runs</span>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    width: "100%",
+                    justifyContent: "space-between",
+                    borderBottom: "0.01em solid #c7c8ca",
+                    lineHeight: 2,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "100%",
+
+                      borderBottom: "0.01em solid #c7c8ca",
+                      background: "#f2f2f2",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "60%",
+                        border: "0.1px solid #fff",
+                        fontSize: "14px",
+                        marginLeft: "3px",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        width: "20%",
+                        backgroundColor: "#72bbef",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Back
+                    </div>
+                    <div
+                      style={{
+                        width: "20%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        color: "#097c93",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    lineHeight: 2,
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  {runs?.map((item: any) => (
+                    <div
+                      style={{
+                        display: "flex",
+                        width: "100%",
+
+                        borderBottom: "0.01em solid #c7c8ca",
+                        background: "#f2f2f2",
+                      }}
+                      key={item.sid}
+                    >
+                      {/* <div
+                        style={{
+                          width: "60%",
+                          border: "0.1px solid #fff",
+                          fontSize: "14px",
+                          marginLeft: "3px",
+                        }}
+                      >
+                        {item.nat}
+                      </div> */}
                       <div
                         style={{
                           width: "60%",
-                          border: "0.1px solid #dee2e6",
-                          textAlign: "left",
+                          fontSize: "14px",
+                          marginLeft: "3px",
+                          display: "flex",
+                          flexDirection: "column",
                         }}
                       >
-                        <span className="f12-b">
-                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
-                          {dragonTigerDetail?.videoInfo?.max}
+                        <div
+                          style={{
+                            fontSize: "14px",
+                          }}
+                        >
+                          {item.nat}
+                        </div>
+                        <span
+                          className={`f10-b ${
+                            dragonTigerDetail?.profitLoss
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                ]
+                                ? dragonTigerDetail?.profitLoss[
+                                    `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                  ] > 0
+                                  ? "color-green"
+                                  : dragonTigerDetail?.profitLoss[
+                                      `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                    ] < 0
+                                  ? "color-red"
+                                  : ""
+                                : ""
+                              : ""
+                          }`}
+                          style={{ zIndex: "100" }}
+                        >
+                          {(dragonTigerDetail?.profitLoss
+                            ? dragonTigerDetail?.profitLoss[
+                                `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                              ]
+                              ? dragonTigerDetail?.profitLoss[
+                                  `${dragonTigerDetail?.videoInfo?.mid}_${item?.sid}_card`
+                                ]
+                              : ""
+                            : "") || "\u00A0"}
                         </span>
                       </div>
                       <div
-                        className="teen-back-m"
                         style={{
                           width: "20%",
+                          backgroundColor: "#72bbef",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontSize: "12px",
                         }}
+                        className={
+                          runs?.[0]?.gstatus === "SUSPENDED" &&
+                          runs?.[0]?.b === 0
+                            ? "suspended"
+                            : "teenPatti-table-item"
+                        }
+                        onClick={() =>
+                          runs?.[0]?.gstatus === "SUSPENDED" &&
+                          runs?.[0]?.b === 0
+                            ? ""
+                            : handleBet(item)
+                        }
                       >
-                        BACK
+                        <span className="f12-b">
+                          {item.b == "0" ? "" : item.b}
+                        </span>
+                        <span
+                          className="f10-b"
+                          style={{ fontWeight: "normal" }}
+                        >
+                          {item.bs == "0" ? "" : item.bs}
+                        </span>
                       </div>
                       <div
-                        className="teen-back"
                         style={{
                           width: "20%",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "end",
+                          color: "#097c93",
+                          fontSize: "10px",
+                          fontWeight: "bold",
                         }}
                       >
-                        BACK
+                        <span className="pe-1" style={{ lineHeight: "2" }}>
+                          Min:{item.min}
+                        </span>
+                        <span className="pe-1" style={{ lineHeight: "1" }}>
+                          Max:{formatNumber(item.max)}
+                        </span>
                       </div>
                     </div>
-                    <div className="teenPatti-table-row">
+                  ))}
+                </div>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    background: "#086f3f",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "15%",
+                      background: "#086f3f",
+                      lineHeight: 2,
+                    }}
+                  >
+                    <img
+                      src="https://versionobj.ecoassetsservice.com/v15/static/front/img/icons/remark.png"
+                      style={{
+                        marginLeft: "20px",
+                        height: "20px",
+                        boxShadow: "none",
+                        background: "#086f3f",
+                      }}
+                    ></img>
+                  </div>
+
+                  <div
+                    className="ticker-container"
+                    style={{
+                      width: "85%",
+
+                      background: "#086f3f",
+                      border: "#086f3f",
+                      lineHeight: 2.6,
+                    }}
+                  >
+                    <div
+                      className="ticker-wrap"
+                      style={{ border: "#086f3f", height: "100%" }}
+                    >
                       <div
+                        className="ticker-move"
                         style={{
-                          width: "60%",
-                          border: "0.1px solid #dee2e6",
-                          textAlign: "left",
+                          color: "#fff",
+                          fontWeight: "bold",
+                          width: "100%",
+                          fontSize: "12px",
+                          border: "#086f3f",
+                          height: "100%",
                         }}
                       >
-                        <span className="f12-b">
-                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
-                          {dragonTigerDetail?.videoInfo?.max}
-                        </span>
-                      </div>
-                      <div
-                        className="teen-back-m"
-                        style={{
-                          width: "20%",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        className="teen-back"
-                        style={{
-                          width: "20%",
-                        }}
-                      >
-                        0
-                      </div>
-                    </div>
-                    <div className="teenPatti-table-row">
-                      <div
-                        style={{
-                          width: "60%",
-                          border: "0.1px solid #dee2e6",
-                          textAlign: "left",
-                        }}
-                      >
-                        <span className="f12-b">
-                          Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
-                          {dragonTigerDetail?.videoInfo?.max}
-                        </span>
-                      </div>
-                      <div
-                        className="teen-back-m"
-                        style={{
-                          width: "20%",
-                        }}
-                      >
-                        BACK
-                      </div>
-                      <div
-                        className="teen-back"
-                        style={{
-                          width: "20%",
-                        }}
-                      >
-                        0
+                        {dragonTigerDetail?.videoInfo?.remark}
                       </div>
                     </div>
                   </div>
@@ -281,11 +449,11 @@ const TeenPattiMobile = () => {
                 <div style={{ width: "100%", marginTop: "15px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["A", "T", "B"]}
-                    type={"teen20"}
+                    name={["R", "R", "R"]}
+                    type={"ballbyball"}
                   />
                 </div>
-                <div>
+                {/* <div>
                   <div
                     className="casino-title mt-2"
                     style={{ position: "relative" }}
@@ -327,7 +495,7 @@ const TeenPattiMobile = () => {
                       </tbody>
                     </Table>
                   </div>
-                </div>
+                </div> */}
               </div>
             )}
           </div>
@@ -337,7 +505,12 @@ const TeenPattiMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <RulesModal
+        show={show}
+        setShow={setShow}
+        type={"imageWithContent"}
+        gameType="ballbyball"
+      />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

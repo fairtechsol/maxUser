@@ -6,7 +6,6 @@ import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
@@ -15,8 +14,9 @@ import "./style.scss";
 import TeenPattiTableRow from "./tableRow";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const TeenPattiMobile = () => {
@@ -32,7 +32,6 @@ const TeenPattiMobile = () => {
   );
   //const { playerA, playerB } = dragonTigerDetail;
   const { players, pairsPlus } = dragonTigerDetail;
-  const { placedBets } = useSelector((state: RootState) => state.bets);
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
     { label: "Flush (Color)", value: "1 To 4" },
@@ -51,6 +50,8 @@ const TeenPattiMobile = () => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -91,83 +92,56 @@ const TeenPattiMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+  const extractCardAndPlayerInfo = (cardsString: any) => {
+    let cardsPart = cardsString;
+    let playersPart = "";
+
+    if (cardsString?.includes("#")) {
+      [cardsPart, playersPart] = cardsString.split("#");
+    }
+
+    const cardsArray = cardsPart?.split(",");
+
+    const playersArray = playersPart
+      ? playersPart?.match(/\d+/g)?.map(Number)
+      : [];
+
+    return {
+      cardsArray,
+      playersArray,
+    };
+  };
+  const { cardsArray: cardsArray1, playersArray: playersArray1 } =
+    extractCardAndPlayerInfo(dragonTigerDetail?.videoInfo?.cards);
 
   useEffect(() => {
     setVideoFrameId(`${cardUrl}${cardGamesId?.teenOpen}`);
   }, []);
 
   useEffect(() => {
-    if (players?.player1?.gstatus === "0" || players?.player1?.rate === "0.00") {
+    if (
+      players?.player1?.gstatus === "0" ||
+      players?.player1?.rate === "0.00"
+    ) {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [players?.player1?.gstatus,players?.player1?.rate]);
-  
+    }
+  }, [players?.player1?.gstatus, players?.player1?.rate]);
+
   return (
     <>
       <div>
-        <div className="dt20header">
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
+
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%" }}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -177,15 +151,16 @@ const TeenPattiMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={
-                    <TeenOpenResult data={dragonTigerDetail?.videoInfo} />
-                  }
+                  // result={
+                  //   <TeenOpenResult data={dragonTigerDetail?.videoInfo} />
+                  // }
+                  result={<TeenOpenResult data={cardsArray1} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div style={{ width: "100%" }}>
@@ -194,45 +169,39 @@ const TeenPattiMobile = () => {
                       <div
                         style={{
                           width: "40%",
-                          border: "0.1px solid #dee2e6",
+                          borderLeft: "0.1px solid #c7c8ca",
+                          borderBottom: "0.1px solid #c7c8ca",
                           textAlign: "left",
                         }}
                       ></div>
                       <div
                         style={{
                           width: "60%",
-                         
+
                           textAlign: "left",
                           display: "flex",
                         }}
-                        className=""
                       >
                         <div
                           className="teen-back-m"
                           style={{
                             border: "0.5px solid #dee2e6",
-                            width:"50%",
-                            padding:"2px",
-                            display:"flex",
-                            flexDirection:"column"
+                            width: "50%",
+                            padding: "2px",
+                            display: "flex",
+                            flexDirection: "column",
                           }}
                         >
-                          
-                          <span>BACK</span>
-                          <span className="f5-b" style={{fontSize:"10px"}}>
-                            ( Min: {dragonTigerDetail?.players?.player1?.min}{" "}
-                            Max: {dragonTigerDetail?.players?.player1?.max})
-                          </span>
+                          <span className="f5-b title-12">Odds</span>
                         </div>
-                        <div className="teen-back-m" style={{
-                          width:"50%",
-                          border: "0.5px solid #dee2e6",
-                        }}>
-                          <span className="f5-b" style={{padding:"2px",marginTop:"20px",fontSize:"10px"}}>
-                            ( Min:{" "}
-                            {dragonTigerDetail?.pairsPlus?.pairPlus1?.min} Max:{" "}
-                            {dragonTigerDetail?.pairsPlus?.pairPlus1?.max})
-                          </span>
+                        <div
+                          className="teen-back-m"
+                          style={{
+                            width: "50%",
+                            border: "0.5px solid #dee2e6",
+                          }}
+                        >
+                          <span className="f5-b title-12">Pair Plus</span>
                         </div>
                       </div>
                     </div>
@@ -240,10 +209,13 @@ const TeenPattiMobile = () => {
                     {players &&
                       Object?.keys(players)?.map((key, index) => (
                         <TeenPattiTableRow
-                          key={index}
+                          key={key}
+                          indx={index}
                           player={players[key]}
                           pairPlus={pairsPlus[`pairPlus${index + 1}`]}
                           handleBet={handleBet}
+                          cardsA={cardsArray1}
+                          playersA={playersArray1}
                         />
                       ))}
 

@@ -1,8 +1,8 @@
-import "./style.scss";
-import { AppDispatch } from "../../../../store/store";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
+import { AppDispatch } from "../../../../store/store";
+import "./style.scss";
 const DynamicTable = ({ odds, data, back, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
@@ -17,6 +17,8 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -48,11 +50,11 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
               flexDirection: "row",
             }}
           >
-            <div className="card32-table-item-m back" style={{ width: "50%" }}>
-              BACK
+            <div className="card32-table-item-ma back title-12" style={{ width: "50%",fontWeight:"bold" }}>
+              Back
             </div>
-            <div className="card32-table-item-m lay" style={{ width: "50%" }}>
-              LAY
+            <div className="card32-table-item-ma lay title-12" style={{ width: "50%",fontWeight:"bold" }}>
+              Lay
             </div>
           </div>
         )}
@@ -62,12 +64,13 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
           style={{
             width: "50%",
             padding: "10px",
-            border: "0.1px solid #fff",
+            borderBottom: "0.1px solid #c7c8ca",
+            borderLeft: "0.1px solid #c7c8ca",
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+          <span style={{ fontSize: "12px", fontWeight: "bolder" }}>
             {odds?.[0]?.nation}
           </span>
           <span
@@ -92,12 +95,11 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
                 ? JSON.parse(
                     data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player1Key]
-                : 0
-              : 0}
+                : "\u00A0"
+              : "\u00A0"}
           </span>
         </div>
         <div
-          className={odds?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""}
           style={{
             width: "50%",
             display: "flex",
@@ -105,7 +107,12 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
           }}
         >
           <div
-            className="card32-table-item back"
+          className={
+            odds?.[0]?.gstatus === "SUSPENDED" ||
+            odds?.[0]?.gstatus === "CLOSED"
+              ? "suspended card32-table-item back"
+              : "card32-table-item back"
+          }
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED"
@@ -117,7 +124,12 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
             <span className="f10-b">{odds?.[0]?.bs1}</span>
           </div>
           <div
-            className="card32-table-item lay"
+              className={
+                odds?.[0]?.gstatus === "SUSPENDED" ||
+                odds?.[0]?.gstatus === "CLOSED"
+                  ? "suspended card32-table-item lay"
+                  : "card32-table-item lay"
+              }
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED"
@@ -137,9 +149,11 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
             padding: "8px",
             display: "flex",
             flexDirection: "column",
+            borderBottom: "0.1px solid rgb(199, 200, 202)",
+            borderLeft: "0.1px solid rgb(199, 200, 202)",
           }}
         >
-          <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+          <span style={{ fontSize: "12px", fontWeight: "bolder" }}>
             {odds?.[1]?.nation}
           </span>
           <span
@@ -164,12 +178,11 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
                 ? JSON.parse(
                     data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                   )[player2Key]
-                : 0
-              : 0}
+                : "\u00A0"
+              : "\u00A0"}
           </span>
         </div>
         <div
-          className={odds?.[0]?.gstatus === "SUSPENDED" ? "suspended" : ""}
           style={{
             width: "50%",
             display: "flex",
@@ -177,7 +190,12 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
           }}
         >
           <div
-            className="card32-table-item back"
+           className={
+            odds?.[1]?.gstatus === "SUSPENDED" ||
+            odds?.[1]?.gstatus === "CLOSED"
+              ? "suspended card32-table-item back"
+              : "card32-table-item back"
+          }
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED"
@@ -189,7 +207,12 @@ const DynamicTable = ({ odds, data, back, playerNum }: any) => {
             <span className="f10-b">{odds?.[1]?.bs1}</span>
           </div>
           <div
-            className="card32-table-item lay"
+             className={
+              odds?.[1]?.gstatus === "SUSPENDED" ||
+              odds?.[1]?.gstatus === "CLOSED"
+                ? "suspended card32-table-item lay"
+                : "card32-table-item lay"
+            }
             style={{ width: "50%" }}
             onClick={() =>
               odds?.[0]?.gstatus === "SUSPENDED"

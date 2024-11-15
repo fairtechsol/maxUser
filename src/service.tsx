@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Constants } from "./utils/constants";
+import { serviceUrl } from "./utils/constants";
 
 const toastOptions = {
   autoClose: 1500,
@@ -10,27 +10,18 @@ const toastOptions = {
 };
 
 const service = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "production"
-      ? Constants.apiBasePath
-      : Constants.localPath,
+  baseURL: serviceUrl,
+  headers: {
+    "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+    Pragma: "no-cache",
+  },
 });
-
-// use below service for live build
-
-// const service = axios.create({
-//   baseURL:
-//     process.env.NODE_ENV === "production"
-//       ? Constants.apiBasePathLive
-//       : Constants.localPath,
-// });
 
 service.defaults.timeout = 100000;
 
 service.interceptors.request.use(
   (config) => {
     config.headers["Content-Type"] = "application/json";
-
     const authToken = sessionStorage.getItem("jwtMaxUser");
     config.headers.Authorization = `Bearer ${authToken}`;
     return config;

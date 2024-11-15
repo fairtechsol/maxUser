@@ -2,23 +2,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { brules, luckyrules } from "../../../assets/images";
+import { brules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
 import TiePairBox from "./TiePairBox";
+import TiePairBox2 from "./TiePairBox2";
 import Lucky7Result from "./lucky7Card";
 import "./style.scss";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import TiePairBox2 from "./TiePairBox2";
 
 const BollywoodTableDesktop = () => {
   const [show, setShow] = useState(false);
@@ -127,10 +127,10 @@ const BollywoodTableDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
-                <div style={{ width: "100%", margin: "5% 5px" }}>
+                <div style={{ width: "100%" }}>
                   <TiePairBox
                     lowHigh={dragonTigerDetail?.players}
                     data={dragonTigerDetail}
@@ -162,6 +162,7 @@ const BollywoodTableDesktop = () => {
                       background: "#EEEEEE",
                       paddingLeft: "4px",
                       paddingRight: "4px",
+                     
                     }}
                   >
                     <OddEven
@@ -204,6 +205,7 @@ const BollywoodTableDesktop = () => {
                       background: "#EEEEEE",
                       paddingLeft: "4px",
                       paddingRight: "4px",
+                      
                     }}
                   >
                     <CardBox
@@ -223,10 +225,10 @@ const BollywoodTableDesktop = () => {
               </div>
             )}
 
-            <RulesModal show={show} setShow={setShow} rule={brules} />
+            <RulesModal show={show} setShow={setShow} rule={brules} gameType="btable" type="imageWithContent" />
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

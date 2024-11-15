@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import "./style.scss";
 
-const CardBox = ({ title, data, cards, odds }: any) => {
+const CardBox = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any) => {
@@ -19,6 +19,8 @@ const CardBox = ({ title, data, cards, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -39,10 +41,11 @@ const CardBox = ({ title, data, cards, odds }: any) => {
   return (
     <>
       <div
-        className={`${
-          data?.worli?.gstatus == 0 ? "suspended" : ""
-        } abjcardContainer`}
-        style={{ backgroundColor: "#72bbef", border: "0.5px solid #fff" }}
+        // className={`${
+        //   data?.worli?.gstatus == 0 ? "suspended" : ""
+        // } abjcardContainer`}
+        className="abjcardContainer"
+        style={{ backgroundColor: "#72bbef",borderBottom:"2px solid #fff" }}
       >
         <div
           style={{
@@ -50,7 +53,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
             paddingTop: "17px",
             paddingBottom: "17px",
           }}
@@ -70,7 +73,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
           }}
           onClick={() =>
             handleBet({
@@ -88,7 +91,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
           }}
           onClick={() =>
             handleBet({
@@ -106,7 +109,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
           }}
           onClick={() =>
             handleBet({
@@ -124,7 +127,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
           }}
           onClick={() =>
             handleBet({
@@ -142,7 +145,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRight: "0.5px solid #fff",
+            borderRight: "2px solid #fff",
             flexDirection: "column",
           }}
           onClick={() =>
@@ -153,7 +156,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             })
           }
         >
-          <span className="fs-6 fw-bold ">
+          <span className="style">
             {odds === "L1" ? "Line1" : "Line2"}
           </span>
           {odds === "L1" ? <div>1|2|3|4|5</div> : <div>6|7|8|9|0</div>}
@@ -175,7 +178,7 @@ const CardBox = ({ title, data, cards, odds }: any) => {
             })
           }
         >
-          <span className="fs-6 fw-bold">{odds === "L1" ? "ODD" : "EVEN"}</span>
+          <span className="style  ">{odds === "L1" ? "ODD" : "EVEN"}</span>
           {odds === "L1" ? <div>1|3|5|7|9</div> : <div>2|4|6|8|0</div>}
         </div>
       </div>

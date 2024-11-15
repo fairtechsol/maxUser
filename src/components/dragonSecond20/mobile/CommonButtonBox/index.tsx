@@ -12,17 +12,18 @@ const CommonButtonBox = ({
   data,
 }: any) => {
   return (
-    <div className="commonButtonBoxContainer" style={{ width: width }}>
+    <div className="commonButtonBoxContainer" style={{ width: width ,}}>
       <div>
         <span style={{ fontSize: "12px", fontWeight: "bolder" }}>
-          {parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
+          {lock ? 0 : parseFloat(isNaN(value1) ? 0 : value1).toFixed(2)}
         </span>
       </div>
       <div
         className={`tiePairbtnMob-theme ${lock ? "suspended" : ""}`}
         onClick={() => (!lock ? handleBet(data) : null)}
+
       >
-        <span style={{ fontSize: "14px" }}>
+        <span style={{ fontSize: "14px" ,lineHeight:"3"}}>
           {value2 === "icon1" ? (
             <>
               <ImDiamonds color="#ff0000" />
@@ -51,7 +52,7 @@ const CommonButtonBox = ({
               : ""
           }`}
         >
-          {isNaN(value3) ? 0 : value3}
+          {isNaN(value3) ? "\u00A0" : value3}
         </span>
       </div>
     </div>

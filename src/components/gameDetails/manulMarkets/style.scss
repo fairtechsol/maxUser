@@ -1,0 +1,177 @@
+.manualContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+  // margin-top: 10px;
+}
+.manualTitle {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3px 6px;
+  background-color: #fece5d;
+}
+.manualTitleTxt {
+  color: #ffffff;
+  font-weight: bold;
+}
+.manualBackLayTab {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #c7c8ca;
+}
+.manualMinMaxBox {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.manualMinMax {
+  font-size: 12px;
+  font-weight: bold;
+  color: #097c93;
+}
+.manualBackLayBoxContainer {
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+}
+.manualBackBoxTab {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #72bbef;
+  text-align: center;
+}
+.manualLayBoxTab {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #faa9ba;
+  text-align: center;
+}
+.manualEmptyBox {
+  width: 50%;
+}
+.manualBackTxt {
+  color: #333;
+  font-weight: bold;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
+}
+.manualTeamTab {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #c7c8ca;
+}
+.manualTeam {
+  // width: 28%;
+  flex: 1;
+  padding: 0px 5px;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.manualTeamTxt {
+  // font-size: 16px;
+  width: 100%;
+  font-weight: 400;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
+}
+.manualRateBox {
+  position: relative;
+  width: 72%;
+  display: flex;
+  flex-direction: row;
+}
+.manualBackBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.manualRate1Box {
+  font-size: 18px;
+  color: #000;
+  font-weight: bold;
+}
+.manualRate2Box {
+  font-size: 12px;
+  color: #000;
+  font-weight: 300;
+}
+.back3Background {
+  background-color: #b2d6f0 !important;
+}
+.back2Background {
+  background-color: #92c9f0 !important;
+}
+.back1Background {
+  background-color: #72bbef !important;
+}
+.lay3Background {
+  background-color: #f6cdd6 !important;
+}
+.lay2Background {
+  background-color: #f8bcc8 !important;
+}
+.lay1Background {
+  background-color: #faa9ba !important;
+}
+.suspended-overlayRatesmanual {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373636d6;
+  height: 100%;
+  z-index: 999;
+}
+.suspendedTxtmanual {
+  font-weight: 400;
+  color: #ff1e30;
+}
+.f-size10 {
+  font-size: 10px !important;
+}
+.f-size11 {
+  font-size: 11px !important;
+}
+.f-size12 {
+  font-size: 12px !important;
+}
+.f-size13 {
+  font-size: 13px !important;
+}
+.f-size14 {
+  font-size: 14px !important;
+}
+.f-size15 {
+  font-size: 15px !important;
+}
+.f-size16 {
+  font-size: 16px !important;
+}
+.f-size17 {
+  font-size: 17px !important;
+}
+.f-size18 {
+  font-size: 18px !important;
+}

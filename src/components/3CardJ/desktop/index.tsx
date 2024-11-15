@@ -4,18 +4,18 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { abjrules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Card3Result from "./abj1Card";
 import CardBox from "./CardsBox";
 import "./style.scss";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import Abj1Result from "./abj1Card";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 
 const CardJDesktop = () => {
   const [show, setShow] = useState(false);
@@ -87,19 +87,8 @@ const CardJDesktop = () => {
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
-                  <a
-                    style={{
-                      fontSize: "14px",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setShow(true)}
-                  >
-                    {" "}
-                    RULES
-                  </a>
                 </div>
-                <span>
+                <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
@@ -111,21 +100,19 @@ const CardJDesktop = () => {
               </div>
               <div
                 style={{
-                  // flex: '1 0 auto',
                   width: "100%",
-                  // height: "92%",
                   backgroundColor: "#000",
                 }}
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
+                  result={<Card3Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div
@@ -137,15 +124,17 @@ const CardJDesktop = () => {
                   }}
                 >
                   <CardBox
-                    title={"Yes"}
-                    bgColor={"#03b2cb"}
+                    title="Yes"
+                    betType="BACK"
+                    bgColor="#72bbef"
                     odds={dragonTigerDetail?.yes}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
                   />
                   <CardBox
-                    title={"No"}
-                    bgColor={"#FAA9BA"}
+                    title="No"
+                    betType="LAY"
+                    bgColor="#faa9ba"
                     odds={dragonTigerDetail?.no}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
@@ -155,7 +144,11 @@ const CardJDesktop = () => {
                     <div className="ticker-wrap">
                       <div
                         className="ticker-move"
-                        style={{ color: "#8b0000", fontWeight: "700" }}
+                        style={{
+                          color: "#097c93",
+                          fontWeight: "700",
+                          fontSize: "12px",
+                        }}
                       >
                         {dragonTigerDetail?.videoInfo?.remark}
                       </div>
@@ -175,7 +168,7 @@ const CardJDesktop = () => {
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

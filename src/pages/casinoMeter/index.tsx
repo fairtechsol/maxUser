@@ -12,9 +12,10 @@ import {
   updateProfitLossCards,
   dragonTigerReset,
   casinoMeterPattiMatchRates,
+  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -65,11 +66,6 @@ const CasinoMeter = () => {
         socketService.card.getCardRatesOff(cardGamesType.cmeter);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.cmeter);
-        socketService.card.getCardRates(
-          cardGamesType.cmeter,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.cmeter,
@@ -77,6 +73,11 @@ const CasinoMeter = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.cmeter);
+      socketService.card.getCardRates(
+        cardGamesType.cmeter,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -84,8 +85,9 @@ const CasinoMeter = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cmeter));
+      dispatch(getDragonTigerDetail(cardGamesType.cmeter));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cmeter);
         socketService.card.getCardRatesOff(cardGamesType.cmeter);

@@ -8,7 +8,6 @@ const PlayerButton = ({
   lock,
   data,
 }: any) => {
-  // const dispatch: AppDispatch = useDispatch();
 
   return (
     <div
@@ -86,22 +85,16 @@ const PlayerButton = ({
                 : ""
             }`}
           >
-            {value3 || 0}
+            {value3 || "\u00A0"}
           </span>
         </div>
       </div>
-
-      {/* <div
-        className={`tiePairbtn-theme ${lock ? "suspended" : ""}`}
-        onClick={() => (!lock ? handleBet(data) : null)}
-      ></div> */}
 
       <div
         className="teenPatti-table-row"
         style={{ lineHeight: 2, display: "flex", width: "30%" }}
       >
         <div
-          className={lock ? "suspended" : ""}
           style={{
             width: "100%",
             backgroundColor: "#72bbef",
@@ -110,9 +103,11 @@ const PlayerButton = ({
           }}
         >
           <div
-            className="teenPatti-table-item"
+            className={
+              lock ? "suspended teenPatti-table-item" : "teenPatti-table-item"
+            }
             style={{ width: "50%" }}
-            onClick={() => handleBet(data, "BACK")}
+            onClick={() => (lock ? "" : handleBet(data, "BACK"))}
           >
             <span className="f18-b my-2 fw-bold">
               {parseFloat(value1).toFixed(2)}
@@ -120,9 +115,11 @@ const PlayerButton = ({
             <span className="f10-b">{}</span>
           </div>
           <div
-            className={`teenPatti-table-item`}
+            className={
+              lock ? "suspended teenPatti-table-item" : "teenPatti-table-item"
+            }
             style={{ width: "50%", background: "#f9c9d4" }}
-            onClick={() => handleBet(data, "LAY")}
+            onClick={() => (lock ? "" : handleBet(data, "LAY"))}
           >
             <span className="f18-b my-2 fw-bold">
               {parseFloat(value4).toFixed(2)}

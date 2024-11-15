@@ -8,6 +8,7 @@ import {
 import {
   casinoScoreboardMatchRates,
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   scoreBoardReset,
   updateBalanceOnBetPlaceCards,
@@ -17,7 +18,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -51,7 +52,7 @@ const Superover = () => {
       dispatch(
         casinoScoreboardMatchRates({
           id: marketId,
-          type: cardGamesType.superover,
+          type: cardGamesType.cricketv3,
         })
       );
       // const response: any = await service.get(
@@ -121,11 +122,6 @@ const Superover = () => {
         socketService.card.getCardRatesOff(cardGamesType.superover);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.superover);
-        socketService.card.getCardRates(
-          cardGamesType.superover,
-          setMatchRatesInRedux
-        );
         socketService.card.getLiveGameResultTop10(
           cardGamesType.superover,
           handleLiveGameResultTop10
@@ -133,6 +129,11 @@ const Superover = () => {
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.superover);
+      socketService.card.getCardRates(
+        cardGamesType.superover,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -140,8 +141,9 @@ const Superover = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.superover));
+      dispatch(getDragonTigerDetail(cardGamesType.superover));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.superover);
         socketService.card.getCardRatesOff(cardGamesType.superover);

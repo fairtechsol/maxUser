@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { back, club, diamond, heart, spade } from "../../../../assets/images";
-import isMobile from "../../../../utils/screenDimension";
+import { isMobile } from "../../../../utils/screenDimension";
 
 interface PlayingCardProps {
   number: string;
@@ -8,11 +8,7 @@ interface PlayingCardProps {
   lock?: boolean;
 }
 
-export const PlayingCard: React.FC<PlayingCardProps> = ({
-  number,
-  type,
-  lock,
-}) => {
+export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) => {
   return (
     <div
       style={{
@@ -22,11 +18,11 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundSize: "100%",
-        WebkitBackgroundSize: "cover",
+        backgroundSize:"100%",
+        WebkitBackgroundSize:"cover",
         background: "white",
-        height: isMobile ? "24px" : "40px",
-        width: isMobile ? "18px" : "30px",
+        height: isMobile ? "40px" : "40px",
+        width: isMobile ? "32px" : "32px",
         padding: "0px",
       }}
     >
@@ -37,22 +33,15 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({
               color: type === "heart" || type === "diamond" ? "red" : "black",
               fontWeight: "800",
               lineHeight: isMobile ? "1" : "1.2",
-              fontSize: isMobile ? "12px" : "18px",
+              fontSize: isMobile ? "22px" : "18px",
             }}
           >
             {number}
           </span>
           <Icons type={type} />
         </>
-      ) : (
-        <>
-          <img
-            src={back}
-            width={isMobile ? 16 : 30}
-            height={isMobile ? 20 : 40}
-          />
-        </>
-      )}
+      ):<>
+      <img src={back} width={ isMobile ?30:30} height={ isMobile ?40:40} /></>}
     </div>
   );
 };
@@ -63,7 +52,7 @@ interface IconsProps {
 
 export const Icons: React.FC<IconsProps> = ({ type }) => {
   const renderImage = (src: string) => {
-    return <img width={isMobile ? "8" : "15"} alt={type} src={src} />;
+    return <img width={isMobile ? "16" :"15"} alt={type} src={src} />;
   };
 
   switch (type) {
@@ -80,48 +69,35 @@ export const Icons: React.FC<IconsProps> = ({ type }) => {
   }
 };
 
-interface HandleCardsProps3 {
+interface HandleCardsProps {
   card: string;
 }
 
-export const HandleCards3: React.FC<HandleCardsProps3> = ({ card }) => {
+export const HandleCards3: React.FC<HandleCardsProps> = ({ card }) => {
+  
   const [type, setType] = useState("");
-  //const [number, setNumber] = useState("");
+  const [number, setNumber] = useState("");
 
   useEffect(() => {
-    if (card === "1") {
-      // setNumber("0");
-      setType("");
-    } else {
-      const cardParts = card.split(" ");
-      if (cardParts.length === 2) {
-        const cardType = cardParts[0].toLowerCase();
-
-        switch (cardType) {
-          case "spade":
-            setType("spade");
-            break;
-          case "club":
-            setType("club");
-            break;
-          case "heart":
-            setType("heart");
-            break;
-          case "diamond":
-            setType("diamond");
-            break;
-          default:
-            setType("");
-        }
-
-        //setNumber(cardNumber);
-      }
-    }
+    setNumber(card?.substring(0, card.length - 2) || "");
+    setType(card?.substring(card.length - 2, card.length) || "");
   }, [card]);
 
   if (card === "1") {
     return <PlayingCard number="0" type="" lock={true} />;
   }
-
-  return <PlayingCard number={""} type={type} />;
+  switch (type) {
+    case "DD":
+      return <PlayingCard number={number} type="heart" />;
+    case "CC":
+      return <PlayingCard number={number} type="club" />;
+    case "HH":
+      return <PlayingCard number={number} type="spade" />;
+    case "SS":
+      return <PlayingCard number={number} type="diamond" />;
+    default:
+      return null;
+  }
 };
+
+

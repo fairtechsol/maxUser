@@ -13,19 +13,24 @@ import CustomModal from "../../../modal";
 import CustomButton from "../../../button";
 import { ApiConstants } from "../../../../../utils/constants";
 import Loader from "../../../loader";
+import { formatNumber } from "../../../../../helpers";
+import ButtonValues from "../../../../gameDetails/mobile/buttonValues";
+import { Modal } from "react-bootstrap";
 
 interface PlaceBetProps {
   show: boolean;
   setShow: any;
+  // type: any;
 }
 
 const MobilePlacedBet = ({ show }: PlaceBetProps) => {
-  const [stake, setStake] = useState<any>(0);
+  const [stake, setStake] = useState<any>();
   const [valueLabel, setValueLabel] = useState<any>([]);
   const [browserInfo, setBrowserInfo] = useState<any>(null);
   const [matchOddLoading, setMatchOddLoading] = useState<any>(false);
   const [ipAddress, setIpAddress] = useState("192.168.1.100");
-  const { buttonValues } = useSelector(
+  const [shown, setShow] = useState(false);
+  const { buttonValues2 } = useSelector(
     (state: RootState) => state.user.profile
   );
 
@@ -39,7 +44,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    let updatedBtnValue = buttonValues?.value;
+    let updatedBtnValue = buttonValues2?.value;
 
     // Check if updatedBtnValue is not undefined before parsing
     if (updatedBtnValue) {
@@ -57,10 +62,10 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
         console.error("Error parsing JSON:", error);
       }
     }
-  }, [buttonValues]);
+  }, [buttonValues2]);
 
   useEffect(() => {
-    setStake(selectedBet?.team?.stake);
+    setStake(selectedBet?.team?.stake<1?"":selectedBet?.team?.stake);
   }, [selectedBet]);
 
   useEffect(() => {
@@ -83,9 +88,9 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
 
   useEffect(() => {
     if (success) {
-      dispatch(selectedBetAction(null));
-      dispatch(betPlaceSuccessReset());
       setMatchOddLoading(false);
+      dispatch(betPlaceSuccessReset());
+      
     }
     if (error) {
       setMatchOddLoading(false);
@@ -111,7 +116,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             selectedBet?.team?.bettingType === "LAY" ||
             selectedBet?.team?.bettingType === "NO"
               ? "bg-red1"
-              : "bg-blue1"
+              : "placeBet-bg-blue"
           }`}
           fluid
         >
@@ -121,7 +126,7 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             </Col>
             <Col xs={4} className="d-flex justify-content-end">
               <CustomButton className="bg-secondary py-0 br-0">
-                <span className="f900 text-black">-</span>
+                <span className="f900 text-white">-</span>
               </CustomButton>
               <input
                 min={0}
@@ -131,26 +136,28 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                 style={{ border: "1px solid #000" }}
               />
               <CustomButton className="bg-secondary f900 text-black br-0">
-                <span className="f900 text-black">+</span>
+                <span className="f900 text-white">+</span>
               </CustomButton>
             </Col>
             <Col xs={4}>
               {" "}
               <input
                 value={stake}
-                min={0}
+                // min={5}
                 onChange={(e) => {
+                  const value = e.target.value === "" ? "" : +e.target.value;
+                  setStake(value); // Update stake state
+
                   dispatch(
                     selectedBetAction({
                       ...selectedBet,
                       team: {
                         ...selectedBet?.team,
-                        stake: +e.target.value,
+                        stake: value,
                       },
                     })
                   );
                 }}
-                // disabled
                 type="number"
                 onKeyDown={handleKeyDown}
                 placeholder=""
@@ -162,7 +169,10 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
             <Col xs={4} className="f800 title-12">
               <CustomButton
                 style={{ height: "28px" }}
-                className="f600 w-100 br-0"
+                className={`f600 w-100 br-5 ${
+                  selectedBet?.team?.stake < 1 ? "btnbg-red" : "btnbg-blue"
+                }`}
+                disabled={selectedBet?.team?.stake < 1 ? true : false}
                 onClick={() => {
                   try {
                     if (loading || matchOddLoading) {
@@ -198,6 +208,9 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                       })
                     );
                     setStake(0);
+                    // setTimeout(() => {
+                      dispatch(selectedBetAction(null));
+                    // }, 500);
                   } catch (e) {
                     console.log(e);
                   }
@@ -234,14 +247,67 @@ const MobilePlacedBet = ({ show }: PlaceBetProps) => {
                     );
                   }}
                 >
-                  {item?.label}
+                  <span style={{ color: "#fff" }}>
+                    {formatNumber(item?.label)}
+                  </span>
                 </CustomButton>
               </Col>
             ))}
+            <Col
+              xs={12}
+              className="d-flex justify-content-between align-items-center"
+            >
+              <span className="text-black fbold title-12">
+                Range:{" "}
+                {formatNumber(selectedBet?.team?.min || 0) +
+                  " to " +
+                  formatNumber(selectedBet?.team?.max || 0)}
+              </span>
+              <div
+                style={{
+                  width: "50px",
+                  height: "38px",
+                  backgroundColor: "#097c93",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#fff",
+                  fontSize: "16px",
+                  borderRadius: "3px",
+                }}
+                onClick={() => setShow(true)}
+              >
+                Edit
+              </div>
+            </Col>
             <div className="container d-flex justify-content-between mt-2"></div>
           </Row>
         </Container>
       </CustomModal>
+      <Modal show={shown} onHide={() => setShow(false)}>
+        <Modal.Header
+          className="bg-primary rounded-0"
+          style={{ zIndex: "999" }}
+        >
+          <Modal.Title>
+            <span
+              style={{ color: "#fff", fontSize: "16px", fontWeight: "bold" }}
+            >
+              Set Button Value
+            </span>
+          </Modal.Title>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            aria-label="Close"
+            onClick={() => setShow(false)}
+          ></button>
+        </Modal.Header>
+        <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
+          <ButtonValues />
+        </Modal.Body>
+        {/* {footer ? <Modal.Footer>{footer}</Modal.Footer> : ""} */}
+      </Modal>
       {(loading || matchOddLoading) && <Loader />}
     </>
   );

@@ -12,9 +12,10 @@ import {
   updateProfitLossCards,
   casinoWarPattiMatchRates,
   dragonTigerReset,
+  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -70,13 +71,13 @@ const CasinoWar = () => {
           cardGamesType.casinoWar,
           setMatchRatesInRedux
         );
-        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
-        socketService.card.getLiveGameResultTop10(
-          cardGamesType.casinoWar,
-          handleLiveGameResultTop10
-        );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+      socketService.card.getLiveGameResultTop10(
+        cardGamesType.casinoWar,
+        handleLiveGameResultTop10
+      );
     } catch (error) {
       console.log(error);
     }
@@ -84,8 +85,9 @@ const CasinoWar = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.casinoWar));
+      dispatch(getDragonTigerDetail(cardGamesType.casinoWar));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.casinoWar);
         socketService.card.getCardRatesOff(cardGamesType.casinoWar);

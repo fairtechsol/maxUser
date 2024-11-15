@@ -13,10 +13,11 @@ import {
   updateLiveGameResultTop10,
   updateProfitLossCards,
   dragonTigerReset,
+  getDragonTigerDetail,
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -69,13 +70,13 @@ const BollywoodTable = () => {
           cardGamesType.btable,
           setMatchRatesInRedux
         );
-        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
-        socketService.card.getLiveGameResultTop10(
-          cardGamesType.btable,
-          handleLiveGameResultTop10
-        );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+      socketService.card.getLiveGameResultTop10(
+        cardGamesType.btable,
+        handleLiveGameResultTop10
+      );
     } catch (error) {
       console.log(error);
     }
@@ -83,8 +84,9 @@ const BollywoodTable = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.btable));
+      dispatch(getDragonTigerDetail(cardGamesType.btable));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.btable);
         socketService.card.getCardRatesOff(cardGamesType.btable);

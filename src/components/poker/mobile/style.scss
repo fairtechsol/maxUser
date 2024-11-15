@@ -90,37 +90,15 @@
     width: 20px;
     padding: 10px 7px 0px 1px;
   }
-  .dt20header{
-    width: 100%;
-    background-color: #004a25;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-  }
-  .dt20subheader1{
-    width: 40%;
-    color: #fff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .dt20subheader2{
-    width: 60%;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-    font-size: 12px;
-  }
+
+ 
   .tiePairContainer-poker6{
     width: 100%;
     background-color: #eee;
     margin-top: 2px;
-    padding: 0px 8px 0px 8px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: space-between;
     align-items: center;
   }
   .tiePairRateBoxMain{
@@ -132,9 +110,9 @@
     align-items: center;
   }
   .dt20TabBox-poker{
-    width: 100%;
-    background-color: #004a25;
-    padding: 2px 0px 0px 5px;
+    width: 50%;
+    background-color: #cccccc;
+    // padding: 2px 0px 0px 5px;
     display: flex;
     flex-direction: row;
   }
@@ -164,16 +142,26 @@
     justify-content: space-around;
     margin-top: 8px;
   }
-  .tiePairbtnMob-theme {
+
+  .poker6-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+  }
+
+  .tiePairbtnMob-theme-poker {
     display: flex;
     color: #fff !important;
-    background-image: linear-gradient(to right, #004a25, #ffc742) !important;
     width: 100% !important;
     height: 100%;
     // border-radius: 4px !important;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
+    // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
     border: 0 !important;
-    padding: 2px 8px 0px 0px !important;
+    // padding: 2px 8px 0px 0px !important;
     cursor: pointer !important;
     font-size: 16px !important;
     font-weight: 600;

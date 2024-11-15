@@ -1,10 +1,8 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import isMobile from "../../../utils/screenDimension";
+import ResultBetList from "../../commonComponent/resultBetList";
 import "./style.scss";
 interface Props {
   data: {
@@ -16,85 +14,14 @@ interface Props {
 const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
   const result = data?.result?.cards?.split("*");
   const elementsAndar = result?.[0]?.split(",");
-  const elementsBahar = result?.[1]?.split(",");
 
-  const minLength = isMobile ? 5 : 15;
-
-  function SampleNextArrow(props: any) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          cursor: "pointer",
-          backgroundColor: "#9e9ba1",
-          borderRadius: "10px",
-        }}
-        onClick={onClick}
-      >
-        {/* <img src={rightArrow} alt="Next" /> */}
-      </div>
-    );
-  }
-
-  function SamplePrevArrow(props: any) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          cursor: "pointer",
-          backgroundColor: "#9e9ba1",
-          borderRadius: "10px",
-        }}
-        onClick={onClick}
-      >
-        {/* <img src={leftArrow} alt="Previous" /> */}
-      </div>
-    );
-  }
-
-  const sliderSettings = (length: any, arrow: any) => ({
-    infinite: false,
-    // arrows: false,
-    speed: 500,
-    slidesToShow: isMobile ? 5 : 15,
-    slidesToScroll: 5,
-    arrows: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    // initialSlide: isMobile ? (length > 3 ? length - 3 : 0) : 3,
-
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          infinite: false,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          infinite: false,
-        },
-      },
-    ],
-  });
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <div className="abjresultModal mb-2">
         <div className="w-100 abjresultCardContainer2">
           <div
             style={{
-              width: isMobile ? "90%" : "90%",
+              width: isMobile ? "100%" : "90%",
               margin: "8px 9px 10px 11px",
             }}
           >
@@ -131,16 +58,21 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
                     flexDirection: "row",
                     justifyContent: "center",
                     alignItems: "center",
-                    padding: '6px',
-                    boxShadow: '0 0 4px -1px rgba(0, 0, 0, 0.5)',
-                    marginTop: '10px',
-                    color:"#9e9e9e",
-                    paddingRight:"30px",
-                    paddingLeft:"30px"
+                    padding: "6px",
+                    boxShadow: "0 0 4px -1px rgba(0, 0, 0, 0.5)",
+                    marginTop: "10px",
+                    color: "#9e9e9e",
+                    paddingRight: "30px",
+                    paddingLeft: "30px",
+                    width: isMobile ? "100%" : "40%",
                   }}
-                > Result
-                  {elementsAndar?.map((item: any, index: any) => (
-                    <div style={{color:"#000"}}>{item}</div>
+                >
+                  {" "}
+                  Result
+                  {elementsAndar?.map((item: any) => (
+                    <div style={{ color: "#000" }}>
+                      {item[0] == "1" ? "10" : item[0]}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -148,6 +80,11 @@ const CardJResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
+      {data?.bets?.count > 0 && (
+        <div className="w-100">
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

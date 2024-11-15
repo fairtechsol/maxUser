@@ -1,16 +1,9 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import SmoothDropdownModal from "../minMaxModal";
-import { useState } from "react";
-import { IoInformationCircle } from "react-icons/io5";
-import isMobile from "../../../../utils/screenDimension";
+import { AppDispatch } from "../../../../store/store";
 
 const OddEven = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -22,6 +15,8 @@ const OddEven = ({ data, odds }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -42,10 +37,10 @@ const OddEven = ({ data, odds }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number) => (
+  const renderItem = (item: any) => (
     <div
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+        handleLock(item?.gstatus, item?.b1) ? "suspended-box2" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -67,11 +62,15 @@ const OddEven = ({ data, odds }: any) => {
         }`}
         style={{ zIndex: "100" }}
       >
-        {data?.profitLoss
-          ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
-          : 0}
+        {data?.profitLoss ? (
+          data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`] ? (
+            data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
+          ) : (
+            <br></br>
+          )
+        ) : (
+          0
+        )}
       </span>
     </div>
   );
@@ -87,57 +86,37 @@ const OddEven = ({ data, odds }: any) => {
           marginLeft: "5px",
         }}
       >
-        <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">
-            {isMobile ? (
-              <>
-                <span style={{ fontWeight: "400" }}>
-                  Min:{min} Max:{max}
-                </span>
-              </>
-            ) : (
-              <div style={{ width: "45%", textAlign: "start" }}>
-                <span className="minmaxi">
-                  <IoInformationCircle
-                    color="#ffc742"
-                    onClick={() => setModelOpen(!modelOpen)}
-                  />
-                  <SmoothDropdownModal
-                    min={min}
-                    max={max}
-                    show={modelOpen}
-                    setShow={() => setModelOpen(false)}
-                  />
-                </span>
-              </div>
-            )}
+        <div
+          className="w-100 d-sm-flex flex-row "
+          style={{ display: "flex", lineHeight: "2", }}
+        >
+          <div className="dtlTitle lh-lg"></div>
+          <div className="dtlsubTitle back-BackGround lh-lg ">
+            <span style={{ fontSize: "12px" }}>Even</span>
           </div>
-          <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Even</span>
-          </div>
-          <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Odd</span>
+          <div className="dtlsubTitle back-BackGround lh-lg">
+            <span style={{ fontSize: "12px" }}>Odd</span>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">Player 8</div>
-          {renderItem(player8?.[1], 0)}
-          {renderItem(player8?.[0], 1)}
+          <div className="dtlTitle title-12">Player 8</div>
+          {renderItem(player8?.[1])}
+          {renderItem(player8?.[0])}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">Player 9</div>
-          {renderItem(player9?.[1], 2)}
-          {renderItem(player9?.[0], 3)}
+          <div className="dtlTitle title-12">Player 9</div>
+          {renderItem(player9?.[1])}
+          {renderItem(player9?.[0])}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">Player 10</div>
-          {renderItem(player10?.[1], 4)}
-          {renderItem(player10?.[0], 5)}
+          <div className="dtlTitle title-12">Player 10</div>
+          {renderItem(player10?.[1])}
+          {renderItem(player10?.[0])}
         </div>
         <div className="w-100 d-sm-flex flex-row" style={{ display: "flex" }}>
-          <div className="dtlTitle">Player 11</div>
-          {renderItem(player11?.[1], 6)}
-          {renderItem(player11?.[0], 7)}
+          <div className="dtlTitle title-12">Player 11</div>
+          {renderItem(player11?.[1])}
+          {renderItem(player11?.[0])}
         </div>
       </div>
     </div>

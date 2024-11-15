@@ -12,9 +12,13 @@ import { TbPlayVolleyball } from "react-icons/tb";
 import {
   Badmin,
   Esoc,
+  FUTSAL,
   Grey,
+  HANDBALL,
   Horse,
   Kabaddi,
+  MOTORSPORT,
+  POLITICS,
   Snooker,
   TableT,
   Volley,
@@ -22,6 +26,18 @@ import {
 } from "../../../assets/images";
 const MatchListJson = () => {
   return [
+    {
+      id: "politics",
+      name: "Politics",
+      type: GAME_TYPE.ONE_V_ONE,
+      img: POLITICS,
+    },
+    {
+      id: "cricket",
+      name: "Cricket",
+      type: GAME_TYPE.ONE_V_ONE,
+      icon: <BiCricketBall />,
+    },
     {
       id: "football",
       name: "Football",
@@ -33,12 +49,6 @@ const MatchListJson = () => {
       name: "Tennis",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <IoTennisball />,
-    },
-    {
-      id: "cricket",
-      name: "Cricket",
-      type: GAME_TYPE.ONE_V_ONE,
-      icon: <BiCricketBall />,
     },
     {
       id: "esoccer",
@@ -54,13 +64,6 @@ const MatchListJson = () => {
       img: Horse,
     },
     {
-      id: "tabletennis",
-      name: "Table Tennis",
-      type: GAME_TYPE.ONE_V_ONE,
-      icon: <FaTableTennis />,
-      img: TableT,
-    },
-    {
       id: "greyHound",
       name: "Greyhound Racing",
       type: GAME_TYPE.ONE_V_ONE,
@@ -68,10 +71,37 @@ const MatchListJson = () => {
       img: Grey,
     },
     {
+      id: "tabletennis",
+      name: "Table Tennis",
+      type: GAME_TYPE.ONE_V_ONE,
+      icon: <FaTableTennis />,
+      img: TableT,
+    },
+    {
       id: "basketball",
       name: "Basketball",
       type: GAME_TYPE.ONE_V_ONE,
       icon: <GiBasketballBall />,
+    },
+    {
+      id: "boxing",
+      name: "Boxing",
+      type: GAME_TYPE.ONE_V_ONE,
+      icon: <TbPlayVolleyball />,
+      img: Volley,
+    },
+    {
+      id: "mixedMartialArts",
+      name: "Mixed Martial Arts",
+      type: GAME_TYPE.ONE_V_ONE,
+      icon: <MdSportsKabaddi />,
+      img: Kabaddi,
+    },
+    {
+      id: "americanfootball",
+      name: "American Football",
+      type: GAME_TYPE.ONE_V_ONE,
+      img: amfootball,
     },
     {
       id: "volleyball",
@@ -81,29 +111,24 @@ const MatchListJson = () => {
       img: Volley,
     },
     {
-      id: "kabaddi",
-      name: "Kabaddi",
-      type: GAME_TYPE.ONE_V_ONE,
-      icon: <MdSportsKabaddi />,
-      img: Kabaddi,
-    },
-    {
       id: "badminton",
       name: "Badminton",
       type: GAME_TYPE.ONE_V_ONE,
       img: Badmin,
     },
     {
-      id: "americanfootball",
-      name: "American Football",
+      icon: <GiPoolTriangle />,
+      id: "snooker",
+      name: "Snooker",
       type: GAME_TYPE.ONE_V_ONE,
-      img: amfootball,
+      img: Snooker,
     },
     {
-      id: "futsal",
-      name: "Futsal",
+      id: "iceHockey",
+      name: "Ice Hockey",
       type: GAME_TYPE.ONE_V_ONE,
-      icon: <IoGameController />,
+      icon: <MdSportsKabaddi />,
+      img: Kabaddi,
     },
     {
       icon: <IoGameController />,
@@ -112,11 +137,22 @@ const MatchListJson = () => {
       type: GAME_TYPE.ONE_V_ONE,
     },
     {
-      icon: <GiPoolTriangle />,
-      id: "snooker",
-      name: "Snooker",
+      id: "futsal",
+      name: "Futsal",
       type: GAME_TYPE.ONE_V_ONE,
-      img: Snooker,
+      img: FUTSAL,
+    },
+    {
+      id: "handball ",
+      name: "Hand Ball",
+      type: GAME_TYPE.ONE_V_ONE,
+      img: HANDBALL,
+    },
+    {
+      id: "motorSports",
+      name: "Motor Sports",
+      type: GAME_TYPE.ONE_V_ONE,
+      img: MOTORSPORT,
     },
   ];
 };

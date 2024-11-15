@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import { AppDispatch, RootState } from "../../../store/store";
 import {
   getCardReport,
@@ -20,122 +20,8 @@ import { useLocation } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import { ResultComponent } from "../../../components/commonComponent/resultComponent";
 import { resultDragonTiger } from "../../../store/actions/cards/cardDetail";
-
-const cardGames = [
-  { value: "", label: "Select Casino Type", disabled: true },
-  {
-    value: "dt20",
-    label: "20-20 Dragon Tiger", //
-  },
-  {
-    value: "ab20",
-    label: "Andar Bahar 1",
-  },
-  {
-    value: "abj",
-    label: "Andar Bahar 2", //
-  },
-  {
-    value: "teen20",
-    label: "20-20 Teen Patti", //
-  },
-  {
-    value: "teen",
-    label: "Teen Patti One Day", //
-  },
-  {
-    value: "teen8",
-    label: "Open Teen Patti",
-  },
-  {
-    value: "teen9",
-    label: "Test Teen Patti",
-  },
-  {
-    value: "card32",
-    label: "32 Cards - A", //
-  },
-  {
-    value: "card32eu",
-    label: "32 Cards - B",
-  },
-  {
-    value: "lucky7",
-    label: "Lucky 7 - A", //
-  },
-  {
-    value: "lucky7eu",
-    label: "Lucky 7 - B", //
-  },
-  {
-    value: "dt202",
-    label: "20-20 Dragon Tiger 2", //
-  },
-  {
-    value: "dtl20",
-    label: "Dragon Tiger Lion", //
-  },
-  {
-    value: "dt6",
-    label: "Dragon Tiger 1 Day", //
-  },
-  {
-    value: "aaa",
-    label: "Amar Akbar Anthony",
-  },
-  {
-    value: "cricketv3",
-    label: "Fve-Five Cricket",
-  },
-  {
-    value: "superover",
-    label: "Superover",
-  },
-  {
-    value: "race20",
-    label: "Race 20",
-  },
-  {
-    value: "war",
-    label: "Casino War",
-  },
-  {
-    value: "3cardj",
-    label: "3 Card Judgement",
-  },
-  {
-    value: "worli2",
-    label: "Instant Worli",
-  },
-  {
-    value: "poker",
-    label: "Poker 1-day",
-  },
-  {
-    value: "poker20",
-    label: "Poker 20",
-  },
-  {
-    value: "poker6",
-    label: "Poker 6",
-  },
-  {
-    value: "btable",
-    label: "Bollywood Table",
-  },
-  {
-    value: "cmatch20",
-    label: "CRICKET MATCH 20-20",
-  },
-  {
-    value: "baccarat",
-    label: "BACCARAT",
-  },
-  {
-    value: "baccarat2",
-    label: "BACCARAT2",
-  },
-];
+import { cardGames } from "../../../utils/constants";
+import CustomTable2 from "../../../components/commonComponent/table2";
 
 const CasinoReports = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -199,12 +85,57 @@ const CasinoReports = () => {
     dispatch(resetCardReport());
   }, []);
 
+  const cMeterResult = (resut: any) => {
+    let lowCardSum = 0;
+    let highCardSum = 0;
+
+    const cards = resut?.split(",");
+
+    cards?.forEach((card: any) => {
+      if (card?.length < 3) return;
+
+      const firstChar = card[0];
+
+      if (
+        firstChar === "1" ||
+        firstChar === "J" ||
+        firstChar === "Q" ||
+        firstChar === "K"
+      ) {
+        highCardSum =
+          highCardSum +
+          (firstChar == "1"
+            ? 10
+            : firstChar == "J"
+            ? 11
+            : firstChar == "Q"
+            ? 12
+            : firstChar == "K"
+            ? 13
+            : 0);
+      } else {
+        lowCardSum = lowCardSum + (firstChar == "A" ? 1 : Number(firstChar));
+      }
+    });
+
+    return lowCardSum > highCardSum ? "Low" : "High";
+  };
   return (
-    <div className="vh-100">
+    <div className="vh-50">
       <ReportContainer title="Casino Result">
         <div>
           <Stack gap={2}>
             <Row className="g-2 mt-1">
+              <Col lg={2} md={3} xs={6}>
+                <DatePicker
+                  onChange={setDate}
+                  format="dd/MM/yyyy"
+                  value={date}
+                  closeCalendar={true}
+                  clearIcon={null}
+                  className="w-100"
+                />
+              </Col>
               <Col md={2} xs={6}>
                 <SelectSearch
                   options={cardGames}
@@ -223,23 +154,23 @@ const CasinoReports = () => {
                   isOptionDisabled={(option: any) => option.disabled}
                 />
               </Col>
-              <Col lg={2} md={3} xs={6}>
-                <DatePicker
-                  onChange={setDate}
-                  format="yyyy-MM-dd"
-                  value={date}
-                  closeCalendar={true}
-                  clearIcon={null}
-                  className="w-100"
-                />
-              </Col>
 
-              <Col md={2} xs={12}>
+              <Col
+                md={2}
+                xs={12}
+                style={{
+                  width: isMobile ? "100%" : "17%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <CustomButton
+                  style={{ paddingLeft: "6rem", paddingRight: "6rem" }}
                   size={isMobile ? "sm" : "lg"}
                   className={`${
-                    isMobile ? "w-100" : " bg-primaryBlue"
-                  } border-0 `}
+                    isMobile ? "w-100" : "w-100 bg-primary"
+                  } border-0 fs-6`}
                   onClick={() => {
                     let filter = "";
 
@@ -271,8 +202,9 @@ const CasinoReports = () => {
                 </CustomButton>
               </Col>
             </Row>
-            <CustomTable
+            <CustomTable2
               // width={isMobile ? "1200px" : ""}
+              placeHolder={cardReport?.count>0?`${cardReport?.count} records`:"0 records..."}
               paginationCount={true}
               bordered={true}
               striped={!isMobile}
@@ -295,20 +227,33 @@ const CasinoReports = () => {
             >
               {cardReport?.results?.map((item: any, index: number) => {
                 return (
-                  <tr className={`${isMobile && "title-12"}`} key={index}>
+                  <tr
+                    className={`${isMobile && "title-12"}`}
+                    key={index}
+                    onClick={() => handleResult(item?.mid)}
+                  >
                     <td
-                      style={{ color: "#0d6efd", cursor: "pointer",textAlign:"left",width:"20%" }}
-                      onClick={() => handleResult(item?.mid)}
+                      style={{
+                        color: "#000",
+                        cursor: "pointer",
+                        textAlign: "left",
+                        width: "20%",
+                      }}
+                      // onClick={() => handleResult(item?.mid)}
                     >
                       <NotSet item={item?.mid} />
                     </td>
-                    <td style={{textAlign:"left"}}>
-                      <NotSet item={item?.result} />
+                    <td style={{ textAlign: "left" }}>
+                      {item?.gameType == "cmeter" ? (
+                        cMeterResult(item?.result)
+                      ) : (
+                        <NotSet item={item?.result} />
+                      )}
                     </td>
                   </tr>
                 );
               })}
-            </CustomTable>
+            </CustomTable2>
           </Stack>
         </div>
       </ReportContainer>

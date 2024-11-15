@@ -8,6 +8,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateDragonTigerLionRates,
@@ -16,7 +17,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -65,11 +66,6 @@ const DragonTigerLion = () => {
         socketService.card.getCardRatesOff(cardGamesType.dragonTigerLion);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.dragonTigerLion);
-        socketService.card.getCardRates(
-          cardGamesType.dragonTigerLion,
-          setMatchRatesInRedux
-        );
         socketService.card.getLiveGameResultTop10(
           cardGamesType.dragonTigerLion,
           handleLiveGameResultTop10
@@ -77,6 +73,11 @@ const DragonTigerLion = () => {
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.dragonTigerLion);
+      socketService.card.getCardRates(
+        cardGamesType.dragonTigerLion,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -84,8 +85,9 @@ const DragonTigerLion = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerLion));
+      dispatch(getDragonTigerDetail(cardGamesType.dragonTigerLion));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.dragonTigerLion);
         socketService.card.getCardRatesOff(cardGamesType.dragonTigerLion);

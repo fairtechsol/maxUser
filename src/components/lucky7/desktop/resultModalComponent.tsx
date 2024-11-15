@@ -1,7 +1,8 @@
 import React from "react";
-import { Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { isMobile } from "../../../utils/screenDimension";
 import { HandleCards } from "../../commonComponent/cardsComponent";
-import isMobile from "../../../utils/screenDimension";
+import ResultBetList from "../../commonComponent/resultBetList";
 import "./style.scss";
 interface Props {
   data: {
@@ -11,10 +12,9 @@ interface Props {
 }
 
 const Lucky7ResultComponent: React.FC<Props> = ({ data }: any) => {
-
-const resultCards = data?.result?.desc?.split('||')
-const pair = resultCards?.[0]?.split(' ')
-const card = resultCards?.[3]?.split(' ')
+  const resultCards = data?.result?.desc?.split("||");
+  const pair = resultCards?.[0]?.split(" ");
+  const card = resultCards?.[3]?.split(" ");
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
@@ -32,11 +32,14 @@ const card = resultCards?.[3]?.split(' ')
             </div>
           </div>
         </div>
-       
       </div>
       <div className="w-100 d-sm-flex justify-content-center align-items-center mt-2">
         <div
-          className={isMobile ? 'w-100 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2' : "w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"}
+          className={
+            isMobile
+              ? "w-100 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
+              : "w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
+          }
           style={{ boxShadow: "0 0 4px -1px" }}
         >
           <div className="d-sm-flex flex-sm-row">
@@ -57,6 +60,11 @@ const card = resultCards?.[3]?.split(' ')
           </div>
         </div>
       </div>
+      {data?.bets?.count > 0 && (
+        <div className="w-100">
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

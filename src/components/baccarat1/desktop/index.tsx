@@ -13,8 +13,8 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import BaccaratStatistics from "./betTable";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 export const data = [
   ["Task", "Hours per Day"],
   ["Work", 15],
@@ -122,9 +122,7 @@ const Baccarat1Desktop = () => {
               </div>
               <div
                 style={{
-                  // flex: '1 0 auto',
                   width: "100%",
-                  // height: "92%",
                   backgroundColor: "#000",
                 }}
               >
@@ -136,7 +134,7 @@ const Baccarat1Desktop = () => {
               </div>
             </div>
             {loading ? (
-                <LoaderOnRefresh />
+                <NewLoader />
             ) : (
               <div>
                 <div
@@ -160,10 +158,10 @@ const Baccarat1Desktop = () => {
                 </div>
               </div>
             )}
-            <RulesModal show={show} setShow={setShow} rule={baccarat1rules} />
+            <RulesModal show={show} setShow={setShow} rule={baccarat1rules} gameType="baccarat1" type="imageWithContent" />
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

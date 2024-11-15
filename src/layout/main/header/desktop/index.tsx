@@ -1,6 +1,6 @@
 import { debounce } from "lodash";
-import { useMemo, useState } from "react";
-import { Col, Collapse, Dropdown, Navbar, Row } from "react-bootstrap";
+import { useEffect, useMemo, useState } from "react";
+import { Col, Collapse, Dropdown, Navbar, Row, Modal } from "react-bootstrap";
 import { FaSearchPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,8 +20,9 @@ import { SearchListReset } from "../../../../store/actions/match/matchListAction
 import CustomModal from "../../../../components/commonComponent/modal";
 import Drules from "../../../../components/rules/desktop";
 import Mobile from "../../../../components/rules/mobile";
-import isMobile from "../../../../utils/screenDimension";
+// import { isMobile } from "../../../../utils/screenDimension";
 import { getMyMarket } from "../../../../store/actions/betPlace/betPlaceActions";
+import ButtonValues from "../../../../components/gameDetails/mobile/buttonValues";
 
 const DesktopHeader = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -29,12 +30,27 @@ const DesktopHeader = () => {
   const navigate = useNavigate();
   const [openExposure, setOpenExposure] = useState(false);
   const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
   const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const [searchKeyword, setSearchKeyword] = useState("");
   const { searchedMatchList } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1199);
+    };
+
+    // Add event listener to update isMobile on window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   // const { getMatchListBySearch } = useSelector(
   //   (state: RootState) => state.match.matchList
   // );
@@ -48,6 +64,9 @@ const DesktopHeader = () => {
   };
 
   const handleClickExposureModalOpen = () => {
+    if (parseFloat(getProfile?.userBal?.exposure) === 0) {
+      return false;
+    }
     if (!openExposure) {
       dispatch(getMyMarket());
     }
@@ -73,14 +92,22 @@ const DesktopHeader = () => {
       );
     }, 500);
   }, []);
+  const handleClick = (e: any, isModal: any,link:any) => {
+    if (isModal) {
+      e.stopPropagation();
+      setShow1(true);
+    } else {
+      navigate(link || "");
+    }
+  };
   return (
     <>
-      <Row className=" w-100vw">
-        <Col xs={12}>
+      <Row className=" w-100">
+        <Col xs={12} className="p-2">
           <div className="float-start">
             <Link to={"/home"}>
               <Navbar.Brand>
-                <LogoSection width="auto" height="65px" />
+                <LogoSection width="auto" />
               </Navbar.Brand>
             </Link>
           </div>
@@ -125,17 +152,23 @@ const DesktopHeader = () => {
                 <div>
                   Balance:
                   <b>
-                    {parseFloat(getProfile?.userBal?.currentBalance || 0).toFixed(2)}
+                    {parseFloat(
+                      getProfile?.userBal?.currentBalance || 0
+                    ).toFixed(2)}
                   </b>
                 </div>
                 <div>
                   <span
                     onClick={handleClickExposureModalOpen}
-                    className="white-text text-decoration-underline cursor-pointer"
+                    className="white-text  cursor-pointer"
                   >
                     Exposure:
                     <b>
-                      {parseFloat(getProfile?.userBal?.exposure || 0).toFixed(2)}
+                      {parseInt(getProfile?.userBal?.exposure) === 0
+                        ? 0
+                        : -parseFloat(
+                            getProfile?.userBal?.exposure || 0
+                          ).toFixed(2)}
                     </b>
                   </span>
                   <ExposureModal
@@ -151,19 +184,27 @@ const DesktopHeader = () => {
                   as={CustomDropDown}
                   id="dropdown-custom-components"
                 >
-                  {getProfile?.userName}
+                  {sessionStorage.getItem("isDemo")
+                    ? "Demo"
+                    : getProfile?.userName}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="rounded-2 shadow-sm dropdown-menu-nav">
                   {dropdownList
                     ?.filter((item) => item?.type !== "mobile")
+                    ?.filter((item) => {
+                      if (sessionStorage.getItem("isDemo")) {
+                        return item?.showDemo === true;
+                      } else {
+                        return item;
+                      }
+                    })
                     ?.map((item) => {
                       return (
                         <Dropdown.Item
                           className="title-14 px-2 py-1"
-                          onClick={() => {
-                            navigate(item.link || "");
-                          }}
+                          onClick={(e) => handleClick(e,item?.isModal,item?.link)
+                          }
                           key={item?.id}
                           eventKey={item?.id}
                         >
@@ -179,7 +220,7 @@ const DesktopHeader = () => {
                       dispatch(logout());
                     }}
                   >
-                    Signout
+                    SignOut
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -205,6 +246,29 @@ const DesktopHeader = () => {
       >
         {!isMobile ? <Drules /> : <Mobile />}
       </CustomModal>
+      <Modal show={show1} onHide={() => setShow1(false)}>
+        <Modal.Header
+          className="bg-primary rounded-0"
+          style={{ zIndex: "999" }}
+        >
+          <Modal.Title>
+            <span
+              style={{ color: "#fff", fontSize: "20px", fontWeight: "bold" }}
+            >
+              Set Button Value
+            </span>
+          </Modal.Title>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            aria-label="Close"
+            onClick={() => setShow1(false)}
+          ></button>
+        </Modal.Header>
+        <Modal.Body className="p-0 mt-2 mb-2 rounded-0">
+          <ButtonValues setShow={setShow1} />
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

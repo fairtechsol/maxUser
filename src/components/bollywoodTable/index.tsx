@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import BollywoodTableDesktop from "./desktop";
 import BollywoodTableMobile from "./mobile";
 const BollywoodTableComponentList = () => {

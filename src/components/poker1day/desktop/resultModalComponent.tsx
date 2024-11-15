@@ -1,8 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
+import ResultBetList from "../../commonComponent/resultBetList";
 import "./style.scss";
 interface Props {
   data: {
@@ -42,12 +43,13 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
           }}
         >
           {data?.result?.win === "11" && (
-            <div className="casino-winner-icon mt-3 p-2"
-            style={{
-              position: "absolute",
-              // left: "100",
-              transform: "translateX(-100%)",
-            }}
+            <div
+              className="casino-winner-icon mt-3 p-2"
+              style={{
+                position: "absolute",
+                // left: "100",
+                transform: "translateX(-100%)",
+              }}
             >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
@@ -87,12 +89,13 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
             </div>
           </div>
           {data?.result?.win === "21" && (
-            <div className="casino-winner-icon mt-3 p-2"
-            style={{
-              position: "absolute",
-              // left: "100",
-              transform: "translateX(-100%)",
-            }}
+            <div
+              className="casino-winner-icon mt-3 p-2"
+              style={{
+                position: "absolute",
+                // left: "100",
+                transform: "translateX(-100%)",
+              }}
             >
               <FaTrophy size={isMobile ? 20 : 40} color="#169733" />
             </div>
@@ -100,28 +103,35 @@ const Poker1DayResultComponent: React.FC<Props> = ({ data }: any) => {
         </div>
       </div>
       <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: "10px",
+        }}
+      >
+        <div
           style={{
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
+            flexDirection: "column",
             alignItems: "center",
-            marginBottom:"10px"
           }}
         >
-        <div style={{ display: "flex",  flexDirection: "column", alignItems: "center"}}>
           <span className="title-18 f500">Board</span>
           <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>
-          {lastCards?.map((item: any, index: number) => {
-            return (
-                <HandleCards card={item} />
-            );
-          })}
-             </div>
-             </div>
+            {lastCards?.map((item: any) => {
+              return <HandleCards card={item} />;
+            })}
           </div>
-          <div>
         </div>
-      
+      </div>
+      <div></div>
+      {data?.bets?.count > 0 && (
+        <div className="w-100">
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

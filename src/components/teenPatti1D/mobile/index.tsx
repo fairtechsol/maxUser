@@ -4,7 +4,6 @@ import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
@@ -12,8 +11,9 @@ import Teen1DResult from "../desktop/teenCard";
 import "./style.scss";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const TeenPattiMobile = () => {
@@ -28,7 +28,6 @@ const TeenPattiMobile = () => {
     (state: RootState) => state.card
   );
   const { playerA, playerB } = dragonTigerDetail;
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -54,6 +53,8 @@ const TeenPattiMobile = () => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sectionId,
+      min:parseFloat(dragonTigerDetail?.videoInfo?.min),
+      max:parseFloat(dragonTigerDetail?.videoInfo?.max)
     };
     dispatch(
       selectedBetAction({
@@ -105,52 +106,14 @@ const TeenPattiMobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
           <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(false)}
-            >
-              GAME
-            </span>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(true)}
-            >
-              PLACED BET({placedBets?.length || 0})
-            </span>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%" }}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -166,7 +129,7 @@ const TeenPattiMobile = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div style={{ width: "100%" }}>
@@ -188,17 +151,16 @@ const TeenPattiMobile = () => {
                           border: "1px solid #fff",
                         }}
                       >
-                        <span className="f12-b">
+                        {/* <span className="f12-b">
                           Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
                           {dragonTigerDetail?.videoInfo?.max}
-                        </span>
+                        </span> */}
                       </div>
 
                       <div
                         style={{
                           width: "40%",
                           display: "flex",
-                          gap: "2px",
                         }}
                       >
                         <div
@@ -450,7 +412,7 @@ const TeenPattiMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <RulesModal show={show} setShow={setShow} rule={tprules} type={"imageWithContent"} gameType="teen" />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

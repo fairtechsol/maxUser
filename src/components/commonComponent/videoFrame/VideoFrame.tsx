@@ -1,9 +1,18 @@
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import { isMobile } from "../../../utils/screenDimension";
 import FlipClock from "./FlipClock";
-import isMobile from "../../../utils/screenDimension";
 
 const VideoFrame = ({ result, time, id, profitLoss }: any) => {
-  // const [showModal, setModalOpen] = useState(false);
+
+  const [_,setCurR] = useState(null);
+  const [isClick,setIsClick] = useState(false);
+
+  const {  resultData } = useSelector(
+    (state: RootState) => state.card
+  );
+
   useEffect(() => {
     const element = document.getElementById("middleView-playerDiv");
     if (element) {
@@ -11,8 +20,20 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
     }
   }, []);
 
+ useEffect(() => {
+   if (resultData?.desc && isClick) {
+     setCurR(resultData?.desc);
+   }
+ }, [resultData]);
+
+
+
+ 
+
+  
   return (
     <>
+    
       <div
         key="odds"
         style={{
@@ -32,13 +53,13 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
           <div
             style={{
               // height: isMobile ? "30vh" : "40vh",
-              backgroundColor: "black",
+              backgroundColor: "white",
               position: "relative",
               // width: "100vw"
             }}
           >
             {result && (
-              <div style={{ position: "absolute", zIndex: "999" }}>
+              <div style={{ position: "absolute", zIndex: "99" }}>
                 {result}
               </div>
             )}
@@ -54,13 +75,6 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                 height={isMobile ? "250px" : "380px"}
                 // height="100%"
                 src={id}
-                // transform={}
-                // style={isMobile ?
-                //   {transform :"scaleX(1.20)"} :{}
-                // }
-                // title="YouTube video player"
-                // frameborder="0"
-                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy={"strict-origin-when-cross-origin"}
                 allowFullScreen
               ></iframe>
@@ -105,7 +119,8 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                   ))}
               </ol>
             </div>
-            {time && (
+
+            {typeof time !== "undefined" && time !== null && (
               <div
                 style={{
                   position: "absolute",
@@ -116,7 +131,7 @@ const VideoFrame = ({ result, time, id, profitLoss }: any) => {
                   width: isMobile ? "150px" : "",
                 }}
               >
-                <FlipClock value={time?.length === 1 ? "0" + time : time} />
+                <FlipClock value={time < 10 ? "0" + time : time} />
               </div>
             )}
           </div>

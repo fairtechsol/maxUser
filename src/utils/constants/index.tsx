@@ -55,17 +55,25 @@ import {
 
 export const ApiConstants = {
   LOGIN: "auth/login",
+  DEMO_LOGIN: "/user/loginWithDemo",
   LOGOUT: "auth/logout",
   CHANGEPASSWORD: "user/changePassword",
   OLD_PASSWORD: "/user/check/oldPassword",
   MATCH: {
     MATCHLIST: "/match/list",
+    TABLIST: "/expert/blinkingTabs",
     MATCHSEARCHLIST: "/match/search",
     SEARCHLIST: "/user/searchlist",
     MATCHDETAILS: "/match/",
     OTHERMATCHDETAILS: "/match/other/",
     CURRENTBET: "/bet",
     PROFIT_LOSS_REPORT: "/bet/profitLoss",
+    MARKET_MATCH_LIST_CRICKET:
+      "https://marketsarket.qnsports.live/getcricketmatches",
+    MARKET_MATCH_LIST_FOOTBALL:
+      "https://marketsarket.qnsports.live/getsoccerallmatches2",
+    MARKET_MATCH_LIST_TENNIS:
+      "https://marketsarket.qnsports.live/gettennisallmatches2",
   },
   USER: {
     MARQUEE: "/expert/notification",
@@ -85,6 +93,7 @@ export const ApiConstants = {
     PLACEBETMATCHBETTING: "bet/matchBetting",
     PLACEBETMATCHBETTINGOTHER: "bet/other/matchBetting",
     PLACEBETRACEBETTING: "bet/raceBetting",
+    PLACEBETTOURNAMENT: "bet/tournament",
     GETPLACEDBETS: "bet",
     RUN_AMOUNT: "bet/session/profitLoss",
     MY_MARKET: "bet/myMarket",
@@ -100,6 +109,7 @@ export const ApiConstants = {
   CARDS: {
     MATCH: {
       GET_CARD_DETAIL: "/match/card",
+      GET_CARD_DETAIL_INITIAL: "/match/initial/card",
       PLACE_BET: "/bet/cardBetting",
       RESULT: "/card/result/detail",
     },
@@ -113,6 +123,12 @@ export const ApiConstants = {
   },
 };
 
+export const marketApiConst = {
+  cricket: ApiConstants.MATCH.MARKET_MATCH_LIST_CRICKET,
+  football: ApiConstants.MATCH.MARKET_MATCH_LIST_FOOTBALL,
+  tennis: ApiConstants.MATCH.MARKET_MATCH_LIST_TENNIS,
+};
+
 export const Constants = {
   pageLimit: 15,
   apiBasePath: "https://devmaxbet9api.fairgame.club",
@@ -121,6 +137,7 @@ export const Constants = {
   thirdPartyCard: "https://casinoserviceapi.fairgame.club",
   localThird: "http://localhost:3200",
   // localThirdCard: "https://3200dev.fairgame.club",
+  // fdsfsdfsdsdfsd
   localThirdCard: "http://localhost:3201",
   WEBSOCKET: "websocket",
   POLLING: "polling",
@@ -128,7 +145,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5001",
+  localPath: "http://localhost:5000",
   localPathExpert: "http://localhost:6060",
 };
 
@@ -152,12 +169,16 @@ export const teamStatus = {
 export const matchBettingType = {
   matchOdd: "matchOdd",
   bookmaker: "bookmaker",
+  bookmaker2: "bookmaker2",
   quickbookmaker1: "quickbookmaker1",
   quickbookmaker2: "quickbookmaker2",
   quickbookmaker3: "quickbookmaker3",
+  other: "other",
   tiedMatch1: "tiedMatch1",
   tiedMatch2: "tiedMatch2",
+  tiedMatch3: "tiedMatch3",
   completeMatch: "completeMatch",
+  completeMatch1: "completeMatch1",
   completeManual: "completeManual",
   ...Array.from({ length: 20 }, (_, index) => index).reduce(
     (prev: any, curr) => {
@@ -187,6 +208,11 @@ export const profitLossDataForMatchConstants = {
     B: "teamBRate",
     C: "teamCRate",
   },
+  [matchBettingType.bookmaker2]: {
+    A: "teamARate",
+    B: "teamBRate",
+    C: "teamCRate",
+  },
   [matchBettingType.quickbookmaker1]: {
     A: "teamARate",
     B: "teamBRate",
@@ -202,6 +228,11 @@ export const profitLossDataForMatchConstants = {
     B: "teamBRate",
     C: "teamCRate",
   },
+  [matchBettingType.other]: {
+    A: "userTeamARateOther",
+    B: "userTeamBRateOther",
+    C: "userTeamCRateOther",
+  },
   [matchBettingType.tiedMatch1]: {
     A: "yesRateTie",
     B: "noRateTie",
@@ -210,7 +241,15 @@ export const profitLossDataForMatchConstants = {
     A: "yesRateTie",
     B: "noRateTie",
   },
+  [matchBettingType.tiedMatch3]: {
+    A: "yesRateTie",
+    B: "noRateTie",
+  },
   [matchBettingType.completeMatch]: {
+    A: "yesRateComplete",
+    B: "noRateComplete",
+  },
+  [matchBettingType.completeMatch1]: {
     A: "yesRateComplete",
     B: "noRateComplete",
   },
@@ -270,6 +309,7 @@ export const availableGameType: any = {
   tennis: "tennis",
   horseRacing: "horseRacing",
   greyHound: "greyHound",
+  politics: "politics",
 };
 
 export const cardGamesType: any = {
@@ -302,17 +342,54 @@ export const cardGamesType: any = {
   worli: "worli2",
   cardj: "3cardj",
   cmatch20: "cmatch20",
-  ballbyball:"ballbyball",
+  ballbyball: "ballbyball",
   cmeter: "cmeter",
   queen: "queen",
+  worli1: "worli",
 };
+
+export const casinoKeywords = [
+  "dt20",
+  "abj",
+  "ab20",
+  "teen20",
+  "card32",
+  "card32eu",
+  "lucky7",
+  "dt202",
+  "dtl20",
+  "teen",
+  "teen8",
+  "teen9",
+  "dt6",
+  "lucky7eu",
+  "war",
+  "race20",
+  "superover",
+  "poker6",
+  "poker",
+  "poker20",
+  "3cardj",
+  "baccarat",
+  "baccarat2",
+  "cricketv3",
+  "aaa",
+  "btable",
+  "worli2",
+  "3cardj",
+  "cmatch20",
+  "ballbyball",
+  "cmeter",
+  "queen",
+  "worli",
+];
 export const cardGamesId: any = {
   dragonTiger20: 3035,
   andarBahar2: 3043,
   andarBahar1: 3053,
   teen20: 3030,
   card32: 3055,
-  card32B: 3034, 
+  card32B: 3034,
   lucky7: 3058,
   dragonTiger202: 3059,
   dragonTigerLion: 3047,
@@ -333,9 +410,12 @@ export const cardGamesId: any = {
   aaa: 3056,
   btable: 3041,
   worli: 3040,
+  worli1: 3054,
   cardj: 3039,
   cmatch20: 3045,
-  cmeter:3046,
+  cmeter: 3046,
+  ballbyball: 3061,
+  queen: 3037,
 };
 export const navigateToGameDetail = {
   [availableGameType.cricket]: "/game-detail/",
@@ -343,7 +423,7 @@ export const navigateToGameDetail = {
   [availableGameType.tennis]: "/other-game-detail/",
   [availableGameType.horseRacing]: "/race/",
   [availableGameType.greyHound]: "/race/",
-  [cardGamesType.teen20]: "teenPatti20",
+  [cardGamesType.teen20]: "teen20",
   [cardGamesType.card32]: "32cards-A",
   [cardGamesType.card32B]: "32cards-B",
   [cardGamesType.lucky7]: "lucky7-A",
@@ -375,10 +455,22 @@ export const navigateToGameDetail = {
 
 export const cardUrl =
   process.env.NODE_ENV === "production"
-    ? "https://jmdapi.com/tablevideo/?id="
-    : "https://maxbet9.fairgame.club/videoPage/";
+    ? "https://maxbet07.com/videoPage/"
+    : "https://maxbet07.com/videoPage/";
 
-export const cardUrlMain = "https://jmdapi.com/tablevideo/?id=";
+export const cardUrlMain = "https://maxbet07.com/videoPage/";
+export const liveStreamCricketPageUrl =
+  "https://maxbet07.com/liveStreamCricket/";
+export const liveStreamPageUrl = "https://maxbet07.com/liveStream/";
+export const scoreBoardUrlMain = "https://maxbet07.com/scoreBoardPage/";
+
+// export const scoreBoardUrlMain =
+//   "https://dpmatka.in/dcasino/score.php?matchId=";
+
+export const serviceUrl =
+  process.env.NODE_ENV === "production"
+    ? Constants.apiBasePath
+    : Constants.localPath;
 
 export const baseUrls = {
   socket:
@@ -403,6 +495,11 @@ export const baseUrls = {
 
 // export const cardUrl = "https://video.proexch.in/route/?id=";
 // export const cardUrl = "https://maxbet9.fairgame.club/videoPage/";
+
+// export const serviceUrl =
+//   process.env.NODE_ENV === "production"
+//     ? Constants.apiBasePathLive
+//     : Constants.localPath;
 
 // export const baseUrls = {
 //   socket:
@@ -1495,7 +1592,7 @@ export const sportsRules = [
 
 export const casinoIcons = [
   {
-    url: "",
+    url: "/ballbyball",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
     name: "Ball By Ball",
@@ -1554,12 +1651,12 @@ export const casinoIcons = [
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
     name: "Lucky 7 - B",
   },
-  {
-    url: "",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teencasino.jpg",
-    name: "Teenpatti 2.0",
-  },
+  // {
+  //   url: "",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teencasino.jpg",
+  //   name: "Teenpatti 2.0",
+  // },
   {
     url: "/cmatch20",
     imgSrc:
@@ -1603,7 +1700,7 @@ export const casinoIcons = [
     name: "1 Day Teenpatti",
   },
   {
-    url: "/teenPatti20", //
+    url: "/teen20", //
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "20-20 Teenpatti",
@@ -1686,12 +1783,12 @@ export const casinoIcons = [
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "1 Day Dragon Tiger",
   },
-  {
-    url: "",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lottery.jpg",
-    name: "Lottery",
-  },
+  // {
+  //   url: "",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lottery.jpg",
+  //   name: "Lottery",
+  // },
   {
     url: "/lucky7-A", //
     imgSrc:
@@ -1713,7 +1810,7 @@ export const card3 = {
     { id: 4, url: "/dt20", imgSrc: dt20, name: "20-20 DRAGON TIGER" },
   ],
   teenPatti: [
-    { id: 6, url: "/teenPatti20", imgSrc: twentyteen, name: "20-20 TEENPATTI" },
+    { id: 6, url: "/teen20", imgSrc: twentyteen, name: "20-20 TEENPATTI" },
     { id: 7, url: "/teen", imgSrc: dayteen, name: "1 DAY TEENPATTI" },
     { id: 8, url: "/teen9", imgSrc: testteen, name: "TEST TEENPATTI" },
     { id: 9, url: "/teen8", imgSrc: teenplayer, name: "OPEN TEENPATTI" },
@@ -1784,6 +1881,13 @@ export const card3 = {
         "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1013.webp",
       name: "Worli",
     },
+    // {
+    //   id: 26,
+    //   url: "/worli",
+    //   imgSrc:
+    //     "https://ik.imagekit.io/bmaxmbpyx/https://247maharaja.com/assets/images/game-icon/-1013.webp",
+    //   name: "Worli",
+    // },
   ],
 
   "3cardj": [
@@ -1885,3 +1989,188 @@ export const bollywoodTableCards = [
     value: 0,
   },
 ];
+
+export const casinoItems = [
+  { id: "1", name: "All Casino", link: "/contact-admin" },
+  { id: "2", name: "Roulette", link: "/contact-admin" },
+  { id: "3", name: "Teenpatti", link: "/contact-admin" },
+  { id: "4", name: "Poker", link: "/contact-admin" },
+  { id: "5", name: "Bacarrat", link: "/contact-admin" },
+  { id: "6", name: "Dragon Tiger", link: "/contact-admin" },
+  { id: "7", name: "32 Cards", link: "/contact-admin" },
+  { id: "8", name: "Andar Bahar", link: "/contact-admin" },
+  { id: "9", name: "Luck-7", link: "/contact-admin" },
+  { id: "10", name: "3 Card Judgement", link: "/contact-admin" },
+  { id: "11", name: "Casino war", link: "/contact-admin" },
+  { id: "12", name: "worli", link: "/contact-admin" },
+  { id: "13", name: "sports", link: "/contact-admin" },
+  { id: "14", name: "Bollywood", link: "/contact-admin" },
+  { id: "15", name: "Queen", link: "/contact-admin" },
+];
+
+export const cardGames = [
+  { value: "", label: "Select Casino Type", disabled: true },
+  {
+    value: "dt20",
+    label: "20-20 Dragon Tiger", //
+  },
+  {
+    value: "ab20",
+    label: "Andar Bahar 1",
+  },
+  {
+    value: "abj",
+    label: "Andar Bahar 2", //
+  },
+  {
+    value: "teen20",
+    label: "20-20 Teen Patti", //
+  },
+  {
+    value: "teen",
+    label: "Teen Patti One Day", //
+  },
+  {
+    value: "teen8",
+    label: "Open Teen Patti",
+  },
+  {
+    value: "teen9",
+    label: "Test Teen Patti",
+  },
+  {
+    value: "card32",
+    label: "32 Cards - A", //
+  },
+  {
+    value: "card32eu",
+    label: "32 Cards - B",
+  },
+  {
+    value: "lucky7",
+    label: "Lucky 7 - A", //
+  },
+  {
+    value: "lucky7eu",
+    label: "Lucky 7 - B", //
+  },
+  {
+    value: "dt202",
+    label: "20-20 Dragon Tiger 2", //
+  },
+  {
+    value: "dtl20",
+    label: "Dragon Tiger Lion", //
+  },
+  {
+    value: "dt6",
+    label: "Dragon Tiger 1 Day", //
+  },
+  {
+    value: "aaa",
+    label: "Amar Akbar Anthony",
+  },
+  {
+    value: "cricketv3",
+    label: "Fve-Five Cricket",
+  },
+  {
+    value: "superover",
+    label: "Superover",
+  },
+  {
+    value: "race20",
+    label: "Race 20",
+  },
+  {
+    value: "war",
+    label: "Casino War",
+  },
+  {
+    value: "3cardj",
+    label: "3 Card Judgement",
+  },
+  {
+    value: "worli2",
+    label: "Instant Worli",
+  },
+  // {
+  //   value: "worli",
+  //   label: "Worli Matka",
+  // },
+  {
+    value: "poker",
+    label: "Poker 1-day",
+  },
+  {
+    value: "poker20",
+    label: "Poker 20-20",
+  },
+  {
+    value: "poker6",
+    label: "Poker 6 Players",
+  },
+  {
+    value: "btable",
+    label: "Bollywood Casino",
+  },
+  {
+    value: "cmatch20",
+    label: "CRICKET MATCH 20-20",
+  },
+  {
+    value: "baccarat",
+    label: "BACCARAT",
+  },
+  {
+    value: "baccarat2",
+    label: "BACCARAT2",
+  },
+  {
+    value: "ballbyball",
+    label: "Ball By Ball",
+  },
+  {
+    value: "queen",
+    label: "Casino Queen",
+  },
+  {
+    value: "cmeter",
+    label: "Casino Meter",
+  },
+];
+
+export const title = {
+  dt20: "20-20 Dragon Tiger",
+  dt6: "1 DAY DRAGON TIGER",
+  teen20: "20-20 Teenpatti",
+  lucky7: "Lucky 7 - A",
+  lucky7eu: "LUCKY 7 - B",
+  card32: "32 Cards A",
+  card32b: "32 Cards B",
+  abj: "Andar Bahar 1",
+  abj2: "Andar Bahar 2",
+  teen: "1 Day Teen Patti",
+  teen8: "Open Teen Patti",
+  teen9: "Test Teen Patti",
+  ab20: "Andar Bahar 1",
+  poker1Day: "Poker 1 Day",
+  aaa: "Amar Akbar Anthony",
+  war: "Casino War",
+  btable: "Bollywood Table",
+  worli2: "Instant Worli",
+  cmatch20: "Cricket Match 20-20",
+  queen: "Casino Queen",
+  poker6: "Poker 6 Player",
+  poker1: "Poker 1 Day",
+  superover: "Super Over",
+  cricketv3: "FIVE FIVE CRICKET",
+  dt202: "20-20 DRAGON TIGER 2",
+  dtl20: "20-20 D T L",
+  race20: "RACE 20",
+  cardj3: "3 CARDS JUDGEMENT",
+  baccarat: "Baccarat",
+  Baccarat2: "Baccarat 2",
+  cmeter: "Casino Meter",
+  ballbyball: "Ball By Ball",
+};

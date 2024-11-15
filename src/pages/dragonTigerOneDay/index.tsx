@@ -8,6 +8,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateDragonTigerOneDayRates,
@@ -16,7 +17,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -64,11 +65,6 @@ const DragonTigerOneDay = () => {
         socketService.card.getCardRatesOff(cardGamesType.dragonTigerOneDay);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.dragonTigerOneDay);
-        socketService.card.getCardRates(
-          cardGamesType.dragonTigerOneDay,
-          setMatchRatesInRedux
-        );
         socketService.card.getLiveGameResultTop10(
           cardGamesType.dragonTigerOneDay,
           handleLiveGameResultTop10
@@ -76,6 +72,11 @@ const DragonTigerOneDay = () => {
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.dragonTigerOneDay);
+      socketService.card.getCardRates(
+        cardGamesType.dragonTigerOneDay,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -83,10 +84,9 @@ const DragonTigerOneDay = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
-      dispatch(
-        getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay)
-      );
+      dispatch(getCasinoButtonValue());
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay));
+      dispatch(getDragonTigerDetail(cardGamesType.dragonTigerOneDay));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.dragonTigerOneDay);
         socketService.card.getCardRatesOff(cardGamesType.dragonTigerOneDay);

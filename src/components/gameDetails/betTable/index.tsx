@@ -1,7 +1,7 @@
 import { IoInformationCircle } from "react-icons/io5";
 import { MatchType } from "../../../utils/enum";
 import { formattedMinMax } from "../../../utils/formatMinMax";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import BookmakerTable from "./bookMaker";
 import MatchOdds from "./matchOdds";

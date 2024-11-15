@@ -1,37 +1,39 @@
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { AppDispatch,RootState } from "../../../../store/store";
+import { AppDispatch, RootState } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
-const CardBox = ({ title, odds, data, cards, bgColor, }: any) => {
+const CardBox = ({ title, odds, data, cards, bgColor, betType }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
-  
- const [nat, setNat] = useState("");
- const handleBet = () => {
-  let team = {
-    bettingType: "BACK",
-    matchId: data?.id,
-    odd: odds?.rate,
-    stake: 0,
-    matchBetType: "matchOdd",
-    betOnTeam: title + " " + nat,
-    name: title + " " + nat,
-    bettingName: "Match odds",
-    selectionId: odds?.sid,
+
+  const [nat, setNat] = useState("");
+  const handleBet = () => {
+    let team = {
+      bettingType: betType,
+      matchId: data?.id,
+      odd: odds?.rate,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: title + " " + nat,
+      name: title + " " + nat,
+      bettingName: "Match odds",
+      selectionId: odds?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
+    };
+    if (nat !== "") {
+      dispatch(
+        selectedBetAction({
+          team,
+          data,
+        })
+      );
+    }
   };
-  if (nat !== "") {
-    dispatch(
-      selectedBetAction({
-        team,
-        data,
-      })
-    );
-  }
-};
 
   const arCards = cards?.ar?.split(",");
   const brCards = cards?.br?.split(",");
@@ -79,7 +81,7 @@ const CardBox = ({ title, odds, data, cards, bgColor, }: any) => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            borderBottom: "0.5px solid #000",
+            borderBottom: "2px solid #000",
           }}
         >
           <span
@@ -125,7 +127,7 @@ const CardBox = ({ title, odds, data, cards, bgColor, }: any) => {
                 ? data?.profitLoss[
                     `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
                   ]
-                : 0
+                : ""
               : 0}
           </span>
         </div>

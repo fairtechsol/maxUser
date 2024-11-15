@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import Abj2Desktop from "./desktop";
 import Abj2Mobile from "./mobile";
 

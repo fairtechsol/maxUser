@@ -8,6 +8,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateAmarAkbarAnthonyCardMatchRates,
   updateBalanceOnBetPlaceCards,
@@ -16,7 +17,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -69,13 +70,13 @@ const AmarAkbarAnthony = () => {
           cardGamesType.amarAkbarAnthony,
           setMatchRatesInRedux
         );
-        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
-        socketService.card.getLiveGameResultTop10(
-          cardGamesType.amarAkbarAnthony,
-          handleLiveGameResultTop10
-        );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+      socketService.card.getLiveGameResultTop10(
+        cardGamesType.amarAkbarAnthony,
+        handleLiveGameResultTop10
+      );
     } catch (error) {
       console.log(error);
     }
@@ -83,8 +84,9 @@ const AmarAkbarAnthony = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony));
+      dispatch(getDragonTigerDetail(cardGamesType.amarAkbarAnthony));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.amarAkbarAnthony);
         socketService.card.getCardRatesOff(cardGamesType.amarAkbarAnthony);

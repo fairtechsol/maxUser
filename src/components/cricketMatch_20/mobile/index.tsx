@@ -1,4 +1,3 @@
-import { Table } from "react-bootstrap";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,17 +5,17 @@ import { crick20rules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import Teen20Result from "../desktop/teenCard";
 import MyBet from "./myBet";
-import "./style.scss";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import ScoreBox from "./scoreBox";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import "./style.scss";
 const CricketMatch20Mobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -29,17 +28,9 @@ const CricketMatch20Mobile = () => {
     (state: RootState) => state.card
   );
   const { leftBoard, rightBoard } = dragonTigerDetail;
-  const { placedBets } = useSelector((state: RootState) => state.bets);
   const [profitLossData, setProfitLossData] = useState<
     Record<string, ProfitLoss>
   >({});
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type,
@@ -51,6 +42,8 @@ const CricketMatch20Mobile = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -126,72 +119,17 @@ const CricketMatch20Mobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
           <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ width: "100%", height: "250px" }}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
+            <div style={{ width: "100%"}}>
               <div
                 style={{
                   width: "100%",
-                  height: "20%",
                   backgroundColor: "#000",
                 }}
               >
@@ -204,10 +142,10 @@ const CricketMatch20Mobile = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div style={{}}>
-                <div className="mt-2" style={{ width: "100%" }}>
+                <div style={{ width: "100%" }}>
                   <div className="teenPatti-table-container-m">
                     <div
                       style={{
@@ -227,7 +165,7 @@ const CricketMatch20Mobile = () => {
                           rightBoard &&
                           [...leftBoard, ...rightBoard]?.map(
                             (item: any, index: any) => (
-                              <div>
+                              <div style={{marginBottom:"60px"}}>
                                 <ScoreBox
                                   teamA="Team A"
                                   teamAScore={`${dragonTigerDetail?.videoInfo?.C2}/${dragonTigerDetail?.videoInfo?.C3}`}

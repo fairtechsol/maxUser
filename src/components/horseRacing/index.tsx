@@ -1,4 +1,4 @@
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import HorseRacingListTabsDesktop from "./desktop";
 import HorseRacingListTabsMobile from "./mobile";
 

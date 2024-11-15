@@ -8,6 +8,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCardAbjRates,
@@ -16,7 +17,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -60,22 +61,21 @@ const Abj2 = () => {
     try {
       if (socket && dragonTigerDetail?.id) {
         dispatch(getPlacedBets(dragonTigerDetail?.id));
-
         socketService.card.getCardRatesOff(cardGamesType.andarBahar2);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.andarBahar2);
+        socketService.card.cardResult(handleCardResult);
+      }
+      socketService.card.joinMatchRoom(cardGamesType.andarBahar2);
         socketService.card.getCardRates(
           cardGamesType.andarBahar2,
           setMatchRatesInRedux
         );
-        socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
-        socketService.card.getLiveGameResultTop10(
-          cardGamesType.andarBahar2,
-          handleLiveGameResultTop10
-        );
-        socketService.card.cardResult(handleCardResult);
-      }
+      socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
+      socketService.card.getLiveGameResultTop10(
+        cardGamesType.andarBahar2,
+        handleLiveGameResultTop10
+      );
     } catch (error) {
       console.log(error);
     }
@@ -83,8 +83,9 @@ const Abj2 = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.andarBahar2));
+      dispatch(getDragonTigerDetail(cardGamesType.andarBahar2));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.andarBahar2);
         socketService.card.getCardRatesOff(cardGamesType.andarBahar2);

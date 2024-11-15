@@ -4,7 +4,7 @@ import { ImClubs, ImDiamonds } from "react-icons/im";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import { useEffect } from "react";
 const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const dispatch: AppDispatch = useDispatch();
@@ -19,6 +19,8 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -41,7 +43,7 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
   const renderItem = (item: any) => (
     <div
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+        handleLock(item?.gstatus, item?.b1) ? "suspended-1day" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -66,8 +68,8 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
-          : 0}
+            : ""
+          : ""}
       </span>
     </div>
   );
@@ -100,17 +102,17 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitle" style={{ fontWeight: "400" }}>
-            Min:{" "}
+          <div className="dtlTitle" style={{ fontWeight: "400",background:"#F2F2F2" }}>
+            {/* Min:{" "}
             {title1 === "even"
               ? dragonEvenOdd?.[0]?.min
               : dragonRedBlack?.[0]?.min}{" "}
             Max:{" "}
             {title1 === "even"
               ? dragonEvenOdd?.[0]?.max
-              : dragonRedBlack?.[0]?.max}
+              : dragonRedBlack?.[0]?.max} */}
           </div>
-          <div className="dtlsubTitle back-BackGround">
+          <div className="dtlsubTitle back-BackGround p-1">
             <span style={{ fontSize: "14px" }}>
               {title1 === "even" ? (
                 "Even"
@@ -138,9 +140,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           </div>
         </div>
         <div
+         style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitle">Dragon </div>
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}>Dragon </div>
           {renderItem(
             title1 === "even" ? dragonEvenOdd?.[0] : dragonRedBlack?.[0]
           )}
@@ -149,9 +152,10 @@ const OddEven = ({ title1, title2, data, tigerData, dragonData }: any) => {
           )}
         </div>
         <div
+         style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitle"> Tiger</div>
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}> Tiger</div>
           {renderItem(
             title1 === "even" ? tigerEvenOdd?.[0] : tigerRedBlack?.[0]
           )}

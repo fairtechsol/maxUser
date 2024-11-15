@@ -1,16 +1,9 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import SmoothDropdownModal from "../minMaxModal";
-import { IoInformationCircle } from "react-icons/io5";
-import { useState } from "react";
-import isMobile from "../../../../utils/screenDimension";
+import { AppDispatch } from "../../../../store/store";
 
 const CardBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -22,6 +15,8 @@ const CardBox = ({ odds, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -45,7 +40,7 @@ const CardBox = ({ odds, data }: any) => {
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
-      <span style={{ fontFamily: "auto", fontSize: "30px" }}>
+      <span style={{ fontFamily: "auto", fontSize: "48px" ,color:"#333333"}}>
         {index + 1 === 10 ? "0" : index + 1}
       </span>
       <span
@@ -68,7 +63,7 @@ const CardBox = ({ odds, data }: any) => {
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
+            : <br></br>
           : 0}
       </span>
     </div>
@@ -82,42 +77,19 @@ const CardBox = ({ odds, data }: any) => {
           display: "flex",
           flexDirection: "column",
           border: "0.3px solid #c7c8ca",
-          marginLeft: "5px",
+          marginLeft: "px",
         }}
       >
         <div className="w-100 d-sm-flex flex-row" style={{ height: "30px" }}>
-          <div className="dtlTitle">
-            {isMobile ? (
-              <>
-                <span style={{ fontWeight: "400" }}>
-                  Min:{min} Max:{max}
-                </span>
-              </>
-            ) : (
-              <div style={{ width: "45%", textAlign: "start" }}>
-                <span className="minmaxi">
-                  <IoInformationCircle
-                    color="#ffc742"
-                    onClick={() => setModelOpen(!modelOpen)}
-                  />
-                  <SmoothDropdownModal
-                    min={min}
-                    max={max}
-                    show={modelOpen}
-                    setShow={() => setModelOpen(false)}
-                  />
-                </span>
-              </div>
-            )}
-          </div>
-          <div style={{ width: "53%", textAlign: "start" }}>
-            {odds?.[0]?.b1}
+         
+          <div style={{ width: "100%", textAlign: "center",fontWeight:"bold" }}>
+            {odds?.[0]?.b1 == "0.00"?0:odds?.[0]?.b1}
           </div>
         </div>
       </div>
       <div
         className="w-100 d-sm-flex flex-row"
-        style={{ height: "auto", display: "flex" }}
+        style={{ height: "auto", display: "flex",color:"#333333" }}
       >
         {odds?.slice(0, 5)?.map((item: any, index: number) => {
           return <>{renderItem(item, index)}</>;
@@ -125,7 +97,7 @@ const CardBox = ({ odds, data }: any) => {
       </div>
       <div
         className="w-100 d-sm-flex flex-row"
-        style={{ height: "auto", display: "flex" }}
+        style={{ height: "auto", display: "flex",color:"#333333" }}
       >
         {odds?.slice(5, 10)?.map((item: any, index: number) => {
           return <>{renderItem(item, index + 5)}</>;

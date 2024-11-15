@@ -1,8 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
+import ResultBetList from "../../commonComponent/resultBetList";
 import "./style.scss";
 interface Props {
   data: {
@@ -85,7 +86,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
             }
           >
             {data?.result?.win === "21" && (
-              <div className="casino-winner-icon" style={{marginLeft:"9px"}}>
+              <div className="casino-winner-icon" style={{ marginLeft: "9px" }}>
                 <FaTrophy size={30} color="#169733" />
               </div>
             )}
@@ -129,7 +130,7 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
             }
           >
             {data?.result?.win === "31" && (
-              <div className="casino-winner-icon" style={{marginLeft:"9px"}}>
+              <div className="casino-winner-icon" style={{ marginLeft: "9px" }}>
                 <FaTrophy size={30} color="#169733" />
               </div>
             )}
@@ -163,6 +164,11 @@ const TeenTestResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
+      {data?.bets?.count > 0 && (
+        <div className="w-100">
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

@@ -7,14 +7,14 @@ import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import DynamicTable from "./betTable";
 import Card32Result from "./card32Card";
 import "./style.scss";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 
 const Cards32Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -90,17 +90,17 @@ const Cards32Desktop = () => {
                 </span>
                 <a
                   style={{
-                    fontSize: "14px",
+                    fontSize: "12px",
                     textDecoration: "underline",
                     cursor: "pointer",
                   }}
                   onClick={() => setShow(true)}
                 >
                   {" "}
-                  RULES
+                  Rules
                 </a>
               </div>
-              <span>
+              <span className="title-12 mt-1">
                 {dragonTigerDetail?.videoInfo
                   ? `Round ID:  ${handleRoundId(
                       dragonTigerDetail?.videoInfo?.mid
@@ -124,7 +124,7 @@ const Cards32Desktop = () => {
             {/* </Row> */}
           </div>
           {loading ? (
-            <LoaderOnRefresh />
+            <NewLoader />
           ) : (
             <div>
               <div className="d-flex px-2">
@@ -150,9 +150,9 @@ const Cards32Desktop = () => {
             </div>
           )}
 
-          <RulesModal show={show} setShow={setShow} rule={card32rules} />
+          <RulesModal show={show} setShow={setShow} rule={card32rules} gameType='card32' type="imageWithContent" />
         </Col>
-        <Col md={4}>
+        <Col className="p-0" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
@@ -162,10 +162,10 @@ const Cards32Desktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
             </Row>

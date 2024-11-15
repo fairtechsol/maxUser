@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CustomModal from "../../components/commonComponent/modal";
 import MatchList from "../../components/home";
-import Desktop from "../../components/rules/desktop";
 import {
   expertSocketService,
   socket,
@@ -12,24 +10,22 @@ import { rulesModalShowFalse } from "../../store/actions/authAction";
 import { getHorseRacingCountryWiseList } from "../../store/actions/horseRacing/horseMatchListAction";
 import {
   getMatchList,
-  updateMatchOddRates,
+  getTabList,
+  updateMatchRatesFromApiOnList,
 } from "../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
-import Mobile from "../../components/rules/mobile";
+import { isMobile } from "../../utils/screenDimension";
+import ImageModal from "../../components/commonComponent/loginModal";
+import { getBannerImage } from "../../store/actions/user/userAction";
+import { marketApiConst } from "../../utils/constants";
+import axios from "axios";
 
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
   const { rulesPopShow } = useSelector((state: RootState) => state.auth);
+  const { bannerImage } = useSelector((state: RootState) => state.user.profile);
   const [matchType, setMatchType] = useState("cricket");
   const [show, setShow] = useState(false);
-  const { matchList, success } = useSelector(
-    (state: RootState) => state.match.matchList
-  );
-
-  const setMatchOddRatesInRedux = (event: any) => {
-    dispatch(updateMatchOddRates(event));
-  };
 
   const getMatchListService = () => {
     try {
@@ -42,6 +38,20 @@ const Home = () => {
       console.log(e);
     }
   };
+
+  const getMatchListMarket = async (matchType: string) => {
+    try {
+      const resp: any = await axios.get(marketApiConst[matchType], {
+        timeout: 2000,
+      });
+      if (resp?.status) {
+        dispatch(updateMatchRatesFromApiOnList(resp?.data));
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+
   const getMatchListServiceSocket = (event: any) => {
     try {
       if (event?.gameType === matchType) {
@@ -64,7 +74,7 @@ const Home = () => {
     try {
       if (event?.gameType === matchType) {
         if (["cricket", "football", "tennis"].includes(matchType)) {
-          if (event?.betType === "quickbookmaker1") {
+          if (event?.isMatchDeclare) {
             setTimeout(() => {
               dispatch(getMatchList({ matchType: matchType }));
             }, 1000);
@@ -109,9 +119,10 @@ const Home = () => {
   }, [socket, matchType]);
 
   useEffect(() => {
+    dispatch(getTabList({}));
     if (
       matchType &&
-      ["cricket", "football", "tennis"].includes(matchType) &&
+      ["cricket", "football", "tennis", "politics"].includes(matchType) &&
       ["home", "inPlay", "sports"].includes(location.pathname.split("/")[1])
     ) {
       getMatchListService();
@@ -134,45 +145,28 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (
-      success &&
-      matchList.length > 0 &&
-      isMobile &&
-      ["cricket", "football", "tennis"].includes(matchType)
-    ) {
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.joinMatchRoom(element?.id, "user");
-      });
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.getMatchRates(
-          element?.id,
-          setMatchOddRatesInRedux
-        );
-      });
+    if (rulesPopShow) {
+      dispatch(getBannerImage(isMobile ? "mobile" : "desktop"));
     }
+  }, []);
 
-    return () => {
-      // expertSocketService.match.leaveAllRooms();
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.leaveMatchRoom(element?.id);
-      });
-      matchList?.forEach((element: any) => {
-        expertSocketService.match.getMatchRatesOff(element?.id);
-      });
-    };
-  }, [matchList.length, success, matchType]);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      getMatchListMarket(matchType);
+    }, 500);
+
+    return () => clearInterval(intervalId);
+  }, [matchType]);
 
   return (
     <div>
       <MatchList setMatchType={setMatchType} matchType={matchType} />
-      <CustomModal
-        customClass="modalFull-90 rule-popup"
-        show={show}
+
+      <ImageModal
+        customClass={isMobile ? "" : "modalFull-56 rule-popup"}
+        show={show && bannerImage}
         setShow={popUpClose}
-        title={"Rules"}
-      >
-       {isMobile ? <Mobile /> : <Desktop />}
-      </CustomModal>
+      />
     </div>
   );
 };

@@ -23,6 +23,21 @@ export const getMatchList = createAsyncThunk<any, any>(
     }
   }
 );
+
+export const getTabList = createAsyncThunk<any, any>(
+  "/tab/list",
+  async ({}, thunkApi) => {
+    try {
+      const resp = await service.get(`${ApiConstants.MATCH.TABLIST}`);
+      if (resp) {
+        return { data: resp?.data };
+      }
+    } catch (error: any) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 export const getMatchListSearch = createAsyncThunk<any, any>(
   "/match/search",
   async ({ searchKeyword }, thunkApi) => {
@@ -174,20 +189,10 @@ export const getProfitLossReport = createAsyncThunk<any, any>(
 );
 export const settleUnsettleMatch = createAsyncThunk<any, any>(
   "/unsettled/bet/",
-  // async (requestData, thunkApi) => {
-  //   try {
-  //     const resp = await service.get(
-  //       `${ApiConstants.MATCH.CURRENTBET}?status=${requestData.status}&keyword=${requestData?.keyword || ""}${requestData?.filter || ""}`
-  //       ?status MATCHED(bet history) pending(current bet) DELETED(UNSETTLED) gameType(FOR ALL BETS) UNmATCHED(PENDING)
-  //     );
-  async ({ status, page, limit, keyword }, thunkApi) => {
+  async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.MATCH.CURRENTBET}?page=${page || 1}&limit=${
-          limit || 15
-        }&status=${status}&searchBy=betPlaced.eventName&keyword=${
-          keyword || ""
-        }`
+        `${ApiConstants.MATCH.CURRENTBET}?${requestData}`
       );
       if (resp?.data) {
         return resp?.data;
@@ -247,8 +252,22 @@ export const updateMatchOddRates = createAsyncThunk<any, any>(
     return matchDetails;
   }
 );
+export const updateMatchDetailFromMatchList = createAsyncThunk<any, any>(
+  "/matchDetailFromList/rates",
+  async (data) => {
+    return data;
+  }
+);
+export const updateMatchRatesFromApiOnList = createAsyncThunk<any, any>(
+  "/updateMatchRatesFromApiOnList/rates",
+  async (data) => {
+    return data;
+  }
+);
 
 export const searchListReset = createAction("search/list");
 export const matchListReset = createAction("matchList/reset");
 export const resetDataUnsettledMatch = createAction("dataUnsettledMatch/reset");
+export const resetReportBetListData = createAction("resetReportBetListData/reset");
 export const resetMarketId = createAction("marketId/reset");
+export const matchDetailReset = createAction("matchDetail/reset");

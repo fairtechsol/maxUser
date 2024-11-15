@@ -1,17 +1,11 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import PlayerButton from "../PlayerButton";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { IoInformationCircle } from "react-icons/io5";
-import SmoothDropdownModal from "../../mobile/minMaxModal";
-import { useEffect } from "react";
 
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = lowHigh?.[0]?.min;
-  const max = lowHigh?.[0]?.max;
-  const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type,
@@ -23,6 +17,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -48,29 +44,15 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       console.log(error);
     }
   };
-
+  
   useEffect(() => {
-    if ( lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00") {
+    if ( lowHigh?.[0]?.gstatus === "SUSPENDED"||lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00") {
       dispatch(selectedBetAction(""));
     }
   }, [lowHigh?.[0]?.gstatus,lowHigh?.[0]?.b1]);
 
   return (
     <div className="tiePairContainer">
-      <div style={{ width: "98%", textAlign: "end" }}>
-        <span className="minmaxi">
-          <IoInformationCircle
-            color="#ffc742"
-            onClick={() => setModelOpen(!modelOpen)}
-          />
-          <SmoothDropdownModal
-            min={min}
-            max={max}
-            show={modelOpen}
-            setShow={() => setModelOpen(false)}
-          />
-        </span>
-      </div>
 
       <div className="tiePairRateBoxMainlucky">
         <PlayerButton
@@ -81,7 +63,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
+            lowHigh?.[0]?.gstatus === "SUSPENDED" ||lowHigh?.[0]?.gstatus === "CLOSED" || lowHigh?.[0]?.b1 === "0.00"
               ? true
               : false
           }
@@ -96,7 +78,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
+            lowHigh?.[1]?.gstatus === "SUSPENDED" ||lowHigh?.[1]?.gstatus === "CLOSED" || lowHigh?.[1]?.b1 === "0.00"
               ? true
               : false
           }
@@ -111,7 +93,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
+            lowHigh?.[2]?.gstatus === "SUSPENDED" || lowHigh?.[2]?.gstatus === "CLOSED" || lowHigh?.[2]?.b1 === "0.00"
               ? true
               : false
           }
@@ -127,7 +109,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[3]?.gstatus === "CLOSED" || lowHigh?.[3]?.b1 === "0.00"
+            lowHigh?.[3]?.gstatus === "SUSPENDED" ||lowHigh?.[3]?.gstatus === "CLOSED" || lowHigh?.[3]?.b1 === "0.00"
               ? true
               : false
           }
@@ -142,7 +124,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[4]?.gstatus === "CLOSED" || lowHigh?.[4]?.b1 === "0.00"
+            lowHigh?.[4]?.gstatus === "SUSPENDED" ||lowHigh?.[4]?.gstatus === "CLOSED" || lowHigh?.[4]?.b1 === "0.00"
               ? true
               : false
           }
@@ -157,7 +139,7 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           width={"30%"}
           handleBet={handleBet}
           lock={
-            lowHigh?.[5]?.gstatus === "CLOSED" || lowHigh?.[5]?.b1 === "0.00"
+            lowHigh?.[5]?.gstatus === "SUSPENDED" ||lowHigh?.[5]?.gstatus === "CLOSED" || lowHigh?.[5]?.b1 === "0.00"
               ? true
               : false
           }

@@ -1,9 +1,8 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { IoInformationCircle } from "react-icons/io5";
-import { useState } from "react";
 import SmoothDropdownModal from "../minMaxModal";
 
 const PairBox = ({ odds, data }: any) => {
@@ -22,6 +21,8 @@ const PairBox = ({ odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -42,14 +43,15 @@ const PairBox = ({ odds, data }: any) => {
           marginLeft: "5px",
           justifyContent: "center",
           alignItems: "center",
+          background:"#F2F2F2"
         }}
       >
         <div style={{ width: "100%", textAlign: "end" }}>
           <span className="minmaxi">
-            <IoInformationCircle
+            {/* <IoInformationCircle
               color="#ffc742"
               onClick={() => setModelOpen(!modelOpen)}
-            />
+            /> */}
             <SmoothDropdownModal
               min={min}
               max={max}

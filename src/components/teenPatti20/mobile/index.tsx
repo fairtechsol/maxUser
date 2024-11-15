@@ -6,7 +6,6 @@ import { tprules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
@@ -14,8 +13,9 @@ import Teen20Result from "../desktop/teenCard";
 import "./style.scss";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const TeenPattiMobile = () => {
@@ -30,7 +30,6 @@ const TeenPattiMobile = () => {
     (state: RootState) => state.card
   );
   const { playerA, playerB } = dragonTigerDetail;
-  const { placedBets } = useSelector((state: RootState) => state.bets);
   const rules = [
     { label: "Pair (Double)", value: "1 To 1" },
     { label: "Flush (Color)", value: "1 To 4" },
@@ -49,6 +48,8 @@ const TeenPattiMobile = () => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min: dragonTigerDetail?.videoInfo?.min,
+      max: dragonTigerDetail?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -97,79 +98,27 @@ const TeenPattiMobile = () => {
   useEffect(() => {
     if (playerA?.[0]?.gstatus === "0" || playerA?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [playerA?.[0]?.gstatus,playerA?.[0]?.b1]);
-  
+    }
+  }, [playerA?.[0]?.gstatus, playerA?.[0]?.b1]);
+
   return (
     <>
       <div>
-        <div className="dt20header">
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
+
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%" }}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
               <div
                 style={{
                   width: "100%",
-                  height: "20%",
                   backgroundColor: "#000",
                 }}
               >
@@ -181,7 +130,7 @@ const TeenPattiMobile = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div style={{ width: "100%" }}>
@@ -194,10 +143,10 @@ const TeenPattiMobile = () => {
                           textAlign: "left",
                         }}
                       >
-                        <span className="f12-b">
+                        {/* <span className="f12-b">
                           Min: {dragonTigerDetail?.videoInfo?.min} Max:{" "}
                           {dragonTigerDetail?.videoInfo?.max}
-                        </span>
+                        </span> */}
                       </div>
                       <div className="teen-back-m">BACK</div>
                     </div>
@@ -240,7 +189,7 @@ const TeenPattiMobile = () => {
                         >
                           <span className="f12-b">{playerA?.[0]?.rate}</span>
                           <span
-                            className={`f10-b ${
+                            className={`title-12 ${
                               dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[0]?.sid}_card`
@@ -257,7 +206,7 @@ const TeenPattiMobile = () => {
                                   : ""
                                 : ""
                             }`}
-                            style={{zIndex:"100"}}
+                            style={{ zIndex: "100" }}
                           >
                             {dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -286,7 +235,7 @@ const TeenPattiMobile = () => {
                         >
                           <span className="f12-b">{playerA?.[1]?.nation}</span>
                           <span
-                            className={`f10-b ${
+                            className={`title-12 ${
                               dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA?.[1]?.sid}_card`
@@ -303,7 +252,7 @@ const TeenPattiMobile = () => {
                                   : ""
                                 : ""
                             }`}
-                            style={{zIndex:"100"}}
+                            style={{ zIndex: "100" }}
                           >
                             {dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -357,7 +306,7 @@ const TeenPattiMobile = () => {
                         >
                           <span className="f12-b">{playerB?.[0]?.rate}</span>
                           <span
-                            className={`f10-b ${
+                            className={`title-12 ${
                               dragonTigerDetail?.profitLoss
                                 ? dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerB?.[0]?.sid}_card`
@@ -374,6 +323,7 @@ const TeenPattiMobile = () => {
                                   : ""
                                 : ""
                             }`}
+                            style={{ zIndex: "100" }}
                           >
                             {dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -419,6 +369,7 @@ const TeenPattiMobile = () => {
                                   : ""
                                 : ""
                             }`}
+                            style={{ zIndex: "100" }}
                           >
                             {dragonTigerDetail?.profitLoss
                               ? dragonTigerDetail?.profitLoss[
@@ -445,12 +396,12 @@ const TeenPattiMobile = () => {
                 </div>
                 <div>
                   <div
-                    className="casino-title mt-2"
+                    className="casino-title mt-2 bg-primary text-white"
                     style={{ position: "relative" }}
                   >
                     <span>Rules</span>
                   </div>
-                  <div className="table-responsive rules-table">
+                  <div className="table-responsive rules-table lh-1">
                     <Table bordered>
                       <thead>
                         <tr>
@@ -495,7 +446,13 @@ const TeenPattiMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={tprules} />
+      <RulesModal
+        show={show}
+        setShow={setShow}
+        rule={tprules}
+        gameType="teen20"
+        type="imageWithContent"
+      />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

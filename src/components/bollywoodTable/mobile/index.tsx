@@ -2,23 +2,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { brules, luckyrules } from "../../../assets/images";
+import { brules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Lucky7Result from "../desktop/lucky7Card";
 import CardBox from "./CardsBox";
 import OddEven from "./OddEvenBox";
-import TiePairBox from "./TiePairBox";
-import Lucky7Result from "../desktop/lucky7Card";
 import "./style.scss";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import TiePairBox from "./TiePairBox";
 import TiePairBox2 from "./TiePairBox2";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
 
 const BollywoodTableDesktop = () => {
   const [activeTab, setActiveTab] = useState(false);
@@ -30,7 +30,7 @@ const BollywoodTableDesktop = () => {
   const [videoFrameId, setVideoFrameId] = useState(
     `${cardUrl}${cardGamesId.btable}`
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
+
 
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
@@ -86,66 +86,14 @@ const BollywoodTableDesktop = () => {
 
   return (
     <>
-      <div className="dt20header">
-        <div className="dt20subheader1">
           <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div
-            style={{
-              height: "100%",
-              borderTop: !activeTab ? "2px solid white" : "none",
-              padding: "5px",
-            }}
-          >
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(false)}
-            >
-              GAME
-            </span>
-          </div>
-          <span style={{ fontSize: "18px" }}> | </span>
-          <div
-            style={{
-              height: "100%",
-              borderTop: activeTab ? "2px solid white" : "none",
-              padding: "5px",
-            }}
-          >
-            <span
-              style={{ fontSize: "12px", fontWeight: "bold" }}
-              onClick={() => setActiveTab(true)}
-            >
-              PLACED BET({placedBets?.length || 0})
-            </span>
-          </div>
-        </div>
-        <div className="dt20subheader2">
-          <span
-            style={{ textDecoration: "underline" }}
-            onClick={() => setShow(true)}
-          >
-            Rules
-          </span>
-          <span>
-            {" "}
-            {dragonTigerDetail?.videoInfo
-              ? `Round ID:  ${handleRoundId(dragonTigerDetail?.videoInfo?.mid)}`
-              : ""}{" "}
-          </span>
-        </div>
-      </div>
+          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+
       {!activeTab ? (
         <Row>
           <Col md={8}>
             <div className="horseRacingTab">
-              <div style={{ width: "100%", margin: "" }}>
-                <div className="horseRacingTabHeader">
-                  <div>
-                    <span style={{ fontSize: "16px", fontWeight: "600" }}>
-                      {dragonTigerDetail?.name}
-                    </span>
-                  </div>
-                </div>
+              <div style={{ width: "100%"}}>
                 <div
                   style={{
                     width: "100%",
@@ -163,7 +111,7 @@ const BollywoodTableDesktop = () => {
                 </div>
               </div>
               {loading ? (
-                <LoaderOnRefresh />
+                <NewLoader />
               ) : (
                 <div>
                   <div style={{ width: "100%" }}>
@@ -208,7 +156,9 @@ const BollywoodTableDesktop = () => {
                       background: "#EEEEEE",
                       paddingLeft: "4px",
                       paddingRight: "4px",
-                      marginTop: "10px",
+                      borderRight: "1px solid #c7c8ca",
+                      borderTop: "1px solid #c7c8ca",
+                     
                     }}
                   >
                     <OddEven
@@ -225,7 +175,8 @@ const BollywoodTableDesktop = () => {
                       background: "#EEEEEE",
                       paddingLeft: "4px",
                       paddingRight: "4px",
-                      marginTop: "10px",
+                      borderRight: "1px solid #c7c8ca",
+                      borderTop: "1px solid #c7c8ca",
                     }}
                   >
                     <CardBox

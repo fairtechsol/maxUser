@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import { HandleGameCards } from "../../desktop/card";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import PieChart from "../../../baccarat1/desktop/chart";
+import PieChart from "../../../baccarat2/desktop/chart";
 export const options = {
   is3D: true,
   backgroundColor: "none",
@@ -27,6 +27,8 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -258,7 +260,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               <span>Player</span>
               <span>{parseFloat(odds?.[0]?.b1)}:1</span>
               <div
-                className="bacarrateCards"
+                className="bacarrateCards mt-2"
                 style={{ width: cardData?.C5 != "1" ? "55px" : "35px" }}
               >
                 {cardData?.C5 != "1" && (
@@ -292,7 +294,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               <span>Banker</span>
               <span>{parseFloat(odds?.[1]?.b1)}:1</span>
               <div
-                className="bacarrateCards"
+                className="bacarrateCards mt-2"
                 style={{ width: cardData?.C6 != "1" ? "55px" : "35px" }}
               >
                 <HandleGameCards card={cardData?.C2} />
@@ -444,11 +446,11 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               : ""}
           </div>
         </div>
-        <div className="baccarateMinMax">
+        {/* <div className="baccarateMinMax">
           <span className="f600">Min:</span>
           {odds?.[0]?.min} <span className="f600">Max:</span>
           {odds?.[0]?.max}
-        </div>
+        </div> */}
       </div>
     </div>
   );

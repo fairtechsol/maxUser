@@ -14,8 +14,8 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import WorliResult from "./abj1Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const WorliDesktop = () => {
   const [show, setShow] = useState(false);
@@ -89,18 +89,18 @@ const WorliDesktop = () => {
                   <span style={{ fontSize: "16px", fontWeight: "600" }}>
                     {dragonTigerDetail?.name}
                   </span>
-                  <a
+                  {/* <a
                     style={{
-                      fontSize: "14px",
+                      fontSize: "12px",
                       textDecoration: "underline",
                       cursor: "pointer",
                     }}
                     onClick={() => setShow(true)}
                   >
-                    RULES
-                  </a>
+                    Rules
+                  </a> */}
                 </div>
-                <span>
+                <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
@@ -126,7 +126,7 @@ const WorliDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div
@@ -136,6 +136,9 @@ const WorliDesktop = () => {
                     display: "flex",
                     flexDirection: "column",
                   }}
+                  className={`${
+                    dragonTigerDetail?.worli?.gstatus == 0 ? "suspended" : ""
+                  }`}
                 >
                   <div className="parent-rate">
                     <div className="child-rate1">9</div>
@@ -165,7 +168,7 @@ const WorliDesktop = () => {
             <RulesModal show={show} setShow={setShow} rule={abjrules} />
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

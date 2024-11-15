@@ -7,7 +7,7 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
   const [cardImg, setCardImg] = useState(dragonTigerCards);
-  
+
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
     const mergedArray = cardData?.map((item: any, index: any) => {
@@ -20,14 +20,13 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
     setCardImg(mergedArray);
   }, [cardData]);
 
-
   const handlock = (item: any) => {
-    if (item?.gstatus === "0" && cardInfo?.[0] === "" ) {
-      return 'suspended';
-    }else if(item?.gstatus === "0" && cardInfo?.[0] != "" ){
-      return "stop"
-    }else{
-      return ""
+    if (item?.gstatus === "0" && cardInfo?.[0] === "") {
+      return "suspended";
+    } else if (item?.gstatus === "0" && cardInfo?.[0] != "") {
+      return "stop";
+    } else {
+      return "";
     }
   };
 
@@ -42,7 +41,7 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
     <div className="commonCardImgContainer">
       {cardImg?.map((item: any) => {
         return (
-          <div>
+          <div style={{margin:"2px"}}>
             <div
               key={item?.code}
               className={handlock(item)}
@@ -52,11 +51,13 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-              onClick={() => (handlock(item) !="" ? null : handleBet(item))}
+              onClick={() => (handlock(item) != "" ? null : handleBet(item))}
             >
-              {
-              item?.show ? <img src={item?.imgSrc} width={"30px"} /> : <img src={back} width={"30px"} />
-            } 
+              {item?.show ? (
+                <img src={item?.imgSrc} width={"31px"} height={"45px"} />
+              ) : (
+                <img src={back} width={"31px"} height={"45px"}/>
+              )}
             </div>
             <span
               style={{
@@ -87,8 +88,8 @@ const CommonCardImg = ({ cardData, handleBet, data, cardInfo }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${item?.sid}_card`
                     ]
-                  : 0
-                : 0}
+                  : ""
+                : ""}
             </span>
           </div>
         );

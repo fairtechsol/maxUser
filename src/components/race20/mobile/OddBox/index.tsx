@@ -1,12 +1,10 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { HandleCards } from "../../../commonComponent/cardsComponent";
 import { useEffect } from "react";
+import { HandleRaceCards } from "../../desktop/card";
 const OddBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
 
   const handleBet = (item: any, type: string) => {
     let team = {
@@ -19,6 +17,8 @@ const OddBox = ({ odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -40,7 +40,7 @@ const OddBox = ({ odds, data }: any) => {
   };
   const handleLock = (item: any, type: string) => {
     if (type == "back") {
-      if (item?.gstatus != "ACTIVE" || item?.b1 === "0.00") {
+      if (item?.gstatus != "ACTIVE" || item?.b1 === "0.00" ) {
         return true;
       } else {
         return false;
@@ -104,7 +104,7 @@ const OddBox = ({ odds, data }: any) => {
                       alignItems: "center",
                     }}
                   >
-                    <HandleCards card={handleCardRender(item?.nat)} />
+                    <HandleRaceCards card={handleCardRender(item?.nat)} />
                   </div>
                   <div
                     style={{
@@ -116,8 +116,8 @@ const OddBox = ({ odds, data }: any) => {
                     }}
                   >
                     <div
-                      className={`back-BackGround ${
-                        handleLock(item, "back") ? "suspended" : ""
+                      className={`back-BackGround py-1 ${
+                        handleLock(item, "back") ? "suspended py-1" : ""
                       }`}
                       style={{
                         width: "45%",
@@ -125,7 +125,7 @@ const OddBox = ({ odds, data }: any) => {
                         justifyContent: "center",
                         alignItems: "center",
                         flexDirection: "column",
-                        paddingTop: "7px",
+                        // paddingTop: "7px",
                       }}
                       onClick={() =>
                         handleLock(item, "back")
@@ -137,8 +137,8 @@ const OddBox = ({ odds, data }: any) => {
                       <span className="casino-volume f400">{item?.bs1}</span>
                     </div>
                     <div
-                      className={`lay-BackGround ${
-                        handleLock(item, "lay") ? "suspended" : ""
+                      className={`lay-BackGround py-1 ${
+                        handleLock(item, "lay") ? "suspended py-1" : ""
                       }`}
                       style={{
                         width: "50%",
@@ -146,7 +146,7 @@ const OddBox = ({ odds, data }: any) => {
                         justifyContent: "center",
                         alignItems: "center",
                         flexDirection: "column",
-                        paddingTop: "7px",
+                        // paddingTop: "7px",
                       }}
                       onClick={() =>
                         handleLock(item, "lay")
@@ -190,7 +190,7 @@ const OddBox = ({ odds, data }: any) => {
                               `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
                             ]
                           )[hanleProfitLossForK(item?.nat)]
-                        : 0
+                        :  <br></br>
                       : 0}
                   </span>
                 </div>
@@ -198,12 +198,12 @@ const OddBox = ({ odds, data }: any) => {
             );
           })}
         </div>
-        <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
+        {/* <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
           <span style={{ fontWeight: "bolder" }}>Min:</span>
           <span>{min}</span>
           <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
           <span>{max}</span>
-        </div>
+        </div> */}
       </div>
     </>
   );

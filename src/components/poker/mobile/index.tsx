@@ -3,17 +3,17 @@ import { useSelector } from "react-redux";
 import { p6rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Poker6Result from "../desktop/poker6Card";
 import TiePairBox from "./TiePairBox";
 import "./style.scss";
-import Poker6Result from "../desktop/poker6Card";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const Poker6Mobile = () => {
@@ -27,7 +27,6 @@ const Poker6Mobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -68,68 +67,14 @@ const Poker6Mobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
           <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
+
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%"}}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -146,7 +91,7 @@ const Poker6Mobile = () => {
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div className="dt20TabBox-poker">
@@ -155,13 +100,15 @@ const Poker6Mobile = () => {
                     onClick={() => setActiveCardTab(false)}
                       style={{
                         height: "100%",
-                        borderTop: !activeCardTab ? "2px solid white" : "none",
-                        padding: "5px",
+                        borderTop: !activeCardTab ? "1px solid white" : "none",
+                        padding: "3px",
                         width: "100%",
+                        backgroundColor: !activeCardTab ? "#ffc742d9" : "",
+                        color: !activeCardTab ? "#ffffff" : "#000000",
                       }}
                     >
                       <span
-                        style={{ fontSize: "12px", fontWeight: "bold" }}
+                        style={{ fontSize: "14px", fontWeight: "normal" }}
                         
                       >
                         HANDS
@@ -170,20 +117,22 @@ const Poker6Mobile = () => {
                     <span
                       style={{ fontSize: "18px", padding: "5px 0px 0px 0px" }}
                     >
-                      {" "}
-                      |{" "}
+                      {/* {" "}
+                      |{" "} */}
                     </span>
                     <div
                      onClick={() => setActiveCardTab(true)}
                       style={{
                         height: "100%",
-                        borderTop: activeCardTab ? "2px solid white" : "none",
-                        padding: "5px",
+                        borderTop: activeCardTab ? "1px solid white" : "none",
+                        padding: "3px",
                         width: "100%",
+                        backgroundColor: activeCardTab ? "#ffc742d9" : "",
+                        color: activeCardTab ? "#ffffff" : "#000000",
                       }}
                     >
                       <span
-                        style={{ fontSize: "12px", fontWeight: "bold" }}
+                        style={{ fontSize: "14px", fontWeight: "normal" }}
                        
                       >
                         PATTERN
@@ -197,7 +146,7 @@ const Poker6Mobile = () => {
                     <TiePairBox
                       handsData={dragonTigerDetail?.patternData}
                       data={dragonTigerDetail}
-                      width={"30%"}
+                      width={"50%"}
                       title={"pattern"}
                     />
                   </div>
@@ -206,7 +155,7 @@ const Poker6Mobile = () => {
                     <TiePairBox
                       handsData={dragonTigerDetail?.handsData}
                       data={dragonTigerDetail}
-                      width={"49%"}
+                      width={"100%"}
                       title={"hand"}
                       cards={dragonTigerDetail?.videoInfo}
                     />

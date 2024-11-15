@@ -57,20 +57,18 @@ const MenuCollapse: React.FC<{
         const competitionIndex = selectedMatchChildren.findIndex(
           (item: any) => item?.id === selectedCompetition
         );
-        selectedMatchChildren[competitionIndex].children = competitionDates?.map(
-          (item: any) => ({
+        selectedMatchChildren[competitionIndex].children =
+          competitionDates?.map((item: any) => ({
             name: moment.utc(item?.startdate).format("YYYY/MM/DD"),
             id: item?.startdate,
             type: "collapse",
             children: [],
-          })
-        );
+          }));
         setMenuItemList(tempList);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-    
   }, [competitionDates, selectedCompetition, selectedMatchIndex]);
 
   useEffect(() => {
@@ -95,14 +93,13 @@ const MenuCollapse: React.FC<{
                 ? "game-detail"
                 : "other-game-detail"
             }/${competitionMatches?.matchType}/${item?.id}`,
-            children: []
+            children: [],
           }));
         setMenuItemList(tempList);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-   
   }, [
     competitionMatches,
     selectedDate,
@@ -112,7 +109,14 @@ const MenuCollapse: React.FC<{
 
   return (
     <Accordion.Item className="accordion-item-collapse" eventKey="0">
-      <Accordion.Header className="accordion-header-collapse">
+      <Accordion.Header
+        className="accordion-header-collapse title-14"
+        style={{
+          backgroundColor: "#bbbbbb",
+          borderBottom: "1px solid #9e9e9e",
+          padding: "4px 2px",
+        }}
+      >
         {data?.name}
       </Accordion.Header>
       <Accordion.Body className="py-0">
@@ -211,9 +215,8 @@ const MenuGroup: React.FC<{
         setMenuItemList(tempList);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  
   }, [competitionList, selectedMatch]);
 
   return (
@@ -221,11 +224,11 @@ const MenuGroup: React.FC<{
       {data?.type === "item" || data?.type === "liveItem" ? (
         <MenuItemChild data={data} />
       ) : (
-        <Accordion.Item className="accordion-item-group" eventKey="0">
+        <Accordion.Item className="accordion-item-group  border-0" eventKey="0">
           <Accordion.Header className="accordion-header-group">
             {data?.name}
           </Accordion.Header>
-          <Accordion.Body className="p-0">
+          <Accordion.Body className="p-0 ">
             {data?.children?.map((sideBarChild: any) => (
               <Accordion
                 onSelect={(e: any) => {

@@ -21,6 +21,8 @@
     width: 100%;
     .paginationContainer {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         .page-item {
             .page-link {
                 background-color: $white;

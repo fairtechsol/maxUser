@@ -2,15 +2,9 @@ import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonButtonBox from "../CommonButtonBox";
-import { IoInformationCircle } from "react-icons/io5";
-import SmoothDropdownModal from "../minMaxModal";
-import { useState } from "react";
 
 const OddEven = ({ data, card, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -22,6 +16,8 @@ const OddEven = ({ data, card, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -36,20 +32,6 @@ const OddEven = ({ data, card, odds }: any) => {
       className="oddEvenContaine"
       style={{ background: "#EEEEEE", width: "32%" }}
     >
-         <div style={{ textAlign: "end" }}>
-            <span className="minmaxi">
-              <IoInformationCircle
-                color="#ffc742"
-                onClick={() => setModelOpen(!modelOpen)}
-              />
-              <SmoothDropdownModal
-                min={min}
-                max={max}
-                show={modelOpen}
-                setShow={() => setModelOpen(false)}
-              />
-            </span>
-          </div>
       {card ? (
         <>
           <div
@@ -91,14 +73,6 @@ const OddEven = ({ data, card, odds }: any) => {
               data={odds?.[1]}
             />
           </div>
-          {/* <div style={{ textAlign: "end" }}>
-            <span style={{ fontWeight: "bolder" }}>Min:</span>
-            <span>{min}</span>
-            <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>
-              Max:
-            </span>
-            <span>{max}</span>
-          </div> */}
         </>
       ) : (
         <>
@@ -141,14 +115,6 @@ const OddEven = ({ data, card, odds }: any) => {
               data={odds?.[1]}
             />
           </div>
-          {/* <div style={{ textAlign: "end" }}>
-            <span style={{ fontWeight: "bolder" }}>Min:</span>
-            <span>{min}</span>
-            <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>
-              Max:
-            </span>
-            <span>{max}</span>
-          </div> */}
         </>
       )}
     </div>

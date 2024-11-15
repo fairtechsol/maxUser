@@ -7606,6 +7606,9 @@ textarea.form-control-lg {
   width: 25% !important;
 }
 
+.w-40 {
+  width: 40% !important;
+}
 .w-50 {
   width: 50% !important;
 }
@@ -7669,6 +7672,9 @@ textarea.form-control-lg {
 }
 .br-0 {
   border-radius: 0px !important;
+}
+.br-5 {
+  border-radius: 5px !important;
 }
 .flex-fill {
   flex: 1 1 auto !important;
@@ -7943,7 +7949,9 @@ textarea.form-control-lg {
 .mt-0 {
   margin-top: 0 !important;
 }
-
+.mt05{
+  margin-top: 0.15rem !important;
+}
 .mt-1 {
   margin-top: 0.25rem !important;
 }
@@ -8373,7 +8381,9 @@ textarea.form-control-lg {
 .fw-bolder {
   font-weight: bolder !important;
 }
-
+.lh-05 {
+  line-height: 0.8 !important;
+}
 .lh-1 {
   line-height: 1 !important;
 }

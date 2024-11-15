@@ -24,14 +24,15 @@ const DesktopMyBet = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
   return (
     <RightPanelContainer title={"My Bet"}>
-      <div className="betList" style={{ maxHeight: "30vh", overflow: "auto" }}>
-        <Table className="w-full">
+      <div className="betList " style={{ maxHeight: "60vh", overflow: "auto" }}>
+        <Table className="w-full lh-1">
           <thead>
-            <tr className="bg-darkGrey">
+            <tr >
               {placeBetHeader?.map((item) => (
                 <th
+                style={{backgroundColor: "#f7f7f7"}}
                   key={item?.id}
-                  className="title-12 text-start f500 bg-darkGrey"
+                  className={`title-14 ${item?.id==="stake"?"text-end" :"text-start"} fbold lh-1`}
                 >
                   {item?.name}
                 </th>
@@ -39,13 +40,13 @@ const DesktopMyBet = () => {
             </tr>
           </thead>
           <tbody>
-            {placedBets?.length < 1 && (
+            {/* {placedBets?.length < 1 && (
               <tr>
-                <th colSpan={3} style={{ textAlign: "center" }}>
+                <th className="lh-1" colSpan={3} style={{ textAlign: "center" }}>
                   <span className="f400 title-14">No records Found</span>
-                </th>
+                </th> 
               </tr>
-            )}
+            )} */}
             {placedBets &&
               Array.from(new Set(placedBets))?.map((bet: any) => {
                 return (
@@ -74,7 +75,7 @@ const DesktopMyBet = () => {
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-12 text-end f500 ${
                         bet?.betType === "BACK" ? "bg-blue3" : "bg-red1"
                       }`}
                     >

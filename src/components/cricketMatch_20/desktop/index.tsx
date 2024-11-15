@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { crick20rules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
@@ -9,15 +9,15 @@ import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import RulesComponent from "../../commonComponent/rulesComponent";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import ScoreBox from "../mobile/scoreBox";
 import "./style.scss";
 import Teen20Result from "./teenCard";
-import ScoreBox from "../mobile/scoreBox";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import RulesComponent from "../../commonComponent/rulesComponent";
 const CricketMatch20Desktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -54,13 +54,6 @@ const CricketMatch20Desktop = () => {
     };
   }, []);
 
-  const rules = [
-    { label: "Pair (Double)", value: "1 To 1" },
-    { label: "Flush (Color)", value: "1 To 4" },
-    { label: "Straight (Rown)", value: "1 To 6" },
-    { label: "Trio (Teen)", value: "1 To 35" },
-    { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  ];
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type,
@@ -72,6 +65,8 @@ const CricketMatch20Desktop = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -189,7 +184,7 @@ const CricketMatch20Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div style={{}}>
                 <div className="teenPatti-table-container">
@@ -297,7 +292,7 @@ const CricketMatch20Desktop = () => {
             )}
           </div>
         </Col>
-        <Col md={4} className="ps-0">
+        <Col md={4} className="p-0">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
@@ -307,14 +302,14 @@ const CricketMatch20Desktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
 
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
+              <Col className="p-1 pt-0">
                 <RulesComponent />
                 <RulesModal show={show} setShow={setShow} rule={crick20rules} />
               </Col>

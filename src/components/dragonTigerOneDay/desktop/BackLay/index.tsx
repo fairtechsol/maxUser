@@ -1,16 +1,12 @@
-import { useState } from "react";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import isMobile from "../../../../utils/screenDimension";
-import SmoothDropdownModal from "../minMaxModal";
+import { isMobile } from "../../../../utils/screenDimension";
 
 const BackLay = ({ matchOddsData, data }: any) => {
+
+
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = matchOddsData?.[0]?.min;
-  const max = matchOddsData?.[0]?.max;
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type === "back" ? "BACK" : "LAY",
@@ -22,6 +18,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -31,7 +29,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     );
   };
   const handleLock = (status: any, value: any) => {
-    if (status != "ACTIVE" || value === "0.00") {
+    if (status != "ACTIVE") {
       return true;
     } else {
       return false;
@@ -39,9 +37,10 @@ const BackLay = ({ matchOddsData, data }: any) => {
   };
   const renderItem = (item: any, _: number, type: any) =>
     type === "back" ? (
+      
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+          handleLock(item?.gstatus, item?.b1) ? "suspended-1day" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.b1) && handleBet(item, "back")
@@ -52,7 +51,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
     ) : (
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
+          handleLock(item?.gstatus, item?.l1) ? "suspended-1day" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.l1) && handleBet(item, "lay")
@@ -61,8 +60,9 @@ const BackLay = ({ matchOddsData, data }: any) => {
         {item?.l1}
       </div>
     );
+    
   return (
-    <div className="w-100">
+    <div className="w-100 bg-grey">
       <div
         style={{
           width: "100%",
@@ -74,32 +74,11 @@ const BackLay = ({ matchOddsData, data }: any) => {
         }}
       >
         <div
-          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          className={isMobile ? "row-flex-mobile " : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle">
-            {isMobile ? (
-              <>
-                <span style={{ fontWeight: "400" }}>
-                  Min:{min} Max:{max}
-                </span>
-              </>
-            ) : (
-              <div style={{ width: "45%", textAlign: "start" }}>
-                <span className="minmaxi">
-                  <IoInformationCircle
-                    color="#ffc742"
-                    onClick={() => setModelOpen(!modelOpen)}
-                  />
-                  <SmoothDropdownModal
-                    min={min}
-                    max={max}
-                    show={modelOpen}
-                    setShow={() => setModelOpen(false)}
-                  />
-                </span>
-              </div>
-            )}
+          <div className="dtlTitle" style={{background:"#F2F2F2"}}>
+           
           </div>
           <div className="dtlsubTitle back-BackGround">Back</div>
           <div className="dtlsubTitle lay-BackGround">Lay</div>
@@ -115,9 +94,11 @@ const BackLay = ({ matchOddsData, data }: any) => {
               flexDirection: "column",
               alignItems: "flex-start",
               lineHeight: 1,
+              height: "40px" ,
+              background:"#F2F2F2"
             }}
           >
-            <span>Dragon</span>
+            <span >Dragon</span>
             <span
               className={`f400 title-14 ${
                 data?.profitLoss
@@ -150,7 +131,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                         `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
                       ]
                     )["dragon"]
-                  : 0
+                  : <br></br>
                 : 0}
             </span>
           </div>
@@ -168,6 +149,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
               flexDirection: "column",
               alignItems: "flex-start",
               lineHeight: 1,
+              background:"#F2F2F2"
             }}
           >
             <span>Tiger</span>
@@ -203,7 +185,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                         `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
                       ]
                     )["tiger"]
-                  : 0
+                  : <br></br>
                 : 0}
             </span>
           </div>

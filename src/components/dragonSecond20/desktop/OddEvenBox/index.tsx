@@ -5,8 +5,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const OddEven = ({ name, data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -18,6 +16,8 @@ const OddEven = ({ name, data, odds }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -30,7 +30,7 @@ const OddEven = ({ name, data, odds }: any) => {
     <>
       <div className="oddEvenContainer">
         <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "1.5rem" }}>{name}</span>
+          <span style={{ fontSize: "20px",fontWeight:"bold" }}>{name}</span>
         </div>
         <div
           style={{
@@ -49,7 +49,7 @@ const OddEven = ({ name, data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[0]?.gstatus === "0" ? true : false}
             data={odds?.[0]}
@@ -64,17 +64,11 @@ const OddEven = ({ name, data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[1]?.gstatus === "0" ? true : false}
             data={odds?.[1]}
           />
-        </div>
-        <div style={{ textAlign: "end" }}>
-          <span style={{ fontWeight: "bolder" }}>Min:</span>
-          <span>{min}</span>
-          <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-          <span>{max}</span>
         </div>
         <div
           style={{
@@ -93,7 +87,7 @@ const OddEven = ({ name, data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[2]?.gstatus === "0" ? true : false}
             data={odds?.[2]}
@@ -108,17 +102,11 @@ const OddEven = ({ name, data, odds }: any) => {
                   ]
                 : 0
             }
-            width={"40%"}
+            width={"45%"}
             handleBet={handleBet}
             lock={odds?.[3]?.gstatus === "0" ? true : false}
             data={odds?.[3]}
           />
-        </div>
-        <div style={{ textAlign: "end" }}>
-          <span style={{ fontWeight: "bolder" }}>Min:</span>
-          <span>{min}</span>
-          <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-          <span>{max}</span>
         </div>
       </div>
     </>

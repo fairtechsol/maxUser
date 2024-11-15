@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -9,8 +9,10 @@ import {
 import {
   // getMatchList,
   matchDetailAction,
+  matchDetailReset,
   resetMarketId,
   selectedBetAction,
+  updateMatchDetailFromMatchList,
   updateMatchRates,
 } from "../../store/actions/match/matchListAction";
 import {
@@ -31,10 +33,11 @@ import {
   updateTeamRatesOnDeleteMatch,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+// import { isMobile } from "../../utils/screenDimension";
 import DesktopGameDetail from "./desktop";
 import MobileGameDetail from "./mobile";
 import {
+  betPlacedReset,
   getPlacedBets,
   resetRunAmount,
   resetRunAmountModal,
@@ -43,10 +46,26 @@ import {
 
 const GameDetails = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { success } = useSelector((state: RootState) => state.match.matchList);
   const navigate = useNavigate();
   const { id } = useParams();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1199);
+  const { matchList } = useSelector(
+    (state: RootState) => state.match.matchList
+  );
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1199);
+    };
+
+    // Add event listener to update isMobile on window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   useEffect(() => {
     dispatch(getButtonValue());
   }, [dispatch]);
@@ -88,6 +107,7 @@ const GameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
+        dispatch(getProfileInMatchDetail());
         if (
           event?.gameType === "cricket" ||
           event?.betType === "quickbookmaker1"
@@ -216,6 +236,12 @@ const GameDetails = () => {
   useEffect(() => {
     try {
       if (id) {
+        const findMatchInList = matchList?.filter(
+          (item: any) => item?.id === id
+        );
+        if (findMatchInList) {
+          dispatch(updateMatchDetailFromMatchList(findMatchInList));
+        }
         dispatch(selectedBetAction(null));
         dispatch(matchDetailAction(id));
         dispatch(getPlacedBets(id));
@@ -227,7 +253,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     try {
-      if (success && socket) {
+      if (socket) {
         expertSocketService.match.getMatchRatesOff(id);
         socketService.userBalance.userSessionBetPlacedOff();
         socketService.userBalance.userMatchBetPlacedOff();
@@ -257,7 +283,7 @@ const GameDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [success, socket, id]);
+  }, [socket, id]);
 
   useEffect(() => {
     try {
@@ -286,6 +312,8 @@ const GameDetails = () => {
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
         dispatch(resetMarketId());
+        dispatch(matchDetailReset());
+        dispatch(betPlacedReset());
       };
     } catch (e) {
       console.log(e);
@@ -297,7 +325,10 @@ const GameDetails = () => {
       if (document.visibilityState === "visible") {
         if (id) {
           dispatch(selectedBetAction(null));
-          dispatch(matchDetailAction(id));
+          // dispatch(matchDetailAction(id));
+          dispatch(getPlacedBets(id));
+          expertSocketService.match.joinMatchRoom(id, "user");
+          expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         }
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);
@@ -309,7 +340,7 @@ const GameDetails = () => {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, [id]);
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };

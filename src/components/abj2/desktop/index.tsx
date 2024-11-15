@@ -16,8 +16,8 @@ import SBetBox from "./Sbox";
 import Abj2Result from "./abj2Card";
 import "./style.scss";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Abj2Desktop = () => {
   const [show, setShow] = useState(false);
@@ -130,12 +130,16 @@ const Abj2Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div
                   className="row-flex"
-                  style={{ width: "100%", marginLeft: "5px" }}
+                  style={{
+                    width: "100%",
+                    marginLeft: "5px",
+                    border: "1px solid #c7c8ca",
+                  }}
                 >
                   <SBetBox
                     type={"A"}
@@ -155,6 +159,7 @@ const Abj2Desktop = () => {
                     display: "flex",
                     flexDirection: "row",
                     gap: "8px",
+                    border: "1px solid #c7c8ca",
                   }}
                 >
                   <OddEven
@@ -175,6 +180,7 @@ const Abj2Desktop = () => {
                     display: "flex",
                     flexDirection: "row",
                     gap: "8px",
+                    border: "1px solid #c7c8ca",
                   }}
                 >
                   <CardBox
@@ -192,10 +198,10 @@ const Abj2Desktop = () => {
                 </div>
               </div>
             )}
-            <RulesModal show={show} setShow={setShow} rule={abjrules} />
+            <RulesModal show={show} setShow={setShow} rule={abjrules} gameType="abj2" type="imageWithContent" />
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

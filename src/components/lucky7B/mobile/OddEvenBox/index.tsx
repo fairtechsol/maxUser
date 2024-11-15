@@ -5,8 +5,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const OddEven = ({ card, odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet=(item:any)=>{
     let team ={
       "bettingType": "BACK",
@@ -17,7 +15,9 @@ const OddEven = ({ card, odds, data }: any) => {
       "betOnTeam":item?.nation,
       "name":item?.nation,
       "bettingName": "Match odds",
-      "selectionId": item?.sid
+      "selectionId": item?.sid,
+      "min":item?.min,
+      "max":item?.max
     }
     dispatch(
       selectedBetAction({
@@ -31,8 +31,8 @@ const OddEven = ({ card, odds, data }: any) => {
       <div className="oddEvenContainerlucky">
         {card ? <> <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <CommonButtonBox
-            value1={odds?.[0]?.rate}
-            value2={"EVEN"}
+            value1={odds?.[0]?.rate || 0}
+            value2={"Even"}
             value3={data?.profitLoss
               ? data?.profitLoss[
                   `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
@@ -44,8 +44,8 @@ const OddEven = ({ card, odds, data }: any) => {
             data={odds?.[0]}
           />
           <CommonButtonBox
-            value1={odds?.[1]?.rate}
-            value2={"ODD"}
+            value1={odds?.[1]?.rate || 0}
+            value2={"Odd"}
             value3={data?.profitLoss
               ? data?.profitLoss[
                   `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
@@ -57,14 +57,9 @@ const OddEven = ({ card, odds, data }: any) => {
             data={odds?.[1]}
           />
         </div>
-        <div style={{ textAlign: "end" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div></>:<><div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+       </>:<><div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
           <CommonButtonBox
-            value1={odds?.[0]?.rate}
+            value1={odds?.[0]?.rate || 0}
             value2={"icon1"}
             value3={data?.profitLoss
               ? data?.profitLoss[
@@ -77,7 +72,7 @@ const OddEven = ({ card, odds, data }: any) => {
             data={odds?.[0]}
           />
           <CommonButtonBox
-            value1={odds?.[1]?.rate}
+            value1={odds?.[1]?.rate || 0}
             value2={"icon2"}
             value3={data?.profitLoss
               ? data?.profitLoss[
@@ -90,12 +85,7 @@ const OddEven = ({ card, odds, data }: any) => {
             data={odds?.[1]}
           />
         </div>
-        <div style={{ textAlign: "end" }}>
-        <span style={{ fontWeight: "bolder" }}>Min:</span>
-        <span>{min}</span>
-        <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-        <span>{max}</span>
-      </div></>}
+      </>}
        
       
       </div>

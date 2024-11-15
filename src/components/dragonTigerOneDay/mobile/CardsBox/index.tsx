@@ -1,17 +1,13 @@
-import { useState } from "react";
 import { BiSolidHeart } from "react-icons/bi";
 import { GiSpades } from "react-icons/gi";
 import { ImClubs, ImDiamonds } from "react-icons/im";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import isMobile from "../../../../utils/screenDimension";
-import SmoothDropdownModal from "../minMaxModal";
+import { isMobile } from "../../../../utils/screenDimension";
 
 const CardBox = ({ dragonData, tigerData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -23,6 +19,8 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -41,7 +39,7 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
   const renderItem = (item: any) => (
     <div
       className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+        handleLock(item?.gstatus, item?.b1) ? "suspended-1day" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -66,8 +64,8 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
-          : 0}
+            : ""
+          : ""}
       </span>
     </div>
   );
@@ -84,11 +82,13 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
         }}
       >
         <div
-          className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
+          className={
+            isMobile ? "row-flex-mobile p-0" : "w-100 d-sm-flex flex-row"
+          }
         >
-          <div className="dtlTitle">
+          <div className="dtlTitlee" style={{ background: "#F2F2F2" }}>
             {" "}
-            <div style={{ width: "30%", textAlign: "start" }}>
+            {/* <div style={{ width: "20%", textAlign: "start" }}>
               <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
@@ -101,34 +101,63 @@ const CardBox = ({ dragonData, tigerData, data }: any) => {
                   setShow={() => setModelOpen(false)}
                 />
               </span>
-            </div>
+            </div> */}
           </div>
-          <div className="dtlsubTitle">
+          <div
+            className="dtlsubTitle"
+            style={{
+              borderLeft: "0.1px solid #c7c8ca",
+              marginRight: "0.1px",
+              backgroundColor: "#f2f2f2",
+            }}
+          >
             <GiSpades color="#000000" />
           </div>
-          <div className="dtlsubTitle">
+          <div
+            className="dtlsubTitle"
+            style={{
+              backgroundColor: "#f2f2f2",
+            }}
+          >
             <BiSolidHeart color="#ff0000" />
           </div>
-          <div className="dtlsubTitle">
+          <div
+            className="dtlsubTitle"
+            style={{
+              backgroundColor: "#f2f2f2",
+            }}
+          >
             <ImClubs color="#000000" />
           </div>
-          <div className="dtlsubTitle">
+          <div
+            className="dtlsubTitle"
+            style={{
+              backgroundColor: "#f2f2f2",
+            }}
+          >
             <ImDiamonds color="#ff0000" />
           </div>
         </div>
         <div
+          style={{ height: "42px", background: "#F2F2F2" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitle">Dragon </div>
+          <div className="dtlTitlee" style={{ background: "#F2F2F2" }}>
+            Dragon{" "}
+          </div>
           {renderItem(dragonData?.[4])}
           {renderItem(dragonData?.[5])}
           {renderItem(dragonData?.[7])}
           {renderItem(dragonData?.[6])}
         </div>
         <div
+          style={{ height: "42px" }}
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
         >
-          <div className="dtlTitle"> Tiger</div>
+          <div className="dtlTitlee" style={{ background: "#F2F2F2" }}>
+            {" "}
+            Tiger
+          </div>
           {renderItem(tigerData?.[4])}
           {renderItem(tigerData?.[5])}
           {renderItem(tigerData?.[7])}

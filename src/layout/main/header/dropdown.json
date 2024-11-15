@@ -1,40 +1,32 @@
 [
-  { "id": "home", "name": "Home", "link": "/home", "type": "mobile" },
   {
     "id": "accountStatement",
     "name": "Account Statement",
     "link": "/account-statement",
-    "type": "any"
-  },
-  {
-    "id": "profitLossReport",
-    "name": "Profit Loss Report",
-    "link": "/profit-loss",
-    "type": "any"
-  },
-  {
-    "id": "betHistory",
-    "name": "Bet History",
-    "link": "/bet-history",
-    "type": "any"
+    "type": "any",
+    "showDemo": true
   },
   {
     "id": "unsettledBet",
-    "name": "Unsettled Bet",
+    "name": "Current Bet",
     "link": "/unsettled-bet",
-    "type": "any"
+    "type": "any",
+    "showDemo": true
   },
   {
     "id": "casinoReportHistory",
-    "name": "Casino Report History",
+    "name": "Casino Results",
     "link": "/casino-report",
-    "type": "any"
+    "type": "any",
+    "showDemo": true
   },
   {
     "id": "setButtonValues",
     "name": "Set Button Values",
-    "link": "/change-btn-value",
-    "type": "any"
+    "link": "",
+    "type": "any",
+    "isModal": true,
+    "showDemo": true
   },
   {
     "id": "securityAuthVerification",
@@ -49,28 +41,26 @@
     "type": "any"
   },
   {
-    "id": "contactAdmin",
-    "name": "Contact Admin",
-    "link": "/contact-admin",
-    "type": "any"
+    "id": "rules",
+    "name": "Rules",
+    "type": "mobile",
+    "link": "/rules",
+    "showDemo": true
   },
   {
     "id": "balance",
     "name": "Balance",
     "isChecked": true,
-    "type": "mobile"
+    "type": "mobile",
+    "showDemo": true,
+    "onClick": true
   },
   {
     "id": "exposure",
     "name": "Exposure",
     "isChecked": true,
-    "type": "mobile"
-  },
-  {
-    "id": "rules",
-    "name": "Rules",
     "type": "mobile",
-    "link": "/rules",
+    "showDemo": true,
     "onClick": true
   }
 ]

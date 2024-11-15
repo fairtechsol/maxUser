@@ -1,16 +1,9 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import SmoothDropdownModal from "../minMaxModal";
-import { useState } from "react";
-import { IoInformationCircle } from "react-icons/io5";
-import isMobile from "../../../../utils/screenDimension";
+import { AppDispatch } from "../../../../store/store";
 
 const TotalCards = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -22,6 +15,8 @@ const TotalCards = ({ data, odds }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -37,7 +32,7 @@ const TotalCards = ({ data, odds }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number) => (
+  const renderItem = (item: any) => (
     <div
       className={`card32bsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
@@ -64,31 +59,9 @@ const TotalCards = ({ data, odds }: any) => {
           style={{ height: "30px", display: "flex" }}
         >
           <div className="dtlTitle">
-            {isMobile ? (
-              <>
-                <span style={{ fontWeight: "400" }}>
-                  Min:{min} Max:{max}
-                </span>
-              </>
-            ) : (
-              <div style={{ width: "45%", textAlign: "start" }}>
-                <span className="minmaxi">
-                  <IoInformationCircle
-                    color="#ffc742"
-                    onClick={() => setModelOpen(!modelOpen)}
-                  />
-                  <SmoothDropdownModal
-                    min={min}
-                    max={max}
-                    show={modelOpen}
-                    setShow={() => setModelOpen(false)}
-                  />
-                </span>
-              </div>
-            )}
           </div>
           <div className="card32bsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Back</span>
+            <span style={{ fontSize: "12px" }}>Back</span>
           </div>
         </div>
         <div
@@ -97,7 +70,7 @@ const TotalCards = ({ data, odds }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>8 & 9 Total</span>
+              <span className="title-12">8 & 9 Total</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -124,12 +97,12 @@ const TotalCards = ({ data, odds }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
           </span>
-          {renderItem(odds?.[0], 0)}
+          {renderItem(odds?.[0])}
         </div>
         <div
           className="w-100 d-sm-flex flex-row"
@@ -137,7 +110,7 @@ const TotalCards = ({ data, odds }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>10 & 11 Total</span>
+              <span className="title-12">10 & 11 Total</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -164,12 +137,12 @@ const TotalCards = ({ data, odds }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
           </span>
-          {renderItem(odds?.[1], 1)}
+          {renderItem(odds?.[1])}
         </div>
       </div>
     </div>

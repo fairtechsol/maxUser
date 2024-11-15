@@ -1,5 +1,5 @@
 import React from "react";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import CustomInput from "../../input";
 
 interface RowPerPageProps {
@@ -28,7 +28,7 @@ const RowPerPage: React.FC<RowPerPageProps> = ({ value, onChange }) => {
 
   return (
     <div
-      className={`d-flex align-items-center ${isMobile ?"title-12 flex-column":"gap-2 "}`}
+      className={`d-flex align-items-center ${isMobile ?"title-12 flex-row gap-2 ":"gap-2 "}`}
     >
       <label>Show</label>
       {/* Dropdown for selecting items per page */}
@@ -41,7 +41,7 @@ const RowPerPage: React.FC<RowPerPageProps> = ({ value, onChange }) => {
         isUnderlinedInput={isMobile}
         inputClass={"py-1"}
       />
-      <label>entries</label>
+      <label>Entries</label>
     </div>
   );
 };

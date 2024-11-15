@@ -2,36 +2,35 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules, warrules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
-import CasinoWarResult from "./teenCard";
-import { HandleCards } from "../../commonComponent/cardsComponent";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-import LowCards from "./Low";
 import HighCards from "./High";
-
+import LowCards from "./Low";
+import Meter from "./meter";
+import "./style.scss";
 const CasinoMeterDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
   const placeBetRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [show, setShow] = useState(false);
+  const [modalType, setModalType] = useState("imageWithContent");
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState("");
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  //const { playerA, playerB } = dragonTigerDetail;
+
+  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -52,32 +51,6 @@ const CasinoMeterDesktop = () => {
     };
   }, []);
 
-  // const rules = [
-  //   { label: "Pair (Double)", value: "1 To 1" },
-  //   { label: "Flush (Color)", value: "1 To 4" },
-  //   { label: "Straight (Rown)", value: "1 To 6" },
-  //   { label: "Trio (Teen)", value: "1 To 35" },
-  //   { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  // ];
-  const handleBet = (item: any) => {
-    let team = {
-      bettingType: "BACK",
-      matchId: dragonTigerDetail?.id,
-      odd: item?.b1,
-      stake: 0,
-      matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
-      bettingName: "Match odds",
-      selectionId: item?.sid,
-    };
-    dispatch(
-      selectedBetAction({
-        team,
-        dragonTigerDetail,
-      })
-    );
-  };
 
   useEffect(() => {
     const resetTimer = () => {
@@ -114,11 +87,16 @@ const CasinoMeterDesktop = () => {
   useEffect(() => {
     if (
       dragonTigerDetail?.players?.[0]?.[0]?.gstatus === "0" ||
-      dragonTigerDetail?.players?.[0]?.[0]?.b1 ==="0.00"
+      dragonTigerDetail?.players?.[0]?.[0]?.b1 === "0.00"
     ) {
       dispatch(selectedBetAction(""));
     }
-  }, [dragonTigerDetail?.players?.[0]?.[0]?.gstatus, dragonTigerDetail?.players?.[0]?.[0]?.b1]);
+  }, [
+    dragonTigerDetail?.players?.[0]?.[0]?.gstatus,
+    dragonTigerDetail?.players?.[0]?.[0]?.b1,
+  ]);
+
+  
   return (
     <>
       <Row>
@@ -139,16 +117,14 @@ const CasinoMeterDesktop = () => {
                     onClick={() => setShow(true)}
                   >
                     {" "}
-                    RULES
+                    Rules
                   </span>
                 </div>
                 <span>
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
-                      )}|Min: ${
-                        dragonTigerDetail?.players?.[0]?.[0]?.min ?? 0
-                      }|Max: ${dragonTigerDetail?.players?.[0]?.[0]?.max ?? 0}`
+                      )}`
                     : ""}
                 </span>
               </div>
@@ -161,33 +137,75 @@ const CasinoMeterDesktop = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={
-                    <CasinoWarResult data={dragonTigerDetail?.videoInfo} />
-                  }
+                  result={""}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
-                <div style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"space-around",gap:"10px",paddingTop:"10px"}}>
-                  <LowCards odds={dragonTigerDetail.low} data={dragonTigerDetail}/>
-                  <HighCards  odds={dragonTigerDetail.high} data={dragonTigerDetail}/>
+                {dragonTigerDetail?.videoInfo?.cards?.split(",")[0] !== "1" && (
+                  <Meter
+                    data={dragonTigerDetail?.videoInfo?.cards}
+                    runPosition={
+                      dragonTigerDetail?.videoInfo?.mid ==
+                      placedBets?.[0]?.runnerId
+                        ? placedBets?.[0]?.teamName == "Low"
+                          ? "Low"
+                          : "High"
+                        : ""
+                    }
+                  />
+                )}
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    gap: "10px",
+                    paddingTop: "10px",
+                  }}
+                >
+                  <LowCards
+                    odds={dragonTigerDetail.low}
+                    data={dragonTigerDetail}
+                    placedLow={
+                      dragonTigerDetail?.videoInfo?.mid ==
+                      placedBets?.[0]?.runnerId
+                        ? placedBets?.[0]?.teamName == "Low"
+                          ? true
+                          : false
+                        : true
+                    }
+                  />
+                  <HighCards
+                    odds={dragonTigerDetail.high}
+                    data={dragonTigerDetail}
+                    placedHigh={
+                      dragonTigerDetail?.videoInfo?.mid ==
+                      placedBets?.[0]?.runnerId
+                        ? placedBets?.[0]?.teamName == "High"
+                          ? true
+                          : false
+                        : true
+                    }
+                  />
                 </div>
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R", "R", "R"]}
-                    type={"war"}
+                    name={["R", "R"]}
+                    type={"cmeter"}
                   />
                 </div>
               </div>
             )}
           </div>
         </Col>
-        <Col md={4} className="ps-0">
+        <Col md={4} className="p-0">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
@@ -197,14 +215,14 @@ const CasinoMeterDesktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
               <Col>
-                <RulesModal  show={show} setShow={setShow} rule={warrules} />
+              <RulesModal show={show} setShow={setShow} type={modalType} gameType="cmeter"/>
               </Col>
             </Row>
           </Container>

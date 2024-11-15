@@ -2,6 +2,9 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
+import { formatNumber } from "../../../../helpers";
+import { isMobile } from "../../../../utils/screenDimension";
+import "../style.scss"
 const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet = (item: any, type: any) => {
@@ -15,6 +18,8 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: (item?.sid).toString(),
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -24,7 +29,8 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
     );
   };
   const handleLock = (status: any, value: any) => {
-    if (status != "ACTIVE" || value === "0.00") {
+    console.log(status,'first',value)
+    if (status != "ACTIVE" || value === 0) {
       return true;
     } else {
       return false;
@@ -34,7 +40,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   const team2 = matchOddsData?.[1];
 
   useEffect(() => {
-    if (team1?.gstatus !== "ACTIVE" || team1?.b1 === "0.00") {
+    if (team1?.gstatus !== "ACTIVE" || team1?.b1 === 0) {
       dispatch(selectedBetAction(""));
     }
   }, [team1?.gstatus, team1?.b1]);
@@ -42,33 +48,30 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div className="marketHeader">
-        <span className="f400" style={{ color: "#000" }}>
+        <span className="f400" style={{ color: "#ffffff" }}>
           {title}
         </span>
       </div>
-      <div className="boxContainer">
-        <span className="f600" style={{ fontSize: "12px", color: "#097c93" }}>
-          Min: {min} Max: {max}
+      <div className="boxContainer" style={{ lineHeight: "2" }}>
+        <span
+          className="f600"
+          style={{ fontSize: "12px", color: "#097c93", lineHeight: "2" }}
+        >
+          Min: {min} Max: {formatNumber(max)}
         </span>
-        <div className="blboxes">
-          <div
-            className="w-50 back-BackGround flex-justify-center"
-            style={{ height: "20px" }}
-          >
+        <div className={isMobile ? "box-mob" : "blboxessp1 "} style={{ lineHeight: "2" }}>
+          <div className="w-50 back-BackGround flex-justify-center">
             <span
               className="f600"
-              style={{ fontSize: "14px", color: "#000", textAlign: "center" }}
+              style={{ fontSize: "16px", color: "#333333", textAlign: "center" }}
             >
               Back
             </span>
           </div>
-          <div
-            className="w-50 lay-BackGround flex-justify-center"
-            style={{ height: "20px" }}
-          >
+          <div className="w-50 lay-BackGround flex-justify-center">
             <span
               className="f600"
-              style={{ fontSize: "14px", color: "#000", textAlign: "center" }}
+              style={{ fontSize: "16px", color: "#333333", textAlign: "center" }}
             >
               Lay
             </span>
@@ -110,15 +113,16 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                         `${data?.videoInfo?.mid}_${team1?.sid}_card`
                       ]
                     )["eng"]
-                  : 0
-                : 0}
+                  : ""
+                : ""}
             </span>
           </div>
         </span>
         <div
-          className={`blboxes  ${
-            handleLock(team1?.status, team1?.b1) ? "suspended-row" : ""
-          }`}
+        className={`
+          ${isMobile ? "box-mob" : "blboxessp1"} 
+          ${handleLock(team1?.status, team1?.b1) ? " suspended-row1" : ""}
+        `}
           data-title={handleLock(team1?.status, team1?.b1) ? "SUSPENDED" : ""}
         >
           <div
@@ -131,7 +135,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             }
           >
             <span className="f600 rateText lh-1">
-              {team1?.b1 === "0.00" ? "-" : team1?.b1}
+              {team1?.b1 === 0 ? "-" : team1?.b1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team1?.bs1}
@@ -147,7 +151,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             }
           >
             <span className="f600 rateText lh-1">
-              {team1?.l1 === "0.00" ? "-" : team1?.l1}
+              {team1?.l1 === 0 ? "-" : team1?.l1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team1?.ls1}
@@ -190,16 +194,17 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
                         `${data?.videoInfo?.mid}_${team1?.sid}_card`
                       ]
                     )["rsa"]
-                  : 0
-                : 0}
+                  : ""
+                : ""}
             </span>
           </div>
         </span>
         <div
-          className={`blboxes ${
-            handleLock(team2?.status, team2?.b1) ? "suspended-row" : ""
-          }`}
-          data-title={handleLock(team2?.status, team2?.b1) ? "SUSPENDED" : ""}
+       className={`
+        ${isMobile ? "box-mob" : "blboxessp2"} 
+        ${handleLock(team2?.status, team2?.b1) ? " suspended-row2" : ""}
+      `}
+          data-title2={handleLock(team2?.status, team2?.b1) ? "SUSPENDED" : ""}
         >
           <div
             className={`w-50 back-BackGround flex-justify-center cursor-pointer`}
@@ -211,7 +216,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             }
           >
             <span className="f600 rateText">
-              {team2?.b1 === "0.00" ? "-" : team2?.b1}
+              {team2?.b1 === 0 ? "-" : team2?.b1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team2?.bs1}
@@ -227,7 +232,7 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
             }
           >
             <span className="f600 rateText">
-              {team2?.l1 === "0.00" ? "-" : team2?.l1}
+              {team2?.l1 === 0 ? "-" : team2?.l1}
             </span>{" "}
             <span style={{ fontSize: "11px", fontWeight: "300" }}>
               {team2?.ls1}

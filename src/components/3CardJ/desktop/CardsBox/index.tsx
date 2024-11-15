@@ -5,7 +5,7 @@ import CommonCardImg from "../CommonCardImg";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
 
-const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
+const CardBox = ({ title, odds, data, cards, bgColor, betType }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
@@ -13,7 +13,7 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
   const [nat, setNat] = useState("");
   const handleBet = () => {
     let team = {
-      bettingType: "BACK",
+      bettingType: betType,
       matchId: data?.id,
       odd: odds?.rate,
       stake: 0,
@@ -22,6 +22,9 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
       name: title + " " + nat,
       bettingName: "Match odds",
       selectionId: odds?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max,
+      isActive: nat.length==3?true:false
     };
     if (nat !== "") {
       dispatch(
@@ -114,15 +117,19 @@ const CardBox = ({ title, odds, data, cards, bgColor }: any) => {
                 : ""
             }`}
           >
-            {data?.profitLoss
-              ? data?.profitLoss[
+            {data?.profitLoss ? (
+              data?.profitLoss[
+                `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
+              ] ? (
+                data?.profitLoss[
                   `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
                 ]
-                ? data?.profitLoss[
-                    `${data?.videoInfo?.mid}_${title === "Yes" ? 1 : 2}_card`
-                  ]
-                : 0
-              : 0}
+              ) : (
+                <br></br>
+              )
+            ) : (
+              0
+            )}
           </span>
         </div>
         <div

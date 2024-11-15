@@ -17,10 +17,12 @@ const TeenPattiTableRow = ({
           width: "40%",
           height: "60px",
           padding: "10px",
-          border: "0.1px solid #fff",
+          borderBottom: "0.1px solid #c7c8ca",
+          borderLeft: "0.1px solid #c7c8ca",
           display: "flex",
           alignItems: "center",
           gap: "4px",
+          background:"#f2f2f2"
         }}
       >
         <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
@@ -35,7 +37,6 @@ const TeenPattiTableRow = ({
         />
       </div>
       <div
-        className={player.gstatus === "0" ? "suspended" : ""}
         style={{
           width: "60%",
           backgroundColor: "#72bbef",
@@ -44,13 +45,13 @@ const TeenPattiTableRow = ({
         }}
       >
         <div
-          className="teenPatti-table-item"
+         className={player.gstatus === "0" ? "teenPatti-table-itemo suspended" : "teenPatti-table-itemo"}
           style={{ width: "50%" }}
           onClick={() => (player.gstatus === "0" ? null : handleBet(player))}
         >
-          <span className="f12-b">{player.rate}</span>
+          <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>{player.rate}</span>
           <span
-            className={`f10-b ${"profit-loss-class"} ${
+            className={`title-12 ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss
                 ? dragonTigerDetail?.profitLoss[
                     `${dragonTigerDetail?.videoInfo?.mid}_${player?.sid}_card`
@@ -80,19 +81,15 @@ const TeenPattiTableRow = ({
               : 0}
           </span>
         </div>
-        <div
-          className={`teenPatti-table-item ${
-            //pairPlus.gstatus === "0" ? "suspended" :
-            ""
-          }`}
+        <div className={player.gstatus === "0" ? "teenPatti-table-itemo suspended " : "teenPatti-table-itemo"}
           style={{ width: "50%" }}
           onClick={() =>
             pairPlus.gstatus === "0" ? null : handleBet(pairPlus)
           }
         >
-          <span className="f12-b">{pairPlus.nation}</span>
+          <span className={player.gstatus === "0" ? "f12-b mb-4" : "f12-b"}>{pairPlus.nation}</span>
           <span
-            className={`f10-b ${"profit-loss-class"} ${
+            className={`title-12 ${"profit-loss-class"} ${
               dragonTigerDetail?.profitLoss
                 ? dragonTigerDetail?.profitLoss[
                     `${dragonTigerDetail?.videoInfo?.mid}_${pairPlus?.sid}_card`

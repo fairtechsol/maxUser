@@ -7,6 +7,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCardRace20Rates,
@@ -15,7 +16,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -65,11 +66,6 @@ const Race20 = () => {
         socketService.card.getCardRatesOff(cardGamesType.race20);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.race20);
-        socketService.card.getCardRates(
-          cardGamesType.race20,
-          setMatchRatesInRedux
-        );
         socketService.card.getLiveGameResultTop10(
           cardGamesType.race20,
           handleLiveGameResultTop10
@@ -77,6 +73,11 @@ const Race20 = () => {
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.race20);
+      socketService.card.getCardRates(
+        cardGamesType.race20,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -84,8 +85,9 @@ const Race20 = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.race20));
+      dispatch(getDragonTigerDetail(cardGamesType.race20));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.race20);
         socketService.card.getCardRatesOff(cardGamesType.race20);
@@ -104,7 +106,13 @@ const Race20 = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.race20));
+     
+        // dispatch(getDragonTigerDetailHorseRacing(cardGamesType.race20));
+        socketService.card.joinMatchRoom(cardGamesType.race20);
+        socketService.card.getCardRates(
+          cardGamesType.race20,
+          setMatchRatesInRedux
+        );
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
         socketService.card.leaveMatchRoom(cardGamesType.race20);

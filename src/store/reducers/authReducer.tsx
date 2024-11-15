@@ -3,6 +3,7 @@ import {
   authReset,
   checkOldPassword,
   login,
+  loginWithDemo,
   rulesModalShowFalse,
   rulesModalShowTrue,
 } from "../actions/authAction";
@@ -10,9 +11,11 @@ import {
 const initialState = {
   success: false,
   loading: false,
+  loadingDemo: false,
   forceChangePassword: false,
   rulesPopShow: false,
   oldPasswordMatched: false,
+  demoDetails: null,
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
@@ -28,6 +31,17 @@ export const authReducer = createReducer(initialState, (builder) => {
     .addCase(login.rejected, (state) => {
       state.loading = false;
     })
+    .addCase(loginWithDemo.pending, (state) => {
+      state.loadingDemo = true;
+    })
+    .addCase(loginWithDemo.fulfilled, (state, action) => {
+      state.loadingDemo = false;
+      state.success = true;
+      state.demoDetails = action?.payload;
+    })
+    .addCase(loginWithDemo.rejected, (state) => {
+      state.loadingDemo = false;
+    })
     .addCase(checkOldPassword.pending, (state) => {
       state.loading = true;
       state.oldPasswordMatched = false;
@@ -41,14 +55,15 @@ export const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(authReset, (state) => {
       // Reset the state to initial state
-      return { ...state, success: false, forceChangePassword: false };
+      state.success = false;
+      state.forceChangePassword = false;
     })
     .addCase(rulesModalShowTrue, (state) => {
       // Reset the state to initial state
-      return { ...state, rulesPopShow: true };
+      state.rulesPopShow = true;
     })
     .addCase(rulesModalShowFalse, (state) => {
       // Reset the state to initial state
-      return { ...state, rulesPopShow: false };
+      state.rulesPopShow = false;
     });
 });

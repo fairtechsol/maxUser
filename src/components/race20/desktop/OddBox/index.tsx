@@ -1,12 +1,10 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { HandleCards } from "../../../commonComponent/cardsComponent";
+import {  HandleRaceCards } from "../card";
 import { useEffect } from "react";
 const OddBox = ({ odds, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = odds?.[0]?.min;
-  const max = odds?.[0]?.max;
 
   const handleBet = (item: any, type: string) => {
     let team = {
@@ -19,6 +17,8 @@ const OddBox = ({ odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -105,7 +105,7 @@ const OddBox = ({ odds, data }: any) => {
                       alignItems: "center",
                     }}
                   >
-                    <HandleCards card={handleCardRender(item?.nat)} />
+                    <HandleRaceCards card={handleCardRender(item?.nat)} />
                   </div>
                   <div
                     style={{
@@ -117,16 +117,17 @@ const OddBox = ({ odds, data }: any) => {
                     }}
                   >
                     <div
-                      className={`back-BackGround cursor-pointer ${
-                        handleLock(item, "back") ? "suspended" : ""
+                      className={`back-BackGround cursor-pointer py-1 ${
+                        handleLock(item, "back") ? "suspended py-1" : ""
                       }`}
                       style={{
+                        minHeight: "30px",
                         width: "45%",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
                         flexDirection: "column",
-                        paddingTop: "7px",
+                        // paddingTop: "7px",
                       }}
                       onClick={() =>
                         handleLock(item, "back")
@@ -138,16 +139,17 @@ const OddBox = ({ odds, data }: any) => {
                       <span className="casino-volume f400">{item?.bs1 || 0}</span>
                     </div>
                     <div
-                      className={`lay-BackGround cursor-pointer ${
-                        handleLock(item, "lay") ? "suspended" : ""
+                      className={`lay-BackGround cursor-pointer py-1 ${
+                        handleLock(item, "lay") ? "suspended py-1" : ""
                       }`}
                       style={{
+                        minHeight: "30px",
                         width: "50%",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
                         flexDirection: "column",
-                        paddingTop: "7px",
+                        // paddingTop: "7px",
                       }}
                       onClick={() =>
                         handleLock(item, "lay")
@@ -182,7 +184,7 @@ const OddBox = ({ odds, data }: any) => {
                         : ""
                     }`}
                   >
-                    {data?.profitLoss
+                    {data?.profitLoss 
                       ? data?.profitLoss[
                           `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
                         ]
@@ -191,20 +193,20 @@ const OddBox = ({ odds, data }: any) => {
                               `${data?.videoInfo?.mid}_${data?.cards?.[0]?.sid}_card`
                             ]
                           )[hanleProfitLossForK(item?.nat)]
-                        : 0
-                      : 0}
+                        : "\u00A0"
+                      : "\u00A0"}
                   </span>
                 </div>
               </>
             );
           })}
         </div>
-        <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
+        {/* <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
           <span style={{ fontWeight: "bolder" }}>Min:</span>
           <span>{min}</span>
           <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
           <span>{max}</span>
-        </div>
+        </div> */}
       </div>
     </>
   );

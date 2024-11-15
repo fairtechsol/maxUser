@@ -74,7 +74,7 @@
 
 .teenPatti-table-container-20 {
   width: 100%;
-  background-color: #fff;
+  background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
 }
@@ -103,6 +103,66 @@
   font-size: 12px;
   font-weight: bolder;
 }
+
+
+.elem {
+  position: absolute;
+  top: 36%; /* Adjust to center vertically */
+  left: 47%; /* Adjust to center horizontally */
+  transform: translate(-50%, -100%); /* Proper centering above the video */
+  height: 40px;
+  width: 40px;
+  z-index: 2;
+
+  /* Transition and animation properties */
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 1s;
+  -moz-transition-property: -moz-transform;
+  -moz-transition-duration: 1s;
+  transition-property: transform;
+  transition-duration: 1s;
+
+  /* Animation properties */
+  -webkit-animation-name: growShrink;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: growShrink;
+  -moz-animation-duration: 2s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  animation-name: growShrink;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.ticker-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.ticker-wrap {
+  display: flex;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.ticker-move {
+  display: flex;
+  animation: ticker 40s linear infinite;
+  color: "#097c93";
+}
+
+.ticker-item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  white-space: nowrap;
+}
+
+
 /* Ensure the tabs are horizontally scrollable on smaller devices */
 @media (max-width: 768px) {
   // .tabs-nav {

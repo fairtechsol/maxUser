@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { tprules, warrules } from "../../../assets/images";
+import { warrules } from "../../../assets/images";
 import { selectedBetAction } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { cardGamesId, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import { HandleCards } from "../../commonComponent/cardsComponent";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import CasinoWarResult from "../desktop/teenCard";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { HandleCards3 } from "./cardComponent2";
 import "./style.scss";
-// import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const TeenPattiMobile = () => {
@@ -30,15 +29,6 @@ const TeenPattiMobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-
-  const { placedBets } = useSelector((state: RootState) => state.bets);
-  // const rules = [
-  //   { label: "Pair (Double)", value: "1 To 1" },
-  //   { label: "Flush (Color)", value: "1 To 4" },
-  //   { label: "Straight (Rown)", value: "1 To 6" },
-  //   { label: "Trio (Teen)", value: "1 To 35" },
-  //   { label: "Straight Flush (Pakki Rown)", value: "1 To 45" },
-  // ];
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -50,6 +40,8 @@ const TeenPattiMobile = () => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
@@ -110,68 +102,18 @@ const TeenPattiMobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
+
         {!activeTab ? (
           <div
             style={{ width: "100%", display: "flex", flexDirection: "column" }}
           >
             <div style={{ width: "100%", height: "250px" }}>
-              <div className="horseRacingTabHeader-m">
-                <div>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -189,10 +131,10 @@ const TeenPattiMobile = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div style={{ height: "780px" }}>
-                <div className="mt-2" style={{ width: "100%" }}>
+                <div style={{ width: "100%" }}>
                   <div className="teenPatti-table-container-m">
                     <div
                       className="teenPatti-table-row"
@@ -205,7 +147,6 @@ const TeenPattiMobile = () => {
                       <div
                         style={{
                           width: "100%",
-
                           display: "flex",
                           flexDirection: "row",
                           alignItems: "center",
@@ -246,7 +187,7 @@ const TeenPattiMobile = () => {
                         </div>
                         <div
                           className="teenPatti-table-item"
-                          style={{ width: "16.7%" }}
+                          style={{ width: "16.7%", padding: "2px" }}
                         >
                           <HandleCards
                             card={dragonTigerDetail?.videoInfo?.C5}
@@ -270,7 +211,7 @@ const TeenPattiMobile = () => {
                       <div
                         style={{
                           width: "100%",
-                          backgroundColor: "#08c",
+                          backgroundColor: "#004a25",
                           display: "flex",
                           flexDirection: "row",
                         }}
@@ -290,8 +231,6 @@ const TeenPattiMobile = () => {
                             style={{
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
                             }}
                           >
                             1
@@ -303,18 +242,16 @@ const TeenPattiMobile = () => {
                               bettingOptions === 1 ? "1px solid #fff" : "none"
                             }`,
                             width: "16.7%",
-                            marginTop: "2px",
+                             marginTop: "2px",
                           }}
                           onClick={() => setBettingOptions(1)}
                         >
                           <div
-                            className="teenPatti-table-ite f12-b"
+                            className=" f12-b"
                             style={{
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
                             }}
                           >
                             2
@@ -336,8 +273,6 @@ const TeenPattiMobile = () => {
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
                             }}
                           >
                             3
@@ -359,8 +294,6 @@ const TeenPattiMobile = () => {
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
                             }}
                           >
                             4
@@ -382,8 +315,6 @@ const TeenPattiMobile = () => {
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
                             }}
                           >
                             5
@@ -406,8 +337,6 @@ const TeenPattiMobile = () => {
                               borderLeft: "1px solid #fff",
                               color: "#fff",
                               textAlign: "center",
-                              marginTop: "15px",
-                              marginBottom: "15px",
                             }}
                           >
                             6
@@ -424,6 +353,7 @@ const TeenPattiMobile = () => {
                         justifyContent: "center",
                         flexWrap: "wrap",
                         gap: "0px",
+                        background: "#f2f2f2",
                       }}
                     >
                       <div style={{ width: "50%" }}>
@@ -439,74 +369,66 @@ const TeenPattiMobile = () => {
                                 flexDirection: "row",
                                 width: "100%",
                                 marginBottom: "0px",
+                                background: "#f7f7f7",
                               }}
                             >
                               <div
                                 style={{
                                   width: "70%",
                                   padding: "10px",
-                                  border: "0.1px solid #fff",
+                                  border: "0.1px solid #c7c8ca",
                                   display: "flex",
-                                  alignItems: "center",
-                                  height: "45px",
+                                  flexDirection: "column",
+                                  alignItems: "cente",
+                                  height:"50px"
                                 }}
                               >
-                                <span
+                                <div
                                   style={{
-                                    fontSize: "14px",
-                                    fontWeight: "bolder",
+                                    width: "100%",
+                                    display: "flex",
+                                    alignItems: "center",
                                   }}
                                 >
-                                  {playerA[bettingOptions]?.nat.split(" ")[0]}
-                                </span>
+                                  <span
+                                    style={{
+                                      fontSize: "14px",
+                                      fontWeight: "bolder",
+                                    }}
+                                  >
+                                    {playerA[bettingOptions]?.nat.split(" ")[0]}
+                                  </span>
 
-                                {playerA[bettingOptions]?.nat.split(" ")[0] ===
-                                  "Red" && (
-                                  <span style={{ marginLeft: "5px" }}>
-                                    <HandleCards3 card={"Diamond 1"} />
-                                  </span>
-                                )}
-                                {playerA[bettingOptions]?.nat.split(" ")[0] ===
-                                  "Red" && (
-                                  <span style={{ marginLeft: "5px" }}>
-                                    <HandleCards3 card={"Heart 1"} />
-                                  </span>
-                                )}
+                                  {playerA[bettingOptions]?.nat.split(
+                                    " "
+                                  )[0] === "Red" && (
+                                    <span style={{ marginLeft: "5px" }}>
+                                      <HandleCards3 card={"Diamond 1"} />
+                                    </span>
+                                  )}
+                                  {playerA[bettingOptions]?.nat.split(
+                                    " "
+                                  )[0] === "Red" && (
+                                    <span style={{ marginLeft: "5px" }}>
+                                      <HandleCards3 card={"Heart 1"} />
+                                    </span>
+                                  )}
 
-                                {playerA[bettingOptions]?.nat.split(" ")[0] ===
-                                  "Black" && (
-                                  <span style={{ marginLeft: "5px" }}>
-                                    <HandleCards3 card={"Spade 1"} />
-                                  </span>
-                                )}
-                                {playerA[bettingOptions]?.nat.split(" ")[0] ===
-                                  "Black" && (
-                                  <span style={{ marginLeft: "5px" }}>
-                                    <HandleCards3 card={"Club 1"} />
-                                  </span>
-                                )}
-                              </div>
-
-                              <div
-                                key={playerA[bettingOptions].sid}
-                                className={`teenPatti-table-item ${
-                                  playerA[bettingOptions].gstatus === "0"
-                                    ? "lock"
-                                    : ""
-                                }`}
-                                style={{
-                                  width: "30%",
-                                  background: "#a7d8fd",
-                                }}
-                                onClick={() =>
-                                  playerA[bettingOptions].gstatus === "0"
-                                    ? null
-                                    : handleBet(playerA[bettingOptions])
-                                }
-                              >
-                                <span className="f12-b">
-                                  {playerA[bettingOptions].b1}
-                                </span>
+                                  {playerA[bettingOptions]?.nat.split(
+                                    " "
+                                  )[0] === "Black" && (
+                                    <span style={{ marginLeft: "5px" }}>
+                                      <HandleCards3 card={"Spade 1"} />
+                                    </span>
+                                  )}
+                                  {playerA[bettingOptions]?.nat.split(
+                                    " "
+                                  )[0] === "Black" && (
+                                    <span style={{ marginLeft: "5px" }}>
+                                      <HandleCards3 card={"Club 1"} />
+                                    </span>
+                                  )}
+                                </div>
                                 {dragonTigerDetail?.profitLoss &&
                                   dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
@@ -516,7 +438,7 @@ const TeenPattiMobile = () => {
                                         marginTop:
                                           playerA[bettingOptions]?.gstatus ===
                                           "0"
-                                            ? "15px"
+                                            ? ""
                                             : "",
                                         zIndex: "100",
                                       }}
@@ -545,16 +467,36 @@ const TeenPattiMobile = () => {
                                           ? dragonTigerDetail?.profitLoss[
                                               `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
                                             ]
-                                          : 0
-                                        : 0}
+                                          : ""
+                                        : ""}
                                     </span>
                                   )}
                                 {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                  ]) && (
-                                  <span className="f400 title-14">0</span>
-                                )}
+                                  ]) && <span className="f400 title-14"></span>}
+                              </div>
+
+                              <div
+                                key={playerA[bettingOptions].sid}
+                                className={`teenPatti-table-item ${
+                                  playerA[bettingOptions].gstatus === "0"
+                                    ? "lock"
+                                    : ""
+                                }`}
+                                style={{
+                                  width: "30%",
+                                  background: "#a7d8fd",
+                                }}
+                                onClick={() =>
+                                  playerA[bettingOptions].gstatus === "0"
+                                    ? null
+                                    : handleBet(playerA[bettingOptions])
+                                }
+                              >
+                                <span className="f12-b">
+                                  {playerA[bettingOptions].b1}
+                                </span>
                               </div>
                             </div>
                           ))}
@@ -573,54 +515,26 @@ const TeenPattiMobile = () => {
                                 flexDirection: "row",
                                 width: "100%",
                                 marginBottom: "0px",
+                                background: "#f7f7f7",
                               }}
                             >
                               <div
                                 style={{
                                   width: "70%",
                                   padding: "6px",
-                                  border: "0.1px solid #fff",
+                                  border: "0.1px solid #c7c8ca",
                                   display: "flex",
-                                  flexDirection: "row",
-                                  alignItems: "center",
-                                  height: "45px",
+                                  flexDirection: "column",
+                                  alignItems: "cente",
+                                  height: "50px",
                                 }}
                               >
-                                {/* <span
-                                style={{
-                                  fontSize: "14px",
-                                  fontWeight: "bolder",
-                                }}
-                              >
-                                {playerA[bettingOptions]?.nat.split(" ")[0]}
-                              </span> */}
                                 <span style={{ marginLeft: "5px" }}>
                                   <HandleCards3
                                     card={playerA[bettingOptions]?.nat}
                                   />
                                 </span>
-                              </div>
 
-                              <div
-                                key={playerA[bettingOptions].sid}
-                                className={`teenPatti-table-item ${
-                                  playerA[bettingOptions].gstatus === "0"
-                                    ? "lock"
-                                    : ""
-                                }`}
-                                style={{
-                                  width: "30%",
-                                  background: "#a7d8fd",
-                                }}
-                                onClick={() =>
-                                  playerA[bettingOptions].gstatus === "0"
-                                    ? null
-                                    : handleBet(playerA[bettingOptions])
-                                }
-                              >
-                                <span className="f12-b">
-                                  {playerA[bettingOptions].b1}
-                                </span>
                                 {dragonTigerDetail?.profitLoss &&
                                   dragonTigerDetail?.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
@@ -630,7 +544,7 @@ const TeenPattiMobile = () => {
                                         marginTop:
                                           playerA[bettingOptions]?.gstatus ===
                                           "0"
-                                            ? "15px"
+                                            ? ""
                                             : "",
                                         zIndex: "100",
                                       }}
@@ -659,16 +573,36 @@ const TeenPattiMobile = () => {
                                           ? dragonTigerDetail?.profitLoss[
                                               `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
                                             ]
-                                          : 0
-                                        : 0}
+                                          : ""
+                                        : ""}
                                     </span>
                                   )}
                                 {(!dragonTigerDetail.profitLoss ||
                                   !dragonTigerDetail.profitLoss[
                                     `${dragonTigerDetail?.videoInfo?.mid}_${playerA[bettingOptions]?.sid}_card`
-                                  ]) && (
-                                  <span className="f400 title-14">0</span>
-                                )}
+                                  ]) && <span className="f400 title-14"></span>}
+                              </div>
+
+                              <div
+                                key={playerA[bettingOptions].sid}
+                                className={`teenPatti-table-item ${
+                                  playerA[bettingOptions].gstatus === "0"
+                                    ? "lock"
+                                    : ""
+                                }`}
+                                style={{
+                                  width: "30%",
+                                  background: "#a7d8fd",
+                                }}
+                                onClick={() =>
+                                  playerA[bettingOptions].gstatus === "0"
+                                    ? null
+                                    : handleBet(playerA[bettingOptions])
+                                }
+                              >
+                                <span className="f12-b">
+                                  {playerA[bettingOptions].b1}
+                                </span>
                               </div>
                             </div>
                           ))}

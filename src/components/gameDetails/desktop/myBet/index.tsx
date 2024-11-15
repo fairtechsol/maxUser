@@ -24,14 +24,16 @@ const MyBet = () => {
   const { placedBets } = useSelector((state: RootState) => state.bets);
   return (
     <RightPanelContainer title={"My Bet"}>
-      <div className="betList" style={{ maxHeight: "27vh", overflow: "auto" }}>
+      <div className="betList" style={{ maxHeight: "48vh", overflow: "auto" }}>
         <Table className="w-full">
           <thead>
-            <tr className="bg-darkGrey">
+            <tr className="bg-secondary">
               {placeBetHeader?.map((item) => (
                 <th
                   key={item?.id}
-                  className="title-12 text-start f500 bg-darkGrey"
+                  className={`title-14 ${
+                    item?.id === "stake" ? "text-end" : "text-start"
+                  } fbold bg-light lh-1`}
                 >
                   {item?.name}
                 </th>
@@ -58,7 +60,7 @@ const MyBet = () => {
                     }`}
                   >
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-14 text-start f400 lh-05 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -68,10 +70,10 @@ const MyBet = () => {
                         ? bet?.teamName?.split(".")?.[1]?.trim()
                           ? bet?.teamName?.split(".")?.[1]?.trim()
                           : bet?.teamName
-                        : bet?.bettingName ?? bet?.teamName}
+                        : bet?.teamName ?? bet?.bettingName}
                     </th>
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-14 text-start f400 lh-05 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"
@@ -80,7 +82,7 @@ const MyBet = () => {
                       {bet?.odds}
                     </th>
                     <th
-                      className={`title-12 text-start f500 ${
+                      className={`title-14 text-end f400 lh-05 ${
                         bet?.betType === "NO" || bet?.betType === "LAY"
                           ? "bg-red1"
                           : "bg-blue3"

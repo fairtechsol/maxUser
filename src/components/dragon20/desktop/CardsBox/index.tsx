@@ -5,8 +5,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 
 const CardBox = ({ name, cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min = cardData?.[0]?.min;
-  const max = cardData?.[0]?.max;
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -18,6 +16,8 @@ const CardBox = ({ name, cardData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -28,28 +28,21 @@ const CardBox = ({ name, cardData, data }: any) => {
   };
   return (
     <>
-      <div className="cardContainer">
+      <div className="cardContainer " style={{display:"flex",alignItems:"center"}}>
         <div style={{ textAlign: "center" }}>
-          <span style={{ fontSize: "1.5rem" }}>
+          <span style={{ fontSize: "20px" ,fontWeight:"bold"}}>
             {name}{" "}
             {parseFloat(
               isNaN(cardData?.[0]?.rate) ? 0 : cardData?.[0]?.rate
             ).toFixed(2)}
           </span>
         </div>
-        <div>
+        
           <CommonCardImg
             cardData={cardData}
             handleBet={handleBet}
             data={data}
           />
-        </div>
-        <div style={{ textAlign: "end" }}>
-          <span style={{ fontWeight: "bolder" }}>Min:</span>
-          <span>{min}</span>
-          <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
-          <span>{max}</span>
-        </div>
       </div>
     </>
   );

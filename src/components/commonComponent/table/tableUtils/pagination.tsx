@@ -12,7 +12,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
   totalPages,
   onPageChange,
 }) => {
-  const [pageComp, setPageComp] = useState([]);
+  const [_, setPageComp] = useState([]);
 
   useEffect(() => {
     let isPageNumberOutOfRange: Boolean;
@@ -50,39 +50,53 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
 
     setPageComp(pageNumbers);
   }, [totalPages, currentPage]);
-
   return (
-    <Pagination>
-      <div className={`paginationContainer`}>
-        <Pagination.First
-          disabled={currentPage <= 1 ? true : false}
-          onClick={() => onPageChange(1)}
-        >
-          First
-        </Pagination.First>
-        <Pagination.Prev
-          disabled={currentPage <= 1 ? true : false}
-          onClick={() => onPageChange(currentPage - 1)}
-        >
-          Prev
-        </Pagination.Prev>
+    <div className="d-flex flex-row">
+      <Pagination>
+        <div className={`paginationContainer`}>
+          <Pagination.First
+            disabled={currentPage <= 1 ? true : false}
+            onClick={() => onPageChange(1)}
+          >
+            First
+          </Pagination.First>
+          <Pagination.Prev
+            disabled={currentPage <= 1 ? true : false}
+            onClick={() => onPageChange(currentPage - 1)}
+          >
+            Previous
+          </Pagination.Prev>
+          <Pagination.Next
+            disabled={totalPages === 0 ? true : currentPage === totalPages}
+            onClick={() => onPageChange(currentPage + 1)}
+          >
+            Next
+          </Pagination.Next>
+          <Pagination.Last
+            disabled={totalPages === 0 ? true : currentPage === totalPages}
+            onClick={() => onPageChange(totalPages)}
+          >
+            Last
+          </Pagination.Last>
 
-        {pageComp?.map((item) => item)}
-
-        <Pagination.Next
-          disabled={totalPages === 0 ? true : currentPage === totalPages}
-          onClick={() => onPageChange(currentPage + 1)}
-        >
-          Next
-        </Pagination.Next>
-        <Pagination.Last
-          disabled={totalPages === 0 ? true : currentPage === totalPages}
-          onClick={() => onPageChange(totalPages)}
-        >
-          Last
-        </Pagination.Last>
-      </div>
-    </Pagination>
+          <div className="title-14 d-flex justify-content-center align-items-center ms-2 mt-1">
+            Page
+            <span className="fbold ms-1 me-2">
+              {currentPage} of {totalPages}
+            </span>{" "}
+            | Go to Page{" "}
+            <input
+              type="number"
+              value={currentPage}
+              onChange={(e: any) => onPageChange(e.target.value)}
+              min={1}
+              max={totalPages}
+              style={{ width: "100px", height: "38px" ,border:"1px solid #dbdbdb",padding:"5px",marginLeft:"5px"}}
+            />
+          </div>
+        </div>
+      </Pagination>
+    </div>
   );
 };
 

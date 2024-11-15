@@ -2,7 +2,8 @@
 .match-list-tabs {
     border-right: 1px solid $secondary !important;
     border-radius: 0px !important;
-    background-color: $gray;
+    background-color: #cccccc;
+    font-size: 16px;
     padding: 2px 10px;
     &:hover {
         border-right: 1px solid $secondary !important;

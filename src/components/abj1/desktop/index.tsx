@@ -14,8 +14,8 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import Abj1Result from "./abj1Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const Abj1Desktop = () => {
   const [show, setShow] = useState(false);
@@ -91,17 +91,17 @@ const Abj1Desktop = () => {
                   </span>
                   <a
                     style={{
-                      fontSize: "14px",
+                      fontSize: "12px",
                       textDecoration: "underline",
                       cursor: "pointer",
                     }}
                     onClick={() => setShow(true)}
                   >
                     {" "}
-                    RULES
+                    Rules
                   </a>
                 </div>
-                <span>
+                <span className="title-12 mt-1">
                   {dragonTigerDetail?.videoInfo
                     ? `Round ID:  ${handleRoundId(
                         dragonTigerDetail?.videoInfo?.mid
@@ -127,7 +127,7 @@ const Abj1Desktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+           <NewLoader />
             ) : (
               <div>
                 <div
@@ -152,6 +152,22 @@ const Abj1Desktop = () => {
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
                   />
+
+                  <div className="ticker-container">
+                    <div className="ticker-wrap">
+                      <div
+                        className="ticker-move"
+                        style={{
+                          color: "#097c93",
+                          fontWeight: "700",
+                          fontSize: "12px",
+                        }}
+                      >
+                        {dragonTigerDetail?.videoInfo?.remark}
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
                 <div style={{ width: "100%", margin: "5px" }}>
@@ -163,10 +179,10 @@ const Abj1Desktop = () => {
                 </div>
               </div>
             )}
-            <RulesModal show={show} setShow={setShow} rule={abjrules} />
+            <RulesModal show={show} setShow={setShow} rule={abjrules} type="No Record Found."/>
           </div>
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
@@ -177,7 +193,7 @@ const Abj1Desktop = () => {
               }}
             >
               <Col md={12}>
-                <DesktopPlacedBet />
+                <DesktopPlacedBet type={cardGamesType.andarBahar1} />
               </Col>
               <Col md={12}>
                 <DesktopMyBet />

@@ -1,8 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
+import ResultBetList from "../../commonComponent/resultBetList";
 import "./style.scss";
 interface Props {
   data: {
@@ -22,7 +23,14 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="dt20resultModal">
+      <div
+        className="dt20resultModal"
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: "center",
+        }}
+      >
         <div className="dt20resultCardContainer">
           <span className="fs-5">Dragon</span>
           <div
@@ -57,11 +65,6 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
                 : "d-sm-flex flex-row justify-content-center align-items-center"
             }
           >
-            {data?.result?.win === "2" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={isMobile ? 20 : 30} color="#169733" />
-              </div>
-            )}
             <div
               style={{
                 border: "1px solid #fdef34",
@@ -71,6 +74,11 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
             >
               <HandleCards card={resultCards?.[1]} />
             </div>
+            {data?.result?.win === "2" && (
+              <div className="casino-winner-icon">
+                <FaTrophy size={isMobile ? 20 : 30} color="#169733" />
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -78,8 +86,8 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
         <div
           className={
             isMobile
-              ? "w-100 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
-              : "w-50 d-sm-flex flex-sm-column justify-content-center align-items-center p-4 mb-2"
+              ? "w-100 d-flex flex-column justify-content-center align-items-center p-4 mb-2"
+              : "w-75 d-flex flex-column justify-content-center align-items-center p-4 mb-2"
           }
           style={{ boxShadow: "0 0 4px -1px" }}
         >
@@ -111,6 +119,11 @@ const DragonTigerOneDayResultComponent: React.FC<Props> = ({ data }: any) => {
           </div>
         </div>
       </div>
+      {data?.bets?.count > 0 && (
+        <div className="w-100">
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

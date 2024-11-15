@@ -1,0 +1,222 @@
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.tournamentContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+}
+.tournamentTitle{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3px 6px;
+    background-color: #fece5d;
+}
+.tournamentTitleTxt {
+  color: #ffffff;
+  font-weight: bold;
+}
+.tournamentBackLayTab {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #c7c8ca;
+}
+.tournamentMinMaxBox {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tournamentMinMax {
+  font-size: 12px;
+  font-weight: bold;
+  color: #097c93;
+}
+.tournament1BackLayBoxContainer {
+  width: 48%;
+  display: flex;
+  flex-direction: row;
+}
+.tournament2BackLayBoxContainer {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+}
+.tournament1BackBoxTab {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #72bbef;
+}
+.tournament1LayBoxTab {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #faa9ba;
+}
+.tournament2BackBoxTab {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #72bbef;
+}
+.tournament2LayBoxTab {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #faa9ba;
+}
+.tournamentEmptyBox {
+  width: 50%;
+}
+.tournamentBackTxt {
+  color: #333;
+  font-weight: bold;
+}
+.tournamentTeamTab {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #c7c8ca;
+}
+.tournamentRemarkTab {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #c7c8ca;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.tournamentTeam {
+  flex: 1;
+  padding: 0px 5px;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-direction: column;
+  // line-height: 1;
+}
+.tournamentTeamTxt {
+  // font-size: 16px;
+  width: 100%;
+  font-weight: 400;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
+}
+.tournament1RateBox {
+  position: relative;
+  width: 72%;
+  display: flex;
+  flex-direction: row;
+}
+.tournament2RateBox {
+  position: relative;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+}
+.tournamentBackBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.tournamentRate1Box {
+  font-size: 18px;
+  color: #000;
+  font-weight: bold;
+}
+.tournamentRate2Box {
+  font-size: 12px;
+  color: #000;
+  font-weight: 100;
+}
+.back3Background {
+  background-color: #b2d6f0 !important;
+}
+.back2Background {
+  background-color: #92c9f0 !important;
+}
+.back1Background {
+  background-color: #72bbef !important;
+}
+.lay3Background {
+  background-color: #f6cdd6 !important;
+}
+.lay2Background {
+  background-color: #f8bcc8 !important;
+}
+.lay1Background {
+  background-color: #faa9ba !important;
+}
+.remark-content1 {
+  font-size: 11px;
+  color: #097c93;
+  font-weight: normal;
+  display: inline-block;
+  // padding-left: 38%;
+  animation: none !important;
+}
+.suspended-overlayRatestournament {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373636d6;
+  height: 100%;
+  z-index: 999;
+}
+
+.suspendedTxttournament {
+  font-weight: 400;
+  color: #ff1e30;
+}
+.f-size10 {
+  font-size: 10px !important;
+}
+.f-size11 {
+  font-size: 11px !important;
+}
+.f-size12 {
+  font-size: 12px !important;
+}
+.f-size13 {
+  font-size: 13px !important;
+}
+.f-size14 {
+  font-size: 14px !important;
+}
+.f-size15 {
+  font-size: 15px !important;
+}
+.f-size16 {
+  font-size: 16px !important;
+}
+.f-size17 {
+  font-size: 17px !important;
+}
+.f-size18 {
+  font-size: 18px !important;
+}

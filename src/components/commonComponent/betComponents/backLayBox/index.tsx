@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BetStatusOverlay from "../betStatusOverlay";
 import "./style.scss";
-import isMobile from "../../../../utils/screenDimension";
+import {isMobile} from "../../../../utils/screenDimension";
 import { useLocation, useParams } from "react-router-dom";
 interface props {
   bgColor?: string;
@@ -80,9 +80,9 @@ function BackLayBox({
       {location.pathname == "/home" ? (
         <div
           // onClick={() => onClick()}
-          className={`backLayBox text-center d-flex cursor-pointer ${
-            isMobile ? " " : "boxheight"
-          }`}
+          // className={` text-center d-flex cursor-pointer ${
+          //   isMobile ? "boxheight-m" : "boxheight"
+          // }`}
         >
           {/* <h5 className="backLay-rate f500 title-15 m-0 pt-1">
             {parseFloat(rate || 0) <= 0 || active
@@ -91,34 +91,36 @@ function BackLayBox({
                 : "-"
               : rate}{" "}
           </h5> */}
-          <h5
-            className={`${
-              isMobile ? "backLay-rate-m mb-1" : "backLay-rate"
-            } f500 title-15`}
+          <span
+          className={
+            isMobile
+              ? `backLay-rate fbold title-14 ${params?.type ? "fbold" : "fbold"}`
+              : "backLay-rate fbold title-14 "
+          }
           >
             {parseFloat(rate || 0) <= 0 || active
               ? isMobile
-                ? "0"
+                ? "-"
                 : "-"
               : rate}{" "}
-          </h5>
+          </span>
         </div>
       ) : (
         <BetStatusOverlay>
           <div
             // onClick={() => onClick()}
-            className={`backLayBox text-center d-flex cursor-pointer `}
+            className={` text-center d-flex cursor-pointer `}
           >
             <span
               className={
                 isMobile
-                  ? `backLay-rate f500 title-16 ${params?.type ? "" : "mb-2"}`
-                  : "backLay-rate f500 title-16"
+                  ? `backLay-rate fbold title-14 ${params?.type ? "fbold" : "fbold"}`
+                  : "backLay-rate fbold title-16 "
               }
             >
               {parseFloat(rate || 0) <= 0 || active
                 ? isMobile
-                  ? "0"
+                  ? "-"
                   : "-"
                 : handleRate(rate)}{" "}
             </span>

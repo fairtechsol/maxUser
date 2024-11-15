@@ -1,8 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
+import ResultBetList from "../../commonComponent/resultBetList";
 import "./style.scss";
 
 interface Props {
@@ -49,7 +50,9 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
           {position.label !== "gap" && (
             <>
               <div>
-                <div className="fs-5" style={{textAlign:"center"}}>{position.label}</div>
+                <div className="fs-5" style={{ textAlign: "center" }}>
+                  {position.label}
+                </div>
                 <div
                   className={
                     isMobile
@@ -73,10 +76,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
                 </div>
               </div>
               {data?.result?.sid.includes((position.index + 1).toString()) && (
-                <div
-                  className=" winner-icon casino-winner-ico "
-                  
-                >
+                <div className=" winner-icon casino-winner-ico ">
                   <FaTrophy size={30} color="#169733" />
                 </div>
               )}
@@ -88,7 +88,7 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 
   const renderColumn = () => (
-    <div className="d-flex flex-column align-items-center pl-" >
+    <div className="d-flex flex-column align-items-center pl-">
       {layout.map((position: any, posIndex: any) => (
         <div
           key={posIndex}
@@ -134,11 +134,12 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
               </div>
 
               {data?.result?.sid.includes((position.index + 1).toString()) && (
-                <div
-                  className="casino-winner-icon"
-                 
-                >
-                  <FaTrophy className="casino-winner-icon" size={30} color="#169733" />
+                <div className="casino-winner-icon">
+                  <FaTrophy
+                    className="casino-winner-icon"
+                    size={30}
+                    color="#169733"
+                  />
                 </div>
               )}
             </div>
@@ -149,14 +150,26 @@ const TeenOpenResultComponent: React.FC<Props> = ({ data }: any) => {
   );
 
   return (
-    <Container style={{ display: "flex", flexDirection: "column",width:"100%",paddingTop:"20px" }}>
+    <Container
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        paddingTop: "20px",
+      }}
+    >
       {isMobile ? (
         renderColumn()
       ) : (
-        <div style={{width:"100%"}}>
+        <div style={{ width: "100%" }}>
           {renderRow(layout.slice(0, 3))} {/* Players 1, Dealer, Player 8 */}
           {renderRow(layout.slice(3, 6))} {/* Player 2, gap, Player 7 */}
           {renderRow(layout.slice(6, 10))} {/* Players 3, 4, 5, 6 */}
+        </div>
+      )}
+      {data?.bets?.count > 0 && (
+        <div className="w-100">
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
         </div>
       )}
     </Container>

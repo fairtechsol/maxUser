@@ -1,52 +1,39 @@
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { Form } from "react-bootstrap";
-// import { FaHandPointDown, FaKey } from "react-icons/fa";
-// import { IoPerson } from "react-icons/io5";
-import { MdOutlineLogin } from "react-icons/md";
 import { AiOutlineLoading } from "react-icons/ai"; // Import the AiOutlineLoading spinner
+import { FaHandPointDown, FaKey, FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { maxbetLogo } from "../../../assets/images";
 import CustomButton from "../../../components/commonComponent/button";
 import CustomInput from "../../../components/commonComponent/input";
+import Loader from "../../../components/commonComponent/loader";
 import ValidationError from "../../../components/commonComponent/validationError";
 import {
   authReset,
   login,
+  loginWithDemo,
   rulesModalShowTrue,
 } from "../../../store/actions/authAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-import { FaHandPointDown, FaKey } from "react-icons/fa";
-import { IoPerson } from "react-icons/io5";
-import Loader from "../../../components/commonComponent/loader";
-import { maxbetLogo } from "../../../assets/images";
 
 const Login = () => {
-  // const [loginState, setLoginState] = useState({
-  //   userName: "",
-  //   password: "",
-  //   loginType: "wallet",
-  // });
   const initialValues: any = {
     userName: "",
     password: "",
     loginType: "user",
   };
-  const { success, forceChangePassword, loading } = useSelector(
+  const { success, forceChangePassword, loading, loadingDemo } = useSelector(
     (state: RootState) => state.auth
   );
 
   const navigate = useNavigate();
 
   const dispatch: AppDispatch = useDispatch();
-
-  // const handleSubmit = (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-  //   dispatch(login(loginState));
-  // };
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -77,32 +64,48 @@ const Login = () => {
       onSubmit={handleSubmit}
     >
       {loading && <Loader />}
-      <div className="auth-box ">
+      <div className={isMobile ? "login-form" : "auth-box"}>
         <img
           src={maxbetLogo}
           alt="MAXBET07"
           className="img-fluid"
           style={{
-            width: isMobile ? "90%" : "100%",
-            height: isMobile ? "42px" : "50px",
+            width: "100%",
+            height: "70px",
           }}
         />
-        <div className="auth-box-form rounded-2 bg-light mt-3">
-          <h4 className="auth-title title-24 fw-normal text-center mb-2">
-            {!isMobile ? "Login" : ""}
-            {!isMobile && <FaHandPointDown />}
+        <div
+          className={isMobile ? "auth-box-form-m mt-2" : "auth-box-form mt-2"}
+        >
+          <h4 className="auth-title title-22 fw-normal text-center ">
+            Login
+            <FaHandPointDown
+              style={{
+                width: "16px",
+                height: "22px",
+                margin: "5px 0px 10px 5px",
+              }}
+            />
           </h4>
 
           <CustomInput
             type="text"
-            placeholder="User Name"
+            placeholder="Username"
             name="userName"
             id="userName"
             value={formik.values.userName}
             onChange={formik.handleChange}
-            inputIcon={<IoPerson />}
-            customStyle="mb-3"
-            isUnderlinedInput={isMobile}
+            inputIcon={
+              <FaUser
+                style={{
+                  fontWeight: "normal",
+                  color: "#333",
+                  fontSize: "16px",
+                }}
+              />
+            }
+            customStyle="mb-4"
+            // isUnderlinedInput={isMobile}
           />
           <ValidationError
             touched={touched.userName}
@@ -115,56 +118,84 @@ const Login = () => {
             customStyle="mb-3"
             name="password"
             id="password"
-            inputIcon={<FaKey />}
-            isUnderlinedInput={isMobile}
+            inputIcon={
+              <FaKey
+                style={{
+                  fontWeight: "normal",
+                  color: "#333",
+                  fontSize: "16px",
+                }}
+              />
+            }
+            // isUnderlinedInput={isMobile}
             value={formik.values.password}
             onChange={formik.handleChange}
-            // onChange={(e: any) => {
-            //   setLoginState({ ...loginState, password: e.target.value });
-            // }}
           />
           <ValidationError
             touched={touched.password}
             errors={errors.password}
           />
-          <CustomButton
-            className="w-100 ml-6"
-            variant="primary"
-            type="submit"
-            // loading={loading}
-          >
+          <CustomButton className="w-100" variant="primary" type="submit">
             <div className="button-container">
-              <span className="login-text">Login</span>
+              <span className="login-text f400">Login</span>
               {loading ? (
                 <AiOutlineLoading className="spinner-icon" />
               ) : (
-                <MdOutlineLogin className="login-icon" />
+                <span className="f800">
+                  <i className="fas fa-sign-in-alt float-end mt-1 title-16"></i>
+                </span>
               )}
-              {/* {!isMobile ? <span className="login-text">Login </span> : <span><span className="mlogintext">Login {loading ? <AiOutlineLoading className="spinner-icon" /> : <MdOutlineLogin className="login-icon" />}</span></span>} */}
             </div>
           </CustomButton>
-          <p className="auth-box-descrip mt-1">
+          <CustomButton
+            className="w-100 mt-2"
+            variant="primary"
+            type="submit"
+            onClick={(e: any) => {
+              e.preventDefault();
+              dispatch(loginWithDemo());
+            }}
+          >
+            <div className="button-container">
+              <span className="login-text f400">Login with Demo ID</span>{" "}
+              {loadingDemo ? (
+                <AiOutlineLoading className="spinner-icon" />
+              ) : (
+                <span className="f800">
+                  <i className="fas fa-sign-in-alt float-end mt-1 title-16"></i>
+                </span>
+              )}
+            </div>
+          </CustomButton>
+
+          <small
+            className={
+              isMobile
+                ? "title-10 d-inline-block mb-2 mt-1"
+                : "auth-box-descrip mt-1"
+            }
+          >
             This site is protected by reCAPTCHA and the Google
-            <br />
+            {/* <br /> */}
             <a
               href="https://policies.google.com/privacy"
-              className="text-primaryBlue text-decoration-none ps-1 pe-1"
-              target="_blank" // Opens link in a new tab
+              className="text-primaryBlue text-decoration-none "
+              target="_blank"
               rel="noopener noreferrer"
             >
               Privacy Policy
-            </a>
+            </a>{" "}
             and
             <a
               href="https://policies.google.com/terms"
-              className="text-primaryBlue text-decoration-none ps-1 pe-1"
+              className="text-primaryBlue text-decoration-none "
               target="_blank"
               rel="noopener noreferrer"
             >
               Terms of Service
-            </a>
+            </a>{" "}
             apply.
-          </p>
+          </small>
         </div>
       </div>
     </Form>

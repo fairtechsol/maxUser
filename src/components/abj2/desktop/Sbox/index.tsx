@@ -16,6 +16,8 @@ const SBetBox = ({ type, odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -80,7 +82,7 @@ const SBetBox = ({ type, odds, data }: any) => {
                 ? data?.profitLoss[
                     `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                   ]
-                : 0
+                :  <br></br>
               : 0}
           </span>
         </div>
@@ -125,7 +127,7 @@ const SBetBox = ({ type, odds, data }: any) => {
                 ? data?.profitLoss[
                     `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                   ]
-                : 0
+                :  <br></br>
               : 0}
           </span>
         </div>
@@ -171,7 +173,7 @@ const SBetBox = ({ type, odds, data }: any) => {
                 ? data?.profitLoss[
                     `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
                   ]
-                : 0
+                : <br></br>
               : 0}
           </span>
         </div>

@@ -1,8 +1,8 @@
-import { dragonTigerCards } from "../../../../utils/constants";
-import { back } from "../../../../assets/images";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../../store/store";
+import { back } from "../../../../assets/images";
+import { RootState } from "../../../../store/store";
+import { dragonTigerCards } from "../../../../utils/constants";
 const CommonCardImg = ({
   cardData,
   handleBet,

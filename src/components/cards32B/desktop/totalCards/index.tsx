@@ -1,13 +1,9 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import SmoothDropdownModal from "../minMaxModal";
-import { useState } from "react";
-import { IoInformationCircle } from "react-icons/io5";
+import { AppDispatch } from "../../../../store/store";
 
 const TotalCards = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -19,6 +15,8 @@ const TotalCards = ({ data, odds }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -34,7 +32,7 @@ const TotalCards = ({ data, odds }: any) => {
       return false;
     }
   };
-  const renderItem = (item: any, index: number) => (
+  const renderItem = (item: any) => (
     <div
       className={`card32bsubTitle back-BackGround ${
         handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
@@ -53,7 +51,8 @@ const TotalCards = ({ data, odds }: any) => {
           marginTop: "5%",
           display: "flex",
           flexDirection: "column",
-          border: "0.3px solid #c7c8ca",
+          borderLeft: "0.3px solid #c7c8ca",
+          borderTop: "0.3px solid #c7c8ca",
           marginLeft: "5px",
         }}
       >
@@ -61,7 +60,7 @@ const TotalCards = ({ data, odds }: any) => {
           <div className="dtlTitle">
             {" "}
             <div style={{ width: "40%", textAlign: "start" }}>
-              <span className="minmaxi">
+              {/* <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
                   onClick={() => setModelOpen(!modelOpen)}
@@ -72,11 +71,11 @@ const TotalCards = ({ data, odds }: any) => {
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="card32bsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Back</span>
+            <span style={{ fontSize: "16px" }}>Back</span>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row">
@@ -109,12 +108,12 @@ const TotalCards = ({ data, odds }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
           </span>
-          {renderItem(odds?.[0], 0)}
+          {renderItem(odds?.[0])}
         </div>
         <div className="w-100 d-sm-flex flex-row">
           <span className="card32bTitle" style={{lineHeight:"1.7"}}>
@@ -146,12 +145,12 @@ const TotalCards = ({ data, odds }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                       ]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
           </span>
-          {renderItem(odds?.[1], 1)}
+          {renderItem(odds?.[1])}
         </div>
       </div>
     </div>

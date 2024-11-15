@@ -5,7 +5,7 @@ const CustomDropDown = React.forwardRef(
   ({ children, onClick }: any, ref: any) => (
     <span
       ref={ref}
-      className="white-text text-decoration-none d-flex gap-2 align-items-center"
+      className="white-text text-decoration-none d-flex gap-1 pe-1 align-items-center"
       onClick={(e) => {
         e.preventDefault();
         onClick(e);

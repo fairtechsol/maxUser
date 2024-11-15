@@ -1,6 +1,5 @@
-import React from "react";
-import "./style.scss";
 import bg from "../../../../assets/images/cricketMatch_20-20/score-bgnew.webp";
+import "./style.scss";
 const ScoreBox = ({
   teamA,
   teamAScore,
@@ -65,7 +64,7 @@ const ScoreBox = ({
         <div
           className={
             item?.gstatus === "SUSPENDED" || backOdds === "0.00"
-              ? "suspended casino-odds-box back"
+              ? "suspended-box casino-odds-box back"
               : "casino-odds-box back "
           }
           onClick={() =>
@@ -79,7 +78,7 @@ const ScoreBox = ({
         <div
           className={
             item?.gstatus === "SUSPENDED" || layOdds === "0.00"
-              ? "suspended casino-odds-box lay"
+              ? "suspended-box casino-odds-box lay"
               : "casino-odds-box lay "
           }
           onClick={() =>

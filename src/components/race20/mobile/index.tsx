@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import "./style.scss";
 import { race20rules } from "../../../assets/images";
+import { RootState } from "../../../store/store";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
+import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Race20Result from "../desktop/race20Card";
 import OddBox from "./OddBox";
+import "./style.scss";
 import TotalsBox from "./TotalBox";
 import WinBox from "./win";
-import Race20Result from "../desktop/race20Card";
-import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import NewLoader from "../../commonComponent/newLoader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
 
 const Race20Mobile = () => {
@@ -28,7 +28,6 @@ const Race20Mobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -69,72 +68,11 @@ const Race20Mobile = () => {
   return (
     <>
       <div>
-        <div className="dt20header">
           <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+          <CasinoHead activeTab={activeTab} setActiveTab={setActiveTab} setShow={setShow} />
         {!activeTab ? (
           <div className="horseRacingTab">
             <div style={{ width: "100%" }}>
-              <div className="horseRacingTabHeader-m">
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                </div>
-              </div>
               <div
                 style={{
                   width: "100%",
@@ -151,10 +89,10 @@ const Race20Mobile = () => {
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
-                <div style={{ width: "100%", marginTop: "0.5rem" }}>
+                <div style={{ width: "100%", paddingBottom: "5px" }}>
                   <OddBox
                     odds={dragonTigerDetail?.cards}
                     data={dragonTigerDetail}
@@ -163,10 +101,11 @@ const Race20Mobile = () => {
                 <div
                   style={{
                     width: "100%",
-                    padding: "5px 0px",
+                    padding: " 0px",
                     display: "flex",
                     flexDirection: "column",
                     gap: "8px",
+                   
                   }}
                 >
                   <TotalsBox

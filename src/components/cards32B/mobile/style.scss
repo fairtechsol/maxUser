@@ -90,26 +90,10 @@
     width: 20px;
     padding: 10px 7px 0px 1px;
   }
-  .dt20header{
-    width: 100%;
-    background-color: #004a25;
-    // padding: 5px;
-    display: flex;
-    flex-direction: row;
-  }
-  .dt20subheader1{
-    width: 40%;
-    color: #fff;
-    display: flex;
-  }
-  .dt20subheader2{
-    width: 60%;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-    font-size: 12px;
+
+  .back-BackGround {
+    background-color: #72bbef;
+    line-height: 1.5;
   }
   .tiePairContainer-m{
     width: 100%;
@@ -179,6 +163,19 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+  .card32bTitle{
+    background-color: #fff;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 0.1px solid #c7c8ca;
+    // padding: 5px;
+    font-weight: 600;
+    text-align: start;
+    // background-color: #ffc742;
   }
 
   @media (max-width: 768px) {

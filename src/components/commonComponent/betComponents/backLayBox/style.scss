@@ -1,33 +1,51 @@
 @import "/src/assets/variable.scss";
 
-.backLayBox {
-  // display: flex;
-  flex-direction: column;
+.backLay {
   width: 100%;
-  align-items: center;
-  // height: 50%;
-  justify-content: center;
-  // padding: 5px 0px;
+  height: 100%;
+  position: relative; /* This is needed to allow absolute positioning */
+  // border-right: 0.5px solid white;
+  line-height: 1.5;
 }
+
+.backLay::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .backLay {
   width: 100%;
   border-right: 0.5px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bookmaker-width-26 {
   width: 26% !important;
 }
 .boxheight {
-  height: 30px;
+  height: 1.8rem;
+}
+.boxheight-m {
+  height: 1.4rem;
 }
 .boxsession {
   height: 48px;
 }
 .backLay-rate {
-  line-height: 16px;
+  // line-height: 16px;
   margin-bottom: 0px;
 }
 .backLay-rate-m {
-  line-height: 26px;
-  margin-bottom: 6px;
+  // line-height: 26px;
+  margin-bottom: -4px;
 }

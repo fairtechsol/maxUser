@@ -1,38 +1,32 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import CardBox from "./CardsBox";
-import OddEven from "./OddEvenBox";
-import SBetBox from "./Sbox";
-import "./style.scss";
-// import CardResultBox from "../../commonComponent/cardResultBox";
-// import CardResultBox from "../../commonComponent/cardResultBox";
-import { abjrules } from "../../../assets/images";
-import { handleRoundId } from "../../../utils/formatMinMax";
-import CardResultBox from "../../commonComponent/cardResultBox";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
-import Abj1Result from "../desktop/abj1Card";
-import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Card3Result from "../desktop/abj1Card";
+import CardBox from "./CardsBox";
+import "./style.scss";
 
 const CardJMobile = () => {
+
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const [videoFrameId, setVideoFrameId] = useState(
-    `${cardUrl}${cardGamesId?.andarBahar1}`
+    `${cardUrl}${cardGamesId?.cardj}`
   );
-  const [show, setShow] = useState(false);
+  const [_, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
-  const [nat, setNat] = useState("");
+
   const handleClose = () => {
     setShowInactivityModal(false);
   };
@@ -68,80 +62,22 @@ const CardJMobile = () => {
       clearInterval(intervalId);
     };
   }, [lastActivityTime, showInactivityModal]);
+
   return (
     <>
       <div>
-        <div className="dt20header">
-          {selectedBet?.team?.betOnTeam.split(" ")[1].length === 3 && (
-            <MobilePlacedBet show={show1} setShow={setShow1} />
-          )}
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}
-            </span>
-          </div>
-        </div>
+        {selectedBet?.team?.betOnTeam.split(" ")[1].length === 3 && (
+          <MobilePlacedBet show={show1} setShow={setShow1} />
+        )}
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
+
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "210px" }}>
-              <div className="horseRacingTabHeader-m">
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    Min:{dragonTigerDetail?.videoInfo?.min} Max:
-                    {dragonTigerDetail?.videoInfo?.max}
-                  </span>
-                </div>
-              </div>
+            <div style={{ width: "100%" }}>
               <div
                 style={{
                   width: "100%",
@@ -151,15 +87,15 @@ const CardJMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                  result={<Abj1Result data={dragonTigerDetail?.cardInfo} />}
+                  result={<Card3Result data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
-              <div style={{ marginTop: "70px" }}>
+              <div>
                 <div
                   style={{
                     width: "100%",
@@ -169,15 +105,17 @@ const CardJMobile = () => {
                   }}
                 >
                   <CardBox
-                    title={"Yes"}
-                    bgColor={"#03b2cb"}
+                    title="Yes"
+                    betType="BACK"
+                    bgColor="#72bbef"
                     odds={dragonTigerDetail?.yes}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
                   />
                   <CardBox
-                    title={"No"}
-                    bgColor={"#FAA9BA"}
+                    title="No"
+                    betType="LAY"
+                    bgColor="#faa9ba"
                     odds={dragonTigerDetail?.no}
                     data={dragonTigerDetail}
                     cards={dragonTigerDetail?.cardInfo}
@@ -187,7 +125,7 @@ const CardJMobile = () => {
                     <div className="ticker-wrap">
                       <div
                         className="ticker-move"
-                        style={{ color: "#8b0000", fontWeight: "700" }}
+                        style={{ color: "#097c93", fontWeight: "700" }}
                       >
                         {dragonTigerDetail?.videoInfo?.remark}
                       </div>
@@ -210,7 +148,6 @@ const CardJMobile = () => {
           </>
         )}
       </div>
-      <RulesModal show={show} setShow={setShow} rule={abjrules} />
       <InactivityModal show={showInactivityModal} handleClose={handleClose} />
     </>
   );

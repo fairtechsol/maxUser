@@ -9,12 +9,13 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import { useEffect } from "react";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCard32BMatchRates,
@@ -86,8 +87,9 @@ const Cards32B = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32B));
+      dispatch(getDragonTigerDetail(cardGamesType.card32B));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.card32B);
         socketService.card.getCardRatesOff(cardGamesType.card32B);

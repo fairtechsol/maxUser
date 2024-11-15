@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { socketService } from "../../socketManager";
 // import { getMatchList } from "../../store/actions/match/matchListAction";
+import ScrollToTop from "../../components/commonComponent/ScrollToTop";
+import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
   getProfile,
   marqueeNotification,
@@ -11,13 +13,13 @@ import {
   updateBalanceOnSessionResult,
 } from "../../store/actions/user/userAction";
 import { AppDispatch } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import "../layout.scss";
+import FooterBottom from "./footerBottom";
+import FooterMain from "./footerMain";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import TopBar from "./topbar";
-import ScrollToTop from "../../components/commonComponent/ScrollToTop";
-import { selectedBetAction } from "../../store/actions/match/matchListAction";
 
 const MainLayout = () => {
   const navigate = useNavigate();
@@ -115,7 +117,7 @@ const MainLayout = () => {
   }, [location]);
 
   return (
-    <>
+    <div>
       <ScrollToTop />
       {!isOnline && (
         <div
@@ -142,17 +144,24 @@ const MainLayout = () => {
       )}
       <Header />
       <TopBar />
-      <div className="d-flex">
+      <div className="d-flex" style={{ minHeight: "calc(100vh - 125px)" }}>
         {!isMobile && (
-          <div className={`sidebar sidebarActive`}>
+          <div className={`sidebar sidebarActive mt-1`}>
             <Sidebar />
           </div>
         )}
+        {/* <div><CasinoNav items={casinoItems}  /></div> */}
         <main className="w-100 overflow-hidden">
           <Outlet />
         </main>
       </div>
-    </>
+      <div className="contents-wrapper" style={{ width: "100%" }}>
+        <div className="footer-container mt-2">
+          <FooterMain />
+          <FooterBottom />
+        </div>
+      </div>
+    </div>
   );
 };
 

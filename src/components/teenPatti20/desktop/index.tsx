@@ -14,8 +14,8 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import Teen20Result from "./teenCard";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import NewLoader from "../../commonComponent/newLoader";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -67,6 +67,8 @@ const TeenPattiDesktop = () => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min: dragonTigerDetail?.videoInfo?.min,
+      max: dragonTigerDetail?.videoInfo?.max,
     };
     dispatch(
       selectedBetAction({
@@ -111,11 +113,9 @@ const TeenPattiDesktop = () => {
   useEffect(() => {
     if (playerA?.[0]?.gstatus === "0" || playerA?.[0]?.rate === "0.00") {
       dispatch(selectedBetAction(""));
-    } 
-    
-  }, [playerA?.[0]?.gstatus,playerA?.[0]?.b1]);
-  
-  
+    }
+  }, [playerA?.[0]?.gstatus, playerA?.[0]?.b1]);
+
   return (
     <>
       <Row>
@@ -164,7 +164,7 @@ const TeenPattiDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div className="teenPatti-table-container-20">
@@ -252,7 +252,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
-                          style={{zIndex:"100"}}
+                          style={{ zIndex: "100" }}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -298,7 +298,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
-                          style={{zIndex:"100"}}
+                          style={{ zIndex: "100" }}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -370,6 +370,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
+                          style={{ zIndex: "100" }}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -415,6 +416,7 @@ const TeenPattiDesktop = () => {
                                 : ""
                               : ""
                           }`}
+                          style={{ zIndex: "100" }}
                         >
                           {dragonTigerDetail?.profitLoss
                             ? dragonTigerDetail?.profitLoss[
@@ -441,7 +443,7 @@ const TeenPattiDesktop = () => {
             )}
           </div>
         </Col>
-        <Col md={4} className="ps-0">
+        <Col md={4} className="p-0">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
@@ -451,14 +453,17 @@ const TeenPattiDesktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
-                <div className="casino-title mt-2" style={{ position: "relative" }}>
+              <Col className="p-1 pt-0">
+                <div
+                  className="casino-title mt-2"
+                  style={{ position: "relative" }}
+                >
                   <span>Rules</span>
                 </div>
                 <div className="table-responsive rules-table">
@@ -480,7 +485,13 @@ const TeenPattiDesktop = () => {
                     </tbody>
                   </Table>
                 </div>
-                <RulesModal show={show} setShow={setShow} rule={tprules} />
+                <RulesModal
+                  show={show}
+                  setShow={setShow}
+                  gameType="teen20"
+                  rule={tprules}
+                  type="imageWithContent"
+                />
               </Col>
             </Row>
           </Container>

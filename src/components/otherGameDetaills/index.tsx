@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import FootballDesktopGameDetail from "./desktop";
 import FootballMobileGameDetail from "./mobile";
 import { useSelector } from "react-redux";
@@ -22,6 +22,7 @@ import {
   selectedBetAction,
 } from "../../store/actions/match/matchListAction";
 import {
+  betPlacedReset,
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
@@ -32,6 +33,7 @@ import {
 } from "../../socketManager";
 import {
   otherMatchDetailAction,
+  resetOtherMatchDetail,
   updateMatchRates,
   updateTeamRatesOnPlaceBet,
   updateUserBalanceOnPlaceBet,
@@ -111,8 +113,15 @@ const FootballGameDetails = () => {
   const resultDeclared = (event: any) => {
     try {
       if (event?.matchId === id) {
+        dispatch(getProfileInMatchDetail());
         if (event?.betType === "quickbookmaker1") {
-          navigate(`${isMobile ? `/sports` : `/game-list/${event?.gameType}`}`);
+          navigate(
+            `${
+              isMobile
+                ? `/sports`
+                : `/game-list/${event?.gameType || "cricket"}`
+            }`
+          );
         } else {
           dispatch(getPlacedBets(id));
         }
@@ -186,8 +195,8 @@ const FootballGameDetails = () => {
         expertSocketService.match.joinMatchRoom(id, "user");
         expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         socketService.userBalance.userMatchBetPlaced(setMatchBetsPlaced);
-        socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.declaredMatchResultAllUser(resultDeclared);
+        socketService.userBalance.matchResultDeclared(resultDeclared);
         socketService.userBalance.matchDeleteBet(handleMatchbetDeleted);
         socketService.userBalance.matchResultUnDeclared(
           handleMatchMarketResult
@@ -217,6 +226,8 @@ const FootballGameDetails = () => {
         socketService.userBalance.matchResultUnDeclared(handleMatchResult);
         socketService.userBalance.matchDeleteBet(getUserProfile);
         socketService.userBalance.sessionDeleteBet(getUserProfile);
+        dispatch(resetOtherMatchDetail());
+        dispatch(betPlacedReset());
       };
     } catch (e) {
       console.log(e);
@@ -228,9 +239,10 @@ const FootballGameDetails = () => {
       if (document.visibilityState === "visible") {
         if (id) {
           dispatch(selectedBetAction(null));
-          dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
+          // dispatch(otherMatchDetailAction({ matchId: id, matchType: type }));
           dispatch(getPlacedBets(id));
-          dispatch(getPlacedBets(id));
+          expertSocketService.match.joinMatchRoom(id, "user");
+          expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         }
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);
@@ -242,7 +254,7 @@ const FootballGameDetails = () => {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, [id]);
 
   return isMobile ? (
     <FootballMobileGameDetail />

@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import "./style.scss";
 import { abjrules } from "../../../assets/images";
-import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
@@ -11,9 +10,11 @@ import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 // import InnerLoader from "../../commonComponent/customLoader/InnerLoader";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
 import MobileMyBet from "../../commonComponent/mybet/mobile/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import MobilePlacedBet from "../../commonComponent/placebet/mobile/myBet";
-import BetBox from "../desktop/betBox/index";
+import CasinoHead from "../../commonComponent/casinoGameHeader";
+import CasinoTable from "./betBox";
+import QueenCard from "../desktop/queenCard";
+import NewLoader from "../../commonComponent/newLoader";
 const QueenMobile = () => {
   const [activeTab, setActiveTab] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
@@ -26,7 +27,6 @@ const QueenMobile = () => {
   const { dragonTigerDetail, loading } = useSelector(
     (state: RootState) => state.card
   );
-  const { placedBets } = useSelector((state: RootState) => state.bets);
 
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -61,82 +61,22 @@ const QueenMobile = () => {
   }, [lastActivityTime, showInactivityModal]);
 
   useEffect(() => {
-    setVideoFrameId(`${cardUrl}${cardGamesId?.worli}`);
+    setVideoFrameId(`${cardUrl}${cardGamesId?.queen}`);
   }, []);
 
   return (
     <>
       <div>
-        <div className="dt20header">
-          <MobilePlacedBet show={show1} setShow={setShow1} />
-          <div className="dt20subheader1">
-            <div
-              style={{
-                height: "100%",
-                borderTop: !activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(false)}
-              >
-                GAME
-              </span>
-            </div>
-            <span style={{ fontSize: "18px" }}> | </span>
-            <div
-              style={{
-                height: "100%",
-                borderTop: activeTab ? "2px solid white" : "none",
-                padding: "5px",
-              }}
-            >
-              <span
-                style={{ fontSize: "12px", fontWeight: "bold" }}
-                onClick={() => setActiveTab(true)}
-              >
-                PLACED BET({placedBets?.length || 0})
-              </span>
-            </div>
-          </div>
-          <div className="dt20subheader2">
-            <span
-              style={{ textDecoration: "underline" }}
-              onClick={() => setShow(true)}
-            >
-              Rules
-            </span>
-            <span>
-              {" "}
-              {dragonTigerDetail?.videoInfo
-                ? `Round ID:  ${handleRoundId(
-                    dragonTigerDetail?.videoInfo?.mid
-                  )}`
-                : ""}{" "}
-            </span>
-          </div>
-        </div>
+        <MobilePlacedBet show={show1} setShow={setShow1} />
+        <CasinoHead
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setShow={setShow}
+        />
+
         {!activeTab ? (
           <div className="horseRacingTab">
-            <div style={{ width: "100%", height: "210px" }}>
-              <div className="horseRacingTabHeader-m">
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {dragonTigerDetail?.name}
-                  </span>
-                  <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                    Min:{dragonTigerDetail?.videoInfo?.min} Max:
-                    {dragonTigerDetail?.videoInfo?.max}
-                  </span>
-                </div>
-              </div>
+            <div style={{ width: "100%" }}>
               <div
                 style={{
                   width: "100%",
@@ -146,17 +86,17 @@ const QueenMobile = () => {
               >
                 <VideoFrame
                   time={dragonTigerDetail?.videoInfo?.autotime}
-                //   result={<Abj1Result data={dragonTigerDetail?.videoInfo} />}
+                  result={<QueenCard data={dragonTigerDetail?.videoInfo} />}
                   id={videoFrameId}
                 />
               </div>
             </div>
 
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
-              <div style={{ height: "450px", marginTop: "70px" }}>
-               <div
+              <div>
+                <div
                   style={{
                     width: "100%",
                     margin: "0px",
@@ -164,15 +104,26 @@ const QueenMobile = () => {
                     flexDirection: "column",
                   }}
                 >
-                   <BetBox
-                         cards={dragonTigerDetail?.cards} 
-                           />
+                  <CasinoTable
+                    cards={dragonTigerDetail?.cards}
+                    data={dragonTigerDetail}
+                  />
+                   <div className="ticker-container">
+                    <div className="ticker-wrap">
+                      <div
+                        className="ticker-move"
+                        style={{ color: "#097c93", fontWeight: "700" }}
+                      >
+                        {dragonTigerDetail?.videoInfo?.ramark}
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div style={{ width: "100%", marginTop: "10px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
-                    name={["R","R","R"]}
-                    type={cardGamesType.worli}
+                    name={["0", "1", "2", "3"]}
+                    type={cardGamesType.queen}
                   />
                 </div>
               </div>

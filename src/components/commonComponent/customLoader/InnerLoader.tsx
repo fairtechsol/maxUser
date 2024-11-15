@@ -1,6 +1,6 @@
 
 import { loadernew } from "../../../assets/images";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 
 const InnerLoader = () => {
   return (

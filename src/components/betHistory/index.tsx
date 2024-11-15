@@ -1,22 +1,21 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import "react-calendar/dist/Calendar.css";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
-import isMobile from "../../utils/screenDimension";
-import SelectSearch from "../commonComponent/SelectSearch";
-import CustomButton from "../commonComponent/button";
-import CustomTable from "../commonComponent/table";
-import ReportContainer from "../containers/reportContainer";
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { useDispatch, useSelector } from "react-redux";
 import { TableConfig } from "../../models/tableInterface";
-import { useSelector } from "react-redux";
 import {
   betReportList,
   resetDataUnsettledMatch,
 } from "../../store/actions/match/matchListAction";
-import moment from "moment";
+import { AppDispatch, RootState } from "../../store/store";
+import { isMobile } from "../../utils/screenDimension";
+import SelectSearch from "../commonComponent/SelectSearch";
+import CustomButton from "../commonComponent/button";
+import CustomTable from "../commonComponent/table";
+import ReportContainer from "../containers/reportContainer";
 
 const BetHistoryComponent = () => {
   const minDate = new Date();
@@ -34,12 +33,9 @@ const BetHistoryComponent = () => {
     { value: "cricket", label: "Cricket" },
     { value: "football", label: "Football" },
     { value: "tennis", label: "Tennis" },
-    // { value: "horseRacing", label: "Horse Racing" },
-    // { value: "greyHoundRacing", label: "GreyHound Racing" },
   ];
   const optionsType = [
     { value: "MATCHED", label: "Matched" },
-    // { value: "UNMATCHED", label: "UnMatched" },
     { value: "DELETED", label: "Deleted" },
   ];
   const dispatch: AppDispatch = useDispatch();
@@ -138,7 +134,6 @@ const BetHistoryComponent = () => {
                 minDate={minDate}
                 maxDate={new Date()}
               />
-              {/* <CustomInput type="date" /> */}
             </Col>
             <Col md={2} xs={6}>
               <DatePicker
@@ -151,232 +146,232 @@ const BetHistoryComponent = () => {
                 minDate={minDate2}
                 maxDate={new Date()}
               />
-              {/* <CustomInput type="date" /> */}
             </Col>
 
             <Col md={2} xs={12}>
               <CustomButton
                 onClick={(e: any) => handleLoad(e)}
                 size={isMobile ? "sm" : "lg"}
-                className={`${
-                  isMobile ? "w-100" : " bg-primaryBlue"
-                } border-0 `}
+                className={`${isMobile ? "w-100" : " bg-primary"} border-0 `}
                 style={{ height: "35px" }}
               >
                 Submit
               </CustomButton>
             </Col>
           </Row>
-          {!isMobile && <CustomTable
-            paginationCount={true}
-            bordered={true}
-            striped={!isMobile}
-            isPagination={true}
-            isSearch={true}
-            setTableConfig={setTableConfig}
-            itemCount={
-              ReportBetList && ReportBetList?.count > 0
-                ? ReportBetList?.count
-                : 0
-            }
-            columns={[
-              {
-                id: "event_name",
-                label: "Event Name",
-              },
-              {
-                id: "nation",
-                label: "Nation",
-              },
-              {
-                id: "bet_type",
-                label: "Bet Type",
-              },
-              {
-                id: "user_rate",
-                label: "User Rate",
-              },
-              {
-                id: "amount",
-                label: "Amount",
-              },
-              {
-                id: "profit_loss",
-                label: "Profit/Loss",
-              },
-              {
-                id: "place_date",
-                label: "Place Date",
-              },
-              {
-                id: "match_date",
-                label: "Match Date",
-              },
-            ]}
-            // itemCount={10}
-            // setTableConfig={() => {}}
-          >
-            {ReportBetList &&
-              ReportBetList?.count > 0 &&
-              ReportBetList?.rows?.map((item: any) => {
-                return (
-                  <tr key={item?.id} className={`${isMobile && "title-12"}`}>
-                    <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {item?.eventType}
-                    </td>
-                    <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {item?.teamName}
-                    </td>
-                    <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {item?.betType}
-                    </td>
-                    <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {item?.odds}
-                    </td>
-                    <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {item?.amount}
-                    </td>
-                    <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {/* {item?.winAmount} */}
-                      {item.result === "LOSS" ? (
-                        <span className="color-red">-{item.lossAmount}</span>
-                      ) : (
-                        <span className="color-green">{item.winAmount}</span>
-                      )}
-                    </td>
-                    <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {moment(item?.createdAt).format("DD-MM-YYYY h:mm:ss A")}
-                    </td>
-                    <td
-                      className={` ${
-                        item?.betType === "NO" || item?.betType === "LAY"
-                          ? "bg-red1"
-                          : "bg-blue3"
-                      }`}
-                    >
-                      {moment(item?.match?.startAt).format(
-                        "DD-MM-YYYY h:mm:ss A"
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-          </CustomTable>}
+          {!isMobile && (
+            <CustomTable
+              paginationCount={true}
+              bordered={true}
+              striped={!isMobile}
+              isPagination={true}
+              isSearch={true}
+              setTableConfig={setTableConfig}
+              itemCount={
+                ReportBetList && ReportBetList?.count > 0
+                  ? ReportBetList?.count
+                  : 0
+              }
+              columns={[
+                {
+                  id: "sports",
+                  label: "Sports",
+                },
+                {
+                  id: "event_name",
+                  label: "Event Name",
+                },
+                {
+                  id: "market_name",
+                  label: "Market Name",
+                },
+                {
+                  id: "nation",
+                  label: "Nation",
+                },
+                {
+                  id: "user_rate",
+                  label: "User Rate",
+                },
+                {
+                  id: "amount",
+                  label: "Amount",
+                },
+                {
+                  id: "place_date",
+                  label: "Place Date",
+                },
+              ]}
+            >
+              {ReportBetList &&
+                ReportBetList?.count > 0 &&
+                ReportBetList?.rows?.map((item: any) => {
+                  return (
+                    <tr key={item?.id} className={`${isMobile && "title-12"}`}>
+                      <td
+                        className={` ${
+                          item?.betType === "NO" || item?.betType === "LAY"
+                            ? "bg-red1"
+                            : "bg-blue3"
+                        }`}
+                      >
+                        {item?.eventType}
+                      </td>
+                      <td
+                        className={` ${
+                          item?.betType === "NO" || item?.betType === "LAY"
+                            ? "bg-red1"
+                            : "bg-blue3"
+                        }`}
+                      >
+                        {item?.match?.title}
+                      </td>
+                      <td
+                        className={` ${
+                          item?.betType === "NO" || item?.betType === "LAY"
+                            ? "bg-red1"
+                            : "bg-blue3"
+                        }`}
+                      >
+                        {item?.marketType}
+                      </td>
+                      <td
+                        className={` ${
+                          item?.betType === "NO" || item?.betType === "LAY"
+                            ? "bg-red1"
+                            : "bg-blue3"
+                        }`}
+                      >
+                        {item?.teamName}
+                      </td>
+                      <td
+                        className={` ${
+                          item?.betType === "NO" || item?.betType === "LAY"
+                            ? "bg-red1"
+                            : "bg-blue3"
+                        }`}
+                      >
+                        {item?.odds}
+                      </td>
+                      <td
+                        className={` ${
+                          item?.betType === "NO" || item?.betType === "LAY"
+                            ? "bg-red1"
+                            : "bg-blue3"
+                        }`}
+                      >
+                        {item?.amount}
+                      </td>
+                      <td
+                        className={` ${
+                          item?.betType === "NO" || item?.betType === "LAY"
+                            ? "bg-red1"
+                            : "bg-blue3"
+                        }`}
+                      >
+                        {moment(item?.createdAt).format("DD-MM-YYYY h:mm:ss A")}
+                      </td>
+                    </tr>
+                  );
+                })}
+            </CustomTable>
+          )}
         </Stack>
       </div>
-      {isMobile && <CustomTable
-        bordered={true}
-        striped={!isMobile}
-        isPagination={true}
-        paginationCount={false}
-        isSearch={false}
-        setTableConfig={setTableConfig}
-        itemCount={
-          ReportBetList && ReportBetList?.count > 0
-            ? ReportBetList?.count
-            : 0
-        }
-        columns={[]}
-      >
-        <Row className="row row5 mt-2">
-          <Col className="col-12" colspan={12}>
-            {ReportBetList?.count > 0 &&
-              ReportBetList?.rows?.map((item: any, index: number) => {
-                return (
-                  <div className={`unsetteled-bet ${item.betType === "NO" || item.betType === "LAY"
-                    ? "bg-red1"
-                    : "bg-blue4"}`} key={index}>
-                    <div className="row row5">
-                      <div className="col-6 coloumn-6">
-                        <div>
-                          <a>
-                            <span  className="f500" style={{color:'#2881bb'}}>{item.eventName}</span>
-                          </a>
+      {isMobile && (
+        <CustomTable
+          bordered={true}
+          striped={!isMobile}
+          isPagination={true}
+          paginationCount={false}
+          isSearch={false}
+          setTableConfig={setTableConfig}
+          itemCount={
+            ReportBetList && ReportBetList?.count > 0 ? ReportBetList?.count : 0
+          }
+          columns={[]}
+        >
+          <Row className="row row5 mt-2">
+            <Col className="col-12" colspan={12}>
+              {ReportBetList?.count > 0 &&
+                ReportBetList?.rows?.map((item: any, index: number) => {
+                  return (
+                    <div
+                      className={`unsetteled-bet ${
+                        item.betType === "NO" || item.betType === "LAY"
+                          ? "bg-red1"
+                          : "bg-blue4"
+                      }`}
+                      key={index}
+                    >
+                      <div className="row row5">
+                        <div className="col-6 coloumn-6">
+                          <div>
+                            <a>
+                              <span
+                                className="f500"
+                                style={{ color: "#2881bb" }}
+                              >
+                                {item.eventName}
+                              </span>
+                            </a>
+                          </div>
+                          <div>
+                            <span className="f600">Nation: </span>{" "}
+                            {item?.teamName}
+                          </div>
+                          <div>
+                            <span className="f600">Place Date: </span>{" "}
+                            {moment(item?.createdAt).format(
+                              "MM/DD/YYYY hh:mm:ss A"
+                            )}
+                          </div>
+                          <div>
+                            <span className="f600">Matched Date: </span>{" "}
+                            {moment(item?.match?.startAt).format(
+                              "MM/DD/YYYY hh:mm:ss A"
+                            )}
+                          </div>
                         </div>
-                        <div>
-                          <span className="f600">Nation: </span> {item?.teamName}
+                        <Col className="col-2 reportBody" colspan={6}>
+                          <div>
+                            <span className="f600">User Rate</span>
+                          </div>
+                          <div>{item.odds}</div>
+                        </Col>
+                        <div className="col-2 text-right reportBody">
+                          <div>
+                            <span className="f600">Amount</span>
+                          </div>
+                          <div>{item.amount}</div>
                         </div>
-                        <div>
-                          <span className="f600">Place Date: </span> {moment(item?.createdAt).format(
-                            "MM/DD/YYYY hh:mm:ss A")}
+                        <div className="col-2 text-right reportBody">
+                          <div>
+                            <span className="f600">P&L</span>
+                          </div>
+                          <div>
+                            {" "}
+                            {item.result === "LOSS" ? (
+                              <span className="color-red">
+                                -{item.lossAmount}
+                              </span>
+                            ) : item?.result === "WIN" ? (
+                              <span className="color-green">
+                                {item.winAmount}
+                              </span>
+                            ) : (
+                              0
+                            )}
+                          </div>
                         </div>
-                        <div>
-                          <span className="f600">Matched Date: </span> {moment(item?.match?.startAt)
-                            .format(
-                              "MM/DD/YYYY hh:mm:ss A")}
-                        </div>
-                      </div>
-                      <Col className="col-2 reportBody" colspan={6}>
-                        <div>
-                          <span className="f600">User Rate</span>
-                        </div>
-                        <div>{item.odds}</div>
-                      </Col>
-                      <div className="col-2 text-right reportBody">
-                        <div>
-                          <span className="f600">Amount</span>
-                        </div>
-                        <div>{item.amount}</div>
-                      </div>
-                      <div className="col-2 text-right reportBody">
-                        <div>
-                          <span className="f600">P&L</span>
-                        </div>
-                        <div> {item.result === "LOSS" ? (
-                          <span className="color-red">-{item.lossAmount}</span>
-                        ) : (
-                          <span className="color-green">{item.winAmount}</span>
-                        )}</div>
                       </div>
                     </div>
-                  </div>
-                )
-              })}
-          </Col>
-        </Row>
-      </CustomTable>}
+                  );
+                })}
+            </Col>
+          </Row>
+        </CustomTable>
+      )}
     </ReportContainer>
   );
 };

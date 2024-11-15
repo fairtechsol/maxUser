@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { back, club, diamond, heart, spade } from "../../../assets/images";
-import isMobile from "../../../utils/screenDimension";
+import {isMobile} from "../../../utils/screenDimension";
 // import Club from "../../assets/cards/clubs.png";
 // import Diamond from "../../assets/cards/diamond.png";
 // import Heart from "../../assets/cards/heart.png";
@@ -28,7 +28,7 @@ export const PlayingCard: React.FC<PlayingCardProps> = ({ number, type, lock }) 
         // padding: isMobile ?  "0px" :"8px",
         background: "white",
         height: isMobile ? "24px" : "40px",
-        width: isMobile ? "18px" : "30px",
+        width: isMobile ? "18px" : "32px",
         padding: "0px",
         // border:"1px solid yellow",
       }}

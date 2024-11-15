@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
-import { cardGamesType } from "../../../utils/constants";
+import { cardGamesType, title } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import AbjResultComponent from "../../abj2/desktop/resultModalComponent";
 import Card32ResultComponent from "../../cards32/desktop/resultModalComponent";
 import Dragon20ResultComponent from "../../dragon20/desktop/resultModalComponent";
@@ -27,36 +27,21 @@ import Poker6ResultComponent from "../../poker/desktop/resultModalComponent";
 import Poker20ResultComponent from "../../poker20/desktop/resultModalComponent";
 import Card32BResultComponent from "../../cards32B/desktop/resultModalComponent";
 import BollywoodTableResultComponent from "../../bollywoodTable/desktop/resultModalComponent";
+import WorliMatkaResultComponent from "../../worliMatka/desktop/resultModalComponent";
 import WorliResultComponent from "../../worli/desktop/resultModalComponent";
 import CardJResultComponent from "../../3CardJ/desktop/resultModalComponent";
 import CricketMatch20ResultComponent from "../../cricketMatch_20/desktop/resultModalComponent";
 import Bacarrate1ResultComponent from "../../baccarat1/desktop/resultModalComponent";
 import Bacarrate2ResultComponent from "../../baccarat2/desktop/resultModalComponent";
 import QueenResultComponent from "../../queen/desktop/resultModalComponent";
-const title = {
-  dt20: "20-20 Dragon Tiger",
-  teen20: "20-20 Teenpatti",
-  lucky7: "Lucky 7 - A",
-  Lucky7B: "Lucky 7 - B",
-  card32: "32 Cards A",
-  abj: "Andar Bahar 2",
-  teen: "1 Day Teen Patti",
-  teen8: "Open Teen Patti",
-  teen9: "Test Teen Patti",
-  ab20: "Andar Bahar 1",
-  poker1Day: "Poker 1 Day",
-  aaa: "Amar Akbar Anthony",
-  war: "Casino War",
-  btable: "Bollywood Table",
-  worli2: "Instant Worli",
-  cmatch20: "Cricket Match 20-20",
-  // Add other mappings as needed
-};
+import BallByBallResultComponent from "../../ballbyball/desktop/resultModalComponent";
+import CasinoMeterResultComponent from "../../casinoMeter/desktop/resultModalComponent";
+import moment from "moment";
 
 interface ResultComponentProps {
   data: any;
   setfalse: any;
-  type: keyof typeof title;
+  type: keyof typeof title | string;
 }
 
 export const ResultComponent: React.FC<ResultComponentProps> = ({
@@ -65,7 +50,6 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
   type,
 }) => {
   const [date, setDate] = useState<any>();
-
   useEffect(() => {
     if (!date) {
       setDate(Date.now());
@@ -85,7 +69,7 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         />
       </div>
       <div
-        className="resultModalSubHea"
+        className="resultModalSubHead pt-0"
         style={{ fontSize: isMobile ? "0.8rem" : "1.1rem" }}
       >
         <div
@@ -95,13 +79,17 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
             paddingRight: "15px",
           }}
         >
-          <span style={{ fontWeight: "bold" }}>Round Id:</span>
+          <span style={{ fontWeight: "bold" }} className="pe-1">Round Id:</span>
           <span>{handleRoundId(data?.result?.mid)}</span>
         </div>
-        {/* <div>
-        <span style={{fontWeight:"bold"}}>Match Time:</span>
-        <span>{data?.createdAt ? moment(data?.createdAt).format('DD/MM/YYYY hh:mm:ss A'): moment(date).format('DD/MM/YYYY hh:mm:ss A')}</span>
-        </div> */}
+        <div >
+          <span style={{ fontWeight: "bold" }} className="pe-1">Match Time:</span>
+          <span>
+            {data?.createdAt
+              ? moment(data?.createdAt).format("DD/MM/YYYY hh:mm:ss A")
+              : moment(date).format("DD/MM/YYYY hh:mm:ss A")}
+          </span>
+        </div>
       </div>
       {type === cardGamesType?.dragonTiger20 ? (
         <Dragon20ResultComponent data={data} />
@@ -161,7 +149,13 @@ export const ResultComponent: React.FC<ResultComponentProps> = ({
         <QueenResultComponent data={data} />
       ) : type === cardGamesType?.baccarat2 ? (
         <Bacarrate2ResultComponent data={data} />
-      ) : (
+      ) : type === cardGamesType?.ballbyball ? (
+        <BallByBallResultComponent data={data} />
+      ) : type === cardGamesType?.cmeter ? (
+        <CasinoMeterResultComponent data={data} />
+      ) :  type === cardGamesType?.worli1 ? (
+        <WorliMatkaResultComponent data={data} />
+      ) :(
         <></>
       )}
     </Container>

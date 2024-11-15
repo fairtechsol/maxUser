@@ -1,17 +1,12 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import isMobile from "../../../../utils/screenDimension";
-import SmoothDropdownModal from "../minMaxModal";
-import { IoInformationCircle } from "react-icons/io5";
-import { useState,useEffect } from "react";
+import { AppDispatch } from "../../../../store/store";
+import { isMobile } from "../../../../utils/screenDimension";
 import "../../desktop/style.scss";
 
 const BackLay = ({ matchOddsData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = matchOddsData?.[0]?.min;
-  const max = matchOddsData?.[0]?.max;
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type === "back" ? "BACK" : "LAY",
@@ -23,6 +18,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -42,8 +39,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
     type === "back" ? (
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
-        }`}
+          handleLock(item?.gstatus, item?.b1) ? "lock-32" : ""
+        } `}
         onClick={() =>
           !handleLock(item?.gstatus, item?.b1) && handleBet(item, "back")
         }
@@ -53,8 +50,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
     ) : (
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
-        }`}
+          handleLock(item?.gstatus, item?.l1) ? "lock-32" : ""
+        } `}
         onClick={() =>
           !handleLock(item?.gstatus, item?.l1) && handleBet(item, "lay")
         }
@@ -78,40 +75,19 @@ const BackLay = ({ matchOddsData, data }: any) => {
           // marginTop: "3.3%",
           display: "flex",
           flexDirection: "column",
-          border: "0.3px solid #c7c8ca",
+          borderLeft: "0.3px solid #c7c8ca",
+          borderTop: "0.3px solid #c7c8ca",
           marginLeft: "5px",
         }}
       >
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
           <div className="dtlTitle">
-            {isMobile ? (
-              <>
-                <span style={{ fontWeight: "400" }}>
-                  Min:{min} Max:{max}
-                </span>
-              </>
-            ) : (
-              <div style={{ width: "45%", textAlign: "start" }}>
-                <span className="minmaxi">
-                  <IoInformationCircle
-                    color="#ffc742"
-                    onClick={() => setModelOpen(!modelOpen)}
-                  />
-                  <SmoothDropdownModal
-                    min={min}
-                    max={max}
-                    show={modelOpen}
-                    setShow={() => setModelOpen(false)}
-                  />
-                </span>
-              </div>
-            )}
           </div>
-          <div className="dtlsubTitle back-BackGround">Back</div>
-          <div className="dtlsubTitle lay-BackGround">Lay</div>
+          <div className="dtlsubTitle back-BackGround ">Back</div>
+          <div className="dtlsubTitle lay-BackGround ">Lay</div>
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex"}
@@ -119,7 +95,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Player 8</span>
+              <span className="">Player 8</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -142,7 +118,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                       )["player8"]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -157,7 +133,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Player 9</span>
+              <span className="">Player 9</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -180,7 +156,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                       )["player9"]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -194,7 +170,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Player 10</span>
+              <span className="">Player 10</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -217,7 +193,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                       )["player10"]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>
@@ -231,7 +207,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
         >
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
-              <span>Player 11</span>
+              <span className="">Player 11</span>
               <span
                 className={`title-14 f400 ${
                   data?.profitLoss
@@ -254,7 +230,7 @@ const BackLay = ({ matchOddsData, data }: any) => {
                     ? JSON.parse(
                         data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
                       )["player11"]
-                    : 0
+                    : <br></br>
                   : 0}
               </span>
             </div>

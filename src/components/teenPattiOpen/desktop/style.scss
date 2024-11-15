@@ -133,18 +133,14 @@
   display: flex;
   flex-direction: column;
 }
-.teenPatti-table-row{
-  background-color: #dee2e6;
-  width: 100%;
-  display: flex;
-  flex-direction: row
-}
-.teenPatti-table-item{
+
+.teenPatti-table-itemo{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 0.2px solid #fff;
+  border-left: 0.01px solid #c7c8ca;
+  border-bottom: 0.01px solid #c7c8ca;
   cursor: pointer;
 }
 .f12-b{
@@ -156,24 +152,7 @@
   font-weight: bolder;
 }
 
-.suspended:after {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  text-transform: uppercase;
-  font-family: "Font Awesome 5 Free";
-  content: "\f023";
-  font-weight: 900;
-  font-size: 18px;
-  top: 0;
-  z-index: 10;
-}
+
 .teen20resultModal{
   display: flex;
   flex-direction: row;

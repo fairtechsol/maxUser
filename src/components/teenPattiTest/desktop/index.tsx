@@ -14,9 +14,9 @@ import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
 import "./style.scss";
 import TeenTestResult from "./teenCard";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesComponent from "../../commonComponent/rulesComponent";
+import NewLoader from "../../commonComponent/newLoader";
 
 const TeenPattiDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -91,6 +91,8 @@ const TeenPattiDesktop = () => {
         item?.nation,
       bettingName: "Match odds",
       selectionId: sectionId,
+      min:dragonTigerDetail?.videoInfo?.min,
+      max:dragonTigerDetail?.videoInfo?.max
     };
 
     dispatch(
@@ -192,7 +194,7 @@ const TeenPattiDesktop = () => {
               </div>
             </div>
             {loading ? (
-              <LoaderOnRefresh />
+              <NewLoader />
             ) : (
               <div>
                 <div className="teenPatti-table-container-20">
@@ -200,22 +202,7 @@ const TeenPattiDesktop = () => {
                     className="teenPatti-table-row"
                     style={{ lineHeight: 2 }}
                   >
-                    <div style={{ width: "40%" }}></div>
-                    <div
-                      style={{
-                        width: "60%",
-                        backgroundColor: "#72bbef",
-                        display: "flex",
-                        flexDirection: "row",
-                      }}
-                    >
-                      <div
-                        className="teenPatti-table-item f12-b"
-                        style={{ width: "100%" }}
-                      >
-                        BACK
-                      </div>
-                    </div>
+                 
                   </div>
                   <div
                     className="teenPatti-table-row"
@@ -224,7 +211,7 @@ const TeenPattiDesktop = () => {
                     <div
                       style={{
                         width: "40%",
-                        padding: "10px",
+                        padding: "14px",
                         border: "0.1px solid #fff",
                       }}
                     >
@@ -243,7 +230,7 @@ const TeenPattiDesktop = () => {
                       className={`teenPatti-table-item ${
                         playerA?.[0]?.gstatus != "0" &&
                         playerA?.[1]?.gstatus === "0"
-                          ? "lock"
+                          ? "suspended-box2"
                           : ""
                       }`}
                       style={{ width: "20%", backgroundColor: "#72bbef" }}
@@ -254,7 +241,7 @@ const TeenPattiDesktop = () => {
                       className={`teenPatti-table-item ${
                         playerA?.[0]?.gstatus != "0" &&
                         playerA?.[1]?.gstatus === "0"
-                          ? "lock"
+                          ? "suspended-box2"
                           : ""
                       }`}
                       style={{ width: "20%", backgroundColor: "#72bbef" }}
@@ -273,7 +260,7 @@ const TeenPattiDesktop = () => {
                         <div
                           style={{
                             width: "40%",
-                            padding: "10px",
+                            padding: "14px",
                             border: "0.1px solid #fff",
                           }}
                         >
@@ -285,9 +272,6 @@ const TeenPattiDesktop = () => {
                         </div>
 
                         <div
-                          className={`${
-                            section.dstatus !== "True" ? "lock" : ""
-                          }`}
                           style={{
                             width: "60%",
                             display: "flex",
@@ -295,7 +279,9 @@ const TeenPattiDesktop = () => {
                           }}
                         >
                           <div
-                            className={`teenPatti-table-item`}
+                          className={`${
+                            section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
+                          }`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
@@ -340,7 +326,9 @@ const TeenPattiDesktop = () => {
                           </div>
 
                           <div
-                            className={`teenPatti-table-item`}
+                              className={`${
+                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
+                              }`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
@@ -385,7 +373,9 @@ const TeenPattiDesktop = () => {
                           </div>
 
                           <div
-                            className={`teenPatti-table-item`}
+                               className={`${
+                                section.dstatus !== "True" ? "teenPatti-table-item suspended-box2" : "teenPatti-table-item"
+                              }`}
                             style={{
                               width: "33.3%",
                               backgroundColor: "#72bbef",
@@ -447,7 +437,7 @@ const TeenPattiDesktop = () => {
                     </div>
                   </div>
                 </div>
-                <div style={{ width: "100%", marginTop: "10px" }}>
+                <div style={{ width: "100%", marginTop: "14px" }}>
                   <CardResultBox
                     data={dragonTigerDetail}
                     name={["D", "T", "L"]}
@@ -458,7 +448,7 @@ const TeenPattiDesktop = () => {
             )}
           </div>
         </Col>
-        <Col md={4} className="ps-0">
+        <Col md={4} className="p-0">
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
@@ -468,13 +458,13 @@ const TeenPattiDesktop = () => {
                   : "100%",
               }}
             >
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col className="p-1 pt-0" md={12}>
                 <DesktopMyBet />
               </Col>
-              <Col>
+              <Col className="p-1 pt-0">
                 <RulesComponent>
                   <div className="table-responsive rules-table">
                     <Table bordered>

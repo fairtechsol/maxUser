@@ -4,43 +4,45 @@ import OneVOneGameTable from "../games/1v1GameTable";
 import MatchListJson from "../matchList.json";
 import "./style.scss";
 
-const MobileMatchList = ({ setMatchType, type }: any) => {
+const MobileMatchList = ({ type, setMatchType, matchType }: any) => {
   // const dispatch: AppDispatch = useDispatch();
   // const { matchList, success } = useSelector(
   //   (state: RootState) => state.match.matchList
   // );
-  // const { getProfile } = useSelector((state: RootState) => state.user.profile);
 
   // const setMatchOddRatesInRedux = (event: any) => {
   //   dispatch(updateMatchOddRates(event));
   // };
 
   // useEffect(() => {
-  //   if (success && getProfile?.roleName) {
-  //     matchList?.forEach((element: any) => {
-  //       expertSocketService.match.joinMatchRoom(
-  //         element?.id,
-  //         getProfile?.roleName
-  //       );
-  //     });
-  //     matchList?.forEach((element: any) => {
-  //       expertSocketService.match.getMatchRates(
-  //         element?.id,
-  //         setMatchOddRatesInRedux
-  //       );
-  //     });
+  //   try {
+  //     if (
+  //       success &&
+  //       matchList.length > 0 &&
+  //       ["cricket", "football", "tennis", "politics"].includes(
+  //         type || matchType
+  //       )
+  //     ) {
+  //       matchList?.forEach((element: any) => {
+  //         expertSocketService.match.joinMatchRoom(element?.id, "user");
+  //       });
+  //       matchList?.forEach((element: any) => {
+  //         expertSocketService.match.getMatchRates(
+  //           element?.id,
+  //           setMatchOddRatesInRedux
+  //         );
+  //       });
+  //       return () => {
+  //         matchList?.forEach((element: any) => {
+  //           expertSocketService.match.leaveMatchRoom(element?.id);
+  //           expertSocketService.match.getMatchRatesOff(element?.id);
+  //         });
+  //       };
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
   //   }
-
-  //   return () => {
-  //     // expertSocketService.match.leaveAllRooms();
-  //     matchList?.forEach((element: any) => {
-  //       expertSocketService.match.leaveMatchRoom(element?.id);
-  //     });
-  //     matchList?.forEach((element: any) => {
-  //       expertSocketService.match.getMatchRatesOff(element?.id);
-  //     });
-  //   };
-  // }, [success, type, getProfile?.roleName]);
+  // }, [matchList.length, success, type, matchType]);
 
   return (
     <div className="m-0 p-0 w-100">
@@ -63,7 +65,7 @@ const MobileMatchList = ({ setMatchType, type }: any) => {
                     eventKey={item?.id}
                     tabClassName="m-match-list-tabs"
                     title={
-                      <div className="title-12 text-uppercase f500 nav-tab">
+                      <div className="title-12 text-uppercase f500 px-2 lh-sm">
                         {item?.img ? (
                           <img
                             src={item?.img}
@@ -75,7 +77,9 @@ const MobileMatchList = ({ setMatchType, type }: any) => {
                             {item?.icon}
                           </div>
                         )}
-                        <span className="navtab-name">{item?.name}</span>
+                        <span className="navtab-name text-white">
+                          {item?.name}
+                        </span>
                       </div>
                     }
                   ></Tab>
@@ -83,7 +87,7 @@ const MobileMatchList = ({ setMatchType, type }: any) => {
               })}
           </CommonTabs>
         )}
-      <OneVOneGameTable id={type} />
+      <OneVOneGameTable id={type || matchType} />
     </div>
   );
 };

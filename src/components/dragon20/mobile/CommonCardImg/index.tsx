@@ -19,7 +19,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
           <div>
             <div
               key={item?.sid}
-              className={item?.gstatus === "0" ? "suspended" : ""}
+              className={item?.gstatus === "0" ? "lock" : ""}
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -28,7 +28,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
               }}
               onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
             >
-              <img src={item?.imgSrc} width={"30px"} />
+              <img src={item?.imgSrc} width={"35px"} />
             </div>
             <span
               style={{
@@ -59,8 +59,8 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${item?.sid}_card`
                     ]
-                  : 0
-                : 0}
+                  : "\u00A0"
+                : "\u00A0"}
             </span>
           </div>
         );

@@ -7,7 +7,7 @@ import {
   setButtonValue,
 } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
-import isMobile from "../../utils/screenDimension";
+import {isMobile} from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
@@ -145,7 +145,7 @@ const ChangeButtonValueComponent = () => {
         <CustomButton
           type={"submit"}
           size={isMobile ? "sm" : "lg"}
-          className={`${isMobile ? "w-100" : " bg-primaryBlue"} border-0 mt-2`}
+          className={`${isMobile ? "w-100" : " bg-primary"} border-0 mt-2`}
         >
           Update
         </CustomButton>

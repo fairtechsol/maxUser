@@ -1,24 +1,21 @@
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { crick5rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
-import { cardData, cardGamesId, cardUrl } from "../../../utils/constants";
+import { cardGamesId, cardUrl } from "../../../utils/constants";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
-import RulesModal from "../../commonComponent/rulesModal";
-import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import "./style.scss";
-import MarketComponent from "./betTable";
-import ScoreBoard from "../../commonComponent/scoreBoard";
-import Crick5Result from "./cric5Card";
 import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
+import NewLoader from "../../commonComponent/newLoader";
 import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
-
+import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
+import Iframe from "../../iframe/iframe";
+import MarketComponent from "./betTable";
+import Crick5Result from "./cric5Card";
+import "./style.scss";
 const Cricket5Desktop = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
-  const [show, setShow] = useState(false);
+  const [_, setShow] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
@@ -26,7 +23,7 @@ const Cricket5Desktop = () => {
   const { dragonTigerDetail, scoreBoardData, loading } = useSelector(
     (state: RootState) => state.card
   );
-  // console.log(dragonTigerDetail, "dtaa")
+
   // const [showFancy, setShowFancy] = useState(false);
   const handleClose = () => {
     setShowInactivityModal(false);
@@ -97,25 +94,25 @@ const Cricket5Desktop = () => {
                 </span>
                 <a
                   style={{
-                    fontSize: "14px",
+                    fontSize: "12px",
                     textDecoration: "underline",
                     cursor: "pointer",
                   }}
                   onClick={() => setShow(true)}
                 >
                   {" "}
-                  RULES
+                  Rules
                 </a>
               </div>
-              <span>
+              <span className="title-12 mt-1">
                 {dragonTigerDetail?.videoInfo
-                  ? `Round ID:  ${dragonTigerDetail.videoInfo?.mid}|Min: ${dragonTigerDetail?.videoInfo?.min}|Max: ${dragonTigerDetail?.videoInfo?.max}`
+                  ? `Round ID:  ${dragonTigerDetail.videoInfo?.mid}`
                   : ""}
               </span>
             </div>
-            {scoreBoardData?.data && (
-              <div>
-                <ScoreBoard data={scoreBoardData?.data} />
+            {scoreBoardData?.balls?.length>0 && (
+              <div style={{ marginBottom: "2px" }}>
+                <Iframe data={scoreBoardData} />
               </div>
             )}
             <div
@@ -129,11 +126,12 @@ const Cricket5Desktop = () => {
             </div>
           </div>
           {loading ? (
-            <LoaderOnRefresh />
+            <NewLoader />
           ) : (
             <div>
               <div className="ms-1 w-100">
                 <MarketComponent
+                  showFancy={dragonTigerDetail?.fancy}
                   odds={dragonTigerDetail?.odds}
                   min={dragonTigerDetail?.videoInfo?.min}
                   max={dragonTigerDetail?.videoInfo?.max}
@@ -150,33 +148,31 @@ const Cricket5Desktop = () => {
             </div>
           )}
         </Col>
-        <Col md={4}>
-          <Container className="p-0" fluid ref={placeBetRef}>
+        <Col className="p-0 pt-1" md={4}>
+          <Container className="p-0" ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}
               style={{
                 width: isSticky
                   ? placeBetRef.current?.offsetWidth + "px"
                   : "100%",
+                   overflowY: "auto", maxHeight: "500px" 
               }}
             >
               <Col md={12}>
                 <DesktopPlacedBet />
               </Col>
-              <Col md={12}>
+              <Col md={12} style={{ overflowY: "auto", maxHeight: "500px" }}>
                 <DesktopMyBet />
               </Col>
-              <Col
-                className="no-scrollbar"
-                style={{ height: "350px", overflow: "auto" }}
-              >
+              {/* <Col>
                 <div
                   className="casino-title mt-2"
                   style={{ position: "relative" }}
                 >
                   <span>Rules</span>
                 </div>
-                <div className="table-responsive rules-table d-flex">
+                <div className="table-responsive rules-table d-flex lh-1">
                   {cardData?.map((teamData, index) => (
                     <Table bordered key={index} className="mb-4">
                       <thead>
@@ -224,7 +220,7 @@ const Cricket5Desktop = () => {
                   ))}
                 </div>
                 <RulesModal show={show} setShow={setShow} rule={crick5rules} />
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </Col>

@@ -21,7 +21,9 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
           <div>
             <div
               className={
-                item?.gstatus === "CLOSED" || item?.b1 === "0.00"
+                item?.gstatus === "SUSPENDED" ||
+                item?.gstatus === "CLOSED" ||
+                item?.b1 === "0.00"
                   ? "suspended"
                   : ""
               }
@@ -31,7 +33,11 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
-              onClick={() => (item?.gstatus != "0" ? handleBet(item) : null)}
+              onClick={() =>
+                item?.gstatus === "SUSPENDED" || item?.gstatus === "CLOSED"
+                  ? null
+                  : handleBet(item)
+              }
               key={item?.code}
             >
               {" "}
@@ -66,7 +72,7 @@ const CommonCardImg = ({ cardData, handleBet, data }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${item?.sid}_card`
                     ]
-                  : 0
+                  : <br></br>
                 : 0}
             </span>
           </div>

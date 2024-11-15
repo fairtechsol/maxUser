@@ -1,8 +1,7 @@
 import { useDispatch } from "react-redux";
+import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
 import CommonCardImg from "../CommonCardImg";
-import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import { useEffect } from "react";
 const CardBox = ({title, odds, data,cards,bgColor }: any) => {
   const dispatch: AppDispatch = useDispatch();
   const handleBet=(item:any)=>{
@@ -15,7 +14,9 @@ const CardBox = ({title, odds, data,cards,bgColor }: any) => {
       "betOnTeam":item?.nation,
       "name":item?.nation,
       "bettingName": "Match odds",
-      "selectionId": item?.sid
+      "selectionId": item?.sid,
+      "min":data?.videoInfo?.min,
+      "max":data?.videoInfo?.max
     }
     dispatch(
       selectedBetAction({
@@ -33,11 +34,11 @@ const CardBox = ({title, odds, data,cards,bgColor }: any) => {
     <>
       <div className="abjcardContainer" style={{backgroundColor:bgColor,border:"0.5px solid #000"}} >
         <div style={{width:"20%",display:"flex",justifyContent:"center" ,alignItems: "center",borderRight:"0.5px solid #000" }}>
-          <span style={{ fontSize: "16px"}}>
+          <span style={{ fontSize: "16px",fontWeight:"bold"}}>
           {title}
           </span>
         </div>
-        <div className="p-3">
+        <div className="p-3" style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
           <CommonCardImg cardData={odds} cardInfo={title==="ANDAR"?arCards:brCards} handleBet={handleBet} data={data}/>
         </div>
        

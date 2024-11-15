@@ -4,22 +4,22 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { card32rules } from "../../../assets/images";
 import { RootState } from "../../../store/store";
+import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
 import { handleRoundId } from "../../../utils/formatMinMax";
 import CardResultBox from "../../commonComponent/cardResultBox";
 import InactivityModal from "../../commonComponent/cards/userInactivityModal";
+import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
+import NewLoader from "../../commonComponent/newLoader";
+import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
 import RulesModal from "../../commonComponent/rulesModal";
 import VideoFrame from "../../commonComponent/videoFrame/VideoFrame";
-import OddEven from "./OddEvenBox";
 import BackLay from "./BackLay";
-import "./style.scss";
-import { cardGamesId, cardGamesType, cardUrl } from "../../../utils/constants";
+import OddEven from "./OddEvenBox";
 import PairBox from "./PairBox";
-import CardBox from "./cardBox";
-import TotalCards from "./totalCards";
 import Card32BResult from "./card32B";
-import DesktopMyBet from "../../commonComponent/mybet/desktop/myBet";
-import { LoaderOnRefresh } from "../../commonComponent/loader";
-import DesktopPlacedBet from "../../commonComponent/placebet/desktop/placebet";
+import CardBox from "./cardBox";
+import "./style.scss";
+import TotalCards from "./totalCards";
 
 const Card32BDesktop = () => {
   const [show, setShow] = useState(false);
@@ -95,17 +95,17 @@ const Card32BDesktop = () => {
                 </span>
                 <span
                   style={{
-                    fontSize: "14px",
+                    fontSize: "12px",
                     textDecoration: "underline",
                     cursor: "pointer",
                   }}
                   onClick={() => setShow(true)}
                 >
                   {" "}
-                  RULES
+                  Rules
                 </span>
               </div>
-              <span>
+              <span className="title-12 mt-1">
                 {dragonTigerDetail?.videoInfo
                   ? `Round ID:  ${handleRoundId(
                       dragonTigerDetail?.videoInfo?.mid
@@ -124,7 +124,7 @@ const Card32BDesktop = () => {
             </div>
           </div>
           {loading ? (
-            <LoaderOnRefresh />
+            <NewLoader />
           ) : (
             <div>
               <div
@@ -147,10 +147,10 @@ const Card32BDesktop = () => {
               <div
                 style={{
                   width: "100%",
-                  margin: "5px",
+                  margin: "px",
                   display: "flex",
                   flexDirection: "row",
-                  gap: "8px",
+                  gap: "10px",
                 }}
               >
                 <PairBox
@@ -173,7 +173,7 @@ const Card32BDesktop = () => {
                   data={dragonTigerDetail}
                 />
               </div>
-              <div style={{ width: "100%", margin: "5px 0px 0px 10px" }}>
+              <div style={{ width: "100%", margin: "5px 0px 0px 5px" }}>
                 <CardResultBox
                   data={dragonTigerDetail}
                   name={["8", "9", "10", "11"]}
@@ -183,9 +183,15 @@ const Card32BDesktop = () => {
             </div>
           )}
 
-          <RulesModal show={show} setShow={setShow} rule={card32rules} />
+          <RulesModal
+            show={show}
+            setShow={setShow}
+            rule={card32rules}
+            gameType="card32eu"
+            type="imageWithContent"
+          />
         </Col>
-        <Col md={4}>
+        <Col className="p-0 pt-1" md={4}>
           <Container className="p-0" fluid ref={placeBetRef}>
             <Row
               className={` ${isSticky ? "position-fixed top-0" : ""}`}

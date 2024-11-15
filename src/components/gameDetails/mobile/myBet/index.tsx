@@ -27,7 +27,7 @@ const MyBet = () => {
       <thead>
         <tr>
           {placeBetHeader?.map((item) => (
-            <th key={item?.id} className="title-12 text-start">
+            <th key={item?.id} className="title-12 text-start lh-05" style={{backgroundColor:"#f7f7f7"}}>
               {item?.name}
             </th>
           ))}
@@ -43,18 +43,20 @@ const MyBet = () => {
                   : "bg-blue3"
               }`}>
                 <th
-                  className={`title-12 text-start ${
+                  className={`title-12 text-start f400 lh-1 ${
                     bet?.betType === "NO" || bet?.betType === "LAY"
                       ? "bg-red1"
                       : "bg-blue3"
                   }`}
                 >
-                  {bet?.marketBetType === "SESSION"
-                    ? bet?.eventName
-                    : bet?.teamName}
+                   {["horseRacing", "greyHound"].includes(bet?.eventType)
+                        ? bet?.teamName?.split(".")?.[1]?.trim()
+                          ? bet?.teamName?.split(".")?.[1]?.trim()
+                          : bet?.teamName
+                        : bet?.teamName ?? bet?.bettingName}
                 </th>
                 <th
-                  className={`title-12 text-start ${
+                  className={`title-12 text-start f400 lh-1 ${
                     bet?.betType === "NO" || bet?.betType === "LAY"
                       ? "bg-red1"
                       : "bg-blue3"
@@ -63,7 +65,7 @@ const MyBet = () => {
                   {bet?.odds}
                 </th>
                 <th
-                  className={`title-12 text-start ${
+                  className={`title-12 text-start f400 lh-1 ${
                     bet?.betType === "NO" || bet?.betType === "LAY"
                       ? "bg-red1"
                       : "bg-blue3"

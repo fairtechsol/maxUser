@@ -90,33 +90,11 @@
     width: 20px;
     padding: 10px 7px 0px 1px;
   }
-  .dt20header{
-    width: 100%;
-    background-color: #004a25;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-  }
-  .dt20subheader1{
-    width: 40%;
-    color: #fff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .dt20subheader2{
-    width: 60%;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-    font-size: 12px;
-  }
+
+
   .tiePairContainer-d2{
     width: 100%;
     background-color: #eee;
-    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -144,10 +122,9 @@
     // justify-content: space-around;
     // align-items: center;
   }
-  .oddEvenContainerMob{
+  .oddEvenContainerMob-d2{
     width: 100%;
     background-color: #eee;
-    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -158,8 +135,7 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin-top: 8px;
+    justify-content: center;
   }
   .tiePairbtnMob-theme {
     color: #fff !important;
@@ -175,7 +151,16 @@
     position: relative;
     text-align: center;
   }
-
+  .commonCardImgContainer{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 5px;
+  }
   @media (max-width: 768px) {
 
   

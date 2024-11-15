@@ -6,8 +6,6 @@ import { selectedBetAction } from "../../../../store/actions/match/matchListActi
 import { useEffect } from "react";
 const TiePairBox = ({ lowHigh, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const min =lowHigh?.[0]?.min;
-  const max =lowHigh?.[0]?.max;
 
   const handleBet=(item:any)=>{
     let team ={
@@ -19,7 +17,9 @@ const TiePairBox = ({ lowHigh, data }: any) => {
       "betOnTeam":item?.nation,
       "name":item?.nation,
       "bettingName": "Match odds",
-      "selectionId": item?.sid
+      "selectionId": item?.sid,
+      "min":item?.min,
+      "max":item?.max
     }
     dispatch(
       selectedBetAction({
@@ -40,8 +40,8 @@ const TiePairBox = ({ lowHigh, data }: any) => {
     <div className="tiePairContainer">
       <div className="tiePairRateBoxMainlucky">
         <CommonButtonBox
-          value1={lowHigh?.[0]?.rate}
-          value2={"LOW CARD"}
+          value1={lowHigh?.[0]?.rate || 0}
+          value2={"Low Card"}
           value3={data?.profitLoss
               ? data?.profitLoss[
                   `${data?.videoInfo?.mid}_${lowHigh?.[0]?.sid}_card`
@@ -53,12 +53,12 @@ const TiePairBox = ({ lowHigh, data }: any) => {
           data={lowHigh?.[0]}
         />
         <div >
-        <img src={seven} width={"45px"} height={"60px"} style={{marginTop:"22px"}}/>
+        <img src={seven} width={"45px"} height={"60px"}/>
         </div>
          
         <CommonButtonBox
-          value1={lowHigh?.[1]?.rate}
-          value2={"HIGH CARD"}
+          value1={lowHigh?.[1]?.rate || 0}
+          value2={"High Card"}
           value3={data?.profitLoss
               ? data?.profitLoss[
                   `${data?.videoInfo?.mid}_${lowHigh?.[1]?.sid}_card`
@@ -71,12 +71,12 @@ const TiePairBox = ({ lowHigh, data }: any) => {
         />
        
       </div>
-      <div style={{ textAlign: "end",width:"100%" }}>
+      {/* <div style={{ textAlign: "end",width:"100%" }}>
         <span style={{ fontWeight: "bolder" }}>Min:</span>
         <span>{min}</span>
         <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
         <span>{max}</span>
-      </div>
+      </div> */}
     </div>
   );
 };

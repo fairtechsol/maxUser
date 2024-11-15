@@ -7,6 +7,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCardPoker6Rates,
@@ -15,7 +16,7 @@ import {
 } from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
 import {
-  getButtonValue,
+  getCasinoButtonValue,
   getProfile,
   getProfileInMatchDetail,
 } from "../../store/actions/user/userAction";
@@ -63,11 +64,6 @@ const Poker6 = () => {
         socketService.card.getCardRatesOff(cardGamesType.poker6);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.poker6);
-        socketService.card.getCardRates(
-          cardGamesType.poker6,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.poker6,
@@ -75,6 +71,11 @@ const Poker6 = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.poker6);
+      socketService.card.getCardRates(
+        cardGamesType.poker6,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -82,8 +83,9 @@ const Poker6 = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker6));
+      dispatch(getDragonTigerDetail(cardGamesType.poker6));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.poker6);
         socketService.card.getCardRatesOff(cardGamesType.poker6);

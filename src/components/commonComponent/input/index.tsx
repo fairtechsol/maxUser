@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
 import CustomErrorMessage from "../customErrorMessage";
 import "./style.scss";
 
@@ -24,9 +24,9 @@ const CustomInput = (props: any) => {
     customStyle,
     inputIcon,
     isUnderlinedInput,
-
     ...prop
   } = props;
+
   return (
     <>
       <Form.Group
@@ -35,7 +35,7 @@ const CustomInput = (props: any) => {
         } d-flex gap-1 position-relative inputMain`}
       >
         {title ? (
-          <Form.Label className={`${isMobile && "title-12"} mb-0`}>
+          <Form.Label className={`${isMobile && "mt-1 title-14"} mb-0`}>
             {title}
           </Form.Label>
         ) : (
@@ -43,9 +43,7 @@ const CustomInput = (props: any) => {
         )}
         {type === "select" ? (
           <Form.Select
-            className={`${inputClass ?? ""} bg-${bgColor} ${
-              isUnderlinedInput && "underline-textbox"
-            }`}
+            className={`${inputClass ?? ""} bg-${bgColor} ${isUnderlinedInput}`}
             name={id}
             {...prop}
           >
@@ -57,16 +55,18 @@ const CustomInput = (props: any) => {
           </Form.Select>
         ) : (
           <Form.Control
-            className={` ${inputClass ?? ""} bg-${bgColor} ${
-              isUnderlinedInput && "underline-textbox"
-            }`}
+            className={` ${
+              inputClass ?? ""
+            } bg-${bgColor} ${isUnderlinedInput}`}
             name={id}
             type={type}
             autoComplete="current-password"
             {...prop}
           />
         )}
-        {inputIcon && <div className="input-icon">{inputIcon}</div>}
+        {inputIcon && (
+          <div className="input-group-text-custom">{inputIcon}</div>
+        )}
         <CustomErrorMessage touched={touched} errors={errors} />
       </Form.Group>
     </>

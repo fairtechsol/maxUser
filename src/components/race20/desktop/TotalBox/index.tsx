@@ -15,6 +15,8 @@ const TotalsBox = ({ odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -40,7 +42,7 @@ const TotalsBox = ({ odds, data }: any) => {
   };
   return (
     <>
-      <div className="totalContainer">
+      <div className="totalContainer border-bottom-0" style={{ border: "1px solid #c7c8ca"}}>
         <div className="total-mainRateBox">
           <div style={{ width: "30%" }}>
             <span></span>
@@ -116,18 +118,18 @@ const TotalsBox = ({ odds, data }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                     ]
-                  : 0
+                  : ""
                 : 0}
             </span>
           </div>
         </div>
-
+{/* 
         <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
           <span style={{ fontWeight: "bolder" }}>Min:</span>
           <span>{odds?.[0]?.min}</span>
           <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
           <span>{odds?.[0]?.max}</span>
-        </div>
+        </div> */}
 
         <div className="total-mainRateBox">
           <div style={{ width: "30%" }}>
@@ -203,17 +205,17 @@ const TotalsBox = ({ odds, data }: any) => {
                   ? data?.profitLoss[
                       `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                     ]
-                  : 0
+                  : ""
                 : 0}
             </span>
           </div>
         </div>
-        <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
+        {/* <div style={{ width: "100%", textAlign: "end", padding: "5px" }}>
           <span style={{ fontWeight: "bolder" }}>Min:</span>
           <span>{odds?.[1]?.min}</span>
           <span style={{ fontWeight: "bolder", marginLeft: "10px" }}>Max:</span>
           <span>{odds?.[1]?.max}</span>
-        </div>
+        </div> */}
       </div>
     </>
   );

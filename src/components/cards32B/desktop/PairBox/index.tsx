@@ -1,16 +1,10 @@
-import { useState } from "react";
-import { IoInformationCircle } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { AppDispatch } from "../../../../store/store";
-import isMobile from "../../../../utils/screenDimension";
-import SmoothDropdownModal from "../minMaxModal";
+import { isMobile } from "../../../../utils/screenDimension";
 
 const PairBox = ({ matchOddsData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = matchOddsData?.[0]?.min;
-  const max = matchOddsData?.[0]?.max;
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type === "back" ? "BACK" : "LAY",
@@ -22,6 +16,8 @@ const PairBox = ({ matchOddsData, data }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -41,7 +37,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
     type === "back" ? (
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+          handleLock(item?.gstatus, item?.b1) ? "lock-32" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.b1) && handleBet(item, "back")
@@ -52,7 +48,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
     ) : (
       <div
         className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
+          handleLock(item?.gstatus, item?.l1) ? "lock-32" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.l1) && handleBet(item, "lay")
@@ -69,8 +65,9 @@ const PairBox = ({ matchOddsData, data }: any) => {
           marginTop: "5%",
           display: "flex",
           flexDirection: "column",
-          border: "0.3px solid #c7c8ca",
-          // marginLeft: "5px",
+          borderLeft: "0.3px solid #c7c8ca",
+          borderTop: "0.3px solid #c7c8ca",
+          marginLeft: "5px",
         }}
       >
         <div
@@ -78,7 +75,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
           style={{ height: "30px" }}
         >
           <div className="dtlTitle">
-            {isMobile ? (
+            {/* {isMobile ? (
               <>
                 <span style={{ fontWeight: "400" }}>
                   Min:{min} Max:{max}
@@ -99,7 +96,7 @@ const PairBox = ({ matchOddsData, data }: any) => {
                   />
                 </span>
               </div>
-            )}
+            )} */}
           </div>
           <div className="dtlsubTitle back-BackGround">Back</div>
           <div className="dtlsubTitle lay-BackGround">Lay</div>
@@ -110,34 +107,26 @@ const PairBox = ({ matchOddsData, data }: any) => {
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
               <span>Any 3 Card Black</span>
-              <span
-                className={`title-14 f400 ${
-                  data?.profitLoss
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
-                      ]
-                      ? data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
-                        ] > 0
-                        ? "color-green"
-                        : data?.profitLoss[
+              <span className={`title-14 f400 color-red`}>
+                {data?.profitLoss ? (
+                  data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
+                  ] ? (
+                    Math.min(
+                      ...Object.values(
+                        JSON.parse(
+                          data?.profitLoss[
                             `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
-                          ] < 0
-                        ? "color-red"
-                        : ""
-                      : ""
-                    : ""
-                }`}
-              >
-                {data?.profitLoss
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
-                    ]
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[0]?.sid}_card`
-                      ]
-                    : 0
-                  : 0}
+                          ]
+                        )
+                      )?.map((item) => parseInt(item?.toString()))
+                    )
+                  ) : (
+                    <br></br>
+                  )
+                ) : (
+                  0
+                )}
               </span>
             </div>
           </span>
@@ -150,34 +139,26 @@ const PairBox = ({ matchOddsData, data }: any) => {
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
               <span>Any 3 Card Red</span>
-              <span
-                className={`title-14 f400 ${
-                  data?.profitLoss
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
-                      ]
-                      ? data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
-                        ] > 0
-                        ? "color-green"
-                        : data?.profitLoss[
+              <span className={`title-14 f400 color-red`}>
+                {data?.profitLoss ? (
+                  data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
+                  ] ? (
+                    Math.min(
+                      ...Object.values(
+                        JSON.parse(
+                          data?.profitLoss[
                             `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
-                          ] < 0
-                        ? "color-red"
-                        : ""
-                      : ""
-                    : ""
-                }`}
-              >
-                {data?.profitLoss
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
-                    ]
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[1]?.sid}_card`
-                      ]
-                    : 0
-                  : 0}
+                          ]
+                        )
+                      )?.map((item) => parseInt(item?.toString()))
+                    )
+                  ) : (
+                    <br></br>
+                  )
+                ) : (
+                  0
+                )}
               </span>
             </div>
           </span>
@@ -190,34 +171,26 @@ const PairBox = ({ matchOddsData, data }: any) => {
           <span className="dtlTitle lh-1">
             <div className="profitLoss-Text">
               <span>Two Black Two Red</span>
-              <span
-                className={`title-14 f400 ${
-                  data?.profitLoss
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
-                      ]
-                      ? data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
-                        ] > 0
-                        ? "color-green"
-                        : data?.profitLoss[
+              <span className={`title-14 f400 color-red`}>
+                {data?.profitLoss ? (
+                  data?.profitLoss[
+                    `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
+                  ] ? (
+                    Math.min(
+                      ...Object.values(
+                        JSON.parse(
+                          data?.profitLoss[
                             `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
-                          ] < 0
-                        ? "color-red"
-                        : ""
-                      : ""
-                    : ""
-                }`}
-              >
-                {data?.profitLoss
-                  ? data?.profitLoss[
-                      `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
-                    ]
-                    ? data?.profitLoss[
-                        `${data?.videoInfo?.mid}_${matchOddsData?.[2]?.sid}_card`
-                      ]
-                    : 0
-                  : 0}
+                          ]
+                        )
+                      )?.map((item) => parseInt(item?.toString()))
+                    )
+                  ) : (
+                    <br></br>
+                  )
+                ) : (
+                  0
+                )}
               </span>
             </div>
           </span>

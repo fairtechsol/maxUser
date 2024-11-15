@@ -1,8 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { HandleCards } from "../../commonComponent/cardsComponent";
 import { FaTrophy } from "react-icons/fa";
-import isMobile from "../../../utils/screenDimension";
+import { isMobile } from "../../../utils/screenDimension";
+import { HandleCards } from "../../commonComponent/cardsComponent";
+import ResultBetList from "../../commonComponent/resultBetList";
 import "./style.scss";
 interface Props {
   data: {
@@ -12,6 +13,16 @@ interface Props {
 }
 
 const Card32BResultComponent: React.FC<Props> = ({ data }: any) => {
+  const descParts = data?.result?.desc?.split("|");
+  const winner = descParts?.[0];
+  const oddEven = descParts?.[1]
+    ?.split(",")
+    ?.map((item: any) => item?.replace(":", " : "))
+    ?.join(" | ");
+  const blackRed = descParts?.[2]?.includes("Black:Yes") ? "Black" : "Red";
+  const single = descParts?.[3];
+  const total = descParts?.[4];
+
   const resultCards = data?.result?.cards?.split(",");
   let result: string[][] = [[], [], [], []];
   if (resultCards) {
@@ -20,115 +31,76 @@ const Card32BResultComponent: React.FC<Props> = ({ data }: any) => {
       result[targetArray].push(item);
     });
   }
-  // const max = Math.max(...numbers);
   return (
-    <Container style={{ display: "flex", flexDirection: "column" }}>
-      <div className="card32resultModal">
-        <div className="card32resultCardContainer mb-3">
-          <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Player 8</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "1" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
-            {result?.[0]?.map((item: any) => {
-              return (
-                item != "1" && (
-                  <div
-                    style={{
-                      // border: "1px solid #fdef34",
-                      borderRadius: "1px",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    <HandleCards card={item} />
+    <Container
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <div className="card32resultModal d-flex flex-column flex-md-row align-items-center">
+        {["Player 8", "Player 9", "Player 10", "Player 11"].map(
+          (player, index) => (
+            <div className="card32resultCardContainer mb-3 " key={player}>
+              <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
+                {player}
+              </span>
+              <div className="d-flex  flex-row justify-content-center align-items-center">
+                {result?.[index]?.map(
+                  (item: any) =>
+                    item !== "1" && (
+                      <div
+                        key={item}
+                        style={{
+                          borderRadius: "1px",
+                          marginLeft: "5px",
+                          marginBottom: isMobile ? "5px" : "0", // Adds space between cards in column layout
+                        }}
+                      >
+                        <HandleCards card={item} />
+                      </div>
+                    )
+                )}
+                {data?.result?.win === (index + 1).toString() && (
+                  <div className="casino-winner-icon ms-2">
+                    <FaTrophy size={30} color="#169733" />
                   </div>
-                )
-              );
-            })}
-          </div>
+                )}
+              </div>
+            </div>
+          )
+        )}
+      </div>
+
+      <div
+        style={{
+          width: "50%",
+          textAlign: "center",
+          boxShadow: "0 0 4px -1px",
+          marginBottom: "10px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <strong style={{ opacity: "0.6" }}>Winner: </strong> {winner}
         </div>
-        <div className="card32resultCardContainer mb-3">
-          <span style={{ fontSize: isMobile ? "14px" : "20px" }}>Player 9</span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "2" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
-            {result?.[1]?.map((item: any) => {
-              return (
-                item != "1" && (
-                  <div
-                    style={{
-                      // border: "1px solid #fdef34",
-                      borderRadius: "1px",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    <HandleCards card={item} />
-                  </div>
-                )
-              );
-            })}
-          </div>
+        <div>
+          <strong style={{ opacity: "0.6" }}>Odd/Even:</strong> {oddEven}
         </div>
-        <div className="card32resultCardContainer mb-3">
-          <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
-            Player 10
-          </span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "3" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
-            {result?.[2]?.map((item: any) => {
-              return (
-                item != "1" && (
-                  <div
-                    style={{
-                      // border: "1px solid #fdef34",
-                      borderRadius: "1px",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    <HandleCards card={item} />
-                  </div>
-                )
-              );
-            })}
-          </div>
+        <div>
+          <strong style={{ opacity: "0.6" }}>Black/Red:</strong> {blackRed}
         </div>
-        <div className="card32resultCardContainer mb-3">
-          <span style={{ fontSize: isMobile ? "14px" : "20px" }}>
-            Player 11
-          </span>
-          <div className="d-sm-flex flex-row justify-content-center align-items-center">
-            {data?.result?.win === "4" && (
-              <div className="casino-winner-icon">
-                <FaTrophy size={30} color="#169733" />
-              </div>
-            )}
-            {result?.[3]?.map((item: any) => {
-              return (
-                item != "1" && (
-                  <div
-                    style={{
-                      // border: "1px solid #fdef34",
-                      borderRadius: "1px",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    <HandleCards card={item} />
-                  </div>
-                )
-              );
-            })}
-          </div>
+        <div>
+          <strong style={{ opacity: "0.6" }}>Single:</strong> {single}
+        </div>
+        <div>
+          <strong style={{ opacity: "0.6" }}>Total:</strong> {total}
         </div>
       </div>
+      {data?.bets?.count > 0 && (
+        <div className="w-100">
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

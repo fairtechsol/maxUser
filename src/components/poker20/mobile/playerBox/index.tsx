@@ -3,7 +3,7 @@ import { AppDispatch } from "../../../../store/store";
 import { useDispatch } from "react-redux";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
 import { useEffect } from "react";
-const DynamicTable = ({ odds, data, playerNum }: any) => {
+const PlayerTable = ({ title,odds, data, playerNum }: any) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleBet = (item: any) => {
@@ -17,6 +17,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -33,7 +35,7 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
     if (!acc[nation]) {
       acc[nation] = { nation, entries: [] };
     }
-    const suffix = String.fromCharCode(65 + acc[nation].entries.length);
+    const suffix = String.fromCharCode(title==="PlayerB"?66:65 + acc[nation].entries.length);
     acc[nation].entries?.push({ nation: `${nation} ${suffix}`, sid, rate, gstatus });
     return acc;
   }, {});
@@ -48,52 +50,52 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
   }, [odds?.[0]?.gstatus,odds?.[0]?.rate]);
 
   return (
-    <div className="card32-table-container">
-      <div className="card32-table-row" style={{ lineHeight: 2 }}>
-        <div style={{ width: "50%" }}></div>
+    <div className="card32-table-container" style={{paddingTop:"10px"}}>
+      <div className="card32-table-row border-0" style={{ lineHeight: 2 }}>
+       
         <div
           style={{
-            width: "50%",
+            width: "100%",
             display: "flex",
             flexDirection: "row",
           }}
         >
-          <div className="card32-table-item back" style={{ width: "50%" }}>
-            PLAYER A
+          <div style={{ width: "100%",display:"flex",alignItems:"initial",paddingLeft:"10px",fontWeight:"bold" }}>
+            {title}
           </div>
-          <div className="card32-table-item back" style={{ width: "50%" }}>
-            PLAYER B
-          </div>
+         
         </div>
       </div>
+      <div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-between"}}>
       {result &&
         result?.map((item: any, index: number) => {
           return (
             <div
-              className="card32-table-row"
-              style={{ lineHeight: 1 }}
+              
+              style={{ lineHeight: 1,width:"30%" }}
               key={index + playerNum[0]}
             >
               <div
                 style={{
-                  width: "50%",
+                  width: "100%",
                   padding: "8px",
-                  border: "0.1px solid #fff",
+                  
                   display: "flex",
                   flexDirection: "column",
                   cursor: "pointer",
+                  alignItems:"center"
                 }}
-              >
+              > 
                 <span style={{ fontSize: "14px", fontWeight: "bolder" }}>
                   {item?.nation}
                 </span>
               </div>
               <div
                 className={
-                  item?.entries?.[0]?.gstatus === "0" ? "suspended" : ""
+                  item?.entries?.[0]?.gstatus === "0" ? "suspended-poker20" : ""
                 }
                 style={{
-                  width: "50%",
+                  width: "100%",
                   display: "flex",
                   flexDirection: "row",
                   cursor: "pointer",
@@ -101,8 +103,8 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
                 }}
               >
                 <div
-                  className="card32-table-item back"
-                  style={{ width: "50%" }}
+                  className="card32-table-item bac"
+                  style={{ width: "100%" ,background:"#72BBEF"}}
                   onClick={() =>
                     item?.entries?.[0]?.gstatus === "0"
                       ? null
@@ -141,53 +143,14 @@ const DynamicTable = ({ odds, data, playerNum }: any) => {
                       : 0}
                   </span>
                 </div>
-                <div
-                  className="card32-table-item back"
-                  style={{ width: "50%" }}
-                  onClick={() =>
-                    item?.entries?.[0]?.gstatus === "0"
-                      ? null
-                      : handleBet(item?.entries?.[1])
-                  }
-                >
-                  <span className="f12-b">{item?.entries?.[1]?.rate}</span>
-                  <span
-                    className={`f400 title-14 ${
-                      data?.profitLoss
-                        ? data?.profitLoss[
-                            `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
-                          ]
-                          ? data?.profitLoss[
-                              `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
-                            ] > 0
-                            ? "color-green"
-                            : data?.profitLoss[
-                                `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
-                              ] < 0
-                            ? "color-red"
-                            : ""
-                          : ""
-                        : ""
-                    }`}
-                    style={{zIndex:"111"}}
-                  >
-                    {data?.profitLoss
-                      ? data?.profitLoss[
-                          `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
-                        ]
-                        ? data?.profitLoss[
-                            `${data?.videoInfo?.mid}_${item?.entries?.[1]?.sid}_card`
-                          ]
-                        : 0
-                      : 0}
-                  </span>
-                </div>
+               
               </div>
             </div>
           );
         })}
+     </div>
     </div>
   );
 };
 
-export default DynamicTable;
+export default PlayerTable;

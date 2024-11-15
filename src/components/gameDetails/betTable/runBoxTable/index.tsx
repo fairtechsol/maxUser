@@ -1,22 +1,37 @@
+import { useEffect } from "react";
 import { Table } from "react-bootstrap";
+import { runAmountReset } from "../../../../store/actions/betPlace/betPlaceActions";
+import { AppDispatch } from "../../../../store/store";
+import { useDispatch } from "react-redux";
 
 const RunBoxTable = ({ runAmount }: any) => {
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    
+  
+    return () => {
+      dispatch(
+        runAmountReset()
+      );
+    }
+  }, [])
+  
   return (
-    <Table striped bordered hover style={{width:'90%', margin:'17px'}}>
+    <Table striped bordered hover style={{width:'100%'}}>
       <thead>
         <tr >
-          <th style={{backgroundColor: '#ffc742',textAlign:'center'}}>Run </th>
-          <th className="text-end" style={{backgroundColor: '#ffc742'}}>Amount</th>
+          <th style={{backgroundColor: '#f2f2f2',textAlign:'start'}}>Run</th>
+          <th className="text-end" style={{backgroundColor: '#f2f2f2'}}>Amount</th>
         </tr>
       </thead>
       <tbody>
         {runAmount?.betPlaced?.map((item: any, index: number) => {
           return (
             <tr key={index}>
-              <td className={+item?.profitLoss >= 0 ? "bg-blue1" : "bg-red1"} style={{textAlign:'center'}}>
+              <td  style={{textAlign:'start',backgroundColor:"#f2f2f2"}}>
                 {item?.odds}
               </td>
-              <td className={+item?.profitLoss >= 0 ? "bg-blue1" : "bg-red1"} style={{textAlign:'end'}}>
+              <td  style={{textAlign:'end',backgroundColor:"#f2f2f2",color:item?.profitLoss<0?"#bd1828":"#086f3f"}}>
                 {parseFloat(item?.profitLoss).toFixed(2)}
               </td>
             </tr>

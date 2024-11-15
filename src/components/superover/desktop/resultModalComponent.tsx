@@ -1,5 +1,6 @@
 import React from "react";
-import { Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import ResultBetList from "../../commonComponent/resultBetList";
 interface Props {
   data: {
     C1: string;
@@ -9,14 +10,33 @@ interface Props {
 // const head=["team1","1","2","3","4","5","6","Run/Over","Score"]
 
 const SuperOverResultComponent: React.FC<Props> = ({ data }: any) => {
-// console.log('first',data)
+  // console.log('first',data)
 
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
-     <div className="mb-2" style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}>
-      <span>{data?.result?.desc} | Winner :{data?.result?.win ==="1"? " ENG":data?.result?.win ==="0"?" TIE":" RSA"}</span>
-     </div>
-     {/* <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
+      <div
+        className="mb-2"
+        style={{
+          lineHeight: "2",
+          color: "#fff",
+          background: "#ffc742d9",
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <span>
+          {data?.result?.desc} | Winner :
+          {data?.result?.win === "1"
+            ? " ENG"
+            : data?.result?.win === "0"
+            ? " TIE"
+            : " RSA"}
+        </span>
+      </div>
+      {/* <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
       <div className="resultTabHead"><span style={{fontSize:"16px",color:"#fff"}}>FIRST INNINGS</span></div>
       <div className="resultTeamTab">
           {head?.map((item:any,index:number)=>{
@@ -40,6 +60,11 @@ const SuperOverResultComponent: React.FC<Props> = ({ data }: any) => {
           })}
       </div>
      </div> */}
+      {data?.bets?.count > 0 && (
+        <div className="w-100">
+          <ResultBetList bets={data?.bets?.rows} total={data?.bets?.count} />
+        </div>
+      )}
     </Container>
   );
 };

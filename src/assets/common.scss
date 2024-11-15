@@ -59,6 +59,262 @@ body table.table {
   height: 100%;
   margin-top: 1%;
 }
+.custom-checkbox .form-check-input:checked {
+  background-color: #FFC742; 
+  border-color: #FFC742;    
+}
+
+.custom-checkbox .form-check-input:focus {
+  border-color: #28a745;   
+}
+
+.custom-checkbox .form-check-input {
+  border-radius: 50%;      
+}
+.loader1 {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%); // Center the loader
+  background: $white;
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999;
+  margin-top: 2rem;
+}
+
+.teenPatti-table-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 0.2px solid #c7c8ca;
+  cursor: pointer;
+}
+
+.teenPatti-table-row{
+  background-color: #f7f7f7;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.tiePairbtn-theme {
+  display: flex;
+  color: #fff !important;
+  background-image: linear-gradient(to right, #004a25, #ffc742) !important;
+  width: 100% !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2) !important;
+  border: 0 !important;
+  padding: 5px 0px !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  font-weight: 600;
+  position: relative;
+  text-align: center;
+  min-height: 46px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap;
+}
+
+.tiePairbtn-theme.suspended:after {
+  border-radius: 4px;
+}
+
+.suspended{
+  position: relative;
+  pointer-events: none;
+  cursor: none;
+}
+
+.suspended::before {
+  background-image: url(../assets/images/baccarat/lock.svg) !important;
+  background-size: 17px 17px;
+  filter: invert(1);
+  -webkit-filter: invert(1);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+.suspended::after {
+  content: "";
+  background-color: #373636d6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.lock{
+  position: relative;
+  pointer-events: none;
+  cursor: none;
+}
+
+.lock::before {
+  background-image: url(../assets//images//baccarat//lock.svg);
+  background-size: 17px 17px;
+  filter: invert(1);
+  -webkit-filter: invert(1);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+.lock::after {
+  content: "";
+  background-color: #373636d6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+// .suspended:after {
+//   position: absolute;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100%;
+//   width: 100%;
+//   right: 0;
+//   background-color: rgba(0, 0, 0, 0.6);
+//   color: #ffffff;
+//   text-transform: uppercase;
+//   font-family: "Font Awesome 5 Free";
+//   content: "\f023";
+//   font-weight: 900;
+//   font-size: 18px;
+//   top: 0;
+// //  bottom: 10px;
+// }
+
+.suspended-poker20{
+  position: relative;
+  pointer-events: none;
+  cursor: none;
+}
+
+.suspended-poker20::before {
+  background-image: url(../assets/images/baccarat/lock.svg) !important;
+  background-size: 17px 17px;
+  filter: invert(1);
+  -webkit-filter: invert(1);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+.suspended-poker20::after{
+
+  content: "";
+  background-color: #373636d6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+
+
+.suspended-1day{
+  position: relative;
+  pointer-events: none;
+  cursor: none;
+}
+
+.suspended-1day::before {
+  background-image: url(../assets/images/baccarat/lock.svg) !important;
+  background-size: 17px 17px;
+  filter: invert(1);
+  -webkit-filter: invert(1);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -9px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+.suspended-1day::after{
+
+  content: "";
+  background-color: #373636d6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+.card32-table-container{
+  width: 100%;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+}
+.card32-table-row{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  // border: 1px solid #c7c8ca;
+}
+
+
+
+
 /* Marquee.css */
 
 .marquee-container {
@@ -117,11 +373,52 @@ body table.table {
   width: 96%;
   max-width: none;
 }
-
+.modalFull-56.customModal .modal-dialog {
+  width: 56%;
+  max-width: none;
+  margin-top: 10px;
+}
 // cursor pointer
 .cursor-pointer {
   cursor: pointer;
 }
+
+.customModal-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* Optional for overlay effect */
+  z-index: 1050; /* To be on top of other elements */
+}
+
+.fullscreen-modal .modal-header,
+.fullscreen-modal .modal-body {
+  width: 100%;
+}
+
+.modal-custom {
+  max-width: 100%; /* Fallback for smaller screens */
+  margin: 1.75rem auto;
+}
+
+@media (min-width: 576px) {
+  .modal-custom {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-custom-lg {
+    max-width: 800px;
+  }
+}
+
 
 // ===== blink text ====
 @keyframes blink {
@@ -139,10 +436,17 @@ body table.table {
 }
 .color {
   background-color: $primary !important;
+  // border-top: 1px solid #ffffff;
+  // line-height: ;
+  padding: 1px 5px;
+  display: flex;
+  box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
 }
 .font {
   font-size: 12px;
 }
+
+
 // mobile tabs
 .m-tab {
   border-radius: 0px !important;
@@ -150,30 +454,57 @@ body table.table {
   justify-content: flex-start;
   align-self: start;
   background-color: $primary !important;
-  // padding: 0px 10px !important;
+  padding: 5px 10px !important;
   color: $white !important;
-  border-right: 1px solid $white !important;
+  // border-right: 1px solid $white !important;
   width: 100% !important;
   div {
     width: 100% !important;
   }
 }
-.m-tab.active {
-  border-color: transparent;
-  border-top: 2px solid $white !important;
-  border-left: none !important;
+// .m-tab.active {
+//   border-color: transparent;
+//   border-top: 0.1rem solid $white !important;
+//   border-left: none !important;
+// }
+
+//  .m-tab .active::after {
+//   // position: absolute;
+//   width: 100%;
+//   // height: 2px;
+//   // background-color: #ffffff;
+//   // top: -12px;
+//   content: "";
+//   left: 0;
+// }
+
+@media only screen and (max-width: 1199px) {
+  .m-tab .active::after {
+      top: -7px;
+  }
+}
+.flex-1{
+  flex: 1 !important;
 }
 .no-wrap {
   flex-wrap: nowrap !important;
   text-wrap: nowrap;
 }
-
+.btnbg-blue{
+ background-color: #004a25 !important;
+}
+.btnbg-red{
+ background-color: #0d6efd !important;
+}
 /* ====== bg Colors start ====  */
 .bg-secondaryLight {
   background-color: rgba($secondary, 0.7) !important;
 }
 .bg-secondary {
   background-color: $secondary;
+}
+.placeBet-bg-blue{
+ background-color: #72bbef !important;
 }
 .bg-blue1 {
   background-color: $blue1 !important;
@@ -187,6 +518,9 @@ body table.table {
 .bg-blue4 {
   background-color: $blue4 !important;
 }
+.bg-blue5 {
+  background-color: #6cb1e3 !important;
+}
 .bg-red1 {
   background-color: $red1 !important;
 }
@@ -195,6 +529,9 @@ body table.table {
 }
 .bg-red3 {
   background-color: $red3 !important;
+}
+.bg-red4 {
+  background-color: #faa9ba !important;
 }
 .bg-gray {
   background-color: $gray !important;
@@ -239,6 +576,55 @@ body select {
   font-size: 14px;
 }
 
+@media only screen and (max-width: 1199px) {
+  .latest-event {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      justify-content: flex-start;
+      margin-bottom: 0;
+      white-space: nowrap;
+      background-color: transparent;
+      padding: 0 5px 5px;
+  }
+}
+
+.latest-event {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0;
+  background: #004a25 !important;
+  background-color: transparent;
+  padding: 0;
+  align-items: flex-start;
+}
+
+@media only screen and (max-width: 1199px) {
+  .latest-event-item {
+      min-width: 50%;
+      width: auto;
+      max-width: 100%;
+      height: 100%;
+  }
+}
+.latest-event-item {
+  flex: 1;
+  max-width: 100%;
+  min-width: calc(20% - 10px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background: #ffc742 !important;
+  margin-right: 5px;
+  border-radius: 0;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
 // mobile and desktop tab bar
 .m-match-list-tabs {
   flex-direction: column;
@@ -248,7 +634,7 @@ body select {
   // padding: 1px;
   // padding-left: 0px;
   // padding-right: 0px;
-  padding: 3px 2px 5px;
+  padding: .5rem 1rem;
   flex-wrap: nowrap;
   // overflow-x: auto;
   // overflow-y: hidden;
@@ -256,7 +642,7 @@ body select {
   width: 90%;
   white-space: nowrap;
   &.active {
-    background-color: $primary !important;
+    background-color: #177165d9 !important;
     color: $white !important;
     border-color: transparent !important ;
   }
@@ -279,20 +665,15 @@ body select {
   padding: 10px;
   border: 0.5px $white solid;
 }
-.nav-tab {
-  padding-left: 0px;
-  padding-right: 0px;
-  margin-left: 0%;
-  margin-right: 0%;
-}
+
 .navtab-name {
   font-weight: 410;
 }
 .tab-img {
   display: block;
   margin: 0 auto;
-  height: 24px;
-  width: 28px;
+  height: 18px;
+  width: 20px;
 }
 
 /* ===== for reports  ====  */
@@ -400,8 +781,10 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 6px 8px;
+  padding: 10px;
+  font-size: 14px;
   background-color: #ffc742d9;
+  color: #ffffff;
 }
 .cardResultBoxRound {
   width: 100%;
@@ -491,6 +874,7 @@ img {
 .table-bordered thead td,
 .table-bordered thead th {
   border-bottom-width: 1px;
+  // background-color: #f7f7f7;
 }
 .table thead th {
   vertical-align: bottom;
@@ -569,11 +953,12 @@ img {
 
 .horseRacingTabHeader {
   width: 100%;
-  height: 12%;
+  // height: 12%;
   background-color: #ffc742;
   display: flex;
   justify-content: space-between;
   padding: 6px 8px;
+  color : #ffffff
 }
 .horseRacingTabHeader-m {
   width: 100%;
@@ -581,7 +966,9 @@ img {
   background-color: #ffc742;
   display: flex;
   justify-content: space-between;
-  padding: 6px 8px;
+  // padding: 5px 10px;
+  color : #ffffff;
+  flex-direction: column;
 }
 .teenpatti-20 .suspended:after {
   width: 50%;
@@ -594,26 +981,10 @@ img {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-.suspended:after {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  text-transform: uppercase;
-  font-family: "Font Awesome 5 Free";
-  content: "\f023";
-  font-weight: 900;
-  font-size: 18px;
-  top: 0;
-}
+
 .resultModalHeader {
   width: 100%;
-  height: 70px;
+  // height: 70px;
   padding: 10px;
   background-color: #004a25;
   display: flex;
@@ -633,15 +1004,55 @@ img {
   align-items: center;
   color: #000000;
 }
-.suspended {
-  position: relative;
-}
-.lock {
+// .suspended {
+//   position: relative;
+// }
+
+.lockk {
   position: relative;
 }
 .locked {
   position: relative;
 }
+
+.suspended-box2 {
+  position: relative;
+  pointer-events: none;
+  cursor: none;
+}
+
+.suspended-box2::before {
+  background-image: url(../assets/images/baccarat/lock.svg);
+  background-size: 17px 17px;
+  filter: invert(1);
+  -webkit-filter: invert(1);
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+.suspended-box2::after {
+  content: "";
+  background-color: #373636d6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
 .row-flex-mobile {
   display: flex;
   flex-direction: row;
@@ -659,6 +1070,36 @@ img {
   align-items: center;
   width: 100%;
   margin-top: 2rem;
+}
+.dt20subheader1{
+  color: #fff;
+  display: flex;
+  // padding: 0 5px;
+}
+.dt20subheader2{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  padding-right: 5px;
+}
+
+.dt20header{
+  width: 100%;
+  background-color: #004a25;
+  box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: row;
+  // padding: 2px 0px;
+  justify-content: space-between
+}
+
+.headfirst{
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0px 5px;
 }
 
 /* ===== for title ====  */
@@ -700,8 +1141,9 @@ img {
 }
 .title-16 {
   font-size: 16px !important;
-  line-height: 0.6;
-  padding-top: "10px" !important;
+}
+.title-16px {
+  font-size: 16px !important;
 }
 .title-15 {
   font-size: 15px !important;
@@ -718,8 +1160,14 @@ img {
 .title-10 {
   font-size: 10px !important;
 }
+.f100 {
+  font-weight: 100 !important;
+}
 .f300 {
   font-weight: 300 !important;
+}
+.fbold {
+  font-weight: bold !important;
 }
 .f400 {
   font-weight: 400 !important;
@@ -750,10 +1198,402 @@ img {
 .form-check-input[type="radio"] {
   border-radius: 50% !important;
 }
-// #middleView-playerDiv {
-//   display: none !important; /* This will override the inline display style */
-// }
-// === border css start ====
+.latest-eventt {
+  display: flex;            /* Use flex to make items align in a row */
+  overflow-x: auto;         /* Enable horizontal scrolling */
+  scrollbar-width: none;    /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in IE 10+ */
+}
 
-// === border css start ====
-/*# sourceMappingURL=common.css.map */
+.latest-eventt::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers */
+}
+
+/* Styles for width 0px to 760px */
+@media (max-width: 760px) {
+  .backLayBoxWidth {
+    width: 48% !important;
+  }
+  .backLayBoxWidth2 {
+    width: 40% !important;
+  }
+  .rateBoxWidth {
+    width: 72% !important;
+  }
+  .rateBoxWidth2 {
+    width: 40% !important;
+  }
+  .rateBoxWidth3 {
+    width: 20% !important;
+  }
+  .rateFont{
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #333 !important;
+  }
+  .sizeFont{
+    font-size: 11px !important;
+    font-weight: 200 !important;
+  }
+  .teamFont{
+    font-size: 13px !important;
+  }
+  .side-W{
+    display: none !important;
+  }
+  .sideBet-W{
+    display: none !important;
+    width: 0 !important;
+  }
+  .betMain-W{
+    width: 100% !important;
+  }
+  .suspendTextCmmn{
+    font-size: 12px !important;
+    font-weight: bold;
+    color: #ff0000;
+  }
+  .deatilShow-m{
+    display: block !important;
+  }
+  .deatilShow-d{
+    display: none !important;
+  }
+  .rateBoxWidthKhado {
+    width: 20% !important;
+  }
+  .setbtn-modal .modal-dialog{
+    margin: 0 !important;
+  }
+}
+
+/* Styles for width 760px to 1200px */
+
+
+@media (min-width: 761px) and (max-width: 1200px) {
+  .backLayBoxWidth {
+    width: 240px !important;
+  }
+  .backLayBoxWidth2 {
+    width: 120px !important;
+  }
+  .rateBoxWidth {
+    width: 360px !important;
+  }
+  .rateBoxWidth2 {
+    width: 120px !important;
+  }
+  .rateBoxWidth3 {
+    width: 60px !important;
+  }
+  .rateBoxWidthNormal {
+    width: 180px !important;
+  }
+  .rateBoxWidthKhado {
+    width: 120px !important;
+  }
+  .rateFont{
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #333 !important;
+  }
+  .sizeFont{
+    font-size: 12px !important;
+    font-weight: 200 !important;
+  }
+  .teamFont{
+    font-size: 14px !important;
+  }
+  .side-W{
+    display: none !important;
+  }
+  .sideBet-W{
+    display: none !important;
+    width: 0 !important;
+  }
+  .betMain-W{
+    width: 100% !important;
+  }
+  .suspendTextCmmn{
+    font-size: 13px !important;
+    font-weight: bold;
+    color: #ff0000;
+  }
+  .bookTeamWidth{
+    width: 27% !important;
+  }
+  .deatilShow-m{
+    display: block;
+  }
+  .deatilShow-d{
+    display: none;
+  }
+  .sessionMinMaxFont{
+    font-size: 9px !important;
+  }
+}
+
+/* Styles for width 1200px to 1399px */
+
+
+@media (min-width: 1201px) and (max-width: 1399px) {
+  .backLayBoxWidth {
+    width: 220px !important;
+  }
+  .backLayBoxWidth2 {
+    width: 110px !important;
+  }
+  .rateBoxWidth{
+    width: 330px !important;
+  }
+  .rateBoxWidth2 {
+    width: 110px !important;
+  }
+  .rateBoxWidth3 {
+    width: 55px !important;
+  }
+  .rateBoxWidthNormal {
+    width: 165px !important;
+  }
+  .rateBoxWidthKhado {
+    width: 110px !important;
+  }
+  .runnerWidthNormal {
+    flex-grow: 1;
+    width: 48% !important;
+  }
+  .rateFont {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #333 !important;
+  }
+  .sizeFont{
+    font-size: 12px !important;
+    font-weight: 200 !important;
+  }
+  .teamFont{
+    font-size: 13px !important;
+  }
+  .side-W{
+    width: 210px !important;
+  }
+  .betMain-W{
+    width: calc(100% - 352px) !important;
+  }
+  .suspendTextCmmn{
+    font-size: 14px !important;
+    font-weight: bold;
+    color: #ff0000;
+  }
+  .bookTeamWidth{
+    width: 26% !important;
+  }
+  .deatilShow-m{
+    display: none;
+  }
+  .deatilShow-d{
+    display: block;
+  }
+  .placeBet-w{
+    width: 350px !important;
+  }
+  .sessionMinMaxFont{
+    font-size: 9px !important;
+  }
+}
+
+
+/* Styles for width 1400px to 1599px */
+
+
+@media (min-width: 1400px) and (max-width: 1599px) {
+
+  .backLayBoxWidth{
+    width: 240px !important;
+  }
+  .backLayBoxWidth2 {
+    width: 120px !important;
+  }
+  .rateBoxWidth {
+    width: 360px !important;
+  }
+  .rateBoxWidth2 {
+    width: 120px !important;
+  }
+  .rateBoxWidth3 {
+    width: 60px !important;
+  }
+  .rateBoxWidthNormal {
+    width: 180px !important;
+  }
+  .rateBoxWidthKhado {
+    width: 120px !important;
+  }
+  .runnerWidthNormal {
+    flex-grow: 1;
+    width: 48% !important;
+  }
+  .rateFont{
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #333 !important;
+  }
+  .sizeFont{
+    font-size: 12px !important;
+    font-weight: 200 !important;
+  }
+  .teamFont{
+    font-size: 14px !important;
+  }
+  .side-W{
+    width: 240px !important;
+  }
+  .betMain-W{
+    width: calc(100% - 402px) !important;
+  }
+  .suspendTextCmmn{
+    font-size: 15px !important;
+    font-weight: bold;
+    color: #ff0000;
+  }
+  .bookTeamWidth{
+    width: 27% !important;
+  }
+  .deatilShow-m{
+    display: none;
+  }
+  .deatilShow-d{
+    display: block;
+  }
+  .placeBet-w{
+    width: 400px !important;
+  }
+  .sessionMinMaxFont{
+    font-size: 10px !important;
+  }
+}
+
+/* Styles for width 1600px and above */
+
+
+@media (min-width: 1600px) {
+ .backLayBoxWidth {
+    width: 320px !important;
+  }
+  .backLayBoxWidth2 {
+    width: 160px !important;
+  }
+  .rateBoxWidth {
+    width: 480px !important;
+  }
+  .rateBoxWidth2 {
+    width: 160px !important;
+  }
+  .rateBoxWidth3 {
+    width: 80px !important;
+  }
+  .rateBoxWidthNormal {
+    width: 240px !important;
+  }
+  .rateBoxWidthKhado {
+    width: 160px !important;
+  }
+  .runnerWidthNormal {
+    flex-grow: 1;
+    width: 45% !important;
+  }
+  .rateFont{
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: #333 !important;
+  }
+  .sizeFont{
+    font-size: 12px !important;
+    font-weight: 200 !important;
+  }
+  .teamFont{
+    font-size: 14px !important;
+  }
+  .side-W{
+    width: 280px !important;
+  }
+  .betMain-W{
+    width: calc(100% - 452px) !important;
+  }
+  .suspendTextCmmn{
+    font-size: 16px !important;
+    font-weight: bold;
+    color: #ff0000;
+  }
+  .bookTeamWidth{
+    width: 28% !important;
+  }
+  .deatilShow-m{
+    display: none;
+  }
+  .deatilShow-d{
+    display: block;
+  }
+  .placeBet-w{
+    width: 450px !important;
+  }
+  .sessionMinMaxFont{
+    font-size: 12px !important;
+  }
+}
+
+.matchOddBackBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.suspended-list-rates {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373636d6;
+  height: 100%;
+  z-index: 999;
+}
+
+.form-check-input-custom[type="radio"]:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+
+.form-check-input-custom:checked {
+    background-color: #FFC742;
+    border-color: #FFC742;
+}
+
+
+.form-check-input-custom[type=radio] {
+    border-radius: 50% !important;
+}
+.form-check-custom .form-check-input-custom {
+    float: left;
+    margin-left: -1.5em;
+}
+.form-check-input-custom {
+    width: 1em;
+    height: 1em;
+    margin-top: .25em;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid rgba(0, 0, 0, .25);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+

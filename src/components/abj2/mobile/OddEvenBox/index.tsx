@@ -16,6 +16,8 @@ const OddEven = ({ card, odds, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:data?.videoInfo?.min,
+      max:data?.videoInfo?.max
     };
     dispatch(
       selectedBetAction({
@@ -26,7 +28,7 @@ const OddEven = ({ card, odds, data }: any) => {
   };
   return (
     <>
-      <div className="oddEvenContainer-m">
+      <div className="oddEvenContainer-m" style={{ border: "1px solid #c7c8ca"}}>
         {card ? (
           <>
             {" "}
@@ -45,10 +47,10 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"40%"}
-                lock={odds?.[0]?.gstatus}
+                lock={odds?.[0]?.gstatus === "0" ? true : false}
                 data={odds?.[0]}
                 handleBet={handleBet}
               />
@@ -60,10 +62,10 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"40%"}
-                lock={odds?.[1]?.gstatus}
+                lock={odds?.[1]?.gstatus === "0" ? true : false}
                 data={odds?.[1]}
                 handleBet={handleBet}
               />
@@ -86,10 +88,10 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[1]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"20%"}
-                lock={odds?.[1]?.gstatus}
+                lock={odds?.[1]?.gstatus === "0" ? true : false}
                 data={odds?.[1]}
                 handleBet={handleBet}
               />
@@ -101,10 +103,10 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[0]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"20%"}
-                lock={odds?.[0]?.gstatus}
+                lock={odds?.[0]?.gstatus === "0" ? true : false}
                 data={odds?.[0]}
                 handleBet={handleBet}
               />
@@ -116,10 +118,10 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[2]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"20%"}
-                lock={odds?.[2]?.gstatus}
+                lock={odds?.[2]?.gstatus === "0" ? true : false}
                 data={odds?.[2]}
                 handleBet={handleBet}
               />
@@ -131,10 +133,10 @@ const OddEven = ({ card, odds, data }: any) => {
                     ? data?.profitLoss[
                         `${data?.videoInfo?.mid}_${odds?.[3]?.sid}_card`
                       ]
-                    : 0
+                    :  <br></br>
                 }
                 width={"20%"}
-                lock={odds?.[3]?.gstatus}
+                lock={odds?.[3]?.gstatus === "0" ? true : false}
                 data={odds?.[3]}
                 handleBet={handleBet}
               />

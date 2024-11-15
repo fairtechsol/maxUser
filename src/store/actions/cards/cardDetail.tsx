@@ -19,6 +19,22 @@ export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
     }
   }
 );
+export const getDragonTigerDetail = createAsyncThunk<any, any>(
+  "card/matchDetail",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.CARDS.MATCH.GET_CARD_DETAIL_INITIAL}/${requestData}`
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 // export const deleteHorseRacingBets = createAsyncThunk<any, any>(
 //   "horseRacing/deleteBet",
 //   async (requestData, thunkApi) => {
@@ -294,6 +310,13 @@ export const updateQueenRates = createAsyncThunk<any, any>(
     return data;
   }
 );
+
+export const updateWorliMatkaRates = createAsyncThunk<any, any>(
+  "worlimatka/matchRatesUpdate",
+  async (data) => {
+    return data;
+  }
+);
 export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
   "casinoScoreboard/matchRatesUpdate",
   async (requestData, thunkApi) => {
@@ -305,11 +328,14 @@ export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
         },
       };
       const resp = await axios.get(
-        `${Constants.thirdPartyCard}${ApiConstants.SCOREBOARD.match}/${requestData?.id}?gameName=${requestData?.type}`,
+        // `${Constants.thirdPartyCard}${ApiConstants.SCOREBOARD.match}/${requestData?.id}?gameName=${requestData?.type}`,
+        `${Constants.thirdPartyLive}/cricketScore?eventId=${requestData?.id}`,
         config
       );
+
+      
       if (resp?.data) {
-        return resp?.data?.data?.data;
+        return resp?.data?.data;
       }
     } catch (error) {
       const err = error as AxiosError;

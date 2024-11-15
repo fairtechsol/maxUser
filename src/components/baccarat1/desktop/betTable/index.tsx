@@ -27,6 +27,8 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
       name: item?.nat,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:item?.min,
+      max:item?.max
     };
     dispatch(
       selectedBetAction({
@@ -50,7 +52,7 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
         <PieChart data={dataa} options={options} />
       </div>
       <div className="baccarateRateContainer">
-        <div className="baccarateRateContainer1">
+        <div className="baccarateRateContainer1" style={{lineHeight:"2"}}>
           <div
             className={`perfectpairBox ${
               odds?.[5]?.gstatus == "0" ? "suspended-box" : ""
@@ -410,11 +412,11 @@ const BaccaratStatistics = ({ odds, graphsData, cardData, data }: any) => {
               : ""}
           </div>
         </div>
-        <div className="baccarateMinMax">
+        {/* <div className="baccarateMinMax">
           <span className="f600">Min:</span>
           {odds?.[0]?.min} <span className="f600">Max:</span>
           {odds?.[0]?.max}
-        </div>
+        </div> */}
       </div>
     </div>
   );

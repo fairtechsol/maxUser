@@ -4,8 +4,8 @@ import { Img } from "react-image";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
-import fancy from "../../../../../../assets/images/gameicons/ic_fancy.png";
-import { RootState } from "../../../../../../store/store";
+import { LiaFacebookF } from "react-icons/lia";
+import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
   casinoIcons,
@@ -14,10 +14,17 @@ import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
+import { TbDeviceTvOld } from "react-icons/tb";
+import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
+import { useDispatch } from "react-redux";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
+  const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
+  );
+  const { countryWiseList } = useSelector(
+    (state: RootState) => state.horseRacing.matchList
   );
   const { id } = useParams();
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -73,11 +80,6 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               isSportsRoute ? "match-list-containerm" : ""
             }`}
             ref={boxRef}
-            // style={
-            //   location.pathname === "/home" || location.pathname === "/inPlay"
-            //     ? { height: !matchList || matchList?.length === 0 ? "" : "400px" }
-            //     : {}
-            // }
             style={{
               minHeight:
                 location.pathname === "/home" || location.pathname === "/inPlay"
@@ -87,49 +89,56 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 location.pathname === "/home" || location.pathname === "/inPlay"
                   ? ""
                   : "",
-              // overflowY:
-              //   location.pathname === "/home" || location.pathname === "/inPlay"
-              //     ? "hidden"
-              //     : "visible",
             }}
           >
             {availableGameType[mTypeid || id] ? (
               <>
                 {availableGameType[mTypeid] === "horseRacing" ||
                 availableGameType[mTypeid] === "greyHound" ? (
-                  <HorseRacingComponentList matchType={mTypeid} />
+                  <>
+                    {!countryWiseList || countryWiseList?.length === 0 ? (
+                      <div className="text-center">
+                        <ContactAdmin />
+                      </div>
+                    ) : (
+                      <HorseRacingComponentList matchType={mTypeid} />
+                    )}
+                  </>
                 ) : (
                   <>
                     {!matchList || matchList.length === 0 ? (
-                      <div className="text-center no-record-found">
-                        <span>No real-time records found</span>
+                      <div className="text-center">
+                        <ContactAdmin />
                       </div>
                     ) : (
                       <>
                         {mTypeid === "cricket" && (
-                          <div className="px-3 m-game-one-v-one">
+                          <div className="px-1 lh-1 m-game-one-v-one">
                             <Link
-                              className="text-decoration-none text-black f600"
-                              to={"/contact-admin"}
+                              className="text-decoration-none text-black f600 title-12 lh-1"
+                              to={"/ballbyball"}
                             >
-                              Ball By ball
+                              Ball By Ball
                             </Link>
-                            <div className="d-flex w-100 pt-2">
+                            <div className="d-flex w-100">
                               <React.Fragment>
                                 <BackLayComponent
-                                  heading="1"
+                                  suspend={false}
+                                  heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
-                                  heading="X"
+                                  suspend={false}
+                                  heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
                                 />
                                 <BackLayComponent
-                                  heading="2"
+                                  suspend={false}
+                                  heading=""
                                   backRate={"0"}
                                   layRate={"0"}
                                   active={false}
@@ -145,108 +154,140 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                             <>
                               <div
                                 key={index}
-                                className="px-3 py-1 m-game-one-v-one"
+                                className="px-1 m-game-one-v-one"
                               >
                                 <div className="d-flex justify-content-between">
                                   <div className="d-flex flex-column">
                                     <Link
-                                      className="text-decoration-none text-black"
+                                      className="text-decoration-none text-black lh-1"
                                       to={`/${
-                                        mTypeid === "cricket"
+                                        mTypeid === "cricket" ||
+                                        mTypeid === "politics"
                                           ? "game-detail/cricket"
                                           : `other-game-detail/${mTypeid}`
                                       }/${item?.id}`}
                                     >
-                                      <b className="title-14 f600">
+                                      <b
+                                        className="title-14 f600"
+                                        style={{ color: "#333" }}
+                                      >
                                         {item?.title}
                                       </b>
                                       <div className="title-12">
                                         {moment(item?.startAt)
                                           .tz(timezone)
-                                          .format("MMM DD YYYY h:mmA [IST]")}
+                                          .format("MMM DD YYYY h:mmA")}
                                       </div>
                                     </Link>
                                   </div>
-                                  <div className="d-flex align-items-center gap-2">
-                                    {currentTime >= startAt ? (
+                                  <div
+                                    className="d-flex align-items-center gap-2"
+                                    style={{
+                                      display: "flex",
+                                      width: "120px",
+                                      justifyContent: "center",
+                                    }}
+                                  >
+                                    {item?.inPlay === "True" ||
+                                    item?.iplay === true ? (
                                       <span className="liveDot"></span>
                                     ) : (
-                                      ""
-                                    )}
-                                    {item?.manualSessionActive ||
-                                    item?.apiSessionActive ? (
-                                      <span className="fancy">
-                                        <img src={fancy} alt={"fancy"} />
+                                      <span style={{ width: "10px" }}>
+                                        &nbsp;
                                       </span>
-                                    ) : (
-                                      ""
                                     )}
+
+                                    {item?.tv === "True" ||
+                                    item?.tv === true ? (
+                                      <TbDeviceTvOld />
+                                    ) : (
+                                      <span style={{ width: "20px" }}>
+                                        &nbsp;
+                                      </span>
+                                    )}
+
+                                    {/* Facebook Icon */}
+                                    {item?.f === "True" || item?.f === true ? (
+                                      <LiaFacebookF size={11} />
+                                    ) : (
+                                      <span style={{ width: "15px" }}>
+                                        &nbsp;
+                                      </span>
+                                    )}
+
+                                    {/* Bookmaker */}
                                     {item?.isBookmaker.length > 0 ? (
                                       <span className="bookmaker">
-                                        <img src={bm} alt={"fancy"} />
+                                        <img src={bm} alt="fancy" />
                                       </span>
                                     ) : (
-                                      ""
+                                      <span style={{ width: "20px" }}>
+                                        &nbsp;
+                                      </span>
                                     )}
                                   </div>
                                 </div>
                                 <div className="d-flex w-100">
-                                  {item?.matchOdds?.map(
-                                    (item: any, index: number) => (
-                                      <React.Fragment key={index}>
-                                        <BackLayComponent
-                                          heading="1"
-                                          backRate={
-                                            (item?.runners &&
-                                              item?.runners[0]?.ex
-                                                ?.availableToBack[0]?.price) ||
-                                            item?.backTeamA ||
-                                            0
-                                          }
-                                          layRate={
-                                            (item?.runners &&
-                                              item?.runners[0]?.ex
-                                                ?.availableToLay[0]?.price) ||
-                                            item?.layTeamA ||
-                                            0
-                                          }
-                                          active={false}
-                                        />
-                                        <BackLayComponent
-                                          heading="X"
-                                          backRate={
-                                            (item?.runners &&
-                                              item?.runners[2]?.ex
-                                                ?.availableToBack[0]?.price) ||
-                                            0
-                                          }
-                                          layRate={
-                                            (item?.runners &&
-                                              item?.runners[2]?.ex
-                                                ?.availableToLay[0]?.price) ||
-                                            0
-                                          }
-                                          active={false}
-                                        />
-                                        <BackLayComponent
-                                          heading="2"
-                                          backRate={
-                                            (item?.runners &&
-                                              item?.runners[1]?.ex
-                                                ?.availableToBack[0]?.price) ||
-                                            0
-                                          }
-                                          layRate={
-                                            (item?.runners &&
-                                              item?.runners[1]?.ex
-                                                ?.availableToLay[0]?.price) ||
-                                            0
-                                          }
-                                          active={false}
-                                        />
-                                      </React.Fragment>
-                                    )
-                                  )}
+                                  <BackLayComponent
+                                    heading="1"
+                                    suspend={ mTypeid === "politics" ? true :
+                                      item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                        ? true
+                                        : false
+                                    }
+                                    backRate={
+                                      item?.back1 ||
+                                      item?.section?.[0]?.odds?.[0]?.odds ||
+                                      0
+                                    }
+                                    layRate={
+                                      item?.lay1 ||
+                                      item?.section?.[0]?.odds?.[1]?.odds ||
+                                      0
+                                    }
+                                    active={false}
+                                  />
+                                  <BackLayComponent
+                                    heading="X"
+                                    suspend={
+                                      item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                        ? true
+                                        : false
+                                    }
+                                    backRate={
+                                      item?.back12 ||
+                                      item?.section?.[2]?.odds?.[0]?.odds ||
+                                      0
+                                    }
+                                    layRate={
+                                      item?.lay12 ||
+                                      item?.section?.[2]?.odds?.[0]?.odds ||
+                                      0
+                                    }
+                                    active={false}
+                                  />
+                                  <BackLayComponent
+                                    heading="2"
+                                    suspend={mTypeid === "politics" ? true :
+                                      item?.matchOdds?.[0]?.status ===
+                                      "SUSPENDED"
+                                        ? true
+                                        : false
+                                    }
+                                    backRate={
+                                      item?.back11 ||
+                                      item?.section?.[1]?.odds?.[0]?.odds ||
+                                      0
+                                    }
+                                    layRate={
+                                      item?.lay11 ||
+                                      item?.section?.[1]?.odds?.[0]?.odds ||
+                                      0
+                                    }
+                                    active={false}
+                                  />
                                 </div>
                               </div>
                             </>
@@ -268,12 +309,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
       location.pathname === "/inPlay" ||
       location.pathname === "/casino-slot" ? (
         <div className="tab-pane active casino-tables d-flex">
-          <div className="container-fluid">
-            <div className="row row5">
-              <div className="col-12">
-                <h4 className="text-uppercase mt-3">Our Casino</h4>
-              </div>
-            </div>
+          <div>
             <div
               className="mt-2"
               style={
@@ -283,7 +319,11 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               }
             >
               {casinoIcons.map((item, index) => (
-                <Link to={item.url} key={index}>
+                <Link
+                  to={item.url}
+                  key={index}
+                  onClick={() => dispatch(betPlacedReset())}
+                >
                   <div className="d-inline-block casinoiconsm">
                     <Img
                       src={item.imgSrc}

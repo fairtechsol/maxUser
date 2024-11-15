@@ -49,6 +49,7 @@ const CardJ = Loadable(() => import("../pages/3cardJ"));
 const CricketMatch20 = Loadable(() => import("../pages/cricketMatch_20"));
 const Queen = Loadable(() => import("../pages/queen"));
 const BallByBall = Loadable(() => import("../pages/ballbyball"));
+const WorliMatka = Loadable(() => import("../pages/worliMatka"));
 const ChangeButtonValue = Loadable(() => import("../pages/changeButtonValues"));
 
 const SecureAuthVerification = Loadable(
@@ -125,11 +126,11 @@ const MainRoutes = {
       element: <CardList4 />,
     },
     {
-      path: "contact-admin",
+      path: "contact-admin/:type",
       element: <ContactAdmin />,
     },
     {
-      path: "teenPatti20",
+      path: "teen20",
       element: <TeenPatti20 />, //
     },
 
@@ -249,14 +250,14 @@ const MainRoutes = {
     },
     {
       path: "ballbyball",
-      element: <BallByBall/>,
+      element: <BallByBall />,
     },
     {
       path: "cmeter",
       element: <CasinoMeter />,
     },
     { path: "queen", element: <Queen /> },
-
+    { path: "worli", element: <WorliMatka /> },
     {
       path: "*",
       element: <Navigate to={"/home"} replace />,

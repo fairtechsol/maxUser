@@ -1,16 +1,11 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import isMobile from "../../../../utils/screenDimension";
-import SmoothDropdownModal from "../minMaxModal";
-import { IoInformationCircle } from "react-icons/io5";
-import { useState,useEffect } from "react";
+import { AppDispatch } from "../../../../store/store";
+import { isMobile } from "../../../../utils/screenDimension";
 
 const BackLay = ({ matchOddsData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
-  const min = matchOddsData?.[0]?.min;
-  const max = matchOddsData?.[0]?.max;
   const handleBet = (item: any, type: any) => {
     let team = {
       bettingType: type === "back" ? "BACK" : "LAY",
@@ -18,11 +13,14 @@ const BackLay = ({ matchOddsData, data }: any) => {
       odd: type === "back" ? item?.b1 : item?.l1,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nat,
-      name: item?.nat,
+      betOnTeam: item?.nation,
+      name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min: parseFloat(item?.min),
+      max: parseFloat(item?.max),
     };
+
     dispatch(
       selectedBetAction({
         team,
@@ -40,8 +38,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
   const renderItem = (item: any, index: number, type: any) =>
     type === "back" ? (
       <div
-        className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.b1) ? "suspended" : ""
+        className={`dtlsubTitle title-14 ${type}-BackGround ${
+          handleLock(item?.gstatus, item?.b1) ? "suspended-box2" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.b1) && handleBet(item, "back")
@@ -51,8 +49,8 @@ const BackLay = ({ matchOddsData, data }: any) => {
       </div>
     ) : (
       <div
-        className={`dtlsubTitle ${type}-BackGround ${
-          handleLock(item?.gstatus, item?.l1) ? "suspended" : ""
+        className={`dtlsubTitle title-14 ${type}-BackGround ${
+          handleLock(item?.gstatus, item?.l1) ? "suspended-box2" : ""
         }`}
         onClick={() =>
           !handleLock(item?.gstatus, item?.l1) && handleBet(item, "lay")
@@ -87,62 +85,165 @@ const BackLay = ({ matchOddsData, data }: any) => {
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
           style={{ height: "30px" }}
         >
-          <div className="dtlTitle">
-            {isMobile ? (
-              <>
-                <span style={{ fontWeight: "400" }}>
-                  Min:{min} Max:{max}
-                </span>
-              </>
-            ) : (
-              <div style={{ width: "45%", textAlign: "start" }}>
-                <span className="minmaxi">
-                  <IoInformationCircle
-                    color="#ffc742"
-                    onClick={() => setModelOpen(!modelOpen)}
-                  />
-                  <SmoothDropdownModal
-                    min={min}
-                    max={max}
-                    show={modelOpen}
-                    setShow={() => setModelOpen(false)}
-                  />
-                </span>
-              </div>
-            )}
-          </div>
-          <div className="dtlsubTitle back-BackGround">Back</div>
-          <div className="dtlsubTitle lay-BackGround">Lay</div>
+          <div className="dtlTitle"></div>
+          <div className="dtlsubTitle back-BackGround title-12">Back</div>
+          <div className="dtlsubTitle lay-BackGround title-12">Lay</div>
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
-          <div className="dtlTitle">Player 8 </div>
+          <div className="card32bTitle ">
+            <span className=" title-12">Player 8</span>
+            <span
+              className={`title-14 f400 ${
+                data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player8"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player8"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss ? (
+                data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                  JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["player8"]
+                ) : (
+                  <br></br>
+                )
+              ) : (
+                0
+              )}
+            </span>
+          </div>
           {renderItem(matchOddsData?.[0], 0, "back")}
           {renderItem(matchOddsData?.[0], 1, "lay")}
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
-          <div className="dtlTitle"> Player 9</div>
+          <div className="card32bTitle">
+            <span className="title-12">Player 9</span>
+            <span
+              className={`title-14 f400 ${
+                data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player9"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player9"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss ? (
+                data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                  JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["player9"]
+                ) : (
+                  <br></br>
+                )
+              ) : (
+                0
+              )}
+            </span>
+          </div>
           {renderItem(matchOddsData?.[1], 2, "back")}
           {renderItem(matchOddsData?.[1], 3, "lay")}
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
-          <div className="dtlTitle"> Player 10</div>
+          <div className="card32bTitle">
+            {" "}
+            <span className="title-12">Player 10</span>
+            <span
+              className={`title-14 f400 ${
+                data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player10"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player10"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss ? (
+                data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                  JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["player10"]
+                ) : (
+                  <br></br>
+                )
+              ) : (
+                0
+              )}
+            </span>
+          </div>
           {renderItem(matchOddsData?.[2], 2, "back")}
           {renderItem(matchOddsData?.[2], 3, "lay")}
         </div>
         <div
           className={isMobile ? "row-flex-mobile" : "w-100 d-sm-flex flex-row"}
-          style={{ height: "30px" }}
+          style={{ height: "40px" }}
         >
-          <div className="dtlTitle"> Player 11</div>
+          <div className="card32bTitle">
+            {" "}
+            <span className="title-12">Player 11</span>
+            <span
+              className={`title-14 f400 ${
+                data?.profitLoss
+                  ? data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                    ? JSON.parse(
+                        data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                      )["player11"] > 0
+                      ? "color-green"
+                      : JSON.parse(
+                          data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                        )["player11"] < 0
+                      ? "color-red"
+                      : ""
+                    : ""
+                  : ""
+              }`}
+            >
+              {data?.profitLoss ? (
+                data?.profitLoss[`${data?.videoInfo?.mid}_1_card`] ? (
+                  JSON.parse(
+                    data?.profitLoss[`${data?.videoInfo?.mid}_1_card`]
+                  )["player11"]
+                ) : (
+                  <br></br>
+                )
+              ) : (
+                0
+              )}
+            </span>
+          </div>
           {renderItem(matchOddsData?.[3], 2, "back")}
           {renderItem(matchOddsData?.[3], 3, "lay")}
         </div>

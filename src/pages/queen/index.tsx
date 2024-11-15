@@ -1,29 +1,28 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import QueenComponentList from "../../components/queen";
 import { socket, socketService } from "../../socketManager";
-import {
-  dragonTigerReset,
-  getDragonTigerDetailHorseRacing,
-  updateBalanceOnBetPlaceCards,
-  updateCardWorliRates,
-  updateLiveGameResultTop10,
-  updateProfitLossCards,
-  updateQueenRates,
-} from "../../store/actions/cards/cardDetail";
-import {
-  getButtonValue,
-  getProfile,
-  getProfileInMatchDetail,
-} from "../../store/actions/user/userAction";
-import { useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
-import { useSelector } from "react-redux";
 import {
   getPlacedBets,
   updateBetsPlaced,
 } from "../../store/actions/betPlace/betPlaceActions";
-import { cardGamesType } from "../../utils/constants";
+import {
+  dragonTigerReset,
+  getDragonTigerDetail,
+  getDragonTigerDetailHorseRacing,
+  updateBalanceOnBetPlaceCards,
+  updateLiveGameResultTop10,
+  updateProfitLossCards,
+  updateQueenRates
+} from "../../store/actions/cards/cardDetail";
 import { selectedBetAction } from "../../store/actions/match/matchListAction";
-import QueenComponentList from "../../components/queen";
+import {
+  getCasinoButtonValue,
+  getProfile,
+  getProfileInMatchDetail,
+} from "../../store/actions/user/userAction";
+import { AppDispatch, RootState } from "../../store/store";
+import { cardGamesType } from "../../utils/constants";
 
 const Queen = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -66,11 +65,6 @@ const Queen = () => {
         socketService.card.getCardRatesOff(cardGamesType.queen);
         socketService.card.userCardBetPlacedOff();
         socketService.card.cardResultOff();
-        socketService.card.joinMatchRoom(cardGamesType.queen);
-        socketService.card.getCardRates(
-          cardGamesType.queen,
-          setMatchRatesInRedux
-        );
         socketService.card.userCardBetPlaced(handleBetPlacedOnDT20);
         socketService.card.getLiveGameResultTop10(
           cardGamesType.queen,
@@ -78,6 +72,11 @@ const Queen = () => {
         );
         socketService.card.cardResult(handleCardResult);
       }
+      socketService.card.joinMatchRoom(cardGamesType.queen);
+      socketService.card.getCardRates(
+        cardGamesType.queen,
+        setMatchRatesInRedux
+      );
     } catch (error) {
       console.log(error);
     }
@@ -85,8 +84,9 @@ const Queen = () => {
 
   useEffect(() => {
     try {
-      dispatch(getButtonValue());
+      dispatch(getCasinoButtonValue());
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
+      dispatch(getDragonTigerDetail(cardGamesType.queen));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.queen);
         socketService.card.getCardRatesOff(cardGamesType.queen);
@@ -105,7 +105,12 @@ const Queen = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
-        dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
+        // dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
+        socketService.card.joinMatchRoom(cardGamesType.queen);
+        socketService.card.getCardRates(
+          cardGamesType.queen,
+          setMatchRatesInRedux
+        );
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
         socketService.card.leaveMatchRoom(cardGamesType.queen);

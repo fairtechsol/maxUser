@@ -1,13 +1,9 @@
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../store/store";
 import { selectedBetAction } from "../../../../store/actions/match/matchListAction";
-import SmoothDropdownModal from "../minMaxModal";
-import { useState } from "react";
-import { IoInformationCircle } from "react-icons/io5";
+import { AppDispatch } from "../../../../store/store";
 
 const OddEven = ({ data, odds }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const [modelOpen, setModelOpen] = useState(false);
   const handleBet = (item: any) => {
     let team = {
       bettingType: "BACK",
@@ -19,6 +15,8 @@ const OddEven = ({ data, odds }: any) => {
       name: item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
+      min:parseFloat(item?.min),
+      max:parseFloat(item?.max)
     };
     dispatch(
       selectedBetAction({
@@ -41,8 +39,8 @@ const OddEven = ({ data, odds }: any) => {
   };
   const renderItem = (item: any, index: number) => (
     <div
-      className={`dtlsubTitle back-BackGround ${
-        handleLock(item?.gstatus, item?.b1) ? "lock" : ""
+      className={`dtlsubTitle back-BackGround  ${
+        handleLock(item?.gstatus, item?.b1) ? "lock-32" : ""
       }`}
       onClick={() => !handleLock(item?.gstatus, item?.b1) && handleBet(item)}
     >
@@ -67,8 +65,8 @@ const OddEven = ({ data, odds }: any) => {
         {data?.profitLoss
           ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
             ? data?.profitLoss[`${data?.videoInfo?.mid}_${item?.sid}_card`]
-            : 0
-          : 0}
+            : ""
+          : <br></br>}
       </span>
     </div>
   );
@@ -88,7 +86,7 @@ const OddEven = ({ data, odds }: any) => {
           <div className="dtlTitle">
             {" "}
             <div style={{ width: "40%", textAlign: "start" }}>
-              <span className="minmaxi">
+              {/* <span className="minmaxi">
                 <IoInformationCircle
                   color="#ffc742"
                   onClick={() => setModelOpen(!modelOpen)}
@@ -99,14 +97,14 @@ const OddEven = ({ data, odds }: any) => {
                   show={modelOpen}
                   setShow={() => setModelOpen(false)}
                 />
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Even</span>
+            <span style={{ fontSize: "16px" }}>Odd</span>
           </div>
           <div className="dtlsubTitle back-BackGround">
-            <span style={{ fontSize: "14px" }}>Odd</span>
+            <span style={{ fontSize: "16px" }}>Even</span>
           </div>
         </div>
         <div className="w-100 d-sm-flex flex-row">
@@ -115,8 +113,8 @@ const OddEven = ({ data, odds }: any) => {
               <span>Player 8</span>
             </div>
           </span>
-          {renderItem(player8?.[1], 0)}
           {renderItem(player8?.[0], 1)}
+          {renderItem(player8?.[1], 0)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
           <span className="dtlTitleo ">
@@ -124,8 +122,8 @@ const OddEven = ({ data, odds }: any) => {
               <span>Player 9</span>
             </div>
           </span>
-          {renderItem(player9?.[1], 2)}
           {renderItem(player9?.[0], 3)}
+          {renderItem(player9?.[1], 2)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
           <span className="dtlTitleo ">
@@ -133,17 +131,17 @@ const OddEven = ({ data, odds }: any) => {
               <span>Player 10</span>
             </div>
           </span>
-          {renderItem(player10?.[1], 4)}
           {renderItem(player10?.[0], 5)}
+          {renderItem(player10?.[1], 4)}
         </div>
         <div className="w-100 d-sm-flex flex-row">
-          <span className="dtlTitleo ">
+          <span className="dtlTitleo32b ">
             <div className="profitLoss-Text">
               <span>Player 11</span>
             </div>
           </span>
-          {renderItem(player11?.[1], 6)}
           {renderItem(player11?.[0], 7)}
+          {renderItem(player11?.[1], 6)}
         </div>
       </div>
     </div>
