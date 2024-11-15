@@ -161,10 +161,10 @@ const Home = () => {
   return (
     <div>
       <MatchList setMatchType={setMatchType} matchType={matchType} />
-
       <ImageModal
         customClass={isMobile ? "" : "modalFull-56 rule-popup"}
-        show={show && bannerImage}
+        //show={show && bannerImage}
+        show={show}
         setShow={popUpClose}
       />
     </div>
