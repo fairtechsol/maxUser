@@ -115,7 +115,6 @@ const TeenPattiDesktop = () => {
   }, [runs?.[0]?.gstatus, runs?.[0]?.b]);
 
   useEffect(() => {
-    0;
     if (curR && isClick) {
       setMid(dragonTigerDetail?.videoInfo?.mid);
       setTimeout(() => {
