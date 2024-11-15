@@ -48,8 +48,8 @@ const OtherMarket = ({ title, box, data, detail }) => {
       placeIndex: index,
       mid: data?.mid?.toString(),
       selectionId: runner?.selectionId?.toString(),
-      min:data?.minBet ,
-      max:data?.maxBet ,
+      min: data?.minBet,
+      max: data?.maxBet,
     };
     dispatch(
       selectedBetAction({
@@ -59,41 +59,55 @@ const OtherMarket = ({ title, box, data, detail }) => {
     );
   };
 
-  const profitLossTeamA =
-    data?.type === "tiedMatch3"
-      ? detail?.profitLossDataMatch?.[
-          profitLossDataForMatchConstants[data?.type]?.A + "_" + detail?.id
-        ]
-      : detail?.profitLossDataMatch?.[
-          profitLossDataForMatchConstants[data?.type]?.A +
-            "_" +
-            data?.id +
-            "_" +
-            detail?.id
-        ];
-  const profitLossTeamB =
-    data?.type === "tiedMatch3"
-      ? detail?.profitLossDataMatch?.[
-          profitLossDataForMatchConstants[data?.type]?.B + "_" + detail?.id
-        ]
-      : detail?.profitLossDataMatch?.[
-          profitLossDataForMatchConstants[data?.type]?.B +
-            "_" +
-            data?.id +
-            "_" +
-            detail?.id
-        ];
-  const profitLossTeamC =
-    data?.type === "tiedMatch3"
-      ? ""
-      : detail?.profitLossDataMatch?.[
-          profitLossDataForMatchConstants[data?.type]?.C +
-            "_" +
-            data?.id +
-            "_" +
-            detail?.id
-        ];
-
+  const profitLossTeamA = [
+    "tiedMatch1",
+    "tiedMatch2",
+    "tiedMatch3",
+    "completeMatch",
+    "completeMatch1",
+  ].includes(data?.type)
+    ? detail?.profitLossDataMatch?.[
+        profitLossDataForMatchConstants?.[data?.type]?.A + "_" + detail?.id
+      ]
+    : detail?.profitLossDataMatch?.[
+        profitLossDataForMatchConstants?.[data?.type]?.A +
+          "_" +
+          data?.id +
+          "_" +
+          detail?.id
+      ];
+  const profitLossTeamB = [
+    "tiedMatch1",
+    "tiedMatch2",
+    "tiedMatch3",
+    "completeMatch",
+    "completeMatch1",
+  ].includes(data?.type)
+    ? detail?.profitLossDataMatch?.[
+        profitLossDataForMatchConstants?.[data?.type]?.B + "_" + detail?.id
+      ]
+    : detail?.profitLossDataMatch?.[
+        profitLossDataForMatchConstants?.[data?.type]?.B +
+          "_" +
+          data?.id +
+          "_" +
+          detail?.id
+      ];
+  const profitLossTeamC = [
+    "tiedMatch1",
+    "tiedMatch2",
+    "tiedMatch3",
+    "completeMatch",
+    "completeMatch1",
+  ].includes(data?.type)
+    ? ""
+    : detail?.profitLossDataMatch?.[
+        profitLossDataForMatchConstants?.[data?.type]?.C +
+          "_" +
+          data?.id +
+          "_" +
+          detail?.id
+      ];
   return (
     <>
       <div className="otherMarketContainer">
@@ -233,8 +247,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 : "otherMarket2RateBox rateBoxWidth2"
             }
           >
-            {(data?.activeStatus !== "live" ||
-              data?.runners?.[0]?.status !== "ACTIVE") && (
+            {(data?.runners?.[0]?.status !== "OPEN" &&
+              data?.runners?.[0]?.status !== "ACTIVE" &&
+              data?.runners?.[0]?.status !== "") && (
               <div className="suspended-overlayRatesotherMarket">
                 <span
                   className={`suspendTextCmmn`}
@@ -404,8 +419,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 : "otherMarket2RateBox rateBoxWidth2"
             }
           >
-            {(data?.activeStatus !== "live" ||
-              data?.runners?.[1]?.status !== "ACTIVE") && (
+            {(data?.runners?.[1]?.status !== "OPEN" &&
+              data?.runners?.[1]?.status !== "ACTIVE" &&
+              data?.runners?.[1]?.status !== "") && (
               <div className="suspended-overlayRatesotherMarket">
                 <span
                   className={`suspendTextCmmn`}
@@ -562,8 +578,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   : "otherMarket2RateBox rateBoxWidth2"
               }
             >
-              {(data?.activeStatus !== "live" ||
-                data?.runners?.[2]?.status !== "ACTIVE") && (
+              {(data?.runners?.[2]?.status !== "OPEN" &&
+              data?.runners?.[2]?.status !== "ACTIVE" &&
+              data?.runners?.[2]?.status !== "") && (
                 <div className="suspended-overlayRatesotherMarket">
                   <span
                     className={`suspendTextCmmn`}

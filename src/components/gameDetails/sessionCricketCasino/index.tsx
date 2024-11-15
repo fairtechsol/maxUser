@@ -187,7 +187,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
                             handlePlaceBet(
                               item?.odds?.[0]?.odds,
                               "Back",
-                              "Back",
+                              `${index} Number`,
                               item?.gstatus,
                               item?.odds?.[0]?.odds,
                               item,

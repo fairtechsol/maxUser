@@ -215,7 +215,9 @@ const AccountStatementComponent = () => {
 
             {/* http://localhost:5000/card/result/detail/9.241909153253 */}
             <CustomTable
-               placeHolder={`${transactions?.count} records...`  || "0 records..."}
+              placeHolder={
+                `${transactions?.count} records...` || "0 records..."
+              }
               width={isMobile ? "1200px" : ""}
               paginationCount={true}
               bordered={true}
@@ -265,7 +267,7 @@ const AccountStatementComponent = () => {
                   firstPart && casinoKeywords.includes(firstPart);
                 return (
                   <tr className={`${isMobile && "title-12 lh-1"}`} key={index}>
-                    <td className={isMobile ? "date-as bg-grey" : ""} >
+                    <td className={isMobile ? "date-as bg-grey" : ""}>
                       {moment(new Date(item?.createdAt)).format(
                         "YYYY-MM-DD hh:mm"
                       )}
@@ -276,7 +278,13 @@ const AccountStatementComponent = () => {
                           (tableConfig?.page - 1 || 0) +
                         1}
                     </td>
-                    <td className={isMobile ? "color-green credit-as bg-grey" : "color-green" }>
+                    <td
+                      className={
+                        isMobile
+                          ? "color-green credit-as bg-grey"
+                          : "color-green"
+                      }
+                    >
                       <NotSet
                         item={
                           item?.transType == transType.add ||
@@ -287,7 +295,11 @@ const AccountStatementComponent = () => {
                         }
                       />
                     </td>
-                    <td className={isMobile ? "color-red debit-as bg-grey" : "color-red" }>
+                    <td
+                      className={
+                        isMobile ? "color-red debit-as bg-grey" : "color-red"
+                      }
+                    >
                       <NotSet
                         item={
                           item?.transType == transType.loss ||
@@ -298,18 +310,19 @@ const AccountStatementComponent = () => {
                       />
                     </td>
                     <td
-                      className={
-                      ` ${ parseInt(item?.closingBalance) < 0
+                      className={` ${
+                        parseInt(item?.closingBalance) < 0
                           ? "color-red"
                           : parseInt(item?.closingBalance) > 0
                           ? "color-green"
-                          : ""} ${isMobile ? " pts-as bg-grey" : ""} `
-                      } 
+                          : ""
+                      } ${isMobile ? " pts-as bg-grey" : ""} `}
                     >
                       {" "}
                       <NotSet item={item?.closingBalance} />
                     </td>
-                    <td className={isMobile ? "text-start bg-grey" : ""}
+                    <td
+                      className={isMobile ? "text-start bg-grey" : ""}
                       onClick={() => {
                         const match = containsKeywords
                           ? item?.description.match(/Rno\. (\d+)/)
@@ -478,7 +491,8 @@ const AccountStatementComponent = () => {
                           <tr key={item?.id}>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -487,7 +501,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -496,7 +511,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -505,7 +521,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -514,7 +531,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -523,7 +541,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -531,9 +550,9 @@ const AccountStatementComponent = () => {
                                 color:
                                   item?.result === "LOSS"
                                     ? "#dc3545"
-                                    : item?.result === "TIE"
-                                    ? "#000"
-                                    : "#28a745",
+                                    : item?.result === "WIN"
+                                    ? "#28a745"
+                                    : "#000",
                               }}
                             >
                               {item?.result === "LOSS"
@@ -544,7 +563,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -555,7 +575,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
