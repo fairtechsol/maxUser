@@ -6,6 +6,7 @@ import "./index.scss";
 const Mobile = () => {
   const [activeSport, setActiveSport] = useState<string | null>(null);
 
+
   useEffect(() => {
     if (sportsRules?.length > 0) {
       const firstSport = sportsRules[0];
@@ -20,50 +21,28 @@ const Mobile = () => {
   return (
     <>
       <h3 style={{ backgroundColor: "#ffc107", fontWeight: "bold" }}>Rules</h3>
-      <Accordion
-        activeKey={activeSport}
-        onSelect={(eventKey) => handleSelect(eventKey as string)}
-      >
-        {sportsRules.map((sport, index) => (
-          <Accordion.Item key={index} eventKey={sport.sportName}>
-            <Accordion.Header
-              style={{
-                backgroundColor:
-                  activeSport === sport.sportName ? "" : "rgb(0, 74, 37)",
-              }}
-            >
-              <Button
-                variant="link"
-                className="text-light"
-                style={{
-                  backgroundColor:
-                    activeSport === sport.sportName
-                      ? "rgb(0, 74, 37)"
-                      : "rgb(0, 74, 37)",
-                  color: "rgb(0, 74, 37)",
-                }}
+     
+     
+      <div className="rules-left-sidebar p-2">
+        <div className="navvv nav-pill" role="tablist">
+          {sportsRules.map((sport, index) => (
+            <div className="nav-itemmm px-2" key={index}>
+              <a
+                role="tab"
+                data-rr-ui-event-key={index}
+                id={`tules-tabs-tab-${index}`}
+                aria-controls={`tules-tabs-tabpane-${index}`}
+                aria-selected={index === 0} // Set the first tab as selected by default
+                className={`nav-linkss ${index === 0 ? "active" : ""}`}
+                tabIndex={index === 0 ? 0 : -1}
+                href="#"
               >
                 {sport.sportName}
-              </Button>
-            </Accordion.Header>
-            <Accordion.Body>
-              <h4>{sport.sportName} Rules</h4>
-              <ul>
-                {sport.rules.map((rule, ruleIndex) => (
-                  <div key={ruleIndex}>
-                    <h5 className="text-danger">{rule.category}</h5>
-                    <ul>
-                      {rule.description.map((description, descIndex) => (
-                        <li key={descIndex}>{description}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </ul>
-            </Accordion.Body>
-          </Accordion.Item>
-        ))}
-      </Accordion>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   );
 };
