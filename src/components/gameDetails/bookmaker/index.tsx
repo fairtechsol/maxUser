@@ -203,9 +203,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 : "bookmaker2RateBox rateBoxWidth2"
             }
           >
-            {(data?.activeStatus !== "live" ||
-              (data?.runners?.[0]?.status !== "ACTIVE" &&
-                data?.runners?.[0]?.status !== "OPEN")) && (
+            {(data?.runners?.[0]?.status !== "OPEN" &&
+              data?.runners?.[0]?.status !== "ACTIVE" &&
+              data?.runners?.[0]?.status !== "") && (
               <div className="suspended-overlayRatesBookmaker">
                 <span
                   className={`suspendTextCmmn`}
@@ -366,9 +366,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 : "bookmaker2RateBox rateBoxWidth2"
             }
           >
-            {(data?.activeStatus !== "live" ||
-              (data?.runners?.[1]?.status !== "ACTIVE" &&
-                data?.runners?.[1]?.status !== "OPEN")) && (
+            {(data?.runners?.[1]?.status !== "OPEN" &&
+              data?.runners?.[1]?.status !== "ACTIVE" &&
+              data?.runners?.[1]?.status !== "") && (
               <div className="suspended-overlayRatesBookmaker">
                 <span
                   className={`suspendTextCmmn`}
@@ -530,9 +530,9 @@ const Bookmaker = ({ title, box, data, detail }) => {
                   : "bookmaker2RateBox rateBoxWidth2"
               }
             >
-              {(data?.activeStatus !== "live" ||
-                (data?.runners?.[2]?.status !== "ACTIVE" &&
-                  data?.runners?.[2]?.status !== "OPEN")) && (
+              {(data?.runners?.[2]?.status !== "OPEN" &&
+              data?.runners?.[2]?.status !== "ACTIVE" &&
+              data?.runners?.[2]?.status !== "") && (
                 <div className="suspended-overlayRatesBookmaker">
                   <span
                     className={`suspendTextCmmn`}
@@ -543,7 +543,7 @@ const Bookmaker = ({ title, box, data, detail }) => {
                 </div>
               )}
               {box === 6 ? (
-                <>
+                <> 
                   {(data?.runners?.[2]?.ex?.availableToBack?.length > 0
                     ? data?.runners?.[2]?.ex?.availableToBack
                     : dummyArray

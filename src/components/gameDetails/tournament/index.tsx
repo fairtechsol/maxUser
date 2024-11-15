@@ -176,7 +176,7 @@ const Tournament = ({ title, box, data, detail }) => {
                       : "tournament2RateBox rateBoxWidth2"
                   }
                 >
-                  {item?.status !== "ACTIVE" && item?.status !== "OPEN" && item?.status !== "" && (
+                  {(item?.status !== "ACTIVE" && item?.status !== "OPEN" && item?.status !== "") && (
                     <div className="suspended-overlayRatestournament">
                       <span className={`suspendTextCmmn`} style={{textTransform:"uppercase"}}>{item?.status}</span>
                     </div>
