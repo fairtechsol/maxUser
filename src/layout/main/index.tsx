@@ -65,7 +65,7 @@ const MainLayout = () => {
       sessionStorage.clear();
     } else {
       dispatch(getProfile());
-      dispatch(marqueeNotification());
+      //dispatch(marqueeNotification());
     }
   }, [sessionStorage.getItem("jwtMaxUser")]);
 
