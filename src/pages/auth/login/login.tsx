@@ -20,6 +20,7 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
+import { marqueeNotification } from "../../../store/actions/user/userAction";
 
 const Login = () => {
   const initialValues: any = {
@@ -39,6 +40,7 @@ const Login = () => {
     initialValues: initialValues,
     validationSchema: loginValidationSchema,
     onSubmit: (values: any) => {
+
       dispatch(login(values));
     },
   });
@@ -50,7 +52,9 @@ const Login = () => {
       if (forceChangePassword) {
         sessionStorage.setItem("forceChangePassword", "true");
         navigate("/change-password");
+        
       } else {
+        dispatch(marqueeNotification());
         dispatch(rulesModalShowTrue());
         navigate("/home");
       }
