@@ -5,10 +5,37 @@ import { RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
 import { isMobile } from "../../../utils/screenDimension";
 import { useEffect } from "react";
+//import LazyLoad from "react-lazyload";
 import "./style.scss";
 
 const ImageModal = ({ customClass, show, setShow }) => {
   const { bannerImage } = useSelector((state: RootState) => state.user.profile);
+
+  // interface LazyImageProps {
+  //   src: string;
+  //   alt?: string;
+  //   className?: string;
+  //   height?: number | string; // for LazyLoad height prop
+  //   offset?: number; // for LazyLoad offset prop
+  //   placeholder?: React.ReactNode; // optional placeholder
+  // }
+
+  // const LazyImage: React.FC<LazyImageProps> = ({
+  //   src,
+  //   alt = "image",
+  //   className = "",
+  //   height = "auto",
+  //   offset = 100,
+  //   placeholder = <div style={{ height: "200px", background: "#ccc" }} />,
+  // }) => {
+  //   return (
+  //     <LazyLoad height={height} offset={offset} placeholder={placeholder}>
+  //       <div style={{ width: "100%" }}>
+  //         <img src={src} alt={alt} className={className} loading="lazy" />
+  //       </div>
+  //     </LazyLoad>
+  //   );
+  // };
 
   useEffect(() => {
     if (show) {
@@ -40,12 +67,21 @@ const ImageModal = ({ customClass, show, setShow }) => {
             className="p-0 modal-body2 overflow-auto"
             style={{ width: "100%", overflowY: "auto" }}
           >
-            <img
-              src={"data:image/png;base64," + bannerImage?.value}
-              alt="Modal Content"
-              className="img-fluid"
-              style={{ width: "100%", height: "auto", overflow: "scroll" }}
-            />
+            {bannerImage ? (
+              <img
+                src={"data:image/png;base64," + bannerImage?.value}
+                alt="Modal Content"
+                className="img-fluid"
+                style={{ width: "100%", height: "auto" }}
+              />
+            ) : (
+              <div
+                style={{
+                  minHeight: "800px",
+                  background: "#000",
+                }}
+              ></div>
+            )}
           </div>
         </div>
       )
@@ -82,12 +118,28 @@ const ImageModal = ({ customClass, show, setShow }) => {
               className="p-0 w-100 overflow-auto"
               style={{ maxHeight: "90vh" }}
             >
-              <img
-                src={"data:image/png;base64," + bannerImage?.value}
+              {bannerImage ? (
+                <img
+                  src={"data:image/png;base64," + bannerImage?.value}
+                  alt="Modal Content"
+                  className="img-fluid"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              ) : (
+                <div className="blackscreen"></div>
+              )}
+              {/* <LazyImage
+                //src={"data:image/png;base64," + bannerImage?.value}
+                src=""
                 alt="Modal Content"
                 className="img-fluid"
-                style={{ width: "100%", height: "auto" }}
-              />
+                height="auto"
+                placeholder={
+                  <div style={{ minHeight: "300px", background: "#000" }}>
+                    Loading...
+                  </div>
+                }
+              /> */}
             </div>
           </div>
         </div>
