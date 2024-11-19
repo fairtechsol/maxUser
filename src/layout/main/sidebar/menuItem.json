@@ -34,7 +34,8 @@
         "id": "livecasino",
         "name": "Live Casino",
         "type": "liveItem",
-        "path": "/contact-admin/90"
+        "path": "/live-casino",
+        "onClick": true
       },
       {
         "id": "slotgame",

@@ -41,6 +41,7 @@ import {
   updateQueenRates,
   updateWorliMatkaRates,
   getDragonTigerDetail,
+  liveCasinoList,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -55,6 +56,7 @@ interface InitialState {
   cards32Detail: any;
   resultData: any;
   scoreBoardData: any;
+  liveCasinoData:any;
 }
 
 const initialState: InitialState = {
@@ -69,6 +71,7 @@ const initialState: InitialState = {
   cards32Detail: [],
   resultData: null,
   scoreBoardData: [],
+  liveCasinoData:[],
 };
 
 const cardDetail = createSlice({
@@ -715,6 +718,19 @@ const cardDetail = createSlice({
         state.resultData = action.payload;
       })
       .addCase(resultDragonTiger.rejected, (state, action) => {
+        // state.loading = false;
+        state.error = action?.error?.message;
+      })
+      
+      .addCase(liveCasinoList.pending, (state) => {
+        // state.loading = true;
+        state.error = null;
+        state.liveCasinoData = null;
+      })
+      .addCase(liveCasinoList.fulfilled, (state, action) => {
+        state.liveCasinoData = action.payload;
+      })
+      .addCase(liveCasinoList.rejected, (state, action) => {
         // state.loading = false;
         state.error = action?.error?.message;
       })

@@ -4,7 +4,7 @@ import { sportsRules } from "../../utils/constants";
 import "./index.scss";
 
 const Desktop = () => {
-  const [activeSport, setActiveSport] = useState<string>("Motor Sport");
+  const [activeSport, setActiveSport] = useState<string>("Football");
   // const [defaultSportRules, setDefaultSportRules] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,11 +23,13 @@ const Desktop = () => {
     // setDefaultSportRules(selectedSport);
   };
 
+  
+
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey={activeSport}>
       <Row className="p-2 w-100">
         <div className="scrollable-container-1">
-          <Col sm={3} className="pe-0">
+          <Col sm={2} className="pe-0">
             <Nav className="flex-column custom-nav" onSelect={handleSelect}>
               {sportsRules.map((sport, index) => (
                 <Nav.Item
@@ -38,7 +40,7 @@ const Desktop = () => {
                 >
                   <Nav.Link
                     eventKey={sport.sportName}
-                    className="custom-nav-link text-center px-2"
+                    className="custom-nav-link text-end px-2"
                   >
                     {sport.sportName}
                   </Nav.Link>
@@ -47,7 +49,7 @@ const Desktop = () => {
             </Nav>
           </Col>
 
-          <Col sm={9} className="ps-2">
+          <Col sm={10} className="ps-2">
             <Tab.Content>
               {sportsRules.map((sport:any, index:any) => (
                 <Tab.Pane key={index} eventKey={sport.sportName}>
