@@ -9,6 +9,7 @@ import {
 } from "../../../store/actions/match/matchListAction";
 import { AppDispatch, RootState } from "../../../store/store";
 import moment from "moment";
+import { liveCasinoList } from "../../../store/actions/cards/cardDetail";
 
 interface Props {
   item: any;
@@ -16,11 +17,15 @@ interface Props {
   menuItemList: any;
 }
 
-const MenuItemChild: React.FC<{ data: any }> = ({ data }) => (
+const MenuItemChild: React.FC<{ data: any; handleClick?: any }> = ({
+  data,
+  handleClick,
+}) => (
   <div
     className={
       data.type === "liveItem" ? "sidebar-menu-items px-3" : "nested-menu-item"
     }
+    onClick={() => handleClick(data)}
   >
     <Link
       className={`title-14 text-decoration-none text-black ${
@@ -219,10 +224,15 @@ const MenuGroup: React.FC<{
     }
   }, [competitionList, selectedMatch]);
 
+  const handleClick = (data: any) => {
+    if (data?.onClick) {
+      dispatch(liveCasinoList("asbd"));
+    }
+  };
   return (
     <>
       {data?.type === "item" || data?.type === "liveItem" ? (
-        <MenuItemChild data={data} />
+        <MenuItemChild data={data} handleClick={handleClick} />
       ) : (
         <Accordion.Item className="accordion-item-group  border-0" eventKey="0">
           <Accordion.Header className="accordion-header-group">
@@ -248,7 +258,10 @@ const MenuGroup: React.FC<{
                   />
                 ) : sideBarChild?.type === "item" ||
                   sideBarChild?.type === "liveItem" ? (
-                  <MenuItemChild data={sideBarChild} />
+                  <MenuItemChild
+                    data={sideBarChild}
+                    handleClick={handleClick}
+                  />
                 ) : (
                   <MenuCollapse
                     data={sideBarChild}
