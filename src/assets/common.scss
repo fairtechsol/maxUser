@@ -1600,3 +1600,10 @@ img {
 .bg-tab {
   background-color: #0088cca5 !important;
 }
+
+.man-tab{
+  overflow-x: auto;
+  // overflow: hidden;
+  flex-wrap: nowrap;
+}
+
