@@ -61,8 +61,8 @@ const Desktop = () => {
                       <div key={ruleIndex}>
                         <h5 className="text-danger">{rule.category}</h5>
                         <ul>
-                          {rule.description.map((description:any, descIndex:any) => (
-                            <li key={descIndex}>{description}</li>
+                          {rule.description.map((item:any, descIndex:any) => (
+                            <li key={descIndex}>{item.text}</li>
                           ))}
                         </ul>
                       </div>
