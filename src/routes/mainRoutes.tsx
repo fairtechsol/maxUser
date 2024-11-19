@@ -9,6 +9,7 @@ import Poker1day from "../pages/poker1day";
 import Poker20 from "../pages/poker20";
 import Cricket5 from "../pages/cricket5";
 
+
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(() => import("../pages/home"));
 const GameDetail = Loadable(() => import("../pages/gameDetails"));
@@ -45,7 +46,7 @@ const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
 const Baccarat2 = Loadable(() => import("../pages/baccarat2"));
 const CasinoMeter = Loadable(() => import("../pages/casinoMeter"));
 const CardJ = Loadable(() => import("../pages/3cardJ"));
-
+const LiveCasino = Loadable(() => import("../pages/casinoSubTab"));
 const CricketMatch20 = Loadable(() => import("../pages/cricketMatch_20"));
 const Queen = Loadable(() => import("../pages/queen"));
 const BallByBall = Loadable(() => import("../pages/ballbyball"));
@@ -255,6 +256,10 @@ const MainRoutes = {
     {
       path: "cmeter",
       element: <CasinoMeter />,
+    },
+    {
+      path: "live-casino",
+      element: <LiveCasino />,
     },
     { path: "queen", element: <Queen /> },
     { path: "worli", element: <WorliMatka /> },
