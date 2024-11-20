@@ -723,15 +723,16 @@ const cardDetail = createSlice({
       })
       
       .addCase(liveCasinoList.pending, (state) => {
-        // state.loading = true;
+        state.loading = true;
         state.error = null;
         state.liveCasinoData = null;
       })
       .addCase(liveCasinoList.fulfilled, (state, action) => {
+        state.loading = false;
         state.liveCasinoData = action.payload;
       })
       .addCase(liveCasinoList.rejected, (state, action) => {
-        // state.loading = false;
+        state.loading = false;
         state.error = action?.error?.message;
       })
       .addCase(casinoScoreboardMatchRates.pending, (state) => {
