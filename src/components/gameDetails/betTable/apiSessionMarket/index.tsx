@@ -16,7 +16,7 @@ import BetStatusOverlay from "../../../commonComponent/betComponents/betStatusOv
 import BetTableHeader from "../../../commonComponent/betTableHeader";
 import SmoothDropdownModal from "../../../commonComponent/minMaxModal";
 import CustomModal from "../../../commonComponent/modal";
-import Desktop from "../../../rules/categoryRules/desktop";
+import Desktop from "../../../rules/desktop";
 import Mobile from "../../../rules/mobile";
 import RunBoxTable from "../runBoxTable";
 import "./style.scss";
