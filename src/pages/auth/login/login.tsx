@@ -20,7 +20,6 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-import { marqueeNotification } from "../../../store/actions/user/userAction";
 import { getBannerImage } from "../../../store/actions/user/userAction";
 const Login = () => {
   const initialValues: any = {
@@ -32,9 +31,6 @@ const Login = () => {
     (state: RootState) => state.auth
   );
 
-  
-  const { isBanner } = useSelector((state: RootState) => state.user.profile);
-  
   const navigate = useNavigate();
 
   const dispatch: AppDispatch = useDispatch();
@@ -43,7 +39,6 @@ const Login = () => {
     initialValues: initialValues,
     validationSchema: loginValidationSchema,
     onSubmit: (values: any) => {
-
       dispatch(login(values));
     },
   });
@@ -51,30 +46,28 @@ const Login = () => {
   const { handleSubmit, touched, errors } = formik;
 
   useEffect(() => {
+    dispatch(getBannerImage(isMobile ? "mobile" : "desktop"));
+  }, []);
+
+  useEffect(() => {
     if (success) {
       if (forceChangePassword) {
         sessionStorage.setItem("forceChangePassword", "true");
         navigate("/change-password");
-        
       } else {
-        dispatch(getBannerImage(isMobile ? "mobile" : "desktop"));
         dispatch(rulesModalShowTrue());
-        // console.log("isBanner",isBanner)
-        // navigate("/home");
-        
+        navigate("/home");
       }
       dispatch(authReset());
     }
   }, [success]);
 
-  
-  useEffect(() => {
-    if (isBanner) {
-        console.log("isBanner",isBanner)
-        navigate("/home");
-        
-    }
-  }, [isBanner]);
+  // useEffect(() => {
+  //   if (isBanner) {
+  //     console.log("isBanner", isBanner);
+  //     navigate("/home");
+  //   }
+  // }, [isBanner]);
 
   return (
     <Form

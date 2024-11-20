@@ -43,15 +43,15 @@ const Desktop = () => {
 
         <Col sm={9} className="ps-0">
           <Tab.Content>
-            {sportsRules.map((sport:any, index:any) => (
+            {sportsRules.map((sport: any, index: any) => (
               <Tab.Pane key={index} eventKey={sport.sportName}>
                 <h4 className="rule-popup-heading">{sport.sportName} Rules</h4>
                 <ul>
-                  {sport.rules.map((rule:any, ruleIndex:any) => (
+                  {sport.rules.map((rule: any, ruleIndex: any) => (
                     <div key={ruleIndex}>
                       <h5 className="text-danger">{rule.category}</h5>
                       <ul>
-                        {rule.description.map((item:any, descIndex:any) => (
+                        {rule.description.map((item: any, descIndex: any) => (
                           <li key={descIndex}>{item.text}</li>
                         ))}
                       </ul>
