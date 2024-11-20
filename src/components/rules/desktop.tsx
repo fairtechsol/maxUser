@@ -51,23 +51,58 @@ const Desktop = () => {
 
           <Col sm={10} className="ps-2">
             <Tab.Content>
-              {sportsRules.map((sport:any, index:any) => (
-                <Tab.Pane key={index} eventKey={sport.sportName}>
-                  <h4 className="rule-popup-heading">
-                    {sport.sportName} Rules
-                  </h4>
-                  <ul className="border">
-                    {sport.rules.map((rule:any, ruleIndex:any) => (
-                      <div key={ruleIndex}>
-                        <h5 className="text-danger">{rule.category}</h5>
-                        <ul>
-                          {rule.description.map((item:any, descIndex:any) => (
-                            <li key={descIndex}>{item.text}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </ul>
+              {sportsRules.map((sport, ruleIndex) => (
+                <Tab.Pane key={ruleIndex} eventKey={sport.sportName}>
+                  {sport.rules.map((rule, ruleIndex) => (
+                    <table key={ruleIndex} style={{ width: "100%" }}>
+                      <tbody>
+                        {/* Category Row */}
+                        <tr>
+                          <td
+                            colSpan={100}
+                            className="rule-popup-heading bg-secondary p-1 text-white title-18"
+                            style={{
+                              fontWeight: "bold",
+                              textAlign: "left",
+                              padding: "10px",
+                              borderBottom: "1px solid #ccc",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            {rule.category}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style={{ height: "8px" }}></td>
+                        </tr>
+
+                        {/* Description Rows */}
+                        {rule.description.map((description, descIndex) => (
+                          <tr
+                            className="title-16 gap-2"
+                            style={{ backgroundColor: "#f2f2f2" }}
+                            key={descIndex}
+                          >
+                            <td
+                              style={{
+                                padding: "4px 10px",
+                                borderBottom: "1px solid #ddd",
+                                textAlign: "left",
+                                lineHeight: 1.5,
+                                color: description?.color || "black"
+                              }}
+                            >
+                              {description?.text}
+                            </td>
+                          </tr>
+                        ))}
+
+                        <tr>
+                          <td style={{ height: "8px" }}></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  ))}
                 </Tab.Pane>
               ))}
             </Tab.Content>
