@@ -13,7 +13,7 @@ import Loader from "../../commonComponent/loader";
 import ApiSessionMarketTable from "./apiSessionMarket";
 import { useState } from "react";
 import CustomModal from "../../commonComponent/modal";
-import Desktop from "../../rules/categoryRules/desktop";
+import Desktop from "../../rules/desktop";
 import Mobile from "../../rules/mobile";
 interface BetTableProps {
   title: string;
