@@ -42,6 +42,7 @@ import {
   updateWorliMatkaRates,
   getDragonTigerDetail,
   liveCasinoList,
+  liveCasinoLogin,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -57,6 +58,7 @@ interface InitialState {
   resultData: any;
   scoreBoardData: any;
   liveCasinoData:any;
+  liveCasinoGame:any;
 }
 
 const initialState: InitialState = {
@@ -72,6 +74,7 @@ const initialState: InitialState = {
   resultData: null,
   scoreBoardData: [],
   liveCasinoData:[],
+  liveCasinoGame:{},
 };
 
 const cardDetail = createSlice({
@@ -721,7 +724,6 @@ const cardDetail = createSlice({
         // state.loading = false;
         state.error = action?.error?.message;
       })
-      
       .addCase(liveCasinoList.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -732,6 +734,19 @@ const cardDetail = createSlice({
         state.liveCasinoData = action.payload;
       })
       .addCase(liveCasinoList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(liveCasinoLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.liveCasinoGame = null;
+      })
+      .addCase(liveCasinoLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.liveCasinoGame = action.payload;
+      })
+      .addCase(liveCasinoLogin.rejected, (state, action) => {
         state.loading = false;
         state.error = action?.error?.message;
       })

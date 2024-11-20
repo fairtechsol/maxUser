@@ -18,13 +18,7 @@ const LiveCasino = () => {
   },[]);
 
 
-  if (loading) {
-    return (
-      <div className="w-100 d-flex justify-content-center align-items-center">
-        <p>Loading...</p>
-      </div>
-    );
-  }
+  
 
   return (
     isMobile ? <LiveCasinoMobile/> : <LiveCasinoDesktop/> 

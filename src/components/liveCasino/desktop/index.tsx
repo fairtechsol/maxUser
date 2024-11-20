@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
-import { liveCasinoList } from "../../../store/actions/cards/cardDetail";
+import { liveCasinoLogin } from "../../../store/actions/cards/cardDetail";
 
 const LiveCasinoDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { liveCasinoData } = useSelector((state: RootState) => state.card);
+  const { liveCasinoData, liveCasinoGame } = useSelector(
+    (state: RootState) => state.card
+  );
 
   const initialType =
     liveCasinoData && Object.keys(liveCasinoData).length > 0
@@ -18,6 +20,8 @@ const LiveCasinoDesktop = () => {
   const [type2, setType2] = useState<string>("");
   const [game, setGame] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
+  const [isShow, setIsShow] = useState(false);
+  const [gameData, setGameData] = useState<any>()
 
   useEffect(() => {
     if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
@@ -31,9 +35,6 @@ const LiveCasinoDesktop = () => {
     }
   }, [liveCasinoData]);
 
-
-
-
   if (isLoading) {
     return (
       <div className="w-100 d-flex justify-content-center align-items-center">
@@ -41,6 +42,18 @@ const LiveCasinoDesktop = () => {
       </div>
     );
   }
+
+  const handleGame = (data: any) => {
+    setGameData(data)
+    let payLoad: any = {
+      gameId: data?.game_id,
+      platformId: "desktop",
+      providerName: data?.provider_name,
+    };
+    dispatch(liveCasinoLogin(payLoad));
+    setIsShow(true);
+  };
+
   const LiveCasinoTab = ({ data2 }: { data2: any }) => {
     return (
       <div className="w-100 d-flex flex-row bg-tab">
@@ -83,9 +96,34 @@ const LiveCasinoDesktop = () => {
               alt={item?.game_name}
               loading="lazy"
               style={{ width: "19%", height: "10vh" }}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleGame(item);
+              }}
             />
           );
         })}
+      </div>
+    );
+  };
+  const GameScreen = ({ data4 }: { data4: any }) => {
+    return (
+      <div
+        className="w-100 d-flex flex-column mt-1"
+      >
+        <div className="w-100 d-flex flex-row justify-content-between align-items-center px-1 py-2 bg-primary text-white">
+          <span>{gameData?.game_name}</span>
+          <div className="fbold" onClick={() => setIsShow(false)}>EXIT</div>
+        </div>
+        <div className="w-100" style={{height:"80vh"}}>
+          <iframe
+            src={data4?.url}
+            title="Live Stream"
+            referrerPolicy={"strict-origin-when-cross-origin"}
+            width={"100%"}
+            height={"100%"}
+          ></iframe>
+        </div>
       </div>
     );
   };
@@ -95,7 +133,9 @@ const LiveCasinoDesktop = () => {
     setType2(firstKey);
     setGame(liveCasinoData[key][firstKey]);
   };
-  return (
+  return isShow ? (
+    <GameScreen data4={liveCasinoGame} />
+  ) : (
     <div className="w-100 d-flex flex-row mt-1 gap-2">
       <div className="w-25 h-100 d-flex flex-column bg-secondary">
         {Object.keys(list)?.map((key, index) => {

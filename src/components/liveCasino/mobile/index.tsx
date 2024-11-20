@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
-import { liveCasinoList } from "../../../store/actions/cards/cardDetail";
+import {
+  liveCasinoList,
+  liveCasinoLogin,
+} from "../../../store/actions/cards/cardDetail";
 
 const LiveCasinoMobile = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { liveCasinoData } = useSelector((state: RootState) => state.card);
+  const { liveCasinoData,liveCasinoGame } = useSelector((state: RootState) => state.card);
 
   const initialType =
     liveCasinoData && Object.keys(liveCasinoData).length > 0
@@ -18,6 +21,8 @@ const LiveCasinoMobile = () => {
   const [type2, setType2] = useState<string>("");
   const [game, setGame] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
+  const [isShow, setIsShow] = useState(false);
+  const [gameData, setGameData] = useState<any>();
 
   useEffect(() => {
     if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
@@ -31,9 +36,6 @@ const LiveCasinoMobile = () => {
     }
   }, [liveCasinoData]);
 
-
-
-
   if (isLoading) {
     return (
       <div className="w-100 d-flex justify-content-center align-items-center">
@@ -41,6 +43,17 @@ const LiveCasinoMobile = () => {
       </div>
     );
   }
+
+  const handleGame = (data: any) => {
+    setGameData(data);
+    let payLoad: any = {
+      gameId: data?.game_id,
+      platformId: "mobile",
+      providerName: data?.provider_name,
+    };
+    dispatch(liveCasinoLogin(payLoad));
+    setIsShow(true);
+  };
   const LiveCasinoTab = ({ data2 }: { data2: any }) => {
     return (
       <div className="w-100 d-flex flex-row">
@@ -82,9 +95,31 @@ const LiveCasinoMobile = () => {
               alt={item?.game_name}
               loading="lazy"
               style={{ width: "calc(50% - 10px)", height: "14vh" }}
+              onClick={() => handleGame(item)}
             />
           );
         })}
+      </div>
+    );
+  };
+  const GameScreen = ({ data4 }: { data4: any }) => {
+    return (
+      <div className="d-flex flex-column mt-1 position-absolute" style={{width:"100vw",height:"vh"}}>
+        <div className="w-100 d-flex flex-row justify-content-between align-items-center px-1 py-2 bg-primary text-white">
+          <span>{gameData?.game_name}</span>
+          <div className="fbold" onClick={() => setIsShow(false)}>
+            EXIT
+          </div>
+        </div>
+        <div className="w-100" style={{ height: "80vh" }}>
+          <iframe
+            src={data4?.url}
+            title="Live Stream"
+            referrerPolicy={"strict-origin-when-cross-origin"}
+            width={"100%"}
+            height={"100%"}
+          ></iframe>
+        </div>
       </div>
     );
   };
@@ -94,31 +129,36 @@ const LiveCasinoMobile = () => {
     setType2(firstKey);
     setGame(liveCasinoData[key][firstKey]);
   };
-  return (
-    <><div className="w-100 d-flex flex-column mt-1 gap-2 ">
-      <div className="w-100 d-flex man-tab px-6 bg-secondary">
-        {Object.keys(list)?.map((key, index) => {
-          const isActive = type === key;
-          return (
-            <div
-              key={index}
-              onClick={() => handleParent(key)}
-              className={`w-100 d-flex justify-content-center px-2 align-items-center py-2 ${isActive ? "bg-tab text-white" : ""}`}
-              style={{
-                cursor: "pointer",
-              }}
-            >
-              {key}
-            </div>
-          );
-        })}
+  return isShow ? (
+    <GameScreen data4={liveCasinoGame} />
+  ) : (
+    <>
+      <div className="w-100 d-flex flex-column mt-1 gap-2 ">
+        <div className="w-100 d-flex man-tab px-6 bg-secondary">
+          {Object.keys(list)?.map((key, index) => {
+            const isActive = type === key;
+            return (
+              <div
+                key={index}
+                onClick={() => handleParent(key)}
+                className={`w-100 d-flex justify-content-center px-2 align-items-center py-2 ${
+                  isActive ? "bg-tab text-white" : ""
+                }`}
+                style={{
+                  cursor: "pointer",
+                }}
+              >
+                {key}
+              </div>
+            );
+          })}
+        </div>
       </div>
-
-
-    </div><div className="w-full d-flex flex-column bg-tab man-tab ">
+      <div className="w-full d-flex flex-column bg-tab man-tab ">
         <LiveCasinoTab data2={list[type]} />
-       
-      </div> <LiveCasinoGames data3={game ?? []} /></>
+      </div>{" "}
+      <LiveCasinoGames data3={game ?? []} />
+    </>
   );
 };
 
