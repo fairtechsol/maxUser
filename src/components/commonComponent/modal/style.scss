@@ -103,12 +103,13 @@ $btn-close-bg: 11;
   z-index: 1001;
   position: absolute;
   top: 100%;
-  left: 0;
+  // left: 0;
   padding: 0.5rem 0;
   font-size: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
-  transform: translate(1052px, 0px);
+  right: 0;
+  // transform: translate(1052px, 0px);
 }
 
 .dropdown-item-1 {
