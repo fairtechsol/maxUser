@@ -21,7 +21,7 @@ import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
 import { marqueeNotification } from "../../../store/actions/user/userAction";
-
+import { getBannerImage } from "../../../store/actions/user/userAction";
 const Login = () => {
   const initialValues: any = {
     userName: "",
@@ -32,6 +32,9 @@ const Login = () => {
     (state: RootState) => state.auth
   );
 
+  
+  const { isBanner } = useSelector((state: RootState) => state.user.profile);
+  
   const navigate = useNavigate();
 
   const dispatch: AppDispatch = useDispatch();
@@ -54,13 +57,24 @@ const Login = () => {
         navigate("/change-password");
         
       } else {
-        dispatch(marqueeNotification());
+        dispatch(getBannerImage(isMobile ? "mobile" : "desktop"));
         dispatch(rulesModalShowTrue());
-        navigate("/home");
+        // console.log("isBanner",isBanner)
+         navigate("/home");
+        
       }
       dispatch(authReset());
     }
   }, [success]);
+
+  
+  // useEffect(() => {
+  //   if (isBanner) {
+  //       console.log("isBanner",isBanner)
+  //       navigate("/home");
+        
+  //   }
+  // }, [isBanner]);
 
   return (
     <Form
