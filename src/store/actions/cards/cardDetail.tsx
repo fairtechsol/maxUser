@@ -80,6 +80,24 @@ export const resultDragonTiger = createAsyncThunk<any, any>(
     }
   }
 );
+
+
+export const liveCasinoList = createAsyncThunk<any, any>(
+  "result/liveCasinoList",
+  async (_, thunkApi) => {
+    try {
+      const resp = await service.post(
+        `${ApiConstants.LiveCasinoGame}`
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 // export const updateTeamRatesForHorseRacingOnDelete = createAsyncThunk<any, any>(
 //   "horseRacing/teamRatesUpdateOnDelete",
 //   async (data) => {
