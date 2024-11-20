@@ -16,9 +16,15 @@ const SportsFilterJson = () => {
       link: "/casino-slot",
     },
     {
+      id: "live-casino",
+      name: "LIVE CASINO",
+      link: "/live-casino",
+      onClick: true
+    },
+    {
       id: "slots",
       name: "SLOTS",
-      link: "/other",
+      link: "/slots",
     },
     {
       id: "fantasy",
