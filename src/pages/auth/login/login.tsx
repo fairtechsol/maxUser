@@ -60,7 +60,7 @@ const Login = () => {
         dispatch(getBannerImage(isMobile ? "mobile" : "desktop"));
         dispatch(rulesModalShowTrue());
         // console.log("isBanner",isBanner)
-         navigate("/home");
+        // navigate("/home");
         
       }
       dispatch(authReset());
@@ -68,13 +68,13 @@ const Login = () => {
   }, [success]);
 
   
-  // useEffect(() => {
-  //   if (isBanner) {
-  //       console.log("isBanner",isBanner)
-  //       navigate("/home");
+  useEffect(() => {
+    if (isBanner) {
+        console.log("isBanner",isBanner)
+        navigate("/home");
         
-  //   }
-  // }, [isBanner]);
+    }
+  }, [isBanner]);
 
   return (
     <Form
