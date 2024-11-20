@@ -31,6 +31,7 @@ interface InitialState {
   buttonValues2: any;
   setButtonValue: any;
   transactions: any;
+  isBanner: boolean;
 }
 
 const initialState: InitialState = {
@@ -46,6 +47,7 @@ const initialState: InitialState = {
   loading: false,
   success: false,
   error: null,
+  isBanner: false,
 };
 
 const profileSlice = createSlice({
@@ -70,11 +72,13 @@ const profileSlice = createSlice({
       })
       .addCase(getBannerImage.pending, (state) => {
         state.loading = true;
+        state.isBanner = false;
         state.success = false;
         state.error = null;
       })
       .addCase(getBannerImage.fulfilled, (state, action) => {
         state.loading = false;
+        state.isBanner = true;
         state.success = true;
         state.bannerImage = action.payload;
       })
