@@ -5,7 +5,7 @@ import moment from "moment-timezone";
 import { FiMonitor } from "react-icons/fi";
 import { Img } from "react-image";
 import { useSelector } from "react-redux";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
@@ -77,14 +77,17 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
       setDataList(arr);
     }
   }, [liveCasinoData]);
+  
   const handleModal = (data: any) => {
-    let payLoad: any = {
-      gameId: data?.game_id,
-      platformId: "desktop",
-      providerName: data?.provider_name,
-    };
-    dispatch(liveCasinoLogin(payLoad));
-    setShow(true);
+    if(data?.game_id){
+      let payLoad: any = {
+        gameId: data?.game_id,
+        platformId: "desktop",
+        providerName: data?.provider_name,
+      };
+      dispatch(liveCasinoLogin(payLoad));
+      setShow(true);
+    }
   };
   return (
     <>

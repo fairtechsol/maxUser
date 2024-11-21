@@ -85,6 +85,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
     }, [liveCasinoData]);
 
     const handleModal = (data: any) => {
+      if(data?.game_id){
       let payLoad: any = {
         gameId: data?.game_id,
         platformId: "mobile",
@@ -92,6 +93,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
       };
       dispatch(liveCasinoLogin(payLoad));
       setShow(true);
+    }
     };
 
   const isScrollable = location.pathname === "/casino-slot";

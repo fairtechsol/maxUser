@@ -3,15 +3,20 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
 import { liveCasinoLogin } from "../../../store/actions/cards/cardDetail";
-import { dt2020 } from "../../../assets/images";
+import { dt2020, maxbetLogo } from "../../../assets/images";
 import NewLoader from "../../commonComponent/newLoader";
+import { Modal } from "react-bootstrap";
+import { FaHome } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const LiveCasinoDesktop = () => {
+  const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const { liveCasinoData, liveCasinoGame } = useSelector(
     (state: RootState) => state.card
   );
 
+  const { getProfile } = useSelector((state: RootState) => state.user.profile);
   const initialType =
     liveCasinoData && Object.keys(liveCasinoData).length > 0
       ? Object.keys(liveCasinoData)[0]
@@ -23,7 +28,6 @@ const LiveCasinoDesktop = () => {
   const [game, setGame] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
   const [isShow, setIsShow] = useState(false);
-  const [gameData, setGameData] = useState<any>()
 
   useEffect(() => {
     if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
@@ -40,13 +44,12 @@ const LiveCasinoDesktop = () => {
   if (isLoading) {
     return (
       <div className="w-100 d-flex justify-content-center align-items-center">
-         <NewLoader />
+        <NewLoader />
       </div>
     );
   }
 
   const handleGame = (data: any) => {
-    setGameData(data)
     let payLoad: any = {
       gameId: data?.game_id,
       platformId: "desktop",
@@ -72,7 +75,7 @@ const LiveCasinoDesktop = () => {
               style={{
                 cursor: "pointer",
                 backgroundColor: isActive ? "#004A25" : "",
-                fontWeight: isActive ? "bold" : ""
+                fontWeight: isActive ? "bold" : "",
               }}
             >
               {item}
@@ -91,10 +94,10 @@ const LiveCasinoDesktop = () => {
         {data3?.map((item: any, index: number) => {
           return (
             <img
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = dt2020;
-            }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = dt2020;
+              }}
               key={index}
               src={item?.url_thumb}
               className="img-fluid"
@@ -111,62 +114,131 @@ const LiveCasinoDesktop = () => {
       </div>
     );
   };
-  const GameScreen = ({ data4 }: { data4: any }) => {
-    return (
-      <div
-        className="w-100 d-flex flex-column mt-1"
-      >
-        <div className="w-100 d-flex flex-row justify-content-between align-items-center px-1 py-2 bg-primary text-white">
-          <span>{gameData?.game_name}</span>
-          <div className="fbold" onClick={() => setIsShow(false)}>EXIT</div>
-        </div>
-        <div className="w-100" style={{height:"80vh"}}>
-          <iframe
-            src={data4?.url}
-            title="Live Stream"
-            referrerPolicy={"strict-origin-when-cross-origin"}
-            width={"100%"}
-            height={"100%"}
-          ></iframe>
-        </div>
-      </div>
-    );
-  };
+  // const GameScreen = ({ data4 }: { data4: any }) => {
+  //   return (
+  //     <div
+  //       className="w-100 d-flex flex-column mt-1"
+  //     >
+  //       <div className="w-100 d-flex flex-row justify-content-between align-items-center px-1 py-2 bg-primary text-white">
+  //         <span>{gameData?.game_name}</span>
+  //         <div className="fbold" onClick={() => setIsShow(false)}>EXIT</div>
+  //       </div>
+  //       <div className="w-100" style={{height:"80vh"}}>
+  //         <iframe
+  //           src={data4?.url}
+  //           title="Live Stream"
+  //           referrerPolicy={"strict-origin-when-cross-origin"}
+  //           width={"100%"}
+  //           height={"100%"}
+  //         ></iframe>
+  //       </div>
+  //     </div>
+  //   );
+  // };
   const handleParent = (key: any) => {
     setType(key);
     const firstKey = Object.keys(liveCasinoData[key])[0];
     setType2(firstKey);
     setGame(liveCasinoData[key][firstKey]);
   };
-  return isShow ? (
-    <GameScreen data4={liveCasinoGame} />
-  ) : (
-    <div className="w-100 d-flex flex-row mt-1 gap-2">
-      <div className="d-flex flex-column bg-secondary" style={{width: "calc(16.66% - 10px)"}}>
-        {Object.keys(list)?.map((key, index) => {
-          const isActive = type === key;
-          return (
-            <div
-              key={index}
-              onClick={() => handleParent(key)}
-              className={` d-flex justify-content-center align-items-center py-2 title-16 text-white ${
-                isActive ? "bg-tab" : ""
-              }`}
-              style={{
-                cursor: "pointer",
-              }}
-            >
-              {key}
-            </div>
-          );
-        })}
-      </div>
+  return (
+    <>
+      <div className="w-100 d-flex flex-row mt-1 gap-2">
+        <div
+          className="d-flex flex-column bg-secondary"
+          style={{ width: "calc(16.66% - 10px)" }}
+        >
+          {Object.keys(list)?.map((key, index) => {
+            const isActive = type === key;
+            return (
+              <div
+                key={index}
+                onClick={() => handleParent(key)}
+                className={` d-flex justify-content-center align-items-center py-2 title-16 text-white ${
+                  isActive ? "bg-tab" : ""
+                }`}
+                style={{
+                  cursor: "pointer",
+                }}
+              >
+                {key}
+              </div>
+            );
+          })}
+        </div>
 
-      <div className="d-flex flex-column" style={{width: "85%"}}>
-        <LiveCasinoTab data2={list[type]} />
-        <LiveCasinoGames data3={game ?? []} />
+        <div className="d-flex flex-column" style={{ width: "85%" }}>
+          <LiveCasinoTab data2={list[type]} />
+          <LiveCasinoGames data3={game ?? []} />
+        </div>
       </div>
-    </div>
+      <Modal show={isShow} fullscreen={true} onHide={() => setIsShow(false)}>
+        <Modal.Header
+          // closeButton
+          // closeVariant={"white"}
+          style={{ color: "#fff", backgroundColor: "#004A25" }}
+        >
+          <Modal.Title className="w-100">
+            <div className="w-100 d-flex justify-content-between align-items-center">
+              <div
+                className="d-flex flex-row align-items-center"
+                onClick={() => {
+                  navigate("/home");
+                  setIsShow(false);
+                }}
+              >
+                <FaHome color="#fff" size={40} />
+                <img
+                  src={maxbetLogo}
+                  width={"auto"}
+                  alt="fairGame"
+                  style={{
+                    margin: "5px 5px 0",
+                    maxWidth: "250px",
+                    display: "inline-block",
+                    cursor: "pointer",
+                  }}
+                />
+              </div>
+
+              <div className="title-16">
+                <div>
+                  Balance:
+                  <b>
+                    {parseFloat(
+                      getProfile?.userBal?.currentBalance || 0
+                    ).toFixed(2)}
+                  </b>
+                </div>
+                <div>
+                  <span className="white-text  cursor-pointer">
+                    Exposure:
+                    <b>
+                      {parseInt(getProfile?.userBal?.exposure) === 0
+                        ? 0
+                        : -parseFloat(
+                            getProfile?.userBal?.exposure || 0
+                          ).toFixed(2)}
+                    </b>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-0">
+          <div className="w-100" style={{ height: "100vh" }}>
+            <iframe
+              src={liveCasinoGame?.url}
+              title="Live Stream"
+              referrerPolicy={"strict-origin-when-cross-origin"}
+              width={"100%"}
+              height={"100%"}
+            ></iframe>
+          </div>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
 
