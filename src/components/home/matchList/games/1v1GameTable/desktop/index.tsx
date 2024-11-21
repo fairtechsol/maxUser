@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Modal } from "react-bootstrap";
 // import { FiMonitor } from "react-icons/fi";
 import moment from "moment-timezone";
 import { FiMonitor } from "react-icons/fi";
@@ -19,7 +19,12 @@ import { FaLock } from "react-icons/fa";
 import { expertSocketService } from "../../../../../../socketManager";
 import { useDispatch } from "react-redux";
 import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
-import { liveCasinoList } from "../../../../../../store/actions/cards/cardDetail";
+import {
+  liveCasinoList,
+  liveCasinoLogin,
+} from "../../../../../../store/actions/cards/cardDetail";
+import { FaHome } from "react-icons/fa";
+import { maxbetLogo } from "../../../../../../assets/images";
 const tableHeading = [
   {
     id: "game",
@@ -45,7 +50,8 @@ const tableHeading = [
   },
 ];
 const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
-  const [dataList, setDataList] = useState(casinoIcons)
+  const [dataList, setDataList] = useState(casinoIcons);
+  const [show, setShow] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
@@ -53,20 +59,33 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   const { countryWiseList } = useSelector(
     (state: RootState) => state.horseRacing.matchList
   );
-  const { liveCasinoData } = useSelector((state: RootState) => state.card);
+  const { liveCasinoData, liveCasinoGame } = useSelector(
+    (state: RootState) => state.card
+  );
 
-useEffect(() => {
-  dispatch(liveCasinoList(""));
-}, [])
-useEffect(() => {
+  const { getProfile } = useSelector((state: RootState) => state.user.profile);
+
+  useEffect(() => {
+    dispatch(liveCasinoList(""));
+  }, []);
+  useEffect(() => {
     if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
       const combinedArray = Object.values(liveCasinoData)
-      .flatMap(set => Object.values(set))
-      .flat();
-      const arr = [...combinedArray,...casinoIcons];
-      setDataList(arr)
+        .flatMap((set) => Object.values(set))
+        .flat();
+      const arr = [...combinedArray, ...casinoIcons];
+      setDataList(arr);
     }
   }, [liveCasinoData]);
+  const handleModal = (data: any) => {
+    let payLoad: any = {
+      gameId: data?.game_id,
+      platformId: "desktop",
+      providerName: data?.provider_name,
+    };
+    dispatch(liveCasinoLogin(payLoad));
+    setShow(true);
+  };
   return (
     <>
       <Table className="matchListTable-desktop mb-4">
@@ -195,7 +214,7 @@ useEffect(() => {
       </Table>
       <div className=" mt-2 casino-list">
         {["/home"].includes(location.pathname) &&
-          dataList.map((item:any) => (
+          dataList.map((item: any) => (
             <Link
               to={item.url}
               key={item?.name || item?.game_id}
@@ -205,12 +224,83 @@ useEffect(() => {
               }}
             >
               <div className="w-100 d-inline-block casinoicons">
-                <Img src={item.url_thumb || item.imgSrc} className="" alt={item.game_name || item.name} style={{height:"120px",width:"100%"}}/>
+                <Img
+                  src={item.url_thumb || item.imgSrc}
+                  className=""
+                  alt={item.game_name || item.name}
+                  style={{ height: "120px", width: "100%" }}
+                  onClick={() => handleModal(item)}
+                />
                 <div className="casino-name">{item.game_name || item.name}</div>
               </div>
             </Link>
           ))}
       </div>
+      <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
+        <Modal.Header
+          // closeButton
+          // closeVariant={"white"}
+          style={{ color: "#fff", backgroundColor: "#004A25" }}
+        >
+          <Modal.Title className="w-100">
+            <div className="w-100 d-flex justify-content-between align-items-center">
+              <div className="d-flex flex-row align-items-center" 
+              onClick={()=>setShow(false)}>
+              <FaHome color="#fff" size={40}/>
+              <img
+              src={maxbetLogo}
+              width={"auto"}
+              alt="fairGame"
+              style={{
+                margin: "5px 5px 0",
+                maxWidth: "250px",
+                display: "inline-block",
+                cursor:"pointer"
+              }}
+            />
+              </div>
+            
+            <div className="title-16">
+            <div>
+                  Balance:
+                  <b>
+                    {parseFloat(
+                      getProfile?.userBal?.currentBalance || 0
+                    ).toFixed(2)}
+                  </b>
+                </div>
+                <div>
+                  <span
+                    className="white-text  cursor-pointer"
+                  >
+                    Exposure:
+                    <b>
+                      {parseInt(getProfile?.userBal?.exposure) === 0
+                        ? 0
+                        : -parseFloat(
+                            getProfile?.userBal?.exposure || 0
+                          ).toFixed(2)}
+                    </b>
+                  </span>
+                </div>
+            </div>
+            </div>
+            
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-0">
+          {" "}
+          <div className="w-100" style={{ height: "100vh" }}>
+            <iframe
+              src={liveCasinoGame?.url}
+              title="Live Stream"
+              referrerPolicy={"strict-origin-when-cross-origin"}
+              width={"100%"}
+              height={"100%"}
+            ></iframe>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
