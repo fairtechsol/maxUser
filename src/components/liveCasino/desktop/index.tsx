@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
 import { liveCasinoLogin } from "../../../store/actions/cards/cardDetail";
+import { dt2020 } from "../../../assets/images";
+import NewLoader from "../../commonComponent/newLoader";
 
 const LiveCasinoDesktop = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -38,7 +40,7 @@ const LiveCasinoDesktop = () => {
   if (isLoading) {
     return (
       <div className="w-100 d-flex justify-content-center align-items-center">
-        <p>Loading...</p>
+         <NewLoader />
       </div>
     );
   }
@@ -66,12 +68,11 @@ const LiveCasinoDesktop = () => {
                 setGame(data2[item]);
                 setType2(item);
               }}
-              className="d-flex justify-content-center align-items-center py-1 px-4"
+              className="d-flex justify-content-center align-items-center py-1 px-2 text-white title-16"
               style={{
-                width: "100px",
                 cursor: "pointer",
                 backgroundColor: isActive ? "#004A25" : "",
-                color: isActive ? "#fff" : "#000",
+                fontWeight: isActive ? "bold" : ""
               }}
             >
               {item}
@@ -84,18 +85,22 @@ const LiveCasinoDesktop = () => {
   const LiveCasinoGames = ({ data3 }: { data3: any }) => {
     return (
       <div
-        className="w-100 d-flex flex-row flex-wrap mt-1"
+        className="w-100 d-flex flex-row flex-wrap mt-1 cursor-pointer"
         style={{ gap: "10px" }}
       >
         {data3?.map((item: any, index: number) => {
           return (
             <img
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = dt2020;
+            }}
               key={index}
               src={item?.url_thumb}
               className="img-fluid"
               alt={item?.game_name}
               loading="lazy"
-              style={{ width: "19%", height: "10vh" }}
+              style={{ width: "calc(16.66% - 10px)", height: "10vh" }}
               onClick={(e) => {
                 e.stopPropagation();
                 handleGame(item);
@@ -137,15 +142,15 @@ const LiveCasinoDesktop = () => {
     <GameScreen data4={liveCasinoGame} />
   ) : (
     <div className="w-100 d-flex flex-row mt-1 gap-2">
-      <div className="w-25 h-100 d-flex flex-column bg-secondary">
+      <div className="d-flex flex-column bg-secondary" style={{width: "calc(16.66% - 10px)"}}>
         {Object.keys(list)?.map((key, index) => {
           const isActive = type === key;
           return (
             <div
               key={index}
               onClick={() => handleParent(key)}
-              className={`w-100 d-flex justify-content-center align-items-center py-2 ${
-                isActive ? "bg-tab text-white" : ""
+              className={` d-flex justify-content-center align-items-center py-2 title-16 text-white ${
+                isActive ? "bg-tab" : ""
               }`}
               style={{
                 cursor: "pointer",
@@ -157,7 +162,7 @@ const LiveCasinoDesktop = () => {
         })}
       </div>
 
-      <div className="w-75 d-flex flex-column">
+      <div className="d-flex flex-column" style={{width: "85%"}}>
         <LiveCasinoTab data2={list[type]} />
         <LiveCasinoGames data3={game ?? []} />
       </div>
