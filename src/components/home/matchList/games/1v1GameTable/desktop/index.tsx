@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 // import { FiMonitor } from "react-icons/fi";
 import moment from "moment-timezone";
@@ -19,6 +19,7 @@ import { FaLock } from "react-icons/fa";
 import { expertSocketService } from "../../../../../../socketManager";
 import { useDispatch } from "react-redux";
 import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
+import { liveCasinoList } from "../../../../../../store/actions/cards/cardDetail";
 const tableHeading = [
   {
     id: "game",
@@ -44,6 +45,7 @@ const tableHeading = [
   },
 ];
 const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
+  const [dataList, setDataList] = useState(casinoIcons)
   const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
@@ -51,7 +53,20 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   const { countryWiseList } = useSelector(
     (state: RootState) => state.horseRacing.matchList
   );
+  const { liveCasinoData } = useSelector((state: RootState) => state.card);
 
+useEffect(() => {
+  dispatch(liveCasinoList(""));
+}, [])
+useEffect(() => {
+    if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
+      const combinedArray = Object.values(liveCasinoData)
+      .flatMap(set => Object.values(set))
+      .flat();
+      const arr = [...combinedArray,...casinoIcons];
+      setDataList(arr)
+    }
+  }, [liveCasinoData]);
   return (
     <>
       <Table className="matchListTable-desktop mb-4">
@@ -180,18 +195,18 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
       </Table>
       <div className=" mt-2 casino-list">
         {["/home"].includes(location.pathname) &&
-          casinoIcons.map((item) => (
+          dataList.map((item:any) => (
             <Link
               to={item.url}
-              key={item?.name}
+              key={item?.name || item?.game_id}
               className="casino-list-item"
               onClick={() => {
                 dispatch(betPlacedReset());
               }}
             >
-              <div className="d-inline-block casinoicons">
-                <Img src={item.imgSrc} className="img-fluid" alt={item.name} />
-                <div className="casino-name">{item.name}</div>
+              <div className="w-100 d-inline-block casinoicons">
+                <Img src={item.url_thumb || item.imgSrc} className="" alt={item.game_name || item.name} style={{height:"120px",width:"100%"}}/>
+                <div className="casino-name">{item.game_name || item.name}</div>
               </div>
             </Link>
           ))}

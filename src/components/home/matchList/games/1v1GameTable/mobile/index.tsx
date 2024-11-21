@@ -17,8 +17,10 @@ import "./style.scss";
 import { TbDeviceTvOld } from "react-icons/tb";
 import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
 import { useDispatch } from "react-redux";
+import { liveCasinoList } from "../../../../../../store/actions/cards/cardDetail";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
+  const [dataList, setDataList] = useState(casinoIcons)
   const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
@@ -26,6 +28,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   const { countryWiseList } = useSelector(
     (state: RootState) => state.horseRacing.matchList
   );
+  const { liveCasinoData } = useSelector((state: RootState) => state.card);
   const { id } = useParams();
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const location = useLocation();
@@ -61,6 +64,20 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
       // });
     }
   }, [isAtBottom]);
+
+  useEffect(() => {
+    dispatch(liveCasinoList(""));
+  }, [])
+
+  useEffect(() => {
+      if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
+        const combinedArray = Object.values(liveCasinoData)
+        .flatMap(set => Object.values(set))
+        .flat();
+        const arr = [...combinedArray,...casinoIcons];
+        setDataList(arr)
+      }
+    }, [liveCasinoData]);
 
   const isScrollable = location.pathname === "/casino-slot";
   return (
@@ -318,7 +335,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   : {}
               }
             >
-              {casinoIcons.map((item, index) => (
+              {dataList.map((item:any, index:number) => (
                 <Link
                   to={item.url}
                   key={index}
@@ -326,11 +343,12 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 >
                   <div className="d-inline-block casinoiconsm">
                     <Img
-                      src={item.imgSrc}
-                      className="img-fluid"
-                      alt={item.name}
+                      src={item.url_thumb || item.imgSrc}
+                      // className="img-fluid"
+                      alt={item.game_name || item.name}
+                      style={{height:"100px",width:"100%"}}
                     />
-                    <div className="mcasino-name">{item.name}</div>
+                    <div className="mcasino-name">{item.game_name || item.name}</div>
                   </div>
                 </Link>
               ))}
