@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
 import {
-  liveCasinoList,
   liveCasinoLogin,
 } from "../../../store/actions/cards/cardDetail";
+import { dt2020 } from "../../../assets/images";
+import NewLoader from "../../commonComponent/newLoader";
 
 const LiveCasinoMobile = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -39,7 +40,7 @@ const LiveCasinoMobile = () => {
   if (isLoading) {
     return (
       <div className="w-100 d-flex justify-content-center align-items-center">
-        <p>Loading...</p>
+        <NewLoader />
       </div>
     );
   }
@@ -66,11 +67,10 @@ const LiveCasinoMobile = () => {
                 setGame(data2[item]);
                 setType2(item);
               }}
-              className="w-100 d-flex justify-content-center align-items-center py-1 px-4"
+              className="w-100 d-flex justify-content-center align-items-center py-2 px-3 title-14 fbold text-white"
               style={{
                 cursor: "pointer",
-                backgroundColor: isActive ? "#004A25" : "",
-                color: isActive ? "#fff" : "#000",
+                backgroundColor: isActive ? "#004A25" : ""
               }}
             >
               {item}
@@ -89,6 +89,10 @@ const LiveCasinoMobile = () => {
         {data3?.map((item: any, index: number) => {
           return (
             <img
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = dt2020;
+            }}
               key={index}
               src={item?.url_thumb}
               className="img-fluid"
@@ -133,7 +137,7 @@ const LiveCasinoMobile = () => {
     <GameScreen data4={liveCasinoGame} />
   ) : (
     <>
-      <div className="w-100 d-flex flex-column mt-1 gap-2 ">
+      <div className="w-100 d-flex flex-column gap-2 ">
         <div className="w-100 d-flex man-tab px-6 bg-secondary">
           {Object.keys(list)?.map((key, index) => {
             const isActive = type === key;
@@ -141,8 +145,8 @@ const LiveCasinoMobile = () => {
               <div
                 key={index}
                 onClick={() => handleParent(key)}
-                className={`w-100 d-flex justify-content-center px-2 align-items-center py-2 ${
-                  isActive ? "bg-tab text-white" : ""
+                className={`w-100 d-flex justify-content-center px-3 align-items-center fbold title-14 text-white py-2 ${
+                  isActive ? "bg-tabmob" : ""
                 }`}
                 style={{
                   cursor: "pointer",
@@ -154,7 +158,7 @@ const LiveCasinoMobile = () => {
           })}
         </div>
       </div>
-      <div className="w-full d-flex flex-column bg-tab man-tab ">
+      <div className="w-full d-flex flex-column bg-tab man-tab">
         <LiveCasinoTab data2={list[type]} />
       </div>{" "}
       <LiveCasinoGames data3={game ?? []} />

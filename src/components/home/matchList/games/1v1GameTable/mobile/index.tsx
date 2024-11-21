@@ -314,7 +314,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               className="mt-2"
               style={
                 isScrollable
-                  ? { maxHeight: "550px", overflowY: "auto" } // Adjust the maxHeight as needed
+                  ? { overflowY: "auto" } // Adjust the maxHeight as needed
                   : {}
               }
             >
