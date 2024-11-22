@@ -17,7 +17,11 @@ import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import "./style.scss";
 import { ResultComponent } from "../commonComponent/resultComponent";
-import { resultDragonTiger, transactionProviderBets, transactionProviderName } from "../../store/actions/cards/cardDetail";
+import {
+  resultDragonTiger,
+  transactionProviderBets,
+  transactionProviderName,
+} from "../../store/actions/cards/cardDetail";
 
 const AccountStatementComponent = () => {
   const minDate = new Date();
@@ -26,7 +30,7 @@ const AccountStatementComponent = () => {
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
   const [from, setFrom] = useState<any>(sevenDaysAgo);
   const [to, setTo] = useState<any>(new Date());
-  const [selected, setSelected] = useState<any>()
+  const [selected, setSelected] = useState<any>();
   const [type, setType] = useState<any>({
     label: "Deposit/Withdraw Reports",
     value: "0",
@@ -51,7 +55,9 @@ const AccountStatementComponent = () => {
   const { transactions, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
-  let { resultData,liveCasinoProvider,liveCasinoProviderBets } = useSelector((state: RootState) => state.card);
+  let { resultData, liveCasinoProvider, liveCasinoProviderBets } = useSelector(
+    (state: RootState) => state.card
+  );
 
   const { placedBetsAccountStatement } = useSelector(
     (state: RootState) => state.bets
@@ -150,19 +156,19 @@ const AccountStatementComponent = () => {
   }, [from]);
 
   useEffect(() => {
-    dispatch(transactionProviderName(""))
-  }, [])
-  const handleLiveCasinoSubmitClick=()=>{
-    if(type2?.value===""){
+    dispatch(transactionProviderName(""));
+  }, []);
+  const handleLiveCasinoSubmitClick = () => {
+    if (type2?.value === "") {
       return false;
     }
-    let payload:any={
-      id:selected?.user?.id,
-      name:type2?.value,
-      date:selected?.createdAt
-    }
-    dispatch(transactionProviderBets(payload))
-  }
+    let payload: any = {
+      id: selected?.user?.id,
+      name: type2?.value,
+      date: selected?.createdAt,
+    };
+    dispatch(transactionProviderBets(payload));
+  };
   return (
     <>
       <ReportContainer title="Account Statement">
@@ -723,7 +729,9 @@ const AccountStatementComponent = () => {
         show={liveCasinoModal}
         onHide={handleCloseLiveCasinoModal}
         // size="xl"
-        dialogClassName={`${isMobile?"provider-modal-m m-0":"provider-modal custom-modal"}`}
+        dialogClassName={`${
+          isMobile ? "provider-modal-m m-0" : "provider-modal custom-modal"
+        }`}
       >
         <Modal.Header
           closeButton
@@ -732,57 +740,167 @@ const AccountStatementComponent = () => {
         >
           <Modal.Title className="w-100">Result</Modal.Title>
         </Modal.Header>
-        <Modal.Body className={`${isMobile?"p-0 title-12":"title-14"}`}>
-          <div className={`w-100 d-flex flex-column ${isMobile?"mt-2":""}`}>
-          <div className={`w-100 d-flex flex-row justify-content-start gap-2`}>
-          <SelectSearch
-                  options={liveCasinoProvider}
-                  onChange={setType2}
-                  value={type2}
-                  defaultValue={{
-                    label: "Select Casino Type",
-                    value: "",
+        <Modal.Body className={`${isMobile ? "p-0 title-12" : "title-14"}`}>
+          <div className={`w-100 d-flex flex-column ${isMobile ? "mt-2" : ""}`}>
+            <div
+              className={`w-100 d-flex flex-row justify-content-start gap-2`}
+            >
+              <SelectSearch
+                options={liveCasinoProvider}
+                onChange={setType2}
+                value={type2}
+                defaultValue={{
+                  label: "Select Casino Type",
+                  value: "",
+                }}
+              />
+              <CustomButton
+                size={isMobile ? "sm" : "sm"}
+                className={`${isMobile ? "" : " bg-primary"} border-0 `}
+                onClick={handleLiveCasinoSubmitClick}
+              >
+                Submit
+              </CustomButton>
+            </div>
+            <div
+              className={`d-flex ${isMobile ? "mt-4" : "p-2"} overflow-auto`}
+              style={isMobile ? { width: "100%" } : { width: "100%" }}
+            >
+              <div className="w-100 d-flex flex-column">
+                <div
+                  className="w-100 d-flex flex-row fbold"
+                  style={{
+                    border: "1px solid #c7c8ca",
+                    height: "35px",
+                    backgroundColor: "#f7f7f7",
+                    minWidth: "900px",
                   }}
-                />
-                <CustomButton
-                  size={isMobile ? "sm" : "sm"}
-                  className={`${isMobile ? "" : " bg-primary"} border-0 `}
-                  onClick={handleLiveCasinoSubmitClick}
                 >
-                  Submit
-                </CustomButton>
-          </div>
-          <div className={`d-flex ${isMobile ? "mt-4" : "p-2"}`}  style={isMobile?{width:"800px"}:{width:"100%"}}>
-                  <div className="w-100 d-flex flex-column" style={isMobile?{overflowX:"auto",overflow:"hidden",whiteSpace: "nowrap"}:{}}>
-                    <div className="w-100 d-flex flex-row fbold" style={{border:"1px solid #c7c8ca",height:"35px",backgroundColor:"#f7f7f7"}}>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"16%",borderRight:"1px solid #c7c8ca"}}> Game Name</div>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"12%",borderRight:"1px solid #c7c8ca"}}>Type</div>
-                      <div className="d-flex justify-content-end align-items-center pe-1" style={{width:"11%",borderRight:"1px solid #c7c8ca"}}>Amount</div>
-                      <div className="d-flex justify-content-end align-items-center pe-1" style={{width:"13%",borderRight:"1px solid #c7c8ca"}}>Total</div>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"12%",borderRight:"1px solid #c7c8ca"}}>Date</div>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"16%",borderRight:"1px solid #c7c8ca"}}>Round Id</div>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"20%"}}>Transaction Id</div>
-                    </div>
-                    {liveCasinoProviderBets?.count>0 && liveCasinoProviderBets?.bets?.map((item:any)=>{
-                      return(
-                        <div className="w-100 d-flex flex-row" style={{border:"1px solid #c7c8ca",height:"35px",backgroundColor:"#f2f2f2"}}>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"16%",borderRight:"1px solid #c7c8ca"}}>{item?.gameName}</div>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"12%",borderRight:"1px solid #c7c8ca"}}>{item?.betType}</div>
-                      <div className="d-flex justify-content-end align-items-center pe-1" style={{width:"11%",borderRight:"1px solid #c7c8ca"}}>{item?.amount}</div>
-                      <div className="d-flex justify-content-end align-items-center pe-1" style={{width:"13%",borderRight:"1px solid #c7c8ca"}}>{item?.gameName}</div>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"12%",borderRight:"1px solid #c7c8ca"}}>{moment(new Date(item?.createdAt)).format(
-                        "YYYY-MM-DD hh:mm"
-                      )}</div>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"16%",borderRight:"1px solid #c7c8ca"}}>{item?.roundId}</div>
-                      <div className="d-flex justify-content-start align-items-center ps-1" style={{width:"20%"}}>{item?.transactionId}</div>
-                    </div>
-                      )
-                    })}
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "16%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Game Name
                   </div>
-          </div>
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "12%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Type
+                  </div>
+                  <div
+                    className="d-flex justify-content-end align-items-center pe-1"
+                    style={{ width: "11%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Amount
+                  </div>
+                  <div
+                    className="d-flex justify-content-end align-items-center pe-1"
+                    style={{ width: "13%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Total
+                  </div>
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "12%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Date
+                  </div>
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "16%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Round Id
+                  </div>
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "20%" }}
+                  >
+                    Transaction Id
+                  </div>
+                </div>
+                {liveCasinoProviderBets?.count > 0 &&
+                  liveCasinoProviderBets?.bets?.map((item: any) => {
+                    return (
+                      <div
+                        key={item?.transactionId} // Use a unique key
+                        className="w-100 d-flex flex-row"
+                        style={{
+                          border: "1px solid #c7c8ca",
+                          height: "35px",
+                          backgroundColor: "#f2f2f2",
+                          minWidth: "900px", // Set minimum width for horizontal scrolling
+                        }}
+                      >
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1"
+                          style={{
+                            width: "16%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {item?.gameName}
+                        </div>
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1"
+                          style={{
+                            width: "12%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {item?.betType}
+                        </div>
+                        <div
+                          className="d-flex justify-content-end align-items-center pe-1"
+                          style={{
+                            width: "11%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {item?.amount}
+                        </div>
+                        <div
+                          className="d-flex justify-content-end align-items-center pe-1"
+                          style={{
+                            width: "13%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {item?.gameName}
+                        </div>
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1"
+                          style={{
+                            width: "12%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {moment(new Date(item?.createdAt)).format(
+                            "YYYY-MM-DD hh:mm"
+                          )}
+                        </div>
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1"
+                          style={{
+                            width: "16%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {item?.roundId}
+                        </div>
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1"
+                          style={{ width: "20%" }}
+                        >
+                          {item?.transactionId}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
           </div>
         </Modal.Body>
-        
       </Modal>
     </>
   );
