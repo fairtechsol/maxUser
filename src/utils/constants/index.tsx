@@ -56,6 +56,8 @@ import {
 export const ApiConstants = {
   LiveCasinoGame: "/mac88/casino/list",
   LiveCasinoGameLogin: "/mac88/casino/login",
+  LiveCasinoGameProvider: "/mac88/providers",
+  LiveCasinoGameBets: "/mac88/bets",
   LOGIN: "auth/login",
   DEMO_LOGIN: "/user/loginWithDemo",
   LOGOUT: "auth/logout",

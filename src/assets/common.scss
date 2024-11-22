@@ -751,6 +751,12 @@ body select {
 .m-b-30 {
   margin-bottom: 30px;
 }
+.provider-modal{
+  --bs-modal-width: 90vw;
+}
+.provider-modal-m{
+  --bs-modal-width: 100vw;
+}
 .div-figure img {
   -webkit-transition: transform 0.5s linear;
   transition: transform 0.5s linear;

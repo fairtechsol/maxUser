@@ -43,6 +43,8 @@ import {
   getDragonTigerDetail,
   liveCasinoList,
   liveCasinoLogin,
+  transactionProviderName,
+  transactionProviderBets,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -59,6 +61,8 @@ interface InitialState {
   scoreBoardData: any;
   liveCasinoData:any;
   liveCasinoGame:any;
+  liveCasinoProvider:any;
+  liveCasinoProviderBets:any;
 }
 
 const initialState: InitialState = {
@@ -75,6 +79,8 @@ const initialState: InitialState = {
   scoreBoardData: [],
   liveCasinoData:[],
   liveCasinoGame:{},
+  liveCasinoProvider:[],
+  liveCasinoProviderBets:[]
 };
 
 const cardDetail = createSlice({
@@ -759,6 +765,33 @@ const cardDetail = createSlice({
         state.scoreBoardData = action.payload;
       })
       .addCase(casinoScoreboardMatchRates.rejected, (state, action) => {
+        // state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(transactionProviderName.pending, (state) => {
+        // state.loading = true;
+        state.error = null;
+        // state.scoreBoardData = null;
+      })
+      .addCase(transactionProviderName.fulfilled, (state, action) => {
+        state.liveCasinoProvider = action.payload.map((provider:any) => ({
+          label: provider,
+          value: provider,
+        }));
+      })
+      .addCase(transactionProviderName.rejected, (state, action) => {
+        // state.loading = false;
+        state.error = action?.error?.message;
+      })
+      .addCase(transactionProviderBets.pending, (state) => {
+        // state.loading = true;
+        state.error = null;
+        // state.scoreBoardData = null;
+      })
+      .addCase(transactionProviderBets.fulfilled, (state, action) => {
+        state.liveCasinoProviderBets = action.payload;
+      })
+      .addCase(transactionProviderBets.rejected, (state, action) => {
         // state.loading = false;
         state.error = action?.error?.message;
       })
