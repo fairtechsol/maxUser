@@ -46,7 +46,6 @@ const MobileMatchList = ({ type, setMatchType, matchType }: any) => {
 
   return (
     <div className="m-0 p-0 w-100">
-      {" "}
       {location.pathname !== "/casino-slot" &&
         location.pathname !== "/other" && (
           <CommonTabs

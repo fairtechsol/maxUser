@@ -56,7 +56,7 @@ const Login = () => {
         navigate("/change-password");
       } else {
         dispatch(rulesModalShowTrue());
-        navigate("/home", { replace: true });
+        navigate("/home");
       }
       dispatch(authReset());
     }
