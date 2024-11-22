@@ -183,7 +183,7 @@ const LiveCasinoDesktop = () => {
               <div
                 className="d-flex flex-row align-items-center"
                 onClick={() => {
-                  navigate("/home");
+                  // navigate("/home");
                   setIsShow(false);
                 }}
               >

@@ -173,7 +173,7 @@ const LiveCasinoMobile = () => {
             <div className="w-100 d-flex justify-content-between align-items-center">
               <div className="d-flex flex-row align-items-center" 
               onClick={() => {
-                navigate("/home");
+                // navigate("/home");
                 setIsShow(false);
               }}>
               <FaHome color="#fff" size={20}/>
