@@ -56,6 +56,8 @@ import {
 export const ApiConstants = {
   LiveCasinoGame: "/mac88/casino/list",
   LiveCasinoGameLogin: "/mac88/casino/login",
+  LiveCasinoGameProvider: "/mac88/providers",
+  LiveCasinoGameBets: "/mac88/bets",
   LOGIN: "auth/login",
   DEMO_LOGIN: "/user/loginWithDemo",
   LOGOUT: "auth/logout",
@@ -147,7 +149,7 @@ export const Constants = {
   thirdPartyLive: "https://serviceapi.fairgame7.com",
   expertPathLive: "https://expertapi.fairgame7.com",
   thirdPartyCardLive: "https://casinoserviceapi.fairgame7.com",
-  localPath: "http://localhost:5000",
+  localPath: "https://devmaxbet9api.fairgame.club",
   localPathExpert: "http://localhost:6060",
 };
 
