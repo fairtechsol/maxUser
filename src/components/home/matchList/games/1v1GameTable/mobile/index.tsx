@@ -17,8 +17,14 @@ import "./style.scss";
 import { TbDeviceTvOld } from "react-icons/tb";
 import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
 import { useDispatch } from "react-redux";
+import { liveCasinoList, liveCasinoLogin } from "../../../../../../store/actions/cards/cardDetail";
+import { Modal } from "react-bootstrap";
+import { maxbetLogo } from "../../../../../../assets/images";
+import { FaHome } from "react-icons/fa";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
+  const [dataList, setDataList] = useState(casinoIcons)
+  const [show, setShow] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const { matchList } = useSelector(
     (state: RootState) => state.match.matchList
@@ -26,6 +32,8 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
   const { countryWiseList } = useSelector(
     (state: RootState) => state.horseRacing.matchList
   );
+  const { getProfile } = useSelector((state: RootState) => state.user.profile);
+  const { liveCasinoData,liveCasinoGame } = useSelector((state: RootState) => state.card);
   const { id } = useParams();
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const location = useLocation();
@@ -61,6 +69,32 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
       // });
     }
   }, [isAtBottom]);
+
+  useEffect(() => {
+    dispatch(liveCasinoList(""));
+  }, [])
+
+  useEffect(() => {
+      if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
+        const combinedArray = Object.values(liveCasinoData)
+        .flatMap(set => Object.values(set))
+        .flat();
+        const arr = [...combinedArray,...casinoIcons];
+        setDataList(arr)
+      }
+    }, [liveCasinoData]);
+
+    const handleModal = (data: any) => {
+      if(data?.game_id){
+      let payLoad: any = {
+        gameId: data?.game_id,
+        platformId: "mobile",
+        providerName: data?.provider_name,
+      };
+      dispatch(liveCasinoLogin(payLoad));
+      setShow(true);
+    }
+    };
 
   const isScrollable = location.pathname === "/casino-slot";
   return (
@@ -314,11 +348,11 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
               className="mt-2"
               style={
                 isScrollable
-                  ? { maxHeight: "550px", overflowY: "auto" } // Adjust the maxHeight as needed
+                  ? { overflowY: "auto" } // Adjust the maxHeight as needed
                   : {}
               }
             >
-              {casinoIcons.map((item, index) => (
+              {dataList.map((item:any, index:number) => (
                 <Link
                   to={item.url}
                   key={index}
@@ -326,11 +360,13 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                 >
                   <div className="d-inline-block casinoiconsm">
                     <Img
-                      src={item.imgSrc}
-                      className="img-fluid"
-                      alt={item.name}
+                      src={item.url_thumb || item.imgSrc}
+                      // className="img-fluid"
+                      alt={item.game_name || item.name}
+                      style={{height:"100px",width:"100%"}}
+                      onClick={() => handleModal(item)}
                     />
-                    <div className="mcasino-name">{item.name}</div>
+                    <div className="mcasino-name">{item.game_name || item.name}</div>
                   </div>
                 </Link>
               ))}
@@ -340,6 +376,72 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
       ) : (
         " "
       )}
+       <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
+        <Modal.Header
+          // closeButton
+          // closeVariant={"white"}
+          style={{ color: "#fff", backgroundColor: "#004A25" }}
+        >
+          <Modal.Title className="w-100">
+            <div className="w-100 d-flex justify-content-between align-items-center">
+              <div className="d-flex flex-row align-items-center" 
+              onClick={()=>setShow(false)}>
+              <FaHome color="#fff" size={20}/>
+              <img
+              src={maxbetLogo}
+              width={"auto"}
+              height="27px"
+              alt="fairGame"
+              style={{
+                margin: "5px 5px 0",
+                maxWidth: "250px",
+                display: "inline-block",
+                cursor:"pointer"
+              }}
+            />
+              </div>
+            
+            <div className="title-14">
+            <div>
+                  Balance:
+                  <b>
+                    {parseFloat(
+                      getProfile?.userBal?.currentBalance || 0
+                    ).toFixed(2)}
+                  </b>
+                </div>
+                <div>
+                  <span
+                    className="white-text  cursor-pointer"
+                  >
+                    Exposure:
+                    <b>
+                      {parseInt(getProfile?.userBal?.exposure) === 0
+                        ? 0
+                        : -parseFloat(
+                            getProfile?.userBal?.exposure || 0
+                          ).toFixed(2)}
+                    </b>
+                  </span>
+                </div>
+            </div>
+            </div>
+            
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-0">
+          {" "}
+          <div className="w-100" style={{ height: "100vh" }}>
+            <iframe
+              src={liveCasinoGame?.url}
+              title="Live Stream"
+              referrerPolicy={"strict-origin-when-cross-origin"}
+              width={"100%"}
+              height={"100%"}
+            ></iframe>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

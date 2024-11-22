@@ -14,7 +14,7 @@ const LiveCasino = () => {
 
 
   useEffect(() => {
-    dispatch(liveCasinoList("asbd"));
+    dispatch(liveCasinoList(""));
   },[]);
 
 

@@ -27,7 +27,7 @@ const Desktop = () => {
 
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey={activeSport}>
-      <Row className="p-2 w-100">
+      <Row className="ps-2 w-100">
         <div className="scrollable-container-1">
           <Col sm={2} className="pe-0">
             <Nav className="flex-column custom-nav" onSelect={handleSelect}>
