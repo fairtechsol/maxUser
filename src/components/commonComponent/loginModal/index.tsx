@@ -54,11 +54,11 @@ const ImageModal = ({ customClass, show, setShow }) => {
           {bannerImage?.value && (
             <div
               className="w-100 d-flex  justify-content-end bg-primary rounded-0 "
-              onClick={() => setShow(false)}
             >
               <button
+              onClick={() => setShow(false)}
                 type="button"
-                className="btn-close btn-close-white"
+                className="btn-close btn-close-white p-2"
                 aria-label="Close"
               ></button>
             </div>
