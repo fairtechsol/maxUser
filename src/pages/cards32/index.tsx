@@ -8,6 +8,7 @@ import {
 } from "../../store/actions/betPlace/betPlaceActions";
 import {
   dragonTigerReset,
+  getDragonTigerDetail,
   getDragonTigerDetailHorseRacing,
   updateBalanceOnBetPlaceCards,
   updateCard32MatchRates,
@@ -85,6 +86,7 @@ const Cards32 = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
+      dispatch(getDragonTigerDetail(cardGamesType.card32));
       dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.card32);
@@ -104,6 +106,7 @@ const Cards32 = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.card32));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.card32));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

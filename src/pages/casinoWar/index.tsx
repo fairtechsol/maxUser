@@ -86,8 +86,8 @@ const CasinoWar = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.casinoWar));
       dispatch(getDragonTigerDetail(cardGamesType.casinoWar));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.casinoWar));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.casinoWar);
         socketService.card.getCardRatesOff(cardGamesType.casinoWar);
@@ -106,6 +106,7 @@ const CasinoWar = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.casinoWar));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.casinoWar));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

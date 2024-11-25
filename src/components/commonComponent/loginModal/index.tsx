@@ -146,8 +146,8 @@ const ImageModal = ({ customClass, show, setShow }) => {
       );
 };
 
-ImageModal.propTypes = {
-  imageUrl: PropTypes.string.isRequired,
-};
+// ImageModal.propTypes = {
+//   imageUrl: PropTypes.string.isRequired,
+// };
 
 export default ImageModal;

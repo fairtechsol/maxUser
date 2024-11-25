@@ -85,8 +85,8 @@ const BollywoodTable = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.btable));
       dispatch(getDragonTigerDetail(cardGamesType.btable));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.btable));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.btable);
         socketService.card.getCardRatesOff(cardGamesType.btable);
@@ -112,6 +112,7 @@ const BollywoodTable = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.btable));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.btable));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

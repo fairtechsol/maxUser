@@ -86,8 +86,8 @@ const CasinoMeter = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cmeter));
       dispatch(getDragonTigerDetail(cardGamesType.cmeter));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cmeter));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cmeter);
         socketService.card.getCardRatesOff(cardGamesType.cmeter);
@@ -106,6 +106,7 @@ const CasinoMeter = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.cmeter));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cmeter));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

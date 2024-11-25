@@ -29,7 +29,6 @@ const Bookmaker = ({ matchOddsData, data, title, min, max }: any) => {
     );
   };
   const handleLock = (status: any, value: any) => {
-    console.log(status,'first',value)
     if (status != "ACTIVE" || value === 0) {
       return true;
     } else {

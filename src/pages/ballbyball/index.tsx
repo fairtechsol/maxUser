@@ -86,8 +86,8 @@ const BallByBall = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
       dispatch(getDragonTigerDetail(cardGamesType.ballbyball));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.ballbyball));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.ballbyball);
         socketService.card.getCardRatesOff(cardGamesType.ballbyball);
