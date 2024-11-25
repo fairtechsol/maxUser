@@ -85,8 +85,8 @@ const AmarAkbarAnthony = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony));
       dispatch(getDragonTigerDetail(cardGamesType.amarAkbarAnthony));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.amarAkbarAnthony);
         socketService.card.getCardRatesOff(cardGamesType.amarAkbarAnthony);
@@ -105,6 +105,7 @@ const AmarAkbarAnthony = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.amarAkbarAnthony));
         dispatch(
           getDragonTigerDetailHorseRacing(cardGamesType.amarAkbarAnthony)
         );

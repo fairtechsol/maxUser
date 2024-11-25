@@ -86,8 +86,8 @@ const Bacarrat2 = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.baccarat2));
       dispatch(getDragonTigerDetail(cardGamesType.baccarat2));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.baccarat2));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.baccarat2);
         socketService.card.getCardRatesOff(cardGamesType.baccarat2);
@@ -106,6 +106,7 @@ const Bacarrat2 = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.baccarat));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.baccarat2));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

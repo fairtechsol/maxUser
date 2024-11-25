@@ -125,8 +125,8 @@ const Cricket5 = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
       dispatch(getDragonTigerDetail(cardGamesType.cricketv3));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cricketv3);
         socketService.card.getCardRatesOff(cardGamesType.cricketv3);
@@ -146,6 +146,7 @@ const Cricket5 = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.cricketv3));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cricketv3));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

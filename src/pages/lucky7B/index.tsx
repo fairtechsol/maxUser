@@ -87,8 +87,8 @@ const Lucky7B = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7B));
       dispatch(getDragonTigerDetail(cardGamesType.lucky7B));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7B));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.lucky7B);
         socketService.card.getCardRatesOff(cardGamesType.lucky7B);
@@ -108,6 +108,7 @@ const Lucky7B = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.lucky7B));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.lucky7B));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
