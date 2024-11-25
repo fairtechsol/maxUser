@@ -26,7 +26,6 @@ const DynamicTable = ({ odds, data, playerNum, back }: any) => {
         data,
       })
     );
-    console.log("team", item);
   };
 
   const array = odds?.slice(playerNum[0], playerNum[1]);
