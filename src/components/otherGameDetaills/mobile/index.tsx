@@ -172,7 +172,7 @@ const FootballMobileGameDetail = () => {
                         }
                       />
                     </Col> */}
-                        {showVideo && (
+                        {!sessionStorage.getItem("isDemo") && showVideo && (
                           <Container className="px-0">
                             <Row className="justify-content-md-center">
                               <Col md={12}>

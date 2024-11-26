@@ -7,7 +7,7 @@ const LiveStreamComponent = ({ url }: any) => {
   return (
     <>
       <RightPanelContainer title={"Live Stream"} setShowVideo={setShowVideo}>
-        {showVideo && (
+        {!sessionStorage.getItem("isDemo") && showVideo && (
           <Container>
             <Row className="justify-content-md-center">
               <Col md={12} className="p-0">
