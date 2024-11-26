@@ -293,7 +293,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         </Modal.Header>
         <Modal.Body className="p-0">
           {" "}
-          <div className="" style={{ height: "80vh" }}>
+          <div className="w-100" style={{ height: "90vh" }}>
             <iframe
               src={liveCasinoGame?.url}
               title="Live Stream"

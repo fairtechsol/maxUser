@@ -873,7 +873,7 @@ const AccountStatementComponent = () => {
                           {Math.abs(item?.amount).toFixed(2)}
                         </div>
                         <div
-                          className={"d-flex justify-content-end align-items-center pe-1"}
+                          className="d-flex justify-content-end align-items-center pe-1 text-end lh-1"
                           style={{
                             width: "13%",
                             borderRight: "1px solid #c7c8ca",
@@ -882,7 +882,7 @@ const AccountStatementComponent = () => {
                           {parseFloat(item?.total).toFixed(2)}
                         </div>
                         <div
-                          className="d-flex justify-content-start align-items-center ps-1"
+                          className="d-flex justify-content-start align-items-center ps-1 lh-1"
                           style={{
                             width: "12%",
                             borderRight: "1px solid #c7c8ca",
@@ -893,7 +893,7 @@ const AccountStatementComponent = () => {
                           )}
                         </div>
                         <div
-                          className="d-flex justify-content-start align-items-center ps-1"
+                          className="d-flex justify-content-start align-items-center ps-1 lh-1"
                           style={{
                             width: "16%",
                             borderRight: "1px solid #c7c8ca",
