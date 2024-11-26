@@ -48,6 +48,7 @@ const AccountStatementComponent = () => {
     casinoType: "",
   });
   const [selectedOption, setSelectedOption] = useState("matched");
+  const [updatedReport, setUpdateReports] = useState<any>([]);
 
   const [tableConfig, setTableConfig] = useState<any>(null);
   const dispatch: AppDispatch = useDispatch();
@@ -169,6 +170,18 @@ const AccountStatementComponent = () => {
     };
     dispatch(transactionProviderBets(payload));
   };
+
+  useEffect(() => {
+    if (liveCasinoProviderBets?.bets) {
+      let runningTotal = 0;
+      const dataWithTotal = liveCasinoProviderBets.bets.map((item: any) => {
+        runningTotal += parseFloat(item?.amount || 0);
+        return { ...item, total: runningTotal };
+      });
+      setUpdateReports(dataWithTotal);
+    }
+  }, [liveCasinoProviderBets]);
+
   return (
     <>
       <ReportContainer title="Account Statement">
@@ -819,8 +832,8 @@ const AccountStatementComponent = () => {
                     Transaction Id
                   </div>
                 </div>
-                {liveCasinoProviderBets?.count > 0 &&
-                  liveCasinoProviderBets?.bets?.map((item: any) => {
+                {updatedReport.length > 0 &&
+                  updatedReport?.map((item: any) => {
                     return (
                       <div
                         key={item?.transactionId} // Use a unique key
@@ -857,19 +870,19 @@ const AccountStatementComponent = () => {
                             borderRight: "1px solid #c7c8ca",
                           }}
                         >
-                          {item?.amount}
+                          {Math.abs(item?.amount).toFixed(2)}
                         </div>
                         <div
-                          className="d-flex justify-content-end align-items-center pe-1"
+                          className="d-flex justify-content-end align-items-center pe-1 text-end lh-1"
                           style={{
                             width: "13%",
                             borderRight: "1px solid #c7c8ca",
                           }}
                         >
-                          {item?.gameName}
+                          {parseFloat(item?.total).toFixed(2)}
                         </div>
                         <div
-                          className="d-flex justify-content-start align-items-center ps-1"
+                          className="d-flex justify-content-start align-items-center ps-1 lh-1"
                           style={{
                             width: "12%",
                             borderRight: "1px solid #c7c8ca",
@@ -880,7 +893,7 @@ const AccountStatementComponent = () => {
                           )}
                         </div>
                         <div
-                          className="d-flex justify-content-start align-items-center ps-1"
+                          className="d-flex justify-content-start align-items-center ps-1 lh-1"
                           style={{
                             width: "16%",
                             borderRight: "1px solid #c7c8ca",
