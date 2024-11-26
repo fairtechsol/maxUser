@@ -375,7 +375,7 @@ const FootballDesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {otherMatchDetails?.eventId && (
+              {!sessionStorage.getItem("isDemo") && otherMatchDetails?.eventId && (
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent
                     url={`${liveStreamPageUrl}${otherMatchDetails?.eventId}/${
