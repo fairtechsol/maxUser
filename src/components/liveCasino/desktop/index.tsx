@@ -227,7 +227,7 @@ const LiveCasinoDesktop = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">
-          <div className="w-100" style={{ height: "90vh" }}>
+          <div className="w-100" style={{ height: "85vh" }}>
             <iframe
               src={liveCasinoGame?.url}
               title="Live Stream"
