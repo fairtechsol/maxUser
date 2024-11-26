@@ -59,10 +59,10 @@ interface InitialState {
   cards32Detail: any;
   resultData: any;
   scoreBoardData: any;
-  liveCasinoData:any;
-  liveCasinoGame:any;
-  liveCasinoProvider:any;
-  liveCasinoProviderBets:any;
+  liveCasinoData: any;
+  liveCasinoGame: any;
+  liveCasinoProvider: any;
+  liveCasinoProviderBets: any;
 }
 
 const initialState: InitialState = {
@@ -77,10 +77,10 @@ const initialState: InitialState = {
   cards32Detail: [],
   resultData: null,
   scoreBoardData: [],
-  liveCasinoData:[],
-  liveCasinoGame:{},
-  liveCasinoProvider:[],
-  liveCasinoProviderBets:[]
+  liveCasinoData: [],
+  liveCasinoGame: {},
+  liveCasinoProvider: [],
+  liveCasinoProviderBets: [],
 };
 
 const cardDetail = createSlice({
@@ -99,13 +99,7 @@ const cardDetail = createSlice({
         // state.dragonTigerDetail = action.payload;
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
-          name: action.payload.name,
-          marketId: action.payload?.marketId,
-          id: action.payload?.id,
-          profitLoss: action.payload?.profitLoss,
-          type: action.payload?.type,
-          maxBet: action.payload?.maxBet,
-          minBet: action.payload?.maxBet,
+          ...action.payload,
         };
         state.liveGameResultTop10 = action.payload.topTenResult;
       })
@@ -123,9 +117,7 @@ const cardDetail = createSlice({
         // state.dragonTigerDetail = action.payload;
         state.dragonTigerDetail = {
           ...state.dragonTigerDetail,
-          name: action.payload.name,
-          id: action.payload?.id,
-          type: action.payload?.type,
+          ...action.payload,
         };
         state.liveGameResultTop10 = action.payload.topTenResult;
       })
@@ -774,7 +766,7 @@ const cardDetail = createSlice({
         // state.scoreBoardData = null;
       })
       .addCase(transactionProviderName.fulfilled, (state, action) => {
-        state.liveCasinoProvider = action.payload.map((provider:any) => ({
+        state.liveCasinoProvider = action.payload.map((provider: any) => ({
           label: provider,
           value: provider,
         }));
