@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
   casinoIcons,
+  liveCasinoGameList,
 } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
@@ -86,7 +87,20 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
         .flatMap((set) => Object.values(set))
         .flat();
       const arr = [...combinedArray, ...casinoIcons];
-      setDataList(arr);
+      const sortedArr = arr.sort((a, b) => {
+        const gameA = a.game_name || a.name || "";
+        const gameB = b.game_name || b.name || "";
+
+        const indexA = liveCasinoGameList.indexOf(gameA);
+        const indexB = liveCasinoGameList.indexOf(gameB);
+
+        if (indexA === -1) return 1;
+        if (indexB === -1) return -1;
+
+        return indexA - indexB;
+      });
+
+      setDataList(sortedArr);
     }
   }, [liveCasinoData]);
 

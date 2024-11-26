@@ -25,6 +25,8 @@ import {
 } from "../../../../../../store/actions/cards/cardDetail";
 import { FaHome } from "react-icons/fa";
 import { maxbetLogo } from "../../../../../../assets/images";
+import { liveCasinoGameList } from "../../../../../../utils/constants";
+
 const tableHeading = [
   {
     id: "game",
@@ -74,12 +76,25 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         .flatMap((set) => Object.values(set))
         .flat();
       const arr = [...combinedArray, ...casinoIcons];
-      setDataList(arr);
+      const sortedArr = arr.sort((a, b) => {
+        const gameA = a.game_name || a.name || "";
+        const gameB = b.game_name || b.name || "";
+
+        const indexA = liveCasinoGameList.indexOf(gameA);
+        const indexB = liveCasinoGameList.indexOf(gameB);
+
+        if (indexA === -1) return 1;
+        if (indexB === -1) return -1;
+
+        return indexA - indexB;
+      });
+
+      setDataList(sortedArr);
     }
   }, [liveCasinoData]);
-  
+
   const handleModal = (data: any) => {
-    if(data?.game_id){
+    if (data?.game_id) {
       let payLoad: any = {
         gameId: data?.game_id,
         platformId: "desktop",
@@ -247,24 +262,26 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         >
           <Modal.Title className="w-100">
             <div className="w-100 d-flex justify-content-between align-items-center">
-              <div className="d-flex flex-row align-items-center" 
-              onClick={()=>setShow(false)}>
-              <FaHome color="#fff" size={40}/>
-              <img
-              src={maxbetLogo}
-              width={"auto"}
-              alt="fairGame"
-              style={{
-                margin: "5px 5px 0",
-                maxWidth: "250px",
-                display: "inline-block",
-                cursor:"pointer"
-              }}
-            />
+              <div
+                className="d-flex flex-row align-items-center"
+                onClick={() => setShow(false)}
+              >
+                <FaHome color="#fff" size={40} />
+                <img
+                  src={maxbetLogo}
+                  width={"auto"}
+                  alt="fairGame"
+                  style={{
+                    margin: "5px 5px 0",
+                    maxWidth: "250px",
+                    display: "inline-block",
+                    cursor: "pointer",
+                  }}
+                />
               </div>
-            
-            <div className="title-16">
-            <div>
+
+              <div className="title-16">
+                <div>
                   Balance:
                   <b>
                     {parseFloat(
@@ -273,9 +290,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                   </b>
                 </div>
                 <div>
-                  <span
-                    className="white-text  cursor-pointer"
-                  >
+                  <span className="white-text  cursor-pointer">
                     Exposure:
                     <b>
                       {parseInt(getProfile?.userBal?.exposure) === 0
@@ -286,9 +301,8 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                     </b>
                   </span>
                 </div>
+              </div>
             </div>
-            </div>
-            
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">
