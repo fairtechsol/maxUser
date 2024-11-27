@@ -153,6 +153,43 @@ export const getProfileInMatchDetail = createAsyncThunk<any>(
   }
 );
 
+export const getCasinoReportGameList = createAsyncThunk<any>(
+  "casino/report/gameList",
+  async (_, thunkApi) => {
+    try {
+      const resp = await service.get(ApiConstants.USER.CASINO_GAME_PROVIDERS);
+      if (resp?.data) {
+        return resp?.data?.map((item: any) => ({
+          label: item,
+          value: item,
+        }));
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const getLiveCasinoBets = createAsyncThunk<any, any>(
+  "LiveCasinoBets/report",
+  async ({ id, page, limit, searchBy, keyword, filter, sort }, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.USER.LIVE_CASINO_BETS}/${id}?page=${page || 1}&limit=${
+          limit || 15
+        }&searchBy=${searchBy}&keyword=${keyword}${filter ? filter : ""}&sort=${
+          sort ? sort : ""
+        }`
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
 export const updateBalance = createAsyncThunk<any, any>(
   "/user/balance",
   async (balance) => {

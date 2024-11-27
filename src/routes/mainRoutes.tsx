@@ -9,7 +9,6 @@ import Poker1day from "../pages/poker1day";
 import Poker20 from "../pages/poker20";
 import Cricket5 from "../pages/cricket5";
 
-
 // ==============================|| Main ROUTING ||============================== //
 const Home = Loadable(() => import("../pages/home"));
 const GameDetail = Loadable(() => import("../pages/gameDetails"));
@@ -20,6 +19,9 @@ const ProfitLoss = Loadable(() => import("../pages/profitLoss"));
 const BetHistory = Loadable(() => import("../pages/betHistory"));
 const UnsettledBet = Loadable(() => import("../pages/unsettledBet"));
 const CasinoReports = Loadable(() => import("../pages/reports/casinoReport"));
+const LiveCasinoBets = Loadable(
+  () => import("../pages/reports/liveCasinoBets")
+);
 const Mobile = Loadable(() => import("../components/rules/mobile"));
 const RaceDetail = Loadable(() => import("../pages/horseRacingDetails"));
 const TeenPatti20 = Loadable(() => import("../pages/teenPatti20"));
@@ -98,6 +100,7 @@ const MainRoutes = {
     { path: "bet-history", element: <BetHistory /> },
     { path: "unsettled-bet", element: <UnsettledBet /> },
     { path: "casino-report", element: <CasinoReports /> },
+    { path: "live-casino-bets", element: <LiveCasinoBets /> },
     { path: "change-btn-value", element: <ChangeButtonValue /> },
 
     { path: "secure-auth", element: <SecureAuthVerification /> },
