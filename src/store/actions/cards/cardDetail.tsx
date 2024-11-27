@@ -2,6 +2,7 @@ import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import service from "../../../service";
 import { ApiConstants, Constants } from "../../../utils/constants";
+import moment from "moment";
 
 export const getDragonTigerDetailHorseRacing = createAsyncThunk<any, any>(
   "horseRacing/matchDetail",
@@ -70,6 +71,76 @@ export const resultDragonTiger = createAsyncThunk<any, any>(
     try {
       const resp = await service.get(
         `${ApiConstants.CARDS.MATCH.RESULT}/${requestData}`
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+
+
+export const liveCasinoList = createAsyncThunk<any, any>(
+  "result/liveCasinoList",
+  async (_, thunkApi) => {
+    try {
+      const resp = await service.post(
+        `${ApiConstants.LiveCasinoGame}`
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const liveCasinoLogin = createAsyncThunk<any, any>(
+  "result/liveCasinoLogin",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.post(
+        `${ApiConstants.LiveCasinoGameLogin}`, requestData
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const transactionProviderName = createAsyncThunk<any, any>(
+  "result/transactionProviderName",
+  async (_, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.LiveCasinoGameProvider}`
+      );
+      if (resp?.data) {
+        return resp?.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const transactionProviderBets = createAsyncThunk<any, any>(
+  "result/transactionProviderBets",
+  async (requestData, thunkApi) => {
+    try {
+      const resp = await service.get(
+        `${ApiConstants.LiveCasinoGameBets}/${requestData?.id}?sort=virtualCasinoBetPlaced.createdAt:DESC&providerName=eq${requestData?.name}&createdAt=between${moment(new Date(requestData?.date))?.format(
+          "YYYY-MM-DD"
+        )}|${moment(new Date(requestData?.date).setDate(new Date(requestData?.date).getDate() + 1))?.format(
+          "YYYY-MM-DD"
+        )}`
       );
       if (resp?.data) {
         return resp?.data;

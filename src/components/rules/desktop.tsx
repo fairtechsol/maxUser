@@ -4,9 +4,11 @@ import { sportsRules } from "../../utils/constants";
 import "./index.scss";
 
 const Desktop = () => {
-  const [activeSport, setActiveSport] = useState<string>("Motor Sport");
+  const [activeSport, setActiveSport] = useState<string>("Football");
   // const [defaultSportRules, setDefaultSportRules] = useState<any>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
+  const toggleDropdown = () => setIsOpen(!isOpen);
   useEffect(() => {
     if (sportsRules?.length > 0) {
       const firstSport = sportsRules[0];
@@ -21,52 +23,91 @@ const Desktop = () => {
     // setDefaultSportRules(selectedSport);
   };
 
+  
+
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey={activeSport}>
-      <Row className="p-2">
-        <Col sm={3} className="pe-0">
-          <Nav
-            // variant="pills"
-            className="flex-column custom-nav"
-            onSelect={handleSelect}
-          >
-               {sportsRules.map((sport, index) => (
-      <Nav.Item
-        key={index}
-        className={`custom-nav-item ${activeSport === sport.sportName ? "active" : ""}`}
-      >
-        <Nav.Link
-          eventKey={sport.sportName}
-          className="custom-nav-link text-center px-2"
-        >
-          {sport.sportName}
-        </Nav.Link>
-      </Nav.Item>
-    ))}
-          </Nav>
-        </Col>
+      <Row className="ps-2 w-100">
+        <div className="scrollable-container-1">
+          <Col sm={2} className="pe-0">
+            <Nav className="flex-column custom-nav" onSelect={handleSelect}>
+              {sportsRules.map((sport, index) => (
+                <Nav.Item
+                  key={index}
+                  className={`custom-nav-item ${
+                    activeSport === sport.sportName ? "active" : ""
+                  }`}
+                >
+                  <Nav.Link
+                    eventKey={sport.sportName}
+                    className="custom-nav-link text-end px-2"
+                  >
+                    {sport.sportName}
+                  </Nav.Link>
+                </Nav.Item>
+              ))}
+            </Nav>
+          </Col>
 
-        <Col sm={9} className="ps-2">
-          <Tab.Content>
-            {sportsRules.map((sport, index) => (
-              <Tab.Pane key={index} eventKey={sport.sportName}>
-                <h4 className="rule-popup-heading">{sport.sportName} Rules</h4>
-                <ul className="border">
+          <Col sm={10} className="ps-2">
+            <Tab.Content>
+              {sportsRules.map((sport, ruleIndex) => (
+                <Tab.Pane key={ruleIndex} eventKey={sport.sportName}>
                   {sport.rules.map((rule, ruleIndex) => (
-                    <div key={ruleIndex}>
-                      <h5 className="text-danger">{rule.category}</h5>
-                      <ul>
+                    <table key={ruleIndex} style={{ width: "100%" }}>
+                      <tbody>
+                        {/* Category Row */}
+                        <tr>
+                          <td
+                            colSpan={100}
+                            className="rule-popup-heading bg-secondary p-1 text-white title-18"
+                            style={{
+                              fontWeight: "bold",
+                              textAlign: "left",
+                              padding: "10px",
+                              borderBottom: "1px solid #ccc",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            {rule.category}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style={{ height: "8px" }}></td>
+                        </tr>
+
+                        {/* Description Rows */}
                         {rule.description.map((description, descIndex) => (
-                          <li key={descIndex}>{description}</li>
+                          <tr
+                            className="title-16 gap-2"
+                            style={{ backgroundColor: "#f2f2f2" }}
+                            key={descIndex}
+                          >
+                            <td
+                              style={{
+                                padding: "4px 10px",
+                                borderBottom: "1px solid #ddd",
+                                textAlign: "left",
+                                lineHeight: 1.5,
+                                color: description?.color || "black"
+                              }}
+                            >
+                              {description?.text}
+                            </td>
+                          </tr>
                         ))}
-                      </ul>
-                    </div>
+
+                        <tr>
+                          <td style={{ height: "8px" }}></td>
+                        </tr>
+                      </tbody>
+                    </table>
                   ))}
-                </ul>
-              </Tab.Pane>
-            ))}
-          </Tab.Content>
-        </Col>
+                </Tab.Pane>
+              ))}
+            </Tab.Content>
+          </Col>
+        </div>
       </Row>
     </Tab.Container>
   );

@@ -142,8 +142,8 @@ const Superover = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.superover));
       dispatch(getDragonTigerDetail(cardGamesType.superover));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.superover));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.superover);
         socketService.card.getCardRatesOff(cardGamesType.superover);
@@ -163,6 +163,7 @@ const Superover = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.superover));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.superover));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

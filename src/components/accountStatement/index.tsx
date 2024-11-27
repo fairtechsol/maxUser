@@ -17,7 +17,11 @@ import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import "./style.scss";
 import { ResultComponent } from "../commonComponent/resultComponent";
-import { resultDragonTiger } from "../../store/actions/cards/cardDetail";
+import {
+  resultDragonTiger,
+  transactionProviderBets,
+  transactionProviderName,
+} from "../../store/actions/cards/cardDetail";
 
 const AccountStatementComponent = () => {
   const minDate = new Date();
@@ -26,11 +30,17 @@ const AccountStatementComponent = () => {
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
   const [from, setFrom] = useState<any>(sevenDaysAgo);
   const [to, setTo] = useState<any>(new Date());
+  const [selected, setSelected] = useState<any>();
   const [type, setType] = useState<any>({
     label: "Deposit/Withdraw Reports",
-    value: "addWithdraw",
+    value: "0",
+  });
+  const [type2, setType2] = useState<any>({
+    label: "Select Casino Type",
+    value: "",
   });
   const [minDate2, setminDate2] = useState<any>(minDate);
+  const [liveCasinoModal, setLiveCasinoModal] = useState(false);
   const [show, setShow] = useState({
     status: false,
     betId: [],
@@ -38,6 +48,7 @@ const AccountStatementComponent = () => {
     casinoType: "",
   });
   const [selectedOption, setSelectedOption] = useState("matched");
+  const [updatedReport, setUpdateReports] = useState<any>([]);
 
   const [tableConfig, setTableConfig] = useState<any>(null);
   const dispatch: AppDispatch = useDispatch();
@@ -45,17 +56,20 @@ const AccountStatementComponent = () => {
   const { transactions, getProfile } = useSelector(
     (state: RootState) => state.user.profile
   );
-  let { resultData } = useSelector((state: RootState) => state.card);
+  let { resultData, liveCasinoProvider, liveCasinoProviderBets } = useSelector(
+    (state: RootState) => state.card
+  );
 
   const { placedBetsAccountStatement } = useSelector(
     (state: RootState) => state.bets
   );
-
   const handleClose = () => {
     setSelectedOption("matched");
     setShow({ status: false, betId: [], runnerId: "", casinoType: "a" });
   };
-
+  const handleCloseLiveCasinoModal = () => {
+    setLiveCasinoModal(false);
+  };
   const handleSubmitClick = () => {
     if (getProfile?.id && tableConfig) {
       let filter = "";
@@ -73,11 +87,11 @@ const AccountStatementComponent = () => {
       }
       if (type) {
         if (type?.value === "casino") {
-          filter += `&statementType=game&betId=isNull`;
+          filter += `&transaction.type=game&betId=isNull`;
         } else if (type?.value === "game") {
-          filter += `&statementType=${type?.value}&betId=notNull`;
+          filter += `&transaction.type=${type?.value}&betId=notNull`;
         } else {
-          filter += `&statementType=${type?.value}`;
+          filter += `&transaction.type=${type?.value}`;
         }
       }
 
@@ -110,15 +124,15 @@ const AccountStatementComponent = () => {
         filter += `&createdAt=lte${moment(to)?.format("YYYY-MM-DD")}`;
       }
       // if (type) {
-      //   filter += `&statementType=${type?.value}`;
+      //   filter += `&transaction.type=${type?.value}`;
       // }
       if (type) {
         if (type?.value === "casino") {
-          filter += `&statementType=game&betId=isNull`;
+          filter += `&transaction.type=game&betId=isNull`;
         } else if (type?.value === "game") {
-          filter += `&statementType=${type?.value}&betId=notNull`;
+          filter += `&transaction.type=${type?.value}&betId=notNull`;
         } else {
-          filter += `&statementType=${type?.value}`;
+          filter += `&transaction.type=${type?.value}`;
         }
       }
       dispatch(
@@ -141,6 +155,33 @@ const AccountStatementComponent = () => {
       setminDate2(from);
     }
   }, [from]);
+
+  useEffect(() => {
+    dispatch(transactionProviderName(""));
+  }, []);
+  const handleLiveCasinoSubmitClick = () => {
+    if (type2?.value === "") {
+      return false;
+    }
+    let payload: any = {
+      id: selected?.user?.id,
+      name: type2?.value,
+      date: selected?.createdAt,
+    };
+    dispatch(transactionProviderBets(payload));
+  };
+
+  useEffect(() => {
+    if (liveCasinoProviderBets?.bets) {
+      let runningTotal = 0;
+      const dataWithTotal = liveCasinoProviderBets.bets.map((item: any) => {
+        runningTotal += parseFloat(item?.amount || 0);
+        return { ...item, total: runningTotal };
+      });
+      setUpdateReports(dataWithTotal);
+    }
+  }, [liveCasinoProviderBets]);
+
   return (
     <>
       <ReportContainer title="Account Statement">
@@ -181,16 +222,20 @@ const AccountStatementComponent = () => {
                     //   label: "All",
                     // },
                     {
-                      value: "addWithdraw",
+                      value: "0",
                       label: "Deposit/Withdraw Reports",
                     },
                     {
-                      value: "game",
+                      value: "1",
                       label: "Sport Report",
                     },
                     {
-                      value: "casino",
+                      value: "2",
                       label: "Casino Reports",
+                    },
+                    {
+                      value: "3",
+                      label: "Third-Party Casino Reports",
                     },
                   ]}
                   // placeholder="Deposit/Withdraw Reports"
@@ -215,7 +260,9 @@ const AccountStatementComponent = () => {
 
             {/* http://localhost:5000/card/result/detail/9.241909153253 */}
             <CustomTable
-               placeHolder={`${transactions?.count} records...`  || "0 records..."}
+              placeHolder={
+                `${transactions?.count} records...` || "0 records..."
+              }
               width={isMobile ? "1200px" : ""}
               paginationCount={true}
               bordered={true}
@@ -265,7 +312,7 @@ const AccountStatementComponent = () => {
                   firstPart && casinoKeywords.includes(firstPart);
                 return (
                   <tr className={`${isMobile && "title-12 lh-1"}`} key={index}>
-                    <td className={isMobile ? "date-as bg-grey" : ""} >
+                    <td className={isMobile ? "date-as bg-grey" : ""}>
                       {moment(new Date(item?.createdAt)).format(
                         "YYYY-MM-DD hh:mm"
                       )}
@@ -276,7 +323,13 @@ const AccountStatementComponent = () => {
                           (tableConfig?.page - 1 || 0) +
                         1}
                     </td>
-                    <td className={isMobile ? "color-green credit-as bg-grey" : "color-green" }>
+                    <td
+                      className={
+                        isMobile
+                          ? "color-green credit-as bg-grey"
+                          : "color-green"
+                      }
+                    >
                       <NotSet
                         item={
                           item?.transType == transType.add ||
@@ -287,7 +340,11 @@ const AccountStatementComponent = () => {
                         }
                       />
                     </td>
-                    <td className={isMobile ? "color-red debit-as bg-grey" : "color-red" }>
+                    <td
+                      className={
+                        isMobile ? "color-red debit-as bg-grey" : "color-red"
+                      }
+                    >
                       <NotSet
                         item={
                           item?.transType == transType.loss ||
@@ -298,64 +355,70 @@ const AccountStatementComponent = () => {
                       />
                     </td>
                     <td
-                      className={
-                      ` ${ parseInt(item?.closingBalance) < 0
+                      className={` ${
+                        parseInt(item?.closingBalance) < 0
                           ? "color-red"
                           : parseInt(item?.closingBalance) > 0
                           ? "color-green"
-                          : ""} ${isMobile ? " pts-as bg-grey" : ""} `
-                      } 
+                          : ""
+                      } ${isMobile ? " pts-as bg-grey" : ""} `}
                     >
                       {" "}
                       <NotSet item={item?.closingBalance} />
                     </td>
-                    <td className={isMobile ? "text-start bg-grey" : ""}
+                    <td
+                      className={isMobile ? "text-start bg-grey" : ""}
                       onClick={() => {
                         const match = containsKeywords
                           ? item?.description.match(/Rno\. (\d+)/)
                           : item?.description.match(/Rno\. (\d+\.\d+)/);
-                        if (isCasinoGame && match && match[1]) {
-                          setShow({
-                            status: true,
-                            betId: [],
-                            runnerId: "",
-                            casinoType: firstPart,
-                          });
-                          dispatch(resultDragonTiger(match[1]));
+                        if (type?.value === "3") {
+                          setLiveCasinoModal(true);
+                          setSelected(item);
                         } else {
-                          if (item?.betId?.length > 0) {
-                            setShow({
-                              status: true,
-                              betId: item?.betId,
-                              runnerId: "",
-                              casinoType: "",
-                            });
-                            dispatch(
-                              getPlacedBetsForAccountStatement({
-                                betId: item?.betId,
-                                status: "MATCHED",
-                                userId: getProfile?.id,
-                              })
-                            );
-                          } else if (match && match[1]) {
+                          if (isCasinoGame && match && match[1]) {
                             setShow({
                               status: true,
                               betId: [],
-                              runnerId: match[1],
-                              casinoType: "",
+                              runnerId: "",
+                              casinoType: firstPart,
                             });
-                            dispatch(
-                              getPlacedBetsForAccountStatement({
+                            dispatch(resultDragonTiger(match[1]));
+                          } else {
+                            if (item?.betId?.length > 0) {
+                              setShow({
+                                status: true,
+                                betId: item?.betId,
+                                runnerId: "",
+                                casinoType: "",
+                              });
+                              dispatch(
+                                getPlacedBetsForAccountStatement({
+                                  betId: item?.betId,
+                                  status: "MATCHED",
+                                  userId: getProfile?.id,
+                                })
+                              );
+                            } else if (match && match[1]) {
+                              setShow({
+                                status: true,
+                                betId: [],
                                 runnerId: match[1],
-                                isCard: true,
-                                result: `inArr${JSON.stringify([
-                                  "WIN",
-                                  "LOSS",
-                                  "TIE",
-                                ])}`,
-                                userId: getProfile?.id,
-                              })
-                            );
+                                casinoType: "",
+                              });
+                              dispatch(
+                                getPlacedBetsForAccountStatement({
+                                  runnerId: match[1],
+                                  isCard: true,
+                                  result: `inArr${JSON.stringify([
+                                    "WIN",
+                                    "LOSS",
+                                    "TIE",
+                                  ])}`,
+                                  userId: getProfile?.id,
+                                })
+                              );
+                            }
                           }
                         }
                       }}
@@ -478,7 +541,8 @@ const AccountStatementComponent = () => {
                           <tr key={item?.id}>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -487,7 +551,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -496,7 +561,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -505,7 +571,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -514,7 +581,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -523,7 +591,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -531,9 +600,9 @@ const AccountStatementComponent = () => {
                                 color:
                                   item?.result === "LOSS"
                                     ? "#dc3545"
-                                    : item?.result === "TIE"
-                                    ? "#000"
-                                    : "#28a745",
+                                    : item?.result === "WIN"
+                                    ? "#28a745"
+                                    : "#000",
                               }}
                             >
                               {item?.result === "LOSS"
@@ -544,7 +613,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -555,7 +625,8 @@ const AccountStatementComponent = () => {
                             </td>
                             <td
                               className={`${
-                                item?.betType === "BACK" || item?.betType === "YES"
+                                item?.betType === "BACK" ||
+                                item?.betType === "YES"
                                   ? "bg-blue3"
                                   : "bg-red1"
                               }`}
@@ -666,6 +737,183 @@ const AccountStatementComponent = () => {
             </Modal.Footer>
           </>
         )}
+      </Modal>
+      <Modal
+        show={liveCasinoModal}
+        onHide={handleCloseLiveCasinoModal}
+        // size="xl"
+        dialogClassName={`${
+          isMobile ? "provider-modal-m m-0" : "provider-modal custom-modal"
+        }`}
+      >
+        <Modal.Header
+          closeButton
+          closeVariant={"white"}
+          style={{ color: "#fff", backgroundColor: "#004A25" }}
+        >
+          <Modal.Title className="w-100">Result</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className={`${isMobile ? "p-0 title-12" : "title-14"}`}>
+          <div className={`w-100 d-flex flex-column ${isMobile ? "mt-2" : ""}`}>
+            <div
+              className={`w-100 d-flex flex-row justify-content-start gap-2`}
+            >
+              <SelectSearch
+                options={liveCasinoProvider}
+                onChange={setType2}
+                value={type2}
+                defaultValue={{
+                  label: "Select Casino Type",
+                  value: "",
+                }}
+              />
+              <CustomButton
+                size={isMobile ? "sm" : "sm"}
+                className={`${isMobile ? "" : " bg-primary"} border-0 `}
+                onClick={handleLiveCasinoSubmitClick}
+              >
+                Submit
+              </CustomButton>
+            </div>
+            <div
+              className={`d-flex ${isMobile ? "mt-4" : "p-2"} overflow-auto`}
+              style={isMobile ? { width: "100%" } : { width: "100%" }}
+            >
+              <div className="w-100 d-flex flex-column">
+                <div
+                  className="w-100 d-flex flex-row fbold"
+                  style={{
+                    border: "1px solid #c7c8ca",
+                    height: "35px",
+                    backgroundColor: "#f7f7f7",
+                    minWidth: "900px",
+                  }}
+                >
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "16%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Game Name
+                  </div>
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "12%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Type
+                  </div>
+                  <div
+                    className="d-flex justify-content-end align-items-center pe-1"
+                    style={{ width: "11%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Amount
+                  </div>
+                  <div
+                    className="d-flex justify-content-end align-items-center pe-1"
+                    style={{ width: "13%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Total
+                  </div>
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "12%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Date
+                  </div>
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "16%", borderRight: "1px solid #c7c8ca" }}
+                  >
+                    Round Id
+                  </div>
+                  <div
+                    className="d-flex justify-content-start align-items-center ps-1"
+                    style={{ width: "20%" }}
+                  >
+                    Transaction Id
+                  </div>
+                </div>
+                {updatedReport.length > 0 &&
+                  updatedReport?.map((item: any) => {
+                    return (
+                      <div
+                        key={item?.transactionId} // Use a unique key
+                        className="w-100 d-flex flex-row"
+                        style={{
+                          border: "1px solid #c7c8ca",
+                          height: "35px",
+                          backgroundColor: "#f2f2f2",
+                          minWidth: "900px", // Set minimum width for horizontal scrolling
+                        }}
+                      >
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1"
+                          style={{
+                            width: "16%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {item?.gameName}
+                        </div>
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1"
+                          style={{
+                            width: "12%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {item?.betType}
+                        </div>
+                        <div
+                          className="d-flex justify-content-end align-items-center pe-1"
+                          style={{
+                            width: "11%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {Math.abs(item?.amount).toFixed(2)}
+                        </div>
+                        <div
+                          className="d-flex justify-content-end align-items-center pe-1 text-end lh-1"
+                          style={{
+                            width: "13%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {parseFloat(item?.total).toFixed(2)}
+                        </div>
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1 lh-1"
+                          style={{
+                            width: "12%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {moment(new Date(item?.createdAt)).format(
+                            "YYYY-MM-DD hh:mm"
+                          )}
+                        </div>
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1 lh-1"
+                          style={{
+                            width: "16%",
+                            borderRight: "1px solid #c7c8ca",
+                          }}
+                        >
+                          {item?.roundId}
+                        </div>
+                        <div
+                          className="d-flex justify-content-start align-items-center ps-1 lh-1"
+                          style={{ width: "20%" }}
+                        >
+                          {item?.transactionId}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
       </Modal>
     </>
   );

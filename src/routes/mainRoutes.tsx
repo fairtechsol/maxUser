@@ -19,6 +19,9 @@ const ProfitLoss = Loadable(() => import("../pages/profitLoss"));
 const BetHistory = Loadable(() => import("../pages/betHistory"));
 const UnsettledBet = Loadable(() => import("../pages/unsettledBet"));
 const CasinoReports = Loadable(() => import("../pages/reports/casinoReport"));
+const LiveCasinoBets = Loadable(
+  () => import("../pages/reports/liveCasinoBets")
+);
 const Mobile = Loadable(() => import("../components/rules/mobile"));
 const RaceDetail = Loadable(() => import("../pages/horseRacingDetails"));
 const TeenPatti20 = Loadable(() => import("../pages/teenPatti20"));
@@ -45,7 +48,7 @@ const Baccarat1 = Loadable(() => import("../pages/baccarat1"));
 const Baccarat2 = Loadable(() => import("../pages/baccarat2"));
 const CasinoMeter = Loadable(() => import("../pages/casinoMeter"));
 const CardJ = Loadable(() => import("../pages/3cardJ"));
-
+const LiveCasino = Loadable(() => import("../pages/casinoSubTab"));
 const CricketMatch20 = Loadable(() => import("../pages/cricketMatch_20"));
 const Queen = Loadable(() => import("../pages/queen"));
 const BallByBall = Loadable(() => import("../pages/ballbyball"));
@@ -82,6 +85,10 @@ const MainRoutes = {
       element: <Home />,
     },
     {
+      path: "live-casinom",
+      element: <Home />,
+    },
+    {
       path: "other",
       element: <Home />,
     },
@@ -93,6 +100,7 @@ const MainRoutes = {
     { path: "bet-history", element: <BetHistory /> },
     { path: "unsettled-bet", element: <UnsettledBet /> },
     { path: "casino-report", element: <CasinoReports /> },
+    { path: "live-casino-bets", element: <LiveCasinoBets /> },
     { path: "change-btn-value", element: <ChangeButtonValue /> },
 
     { path: "secure-auth", element: <SecureAuthVerification /> },
@@ -255,6 +263,10 @@ const MainRoutes = {
     {
       path: "cmeter",
       element: <CasinoMeter />,
+    },
+    {
+      path: "live-casino",
+      element: <LiveCasino />,
     },
     { path: "queen", element: <Queen /> },
     { path: "worli", element: <WorliMatka /> },

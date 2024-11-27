@@ -86,8 +86,8 @@ const TeenPattiOpen = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenOpen));
       dispatch(getDragonTigerDetail(cardGamesType.teenOpen));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenOpen));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.teenOpen);
         socketService.card.getCardRatesOff(cardGamesType.teenOpen);
@@ -106,6 +106,7 @@ const TeenPattiOpen = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.teenOpen));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.teenOpen));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

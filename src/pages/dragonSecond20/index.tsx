@@ -105,6 +105,7 @@ const DragonTiger202 = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.dragonTiger202));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTiger202));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

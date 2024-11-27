@@ -85,8 +85,8 @@ const Queen = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
       dispatch(getDragonTigerDetail(cardGamesType.queen));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.queen));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.queen);
         socketService.card.getCardRatesOff(cardGamesType.queen);

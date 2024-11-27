@@ -54,8 +54,12 @@ import {
 // import AmarAkbarAnthony from "../../pages/amarAkbarAnthony";
 
 export const ApiConstants = {
+  LiveCasinoGame: "/mac88/casino/list",
+  LiveCasinoGameLogin: "/mac88/casino/login",
+  LiveCasinoGameProvider: "/mac88/providers",
+  LiveCasinoGameBets: "/mac88/bets",
   LOGIN: "auth/login",
-  DEMO_LOGIN: "/auth/loginWithDemo",
+  DEMO_LOGIN: "/user/loginWithDemo",
   LOGOUT: "auth/logout",
   CHANGEPASSWORD: "user/changePassword",
   OLD_PASSWORD: "/user/check/oldPassword",
@@ -82,6 +86,8 @@ export const ApiConstants = {
     GET_PROFILE: "/user/profile",
     ACCOUNT_STATEMENT: "/transaction/get/",
     CARD_REPORT: "/card/result/",
+    LIVE_CASINO_BETS: "/mac88/bets",
+    CASINO_GAME_PROVIDERS : "/mac88/providers"
   },
   EXPERT: {
     COMPETITIONLIST: "/expert/match/competitionList/",
@@ -591,29 +597,125 @@ export const rulesData = [
 
 export const sportsRules = [
   {
-    sportName: "Motor Sport",
+    sportName: "Football",
     rules: [
       {
         category: "Bookmaker",
         description: [
-          "All race bets are settled on the official classification from the Federation Internationale de l’Automobile (FIA), the sport’s governing body, at the time of podium presentation.",
-          "If a race is postponed (either before the start or via an interruption mid-race) but is concluded within 72 hours of the original scheduled start time, then all bets will stand.",
-          "Our exchange management decision will be the final decision.",
-          "Any query about the result should be contacted within 7 days of the specific event; the same will not be considered valid post 7 days from the event.",
+          {
+            text: "If the match will not take place within 48 hours of the original kick-off time, bets will be void.",
+            color: null,
+          },
+          {
+            text: "If the selection is in a multiple bet or accumulator, any refund must be requested before the kick-off of the first leg of the multiple bet.",
+            color: "red",
+          },
+          {
+            text: "Games which have their kick-off altered well in advance to accommodate live TV or ease fixture congestion will not be classed as postponed.",
+            color: null,
+          },
+          {
+            text: "If a match is forfeited or a team is given a walkover victory without the match having kicked off, then all bets will be void. Any subsequently awarded scoreline will not count for settlement purposes.",
+            color: "red",
+          },
+          {
+            text: "Where a confirmed postponed match features as part of a multiple bet, the bet will stand on the remaining selections in the multiple.",
+            color: "red",
+          },
         ],
       },
-    ],
-  },
-  {
-    sportName: "Handball",
-    rules: [
+      {
+        category: "Fancy",
+        description: [
+          {
+            text: "Tournament Total Goals, Team Total Goals: Goals scored in 90 minutes or in extra-time will count. Goals scored in penalty shootouts do not count.",
+            color: "red",
+          },
+          {
+            text: "Tournament Corners: Only corners taken in 90 minutes count.",
+            color: "red",
+          },
+          {
+            text: "Tournament Penalties Missed/Converted: Penalties taken in 90 minutes, extra-time, and penalty shootouts all count. If a penalty has to be re-taken, the previous disallowed penalty(ies) do not count.",
+            color: "red",
+          },
+        ],
+      },
       {
         category: "Match",
         description: [
-          "Match Odds: - Predict which team will be the winner. Bets will be void if the match is not completed.",
-          "Next Goal: - Predict which team will score the X-th goal.",
-          "Highest Scoring Half: - Predict which half will have the most goals scored (1st, 2nd, or Draw). Bet will be settled on regulation time only and exclude overtime if played:",
-          "Halftime/Fulltime: - Predict the result of a match at halftime and at the end of regular time. If a game is abandoned, bets will be void. Example: If you choose 1/X, you bet on the home team to lead in the first half and the match to end in a draw. Extra time doesn’t count.",
+          {
+            text: "Match Odds: All bets apply to the full 'regular time' period including stoppage time. Extra-time and/or penalty shoot-out is not included. Bets matched between the time of a VAR review and its outcome will be voided.",
+            color: null,
+          },
+          {
+            text: "Under/Over Goals: In the event of a match starting but not being completed, all bets will be void unless the specific market outcome is already determined.",
+            color: null,
+          },
+          {
+            text: "1st Period Winner: Bets will be void if the match is abandoned before half-time.",
+            color: null,
+          },
+          {
+            text: "Next Goal: Own goals count to the side credited with the goal.",
+            color: null,
+          },
+          {
+            text: "Draw No Bet: Predict which team will be the winner. In case of a draw, all bets will be void. If a game is abandoned, bets will be void.",
+            color: null,
+          },
+          {
+            text: "Both Teams to Score: Predict whether both teams will score at least one goal in the game. Own goals count towards the credited team. If a game is abandoned, bets will be void unless already determined.",
+            color: null,
+          },
+          {
+            text: "Total Corners: Predict which team will take the named corner in the game. If this specific corner is not taken, bets will be void.",
+            color: null,
+          },
+          {
+            text: "Goals Odd/Even: Any match resulting in 0-0 will be settled as an even number of goals. For Team Odd/Even markets, if the specified team does not score, it is settled as even.",
+            color: null,
+          },
+          {
+            text: "1X2 Corners: Predict which team will get more corners. Awarded but untaken corners do not count. Re-taken corners count as one.",
+            color: null,
+          },
+          {
+            text: "Under/Over Card in Match: Predict the number of cards in a match. Cards shown after the full-time whistle do not count.",
+            color: null,
+          },
+          {
+            text: "HT/FT: Bets will be void if the match is abandoned. Extra-time and penalty shootouts do not count.",
+            color: null,
+          },
+          {
+            text: "First Half Under/Over Goals: All bets apply to Full Time according to match officials. Extra-time and penalty shootouts are excluded.",
+            color: null,
+          },
+          {
+            text: "Penalty Taken?: Predict if a penalty will be awarded and taken during the match. Extra-time and penalty shootouts are excluded.",
+            color: null,
+          },
+          {
+            text: "Correct Score: Predict the final score of the match. Extra-time and penalty shootouts are excluded.",
+            color: null,
+          },
+          {
+            text: "Corners Number/Odds: Predict how many corners will be taken in the match. Only corners that are taken count.",
+            color: null,
+          },
+          {
+            text: "Team_A/B +1/2/3: Predict who will win the match with the stated handicap applied. Extra-time and penalty shootouts are excluded.",
+            color: null,
+          },
+          {
+            text: "Live Streaming & Animation: Data may be subject to time delay and/or inaccuracies. Users relying on this data do so at their own risk.",
+            color: null,
+          },
+          {
+            text: "Company reserves the right to suspend/void any bets deemed illegitimate. Only winning bets will be voided in such cases.",
+            color: "red",
+          },
         ],
       },
     ],
@@ -624,36 +726,2232 @@ export const sportsRules = [
       {
         category: "General",
         description: [
-          "All individual race markets will be determined according to the official result at the time of the 'weigh-in' announcement (or equivalent). Subsequent disqualifications, appeals or amendments to the result will be disregarded.",
-          "If a race is abandoned or otherwise declared void, or in the event of a walkover, all bets on that race will be void.",
-          "If the scheduled venue is changed after the market has been loaded by us, all bets will be void.",
-          "Where a race does not take part on its scheduled day, all bets will be void.",
-          "If a scheduled surface type is changed (e.g., turf to dirt) all bets will stand.",
+          {
+            text: "All individual race markets will be determined according to the official result at the time of the 'weigh-in' announcement (or equivalent). Subsequent disqualifications, appeals or amendments to the result will be disregarded.",
+            color: null,
+          },
+          {
+            text: "If a race is abandoned or otherwise declared void, or in the event of a walkover, all bets on that race will be void.",
+            color: null,
+          },
+          {
+            text: "If the scheduled venue is changed after the market has been loaded by us, all bets will be void.",
+            color: null,
+          },
+          {
+            text: "Where a race does not take part on its scheduled day, all bets will be void.",
+            color: null,
+          },
+          {
+            text: "If a scheduled surface type is changed (e.g. turf to dirt) all bets will stand.",
+            color: null,
+          },
         ],
       },
       {
         category: "Non-Runner Rule",
         description: [
-          // ... add the non-runner rules for Horse Racing here
-          "Our's non-runner rule relates to the adjustment of odds-on bets already matched when a horse in a race is declared a non-runner. To adjust We apply a reduction factor to the remaining runners. The reduction factor allocated to a non-runner is a calculation (the details of which are described below) of that horse's chances of winning (or being placed, etc as appropriate) and is applied to bets already matched on the other runners in the relevant market or markets.",
-          // ... continue with the rest of the non-runner rules
+          {
+            text: "Our non-runner rule relates to the adjustment of odds on bets already matched when a horse in a race is declared a non-runner.",
+            color: null,
+          },
+          {
+            text: "Any horse listed when the relevant market is loaded which does not subsequently come under starter's orders is deemed a non-runner.",
+            color: null,
+          },
+          {
+            text: "For Australian racing, reduction factors may be updated periodically at the discretion of Us based on trading in the market, but after approximately five minutes from the scheduled off time of a given race they will be updated only in exceptional circumstances.",
+            color: null,
+          },
+          {
+            text: "Once a non-runner is declared each selection in the market will be given an appropriate reduction factor.",
+            color: null,
+          },
         ],
       },
       {
-        category: "How the Reductions are applied to Exchange markets",
+        category: "Reductions in Exchange Markets",
         description: [
-          // ... add rules for how reductions are applied to Exchange markets
-          "In the win market, reductions will be made on the traded price. For example: if the non-runners final reduction factor is 25% the traded price on all previously matched bets on other horses will be reduced by 25% - the traded price of 8.0 would become 6.0 etc. And these might be further reduced if another horse is subsequently declared a non-runner.",
-          // ... continue with the rest of the rules
+          {
+            text: "In the win market, reductions will be made on the traded price.",
+            color: null,
+          },
+          {
+            text: "In the place market, reductions will be made to the potential winnings on the bet only, and not the traded price.",
+            color: null,
+          },
+          {
+            text: "Reserves: A reserve runner may appear in the relevant markets but will have a non-applicable reduction factor until we receive confirmation that it is a confirmed runner.",
+            color: null,
+          },
         ],
       },
       {
-        category: "Additional rules",
+        category: "Additional Rules",
         description: [
-          "Card numbers are posted as a guide only: bets are placed on a named horse.",
-          "Horses will not be coupled.",
-          "Where any horse(s) runs for purse money only it is deemed a non-runner for betting purposes. Should this result in the number of possible winners stated in the relevant Market Information being equal to or greater than the number of runners in the relevant Betfair market, all bets in the market will be void.",
-          // ... add more additional rules if needed
+          {
+            text: "Card numbers are posted as a guide only: bets are placed on a named horse.",
+            color: null,
+          },
+          { text: "Horses will not be coupled.", color: null },
+          {
+            text: "If a runner is not included in a market because of an error, we reserve the right to introduce the missing runner into the market at any time prior to settlement.",
+            color: null,
+          },
+          {
+            text: "Company reserves the right to suspend/void any illegitimate bets (e.g., due to VPN/robot use). Only winning bets will be voided.",
+            color: "red",
+          },
+        ],
+      },
+      {
+        category: "Live Streaming & Animation",
+        description: [
+          {
+            text: "Data may be subject to time delay and/or inaccuracies. Users relying on this data do so at their own risk.",
+            color: null,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "E Games",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "In the event of a match starting but not being completed, then all bets will be void.",
+            color: "red",
+          },
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: 'For live streaming and animation: Although the current score, time elapsed, video, and other data provided on this site is sourced from "live" feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.',
+            color: null,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "BasketBall",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Match Odds :- Predict which team will be the winner. There must be 5 minutes or less of scheduled game time left for bets to have action.",
+          },
+          {
+            text: "Quarter Winner :- The quarter must be completed for bets to have action, unless settlement of bets is already determined.",
+          },
+          {
+            text: "1st Half Winner / 2nd Half Winner :- The first half must be completed for first half bets to stand. If a game is postponed or cancelled after the start, for game and second half bets there must be 5 minutes or less remaining for bets to have action, unless settlement of bets is already determined. (Including Overtime if played.)",
+          },
+          {
+            text: "Highest Scoring Half :- Predict in which half most points will be scored. OT is not included in 2nd Half.",
+          },
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "MotoGP",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Chess",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "VolleyBall",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Match odds :- Predict which team will be the winner. Bets will be void if the match is not completed.",
+            color: "black",
+          },
+          {
+            text: "Set Winner:- In the event of the set not being completed bets will be void. Exceptions are made for bets on sets which are already over, in this case the bets will be settled.",
+            color: "black",
+          },
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Ice Hockey",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Match Odds Including overtime/shootouts :- Predict the winner of the match including overtime and penalties. The game must be completed for bets to have action.",
+            color: "black",
+          },
+          {
+            text: "Period Winner :- Predict the winner of the relevant period. The relevant period must be completed for bets to have action, unless the specific market outcome is already determined.",
+            color: "black",
+          },
+          {
+            text: "Highest Scoring Period:- If 2 or more periods have the same score Tie will be settled as the winner. (exclude overtime/shootouts for settlement purposes)",
+            color: "black",
+          },
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Tennis",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Match Odds :- If 1st set has been not completed at the time of the retirement or disqualification, then all bets relating to that individual match will be void. After completion of 1st set in case of retirement the opponent player will be given the winner for match winner bets.",
+            color: "black",
+          },
+          {
+            text: "Game Winner :- Predict which player will win the stated game. The nominated game will be featured in the name of the bet type, for example: 2nd set – 7th game – Winner. If a game is not completed for any reason, bets on it will be void. Tie break points will not be counted for this bet type unless the specific market outcome is already determined.",
+            color: "black",
+          },
+          {
+            text: "Under / Over Games :- Finished set stand, the unfinished set can be played to its natural conclusion and settled as in the example: Example: A set is abandoned at 4-4. I win if I placed a bet on Over 9.5 (since any natural conclusion to the set would have at least 10 games); I lost the bet if I placed a bet on Under 9.5 (since any natural conclusion to the set would have at least 10 games); I get my stake back if I placed a bet on O/U 10.5 (it is undecided, the set could have ended 6-4).",
+            color: "black",
+          },
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "Badminton",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "Match Odds:- Predict which player will win the match. In the event of any of the named players in a match changing before the match starts then all bets are void. In the event of a match starting but not being completed, then all bets will be void.",
+            color: "black",
+          },
+          {
+            text: "Set Winner:- The Set must be completed for bets to stand, unless the specific market outcome is already determined.",
+            color: "black",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "Cycling",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Mixed Martial Arts",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "MotorBikes",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Athletics",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "BasketBall 3X3",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Sumo",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Virtual Sports",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "HandBall",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Match Odds:- Predict which team will be the winner. Bets will be void if the match is not completed.",
+            color: "black",
+          },
+          {
+            text: "Next Goal:- Predict which team will score the X-th goal.",
+            color: "black",
+          },
+          {
+            text: "Highest Scoring Half:- Predict which half will have the most goals scored (1st, 2nd or Draw). Bet will be settled on regulation time only and exclude overtime if played.",
+            color: "black",
+          },
+          {
+            text: "Halftime/Fulltime:- Predict the result of a match at halftime and at the end of regular time. If a game is abandoned, bets will be void. Example: If you choose 1/X, you bet on the home team to lead in the first half and the match to end in a draw. Extra time doesn’t count.",
+            color: "black",
+          },
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Cricket",
+    rules: [
+      {
+        category: "bookmaker",
+        description: [
+          {
+            text: "1. Due to any reason any team will be getting advantage or disadvantage we are not concerned.",
+            color: "red",
+          },
+          {
+            text: "2. We will simply compare both teams 25 overs score higher score team will be declared winner in ODI (If both teams same score means, low wickets team will be declared winner. In case, both teams same score & same wickets means highest boundaries team will be declared winner.If all same then will be declared No result)",
+            color: "red",
+          },
+          {
+            text: "3. We will simply compare both teams 10 overs higher score team will be declared winner in T20 matches (If both teams same score means, low wickets team will be declared winner. In case, both teams same score & same wickets means highest boundaries team will be declared winner.If all same then will be declared No result)",
+            color: "red",
+          },
+          {
+            text: "4. Any query about the result or rates should be contacted within 7 days of the specific event, the same will not be considered valid post 7 days from the event.",
+            color: "red",
+          },
+          {
+            text: "5. Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example incase of vpn/robot-use/multiple entry from same IP/ multiple bets at the same time (Punching) and others. Note : only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "6. In case, company will find Ground bets, Group betting, Punching bets, Multiple entries with same IP or any fraud or unusual activities are detected then Company will be void winning bets and charge penalty of 2X (Two times) from winning amount.",
+            color: "red",
+          },
+          {
+            text: "7. If two team ends up with equal points, then result will be given based on the official point table",
+            color: "red",
+          },
+        ],
+      },
+      {
+        category: "fancy",
+        description: [
+          {
+            text: "1. All fancy bets will be validated when match has been tied.",
+            color: "red",
+          },
+          {
+            text: "2. All advance fancy will be suspended before toss or weather condition. All advance fancy will be voided if over reduced before match start.",
+            color: "red",
+          },
+          {
+            text: "3. In case technical error or any circumstances any fancy is suspended and does not resume result will be given all previous bets will be valid (based on haar/jeet).",
+            color: "red",
+          },
+          {
+            text: "4. If any case wrong rate has been given in fancy that particular bets will be cancelled.",
+            color: "red",
+          },
+          {
+            text: "5. In any circumstances management decision will be final related to all exchange items. Our scorecard will be considered as valid if there is any mismatch in online portal.",
+            color: "red",
+          },
+          {
+            text: "6. In case customer make bets in wrong fancy we are not liable to delete. No changes will be made and bets will be consider as confirm bet.",
+            color: "red",
+          },
+          {
+            text: "7. Due to any technical error market is open and result has came all bets after result will be deleted.",
+            color: "red",
+          },
+          {
+            text: "8. Manual bets are not accepted in our exchange.",
+            color: "red",
+          },
+          {
+            text: "9.Our exchange will provide 5 second delay in our TV.",
+            color: "red",
+          },
+          {
+            text: "10. Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example incase of VPN/robot-use/multiple entry from same IP and others. Note : only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "12. Once our exchange give username and password it is your responsibility to change a password.",
+            color: "red",
+          },
+          {
+            text: "13. Penalty runs will be counted in all fancy. (This rule applicable from 20th March 2024)",
+            color: "red",
+          },
+          {
+            text: "14. Warning:- live scores and other data on this site is sourced from third party feeds and may be subject to time delays and/or be inaccurate. If you rely on this data to place bets, you do so at your own risk. Our exchange does not accept responsibility for loss suffered as a result of reliance on this data.",
+            color: "red",
+          },
+          {
+            text: "15. Traders will be block the user ID if find any misinterpret activities, No queries accept regarding.",
+            color: "red",
+          },
+          {
+            text: "TEST",
+            color: "red",
+          },
+          {
+            text: "1 Session:-",
+            color: "red",
+          },
+          {
+            text: "1.1 Complete session valid in test.",
+            color: "black",
+          },
+          {
+            text: "1.2 Middle session and Session is not completed due to Innings declared or all out so that particular over considered as completed and remaining over counted in next team Innings for ex:- In case of Innings declared or all out In 131.5th over Considered as 132 over completed remaining 1 over counted for 133 over middle session and 3 over counted for 135 over session from next team Innings and One over session and Only over session is not completed due to innings declared so that Particular over session bets will be deleted and all out considered as valid for ex:- In case of Innings declared In 131.5th over so 132 over will be deleted and if all out then 132 over and Only 132 over will be Valid.",
+            color: "black",
+          },
+          {
+            text: "1.3 1st day 1st session run minimum 25 over will be played then result is given otherwise 1st day 1st session will be deleted.",
+            color: "black",
+          },
+          {
+            text: "1.4 1st day 2nd session run minimum 25 over will be played then result is given otherwise 1st day 2nd session will be deleted.",
+            color: "black",
+          },
+          {
+            text: "1.5 1st day total run minimum 80 over will be played then result is given otherwise 1st day total run will be deleted. If a team get All Out before the day stumps, the other team's 1st day score will be added to 1st day total run event. (i.e. AUSTRALIA got all out at 251 before the day stumps, then ENGLAND hit 100 runs in the remaining overs of 1st day, so the result of 1st day total run event will be 351)",
+            color: "black",
+          },
+          {
+            text: "1.6 Test match both advance session is valid.",
+            color: "black",
+          },
+          {
+            text: "2 Test lambi/ Inning run:-",
+            color: "red",
+          },
+          {
+            text: "2.1 Mandatory 70 over played in test lambi paari/ Innings run. If any team all-out or declaration lambi paari/ innings run is valid.",
+            color: "black",
+          },
+          {
+            text: "2.2 In case due to weather situation match has been stopped all lambi trades will be deleted.",
+            color: "black",
+          },
+          {
+            text: "2.3 In test both lambi paari / inning run is valid in advance fancy.",
+            color: "black",
+          },
+          {
+            text: "3 Test batsman:-",
+            color: "red",
+          },
+          {
+            text: "3.1 In case batsmen is injured he/she is made 34 runs the result will be given 34 runs.",
+            color: "black",
+          },
+          {
+            text: "3.2 Batsman 50/100 run if batsman is injured or declaration the result will be given on particular run.",
+            color: "black",
+          },
+          {
+            text: "3.3 In next men out fancy if player is injured particular fancy will be deleted.",
+            color: "black",
+          },
+          {
+            text: "3.4 In advance fancy opening batsmen is only valid if same batsmen came in opening the fancy will be valid in case one batsmen is changed that particular player fancy will be deleted.",
+            color: "black",
+          },
+          {
+            text: "3.5 Test match both advance fancy batsmen run is valid.",
+            color: "black",
+          },
+          {
+            text: "4 Test partnership:-",
+            color: "red",
+          },
+          {
+            text: "4.1 In partnership one batsman is injured or Retired out means partnership will continued in next batsman.",
+            color: "black",
+          },
+          {
+            text: "4.2 Partnership and player runs due to weather condition or match abandoned or match completed, then the result will be given as per score.",
+            color: "black",
+          },
+          {
+            text: "4.3 Advance partnership is valid in case both players are different or same.",
+            color: "black",
+          },
+          {
+            text: "4.4 Test match both advance fancy partnership is valid.",
+            color: "black",
+          },
+          {
+            text: "5 Other fancy advance (test):-",
+            color: "red",
+          },
+          {
+            text: "5.1 Four, sixes, wide, wicket, extra run, total run, highest over and top batsmen is valid only if 300 overs has been played or the match has been won by any team otherwise all these fancy will be deleted. Additionally all events are valid only for 1st innings( this is applicable to all individual team events also)",
+            color: "black",
+          },
+          {
+            text: "2 Odi rule:-",
+            color: "red",
+          },
+          {
+            text: "Session:-",
+            color: "red",
+          },
+          {
+            text: "Match 1st over run advance fancy only 1st innings run will be counted.",
+            color: "black",
+          },
+          {
+            text: "Complete session is valid in case due to rain or match abandoned particular session will be deleted.",
+            color: "black",
+          },
+          {
+            text: "For example:- 35 over run team a is playing any case team A is all-out in 33 over team a has made 150 run the session result is validated on particular run.",
+            color: "black",
+          },
+          {
+            text: "Advance session is valid in only 1st innings.",
+            color: "black",
+          },
+          {
+            text: "50 over runs:-",
+            color: "red",
+          },
+          {
+            text: "In case 50 over is not completed all bet will be deleted due to weather or any condition.",
+            color: "black",
+          },
+          {
+            text: "Advance 50 over runs is valid in only 1st innings.",
+            color: "black",
+          },
+          {
+            text: "Odi batsman runs:-",
+            color: "red",
+          },
+          {
+            text: "In case batsman is injured he/she is made 34 runs the result will be given 34 runs.",
+            color: "black",
+          },
+          {
+            text: "In next men out fancy if player is injured particular fancy will be deleted.",
+            color: "black",
+          },
+          {
+            text: "In advance fancy opening batsmen is only valid if same batsmen came in opening the fancy will be valid in case one batsmen is changed that particular player fancy will be deleted.",
+            color: "black",
+          },
+          {
+            text: "Odi partnership runs:-",
+            color: "red",
+          },
+          {
+            text: "In partnership one batsman is injured or Retired out means partnership will continued in next batsman.",
+            color: "black",
+          },
+          {
+            text: "Advance partnership is valid in case both players are different or same.",
+            color: "black",
+          },
+          {
+            text: "Both team advance partnerships are valid in particular match.",
+            color: "black",
+          },
+          {
+            text: "Other fancy:-",
+            color: "red",
+          },
+          {
+            text: "Four, sixes, wide, wicket, extra run, total run, highest over ,top batsman,maiden over,caught-out,no-ball,run-out,fifty and century are valid only match has been completed in case due to rain over has been reduced all other fancy will be deleted.",
+            color: "black",
+          },
+          {
+            text: "T20:-",
+            color: "red",
+          },
+          {
+            text: "Session:-",
+            color: "red",
+          },
+          {
+            text: "Match 1st over run advance fancy only 1st innings run will be counted.",
+            color: "black",
+          },
+          {
+            text: "Complete session is valid in case due to rain or match abandoned particular session will be deleted.",
+            color: "black",
+          },
+          {
+            text: "For example :- 15 over run team a is playing any case team a is all-out in 13 over team A has made 100 run the session result is validated on particular run.",
+            color: "black",
+          },
+          {
+            text: "Advance session is valid in only 1st innings.",
+            color: "black",
+          },
+          {
+            text: "20 Over Runs",
+            color: "red",
+          },
+          {
+            text: "Advance 20 over run is valid only in 1st innings.",
+            color: "black",
+          },
+          {
+            text: "20 over run will not be considered as valid if 20 overs is not completed due to any situation.",
+            color: "black",
+          },
+          {
+            text: "T20 Batsman Runs",
+            color: "red",
+          },
+          {
+            text: "In case batsman is injured he/she is made 34 runs the result will be given 34 runs.",
+            color: "black",
+          },
+          {
+            text: "In next men out fancy if player is injured particular fancy will be deleted.",
+            color: "black",
+          },
+          {
+            text: "In advance fancy opening batsmen is only valid if same batsmen came in opening the fancy will be valid in case one batsmen is changed that particular player fancy will be deleted.",
+            color: "black",
+          },
+          {
+            text: "1st, 2nd, 3rd, and 4th Wicket Runs (T20/ODI)",
+            color: "red",
+          },
+          {
+            text: "Advance event is valid in only 1st Innings.",
+            color: "black",
+          },
+          {
+            text: "If over reduced due to rain or weather condition or match abandoned or match completed, then the result will be given as per score.",
+            color: "black",
+          },
+          {
+            text: "Other Fancy",
+            color: "red",
+          },
+          {
+            text: "T-20, One day and Test match: in case current innings player and partnership are running in between match has been called off or abandoned that situation all current player and partnership results are valid.",
+            color: "black",
+          },
+          {
+            text: "Four, sixes, wide, wicket, extra run, total run, highest over and top batsman, maiden over, caught-out, no-ball, run-out, fifty and century are valid only if match has been completed. In case due to rain over has been reduced all other fancy will be deleted.",
+            color: "black",
+          },
+          {
+            text: "1st 6 over dot ball and 20 over dot ball fancy are valid only in the 1st innings.",
+            color: "black",
+          },
+          {
+            text: "Concussion (Test)",
+            color: "red",
+          },
+          {
+            text: "All bets of one over session will be deleted in test scenario, in case session is incomplete. For example innings declared or match suspended to bad light or any other conditions.",
+            color: "black",
+          },
+          {
+            text: "All bets will be considered as valid if a player has been replaced under concussion substitute, result will be given for the runs scored by the mentioned player. For example DM Bravo gets retired hurt at 23 runs, then result will be given for 23.",
+            color: "black",
+          },
+          {
+            text: "Bets of both the player will be valid under concussion substitute.",
+            color: "black",
+          },
+          {
+            text: "Limited Over Events (Test/ODI)",
+            color: "red",
+          },
+          {
+            text: "This event will be considered valid only if the number of overs defined on the particular event has been bowled, otherwise all bets related to this event will get void. 0-50 over events will be valid only if 50 over completed, if the team batting first get all out prior to 50 over the balance over will be counted from second innings. For example if team batting first gets all out in 35 over balance 15 over will be counted from second innings, the same applies for all events if team gets all out before the defined number of overs.",
+            color: "black",
+          },
+          {
+            text: "The events which remains incomplete will be voided if over gets reduced in the match due to any situation, for example if match interrupted in 15 overs due to rain/badlight and post this over gets reduced. Events for 0-10 will be valid, all other events related to this type will get deleted.",
+            color: "black",
+          },
+          {
+            text: "This events will be valid only if the defined number of over is completed. For example team batting first gets all out in 29.4 over then the same will be considered as 30 over, the team batting second must complete 20 overs only then 0-50 over events will be considered as valid. In case team batting second gets all out in 19.4 over then 0-50 over event will not be considered as valid, This same is valid for 1st Innings only.",
+            color: "black",
+          },
+          {
+            text: "Bowler event- ODI:-",
+            color: "red",
+          },
+          {
+            text: "The mentioned bowler has to complete the defined number of overs, else the bets related to that particular event will get void. For example if the mentioned bowler has bowled 8 overs, then 5 over run of that particular bowler will be considered as valid and the 10 over run will get void.",
+            color: "black",
+          },
+          {
+            text: "Both innings are valid",
+            color: "black",
+          },
+          {
+            text: "Other event:- T20",
+            color: "red",
+          },
+          {
+            text: "The events for 1-10 over and 11-20 over will be considered valid only if the number of over mentioned has been played completely. However if the over got reduced before the particular event then the same will be voided, if the team batting first get all out prior to 20 over the balance over will be counted from second innings. For example if team batting first gets all out in 17 over balance 3 over will be counted from second innings and that 3 over all events are counted. This same is valid for 1st Innings only.",
+            color: "black",
+          },
+          {
+            text: "If over got reduced in between any running event, then the same will be considered valid and the rest will be voided. For example.., match started and due to rain/bad light or any other situation match got interrupted at 4 over and later over got reduced. Then events for 1-10 is valid rest all will be voided",
+            color: "black",
+          },
+          {
+            text: "Bowler Session: Bowler session advance events only valid for 1st inning. This event is valid only if the bowler has completed his maximum quota of overs, else the same will be voided. However if the match has resulted and the particular bowler has already started bowling his final over then result will be given even if he haven't completed the over. For example B Kumar is bowling his final over and at 3.4 the match has resulted then result will be given for B Kumar over runs",
+            color: "black",
+          },
+          {
+            text: "Incase of DLS, the over got reduced then the bowler who has already bowled his maximum quota of over that result will be considered as valid and the rest will be voided",
+            color: "black",
+          },
+          {
+            text: "Boundary on Match 1st Free hit",
+            color: "red",
+          },
+          {
+            text: "Both innings are valid",
+            color: "black",
+          },
+          {
+            text: "Boundary hit on Free hit only be considered as valid",
+            color: "black",
+          },
+          {
+            text: "Bets will be deleted if there is no Free hit in the mentioned match",
+            color: "black",
+          },
+          {
+            text: "Boundary by bat will be considered as valid",
+            color: "black",
+          },
+          {
+            text: "Boundaries by Player",
+            color: "red",
+          },
+          {
+            text: "Both Four and six are valid",
+            color: "black",
+          },
+          {
+            text: "Total Match - Events (Test):-",
+            color: "red",
+          },
+          {
+            text: "World Cup:-",
+            color: "red",
+          },
+          {
+            text: "11. Company reserves the right to void any bets (only winning bets) of any event at any point of the match if the company believes there is any cheating/wrong doing in that particular event by the players (either batsman/bowler)",
+            color: "red",
+          },
+          {
+            text: "16.In case, company will find Ground bets, Group betting, Punching bets, Multiple entries with same IP or any fraud or unusual activities are detected then Company will be void winning bets and charge penalty of 2X (Two times) from winning amount.",
+            color: "red",
+          },
+          {
+            text: "Special Events:",
+            color: "red",
+          },
+          {
+            text: "Pakistan Super League (PSL)",
+            color: "red",
+          },
+          {
+            text: "At any situation if result is given for any particular event based on the rates given for the same, then the particular result will be considered valid, similarly if the tournament gets canceled due to any reason the previously given result will be considered valid",
+            color: "red",
+          },
+          {
+            text: "No Boundaries Event:",
+            color: "red",
+          },
+          {
+            text: "Both Four and Six are valid",
+            color: "black",
+          },
+          {
+            text: "Batsman bat boundaries only considered as valid",
+            color: "black",
+          },
+          {
+            text: "Free hit boundaries also valid",
+            color: "black",
+          },
+          {
+            text: "Bets will be voided if that particular ball not completed",
+            color: "black",
+          },
+          {
+            text: "Result will be given 0 or 4 (No or Yes). For Example batsman hit boundary in particular ball means Result is 0 otherwise Result is 4.",
+            color: "black",
+          },
+          {
+            text: "Dot ball Event:",
+            color: "red",
+          },
+          {
+            text: "Only No run will count as dot ball.",
+            color: "black",
+          },
+          {
+            text: "If wicket means that will not count as dot ball.",
+            color: "black",
+          },
+          {
+            text: "Power Surge Rule in Big Bash",
+            color: "red",
+          },
+          {
+            text: "Power Play First Four Overs + Power Surge Two Overs-Batters Choice",
+            color: "black",
+          },
+          {
+            text: "The batting side chooses when to take control with the addition of the Power Surge.",
+            color: "black",
+          },
+          {
+            text: "There’s still a four-over power play at the start of the innings, but now the batting team can take the other two Power Surge overs any time from the 11th over onwards.",
+            color: "black",
+          },
+          {
+            text: "Bowler Session:",
+            color: "red",
+          },
+          {
+            text: "The mentioned bowler has to complete the defined number of overs, else the bets related to that particular event will get void. For example if the mentioned bowler has bowled 8 overs, then 5 over run of that particular bowler will be considered as valid and the 10 over run will get void.",
+            color: "black",
+          },
+          {
+            text: "Wide & No ball runs will be counted in bowler Session.",
+            color: "black",
+          },
+          {
+            text: "Byes & Leg byes runs will not be counted in bowler Session.",
+            color: "black",
+          },
+          {
+            text: "Indoor Cricket T10 League",
+            color: "red",
+          },
+          {
+            text: "9 Players squad with 7 players a side Over Arm Box Cricket Championship",
+            color: "black",
+          },
+          {
+            text: "Scoring Rules :",
+            color: "red",
+          },
+          {
+            text: "Hitting the ball in Zone A (the front net, i.e., the net behind the wicket keeper) won't get you any bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits the net in Zone B (side nets between the striker's end and halfway down the pitch), you get 1 bonus run.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits the net in Zone C (side nets between the bowler's end and halfway), you score 2 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "Hitting the ball in Zone D (the back net, i.e., the net behind the bowler) allows you to score 4 or 6 bonus runs depending on how the ball hits the back net. If the ball hits the net after bouncing, you get 4 bonus runs. If the ball hits the net without bouncing on the ground, you score 6 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "Remember that at least one physical run must be taken for any bonus runs to be scored. Whatever bonus runs you get will be added to the physical runs. For example, if you strike the ball into the front net for 1 bonus run and take 2 physical runs, you score a total of 3 runs off the ball.",
+            color: "black",
+          },
+          {
+            text: "Game Format :",
+            color: "red",
+          },
+          {
+            text: "10 over a-side innings",
+            color: "black",
+          },
+          {
+            text: "Power Play for the 1st 3 overs. Only 1 player allowed beyond the Inner box marking. After the end of power play over, only 2 players can be outside the Inner Box.",
+            color: "black",
+          },
+          {
+            text: "No Ball & Wide balls as per normal cricketing rules.",
+            color: "black",
+          },
+          {
+            text: "If the ball touches the upper net and if any player catches the ball, the batsman is considered out.",
+            color: "black",
+          },
+          {
+            text: "If the Ball Touches the Upper Net and lands safely on the field, then the batsman have to take a physical run if they want, if no physical run is taken there will be no runs.",
+            color: "black",
+          },
+          {
+            text: "Zone A shall concede 0 runs.",
+            color: "black",
+          },
+          {
+            text: "If the player hits the net after the middle line (Zone C) its 2 bonus runs. (only taken into consideration if the players take a physical run)",
+            color: "black",
+          },
+          {
+            text: "If the player hits the net before the middle line (Zone B) its 1 bonus run. (only taken into consideration if the players take a physical run",
+            color: "black",
+          },
+          {
+            text: "If the ball goes straight to the boundary (Zone D) without a bounce, it’s a SIX.",
+            color: "black",
+          },
+          {
+            text: "If the ball bounces and goes to the boundary (Zone D) it’s a FOUR",
+            color: "black",
+          },
+          {
+            text: "If the ball hits the upper net and goes straight to the boundary (Zone D) it’s a 6.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits the upper net and bounces and goes straight to the boundary (Zone D) it’s a 4.",
+            color: "black",
+          },
+          {
+            text: "Note: Bonus Runs are only applied if the ball hits or touches the Side Nets of that particular zone (B&C) and taken into consideration if the players take a physical Run.",
+            color: "black",
+          },
+          {
+            text: "The bowler is not allowed to touch the front line or the side line of the Crease, in case they do so it will be counted as a no ball and 2 runs will be given to the batting team and the ball will not be counted.",
+            color: "black",
+          },
+          {
+            text: "If a bowler bowls a no or a wide ball, the delivery will not be counted and each wide or no ball will be given 2 runs to the batting team total. ",
+            color: "black",
+          },
+          {
+            text: "If the batsman is a right hander and if the ball goes out of the white wide line it will be given as a wide ball & if the ball is going leg side and is inside the Leg Side line the ball is counted.",
+            color: "black",
+          },
+          {
+            text: "Dismissals in Indoor Cricket are as followed: Bowled, Run Out, Catch Out, Stumping and Handling the Ball.",
+            color: "black",
+          },
+          {
+            text: "If the bowler is bowling directly above waist and one bounce above shoulder level it is counted as a no ball, but the batter has to play the ball from the crease, in case the batter is outside the crease and plays the ball it will be termed as a good ball.",
+            color: "black",
+          },
+          {
+            text: "Incomplete action or throwing the ball to the stump will be termed as a no ball and 2 runs will be given to the batting team.",
+            color: "black",
+          },
+          {
+            text: "If the batsman does not hit the ball after it is bowled it is considered as a Dot Ball, the batsman gets 0 runs.",
+            color: "black",
+          },
+          {
+            text: "If the batsman hits the ball and the fielders or the wicket-keeper catch it without it touching the floor, the batsman will be dismissed as Catch Out.",
+            color: "black",
+          },
+          {
+            text: "If the ball touches a fielder and then hits the nets (zones), the bonus runs will be counted, if the physical runs are taken by the batter.",
+            color: "black",
+          },
+          {
+            text: "No runs for overthrow.",
+            color: "black",
+          },
+          {
+            text: "If the ball is caught directly after touching the zones (B/C), it will be treated as NOT OUT and bonus runs are applicable if physical run is taken.",
+            color: "black",
+          },
+          {
+            text: "If the ball touches the bonus run zones and the fielder accomplishes a run out, the batter will be OUT and no bonus runs will be counted. Physical run will be counted if 1 run is taken and run out happens during the second run",
+            color: "black",
+          },
+          {
+            text: "When a batter gets out, the next player coming in will take the strike.",
+            color: "black",
+          },
+          {
+            text: "Run out will ONLY be at the batter’s end.",
+            color: "black",
+          },
+          {
+            text: "When 6 wickets of a team fall, the last batter will be allowed to bat. The team will send a runner at non-striker’s end. After every physical run taken, the last batsman will have to go back to strike to face the next ball. Run out for the runner will mean dismissal for the last batsman.",
+            color: "black",
+          },
+          {
+            text: "Inning Run Bhav Event :",
+            color: "red",
+          },
+          {
+            text: "Inning run bhav bets are valid if over reduced due to rain or weather condition or match abandoned the result will be given as per official result.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            text: "If the ball hits Zone B or C onto Zone D, you score 3 bonus runs.",
+            color: "black",
+          },
+          {
+            "text": "Inning run Bhav bets are valid if over reduced due to rain or weather condition or match abandoned the result will be given as per official result.",
+            "color": "black"
+          },
+          {
+            "text": "Settlement occurs once the stipulated conditions are met, which involves either completion of the allotted overs or the batting team's dismissal, including weather disturbances.",
+            "color": "black"
+          },
+          {
+            "text": "In the event of a weather-shortened match, all Bhav Bets placed in the Inning Run Bhav market will be settled according to the official result. For limited overs matches, this includes results determined by the Duckworth Lewis method.",
+            "color": "black"
+          },
+          {
+            "text": "In case of pitch vandalism, player safety concerns, stadium damage, acts of terrorism, or acts of God, the company holds the authority to nullify all bets, with the exception of those related to markets that have already been conclusively settled.",
+            "color": "black"
+          },
+          {
+            "text": "Bets made during instances of incorrect scorecard updates, inaccurate commentary, delays in suspending the Bhav Bets of Total Innings Runs market, or erroneous updates of rates and odds for Bhav Bets in Total Innings Runs will be removed and deleted from user accounts.",
+            "color": "black"
+          },
+          {
+            "text": "Example: 1st inning run Bhav (ENG v AUS), 2nd Inning run Bhav (ENG v AUS) - England vs Australia T20 Match",
+            "color": "black"
+          },
+          {
+            "text": "Total Match 30s: How many batsman's scored 30 to 49 runs in the full match. If a Player reached 50 means, Not considered in this Event.",
+            "color": "black"
+          },
+          {
+            "text": "Total Boundaries in 1st Power play: Number of Boundaries Scored in 1st Power play, 1st Innings only Valid In T20/ODI Both",
+            "color": "black"
+          },
+          {
+            "text": "Total Dot balls in 1st Power play: Number of Dot balls coming in 1st Power play, 1st Innings only Valid In T20/ODI Both",
+            "color": "black"
+          },
+          {
+            "text": "Total match Wicket keeper's Dismissals: Wicket keepers Caught outs and Stumping Only Considered In T20/ODI Both",
+            "color": "black"
+          },
+          {
+            "text": "1st Inn Death Over Runs: Runs Scored, Last Over Only Considered, 1st Innings only Valid",
+            "color": "black"
+          },
+          {
+            "text": "Total Match Single Digit Scores By Players: Duck outs Not Considered in this Event. If Not out Batsman/Injured Batsman facing One Legal Delivery and nothing scored ('0') means Considered as Single Digit.",
+            "color": "black"
+          },
+          {
+            "text": "Most Balls Faced By a Batsman: Maximum Balls Faced by an Individual Batsman in Match.",
+            "color": "black"
+          },
+          {
+            "text": "High Partnership Boundaries in the Match: Maximum Number of Boundaries Scored during any Partnership.",
+            "color": "black"
+          },
+          {
+            "text": "In case of any circumstances, management decision will be final for all the fancies under World Cup.",
+            "color": "red"
+          },
+          {
+            "text": "WC: WORLD CUP.",
+            "color": "red"
+          },
+          {
+            "text": "MOM: MAN OF THE MATCH.",
+            "color": "red"
+          },
+          {
+            "text": "If World Cup fixture of 48 matches gets reduced due to any reason, then all the special fancies will be voided (Match abandoned due to rain/bad light will not be considered in this)",
+            "color": "red"
+          },
+          {
+            "text": "Super over will not be included",
+            "color": "red"
+          },
+          {
+            "text": "At any situation if result is given for any particular event based on the rates given for the same, then the particular result will be considered valid, similarly if the tournament gets canceled due to any reason the previously given result will be considered valid",
+            "color": "red"
+          },
+          {
+            "text": "Total Match 1st over runs: Average 4 runs will be given in case match abandoned or over reduced (Only First Innings is Valid).",
+            "color": "black"
+          },
+          {
+            "text": "Total Match 1st over Dot Ball: Average 4 runs will be given in case match abandoned or over reduced (Only First Innings is Valid).",
+            "color": "black"
+          },
+          {
+            "text": "Total Match 1st 10 over run: Average 50 runs will be given in case match abandoned or over reduced (Only First Innings is Valid).",
+            "color": "black"
+          },
+          {
+            "text": "Total fours: Average 45 fours will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total sixes: Average 11 sixes will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Wickets: Average 15 Wickets will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Wides: Average 16 Wides will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total No balls: Average 2 No ball will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Extras: Average 26 extras will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Caught outs: Average 9 caught out will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Bowled: Average 3 Bowled out will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total LBW: Average 2 LBW will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Run out: Average 1 Run out will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Fifties: Average 3 fifties will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total 100s: Average 1 Hundred will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Ducks: Average 1 Duck out will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Maidens: Average 4 Maidens will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total 50+ Partnerships: Average 3 Fifty plus Partnerships will be given in case match abandoned or over reduced. 50 and 50 Above Partnerships All Counted in this.",
+            "color": "black"
+          },
+          {
+            "text": "Highest 1st over run in individual match: Only First Innings is Valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest 1st 10 over run in individual match: Only First Innings is Valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest Fours in individual match: Both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest Sixes in individual match: Both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest Wicket in individual match: Both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest Extras in individual match: Both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest Scoring runs in Over: Both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest Run Scorer: Total Runs Scored by An Individual Batsman in Full Tournament.",
+            "color": "black"
+          },
+          {
+            "text": "Highest Wicket Taker: Total Wickets Taken by a Bowler in Full Tournament.",
+            "color": "black"
+          },
+          {
+            "text": "Most Balls Faced By a Batsman in the Match: Maximum Balls Faced by an Individual Batsman in any Single Match.",
+            "color": "black"
+          },
+          {
+            "text": "Most 4s by a Batsman in the Match: Maximum 4s Hitted by an Individual Batsman in any Single Match.",
+            "color": "black"
+          },
+          {
+            "text": "Most 6s by a Batsman in the Match: Maximum 6s Hitted by an Individual Batsman in any Single Match.",
+            "color": "black"
+          },
+          {
+            "text": "Most Dot balls By a Bowler in an Inning: Maximum Dot balls Bowled by a Bowler in his Quota of Innings.",
+            "color": "black"
+          },
+          {
+            "text": "Most runs given by Bowler in an Inning: Maximum Runs conceded by an individual Bowler in an Innings.",
+            "color": "black"
+          },
+          {
+            "text": "Most wickets by Bowler in an inning: Maximum Wickets taken by an individual Bowler in an Innings.",
+            "color": "black"
+          },
+          {
+            "text": "Total 50 Plus Partnership runs: 50 and above 50 runs partnership will be counted in this event.",
+            "color": "black"
+          },
+          {
+            "text": "In fastest fifty always the first 50 runs will be considered, for example, if R Sharma scores 1st fifty in 17 balls and scores 100 in next 14 balls, fastest 50 will be given based on the balls for the 1st fifty runs.",
+            "color": "black"
+          },
+          {
+            "text": "Super over will not be included.",
+            "color": "black"
+          },
+          {
+            "text": "Women's Premier League (WPL): If WPL fixture of 22 matches gets reduced due to any reason, then all the special fancies will be voided (Match abandoned due to rain/bad light will not be considered in this).",
+            "color": "black"
+          },
+          {
+            "text": "Total matches 1st over runs: Average 5 runs will be given in case match abandoned or over reduced (only 1st innings valid).",
+            "color": "black"
+          },
+          {
+            "text": "Total matches 1st 6 over runs: Average 40 runs will be given in case match abandoned or over reduced (Only 1st Innings valid).",
+            "color": "black"
+          },
+          {
+            "text": "Total 4's: Average 32 fours will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total 30's: Average 2 sixes will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total 50's: Average 1 fifties will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Total Wickets: Average 12 Wickets will be given in case match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "At any situation if result is given for any particular event based on the rates given for the same, then the particular result will be considered valid. Similarly, if the tournament gets canceled due to any reason, the previously given result will be considered valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest innings run: Both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Lowest innings run: Only first innings is valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest Match 1st over runs in the match: Only first innings is valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest 1st 6 over runs: Only first innings is valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest 4's in individual match: Both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest Wickets in individual match: Both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Highest over runs: Both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Most Balls Faced By a Batsman: Maximum Balls Faced by a batsman in one Innings.",
+            "color": "black"
+          },
+          {
+            "text": "Most 4's by an individual batsman in an Inning: Maximum Number of Fours Hit By A Batsman in one Innings.",
+            "color": "black"
+          },
+          {
+            "text": "Most Dot balls By a Bowler in an Inning: Maximum Dot balls Bowled by a Bowler in his Quota of Innings.",
+            "color": "black"
+          },
+          {
+            "text": "Most runs given by Bowler in an Inning: Maximum Runs conceded by an individual Bowler in an Innings.",
+            "color": "black"
+          },
+          {
+            "text": "Most wickets by Bowler in an inning: Maximum Wickets taken by an individual Bowler in an Innings.",
+            "color": "black"
+          },
+          {
+            "text": "In fastest fifty always the first 50 runs will be considered, for example, if S Mandhana scores 1st fifty in 17 balls and scores 100 in next 14 balls, fastest 50 will be given based on the balls for the 1st fifty runs.",
+            "color": "black"
+          },
+          {
+            "text": "Super over will not be included.",
+            "color": "black"
+          },
+          {
+            "text": "Total runs: This market is based on how many runs will be scored in the match across both team's innings combined.",
+            "color": "black"
+          },
+          {
+            "text": "Total Overs: This market is based on how many overs will be played in the match across both team's innings combined. (If an Inning completed in 83.4 overs then that calculated as 84 overs).",
+            "color": "black"
+          },
+          {
+            "text": "Total Bowlers Giving 100 runs: Number of Bowlers Giving 100 runs and above per innings. Both innings will be counted.",
+            "color": "black"
+          },
+          {
+            "text": "Any query regarding result or rate has to be contacted within 7 days from the event; query after 7 days from the event will not be considered as valid.",
+            "color": "black"
+          },
+          {
+            "text": "Total Impact overs: Number of overs scored 10 runs or above. Team wise only 1st inning are valid and Match wise both innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "Total Match Four Hitters: Number of Batsman hitting Fours in full match.",
+            "color": "black"
+          },
+          {
+            "text": "Total Match Six Hitters: Number of Batsman hitting Sixes in full match.",
+            "color": "black"
+          },
+          {
+            "text": "Total Match Wicket Takers: Number of bowlers taking wickets in full match.",
+            "color": "black"
+          },
+          {
+            "text": "100 balls Event: The events for 1 to 100 balls will be considered valid only if the number of balls mentioned has been played completely. However, if the balls got reduced before the particular event then the same will be voided. If the team batting first gets all out prior to 100 balls, the balance balls will be counted from second innings. For example, if team batting first gets all out in 81 balls, balance 19 balls will be counted from second innings and that 19 balls all events are counted. This same is valid for 1st Innings only.",
+            "color": "black"
+          },
+        ],
+      },
+      {
+        category: "khado",
+        description: [
+          {
+            "text": "Only First inning valid for T20 and one day matches.",
+            "color": "black"
+          },
+          {
+            "text": "Same will be work like Lambi. If match abandoned or over reduced, all bets will be deleted.",
+            "color": "black"
+          },
+          {
+            "text": "You can choose your own value in this event.",
+            "color": "black"
+          },
+        ]
+      },
+      {
+        category: "fancy1",
+        description: [
+          {
+            "text": "1. Odd/Even Rules. (W.e.f 5th January 2024)",
+            "color": "red"
+          },
+          {
+            "text": "1.1 Advance events will be valid if over reduced before match start. For Ex: - In T20, If over reduced to 16 over so up to 16 over valid remaining over will be deleted.",
+            "color": "black"
+          },
+          {
+            "text": "1.4 All bets regarding to ODD/EVEN player/partnership are valid if one legal delivery is being played, else the bets will be deleted. Player odd/even all advance bets will be valid if one legal delivery is being played in match otherwise voided.",
+            "color": "black"
+          },
+          {
+            "text": "1.6 In any circumstances management decision will be final.",
+            "color": "black"
+          },
+          {
+            "text": "2 Top batsman rules:-",
+            "color": "red"
+          },
+          {
+            "text": "2.1 If any player does not come as per playing eleven then all bets will be get deleted for the particular player.",
+            "color": "red"
+          },
+          {
+            "text": "2.2 two players done the same run in a single match (M Agarwal 30 runs and A Rayudu 30 runs, whole inning top batsmen score also 30 run) then both player settlement to be get done 50 percent (50% , 50%)rate on their original value which given by our exchange.",
+            "color": "black"
+          },
+          {
+            "text": "Suppose we have opened value of M Agarwal 3.75 back and customer place bets on 10000 @ 3.75 rates and A Rayudu 3.0 back and customer place bets on 10000 @ 3.0 rates.",
+            "color": "black"
+          },
+          {
+            "text": "Whole inning result announces 30 run by both player then",
+            "color": "black"
+          },
+          {
+            "text": "Rule of top batsman:-if you bet on M Agarwal you will be get half amount of this rate (10000*3.75/2=18750 you will get)",
+            "color": "red"
+          },
+          {
+            "text": "Rule of top batsman:-if you bet on A Rayudu you will be get half amount of this rate (10000*3.00/2=15000 you will get)",
+            "color": "red"
+          },
+          {
+            "text": "Top batsman only 1st inning valid.",
+            "color": "black"
+          },
+          {
+            "text": "For one day 50 over and for T20 match 20 overs must be played for top batsmen otherwise all bets will be deleted.",
+            "color": "black"
+          },
+          {
+            "text": "Man of the Match Rules",
+            "color": "black"
+          },
+          {
+            "text": "1. All bets will be deleted in case the match is abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "2. All bets will be deleted if the mentioned player is not included in playing 11.",
+            "color": "black"
+          },
+          {
+            "text": "3. In case Man of the Match is shared between two players then Dead heat rule will be applicable. For example, K Perera and T Iqbal share the Man of the Match, then the settlement will be done 50% of the rates accordingly.",
+            "color": "black"
+          },
+          {
+            "text": "4. Rules similar to our Top Batsman rules.",
+            "color": "black"
+          },
+          {
+            "text": "Maximum Sixes by Team",
+            "color": "black"
+          },
+          {
+            "text": "1. All bets will be deleted if match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "2. All bets will be deleted if both the teams hit the same number of sixes.",
+            "color": "black"
+          },
+          {
+            "text": "3. Super over will not be considered.",
+            "color": "black"
+          },
+          {
+            "text": "Maximum 6 or 10 over runs",
+            "color": "black"
+          },
+          {
+            "text": "1. All bets will be deleted if match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "2. All the bets will be deleted if both the teams score is the same (Runs scored in 6 or 10 overs).",
+            "color": "black"
+          },
+          {
+            "text": "3. 6 overs for T20 and 10 overs for ODI.",
+            "color": "black"
+          },
+          {
+            "text": "4. Both the innings are valid.",
+            "color": "black"
+          },
+          {
+            "text": "5. This fancy will be valid for 1st 6 overs of both innings for T20 and 1st 10 overs of both innings for ODI.",
+            "color": "black"
+          },
+          {
+            "text": "Batsman Match",
+            "color": "black"
+          },
+          {
+            "text": "Bets for Favourite batsman from the two batsman matched.",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted if any one of the mentioned players is not included in playing 11.",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted unless one ball is played by both the mentioned players.",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted if over reduced or Match abandoned.",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted if both the players scored the same runs. For example, H Amla and J Bairstow are the batsmen matched, H Amla and J Bairstow both scored 38 runs then all bets will be deleted.",
+            "color": "black"
+          },
+          {
+            "text": "Both innings will be valid.",
+            "color": "black"
+          },
+          {
+            "text": "Opening Pair",
+            "color": "black"
+          },
+          {
+            "text": "1. Bets for Favourite opening pair from the two mentioned opening pairs.",
+            "color": "black"
+          },
+          {
+            "text": "2. Runs made by both the opening players will be added. For example, J Roy scored 20 runs and J Bairstow scored 30 runs; the result will be 50 runs.",
+            "color": "black"
+          },
+          {
+            "text": "3. The highest run made by the pair will be declared as winner. For example, Opening pair ENG total is 70 runs and Opening pair SA is 90 runs, then SA 90 runs will be declared as winner.",
+            "color": "black"
+          },
+          {
+            "text": "Both innings will be valid.",
+            "color": "black"
+          },
+          {
+            "text": "Our exchange Special",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted if the mentioned player is not included in playing 11.",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted if match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "Both innings will be valid.",
+            "color": "black"
+          },
+          {
+            "text": "Direction of First Boundary",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted if the mentioned batsman is not included in playing 11.",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted if match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "The boundary hit through the off side of the stump will be considered as off side four.",
+            "color": "black"
+          },
+          {
+            "text": "The boundary hit through the leg side of the stump will be considered as leg side four.",
+            "color": "black"
+          },
+          {
+            "text": "Boundaries through extras (byes, leg byes, wide, overthrow) will not be considered as valid.",
+            "color": "black"
+          },
+          {
+            "text": "Only 1st Inning will be considered.",
+            "color": "black"
+          },
+          {
+            "text": "Fifty & Century by Batsman",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted if match abandoned or over reduced.",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted if the mentioned batsman is not included in playing 11.",
+            "color": "black"
+          },
+          {
+            "text": "All bets will be deleted unless the batsman faces one legal ball.",
+            "color": "black"
+          },
+          {
+            "text": "Both Innings will be valid.",
+            "color": "black"
+          },
+        ]
+      }
+    ],
+  },
+  {
+    sportName: "Politics",
+    rules: [
+      {
+        category: "Fancy",
+        description: [
+          {
+            text: "This event is to decide the winner of various legislative assemblies of India.",
+            color: "black",
+          },
+          {
+            text: "The final result declared by the Election Commission of India for assembly elections of various states of India for a particular year will be valid in our exchange. The customers are entirely responsible for their bets at all times.",
+            color: "black",
+          },
+          {
+            text: "All bets will be voided if the election doesn't take place in the given time by the Election Commission or as per our exchange management decision.",
+            color: "black",
+          },
+          {
+            text: "Company reserves the right to suspend/void any bets on this event at any time if we find the same not to be legitimate with the certainty of the outcome.",
+            color: "black",
+          },
+          {
+            text: "Accidental issues during assembly elections will not be counted in our exchange. If required, additional candidates may be added on request.",
+            color: "black",
+          },
+          {
+            text: "Kindly be informed no candidates will be partially settled and will remain in the market until it is fully settled. This is to ensure that all customers can continue trading for the candidates that they have positions on, since each candidate is still a valid runner in this market.",
+            color: "black",
+          },
+          {
+            text: "Please be informed that the transmissions described as 'live' by few broadcasters may actually be delayed due to multiple scenarios.",
+            color: "black",
+          },
+          {
+            text: "If any candidate withdraws for any reason, including death, all bets on the market will be valid and be settled as per the defined rules.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "Golf",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Motor Sports",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation: Although the current score, time elapsed, video and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. Provides this data AS IS with no warranty as to the accuracy, completeness or timeliness of such data and accepts no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+      {
+        category: "Bookmaker",
+        description: [
+          {
+            text: "All race bets are settled on the official classification from the Federation Internationale de l’Automobile (FIA), the sport’s governing body, at the time of podium presentation.",
+            color: "black",
+          },
+          {
+            text: "If a race is postponed (either before the start or via an interruption mid-race) but is concluded within 72 hours of the original scheduled start time, then all bets will stand.",
+            color: "black",
+          },
+          {
+            text: "Our exchange management decision will be the final decision.",
+            color: "black",
+          },
+          {
+            text: "Any query about the result should be contacted within 7 days of the specific event, the same will not be considered valid post 7 days from the event.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "BaseBall",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Rugby Union",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "Rugby League",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "Darts",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "American FootBall",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Snooker",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Match Odds: Predict which player will win the match. In the event of a match starting but not being completed, the player progressing to the next round or being awarded the victory will be deemed the winner for settlement purposes. In the event of a match not starting at all, all bets are refunded.",
+            color: "black",
+          },
+          {
+            text: "Frame Winner: If the nominated frame is not played, bets will be void. Similarly, if the nominated frame is awarded to a player without a shot being played, then all bets will be void.",
+            color: "black",
+          },
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation: Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. Provides this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accepts no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Boxing",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Soccer",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "E sports",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "GreyHound Racing",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    sportName: "Kabaddi",
+    rules: [
+      {
+        category: "Fancy",
+        description: [
+          {
+            text: "In any circumstances, management decision will be final related to all Fancy of kabaddi of our exchange.",
+            color: "black",
+          },
+          {
+            text: "All fancy bets will be validated when the match has been tied.",
+            color: "black",
+          },
+          {
+            text: "Result of individual player of fancy will be validated only when player plays that match.",
+            color: "black",
+          },
+          {
+            text: "In any case wrong rate has been given in fancy, that particular bet will be deleted.",
+            color: "black",
+          },
+          {
+            text: "For Playoffs, Final Result of 40 minutes of two halves will be valid in our exchange.",
+            color: "black",
+          },
+          {
+            text: "In case, the company detects Ground bets, Group betting, Punching bets, Multiple entries with the same IP or any fraud or unusual activities, the company will void winning bets and charge a penalty of 2X (Two times) from the winning amount.",
+            color: "red",
+          },
+          {
+            text: "If any player gets injured during the match, then all the bets will be valid for that individual player.",
+            color: "black",
+          },
+        ],
+      },
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example, in case of VPN/robot-use/multiple entries from the same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation: Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. Provides this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accepts no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+      {
+        category: "Bookmaker",
+        description: [
+          {
+            text: "In case, the company detects Ground bets, Group betting, Punching bets, Multiple entries with the same IP or any fraud or unusual activities, the company will void winning bets and charge a penalty of 2X (Two times) from the winning amount.",
+            color: "red",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "Boat Racing",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "Esoccer",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    sportName: "Beach VollyBall",
+    rules: [
+      {
+        category: "Match",
+        description: [
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example in case of VPN/robot-use/multiple entry from same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation :- Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. We provide this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accept no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
         ],
       },
     ],
@@ -662,930 +2960,63 @@ export const sportsRules = [
     sportName: "Table Tennis",
     rules: [
       {
-        category: "Match Odds",
-        description: [
-          "Predict which player will win the match. In the event of any of the named players in a match changing before the match starts, then all bets are void.",
-          "In the event of a match starting but not being completed, all bets will be void.",
-        ],
-      },
-      {
-        category: "Set Winner",
-        description: [
-          "The specified set must be completed for bets to stand unless the specific market outcome is already determined.",
-        ],
-      },
-      {
-        category: "Under / Over Points",
-        description: [
-          "For example, a game is abandoned at 9-7: bets on Over/Under 16.5 Game - Total Points are settled as winners/losers respectively, since any natural conclusion to the game would have yielded at least 18 points.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Basketball",
-    rules: [
-      {
-        category: "Match Odds",
-        description: [
-          "Predict which team will be the winner. There must be 5 minutes or less of scheduled game time left for bets to have action.",
-        ],
-      },
-      {
-        category: "Quarter Winner",
-        description: [
-          "The quarter must be completed for bets to have action, unless settlement of bets is already determined.",
-        ],
-      },
-      {
-        category: "1st Half Winner / 2nd Half Winner",
-        description: [
-          "The first half must be completed for first half bets to stand.",
-          "If a game is postponed or cancelled after the start, for game and second half bets there must be 5 minutes or less remaining for bets to have action, unless settlement of bets is already determined. (Including Overtime if played.)",
-        ],
-      },
-      {
-        category: "Highest Scoring Half",
-        description: [
-          "Predict in which half most points will be scored. OT is not included in 2nd Half.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Volleyball",
-    rules: [
-      {
         category: "Match",
         description: [
-          "Match odds: - Predict which team will be the winner. Bets will be void if the match is not completed.",
-        ],
-      },
-      {
-        category: "Set Winner",
-        description: [
-          "In the event of the set not being completed bets will be void. Exceptions are made for bets on sets that are already over, in this case, the bets will be settled.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Ice Hockey",
-    rules: [
-      {
-        category: "Match",
-        description: [
-          "Match Odds Including overtime/shootouts: - Predict the winner of the match including overtime and penalties. The game must be completed for bets to have action.",
-        ],
-      },
-      {
-        category: "Period Winner",
-        description: [
-          "Predict the winner of the relevant period. The relevant period must be completed for bets to have action unless the specific market outcome is already determined.",
-        ],
-      },
-      {
-        category: "Highest Scoring Period",
-        description: [
-          "If 2 or more periods have the same score Tie will be settled as the winner. (Exclude overtime/shootouts for settlement purposes)",
+          {
+            text: "Match odds: Predict which player will win the match. In the event of any of the named players in a match changing before the match starts, then all bets are void. In the event of a match starting but not being completed, all bets will be void.",
+            color: "black",
+          },
+          {
+            text: "Set Winner: The specified set must be completed for bets to stand, unless the specific market outcome is already determined.",
+            color: "black",
+          },
+          {
+            text: "Under / Over Points: For example, a game is abandoned at 9-7: bets on Over/Under 16.5 Game - Total Points are settled as winners/losers respectively, since any natural conclusion to the game would have yielded at least 18 points.",
+            color: "black",
+          },
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example, in case of VPN/robot-use/multiple entries from the same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation: Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. Provides this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accepts no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
         ],
       },
     ],
   },
-  {
-    sportName: "Football",
-    rules: [
-      {
-        category: "Bookmaker",
-        description: [
-          "If the match will not take place within 48 hours of the original kick-off time, bets will be void.",
-          "If the selection is in a multiple bet or accumulator, any refund must be requested before the kick-off of the first leg of the multiple bets.",
-          "Where a confirmed postponed match features as part of a multiple bet, the bet will stand on the remaining selections in the multiple.",
-          "Games that have their kick-off altered well in advance to accommodate live TV or to ease fixture congestion will not be classed as postponed.",
-          "If a match is forfeited or a team is given a walkover victory without the match having kicked off, then all bets will be void. Any subsequently awarded scoreline will not count for settlement purposes.",
-        ],
-      },
-      {
-        category: "Fancy",
-        description: [
-          "Tournament Total Goals, Team Total Goals FT: - Goals scored in 90 minutes or extra time will count. Goals scored in penalty shootouts do not count.",
-          "Tournament Corners - Only corners taken in 90 minutes count.",
-          "Tournament Penalties Missed/Converted - Penalties taken in 90 minutes, extra time, and penalty shootouts all count. If a penalty has to be re-taken, the previous disallowed penalty(ies) do not count.",
-        ],
-      },
-      {
-        category: "Match",
-        description: [
-          "Match Odds: - All bets apply to the relevant full 'regular time' period including stoppage time. Any extra-time and/or penalty shoot-out is not included.",
-          "For the cancellation of a goal, due to VAR, bets matched between the time of the goal being scored and the time at which the video assistant referee finishes the review will be voided.",
-          "For the cancellation of a red card, due to VAR, bets matched after the time at which the video assistant referee commences the review will be voided.",
-        ],
-      },
-      {
-        category: "Under_Over Goals",
-        description: [
-          "In the event of a match starting but not being completed, all bets will be void unless the specific market outcome is already determined.",
-        ],
-      },
-      {
-        category: "1st Period Winner",
-        description: [
-          "Bets will be void if the match is abandoned before half-time.",
-        ],
-      },
-      {
-        category: "Next Goal",
-        description: ["Own goals count to the side credited with the goal."],
-      },
-      {
-        category: "Draw No Bet",
-        description: [
-          "Predict which team will be the winner. In case of a draw, all bets will be void. If a game is abandoned, bets will be void.",
-          "Both Teams to Score: - Predict whether both teams will score at least one goal in the game. Own goals count towards the team credited with the goal. If a game is abandoned, bets will be void, unless the outcome of these bets is already determined. Yes” – meaning that both teams will score. “No” – means that either team will not score.",
-          "Total Corners: - Predict which team will take the named corner in the game. If this specific corner is not taken in the game, bets will be void. For example, the game finishes or is abandoned with 8 corners taken – all bets on any corner after the 8th will be void (9th, 10th, etc.)",
-          "Goals Odd/Even: - Any match resulting in 0-0 will be settled on an even number of goals. For Team Odd/Even markets, if the specified team does not score then we will settle on an even number of goals. In the event of an abandoned match then bets for that match will be void.",
-          "1X2 Corners: - Predict which team will get more corners in a match. Awarded, but not taken corners (there is a corner, but before it is taken the referee signals for the end of the first half or the match) will not count for settlement purposes. Also, if a corner needs to be re-taken for any reason, it will be counted as 1 corner",
-          "Under/Over Card in Match (Number of cards): - Predict the number of cards that will be shown in a match. If a player is sent off for 2 yellow cards, this counts as 2 yellow cards and 1 red card for betting purpose es. If the match is abandoned for any reason, all bets will be void unless the market is already determined, e.g., Team 1 over 2,5 yellow cards - 3 yellow cards awarded to Team 1 before abandonment is settled as a winner. Cards for non-players (already substituted players, managers, and players on the bench who are not substituted) are not considered. The settlement will be made concerning all available evidence to cards shown during the scheduled 90 minutes play. Any card shown after the full-time whistle-blow will be disregarded.",
-          "First Half Under/Over Goals: - How many goals will be scored in the first half of this match? All bets apply to Full Time according to the match officials, plus any stoppage time. Extra-time/penalty shoot-outs are not included.",
-          "Penalty Taken? : - Will a penalty be awarded and taken during this match? All bets apply to Full Time according to the match officials, plus any stoppage time. Extra-time/penalty shoot-outs are not included.",
-          "Correct Score: - Predict the score of this match. This market will not be partially settled during the fixture and will be fully settled full-time. All bets apply to Full Time according to the match officials, plus any stoppage time. Extra-time/penalty shoot-outs are not included.",
-          "Team A/B +1/2/3: - Who will win this match with the stated handicap applied? All bets apply to Full Time according to the match officials, plus any stoppage time. Extra-time/penalty shoot-outs are not included.",
-          "HT/FT: - Bets will be void if the match is abandoned. Extra-time and penalty shootouts do not count.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Tennis",
-    rules: [
-      {
-        category: "Match",
-        description: [
-          "Match Odds: - If 1st set has been not completed at the time of the retirement or disqualification, then all bets relating to that individual match will be void.",
-        ],
-      },
-      {
-        category: "Game Winner",
-        description: [
-          "Predict which player will win the stated game. The nominated game will be featured in the name of the bet type, for example, 2nd set – 7th game – Winner.",
-          "If a game is not completed for any reason, bets on it will be void. Tiebreak points will not be counted for this bet type unless the specific market outcome is already determined.",
-        ],
-      },
-      {
-        category: "Under / Over Games",
-        description: [
-          "Finished set stands; the unfinished set can be played to its natural conclusion and settled as in the example:",
-          "Example: A set is abandoned at 4-4. I win if I placed a bet on Over 9.5 (since any natural conclusion to the set would have at least 10 games); I lose the bet if I placed a bet on Under 9.5 (since any natural conclusion to the set would have at least 10 games); I get my stake back if I placed a bet on O/U 10.5 (it is undecided, the set could have ended 6-4).",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Snooker",
-    rules: [
-      {
-        category: "Match Odds",
-        description: [
-          "Predict which player will win the match. In the event of a match starting but not being completed, the player progressing to the next round or being awarded the victory will be deemed the winner for settlement purposes.",
-          "In the event of a match not starting at all, all bets are refunded.",
-        ],
-      },
-      {
-        category: "Frame Winner",
-        description: [
-          "If the nominated frame is not played, bets will be void.",
-          "Similarly, if the nominated frame is awarded to a player without a shot being played, then all bets will be void.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "E-Games",
-    rules: [
-      {
-        category: "Match",
-        description: [
-          "In the event of a match starting but not being completed, then all bets will be void.",
-        ],
-      },
-    ],
-  },
+
   {
     sportName: "Futsal",
     rules: [
       {
-        category: "Match Odds",
-        description: ["Bets will be void if the match is not completed."],
-      },
-      {
-        category: "Next Goal",
-        description: ["Predict which team will score the X-th goal."],
-      },
-      {
-        category: "1st Half Winner",
-        description: [
-          "Half bets will be settled at the end of the 1st half. In the event of the 1st half not being completed, bets will be void.",
-        ],
-      },
-      {
-        category: "Highest Scoring Half",
-        description: ["Predict in which event part will be scored most."],
-      },
-    ],
-  },
-  {
-    sportName: "Big Bash League",
-    rules: [
-      {
-        category: "Total Match 1st Over Run",
-        description: [
-          "Average 6 runs will be given if total 20 overs are not played. Only 1st innings will be considered as valid.",
-        ],
-      },
-      {
-        category: "Highest Innings Run",
-        description: ["Only the first innings is valid."],
-      },
-    ],
-  },
-  {
-    sportName: "Lunch Favourite",
-    rules: [
-      {
-        category: "Lunch Favourite Team",
-        description: [
-          "The team which is favourite at lunch will be considered as lunch favourite or the team which is favourite after the first inning last ball will be considered as lunch favourite in our exchange.",
-        ],
-      },
-      {
-        category: "Management Decision",
-        description: [
-          "In any circumstances management decision will be final.",
-        ],
-      },
-      {
-        category: "Tie in T20 or One Day",
-        description: [
-          "In case of a tie in T20 or one day in lunch favourite game, all bets will be deleted in our exchange.",
-        ],
-      },
-      {
-        category: "Reduced Overs",
-        description: [
-          "In case overs are reduced in a match, the team which is favourite at lunch will be considered as lunch favourite.",
-        ],
-      },
-      {
-        category: "Weather Interruption",
-        description: [
-          "In case of weather, 1st innings match overs are reduced and direct target is given to the team which will bat in the 2nd inning then lunch favourite will be considered after the target is given at lunch.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Bookmaker",
-    rules: [
-      {
-        category: "General Rules",
-        description: [
-          "Due to any reason, any team will be getting an advantage or disadvantage, and we are not concerned.",
-          "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example, in case of VPN/robot-use/multiple entries from the same IP/multiple bets at the same time (Punching) and others. Note: only winning bets will be voided.",
-          "Any query about the result or rates should be contacted within 7 days of the specific event; the same will not be considered valid post 7 days from the event.",
-          "If two teams end up with equal points, then the result will be given based on the official point table.",
-        ],
-      },
-      {
-        category: "Cricket-Specific Rules",
-        description: [
-          "We will simply compare both teams' 25 overs score; higher score team will be declared the winner in ODI (25 over comparison).",
-          "We will simply compare both teams' 10 overs score; higher score team will be declared the winner in T20 matches (10 over comparison).",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "CricketCasino",
-    rules: [
-      {
-        category: "Game Validity",
-        description: [
-          "Completed game is valid; in case due to rain overs are reduced or match abandoned, the particular game will be deleted.",
-        ],
-      },
-      {
-        category: "Penalty Runs",
-        description: [
-          "Helmet penalty run will be counted; rest other penalty runs will not be counted in the game of our exchange.",
-        ],
-      },
-      {
-        category: "Management Decision",
-        description: [
-          "In any circumstances, management decision will be final.",
-        ],
-      },
-      {
-        category: "Last Digit Rule",
-        description: [
-          "The last digit of the run in all games will be valid in our exchange.",
-        ],
-      },
-      {
-        category: "Single Last Digit Game",
-        description: [
-          "For example: 6 over run Ind: 47 runs, so the result will be given as 7 for single last digit game in our exchange.",
-        ],
-      },
-      {
-        category: "Double Last Digit Game",
-        description: [
-          "For example: 6 over run & 10 over run Ind: 45 runs & 83 runs respectively, so the result will be given as 53 for double last digit game in our exchange.",
-        ],
-      },
-      {
-        category: "Triple Last Digit Game",
-        description: [
-          "For example: 6 over run, 10 over run & 15 over run Ind: 43 runs, 80 runs, and 125 respectively, so the result will be given as 305 for triple last digit game in our exchange.",
-          "For example: 6 over run, 10 over run & Lambi run Ind: 43 runs, 80 runs, and 187 respectively, so the result will be given as 307 for triple last digit game in our exchange.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Fancy Market 1",
-    rules: [
-      {
-        category: "Odd/Even Rules",
-        description: [
-          "Advance events will be valid if overs are reduced before the match starts. For example: In T20, if overs are reduced to 16 overs, only up to 16 overs will be valid, and the remaining overs will be deleted.",
-          "All bets regarding Odd/Even sessions will be deleted if the particular session is incomplete. For example, if a team is all out in the 15.4th over, it will be considered as 16 overs completed, and the remaining overs will be deleted.",
-          "All bets regarding ODD/EVEN player/partnership are valid if one legal delivery is being played; otherwise, the bets will be deleted. Player odd/even advance bets will be valid if one legal delivery is being played in the match; otherwise, voided.",
-          "Innings run Odd/Even session will be valid if overs are reduced due to weather conditions.",
-          "In any circumstances, management decision will be final.",
-        ],
-      },
-      {
-        category: "Top Batsman Rules",
-        description: [
-          "If any player does not come as per the playing eleven, then all bets will be deleted for the particular player.",
-          "If two players score the same runs in a single match, both player settlements will be done at 50 percent (50%, 50%) rate on their original value given by our exchange.",
-          "Top batsman only 1st inning is valid.",
-          "For one day, 50 overs, and for T20 match, 20 overs must be played for the top batsmen; otherwise, all bets will be deleted.",
-        ],
-      },
-      {
-        category: "Man of the Match Rules",
-        description: [
-          "All bets will be deleted if the match is abandoned or over reduced.",
-          "All bets will be deleted if the mentioned player is not included in playing 11.",
-          "In case Man of the Match is shared between two players, then the Dead heat rule will be applicable. For example, K Perera and T Iqbal share the Man of the Match; then the settlement will be done 50% of the rates accordingly.",
-          "Rules similar to our Top Batsman rules.",
-        ],
-      },
-      {
-        category: "Maximum Sixes by Team",
-        description: [
-          "All bets will be deleted if the match is abandoned or over reduced.",
-          "All bets will be deleted if both teams hit the same number of sixes.",
-          "Super over will not be considered.",
-        ],
-      },
-      {
-        category: "Maximum 6 or 10 Over Runs",
-        description: [
-          "All bets will be deleted if the match is abandoned or over reduced.",
-          "All bets will be deleted if both teams' scores are the same (Runs scored in 6 or 10 overs).",
-          "6 overs for T20 and 10 overs for ODI.",
-          "Both innings are valid.",
-          "This fancy will be valid for the 1st 6 overs of both innings for T20 and the 1st 10 overs of both innings for ODI.",
-        ],
-      },
-      {
-        category: "Batsman Match",
-        description: [
-          "All bets will be deleted if any one of the mentioned players is not included in playing 11.",
-          "All bets will be deleted unless one ball is being played by both the mentioned players.",
-          "All bets will be deleted if overs are reduced or match abandoned.",
-          "All bets will be deleted if both players score the same run. For example, H Amla and J Bairstow are the batsman matched; both scored 38 runs, then all bets will be deleted.",
-          "Both innings will be valid.",
-        ],
-      },
-      {
-        category: "Opening Pair",
-        description: [
-          "Bets for Favourite opening pair from the two mentioned opening pair.",
-          "Runs made by both the opening player will be added. For example: J Roy scored 20 runs and J Bairstow scored 30 runs; result will be 50 runs.",
-          "Highest run made by the pair will be declared as winner. For example: Opening pair ENG total is 70 runs and Opening pair SA is 90 runs, then SA 90 runs will be declared as winner.",
-          "Both innings will be valid.",
-        ],
-      },
-      {
-        category: "Our Exchange Special",
-        description: [
-          "All bets will be deleted if the mentioned player is not included in playing 11.",
-          "All bets will be deleted if the match is abandoned or over reduced.",
-          "Both innings will be valid.",
-        ],
-      },
-      {
-        category: "Direction of First Boundary",
-        description: [
-          "All bets will be deleted if the mentioned batsman is not included in playing 11.",
-          "All bets will be deleted if the match is abandoned or over reduced.",
-          "The boundary hit through off side of the stump will be considered as off side four.",
-          "The boundary hit through leg side of the stump will be considered as leg side four.",
-          "Boundaries through extras (byes, leg byes, wide, overthrow) will not be considered as valid.",
-          "Only 1st Inning will be considered.",
-        ],
-      },
-      {
-        category: "Fifty & Century by Batsman",
-        description: [
-          "All bets will be deleted if the match is abandoned or over reduced.",
-          "All bets will be deleted if the mentioned batsman is not included in playing 11.",
-          "All bets will be deleted unless the batsman faces one legal ball.",
-          "Both Innings will be valid.",
-        ],
-      },
-      {
-        category: "1st Over Fancy",
-        description: [
-          "Boundaries through extras (byes, leg byes, wide, overthrow) will not be considered.",
-          "Only 1st inning will be valid.",
-        ],
-      },
-      {
-        category: "Odd Even Fancy",
-        description: [
-          "Incomplete games will be deleted. Over reduced or abandoned, all bets will be deleted.",
-          "For example: 275 run SL bhav must be played 50 over if rain comes or any condition; otherwise, 275 run SL bets will be deleted.",
-        ],
-      },
-      {
-        category: "Next Man Out",
-        description: [
-          "Next man out fancy advance & in regular. Both innings will be valid.",
-          "If any player does not come in the opening then all bets will be deleted.",
-          "If overs reduced or abandoned then all bets will be deleted.",
-        ],
-      },
-      {
-        category: "Caught Out",
-        description: [
-          "Caught out fancy in advance & in regular. Both innings will be valid.",
-          "If overs reduced or match abandoned then all bets will be deleted.",
-        ],
-      },
-      {
-        category: "Wkt & All Out Fancy",
-        description: [
-          "5 wkt in 10 over & All out in 20 over fancy is valid for both innings.",
-          "If match abandoned or over reduced, all bets will be deleted.",
-        ],
-      },
-      {
-        category: "Test Match: Game Completed Fancy",
-        description: [
-          "This is the fancy for the match to be won/completed in which day & session (Completed: Game has to be completed).",
-          "If the match is drawn then all the sessions will be considered as lost.",
-        ],
-      },
-      {
-        category: "Meter Fancy",
-        description: [
-          "In case match abandoned or over reduced, mid-point rule will be applicable.",
-          "For example: If Dhoni meter is 75 / 77 and the match abandoned or over reduced, then the result will be 76.",
-          "In case of a single difference, the result will be given for the higher rate of the final rate (e.g., 53/54) and match gets abandoned then the result will be given as 54.",
-          "Midpoint rule is applicable for a test match also. However, for lambi meter/ inning meter, 70 overs have to be played only then the same will be considered as valid.",
-        ],
-      },
-      {
-        category: "Maximum Boundaries",
-        description: [
-          "If the number of fours or sixes of both the team is equal, then all bets of the respective event will get voided.",
-        ],
-      },
-      {
-        category: "Khado: Test",
-        description: [
-          "Minimum 70 overs have to be played by the particular team only then the Khado of the team will be considered as valid, else the same will be voided.",
-        ],
-      },
-      {
-        category: "Common Market",
-        description: [
-          "In the future, if any circumstances happen like a covid issue, natural disasters, or any reasons series will be postponed or canceled then at that moment, the result will be given to the difference of opening rate to present rate.",
-          "Due to any reasons, the company has rights to take final decisions.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Football Fancy",
-    rules: [
-      {
-        category: "Tournament Total Goals",
-        description: [
-          "Goals scored in 90 minutes or in extra-time will count.",
-          "Goals scored in penalty shootouts do not count.",
-        ],
-      },
-      {
-        category: "Tournament Corners",
-        description: ["Only corners taken in 90 minutes count."],
-      },
-      {
-        category: "Tournament Penalties Missed/Converted",
-        description: [
-          "Penalties taken in 90 minutes, extra-time, and penalty shootouts all count.",
-          "If a penalty has to be re-taken, the previous disallowed penalty(ies) do not count.",
-        ],
-      },
-      {
-        category: "Match Odds",
-        description: [
-          "All bets apply to the relevant full 'regular time' period, including stoppage time.",
-          "Any extra-time and/or penalty shoot-out is not included.",
-          "For the cancellation of a goal, due to VAR, bets matched between the time of the goal being scored and the time at which the video assistant referee finishes the review will be voided.",
-          "For the cancellation of a red card, due to VAR, bets matched after the time at which the video assistant referee commences the review will be voided.",
-        ],
-      },
-      {
-        category: "Corners Number/Odds",
-        description: [
-          "How many corners will be taken in the match?",
-          "Only corners that are taken will be counted.",
-          "All bets apply to Full Time according to the match officials, plus any stoppage time.",
-          "Extra-time/penalty shoot-outs are not included.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "IPL",
-    rules: [
-      {
-        category: "General Rules",
-        description: [
-          "If IPL fixture of 74 matches gets reduced due to any reason, then all the special fancies will be voided (Match abandoned due to rain/bad light will not be considered in this)",
-          "Management decision will be final",
-        ],
-      },
-      {
-        category: "Total 1st Over Runs",
-        description: [
-          "Average 5 runs will be given in case match abandoned or over reduced (only 1st innings valid)",
-        ],
-      },
-      {
-        category: "Total 1st 6 Over Run",
-        description: [
-          "Average 46 runs will be given in case match abandoned or over reduced (Only 1st Innings valid)",
-        ],
-      },
-      {
-        category: "Total Fours",
-        description: [
-          "Average 25 fours will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total Sixes",
-        description: [
-          "Average 13 sixes will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total Wickets",
-        description: [
-          "Average will 12 Wickets be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total Wides",
-        description: [
-          "Average 8 wides will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total Extras",
-        description: [
-          "Average 17 extras will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total Fifties",
-        description: [
-          "Average 2 fifties will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total Caught Outs",
-        description: [
-          "Average 8 caught out will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total Bowled Outs",
-        description: [
-          "Average 2 bowled out will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total LBW",
-        description: [
-          "Average 1 LBW will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total Run Out",
-        description: [
-          "Average 1 Run out will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Total No Ball",
-        description: [
-          "Average 1 No ball will be given in case match abandoned or over reduced",
-        ],
-      },
-      {
-        category: "Result and Cancellation",
-        description: [
-          "At any situation if the result is given for any particular event based on the rates given for the same, then the particular result will be considered valid, similarly if the tournament gets canceled due to any reason the previously given result will be considered valid",
-        ],
-      },
-      {
-        category: "How Many Matches Win by a Team",
-        description: [
-          "Only valid for league stage matches. Ex. For CSK, How many matches CSK win during league stages only considered. Playoffs matches not considered in this.",
-        ],
-      },
-      {
-        category: "Most 4's by Individual Batsman of IPL",
-        description: [
-          "Maximum Number of Fours Hit By A Batsman in the full Tournament. Ex. Last Season (2021) R Gaikwad Hit 64 Fours in 16 Matches. So, 64 was the Result for the last season.",
-        ],
-      },
-      {
-        category: "Most 4's by Individual Batsman in an Inning of IPL",
-        description: [
-          "Maximum Number of Fours Hit By A Batsman in one Innings. Ex. Last Season (2021) S Yadav Hit 13 Fours in the 55th league Match. So, 13 was the Result for the last season.",
-        ],
-      },
-      {
-        category: "Most 6's by Individual Batsman of IPL",
-        description: [
-          "Maximum Number of Sixes Hit By A Batsman in the full Tournament. Ex. Last Season (2021) KL Rahul Hit 30 Sixes in 13 Matches. So, 30 was the Result for the last season.",
-        ],
-      },
-      {
-        category: "Most 6's by Individual Batsman in an Inning of IPL",
-        description: [
-          "Maximum Number of Sixes Hit By A Batsman in one Innings. Ex. Last Season (2021) K Pollard Hit 8 Sixes in the 27th league Match. So, 8 was the Result for the last season.",
-        ],
-      },
-      {
-        category: "Most Runs Given by Bowler in an Inning of IPL",
-        description: [
-          "Maximum How much Runs conceded by an individual Bowler in an Innings. Ex: Last Season (2021) L Ngidi conceded 62 runs in 4 overs of the 27th Match. So, 62 was the Result for the last season.",
-        ],
-      },
-      {
-        category: "Most Wickets by Bowler in an Inning of IPL",
-        description: [
-          "Maximum How much Wickets taken by an individual Bowler in an Innings. Ex: Last Season (2021) H Patel took 5 wickets in the 1st Match. So, 5 was the Result for the last season.",
-        ],
-      },
-      {
-        category: "Most 50's by Individual Batsman of IPL",
-        description: [
-          "Maximum Number of Fifties Hit By A Batsman in the full Tournament. Ex. Last Season (2021) Faf duPlessis Hit 6 fifties in 16 Matches. So, 6 was the Result for the last season.",
-        ],
-      },
-      {
-        category: "Highest Total Runs in Individual Match of IPL",
-        description: [
-          "Maximum total runs of both Teams in an individual match. Ex. Last Season (2021) RR vs PBKS match both teams Total runs 438 (4th League Match). So, 438 was the Result for the Last Season.",
-        ],
-      },
-      {
-        category: "Highest Innings Run",
-        description: ["Both innings are valid"],
-      },
-      {
-        category: "Lowest Innings Run",
-        description: ["Only the first innings is valid"],
-      },
-      {
-        category: "Highest Over Run",
-        description: ["Both innings are valid"],
-      },
-      {
-        category: "Highest Match 1st Over Run in Individual Match",
-        description: ["Only the first innings is valid"],
-      },
-      {
-        category: "Highest Fours in Individual Match",
-        description: ["Both innings are valid"],
-      },
-      {
-        category: "Highest Sixes in Individual Match",
-        description: ["Both innings are valid"],
-      },
-      {
-        category: "Highest Extras in Individual Match",
-        description: ["Both innings are valid"],
-      },
-      {
-        category: "Highest Wicket in Individual Match",
-        description: ["Both innings are valid"],
-      },
-      {
-        category: "Highest 6 Over Run",
-        description: [
-          "Both innings are valid",
-          "Super over will not be included",
-        ],
-      },
-      {
-        category: "Fastest Fifty",
-        description: [
-          "In fastest fifty always the first 50 runs will be considered, for example, if R Sharma scores 1st fifty in 17 balls and scores 100 in next 14 balls, fastest 50 will be given based on the balls for the 1st fifty runs",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Kabaddi",
-    rules: [
-      {
-        category: "General Rules",
-        description: [
-          "In any circumstances, management decision will be final related to all Fancy of kabaddi of our exchange.",
-          "All fancy bets will be validated when the match has been tied.",
-          "The results Result of individual player of fancy will be validated only when the player plays that match.",
-          "In any case wrong rate has been given in fancy that particular bets will be deleted.",
-        ],
-      },
-      {
-        category: "Playoffs Final Result",
-        description: [
-          "For Playoffs, Final Result Of 40 Minutes Of Two Halves Will Be Valid In Our Exchange",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "World Cup",
-    rules: [
-      {
-        category: "General Rules",
-        description: [
-          "In case of any circumstances, management decision will be final for all the fancies under the World Cup.",
-          "If World Cup fixture of 48 matches gets reduced due to any reason, then all the special fancies will be voided (Match abandoned due to rain/bad light will not be considered in this).",
-          "Super over will not be included.",
-          "At any situation, if the result is given for any particular event based on the rates given for the same, then the particular result will be considered valid. Similarly, if the tournament gets canceled due to any reason, the previously given result will be considered valid.",
-        ],
-      },
-      {
-        category: "Match 1st Over Run",
-        description: [
-          "This fancy is valid only for the first innings of the match.",
-          "Average 4 runs will be given in case of match abandoned or the entire 50 over is not played.",
-        ],
-      },
-      {
-        category: "Highest Inning Run",
-        description: [
-          "This fancy is valid only for the first innings of the match.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Khado",
-    rules: [
-      {
-        category: "General Rules",
-        description: [
-          "Only the first inning is valid for T20 and one day matches.",
-          "Same will work like Lambi. If the match is abandoned or over reduced, all bets will be deleted.",
-          "You can choose your own value in this event.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Election",
-    rules: [
-      {
-        category: "General Rules",
-        description: [
-          "The final result declared by the Election Commission of India for Loksabha election 2019 will be valid in our exchange.",
-          "Accidental issues during Loksabha election 2019 will not be counted in our exchange.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Fancy",
-    rules: [
-      {
-        category: "General",
-        description: [
-          "All fancy bets will be validated when the match has been tied.",
-          "All advance fancy will be suspended before toss or weather condition. All advance fancy will be voided if overs are reduced before the match starts.",
-          "In case of a technical error or any circumstances where any fancy is suspended and does not resume, results will be given and all previous bets will be valid (based on haar/jeet).",
-          "If a wrong rate has been given in fancy, those particular bets will be cancelled.",
-          "In any circumstance, management decision will be final related to all exchange items. Our scorecard will be considered as valid if there is any mismatch in the online portal.",
-          "If a customer makes bets in the wrong fancy, we are not liable to delete, no changes will be made, and bets will be considered as confirm bets.",
-          "Due to any technical error, if the market is open and the result has come, all bets after the result will be deleted.",
-          "Manual bets are not accepted in our exchange.",
-          "Our exchange will provide a 5-second delay in our TV.",
-          "The company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example, in case of VPN/robot-use/multiple entries from the same IP/multiple bets at the same time (Punching) and others. Note: only winning bets will be voided. For example, if we find such entries (above mentioned) from any ID and their bets are (200000 lay in a 6 over session for the rate 40 and 200000 back for the rate of 48) and the actual score is 38, bets of 40 lay will be voided, and the bets for 48 back will be considered valid.",
-          "The company reserves the right to void any bets (only winning bets) of any event at any point of the match if the company believes there is any cheating/wrong doing in that particular event by the players (either batsman/bowler).",
-          "Once our exchange gives a username and password, it is your responsibility to change the password.",
-          "Penalty runs will not be counted in any fancy.",
-          "Warning: live scores and other data on this site are sourced from third-party feeds and may be subject to time delays and/or be inaccurate. If you rely on this data to place bets, you do so at your own risk. Our exchange does not accept responsibility for loss suffered as a result of reliance on this data.",
-          "Traders will block the user ID if any misinterpret activities are found. No queries accepted regarding this.",
-          "Our exchange is not responsible for misuse of client ID.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Match",
-    rules: [
-      {
-        category: "Tennis Match Odds",
-        description: [
-          "If the 1st set has not been completed at the time of the retirement or disqualification, then all bets relating to that individual match will be void.",
-        ],
-      },
-      {
-        category: "Football Match Odds",
-        description: [
-          "All bets apply to the relevant full 'regular time' period including stoppage time. Any extra-time and/or penalty shoot-out is not included.",
-          "For the cancellation of a goal, due to VAR, bets matched between the time of the goal being scored and the time at which the video assistant referee finishes the review will be voided.",
-          "For the cancellation of a red card, due to VAR, bets matched after the time at which the video assistant referee commences the review will be voided.",
-        ],
-      },
-      {
-        category: "Football Under/Over Goals",
-        description: [
-          "In the event of a match starting but not being completed, all bets will be void unless the specific market outcome is already determined.",
-        ],
-      },
-      {
-        category: "All sports",
-        description: [
-          "The company reserves the right to suspend/void any ID/bets if the same is found to be illegitimate. For example, in case of VPN/robot-use/multiple entry from the same or different IP and others. Note: only winning bets will be voided.",
-        ],
-      },
-      {
-        category: "Badminton Match Odds",
-        description: [
-          "Predict which player will win the match. In the event of any of the named players in a match changing before the match starts, then all bets are void.",
-          "In the event of a match starting but not being completed, then all bets will be void.",
-        ],
-      },
-      {
-        category: "Badminton Set Winner",
-        description: [
-          "The set must be completed for bets to stand unless the specific market outcome is already determined.",
-        ],
-      },
-    ],
-  },
-  {
-    sportName: "Binary",
-    rules: [
-      {
-        category: "General Rules",
-        description: [
-          "All session's bets will be confirmed at market rate only.",
-          "All session's settlement price means the result can be checked from the exchange's official sites.",
-          "All session's result will be the settlement price provided by the exchange after market close.",
-          "Every product has two types of prices SPOT and FUTURE. We provide only near month's FUTURE price in Binary Session. You can check it from the official website of that product.",
-        ],
-      },
-      {
-        category: "Session Timings",
-        description: [
-          "NFY, B-NFY, AXS, ICI, RIL, SBI, TT STL - Monday to Friday 10:00 a.m. to 2:30 p.m.",
-          "GOLD, SILVER, CRUDE - Monday to Friday 11:30 a.m. to 10:30 p.m.",
-          "CMX CRUDE, DOWJONES, NASDAQ, SNP - Monday to Friday 7:30 p.m. to 12:00 a.m.",
-        ],
-      },
-      {
-        category: "Betting Rules",
-        description: [
-          "Same bets same time from multiple IDs not allowed.",
-          "Operating and market making bets (cheating/line/chamka bets) are not allowed.",
-          "If any case wrong rate has been given in fancy that particular bet will be cancelled.",
-          "Deleted bets will be removed under 24 hours, and clients will be notified.",
+        category: "Match",
+        description: [
+          {
+            text: "Match Odds: Bets will be void if the match is not completed.",
+            color: "red",
+          },
+          {
+            text: "Next Goal: Predict which team will score the X-th goal.",
+            color: "black",
+          },
+          {
+            text: "1st Half Winner: Half bets will be settled at the end of the 1st half. In the event of a 1st half not being completed, bets will be void.",
+            color: "black",
+          },
+          {
+            text: "Highest Scoring Half: Predict in which Event Part will be scored most.",
+            color: "black",
+          },
+          {
+            text: "Company reserves the right to suspend/void any id/bets if the same is found to be illegitimate. For example, in case of VPN/robot-use/multiple entries from the same or different IP and others. Note: only winning bets will be voided.",
+            color: "red",
+          },
+          {
+            text: "For live streaming and animation: Although the current score, time elapsed, video, and other data provided on this site is sourced from 'live' feeds provided by third parties, you should be aware that this data may be subject to a time delay and/or be inaccurate. Please also be aware that other customers may have access to data that is faster and/or more accurate than the data shown on the site. If you rely on this data to place bets, you do so entirely at your own risk. Provides this data AS IS with no warranty as to the accuracy, completeness, or timeliness of such data and accepts no responsibility for any loss (direct or indirect) suffered by you as a result of your reliance on it.",
+            color: "black",
+          },
         ],
       },
     ],
@@ -1797,6 +3228,120 @@ export const casinoIcons = [
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
     name: "Lucky 7 - A",
   },
+
+
+];
+export const liveCasinoGameList = [
+  "AVIATORX",
+  "Aviator Blue",
+  "Muflis Teenpatti One Day",
+  "Lankesh",
+  "Ball By Ball",
+  "Super Over",
+  "Race 20-20",
+  "Casino Queen",
+  "5Five Cricket",
+  "Andar Bahar 2",
+  "20-20 Dragon Tiger 2",
+  "Baccarat 2",
+  "Dragon Tiger Vivo",
+  "Bacarrat",
+  "Sic Bo",
+  "Roulette",
+  "Poker",
+  "Lucky7",
+  "Andar Bahar",
+  "Teenpatti One Day",
+  "32 Cards A",
+  "DTL",
+  "Amar Akbar Anthony",
+  "3 Cards Judgement",
+  "Queen",
+  "Race 20",
+  "Casino War",
+  "Worli Matka",
+  "Lottery",
+  "Muflis Teenpatti",
+  "Test Teenpatti",
+  "TRAP",
+  "Trio",
+  "29 Baccarat",
+  "Two Card Teenpatti One Day",
+  "Foot Ball Studio",
+  "Bollywood Casino B",
+  "Poker 1 day",
+  "Teenpatti 20 20",
+  "Super Over",
+  "5 Five Cricket",
+  "1 Day Dragon Tiger",
+  "Dus ka Dum",
+  "One Card 20-20",
+  "One Card Meter",
+  "One Card One Day",
+  "Six Player Poker",
+  "INSTANT 2 CARDS TEENPATTI",
+  "Race to 17",
+  "Note number",
+  "Cricket 2020",
+  "Race to 2nd",
+  "Open Teen patti",
+  "Center card One day",
+  "High Low",
+  "Baccarat One Day",
+  "10 - 10 cricket ",
+  "Dragon Tiger 2",
+  "V-Lucky 7",
+  "V-Trio",
+  "V-20-20 DTL",
+  "V-Mulfis Teenpatti",
+  "V-Bollywood Casino",
+  "V-Amar Akbar Anthony",
+  "V-Dragon Tiger",
+  "V-Casino Meter",
+  "V-20-20 Teenpatti",
+  "V-32 Cards",
+  "V-Super over",
+  "V-Andar Bahar",
+  "V-2 Card TP",
+  "V-Queen Race",
+  "V-Poker",
+  "V-Race T20",
+  "V-Auto Roulette",
+  "V-High low",
+  "V-Worli Matka",
+  "V-29 card bacarrat",
+  "Crash",
+  "Diamonds",
+  "Dice",
+  "Hilo",
+  "Limbo",
+  "Mines",
+  "Plinko",
+  "X-Roulette",
+  "Baccarat",
+  "Lucky 7 - B",
+  "20-20 Cricket Match",
+  "Casino Meter",
+  "Casino War",
+  "20-20 DTL",
+  "Test Teenpatti",
+  "Open Teenpatti",
+  "1 Day Teenpatti",
+  "20-20 Teenpatti",
+  "6 Player Poker",
+  "1 Day Poker",
+  "20-20 Poker",
+  "Andar Bahar",
+  "Worli Matka",
+  "Instant Worli",
+  "3 Cards Judgement",
+  "32 Cards A",
+  "32 Cards B",
+  "Amar Akbar Anthony",
+  "Bollywood Casino",
+  "20-20 Dragon Tiger",
+  "1 Day Dragon Tiger",
+  "Lucky 7 - A"
 ];
 
 export const card3 = {

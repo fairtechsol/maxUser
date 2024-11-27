@@ -2,7 +2,7 @@ name: Deploy fairgame
 on:
   push:
     branches:
-      - newLatest
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest

@@ -3,27 +3,34 @@
 
 // Define your styles using variables
 .topbar-link {
-  text-wrap: wrap;
   text-align: center;
+  position: relative;
   text-wrap: nowrap;
+
   &::before {
     content: "";
     position: absolute;
+    bottom: -2px;
     left: 50%;
     right: 50%;
-    bottom: 0;
+    // top: 1px;
+    height: 1.5px;
     background: $white;
-    height: 2px;
     transition: left 0.3s ease-out, right 0.3s ease-out;
   }
 
-  &:hover {
-    color: $white;
-    position: relative;
-
+  &:hover:not(.active) { 
+    color: none;
     &::before {
-      left: 0;
+      left: 0; 
       right: 0;
+    }
+  }
+
+  &.active {
+    color: none; 
+    &::before {
+      content: none;
     }
   }
 }

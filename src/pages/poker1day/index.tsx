@@ -85,8 +85,8 @@ const Poker1day = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker1Day));
       dispatch(getDragonTigerDetail(cardGamesType.poker1Day));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker1Day));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.poker1Day);
         socketService.card.getCardRatesOff(cardGamesType.poker1Day);
@@ -105,6 +105,7 @@ const Poker1day = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.poker1Day));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.poker1Day));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

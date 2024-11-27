@@ -1,13 +1,21 @@
 import { Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
 import CommonTabs from "../../commonComponent/tabs";
 import LatestEvent from "../latestEvents";
 import MobileMatchList from "../matchList/mobile";
 import SportsFilterJson from "./sportsFilters.json";
+import { useDispatch } from "react-redux";
+import { liveCasinoList } from "../../../store/actions/cards/cardDetail";
 
 const SportsFilters = ({ type, setMatchType, matchType }: any) => {
+  const dispatch: AppDispatch = useDispatch();
   const { tabList } = useSelector((state: RootState) => state.match.matchList);
+  const handleClick = (data: any) => {
+    if (data?.onClick) {
+      dispatch(liveCasinoList(""));
+    }
+  };
   return (
     <div className="m-0 p-0 w-100 ">
       <LatestEvent events={tabList} />
@@ -32,10 +40,10 @@ const SportsFilters = ({ type, setMatchType, matchType }: any) => {
             <Tab
               key={item?.id}
               eventKey={item?.id}
-              tabClassName="m-tab"
+              tabClassName="m-tab px-0"
               title={
                 <span>
-                  <span style={tabTitleStyle}>{item?.name}</span>
+                  <span style={tabTitleStyle} onClick={()=> handleClick(item)}>{item?.name}</span>
                 </span>
               }
             ></Tab>

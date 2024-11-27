@@ -23,7 +23,7 @@ import axios from "axios";
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
   const { rulesPopShow } = useSelector((state: RootState) => state.auth);
-  const { bannerImage } = useSelector((state: RootState) => state.user.profile);
+  //const { bannerImage } = useSelector((state: RootState) => state.user.profile);
   const [matchType, setMatchType] = useState("cricket");
   const [show, setShow] = useState(false);
 
@@ -161,10 +161,10 @@ const Home = () => {
   return (
     <div>
       <MatchList setMatchType={setMatchType} matchType={matchType} />
-
       <ImageModal
         customClass={isMobile ? "" : "modalFull-56 rule-popup"}
-        show={show && bannerImage}
+        //show={show && bannerImage}
+        show={show}
         setShow={popUpClose}
       />
     </div>

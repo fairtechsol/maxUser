@@ -85,8 +85,8 @@ const DragonTigerOneDay = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay));
       dispatch(getDragonTigerDetail(cardGamesType.dragonTigerOneDay));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.dragonTigerOneDay);
         socketService.card.getCardRatesOff(cardGamesType.dragonTigerOneDay);
@@ -105,6 +105,7 @@ const DragonTigerOneDay = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.dragonTigerOneDay));
         dispatch(
           getDragonTigerDetailHorseRacing(cardGamesType.dragonTigerOneDay)
         );

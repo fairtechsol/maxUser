@@ -16,6 +16,7 @@
 
 .rule-popup .custom-nav .nav-item {
   border-bottom: 1px solid $primary;
+  justify-content: center;
 }
 
 .rule-popup .rule-popup-heading {
@@ -28,3 +29,66 @@
   align-items: center;
 }
 
+@media only screen and (max-width: 767px) {
+ .rules-left-sidebar {
+      width: 100%;
+      min-height: unset;
+      margin-top: 5px;
+  }
+}
+
+.rules-left-sidebar {
+  background-color: #cccccc;
+  width: auto;
+  color: black;
+  min-height: 35px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-bottom: 1px solid black;
+}
+
+@media only screen and (max-width: 767px) {
+  .rules-left-sidebar .navvv {
+      flex-wrap: nowrap !important;
+      overflow: auto;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .rules-left-sidebar .navvv .nav-itemmm {
+      width: auto;
+      flex: 1 1 auto;
+      white-space: nowrap;
+  }
+}
+
+.navvv {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  height: 34px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.rules-left-sidebar .navvv .nav-itemmm a {
+  color: black;
+}
+
+.scrollable-container-1 {
+  max-height: calc(98vh - 220px);
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+}
+
+.nav-itemmm.active {
+  background-color: #004a25; 
+  color: white;
+}
+
+.nav-itemmm.active .nav-linkss {
+  color: white !important; 
+}

@@ -27,7 +27,7 @@ const ScoreBoardPage = () => {
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
-        src={`${scoreBoardUrlMain}${vidId}&sportid=${sportsId}`}
+        src={`${scoreBoardUrlMain}${vidId}/${sportsId}`}
         frameBorder="0"
         // allow="autoplay; fullscreen"
         // allowFullScreen

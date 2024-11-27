@@ -108,7 +108,6 @@ const OtherMarket = ({ title, box, data, detail }) => {
           "_" +
           detail?.id
       ];
-  console.log(detail?.profitLossDataMatch, "data", data?.type);
   return (
     <>
       <div className="otherMarketContainer">
@@ -248,8 +247,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 : "otherMarket2RateBox rateBoxWidth2"
             }
           >
-            {(data?.activeStatus !== "live" ||
-              data?.runners?.[0]?.status !== "ACTIVE") && (
+            {(data?.runners?.[0]?.status !== "OPEN" &&
+              data?.runners?.[0]?.status !== "ACTIVE" &&
+              data?.runners?.[0]?.status !== "") && (
               <div className="suspended-overlayRatesotherMarket">
                 <span
                   className={`suspendTextCmmn`}
@@ -419,8 +419,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                 : "otherMarket2RateBox rateBoxWidth2"
             }
           >
-            {(data?.activeStatus !== "live" ||
-              data?.runners?.[1]?.status !== "ACTIVE") && (
+            {(data?.runners?.[1]?.status !== "OPEN" &&
+              data?.runners?.[1]?.status !== "ACTIVE" &&
+              data?.runners?.[1]?.status !== "") && (
               <div className="suspended-overlayRatesotherMarket">
                 <span
                   className={`suspendTextCmmn`}
@@ -577,8 +578,9 @@ const OtherMarket = ({ title, box, data, detail }) => {
                   : "otherMarket2RateBox rateBoxWidth2"
               }
             >
-              {(data?.activeStatus !== "live" ||
-                data?.runners?.[2]?.status !== "ACTIVE") && (
+              {(data?.runners?.[2]?.status !== "OPEN" &&
+              data?.runners?.[2]?.status !== "ACTIVE" &&
+              data?.runners?.[2]?.status !== "") && (
                 <div className="suspended-overlayRatesotherMarket">
                   <span
                     className={`suspendTextCmmn`}

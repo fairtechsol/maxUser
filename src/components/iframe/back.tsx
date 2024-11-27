@@ -13,7 +13,6 @@ import "./style.scss";
 // }
 
 const Iframe = ({ data }: any) => {
-  console.log("Mdaaata", data?.data);
   return (
     <>
       {!isMobile ? (

@@ -17,7 +17,7 @@ import RunBoxTable from "../runBoxTable";
 import { useState } from "react";
 // import { getRunAmount } from "../../../../store/actions/betPlace/betPlaceActions";
 import { useSelector } from "react-redux";
-import Desktop from "../../../rules/categoryRules/desktop";
+import Desktop from "../../../rules/desktop";
 import Mobile from "../../../rules/mobile";
 
 interface SessionMarketTableProps {

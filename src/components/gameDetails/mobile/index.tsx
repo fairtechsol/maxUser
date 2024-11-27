@@ -12,7 +12,6 @@ import BetTableHeader from "../../commonComponent/betTableHeader";
 import CommonTabs from "../../commonComponent/tabs";
 import Iframe from "../../iframe/iframe";
 import Bookmaker from "../bookmaker";
-import DynamicMarket from "../dynamicMarkets";
 import ManualMarket from "../manulMarkets";
 import MatchOdd from "../matchOdd";
 import OtherMarket from "../otherMarket";

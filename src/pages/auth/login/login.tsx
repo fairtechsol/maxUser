@@ -20,7 +20,7 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { loginValidationSchema } from "../../../utils/fieldValidations/auth";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
-
+import { getBannerImage } from "../../../store/actions/user/userAction";
 const Login = () => {
   const initialValues: any = {
     userName: "",
@@ -46,6 +46,10 @@ const Login = () => {
   const { handleSubmit, touched, errors } = formik;
 
   useEffect(() => {
+    dispatch(getBannerImage(isMobile ? "mobile" : "desktop"));
+  }, []);
+
+  useEffect(() => {
     if (success) {
       if (forceChangePassword) {
         sessionStorage.setItem("forceChangePassword", "true");
@@ -57,6 +61,13 @@ const Login = () => {
       dispatch(authReset());
     }
   }, [success]);
+
+  // useEffect(() => {
+  //   if (isBanner) {
+  //     console.log("isBanner", isBanner);
+  //     navigate("/home");
+  //   }
+  // }, [isBanner]);
 
   return (
     <Form

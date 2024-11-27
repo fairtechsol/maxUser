@@ -30,6 +30,12 @@
     "type": "any"
   },
   {
+    "id": "liveCasinoBets",
+    "name": "Live Casino Bets",
+    "link": "/live-casino-bets",
+    "type": "any"
+  },
+  {
     "id": "setButtonValues",
     "name": "Set Button Values",
     "link": "/change-btn-value",

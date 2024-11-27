@@ -751,6 +751,12 @@ body select {
 .m-b-30 {
   margin-bottom: 30px;
 }
+.provider-modal{
+  --bs-modal-width: 90vw;
+}
+.provider-modal-m{
+  --bs-modal-width: 100vw;
+}
 .div-figure img {
   -webkit-transition: transform 0.5s linear;
   transition: transform 0.5s linear;
@@ -1597,3 +1603,21 @@ img {
     color-adjust: exact;
 }
 
+.bg-tab {
+  background-color: #0088cca5 !important;
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: "0px 10px";
+    overflow-x: auto;
+    flex-wrap: nowrap;
+}
+
+.man-tab{
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.bg-tabmob {
+  background-color: #0088cca5 !important;
+}

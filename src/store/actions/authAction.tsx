@@ -22,8 +22,9 @@ export const login = createAsyncThunk<any, LoginData>(
     try {
       const { data } = await service.post(`${ApiConstants.LOGIN}`, requestData);
       if (data) {
-        const { token } = data;
+        const { token, userId } = data;
         sessionStorage.setItem("jwtMaxUser", token);
+        sessionStorage.setItem("key", userId);
         return data;
       }
     } catch (error) {

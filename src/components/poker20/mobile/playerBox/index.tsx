@@ -26,7 +26,6 @@ const PlayerTable = ({ title,odds, data, playerNum }: any) => {
         data,
       })
     );
-    console.log("team", item);
   };
   const array = odds?.slice(playerNum[0], playerNum[1]);
 

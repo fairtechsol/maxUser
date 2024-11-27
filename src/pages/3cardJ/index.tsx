@@ -100,8 +100,8 @@ const CardJ = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cardj));
       dispatch(getDragonTigerDetail(cardGamesType.cardj));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cardj));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.cardj);
         socketService.card.getCardRatesOff(cardGamesType.cardj);
@@ -120,6 +120,7 @@ const CardJ = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.cardj));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.cardj));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());

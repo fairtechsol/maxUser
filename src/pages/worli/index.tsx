@@ -86,8 +86,8 @@ const Worli = () => {
   useEffect(() => {
     try {
       dispatch(getCasinoButtonValue());
-      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.worli));
       dispatch(getDragonTigerDetail(cardGamesType.worli));
+      dispatch(getDragonTigerDetailHorseRacing(cardGamesType.worli));
       return () => {
         socketService.card.leaveMatchRoom(cardGamesType.worli);
         socketService.card.getCardRatesOff(cardGamesType.worli);
@@ -106,6 +106,7 @@ const Worli = () => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         dispatch(selectedBetAction(null));
+        dispatch(getDragonTigerDetail(cardGamesType.worli));
         dispatch(getDragonTigerDetailHorseRacing(cardGamesType.worli));
       } else if (document.visibilityState === "hidden") {
         dispatch(dragonTigerReset());
