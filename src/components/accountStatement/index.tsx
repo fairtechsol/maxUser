@@ -902,7 +902,7 @@ const AccountStatementComponent = () => {
                           {item?.roundId}
                         </div>
                         <div
-                          className="d-flex justify-content-start align-items-center ps-1"
+                          className="d-flex justify-content-start align-items-center ps-1 lh-1"
                           style={{ width: "20%" }}
                         >
                           {item?.transactionId}

@@ -166,11 +166,11 @@ const LiveCasinoMobile = () => {
       <Modal show={isShow} fullscreen={true} onHide={() => setIsShow(false)}>
         <Modal.Header
           // closeButton
-          // closeVariant={"white"}
+          className="p-2"
           style={{ color: "#fff", backgroundColor: "#004A25" }}
         >
           <Modal.Title className="w-100">
-            <div className="w-100 d-flex justify-content-between align-items-center">
+            <div className="w-100 d-flex justify-content-between align-items-center lh-1">
               <div className="d-flex flex-row align-items-center" 
               onClick={() => {
                 // navigate("/home");
@@ -221,7 +221,7 @@ const LiveCasinoMobile = () => {
         </Modal.Header>
         <Modal.Body className="p-0">
           {" "}
-          <div className="w-100" style={{ height: "100vh" }}>
+          <div className="w-100 h-100">
             <iframe
               src={liveCasinoGame?.url}
               title="Live Stream"
