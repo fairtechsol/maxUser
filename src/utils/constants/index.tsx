@@ -86,6 +86,8 @@ export const ApiConstants = {
     GET_PROFILE: "/user/profile",
     ACCOUNT_STATEMENT: "/transaction/get/",
     CARD_REPORT: "/card/result/",
+    LIVE_CASINO_BETS: "/mac88/bets",
+    CASINO_GAME_PROVIDERS : "/mac88/providers"
   },
   EXPERT: {
     COMPETITIONLIST: "/expert/match/competitionList/",
@@ -472,25 +474,25 @@ export const scoreBoardUrlMain = "https://maxbet07.com/scoreBoardPage/";
 //   "https://dpmatka.in/dcasino/score.php?matchId=";
 
 export const serviceUrl =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV !== "production"
     ? Constants.apiBasePath
     : Constants.localPath;
 
 export const baseUrls = {
   socket:
-    process.env.NODE_ENV === "production"
+    process.env.NODE_ENV !== "production"
       ? Constants.apiBasePath
       : Constants.localPath,
   expertSocket:
-    process.env.NODE_ENV === "production"
+    process.env.NODE_ENV !== "production"
       ? Constants.expertSocketBasePath
       : Constants.localPathExpert,
   matchSocket:
-    process.env.NODE_ENV === "production"
+    process.env.NODE_ENV !== "production"
       ? Constants.thirdParty
       : Constants.localThird,
   cardSocket:
-    process.env.NODE_ENV === "production"
+    process.env.NODE_ENV !== "production"
       ? Constants.thirdPartyCard
       : Constants.localThirdCard,
 };
