@@ -22,14 +22,19 @@ const SportsFilterJson = () => {
       onClick: true
     },
     {
-      id: "slots",
+      id: "virtual",
+      name: "VIRTUAL",
+      link: "/virtual",
+    },
+    {
+      id: "slot",
       name: "SLOTS",
-      link: "/slots",
+      link: "/slot",
     },
     {
       id: "fantasy",
       name: "FANTASY",
-      link: "/other",
+      link: "/fantasy",
     },
   ];
 };

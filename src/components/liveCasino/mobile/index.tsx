@@ -9,10 +9,8 @@ import { dt2020, maxbetLogo } from "../../../assets/images";
 import NewLoader from "../../commonComponent/newLoader";
 import { Modal } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 const LiveCasinoMobile = () => {
-  const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const { liveCasinoData,liveCasinoGame } = useSelector((state: RootState) => state.card);
 
