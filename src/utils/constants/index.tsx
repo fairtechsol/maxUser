@@ -86,6 +86,8 @@ export const ApiConstants = {
     GET_PROFILE: "/user/profile",
     ACCOUNT_STATEMENT: "/transaction/get/",
     CARD_REPORT: "/card/result/",
+    LIVE_CASINO_BETS: "/mac88/bets",
+    CASINO_GAME_PROVIDERS : "/mac88/providers"
   },
   EXPERT: {
     COMPETITIONLIST: "/expert/match/competitionList/",
