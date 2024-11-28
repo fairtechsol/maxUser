@@ -3265,7 +3265,7 @@ export const liveCasinoGameList = [
   "Race to 17",
   "Casino War",
   "Casino War",
-  "Worli Matka",
+  //"Worli Matka",
   "Lottery",
   "Bacarrat",
   "29 Baccarat",
@@ -3333,7 +3333,7 @@ export const liveCasinoGameList = [
   "Dice",
   "Hilo",
   "X-Roulette",
-  "Worli Matka",
+ // "Worli Matka",
 ];
 
 export const card3 = {
