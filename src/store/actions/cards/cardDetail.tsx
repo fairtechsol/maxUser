@@ -83,7 +83,7 @@ export const resultDragonTiger = createAsyncThunk<any, any>(
 );
 
 
-export const liveCasinoList = createAsyncThunk<any, any>(
+export const  liveCasinoList = createAsyncThunk<any, any>(
   "result/liveCasinoList",
   async (_, thunkApi) => {
     try {
