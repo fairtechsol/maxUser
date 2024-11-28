@@ -3160,12 +3160,12 @@ export const casinoIcons = [
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
     name: "Andar Bahar",
   },
-  {
-    url: "",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
-    name: "Worli Matka",
-  },
+  // {
+  //   url: "",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
+  //   name: "Worli Matka",
+  // },
   {
     url: "/worli2",
     imgSrc:
@@ -3231,11 +3231,13 @@ export const casinoIcons = [
 
 
 export const liveCasinoGameList = [
-  "Virtual",
+  "AVIATORX",
   "Aviator Blue",
   "Sic Bo",
   "Lankesh",
   "Ball By Ball",
+  "Super Over",
+  "Super Over",
   "10 - 10 cricket ",
   "Queen",
   "Casino Queen",
@@ -3247,12 +3249,13 @@ export const liveCasinoGameList = [
   "Amar Akbar Anthony",
   "Teenpatti One Day",
   "Teenpatti 20 20",
-  "Test Teenpatti",
+  
   "Muflis Teenpatti",
   "Open Teen patti",
   "INSTANT 2 CARDS TEENPATTI",
   "Muflis Teenpatti One Day",
   "Two Card Teenpatti One Day",
+  "Test Teenpatti",
   "Dragon Tiger Vivo",
   "Dragon Tiger 2",
   "1 Day Dragon Tiger",
@@ -3267,7 +3270,7 @@ export const liveCasinoGameList = [
   "Race to 17",
   "Casino War",
   "Casino War",
-  //"Worli Matka",
+  "Worli Matka",
   "Lottery",
   "Bacarrat",
   "29 Baccarat",
@@ -3297,6 +3300,8 @@ export const liveCasinoGameList = [
   "20-20 Dragon Tiger 2",
   "Foot Ball Studio",
   "Dus ka Dum",
+  "Note number",
+  "Center card One day",
   "Lucky 7 - A",
   "20-20 Cricket Match",
   "Test Teenpatti",
@@ -3306,6 +3311,7 @@ export const liveCasinoGameList = [
   "1 Day Teenpatti",
   "20-20 Teenpatti",
   "Instant Worli",
+  "20-20 Dragon Tiger",
   "V-2 Card TP",
   "V-Casino Meter",
   "V-Bollywood Casino",
