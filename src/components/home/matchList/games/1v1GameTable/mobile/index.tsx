@@ -392,7 +392,10 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   : {}
               }
             >
-              {liveCasinoGameList.map((item: any, index: number) => (
+              {(["/casino-slot"].includes(location.pathname)
+                ? casinoIcons
+                : liveCasinoGameList
+              ).map((item: any, index: number) => (
                 <Link
                   to={item.url}
                   key={index}

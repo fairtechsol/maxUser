@@ -7,7 +7,7 @@ import NewLoader from "../commonComponent/newLoader";
 import { liveCasinoLogin } from "../../store/actions/cards/cardDetail";
 import { dt2020, maxbetLogo } from "../../assets/images";
 import { AppDispatch, RootState } from "../../store/store";
-import { mac88ListJSON } from "../../utils/constants";
+import { liveCasinoGameList } from "../../utils/constants";
 
 interface SeperateMACGamesInterface {
   gameType?: string;
@@ -26,16 +26,14 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
   useEffect(() => {
     let firstArr = [];
     if (gameType === "fantasy") {
-      firstArr = mac88ListJSON.filter(
-        (item: any) =>
-          item.game_name === "AVIATORX" || item.game_name === "Aviator Blue"
+      firstArr = liveCasinoGameList.filter(
+        (item: any) => item.game_id === "151027" || item.game_id === "151067"
       );
     } else {
-      firstArr = mac88ListJSON.filter(
+      firstArr = liveCasinoGameList.filter(
         (item: any) => item.category === gameType
       );
     }
-    console.log(firstArr);
     setGame(firstArr);
     setIsLoading(false);
   }, [gameType]);

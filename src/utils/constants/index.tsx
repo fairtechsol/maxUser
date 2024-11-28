@@ -3368,7 +3368,7 @@ export const liveCasinoGameList: any = [
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
     status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/monk88/aviatorx.webp",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/aviatorx2.webp",
     game_code: "MAC88-CAVB101",
   }, //
   {
