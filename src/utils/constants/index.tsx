@@ -3027,133 +3027,155 @@ export const casinoIcons = [
   {
     game_id: "1",
     url: "/ballbyball",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
     name: "Ball By Ball",
   },
   {
     game_id: "2",
     url: "/superover",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
-  name: "Super Over",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
+    name: "Super Over",
   },
   {
     game_id: "3",
     url: "/race20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
     name: "Race 20-20",
   },
   {
     game_id: "4",
     url: "/queen",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
     name: "Casino Queen",
   },
   {
     game_id: "5",
     url: "/cricketv3",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
     name: "5Five Cricket",
   },
   {
     game_id: "6",
     url: "/abj2",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
     name: "Andar Bahar 2",
   },
   {
     game_id: "7",
     url: "/dt202",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
     name: "20-20 Dragon Tiger 2",
   },
   {
     game_id: "8",
     url: "/baccarat2",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
-  name: "Baccarat 2",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
+    name: "Baccarat 2",
   },
   {
     game_id: "9",
     url: "/baccarat",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
     name: "Baccarat",
   },
   {
     game_id: "10",
     url: "/lucky7eu",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
     name: "Lucky 7 - B",
   },
   {
     game_id: "11",
     url: "/cmatch20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
     name: "20-20 Cricket Match",
   },
   {
     game_id: "12",
     url: "/cmeter",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
     name: "Casino Meter",
   },
   {
     game_id: "13",
     url: "/war",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
     name: "Casino War",
   },
   {
     game_id: "14",
     url: "/dtl20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
     name: "20-20 DTL",
   },
   {
     game_id: "15",
     url: "/teen9",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "Test Teenpatti",
   },
   {
     game_id: "16",
     url: "/teen8",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "Open Teenpatti",
   },
   {
     game_id: "17",
     url: "/teen",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "1 Day Teenpatti",
   },
   {
     game_id: "18",
     url: "/teen20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "20-20 Teenpatti",
   },
   {
     game_id: "19",
     url: "/poker6",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "6 Player Poker",
   },
   {
     game_id: "20",
     url: "/poker",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "1 Day Poker",
   },
   {
     game_id: "21",
     url: "/poker20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "20-20 Poker",
   },
   {
     game_id: "22",
     url: "/ab20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
     name: "Andar Bahar",
   },
   // {
@@ -3165,59 +3187,67 @@ export const casinoIcons = [
   {
     game_id: "24",
     url: "/worli2",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
     name: "Instant Worli",
   },
   {
     game_id: "25",
     url: "/3cardj",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
     name: "3 Cards Judgement",
   },
   {
     game_id: "26",
     url: "/32cards-A",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
     name: "32 Cards A",
   },
   {
     game_id: "27",
     url: "/32cards-B",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
     name: "32 Cards B",
   },
   {
     game_id: "28",
     url: "/aaa",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
     name: "Amar Akbar Anthony",
   },
   {
     game_id: "29",
     url: "/btable",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
     name: "Bollywood Casino",
   },
   {
     game_id: "30",
     url: "/dt20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "20-20 Dragon Tiger",
   },
   {
     game_id: "31",
     url: "/dt6",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "1 Day Dragon Tiger",
   },
   {
     game_id: "32",
     url: "/lucky7-A",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
     name: "Lucky 7 - A",
-  }
+  },
 ];
-
 
 // export const liveCasinoGameList = [
 //   { name: "AVIATORX", id: 1 },
@@ -3322,25 +3352,25 @@ export const casinoIcons = [
 
 export const liveCasinoGameList: any = [
   {
-    game_id: "151053",
-    game_name: "AVIATORX",
+    game_id: "151027",
+    game_name: "Aviator X",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/monk88/aviatorx.webp",
     game_code: "MAC88-CAV101-VR",
-  },
+  }, //
   {
     game_id: "151067",
-    game_name: "Aviator Blue",
+    game_name: "AviatorX2",
     category: "Crash Games",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/monk88/aviatorx.webp",
     game_code: "MAC88-CAVB101",
-  },
+  }, //
   {
     game_id: "150003",
     game_name: "Sic Bo",
@@ -3350,9 +3380,9 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/sicbo_mac88.webp",
     game_code: "MAC88-XSB101",
-  },
+  }, //
   {
-    game_id: "151022",
+    game_id: "151026",
     game_name: "Lankesh",
     category: "Virtual",
     provider_name: "MAC88",
@@ -3360,14 +3390,14 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/lankesh.jpeg",
     game_code: "MAC88-VTGLN101",
-  },
+  }, //
   {
     game_id: 1,
     url: "/ballbyball",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
     game_name: "Ball By Ball",
-  },
+  }, //
   {
     game_id: "150034",
     game_name: "Super Over",
@@ -3377,14 +3407,14 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/super_over.webp",
     game_code: "MAC88-Y1SPO101",
-  },
+  }, //
   {
     game_id: 2,
     url: "/superover",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
     game_name: "Super Over",
-  },
+  }, //
   {
     game_id: "150053",
     game_name: "10 - 10 cricket ",
@@ -3394,24 +3424,24 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/10_10_cricket.webp",
     game_code: "MAC88-YXC101",
-  },
+  }, //
   {
     game_id: "150016",
-    game_name: "Queen",
+    game_name: "Queen Race",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/queen.webp",
     game_code: "MAC88-YQR102",
-  },
+  }, //
   {
     game_id: 4,
     url: "/queen",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
     game_name: "Casino Queen",
-  },
+  }, //
   {
     game_id: "150017",
     game_name: "Race 20",
@@ -3421,22 +3451,21 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/race_20.webp",
     game_code: "MAC88-YRTT102",
-  },
+  }, //
   {
     game_id: 3,
     url: "/race20",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
     game_name: "Race 20-20",
-  },
-  
+  }, //
   {
     game_id: 5,
     url: "/cricketv3",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
     game_name: "5Five Cricket",
-  },
+  }, //
   {
     game_id: "150035",
     game_name: "5 Five Cricket",
@@ -3446,15 +3475,7 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/5_five_cricket.webp",
     game_code: "MAC88-Y15C101",
-  },
-  
-  {
-    game_id: "28",
-    url: "/aaa",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
-    game_name: "Amar Akbar Anthony",
-  },
+  }, //
   {
     game_id: "150014",
     game_name: "Amar Akbar Anthony",
@@ -3464,7 +3485,15 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/amar_akbar_anthony.webp",
     game_code: "MAC88-YA3101",
-  },
+  }, //
+  {
+    game_id: "28",
+    url: "/aaa",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
+    game_name: "Amar Akbar Anthony",
+  }, //
+
   {
     game_id: "150009",
     game_name: "Teenpatti One Day",
@@ -3474,57 +3503,27 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/tp1d.webp",
     game_code: "MAC88-X1TP101",
-  },
-  {
-    game_id: "150022",
-    game_name: "Muflis Teenpatti",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/muflis_teenpati.webp",
-    game_code: "MAC88-YMTP102",
-  },
-  {
-    game_id: "150028",
-    game_name: "Two Card Teenpatti One Day",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/2_cards_teenpatti.webp",
-    game_code: "MAC88-Y12TP101",
-  },
-  {
-    game_id: "150030",
-    game_name: "Muflis Teenpatti One Day",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/muflis_teenpati.webp",
-    game_code: "MAC88-Y1MTP101",
-  },
+  }, //
   {
     game_id: "150033",
-    game_name: "Teenpatti 20 20",
+    game_name: "20-20 Teenpatti",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/20_20_teenpatti.webp",
     game_code: "MAC88-YTPTT101",
-  },
+  }, //
   {
-    game_id: "150042",
-    game_name: "INSTANT 2 CARDS TEENPATTI",
+    game_id: "150030",
+    game_name: "Muflis Teenpatti",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
     status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/2_card_tp.webp",
-    game_code: "MAC88-X2TP101",
-  },
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/muflis_teenpati.webp",
+    game_code: "MAC88-Y1MTP101",
+  }, //
   {
     game_id: "150049",
     game_name: "Open Teen patti",
@@ -3534,7 +3533,27 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/open_teen_patti.webp",
     game_code: "MAC88-YOTP101",
-  },
+  }, //
+  {
+    game_id: "150042",
+    game_name: "Instant 2 Cards Teenpatti",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/2_card_tp.webp",
+    game_code: "MAC88-X2TP101",
+  }, //
+  {
+    game_id: "150028",
+    game_name: "Two Card Teenpatti",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/2_cards_teenpatti.webp",
+    game_code: "MAC88-Y12TP101",
+  }, //
   {
     game_id: "150023",
     game_name: "Test Teenpatti",
@@ -3544,17 +3563,24 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/teenpatti_test.webp",
     game_code: "MAC88-YTTP102",
-  },
+  }, //
+  {
+    game_id: 10,
+    url: "/lucky7eu",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
+    game_name: "Lucky 7 - B",
+  }, //
   {
     game_id: "150001",
-    game_name: "Dragon Tiger Vivo",
+    game_name: "Dragon Tiger",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/dt_mac88.webp",
     game_code: "MAC88-YDT102",
-  },
+  }, //
   {
     game_id: "150067",
     game_name: "Dragon Tiger 2",
@@ -3564,255 +3590,14 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/dt2.webp",
     game_code: "MAC88-DT2101",
-  },
+  }, //
   {
     game_id: 31,
     url: "/dt6",
     imgSrc:
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     game_name: "1 Day Dragon Tiger",
-  },
-  {
-    game_id: 6,
-    url: "/abj2",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
-    game_name: "Andar Bahar 2",
-  },
-  {
-    game_id: 7,
-    url: "/dt202",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
-    game_name: "20-20 Dragon Tiger 2",
-  },
-  {
-    game_id: 8,
-    url: "/baccarat2",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
-    game_name: "Baccarat 2",
-  },
-  {
-    game_id: 9,
-    url: "/baccarat",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
-    game_name: "Baccarat",
-  },
-  {
-    game_id: 10,
-    url: "/lucky7eu",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
-    game_name: "Lucky 7 - B",
-  },
-  {
-    game_id: 11,
-    url: "/cmatch20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
-    game_name: "20-20 Cricket Match",
-  },
-  {
-    game_id: 12,
-    url: "/cmeter",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
-    game_name: "Casino Meter",
-  },
-  {
-    game_id: 13,
-    url: "/war",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
-    game_name: "Casino War",
-  },
-  {
-    game_id: 14,
-    url: "/dtl20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
-    game_name: "20-20 DTL",
-  },
-  {
-    game_id: 15,
-    url: "/teen9",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
-    game_name: "Test Teenpatti",
-  },
-  {
-    game_id: 16,
-    url: "/teen8",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
-    game_name: "Open Teenpatti",
-  },
-  {
-    game_id: 17,
-    url: "/teen",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
-    game_name: "1 Day Teenpatti",
-  },
-  {
-    game_id: 18,
-    url: "/teen20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
-    game_name: "20-20 Teenpatti",
-  },
-  {
-    game_id: 19,
-    url: "/poker6",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
-    game_name: "6 Player Poker",
-  },
-  {
-    game_id: 20,
-    url: "/poker",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
-    game_name: "1 Day Poker",
-  },
-  {
-    game_id: 21,
-    url: "/poker20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
-    game_name: "20-20 Poker",
-  },
-  {
-    game_id: 22,
-    url: "/ab20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
-    game_name: "Andar Bahar",
-  },
-  {
-    game_id: 23,
-    url: "",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
-    game_name: "Worli Matka",
-  },
-  {
-    game_id: 24,
-    url: "/worli2",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
-    game_name: "Instant Worli",
-  },
-  {
-    game_id: 25,
-    url: "/3cardj",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
-    game_name: "3 Cards Judgement",
-  },
-  {
-    game_id: 26,
-    url: "/32cards-A",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
-    game_name: "32 Cards A",
-  },
-  {
-    game_id: 27,
-    url: "/32cards-B",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
-    game_name: "32 Cards B",
-  },
-  
-  {
-    game_id: 29,
-    url: "/btable",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
-    game_name: "Bollywood Casino",
-  },
-  {
-    game_id: 30,
-    url: "/dt20",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
-    game_name: "20-20 Dragon Tiger",
-  },
-  
-  {
-    game_id: 32,
-    url: "/lucky7-A",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
-    game_name: "Lucky 7 - A",
-  },
-
-  
-  {
-    game_id: "150002",
-    game_name: "Bacarrat",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/baccarat_mac88.webp",
-    game_code: "MAC88-XBAC101",
-  },
-  
-  {
-    game_id: "150004",
-    game_name: "Roulette",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/roulette_mac88.webp",
-    game_code: "MAC88-XRT101",
-  },
-  {
-    game_id: "150005",
-    game_name: "Poker",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/poker20_mac88.webp",
-    game_code: "MAC88-XPOK101",
-  },
-  {
-    game_id: "150006",
-    game_name: "Lucky7",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/lucky_7.webp",
-    game_code: "MAC88-YLK7101",
-  },
-  {
-    game_id: "150007",
-    game_name: "Andar Bahar",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/andar_bahar.webp",
-    game_code: "MAC88-XAB101",
-  },
-  
-  {
-    game_id: "150010",
-    game_name: "32 Cards A",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/32_cards.webp",
-    game_code: "MAC88-Y32CA102",
-  },
+  }, //
   {
     game_id: "150013",
     game_name: "DTL",
@@ -3822,93 +3607,41 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/dtl_20_20.webp",
     game_code: "MAC88-YDTL101",
-  },
- 
+  }, //
   {
-    game_id: "150015",
-    game_name: "3 Cards Judgement",
+    game_id: "150007",
+    game_name: "Andar Bahar",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
     status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/3cj.webp",
-    game_code: "MAC88-X3CJ101",
-  },
- 
-  
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/andar_bahar.webp",
+    game_code: "MAC88-XAB101",
+  }, //
   {
-    game_id: "150018",
-    game_name: "Casino War",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/casino_war.webp",
-    game_code: "MAC88-XCAW101",
-  },
+    game_id: 6,
+    url: "/abj2",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
+    game_name: "Andar Bahar 2",
+  }, //
   {
-    game_id: "150019",
-    game_name: "Worli Matka",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/worli_matka.webp",
-    game_code: "MAC88-YWM102",
-  },
-  {
-    game_id: "150020",
-    game_name: "Lottery",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/lottery.webp",
-    game_code: "MAC88-XLOT101",
-  },
-  
+    game_id: 22,
+    url: "/ab20",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
+    game_name: "Andar Bahar",
+  }, //
   {
     game_id: "150024",
-    game_name: "TRAP",
+    game_name: "The Trap",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/trap.webp",
     game_code: "MAC88-XTRP101",
-  },
-  {
-    game_id: "150025",
-    game_name: "Trio",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/trio.webp",
-    game_code: "MAC88-XTRI101",
-  },
-  {
-    game_id: "150026",
-    game_name: "29 Baccarat",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/trio.webp",
-    game_code: "MAC88-X29BC101",
-  },
-  
-  {
-    game_id: "150029",
-    game_name: "Foot Ball Studio",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/rg/football_studio.webp",
-    game_code: "MAC88-ZFBS101",
-  },
-  
+  }, //
   {
     game_id: "150031",
     game_name: "Bollywood Casino B",
@@ -3918,111 +3651,14 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/bollywood_casino.webp",
     game_code: "MAC88-YBOC102",
-  },
+  }, //
   {
-    game_id: "150032",
-    game_name: "Poker 1 day",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/poker20_mac88.webp",
-    game_code: "MAC88-Y1POK101",
-  },
-  
-  
-  
-  {
-    game_id: "150036",
-    game_name: "1 Day Dragon Tiger",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/dt_mac88.webp",
-    game_code: "MAC88-X1DT101",
-  },
-  {
-    game_id: "150037",
-    game_name: "Dus ka Dum",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/10kadum.webp",
-    game_code: "MAC88-X1DKD101",
-  },
-  {
-    game_id: "150038",
-    game_name: "One Card 20-20",
-    category: "Others",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/1_card_20_20.webp",
-    game_code: "MAC88-XCTT101",
-  },
-  {
-    game_id: "150039",
-    game_name: "One Card Meter",
-    category: "Others",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/1_card_meter.webp",
-    game_code: "MAC88-XOCM101",
-  },
-  {
-    game_id: "150040",
-    game_name: "One Card One Day",
-    category: "Others",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/1c1d.webp",
-    game_code: "MAC88-X10C101",
-  },
-  {
-    game_id: "150041",
-    game_name: "Six Player Poker",
-    category: "Others",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/6pp.webp",
-    game_code: "MAC88-X6PP101",
-  },
-  
-  {
-    game_id: "150043",
-    game_name: "Race to 17",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/race_17.webp",
-    game_code: "MAC88-XRT17101",
-  },
-  {
-    game_id: "150045",
-    game_name: "Note number",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/notenumber.webp",
-    game_code: "MAC88-X1NN101",
-  },
-  {
-    game_id: "150046",
-    game_name: "Cricket 2020",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/cricket2020.webp",
-    game_code: "MAC88-XCM101",
-  },
+    game_id: 29,
+    url: "/btable",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
+    game_name: "Bollywood Casino",
+  }, //
   {
     game_id: "150048",
     game_name: "Race to 2nd",
@@ -4032,28 +3668,81 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/race_2.webp",
     game_code: "MAC88-X1RTS101",
-  },
-  
+  }, //
   {
-    game_id: "150050",
-    game_name: "Center card One day",
+    game_id: "150043",
+    game_name: "Race to 17",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
     status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/center_card_one_day.webp",
-    game_code: "MAC88-Y1CC101",
-  },
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/race_17.webp",
+    game_code: "MAC88-XRT17101",
+  }, //
   {
-    game_id: "150051",
-    game_name: "High Low",
+    game_id: "150018",
+    game_name: "Casino War",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
     status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/high_low.webp",
-    game_code: "MAC88-YHL101",
-  },
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/casino_war.webp",
+    game_code: "MAC88-XCAW101",
+  }, //
+  {
+    game_id: 13,
+    url: "/war",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
+    game_name: "Casino War",
+  }, //
+  {
+    game_id: "150019",
+    game_name: "Worli Matka",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/worli_matka.webp",
+    game_code: "MAC88-YWM102",
+  }, //
+  {
+    game_id: "150020",
+    game_name: "Lottery",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/lottery.webp",
+    game_code: "MAC88-XLOT101",
+  }, //
+  {
+    game_id: "150002",
+    game_name: "Bacarrat",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/baccarat_mac88.webp",
+    game_code: "MAC88-XBAC101",
+  }, //
+  {
+    game_id: "150026",
+    game_name: "29 Baccarat",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/trio.webp",
+    game_code: "MAC88-X29BC101",
+  }, //
+  {
+    game_id: 8,
+    url: "/baccarat2",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
+    game_name: "Baccarat 2",
+  }, //
   {
     game_id: "150052",
     game_name: "Baccarat One Day",
@@ -4063,42 +3752,329 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/baccarat_one_day.webp",
     game_code: "MAC88-Y1BAC101",
-  },
-  
-  
+  }, //
   {
-    game_id: "151002",
-    game_name: "V-Lucky 7",
+    game_id: "150010",
+    game_name: "32 Cards",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/32_cards.webp",
+    game_code: "MAC88-Y32CA102",
+  }, //
+  {
+    game_id: 27,
+    url: "/32cards-B",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
+    game_name: "32 Cards B",
+  }, //
+  {
+    game_id: "150025",
+    game_name: "Trio",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/trio.webp",
+    game_code: "MAC88-XTRI101",
+  }, //
+  {
+    game_id: "150051",
+    game_name: "High Low",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/high_low.webp",
+    game_code: "MAC88-YHL101",
+  }, //
+  {
+    game_id: "150032",
+    game_name: "Poker 1 Day",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/poker20_mac88.webp",
+    game_code: "MAC88-Y1POK101",
+  }, //
+  {
+    game_id: "150041",
+    game_name: "6 Player Poker",
+    category: "Others",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/6pp.webp",
+    game_code: "MAC88-X6PP101",
+  }, //
+  {
+    game_id: "150005",
+    game_name: "Poker 20-20",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/poker20_mac88.webp",
+    game_code: "MAC88-XPOK101",
+  }, //
+  {
+    game_id: 21,
+    url: "/poker20",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    game_name: "20-20 Poker",
+  }, //
+  {
+    game_id: "150015",
+    game_name: "3 Cards Judgement",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/3cj.webp",
+    game_code: "MAC88-X3CJ101",
+  }, //
+  {
+    game_id: 25,
+    url: "/3cardj",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
+    game_name: "3 Cards Judgement",
+  }, //
+  {
+    game_id: "150040",
+    game_name: "One Card One Day",
+    category: "Others",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/1c1d.webp",
+    game_code: "MAC88-X10C101",
+  }, //
+  {
+    game_id: "150038",
+    game_name: "One Card 20-20",
+    category: "Others",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/1_card_20_20.webp",
+    game_code: "MAC88-XCTT101",
+  }, //
+  {
+    game_id: "150036",
+    game_name: "1 Day Dragon Tiger",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/dt_mac88.webp",
+    game_code: "MAC88-X1DT101",
+  }, //
+  {
+    game_id: 14,
+    url: "/dtl20",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
+    game_name: "20-20 DTL",
+  }, //
+  {
+    game_id: 26,
+    url: "/32cards-A",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
+    game_name: "32 Cards A",
+  }, //
+  {
+    game_id: "150045",
+    game_name: "Note Number",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/notenumber.webp",
+    game_code: "MAC88-X1NN101",
+  }, //
+  {
+    game_id: "150006",
+    game_name: "Lucky7",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/lucky_7.webp",
+    game_code: "MAC88-YLK7101",
+  }, //
+  {
+    game_id: "150050",
+    game_name: "Center card One day",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/center_card_one_day.webp",
+    game_code: "MAC88-Y1CC101",
+  }, //
+  {
+    game_id: "150004",
+    game_name: "Roulette",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/roulette_mac88.webp",
+    game_code: "MAC88-XRT101",
+  }, //
+  {
+    game_id: "150039",
+    game_name: "One Card Meter",
+    category: "Others",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/1_card_meter.webp",
+    game_code: "MAC88-XOCM101",
+  }, //
+  {
+    game_id: "150046",
+    game_name: "Cricket Match 20-20",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/cricket2020.webp",
+    game_code: "MAC88-XCM101",
+  }, //
+  {
+    game_id: 9,
+    url: "/baccarat",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
+    game_name: "Baccarat",
+  }, //
+  {
+    game_id: 7,
+    url: "/dt202",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
+    game_name: "20-20 Dragon Tiger 2",
+  }, //
+  {
+    game_id: "150037",
+    game_name: "Dus Ka Dum",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/10kadum.webp",
+    game_code: "MAC88-X1DKD101",
+  }, //
+  {
+    game_id: 32,
+    url: "/lucky7-A",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
+    game_name: "Lucky 7 - A",
+  }, //
+  {
+    game_id: "11",
+    url: "/cmatch20",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
+    name: "20-20 Cricket Match",
+  }, //
+  {
+    game_id: 15,
+    url: "/teen9",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    game_name: "Test Teenpatti",
+  }, //
+  {
+    game_id: 19,
+    url: "/poker6",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    game_name: "6 Player Poker",
+  }, //
+  {
+    game_id: "12",
+    url: "/cmeter",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
+    name: "Casino Meter",
+  }, //
+  {
+    game_id: 16,
+    url: "/teen8",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    game_name: "Open Teenpatti",
+  }, //
+  {
+    game_id: "17",
+    url: "/teen",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    name: "1 Day Teenpatti",
+  }, //
+  {
+    game_id: 18,
+    url: "/teen20",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    game_name: "20-20 Teenpatti",
+  }, //
+  {
+    game_id: 24,
+    url: "/worli2",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
+    game_name: "Instant Worli",
+  }, //
+  {
+    game_id: 30,
+    url: "/dt20",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
+    game_name: "20-20 Dragon Tiger",
+  }, //
+  {
+    game_id: "151015",
+    game_name: "VR 2 Card TP",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
     status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_lucky7_vr.webp",
-    game_code: "MAC88-VTGLK7101",
-  },
+    url_thumb: "https://cdn.dreamcasino.live/rg_2card_tp_vr.webp",
+    game_code: "MAC88-VTG2TP101",
+  }, //
   {
-    game_id: "151003",
-    game_name: "V-Trio",
+    game_id: "151010",
+    game_name: "VR Casino Meter",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
     status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_trio_vr.webp",
-    game_code: "MAC88-VTGTRI101",
-  },
+    url_thumb: "https://cdn.dreamcasino.live/rg_casino_meter_vr.webp",
+    game_code: "MAC88-VTGCAM101",
+  }, //
   {
-    game_id: "151004",
-    game_name: "V-20-20 DTL",
+    game_id: "151007",
+    game_name: "VR Bollywood Casino",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
     status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_dtl_vr.webp",
-    game_code: "MAC88-VTGDTL101",
-  },
+    url_thumb: "https://cdn.dreamcasino.live/rg_bollywood_casino_vr.webp",
+    game_code: "MAC88-VTGBC101",
+  }, //
   {
-    game_id: "151005",
-    game_name: "V-Mulfis Teenpatti",
+    game_id: "151006",
+    game_name: "VR Mulfis Teenpatti",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -4106,170 +4082,174 @@ export const liveCasinoGameList: any = [
     url_thumb:
       "https://royal-gaming.s3.eu-west-2.amazonaws.com/rg_muflis_tp_vr.jpg",
     game_code: "MAC88-VTGMT101",
-  },
+  }, //
   {
-    game_id: "151006",
-    game_name: "V-Bollywood Casino",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_bollywood_casino_vr.webp",
-    game_code: "MAC88-VTGBC101",
-  },
-  {
-    game_id: "151007",
-    game_name: "V-Amar Akbar Anthony",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_a3_vr.webp",
-    game_code: "MAC88-VTGA3101",
-  },
-  {
-    game_id: "151008",
-    game_name: "V-Dragon Tiger",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_dragon_tiger_vr.webp",
-    game_code: "MAC88-VTGDT101",
-  },
-  {
-    game_id: "151009",
-    game_name: "V-Casino Meter",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_casino_meter_vr.webp",
-    game_code: "MAC88-VTGCAM101",
-  },
-  {
-    game_id: "151010",
-    game_name: "V-20-20 Teenpatti",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_teen_patti_vr.webp",
-    game_code: "MAC88-VTGTP101",
-  },
-  {
-    game_id: "151011",
-    game_name: "V-32 Cards",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_32cards_vr.webp",
-    game_code: "MAC88-VTG32C101",
-  },
-  {
-    game_id: "151012",
-    game_name: "V-Super over",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_super_over_vr.webp",
-    game_code: "MAC88-VTGSO101",
-  },
-  {
-    game_id: "151013",
-    game_name: "V-Andar Bahar",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_andar_bahar_vr.webp",
-    game_code: "MAC88-VTGAB101",
-  },
-  {
-    game_id: "151014",
-    game_name: "V-2 Card TP",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_2card_tp_vr.webp",
-    game_code: "MAC88-VTG2TP101",
-  },
-  {
-    game_id: "151015",
-    game_name: "V-Queen Race",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/rg/queen_race_vr.webp",
-    game_code: "MAC88-VTGQR101",
-  },
-  {
-    game_id: "151016",
-    game_name: "V-Poker",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_poker_vr.webp",
-    game_code: "MAC88-VTGPOK101",
-  },
-  {
-    game_id: "151017",
-    game_name: "V-Race T20",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_king_race_vr.webp",
-    game_code: "MAC88-VTGRTT101",
-  },
-  {
-    game_id: "151018",
-    game_name: "V-Auto Roulette",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.royalgaming.online/rg_vr_roulette.jpg",
-    game_code: "MAC88-VTGRT101",
-  },
-  {
-    game_id: "151019",
-    game_name: "V-High low",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/rg/high_card_vr.webp",
-    game_code: "MAC88-VTGHL101",
-  },
-  {
-    game_id: "151020",
-    game_name: "V-Worli Matka",
+    game_id: "151021",
+    game_name: "VR Worli Matka",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamcasino.live/rg_worli_matka_vr.webp",
     game_code: "MAC88-VTGWM101",
-  },
+  }, //
   {
-    game_id: "151021",
-    game_name: "V-29 card bacarrat",
+    game_id: "151004",
+    game_name: "VR Trio",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_trio_vr.webp",
+    game_code: "MAC88-VTGTRI101",
+  }, //
+  {
+    game_id: "151009",
+    game_name: "VR Dragon Tiger",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_dragon_tiger_vr.webp",
+    game_code: "MAC88-VTGDT101",
+  }, //
+  {
+    game_id: "151008",
+    game_name: "VR Amar Akbar Anthony",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_a3_vr.webp",
+    game_code: "MAC88-VTGA3101",
+  }, //
+  {
+    game_id: "230004",
+    game_name: "Limbo",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/limbo.png",
+    game_code: "monk88_limbo",
+  }, //
+  {
+    game_id: "151016",
+    game_name: "VR Queen Race",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/rg/queen_race_vr.webp",
+    game_code: "MAC88-VTGQR101",
+  }, //
+  {
+    game_id: "151003",
+    game_name: "VR Lucky 7",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_lucky7_vr.webp",
+    game_code: "MAC88-VTGLK7101",
+  }, //
+  {
+    game_id: "151012",
+    game_name: "VR 32 Cards",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_32cards_vr.webp",
+    game_code: "MAC88-VTG32C101",
+  }, //
+  {
+    game_id: "151022",
+    game_name: "VR 29 card bacarrat",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/rg/29_card_baccarat_vr.webp",
     game_code: "MAC88-VTG29B101",
-  },
-  
-  
-  
+  }, //
+  {
+    game_id: "230005",
+    game_name: "Mines",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/mines.png",
+    game_code: "monk88_mines",
+  }, //
+  {
+    game_id: "151005",
+    game_name: "VR 20-20 DTL",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_dtl_vr.webp",
+    game_code: "MAC88-VTGDTL101",
+  }, //
+  {
+    game_id: 20,
+    url: "/poker",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    game_name: "1 Day Poker",
+  }, //
+  {
+    game_id: "151017",
+    game_name: "VR Poker",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_poker_vr.webp",
+    game_code: "MAC88-VTGPOK101",
+  }, //
+  {
+    game_id: "151011",
+    game_name: "VR 20-20 Teenpatti",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_teen_patti_vr.webp",
+    game_code: "MAC88-VTGTP101",
+  }, //
+  {
+    game_id: "151014",
+    game_name: "VR Andar Bahar",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_andar_bahar_vr.webp",
+    game_code: "MAC88-VTGAB101",
+  }, //
+  {
+    game_id: "151019",
+    game_name: "VR Auto Roulette",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.royalgaming.online/rg_vr_roulette.jpg",
+    game_code: "MAC88-VTGRT101",
+  }, //
+  {
+    game_id: "230006",
+    game_name: "Plinko",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/plinko.png",
+    game_code: "monk88_plinko",
+  }, //
   {
     game_id: "230001",
     game_name: "Crash",
@@ -4279,7 +4259,27 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://launch.monk88.com/images/crash.png",
     game_code: "monk88_crash",
-  },
+  }, //
+  {
+    game_id: "151018",
+    game_name: "VR Race T20",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_king_race_vr.webp",
+    game_code: "MAC88-VTGRTT101",
+  }, //
+  {
+    game_id: "151020",
+    game_name: "VR High low",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/rg/high_card_vr.webp",
+    game_code: "MAC88-VTGHL101",
+  }, //
   {
     game_id: "230002",
     game_name: "Diamonds",
@@ -4289,7 +4289,7 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://launch.monk88.com/images/diamonds.png",
     game_code: "monk88_diamonds",
-  },
+  }, //
   {
     game_id: "230003",
     game_name: "Dice",
@@ -4299,9 +4299,9 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://launch.monk88.com/images/dice.png",
     game_code: "monk88_dice",
-  },
+  }, //
   {
-    game_id: "230004",
+    game_id: "230008",
     game_name: "Hilo",
     category: "slot",
     provider_name: "DC",
@@ -4309,39 +4309,9 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://launch.monk88.com/images/hilo.png",
     game_code: "monk88_hilo",
-  },
-  {
-    game_id: "230005",
-    game_name: "Limbo",
-    category: "slot",
-    provider_name: "DC",
-    sub_provider_name: "Monk88",
-    status: "ACTIVE",
-    url_thumb: "https://launch.monk88.com/images/limbo.png",
-    game_code: "monk88_limbo",
-  },
-  {
-    game_id: "230006",
-    game_name: "Mines",
-    category: "slot",
-    provider_name: "DC",
-    sub_provider_name: "Monk88",
-    status: "ACTIVE",
-    url_thumb: "https://launch.monk88.com/images/mines.png",
-    game_code: "monk88_mines",
-  },
+  }, //
   {
     game_id: "230007",
-    game_name: "Plinko",
-    category: "slot",
-    provider_name: "DC",
-    sub_provider_name: "Monk88",
-    status: "ACTIVE",
-    url_thumb: "https://launch.monk88.com/images/plinko.png",
-    game_code: "monk88_plinko",
-  },
-  {
-    game_id: "230008",
     game_name: "X-Roulette",
     category: "slot",
     provider_name: "DC",
@@ -4349,7 +4319,7 @@ export const liveCasinoGameList: any = [
     status: "ACTIVE",
     url_thumb: "https://launch.monk88.com/images/x-roulette.png",
     game_code: "monk88_slide",
-  },
+  }, //
 ];
 
 export const card3 = {
@@ -4733,7 +4703,7 @@ export const title = {
 export const mac88ListJSON = [
   {
     game_id: "150001",
-    game_name: "Dragon Tiger Vivo",
+    game_name: "Dragon Tiger",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -4773,7 +4743,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150005",
-    game_name: "Poker",
+    game_name: "Poker 20-20",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -4813,7 +4783,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150010",
-    game_name: "32 Cards A",
+    game_name: "32 Cards",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -4853,7 +4823,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150016",
-    game_name: "Queen",
+    game_name: "Queen Race",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -4902,16 +4872,6 @@ export const mac88ListJSON = [
     game_code: "MAC88-XLOT101",
   },
   {
-    game_id: "150022",
-    game_name: "Muflis Teenpatti",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/mac88/muflis_teenpati.webp",
-    game_code: "MAC88-YMTP102",
-  },
-  {
     game_id: "150023",
     game_name: "Test Teenpatti",
     category: "Live",
@@ -4923,7 +4883,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150024",
-    game_name: "TRAP",
+    game_name: "The Trap",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -4953,7 +4913,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150028",
-    game_name: "Two Card Teenpatti One Day",
+    game_name: "Two Card Teenpatti",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -4962,18 +4922,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-Y12TP101",
   },
   {
-    game_id: "150029",
-    game_name: "Foot Ball Studio",
-    category: "Live",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamdelhi.com/rg/football_studio.webp",
-    game_code: "MAC88-ZFBS101",
-  },
-  {
     game_id: "150030",
-    game_name: "Muflis Teenpatti One Day",
+    game_name: "Muflis Teenpatti",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -4993,7 +4943,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150032",
-    game_name: "Poker 1 day",
+    game_name: "Poker 1-Day",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -5003,7 +4953,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150033",
-    game_name: "Teenpatti 20 20",
+    game_name: "20-20 Teenpatti",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -5043,7 +4993,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150037",
-    game_name: "Dus ka Dum",
+    game_name: "Dus Ka Dum",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -5053,7 +5003,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150038",
-    game_name: "One Card 20-20",
+    game_name: "One Card 20 20",
     category: "Others",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -5083,7 +5033,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150041",
-    game_name: "Six Player Poker",
+    game_name: "6 Player Poker",
     category: "Others",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -5093,7 +5043,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150042",
-    game_name: "INSTANT 2 CARDS TEENPATTI",
+    game_name: "Instant 2 Cards Teenpatti",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -5113,7 +5063,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150045",
-    game_name: "Note number",
+    game_name: "Note Number",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -5123,7 +5073,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150046",
-    game_name: "Cricket 2020",
+    game_name: "Cricket Match 20-20",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -5153,7 +5103,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150050",
-    game_name: "Center card One day",
+    game_name: "Center Card One Day",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
@@ -5183,13 +5133,23 @@ export const mac88ListJSON = [
   },
   {
     game_id: "150053",
-    game_name: "10 - 10 cricket ",
+    game_name: "10 - 10 cricket",
     category: "Live",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming",
     status: "ACTIVE",
     url_thumb: "https://cdn.dreamdelhi.com/mac88/10_10_cricket.webp",
     game_code: "MAC88-YXC101",
+  },
+  {
+    game_id: "150066",
+    game_name: "20 20 Teenpatti 2",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/2020tp2.webp",
+    game_code: "MAC88-TPTT2101",
   },
   {
     game_id: "150067",
@@ -5202,8 +5162,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-DT2101",
   },
   {
-    game_id: "151002",
-    game_name: "V-Lucky 7",
+    game_id: "151003",
+    game_name: "VR Lucky 7",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5212,8 +5172,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGLK7101",
   },
   {
-    game_id: "151003",
-    game_name: "V-Trio",
+    game_id: "151004",
+    game_name: "VR Trio",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5222,8 +5182,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGTRI101",
   },
   {
-    game_id: "151004",
-    game_name: "V-20-20 DTL",
+    game_id: "151005",
+    game_name: "VR 20-20 DTL",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5232,8 +5192,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGDTL101",
   },
   {
-    game_id: "151005",
-    game_name: "V-Mulfis Teenpatti",
+    game_id: "151006",
+    game_name: "VR Mulfis Teenpatti",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5243,8 +5203,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGMT101",
   },
   {
-    game_id: "151006",
-    game_name: "V-Bollywood Casino",
+    game_id: "151007",
+    game_name: "VR Bollywood Casino",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5253,8 +5213,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGBC101",
   },
   {
-    game_id: "151007",
-    game_name: "V-Amar Akbar Anthony",
+    game_id: "151008",
+    game_name: "VR Amar Akbar Anthony",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5263,8 +5223,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGA3101",
   },
   {
-    game_id: "151008",
-    game_name: "V-Dragon Tiger",
+    game_id: "151009",
+    game_name: "VR Dragon Tiger",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5273,8 +5233,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGDT101",
   },
   {
-    game_id: "151009",
-    game_name: "V-Casino Meter",
+    game_id: "151010",
+    game_name: "VR Casino Meter",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5283,8 +5243,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGCAM101",
   },
   {
-    game_id: "151010",
-    game_name: "V-20-20 Teenpatti",
+    game_id: "151011",
+    game_name: "VR 20-20 Teenpatti",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5293,8 +5253,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGTP101",
   },
   {
-    game_id: "151011",
-    game_name: "V-32 Cards",
+    game_id: "151012",
+    game_name: "VR 32 Cards",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5303,18 +5263,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTG32C101",
   },
   {
-    game_id: "151012",
-    game_name: "V-Super over",
-    category: "Virtual",
-    provider_name: "MAC88",
-    sub_provider_name: "Mac88 Gaming Virtual",
-    status: "ACTIVE",
-    url_thumb: "https://cdn.dreamcasino.live/rg_super_over_vr.webp",
-    game_code: "MAC88-VTGSO101",
-  },
-  {
-    game_id: "151013",
-    game_name: "V-Andar Bahar",
+    game_id: "151014",
+    game_name: "VR Andar Bahar",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5323,8 +5273,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGAB101",
   },
   {
-    game_id: "151014",
-    game_name: "V-2 Card TP",
+    game_id: "151015",
+    game_name: "VR 2 Card TP",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5333,8 +5283,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTG2TP101",
   },
   {
-    game_id: "151015",
-    game_name: "V-Queen Race",
+    game_id: "151016",
+    game_name: "VR Queen Race",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5343,8 +5293,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGQR101",
   },
   {
-    game_id: "151016",
-    game_name: "V-Poker",
+    game_id: "151017",
+    game_name: "VR Poker",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5353,8 +5303,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGPOK101",
   },
   {
-    game_id: "151017",
-    game_name: "V-Race T20",
+    game_id: "151018",
+    game_name: "VR Race T20",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5363,8 +5313,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGRTT101",
   },
   {
-    game_id: "151018",
-    game_name: "V-Auto Roulette",
+    game_id: "151019",
+    game_name: "VR Auto Roulette",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5373,8 +5323,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGRT101",
   },
   {
-    game_id: "151019",
-    game_name: "V-High low",
+    game_id: "151020",
+    game_name: "VR High low",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5383,8 +5333,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGHL101",
   },
   {
-    game_id: "151020",
-    game_name: "V-Worli Matka",
+    game_id: "151021",
+    game_name: "VR Worli Matka",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5393,8 +5343,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGWM101",
   },
   {
-    game_id: "151021",
-    game_name: "V-29 card bacarrat",
+    game_id: "151022",
+    game_name: "VR 29 card bacarrat",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5403,7 +5353,7 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTG29B101",
   },
   {
-    game_id: "151022",
+    game_id: "151026",
     game_name: "Lankesh",
     category: "Virtual",
     provider_name: "MAC88",
@@ -5413,8 +5363,8 @@ export const mac88ListJSON = [
     game_code: "MAC88-VTGLN101",
   },
   {
-    game_id: "151053",
-    game_name: "AVIATORX",
+    game_id: "151027",
+    game_name: "Aviator X",
     category: "Virtual",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5424,7 +5374,7 @@ export const mac88ListJSON = [
   },
   {
     game_id: "151067",
-    game_name: "Aviator Blue",
+    game_name: "AviatorX2",
     category: "Crash Games",
     provider_name: "MAC88",
     sub_provider_name: "Mac88 Gaming Virtual",
@@ -5464,16 +5414,6 @@ export const mac88ListJSON = [
   },
   {
     game_id: "230004",
-    game_name: "Hilo",
-    category: "slot",
-    provider_name: "DC",
-    sub_provider_name: "Monk88",
-    status: "ACTIVE",
-    url_thumb: "https://launch.monk88.com/images/hilo.png",
-    game_code: "monk88_hilo",
-  },
-  {
-    game_id: "230005",
     game_name: "Limbo",
     category: "slot",
     provider_name: "DC",
@@ -5483,7 +5423,7 @@ export const mac88ListJSON = [
     game_code: "monk88_limbo",
   },
   {
-    game_id: "230006",
+    game_id: "230005",
     game_name: "Mines",
     category: "slot",
     provider_name: "DC",
@@ -5493,7 +5433,7 @@ export const mac88ListJSON = [
     game_code: "monk88_mines",
   },
   {
-    game_id: "230007",
+    game_id: "230006",
     game_name: "Plinko",
     category: "slot",
     provider_name: "DC",
@@ -5503,7 +5443,7 @@ export const mac88ListJSON = [
     game_code: "monk88_plinko",
   },
   {
-    game_id: "230008",
+    game_id: "230007",
     game_name: "X-Roulette",
     category: "slot",
     provider_name: "DC",
@@ -5511,5 +5451,15 @@ export const mac88ListJSON = [
     status: "ACTIVE",
     url_thumb: "https://launch.monk88.com/images/x-roulette.png",
     game_code: "monk88_slide",
+  },
+  {
+    game_id: "230008",
+    game_name: "Hilo",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/hilo.png",
+    game_code: "monk88_hilo",
   },
 ];
