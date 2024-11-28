@@ -84,26 +84,26 @@ const MainRoutes = {
       path: "casino-slot",
       element: <Home />,
     },
-    {
-      path: "live-casinom",
-      element: <Home />,
-    },
+    // {
+    //   path: "live-casinom",
+    //   element: <Home />,
+    // },
     {
       path: "other",
       element: <Home />,
     },
-    {
-      path: "virtual",
-      element: <Home />,
-    },
-    {
-      path: "slot",
-      element: <Home />,
-    },
-    {
-      path: "fantasy",
-      element: <Home />,
-    },
+    // {
+    //   path: "virtual",
+    //   element: <Home />,
+    // },
+    // {
+    //   path: "slot",
+    //   element: <Home />,
+    // },
+    // {
+    //   path: "fantasy",
+    //   element: <Home />,
+    // },
     {
       path: "account-statement",
       element: <AccountStatement />,
@@ -276,10 +276,10 @@ const MainRoutes = {
       path: "cmeter",
       element: <CasinoMeter />,
     },
-    {
-      path: "live-casino",
-      element: <LiveCasino />,
-    },
+    // {
+    //   path: "live-casino",
+    //   element: <LiveCasino />,
+    // },
     { path: "queen", element: <Queen /> },
     { path: "worli", element: <WorliMatka /> },
     {

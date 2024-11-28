@@ -34,14 +34,14 @@
         "id": "livecasino",
         "name": "Live Casino",
         "type": "liveItem",
-        "path": "/live-casino",
+        "path": "/contact-admin/91",
         "onClick": true
       },
       {
         "id": "slotgame",
         "name": "Slot Game",
         "type": "liveItem",
-        "path": "/contact-admin/91"
+        "path": "/contact-admin/92"
       },
       {
         "id": "race2020",
