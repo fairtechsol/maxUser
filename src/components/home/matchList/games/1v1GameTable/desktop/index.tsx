@@ -76,24 +76,37 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         .flatMap((set) => Object.values(set))
         .flat();
       const arr = [...combinedArray, ...casinoIcons];
+      
       const sortedArr = arr.sort((a, b) => {
-        const gameA = a.game_name || a.name || "";
-        const gameB = b.game_name || b.name || "";
-
-        const indexA = liveCasinoGameList.indexOf(gameA);
-        const indexB = liveCasinoGameList.indexOf(gameB);
-
-        if (indexA === -1) return 1;
-        if (indexB === -1) return -1;
-
-        return indexA - indexB;
+        const gameA = a.game_id || a.name || "";
+        const gameB = b.game_id || b.name || "";
+  
+        // Find the corresponding objects in liveCasinoGameList
+        const gameObjA = liveCasinoGameList.find(game => game.game_id === gameA);
+        const gameObjB = liveCasinoGameList.find(game => game.game_id === gameB);
+  
+        // Handle cases where games are not found in the list
+        if (!gameObjA) return 1; // If A is not found, push it to the end
+        if (!gameObjB) return -1; // If B is not found, push it to the end
+  
+        // Compare by indices in the list
+        const indexA = liveCasinoGameList.indexOf(gameObjA);
+        const indexB = liveCasinoGameList.indexOf(gameObjB);
+  
+        if (indexA !== indexB) {
+          return indexA - indexB;
+        }
+  
+        // If indices are the same, sort by game ID
+        return gameObjA.game_id - gameObjB.game_id;
       });
-
+  
       setDataList(sortedArr);
     }
-  }, [liveCasinoData,liveCasinoGameList]);
+  }, [liveCasinoData, liveCasinoGameList]);
+  
 
- console.log("liveCasinoData",liveCasinoGameList,dataList)
+ console.log("liveCasinoData",dataList)
   
   const handleModal = (data: any) => {
     if (data?.game_id) {
