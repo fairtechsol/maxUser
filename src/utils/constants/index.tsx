@@ -87,7 +87,7 @@ export const ApiConstants = {
     ACCOUNT_STATEMENT: "/transaction/get/",
     CARD_REPORT: "/card/result/",
     LIVE_CASINO_BETS: "/mac88/bets",
-    CASINO_GAME_PROVIDERS : "/mac88/providers"
+    CASINO_GAME_PROVIDERS: "/mac88/providers",
   },
   EXPERT: {
     COMPETITIONLIST: "/expert/match/competitionList/",
@@ -1963,352 +1963,352 @@ export const sportsRules = [
             color: "black",
           },
           {
-            "text": "Inning run Bhav bets are valid if over reduced due to rain or weather condition or match abandoned the result will be given as per official result.",
-            "color": "black"
+            text: "Inning run Bhav bets are valid if over reduced due to rain or weather condition or match abandoned the result will be given as per official result.",
+            color: "black",
           },
           {
-            "text": "Settlement occurs once the stipulated conditions are met, which involves either completion of the allotted overs or the batting team's dismissal, including weather disturbances.",
-            "color": "black"
+            text: "Settlement occurs once the stipulated conditions are met, which involves either completion of the allotted overs or the batting team's dismissal, including weather disturbances.",
+            color: "black",
           },
           {
-            "text": "In the event of a weather-shortened match, all Bhav Bets placed in the Inning Run Bhav market will be settled according to the official result. For limited overs matches, this includes results determined by the Duckworth Lewis method.",
-            "color": "black"
+            text: "In the event of a weather-shortened match, all Bhav Bets placed in the Inning Run Bhav market will be settled according to the official result. For limited overs matches, this includes results determined by the Duckworth Lewis method.",
+            color: "black",
           },
           {
-            "text": "In case of pitch vandalism, player safety concerns, stadium damage, acts of terrorism, or acts of God, the company holds the authority to nullify all bets, with the exception of those related to markets that have already been conclusively settled.",
-            "color": "black"
+            text: "In case of pitch vandalism, player safety concerns, stadium damage, acts of terrorism, or acts of God, the company holds the authority to nullify all bets, with the exception of those related to markets that have already been conclusively settled.",
+            color: "black",
           },
           {
-            "text": "Bets made during instances of incorrect scorecard updates, inaccurate commentary, delays in suspending the Bhav Bets of Total Innings Runs market, or erroneous updates of rates and odds for Bhav Bets in Total Innings Runs will be removed and deleted from user accounts.",
-            "color": "black"
+            text: "Bets made during instances of incorrect scorecard updates, inaccurate commentary, delays in suspending the Bhav Bets of Total Innings Runs market, or erroneous updates of rates and odds for Bhav Bets in Total Innings Runs will be removed and deleted from user accounts.",
+            color: "black",
           },
           {
-            "text": "Example: 1st inning run Bhav (ENG v AUS), 2nd Inning run Bhav (ENG v AUS) - England vs Australia T20 Match",
-            "color": "black"
+            text: "Example: 1st inning run Bhav (ENG v AUS), 2nd Inning run Bhav (ENG v AUS) - England vs Australia T20 Match",
+            color: "black",
           },
           {
-            "text": "Total Match 30s: How many batsman's scored 30 to 49 runs in the full match. If a Player reached 50 means, Not considered in this Event.",
-            "color": "black"
+            text: "Total Match 30s: How many batsman's scored 30 to 49 runs in the full match. If a Player reached 50 means, Not considered in this Event.",
+            color: "black",
           },
           {
-            "text": "Total Boundaries in 1st Power play: Number of Boundaries Scored in 1st Power play, 1st Innings only Valid In T20/ODI Both",
-            "color": "black"
+            text: "Total Boundaries in 1st Power play: Number of Boundaries Scored in 1st Power play, 1st Innings only Valid In T20/ODI Both",
+            color: "black",
           },
           {
-            "text": "Total Dot balls in 1st Power play: Number of Dot balls coming in 1st Power play, 1st Innings only Valid In T20/ODI Both",
-            "color": "black"
+            text: "Total Dot balls in 1st Power play: Number of Dot balls coming in 1st Power play, 1st Innings only Valid In T20/ODI Both",
+            color: "black",
           },
           {
-            "text": "Total match Wicket keeper's Dismissals: Wicket keepers Caught outs and Stumping Only Considered In T20/ODI Both",
-            "color": "black"
+            text: "Total match Wicket keeper's Dismissals: Wicket keepers Caught outs and Stumping Only Considered In T20/ODI Both",
+            color: "black",
           },
           {
-            "text": "1st Inn Death Over Runs: Runs Scored, Last Over Only Considered, 1st Innings only Valid",
-            "color": "black"
+            text: "1st Inn Death Over Runs: Runs Scored, Last Over Only Considered, 1st Innings only Valid",
+            color: "black",
           },
           {
-            "text": "Total Match Single Digit Scores By Players: Duck outs Not Considered in this Event. If Not out Batsman/Injured Batsman facing One Legal Delivery and nothing scored ('0') means Considered as Single Digit.",
-            "color": "black"
+            text: "Total Match Single Digit Scores By Players: Duck outs Not Considered in this Event. If Not out Batsman/Injured Batsman facing One Legal Delivery and nothing scored ('0') means Considered as Single Digit.",
+            color: "black",
           },
           {
-            "text": "Most Balls Faced By a Batsman: Maximum Balls Faced by an Individual Batsman in Match.",
-            "color": "black"
+            text: "Most Balls Faced By a Batsman: Maximum Balls Faced by an Individual Batsman in Match.",
+            color: "black",
           },
           {
-            "text": "High Partnership Boundaries in the Match: Maximum Number of Boundaries Scored during any Partnership.",
-            "color": "black"
+            text: "High Partnership Boundaries in the Match: Maximum Number of Boundaries Scored during any Partnership.",
+            color: "black",
           },
           {
-            "text": "In case of any circumstances, management decision will be final for all the fancies under World Cup.",
-            "color": "red"
+            text: "In case of any circumstances, management decision will be final for all the fancies under World Cup.",
+            color: "red",
           },
           {
-            "text": "WC: WORLD CUP.",
-            "color": "red"
+            text: "WC: WORLD CUP.",
+            color: "red",
           },
           {
-            "text": "MOM: MAN OF THE MATCH.",
-            "color": "red"
+            text: "MOM: MAN OF THE MATCH.",
+            color: "red",
           },
           {
-            "text": "If World Cup fixture of 48 matches gets reduced due to any reason, then all the special fancies will be voided (Match abandoned due to rain/bad light will not be considered in this)",
-            "color": "red"
+            text: "If World Cup fixture of 48 matches gets reduced due to any reason, then all the special fancies will be voided (Match abandoned due to rain/bad light will not be considered in this)",
+            color: "red",
           },
           {
-            "text": "Super over will not be included",
-            "color": "red"
+            text: "Super over will not be included",
+            color: "red",
           },
           {
-            "text": "At any situation if result is given for any particular event based on the rates given for the same, then the particular result will be considered valid, similarly if the tournament gets canceled due to any reason the previously given result will be considered valid",
-            "color": "red"
+            text: "At any situation if result is given for any particular event based on the rates given for the same, then the particular result will be considered valid, similarly if the tournament gets canceled due to any reason the previously given result will be considered valid",
+            color: "red",
           },
           {
-            "text": "Total Match 1st over runs: Average 4 runs will be given in case match abandoned or over reduced (Only First Innings is Valid).",
-            "color": "black"
+            text: "Total Match 1st over runs: Average 4 runs will be given in case match abandoned or over reduced (Only First Innings is Valid).",
+            color: "black",
           },
           {
-            "text": "Total Match 1st over Dot Ball: Average 4 runs will be given in case match abandoned or over reduced (Only First Innings is Valid).",
-            "color": "black"
+            text: "Total Match 1st over Dot Ball: Average 4 runs will be given in case match abandoned or over reduced (Only First Innings is Valid).",
+            color: "black",
           },
           {
-            "text": "Total Match 1st 10 over run: Average 50 runs will be given in case match abandoned or over reduced (Only First Innings is Valid).",
-            "color": "black"
+            text: "Total Match 1st 10 over run: Average 50 runs will be given in case match abandoned or over reduced (Only First Innings is Valid).",
+            color: "black",
           },
           {
-            "text": "Total fours: Average 45 fours will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total fours: Average 45 fours will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total sixes: Average 11 sixes will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total sixes: Average 11 sixes will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Wickets: Average 15 Wickets will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Wickets: Average 15 Wickets will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Wides: Average 16 Wides will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Wides: Average 16 Wides will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total No balls: Average 2 No ball will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total No balls: Average 2 No ball will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Extras: Average 26 extras will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Extras: Average 26 extras will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Caught outs: Average 9 caught out will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Caught outs: Average 9 caught out will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Bowled: Average 3 Bowled out will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Bowled: Average 3 Bowled out will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total LBW: Average 2 LBW will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total LBW: Average 2 LBW will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Run out: Average 1 Run out will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Run out: Average 1 Run out will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Fifties: Average 3 fifties will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Fifties: Average 3 fifties will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total 100s: Average 1 Hundred will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total 100s: Average 1 Hundred will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Ducks: Average 1 Duck out will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Ducks: Average 1 Duck out will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Maidens: Average 4 Maidens will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Maidens: Average 4 Maidens will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total 50+ Partnerships: Average 3 Fifty plus Partnerships will be given in case match abandoned or over reduced. 50 and 50 Above Partnerships All Counted in this.",
-            "color": "black"
+            text: "Total 50+ Partnerships: Average 3 Fifty plus Partnerships will be given in case match abandoned or over reduced. 50 and 50 Above Partnerships All Counted in this.",
+            color: "black",
           },
           {
-            "text": "Highest 1st over run in individual match: Only First Innings is Valid.",
-            "color": "black"
+            text: "Highest 1st over run in individual match: Only First Innings is Valid.",
+            color: "black",
           },
           {
-            "text": "Highest 1st 10 over run in individual match: Only First Innings is Valid.",
-            "color": "black"
+            text: "Highest 1st 10 over run in individual match: Only First Innings is Valid.",
+            color: "black",
           },
           {
-            "text": "Highest Fours in individual match: Both innings are valid.",
-            "color": "black"
+            text: "Highest Fours in individual match: Both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Highest Sixes in individual match: Both innings are valid.",
-            "color": "black"
+            text: "Highest Sixes in individual match: Both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Highest Wicket in individual match: Both innings are valid.",
-            "color": "black"
+            text: "Highest Wicket in individual match: Both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Highest Extras in individual match: Both innings are valid.",
-            "color": "black"
+            text: "Highest Extras in individual match: Both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Highest Scoring runs in Over: Both innings are valid.",
-            "color": "black"
+            text: "Highest Scoring runs in Over: Both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Highest Run Scorer: Total Runs Scored by An Individual Batsman in Full Tournament.",
-            "color": "black"
+            text: "Highest Run Scorer: Total Runs Scored by An Individual Batsman in Full Tournament.",
+            color: "black",
           },
           {
-            "text": "Highest Wicket Taker: Total Wickets Taken by a Bowler in Full Tournament.",
-            "color": "black"
+            text: "Highest Wicket Taker: Total Wickets Taken by a Bowler in Full Tournament.",
+            color: "black",
           },
           {
-            "text": "Most Balls Faced By a Batsman in the Match: Maximum Balls Faced by an Individual Batsman in any Single Match.",
-            "color": "black"
+            text: "Most Balls Faced By a Batsman in the Match: Maximum Balls Faced by an Individual Batsman in any Single Match.",
+            color: "black",
           },
           {
-            "text": "Most 4s by a Batsman in the Match: Maximum 4s Hitted by an Individual Batsman in any Single Match.",
-            "color": "black"
+            text: "Most 4s by a Batsman in the Match: Maximum 4s Hitted by an Individual Batsman in any Single Match.",
+            color: "black",
           },
           {
-            "text": "Most 6s by a Batsman in the Match: Maximum 6s Hitted by an Individual Batsman in any Single Match.",
-            "color": "black"
+            text: "Most 6s by a Batsman in the Match: Maximum 6s Hitted by an Individual Batsman in any Single Match.",
+            color: "black",
           },
           {
-            "text": "Most Dot balls By a Bowler in an Inning: Maximum Dot balls Bowled by a Bowler in his Quota of Innings.",
-            "color": "black"
+            text: "Most Dot balls By a Bowler in an Inning: Maximum Dot balls Bowled by a Bowler in his Quota of Innings.",
+            color: "black",
           },
           {
-            "text": "Most runs given by Bowler in an Inning: Maximum Runs conceded by an individual Bowler in an Innings.",
-            "color": "black"
+            text: "Most runs given by Bowler in an Inning: Maximum Runs conceded by an individual Bowler in an Innings.",
+            color: "black",
           },
           {
-            "text": "Most wickets by Bowler in an inning: Maximum Wickets taken by an individual Bowler in an Innings.",
-            "color": "black"
+            text: "Most wickets by Bowler in an inning: Maximum Wickets taken by an individual Bowler in an Innings.",
+            color: "black",
           },
           {
-            "text": "Total 50 Plus Partnership runs: 50 and above 50 runs partnership will be counted in this event.",
-            "color": "black"
+            text: "Total 50 Plus Partnership runs: 50 and above 50 runs partnership will be counted in this event.",
+            color: "black",
           },
           {
-            "text": "In fastest fifty always the first 50 runs will be considered, for example, if R Sharma scores 1st fifty in 17 balls and scores 100 in next 14 balls, fastest 50 will be given based on the balls for the 1st fifty runs.",
-            "color": "black"
+            text: "In fastest fifty always the first 50 runs will be considered, for example, if R Sharma scores 1st fifty in 17 balls and scores 100 in next 14 balls, fastest 50 will be given based on the balls for the 1st fifty runs.",
+            color: "black",
           },
           {
-            "text": "Super over will not be included.",
-            "color": "black"
+            text: "Super over will not be included.",
+            color: "black",
           },
           {
-            "text": "Women's Premier League (WPL): If WPL fixture of 22 matches gets reduced due to any reason, then all the special fancies will be voided (Match abandoned due to rain/bad light will not be considered in this).",
-            "color": "black"
+            text: "Women's Premier League (WPL): If WPL fixture of 22 matches gets reduced due to any reason, then all the special fancies will be voided (Match abandoned due to rain/bad light will not be considered in this).",
+            color: "black",
           },
           {
-            "text": "Total matches 1st over runs: Average 5 runs will be given in case match abandoned or over reduced (only 1st innings valid).",
-            "color": "black"
+            text: "Total matches 1st over runs: Average 5 runs will be given in case match abandoned or over reduced (only 1st innings valid).",
+            color: "black",
           },
           {
-            "text": "Total matches 1st 6 over runs: Average 40 runs will be given in case match abandoned or over reduced (Only 1st Innings valid).",
-            "color": "black"
+            text: "Total matches 1st 6 over runs: Average 40 runs will be given in case match abandoned or over reduced (Only 1st Innings valid).",
+            color: "black",
           },
           {
-            "text": "Total 4's: Average 32 fours will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total 4's: Average 32 fours will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total 30's: Average 2 sixes will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total 30's: Average 2 sixes will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total 50's: Average 1 fifties will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total 50's: Average 1 fifties will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Total Wickets: Average 12 Wickets will be given in case match abandoned or over reduced.",
-            "color": "black"
+            text: "Total Wickets: Average 12 Wickets will be given in case match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "At any situation if result is given for any particular event based on the rates given for the same, then the particular result will be considered valid. Similarly, if the tournament gets canceled due to any reason, the previously given result will be considered valid.",
-            "color": "black"
+            text: "At any situation if result is given for any particular event based on the rates given for the same, then the particular result will be considered valid. Similarly, if the tournament gets canceled due to any reason, the previously given result will be considered valid.",
+            color: "black",
           },
           {
-            "text": "Highest innings run: Both innings are valid.",
-            "color": "black"
+            text: "Highest innings run: Both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Lowest innings run: Only first innings is valid.",
-            "color": "black"
+            text: "Lowest innings run: Only first innings is valid.",
+            color: "black",
           },
           {
-            "text": "Highest Match 1st over runs in the match: Only first innings is valid.",
-            "color": "black"
+            text: "Highest Match 1st over runs in the match: Only first innings is valid.",
+            color: "black",
           },
           {
-            "text": "Highest 1st 6 over runs: Only first innings is valid.",
-            "color": "black"
+            text: "Highest 1st 6 over runs: Only first innings is valid.",
+            color: "black",
           },
           {
-            "text": "Highest 4's in individual match: Both innings are valid.",
-            "color": "black"
+            text: "Highest 4's in individual match: Both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Highest Wickets in individual match: Both innings are valid.",
-            "color": "black"
+            text: "Highest Wickets in individual match: Both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Highest over runs: Both innings are valid.",
-            "color": "black"
+            text: "Highest over runs: Both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Most Balls Faced By a Batsman: Maximum Balls Faced by a batsman in one Innings.",
-            "color": "black"
+            text: "Most Balls Faced By a Batsman: Maximum Balls Faced by a batsman in one Innings.",
+            color: "black",
           },
           {
-            "text": "Most 4's by an individual batsman in an Inning: Maximum Number of Fours Hit By A Batsman in one Innings.",
-            "color": "black"
+            text: "Most 4's by an individual batsman in an Inning: Maximum Number of Fours Hit By A Batsman in one Innings.",
+            color: "black",
           },
           {
-            "text": "Most Dot balls By a Bowler in an Inning: Maximum Dot balls Bowled by a Bowler in his Quota of Innings.",
-            "color": "black"
+            text: "Most Dot balls By a Bowler in an Inning: Maximum Dot balls Bowled by a Bowler in his Quota of Innings.",
+            color: "black",
           },
           {
-            "text": "Most runs given by Bowler in an Inning: Maximum Runs conceded by an individual Bowler in an Innings.",
-            "color": "black"
+            text: "Most runs given by Bowler in an Inning: Maximum Runs conceded by an individual Bowler in an Innings.",
+            color: "black",
           },
           {
-            "text": "Most wickets by Bowler in an inning: Maximum Wickets taken by an individual Bowler in an Innings.",
-            "color": "black"
+            text: "Most wickets by Bowler in an inning: Maximum Wickets taken by an individual Bowler in an Innings.",
+            color: "black",
           },
           {
-            "text": "In fastest fifty always the first 50 runs will be considered, for example, if S Mandhana scores 1st fifty in 17 balls and scores 100 in next 14 balls, fastest 50 will be given based on the balls for the 1st fifty runs.",
-            "color": "black"
+            text: "In fastest fifty always the first 50 runs will be considered, for example, if S Mandhana scores 1st fifty in 17 balls and scores 100 in next 14 balls, fastest 50 will be given based on the balls for the 1st fifty runs.",
+            color: "black",
           },
           {
-            "text": "Super over will not be included.",
-            "color": "black"
+            text: "Super over will not be included.",
+            color: "black",
           },
           {
-            "text": "Total runs: This market is based on how many runs will be scored in the match across both team's innings combined.",
-            "color": "black"
+            text: "Total runs: This market is based on how many runs will be scored in the match across both team's innings combined.",
+            color: "black",
           },
           {
-            "text": "Total Overs: This market is based on how many overs will be played in the match across both team's innings combined. (If an Inning completed in 83.4 overs then that calculated as 84 overs).",
-            "color": "black"
+            text: "Total Overs: This market is based on how many overs will be played in the match across both team's innings combined. (If an Inning completed in 83.4 overs then that calculated as 84 overs).",
+            color: "black",
           },
           {
-            "text": "Total Bowlers Giving 100 runs: Number of Bowlers Giving 100 runs and above per innings. Both innings will be counted.",
-            "color": "black"
+            text: "Total Bowlers Giving 100 runs: Number of Bowlers Giving 100 runs and above per innings. Both innings will be counted.",
+            color: "black",
           },
           {
-            "text": "Any query regarding result or rate has to be contacted within 7 days from the event; query after 7 days from the event will not be considered as valid.",
-            "color": "black"
+            text: "Any query regarding result or rate has to be contacted within 7 days from the event; query after 7 days from the event will not be considered as valid.",
+            color: "black",
           },
           {
-            "text": "Total Impact overs: Number of overs scored 10 runs or above. Team wise only 1st inning are valid and Match wise both innings are valid.",
-            "color": "black"
+            text: "Total Impact overs: Number of overs scored 10 runs or above. Team wise only 1st inning are valid and Match wise both innings are valid.",
+            color: "black",
           },
           {
-            "text": "Total Match Four Hitters: Number of Batsman hitting Fours in full match.",
-            "color": "black"
+            text: "Total Match Four Hitters: Number of Batsman hitting Fours in full match.",
+            color: "black",
           },
           {
-            "text": "Total Match Six Hitters: Number of Batsman hitting Sixes in full match.",
-            "color": "black"
+            text: "Total Match Six Hitters: Number of Batsman hitting Sixes in full match.",
+            color: "black",
           },
           {
-            "text": "Total Match Wicket Takers: Number of bowlers taking wickets in full match.",
-            "color": "black"
+            text: "Total Match Wicket Takers: Number of bowlers taking wickets in full match.",
+            color: "black",
           },
           {
-            "text": "100 balls Event: The events for 1 to 100 balls will be considered valid only if the number of balls mentioned has been played completely. However, if the balls got reduced before the particular event then the same will be voided. If the team batting first gets all out prior to 100 balls, the balance balls will be counted from second innings. For example, if team batting first gets all out in 81 balls, balance 19 balls will be counted from second innings and that 19 balls all events are counted. This same is valid for 1st Innings only.",
-            "color": "black"
+            text: "100 balls Event: The events for 1 to 100 balls will be considered valid only if the number of balls mentioned has been played completely. However, if the balls got reduced before the particular event then the same will be voided. If the team batting first gets all out prior to 100 balls, the balance balls will be counted from second innings. For example, if team batting first gets all out in 81 balls, balance 19 balls will be counted from second innings and that 19 balls all events are counted. This same is valid for 1st Innings only.",
+            color: "black",
           },
         ],
       },
@@ -2316,248 +2316,248 @@ export const sportsRules = [
         category: "khado",
         description: [
           {
-            "text": "Only First inning valid for T20 and one day matches.",
-            "color": "black"
+            text: "Only First inning valid for T20 and one day matches.",
+            color: "black",
           },
           {
-            "text": "Same will be work like Lambi. If match abandoned or over reduced, all bets will be deleted.",
-            "color": "black"
+            text: "Same will be work like Lambi. If match abandoned or over reduced, all bets will be deleted.",
+            color: "black",
           },
           {
-            "text": "You can choose your own value in this event.",
-            "color": "black"
+            text: "You can choose your own value in this event.",
+            color: "black",
           },
-        ]
+        ],
       },
       {
         category: "fancy1",
         description: [
           {
-            "text": "1. Odd/Even Rules. (W.e.f 5th January 2024)",
-            "color": "red"
+            text: "1. Odd/Even Rules. (W.e.f 5th January 2024)",
+            color: "red",
           },
           {
-            "text": "1.1 Advance events will be valid if over reduced before match start. For Ex: - In T20, If over reduced to 16 over so up to 16 over valid remaining over will be deleted.",
-            "color": "black"
+            text: "1.1 Advance events will be valid if over reduced before match start. For Ex: - In T20, If over reduced to 16 over so up to 16 over valid remaining over will be deleted.",
+            color: "black",
           },
           {
-            "text": "1.4 All bets regarding to ODD/EVEN player/partnership are valid if one legal delivery is being played, else the bets will be deleted. Player odd/even all advance bets will be valid if one legal delivery is being played in match otherwise voided.",
-            "color": "black"
+            text: "1.4 All bets regarding to ODD/EVEN player/partnership are valid if one legal delivery is being played, else the bets will be deleted. Player odd/even all advance bets will be valid if one legal delivery is being played in match otherwise voided.",
+            color: "black",
           },
           {
-            "text": "1.6 In any circumstances management decision will be final.",
-            "color": "black"
+            text: "1.6 In any circumstances management decision will be final.",
+            color: "black",
           },
           {
-            "text": "2 Top batsman rules:-",
-            "color": "red"
+            text: "2 Top batsman rules:-",
+            color: "red",
           },
           {
-            "text": "2.1 If any player does not come as per playing eleven then all bets will be get deleted for the particular player.",
-            "color": "red"
+            text: "2.1 If any player does not come as per playing eleven then all bets will be get deleted for the particular player.",
+            color: "red",
           },
           {
-            "text": "2.2 two players done the same run in a single match (M Agarwal 30 runs and A Rayudu 30 runs, whole inning top batsmen score also 30 run) then both player settlement to be get done 50 percent (50% , 50%)rate on their original value which given by our exchange.",
-            "color": "black"
+            text: "2.2 two players done the same run in a single match (M Agarwal 30 runs and A Rayudu 30 runs, whole inning top batsmen score also 30 run) then both player settlement to be get done 50 percent (50% , 50%)rate on their original value which given by our exchange.",
+            color: "black",
           },
           {
-            "text": "Suppose we have opened value of M Agarwal 3.75 back and customer place bets on 10000 @ 3.75 rates and A Rayudu 3.0 back and customer place bets on 10000 @ 3.0 rates.",
-            "color": "black"
+            text: "Suppose we have opened value of M Agarwal 3.75 back and customer place bets on 10000 @ 3.75 rates and A Rayudu 3.0 back and customer place bets on 10000 @ 3.0 rates.",
+            color: "black",
           },
           {
-            "text": "Whole inning result announces 30 run by both player then",
-            "color": "black"
+            text: "Whole inning result announces 30 run by both player then",
+            color: "black",
           },
           {
-            "text": "Rule of top batsman:-if you bet on M Agarwal you will be get half amount of this rate (10000*3.75/2=18750 you will get)",
-            "color": "red"
+            text: "Rule of top batsman:-if you bet on M Agarwal you will be get half amount of this rate (10000*3.75/2=18750 you will get)",
+            color: "red",
           },
           {
-            "text": "Rule of top batsman:-if you bet on A Rayudu you will be get half amount of this rate (10000*3.00/2=15000 you will get)",
-            "color": "red"
+            text: "Rule of top batsman:-if you bet on A Rayudu you will be get half amount of this rate (10000*3.00/2=15000 you will get)",
+            color: "red",
           },
           {
-            "text": "Top batsman only 1st inning valid.",
-            "color": "black"
+            text: "Top batsman only 1st inning valid.",
+            color: "black",
           },
           {
-            "text": "For one day 50 over and for T20 match 20 overs must be played for top batsmen otherwise all bets will be deleted.",
-            "color": "black"
+            text: "For one day 50 over and for T20 match 20 overs must be played for top batsmen otherwise all bets will be deleted.",
+            color: "black",
           },
           {
-            "text": "Man of the Match Rules",
-            "color": "black"
+            text: "Man of the Match Rules",
+            color: "black",
           },
           {
-            "text": "1. All bets will be deleted in case the match is abandoned or over reduced.",
-            "color": "black"
+            text: "1. All bets will be deleted in case the match is abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "2. All bets will be deleted if the mentioned player is not included in playing 11.",
-            "color": "black"
+            text: "2. All bets will be deleted if the mentioned player is not included in playing 11.",
+            color: "black",
           },
           {
-            "text": "3. In case Man of the Match is shared between two players then Dead heat rule will be applicable. For example, K Perera and T Iqbal share the Man of the Match, then the settlement will be done 50% of the rates accordingly.",
-            "color": "black"
+            text: "3. In case Man of the Match is shared between two players then Dead heat rule will be applicable. For example, K Perera and T Iqbal share the Man of the Match, then the settlement will be done 50% of the rates accordingly.",
+            color: "black",
           },
           {
-            "text": "4. Rules similar to our Top Batsman rules.",
-            "color": "black"
+            text: "4. Rules similar to our Top Batsman rules.",
+            color: "black",
           },
           {
-            "text": "Maximum Sixes by Team",
-            "color": "black"
+            text: "Maximum Sixes by Team",
+            color: "black",
           },
           {
-            "text": "1. All bets will be deleted if match abandoned or over reduced.",
-            "color": "black"
+            text: "1. All bets will be deleted if match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "2. All bets will be deleted if both the teams hit the same number of sixes.",
-            "color": "black"
+            text: "2. All bets will be deleted if both the teams hit the same number of sixes.",
+            color: "black",
           },
           {
-            "text": "3. Super over will not be considered.",
-            "color": "black"
+            text: "3. Super over will not be considered.",
+            color: "black",
           },
           {
-            "text": "Maximum 6 or 10 over runs",
-            "color": "black"
+            text: "Maximum 6 or 10 over runs",
+            color: "black",
           },
           {
-            "text": "1. All bets will be deleted if match abandoned or over reduced.",
-            "color": "black"
+            text: "1. All bets will be deleted if match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "2. All the bets will be deleted if both the teams score is the same (Runs scored in 6 or 10 overs).",
-            "color": "black"
+            text: "2. All the bets will be deleted if both the teams score is the same (Runs scored in 6 or 10 overs).",
+            color: "black",
           },
           {
-            "text": "3. 6 overs for T20 and 10 overs for ODI.",
-            "color": "black"
+            text: "3. 6 overs for T20 and 10 overs for ODI.",
+            color: "black",
           },
           {
-            "text": "4. Both the innings are valid.",
-            "color": "black"
+            text: "4. Both the innings are valid.",
+            color: "black",
           },
           {
-            "text": "5. This fancy will be valid for 1st 6 overs of both innings for T20 and 1st 10 overs of both innings for ODI.",
-            "color": "black"
+            text: "5. This fancy will be valid for 1st 6 overs of both innings for T20 and 1st 10 overs of both innings for ODI.",
+            color: "black",
           },
           {
-            "text": "Batsman Match",
-            "color": "black"
+            text: "Batsman Match",
+            color: "black",
           },
           {
-            "text": "Bets for Favourite batsman from the two batsman matched.",
-            "color": "black"
+            text: "Bets for Favourite batsman from the two batsman matched.",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted if any one of the mentioned players is not included in playing 11.",
-            "color": "black"
+            text: "All bets will be deleted if any one of the mentioned players is not included in playing 11.",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted unless one ball is played by both the mentioned players.",
-            "color": "black"
+            text: "All bets will be deleted unless one ball is played by both the mentioned players.",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted if over reduced or Match abandoned.",
-            "color": "black"
+            text: "All bets will be deleted if over reduced or Match abandoned.",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted if both the players scored the same runs. For example, H Amla and J Bairstow are the batsmen matched, H Amla and J Bairstow both scored 38 runs then all bets will be deleted.",
-            "color": "black"
+            text: "All bets will be deleted if both the players scored the same runs. For example, H Amla and J Bairstow are the batsmen matched, H Amla and J Bairstow both scored 38 runs then all bets will be deleted.",
+            color: "black",
           },
           {
-            "text": "Both innings will be valid.",
-            "color": "black"
+            text: "Both innings will be valid.",
+            color: "black",
           },
           {
-            "text": "Opening Pair",
-            "color": "black"
+            text: "Opening Pair",
+            color: "black",
           },
           {
-            "text": "1. Bets for Favourite opening pair from the two mentioned opening pairs.",
-            "color": "black"
+            text: "1. Bets for Favourite opening pair from the two mentioned opening pairs.",
+            color: "black",
           },
           {
-            "text": "2. Runs made by both the opening players will be added. For example, J Roy scored 20 runs and J Bairstow scored 30 runs; the result will be 50 runs.",
-            "color": "black"
+            text: "2. Runs made by both the opening players will be added. For example, J Roy scored 20 runs and J Bairstow scored 30 runs; the result will be 50 runs.",
+            color: "black",
           },
           {
-            "text": "3. The highest run made by the pair will be declared as winner. For example, Opening pair ENG total is 70 runs and Opening pair SA is 90 runs, then SA 90 runs will be declared as winner.",
-            "color": "black"
+            text: "3. The highest run made by the pair will be declared as winner. For example, Opening pair ENG total is 70 runs and Opening pair SA is 90 runs, then SA 90 runs will be declared as winner.",
+            color: "black",
           },
           {
-            "text": "Both innings will be valid.",
-            "color": "black"
+            text: "Both innings will be valid.",
+            color: "black",
           },
           {
-            "text": "Our exchange Special",
-            "color": "black"
+            text: "Our exchange Special",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted if the mentioned player is not included in playing 11.",
-            "color": "black"
+            text: "All bets will be deleted if the mentioned player is not included in playing 11.",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted if match abandoned or over reduced.",
-            "color": "black"
+            text: "All bets will be deleted if match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "Both innings will be valid.",
-            "color": "black"
+            text: "Both innings will be valid.",
+            color: "black",
           },
           {
-            "text": "Direction of First Boundary",
-            "color": "black"
+            text: "Direction of First Boundary",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted if the mentioned batsman is not included in playing 11.",
-            "color": "black"
+            text: "All bets will be deleted if the mentioned batsman is not included in playing 11.",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted if match abandoned or over reduced.",
-            "color": "black"
+            text: "All bets will be deleted if match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "The boundary hit through the off side of the stump will be considered as off side four.",
-            "color": "black"
+            text: "The boundary hit through the off side of the stump will be considered as off side four.",
+            color: "black",
           },
           {
-            "text": "The boundary hit through the leg side of the stump will be considered as leg side four.",
-            "color": "black"
+            text: "The boundary hit through the leg side of the stump will be considered as leg side four.",
+            color: "black",
           },
           {
-            "text": "Boundaries through extras (byes, leg byes, wide, overthrow) will not be considered as valid.",
-            "color": "black"
+            text: "Boundaries through extras (byes, leg byes, wide, overthrow) will not be considered as valid.",
+            color: "black",
           },
           {
-            "text": "Only 1st Inning will be considered.",
-            "color": "black"
+            text: "Only 1st Inning will be considered.",
+            color: "black",
           },
           {
-            "text": "Fifty & Century by Batsman",
-            "color": "black"
+            text: "Fifty & Century by Batsman",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted if match abandoned or over reduced.",
-            "color": "black"
+            text: "All bets will be deleted if match abandoned or over reduced.",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted if the mentioned batsman is not included in playing 11.",
-            "color": "black"
+            text: "All bets will be deleted if the mentioned batsman is not included in playing 11.",
+            color: "black",
           },
           {
-            "text": "All bets will be deleted unless the batsman faces one legal ball.",
-            "color": "black"
+            text: "All bets will be deleted unless the batsman faces one legal ball.",
+            color: "black",
           },
           {
-            "text": "Both Innings will be valid.",
-            "color": "black"
+            text: "Both Innings will be valid.",
+            color: "black",
           },
-        ]
-      }
+        ],
+      },
     ],
   },
   {
@@ -3162,12 +3162,12 @@ export const casinoIcons = [
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
     name: "Andar Bahar",
   },
-  {
-    url: "",
-    imgSrc:
-      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
-    name: "Worli Matka",
-  },
+  // {
+  //   url: "",
+  //   imgSrc:
+  //     "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
+  //   name: "Worli Matka",
+  // },
   {
     url: "/worli2",
     imgSrc:
@@ -3228,120 +3228,119 @@ export const casinoIcons = [
       "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
     name: "Lucky 7 - A",
   },
-
-
 ];
+
 export const liveCasinoGameList = [
   "AVIATORX",
   "Aviator Blue",
-  "Muflis Teenpatti One Day",
+  "Sic Bo",
   "Lankesh",
   "Ball By Ball",
   "Super Over",
-  "Race 20-20",
-  "Casino Queen",
-  "5Five Cricket",
-  "Andar Bahar 2",
-  "20-20 Dragon Tiger 2",
-  "Baccarat 2",
-  "Dragon Tiger Vivo",
-  "Bacarrat",
-  "Sic Bo",
-  "Roulette",
-  "Poker",
-  "Lucky7",
-  "Andar Bahar",
-  "Teenpatti One Day",
-  "32 Cards A",
-  "DTL",
-  "Amar Akbar Anthony",
-  "3 Cards Judgement",
+  "Super Over",
+  "10 - 10 cricket ",
   "Queen",
+  "Casino Queen",
   "Race 20",
+  "Race 20-20",
+  "5Five Cricket",
+  "5 Five Cricket",
+  "Amar Akbar Anthony",
+  "Amar Akbar Anthony",
+  "Teenpatti One Day",
+  "Teenpatti 20 20",
+  "Muflis Teenpatti",
+  "Open Teen patti",
+  "INSTANT 2 CARDS TEENPATTI",
+  "Muflis Teenpatti One Day",
+  "Two Card Teenpatti One Day",
+  "Test Teenpatti",
+  "Dragon Tiger Vivo",
+  "Dragon Tiger 2",
+  "1 Day Dragon Tiger",
+  "DTL",
+  "Andar Bahar",
+  "Andar Bahar 2",
+  "Andar Bahar",
+  "TRAP",
+  "Bollywood Casino B",
+  "Bollywood Casino",
+  "Race to 2nd",
+  "Race to 17",
+  "Casino War",
   "Casino War",
   "Worli Matka",
   "Lottery",
-  "Muflis Teenpatti",
-  "Test Teenpatti",
-  "TRAP",
-  "Trio",
+  "Bacarrat",
   "29 Baccarat",
-  "Two Card Teenpatti One Day",
-  "Foot Ball Studio",
-  "Bollywood Casino B",
-  "Poker 1 day",
-  "Teenpatti 20 20",
-  "Super Over",
-  "5 Five Cricket",
-  "1 Day Dragon Tiger",
-  "Dus ka Dum",
-  "One Card 20-20",
-  "One Card Meter",
-  "One Card One Day",
-  "Six Player Poker",
-  "INSTANT 2 CARDS TEENPATTI",
-  "Race to 17",
-  "Note number",
-  "Cricket 2020",
-  "Race to 2nd",
-  "Open Teen patti",
-  "Center card One day",
-  "High Low",
+  "Baccarat 2",
   "Baccarat One Day",
-  "10 - 10 cricket ",
-  "Dragon Tiger 2",
-  "V-Lucky 7",
-  "V-Trio",
-  "V-20-20 DTL",
-  "V-Mulfis Teenpatti",
-  "V-Bollywood Casino",
-  "V-Amar Akbar Anthony",
-  "V-Dragon Tiger",
-  "V-Casino Meter",
-  "V-20-20 Teenpatti",
-  "V-32 Cards",
-  "V-Super over",
-  "V-Andar Bahar",
-  "V-2 Card TP",
-  "V-Queen Race",
-  "V-Poker",
-  "V-Race T20",
-  "V-Auto Roulette",
-  "V-High low",
-  "V-Worli Matka",
-  "V-29 card bacarrat",
-  "Crash",
-  "Diamonds",
-  "Dice",
-  "Hilo",
-  "Limbo",
-  "Mines",
-  "Plinko",
-  "X-Roulette",
-  "Baccarat",
-  "Lucky 7 - B",
-  "20-20 Cricket Match",
-  "Casino Meter",
-  "Casino War",
+  "32 Cards A",
+  "32 Cards B",
+  "Trio",
+  "High Low",
+  "Poker 1 day",
+  "Six Player Poker",
+  "Poker",
+  "20-20 Poker",
+  "3 Cards Judgement",
+  "3 Cards Judgement",
+  "One Card One Day",
+  "One Card 20-20",
+  "1 Day Dragon Tiger",
   "20-20 DTL",
+  "32 Cards A",
+  "Lucky7",
+  "Lucky 7 - B",
+  "Roulette",
+  "One Card Meter",
+  "Cricket 2020",
+  "Baccarat",
+  "20-20 Dragon Tiger 2",
+  "Foot Ball Studio",
+  "Dus ka Dum",
+  "Note number",
+  "Center card One day",
+  "Lucky 7 - A",
+  "20-20 Cricket Match",
   "Test Teenpatti",
+  "6 Player Poker",
+  "Casino Meter",
   "Open Teenpatti",
   "1 Day Teenpatti",
   "20-20 Teenpatti",
-  "6 Player Poker",
-  "1 Day Poker",
-  "20-20 Poker",
-  "Andar Bahar",
-  "Worli Matka",
   "Instant Worli",
-  "3 Cards Judgement",
-  "32 Cards A",
-  "32 Cards B",
-  "Amar Akbar Anthony",
-  "Bollywood Casino",
   "20-20 Dragon Tiger",
-  "1 Day Dragon Tiger",
-  "Lucky 7 - A"
+  "V-2 Card TP",
+  "V-Casino Meter",
+  "V-Bollywood Casino",
+  "V-Mulfis Teenpatti",
+  "V-Worli Matka",
+  "V-Trio",
+  "V-Dragon Tiger",
+  "V-Amar Akbar Anthony",
+  "Limbo",
+  "V-Queen Race",
+  "V-Lucky 7",
+  "V-32 Cards",
+  "V-29 card bacarrat",
+  "Mines",
+  "V-20-20 DTL",
+  "V-Super over",
+  "1 Day Poker",
+  "V-Poker",
+  "V-20-20 Teenpatti",
+  "V-Andar Bahar",
+  "V-Auto Roulette",
+  "Plinko",
+  "Crash",
+  "V-Race T20",
+  "V-High low",
+  "Diamonds",
+  "Dice",
+  "Hilo",
+  "X-Roulette",
+  // "Worli Matka",
 ];
 
 export const card3 = {
@@ -3721,3 +3720,787 @@ export const title = {
   cmeter: "Casino Meter",
   ballbyball: "Ball By Ball",
 };
+
+export const mac88ListJSON = [
+  {
+    game_id: "150001",
+    game_name: "Dragon Tiger Vivo",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/dt_mac88.webp",
+    game_code: "MAC88-YDT102",
+  },
+  {
+    game_id: "150002",
+    game_name: "Bacarrat",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/baccarat_mac88.webp",
+    game_code: "MAC88-XBAC101",
+  },
+  {
+    game_id: "150003",
+    game_name: "Sic Bo",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/sicbo_mac88.webp",
+    game_code: "MAC88-XSB101",
+  },
+  {
+    game_id: "150004",
+    game_name: "Roulette",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/roulette_mac88.webp",
+    game_code: "MAC88-XRT101",
+  },
+  {
+    game_id: "150005",
+    game_name: "Poker",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/poker20_mac88.webp",
+    game_code: "MAC88-XPOK101",
+  },
+  {
+    game_id: "150006",
+    game_name: "Lucky7",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/lucky_7.webp",
+    game_code: "MAC88-YLK7101",
+  },
+  {
+    game_id: "150007",
+    game_name: "Andar Bahar",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/andar_bahar.webp",
+    game_code: "MAC88-XAB101",
+  },
+  {
+    game_id: "150009",
+    game_name: "Teenpatti One Day",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/tp1d.webp",
+    game_code: "MAC88-X1TP101",
+  },
+  {
+    game_id: "150010",
+    game_name: "32 Cards A",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/32_cards.webp",
+    game_code: "MAC88-Y32CA102",
+  },
+  {
+    game_id: "150013",
+    game_name: "DTL",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/dtl_20_20.webp",
+    game_code: "MAC88-YDTL101",
+  },
+  {
+    game_id: "150014",
+    game_name: "Amar Akbar Anthony",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/amar_akbar_anthony.webp",
+    game_code: "MAC88-YA3101",
+  },
+  {
+    game_id: "150015",
+    game_name: "3 Cards Judgement",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/3cj.webp",
+    game_code: "MAC88-X3CJ101",
+  },
+  {
+    game_id: "150016",
+    game_name: "Queen",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/queen.webp",
+    game_code: "MAC88-YQR102",
+  },
+  {
+    game_id: "150017",
+    game_name: "Race 20",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/race_20.webp",
+    game_code: "MAC88-YRTT102",
+  },
+  {
+    game_id: "150018",
+    game_name: "Casino War",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/casino_war.webp",
+    game_code: "MAC88-XCAW101",
+  },
+  {
+    game_id: "150019",
+    game_name: "Worli Matka",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/worli_matka.webp",
+    game_code: "MAC88-YWM102",
+  },
+  {
+    game_id: "150020",
+    game_name: "Lottery",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/lottery.webp",
+    game_code: "MAC88-XLOT101",
+  },
+  {
+    game_id: "150022",
+    game_name: "Muflis Teenpatti",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/muflis_teenpati.webp",
+    game_code: "MAC88-YMTP102",
+  },
+  {
+    game_id: "150023",
+    game_name: "Test Teenpatti",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/teenpatti_test.webp",
+    game_code: "MAC88-YTTP102",
+  },
+  {
+    game_id: "150024",
+    game_name: "TRAP",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/trap.webp",
+    game_code: "MAC88-XTRP101",
+  },
+  {
+    game_id: "150025",
+    game_name: "Trio",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/trio.webp",
+    game_code: "MAC88-XTRI101",
+  },
+  {
+    game_id: "150026",
+    game_name: "29 Baccarat",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/trio.webp",
+    game_code: "MAC88-X29BC101",
+  },
+  {
+    game_id: "150028",
+    game_name: "Two Card Teenpatti One Day",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/2_cards_teenpatti.webp",
+    game_code: "MAC88-Y12TP101",
+  },
+  {
+    game_id: "150029",
+    game_name: "Foot Ball Studio",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/rg/football_studio.webp",
+    game_code: "MAC88-ZFBS101",
+  },
+  {
+    game_id: "150030",
+    game_name: "Muflis Teenpatti One Day",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/muflis_teenpati.webp",
+    game_code: "MAC88-Y1MTP101",
+  },
+  {
+    game_id: "150031",
+    game_name: "Bollywood Casino B",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/bollywood_casino.webp",
+    game_code: "MAC88-YBOC102",
+  },
+  {
+    game_id: "150032",
+    game_name: "Poker 1 day",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/poker20_mac88.webp",
+    game_code: "MAC88-Y1POK101",
+  },
+  {
+    game_id: "150033",
+    game_name: "Teenpatti 20 20",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/20_20_teenpatti.webp",
+    game_code: "MAC88-YTPTT101",
+  },
+  {
+    game_id: "150034",
+    game_name: "Super Over",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/super_over.webp",
+    game_code: "MAC88-Y1SPO101",
+  },
+  {
+    game_id: "150035",
+    game_name: "5 Five Cricket",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/5_five_cricket.webp",
+    game_code: "MAC88-Y15C101",
+  },
+  {
+    game_id: "150036",
+    game_name: "1 Day Dragon Tiger",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/dt_mac88.webp",
+    game_code: "MAC88-X1DT101",
+  },
+  {
+    game_id: "150037",
+    game_name: "Dus ka Dum",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/10kadum.webp",
+    game_code: "MAC88-X1DKD101",
+  },
+  {
+    game_id: "150038",
+    game_name: "One Card 20-20",
+    category: "Others",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/1_card_20_20.webp",
+    game_code: "MAC88-XCTT101",
+  },
+  {
+    game_id: "150039",
+    game_name: "One Card Meter",
+    category: "Others",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/1_card_meter.webp",
+    game_code: "MAC88-XOCM101",
+  },
+  {
+    game_id: "150040",
+    game_name: "One Card One Day",
+    category: "Others",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/1c1d.webp",
+    game_code: "MAC88-X10C101",
+  },
+  {
+    game_id: "150041",
+    game_name: "Six Player Poker",
+    category: "Others",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/6pp.webp",
+    game_code: "MAC88-X6PP101",
+  },
+  {
+    game_id: "150042",
+    game_name: "INSTANT 2 CARDS TEENPATTI",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/2_card_tp.webp",
+    game_code: "MAC88-X2TP101",
+  },
+  {
+    game_id: "150043",
+    game_name: "Race to 17",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/race_17.webp",
+    game_code: "MAC88-XRT17101",
+  },
+  {
+    game_id: "150045",
+    game_name: "Note number",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/notenumber.webp",
+    game_code: "MAC88-X1NN101",
+  },
+  {
+    game_id: "150046",
+    game_name: "Cricket 2020",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/cricket2020.webp",
+    game_code: "MAC88-XCM101",
+  },
+  {
+    game_id: "150048",
+    game_name: "Race to 2nd",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/race_2.webp",
+    game_code: "MAC88-X1RTS101",
+  },
+  {
+    game_id: "150049",
+    game_name: "Open Teen patti",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/open_teen_patti.webp",
+    game_code: "MAC88-YOTP101",
+  },
+  {
+    game_id: "150050",
+    game_name: "Center card One day",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/center_card_one_day.webp",
+    game_code: "MAC88-Y1CC101",
+  },
+  {
+    game_id: "150051",
+    game_name: "High Low",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/high_low.webp",
+    game_code: "MAC88-YHL101",
+  },
+  {
+    game_id: "150052",
+    game_name: "Baccarat One Day",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/baccarat_one_day.webp",
+    game_code: "MAC88-Y1BAC101",
+  },
+  {
+    game_id: "150053",
+    game_name: "10 - 10 cricket ",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/10_10_cricket.webp",
+    game_code: "MAC88-YXC101",
+  },
+  {
+    game_id: "150067",
+    game_name: "Dragon Tiger 2",
+    category: "Live",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/dt2.webp",
+    game_code: "MAC88-DT2101",
+  },
+  {
+    game_id: "151002",
+    game_name: "V-Lucky 7",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_lucky7_vr.webp",
+    game_code: "MAC88-VTGLK7101",
+  },
+  {
+    game_id: "151003",
+    game_name: "V-Trio",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_trio_vr.webp",
+    game_code: "MAC88-VTGTRI101",
+  },
+  {
+    game_id: "151004",
+    game_name: "V-20-20 DTL",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_dtl_vr.webp",
+    game_code: "MAC88-VTGDTL101",
+  },
+  {
+    game_id: "151005",
+    game_name: "V-Mulfis Teenpatti",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb:
+      "https://royal-gaming.s3.eu-west-2.amazonaws.com/rg_muflis_tp_vr.jpg",
+    game_code: "MAC88-VTGMT101",
+  },
+  {
+    game_id: "151006",
+    game_name: "V-Bollywood Casino",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_bollywood_casino_vr.webp",
+    game_code: "MAC88-VTGBC101",
+  },
+  {
+    game_id: "151007",
+    game_name: "V-Amar Akbar Anthony",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_a3_vr.webp",
+    game_code: "MAC88-VTGA3101",
+  },
+  {
+    game_id: "151008",
+    game_name: "V-Dragon Tiger",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_dragon_tiger_vr.webp",
+    game_code: "MAC88-VTGDT101",
+  },
+  {
+    game_id: "151009",
+    game_name: "V-Casino Meter",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_casino_meter_vr.webp",
+    game_code: "MAC88-VTGCAM101",
+  },
+  {
+    game_id: "151010",
+    game_name: "V-20-20 Teenpatti",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_teen_patti_vr.webp",
+    game_code: "MAC88-VTGTP101",
+  },
+  {
+    game_id: "151011",
+    game_name: "V-32 Cards",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_32cards_vr.webp",
+    game_code: "MAC88-VTG32C101",
+  },
+  {
+    game_id: "151012",
+    game_name: "V-Super over",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_super_over_vr.webp",
+    game_code: "MAC88-VTGSO101",
+  },
+  {
+    game_id: "151013",
+    game_name: "V-Andar Bahar",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_andar_bahar_vr.webp",
+    game_code: "MAC88-VTGAB101",
+  },
+  {
+    game_id: "151014",
+    game_name: "V-2 Card TP",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_2card_tp_vr.webp",
+    game_code: "MAC88-VTG2TP101",
+  },
+  {
+    game_id: "151015",
+    game_name: "V-Queen Race",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/rg/queen_race_vr.webp",
+    game_code: "MAC88-VTGQR101",
+  },
+  {
+    game_id: "151016",
+    game_name: "V-Poker",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_poker_vr.webp",
+    game_code: "MAC88-VTGPOK101",
+  },
+  {
+    game_id: "151017",
+    game_name: "V-Race T20",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_king_race_vr.webp",
+    game_code: "MAC88-VTGRTT101",
+  },
+  {
+    game_id: "151018",
+    game_name: "V-Auto Roulette",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.royalgaming.online/rg_vr_roulette.jpg",
+    game_code: "MAC88-VTGRT101",
+  },
+  {
+    game_id: "151019",
+    game_name: "V-High low",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/rg/high_card_vr.webp",
+    game_code: "MAC88-VTGHL101",
+  },
+  {
+    game_id: "151020",
+    game_name: "V-Worli Matka",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamcasino.live/rg_worli_matka_vr.webp",
+    game_code: "MAC88-VTGWM101",
+  },
+  {
+    game_id: "151021",
+    game_name: "V-29 card bacarrat",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/rg/29_card_baccarat_vr.webp",
+    game_code: "MAC88-VTG29B101",
+  },
+  {
+    game_id: "151022",
+    game_name: "Lankesh",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/mac88/lankesh.jpeg",
+    game_code: "MAC88-VTGLN101",
+  },
+  {
+    game_id: "151053",
+    game_name: "AVIATORX",
+    category: "Virtual",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/monk88/aviatorx.webp",
+    game_code: "MAC88-CAV101-VR",
+  },
+  {
+    game_id: "151067",
+    game_name: "Aviator Blue",
+    category: "Crash Games",
+    provider_name: "MAC88",
+    sub_provider_name: "Mac88 Gaming Virtual",
+    status: "ACTIVE",
+    url_thumb: "https://cdn.dreamdelhi.com/monk88/aviatorx.webp",
+    game_code: "MAC88-CAVB101",
+  },
+  {
+    game_id: "230001",
+    game_name: "Crash",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/crash.png",
+    game_code: "monk88_crash",
+  },
+  {
+    game_id: "230002",
+    game_name: "Diamonds",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/diamonds.png",
+    game_code: "monk88_diamonds",
+  },
+  {
+    game_id: "230003",
+    game_name: "Dice",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/dice.png",
+    game_code: "monk88_dice",
+  },
+  {
+    game_id: "230004",
+    game_name: "Hilo",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/hilo.png",
+    game_code: "monk88_hilo",
+  },
+  {
+    game_id: "230005",
+    game_name: "Limbo",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/limbo.png",
+    game_code: "monk88_limbo",
+  },
+  {
+    game_id: "230006",
+    game_name: "Mines",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/mines.png",
+    game_code: "monk88_mines",
+  },
+  {
+    game_id: "230007",
+    game_name: "Plinko",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/plinko.png",
+    game_code: "monk88_plinko",
+  },
+  {
+    game_id: "230008",
+    game_name: "X-Roulette",
+    category: "slot",
+    provider_name: "DC",
+    sub_provider_name: "Monk88",
+    status: "ACTIVE",
+    url_thumb: "https://launch.monk88.com/images/x-roulette.png",
+    game_code: "monk88_slide",
+  },
+];

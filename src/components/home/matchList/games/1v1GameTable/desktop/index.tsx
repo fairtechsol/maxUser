@@ -26,7 +26,6 @@ import {
 import { FaHome } from "react-icons/fa";
 import { maxbetLogo } from "../../../../../../assets/images";
 import { liveCasinoGameList } from "../../../../../../utils/constants";
-
 const tableHeading = [
   {
     id: "game",
@@ -70,6 +69,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
   useEffect(() => {
     dispatch(liveCasinoList(""));
   }, []);
+
   useEffect(() => {
     if (liveCasinoData && Object.keys(liveCasinoData).length > 0) {
       const combinedArray = Object.values(liveCasinoData)
@@ -91,8 +91,10 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
 
       setDataList(sortedArr);
     }
-  }, [liveCasinoData]);
+  }, [liveCasinoData,liveCasinoGameList]);
 
+ console.log("liveCasinoData",liveCasinoGameList,dataList)
+  
   const handleModal = (data: any) => {
     if (data?.game_id) {
       let payLoad: any = {

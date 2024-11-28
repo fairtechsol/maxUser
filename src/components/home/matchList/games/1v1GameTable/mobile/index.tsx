@@ -26,6 +26,9 @@ import { Modal } from "react-bootstrap";
 import { maxbetLogo } from "../../../../../../assets/images";
 import { FaHome } from "react-icons/fa";
 import LiveCasino from "../../../../../../pages/casinoSubTab";
+import LiveCasinoMobile from "../../../../../liveCasino/mobile";
+import { isMobile } from "../../../../../../utils/screenDimension";
+import SeperateMACGames from "../../../../../separateMACGames";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   const [dataList, setDataList] = useState(casinoIcons);
@@ -127,9 +130,14 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
           : "match-list-h"
       }`}
     >
-      {!["/casino-slot", "/other", "/live-casinom"].includes(
-        location.pathname
-      ) && (
+      {![
+        "/casino-slot",
+        "/other",
+        "/live-casinom",
+        "/virtual",
+        "/slot",
+        "/fantasy",
+      ].includes(location.pathname) && (
         <div
           className={`scrollable-container ${
             isSportsRoute ? "match-list-containerm" : ""
@@ -203,8 +211,6 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                         </div>
                       )}
                       {matchList.map((item: any, index: number) => {
-                        const currentTime = new Date().getTime();
-                        const startAt = new Date(item?.startAt).getTime();
                         return (
                           <>
                             <div key={index} className="px-1 m-game-one-v-one">
@@ -395,8 +401,14 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
         </div>
       ) : ["/live-casinom"].includes(location.pathname) ? (
         <LiveCasino />
+      ) : ["/virtual"].includes(location.pathname) ? (
+        <SeperateMACGames gameType={"Virtual"} />
+      ) : ["/slot"].includes(location.pathname) ? (
+        <SeperateMACGames gameType={"slot"} />
+      ) : ["/fantasy"].includes(location.pathname) ? (
+        <SeperateMACGames gameType={"fantasy"} />
       ) : (
-        " "
+        ""
       )}
       <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
         <Modal.Header
