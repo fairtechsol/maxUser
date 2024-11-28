@@ -93,6 +93,18 @@ const MainRoutes = {
       element: <Home />,
     },
     {
+      path: "virtual",
+      element: <Home />,
+    },
+    {
+      path: "slot",
+      element: <Home />,
+    },
+    {
+      path: "fantasy",
+      element: <Home />,
+    },
+    {
       path: "account-statement",
       element: <AccountStatement />,
     },
