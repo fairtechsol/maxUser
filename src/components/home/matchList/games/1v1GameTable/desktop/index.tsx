@@ -232,7 +232,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
       </Table>
       <div className=" mt-2 casino-list">
         {["/home"].includes(location.pathname) &&
-          casinoIcons.map((item: any) => (
+          dataList.map((item: any) => (
             <Link
               to={item.url}
               key={item?.name || item?.game_id}

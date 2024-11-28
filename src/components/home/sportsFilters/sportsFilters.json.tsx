@@ -21,11 +21,11 @@ const SportsFilterJson = () => {
       link: "/live-casinom",
       onClick: true
     },
-    // {
-    //   id: "virtual",
-    //   name: "VIRTUAL",
-    //   link: "/virtual",
-    // },
+    {
+      id: "virtual",
+      name: "VIRTUAL",
+      link: "/virtual",
+    },
     {
       id: "slot",
       name: "SLOTS",

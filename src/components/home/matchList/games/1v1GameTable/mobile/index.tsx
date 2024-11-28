@@ -376,7 +376,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   : {}
               }
             >
-              {casinoIcons.map((item: any, index: number) => (
+              {dataList.map((item: any, index: number) => (
                 <Link
                   to={item.url}
                   key={index}
