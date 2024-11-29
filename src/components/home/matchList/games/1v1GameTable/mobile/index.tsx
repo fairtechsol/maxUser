@@ -90,31 +90,35 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
         .flatMap((set) => Object.values(set))
         .flat();
       const arr = [...combinedArray, ...casinoIcons];
-      
+
       const sortedArr = arr.sort((a, b) => {
         const gameA = a.game_id || a.name || "";
         const gameB = b.game_id || b.name || "";
-  
+
         // Find the corresponding objects in liveCasinoGameList
-        const gameObjA = liveCasinoGameList.find(game => game.game_id === gameA);
-        const gameObjB = liveCasinoGameList.find(game => game.game_id === gameB);
-  
+        const gameObjA = liveCasinoGameList.find(
+          (game) => game.game_id === gameA
+        );
+        const gameObjB = liveCasinoGameList.find(
+          (game) => game.game_id === gameB
+        );
+
         // Handle cases where games are not found in the list
         if (!gameObjA) return 1; // If A is not found, push it to the end
         if (!gameObjB) return -1; // If B is not found, push it to the end
-  
+
         // Compare by indices in the list
         const indexA = liveCasinoGameList.indexOf(gameObjA);
         const indexB = liveCasinoGameList.indexOf(gameObjB);
-  
+
         if (indexA !== indexB) {
           return indexA - indexB;
         }
-  
+
         // If indices are the same, sort by game ID
         return gameObjA.game_id - gameObjB.game_id;
       });
-  
+
       setDataList(sortedArr);
     }
   }, [liveCasinoData, liveCasinoGameList]);
@@ -388,7 +392,7 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   : {}
               }
             >
-              {dataList.map((item: any, index: number) => (
+              {liveCasinoGameList.map((item: any, index: number) => (
                 <Link
                   to={item.url}
                   key={index}
@@ -400,7 +404,11 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                       // className="img-fluid"
                       alt={item.game_name || item.name}
                       style={{ height: "100px", width: "100%" }}
-                      onClick={() => handleModal(item)}
+                      onClick={() => {
+                        if (!item?.url) {
+                          handleModal(item);
+                        }
+                      }}
                     />
                     <div className="mcasino-name">
                       {item.game_name || item.name}
