@@ -76,38 +76,41 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
         .flatMap((set) => Object.values(set))
         .flat();
       const arr = [...combinedArray, ...casinoIcons];
-      
+
       const sortedArr = arr.sort((a, b) => {
         const gameA = a.game_id || a.name || "";
         const gameB = b.game_id || b.name || "";
-  
+
         // Find the corresponding objects in liveCasinoGameList
-        const gameObjA = liveCasinoGameList.find(game => game.game_id === gameA);
-        const gameObjB = liveCasinoGameList.find(game => game.game_id === gameB);
-  
+        const gameObjA = liveCasinoGameList.find(
+          (game) => game.game_id === gameA
+        );
+        const gameObjB = liveCasinoGameList.find(
+          (game) => game.game_id === gameB
+        );
+
         // Handle cases where games are not found in the list
         if (!gameObjA) return 1; // If A is not found, push it to the end
         if (!gameObjB) return -1; // If B is not found, push it to the end
-  
+
         // Compare by indices in the list
         const indexA = liveCasinoGameList.indexOf(gameObjA);
         const indexB = liveCasinoGameList.indexOf(gameObjB);
-  
+
         if (indexA !== indexB) {
           return indexA - indexB;
         }
-  
+
         // If indices are the same, sort by game ID
         return gameObjA.game_id - gameObjB.game_id;
       });
-  
+
       setDataList(sortedArr);
     }
   }, [liveCasinoData, liveCasinoGameList]);
-  
 
- console.log("liveCasinoData",dataList)
-  
+  console.log("liveCasinoData", dataList);
+
   const handleModal = (data: any) => {
     if (data?.game_id) {
       let payLoad: any = {
@@ -247,7 +250,7 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
       </Table>
       <div className=" mt-2 casino-list">
         {["/home"].includes(location.pathname) &&
-          dataList.map((item: any) => (
+          liveCasinoGameList.map((item: any) => (
             <Link
               to={item.url}
               key={item?.name || item?.game_id}
@@ -262,7 +265,11 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
                   className=""
                   alt={item.game_name || item.name}
                   style={{ height: "120px", width: "100%" }}
-                  onClick={() => handleModal(item)}
+                  onClick={() => {
+                    if (!item?.url) {
+                      handleModal(item);
+                    }
+                  }}
                 />
                 <div className="casino-name">{item.game_name || item.name}</div>
               </div>
