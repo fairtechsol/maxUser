@@ -237,15 +237,21 @@ const LiveCasinoBets = () => {
               return (
                 <tr className={`${isMobile && "title-12"}`} key={index}>
                   <td>{item?.gameName}</td>
-                  <td>{item?.amount > 0 ? "CREDIT" : "DEBIT"}</td>
-                  <td>{Math.abs(item?.amount).toFixed(2)}</td>
                   <td
                     className={`${
-                      item?.total >= 0 ? "color-green" : "color-red"
+                      item?.amount >= 0 ? "color-green" : "color-red"
                     }`}
                   >
-                    {item?.total}
+                    {item?.amount > 0 ? "CREDIT" : "DEBIT"}
                   </td>
+                  <td
+                    className={`${
+                      item?.amount >= 0 ? "color-green" : "color-red"
+                    }`}
+                  >
+                    {Math.abs(item?.amount).toFixed(2)}
+                  </td>
+                  <td>{parseFloat(item?.total).toFixed(2)}</td>
                   <td>
                     {moment(item?.createdAt).format("DD/MM/YYYY hh:mm:ss")}
                   </td>
