@@ -864,7 +864,7 @@ const AccountStatementComponent = () => {
                             borderRight: "1px solid #c7c8ca",
                           }}
                         >
-                          {item?.betType}
+                          {parseFloat(item?.amount)>0?"CREDIT":"DEBIT"}
                         </div>
                         <div
                           className="d-flex justify-content-end align-items-center pe-1"
