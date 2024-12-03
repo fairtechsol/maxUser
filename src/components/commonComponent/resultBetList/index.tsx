@@ -4,6 +4,7 @@ import moment from "moment";
 import { Column } from "../../../models/tableInterface";
 import CustomTable2 from "../table2";
 import { isMobile } from "../../../utils/screenDimension";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 const columns: Column[] = [
   { id: "nation", label: "Nation " },
   { id: "rate", label: "Rate " },
@@ -18,6 +19,7 @@ const ResultBetList = ({ bets, total }: any) => {
   const [selected, setSelected] = useState("all");
   const [list, setList] = useState(bets);
   const [selectedItems, setSelectedItems] = useState([]);
+  const tooltip = <Tooltip id="tooltip">{bets?.[0]?.browserDetail}</Tooltip>;
   const handleCheckBox = (item: any) => {
     setSelectedItems((prevSelectedItems) => {
       if (prevSelectedItems.includes(item)) {
@@ -27,7 +29,6 @@ const ResultBetList = ({ bets, total }: any) => {
       }
     });
   };
-
   const handleRadioChange = (type: any) => {
     setSelected(type);
     setSelectedItems([]);
@@ -184,6 +185,7 @@ const ResultBetList = ({ bets, total }: any) => {
                 betType,
                 result,
                 lossAmount,
+                browserDetail,
               } = item;
               return (
                 <tr key={id} className="position-relative">
@@ -271,16 +273,16 @@ const ResultBetList = ({ bets, total }: any) => {
                   <td
                     className={
                       betType === "NO" || betType === "LAY"
-                        ? "bg-red1"
-                        : "bg-blue3"
+                        ? "bg-red1  text-start "
+                        : "bg-blue3  text-start"
                     }
                     style={{ borderRight: "1px solid #aaa" }}
                   >
-                    {/* <TooltipCustom title={browserDetail}> */}
-                    <a href="#" title="">
-                      Detail
-                    </a>
-                    {/* </TooltipCustom> */}
+                    <OverlayTrigger placement="top" overlay={tooltip}>
+                      <a href="#" className="text-black text-decoration-underline">
+                        Detail
+                      </a>
+                    </OverlayTrigger>
                   </td>
                   <td
                     className={
