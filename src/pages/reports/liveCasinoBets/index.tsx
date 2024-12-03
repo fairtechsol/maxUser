@@ -218,8 +218,8 @@ const LiveCasinoBets = () => {
 
           <CustomTable
             placeHolder={
-              updatedReports?.length > 0
-                ? `${updatedReports?.length} records`
+              liveCasinoBets?.count > 0
+                ? `${liveCasinoBets?.count} records`
                 : "0 records..."
             }
             paginationCount={true}
@@ -228,7 +228,7 @@ const LiveCasinoBets = () => {
             isPagination={true}
             isSearch={true}
             columns={columns}
-            itemCount={updatedReports?.length || 0}
+            itemCount={liveCasinoBets?.count || 0}
             setTableConfig={(data: any) => {
               setTableConfig(data);
             }}
