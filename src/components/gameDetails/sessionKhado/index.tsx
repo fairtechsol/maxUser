@@ -95,7 +95,7 @@ const SessionKhado = ({ title, data, detail }) => {
       >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
-          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div><IoInformationCircle /></div></OverlayTrigger>}
+          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div><IoInformationCircle size={20}/></div></OverlayTrigger>}
         </div>
         <div
           style={{

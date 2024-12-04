@@ -73,7 +73,7 @@ const Tournament = ({ title, box, data, detail }) => {
           >
             {title}
           </span>
-          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div><IoInformationCircle /></div></OverlayTrigger>}
+          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div><IoInformationCircle size={20}/></div></OverlayTrigger>}
         </div>
 
         <div className="tournamentBackLayTab">
