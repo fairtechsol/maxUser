@@ -278,7 +278,7 @@ const DesktopGameDetail = () => {
                             />
                           </Col>
                         )}
-                      </div>
+                     </div>
                     )
                   )}
                 {matchDetails?.apiTideMatch2?.activeStatus === "live" &&

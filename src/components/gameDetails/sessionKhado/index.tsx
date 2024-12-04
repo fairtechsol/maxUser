@@ -9,6 +9,8 @@ import { Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import RunBoxTable from "../betTable/runBoxTable";
 import { useEffect } from "react";
+import { IoInformationCircle } from "react-icons/io5";
+import {OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const SessionKhado = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
@@ -16,6 +18,10 @@ const SessionKhado = ({ title, data, detail }) => {
   const { runAmount, runAmountModalKhado } = useSelector(
     (state: RootState) => state.bets
   );
+  const startAtTime = new Date(detail.startAt); 
+  const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
+  const shouldShowInfoIcon = new Date() < hideTime;
+  const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -89,6 +95,7 @@ const SessionKhado = ({ title, data, detail }) => {
       >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
+          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>}
         </div>
         <div
           style={{

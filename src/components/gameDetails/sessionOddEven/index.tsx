@@ -4,10 +4,15 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { AppDispatch } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import "./style.scss";
+import { IoInformationCircle } from "react-icons/io5";
+import {OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const SessionOddEven = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
-
+  const startAtTime = new Date(detail.startAt); 
+  const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
+  const shouldShowInfoIcon = new Date() < hideTime;
+  const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -74,6 +79,7 @@ const SessionOddEven = ({ title, data, detail }) => {
       >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
+          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>}
         </div>
         <div
           style={{
