@@ -5,12 +5,18 @@ import { AppDispatch, RootState } from "../../../store/store";
 import { isMobile } from "../../../utils/screenDimension";
 import BetBox from "../betBox";
 import "./style.scss";
+import { IoInformationCircle } from "react-icons/io5";
+import {OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Tournament = ({ title, box, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
   const { selectedBet } = useSelector(
     (state: RootState) => state.match.matchList
   );
+  const startAtTime = new Date(detail.startAt); 
+  const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
+  const shouldShowInfoIcon = new Date() < hideTime;
+  const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -67,6 +73,7 @@ const Tournament = ({ title, box, data, detail }) => {
           >
             {title}
           </span>
+          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div><IoInformationCircle /></div></OverlayTrigger>}
         </div>
 
         <div className="tournamentBackLayTab">

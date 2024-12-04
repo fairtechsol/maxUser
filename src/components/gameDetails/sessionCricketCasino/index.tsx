@@ -6,10 +6,16 @@ import { selectedBetAction } from "../../../store/actions/match/matchListAction"
 import { FaLock } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { formatNumber, handleSize } from "../../../helpers";
+import { IoInformationCircle } from "react-icons/io5";
+import {OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const SessionCricketCasino = ({ title, data, detail }) => {
   const dispatch: AppDispatch = useDispatch();
   const [marketArr, setMarketArr] = useState<any>(data);
+  const startAtTime = new Date(detail.startAt); 
+  const hideTime = new Date(startAtTime.getTime() - 30 * 60 * 1000); 
+  const shouldShowInfoIcon = new Date() < hideTime;
+  const tooltip = <Tooltip id="tooltip">{`Max adv exposure limit 10L.`}</Tooltip>;
   const handlePlaceBet = (
     odds: any,
     type: any,
@@ -91,6 +97,7 @@ const SessionCricketCasino = ({ title, data, detail }) => {
           >
             {title}
           </span>
+          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div><IoInformationCircle /></div></OverlayTrigger>}
         </div>
         <div
           style={{

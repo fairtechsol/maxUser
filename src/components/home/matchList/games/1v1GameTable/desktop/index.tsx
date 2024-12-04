@@ -109,7 +109,6 @@ const DesktopOneVOneGameTable = ({ mTypeid }: any) => {
     }
   }, [liveCasinoData, liveCasinoGameList]);
 
-  console.log("liveCasinoData", dataList);
 
   const handleModal = (data: any) => {
     if (data?.game_id) {
