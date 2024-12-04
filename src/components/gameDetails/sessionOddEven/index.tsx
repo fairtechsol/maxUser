@@ -79,7 +79,7 @@ const SessionOddEven = ({ title, data, detail }) => {
       >
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size15">{title}</span>
-          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div><IoInformationCircle size={20}/></div></OverlayTrigger>}
+          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div className="px-2"><IoInformationCircle size={20}/></div></OverlayTrigger>}
         </div>
         <div
           style={{
