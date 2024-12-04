@@ -104,7 +104,7 @@ const MobileSessionNormal = ({ title, data, detail, manual }: any) => {
       <div className="sessionNormalContainer">
         <div className="sessionNormalTitle">
           <span className="sessionNormalTitleTxt f-size13">{title}</span>
-          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div><IoInformationCircle /></div></OverlayTrigger>}
+          { shouldShowInfoIcon && <OverlayTrigger placement="top" overlay={tooltip}><div><IoInformationCircle size={20}/></div></OverlayTrigger>}
         </div>
         <div
           style={{
