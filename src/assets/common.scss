@@ -1196,7 +1196,11 @@ img {
 .font-color {
   color: $black;
 }
-
+.auth-security {
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(#004a25, #ffc742);
+}
 // width
 .w-35 {
   width: 35% !important;
