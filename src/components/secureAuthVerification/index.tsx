@@ -7,20 +7,30 @@ import {
   ToggleButtonGroup,
 } from "react-bootstrap";
 import { TfiAndroid } from "react-icons/tfi";
-import {isMobile} from "../../utils/screenDimension";
+import { isMobile } from "../../utils/screenDimension";
 import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
 
 import { teamStatus } from "../../utils/constants";
 import "./style.scss";
+import { AppDispatch, RootState } from "../../store/store";
+import { useDispatch } from "react-redux";
+import { generateAuthToken } from "../../store/actions/authAction";
+import { useSelector } from "react-redux";
 
 const SecureAuthVerificationComponent = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const { authToken } = useSelector((state: RootState) => state.auth);
   const [selectedValue, setSelectedValue] = useState(null);
 
   const handleChange = (value: any) => {
+    if (value === 1) {
+      dispatch(generateAuthToken());
+    }
     setSelectedValue(value);
   };
+
   return (
     <ReportContainer title="Secure Auth Verification">
       <div className="secureAuth px-2 mt-md-5 mb-5">
@@ -33,11 +43,7 @@ const SecureAuthVerificationComponent = () => {
                   : "justify-content-center"
               } `}
             >
-              <h3
-                className={`m-0 me-2 fw-normal ${
-                  isMobile ? "title-16" : "title-24"
-                }`}
-              >
+              <h3 className="m-0 me-2 fw-normal title-16">
                 Secure Auth Verification Status:{" "}
               </h3>
               <span
@@ -86,18 +92,33 @@ const SecureAuthVerificationComponent = () => {
                     Please enter below auth code in your 'Secure Auth
                     Verification App'.
                   </p>
-                  <div className="p-1">
-                    <h4>Counter</h4>
+                  <div
+                    className="p-1 mb-3"
+                    style={{
+                      lineHeight: 1,
+                      color: "#585858",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "45px",
+                        backgroundColor: "#e4e4e4",
+                        padding: "10px",
+                        width: "auto",
+                      }}
+                    >
+                      {authToken}
+                    </span>
                   </div>
-                  <p className="title-24">
+                  <b className="title-16">
                     If you haven't downloaded,
                     <span className="d-lg-block">
                       {" "}
                       please download 'Secure Auth Verification App' from below
                       link.{" "}
                     </span>
-                  </p>
-                  <p className="title-16 mt-3">
+                  </b>
+                  <p className="title-16">
                     Using this app you will receive auth code during login
                     authentication
                   </p>
@@ -125,9 +146,7 @@ const SecureAuthVerificationComponent = () => {
                         placeholder="Enter Transaction"
                       />
                       <CustomButton
-                        className={`ms-2 ${
-                          !isMobile && "bg-primary"
-                        } border-0`}
+                        className={`ms-2 ${!isMobile && "bg-primary"} border-0`}
                       >
                         Get Connection Id
                       </CustomButton>{" "}
