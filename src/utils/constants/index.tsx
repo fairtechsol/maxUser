@@ -128,8 +128,12 @@ export const ApiConstants = {
     GET_VIDEO: "https://video.proexch.in/tv/static",
   },
   AUTHENTICATOR: {
-    generateAuthToken: "/auth/generateAuthToken"
-  }
+    generateAuthToken: "/auth/generateAuthToken",
+    verifyAuthToken: "/auth/verifyAuthToken",
+    getAuthenticator: "/auth/getAuthenticator",
+    resendToken: "/auth/resend/token",
+    removeAuthenticator: "/auth/removeAuthenticator",
+  },
 };
 
 export const marketApiConst = {
@@ -3028,133 +3032,155 @@ export const casinoIcons = [
   {
     game_id: "1",
     url: "/ballbyball",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/ballbyball.jpg",
     name: "Ball By Ball",
   },
   {
     game_id: "2",
     url: "/superover",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
-  name: "Super Over",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/superover.jpg",
+    name: "Super Over",
   },
   {
     game_id: "3",
     url: "/race20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/race20.png",
     name: "Race 20-20",
   },
   {
     game_id: "4",
     url: "/queen",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/queen.jpg",
     name: "Casino Queen",
   },
   {
     game_id: "5",
     url: "/cricketv3",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cricketv3.jpg",
     name: "5Five Cricket",
   },
   {
     game_id: "6",
     url: "/abj2",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar2.jpg",
     name: "Andar Bahar 2",
   },
   {
     game_id: "7",
     url: "/dt202",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt202.jpg",
     name: "20-20 Dragon Tiger 2",
   },
   {
     game_id: "8",
     url: "/baccarat2",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
-  name: "Baccarat 2",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat2.jpg",
+    name: "Baccarat 2",
   },
   {
     game_id: "9",
     url: "/baccarat",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/baccarat.png",
     name: "Baccarat",
   },
   {
     game_id: "10",
     url: "/lucky7eu",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7eu.jpg",
     name: "Lucky 7 - B",
   },
   {
     game_id: "11",
     url: "/cmatch20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cc-20.jpg",
     name: "20-20 Cricket Match",
   },
   {
     game_id: "12",
     url: "/cmeter",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/cmeter.jpg",
     name: "Casino Meter",
   },
   {
     game_id: "13",
     url: "/war",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/war.jpg",
     name: "Casino War",
   },
   {
     game_id: "14",
     url: "/dtl20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dtl.jpg",
     name: "20-20 DTL",
   },
   {
     game_id: "15",
     url: "/teen9",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "Test Teenpatti",
   },
   {
     game_id: "16",
     url: "/teen8",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "Open Teenpatti",
   },
   {
     game_id: "17",
     url: "/teen",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "1 Day Teenpatti",
   },
   {
     game_id: "18",
     url: "/teen20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/teenpatti.jpg",
     name: "20-20 Teenpatti",
   },
   {
     game_id: "19",
     url: "/poker6",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "6 Player Poker",
   },
   {
     game_id: "20",
     url: "/poker",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "1 Day Poker",
   },
   {
     game_id: "21",
     url: "/poker20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/poker.jpg",
     name: "20-20 Poker",
   },
   {
     game_id: "22",
     url: "/ab20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/andar-bahar.jpg",
     name: "Andar Bahar",
   },
   // {
@@ -3166,59 +3192,67 @@ export const casinoIcons = [
   {
     game_id: "24",
     url: "/worli2",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/worli.jpg",
     name: "Instant Worli",
   },
   {
     game_id: "25",
     url: "/3cardj",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/3cardsJ.jpg",
     name: "3 Cards Judgement",
   },
   {
     game_id: "26",
     url: "/32cards-A",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsA.jpg",
     name: "32 Cards A",
   },
   {
     game_id: "27",
     url: "/32cards-B",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/32cardsB.jpg",
     name: "32 Cards B",
   },
   {
     game_id: "28",
     url: "/aaa",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/aaa.jpg",
     name: "Amar Akbar Anthony",
   },
   {
     game_id: "29",
     url: "/btable",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/bollywood-casino.jpg",
     name: "Bollywood Casino",
   },
   {
     game_id: "30",
     url: "/dt20",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "20-20 Dragon Tiger",
   },
   {
     game_id: "31",
     url: "/dt6",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/dt.jpg",
     name: "1 Day Dragon Tiger",
   },
   {
     game_id: "32",
     url: "/lucky7-A",
-    imgSrc: "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
+    imgSrc:
+      "https://dzm0kbaskt4pv.cloudfront.net/v12/static/front/img/casinoicons/img/lucky7.jpg",
     name: "Lucky 7 - A",
-  }
+  },
 ];
-
 
 // export const liveCasinoGameList = [
 //   { name: "AVIATORX", id: 1 },
