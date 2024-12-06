@@ -127,6 +127,9 @@ export const ApiConstants = {
     GET_CHANNEL_ID: "https://scoreapi.365cric.com/api/match/getStream",
     GET_VIDEO: "https://video.proexch.in/tv/static",
   },
+  AUTHENTICATOR: {
+    generateAuthToken: "/auth/generateAuthToken"
+  }
 };
 
 export const marketApiConst = {
