@@ -260,24 +260,48 @@ const SecureAuthVerificationComponent = () => {
                         </div>
                       </Form>
                       <div className="mt-3 follow-instruction">
-                        <p>
+                        <h4 className="title-20 fbold mb-3">
                           Please follow below instructions for the telegram
-                          2-step verification Find @two_factor_gauth_bot in your
-                          telegram and type/start command. Bot will respond you.
-                          After this type /connect {authToken} and send it to
-                          BOT. Now your telegram account will be linked with
-                          your website account and 2-Step verification will be
+                          2-step verification
+                        </h4>
+                        <p className="title-16">
+                          Find{" "}
+                          <a target="_blank" href="">
+                            @two_factor_gauth_bot
+                          </a>
+                          in your telegram and type<kbd>/start</kbd> command.
+                          Bot will respond you.
+                        </p>
+                        <p className="title-16">
+                          After this type <kbd>/connect {authToken}</kbd> and
+                          send it to BOT.
+                        </p>
+                        <p className="title-16">
+                          Now your telegram account will be linked with your
+                          website account and 2-Step verification will be
                           enabled.
                         </p>
-                        <br />
-                        <p>
+
+                        <hr />
+                        <h4 className="title-20 fbold mb-3">
                           कृपया टेलीग्राम 2-Step verification के लिए नीचे दिए गए
-                          निर्देशों का पालन करें: अपने टेलीग्राम में
-                          @two_factor_gauth_bot खोजें और कमांड /start टाइप करें.
-                          BOT आपको जवाब देगा. इसके बाद /connect {authToken} टाइप
-                          करें और इसे BOT पर भेजें. अब आपका टेलीग्राम account
-                          आपके वेबसाइट account से जुड़ जाएगा और 2-Step
-                          veriication चालू हो जाएगा.
+                          निर्देशों का पालन करें:
+                        </h4>
+                        <p className="title-16">
+                          अपने टेलीग्राम में{" "}
+                          <a target="_blank" href="">
+                            @two_factor_gauth_bot
+                          </a>
+                          खोजें और कमांड<kbd>/start</kbd> टाइप करें. BOT आपको
+                          जवाब देगा.
+                        </p>
+                        <p className="title-16">
+                          इसके बाद <kbd>/connect {authToken}</kbd> टाइप करें और
+                          इसे BOT पर भेजें.
+                        </p>
+                        <p className="title-16">
+                          अब आपका टेलीग्राम account आपके वेबसाइट account से जुड़
+                          जाएगा और 2-Step veriication चालू हो जाएगा.
                         </p>
                       </div>
                     </>
