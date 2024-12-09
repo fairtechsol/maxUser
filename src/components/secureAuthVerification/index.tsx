@@ -64,6 +64,7 @@ const SecureAuthVerificationComponent = () => {
       );
     }
     setSelectedValue(value);
+    setShowDetails(false);
   };
 
   useEffect(() => {
