@@ -64,6 +64,7 @@ const SecureAuthVerificationComponent = () => {
       );
     }
     setSelectedValue(value);
+    setShowDetails(false);
   };
 
   useEffect(() => {
@@ -271,9 +272,12 @@ const SecureAuthVerificationComponent = () => {
                           </h4>
                           <p className="title-16">
                             Find{" "}
-                            <a target="_blank" href="">
-                              @two_factor_gauth_bot
-                            </a>
+                            <a
+                              target="_blank"
+                              href="https://t.me/max_bet_2_factor_auth_bot"
+                            >
+                              @max_bet_2_factor_auth_bot
+                            </a>{" "}
                             in your telegram and type<kbd>/start</kbd> command.
                             Bot will respond you.
                           </p>
@@ -294,9 +298,12 @@ const SecureAuthVerificationComponent = () => {
                           </h4>
                           <p className="title-16">
                             अपने टेलीग्राम में{" "}
-                            <a target="_blank" href="">
-                              @two_factor_gauth_bot
-                            </a>
+                            <a
+                              target="_blank"
+                              href="https://t.me/max_bet_2_factor_auth_bot"
+                            >
+                              @max_bet_2_factor_auth_bot
+                            </a>{" "}
                             खोजें और कमांड<kbd>/start</kbd> टाइप करें. BOT आपको
                             जवाब देगा.
                           </p>
