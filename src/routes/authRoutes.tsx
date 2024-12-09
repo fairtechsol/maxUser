@@ -4,7 +4,6 @@ import Loadable from "../utils/loadable";
 // import Login from "../pages/auth/login/login";
 // ==============================|| Auth ROUTING ||============================== //
 const Login = Loadable(() => import("../pages/auth/login/login"));
-const SecurityAuth = Loadable(() => import("../pages/security"));
 
 const AuthRoutes = {
   path: "/",
@@ -15,10 +14,7 @@ const AuthRoutes = {
       path: "login",
       element: <Login />,
     },
-    {
-      path: "verify",
-      element: <SecurityAuth />,
-    },
+
     {
       path: "*",
       element: <Navigate to={"/login"} replace />,

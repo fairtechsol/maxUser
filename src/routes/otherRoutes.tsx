@@ -4,6 +4,7 @@ import ScoreBoardPage from "../pages/public/ScoreBoardPage";
 import OtherLayout from "../layout/otherLayout";
 import LiveStreamPage from "../pages/public/liveStreamPage";
 import LiveStreamPageCricket from "../pages/public/liveStreamPageCricket";
+import SecurityAuth from "../pages/security";
 
 const OtherRoutes = {
   path: "/",
@@ -25,6 +26,10 @@ const OtherRoutes = {
     {
       path: "scoreBoardPage/:vidId/:sportsId",
       element: <ScoreBoardPage />,
+    },
+    {
+      path: "verify",
+      element: <SecurityAuth />,
     },
     {
       path: "*",

@@ -22,9 +22,10 @@ export const login = createAsyncThunk<any, LoginData>(
     try {
       const { data } = await service.post(ApiConstants.LOGIN, requestData);
       if (data) {
-        const { token, userId } = data;
+        const { token, userId, authenticatorType } = data;
         sessionStorage.setItem("jwtMaxUser", token);
         sessionStorage.setItem("key", userId);
+        sessionStorage.setItem("authType", authenticatorType);
         return data;
       }
     } catch (error) {
@@ -97,14 +98,83 @@ export const logout = createAsyncThunk<any>(
   }
 );
 
-export const generateAuthToken = createAsyncThunk<any>(
+export const generateAuthToken = createAsyncThunk<any, any>(
   "generateAuthToken",
-  async (_, thunkApi) => {
+  async (requestData, thunkApi) => {
     try {
-      const resp = await service.get(
-        ApiConstants.AUTHENTICATOR.generateAuthToken
+      const resp = await service.post(
+        ApiConstants.AUTHENTICATOR.generateAuthToken,
+        requestData
       );
       return resp.data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const verifyAuthToken = createAsyncThunk<any, any>(
+  "verifyAuthToken",
+  async (requestData, thunkApi) => {
+    try {
+      const resp: any = await service.post(
+        ApiConstants.AUTHENTICATOR.verifyAuthToken,
+        requestData
+      );
+      if (resp?.statusCode === 200) {
+        sessionStorage.setItem("isAuthenticator", "true");
+        window.location.replace("/home");
+        return resp.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const getAuthenticator = createAsyncThunk<any>(
+  "getAuthenticator",
+  async (_, thunkApi) => {
+    try {
+      const resp: any = await service.get(
+        ApiConstants.AUTHENTICATOR.getAuthenticator
+      );
+      if (resp) {
+        return resp.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const resendTokenToDisable = createAsyncThunk<any>(
+  "resendTokenToDisable",
+  async (_, thunkApi) => {
+    try {
+      const resp: any = await service.post(
+        ApiConstants.AUTHENTICATOR.resendToken
+      );
+      if (resp) {
+        return resp.data;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return thunkApi.rejectWithValue(err.response?.status);
+    }
+  }
+);
+export const removeAuthenticator = createAsyncThunk<any, any>(
+  "removeAuthenticator",
+  async (requestData, thunkApi) => {
+    try {
+      const resp: any = await service.post(
+        ApiConstants.AUTHENTICATOR.removeAuthenticator,
+        requestData
+      );
+      if (resp) {
+        return resp.data;
+      }
     } catch (error) {
       const err = error as AxiosError;
       return thunkApi.rejectWithValue(err.response?.status);

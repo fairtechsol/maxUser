@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Col,
   Form,
@@ -16,20 +16,68 @@ import { teamStatus } from "../../utils/constants";
 import "./style.scss";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
-import { generateAuthToken } from "../../store/actions/authAction";
+import {
+  generateAuthToken,
+  getAuthenticator,
+  removeAuthenticator,
+  resendTokenToDisable,
+} from "../../store/actions/authAction";
 import { useSelector } from "react-redux";
+import OTPInput from "react-otp-input";
 
 const SecureAuthVerificationComponent = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { authToken } = useSelector((state: RootState) => state.auth);
+  const { authToken, authenticatedData } = useSelector(
+    (state: RootState) => state.auth
+  );
   const [selectedValue, setSelectedValue] = useState(null);
+  const [password, setPassword] = useState("");
+  const [showOtp, setShowOtp] = useState(false);
+  const [otp, setOtp] = useState("");
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    dispatch(
+      generateAuthToken({
+        type: 1,
+        password: password,
+      })
+    );
+  };
+
+  const handleInputChange = (e: any) => {
+    const value = e.target.value;
+    setPassword(value);
+  };
+
+  const handleOtpChange = (otpValue: any) => {
+    setOtp(otpValue);
+  };
 
   const handleChange = (value: any) => {
     if (value === 1) {
-      dispatch(generateAuthToken());
+      dispatch(
+        generateAuthToken({
+          type: 2,
+        })
+      );
     }
     setSelectedValue(value);
   };
+
+  useEffect(() => {
+    dispatch(getAuthenticator());
+  }, []);
+
+  useEffect(() => {
+    if (otp.length === 6) {
+      dispatch(
+        removeAuthenticator({
+          authToken: otp,
+        })
+      );
+    }
+  }, [otp]);
 
   return (
     <ReportContainer title="Secure Auth Verification">
@@ -46,115 +94,197 @@ const SecureAuthVerificationComponent = () => {
               <h3 className="m-0 me-2 fw-normal title-16">
                 Secure Auth Verification Status:{" "}
               </h3>
-              <span
-                className={`pdf ${
+              <button
+                className={`${authenticatedData ? "excel" : "pdf"} ${
                   isMobile ? "title-14" : "title-16"
-                } fw-bold text-white  px-2`}
+                } fw-bold text-white px-2`}
+                onClick={() => {
+                  if (authenticatedData?.type === 1) {
+                    dispatch(resendTokenToDisable());
+                  }
+                  if (authenticatedData) {
+                    setShowOtp(true);
+                  }
+                }}
               >
-                Disabled
-              </span>
+                {authenticatedData ? "Enabled" : "Disabled"}
+              </button>
             </div>
-            <p className={`${isMobile ? "title-12" : "title-16"} mt-2`}>
-              Please select below option to enable secure auth verification
-            </p>
-            <div id="left-tabs-example">
-              <ToggleButtonGroup
-                type="radio"
-                name="options"
-                value={selectedValue}
-                onChange={handleChange}
+            {showOtp && (
+              <div
+                className="p-4 d-flex flex-column"
+                style={{ backgroundColor: "#fff" }}
               >
-                <ToggleButton
-                  className="auth-verification-btn-box"
-                  bsPrefix={`auth-verification-btn btn-check ${
-                    selectedValue === 1 ? teamStatus.active : ""
-                  }`}
-                  id="mobileapp"
-                  value={1}
+                <span
+                  className="text-center"
+                  style={{ fontSize: "22px", color: "#004a25" }}
                 >
-                  Enable Using Mobile App
-                </ToggleButton>
-                <ToggleButton
-                  className="auth-verification-btn-box"
-                  bsPrefix={`auth-verification-btn btn-check ${
-                    selectedValue === 2 ? teamStatus.active : ""
-                  }`}
-                  id="telegram"
-                  value={2}
-                >
-                  Enable Using Telegram
-                </ToggleButton>
-              </ToggleButtonGroup>
-
-              {selectedValue === 1 && (
-                <>
-                  <p className=" title-16 mt-3">
-                    Please enter below auth code in your 'Secure Auth
-                    Verification App'.
-                  </p>
-                  <div
-                    className="p-1 mb-3"
-                    style={{
-                      lineHeight: 1,
-                      color: "#585858",
+                  Security Code Verification
+                </span>
+                <span className="title-16 text-center">
+                  Enter the 6-digit code to disbale Secure Auth
+                </span>
+                <form onSubmit={handleSubmit}>
+                  <OTPInput
+                    value={otp}
+                    onChange={handleOtpChange}
+                    numInputs={6}
+                    shouldAutoFocus
+                    inputStyle={{
+                      width: "60px",
+                      height: "60px",
+                      margin: "0 0.5rem",
+                      fontSize: "1.5rem",
+                      textAlign: "center",
+                      border: "1px solid #ccc",
+                      borderRadius: "4px",
                     }}
+                    containerStyle={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      marginTop: "1rem",
+                    }}
+                    renderInput={(props) => <input {...props} />}
+                  />
+                </form>
+              </div>
+            )}
+            {!authenticatedData && (
+              <>
+                <p className={`${isMobile ? "title-12" : "title-16"} mt-2`}>
+                  Please select below option to enable secure auth verification
+                </p>
+                <div id="left-tabs-example">
+                  <ToggleButtonGroup
+                    type="radio"
+                    name="options"
+                    value={selectedValue}
+                    onChange={handleChange}
                   >
-                    <span
-                      style={{
-                        fontSize: "45px",
-                        backgroundColor: "#e4e4e4",
-                        padding: "10px",
-                        width: "auto",
-                      }}
+                    <ToggleButton
+                      className="auth-verification-btn-box"
+                      bsPrefix={`auth-verification-btn btn-check ${
+                        selectedValue === 1 ? teamStatus.active : ""
+                      }`}
+                      id="mobileapp"
+                      value={1}
                     >
-                      {authToken}
-                    </span>
-                  </div>
-                  <b className="title-16">
-                    If you haven't downloaded,
-                    <span className="d-lg-block">
-                      {" "}
-                      please download 'Secure Auth Verification App' from below
-                      link.{" "}
-                    </span>
-                  </b>
-                  <p className="title-16">
-                    Using this app you will receive auth code during login
-                    authentication
-                  </p>
-                  <div className="androidDwnloadCard d-flex align-items-center mx-auto justify-content-center bg-green">
-                    <span className="text-white me-3">
-                      <TfiAndroid className="title-46 text-white" />
-                    </span>
-                    <div className="text-left">
-                      <h4 className="mb-0">Download</h4>
-                      <div className="mt-0 dtext">on the android</div>
-                    </div>
-                  </div>
-                </>
-              )}
-              {selectedValue === 2 && (
-                <>
-                  <p className="title-14 mt-3">
-                    Please enter your Transaction Password to continue
-                  </p>
+                      Enable Using Mobile App
+                    </ToggleButton>
+                    <ToggleButton
+                      className="auth-verification-btn-box"
+                      bsPrefix={`auth-verification-btn btn-check ${
+                        selectedValue === 2 ? teamStatus.active : ""
+                      }`}
+                      id="telegram"
+                      value={2}
+                    >
+                      Enable Using Telegram
+                    </ToggleButton>
+                  </ToggleButtonGroup>
 
-                  <Form className="getConection w-100">
-                    <div className="d-flex  justify-content-center">
-                      <CustomInput
-                        type="email"
-                        placeholder="Enter Transaction"
-                      />
-                      <CustomButton
-                        className={`ms-2 ${!isMobile && "bg-primary"} border-0`}
+                  {selectedValue === 1 && (
+                    <>
+                      <p className=" title-16 mt-3">
+                        Please enter below auth code in your 'Secure Auth
+                        Verification App'.
+                      </p>
+                      <div
+                        className="p-1 mb-3"
+                        style={{
+                          lineHeight: 1,
+                          color: "#585858",
+                        }}
                       >
-                        Get Connection Id
-                      </CustomButton>{" "}
-                    </div>
-                  </Form>
-                </>
-              )}
-            </div>
+                        <span
+                          style={{
+                            fontSize: "45px",
+                            backgroundColor: "#e4e4e4",
+                            padding: "10px",
+                            width: "auto",
+                          }}
+                        >
+                          {authToken}
+                        </span>
+                      </div>
+                      <b className="title-16">
+                        If you haven't downloaded,
+                        <span className="d-lg-block">
+                          {" "}
+                          please download 'Secure Auth Verification App' from
+                          below link.{" "}
+                        </span>
+                      </b>
+                      <p className="title-16">
+                        Using this app you will receive auth code during login
+                        authentication
+                      </p>
+                      <div className="androidDwnloadCard d-flex align-items-center mx-auto justify-content-center bg-green">
+                        <span className="text-white me-3">
+                          <TfiAndroid className="title-46 text-white" />
+                        </span>
+                        <div className="text-left">
+                          <h4 className="mb-0">Download</h4>
+                          <div className="mt-0 dtext">on the android</div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  {selectedValue === 2 && (
+                    <>
+                      <p className="title-14 mt-3">
+                        Please enter your Password to continue
+                      </p>
+
+                      <Form
+                        className="getConection w-100"
+                        onSubmit={handleSubmit}
+                      >
+                        <div className="d-flex  justify-content-center">
+                          <CustomInput
+                            type="password"
+                            placeholder="Enter Password"
+                            value={password}
+                            required
+                            onChange={handleInputChange}
+                          />
+                          <CustomButton
+                            className={`ms-2 ${
+                              !isMobile && "bg-primary"
+                            } border-0`}
+                            type="submit"
+                          >
+                            Get Connection Id
+                          </CustomButton>{" "}
+                        </div>
+                      </Form>
+                      <div className="mt-3 follow-instruction">
+                        <p>
+                          Please follow below instructions for the telegram
+                          2-step verification Find @two_factor_gauth_bot in your
+                          telegram and type/start command. Bot will respond you.
+                          After this type /connect {authToken} and send it to
+                          BOT. Now your telegram account will be linked with
+                          your website account and 2-Step verification will be
+                          enabled.
+                        </p>
+                        <br />
+                        <p>
+                          कृपया टेलीग्राम 2-Step verification के लिए नीचे दिए गए
+                          निर्देशों का पालन करें: अपने टेलीग्राम में
+                          @two_factor_gauth_bot खोजें और कमांड /start टाइप करें.
+                          BOT आपको जवाब देगा. इसके बाद /connect {authToken} टाइप
+                          करें और इसे BOT पर भेजें. अब आपका टेलीग्राम account
+                          आपके वेबसाइट account से जुड़ जाएगा और 2-Step
+                          veriication चालू हो जाएगा.
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
           </Col>
         </Row>
       </div>
