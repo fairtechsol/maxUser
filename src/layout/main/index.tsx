@@ -67,7 +67,7 @@ const MainLayout = () => {
 
   useEffect(() => {
     if (!sessionStorage.getItem("jwtMaxUser")) {
-      navigate("/login");
+      window.location.replace("/login");
       sessionStorage.clear();
     } else {
       dispatch(getProfile());
