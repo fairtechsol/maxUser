@@ -6,6 +6,7 @@ import {
   getAuthenticator,
   login,
   loginWithDemo,
+  resetAuthTokenSuccess,
   rulesModalShowFalse,
   rulesModalShowTrue,
   verifyAuthToken,
@@ -22,6 +23,7 @@ const initialState = {
   demoDetails: null,
   authToken: "",
   authenticatedData: null,
+  authTokenSuccess: false,
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
@@ -76,6 +78,7 @@ export const authReducer = createReducer(initialState, (builder) => {
     .addCase(generateAuthToken.fulfilled, (state, action) => {
       state.loading = false;
       state.authToken = action.payload;
+      state.authTokenSuccess = true;
     })
     .addCase(generateAuthToken.rejected, (state) => {
       state.loading = false;
@@ -98,5 +101,8 @@ export const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(getAuthenticator.rejected, (state) => {
       state.loading = false;
+    })
+    .addCase(resetAuthTokenSuccess, (state) => {
+      state.authTokenSuccess = false;
     });
 });

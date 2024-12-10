@@ -21,13 +21,14 @@ import {
   getAuthenticator,
   removeAuthenticator,
   resendTokenToDisable,
+  resetAuthTokenSuccess,
 } from "../../store/actions/authAction";
 import { useSelector } from "react-redux";
 import OTPInput from "react-otp-input";
 
 const SecureAuthVerificationComponent = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { authToken, authenticatedData } = useSelector(
+  const { authToken, authenticatedData, authTokenSuccess } = useSelector(
     (state: RootState) => state.auth
   );
   const [selectedValue, setSelectedValue] = useState(null);
@@ -80,6 +81,13 @@ const SecureAuthVerificationComponent = () => {
       );
     }
   }, [otp]);
+
+  useEffect(() => {
+    if (authTokenSuccess) {
+      setShowDetails(true);
+      dispatch(resetAuthTokenSuccess());
+    }
+  }, [authTokenSuccess]);
 
   return (
     <ReportContainer title="Secure Auth Verification">
@@ -243,7 +251,6 @@ const SecureAuthVerificationComponent = () => {
                         className="getConection w-100"
                         onSubmit={(e) => {
                           handleSubmit(e);
-                          setShowDetails(true);
                         }}
                       >
                         <div className="d-flex  justify-content-center">

@@ -185,3 +185,4 @@ export const removeAuthenticator = createAsyncThunk<any, any>(
 export const authReset = createAction("auth/reset");
 export const rulesModalShowFalse = createAction("auth/rulesModalShowFalse");
 export const rulesModalShowTrue = createAction("auth/rulesModalShowTrue");
+export const resetAuthTokenSuccess = createAction("auth/resetAuthTokenSuccess");
