@@ -25,8 +25,6 @@ pg+0P/4ltwBmhq9wdvkCQDH5jP39HaU86Czc1XcgJ2i+adeB4NTllchPi3rZiqAw
 xHS0venvM/O0x2ikwenbM45+/YgfzvgKvJD1G4UDQ+w=
 -----END RSA PRIVATE KEY-----`;
 
-
-console.log(rsaPrivateKey, rsaPublicKey, "keysss");
 // AES Encryption
 export function encryptWithAES(data: any, aesKey: any) {
   try {
@@ -38,7 +36,7 @@ export function encryptWithAES(data: any, aesKey: any) {
     console.log(JSON.stringify(data));
     return encrypted.toString(); // Base64 encoded string
   } catch (error) {
-    console.error("AES Encryption Error:", error);
+    console.log("AES Encryption Error:", error);
   }
 }
 
@@ -53,7 +51,7 @@ export function decryptWithAES(encryptedData: any, aesKeyBinary: any) {
     });
     return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8)); // Decrypted JSON data
   } catch (error) {
-    console.error("AES Decryption Error:", error);
+    console.log("AES Decryption Error:", error);
   }
 }
 
@@ -64,7 +62,7 @@ export function encryptAESKeyWithRSA(aesKey: any) {
     const encryptedAESKey = publicKey.encrypt(aesKey, "RSA-OAEP");
     return forge.util.encode64(encryptedAESKey); // Return as base64-encoded string
   } catch (error) {
-    console.error("RSA Encryption Error:", error);
+    console.log("RSA Encryption Error:", error);
   }
 }
 
@@ -78,13 +76,16 @@ export function decryptAESKeyWithRSA(encryptedAESKey: any) {
     );
     return decryptedAESKey;
   } catch (error) {
-    console.error("RSA Decryption Error:", error);
+    console.log("RSA Decryption Error:", error);
   }
 }
 
-// Generate random bytes (Web Crypto API)
-export function generateRandomBytes(length: any) {
+export function generateRandomBytes(length: number) {
   const array = new Uint8Array(length);
   window.crypto.getRandomValues(array);
-  return array;
+
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  return Array.from(array)
+    .map((byte) => chars[byte % chars.length])
+    .join("");
 }
