@@ -17,7 +17,7 @@ const contextClass = {
   dark: "bg-white-600 font-gray-300",
 };
 function App() {
-  if (process.env.NODE_ENV === "production") console.log = () => {};
+  // if (process.env.NODE_ENV === "production") console.log = () => {};
 
   return (
     <>

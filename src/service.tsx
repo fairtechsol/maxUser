@@ -20,6 +20,8 @@ const aesKey = Array.from(generateRandomBytes(32))
   .map((byte) => String.fromCharCode(byte))
   .join("");
 
+  console.log(aesKey, "aesKey");
+
 const service = axios.create({
   baseURL: serviceUrl,
   headers: {

@@ -25,6 +25,8 @@ CqoEZ0zaC8YaYxUBAkEAwwMvzRcop7F2PqFLm4333VgNuJb1knkTXXyYvhqkV/oS
 mr1wBa6Z303d7P9Ziv3FzcY07h1FXuH7Fex3LgKv2A==
 -----END RSA PRIVATE KEY-----`;
 
+
+console.log(rsaPrivateKey, rsaPublicKey, "keysss");
 // AES Encryption
 export function encryptWithAES(data: any, aesKey: any) {
   try {
