@@ -82,14 +82,11 @@ export const resultDragonTiger = createAsyncThunk<any, any>(
   }
 );
 
-
-export const  liveCasinoList = createAsyncThunk<any, any>(
+export const liveCasinoList = createAsyncThunk<any, any>(
   "result/liveCasinoList",
   async (_, thunkApi) => {
     try {
-      const resp = await service.post(
-        `${ApiConstants.LiveCasinoGame}`
-      );
+      const resp = await service.post(`${ApiConstants.LiveCasinoGame}`);
       if (resp?.data) {
         return resp?.data;
       }
@@ -104,7 +101,8 @@ export const liveCasinoLogin = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.post(
-        `${ApiConstants.LiveCasinoGameLogin}`, requestData
+        `${ApiConstants.LiveCasinoGameLogin}`,
+        requestData
       );
       if (resp?.data) {
         return resp?.data;
@@ -119,9 +117,7 @@ export const transactionProviderName = createAsyncThunk<any, any>(
   "result/transactionProviderName",
   async (_, thunkApi) => {
     try {
-      const resp = await service.get(
-        `${ApiConstants.LiveCasinoGameProvider}`
-      );
+      const resp = await service.get(`${ApiConstants.LiveCasinoGameProvider}`);
       if (resp?.data) {
         return resp?.data;
       }
@@ -136,11 +132,17 @@ export const transactionProviderBets = createAsyncThunk<any, any>(
   async (requestData, thunkApi) => {
     try {
       const resp = await service.get(
-        `${ApiConstants.LiveCasinoGameBets}/${requestData?.id}?sort=virtualCasinoBetPlaced.createdAt:ASC&providerName=eq${requestData?.name}&createdAt=between${moment(new Date(requestData?.date))?.format(
+        `${ApiConstants.LiveCasinoGameBets}/${
+          requestData?.id
+        }?sort=virtualCasinoBetPlaced.createdAt:ASC&providerName=eq${
+          requestData?.name
+        }&createdAt=between${moment(new Date(requestData?.date))?.format(
           "YYYY-MM-DD"
-        )}|${moment(new Date(requestData?.date).setDate(new Date(requestData?.date).getDate() + 1))?.format(
-          "YYYY-MM-DD"
-        )}`
+        )}|${moment(
+          new Date(requestData?.date).setDate(
+            new Date(requestData?.date).getDate() + 1
+          )
+        )?.format("YYYY-MM-DD")}`
       );
       if (resp?.data) {
         return resp?.data;
@@ -404,7 +406,6 @@ export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
         config
       );
 
-      
       if (resp?.data) {
         return resp?.data?.data;
       }
@@ -416,3 +417,4 @@ export const casinoScoreboardMatchRates = createAsyncThunk<any, any>(
 );
 export const dragonTigerReset = createAction("dragonTiger/reset");
 export const scoreBoardReset = createAction("scoreBoard/reset");
+export const transactionProviderBetsReset = createAction("transactionProviderBetsReset/reset");
