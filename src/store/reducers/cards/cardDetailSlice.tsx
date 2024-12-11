@@ -45,6 +45,7 @@ import {
   liveCasinoLogin,
   transactionProviderName,
   transactionProviderBets,
+  transactionProviderBetsReset,
 } from "../../actions/cards/cardDetail";
 
 interface InitialState {
@@ -791,6 +792,9 @@ const cardDetail = createSlice({
       })
       .addCase(scoreBoardReset, (state) => {
         state.scoreBoardData = [];
+      })
+      .addCase(transactionProviderBetsReset, (state) => {
+        state.liveCasinoProviderBets = [];
       });
   },
 });
