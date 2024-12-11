@@ -97,6 +97,7 @@ const SecurityAuth = () => {
                 marginTop: "1rem",
               }}
               renderInput={(props) => <input {...props} />}
+              inputType="tel"
             />
           </form>
         </div>
