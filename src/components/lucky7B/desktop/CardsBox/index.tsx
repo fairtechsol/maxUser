@@ -12,12 +12,12 @@ const CardBox = ({ cardData, data }: any) => {
       odd: item?.rate,
       stake: 0,
       matchBetType: "matchOdd",
-      betOnTeam: item?.nation,
-      name: item?.nation,
+      betOnTeam: item?.sid === "7" ? "Card A" : item?.nation,
+      name: item?.sid === "7" ? "Card A" : item?.nation,
       bettingName: "Match odds",
       selectionId: item?.sid,
-      min:item?.min,
-      max:item?.max
+      min: item?.min,
+      max: item?.max,
     };
     dispatch(
       selectedBetAction({
