@@ -27,9 +27,13 @@ const Login = () => {
     password: "",
     loginType: "user",
   };
-  const { success, forceChangePassword, loading, loadingDemo } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const {
+    success,
+    forceChangePassword,
+    loading,
+    loadingDemo,
+    isAuthenticator,
+  } = useSelector((state: RootState) => state.auth);
 
   const navigate = useNavigate();
 
@@ -54,6 +58,9 @@ const Login = () => {
       if (forceChangePassword) {
         sessionStorage.setItem("forceChangePassword", "true");
         navigate("/change-password");
+      } else if (isAuthenticator) {
+        navigate("/verify");
+        sessionStorage.setItem("isAuthenticator", "false");
       } else {
         dispatch(rulesModalShowTrue());
         navigate("/home");
