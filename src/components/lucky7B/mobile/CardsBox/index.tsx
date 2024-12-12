@@ -5,20 +5,20 @@ import CommonCardImg from "../CommonCardImg";
 
 const CardBox = ({ cardData, data }: any) => {
   const dispatch: AppDispatch = useDispatch();
-  const handleBet=(item:any)=>{
-    let team ={
-      "bettingType": "BACK",
-      "matchId": data?.id,
-      "odd": item?.rate,
-      "stake": 0,
-      "matchBetType": "matchOdd",
-      "betOnTeam":item?.nation,
-      "name":item?.nation,
-      "bettingName": "Match odds",
-      "selectionId": item?.sid,
-      "min":item?.min,
-      "max":item?.max
-    }
+  const handleBet = (item: any) => {
+    let team = {
+      bettingType: "BACK",
+      matchId: data?.id,
+      odd: item?.rate,
+      stake: 0,
+      matchBetType: "matchOdd",
+      betOnTeam: item?.sid === "7" ? "Card A" : item?.nation,
+      name: item?.sid === "7" ? "Card A" : item?.nation,
+      bettingName: "Match odds",
+      selectionId: item?.sid,
+      min: item?.min,
+      max: item?.max,
+    };
     dispatch(
       selectedBetAction({
         team,
@@ -26,7 +26,7 @@ const CardBox = ({ cardData, data }: any) => {
       })
     );
     // console.log('team',team)
-  }
+  };
   return (
     <>
       <div className="cardContainerMob">
@@ -39,7 +39,9 @@ const CardBox = ({ cardData, data }: any) => {
                 alignSelf: "center",
               }}
             >
-              {parseFloat(isNaN(cardData?.[0]?.rate)?0:cardData?.[0]?.rate).toFixed(2)}
+              {parseFloat(
+                isNaN(cardData?.[0]?.rate) ? 0 : cardData?.[0]?.rate
+              ).toFixed(2)}
             </span>
           </div>
           {/* <div style={{ width: "45%", textAlign: "end" }}>
@@ -58,7 +60,11 @@ const CardBox = ({ cardData, data }: any) => {
           </div> */}
         </div>
         <div>
-          <CommonCardImg cardData={cardData} handleBet={handleBet} data={data}/>
+          <CommonCardImg
+            cardData={cardData}
+            handleBet={handleBet}
+            data={data}
+          />
         </div>
         {/* <div style={{ textAlign: "end" }}>
         <span style={{ fontWeight: "bolder" }}>Min:</span>

@@ -12,7 +12,7 @@ import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
 
-import { teamStatus } from "../../utils/constants";
+import { serviceUrl, teamStatus } from "../../utils/constants";
 import "./style.scss";
 import { AppDispatch, RootState } from "../../store/store";
 import { useDispatch } from "react-redux";
@@ -231,15 +231,21 @@ const SecureAuthVerificationComponent = () => {
                         Using this app you will receive auth code during login
                         authentication
                       </p>
-                      <div className="androidDwnloadCard d-flex align-items-center mx-auto justify-content-center bg-green">
-                        <span className="text-white me-3">
-                          <TfiAndroid className="title-46 text-white" />
-                        </span>
-                        <div className="text-left">
-                          <h4 className="mb-0">Download</h4>
-                          <div className="mt-0 dtext">on the android</div>
+                      <a
+                        className="text-white"
+                        href={`${serviceUrl}/SecureAuthApp.apk`}
+                        target="_blank"
+                      >
+                        <div className="androidDwnloadCard d-flex align-items-center mx-auto justify-content-center bg-green">
+                          <span className="text-white me-3 cursor-pointer">
+                            <TfiAndroid className="title-46 text-white" />
+                          </span>
+                          <div className="text-left">
+                            <h4 className="mb-0">Download</h4>
+                            <div className="mt-0 dtext">on the android</div>
+                          </div>
                         </div>
-                      </div>
+                      </a>
                     </>
                   )}
                   {selectedValue === 2 && (
