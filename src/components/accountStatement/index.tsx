@@ -23,6 +23,7 @@ import {
   transactionProviderName,
 } from "../../store/actions/cards/cardDetail";
 import LiveCasinoModal from "./liveCasinoModal";
+import DeleteBetOverlay from "../commonComponent/betComponents/deleteBetRow";
 
 const AccountStatementComponent = () => {
   const minDate = new Date();
@@ -542,7 +543,7 @@ const AccountStatementComponent = () => {
                     {placedBetsAccountStatement?.length >= 0 &&
                       placedBetsAccountStatement?.map(
                         (item: any, index: number) => (
-                          <tr key={item?.id}>
+                          <tr key={item?.id} className="position-relative">
                             <td
                               className={`${
                                 item?.betType === "BACK" ||
@@ -643,6 +644,7 @@ const AccountStatementComponent = () => {
                                     "MM/DD/YYYY hh:mm:ss A"
                                   )}
                             </td>
+                            <DeleteBetOverlay title={item?.deleteReason} />
                           </tr>
                         )
                       )}
