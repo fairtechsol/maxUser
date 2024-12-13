@@ -68,6 +68,8 @@ const AccountStatementComponent = () => {
   };
   const handleCloseLiveCasinoModal = () => {
     setLiveCasinoModal(false);
+    setUpdateReports([]);
+    dispatch(transactionProviderBetsReset());
   };
   const handleSubmitClick = () => {
     try {
@@ -178,10 +180,6 @@ const AccountStatementComponent = () => {
       setUpdateReports(dataWithTotal);
     }
   }, [liveCasinoProviderBets]);
-
-  useEffect(() => {
-    dispatch(transactionProviderBetsReset());
-  }, [liveCasinoModal]);
 
   return (
     <>
