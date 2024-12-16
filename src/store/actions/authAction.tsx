@@ -123,6 +123,7 @@ export const verifyAuthToken = createAsyncThunk<any, any>(
       );
       if (resp?.statusCode === 200) {
         sessionStorage.setItem("isAuthenticator", "true");
+        sessionStorage.setItem("jwtMaxUser", resp?.data);
         window.location.replace("/home");
         return resp.data;
       }
