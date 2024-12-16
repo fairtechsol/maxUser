@@ -97,7 +97,7 @@ const AccountStatementComponent = () => {
 
       dispatch(
         getAccountStatement({
-          userId: getProfile?.id,
+          userId:sessionStorage.getItem("key"),
           page: tableConfig?.page,
           limit: tableConfig?.rowPerPage,
           searchBy: "description",
@@ -109,7 +109,7 @@ const AccountStatementComponent = () => {
   };
 
   useEffect(() => {
-    if (getProfile?.id && tableConfig) {
+    if (sessionStorage.getItem("key") && tableConfig) {
       let filter = "";
 
       if (from && to) {
@@ -137,7 +137,7 @@ const AccountStatementComponent = () => {
       }
       dispatch(
         getAccountStatement({
-          userId: getProfile?.id,
+          userId: sessionStorage.getItem("key"),
           page: tableConfig?.page,
           limit: tableConfig?.rowPerPage,
           searchBy: "description",
@@ -146,7 +146,7 @@ const AccountStatementComponent = () => {
         })
       );
     }
-  }, [getProfile?.id, tableConfig]);
+  }, [tableConfig]);
 
   useEffect(() => {
     const date = Math.floor(new Date().getTime() / 1000);
@@ -864,7 +864,7 @@ const AccountStatementComponent = () => {
                             borderRight: "1px solid #c7c8ca",
                           }}
                         >
-                          {parseFloat(item?.amount)>0?"CREDIT":"DEBIT"}
+                          {parseFloat(item?.amount) > 0 ? "CREDIT" : "DEBIT"}
                         </div>
                         <div
                           className="d-flex justify-content-end align-items-center pe-1"
