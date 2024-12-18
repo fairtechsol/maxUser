@@ -6,11 +6,7 @@ import { RootState } from "../../../store/store";
 import { FaTv } from "react-icons/fa";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
-import {
-  Constants,
-  liveStreamCricketPageUrl,
-  liveStreamPageUrl,
-} from "../../../utils/constants";
+import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import CommonTabs from "../../commonComponent/tabs";
