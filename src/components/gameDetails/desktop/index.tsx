@@ -5,9 +5,8 @@ import { useSelector } from "react-redux";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
 import { RootState } from "../../../store/store";
-import { Constants, liveStreamPageUrl } from "../../../utils/constants";
+import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
-import { MatchType } from "../../../utils/enum";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import CustomModal from "../../commonComponent/modal";
@@ -541,7 +540,7 @@ const DesktopGameDetail = () => {
                 matchDetails?.matchType !== "politics" && (
                   <Col md={12} className="px-1 pt-1">
                     <LiveStreamComponent
-                      url={`${liveStreamPageUrl}${matchDetails?.eventId}/4`}
+                      url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
                     />
                   </Col>
                 )}
