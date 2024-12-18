@@ -320,13 +320,18 @@ const GameDetails = () => {
     }
   }, [id]);
 
+  console.log(expertSocketService, socketService);
+
   useEffect(() => {
+    debugger;
     const handleVisibilityChange = () => {
+      console.log("running");
       if (document.visibilityState === "visible") {
         if (id) {
           dispatch(selectedBetAction(null));
           // dispatch(matchDetailAction(id));
           dispatch(getPlacedBets(id));
+          console.log("inititated");
           expertSocketService.match.joinMatchRoom(id, "user");
           expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
         }
