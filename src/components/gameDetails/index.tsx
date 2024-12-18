@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  expertSocket,
   expertSocketService,
+  matchSocket,
   socket,
   socketService,
 } from "../../socketManager";
@@ -323,16 +325,22 @@ const GameDetails = () => {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
+        if (!socket.connected) {
+          socketService.connect();
+        }
         if (id) {
           dispatch(selectedBetAction(null));
           // dispatch(matchDetailAction(id));
           dispatch(getPlacedBets(id));
-          expertSocketService.match.joinMatchRoom(id, "user");
-          expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
+          setTimeout(() => {
+            expertSocketService.match.joinMatchRoom(id, "user");
+            expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
+          }, 500);
         }
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
+        socketService.disconnect();
       }
     };
 
@@ -340,7 +348,7 @@ const GameDetails = () => {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [id]);
+  }, [socket, id]);
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };
