@@ -333,11 +333,12 @@ const GameDetails = () => {
           // dispatch(matchDetailAction(id));
           dispatch(getPlacedBets(id));
           console.log("inititated");
+          socketService.connect();
           setTimeout(() => {
             console.log(socket, matchSocket, expertSocket, "abc");
             expertSocketService.match.joinMatchRoom(id, "user");
             expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
-          }, 1000);
+          }, 500);
         }
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);
