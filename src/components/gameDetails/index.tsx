@@ -349,7 +349,7 @@ const GameDetails = () => {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [id]);
+  }, [socket, id]);
 
   return isMobile ? <MobileGameDetail /> : <DesktopGameDetail />;
 };
