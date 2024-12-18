@@ -332,6 +332,7 @@ const GameDetails = () => {
           dispatch(getPlacedBets(id));
           console.log("inititated");
           setTimeout(() => {
+            console.log(expertSocketService, socketService, "abc");
             expertSocketService.match.joinMatchRoom(id, "user");
             expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
           }, 1000);
