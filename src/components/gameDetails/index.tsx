@@ -322,11 +322,8 @@ const GameDetails = () => {
     }
   }, [id]);
 
-  console.log(socket, matchSocket, expertSocket, "ert");
-
   useEffect(() => {
     const handleVisibilityChange = () => {
-      console.log("running");
       if (document.visibilityState === "visible") {
         if (!socket.connected) {
           socketService.connect();
@@ -335,10 +332,7 @@ const GameDetails = () => {
           dispatch(selectedBetAction(null));
           // dispatch(matchDetailAction(id));
           dispatch(getPlacedBets(id));
-          console.log("inititated");
-
           setTimeout(() => {
-            console.log(socket, matchSocket, expertSocket, "abc");
             expertSocketService.match.joinMatchRoom(id, "user");
             expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
           }, 500);
