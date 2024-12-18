@@ -328,12 +328,15 @@ const GameDetails = () => {
     const handleVisibilityChange = () => {
       console.log("running");
       if (document.visibilityState === "visible") {
+        if (!socket.connected) {
+          socketService.connect();
+        }
         if (id) {
           dispatch(selectedBetAction(null));
           // dispatch(matchDetailAction(id));
           dispatch(getPlacedBets(id));
           console.log("inititated");
-          socketService.connect();
+
           setTimeout(() => {
             console.log(socket, matchSocket, expertSocket, "abc");
             expertSocketService.match.joinMatchRoom(id, "user");
@@ -343,6 +346,7 @@ const GameDetails = () => {
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
+        socketService.disconnect();
       }
     };
 
