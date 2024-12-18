@@ -340,7 +340,6 @@ const GameDetails = () => {
       } else if (document.visibilityState === "hidden") {
         expertSocketService.match.leaveMatchRoom(id);
         expertSocketService.match.getMatchRatesOff(id);
-        socketService.disconnect();
       }
     };
 
