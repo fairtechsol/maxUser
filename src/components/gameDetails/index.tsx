@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  expertSocket,
   expertSocketService,
+  matchSocket,
   socket,
   socketService,
 } from "../../socketManager";
@@ -332,7 +334,7 @@ const GameDetails = () => {
           dispatch(getPlacedBets(id));
           console.log("inititated");
           setTimeout(() => {
-            console.log(expertSocketService, socketService, "abc");
+            console.log(matchSocket, expertSocket, "abc");
             expertSocketService.match.joinMatchRoom(id, "user");
             expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
           }, 1000);
