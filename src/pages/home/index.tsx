@@ -19,8 +19,12 @@ import ImageModal from "../../components/commonComponent/loginModal";
 import { getBannerImage } from "../../store/actions/user/userAction";
 import { marketApiConst } from "../../utils/constants";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
+  const location = useLocation();
+  
+  
   const dispatch: AppDispatch = useDispatch();
   const { rulesPopShow } = useSelector((state: RootState) => state.auth);
   //const { bannerImage } = useSelector((state: RootState) => state.user.profile);
@@ -152,11 +156,17 @@ const Home = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      getMatchListMarket(matchType);
+      if (location.pathname == "/home" || location.pathname == "/inPlay") {
+        getMatchListMarket(matchType);
+      }
     }, 500);
+    
+    if (location.pathname != "/home" && location.pathname != "/inPlay") {
+      clearInterval(intervalId);
+    }
 
     return () => clearInterval(intervalId);
-  }, [matchType]);
+  }, [matchType,location.pathname]);
 
   return (
     <div>
