@@ -322,7 +322,7 @@ const GameDetails = () => {
     }
   }, [id]);
 
-  console.log(expertSocketService, socketService);
+  console.log(socket, matchSocket, expertSocket, "ert");
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -334,7 +334,7 @@ const GameDetails = () => {
           dispatch(getPlacedBets(id));
           console.log("inititated");
           setTimeout(() => {
-            console.log(matchSocket, expertSocket, "abc");
+            console.log(socket, matchSocket, expertSocket, "abc");
             expertSocketService.match.joinMatchRoom(id, "user");
             expertSocketService.match.getMatchRates(id, setMatchRatesInRedux);
           }, 1000);
