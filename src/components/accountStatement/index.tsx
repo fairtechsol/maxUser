@@ -69,6 +69,7 @@ const AccountStatementComponent = () => {
   };
   const handleCloseLiveCasinoModal = () => {
     setLiveCasinoModal(false);
+    setUpdateReports([]);
   };
   const handleSubmitClick = () => {
     if ((sessionStorage.getItem("key") || getProfile?.id) && tableConfig) {
