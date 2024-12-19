@@ -69,7 +69,7 @@ const SecurityAuth = () => {
                   onClick={() => {
                     dispatch(resendTokenToDisable());
                   }}
-                  style={{ color: "blue" }}
+                  style={{ color: "blue", cursor: "pointer" }}
                 >
                   Resend Code
                 </span>
