@@ -356,7 +356,7 @@ const FootballDesktopGameDetail = () => {
             >
               <Col md={12}>
                 <div
-                  onClick={() => setShowContactAdmin(true)}
+                  //onClick={() => setShowContactAdmin(true)}
                   style={{
                     display: "flex",
                     margin: "10px 0",
