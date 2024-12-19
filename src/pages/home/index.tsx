@@ -23,8 +23,6 @@ import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const location = useLocation();
-  
-  
   const dispatch: AppDispatch = useDispatch();
   const { rulesPopShow } = useSelector((state: RootState) => state.auth);
   //const { bannerImage } = useSelector((state: RootState) => state.user.profile);
@@ -120,7 +118,7 @@ const Home = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [socket, matchType]);
+  }, [socket, matchType]);          
 
   useEffect(() => {
     dispatch(getTabList({}));
@@ -160,13 +158,13 @@ const Home = () => {
         getMatchListMarket(matchType);
       }
     }, 500);
-    
+
     if (location.pathname != "/home" && location.pathname != "/inPlay") {
       clearInterval(intervalId);
     }
 
     return () => clearInterval(intervalId);
-  }, [matchType,location.pathname]);
+  }, [matchType, location.pathname]);
 
   return (
     <div>
