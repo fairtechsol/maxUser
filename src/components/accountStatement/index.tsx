@@ -69,9 +69,10 @@ const AccountStatementComponent = () => {
   };
   const handleCloseLiveCasinoModal = () => {
     setLiveCasinoModal(false);
+    setUpdateReports([]);
   };
   const handleSubmitClick = () => {
-    if (getProfile?.id && tableConfig) {
+    if ((sessionStorage.getItem("key") || getProfile?.id) && tableConfig) {
       let filter = "";
 
       if (from && to) {
@@ -97,7 +98,7 @@ const AccountStatementComponent = () => {
 
       dispatch(
         getAccountStatement({
-          userId:sessionStorage.getItem("key"),
+          userId: sessionStorage.getItem("key") || getProfile?.id,
           page: tableConfig?.page,
           limit: tableConfig?.rowPerPage,
           searchBy: "description",
@@ -109,7 +110,7 @@ const AccountStatementComponent = () => {
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem("key") && tableConfig) {
+    if ((sessionStorage.getItem("key") || getProfile?.id) && tableConfig) {
       let filter = "";
 
       if (from && to) {
@@ -137,7 +138,7 @@ const AccountStatementComponent = () => {
       }
       dispatch(
         getAccountStatement({
-          userId: sessionStorage.getItem("key"),
+          userId: sessionStorage.getItem("key") || getProfile?.id,
           page: tableConfig?.page,
           limit: tableConfig?.rowPerPage,
           searchBy: "description",
