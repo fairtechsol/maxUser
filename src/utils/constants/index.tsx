@@ -470,7 +470,7 @@ export const navigateToGameDetail = {
 };
 
 export const cardUrl =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV !== "production"
     ? "https://maxbet07.com/videoPage/"
     : "https://maxbet07.com/videoPage/";
 
