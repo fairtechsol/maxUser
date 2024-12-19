@@ -476,7 +476,7 @@ export const cardUrl =
 
 export const cardUrlMain = "https://jmdapi.com/tablevideo/?id="; //rr client name for casino video url
 export const liveStreamCricketPageUrl =
-  "https://mis3.sqmr.xyz/rtv.php?eventId="; //rr client name for cricket video url
+  "https://dpmatka.in/dd.php?sportId=4&eventId="; //rr client name for cricket video url
 export const liveStreamPageUrl =
   "https://dpmatka.in/anm.php?type=video&eventId="; //rr client name for football video
 export const scoreBoardUrlMain =
