@@ -81,21 +81,28 @@ const DesktopGameDetail = () => {
   };
 
   useEffect(() => {
-    if (matchDetails?.marketId === marketId) {
-      let intervalTime = 5000;
-      if (errorCount >= 5 && errorCount < 10) {
-        intervalTime = 60000;
-      } else if (errorCount >= 10) {
-        intervalTime = 600000;
-      }
-      const interval = setInterval(() => {
+    try {
+      if (matchDetails?.eventId) {
         getScoreBoard(matchDetails?.eventId);
-      }, intervalTime);
+      }
+      if (matchDetails?.marketId === marketId) {
+        let intervalTime = 5000;
+        if (errorCount >= 5 && errorCount < 10) {
+          intervalTime = 60000;
+        } else if (errorCount >= 10) {
+          intervalTime = 600000;
+        }
+        const interval = setInterval(() => {
+          getScoreBoard(matchDetails?.eventId);
+        }, intervalTime);
 
-      return () => {
-        clearInterval(interval);
-        setLiveScoreBoardData(null);
-      };
+        return () => {
+          clearInterval(interval);
+          setLiveScoreBoardData(null);
+        };
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, [matchDetails?.id, matchDetails?.eventId, errorCount, marketId]);
 
