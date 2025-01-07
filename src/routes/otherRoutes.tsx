@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom";
-import VideoPage from "../pages/public/VideoPage";
-import ScoreBoardPage from "../pages/public/ScoreBoardPage";
 import OtherLayout from "../layout/otherLayout";
 import LiveStreamPage from "../pages/public/liveStreamPage";
 import LiveStreamPageCricket from "../pages/public/liveStreamPageCricket";
+import LiveStreamPageCricketInternal from "../pages/public/liveStreamPageCricket/pageInternal";
+import ScoreBoardPage from "../pages/public/ScoreBoardPage";
+import VideoPage from "../pages/public/VideoPage";
 import SecurityAuth from "../pages/security";
 
 const OtherRoutes = {
@@ -18,6 +19,10 @@ const OtherRoutes = {
     {
       path: "liveStreamCricket/:vidId",
       element: <LiveStreamPageCricket />,
+    },
+    {
+      path: "liveStreamCricketInt/:vidId",
+      element: <LiveStreamPageCricketInternal />,
     },
     {
       path: "liveStream/:vidId/:sportId",

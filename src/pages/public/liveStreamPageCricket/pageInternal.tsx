@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
+import { liveStreamCricketPageUrl } from "../../../utils/constants";
 
-const LiveStreamPageCricket = () => {
+const LiveStreamPageCricketInternal = () => {
   const { vidId } = useParams();
   const iframeStyles: any = {
     position: "absolute",
@@ -26,7 +27,7 @@ const LiveStreamPageCricket = () => {
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
-        src={`https://maxbet07.com/liveStreamCricketInt/${vidId}`}
+        src={`${liveStreamCricketPageUrl}${vidId}`}
         frameBorder="0"
         allow="autoplay; fullscreen"
         allowFullScreen
@@ -35,4 +36,4 @@ const LiveStreamPageCricket = () => {
   );
 };
 
-export default LiveStreamPageCricket;
+export default LiveStreamPageCricketInternal;
