@@ -1,10 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import PropTypes from "prop-types";
-import { Modal } from "react-bootstrap";
-import { RootState } from "../../../store/store";
-import { useSelector } from "react-redux";
-import { isMobile } from "../../../utils/screenDimension";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import { isMobile } from "../../../utils/screenDimension";
 //import LazyLoad from "react-lazyload";
 import "./style.scss";
 
@@ -43,6 +41,22 @@ const ImageModal = ({ customClass, show, setShow }) => {
     } else document.body.style.overflow = "scroll";
     return () => {};
   }, [show]);
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && show) {
+        setShow(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    // Cleanup event listener on unmount
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [show, setShow]);
 
   return isMobile
     ? show && (
