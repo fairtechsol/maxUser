@@ -6,6 +6,11 @@ import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getPlacedBetsForAccountStatement } from "../../store/actions/betPlace/betPlaceActions";
+import {
+  resultDragonTiger,
+  transactionProviderBets,
+  transactionProviderName,
+} from "../../store/actions/cards/cardDetail";
 import { getAccountStatement } from "../../store/actions/user/userAction";
 import { AppDispatch, RootState } from "../../store/store";
 import { casinoKeywords, transType } from "../../utils/constants";
@@ -13,15 +18,10 @@ import { isMobile } from "../../utils/screenDimension";
 import SelectSearch from "../commonComponent/SelectSearch";
 import CustomButton from "../commonComponent/button";
 import NotSet from "../commonComponent/notSet";
+import { ResultComponent } from "../commonComponent/resultComponent";
 import CustomTable from "../commonComponent/table";
 import ReportContainer from "../containers/reportContainer";
 import "./style.scss";
-import { ResultComponent } from "../commonComponent/resultComponent";
-import {
-  resultDragonTiger,
-  transactionProviderBets,
-  transactionProviderName,
-} from "../../store/actions/cards/cardDetail";
 
 const AccountStatementComponent = () => {
   const minDate = new Date();
@@ -261,9 +261,7 @@ const AccountStatementComponent = () => {
 
             {/* http://localhost:5000/card/result/detail/9.241909153253 */}
             <CustomTable
-              placeHolder={
-                `${transactions?.count} records...` || "0 records..."
-              }
+              placeHolder={`${transactions?.count ?? 0} records...`}
               width={isMobile ? "1200px" : ""}
               paginationCount={true}
               bordered={true}
