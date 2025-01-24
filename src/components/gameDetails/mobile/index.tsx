@@ -9,6 +9,7 @@ import service from "../../../service";
 import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
 import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
+import NewLoader from "../../commonComponent/newLoader";
 import CommonTabs from "../../commonComponent/tabs";
 import Iframe from "../../iframe/iframe";
 import Bookmaker from "../bookmaker";
@@ -17,14 +18,13 @@ import MatchOdd from "../matchOdd";
 import OtherMarket from "../otherMarket";
 import SessionCricketCasino from "../sessionCricketCasino";
 import MobileSessionFancy from "../sessionFancy/mobileSessionFancy";
+import MobileSessionKhado from "../sessionKhado/mobileSessionFancy";
 import MobileSessionNormal from "../sessionNormal/mobileSessionNormal";
 import MobileSessionOddEven from "../sessionOddEven/mobileSessionOddEven";
 import Tournament from "../tournament";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import NewLoader from "../../commonComponent/newLoader";
-import MobileSessionKhado from "../sessionKhado/mobileSessionFancy";
 
 const MobileGameDetail = () => {
   const [show, setShow] = useState(true);
@@ -53,7 +53,7 @@ const MobileGameDetail = () => {
       //   setLiveScoreBoardData(response?.data);
       //   setErrorCount(0);
       // }
-    } catch (e: any) {
+    } catch (e) {
       console.log("Error:", e?.message);
       setLiveScoreBoardData(null);
       setErrorCount((prevCount: number) => prevCount + 1);
@@ -212,10 +212,38 @@ const MobileGameDetail = () => {
                       {matchDetails?.other?.length > 0 &&
                         matchDetails?.other?.map((item: any, index: number) => (
                           <div key={index} className="p-0">
-                            {item?.activeStatus === "live" &&
-                              item?.isActive && (
+                            {item?.activeStatus === "live" && item?.isActive && (
+                              <Col className="g-0" md={12}>
+                                <OtherMarket
+                                  title={item?.name}
+                                  box={
+                                    item?.runners?.[0]?.ex?.availableToBack
+                                      ?.length > 2
+                                      ? 6
+                                      : 2
+                                  }
+                                  data={item}
+                                  detail={matchDetails}
+                                  // data={matchDetails?.matchOdd}
+                                />
+                              </Col>
+                            )}
+                          </div>
+                        ))}
+                      {matchDetails?.tournament?.length > 0 &&
+                        matchDetails?.tournament
+                          ?.filter(
+                            (item: any) =>
+                              !["completed_match", "tied_match"].includes(
+                                item?.name?.toLowerCase()
+                              )
+                          )
+                          ?.sort((a: any, b: any) => a.sNo - b.sNo)
+                          ?.map((item: any, index: number) => (
+                            <div className="p-0" key={index}>
+                              {item?.activeStatus === "live" && item?.isActive && (
                                 <Col className="g-0" md={12}>
-                                  <OtherMarket
+                                  <Tournament
                                     title={item?.name}
                                     box={
                                       item?.runners?.[0]?.ex?.availableToBack
@@ -229,32 +257,8 @@ const MobileGameDetail = () => {
                                   />
                                 </Col>
                               )}
-                          </div>
-                        ))}
-                      {matchDetails?.tournament?.length > 0 &&
-                        matchDetails?.tournament?.map(
-                          (item: any, index: number) => (
-                            <div className="p-0" key={index}>
-                              {item?.activeStatus === "live" &&
-                                item?.isActive && (
-                                  <Col className="g-0" md={12}>
-                                    <Tournament
-                                      title={item?.name}
-                                      box={
-                                        item?.runners?.[0]?.ex?.availableToBack
-                                          ?.length > 2
-                                          ? 6
-                                          : 2
-                                      }
-                                      data={item}
-                                      detail={matchDetails}
-                                      // data={matchDetails?.matchOdd}
-                                    />
-                                  </Col>
-                                )}
                             </div>
-                          )
-                        )}
+                          ))}
 
                       {matchDetails?.bookmaker2?.activeStatus === "live" &&
                         matchDetails?.bookmaker2?.isActive && (
@@ -278,17 +282,16 @@ const MobileGameDetail = () => {
                         matchDetails?.quickBookmaker?.map(
                           (item: any, index: number) => (
                             <div key={index} className="p-0">
-                              {item?.activeStatus === "live" &&
-                                item?.isActive && (
-                                  <Col className="g-0" md={12}>
-                                    <ManualMarket
-                                      title={item?.name}
-                                      data={item}
-                                      detail={matchDetails}
-                                      // data={matchDetails?.matchOdd}
-                                    />
-                                  </Col>
-                                )}
+                              {item?.activeStatus === "live" && item?.isActive && (
+                                <Col className="g-0" md={12}>
+                                  <ManualMarket
+                                    title={item?.name}
+                                    data={item}
+                                    detail={matchDetails}
+                                    // data={matchDetails?.matchOdd}
+                                  />
+                                </Col>
+                              )}
                             </div>
                           )
                         )}
@@ -464,7 +467,34 @@ const MobileGameDetail = () => {
                             );
                           }
                         )}
-
+                      {matchDetails?.tournament?.length > 0 &&
+                        matchDetails?.tournament
+                          ?.filter((item: any) =>
+                            ["completed_match", "tied_match"].includes(
+                              item?.name?.toLowerCase()
+                            )
+                          )
+                          ?.sort((a: any, b: any) => a.sNo - b.sNo)
+                          ?.map((item: any, index: number) => (
+                            <div className="p-0" key={index}>
+                              {item?.activeStatus === "live" && item?.isActive && (
+                                <Col className="g-0" md={12}>
+                                  <Tournament
+                                    title={item?.name}
+                                    box={
+                                      item?.runners?.[0]?.ex?.availableToBack
+                                        ?.length > 2
+                                        ? 6
+                                        : 2
+                                    }
+                                    data={item}
+                                    detail={matchDetails}
+                                    // data={matchDetails?.matchOdd}
+                                  />
+                                </Col>
+                              )}
+                            </div>
+                          ))}
                       {matchDetails?.apiTideMatch?.activeStatus === "live" &&
                         matchDetails?.apiTideMatch?.isActive && (
                           <Col className="g-0" md={12}>
