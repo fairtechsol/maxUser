@@ -28,7 +28,7 @@ const ScoreBoardPage = () => {
       <iframe
         style={iframeStyles}
         src={
-          import.meta.env.NODE_ENV == "production"
+          import.meta.env.VITE_NODE_ENV == "production"
             ? `${scoreBoardUrlMain}${vidId}&sportid=${sportsId}`
             : `${scoreBoardUrlMain}${vidId}/${sportsId}`
         }

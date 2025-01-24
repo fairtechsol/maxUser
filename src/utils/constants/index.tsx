@@ -469,24 +469,24 @@ export const navigateToGameDetail = {
   [cardGamesType.cmeter]: "cmeter",
 };
 
-export const cardUrl = import.meta.env.CARD_VIDEO_BASE_URL;
+export const cardUrl = import.meta.env.VITE_CARD_VIDEO_BASE_URL;
 
-export const cardUrlMain = import.meta.env.CARD_VIDEO_BASE_URL;
+export const cardUrlMain = import.meta.env.VITE_CARD_VIDEO_BASE_URL;
 export const liveStreamCricketPageUrl = import.meta.env
-  .CRICKET_LIVE_STREAM_BASE_URL;
-export const liveStreamPageUrl = import.meta.env.OTHER_LIVE_STREAM_BASE_URL;
-export const scoreBoardUrlMain = import.meta.env.SCORE_CARD_BASE_URL;
+  .VITE_CRICKET_LIVE_STREAM_BASE_URL;
+export const liveStreamPageUrl = import.meta.env.VITE_OTHER_LIVE_STREAM_BASE_URL;
+export const scoreBoardUrlMain = import.meta.env.VITE_SCORE_VITE_CARD_BASE_URL;
 
 // export const scoreBoardUrlMain =
 //   "https://dpmatka.in/dcasino/score.php?matchId=";
 
-export const serviceUrl = import.meta.env.BASE_URL;
+export const serviceUrl = import.meta.env.VITE_BASE_URL;
 
 export const baseUrls = {
-  cardSocket: import.meta.env.CARD_BASE_URL,
-  socket: import.meta.env.BASE_URL,
-  matchSocket: import.meta.env.THIRD_PARTY_BASE_URL,
-  expertSocket: import.meta.env.EXPERT_BASE_URL,
+  cardSocket: import.meta.env.VITE_CARD_BASE_URL,
+  socket: import.meta.env.VITE_BASE_URL,
+  matchSocket: import.meta.env.VITE_THIRD_PARTY_BASE_URL,
+  expertSocket: import.meta.env.VITE_EXPERT_BASE_URL,
 };
 
 // use below baseUrl for live build

@@ -177,7 +177,7 @@ const FootballMobileGameDetail = () => {
                                 <Ratio aspectRatio="16x9">
                                   <iframe
                                     src={
-                                      import.meta.env.NODE_ENV == "production"
+                                      import.meta.env.VITE_NODE_ENV == "production"
                                         ? `${liveStreamPageUrl}${
                                             otherMatchDetails?.eventId
                                           }&sportid=${
@@ -223,7 +223,7 @@ const FootballMobileGameDetail = () => {
                               top: 0,
                             }}
                             src={
-                              import.meta.env.NODE_ENV == "production"
+                              import.meta.env.VITE_NODE_ENV == "production"
                                 ? `${scoreBoardUrlMain}${
                                     otherMatchDetails?.eventId
                                   }/${

@@ -153,7 +153,7 @@ const FootballDesktopGameDetail = () => {
                         top: 0,
                       }}
                       src={
-                        import.meta.env.NODE_ENV == "production"
+                        import.meta.env.VITE_NODE_ENV == "production"
                           ? `${scoreBoardUrlMain}${
                               otherMatchDetails?.eventId
                             }&sportid=${
@@ -393,7 +393,7 @@ const FootballDesktopGameDetail = () => {
                 <Col md={12} className="px-1 pt-1">
                   <LiveStreamComponent
                     url={
-                      import.meta.env.NODE_ENV == "production"
+                      import.meta.env.VITE_NODE_ENV == "production"
                         ? `${liveStreamPageUrl}${
                             otherMatchDetails?.eventId
                           }&sportid=${

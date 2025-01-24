@@ -28,7 +28,7 @@ const LiveStreamPage = () => {
       <iframe
         style={iframeStyles}
         src={
-          import.meta.env.NODE_ENV == "production"
+          import.meta.env.VITE_NODE_ENV == "production"
             ? `${liveStreamPageUrl}${vidId}&sportid=${sportId}`
             : `${liveStreamPageUrl}${vidId}/${sportId}`
         }

@@ -26,7 +26,7 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
     let firstArr = [];
     if (gameType === "fantasy") {
       firstArr =
-        import.meta.env.NODE_ENV == "production"
+        import.meta.env.VITE_NODE_ENV == "production"
           ? liveCasinoGameList.filter(
               (item: any) =>
                 item.game_id === "151027" || item.game_id === "151067"
@@ -37,7 +37,7 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
                 item.game_name === "Aviator Blue"
             );
     } else {
-      firstArr = (import.meta.env.NODE_ENV == "production"
+      firstArr = (import.meta.env.VITE_NODE_ENV == "production"
         ? liveCasinoGameList
         : mac88ListJSON
       ).filter((item: any) => item.category === gameType);

@@ -288,12 +288,12 @@ const SecureAuthVerificationComponent = () => {
                             <a
                               target="_blank"
                               href={
-                                import.meta.env.NODE_ENV == "production"
+                                import.meta.env.VITE_NODE_ENV == "production"
                                   ? "https://t.me/Auth07_bot"
                                   : "https://t.me/max_bet_2_factor_auth_bot"
                               }
                             >
-                              {import.meta.env.NODE_ENV == "production"
+                              {import.meta.env.VITE_NODE_ENV == "production"
                                 ? "@Auth07_bot"
                                 : "@max_bet_2_factor_auth_bot"}
                             </a>{" "}
@@ -320,12 +320,12 @@ const SecureAuthVerificationComponent = () => {
                             <a
                               target="_blank"
                               href={
-                                import.meta.env.NODE_ENV == "production"
+                                import.meta.env.VITE_NODE_ENV == "production"
                                   ? "https://t.me/Auth07_bot"
                                   : "https://t.me/max_bet_2_factor_auth_bot"
                               }
                             >
-                              {import.meta.env.NODE_ENV == "production"
+                              {import.meta.env.VITE_NODE_ENV == "production"
                                 ? "@Auth07_bot"
                                 : "@max_bet_2_factor_auth_bot"}
                             </a>{" "}
