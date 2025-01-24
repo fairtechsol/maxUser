@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
 import { RootState } from "../../../store/store";
@@ -10,22 +11,21 @@ import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import CustomModal from "../../commonComponent/modal";
+import NewLoader from "../../commonComponent/newLoader";
+import Iframe from "../../iframe/iframe";
 import Bookmaker from "../bookmaker";
 import ManualMarket from "../manulMarkets";
 import MatchOdd from "../matchOdd";
 import OtherMarket from "../otherMarket";
 import SessionCricketCasino from "../sessionCricketCasino";
 import SessionFancy from "../sessionFancy";
+import SessionKhado from "../sessionKhado";
 import SessionNormal from "../sessionNormal";
 import SessionOddEven from "../sessionOddEven";
+import Tournament from "../tournament";
 import MyBet from "./myBet";
 import PlacedBet from "./placeBet";
 import "./style.scss";
-import { Link } from "react-router-dom";
-import Iframe from "../../iframe/iframe";
-import Tournament from "../tournament";
-import NewLoader from "../../commonComponent/newLoader";
-import SessionKhado from "../sessionKhado";
 
 const DesktopGameDetail = () => {
   const placeBetRef = useRef<HTMLDivElement>(null);
@@ -73,7 +73,7 @@ const DesktopGameDetail = () => {
         setLiveScoreBoardData(response?.data);
         setErrorCount(0);
       }
-    } catch (e: any) {
+    } catch (e) {
       console.log("Error:", e?.message);
       setLiveScoreBoardData(null);
       setErrorCount((prevCount: number) => prevCount + 1);
@@ -232,26 +232,34 @@ const DesktopGameDetail = () => {
                     </div>
                   ))}
                 {matchDetails?.tournament?.length > 0 &&
-                  matchDetails?.tournament?.map((item: any, index: number) => (
-                    <div key={index}>
-                      {item?.activeStatus === "live" && item?.isActive && (
-                        <Col md={12} style={{ marginTop: "8px" }}>
-                          <Tournament
-                            title={item?.name}
-                            box={
-                              item?.runners?.[0]?.ex?.availableToBack?.length >
-                              2
-                                ? 6
-                                : 2
-                            }
-                            data={item}
-                            detail={matchDetails}
-                            // data={matchDetails?.matchOdd}
-                          />
-                        </Col>
-                      )}
-                    </div>
-                  ))}
+                  matchDetails?.tournament
+                    ?.filter(
+                      (item: any) =>
+                        !["completed_match", "tied_match"].includes(
+                          item?.name?.toLowerCase()
+                        )
+                    )
+                    ?.sort((a: any, b: any) => a.sNo - b.sNo)
+                    ?.map((item: any, index: number) => (
+                      <div key={index}>
+                        {item?.activeStatus === "live" && item?.isActive && (
+                          <Col md={12} style={{ marginTop: "8px" }}>
+                            <Tournament
+                              title={item?.name}
+                              box={
+                                item?.runners?.[0]?.ex?.availableToBack
+                                  ?.length > 2
+                                  ? 6
+                                  : 2
+                              }
+                              data={item}
+                              detail={matchDetails}
+                              // data={matchDetails?.matchOdd}
+                            />
+                          </Col>
+                        )}
+                      </div>
+                    ))}
                 {matchDetails?.bookmaker2?.activeStatus === "live" &&
                   matchDetails?.bookmaker2?.isActive && (
                     <Col md={12} style={{ marginTop: "8px" }}>
@@ -465,6 +473,34 @@ const DesktopGameDetail = () => {
                       }
                     )}
                 </div>
+                {matchDetails?.tournament?.length > 0 &&
+                  matchDetails?.tournament
+                    ?.filter((item: any) =>
+                      ["completed_match", "tied_match"].includes(
+                        item?.name?.toLowerCase()
+                      )
+                    )
+                    ?.sort((a: any, b: any) => a.sNo - b.sNo)
+                    ?.map((item: any, index: number) => (
+                      <div key={index}>
+                        {item?.activeStatus === "live" && item?.isActive && (
+                          <Col md={12} style={{ marginTop: "8px" }}>
+                            <Tournament
+                              title={item?.name}
+                              box={
+                                item?.runners?.[0]?.ex?.availableToBack
+                                  ?.length > 2
+                                  ? 6
+                                  : 2
+                              }
+                              data={item}
+                              detail={matchDetails}
+                              // data={matchDetails?.matchOdd}
+                            />
+                          </Col>
+                        )}
+                      </div>
+                    ))}
                 {matchDetails?.apiTideMatch?.activeStatus === "live" &&
                   matchDetails?.apiTideMatch?.isActive && (
                     <Col md={12}>
@@ -543,14 +579,13 @@ const DesktopGameDetail = () => {
                   </h6>
                 </div>
               </Col>
-              {matchDetails?.eventId &&
-                matchDetails?.matchType !== "politics" && (
-                  <Col md={12} className="px-1 pt-1">
-                    <LiveStreamComponent
-                      url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
-                    />
-                  </Col>
-                )}
+              {matchDetails?.eventId && matchDetails?.matchType !== "politics" && (
+                <Col md={12} className="px-1 pt-1">
+                  <LiveStreamComponent
+                    url={`${liveStreamCricketPageUrl}${matchDetails?.eventId}`}
+                  />
+                </Col>
+              )}
               <Col md={12} className="px-1 pt-1">
                 <PlacedBet />
               </Col>
