@@ -1,10 +1,20 @@
 import moment from "moment-timezone";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Img } from "react-image";
-import { useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
-import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
+import { Modal } from "react-bootstrap";
+import { FaHome } from "react-icons/fa";
 import { LiaFacebookF } from "react-icons/lia";
+import { TbDeviceTvOld } from "react-icons/tb";
+import { Img } from "react-image";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { maxbetLogo } from "../../../../../../assets/images";
+import bm from "../../../../../../assets/images/gameicons/ic_bm.png";
+import LiveCasino from "../../../../../../pages/casinoSubTab";
+import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
+import {
+  liveCasinoList,
+  liveCasinoLogin,
+} from "../../../../../../store/actions/cards/cardDetail";
 import { AppDispatch, RootState } from "../../../../../../store/store";
 import {
   availableGameType,
@@ -13,22 +23,9 @@ import {
 } from "../../../../../../utils/constants";
 import ContactAdmin from "../../../../../commonComponent/contactAdmin";
 import HorseRacingComponentList from "../../../../../horseRacing";
+import SeperateMACGames from "../../../../../separateMACGames";
 import BackLayComponent from "./backlayComponent";
 import "./style.scss";
-import { TbDeviceTvOld } from "react-icons/tb";
-import { betPlacedReset } from "../../../../../../store/actions/betPlace/betPlaceActions";
-import { useDispatch } from "react-redux";
-import {
-  liveCasinoList,
-  liveCasinoLogin,
-} from "../../../../../../store/actions/cards/cardDetail";
-import { Modal } from "react-bootstrap";
-import { maxbetLogo } from "../../../../../../assets/images";
-import { FaHome } from "react-icons/fa";
-import LiveCasino from "../../../../../../pages/casinoSubTab";
-import LiveCasinoMobile from "../../../../../liveCasino/mobile";
-import { isMobile } from "../../../../../../utils/screenDimension";
-import SeperateMACGames from "../../../../../separateMACGames";
 
 const MobileOneVOneGame = ({ mTypeid }: any) => {
   const [dataList, setDataList] = useState(casinoIcons);
@@ -392,7 +389,10 @@ const MobileOneVOneGame = ({ mTypeid }: any) => {
                   : {}
               }
             >
-              {liveCasinoGameList.map((item: any, index: number) => (
+               {(["/casino-slot"].includes(location.pathname)
+                ? casinoIcons
+                : liveCasinoGameList
+              ).map((item: any, index: number) => (
                 <Link
                   to={item.url}
                   key={index}

@@ -12,10 +12,8 @@ import CustomButton from "../commonComponent/button";
 import CustomInput from "../commonComponent/input";
 import ReportContainer from "../containers/reportContainer";
 
-import { serviceUrl, teamStatus } from "../../utils/constants";
-import "./style.scss";
-import { AppDispatch, RootState } from "../../store/store";
-import { useDispatch } from "react-redux";
+import OTPInput from "react-otp-input";
+import { useDispatch, useSelector } from "react-redux";
 import {
   generateAuthToken,
   getAuthenticator,
@@ -23,8 +21,9 @@ import {
   resendTokenToDisable,
   resetAuthTokenSuccess,
 } from "../../store/actions/authAction";
-import { useSelector } from "react-redux";
-import OTPInput from "react-otp-input";
+import { AppDispatch, RootState } from "../../store/store";
+import { serviceUrl, teamStatus } from "../../utils/constants";
+import "./style.scss";
 
 const SecureAuthVerificationComponent = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -288,9 +287,15 @@ const SecureAuthVerificationComponent = () => {
                             Find{" "}
                             <a
                               target="_blank"
-                              href="https://t.me/max_bet_2_factor_auth_bot"
+                              href={
+                                import.meta.env.NODE_ENV == "production"
+                                  ? "https://t.me/Auth07_bot"
+                                  : "https://t.me/max_bet_2_factor_auth_bot"
+                              }
                             >
-                              @max_bet_2_factor_auth_bot
+                              {import.meta.env.NODE_ENV == "production"
+                                ? "@Auth07_bot"
+                                : "@max_bet_2_factor_auth_bot"}
                             </a>{" "}
                             in your telegram and type<kbd>/start</kbd> command.
                             Bot will respond you.
@@ -314,9 +319,15 @@ const SecureAuthVerificationComponent = () => {
                             अपने टेलीग्राम में{" "}
                             <a
                               target="_blank"
-                              href="https://t.me/max_bet_2_factor_auth_bot"
+                              href={
+                                import.meta.env.NODE_ENV == "production"
+                                  ? "https://t.me/Auth07_bot"
+                                  : "https://t.me/max_bet_2_factor_auth_bot"
+                              }
                             >
-                              @max_bet_2_factor_auth_bot
+                              {import.meta.env.NODE_ENV == "production"
+                                ? "@Auth07_bot"
+                                : "@max_bet_2_factor_auth_bot"}
                             </a>{" "}
                             खोजें और कमांड<kbd>/start</kbd> टाइप करें. BOT आपको
                             जवाब देगा.

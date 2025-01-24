@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
-import NewLoader from "../commonComponent/newLoader";
-import { liveCasinoLogin } from "../../store/actions/cards/cardDetail";
+import { useDispatch, useSelector } from "react-redux";
 import { dt2020, maxbetLogo } from "../../assets/images";
+import { liveCasinoLogin } from "../../store/actions/cards/cardDetail";
 import { AppDispatch, RootState } from "../../store/store";
-import { mac88ListJSON } from "../../utils/constants";
+import { liveCasinoGameList, mac88ListJSON } from "../../utils/constants";
+import NewLoader from "../commonComponent/newLoader";
 
 interface SeperateMACGamesInterface {
   gameType?: string;
@@ -26,14 +25,22 @@ const SeperateMACGames = ({ gameType }: SeperateMACGamesInterface) => {
   useEffect(() => {
     let firstArr = [];
     if (gameType === "fantasy") {
-      firstArr = mac88ListJSON.filter(
-        (item: any) =>
-          item.game_name === "AVIATORX" || item.game_name === "Aviator Blue"
-      );
+      firstArr =
+        import.meta.env.NODE_ENV == "production"
+          ? liveCasinoGameList.filter(
+              (item: any) =>
+                item.game_id === "151027" || item.game_id === "151067"
+            )
+          : mac88ListJSON.filter(
+              (item: any) =>
+                item.game_name === "AVIATORX" ||
+                item.game_name === "Aviator Blue"
+            );
     } else {
-      firstArr = mac88ListJSON.filter(
-        (item: any) => item.category === gameType
-      );
+      firstArr = (import.meta.env.NODE_ENV == "production"
+        ? liveCasinoGameList
+        : mac88ListJSON
+      ).filter((item: any) => item.category === gameType);
     }
     console.log(firstArr);
     setGame(firstArr);

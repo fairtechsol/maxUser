@@ -27,7 +27,11 @@ const LiveStreamPage = () => {
     <div style={containerStyles}>
       <iframe
         style={iframeStyles}
-        src={`${liveStreamPageUrl}${vidId}/${sportId}`}
+        src={
+          import.meta.env.NODE_ENV == "production"
+            ? `${liveStreamPageUrl}${vidId}&sportid=${sportId}`
+            : `${liveStreamPageUrl}${vidId}/${sportId}`
+        }
         frameBorder="0"
         allow="autoplay; fullscreen"
         allowFullScreen
