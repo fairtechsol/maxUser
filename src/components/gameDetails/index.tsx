@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   expertSocketService,
   socket,
-  socketService
+  socketService,
 } from "../../socketManager";
 import {
   // getMatchList,
@@ -108,9 +108,7 @@ const GameDetails = () => {
     try {
       if (event?.matchId === id) {
         dispatch(getProfileInMatchDetail());
-        if (
-          event?.betType === "quickbookmaker1"|| event.isMatchDeclare
-        ) {
+        if (event?.betType === "quickbookmaker1" || event.isMatchDeclare) {
           navigate(`/home`);
         } else {
           dispatch(getPlacedBets(id));
