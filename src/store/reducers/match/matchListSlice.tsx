@@ -500,7 +500,21 @@ const matchListSlice = createSlice({
           teamArateRedisKey,
           teamBrateRedisKey,
           teamCrateRedisKey,
+          teamRate,
+          betId,
+          matchId,
+          matchBetType,
         } = action.payload;
+        
+        if (matchBetType === "tournament") {
+          state.matchDetails = {
+            ...state.matchDetails,
+            profitLossDataMatch: {
+              ...state.matchDetails.profitLossDataMatch,
+              [betId + "_profitLoss_" + matchId]: JSON.stringify(teamRate),
+            },
+          };
+        } else {
         state.matchDetails = {
           ...state.matchDetails,
           profitLossDataMatch: {
@@ -509,7 +523,7 @@ const matchListSlice = createSlice({
             [teamBrateRedisKey]: redisObject[teamBrateRedisKey],
             [teamCrateRedisKey]: redisObject[teamCrateRedisKey],
           },
-        };
+        };}
       })
       .addCase(updateProfitLossOnDeleteSession.fulfilled, (state, action) => {
         const { betId, profitLoss, matchId } = action.payload;
