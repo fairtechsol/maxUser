@@ -96,6 +96,7 @@ const FootballMobileGameDetail = () => {
   //     setErrorCount((prevCount: number) => prevCount + 1);
   //   }
   // };
+
   return (
     <div>
       {/* <FootballPlaceBet show={show} setShow={setShow} /> */}
@@ -226,14 +227,15 @@ const FootballMobileGameDetail = () => {
                               import.meta.env.VITE_NODE_ENV == "production"
                                 ? `${scoreBoardUrlMain}${
                                     otherMatchDetails?.eventId
-                                  }/${
+                                  }&sportid=${
                                     otherMatchDetails?.matchType === "football"
                                       ? "1"
                                       : "2"
                                   }`
-                                : `${scoreBoardUrlMain}${
+                                : 
+                                  `${scoreBoardUrlMain}${
                                     otherMatchDetails?.eventId
-                                  }&sportid=${
+                                  }/${
                                     otherMatchDetails?.matchType === "football"
                                       ? "1"
                                       : "2"

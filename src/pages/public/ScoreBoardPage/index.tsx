@@ -22,7 +22,6 @@ const ScoreBoardPage = () => {
     overflow: "hidden",
     zIndex: -1,
   };
-
   return (
     <div style={containerStyles}>
       <iframe
