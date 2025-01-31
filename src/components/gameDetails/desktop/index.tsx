@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { IoInformationCircle } from "react-icons/io5";
@@ -7,7 +8,6 @@ import { getChannelId } from "../../../helpers";
 import service from "../../../service";
 import { RootState } from "../../../store/store";
 import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
-import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import LiveStreamComponent from "../../commonComponent/liveStreamComponent";
 import CustomModal from "../../commonComponent/modal";
@@ -165,7 +165,7 @@ const DesktopGameDetail = () => {
                     rightComponent={
                       <span className="title-16 fbold text-white">
                         {matchDetails?.startAt &&
-                          formatDate(matchDetails?.startAt)}
+                          moment(matchDetails?.startAt).format("DD/MM/YYYY hh:mm:ss")}
                       </span>
                     }
                   />

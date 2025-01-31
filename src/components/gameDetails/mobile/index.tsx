@@ -3,11 +3,11 @@ import { Col, Container, Ratio, Row, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 // import { formatDate } from "../../../utils/dateUtils";
+import moment from "moment";
 import { FaTv } from "react-icons/fa";
 import { getChannelId } from "../../../helpers";
 import service from "../../../service";
 import { Constants, liveStreamCricketPageUrl } from "../../../utils/constants";
-import { formatDate } from "../../../utils/dateUtils";
 import BetTableHeader from "../../commonComponent/betTableHeader";
 import NewLoader from "../../commonComponent/newLoader";
 import CommonTabs from "../../commonComponent/tabs";
@@ -116,7 +116,8 @@ const MobileGameDetail = () => {
         title={matchDetails?.title}
         rightComponent={
           <span className="title-12 fbold text-white">
-            {matchDetails?.startAt && formatDate(matchDetails?.startAt)}
+            {matchDetails?.startAt &&
+              moment(matchDetails?.startAt).format("DD/MM/YYYY hh:mm:ss")}
           </span>
         }
         style={{ padding: "5px" }}
